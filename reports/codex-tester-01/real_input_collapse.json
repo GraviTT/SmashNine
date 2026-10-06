@@ -1,0 +1,88 @@
+{
+	"collapse": {
+		"after_hp": 85.0,
+		"after_position": [
+			4785.0,
+			370.0
+		],
+		"after_realm": 1,
+		"after_time": 150.12,
+		"before_hp": 115.0,
+		"before_position": [
+			760.0,
+			328.0
+		],
+		"before_realm": 0,
+		"before_time": 149.81,
+		"hp_delta": 30.0,
+		"old_realm_state": "collapsed",
+		"protection_s": 1.0,
+		"relocated": true,
+		"survived": true
+	},
+	"driver": "real_input_collapse",
+	"elimination": {
+		"camera_matches_spectate": true,
+		"camera_realm": 3,
+		"frames_at_3x": 124,
+		"hp_steps": [
+			{
+				"frame": 19,
+				"hp": 60.0,
+				"realm": 1,
+				"respawns": 1
+			},
+			{
+				"frame": 44,
+				"hp": 35.0,
+				"realm": 1,
+				"respawns": 2
+			},
+			{
+				"frame": 67,
+				"hp": 33.0,
+				"realm": 1,
+				"respawns": 2
+			},
+			{
+				"frame": 98,
+				"hp": 8.0,
+				"realm": 1,
+				"respawns": 3
+			},
+			{
+				"frame": 123,
+				"hp": 0.0,
+				"realm": 1,
+				"respawns": 4
+			}
+		],
+		"input_policy": "nearest side blast line; hold A/D and jump with W",
+		"living_count": 6,
+		"p1_eliminated": true,
+		"spectate_name": "Luna",
+		"spectate_realm": 3,
+		"spectate_valid": true
+	},
+	"initial_realm": 0,
+	"initial_realm_name": "Asgard",
+	"screenshots": [
+		{
+			"error": 0,
+			"name": "17_collapse_warning_idle",
+			"path": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/smash-nine-prototype/../reports/codex-tester-01/17_collapse_warning_idle.png"
+		},
+		{
+			"error": 0,
+			"name": "18_after_corner_collapse",
+			"path": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/smash-nine-prototype/../reports/codex-tester-01/18_after_corner_collapse.png"
+		},
+		{
+			"error": 0,
+			"name": "19_eliminated_spectating",
+			"path": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/smash-nine-prototype/../reports/codex-tester-01/19_eliminated_spectating.png"
+		}
+	],
+	"seed": 6103,
+	"time_scale": 10.0
+}
