@@ -25,7 +25,11 @@ var camera: Camera2D
 var realm_monster_spawner: Node
 var characters := CHARACTER_REGISTRY.get_characters()
 
+## When true every slot is a bot and the camera spectates (soak tests, attract mode).
+@export var bots_only := false
+
 var players: Array[Node] = []
+var spectate_target: Node
 var selected_character := "frey"
 var target_player_count := 4
 var dummy: Node
@@ -129,21 +133,41 @@ func _update_camera_for_current_realm() -> void:
 	camera.limit_right = int(origin.x + REALM_SIZE.x)
 	camera.limit_bottom = int(origin.y + REALM_SIZE.y)
 	var camera_position := origin + VIEWPORT_CENTER
-	var human := _get_human_player()
-	if _human_is_in_view(human):
-		camera_position = _clamp_to_realm_view(human.global_position, origin)
+	var focus := _get_focus_player()
+	if _is_in_view(focus):
+		camera_position = _clamp_to_realm_view(focus.global_position, origin)
 	camera.global_position = camera_position
 	camera.reset_smoothing()
 	active_portals = _get_portals_for_realm(current_map_index)
 	hud.rebuild_minimap(layout, director, current_map_index)
 
 func _update_camera_follow() -> void:
-	var human := _get_human_player()
-	if _human_is_in_view(human):
-		camera.global_position = _clamp_to_realm_view(human.global_position, layout.get_origin(current_map_index))
+	var focus := _get_focus_player()
+	if not is_instance_valid(focus):
+		return
+	if focus.realm_index != current_map_index and director.is_playable(focus.realm_index):
+		_set_map(focus.realm_index, false)
+	if _is_in_view(focus):
+		camera.global_position = _clamp_to_realm_view(focus.global_position, layout.get_origin(current_map_index))
 
-func _human_is_in_view(human: Node) -> bool:
-	return is_instance_valid(human) and not human.is_defeated and human.realm_index == current_map_index
+## The human while they are in the fight, otherwise a living combatant to spectate.
+func _get_focus_player() -> Node:
+	var human := _get_human_player()
+	if is_instance_valid(human) and not human.is_defeated:
+		return human
+	if not _is_alive(spectate_target):
+		spectate_target = null
+		for player in players:
+			if _is_alive(player):
+				spectate_target = player
+				break
+	return spectate_target
+
+func _is_alive(combatant: Node) -> bool:
+	return is_instance_valid(combatant) and not combatant.is_defeated
+
+func _is_in_view(combatant: Node) -> bool:
+	return _is_alive(combatant) and combatant.realm_index == current_map_index
 
 func _clamp_to_realm_view(point: Vector2, origin: Vector2) -> Vector2:
 	var minimum := origin + VIEWPORT_CENTER
@@ -181,7 +205,7 @@ func _spawn_players() -> void:
 	starting_realms.shuffle()
 	for i in target_player_count:
 		var realm_index := current_map_index if i == 0 else starting_realms[i % starting_realms.size()]
-		_add_player(ids[i], i == 0, layout.pick_spawn(realm_index), realm_index)
+		_add_player(ids[i % ids.size()], i == 0 and not bots_only, layout.pick_spawn(realm_index), realm_index)
 	_sync_combatant_visibility()
 
 func _add_player(character_id: String, human: bool, position: Vector2, realm_index: int) -> Node:
@@ -297,6 +321,8 @@ func _can_update_offscreen_ai(combatant: Node) -> bool:
 # --- Debug / test controls ---
 
 func _handle_character_switch() -> void:
+	if bots_only:
+		return
 	var mapping := {
 		"select_frey": "frey",
 		"select_yuki": "yuki",

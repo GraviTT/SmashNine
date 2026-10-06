@@ -1,6 +1,6 @@
 extends SceneTree
 ## Runs the real Main scene with bots only and reports match health.
-## Usage: godot --headless --path . --fixed-fps 60 -s tests/soak_match.gd -- --seconds=480 --seed=7
+## Usage: godot --headless --path . --fixed-fps 60 -s tests/soak_match.gd -- --seconds=480 --seed=7 [--players=8]
 ## Prints status lines every 30 in-game seconds and one final "SOAK_RESULT {json}" line.
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
@@ -10,14 +10,22 @@ const FRAME_TIME := 1.0 / 60.0
 var main: Node
 var seconds := 480.0
 var seed_value := -1
+var player_count := 0
 var defeats := 0
 var defeats_by_player: Dictionary = {}
 var nan_positions := 0
+var defeats_by_cause: Dictionary = {}
+var sampled_frames := 0
+var shared_realm_frames := 0
+var pvp_hits := 0
+var monster_hits := 0
 
 func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--seconds="):
 			seconds = float(arg.get_slice("=", 1))
+		elif arg.begins_with("--players="):
+			player_count = int(arg.get_slice("=", 1))
 		elif arg.begins_with("--seed="):
 			seed_value = int(arg.get_slice("=", 1))
 	call_deferred("_run")
@@ -26,11 +34,14 @@ func _run() -> void:
 	if seed_value >= 0:
 		seed(seed_value)
 	main = load(MAIN_SCENE).instantiate()
-	main.set("bots_only", true)
+	main.bots_only = true
+	if player_count > 0:
+		main.target_player_count = player_count
 	root.add_child(main)
 	await process_frame
 	for player in main.players:
 		player.defeated.connect(_on_defeated)
+		player.hp_changed.connect(_on_hp_changed)
 	var frames := int(seconds / FRAME_TIME)
 	var next_status := STATUS_INTERVAL
 	var finished_early := false
@@ -41,6 +52,8 @@ func _run() -> void:
 			next_status += STATUS_INTERVAL
 			_print_status(elapsed)
 		_check_positions()
+		if frame % 30 == 0:
+			_sample_encounters()
 		if main.get("match_over") == true:
 			finished_early = true
 			break
@@ -51,7 +64,9 @@ func _run() -> void:
 	await process_frame
 	quit(0)
 
-func _on_defeated(player: Node, _attacker: Node) -> void:
+func _on_defeated(player: Node, attacker: Node) -> void:
+	var cause := _attacker_kind(attacker)
+	defeats_by_cause[cause] = int(defeats_by_cause.get(cause, 0)) + 1
 	defeats += 1
 	var key: String = player.display_name
 	defeats_by_player[key] = int(defeats_by_player.get(key, 0)) + 1
@@ -94,5 +109,38 @@ func _collect_result(finished_early: bool) -> Dictionary:
 		"defeats_by_player": defeats_by_player,
 		"playable_realms": main.director.get_playable_indices().size(),
 		"nan_positions": nan_positions,
+		"defeats_by_cause": defeats_by_cause,
+		"pvp_hits": pvp_hits,
+		"monster_hits": monster_hits,
+		"shared_realm_ratio": snappedf(float(shared_realm_frames) / maxf(float(sampled_frames), 1.0), 0.01),
 		"node_count": int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))
 	}
+
+func _attacker_kind(attacker: Node) -> String:
+	if not is_instance_valid(attacker):
+		return "environment"
+	if attacker.is_in_group("players"):
+		return "player"
+	if attacker.is_in_group("realm_monsters"):
+		return "monster"
+	return "other"
+
+func _on_hp_changed(player: Node) -> void:
+	var kind := _attacker_kind(player.last_attacker)
+	if kind == "player":
+		pvp_hits += 1
+	elif kind == "monster":
+		monster_hits += 1
+
+## Fraction of living players that share a realm with at least one other living player.
+func _sample_encounters() -> void:
+	var counts: Dictionary = {}
+	var living: Array[Node] = []
+	for player in main.players:
+		if is_instance_valid(player) and not player.is_defeated:
+			living.append(player)
+			counts[player.realm_index] = int(counts.get(player.realm_index, 0)) + 1
+	for player in living:
+		sampled_frames += 1
+		if int(counts[player.realm_index]) >= 2:
+			shared_realm_frames += 1
