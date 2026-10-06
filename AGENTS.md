@@ -55,7 +55,10 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | Unit | Card | Writable paths | Status |
 |---|---|---|---|
 | analyst | `design/tasks/CODEX-PLAN-01.md` | none (read-only) | done — `reports/codex-plan-01/` |
-| analyst | `design/tasks/CODEX-ANALYST-01.md` | `smash-nine-prototype/tests/analysis/`, `reports/codex-analyst-01/` | running |
-| tester | `design/tasks/CODEX-TESTER-01.md` | `smash-nine-prototype/tests/playtest/`, `reports/codex-tester-01/` | running |
+| analyst | `design/tasks/CODEX-ANALYST-01.md` | `smash-nine-prototype/tests/analysis/`, `reports/codex-analyst-01/` | done — merged `052cbcb` |
+| tester | `design/tasks/CODEX-TESTER-01.md` | `smash-nine-prototype/tests/playtest/`, `reports/codex-tester-01/` | done — merged `47f7158` |
+| analyst + tester | `design/tasks/CODEX-RETEST-02.md` | `tests/analysis/` + `reports/codex-analyst-02/`; `tests/playtest/` + `reports/codex-tester-02/` | running |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
+
+Known sandbox noise: inside the Codex sandbox every Godot process prints `ERROR: Failed to read the root certificate store.` (os_windows.cpp). It does not happen outside the sandbox (lead runs: 0). Report it separately; every other error line still fails a run.
