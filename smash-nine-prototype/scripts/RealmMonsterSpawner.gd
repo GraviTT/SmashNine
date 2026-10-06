@@ -1,10 +1,10 @@
 extends Node
+## Keeps a small neutral monster population in every playable realm (design D7)
+## and pays souls to whoever finishes a monster.
 
 const MONSTER_SCRIPT := preload("res://scripts/RealmMonster.gd")
-const REALM_TILE_COUNT := 9
-const MONSTERS_PER_TILE := 2
-const MONSTERS_PER_REALM := REALM_TILE_COUNT * MONSTERS_PER_TILE
-const RESPAWN_DELAY := 7.0
+const MONSTERS_PER_REALM := 4
+const RESPAWN_DELAY := 20.0
 
 var spawn_points_provider: Callable
 var playable_realm_provider: Callable
@@ -30,7 +30,7 @@ func _spawn_missing_for_realm(realm_index: int) -> void:
 	var points: Array = spawn_points_provider.call(realm_index).duplicate()
 	if points.is_empty():
 		return
-	points = _build_distributed_spawn_points(points)
+	points.shuffle()
 	while monsters.size() < MONSTERS_PER_REALM:
 		var type_id := "mossling" if monsters.size() % 2 == 0 else "ember_imp"
 		var point: Vector2 = points[monsters.size() % points.size()]
@@ -42,31 +42,15 @@ func _spawn_missing_for_realm(realm_index: int) -> void:
 		monsters.append(monster)
 	monsters_by_realm[realm_index] = monsters
 
-func _build_distributed_spawn_points(all_points: Array) -> Array:
-	if all_points.size() < REALM_TILE_COUNT:
-		all_points.shuffle()
-		return all_points
-	var distributed: Array = []
-	var points_per_tile := all_points.size() / REALM_TILE_COUNT
-	for tile_index in REALM_TILE_COUNT:
-		var tile_points: Array = []
-		var first_index := tile_index * points_per_tile
-		for point_index in points_per_tile:
-			tile_points.append(all_points[first_index + point_index])
-		tile_points.shuffle()
-		for spawn_index in mini(MONSTERS_PER_TILE, tile_points.size()):
-			distributed.append(tile_points[spawn_index])
-	return distributed
-
 func _clear_realm(realm_index: int) -> void:
 	for monster in monsters_by_realm.get(realm_index, []):
 		if is_instance_valid(monster):
 			monster.queue_free()
 	monsters_by_realm.erase(realm_index)
 
-func _on_monster_defeated(monster: Node, attacker: Node, experience_reward: int, realm_index: int) -> void:
-	if is_instance_valid(attacker) and attacker.has_method("add_experience"):
-		attacker.add_experience(experience_reward)
+func _on_monster_defeated(monster: Node, attacker: Node, soul_reward: int, realm_index: int) -> void:
+	if is_instance_valid(attacker) and attacker.has_method("add_souls"):
+		attacker.add_souls(soul_reward)
 	var monsters: Array = monsters_by_realm.get(realm_index, [])
 	monsters.erase(monster)
 	monsters_by_realm[realm_index] = monsters

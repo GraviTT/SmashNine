@@ -41,14 +41,21 @@ func _create_luna(player_id: int) -> Node:
 
 func _test_normal_star_echo() -> bool:
 	var luna := _create_luna(1)
-	var initial_attacks := _count_nodes_with_script(ATTACK_PATH)
+	# Count hitboxes as they are created: the trail (0.1 s) and the bloom (after 0.065 s)
+	# overlap for only ~2 physics frames, so sampling live nodes was flaky.
+	var created: Array[Node] = []
+	var on_node_added := func(node: Node) -> void:
+		var script: Script = node.get_script()
+		if script != null and script.resource_path == ATTACK_PATH:
+			created.append(node)
+	node_added.connect(on_node_added)
 	luna.perform_basic_attack("side", Vector2.RIGHT)
-	var saw_two_beats := false
 	for attempt in 80:
-		if _count_nodes_with_script(ATTACK_PATH) >= initial_attacks + 2:
-			saw_two_beats = true
+		if created.size() >= 2:
 			break
 		await create_timer(0.005).timeout
+	node_added.disconnect(on_node_added)
+	var saw_two_beats := created.size() >= 2
 	if not saw_two_beats:
 		_fail("Luna normal J did not create the trail and delayed star bloom")
 		return false

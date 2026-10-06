@@ -1,6 +1,6 @@
 extends RefCounted
 ## Builds a combatant node: the character scene (or a bare PlayerBase for the
-## training dummy) plus collision, body rect, sprite slot, name and HP/EXP bars.
+## training dummy) plus collision, body rect, sprite slot, name and HP and soul bars.
 
 const PLAYER_BASE_SCRIPT := preload("res://characters/common/PlayerBase.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -42,7 +42,7 @@ static func create(character_id := "") -> CharacterBody2D:
 	player.add_child(name_label)
 
 	player.add_child(_create_bar("HpBar", Vector2(54, 7), Vector2(-27, -78), Color(0.1, 0.1, 0.1, 0.9), Color(0.25, 1.0, 0.35)))
-	player.add_child(_create_bar("ExpBar", Vector2(54, 5), Vector2(-27, -69), Color(0.08, 0.08, 0.12, 0.92), Color(0.3, 0.72, 1.0)))
+	player.add_child(_create_bar("SoulBar", Vector2(54, 5), Vector2(-27, -69), Color(0.08, 0.08, 0.12, 0.92), Color(0.62, 0.48, 1.0)))
 	return player
 
 static func _create_bar(bar_name: String, size: Vector2, position: Vector2, back_color: Color, fill_color: Color) -> ColorRect:

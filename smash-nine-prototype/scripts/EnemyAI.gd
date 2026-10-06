@@ -41,13 +41,17 @@ const NAV_DROP_REACH := 470.0
 const NAV_DROP_MIN_HORIZONTAL := 86.0
 const DROP_PROBE_DEPTH := 390.0
 
-const REALM_WIDTH := 3840.0
-const REALM_HEIGHT := 2160.0
-const RECOVER_MIN_X := -20.0
-const RECOVER_MAX_X := 3860.0
-const RECOVER_START_Y := 2160.0
-const RECOVER_EXIT_Y := 2100.0
-const RECOVER_JUMP_Y := 2200.0
+## Realm geometry comes from the player (PlayerBase.realm_size); offsets below are relative to it.
+const ROW_HEIGHT := 720.0
+const RECOVER_SIDE_SLACK := 20.0
+const RECOVER_START_FROM_BOTTOM := 40.0
+const RECOVER_EXIT_FROM_BOTTOM := 60.0
+const RECOVER_JUMP_RETRY := 0.3
+## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
+const ULTIMATE_FOLLOWUPS := {"nova": [0.35, 0.55], "luna": [4.4]}
+const ULTIMATE_USE_CHANCE := 0.45
+const PASSIVE_PLAYER_PENALTY := 900.0
+const DISENGAGE_HP_RATIO := 0.35
 
 const OFFSCREEN_THINK_MIN := 1.4
 const OFFSCREEN_THINK_MAX := 4.5
@@ -72,6 +76,8 @@ var waypoint: Vector2 = Vector2.ZERO
 var portal_target: Dictionary = {}
 var recovery_target: Vector2 = Vector2.ZERO
 var recovery_jump_used: bool = false
+var ultimate_followup_delays: Array[float] = []
+var ultimate_followup_timer: float = 0.0
 
 var stuck_anchor: Vector2 = Vector2.ZERO
 var stuck_timer: float = 0.0
@@ -93,6 +99,7 @@ func update(player, delta: float) -> void:
 		return
 
 	_target_timers(delta)
+	_update_ultimate_followups(player, delta)
 	_update_stuck(player, delta)
 
 	if _needs_recovery(player):
@@ -123,6 +130,8 @@ func reset(position: Vector2) -> void:
 	recovery_target = Vector2.ZERO
 	recovery_jump_used = false
 	stuck_anchor = position
+	ultimate_followup_delays.clear()
+	ultimate_followup_timer = 0.0
 	stuck_timer = 0.0
 	last_commanded_move = 0.0
 	blocked_direction = 0.0
@@ -151,7 +160,7 @@ func _select_state(player) -> void:
 	if state == STATE_RECOVER and not _recovery_complete(player):
 		return
 
-	if _realm_is_warning(player):
+	if _realm_is_warning(player) or _should_disengage(player):
 		var escape_portal: Dictionary = _find_portal_target(player)
 		if not escape_portal.is_empty():
 			portal_target = escape_portal
@@ -232,6 +241,26 @@ func _apply_intent(player, intent: Dictionary) -> void:
 			player.skill_one()
 		"skill_2":
 			player.skill_two()
+		"ultimate":
+			var was_ready: bool = player.is_ultimate_ready()
+			player.ultimate()
+			if was_ready and not player.is_ultimate_ready():
+				_schedule_ultimate_followups(player)
+
+func _schedule_ultimate_followups(player) -> void:
+	ultimate_followup_delays.clear()
+	for delay in ULTIMATE_FOLLOWUPS.get(player.character_id, []):
+		ultimate_followup_delays.append(float(delay))
+	ultimate_followup_timer = ultimate_followup_delays.pop_front() if not ultimate_followup_delays.is_empty() else 0.0
+
+func _update_ultimate_followups(player, delta: float) -> void:
+	if ultimate_followup_timer <= 0.0:
+		return
+	ultimate_followup_timer -= delta
+	if ultimate_followup_timer > 0.0:
+		return
+	player.ultimate()
+	ultimate_followup_timer = ultimate_followup_delays.pop_front() if not ultimate_followup_delays.is_empty() else 0.0
 
 func _wander_intent(player) -> Dictionary:
 	if wander_target == Vector2.ZERO or player.global_position.distance_to(wander_target) <= WAYPOINT_REACHED:
@@ -248,18 +277,22 @@ func _pursue_intent(player) -> Dictionary:
 	var destination: Vector2 = _choose_pursuit_destination(player, target.global_position)
 	return _navigate_to_intent(player, destination)
 
+## Only for realms made of stacked 720 px rows (tiled realms); single arenas never need it.
 func _downward_row_transition_intent(player, target_position: Vector2) -> Dictionary:
+	if player.realm_size.y <= ROW_HEIGHT * 1.5:
+		return {}
+	var realm_width: float = player.realm_size.x
 	var local_y: float = player.global_position.y - player.realm_origin.y
 	var target_local_y: float = target_position.y - player.realm_origin.y
-	var current_row: int = clampi(floori(local_y / 720.0), 0, 2)
-	var target_row: int = clampi(floori(target_local_y / 720.0), 0, 2)
+	var current_row: int = clampi(floori(local_y / ROW_HEIGHT), 0, 2)
+	var target_row: int = clampi(floori(target_local_y / ROW_HEIGHT), 0, 2)
 	if target_row <= current_row:
 		row_transition_direction = 0.0
 		row_transition_target = -1
 		return {}
 	if row_transition_target != target_row or is_zero_approx(row_transition_direction):
 		var local_x: float = player.global_position.x - player.realm_origin.x
-		row_transition_direction = -1.0 if local_x <= REALM_WIDTH * 0.5 else 1.0
+		row_transition_direction = -1.0 if local_x <= realm_width * 0.5 else 1.0
 		row_transition_target = target_row
 		_clear_navigation_path()
 	if player.is_on_floor():
@@ -268,9 +301,9 @@ func _downward_row_transition_intent(player, target_position: Vector2) -> Dictio
 			jump_retry_timer = JUMP_RETRY_TIME
 		return _intent(row_transition_direction, step_jump)
 	var local_x: float = player.global_position.x - player.realm_origin.x
-	var crossed_outer_edge: bool = local_x < 145.0 or local_x > REALM_WIDTH - 145.0
-	var crossed_row_boundary: bool = local_y > float(current_row + 1) * 720.0 + 80.0
-	var recovery_jump: bool = player.air_jumps_left > 0 and player.velocity.y > 320.0 and local_y > float(current_row + 1) * 720.0 + 260.0
+	var crossed_outer_edge: bool = local_x < 145.0 or local_x > realm_width - 145.0
+	var crossed_row_boundary: bool = local_y > float(current_row + 1) * ROW_HEIGHT + 80.0
+	var recovery_jump: bool = player.air_jumps_left > 0 and player.velocity.y > 320.0 and local_y > float(current_row + 1) * ROW_HEIGHT + 260.0
 	var air_direction: float = -row_transition_direction if crossed_outer_edge or crossed_row_boundary else row_transition_direction
 	return _intent(air_direction, recovery_jump)
 
@@ -349,6 +382,8 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 		return ""
 
 	attack_cooldown = randf_range(ATTACK_COOLDOWN_MIN, ATTACK_COOLDOWN_MAX)
+	if player.is_ultimate_ready() and is_instance_valid(target) and target.is_in_group("players") and randf() < ULTIMATE_USE_CHANCE:
+		return "ultimate"
 	var roll: float = randf()
 	var attack_name: String
 	if distance_x < 88.0:
@@ -372,7 +407,7 @@ func _mobility_skill_is_safe(player) -> bool:
 	var local_x: float = player.global_position.x - player.realm_origin.x
 	if direction < 0.0 and local_x < 220.0:
 		return false
-	if direction > 0.0 and local_x > REALM_WIDTH - 220.0:
+	if direction > 0.0 and local_x > player.realm_size.x - 220.0:
 		return false
 	if _has_floor_ahead(player, direction, 90.0) and _has_floor_ahead(player, direction, 155.0):
 		return true
@@ -497,31 +532,32 @@ func _needs_recovery(player) -> bool:
 	if state == STATE_RECOVER:
 		return not _recovery_complete(player)
 	var local_position: Vector2 = player.global_position - player.realm_origin
-	if local_position.x < RECOVER_MIN_X or local_position.x > RECOVER_MAX_X:
+	if local_position.x < -RECOVER_SIDE_SLACK or local_position.x > player.realm_size.x + RECOVER_SIDE_SLACK:
 		return true
-	return not player.is_on_floor() and local_position.y > RECOVER_START_Y and player.velocity.y > 0.0
+	return not player.is_on_floor() and local_position.y > player.realm_size.y - RECOVER_START_FROM_BOTTOM and player.velocity.y > 0.0
 
 func _recovery_complete(player) -> bool:
 	var local_position: Vector2 = player.global_position - player.realm_origin
-	return player.is_on_floor() and local_position.y < RECOVER_EXIT_Y and local_position.x >= 0.0 and local_position.x <= REALM_WIDTH
+	return player.is_on_floor() and local_position.y < player.realm_size.y - RECOVER_EXIT_FROM_BOTTOM and local_position.x >= 0.0 and local_position.x <= player.realm_size.x
 
+## Steer back toward a platform and spend air jumps as soon as we drop below it.
 func _recover_intent(player) -> Dictionary:
 	if recovery_target == Vector2.ZERO:
 		recovery_target = _choose_recovery_point(player)
 	var direction: float = _direction_to(player.global_position.x, recovery_target.x)
-	var local_y: float = player.global_position.y - player.realm_origin.y
 	var jump: bool = false
-	if not recovery_jump_used and player.air_jumps_left > 0 and local_y >= RECOVER_JUMP_Y:
+	var below_target: bool = player.global_position.y > recovery_target.y + 20.0
+	if below_target and player.velocity.y > 60.0 and player.air_jumps_left > 0 and jump_retry_timer <= 0.0:
 		jump = true
-		recovery_jump_used = true
+		jump_retry_timer = RECOVER_JUMP_RETRY
 	return _intent(direction, jump)
 
 func _choose_recovery_point(player) -> Vector2:
-	var best: Vector2 = player.realm_origin + Vector2(REALM_WIDTH * 0.5, 560.0)
+	var best: Vector2 = player.realm_origin + Vector2(player.realm_size.x * 0.5, player.realm_size.y * 0.75)
 	var best_score: float = INF
 	for point in player.spawn_points:
 		var local_point: Vector2 = point - player.realm_origin
-		if local_point.x < 100.0 or local_point.x > REALM_WIDTH - 100.0:
+		if local_point.x < 100.0 or local_point.x > player.realm_size.x - 100.0:
 			continue
 		var score: float = absf(point.x - player.global_position.x) + maxf(point.y - player.global_position.y, 0.0) * 1.8
 		if score < best_score:
@@ -558,6 +594,9 @@ func _find_target(player) -> Node:
 		if distance > PLAYER_TARGET_RANGE:
 			continue
 		var score: float = distance + absf(offset.y) * 0.12
+		# Low aggression (early phases): prefer monsters unless this player hit us recently.
+		if not _is_recent_attacker(player, candidate):
+			score += (1.0 - float(player.ai_aggression)) * PASSIVE_PLAYER_PENALTY
 		if score < best_score:
 			best_score = score
 			best = candidate
@@ -573,6 +612,15 @@ func _find_target(player) -> Node:
 			best_score = score
 			best = candidate
 	return best
+
+func _is_recent_attacker(player, candidate: Node) -> bool:
+	return candidate == player.last_attacker and float(player.last_attacker_timer) > 0.0
+
+## Hurt bots leave the realm while the match is still forgiving (aggression below 0.9).
+func _should_disengage(player) -> bool:
+	if float(player.ai_aggression) >= 0.9 or portal_cooldown > 0.0:
+		return false
+	return player.hp / player.max_hp < DISENGAGE_HP_RATIO
 
 func _target_invalid(player) -> bool:
 	if not _is_valid_target_candidate(player, target):
@@ -712,10 +760,10 @@ func _choose_wander_point(player) -> Vector2:
 	for point in available_points:
 		var local_x: float = point.x - player.realm_origin.x
 		var distance: float = player.global_position.distance_to(point)
-		if local_x >= 120.0 and local_x <= REALM_WIDTH - 120.0 and distance >= 320.0 and distance <= 1250.0:
+		if local_x >= 120.0 and local_x <= player.realm_size.x - 120.0 and distance >= 320.0 and distance <= 1250.0:
 			safe_points.append(point)
 	if safe_points.is_empty():
-		return player.realm_origin + Vector2(REALM_WIDTH * 0.5, 560.0)
+		return player.realm_origin + Vector2(player.realm_size.x * 0.5, player.realm_size.y * 0.75)
 	var index: int = randi_range(0, safe_points.size() - 1)
 	return safe_points[index]
 
@@ -736,7 +784,7 @@ func _update_stuck(player, delta: float) -> void:
 
 func _realm_is_warning(player) -> bool:
 	var parent: Node = player.get_parent()
-	return parent != null and parent.has_method("_get_realm_state") and parent._get_realm_state(player.realm_index) == "warning"
+	return parent != null and parent.has_method("get_realm_state") and parent.get_realm_state(player.realm_index) == "warning"
 
 func _find_portal_target(player) -> Dictionary:
 	var parent: Node = player.get_parent()

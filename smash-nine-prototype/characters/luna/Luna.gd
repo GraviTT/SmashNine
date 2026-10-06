@@ -68,11 +68,15 @@ func perform_skill_two() -> void:
 		_start_attack(0.21, 0.4, Callable(self, "_moon_ring"))
 
 func perform_ultimate() -> void:
-	if transformed:
-		if not transformation_finishing:
-			_heart_laser_start()
-		return
 	_transformation_start()
+
+## While transformed, the ultimate button fires the heart laser instead of starting a new cooldown.
+func try_ultimate_followup() -> bool:
+	if not transformed:
+		return false
+	if not transformation_finishing and _can_start_attack():
+		_heart_laser_start()
+	return true
 
 func character_physics_process(delta: float) -> void:
 	brave_combo_timer = maxf(brave_combo_timer - delta, 0.0)

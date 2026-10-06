@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
 signal hp_changed(player: Node)
+## Permanent elimination (design D1). The training dummy is the only combatant that comes back.
 signal defeated(player: Node, attacker: Node)
 signal respawned(player: Node)
-signal experience_changed(player: Node)
-signal leveled_up(player: Node, new_level: int)
+signal souls_changed(player: Node)
+## Emitted once per crossed threshold in SOUL_THRESHOLDS; pick_number is 1-based.
+signal soul_threshold_reached(player: Node, pick_number: int)
 
 const GRAVITY := 1850.0
 const FLOOR_ACCEL := 5500.0
@@ -50,7 +52,15 @@ const GUARD_KNOCKBACK_REDUCTION_SCALE := 0.65
 const GUARD_NONE := 0
 const GUARD_BLOCK := 1
 const GUARD_PARRY := 2
-const MAX_LEVEL := 10
+const SOUL_THRESHOLDS: Array[int] = [25, 50, 75]
+## Each soul pick also advances the character's own growth curve by this many former levels.
+const GROWTH_STEPS_PER_PICK := 3
+const SOULS_PER_DAMAGE := 0.2
+const SOULS_PER_KNOCKOUT := 12
+const ULTIMATE_COOLDOWN := 30.0
+const RESPAWN_PROTECTION := 1.0
+const LAST_ATTACKER_MEMORY := 8.0
+const RECOVERY_DELAY := 4.0
 const DAMAGE_NORMAL := "normal"
 const DAMAGE_FIXED := "fixed"
 const ENEMY_AI_SCRIPT := preload("res://scripts/EnemyAI.gd")
@@ -71,10 +81,19 @@ var base_max_hp := 100.0
 var base_attack_power := 100.0
 var base_defense := 0.0
 var base_speed := 330.0
+var base_weight := 1.0
 var hp_growth := 0.0
 var attack_growth := 0.0
 var defense_growth := 0.0
 var speed_growth := 0.0
+var upgrade_modifiers := {
+	"attack_multiplier": 1.0,
+	"speed_multiplier": 1.0,
+	"weight_multiplier": 1.0,
+	"ringout_damage_scale": 1.0,
+	"bonus_max_hp": 0.0,
+	"bonus_air_jumps": 0
+}
 var down_tap_timer := 0.0
 var drop_through_timer := 0.0
 var current_floor_platform: Node
@@ -93,21 +112,36 @@ var knockback_velocity := Vector2.ZERO
 var skill_dash_velocity := Vector2.ZERO
 var skill_dash_timer := 0.0
 var current_knockback_decay := KNOCKBACK_DECAY
-var ringout_damage_base := 18.0
+## Fixed HP lost per ring-out; the match director raises it each phase.
+var ringout_damage := 20.0
+var ringout_damage_scale := 1.0
+## Set by the match each frame (MatchDirector rules); 1.0 and 0.0 outside a match.
+var incoming_damage_scale := 1.0
+var recovery_rate := 0.0
+var ai_aggression := 1.0
+var time_since_damage := 0.0
+var _hp_last_tick := -1.0
 var score := 0
-var level := 1
-var experience := 0
-var experience_to_next_level := 24
+var damage_dealt := 0.0
+var souls := 0
+var soul_fraction := 0.0
+var soul_picks := 0
+var upgrades: Array[String] = []
 var respawn_count := 0
 var last_attacker: Node
+var last_attacker_timer := 0.0
+var invulnerable_timer := 0.0
+var ultimate_cooldown_timer := 0.0
 var realm_index := 0
 var is_realm_active := true
 var realm_origin := Vector2.ZERO
+var realm_size := Vector2(1280, 720)
 var ringout_y := 900.0
+var blast_left := -INF
+var blast_right := INF
 var ai_controller := ENEMY_AI_SCRIPT.new()
 var spawn_point := Vector2.ZERO
 var spawn_points: Array[Vector2] = []
-var match_pressure := 1.0
 var move_input := 0.0
 var coyote_timer := 0.0
 var jump_buffer_timer := 0.0
@@ -132,7 +166,7 @@ var sprite_action_timer := 0.0
 @onready var character_sprite: AnimatedSprite2D = get_node_or_null("CharacterSprite") as AnimatedSprite2D
 @onready var name_label: Label = $NameLabel
 @onready var hp_bar: ColorRect = $HpBar/Fill
-@onready var exp_bar: ColorRect = $ExpBar/Fill
+@onready var soul_bar: ColorRect = $SoulBar/Fill
 @onready var attack_scene := preload("res://scripts/Attack.gd")
 @onready var projectile_scene := preload("res://scripts/Projectile.gd")
 var guard_visual: Line2D
@@ -155,20 +189,6 @@ func setup(data: Dictionary, new_player_id: int, human := false) -> void:
 	_apply_character_data(data)
 	hp = max_hp
 	call_deferred("_update_visuals")
-
-func inherit_match_state(other: Node) -> void:
-	var hp_ratio := 1.0
-	if float(other.max_hp) > 0.0:
-		hp_ratio = clampf(float(other.hp) / float(other.max_hp), 0.0, 1.0)
-	level = int(other.level)
-	experience = int(other.experience)
-	experience_to_next_level = int(other.experience_to_next_level)
-	score = int(other.score)
-	respawn_count = int(other.respawn_count)
-	match_pressure = float(other.match_pressure)
-	_apply_level_stats(false)
-	hp = max_hp * hp_ratio
-	_update_visuals()
 
 func setup_dummy(new_player_id: int) -> void:
 	player_id = new_player_id
@@ -202,18 +222,40 @@ func _apply_character_data(data: Dictionary) -> void:
 	defense_growth = float(growth.get("defense", 0.0))
 	speed_growth = float(growth.get("speed", 0.0))
 	jump_velocity = data.jump
-	weight = data.weight
-	_apply_level_stats(false)
+	base_weight = data.weight
+	_apply_growth_stats(false)
 
-func _apply_level_stats(restore_gained_hp: bool) -> void:
+## Base stats + the character's growth curve (advanced by soul picks) + card modifiers.
+func _apply_growth_stats(restore_gained_hp: bool) -> void:
 	var previous_max_hp := max_hp
-	var gained_levels := float(maxi(level - 1, 0))
-	max_hp = base_max_hp + hp_growth * gained_levels
-	attack_power = base_attack_power + attack_growth * gained_levels
-	defense = base_defense + defense_growth * gained_levels
-	speed = base_speed + speed_growth * gained_levels
+	var growth_steps := float(soul_picks * GROWTH_STEPS_PER_PICK)
+	max_hp = base_max_hp + hp_growth * growth_steps + float(upgrade_modifiers.bonus_max_hp)
+	attack_power = (base_attack_power + attack_growth * growth_steps) * float(upgrade_modifiers.attack_multiplier)
+	defense = base_defense + defense_growth * growth_steps
+	speed = (base_speed + speed_growth * growth_steps) * float(upgrade_modifiers.speed_multiplier)
+	weight = base_weight * float(upgrade_modifiers.weight_multiplier)
+	ringout_damage_scale = float(upgrade_modifiers.ringout_damage_scale)
+	max_air_jumps = 1 + int(upgrade_modifiers.bonus_air_jumps)
 	if restore_gained_hp and max_hp > previous_max_hp:
 		hp = minf(hp + max_hp - previous_max_hp, max_hp)
+
+## Applies one soul card: {"id": String, "effects": {modifier_name: value}}.
+## *_multiplier and *_scale effects multiply; bonus_* effects add.
+func apply_upgrade(card: Dictionary) -> void:
+	upgrades.append(str(card.id))
+	soul_picks += 1
+	var effects: Dictionary = card.get("effects", {})
+	for key in effects:
+		if not upgrade_modifiers.has(key):
+			push_warning("Unknown upgrade modifier: %s" % key)
+			continue
+		if str(key).ends_with("_multiplier") or str(key).ends_with("_scale"):
+			upgrade_modifiers[key] = float(upgrade_modifiers[key]) * float(effects[key])
+		else:
+			upgrade_modifiers[key] = upgrade_modifiers[key] + effects[key]
+	_apply_growth_stats(true)
+	_update_visuals()
+	_play_float_text("%s!" % str(card.get("title", card.id)).to_upper(), Color(0.6, 0.9, 1.0))
 
 func _physics_process(delta: float) -> void:
 	if is_defeated or not is_realm_active:
@@ -222,6 +264,7 @@ func _physics_process(delta: float) -> void:
 		hitstop_timer = maxf(hitstop_timer - delta, 0.0)
 		return
 	attack_lock_timer = maxf(attack_lock_timer - delta, 0.0)
+	_update_match_timers(delta)
 	control_slow_timer = maxf(control_slow_timer - delta, 0.0)
 	control_jump_slow_timer = maxf(control_jump_slow_timer - delta, 0.0)
 	guard_recovery_timer = maxf(guard_recovery_timer - delta, 0.0)
@@ -251,8 +294,35 @@ func _physics_process(delta: float) -> void:
 	_apply_movement(delta)
 	_handle_landing_state()
 	_update_character_sprite()
-	if global_position.y > ringout_y:
+	if global_position.y > ringout_y or global_position.x < blast_left or global_position.x > blast_right:
 		_ringout()
+
+func _update_match_timers(delta: float) -> void:
+	ultimate_cooldown_timer = maxf(ultimate_cooldown_timer - delta, 0.0)
+	last_attacker_timer = maxf(last_attacker_timer - delta, 0.0)
+	if invulnerable_timer > 0.0:
+		invulnerable_timer = maxf(invulnerable_timer - delta, 0.0)
+		modulate.a = 1.0 if invulnerable_timer <= 0.0 or int(invulnerable_timer * 12.0) % 2 == 0 else 0.45
+	_update_recovery(delta)
+
+## Out-of-combat regeneration while the match allows it (MatchDirector.RECOVERY_RATE).
+func _update_recovery(delta: float) -> void:
+	if hp < _hp_last_tick:
+		time_since_damage = 0.0
+	else:
+		time_since_damage += delta
+	if recovery_rate > 0.0 and time_since_damage >= RECOVERY_DELAY and hp < max_hp:
+		var before := int(hp)
+		hp = minf(hp + recovery_rate * delta, max_hp)
+		if int(hp) != before:
+			_update_visuals()
+	_hp_last_tick = hp
+
+func is_invulnerable() -> bool:
+	return invulnerable_timer > 0.0
+
+func grant_protection(duration := RESPAWN_PROTECTION) -> void:
+	invulnerable_timer = maxf(invulnerable_timer, duration)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_human or is_defeated:
@@ -542,11 +612,16 @@ func skill_two() -> void:
 	perform_skill_two()
 
 func ultimate() -> void:
+	# Follow-up presses (Nova's slingshot stages, Luna's heart laser) are part of the same ultimate.
 	if try_ultimate_followup():
 		return
-	if not _can_start_attack():
+	if not _can_start_attack() or not is_ultimate_ready():
 		return
+	ultimate_cooldown_timer = ULTIMATE_COOLDOWN
 	perform_ultimate()
+
+func is_ultimate_ready() -> bool:
+	return ultimate_cooldown_timer <= 0.0
 
 func perform_basic_attack(_attack_type: String, _direction: Vector2) -> void:
 	pass
@@ -798,7 +873,7 @@ func _spawn_projectile(size: Vector2, damage: float, knockback: float, direction
 	projectile.configure(self, size, damage, knockback, direction, color, projectile_speed, lifetime, damage_type)
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := DAMAGE_NORMAL) -> bool:
-	if is_defeated:
+	if is_defeated or is_invulnerable():
 		return false
 	var guard_result := _get_guard_result(attacker, direction)
 	if guard_result == GUARD_PARRY:
@@ -806,11 +881,12 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 		return false
 	if is_guarding and guard_result == GUARD_NONE:
 		_stop_guard(true)
-	last_attacker = attacker if is_instance_valid(attacker) else null
+	_remember_attacker(attacker)
 	var final_damage := _calculate_incoming_damage(attacker, damage, damage_type)
 	var guard_reduction := _get_guard_reduction() if guard_result == GUARD_BLOCK else 0.0
 	final_damage *= 1.0 - guard_reduction
 	hp = maxf(hp - final_damage, 0.0)
+	_credit_damage(attacker, final_damage)
 	var danger := 1.0 + (1.0 - hp / max_hp) * LOW_HP_KNOCKBACK_BONUS
 	var final_knockback := base_knockback * danger * KNOCKBACK_SCALE / weight
 	final_knockback *= 1.0 - guard_reduction * GUARD_KNOCKBACK_REDUCTION_SCALE
@@ -848,7 +924,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	return true
 
 func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vector2, hitstun_duration: float, effect_knockback: float, direction: Vector2, damage_type := DAMAGE_NORMAL) -> bool:
-	if is_defeated:
+	if is_defeated or is_invulnerable():
 		return false
 	var guard_result := _get_guard_result(attacker, direction)
 	if guard_result == GUARD_PARRY:
@@ -856,11 +932,12 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 		return false
 	if is_guarding and guard_result == GUARD_NONE:
 		_stop_guard(true)
-	last_attacker = attacker if is_instance_valid(attacker) else null
+	_remember_attacker(attacker)
 	var final_damage := _calculate_incoming_damage(attacker, damage, damage_type)
 	var guard_reduction := _get_guard_reduction() if guard_result == GUARD_BLOCK else 0.0
 	final_damage *= 1.0 - guard_reduction
 	hp = maxf(hp - final_damage, 0.0)
+	_credit_damage(attacker, final_damage)
 	var hit_direction := direction.normalized()
 	if hit_direction == Vector2.ZERO:
 		hit_direction = launch_velocity.normalized()
@@ -903,7 +980,7 @@ func apply_stun_hit(attacker: Node, damage: float, base_knockback: float, direct
 	return true
 
 func apply_control_pull(center: Vector2, strength: float, delta: float, slow_duration: float, slow_jump := false) -> void:
-	if is_defeated:
+	if is_defeated or is_invulnerable():
 		return
 	var pull_direction := (center - global_position).normalized()
 	knockback_velocity += pull_direction * strength * delta
@@ -995,7 +1072,7 @@ func _calculate_incoming_damage(attacker: Node, base_damage: float, damage_type:
 		var power_value = attacker.get("attack_power")
 		if power_value != null:
 			attacker_power = float(power_value)
-	return maxf(base_damage * attacker_power / 100.0 * 100.0 / (100.0 + maxf(defense, 0.0)), 1.0)
+	return maxf(base_damage * attacker_power / 100.0 * 100.0 / (100.0 + maxf(defense, 0.0)) * incoming_damage_scale, 1.0)
 
 func _get_hit_direction(direction: Vector2, was_grounded: bool) -> Vector2:
 	var hit_direction := direction.normalized()
@@ -1019,19 +1096,40 @@ func _get_hitstun(final_knockback: float, was_grounded: bool) -> float:
 		stun += STRONG_HITSTUN_BONUS
 	return clampf(stun, HITSTUN_MIN, HITSTUN_MAX)
 
+## Ring-out: fixed HP loss set by the match phase, then back to this realm's spawn
+## with brief protection. Credit goes to whoever hit last within LAST_ATTACKER_MEMORY.
 func _ringout() -> void:
-	var phase_multiplier := 1.0 + float(respawn_count) * 0.35
-	var attacker := _get_valid_last_attacker()
-	apply_hit(attacker, ringout_damage_base * phase_multiplier * match_pressure, 250.0, Vector2(0, -1), DAMAGE_FIXED)
+	respawn_count += 1
+	apply_environment_damage(ringout_damage * ringout_damage_scale, _get_valid_last_attacker())
 	if not is_defeated:
-		respawn_count += 1
 		_respawn()
+		grant_protection()
+
+## Fixed damage that ignores guard, knockback and protection (ring-outs, collapse, sudden death).
+func apply_environment_damage(amount: float, attacker: Node = null) -> void:
+	if is_defeated or amount <= 0.0:
+		return
+	hp = maxf(hp - amount, 0.0)
+	_play_float_text("-%d" % int(round(amount)), Color(1.0, 0.45, 0.35))
+	hp_changed.emit(self)
+	_update_visuals()
+	if hp <= 0.0:
+		_defeat(attacker)
+
+func _remember_attacker(attacker: Node) -> void:
+	if is_instance_valid(attacker) and attacker != self:
+		last_attacker = attacker
+		last_attacker_timer = LAST_ATTACKER_MEMORY
 
 func _get_valid_last_attacker() -> Node:
-	if is_instance_valid(last_attacker):
+	if is_instance_valid(last_attacker) and last_attacker_timer > 0.0:
 		return last_attacker
 	last_attacker = null
 	return null
+
+func _credit_damage(attacker: Node, amount: float) -> void:
+	if is_instance_valid(attacker) and attacker != self and attacker.has_method("record_damage_dealt"):
+		attacker.record_damage_dealt(amount)
 
 func _defeat(attacker: Node) -> void:
 	_clear_drop_through_exception()
@@ -1042,17 +1140,17 @@ func _defeat(attacker: Node) -> void:
 	visible = false
 	collision_layer = 0
 	collision_mask = 0
-	if is_instance_valid(attacker) and attacker != self and attacker.has_method("add_score"):
-		attacker.add_score(1)
+	if is_instance_valid(attacker) and attacker != self and attacker.has_method("record_knockout"):
+		attacker.record_knockout()
 	defeated.emit(self, attacker)
-	var timer := get_tree().create_timer(3.0)
-	timer.timeout.connect(_respawn_after_defeat)
+	if is_dummy:
+		var timer := get_tree().create_timer(3.0)
+		timer.timeout.connect(_respawn_after_defeat)
 
 func _respawn_after_defeat() -> void:
 	hp = max_hp
 	is_defeated = false
 	_apply_realm_active_state()
-	respawn_count += 1
 	_respawn()
 
 func _respawn() -> void:
@@ -1079,13 +1177,14 @@ func _respawn() -> void:
 func set_spawn_points(points: Array[Vector2]) -> void:
 	spawn_points = points.duplicate()
 
-func set_match_pressure(pressure: float) -> void:
-	match_pressure = maxf(pressure, 1.0)
-
-func set_realm(new_realm_index: int, points: Array[Vector2], new_realm_origin := Vector2.ZERO, new_ringout_y := 900.0) -> void:
+## Geometry of the realm this combatant fights in; RealmLayout.assign_combatant fills it.
+func set_realm(new_realm_index: int, points: Array[Vector2], bounds: Rect2, new_ringout_y: float, side_blast_lines := Vector2(-INF, INF)) -> void:
 	realm_index = new_realm_index
-	realm_origin = new_realm_origin
+	realm_origin = bounds.position
+	realm_size = bounds.size
 	ringout_y = new_ringout_y
+	blast_left = side_blast_lines.x
+	blast_right = side_blast_lines.y
 	set_spawn_points(points)
 
 func set_realm_active(active: bool) -> void:
@@ -1103,13 +1202,6 @@ func _apply_realm_active_state() -> void:
 	collision_layer = PLAYER_LAYER
 	collision_mask = WORLD_LAYER
 	set_physics_process(true)
-
-func eliminate_by_realm_collapse() -> void:
-	if is_defeated:
-		return
-	hp = 0.0
-	_update_visuals()
-	_defeat(null)
 
 func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	_clear_drop_through_exception()
@@ -1131,55 +1223,55 @@ func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	movement_freeze_timer = 0.0
 	current_knockback_decay = KNOCKBACK_DECAY
 	air_jumps_left = max_air_jumps
-	is_defeated = false
-	visible = true
-	collision_layer = PLAYER_LAYER
-	collision_mask = WORLD_LAYER
-	if hp <= 0.0:
-		hp = max_hp
 	body.rotation = 0.0
 	action_locked_until_land = false
 	ai_controller.reset(global_position)
 	_update_visuals()
 
-func add_score(amount: int) -> void:
-	score += amount
+# --- Score and souls (design D4) ---
 
-func add_experience(amount: int) -> void:
-	if amount <= 0 or is_dummy or level >= MAX_LEVEL:
+func record_knockout() -> void:
+	score += 1
+	add_souls(SOULS_PER_KNOCKOUT)
+
+func record_damage_dealt(amount: float) -> void:
+	damage_dealt += amount
+	soul_fraction += amount * SOULS_PER_DAMAGE
+	var whole := floori(soul_fraction)
+	if whole > 0:
+		soul_fraction -= whole
+		add_souls(whole)
+
+func add_souls(amount: int) -> void:
+	if amount <= 0 or is_dummy or is_defeated:
 		return
-	experience += amount
-	var gained_level := false
-	while level < MAX_LEVEL and experience >= experience_to_next_level:
-		experience -= experience_to_next_level
-		level += 1
-		_apply_level_stats(true)
-		experience_to_next_level = 0 if level >= MAX_LEVEL else _get_experience_required(level)
-		gained_level = true
-		leveled_up.emit(self, level)
-	if level >= MAX_LEVEL:
-		experience = 0
-	experience_changed.emit(self)
+	var before := souls
+	souls += amount
+	souls_changed.emit(self)
+	for index in SOUL_THRESHOLDS.size():
+		if before < SOUL_THRESHOLDS[index] and souls >= SOUL_THRESHOLDS[index]:
+			soul_threshold_reached.emit(self, index + 1)
 	_update_visuals()
-	if gained_level:
-		_play_level_up_feedback()
 
-func _get_experience_required(target_level: int) -> int:
-	return 24 + (target_level - 1) * 14
+func get_next_soul_threshold() -> int:
+	for threshold in SOUL_THRESHOLDS:
+		if souls < threshold:
+			return threshold
+	return 0
 
-func _play_level_up_feedback() -> void:
-	var level_label := Label.new()
-	level_label.text = "LEVEL UP!  Lv.%d" % level
-	level_label.position = global_position + Vector2(-62, -132)
-	level_label.size = Vector2(124, 30)
-	level_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	level_label.add_theme_font_size_override("font_size", 18)
-	level_label.modulate = Color(1.0, 0.9, 0.25)
-	get_parent().add_child(level_label)
-	var tween := level_label.create_tween()
-	tween.tween_property(level_label, "position", level_label.position + Vector2(0, -40), 0.65)
-	tween.parallel().tween_property(level_label, "modulate:a", 0.0, 0.65)
-	tween.tween_callback(level_label.queue_free)
+func _play_float_text(text: String, color: Color) -> void:
+	var label := Label.new()
+	label.text = text
+	label.position = global_position + Vector2(-80, -132)
+	label.size = Vector2(160, 30)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", 18)
+	label.modulate = color
+	get_parent().add_child(label)
+	var tween := label.create_tween()
+	tween.tween_property(label, "position", label.position + Vector2(0, -40), 0.75)
+	tween.parallel().tween_property(label, "modulate:a", 0.0, 0.75)
+	tween.tween_callback(label.queue_free)
 
 func _apply_player_soft_collision(delta: float) -> void:
 	if is_dummy or is_defeated:
@@ -1277,9 +1369,11 @@ func _update_visuals() -> void:
 	if is_instance_valid(character_sprite):
 		character_sprite.visible = use_sprite
 		_apply_character_sprite_style()
-	name_label.text = "%s  Lv.%d\nHP %.0f" % [display_name, level, hp]
+	name_label.text = ("P1 " if is_human else "") + display_name
+	name_label.modulate = Color(1.0, 0.86, 0.35) if is_human else Color(1.0, 1.0, 1.0, 0.85)
 	hp_bar.scale.x = clampf(hp / max_hp, 0.0, 1.0)
-	exp_bar.scale.x = 1.0 if level >= MAX_LEVEL else clampf(float(experience) / float(experience_to_next_level), 0.0, 1.0)
+	var last_threshold: int = SOUL_THRESHOLDS[SOUL_THRESHOLDS.size() - 1]
+	soul_bar.scale.x = clampf(float(souls) / float(last_threshold), 0.0, 1.0)
 	_update_character_sprite(true)
 
 func _uses_character_sprite() -> bool:

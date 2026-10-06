@@ -17,7 +17,7 @@ if (-not (Test-Path $godot)) {
 	exit 2
 }
 $project = Split-Path -Parent $PSScriptRoot
-$tests = @("test_character_architecture", "test_frey_sprite", "test_luna_prototype", "test_nova_prototype", "test_match_rules")
+$tests = @("test_character_architecture", "test_frey_sprite", "test_luna_prototype", "test_nova_prototype", "test_match_rules", "visual_preview")
 $failed = @()
 
 function Invoke-Godot([string[]]$GodotArgs) {
@@ -59,7 +59,8 @@ if (-not $SkipSoak) {
 		$result = Invoke-Godot @("--headless", "--path", ".", "--fixed-fps", "60", "-s", "tests/soak_match.gd", "--", "--seconds=$SoakSeconds", "--seed=$seed")
 		$errors = Get-EngineErrors $result.Output
 		$summary = ($result.Output -split "`n" | Where-Object { $_ -match '^SOAK_RESULT' } | Select-Object -Last 1)
-		if ($result.Code -ne 0 -or $errors.Count -gt 0 -or -not $summary) {
+		$finished = $summary -and $summary.Contains('"match_over":true') -and -not $summary.Contains('"winner":""')
+		if ($result.Code -ne 0 -or $errors.Count -gt 0 -or -not $finished) {
 			$failed += "soak#$run"
 			Write-Output "FAIL soak run $run seed $seed (exit $($result.Code), $($errors.Count) engine errors)"
 			$errors | Select-Object -First 10 | ForEach-Object { Write-Output "    $_" }

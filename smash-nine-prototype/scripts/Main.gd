@@ -1,64 +1,83 @@
 extends Node2D
-## Match scene root: spawns combatants, follows the human player's realm with the
-## camera and wires the realm layout, world, match director and HUD together.
-## Bots call get_ai_* / move_ai_through_portal / _get_realm_state on their parent.
+## Match scene root: start screen, spawning, camera, input routing and wiring of
+## the realm layout, world, match director, soul growth and HUD.
+## Bots call get_ai_* / move_ai_through_portal / get_realm_state on their parent.
 
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const REALM_LAYOUT_SCRIPT := preload("res://scripts/realms/RealmLayout.gd")
 const REALM_WORLD_SCRIPT := preload("res://scripts/realms/RealmWorld.gd")
 const MATCH_DIRECTOR_SCRIPT := preload("res://scripts/match/MatchDirector.gd")
+const SOUL_GROWTH_SCRIPT := preload("res://scripts/match/SoulGrowth.gd")
 const MATCH_HUD_SCRIPT := preload("res://scripts/ui/MatchHud.gd")
 const REALM_MONSTER_SPAWNER_SCRIPT := preload("res://scripts/RealmMonsterSpawner.gd")
 const CENTRAL_REALM_INDEX := REALM_LAYOUT_SCRIPT.CENTRAL_REALM_INDEX
-const VIEWPORT_CENTER := REALM_LAYOUT_SCRIPT.VIEWPORT_CENTER
-const REALM_SIZE := REALM_LAYOUT_SCRIPT.REALM_SIZE
 const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
-const MAX_TEST_PLAYERS := 4
+const CAMERA_ZOOM := 0.85
+const CAMERA_EDGE_PADDING := 80.0
+const CHOOSE_ACTIONS: Array[String] = ["choose_1", "choose_2", "choose_3", "choose_4"]
+
+## Every slot is a bot and the camera spectates (soak tests, attract mode). Skips the start screen.
+@export var bots_only := false
+## design D7: 8 = two per corner realm, 16 = two per outer realm.
+@export var player_count := 8
+## -1 picks a random seed; soak tests pass a fixed one.
+@export var match_seed := -1
 
 var layout: REALM_LAYOUT_SCRIPT
 var director: MATCH_DIRECTOR_SCRIPT
+var soul_growth: SOUL_GROWTH_SCRIPT
 var world: REALM_WORLD_SCRIPT
 var hud: MATCH_HUD_SCRIPT
 var camera: Camera2D
 var realm_monster_spawner: Node
 var characters := CHARACTER_REGISTRY.get_characters()
 
-## When true every slot is a bot and the camera spectates (soak tests, attract mode).
-@export var bots_only := false
-
 var players: Array[Node] = []
 var spectate_target: Node
-var selected_character := "frey"
-var target_player_count := 4
 var dummy: Node
-var current_map_index := 0
+var match_started := false
+var match_over := false
+var current_map_index := CENTRAL_REALM_INDEX
 var spawn_points: Array[Vector2] = []
 var active_portals: Array[Dictionary] = []
 var offscreen_ai_realm_step_timer := 0.0
 
 func _ready() -> void:
-	randomize()
+	if match_seed < 0:
+		randomize()
+		match_seed = randi()
+	seed(match_seed)
 	layout = REALM_LAYOUT_SCRIPT.new()
 	_create_director()
+	_create_soul_growth()
 	_create_realm_monster_spawner()
 	_create_camera()
 	_create_hud()
 	_create_world()
-	_set_map(0, false)
-	_spawn_players()
+	_set_map(CENTRAL_REALM_INDEX)
+	if bots_only:
+		_start_match("")
+	else:
+		hud.show_start_screen(_get_character_list())
 
 func _create_director() -> void:
 	director = MATCH_DIRECTOR_SCRIPT.new()
 	director.name = "MatchDirector"
 	add_child(director)
-	var names: Array[String] = []
-	for i in layout.realm_count():
-		names.append(str(layout.get_realm(i).name))
-	director.setup(names, CENTRAL_REALM_INDEX)
+	director.setup(layout)
 	director.realm_state_changed.connect(_on_realm_state_changed)
 	director.announcement.connect(_show_message)
+	director.combatant_relocated.connect(_on_combatant_relocated)
+	director.match_finished.connect(_on_match_finished)
+
+func _create_soul_growth() -> void:
+	soul_growth = SOUL_GROWTH_SCRIPT.new()
+	soul_growth.name = "SoulGrowth"
+	soul_growth.match_seed = match_seed
+	add_child(soul_growth)
+	soul_growth.offer_closed.connect(_on_soul_offer_closed)
 
 func _create_realm_monster_spawner() -> void:
 	realm_monster_spawner = Node.new()
@@ -71,9 +90,9 @@ func _create_camera() -> void:
 	camera = Camera2D.new()
 	camera.name = "RealmCamera"
 	camera.enabled = true
+	camera.zoom = Vector2(CAMERA_ZOOM, CAMERA_ZOOM)
 	camera.position_smoothing_enabled = true
 	camera.position_smoothing_speed = 6.0
-	camera.limit_smoothed = true
 	add_child(camera)
 
 func _create_hud() -> void:
@@ -85,82 +104,132 @@ func _create_world() -> void:
 	world.name = "World"
 	add_child(world)
 	move_child(world, 0)
-	world.build(layout, Callable(director, "get_state"), director.warning_realm_index)
+	world.build(layout, Callable(director, "get_state"), Callable(director, "is_warning"))
+
+func _get_character_list() -> Array[Dictionary]:
+	var list: Array[Dictionary] = []
+	for character_id in CHARACTER_REGISTRY.get_character_ids():
+		list.append(characters[character_id])
+	return list
+
+# --- Match flow ---
+
+func _start_match(human_character_id: String) -> void:
+	match_started = true
+	hud.hide_overlay()
+	hud.show_message(MATCH_HUD_SCRIPT.CONTROLS_HINT)
 	realm_monster_spawner.sync_playable_realms(director.get_playable_indices())
+	_spawn_players(human_character_id)
+	_set_map(players[0].realm_index)
 
 func _process(delta: float) -> void:
-	director.advance(delta)
-	_update_ringout_pressure()
-	_update_offscreen_ai_realm_movement(delta)
-	_handle_character_switch()
-	_handle_test_controls()
-	_handle_portal_input()
+	_handle_global_input()
+	if not match_started:
+		return
+	if not match_over:
+		director.advance(delta)
+		_apply_phase_rules()
+		_update_offscreen_ai_realm_movement()
+		_handle_portal_input()
+		_handle_card_input()
+		_handle_test_controls()
 	_update_camera_follow()
-	_update_collapse_countdown_displays()
-	_update_debug_ui()
+	_update_hud()
 
-func _on_realm_state_changed(realm_index: int, state: String) -> void:
-	if state == MATCH_DIRECTOR_SCRIPT.STATE_COLLAPSED:
-		var respawn_realm: int = director.find_safe_realm()
-		_eliminate_combatants_in_collapsed_realm(realm_index, respawn_realm)
-		if current_map_index == realm_index:
-			_set_map(respawn_realm, false)
-	world.refresh_dynamic(Callable(director, "get_state"), director.warning_realm_index)
+func _apply_phase_rules() -> void:
+	var ringout_damage: float = director.get_ringout_damage()
+	var damage_scale: float = director.get_combat_damage_scale()
+	var recovery_rate: float = director.get_recovery_rate()
+	var aggression: float = director.get_bot_aggression()
+	for combatant in players:
+		if is_instance_valid(combatant):
+			combatant.ringout_damage = ringout_damage
+			combatant.incoming_damage_scale = damage_scale
+			combatant.recovery_rate = recovery_rate
+			combatant.ai_aggression = aggression
+	var band: Vector2 = director.get_sudden_death_band()
+	if director.phase == MATCH_DIRECTOR_SCRIPT.PHASE_SUDDEN_DEATH:
+		world.set_hazard_band(CENTRAL_REALM_INDEX, band.x, band.y)
+
+func _handle_global_input() -> void:
+	if Input.is_action_just_pressed("toggle_debug"):
+		hud.toggle_debug()
+	if not match_started:
+		var ids := CHARACTER_REGISTRY.get_character_ids()
+		for index in mini(CHOOSE_ACTIONS.size(), ids.size()):
+			if Input.is_action_just_pressed(CHOOSE_ACTIONS[index]):
+				_start_match(ids[index])
+				return
+		if Input.is_action_just_pressed("watch_bots"):
+			bots_only = true
+			_start_match("")
+		return
+	if match_over and Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+
+func _on_match_finished(winner: Node, reason: String) -> void:
+	match_over = true
+	soul_growth.set_process(false)
+	hud.hide_card_offer()
+	if is_instance_valid(winner):
+		spectate_target = winner
+	hud.show_results(winner, reason, director.get_standings(), _get_human_player())
+
+func get_winner() -> Node:
+	return director.winner
+
+func _on_realm_state_changed(_realm_index: int, _state: String) -> void:
+	world.refresh_dynamic(Callable(director, "get_state"), Callable(director, "is_warning"))
 	realm_monster_spawner.sync_playable_realms(director.get_playable_indices())
 	active_portals = _get_portals_for_realm(current_map_index)
 	hud.rebuild_minimap(layout, director, current_map_index)
 	_sync_combatant_visibility()
 
-func _eliminate_combatants_in_collapsed_realm(collapsed_index: int, respawn_realm: int) -> void:
-	for combatant in _get_all_combatants():
-		if not is_instance_valid(combatant) or combatant.realm_index != collapsed_index:
-			continue
-		_assign_realm(combatant, respawn_realm)
-		combatant.eliminate_by_realm_collapse()
-
-func _update_ringout_pressure() -> void:
-	var pressure: float = director.get_ringout_pressure()
-	for combatant in _get_all_combatants():
-		if is_instance_valid(combatant):
-			combatant.set_match_pressure(pressure)
+func _on_combatant_relocated(combatant: Node, realm_index: int) -> void:
+	if combatant == _get_human_player():
+		_show_message("Caught in the collapse! Thrown into %s." % layout.get_realm(realm_index).name)
 
 # --- Camera and realm view ---
 
-func _update_camera_for_current_realm() -> void:
-	var origin: Vector2 = layout.get_origin(current_map_index)
-	camera.limit_left = int(origin.x)
-	camera.limit_top = int(origin.y)
-	camera.limit_right = int(origin.x + REALM_SIZE.x)
-	camera.limit_bottom = int(origin.y + REALM_SIZE.y)
-	var camera_position := origin + VIEWPORT_CENTER
-	var focus := _get_focus_player()
-	if _is_in_view(focus):
-		camera_position = _clamp_to_realm_view(focus.global_position, origin)
-	camera.global_position = camera_position
+func _set_map(index: int) -> void:
+	current_map_index = clampi(index, 0, layout.realm_count() - 1)
+	spawn_points = layout.get_spawn_points(current_map_index)
+	camera.global_position = _get_camera_target()
 	camera.reset_smoothing()
 	active_portals = _get_portals_for_realm(current_map_index)
 	hud.rebuild_minimap(layout, director, current_map_index)
 
 func _update_camera_follow() -> void:
 	var focus := _get_focus_player()
-	if not is_instance_valid(focus):
-		return
-	if focus.realm_index != current_map_index and director.is_playable(focus.realm_index):
-		_set_map(focus.realm_index, false)
+	if is_instance_valid(focus) and focus.realm_index != current_map_index and director.is_playable(focus.realm_index):
+		_set_map(focus.realm_index)
+	camera.global_position = _get_camera_target()
+
+## Follows the focus inside the realm; an axis smaller than the view stays centred.
+func _get_camera_target() -> Vector2:
+	var bounds: Rect2 = layout.get_bounds(current_map_index).grow(CAMERA_EDGE_PADDING)
+	var view := get_viewport().get_visible_rect().size / camera.zoom
+	var focus := _get_focus_player()
+	var point := bounds.get_center()
 	if _is_in_view(focus):
-		camera.global_position = _clamp_to_realm_view(focus.global_position, layout.get_origin(current_map_index))
+		point = focus.global_position + Vector2(0, -60)
+	var target := bounds.get_center()
+	if view.x < bounds.size.x:
+		target.x = clampf(point.x, bounds.position.x + view.x * 0.5, bounds.end.x - view.x * 0.5)
+	if view.y < bounds.size.y:
+		target.y = clampf(point.y, bounds.position.y + view.y * 0.5, bounds.end.y - view.y * 0.5)
+	return target
 
 ## The human while they are in the fight, otherwise a living combatant to spectate.
 func _get_focus_player() -> Node:
 	var human := _get_human_player()
-	if is_instance_valid(human) and not human.is_defeated:
+	if _is_alive(human):
 		return human
-	if not _is_alive(spectate_target):
+	if not _is_alive(spectate_target) and not match_over:
 		spectate_target = null
-		for player in players:
-			if _is_alive(player):
-				spectate_target = player
-				break
+		var alive: Array[Node] = director.get_alive_combatants()
+		if not alive.is_empty():
+			spectate_target = alive[0]
 	return spectate_target
 
 func _is_alive(combatant: Node) -> bool:
@@ -169,62 +238,52 @@ func _is_alive(combatant: Node) -> bool:
 func _is_in_view(combatant: Node) -> bool:
 	return _is_alive(combatant) and combatant.realm_index == current_map_index
 
-func _clamp_to_realm_view(point: Vector2, origin: Vector2) -> Vector2:
-	var minimum := origin + VIEWPORT_CENTER
-	var maximum := origin + REALM_SIZE - VIEWPORT_CENTER
-	return Vector2(clampf(point.x, minimum.x, maximum.x), clampf(point.y, minimum.y, maximum.y))
-
-func _set_map(index: int, show_message := true) -> void:
-	if not director.is_playable(index):
-		index = director.find_safe_realm()
-	current_map_index = clampi(index, 0, layout.realm_count() - 1)
-	spawn_points = layout.get_spawn_points(current_map_index)
-	_update_camera_for_current_realm()
-	if show_message:
-		_show_message("Realm view changed to %s." % layout.get_realm(current_map_index).name)
-	_sync_combatant_visibility()
-
-func _update_collapse_countdown_displays() -> void:
-	var seconds_left: int = director.get_warning_seconds_left()
-	for display in world.countdown_displays:
-		var label: Label = display.label
-		if not is_instance_valid(label):
-			continue
-		if display.kind == "background":
-			label.text = "COLLAPSE WARNING\n%d" % seconds_left
-		else:
-			label.text = "%ds" % seconds_left
-	hud.update_minimap_labels(director)
-
 # --- Combatants ---
 
-func _spawn_players() -> void:
+## Two fighters per realm: corner realms for up to 8, all outer realms beyond (D7).
+func _spawn_players(human_character_id: String) -> void:
 	var ids := CHARACTER_REGISTRY.get_character_ids()
-	var starting_realms: Array[int] = director.get_playable_indices()
-	starting_realms.erase(CENTRAL_REALM_INDEX)
-	starting_realms.shuffle()
-	for i in target_player_count:
-		var realm_index := current_map_index if i == 0 else starting_realms[i % starting_realms.size()]
-		_add_player(ids[i % ids.size()], i == 0 and not bots_only, layout.pick_spawn(realm_index), realm_index)
+	var start_realms: Array[int] = layout.get_corner_indices()
+	if player_count > start_realms.size() * 2:
+		start_realms.append_array(layout.get_edge_indices())
+	start_realms.shuffle()
+	var used_points: Dictionary = {}
+	var first_id := maxi(ids.find(human_character_id), 0)
+	for i in player_count:
+		var realm_index := start_realms[i % start_realms.size()]
+		var character_id: String = ids[(first_id + i) % ids.size()]
+		var human := i == 0 and not bots_only
+		_add_player(character_id, human, _take_spawn_point(realm_index, used_points), realm_index)
 	_sync_combatant_visibility()
+
+func _take_spawn_point(realm_index: int, used_points: Dictionary) -> Vector2:
+	var points := layout.get_spawn_points(realm_index).duplicate()
+	points.shuffle()
+	var taken: Array = used_points.get(realm_index, [])
+	for point in points:
+		var far_enough := true
+		for other in taken:
+			if point.distance_to(other) < 320.0:
+				far_enough = false
+				break
+		if far_enough:
+			taken.append(point)
+			used_points[realm_index] = taken
+			return point
+	return points[0]
 
 func _add_player(character_id: String, human: bool, position: Vector2, realm_index: int) -> Node:
 	var player := PLAYER_FACTORY.create(character_id)
 	add_child(player)
 	player.global_position = position
 	player.setup(characters[character_id], players.size() + 1, human)
-	_assign_realm(player, realm_index)
-	_connect_player_signals(player)
+	layout.assign_combatant(player, realm_index)
+	player.respawned.connect(_on_combatant_respawned)
+	player.defeated.connect(_on_player_defeated)
+	director.register_combatant(player)
+	soul_growth.register_player(player)
 	players.append(player)
 	return player
-
-func _assign_realm(combatant: Node, realm_index: int) -> void:
-	combatant.set_realm(realm_index, layout.get_spawn_points(realm_index), layout.get_origin(realm_index), layout.get_ringout_y(realm_index))
-
-func _connect_player_signals(player: Node) -> void:
-	player.defeated.connect(_on_player_defeated)
-	player.respawned.connect(_on_combatant_respawned)
-	player.leveled_up.connect(_on_player_leveled_up)
 
 func _get_human_player() -> Node:
 	if players.is_empty():
@@ -247,12 +306,26 @@ func _sync_combatant_visibility() -> void:
 		if is_instance_valid(combatant):
 			combatant.set_realm_active(director.is_playable(combatant.realm_index))
 
-func _get_combatant_count_in_realm(realm_index: int) -> int:
-	var count := 0
-	for combatant in _get_all_combatants():
-		if is_instance_valid(combatant) and combatant.realm_index == realm_index:
-			count += 1
-	return count
+func _count_alive_by_realm() -> Dictionary:
+	var counts: Dictionary = {}
+	for combatant in director.get_alive_combatants():
+		counts[combatant.realm_index] = int(counts.get(combatant.realm_index, 0)) + 1
+	return counts
+
+# --- Soul cards ---
+
+func _handle_card_input() -> void:
+	var human := _get_human_player()
+	if not _is_alive(human):
+		return
+	for index in 3:
+		if Input.is_action_just_pressed(CHOOSE_ACTIONS[index]):
+			soul_growth.choose(human, index)
+
+func _on_soul_offer_closed(player: Node, card: Dictionary, auto_picked: bool) -> void:
+	if player == _get_human_player():
+		hud.hide_card_offer()
+		_show_message("Soul card: %s%s." % [card.title, " (auto-picked)" if auto_picked else ""])
 
 # --- Portals ---
 
@@ -263,19 +336,19 @@ func _handle_portal_input() -> void:
 	if not Input.is_action_just_pressed(PORTAL_USE_ACTION):
 		return
 	var human := _get_human_player()
-	if not is_instance_valid(human) or human.is_defeated or not human.is_on_floor():
+	if not _is_alive(human) or not human.is_on_floor():
 		return
-	for portal in active_portals:
+	for portal in _get_portals_for_realm(human.realm_index):
 		var rect: Rect2 = portal.rect
 		if rect.has_point(human.global_position):
 			_move_through_portal(human, portal)
-			_set_map(portal.destination, false)
-			_show_message("%s entered %s through a portal." % [human.display_name, layout.get_realm(portal.destination).name])
+			_set_map(portal.destination)
+			_show_message("%s entered %s." % [human.display_name, layout.get_realm(portal.destination).name])
 			return
 
 func _move_through_portal(combatant: Node, portal: Dictionary) -> void:
 	var destination: int = portal.destination
-	_assign_realm(combatant, destination)
+	layout.assign_combatant(combatant, destination)
 	combatant.reset_for_map(portal.entry_position, layout.get_spawn_points(destination))
 	_sync_combatant_visibility()
 
@@ -288,16 +361,16 @@ func get_ai_portals_for_realm(realm_index: int) -> Array:
 	return _get_portals_for_realm(realm_index)
 
 func move_ai_through_portal(ai_player: Node, portal: Dictionary) -> void:
-	if not is_instance_valid(ai_player) or ai_player.is_defeated or not director.is_playable(portal.destination):
+	if not _is_alive(ai_player) or not director.is_playable(portal.destination):
 		return
 	_move_through_portal(ai_player, portal)
-	_show_message("%s wandered into %s through a portal." % [ai_player.display_name, layout.get_realm(portal.destination).name])
 
-func _get_realm_state(realm_index: int) -> String:
+func get_realm_state(realm_index: int) -> String:
 	return director.get_state(realm_index)
 
-func _update_offscreen_ai_realm_movement(delta: float) -> void:
-	offscreen_ai_realm_step_timer = maxf(offscreen_ai_realm_step_timer - delta, 0.0)
+## Bots outside the camera's realm also decide whether to hop realms, every 0.25 s.
+func _update_offscreen_ai_realm_movement() -> void:
+	offscreen_ai_realm_step_timer = maxf(offscreen_ai_realm_step_timer - get_process_delta_time(), 0.0)
 	if offscreen_ai_realm_step_timer > 0.0:
 		return
 	offscreen_ai_realm_step_timer = OFFSCREEN_AI_REALM_STEP_TIME
@@ -307,71 +380,53 @@ func _update_offscreen_ai_realm_movement(delta: float) -> void:
 			continue
 		var portals := _get_portals_for_realm(combatant.realm_index)
 		var ai_controller = combatant.get("ai_controller")
-		var portal: Dictionary = ai_controller.update_offscreen_realm(combatant, delta, combatants, portals, director.get_state(combatant.realm_index), Callable(director, "get_state"), Callable(layout, "grid_distance"))
+		# The step interval, not the frame delta: the AI's think timers count real seconds.
+		var portal: Dictionary = ai_controller.update_offscreen_realm(combatant, OFFSCREEN_AI_REALM_STEP_TIME, combatants, portals, director.get_state(combatant.realm_index), Callable(director, "get_state"), Callable(layout, "grid_distance"))
 		if not portal.is_empty():
 			_move_through_portal(combatant, portal)
 
 func _can_update_offscreen_ai(combatant: Node) -> bool:
-	if not is_instance_valid(combatant) or combatant.is_human or combatant.is_dummy:
+	if not _is_alive(combatant) or combatant.is_human or combatant.is_dummy:
 		return false
-	if combatant.is_defeated or combatant.realm_index == current_map_index:
+	if combatant.realm_index == current_map_index:
 		return false
 	return director.is_playable(combatant.realm_index) and combatant.get("ai_controller") != null
 
-# --- Debug / test controls ---
+# --- HUD, debug and practice ---
 
-func _handle_character_switch() -> void:
-	if bots_only:
-		return
-	var mapping := {
-		"select_frey": "frey",
-		"select_yuki": "yuki",
-		"select_luna": "luna",
-		"select_nova": "nova"
-	}
-	for action in mapping:
-		if Input.is_action_just_pressed(action):
-			selected_character = mapping[action]
-			_replace_human_character(selected_character)
+func _update_hud() -> void:
+	hud.set_clock(director.get_phase_name(), director.match_elapsed, director.get_next_event_label(), director.get_next_event_in())
+	hud.set_status(director.get_alive_combatants().size(), players.size(), _get_focus_player())
+	hud.update_minimap_labels(director, _count_alive_by_realm())
+	var seconds_left: int = director.get_warning_seconds_left()
+	for display in world.countdown_displays:
+		var label: Label = display.label
+		if is_instance_valid(label):
+			label.text = "%ds" % seconds_left
+	var realm: Dictionary = layout.get_realm(current_map_index)
+	hud.set_realm_title("%s  -  %s" % [realm.name, realm.subtitle], realm.accent)
+	hud.set_warning_banner(seconds_left if director.is_warning(current_map_index) else -1)
+	var human := _get_human_player()
+	var offer: Dictionary = soul_growth.get_offer(human) if is_instance_valid(human) else {}
+	if not offer.is_empty():
+		hud.show_card_offer(offer.cards, offer.time_left)
+	if hud.debug_label.visible:
+		_update_debug_text()
 
-func _replace_human_character(character_id: String) -> void:
-	if players.is_empty() or not characters.has(character_id):
-		return
-	var previous: Node = players[0]
-	if previous.character_id == character_id:
-		return
-	var replacement := PLAYER_FACTORY.create(character_id)
-	add_child(replacement)
-	replacement.global_position = previous.global_position
-	replacement.setup(characters[character_id], previous.player_id, true)
-	replacement.inherit_match_state(previous)
-	replacement.set_realm(previous.realm_index, previous.spawn_points, previous.realm_origin, previous.ringout_y)
-	replacement.set_realm_active(previous.is_realm_active)
-	_connect_player_signals(replacement)
-	players[0] = replacement
-	previous.queue_free()
+func _update_debug_text() -> void:
+	var lines: Array[String] = [
+		"seed %d  t=%.1f  phase %s" % [match_seed, director.match_elapsed, director.phase],
+		"view: %s  monsters here: %d" % [layout.get_realm(current_map_index).name, realm_monster_spawner.get_monster_count(current_map_index)],
+		""
+	]
+	for p in players:
+		var status := "OUT" if p.is_defeated else "R%d" % (p.realm_index + 1)
+		lines.append("%-6s %-4s HP %3.0f/%3.0f  S%2d  KO%d  ult %2.0f  %s" % [p.display_name, status, p.hp, p.max_hp, p.souls, p.score, p.ultimate_cooldown_timer, ",".join(p.upgrades)])
+	hud.set_debug_text("\n".join(lines))
 
 func _handle_test_controls() -> void:
-	if Input.is_action_just_pressed("decrease_players"):
-		_set_player_count(maxi(1, target_player_count - 1))
-	if Input.is_action_just_pressed("increase_players"):
-		_set_player_count(mini(MAX_TEST_PLAYERS, target_player_count + 1))
 	if Input.is_action_just_pressed("toggle_dummy"):
 		_toggle_dummy()
-
-func _set_player_count(count: int) -> void:
-	if count == target_player_count:
-		return
-	target_player_count = count
-	while players.size() > target_player_count:
-		var player: Node = players.pop_back()
-		player.queue_free()
-	var ids := CHARACTER_REGISTRY.get_character_ids()
-	while players.size() < target_player_count:
-		var realm_index: int = director.get_playable_indices().pick_random()
-		_add_player(ids[players.size() % ids.size()], false, layout.pick_spawn(realm_index), realm_index)
-	_sync_combatant_visibility()
-	_show_message("Player count set to %d. 5/6 changes players, H toggles dummy." % target_player_count)
 
 func _toggle_dummy() -> void:
 	if is_instance_valid(dummy):
@@ -383,48 +438,19 @@ func _toggle_dummy() -> void:
 	add_child(dummy)
 	dummy.global_position = spawn_points.pick_random()
 	dummy.setup_dummy(99)
-	_assign_realm(dummy, current_map_index)
-	dummy.defeated.connect(_on_player_defeated)
+	layout.assign_combatant(dummy, current_map_index)
 	dummy.respawned.connect(_on_combatant_respawned)
 	_sync_combatant_visibility()
 	_show_message("Training dummy spawned. Press H again to remove it.")
 
-func _update_debug_ui() -> void:
-	var map: Dictionary = layout.get_realm(current_map_index)
-	var warning_text := "none"
-	if director.warning_realm_index >= 0:
-		warning_text = "%s %.0fs" % [layout.get_realm(director.warning_realm_index).name, director.warning_timer]
-	var local_monsters: int = realm_monster_spawner.get_monster_count(current_map_index)
-	var lines := [
-		"Realm System",
-		"Phase: %s  Time: %.0fs" % [director.get_phase_name(), director.match_elapsed],
-		"Realm: %s  State: %s" % [map.name, director.get_state(current_map_index)],
-		"Warning: %s" % warning_text,
-		"Total combatants: %d   In realm: %d" % [_get_all_combatants().size(), _get_combatant_count_in_realm(current_map_index)],
-		"Monsters in realm: %d (neutral until hit)" % local_monsters,
-		"Stand on portal + Q: move to adjacent realm",
-		""
-	]
-	for p in players:
-		var exp_text := "MAX" if p.experience_to_next_level <= 0 else "%d/%d" % [p.experience, p.experience_to_next_level]
-		lines.append("%s L%d X:%s R:%d H:%.0f A:%.0f D:%.0f S:%.0f" % [p.display_name, p.level, exp_text, p.realm_index + 1, p.hp, p.attack_power, p.defense, p.speed])
-	if is_instance_valid(dummy):
-		lines.append("%s  R:%d  HP:%3.0f" % [dummy.display_name, dummy.realm_index + 1, dummy.hp])
-	hud.set_debug_text("\n".join(lines))
-
 func _show_message(text: String) -> void:
 	hud.show_message(text)
 
-# --- Signal handlers ---
-
 func _on_player_defeated(player: Node, attacker: Node) -> void:
-	var attacker_name := "environment"
+	var cause := "the realm"
 	if is_instance_valid(attacker):
-		attacker_name = attacker.display_name
-	_show_message("%s was defeated by %s. Respawning in 3 seconds." % [player.display_name, attacker_name])
-
-func _on_player_leveled_up(player: Node, new_level: int) -> void:
-	_show_message("%s reached Lv.%d. HP %.0f / ATK %.0f / DEF %.0f / SPD %.0f" % [player.display_name, new_level, player.max_hp, player.attack_power, player.defense, player.speed])
+		cause = attacker.display_name
+	_show_message("%s was eliminated by %s. %d left." % [player.display_name, cause, director.get_alive_combatants().size()])
 
 func _on_combatant_respawned(_combatant: Node) -> void:
 	_sync_combatant_visibility()

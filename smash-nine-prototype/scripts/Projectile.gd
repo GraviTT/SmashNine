@@ -6,6 +6,7 @@ var knockback := 380.0
 var direction := Vector2.RIGHT
 var speed := 620.0
 var lifetime := 1.25
+var elapsed := 0.0
 var hit_targets: Array[Node] = []
 var damage_type := "normal"
 
@@ -16,8 +17,6 @@ func _ready() -> void:
 	monitoring = true
 	monitorable = false
 	body_entered.connect(_on_body_entered)
-	var timer := get_tree().create_timer(lifetime)
-	timer.timeout.connect(queue_free)
 
 func configure(new_source: Node, size: Vector2, new_damage: float, new_knockback: float, new_direction: Vector2, color: Color, new_speed := 620.0, new_lifetime := 1.25, new_damage_type := "normal") -> void:
 	source = new_source
@@ -37,6 +36,11 @@ func configure(new_source: Node, size: Vector2, new_damage: float, new_knockback
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(source):
 		_discard_orphaned_projectile()
+		return
+	# Counted here rather than with a timer from _ready(): configure() sets lifetime after the node enters the tree.
+	elapsed += delta
+	if elapsed >= lifetime:
+		queue_free()
 		return
 	position += direction * speed * delta
 

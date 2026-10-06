@@ -15,6 +15,8 @@ var defeats := 0
 var defeats_by_player: Dictionary = {}
 var nan_positions := 0
 var defeats_by_cause: Dictionary = {}
+var elimination_log: Array[String] = []
+var first_pvp_hit_time := -1.0
 var sampled_frames := 0
 var shared_realm_frames := 0
 var pvp_hits := 0
@@ -35,8 +37,10 @@ func _run() -> void:
 		seed(seed_value)
 	main = load(MAIN_SCENE).instantiate()
 	main.bots_only = true
+	if seed_value >= 0:
+		main.match_seed = seed_value
 	if player_count > 0:
-		main.target_player_count = player_count
+		main.player_count = player_count
 	root.add_child(main)
 	await process_frame
 	for player in main.players:
@@ -67,6 +71,7 @@ func _run() -> void:
 func _on_defeated(player: Node, attacker: Node) -> void:
 	var cause := _attacker_kind(attacker)
 	defeats_by_cause[cause] = int(defeats_by_cause.get(cause, 0)) + 1
+	elimination_log.append("%s t=%.0f by %s ringouts=%d dmg_dealt=%.0f" % [player.display_name, main.director.match_elapsed, cause, player.respawn_count, player.damage_dealt])
 	defeats += 1
 	var key: String = player.display_name
 	defeats_by_player[key] = int(defeats_by_player.get(key, 0)) + 1
@@ -110,13 +115,17 @@ func _collect_result(finished_early: bool) -> Dictionary:
 		"playable_realms": main.director.get_playable_indices().size(),
 		"nan_positions": nan_positions,
 		"defeats_by_cause": defeats_by_cause,
+		"first_pvp_hit": snappedf(first_pvp_hit_time, 0.1),
+		"ringouts": _total_ringouts(),
+		"souls": _souls_summary(),
+		"eliminations": elimination_log,
 		"pvp_hits": pvp_hits,
 		"monster_hits": monster_hits,
 		"shared_realm_ratio": snappedf(float(shared_realm_frames) / maxf(float(sampled_frames), 1.0), 0.01),
 		"node_count": int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))
 	}
 
-func _attacker_kind(attacker: Node) -> String:
+func _attacker_kind(attacker: Variant) -> String:
 	if not is_instance_valid(attacker):
 		return "environment"
 	if attacker.is_in_group("players"):
@@ -129,6 +138,8 @@ func _on_hp_changed(player: Node) -> void:
 	var kind := _attacker_kind(player.last_attacker)
 	if kind == "player":
 		pvp_hits += 1
+		if first_pvp_hit_time < 0.0:
+			first_pvp_hit_time = main.director.match_elapsed
 	elif kind == "monster":
 		monster_hits += 1
 
@@ -144,3 +155,17 @@ func _sample_encounters() -> void:
 		sampled_frames += 1
 		if int(counts[player.realm_index]) >= 2:
 			shared_realm_frames += 1
+
+func _total_ringouts() -> int:
+	var total := 0
+	for player in main.players:
+		if is_instance_valid(player):
+			total += int(player.respawn_count)
+	return total
+
+func _souls_summary() -> Array[String]:
+	var result: Array[String] = []
+	for player in main.players:
+		if is_instance_valid(player):
+			result.append("%s:%d/%d" % [player.display_name, player.souls, player.soul_picks])
+	return result

@@ -1,52 +1,66 @@
 extends Node2D
+## Procedural realm background. Theme drawings are authored on a 1280x720 tile and
+## scaled to each tile of the realm; `margin` extends the base colour past the edges.
 
-var realm_size := Vector2(3840, 2160)
+const AUTHORED_TILE := Vector2(1280, 720)
+
+var realm_size := Vector2(1280, 720)
 var tile_size := Vector2(1280, 720)
+var theme := "valkyrie_gate"
 var theme_index := 0
 var base_color := Color(0.02, 0.04, 0.08)
 var accent_color := Color(1.0, 0.72, 0.34)
+var margin := 0.0
 
-func configure(new_realm_size: Vector2, new_tile_size: Vector2, new_theme_index: int, new_base: Color, new_accent: Color) -> void:
+func configure(new_realm_size: Vector2, new_tile_size: Vector2, new_theme: String, new_base: Color, new_accent: Color, new_margin := 0.0) -> void:
 	realm_size = new_realm_size
 	tile_size = new_tile_size
-	theme_index = new_theme_index
+	theme = new_theme
+	theme_index = new_theme.hash() % 97
 	base_color = new_base
 	accent_color = new_accent
+	margin = new_margin
 	queue_redraw()
 
 func _draw() -> void:
+	draw_rect(Rect2(-Vector2.ONE * margin, realm_size + Vector2.ONE * margin * 2.0), base_color.darkened(0.35))
 	draw_rect(Rect2(Vector2.ZERO, realm_size), base_color)
-	for tile_y in 3:
-		for tile_x in 3:
-			_draw_realm_tile(Vector2(tile_x * tile_size.x, tile_y * tile_size.y), tile_x + tile_y * 3)
+	var tiles_x := maxi(1, roundi(realm_size.x / tile_size.x))
+	var tiles_y := maxi(1, roundi(realm_size.y / tile_size.y))
+	var tile_scale := tile_size / AUTHORED_TILE
+	for tile_y in tiles_y:
+		for tile_x in tiles_x:
+			draw_set_transform(Vector2(tile_x * tile_size.x, tile_y * tile_size.y), 0.0, tile_scale)
+			_draw_realm_tile(Vector2.ZERO, tile_x + tile_y * tiles_x)
+	draw_set_transform(Vector2.ZERO)
 
 func _draw_realm_tile(origin: Vector2, variation: int) -> void:
 	_draw_depth_bands(origin)
 	_draw_sky_specks(origin, variation)
-	match theme_index:
-		0:
+	match theme:
+		"valkyrie_gate":
 			_draw_valkyrie_gate(origin)
-		1:
+		"moon_bridge":
 			_draw_moon_bridge(origin)
-		2:
+		"sunken_temple":
 			_draw_sunken_temple(origin)
-		3:
+		"skyline_spires":
 			_draw_skyline_spires(origin)
-		4:
+		"ember_ring":
 			_draw_ember_ring(origin, variation)
-		5:
+		"frost_steps":
 			_draw_frost_steps(origin, variation)
-		6:
+		"gravity_well":
 			_draw_gravity_well(origin, variation)
-		7:
+		"market_rooftops":
 			_draw_market_rooftops(origin)
-		8:
+		"starfall_shrine":
 			_draw_starfall_shrine(origin, variation)
 
 func _draw_depth_bands(origin: Vector2) -> void:
 	var distant := base_color.lightened(0.055)
 	var near := base_color.lightened(0.095)
-	draw_rect(Rect2(origin + Vector2(0, tile_size.y * 0.48), Vector2(tile_size.x, tile_size.y * 0.52)), distant)
+	draw_rect(Rect2(origin + Vector2(0, AUTHORED_TILE.y * 0.48), Vector2(AUTHORED_TILE.x, AUTHORED_TILE.y * 0.52)), distant)
 	var ridge := PackedVector2Array([
 		origin + Vector2(0, 530), origin + Vector2(170, 440), origin + Vector2(340, 500),
 		origin + Vector2(520, 390), origin + Vector2(720, 500), origin + Vector2(930, 410),
@@ -59,7 +73,7 @@ func _draw_sky_specks(origin: Vector2, variation: int) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 1103 + theme_index * 97 + variation * 31
 	for index in 24:
-		var position := origin + Vector2(rng.randf_range(35, tile_size.x - 35), rng.randf_range(105, 390))
+		var position := origin + Vector2(rng.randf_range(35, AUTHORED_TILE.x - 35), rng.randf_range(105, 390))
 		var size := 2.0 if index % 5 else 4.0
 		draw_rect(Rect2(position, Vector2(size, size)), Color(accent_color.r, accent_color.g, accent_color.b, 0.22 + float(index % 3) * 0.12))
 

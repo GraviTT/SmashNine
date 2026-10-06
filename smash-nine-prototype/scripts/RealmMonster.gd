@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
-signal defeated(monster: Node, attacker: Node, experience_reward: int)
+signal defeated(monster: Node, attacker: Node, soul_reward: int)
 
 enum State { NEUTRAL, AGGRO, DEFEATED }
 
 const GRAVITY := 1850.0
+const FALL_OUT_DEPTH := 900.0
+## Monsters are soul sources, not the main threat: light pushes on one-screen realms (design D7).
+const MELEE_KNOCKBACK := 140.0
+const PROJECTILE_KNOCKBACK := 110.0
 const WORLD_LAYER := 1
 const PLAYER_LAYER := 2
 const MONSTER_LAYER := 4
@@ -20,7 +24,7 @@ var move_speed := 105.0
 var attack_damage := 7.0
 var attack_range := 62.0
 var attack_cooldown := 1.1
-var experience_reward := 8
+var soul_reward := 6
 var control_slow_timer := 0.0
 var last_yuki_activation_hit := -1
 var body_color := Color(0.38, 0.82, 0.32)
@@ -52,7 +56,7 @@ func setup(type_id: String, new_realm_index: int, spawn_position: Vector2) -> vo
 		attack_damage = 6.0
 		attack_range = 310.0
 		attack_cooldown = 1.65
-		experience_reward = 10
+		soul_reward = 8
 		body_color = Color(1.0, 0.38, 0.16)
 	else:
 		display_name = "Mossling"
@@ -61,7 +65,7 @@ func setup(type_id: String, new_realm_index: int, spawn_position: Vector2) -> vo
 		attack_damage = 8.0
 		attack_range = 64.0
 		attack_cooldown = 1.05
-		experience_reward = 8
+		soul_reward = 6
 		body_color = Color(0.38, 0.82, 0.32)
 	hp = max_hp
 
@@ -124,6 +128,10 @@ func _build_body() -> void:
 
 func _physics_process(delta: float) -> void:
 	if state == State.DEFEATED or not is_realm_active:
+		return
+	# Knocked off the realm: counts as a kill for whoever it was fighting.
+	if global_position.y > patrol_center.y + FALL_OUT_DEPTH:
+		_die(target if _is_valid_target() else null)
 		return
 	attack_timer = maxf(attack_timer - delta, 0.0)
 	hitstun_timer = maxf(hitstun_timer - delta, 0.0)
@@ -219,7 +227,7 @@ func _spawn_melee_attack() -> void:
 	attack.add_child(visual)
 	get_parent().add_child(attack)
 	attack.global_position = global_position
-	attack.configure(self, Vector2(56, 42), Vector2(42 * facing, -28), attack_damage, 260.0, Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
+	attack.configure(self, Vector2(56, 42), Vector2(42 * facing, -28), attack_damage, MELEE_KNOCKBACK, Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
 
 func _spawn_projectile(direction: Vector2) -> void:
 	var projectile := Area2D.new()
@@ -234,7 +242,7 @@ func _spawn_projectile(direction: Vector2) -> void:
 	projectile.add_child(visual)
 	get_parent().add_child(projectile)
 	projectile.global_position = global_position + Vector2(32 * facing, -34)
-	projectile.configure(self, Vector2(24, 18), attack_damage, 210.0, direction, Color(1.0, 0.42, 0.12, 0.82), 390.0, 1.35)
+	projectile.configure(self, Vector2(24, 18), attack_damage, PROJECTILE_KNOCKBACK, direction, Color(1.0, 0.42, 0.12, 0.82), 390.0, 1.35)
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := "normal") -> bool:
 	if state == State.DEFEATED:
@@ -304,7 +312,7 @@ func _die(attacker: Node) -> void:
 	visible = false
 	collision_layer = 0
 	set_physics_process(false)
-	defeated.emit(self, attacker, experience_reward)
+	defeated.emit(self, attacker, soul_reward)
 	queue_free()
 
 func _flash_hit() -> void:

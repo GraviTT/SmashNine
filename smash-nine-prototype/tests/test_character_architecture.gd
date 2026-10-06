@@ -25,8 +25,6 @@ func _run() -> void:
 		return
 	if not await _test_yuki_seal():
 		return
-	if not await _test_match_state_transfer():
-		return
 	print("Character architecture combat regression tests passed")
 	arena.queue_free()
 	await process_frame
@@ -85,28 +83,6 @@ func _test_yuki_seal() -> bool:
 		await create_timer(0.01).timeout
 	if yuki.seals.size() != 1:
 		_fail("Yuki K did not create exactly one binding seal")
-		return false
-	return true
-
-func _test_match_state_transfer() -> bool:
-	var frey := _create_player("frey", 20)
-	frey.level = 6
-	frey.experience = 9
-	frey.experience_to_next_level = 77
-	frey.score = 4
-	frey.respawn_count = 3
-	frey.match_pressure = 1.6
-	frey.hp = frey.max_hp * 0.4
-	var yuki := _create_player("yuki", 20)
-	yuki.inherit_match_state(frey)
-	if yuki.level != 6 or yuki.experience != 9 or yuki.experience_to_next_level != 77:
-		_fail("Character replacement did not preserve level experience")
-		return false
-	if yuki.score != 4 or yuki.respawn_count != 3 or not is_equal_approx(yuki.match_pressure, 1.6):
-		_fail("Character replacement did not preserve match state")
-		return false
-	if not is_equal_approx(yuki.hp / yuki.max_hp, 0.4):
-		_fail("Character replacement did not preserve HP ratio")
 		return false
 	return true
 
