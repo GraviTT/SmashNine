@@ -123,7 +123,9 @@ func _start_match(human_character_id: String) -> void:
 	_set_map(players[0].realm_index)
 
 func _process(delta: float) -> void:
-	_handle_global_input()
+	# A restart frees this scene right away: stop before touching the viewport (CODEX-TESTER-01).
+	if _handle_global_input() or not is_inside_tree():
+		return
 	if not match_started:
 		return
 	if not match_over:
@@ -151,7 +153,8 @@ func _apply_phase_rules() -> void:
 	if director.phase == MATCH_DIRECTOR_SCRIPT.PHASE_SUDDEN_DEATH:
 		world.set_hazard_band(CENTRAL_REALM_INDEX, band.x, band.y)
 
-func _handle_global_input() -> void:
+## Returns true when the scene is being reloaded and this frame must stop.
+func _handle_global_input() -> bool:
 	if Input.is_action_just_pressed("toggle_debug"):
 		hud.toggle_debug()
 	if not match_started:
@@ -159,21 +162,35 @@ func _handle_global_input() -> void:
 		for index in mini(CHOOSE_ACTIONS.size(), ids.size()):
 			if Input.is_action_just_pressed(CHOOSE_ACTIONS[index]):
 				_start_match(ids[index])
-				return
+				return false
 		if Input.is_action_just_pressed("watch_bots"):
 			bots_only = true
 			_start_match("")
-		return
+		return false
 	if match_over and Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+		return true
+	return false
 
 func _on_match_finished(winner: Node, reason: String) -> void:
 	match_over = true
 	soul_growth.set_process(false)
 	hud.hide_card_offer()
+	_freeze_combat()
 	if is_instance_valid(winner):
 		spectate_target = winner
 	hud.show_results(winner, reason, director.get_standings(), _get_human_player())
+
+## The result screen is a snapshot: fighters, monsters, hitboxes and projectiles stop,
+## and fighters are protected from attacks whose start-up timers were already running.
+func _freeze_combat() -> void:
+	for child in get_children():
+		if child is CharacterBody2D or child is Area2D:
+			child.process_mode = Node.PROCESS_MODE_DISABLED
+	for player in players:
+		if is_instance_valid(player):
+			player.grant_protection(INF)
+			player.modulate.a = 1.0
 
 func get_winner() -> Node:
 	return director.winner
@@ -207,6 +224,8 @@ func _update_camera_follow() -> void:
 
 ## Follows the focus inside the realm; an axis smaller than the view stays centred.
 func _get_camera_target() -> Vector2:
+	if not is_inside_tree():
+		return camera.global_position
 	var bounds: Rect2 = layout.get_bounds(current_map_index).grow(CAMERA_EDGE_PADDING)
 	var view := get_viewport().get_visible_rect().size / camera.zoom
 	var focus := _get_focus_player()
@@ -405,10 +424,10 @@ func _update_hud() -> void:
 			label.text = "%ds" % seconds_left
 	var realm: Dictionary = layout.get_realm(current_map_index)
 	hud.set_realm_title("%s  -  %s" % [realm.name, realm.subtitle], realm.accent)
-	hud.set_warning_banner(seconds_left if director.is_warning(current_map_index) else -1)
+	hud.set_warning_banner(seconds_left if director.is_warning(current_map_index) and not match_over else -1)
 	var human := _get_human_player()
 	var offer: Dictionary = soul_growth.get_offer(human) if is_instance_valid(human) else {}
-	if not offer.is_empty():
+	if not offer.is_empty() and not match_over:
 		hud.show_card_offer(offer.cards, offer.time_left)
 	if hud.debug_label.visible:
 		_update_debug_text()

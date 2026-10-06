@@ -217,12 +217,15 @@ func show_start_screen(characters: Array[Dictionary]) -> void:
 	lines.append("[B]  Watch a bots-only match")
 	lines.append("")
 	lines.append(CONTROLS_HINT)
+	_set_match_hud_visible(false)
 	overlay_body.text = "\n".join(lines)
 	overlay.visible = true
 
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node) -> void:
 	overlay_title.text = "%s WINS" % (winner.display_name.to_upper() if is_instance_valid(winner) else "NOBODY")
 	overlay_body.text = "Decided by %s" % reason
+	info_label.visible = false
+	warning_label.visible = false
 	if is_instance_valid(results_grid):
 		results_grid.queue_free()
 	results_grid = GridContainer.new()
@@ -256,6 +259,7 @@ func _add_result_cell(text: String, color: Color) -> void:
 	results_grid.add_child(cell)
 
 func hide_overlay() -> void:
+	_set_match_hud_visible(true)
 	overlay.visible = false
 
 func set_realm_title(text: String, accent: Color) -> void:
@@ -267,3 +271,11 @@ func set_warning_banner(seconds: int) -> void:
 	warning_label.visible = seconds >= 0
 	if seconds >= 0:
 		warning_label.text = "COLLAPSE WARNING  %d\nfind a portal to a safe realm" % seconds
+
+## The in-match HUD hides behind the start screen so it does not show through it.
+func _set_match_hud_visible(visible_now: bool) -> void:
+	for node in [clock_label, realm_label, status_label, info_label, minimap_root]:
+		node.visible = visible_now
+	if not visible_now:
+		warning_label.visible = false
+		card_panel.visible = false

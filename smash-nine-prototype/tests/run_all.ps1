@@ -17,7 +17,7 @@ if (-not (Test-Path $godot)) {
 	exit 2
 }
 $project = Split-Path -Parent $PSScriptRoot
-$tests = @("test_character_architecture", "test_frey_sprite", "test_luna_prototype", "test_nova_prototype", "test_match_rules", "visual_preview")
+$tests = @("test_character_architecture", "test_frey_sprite", "test_luna_prototype", "test_nova_prototype", "test_match_rules", "test_restart", "visual_preview")
 $failed = @()
 
 function Invoke-Godot([string[]]$GodotArgs) {
