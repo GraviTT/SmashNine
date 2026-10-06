@@ -34,3 +34,9 @@ These files are used as temporary implementation art. Keep this notice with the 
 ## Realm backgrounds and platforms
 
 - Original procedural artwork created specifically for this project in `scripts/RealmBackdrop.gd` and `scripts/Main.gd`.
+
+## Original packs
+
+The original downloads (zips and extracted folders in `assets/source/`) are kept out of the
+repository: the Viking pack may not be redistributed as-is. Get them from the source links
+above; the game only uses the frames copied into `assets/characters/`.

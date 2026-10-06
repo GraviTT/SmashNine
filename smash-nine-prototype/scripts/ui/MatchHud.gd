@@ -2,6 +2,7 @@ extends CanvasLayer
 ## In-match overlay: phase clock, survivors, souls, 3x3 realm minimap, soul card
 ## offer, announcement line, debug panel (F3), and the start / result screens.
 
+const ART_CREDITS := "Prototype character art: Viking Adventure by FerDDN & Jose Maria Costa  /  Purple Mage by Foozle (CC0)  /  Free Platformer Girl by Franco Giachetti, LudicArts.com (CC BY 3.0)  /  Action Hero by Printer Not Found (CC0)"
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug"
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
 const CARD_COLOR := Color(0.1, 0.08, 0.2, 0.92)
@@ -27,6 +28,7 @@ var card_labels: Array[Label] = []
 var overlay: Control
 var overlay_title: Label
 var overlay_body: Label
+var overlay_credits: Label
 
 func _ready() -> void:
 	name = "UI"
@@ -232,6 +234,16 @@ func _build_overlay() -> void:
 	overlay_body.add_theme_font_size_override("font_size", 19)
 	overlay.add_child(overlay_body)
 	_pin(overlay_body, TOP_CENTER)
+	overlay_credits = Label.new()
+	overlay_credits.position = Vector2(40, 650)
+	overlay_credits.size = Vector2(1200, 50)
+	overlay_credits.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	overlay_credits.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	overlay_credits.add_theme_font_size_override("font_size", 12)
+	overlay_credits.modulate = TEXT_DIM
+	overlay_credits.text = ART_CREDITS
+	overlay.add_child(overlay_credits)
+	_pin(overlay_credits, BOTTOM_CENTER)
 
 func show_start_screen(characters: Array[Dictionary]) -> void:
 	overlay_title.text = "SMASH NINE REALMS"
@@ -245,6 +257,7 @@ func show_start_screen(characters: Array[Dictionary]) -> void:
 	lines.append(CONTROLS_HINT)
 	_set_match_hud_visible(false)
 	overlay_body.text = "\n".join(lines)
+	overlay_credits.visible = true
 	overlay.visible = true
 
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node) -> void:
@@ -276,6 +289,7 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		_add_result_cell(", ".join(player.upgrades), color)
 	_add_result_cell("", Color.WHITE)
 	_add_result_cell("[R] play again", Color(1.0, 0.82, 0.4))
+	overlay_credits.visible = false
 	overlay.visible = true
 
 func _add_result_cell(text: String, color: Color) -> void:
