@@ -42,7 +42,7 @@ const RINGOUT_DAMAGE := {
 }
 ## Combat damage multiplier for a permanent-elimination match. Character numbers were
 ## tuned for respawning; fixed ring-out damage is not scaled, so position matters more.
-const COMBAT_DAMAGE_SCALE := 0.3
+const COMBAT_DAMAGE_SCALE := 0.26
 ## Out-of-combat HP regeneration per second, by phase ("early phases allow more recovery").
 const RECOVERY_RATE := {
 	PHASE_EXPLORATION: 3.0,
@@ -82,7 +82,6 @@ var finish_reason := ""
 var _batch_depth := 0
 var _survivor_check_queued := false
 var _eliminated_since_check: Array[Node] = []
-var _hp_at_step_start: Dictionary = {}
 
 func setup(new_layout: REALM_LAYOUT) -> void:
 	layout = new_layout
@@ -94,7 +93,6 @@ func setup(new_layout: REALM_LAYOUT) -> void:
 	combatants.clear()
 	elimination_order.clear()
 	_eliminated_since_check.clear()
-	_hp_at_step_start.clear()
 	_batch_depth = 0
 	match_over = false
 	winner = null
@@ -124,7 +122,6 @@ func advance(delta: float) -> void:
 	if match_over:
 		return
 	match_elapsed += delta
-	_snapshot_hp()
 	while not match_over and next_event_index < events.size() and match_elapsed >= float(events[next_event_index].time):
 		var event: Dictionary = events[next_event_index]
 		next_event_index += 1
@@ -147,8 +144,7 @@ func _run_event(event: Dictionary) -> void:
 			warning_realms.clear()
 			for realm_index in realms:
 				_set_state(int(realm_index), STATE_COLLAPSED)
-			for realm_index in realms:
-				_relocate_trapped_combatants(int(realm_index))
+			_relocate_trapped_combatants(realms)
 			announcement.emit("%s collapsed." % _realm_names(realms))
 		"open":
 			for realm_index in realms:
@@ -187,19 +183,38 @@ func _realm_names(realms: Array) -> String:
 
 ## Combatants still inside a collapsing realm lose COLLAPSE_PENALTY HP and are
 ## moved to the nearest playable realm with brief protection (D1: not instant death).
-func _relocate_trapped_combatants(collapsed_index: int) -> void:
-	_begin_batch()
+## One batch for the whole wave: every fighter caught in any collapsing realm loses
+## COLLAPSE_PENALTY HP and is moved to the nearest playable realm with brief protection
+## (D1: not instant death). Fighters are processed from lowest to highest HP so the
+## last-standing rule below always spares the healthiest one.
+func _relocate_trapped_combatants(collapsed_realms: Array) -> void:
+	var trapped: Array[Node] = []
 	for combatant in combatants:
-		if not _is_alive(combatant) or combatant.realm_index != collapsed_index:
-			continue
-		var destination := find_safe_realm(collapsed_index)
+		if _is_alive(combatant) and collapsed_realms.has(combatant.realm_index):
+			trapped.append(combatant)
+	trapped.sort_custom(_has_less_hp)
+	_begin_batch()
+	for combatant in trapped:
+		var destination := find_safe_realm(combatant.realm_index)
 		layout.assign_combatant(combatant, destination)
 		combatant.reset_for_map(layout.pick_spawn(destination), layout.get_spawn_points(destination))
 		combatant_relocated.emit(combatant, destination)
-		combatant.apply_environment_damage(COLLAPSE_PENALTY)
+		combatant.apply_environment_damage(_spare_last_standing(combatant, COLLAPSE_PENALTY))
 		if _is_alive(combatant):
 			combatant.grant_protection()
 	_end_batch()
+
+## Rule (CODEX-ANALYST-02): the environment never eliminates the last fighter standing.
+## If this damage would leave nobody alive, the fighter keeps 1 HP instead.
+func _spare_last_standing(combatant: Node, damage: float) -> float:
+	if combatant.hp - damage > 0.0 or get_alive_combatants().size() > 1:
+		return damage
+	return maxf(combatant.hp - 1.0, 0.0)
+
+func _has_less_hp(a: Node, b: Node) -> bool:
+	if not is_equal_approx(a.hp, b.hp):
+		return a.hp < b.hp
+	return _ranks_higher(b, a)
 
 ## Nearest playable realm by grid distance; the center wins ties once it is open.
 func find_safe_realm(from_index := -1) -> int:
@@ -226,13 +241,17 @@ func get_sudden_death_band() -> Vector2:
 
 func _apply_sudden_death(delta: float) -> void:
 	var band := get_sudden_death_band()
-	_begin_batch()
+	var outside: Array[Node] = []
 	for combatant in combatants:
 		if not _is_alive(combatant) or combatant.realm_index != central_index:
 			continue
 		var x: float = combatant.global_position.x
 		if x < band.x or x > band.y:
-			combatant.apply_environment_damage(SUDDEN_DEATH_DAMAGE_PER_SECOND * delta)
+			outside.append(combatant)
+	outside.sort_custom(_has_less_hp)
+	_begin_batch()
+	for combatant in outside:
+		combatant.apply_environment_damage(_spare_last_standing(combatant, SUDDEN_DEATH_DAMAGE_PER_SECOND * delta))
 	_end_batch()
 
 # --- Elimination and result ---
@@ -269,19 +288,9 @@ func _check_survivors() -> void:
 	if alive.size() == 1:
 		_finish(alive[0], "last survivor")
 	elif alive.is_empty() and not fallen.is_empty():
-		# Everyone left fell together: the one who entered this step with the most HP wins.
-		fallen.sort_custom(func(a: Node, b: Node) -> bool:
-			var hp_a := float(_hp_at_step_start.get(a, 0.0))
-			var hp_b := float(_hp_at_step_start.get(b, 0.0))
-			if not is_equal_approx(hp_a, hp_b):
-				return hp_a > hp_b
-			return _ranks_higher(a, b))
-		_finish(fallen[0], "simultaneous elimination")
-
-func _snapshot_hp() -> void:
-	for combatant in combatants:
-		if _is_alive(combatant):
-			_hp_at_step_start[combatant] = combatant.hp
+		# Only combat can get here (environment damage spares the last fighter):
+		# the last fighters knocked each other out in the same frame. Nobody wins.
+		_finish(null, "double KO")
 
 ## At FINAL_JUDGMENT the survivor with the most HP wins (prototype safety net, D3).
 func _judge_survivors() -> void:

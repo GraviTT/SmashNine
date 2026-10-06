@@ -222,7 +222,7 @@ func show_start_screen(characters: Array[Dictionary]) -> void:
 	overlay.visible = true
 
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node) -> void:
-	overlay_title.text = "%s WINS" % (winner.display_name.to_upper() if is_instance_valid(winner) else "NOBODY")
+	overlay_title.text = "%s WINS" % winner.display_name.to_upper() if is_instance_valid(winner) else "DRAW"
 	overlay_body.text = "Decided by %s" % reason
 	info_label.visible = false
 	warning_label.visible = false

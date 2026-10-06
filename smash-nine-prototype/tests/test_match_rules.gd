@@ -33,6 +33,7 @@ func _run() -> void:
 		_test_projectile_lifetime,
 		_test_spawn_pairs_in_corners,
 		_test_simultaneous_collapse_elimination,
+		_test_combat_double_ko_is_draw,
 
 		_test_relocation_cancels_startup_attack,
 		_test_last_stand_offered_once
@@ -353,26 +354,44 @@ func _test_spawn_pairs_in_corners() -> void:
 	main.queue_free()
 	await process_frame
 
-## CODEX-ANALYST-01 P0: the last two fall in the same collapse; the winner must be
-## decided once, after both took the penalty, not crowned before the second falls.
+## CODEX-ANALYST-01/02 P0: when a collapse wave would take the last fighters out,
+## the healthiest one keeps 1 HP and wins - same realm or different realms of the
+## wave. A winner is never a defeated fighter.
 func _test_simultaneous_collapse_elimination() -> void:
+	var corners: Array[int] = REALM_LAYOUT.new().get_corner_indices()
+	for case_realms in [[corners[0], corners[0]], [corners[0], corners[1]]]:
+		var director := _new_director()
+		var first := _new_player("frey", 1, director, case_realms[0])
+		var second := _new_player("yuki", 2, director, case_realms[1])
+		first.hp = 20.0
+		second.hp = 25.0
+		var finishes: Array[String] = []
+		director.match_finished.connect(func(_winner: Node, reason: String) -> void: finishes.append(reason))
+		_advance_to(director, 150.0)
+		await process_frame
+		var label := "same realm" if case_realms[0] == case_realms[1] else "different realms"
+		if finishes.size() != 1 or director.winner != second or second.is_defeated:
+			_fail("%s: expected Yuki (25 HP) to survive the collapse and win once, got %s, winner defeated=%s" % [label, str(finishes), str(second.is_defeated)])
+			return
+		if not is_equal_approx(second.hp, 1.0) or not first.is_defeated:
+			_fail("%s: expected Frey out and Yuki at 1 HP, got Yuki HP %.1f" % [label, second.hp])
+			return
+		first.queue_free()
+		second.queue_free()
+		director.queue_free()
+
+## The last two knock each other out in the same frame of combat: a draw, not a dead winner.
+func _test_combat_double_ko_is_draw() -> void:
 	var director := _new_director()
-	var corner: int = director.layout.get_corner_indices()[0]
-	var first := _new_player("frey", 1, director, corner)
-	var second := _new_player("yuki", 2, director, corner)
-	first.hp = 20.0
-	second.hp = 25.0
-	var finishes: Array[String] = []
-	director.match_finished.connect(func(_winner: Node, reason: String) -> void: finishes.append(reason))
-	_advance_to(director, 150.0)
-	if not first.is_defeated or not second.is_defeated:
-		_fail("Both fighters should fall to the 30 HP collapse penalty")
-		return
-	if finishes.size() != 1 or finishes[0] != "simultaneous elimination":
-		_fail("Expected one 'simultaneous elimination' finish, got %s" % str(finishes))
-		return
-	if director.winner != second:
-		_fail("The fighter who entered the collapse with more HP (Yuki, 25) should win")
+	var first := _new_player("frey", 1, director, 0)
+	var second := _new_player("yuki", 2, director, 0)
+	first.hp = 5.0
+	second.hp = 5.0
+	first.apply_hit(second, 50.0, 100.0, Vector2.RIGHT)
+	second.apply_hit(first, 50.0, 100.0, Vector2.LEFT)
+	await process_frame
+	if not director.match_over or director.winner != null or director.finish_reason != "double KO":
+		_fail("Same-frame double KO should end as a draw, got winner %s (%s)" % [str(director.winner), director.finish_reason])
 		return
 	first.queue_free()
 	second.queue_free()

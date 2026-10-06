@@ -57,7 +57,7 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | analyst | `design/tasks/CODEX-PLAN-01.md` | none (read-only) | done — `reports/codex-plan-01/` |
 | analyst | `design/tasks/CODEX-ANALYST-01.md` | `smash-nine-prototype/tests/analysis/`, `reports/codex-analyst-01/` | done — merged `052cbcb` |
 | tester | `design/tasks/CODEX-TESTER-01.md` | `smash-nine-prototype/tests/playtest/`, `reports/codex-tester-01/` | done — merged `47f7158` |
-| analyst + tester | `design/tasks/CODEX-RETEST-02.md` | `tests/analysis/` + `reports/codex-analyst-02/`; `tests/playtest/` + `reports/codex-tester-02/` | running |
+| analyst + tester | `design/tasks/CODEX-RETEST-02.md` | `tests/analysis/` + `reports/codex-analyst-02/`; `tests/playtest/` + `reports/codex-tester-02/` | done — merged `379cf08`, `0378a11` |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
 

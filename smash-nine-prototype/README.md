@@ -31,6 +31,7 @@ Start screen: 1–4 picks Frey, Yuki, Luna or Nova; B watches a bots-only match.
 - Ring-out (falling or flying past the side lines) costs 20/25/30/40 HP by phase, then you respawn in the same realm with 1 s protection.
 - 2:00 corner realms warn, 2:30 they collapse. 3:30 the center opens and the edge realms warn, 4:00 they collapse. Anyone caught loses 30 HP and is thrown to a safe realm.
 - 6:00 sudden death: the safe band in the center shrinks. 7:00 the survivor with the most HP wins.
+- Collapse and sudden death never take out the last fighter: if everyone left would fall, the healthiest keeps 1 HP. A same-frame double KO in combat is a draw.
 - Souls come from damage, knock-outs and monsters. At 25/50/75 souls you pick one of three cards (5 s, then auto-pick); each pick also grows your character's base stats.
 - Early phases forgive more: out-of-combat HP recovery until the edge realms fall, and bots mostly farm until provoked.
 
