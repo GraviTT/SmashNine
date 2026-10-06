@@ -7,6 +7,7 @@ const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
 const MATCH_DIRECTOR := preload("res://scripts/match/MatchDirector.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
+const SOUL_GROWTH := preload("res://scripts/match/SoulGrowth.gd")
 
 var arena: Node2D
 var characters: Dictionary
@@ -22,11 +23,13 @@ func _run() -> void:
 		"spawn_pairs_8": await _probe_spawn_pairs(8, 711),
 		"spawn_pairs_16": await _probe_spawn_pairs(16, 716),
 		"collapse_last_two": await _probe_collapse_last_two(),
+		"collapse_last_two_split_realms": await _probe_collapse_last_two_split_realms(),
 		"post_match_combat": await _probe_post_match_combat(),
 		"relocation_attack": await _probe_relocation_attack(),
 		"ultimate_followups": await _probe_ultimate_followups(),
 		"soak_cause_attribution": await _probe_soak_cause_attribution(),
-		"triple_last_stand": await _probe_triple_last_stand()
+		"triple_last_stand": await _probe_triple_last_stand(),
+		"auto_picked": await _probe_auto_picked()
 	}
 	print("PROBE_RESULT ", JSON.stringify(result))
 	arena.queue_free()
@@ -73,6 +76,36 @@ func _probe_collapse_last_two() -> Dictionary:
 	director.advance(MATCH_DIRECTOR.WAVE_ONE_COLLAPSE)
 	var result := {
 		"seed": "deterministic",
+		"match_over": director.match_over,
+		"finish_reason": director.finish_reason,
+		"winner_id": director.winner.player_id if is_instance_valid(director.winner) else -1,
+		"winner_is_defeated": director.winner.is_defeated if is_instance_valid(director.winner) else false,
+		"alive_count": director.get_alive_combatants().size(),
+		"first_defeated": first.is_defeated,
+		"second_defeated": second.is_defeated
+	}
+	first.queue_free()
+	second.queue_free()
+	director.queue_free()
+	await process_frame
+	return result
+
+func _probe_collapse_last_two_split_realms() -> Dictionary:
+	var director: Node = MATCH_DIRECTOR.new()
+	arena.add_child(director)
+	director.setup(REALM_LAYOUT.new())
+	var corners: Array[int] = director.layout.get_corner_indices()
+	var first := _new_player("frey", 1, director, corners[0])
+	var second := _new_player("yuki", 2, director, corners[1])
+	await process_frame
+	first.set_physics_process(false)
+	second.set_physics_process(false)
+	first.hp = 20.0
+	second.hp = 20.0
+	director.advance(MATCH_DIRECTOR.WAVE_ONE_COLLAPSE)
+	var result := {
+		"seed": "deterministic",
+		"realms": [corners[0], corners[1]],
 		"match_over": director.match_over,
 		"finish_reason": director.finish_reason,
 		"winner_id": director.winner.player_id if is_instance_valid(director.winner) else -1,
@@ -166,15 +199,27 @@ func _probe_post_match_combat() -> Dictionary:
 	root.add_child(main)
 	await process_frame
 	main.players[0].apply_environment_damage(999.0)
+	# Combat eliminations are intentionally judged at the end of the frame so a
+	# same-frame double KO can be batched. Wait for that public result transition.
+	await process_frame
 	var winner: Node = main.get_winner()
-	var physics_after_finish := winner.is_physics_processing()
-	winner.apply_environment_damage(999.0)
+	var physics_after_finish := winner.is_physics_processing() if is_instance_valid(winner) else false
+	var can_process_after_finish := winner.can_process() if is_instance_valid(winner) else false
+	var process_mode_after_finish := winner.process_mode if is_instance_valid(winner) else -1
+	var direct_hit_applied_after_finish := false
+	if is_instance_valid(winner):
+		direct_hit_applied_after_finish = winner.apply_hit(main.players[0], 999.0, 0.0, Vector2.RIGHT)
+		winner.apply_environment_damage(999.0)
 	var result := {
 		"seed": 801,
+		"deferred_finish_waited_frames": 1,
 		"match_over": main.match_over,
-		"winner_id": winner.player_id,
+		"winner_id": winner.player_id if is_instance_valid(winner) else -1,
 		"winner_physics_processing_after_finish": physics_after_finish,
-		"winner_can_be_defeated_after_finish": winner.is_defeated,
+		"winner_can_process_after_finish": can_process_after_finish,
+		"winner_process_mode_after_finish": process_mode_after_finish,
+		"direct_hit_applied_after_finish": direct_hit_applied_after_finish,
+		"winner_can_be_defeated_after_finish": winner.is_defeated if is_instance_valid(winner) else false,
 		"alive_after_post_finish_damage": main.director.get_alive_combatants().size()
 	}
 	main.queue_free()
@@ -221,14 +266,48 @@ func _probe_triple_last_stand() -> Dictionary:
 	player.ringout_damage = 40.0
 	var hp_before: float = player.hp
 	player._ringout()
+	var reoffered_after_first_copy := false
+	var rng := RandomNumberGenerator.new()
+	for attempt in 200:
+		rng.seed = attempt
+		for offered_card in SOUL_CARDS.draw_offer(rng, ["last_stand"]):
+			if offered_card.id == "last_stand":
+				reoffered_after_first_copy = true
 	var result := {
 		"copies": 3,
+		"forced_application_bypasses_offer_policy": true,
+		"reoffered_after_first_copy": reoffered_after_first_copy,
 		"ringout_scale": snappedf(player.ringout_damage_scale, 0.001),
 		"sudden_death_ringout_damage": snappedf(hp_before - player.hp, 0.01),
 		"unmodified_damage": 40.0,
 		"max_hp_after_three_picks": snappedf(player.max_hp, 0.1)
 	}
 	player.queue_free()
+	await process_frame
+	return result
+
+func _probe_auto_picked() -> Dictionary:
+	var growth: Node = SOUL_GROWTH.new()
+	var player: Node = PLAYER_FACTORY.create("yuki")
+	arena.add_child(growth)
+	arena.add_child(player)
+	player.setup(characters.yuki, 71, false)
+	growth.match_seed = 901
+	growth.register_player(player)
+	var closed: Array[Dictionary] = []
+	growth.offer_closed.connect(func(closed_player: Node, card: Dictionary, auto_picked: bool) -> void:
+		closed.append({"player_id": closed_player.player_id, "card": str(card.id), "auto_picked": auto_picked}))
+	player.add_souls(25)
+	growth._process(SOUL_GROWTH.BOT_THINK_TIME + 0.01)
+	var result := {
+		"seed": 901,
+		"bot_think_time": SOUL_GROWTH.BOT_THINK_TIME,
+		"closed_count": closed.size(),
+		"auto_picked": bool(closed[0].auto_picked) if not closed.is_empty() else false,
+		"card": str(closed[0].card) if not closed.is_empty() else ""
+	}
+	player.queue_free()
+	growth.queue_free()
 	await process_frame
 	return result
 

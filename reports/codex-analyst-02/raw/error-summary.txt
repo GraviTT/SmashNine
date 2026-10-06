@@ -1,0 +1,18 @@
+Godot processes run: 34
+Known certificate-store ERROR lines: 34
+Other ERROR / SCRIPT ERROR / Parse Error lines: 1
+
+The one non-certificate error occurred on the first, unchanged rule_probes.gd run:
+SCRIPT ERROR: Cannot call method 'is_physics_processing' on a null value.
+at: _probe_post_match_combat (res://tests/analysis/rule_probes.gd:170)
+
+Cause: commit 17fa35f intentionally defers combat survivor judgment to the end of
+the frame. The old analysis probe read get_winner() in the same frame, before the
+deferred judgment. The analysis probe was updated to wait one process frame and to
+measure can_process() plus direct-hit rejection. The final probe rerun and the 12
+match-rule tests had no non-certificate errors.
+
+Breakdown:
+- 30 seed sweep processes: 30 certificate errors, 0 other errors
+- rule_probes.gd (three runs): 3 certificate errors, 1 other error on first run
+- tests/test_match_rules.gd: 1 certificate error, 0 other errors
