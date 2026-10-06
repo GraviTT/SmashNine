@@ -40,7 +40,7 @@ From `smash-nine-prototype/`:
 - Bot soak with telemetry: `<godot> --headless --path . --fixed-fps 60 -s tests/soak_match.gd -- --seconds=480 --seed=7 --players=8`
   (prints `[soak]` status lines and one `SOAK_RESULT {json}` line; the same seed replays the same match)
 - Screenshots (windowed, not headless): `<godot> --path . -s tests/capture_screens.gd -- --out=../reports/screens`
-- Web build (from repo root): `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`; serve with `node tools/serve_web.js build/web 8060`
+- Web build (from repo root): `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`; serve with `node tools/serve_web.js build/web 8060`; publish with `tools/deploy_pages.ps1` (lead only: it pushes `gh-pages`)
 
 A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with exit code 0.
 
