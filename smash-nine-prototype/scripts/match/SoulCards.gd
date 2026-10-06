@@ -8,16 +8,17 @@ const CARDS: Array[Dictionary] = [
 	{"id": "vitality", "title": "Vitality", "kind": "stat", "text": "Max HP +15, heal 15", "effects": {"bonus_max_hp": 15.0}},
 	{"id": "swiftness", "title": "Swiftness", "kind": "stat", "text": "Move speed +8%", "effects": {"speed_multiplier": 1.08}},
 	{"id": "anchor", "title": "Anchor", "kind": "stat", "text": "Knockback taken -15%", "effects": {"weight_multiplier": 1.15}},
-	{"id": "sky_step", "title": "Sky Step", "kind": "action", "text": "+1 air jump", "effects": {"bonus_air_jumps": 1}},
-	{"id": "last_stand", "title": "Last Stand", "kind": "action", "text": "Ring-out damage -30%", "effects": {"ringout_damage_scale": 0.7}}
+	{"id": "sky_step", "title": "Sky Step", "kind": "action", "text": "+1 air jump", "effects": {"bonus_air_jumps": 1}, "max_stacks": 2},
+	{"id": "last_stand", "title": "Last Stand", "kind": "action", "text": "Ring-out damage -30%", "effects": {"ringout_damage_scale": 0.7}, "max_stacks": 1}
 ]
 const OFFER_SIZE := 3
 
-## Three distinct cards drawn with the given RNG. Sky Step is offered at most twice per player.
+## Three distinct cards drawn with the given RNG. A card with "max_stacks" is not offered
+## again once the player owns that many (Last Stand x3 cut sudden-death ring-outs 40 -> 14).
 static func draw_offer(rng: RandomNumberGenerator, owned: Array[String]) -> Array[Dictionary]:
 	var pool: Array[Dictionary] = []
 	for card in CARDS:
-		if card.id == "sky_step" and owned.count("sky_step") >= 2:
+		if card.has("max_stacks") and owned.count(card.id) >= int(card.max_stacks):
 			continue
 		pool.append(card)
 	var offer: Array[Dictionary] = []

@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 signal hp_changed(player: Node)
+## Every HP loss with its cause: source is "hit" (attacker is who hit) or "environment"
+## (ring-out, collapse, sudden death; attacker is only the KO credit, if any).
+signal damaged(player: Node, amount: float, attacker: Node, source: String)
 ## Permanent elimination (design D1). The training dummy is the only combatant that comes back.
 signal defeated(player: Node, attacker: Node)
 signal respawned(player: Node)
@@ -131,6 +134,7 @@ var respawn_count := 0
 var last_attacker: Node
 var last_attacker_timer := 0.0
 var invulnerable_timer := 0.0
+var action_epoch := 0
 var ultimate_cooldown_timer := 0.0
 var realm_index := 0
 var is_realm_active := true
@@ -731,11 +735,21 @@ func _start_attack(startup: float, recovery: float, action: Callable) -> void:
 	var attack_facing := facing
 	current_attack_started_airborne = not is_on_floor()
 	_play_attack_windup()
-	await get_tree().create_timer(startup).timeout
-	if is_defeated or hitstun_timer > 0.0:
+	if not await _wait_action(startup) or hitstun_timer > 0.0:
 		return
 	facing = attack_facing
 	action.call()
+
+## Start-up wait for any attack or skill. Returns false when the action was cancelled
+## meanwhile (portal, collapse relocation, respawn, defeat, match end), so an old
+## swing never fires at the new position (CODEX-ANALYST-01).
+func _wait_action(seconds: float) -> bool:
+	var epoch := action_epoch
+	await get_tree().create_timer(seconds).timeout
+	return epoch == action_epoch and not is_defeated
+
+func cancel_pending_actions() -> void:
+	action_epoch += 1
 
 func _play_attack_windup() -> void:
 	var tween := create_tween()
@@ -887,6 +901,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	final_damage *= 1.0 - guard_reduction
 	hp = maxf(hp - final_damage, 0.0)
 	_credit_damage(attacker, final_damage)
+	damaged.emit(self, final_damage, attacker if is_instance_valid(attacker) else null, "hit")
 	var danger := 1.0 + (1.0 - hp / max_hp) * LOW_HP_KNOCKBACK_BONUS
 	var final_knockback := base_knockback * danger * KNOCKBACK_SCALE / weight
 	final_knockback *= 1.0 - guard_reduction * GUARD_KNOCKBACK_REDUCTION_SCALE
@@ -938,6 +953,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 	final_damage *= 1.0 - guard_reduction
 	hp = maxf(hp - final_damage, 0.0)
 	_credit_damage(attacker, final_damage)
+	damaged.emit(self, final_damage, attacker if is_instance_valid(attacker) else null, "hit")
 	var hit_direction := direction.normalized()
 	if hit_direction == Vector2.ZERO:
 		hit_direction = launch_velocity.normalized()
@@ -1110,6 +1126,7 @@ func apply_environment_damage(amount: float, attacker: Node = null) -> void:
 	if is_defeated or amount <= 0.0:
 		return
 	hp = maxf(hp - amount, 0.0)
+	damaged.emit(self, amount, attacker if is_instance_valid(attacker) else null, "environment")
 	_play_float_text("-%d" % int(round(amount)), Color(1.0, 0.45, 0.35))
 	hp_changed.emit(self)
 	_update_visuals()
@@ -1132,6 +1149,7 @@ func _credit_damage(attacker: Node, amount: float) -> void:
 		attacker.record_damage_dealt(amount)
 
 func _defeat(attacker: Node) -> void:
+	cancel_pending_actions()
 	_clear_drop_through_exception()
 	_reset_guard_state()
 	_end_skill_dash()
@@ -1154,6 +1172,7 @@ func _respawn_after_defeat() -> void:
 	_respawn()
 
 func _respawn() -> void:
+	cancel_pending_actions()
 	_clear_drop_through_exception()
 	_reset_guard_state()
 	character_on_respawn()
@@ -1204,6 +1223,7 @@ func _apply_realm_active_state() -> void:
 	set_physics_process(true)
 
 func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
+	cancel_pending_actions()
 	_clear_drop_through_exception()
 	_reset_guard_state()
 	character_cleanup()

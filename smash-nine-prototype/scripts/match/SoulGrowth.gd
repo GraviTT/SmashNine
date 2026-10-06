@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 		offer.time_left = float(offer.time_left) - delta
 		if offer.time_left <= 0.0:
 			var index := 0 if player.is_human else _rng_for(player).randi_range(0, offer.cards.size() - 1)
-			_close_offer(player, index, player.is_human)
+			_close_offer(player, index, true)
 
 ## Human choice (0-based index into the active offer). Returns false when there is no offer.
 func choose(player: Node, index: int) -> bool:

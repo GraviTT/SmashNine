@@ -248,7 +248,8 @@ func _gravity_brake_start() -> void:
 	_freeze_movement(0.08)
 	velocity = Vector2.ZERO
 	_play_brake_charge(momentum)
-	await get_tree().create_timer(0.08).timeout
+	if not await _wait_action(0.08):
+		return
 	movement_freeze_timer = 0.0
 	if is_defeated or hitstun_timer > 0.0:
 		return

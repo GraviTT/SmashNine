@@ -31,7 +31,11 @@ func _run() -> void:
 		_test_soul_thresholds_and_cards,
 		_test_ultimate_cooldown,
 		_test_projectile_lifetime,
-		_test_spawn_pairs_in_corners
+		_test_spawn_pairs_in_corners,
+		_test_simultaneous_collapse_elimination,
+
+		_test_relocation_cancels_startup_attack,
+		_test_last_stand_offered_once
 	]
 	for test in tests:
 		await test.call()
@@ -150,6 +154,7 @@ func _test_elimination_is_permanent_and_single_winner() -> void:
 		return
 	players[1].apply_environment_damage(500.0)
 	players[1].apply_environment_damage(500.0)
+	await process_frame
 	if winners.size() != 1 or winners[0] != players[2]:
 		_fail("Expected exactly one winner signal for Nova, got %s" % str(winners))
 		return
@@ -336,5 +341,70 @@ func _test_spawn_pairs_in_corners() -> void:
 		if not corners.has(realm_index) or counts[realm_index] != 2:
 			_fail("8 players should start two per corner realm, got %s" % str(counts))
 			break
+	var seats: Dictionary = {}
+	for player in main.players:
+		var pair: Array = seats.get(player.realm_index, [])
+		pair.append(player.character_id)
+		seats[player.realm_index] = pair
+	for realm_index in seats:
+		if seats[realm_index][0] == seats[realm_index][1]:
+			_fail("Opening pair in realm %d is a mirror match: %s" % [realm_index, str(seats[realm_index])])
+			break
 	main.queue_free()
 	await process_frame
+
+## CODEX-ANALYST-01 P0: the last two fall in the same collapse; the winner must be
+## decided once, after both took the penalty, not crowned before the second falls.
+func _test_simultaneous_collapse_elimination() -> void:
+	var director := _new_director()
+	var corner: int = director.layout.get_corner_indices()[0]
+	var first := _new_player("frey", 1, director, corner)
+	var second := _new_player("yuki", 2, director, corner)
+	first.hp = 20.0
+	second.hp = 25.0
+	var finishes: Array[String] = []
+	director.match_finished.connect(func(_winner: Node, reason: String) -> void: finishes.append(reason))
+	_advance_to(director, 150.0)
+	if not first.is_defeated or not second.is_defeated:
+		_fail("Both fighters should fall to the 30 HP collapse penalty")
+		return
+	if finishes.size() != 1 or finishes[0] != "simultaneous elimination":
+		_fail("Expected one 'simultaneous elimination' finish, got %s" % str(finishes))
+		return
+	if director.winner != second:
+		_fail("The fighter who entered the collapse with more HP (Yuki, 25) should win")
+		return
+	first.queue_free()
+	second.queue_free()
+	director.queue_free()
+
+## CODEX-ANALYST-01 P1: a relocation during an attack's start-up cancels the attack.
+func _test_relocation_cancels_startup_attack() -> void:
+	var director := _new_director()
+	var yuki := _new_player("yuki", 1, director, 0)
+	var created: Array[Node] = []
+	var on_node_added := func(node: Node) -> void:
+		if node is Area2D and node.get_script() != null:
+			created.append(node)
+	node_added.connect(on_node_added)
+	yuki.basic_attack()
+	yuki.reset_for_map(director.layout.pick_spawn(1), director.layout.get_spawn_points(1))
+	await create_timer(0.4).timeout
+	node_added.disconnect(on_node_added)
+	if not created.is_empty():
+		_fail("A start-up attack fired after relocation (%d hitboxes)" % created.size())
+		return
+	yuki.queue_free()
+	director.queue_free()
+
+## CODEX-ANALYST-01 P2: Last Stand (ring-out damage x0.7) is not offered after one copy.
+func _test_last_stand_offered_once() -> void:
+	var cards := preload("res://scripts/match/SoulCards.gd")
+	var rng := RandomNumberGenerator.new()
+	var owned: Array[String] = ["last_stand"]
+	for attempt in 200:
+		rng.seed = attempt
+		for card in cards.draw_offer(rng, owned):
+			if card.id == "last_stand":
+				_fail("Last Stand offered again to a player who owns it")
+				return

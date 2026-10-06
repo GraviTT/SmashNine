@@ -45,7 +45,7 @@ func _run() -> void:
 	await process_frame
 	for player in main.players:
 		player.defeated.connect(_on_defeated)
-		player.hp_changed.connect(_on_hp_changed)
+		player.damaged.connect(_on_damaged)
 	var frames := int(seconds / FRAME_TIME)
 	var next_status := STATUS_INTERVAL
 	var finished_early := false
@@ -134,8 +134,11 @@ func _attacker_kind(attacker: Variant) -> String:
 		return "monster"
 	return "other"
 
-func _on_hp_changed(player: Node) -> void:
-	var kind := _attacker_kind(player.last_attacker)
+## Counts only direct hits by source (PlayerBase.damaged), not ring-out or zone damage.
+func _on_damaged(_player: Node, _amount: float, attacker: Variant, source: String) -> void:
+	if source != "hit":
+		return
+	var kind := _attacker_kind(attacker)
 	if kind == "player":
 		pvp_hits += 1
 		if first_pvp_hit_time < 0.0:

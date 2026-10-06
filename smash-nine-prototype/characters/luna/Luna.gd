@@ -154,7 +154,8 @@ func _star_down_arc(airborne: bool) -> void:
 	_spawn_delayed_bloom(bloom_offset, Vector2(78, 62), 8.0, 355, Vector2(0.2 * facing, 1), 0.075)
 
 func _spawn_delayed_bloom(offset: Vector2, size: Vector2, damage: float, knockback: float, direction: Vector2, delay: float) -> void:
-	await get_tree().create_timer(delay).timeout
+	if not await _wait_action(delay):
+		return
 	if is_defeated or hitstun_timer > 0.0 or transformed:
 		return
 	_spawn_attack(size, offset, damage, knockback, direction, STAR_BLOOM_COLOR, 0.12)
@@ -305,7 +306,8 @@ func _transformation_start() -> void:
 	_freeze_movement(0.26)
 	velocity = Vector2.ZERO
 	_play_transformation_charge()
-	await get_tree().create_timer(0.26).timeout
+	if not await _wait_action(0.26):
+		return
 	movement_freeze_timer = 0.0
 	if is_defeated or hitstun_timer > 0.0:
 		return
@@ -332,7 +334,8 @@ func _heart_laser_start() -> void:
 	_freeze_movement(0.14)
 	velocity = Vector2.ZERO
 	_play_finale_charge()
-	await get_tree().create_timer(0.14).timeout
+	if not await _wait_action(0.14):
+		return
 	if cast_id != heart_laser_cast_id:
 		return
 	if is_defeated or hitstun_timer > 0.0:

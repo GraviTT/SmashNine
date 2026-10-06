@@ -161,7 +161,8 @@ func _dash_strike_start() -> void:
 	var held_facing := facing
 	velocity.x = 0.0
 	_play_dash_hold()
-	await get_tree().create_timer(DASH_HOLD_TIME).timeout
+	if not await _wait_action(DASH_HOLD_TIME):
+		return
 	if is_defeated or hitstun_timer > 0.0:
 		return
 	var dash_direction := _get_late_skill_direction()
@@ -218,7 +219,8 @@ func _ultimate_start() -> void:
 		_freeze_movement(0.22)
 		velocity = Vector2.ZERO
 		_play_ultimate_charge()
-		await get_tree().create_timer(0.22).timeout
+		if not await _wait_action(0.22):
+			return
 		movement_freeze_timer = 0.0
 		if is_defeated or hitstun_timer > 0.0 or not is_on_floor():
 			return
@@ -297,7 +299,8 @@ func _spike_start() -> void:
 	velocity.x += facing * 150.0
 	velocity.y = minf(velocity.y, -110.0)
 	_play_attack_windup()
-	await get_tree().create_timer(0.055).timeout
+	if not await _wait_action(0.055):
+		return
 	if is_defeated or hitstun_timer > 0.0:
 		return
 	_spawn_sweeping_attack(Vector2(76, 48), [

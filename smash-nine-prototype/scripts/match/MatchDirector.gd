@@ -79,6 +79,10 @@ var elimination_order: Array[Node] = []
 var match_over := false
 var winner: Node
 var finish_reason := ""
+var _batch_depth := 0
+var _survivor_check_queued := false
+var _eliminated_since_check: Array[Node] = []
+var _hp_at_step_start: Dictionary = {}
 
 func setup(new_layout: REALM_LAYOUT) -> void:
 	layout = new_layout
@@ -89,6 +93,9 @@ func setup(new_layout: REALM_LAYOUT) -> void:
 	warning_realms.clear()
 	combatants.clear()
 	elimination_order.clear()
+	_eliminated_since_check.clear()
+	_hp_at_step_start.clear()
+	_batch_depth = 0
 	match_over = false
 	winner = null
 	finish_reason = ""
@@ -117,6 +124,7 @@ func advance(delta: float) -> void:
 	if match_over:
 		return
 	match_elapsed += delta
+	_snapshot_hp()
 	while not match_over and next_event_index < events.size() and match_elapsed >= float(events[next_event_index].time):
 		var event: Dictionary = events[next_event_index]
 		next_event_index += 1
@@ -180,6 +188,7 @@ func _realm_names(realms: Array) -> String:
 ## Combatants still inside a collapsing realm lose COLLAPSE_PENALTY HP and are
 ## moved to the nearest playable realm with brief protection (D1: not instant death).
 func _relocate_trapped_combatants(collapsed_index: int) -> void:
+	_begin_batch()
 	for combatant in combatants:
 		if not _is_alive(combatant) or combatant.realm_index != collapsed_index:
 			continue
@@ -190,6 +199,7 @@ func _relocate_trapped_combatants(collapsed_index: int) -> void:
 		combatant.apply_environment_damage(COLLAPSE_PENALTY)
 		if _is_alive(combatant):
 			combatant.grant_protection()
+	_end_batch()
 
 ## Nearest playable realm by grid distance; the center wins ties once it is open.
 func find_safe_realm(from_index := -1) -> int:
@@ -216,22 +226,62 @@ func get_sudden_death_band() -> Vector2:
 
 func _apply_sudden_death(delta: float) -> void:
 	var band := get_sudden_death_band()
+	_begin_batch()
 	for combatant in combatants:
 		if not _is_alive(combatant) or combatant.realm_index != central_index:
 			continue
 		var x: float = combatant.global_position.x
 		if x < band.x or x > band.y:
 			combatant.apply_environment_damage(SUDDEN_DEATH_DAMAGE_PER_SECOND * delta)
+	_end_batch()
 
 # --- Elimination and result ---
 
+## Eliminations are judged together (CODEX-ANALYST-01 P0): director-run damage
+## (collapse, sudden death) is batched and judged when the batch ends; combat
+## eliminations are judged at the end of the frame, so a double KO never crowns
+## someone who is about to fall in the same step.
 func _on_combatant_defeated(combatant: Node, _attacker: Node) -> void:
 	if match_over or elimination_order.has(combatant):
 		return
 	elimination_order.append(combatant)
+	_eliminated_since_check.append(combatant)
+	if _batch_depth > 0 or _survivor_check_queued:
+		return
+	_survivor_check_queued = true
+	call_deferred("_check_survivors")
+
+func _begin_batch() -> void:
+	_batch_depth += 1
+
+func _end_batch() -> void:
+	_batch_depth -= 1
+	if _batch_depth == 0 and not _eliminated_since_check.is_empty():
+		_check_survivors()
+
+func _check_survivors() -> void:
+	_survivor_check_queued = false
+	var fallen := _eliminated_since_check.duplicate()
+	_eliminated_since_check.clear()
+	if match_over or _batch_depth > 0:
+		return
 	var alive := get_alive_combatants()
-	if alive.size() <= 1:
-		_finish(alive[0] if alive.size() == 1 else combatant, "last survivor")
+	if alive.size() == 1:
+		_finish(alive[0], "last survivor")
+	elif alive.is_empty() and not fallen.is_empty():
+		# Everyone left fell together: the one who entered this step with the most HP wins.
+		fallen.sort_custom(func(a: Node, b: Node) -> bool:
+			var hp_a := float(_hp_at_step_start.get(a, 0.0))
+			var hp_b := float(_hp_at_step_start.get(b, 0.0))
+			if not is_equal_approx(hp_a, hp_b):
+				return hp_a > hp_b
+			return _ranks_higher(a, b))
+		_finish(fallen[0], "simultaneous elimination")
+
+func _snapshot_hp() -> void:
+	for combatant in combatants:
+		if _is_alive(combatant):
+			_hp_at_step_start[combatant] = combatant.hp
 
 ## At FINAL_JUDGMENT the survivor with the most HP wins (prototype safety net, D3).
 func _judge_survivors() -> void:

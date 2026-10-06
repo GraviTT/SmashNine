@@ -52,6 +52,15 @@ const ULTIMATE_FOLLOWUPS := {"nova": [0.35, 0.55], "luna": [4.4]}
 const ULTIMATE_USE_CHANCE := 0.45
 const PASSIVE_PLAYER_PENALTY := 900.0
 const DISENGAGE_HP_RATIO := 0.35
+## Engagement distances per fighter, from each kit's reach (CODEX-ANALYST-01: one 235 px
+## profile for everyone erased Yuki's range). "kite" fighters back off when crowded.
+const COMBAT_PROFILES := {
+	"frey": {"min_range": 45.0, "max_range": 170.0, "attack_range": 200.0, "kite": false},
+	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false},
+	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
+	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true}
+}
+const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
 
 const OFFSCREEN_THINK_MIN := 1.4
 const OFFSCREEN_THINK_MAX := 4.5
@@ -352,7 +361,10 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 	if distance_x > max_range:
 		candidates = ["approach", "approach", "jump_in"]
 	elif distance_x < min_range:
-		candidates = ["hold", "hold", "cross", "approach"]
+		if bool(profile.kite):
+			candidates = ["retreat", "retreat", "hold"]
+		else:
+			candidates = ["hold", "hold", "cross", "approach"]
 	else:
 		candidates = ["hold", "cross", "approach", "jump_in"]
 
@@ -413,8 +425,8 @@ func _mobility_skill_is_safe(player) -> bool:
 		return true
 	return _has_landing_patch(player, direction, LONG_LANDING_DISTANCE)
 
-func _combat_profile(_player) -> Dictionary:
-	return {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0}
+func _combat_profile(player) -> Dictionary:
+	return COMBAT_PROFILES.get(player.character_id, DEFAULT_COMBAT_PROFILE)
 
 func _navigate_to_intent(player, destination: Vector2) -> Dictionary:
 	var offset: Vector2 = destination - player.global_position

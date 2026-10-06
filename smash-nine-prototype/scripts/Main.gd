@@ -189,6 +189,7 @@ func _freeze_combat() -> void:
 			child.process_mode = Node.PROCESS_MODE_DISABLED
 	for player in players:
 		if is_instance_valid(player):
+			player.cancel_pending_actions()
 			player.grant_protection(INF)
 			player.modulate.a = 1.0
 
@@ -260,6 +261,8 @@ func _is_in_view(combatant: Node) -> bool:
 # --- Combatants ---
 
 ## Two fighters per realm: corner realms for up to 8, all outer realms beyond (D7).
+## Realm slot k seats characters k and k+1 of the roster (rotated so P1 keeps their
+## pick), so every opening pair is a different match-up and no pair is a mirror.
 func _spawn_players(human_character_id: String) -> void:
 	var ids := CHARACTER_REGISTRY.get_character_ids()
 	var start_realms: Array[int] = layout.get_corner_indices()
@@ -269,8 +272,10 @@ func _spawn_players(human_character_id: String) -> void:
 	var used_points: Dictionary = {}
 	var first_id := maxi(ids.find(human_character_id), 0)
 	for i in player_count:
-		var realm_index := start_realms[i % start_realms.size()]
-		var character_id: String = ids[(first_id + i) % ids.size()]
+		var slot := (i / 2) % start_realms.size()
+		var seat := i % 2
+		var realm_index := start_realms[slot]
+		var character_id: String = ids[(first_id + slot + seat) % ids.size()]
 		var human := i == 0 and not bots_only
 		_add_player(character_id, human, _take_spawn_point(realm_index, used_points), realm_index)
 	_sync_combatant_visibility()
