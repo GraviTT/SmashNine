@@ -47,6 +47,7 @@ const RECOVER_SIDE_SLACK := 20.0
 const RECOVER_START_FROM_BOTTOM := 40.0
 const RECOVER_EXIT_FROM_BOTTOM := 60.0
 const RECOVER_JUMP_RETRY := 0.3
+const VOID_PROBE_DEPTH := 700.0
 ## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
 const ULTIMATE_FOLLOWUPS := {"nova": [0.35, 0.55], "luna": [4.4]}
 const ULTIMATE_USE_CHANCE := 0.45
@@ -546,7 +547,14 @@ func _needs_recovery(player) -> bool:
 	var local_position: Vector2 = player.global_position - player.realm_origin
 	if local_position.x < -RECOVER_SIDE_SLACK or local_position.x > player.realm_size.x + RECOVER_SIDE_SLACK:
 		return true
-	return not player.is_on_floor() and local_position.y > player.realm_size.y - RECOVER_START_FROM_BOTTOM and player.velocity.y > 0.0
+	if player.is_on_floor() or player.velocity.y <= 0.0:
+		return false
+	# Falling with nothing below: start heading back now, not near the blast line.
+	return local_position.y > player.realm_size.y - RECOVER_START_FROM_BOTTOM or _over_void(player)
+
+func _over_void(player) -> bool:
+	var foot: Vector2 = player.global_position
+	return not _ray_hits_world(player, foot, foot + Vector2(0.0, VOID_PROBE_DEPTH))
 
 func _recovery_complete(player) -> bool:
 	var local_position: Vector2 = player.global_position - player.realm_origin
@@ -564,14 +572,17 @@ func _recover_intent(player) -> Dictionary:
 		jump_retry_timer = RECOVER_JUMP_RETRY
 	return _intent(direction, jump)
 
+## Nearest platform top we can still reach: close horizontally, and preferably not above us.
 func _choose_recovery_point(player) -> Vector2:
 	var best: Vector2 = player.realm_origin + Vector2(player.realm_size.x * 0.5, player.realm_size.y * 0.75)
 	var best_score: float = INF
-	for point in player.spawn_points:
-		var local_point: Vector2 = point - player.realm_origin
-		if local_point.x < 100.0 or local_point.x > player.realm_size.x - 100.0:
-			continue
-		var score: float = absf(point.x - player.global_position.x) + maxf(point.y - player.global_position.y, 0.0) * 1.8
+	var parent: Node = player.get_parent()
+	var candidates: Array[Vector2] = player.spawn_points
+	if parent != null and parent.has_method("get_ai_navigation_points_for_realm"):
+		candidates = parent.get_ai_navigation_points_for_realm(player.realm_index)
+	for point in candidates:
+		var rise: float = player.global_position.y - point.y
+		var score: float = absf(point.x - player.global_position.x) + maxf(rise, 0.0) * 1.5 + maxf(-rise, 0.0) * 0.4
 		if score < best_score:
 			best_score = score
 			best = point

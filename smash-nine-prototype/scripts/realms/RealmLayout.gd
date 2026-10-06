@@ -7,8 +7,10 @@ const REALM_CATALOG := preload("res://scripts/realms/RealmCatalog.gd")
 const CENTRAL_REALM_INDEX := 8
 const VIEWPORT_CENTER := Vector2(640, 360)
 const REALM_WORLD_SPACING := Vector2(4600, 2800)
-const BLAST_MARGIN_BOTTOM := 220.0
-const BLAST_MARGIN_SIDE := 240.0
+## Recovery room below and beside a realm. One-screen realms put the bottom line only
+## ~340 px under the main floor at 220, so a knock-off was a 0.6 s fall to death.
+const BLAST_MARGIN_BOTTOM := 480.0
+const BLAST_MARGIN_SIDE := 300.0
 const PORTAL_SIZE := Vector2(92, 92)
 const PORTAL_LABELS := {
 	Vector2i(0, -1): "UP",

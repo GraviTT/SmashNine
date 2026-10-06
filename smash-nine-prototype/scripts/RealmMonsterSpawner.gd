@@ -23,7 +23,7 @@ func sync_playable_realms(playable_realms: Array[int]) -> void:
 
 func _spawn_missing_for_realm(realm_index: int) -> void:
 	var monsters: Array = monsters_by_realm.get(realm_index, [])
-	monsters = monsters.filter(func(monster: Node) -> bool: return is_instance_valid(monster) and not monster.is_queued_for_deletion())
+	monsters = monsters.filter(func(monster: Variant) -> bool: return is_instance_valid(monster) and not monster.is_queued_for_deletion())
 	monsters_by_realm[realm_index] = monsters
 	if monsters.size() >= MONSTERS_PER_REALM or not spawn_points_provider.is_valid():
 		return
