@@ -45,3 +45,7 @@ characters/
 ## Character Document
 
 캐릭터 문서에는 정체성과 목표 감각, 기본 스탯과 성장, J/K/L/I 조작, 핵심 전투 흐름, 강점과 약점, 현재 구현 범위, 다음 조정 항목을 기록한다. 수치는 플레이 검증에 따라 변경될 수 있다.
+
+## Growth In A Match
+
+레벨과 경험치는 소울로 대체되었다(`design/DECISIONS.md` D4, D16). 캐릭터 문서의 "Growth per Level"은 그대로 유효하며, 소울 카드를 한 번 고를 때마다 해당 성장치가 3레벨분 적용된다. 매치 규칙(피해 배율, 회복, 궁극기 쿨다운 30초)은 `scripts/match/MatchDirector.gd`와 `PlayerBase.gd`의 공통 필드가 담당하므로 캐릭터 스크립트에서 따로 다루지 않는다.

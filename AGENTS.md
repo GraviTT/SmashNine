@@ -18,7 +18,7 @@ Codex runs as units (tester, analyst, builder) in its own clones and writes only
 |---|---|
 | `smash-nine-prototype/` | the Godot project (open this folder in Godot) |
 | `smash-nine-prototype/scripts/Main.gd` | match scene root: spawning, camera, wiring; bot hooks `get_ai_*` |
-| `smash-nine-prototype/scripts/match/` | `MatchDirector` (timeline, realm states, rules) |
+| `smash-nine-prototype/scripts/match/` | `MatchDirector` (timeline, realm states, rules), `SoulGrowth` + `SoulCards` |
 | `smash-nine-prototype/scripts/realms/` | `RealmCatalog` (data), `RealmLayout` (geometry), `RealmWorld` (nodes) |
 | `smash-nine-prototype/scripts/ui/` | HUD and overlays |
 | `smash-nine-prototype/characters/` | `common/PlayerBase.gd` + one folder per character (see `characters/README.md`) |
@@ -35,10 +35,11 @@ Godot is not on PATH. Console binary:
 
 From `smash-nine-prototype/`:
 
-- All tests + one 8-minute bot soak: `powershell -ExecutionPolicy Bypass -File tests/run_all.ps1`
+- All tests + one full bot match soak: `powershell -ExecutionPolicy Bypass -File tests/run_all.ps1 [-SoakRuns 3]`
 - One test: `<godot> --headless --path . -s tests/<name>.gd`
 - Bot soak with telemetry: `<godot> --headless --path . --fixed-fps 60 -s tests/soak_match.gd -- --seconds=480 --seed=7 --players=8`
-  (prints `[soak]` status lines and one `SOAK_RESULT {json}` line)
+  (prints `[soak]` status lines and one `SOAK_RESULT {json}` line; the same seed replays the same match)
+- Screenshots (windowed, not headless): `<godot> --path . -s tests/capture_screens.gd -- --out=../reports/screens`
 
 A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with exit code 0.
 
@@ -54,5 +55,7 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | Unit | Card | Writable paths | Status |
 |---|---|---|---|
 | analyst | `design/tasks/CODEX-PLAN-01.md` | none (read-only) | done — `reports/codex-plan-01/` |
+| analyst | `design/tasks/CODEX-ANALYST-01.md` | `smash-nine-prototype/tests/analysis/`, `reports/codex-analyst-01/` | running |
+| tester | `design/tasks/CODEX-TESTER-01.md` | `smash-nine-prototype/tests/playtest/`, `reports/codex-tester-01/` | running |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.

@@ -1,45 +1,55 @@
 # Smash Nine Realms Prototype
 
-Godot 4.7 combat-feel prototype for Smash Nine Realms.
+Godot 4.7 prototype of Smash Nine Realms: a 2D platform-brawler battle royale where
+eight fighters start in the corner realms, the outer realms collapse in two waves,
+and the last one standing in the heart of Yggdrasil wins.
+
+Design decisions and their reasons: `../design/DECISIONS.md`. Milestones: `../design/ROADMAP.md`.
 
 ## Controls
 
-- `A / D`: move
-- `W / Space`: jump
-- `J`: directional basic attack
-- `K`: skill 1
-- `L`: skill 2
-- `I`: ultimate test burst
-- `1`: switch player character to Frey
-- `2`: switch player character to Yuki
-- `3`: switch player character to Luna
-- `4`: switch player character to Nova
-- `5`: decrease active player count
-- `6`: increase active player count
-- `Q`: use an adjacent-realm portal while standing on it
-- `H`: spawn/remove training dummy
+| Key | Action |
+|---|---|
+| A / D | move |
+| W | jump (one air jump; Sky Step card adds more) |
+| S, S | drop through a thin platform |
+| Space | guard (tap right before a hit to parry) |
+| J | basic attack (direction keys change it) |
+| K / L | skills |
+| I | ultimate (30 s cooldown) |
+| Q | use the portal you are standing on |
+| 1 / 2 / 3 | pick a soul card when offered |
+| H | spawn/remove a training dummy |
+| F3 | debug panel |
+| R | play again (result screen) |
 
-## Current Prototype Scope
+Start screen: 1–4 picks Frey, Yuki, Luna or Nova; B watches a bots-only match.
 
-- Nine 3x3 realms with unique layouts, spawn points, tactical identities, and collapse states
-- All realms exist as separate world spaces at the same time; the camera follows the current player realm
-- Each realm is expanded to a 3840x2160 play space with connected platform sections
-- The camera smoothly follows the human player and stops naturally at realm boundaries
-- Realm terrain distinguishes solid main platforms from one-way sub platforms
-- Main platforms are sparse, long, and thick; sub platforms are smaller and more numerous
-- Platform metadata exposes role, drop-through permission, and optional realm concept tags
-- Adjacent-realm portals with guaranteed support platforms below them
-- Portal travel requires standing on the portal platform and pressing `Q`
-- Central realm starts locked and opens during late convergence
-- Collapse countdowns appear on the minimap, throughout the warned realm background, and above connected portals
-- Realm collapse warning and collapse flow; trapped combatants are defeated and respawn in a playable realm
-- Four prototype characters: Frey, Yuki, Luna, Nova
-- Shared movement and jump rules
-- Character-specific basic attacks and two skill buttons
-- Directional basic attacks with movement input
-- One air jump for more flexible aerial combat
-- HP-based defeat
-- Ringout causes HP damage and respawn, with damage rising as match pressure increases
-- HP reaches zero: defeat, then respawn after 3 seconds for early testing
-- Simple score reward for the attacker
-- Debug UI for HP, score, and ringout count
+## Match rules (M1)
+
+- 8 fighters (you + 7 bots), two per corner realm. HP 0 is permanent elimination.
+- Ring-out (falling or flying past the side lines) costs 20/25/30/40 HP by phase, then you respawn in the same realm with 1 s protection.
+- 2:00 corner realms warn, 2:30 they collapse. 3:30 the center opens and the edge realms warn, 4:00 they collapse. Anyone caught loses 30 HP and is thrown to a safe realm.
+- 6:00 sudden death: the safe band in the center shrinks. 7:00 the survivor with the most HP wins.
+- Souls come from damage, knock-outs and monsters. At 25/50/75 souls you pick one of three cards (5 s, then auto-pick); each pick also grows your character's base stats.
+- Early phases forgive more: out-of-combat HP recovery until the edge realms fall, and bots mostly farm until provoked.
+
+## Project layout
+
+- `scripts/Main.gd` — match scene root (start screen, spawning, camera, input, wiring)
+- `scripts/match/` — `MatchDirector` (rules and timeline), `SoulGrowth` + `SoulCards`
+- `scripts/realms/` — `RealmCatalog` (realm data), `RealmLayout` (geometry), `RealmWorld` (scene nodes)
+- `scripts/ui/MatchHud.gd` — HUD, card panel, start and result screens
+- `scripts/EnemyAI.gd` — bots; `scripts/RealmMonster*.gd` — neutral monsters
+- `characters/` — `common/PlayerBase.gd` and one folder per fighter (see `characters/README.md`)
+- `tests/` — headless tests, bot soak, screenshot capture, `run_all.ps1`
+
+## Tests
+
+From this folder (Godot path in `../AGENTS.md`):
+
+- Everything: `powershell -ExecutionPolicy Bypass -File tests/run_all.ps1 [-SoakRuns 3]`
+- Bot soak with telemetry: `<godot> --headless --path . --fixed-fps 60 -s tests/soak_match.gd -- --seed=7 --players=8`
+- Screenshots (windowed): `<godot> --path . -s tests/capture_screens.gd -- --out=../reports/screens`
+
+Temporary third-party character art and its licenses: `assets/THIRD_PARTY_ASSETS.md`.
