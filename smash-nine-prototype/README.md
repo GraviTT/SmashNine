@@ -54,3 +54,9 @@ From this folder (Godot path in `../AGENTS.md`):
 - Screenshots (windowed): `<godot> --path . -s tests/capture_screens.gd -- --out=../reports/screens`
 
 Temporary third-party character art and its licenses: `assets/THIRD_PARTY_ASSETS.md`.
+
+## Web build
+
+- Build and zip: `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1` (from the repo root) → `build/web/` and `build/SmashNine-web.zip` (~10 MB, ready for an itch.io HTML5 upload or any static host).
+- Local check: `node tools/serve_web.js build/web 8060`, then open http://localhost:8060.
+- Uses the Compatibility renderer and a no-threads web template, so it needs no special server headers. Requires the Godot 4.7.stable web export templates in `%APPDATA%\Godot\export_templates\4.7.stable`.

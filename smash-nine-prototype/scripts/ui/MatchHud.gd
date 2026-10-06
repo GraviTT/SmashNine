@@ -6,6 +6,11 @@ const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L s
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
 const CARD_COLOR := Color(0.1, 0.08, 0.2, 0.92)
 const TEXT_DIM := Color(1.0, 1.0, 1.0, 0.7)
+const REFERENCE_SIZE := Vector2(1280, 720)
+const TOP_CENTER := Vector2(0.5, 0.0)
+const TOP_RIGHT := Vector2(1.0, 0.0)
+const BOTTOM_LEFT := Vector2(0.0, 1.0)
+const BOTTOM_CENTER := Vector2(0.5, 1.0)
 
 var info_label: Label
 var clock_label: Label
@@ -45,6 +50,25 @@ func _ready() -> void:
 
 	_build_card_panel()
 	_build_overlay()
+	# Keep each element on its screen edge for any window shape (web canvases are not 16:9).
+	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [warning_label, TOP_CENTER],
+			[status_label, TOP_RIGHT], [debug_label, TOP_RIGHT], [info_label, BOTTOM_LEFT],
+			[card_panel, BOTTOM_CENTER]]:
+		_pin(entry[0], entry[1])
+
+## Re-expresses a control laid out on the 1280x720 reference as an offset from an
+## anchor point, e.g. (0.5, 1) = bottom centre.
+func _pin(control: Control, anchor: Vector2) -> void:
+	var position := control.position
+	var size := control.size
+	control.anchor_left = anchor.x
+	control.anchor_right = anchor.x
+	control.anchor_top = anchor.y
+	control.anchor_bottom = anchor.y
+	control.offset_left = position.x - anchor.x * REFERENCE_SIZE.x
+	control.offset_top = position.y - anchor.y * REFERENCE_SIZE.y
+	control.offset_right = control.offset_left + size.x
+	control.offset_bottom = control.offset_top + size.y
 
 func _label(position: Vector2, size: Vector2, font_size: int, alignment: HorizontalAlignment) -> Label:
 	var label := Label.new()
@@ -184,12 +208,12 @@ func hide_card_offer() -> void:
 func _build_overlay() -> void:
 	overlay = Control.new()
 	overlay.name = "Overlay"
-	overlay.size = Vector2(1280, 720)
+	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	overlay.visible = false
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(overlay)
 	var back := ColorRect.new()
-	back.size = overlay.size
+	back.set_anchors_preset(Control.PRESET_FULL_RECT)
 	back.color = PANEL_COLOR
 	back.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(back)
@@ -200,12 +224,14 @@ func _build_overlay() -> void:
 	overlay_title.add_theme_font_size_override("font_size", 48)
 	overlay_title.add_theme_color_override("font_color", Color(1.0, 0.82, 0.4))
 	overlay.add_child(overlay_title)
+	_pin(overlay_title, TOP_CENTER)
 	overlay_body = Label.new()
 	overlay_body.position = Vector2(240, 200)
 	overlay_body.size = Vector2(800, 480)
 	overlay_body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	overlay_body.add_theme_font_size_override("font_size", 19)
 	overlay.add_child(overlay_body)
+	_pin(overlay_body, TOP_CENTER)
 
 func show_start_screen(characters: Array[Dictionary]) -> void:
 	overlay_title.text = "SMASH NINE REALMS"
@@ -234,6 +260,7 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	results_grid.add_theme_constant_override("h_separation", 34)
 	results_grid.add_theme_constant_override("v_separation", 4)
 	overlay.add_child(results_grid)
+	_pin(results_grid, TOP_CENTER)
 	for header in ["#", "Fighter", "KOs", "Damage", "Souls", "Cards"]:
 		_add_result_cell(header, Color(1.0, 0.82, 0.4))
 	for index in standings.size():
