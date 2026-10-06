@@ -1,0 +1,14 @@
+CODEX-RETEST-02 error accounting
+
+Final successful windowed runs:
+- new_checks.console.log: 1 known certificate-store ERROR; 0 other errors
+- real_input_core.console.log: 1 known certificate-store ERROR; 0 other errors
+- real_input_restart.console.log: 1 known certificate-store ERROR; 0 other errors
+
+Tester-driver validation attempt before the final restart run:
+- SCRIPT ERROR: Parse Error: Cannot infer the type of "winner_alive_at_result" variable because the value doesn't have a set type.
+- ERROR: Failed to load script "res://tests/playtest/retest_restart_02.gd" with error "Parse error".
+
+The validation failure was in the new tester-only measurement driver, before the
+product scene loaded. The variable was explicitly typed as bool; the final run then
+completed 10 restarts with no non-certificate errors.
