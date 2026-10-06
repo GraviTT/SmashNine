@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "smashnine-web",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["tools/serve_web.js", "build/web", "8060"],
+      "port": 8060
+    }
+  ]
+}
