@@ -158,6 +158,6 @@ func _hit_body(body: Node) -> void:
 			source.on_tagged_attack_landed(hit_tag)
 
 func _discard_orphaned_attack() -> void:
-	monitoring = false
+	set_deferred("monitoring", false)
 	set_physics_process(false)
 	queue_free()

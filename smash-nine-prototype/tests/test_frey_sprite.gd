@@ -1,6 +1,7 @@
 extends SceneTree
 
 const MAIN_SCRIPT := preload("res://scripts/Main.gd")
+const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 
 func _initialize() -> void:
@@ -16,7 +17,7 @@ func _run() -> void:
 		"nova": {"idle": 1, "walk": 14, "jump": 4, "fall": 4, "attack": 6, "shield": 1, "hurt": 1}
 	}
 	for character_id in expected_counts:
-		var player := main._create_player_node(character_id)
+		var player := PLAYER_FACTORY.create(character_id)
 		root.add_child(player)
 		player.setup(characters[character_id], 1, true)
 		await process_frame

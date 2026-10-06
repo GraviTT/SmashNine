@@ -1,6 +1,7 @@
 extends SceneTree
 
 const MAIN_SCRIPT := preload("res://scripts/Main.gd")
+const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ATTACK_PATH := "res://scripts/Attack.gd"
 const COMET_PATH := "res://characters/luna/LunaComet.gd"
@@ -31,7 +32,7 @@ func _run() -> void:
 	quit(0)
 
 func _create_luna(player_id: int) -> Node:
-	var luna: Node = main._create_player_node("luna")
+	var luna: Node = PLAYER_FACTORY.create("luna")
 	arena.add_child(luna)
 	luna.global_position = Vector2(player_id * 1200.0, 0.0)
 	luna.setup(luna_data, player_id, false)

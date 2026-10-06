@@ -52,6 +52,6 @@ func _on_body_entered(body: Node) -> void:
 		queue_free()
 
 func _discard_orphaned_projectile() -> void:
-	monitoring = false
+	set_deferred("monitoring", false)
 	set_physics_process(false)
 	queue_free()

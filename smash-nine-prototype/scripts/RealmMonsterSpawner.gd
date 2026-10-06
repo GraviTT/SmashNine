@@ -27,7 +27,7 @@ func _spawn_missing_for_realm(realm_index: int) -> void:
 	monsters_by_realm[realm_index] = monsters
 	if monsters.size() >= MONSTERS_PER_REALM or not spawn_points_provider.is_valid():
 		return
-	var points: Array = spawn_points_provider.call(realm_index)
+	var points: Array = spawn_points_provider.call(realm_index).duplicate()
 	if points.is_empty():
 		return
 	points = _build_distributed_spawn_points(points)

@@ -1,6 +1,7 @@
 extends SceneTree
 
 const MAIN_SCRIPT := preload("res://scripts/Main.gd")
+const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ATTACK_PATH := "res://scripts/Attack.gd"
 const BURST_PATH := "res://characters/nova/NovaGravityBurst.gd"
@@ -32,7 +33,7 @@ func _run() -> void:
 	quit(0)
 
 func _create_nova(player_id: int, physics_enabled := false) -> Node:
-	var nova: Node = main._create_player_node("nova")
+	var nova: Node = PLAYER_FACTORY.create("nova")
 	arena.add_child(nova)
 	nova.global_position = Vector2(player_id * 2200.0, 0.0)
 	nova.setup(nova_data, player_id, false)

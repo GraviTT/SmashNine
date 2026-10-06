@@ -1,6 +1,7 @@
 extends SceneTree
 
 const MAIN_SCRIPT := preload("res://scripts/Main.gd")
+const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 
 var arena: Node2D
@@ -33,7 +34,7 @@ func _run() -> void:
 	quit(0)
 
 func _create_player(character_id: String, player_id: int) -> Node:
-	var player: Node = main._create_player_node(character_id)
+	var player: Node = PLAYER_FACTORY.create(character_id)
 	arena.add_child(player)
 	player.global_position = Vector2(player_id * 1000.0, 0.0)
 	player.setup(characters[character_id], player_id, false)

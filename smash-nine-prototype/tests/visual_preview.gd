@@ -12,7 +12,7 @@ func _run_preview() -> void:
 		main._replace_human_character(character_id)
 		for frame in 8:
 			await process_frame
-	main.realm_states[main.CENTRAL_REALM_INDEX] = "stable"
+	main.director.realm_states[main.CENTRAL_REALM_INDEX] = "stable"
 	for realm_index in 9:
 		main._set_map(realm_index)
 		for frame in 8:
