@@ -31,6 +31,7 @@ var card_icons: Array[TextureRect] = []
 var overlay: Control
 var overlay_title: Label
 var overlay_logo: TextureRect
+var portrait_strip: Control
 var overlay_body: Label
 var overlay_credits: Label
 
@@ -272,9 +273,47 @@ func _build_overlay() -> void:
 	overlay.add_child(overlay_credits)
 	_pin(overlay_credits, BOTTOM_CENTER)
 
+## A column of fighter portraits left of the menu (original style only); characters drawn
+## in two bodies show the body P1 picked with V.
+func _show_portraits(characters: Array[Dictionary], body: String) -> void:
+	if is_instance_valid(portrait_strip):
+		portrait_strip.queue_free()
+	portrait_strip = Control.new()
+	portrait_strip.name = "Portraits"
+	portrait_strip.position = Vector2(150, 200)
+	portrait_strip.size = Vector2(160, characters.size() * 76)
+	portrait_strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(portrait_strip)
+	_pin(portrait_strip, TOP_CENTER)
+	for index in characters.size():
+		var data: Dictionary = characters[index]
+		var portrait := ART_SETTINGS.character_portrait(str(data.id), body if data.get("bodies", []).size() > 1 else "")
+		if portrait == null:
+			continue
+		var frame := ColorRect.new()
+		frame.position = Vector2(40, index * 76)
+		frame.size = Vector2(68, 68)
+		frame.color = Color(data.color, 0.35)
+		frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		portrait_strip.add_child(frame)
+		var picture := TextureRect.new()
+		picture.position = frame.position + Vector2(2, 2)
+		picture.size = Vector2(64, 64)
+		picture.texture = portrait
+		picture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		picture.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		portrait_strip.add_child(picture)
+		var key := Label.new()
+		key.position = Vector2(0, index * 76 + 20)
+		key.size = Vector2(36, 28)
+		key.text = "[%d]" % (index + 1)
+		key.add_theme_font_size_override("font_size", 17)
+		portrait_strip.add_child(key)
+
 func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 	overlay_title.text = "SMASH NINE REALMS" if overlay_logo.texture == null else ""
 	overlay_logo.visible = overlay_logo.texture != null
+	_show_portraits(characters, body)
 	var lines: Array[String] = ["Nine realms are collapsing into the heart of Yggdrasil.", "Be the last one standing.", "", "Choose your fighter"]
 	for index in characters.size():
 		var data: Dictionary = characters[index]
@@ -297,6 +336,8 @@ func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node) -> void:
 	overlay_logo.visible = false
+	if is_instance_valid(portrait_strip):
+		portrait_strip.visible = false
 	overlay_title.text = "%s WINS" % winner.display_name.to_upper() if is_instance_valid(winner) else "DRAW"
 	overlay_body.text = "Decided by %s" % reason
 	info_label.visible = false

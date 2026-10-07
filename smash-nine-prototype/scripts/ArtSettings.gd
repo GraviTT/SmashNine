@@ -59,3 +59,25 @@ static func aimed_sprite(texture: Texture2D, direction: Vector2, art_scale := 2.
 	else:
 		sprite.rotation = direction.angle()
 	return sprite
+
+## Start-screen portrait: assets/art/<id>/<id>_<body>_portrait.png, then <id>_portrait.png,
+## else the first idle frame of the character's sheet. Null in the prototype style.
+static func character_portrait(character_id: String, body := "") -> Texture2D:
+	if not use_original():
+		return null
+	var paths: Array[String] = []
+	if body != "":
+		paths.append("res://assets/art/%s/%s_%s_portrait.png" % [character_id, character_id, body])
+	paths.append("res://assets/art/%s/%s_portrait.png" % [character_id, character_id])
+	for any_body in ["male", "female"]:
+		paths.append("res://assets/art/%s/%s_%s_portrait.png" % [character_id, character_id, any_body])
+	for path in paths:
+		if ResourceLoader.exists(path):
+			return load(path) as Texture2D
+	var sheet := original_character_sheet(character_id, body)
+	if sheet == null:
+		return null
+	var idle := AtlasTexture.new()
+	idle.atlas = sheet
+	idle.region = Rect2(0, 0, 64, 64)
+	return idle
