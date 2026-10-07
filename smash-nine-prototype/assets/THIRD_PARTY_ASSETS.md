@@ -1,42 +1,13 @@
-# Third-party prototype art
+# Credits
 
-These files are used as temporary implementation art. Keep this notice with the project when redistributing builds or source packages.
+All art in the game is original and made for this project (Codex image builders and
+Godot post-processing, 2026-10-07; see `design/tasks/CODEX-ART-*.md` and `reports/codex-art-*`),
+plus procedural realm backdrops drawn in code (`scripts/RealmBackdrop.gd`). No third-party
+art is bundled.
 
-## Frey prototype
+## Removed third-party prototype art
 
-- Asset: **Viking Adventure - Free 2D Platformer Asset Pack**
-- Authors: FerDDN (Fernando Baroli) and Jose Maria Costa
-- Source: https://ferddn.itch.io/2d-platformer-free-asset-pack-vikings
-- License stated by the author: free for personal and commercial use; credit appreciated but not required; do not resell or redistribute the pack as-is.
-
-## Yuki prototype
-
-- Asset: **Purple Mage**
-- Publisher: Foozle; commissioned from reimonkey
-- Source: https://foozlecc.itch.io/purple-mage
-- License: CC0 1.0 Universal
-
-## Luna prototype
-
-- Asset: **Free Platformer Girl - Character**
-- Author: Franco Giachetti / LudicArts
-- Source: https://ludicarts.itch.io/free-platformer-girl-character
-- License: CC BY 3.0
-- Attribution: Character art by Franco Giachetti, LudicArts.com.
-
-## Nova prototype
-
-- Asset: **Action hero (free, CC0)**
-- Author: Printer Not Found
-- Source: https://printer-not-found.itch.io/sci-fi-hero
-- License: CC0 1.0 Universal
-
-## Realm backgrounds and platforms
-
-- Original procedural artwork created specifically for this project in `scripts/RealmBackdrop.gd` and `scripts/Main.gd`.
-
-## Original packs
-
-The original downloads (zips and extracted folders in `assets/source/`) are kept out of the
-repository: the Viking pack may not be redistributed as-is. Get them from the source links
-above; the game only uses the frames copied into `assets/characters/`.
+Until 2026-10-07 the fighters used temporary third-party sprites (Viking Adventure by
+FerDDN & Jose Maria Costa, Purple Mage by Foozle (CC0), Free Platformer Girl by Franco
+Giachetti / LudicArts (CC BY 3.0), Action Hero by Printer Not Found (CC0)). They were removed
+from the project on the user's decision; older commits in the history still contain them.

@@ -54,9 +54,9 @@ func _check_style(original: bool) -> void:
 	var frey: Node = PLAYER_FACTORY.create("frey")
 	main.add_child(frey)
 	frey.setup(CHARACTER_REGISTRY.get_characters()["frey"], 99, false)
+	# Fighters draw their original sheet in both styles (no prototype sprites any more).
 	var frame: AtlasTexture = frey.character_sprite.sprite_frames.get_frame_texture(&"frey_idle", 0)
-	var uses_sheet: bool = frame.atlas.resource_path == FREY_SHEET
-	if uses_sheet != original:
+	if frame.atlas.resource_path != FREY_SHEET:
 		_fail("%s: Frey sheet is %s" % [label, frame.atlas.resource_path])
 	if (main.hud.overlay_logo.texture != null) != original:
 		_fail("%s: the title logo should load only in the original style" % label)
@@ -84,8 +84,8 @@ func _check_character_sheets(main: Node) -> void:
 				_fail("%s does not draw %s" % [label, expected])
 			elif frames.get_frame_count(StringName("%s_walk" % character_id)) != 6 or frames.get_frame_count(StringName("%s_shield" % character_id)) != 6:
 				_fail("%s sheet is not cut in the shared layout" % label)
-			elif player.character_sprite.scale != Vector2(2.0, 2.0):
-				_fail("%s sheet should be drawn at scale 2, got %s" % [label, player.character_sprite.scale])
+			else:
+				_sheet_drawn_right(player, label)
 			player.queue_free()
 
 ## Brave Luna draws her own sheet while transformed, the normal one otherwise.
@@ -102,3 +102,22 @@ func _check_brave_luna(main: Node) -> void:
 		if luna._get_sprite_animation_name(&"idle") != &"luna_brave_idle":
 			_fail("Transformed Luna should draw luna_brave_idle")
 	luna.queue_free()
+
+## v1 sheets (64 px cells) draw at 2x, v2 (128 px cells) at 1x; feet on the origin either way.
+func _sheet_drawn_right(player: Node, label: String) -> bool:
+	var cell: int = player.original_sheet_cell
+	var expected_scale := 128.0 / float(cell)
+	var feet := 48.0 if cell == 64 else 120.0
+	var sprite: AnimatedSprite2D = player.character_sprite
+	if cell != 64 and cell != 128:
+		_fail("%s sheet has an unknown cell size %d" % [label, cell])
+		return false
+	if not sprite.scale.is_equal_approx(Vector2.ONE * expected_scale):
+		_fail("%s sheet should be drawn at %.0fx, got %s" % [label, expected_scale, sprite.scale])
+		return false
+	# Centered sprite: the cell's feet row must land on the collision origin (y = 0).
+	var feet_world := sprite.position.y + (feet - cell * 0.5) * expected_scale
+	if absf(feet_world) > 0.5:
+		_fail("%s feet land at y=%.1f, expected 0" % [label, feet_world])
+		return false
+	return true

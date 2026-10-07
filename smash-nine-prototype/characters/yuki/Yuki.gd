@@ -1,11 +1,6 @@
 extends "res://characters/common/PlayerBase.gd"
 
 const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
-const IDLE_TEXTURE := preload("res://assets/characters/yuki/idle.png")
-const RUN_TEXTURE := preload("res://assets/characters/yuki/run.png")
-const JUMP_TEXTURE := preload("res://assets/characters/yuki/jump.png")
-const ATTACK_TEXTURE := preload("res://assets/characters/yuki/attack.png")
-const HURT_TEXTURE := preload("res://assets/characters/yuki/hurt.png")
 const TALISMAN_SCRIPT := preload("res://characters/yuki/YukiTalisman.gd")
 const SEAL_SCRIPT := preload("res://characters/yuki/YukiSeal.gd")
 const GRAND_WARD_SCRIPT := preload("res://characters/yuki/YukiGrandWard.gd")
@@ -13,26 +8,9 @@ const GRAND_WARD_SCRIPT := preload("res://characters/yuki/YukiGrandWard.gd")
 var seals: Array[Node] = []
 var activation_id := 0
 
+## Original sheet only (third-party prototype art removed 2026-10-07, user).
 func configure_character_sprite() -> void:
-	if _configure_original_sheet("yuki"):
-		return
-	var frames := ANIMATION.create_frames()
-	ANIMATION.add_strip(frames, &"yuki_idle", IDLE_TEXTURE, Vector2i(128, 128), 0, 6, 7.0, true)
-	ANIMATION.add_strip(frames, &"yuki_walk", RUN_TEXTURE, Vector2i(128, 128), 0, 6, 10.0, true)
-	ANIMATION.add_strip(frames, &"yuki_jump", JUMP_TEXTURE, Vector2i(128, 128), 0, 5, 10.0, false)
-	ANIMATION.add_strip(frames, &"yuki_fall", JUMP_TEXTURE, Vector2i(128, 128), 5, 5, 10.0, false)
-	ANIMATION.add_strip(frames, &"yuki_attack", ATTACK_TEXTURE, Vector2i(128, 128), 0, 10, 14.0, false)
-	ANIMATION.add_strip(frames, &"yuki_shield", IDLE_TEXTURE, Vector2i(128, 128), 0, 1, 1.0, false)
-	ANIMATION.add_strip(frames, &"yuki_hurt", HURT_TEXTURE, Vector2i(128, 128), 0, 5, 12.0, false)
-	character_sprite.sprite_frames = frames
-	character_sprite.play(&"yuki_idle")
-
-func get_character_sprite_style() -> Dictionary:
-	return {
-		"position": Vector2(0, -32),
-		"scale": Vector2(0.9, 0.9),
-		"filter": CanvasItem.TEXTURE_FILTER_NEAREST
-	}
+	_configure_original_sheet("yuki")
 
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	match attack_type:

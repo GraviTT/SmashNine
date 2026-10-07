@@ -69,9 +69,14 @@ const DAMAGE_FIXED := "fixed"
 const ENEMY_AI_SCRIPT := preload("res://scripts/EnemyAI.gd")
 const SHEET_ART := preload("res://scripts/ArtSettings.gd")
 const SHEET_FRAMES := preload("res://characters/common/CharacterAnimation.gd")
-## Original sheets (CODEX-ART-02/03): 6 columns x 7 rows of 64 px cells, one row per animation.
+## Original sheets: 6 columns x 7 rows, one row per animation. The cell size comes from the
+## sheet width: v1 (CODEX-ART-02/03) 64 px cells drawn at 2x with feet at y=48, v2
+## (CODEX-ART-08, per-character proportions) 128 px cells drawn at 1x with feet at y=120.
 const ORIGINAL_SHEET_ROWS := [["idle", 4, 7.0, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 4, 14.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
-const ORIGINAL_SHEET_STYLE := {"position": Vector2(0, -32), "scale": Vector2(2.0, 2.0), "filter": CanvasItem.TEXTURE_FILTER_NEAREST}
+const SHEET_COLUMNS := 6
+const SHEET_FEET_Y := {64: 48, 128: 120}
+## On-screen size of one cell: both versions fill 128 px.
+const SHEET_SCREEN_CELL := 128.0
 ## Air jumps a character can ever hold (base + Sky Step cards).
 const MAX_AIR_JUMPS := 3
 const HIT_SPARK_ART := "res://assets/art/effects/hit_spark.png"
@@ -83,6 +88,7 @@ var role := "Bruiser"
 ## "male" or "female": which original sheet to draw for characters that have both (set before _ready).
 var body_type := ""
 var uses_original_sheet := false
+var original_sheet_cell := 64
 var body_color := Color.WHITE
 var max_hp := 100.0
 var hp := 100.0
@@ -710,20 +716,40 @@ func configure_character_sprite() -> void:
 	pass
 
 ## Cuts the character's original sheet (ArtSettings, body_type variant first) into the
-## shared animations. Returns false when there is none, so the caller keeps its prototype
-## art. `always` uses the sheet even in the prototype style (characters with no other art).
-func _configure_original_sheet(id: String, always := false) -> bool:
-	var sheet := SHEET_ART.original_character_sheet(id, body_type, always)
+## shared animations. Returns false when there is none (the placeholder body shows).
+func _configure_original_sheet(id: String) -> bool:
+	var sheet := SHEET_ART.original_character_sheet(id, body_type)
 	if sheet == null:
 		return false
+	original_sheet_cell = int(sheet.get_width() / SHEET_COLUMNS)
 	var frames := SHEET_FRAMES.create_frames()
-	for row in ORIGINAL_SHEET_ROWS.size():
-		var spec: Array = ORIGINAL_SHEET_ROWS[row]
-		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [id, spec[0]]), sheet, Vector2i(64, 64), 6, row * 6, int(spec[1]), float(spec[2]), bool(spec[3]))
+	_add_sheet_animations(frames, id, sheet)
 	character_sprite.sprite_frames = frames
 	character_sprite.play(StringName("%s_idle" % id))
 	uses_original_sheet = true
 	return true
+
+## Adds <prefix>_idle ... <prefix>_hurt from a sheet with the same cell size as the main
+## one (a second sheet such as Brave Luna's). Returns false when the cell size differs.
+func _add_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Texture2D) -> bool:
+	var cell := int(sheet.get_width() / SHEET_COLUMNS)
+	if cell != original_sheet_cell:
+		return false
+	for row in ORIGINAL_SHEET_ROWS.size():
+		var spec: Array = ORIGINAL_SHEET_ROWS[row]
+		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
+	return true
+
+## Draw settings for the original sheet: feet on the collision origin at either version.
+func _original_sheet_style() -> Dictionary:
+	var cell := float(original_sheet_cell)
+	var draw_scale := SHEET_SCREEN_CELL / cell
+	var feet := float(SHEET_FEET_Y.get(original_sheet_cell, cell * 0.75))
+	return {
+		"position": Vector2(0, -(feet - cell * 0.5) * draw_scale),
+		"scale": Vector2(draw_scale, draw_scale),
+		"filter": CanvasItem.TEXTURE_FILTER_NEAREST
+	}
 
 func get_character_sprite_style() -> Dictionary:
 	return {
@@ -1507,7 +1533,7 @@ func _get_sprite_animation_name(base_name: StringName) -> StringName:
 func _apply_character_sprite_style() -> void:
 	if not is_instance_valid(character_sprite):
 		return
-	var style: Dictionary = ORIGINAL_SHEET_STYLE if uses_original_sheet else get_character_sprite_style()
+	var style: Dictionary = _original_sheet_style() if uses_original_sheet else get_character_sprite_style()
 	character_sprite.position = style.get("position", Vector2(0, -32))
 	character_sprite.scale = style.get("scale", Vector2(2.0, 2.0))
 	character_sprite.texture_filter = style.get("filter", CanvasItem.TEXTURE_FILTER_NEAREST)

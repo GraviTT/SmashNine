@@ -3,11 +3,6 @@ extends "res://characters/common/PlayerBase.gd"
 const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
 const COMET_SCRIPT := preload("res://characters/luna/LunaComet.gd")
 const HEART_LASER_SCRIPT := preload("res://characters/luna/LunaHeartLaser.gd")
-const IDLE_TEXTURE := preload("res://assets/characters/luna/idle.png")
-const RUN_TEXTURE := preload("res://assets/characters/luna/run.png")
-const JUMP_TEXTURE := preload("res://assets/characters/luna/jump.png")
-const ATTACK_TEXTURE := preload("res://assets/characters/luna/attack.png")
-const HURT_TEXTURE := preload("res://assets/characters/luna/hurt.png")
 
 const BRAVE_SHEET_ART := "res://assets/art/luna/luna_brave_sheet.png"
 const TRANSFORMATION_DURATION := 6.0
@@ -29,43 +24,22 @@ var heart_laser: Node
 var heart_laser_cast_id := 0
 var heart_laser_duration := 0.0
 
+## Original sheet only (third-party prototype art removed 2026-10-07, user).
 func configure_character_sprite() -> void:
 	if _configure_original_sheet("luna"):
 		_add_brave_sheet()
-		return
-	var frames := ANIMATION.create_frames()
-	ANIMATION.add_strip(frames, &"luna_idle", IDLE_TEXTURE, Vector2i(49, 120), 0, 10, 7.0, true)
-	ANIMATION.add_strip(frames, &"luna_walk", RUN_TEXTURE, Vector2i(106, 124), 0, 10, 10.0, true)
-	ANIMATION.add_strip(frames, &"luna_jump", JUMP_TEXTURE, Vector2i(86, 125), 0, 5, 10.0, false)
-	ANIMATION.add_strip(frames, &"luna_fall", JUMP_TEXTURE, Vector2i(86, 125), 5, 5, 10.0, false)
-	ANIMATION.add_strip(frames, &"luna_attack", ATTACK_TEXTURE, Vector2i(70, 126), 0, 15, 16.0, false)
-	ANIMATION.add_strip(frames, &"luna_shield", IDLE_TEXTURE, Vector2i(49, 120), 0, 1, 1.0, false)
-	ANIMATION.add_strip(frames, &"luna_hurt", HURT_TEXTURE, Vector2i(149, 128), 0, 1, 1.0, false)
-	character_sprite.sprite_frames = frames
-	character_sprite.play(&"luna_idle")
 
 ## Brave Luna's own sheet (CODEX-ART-06), cut like the normal one into luna_brave_*.
 func _add_brave_sheet() -> void:
-	var sheet := SHEET_ART.original_texture(BRAVE_SHEET_ART)
-	if sheet == null:
+	if not ResourceLoader.exists(BRAVE_SHEET_ART):
 		return
-	for row in ORIGINAL_SHEET_ROWS.size():
-		var spec: Array = ORIGINAL_SHEET_ROWS[row]
-		ANIMATION.add_grid(character_sprite.sprite_frames, StringName("luna_brave_%s" % spec[0]), sheet, Vector2i(64, 64), 6, row * 6, int(spec[1]), float(spec[2]), bool(spec[3]))
-	has_brave_sheet = true
+	has_brave_sheet = _add_sheet_animations(character_sprite.sprite_frames, "luna_brave", load(BRAVE_SHEET_ART) as Texture2D)
 
 ## While transformed, every animation comes from the Brave sheet when there is one.
 func _get_sprite_animation_name(base_name: StringName) -> StringName:
 	if transformed and has_brave_sheet:
 		return StringName("luna_brave_%s" % base_name)
 	return super._get_sprite_animation_name(base_name)
-
-func get_character_sprite_style() -> Dictionary:
-	return {
-		"position": Vector2(0, -34),
-		"scale": Vector2(0.55, 0.55),
-		"filter": CanvasItem.TEXTURE_FILTER_LINEAR
-	}
 
 func get_character_movement_multiplier() -> float:
 	return TRANSFORMATION_MOVEMENT_MULTIPLIER if transformed else 1.0

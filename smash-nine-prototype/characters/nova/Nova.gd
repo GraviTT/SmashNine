@@ -3,7 +3,6 @@ extends "res://characters/common/PlayerBase.gd"
 const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
 const GRAVITY_BURST_SCRIPT := preload("res://characters/nova/NovaGravityBurst.gd")
 const BODY_HITBOX_SCRIPT := preload("res://characters/nova/NovaBodyHitbox.gd")
-const PROTOTYPE_TEXTURE := preload("res://assets/characters/nova/nova_prototype.png")
 
 const MOMENTUM_START_SPEED := 170.0
 const MOMENTUM_MAX_SPEED := 700.0
@@ -54,20 +53,9 @@ var ultimate_launch_preview: Node2D
 var ultimate_preview_line: Line2D
 var ultimate_preview_target: Line2D
 
+## Original sheet only (third-party prototype art removed 2026-10-07, user).
 func configure_character_sprite() -> void:
-	if _configure_original_sheet("nova"):
-		return
-	var frames := ANIMATION.create_frames()
-	# Nova's atlas stores each animation on a separate row.
-	ANIMATION.add_grid(frames, &"nova_idle", PROTOTYPE_TEXTURE, Vector2i(64, 64), 14, 28, 1, 1.0, true)
-	ANIMATION.add_grid(frames, &"nova_walk", PROTOTYPE_TEXTURE, Vector2i(64, 64), 14, 42, 14, 14.0, true)
-	ANIMATION.add_grid(frames, &"nova_jump", PROTOTYPE_TEXTURE, Vector2i(64, 64), 14, 126, 4, 10.0, false)
-	ANIMATION.add_grid(frames, &"nova_fall", PROTOTYPE_TEXTURE, Vector2i(64, 64), 14, 126, 4, 10.0, false)
-	ANIMATION.add_grid(frames, &"nova_attack", PROTOTYPE_TEXTURE, Vector2i(64, 64), 14, 56, 6, 16.0, false)
-	ANIMATION.add_grid(frames, &"nova_shield", PROTOTYPE_TEXTURE, Vector2i(64, 64), 14, 98, 1, 1.0, false)
-	ANIMATION.add_grid(frames, &"nova_hurt", PROTOTYPE_TEXTURE, Vector2i(64, 64), 14, 140, 1, 1.0, false)
-	character_sprite.sprite_frames = frames
-	character_sprite.play(&"nova_idle")
+	_configure_original_sheet("nova")
 
 func perform_basic_attack(attack_type: String, input_direction: Vector2) -> void:
 	var momentum := _get_momentum_ratio()

@@ -1,7 +1,6 @@
 extends "res://characters/common/PlayerBase.gd"
 
 const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
-const PROTOTYPE_TEXTURE := preload("res://assets/characters/frey/frey_prototype.png")
 const COMBO_RESET_TIME := 0.46
 const DASH_HOLD_TIME := 0.13
 const DASH_SPEED := 760.0
@@ -13,19 +12,9 @@ var combo_timer := 0.0
 var rising_followup_timer := 0.0
 var ultimate_diving := false
 
+## Original sheet only (third-party prototype art removed 2026-10-07, user).
 func configure_character_sprite() -> void:
-	if _configure_original_sheet("frey"):
-		return
-	var frames := ANIMATION.create_frames()
-	ANIMATION.add_grid(frames, &"frey_idle", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 0, 4, 7.0, true)
-	ANIMATION.add_grid(frames, &"frey_walk", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 6, 6, 10.0, true)
-	ANIMATION.add_grid(frames, &"frey_jump", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 12, 1, 1.0, false)
-	ANIMATION.add_grid(frames, &"frey_fall", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 18, 1, 1.0, false)
-	ANIMATION.add_grid(frames, &"frey_attack", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 24, 4, 14.0, false)
-	ANIMATION.add_grid(frames, &"frey_shield", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 30, 6, 12.0, false)
-	ANIMATION.add_grid(frames, &"frey_hurt", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 36, 1, 1.0, false)
-	character_sprite.sprite_frames = frames
-	character_sprite.play(&"frey_idle")
+	_configure_original_sheet("frey")
 
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	match attack_type:

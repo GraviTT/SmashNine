@@ -23,7 +23,7 @@ Design decisions and their reasons: `../design/DECISIONS.md`. Milestones: `../de
 | F3 | debug panel |
 | R | play again (result screen) |
 
-Start screen: 1–5 picks Frey, Yuki, Luna, Nova or Rio; V switches the body (male/female) for Nova and Rio; B watches a bots-only match; F2 switches between the original art (default) and the old prototype art.
+Start screen: 1–5 picks Frey, Yuki, Luna, Nova or Rio; V switches the body (male/female) for Nova and Rio; B watches a bots-only match; F2 switches realms, effects and UI between the original art (default) and the plain procedural look.
 
 ## Match rules (M1)
 
@@ -55,7 +55,7 @@ From this folder (Godot path in `../AGENTS.md`):
 - Bot soak with telemetry: `<godot> --headless --path . --fixed-fps 60 -s tests/soak_match.gd -- --seed=7 --players=8`
 - Screenshots (windowed): `<godot> --path . -s tests/capture_screens.gd -- --out=../reports/screens`
 
-Temporary third-party character art and its licenses: `assets/THIRD_PARTY_ASSETS.md`.
+Credits: `assets/THIRD_PARTY_ASSETS.md` (all art is original; the third-party prototype sprites were removed 2026-10-07).
 
 ## Web build
 

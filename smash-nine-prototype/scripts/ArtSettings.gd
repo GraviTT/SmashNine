@@ -1,8 +1,8 @@
 extends RefCounted
-## Which art set the game draws: the original art made for the game (Codex builders,
-## routines 2026-10-07; the default since the user adopted it, D20) or the old
-## procedural/third-party prototype look. F2 on the start screen switches and reloads.
-## Anything missing from the original set falls back to the prototype look.
+## Which art set the realms, effects and UI draw: the original art made for the game
+## (Codex builders, 2026-10-07; the default since the user adopted it, D20) or the plain
+## procedural look. F2 on the start screen switches and reloads. Fighters always draw their
+## original sheets (the third-party prototype sprites were removed, user 2026-10-07).
 
 const STYLE_PROTOTYPE := "prototype"
 const STYLE_ORIGINAL := "original"
@@ -28,11 +28,10 @@ static func original_texture(path: String) -> Texture2D:
 
 ## A character's original sheet, or null: assets/art/<id>/<id>_<body>_sheet.png for a
 ## character drawn in two bodies (male characters get a male and a female sheet, user
-## 2026-10-07), else assets/art/<id>/<id>_sheet.png. `always` ignores the style switch
-## (a character that has no prototype art).
-static func original_character_sheet(character_id: String, body := "", always := false) -> Texture2D:
-	if not always and not use_original():
-		return null
+## 2026-10-07), else assets/art/<id>/<id>_sheet.png. Characters have no other art since the
+## third-party prototype sprites were removed (user 2026-10-07), so the style switch does
+## not apply to them.
+static func original_character_sheet(character_id: String, body := "") -> Texture2D:
 	var paths: Array[String] = []
 	if body != "":
 		paths.append("res://assets/art/%s/%s_%s_sheet.png" % [character_id, character_id, body])
@@ -60,24 +59,35 @@ static func aimed_sprite(texture: Texture2D, direction: Vector2, art_scale := 2.
 		sprite.rotation = direction.angle()
 	return sprite
 
-## Start-screen portrait: assets/art/<id>/<id>_<body>_portrait.png, then <id>_portrait.png,
-## else the first idle frame of the character's sheet. Null in the prototype style.
+## Character portrait for menus and the HUD: the face cut from the main illustration
+## (<id>[_<body>]_face.png, CODEX-ART-08), then the pixel portrait (<id>[_<body>]_portrait.png),
+## else the first idle frame of the character's sheet.
 static func character_portrait(character_id: String, body := "") -> Texture2D:
-	if not use_original():
-		return null
-	var paths: Array[String] = []
-	if body != "":
-		paths.append("res://assets/art/%s/%s_%s_portrait.png" % [character_id, character_id, body])
-	paths.append("res://assets/art/%s/%s_portrait.png" % [character_id, character_id])
-	for any_body in ["male", "female"]:
-		paths.append("res://assets/art/%s/%s_%s_portrait.png" % [character_id, character_id, any_body])
-	for path in paths:
-		if ResourceLoader.exists(path):
-			return load(path) as Texture2D
+	for kind in ["face", "portrait"]:
+		var found := _first_existing(character_id, body, kind)
+		if found != null:
+			return found
 	var sheet := original_character_sheet(character_id, body)
 	if sheet == null:
 		return null
+	var cell := float(sheet.get_width() / 6)
 	var idle := AtlasTexture.new()
 	idle.atlas = sheet
-	idle.region = Rect2(0, 0, 64, 64)
+	idle.region = Rect2(0, 0, cell, cell)
 	return idle
+
+## True when the portrait is a painted face (smooth filter) rather than pixel art.
+static func is_painted_portrait(texture: Texture2D) -> bool:
+	return texture != null and texture.resource_path.ends_with("_face.png")
+
+static func _first_existing(character_id: String, body: String, kind: String) -> Texture2D:
+	var paths: Array[String] = []
+	if body != "":
+		paths.append("res://assets/art/%s/%s_%s_%s.png" % [character_id, character_id, body, kind])
+	paths.append("res://assets/art/%s/%s_%s.png" % [character_id, character_id, kind])
+	for any_body in ["male", "female"]:
+		paths.append("res://assets/art/%s/%s_%s_%s.png" % [character_id, character_id, any_body, kind])
+	for path in paths:
+		if ResourceLoader.exists(path):
+			return load(path) as Texture2D
+	return null

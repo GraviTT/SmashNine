@@ -40,9 +40,8 @@ var rune_visual: Line2D
 var overdrive_swords: Array[Node2D] = []
 var overdrive_time := 0.0
 
-## Rio has no prototype art: the original sheet is used in both art styles.
 func configure_character_sprite() -> void:
-	_configure_original_sheet("rio", true)
+	_configure_original_sheet("rio")
 
 func perform_basic_attack(attack_type: String, _direction: Vector2) -> void:
 	match attack_type:

@@ -3,7 +3,7 @@ extends CanvasLayer
 ## offer, announcement line, debug panel (F3), and the start / result screens.
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
-const ART_CREDITS := "Prototype character art: Viking Adventure by FerDDN & Jose Maria Costa  /  Purple Mage by Foozle (CC0)  /  Free Platformer Girl by Franco Giachetti, LudicArts.com (CC BY 3.0)  /  Action Hero by Printer Not Found (CC0)"
+const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug"
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
@@ -21,6 +21,10 @@ var realm_label: Label
 var warning_label: Label
 var results_grid: GridContainer
 var status_label: Label
+## The followed fighter's face (CODEX-ART-08) beside the status line.
+var focus_frame: ColorRect
+var focus_portrait: TextureRect
+var focus_portrait_key := ""
 var debug_label: Label
 var minimap_root: Control
 var minimap_labels: Dictionary = {}
@@ -38,7 +42,15 @@ var overlay_credits: Label
 func _ready() -> void:
 	name = "UI"
 	clock_label = _label(Vector2(390, 12), Vector2(500, 30), 20, HORIZONTAL_ALIGNMENT_CENTER)
-	status_label = _label(Vector2(870, 12), Vector2(390, 60), 16, HORIZONTAL_ALIGNMENT_RIGHT)
+	status_label = _label(Vector2(782, 12), Vector2(390, 60), 16, HORIZONTAL_ALIGNMENT_RIGHT)
+	focus_frame = ColorRect.new()
+	focus_frame.position = Vector2(1184, 8)
+	focus_frame.size = Vector2(80, 80)
+	focus_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	focus_frame.visible = false
+	add_child(focus_frame)
+	focus_portrait = _portrait_rect(Vector2(1186, 10), Vector2(76, 76))
+	add_child(focus_portrait)
 	realm_label = _label(Vector2(390, 40), Vector2(500, 26), 16, HORIZONTAL_ALIGNMENT_CENTER)
 	warning_label = _label(Vector2(240, 96), Vector2(800, 90), 30, HORIZONTAL_ALIGNMENT_CENTER)
 	warning_label.add_theme_color_override("font_color", Color(1.0, 0.42, 0.22))
@@ -59,7 +71,8 @@ func _ready() -> void:
 	_build_overlay()
 	# Keep each element on its screen edge for any window shape (web canvases are not 16:9).
 	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [warning_label, TOP_CENTER],
-			[status_label, TOP_RIGHT], [debug_label, TOP_RIGHT], [info_label, BOTTOM_LEFT],
+			[status_label, TOP_RIGHT], [focus_frame, TOP_RIGHT], [focus_portrait, TOP_RIGHT],
+			[debug_label, TOP_RIGHT], [info_label, BOTTOM_LEFT],
 			[card_panel, BOTTOM_CENTER]]:
 		_pin(entry[0], entry[1])
 
@@ -111,6 +124,32 @@ func set_status(alive: int, total: int, focus: Node) -> void:
 		soul_text += "  (next card %d)" % next_threshold if next_threshold > 0 else "  (all cards taken)"
 		lines.append("%s  HP %.0f/%.0f  KOs %d   %s" % [focus.display_name, focus.hp, focus.max_hp, focus.score, soul_text])
 	status_label.text = "\n".join(lines)
+	_show_focus_portrait(focus)
+
+func _show_focus_portrait(focus: Node) -> void:
+	var key := "" if not is_instance_valid(focus) else "%s/%s" % [focus.character_id, focus.body_type]
+	if key == focus_portrait_key:
+		return
+	focus_portrait_key = key
+	var texture: Texture2D = null if key == "" else ART_SETTINGS.character_portrait(focus.character_id, focus.body_type)
+	_set_portrait(focus_portrait, texture)
+	focus_frame.visible = texture != null and focus_portrait.visible
+	if is_instance_valid(focus):
+		focus_frame.color = Color(focus.body_color, 0.55)
+
+## A portrait slot: painted faces scale smoothly, pixel portraits stay crisp.
+func _portrait_rect(position: Vector2, size: Vector2) -> TextureRect:
+	var rect := TextureRect.new()
+	rect.position = position
+	rect.size = size
+	rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return rect
+
+func _set_portrait(rect: TextureRect, texture: Texture2D) -> void:
+	rect.texture = texture
+	rect.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR if ART_SETTINGS.is_painted_portrait(texture) else CanvasItem.TEXTURE_FILTER_NEAREST
 
 func _format_time(seconds: float) -> String:
 	var whole := maxi(0, int(seconds))
@@ -268,8 +307,7 @@ func _build_overlay() -> void:
 	overlay_credits.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	overlay_credits.add_theme_font_size_override("font_size", 12)
 	overlay_credits.modulate = TEXT_DIM
-	# The third-party prototype art only shows in the prototype style (F2).
-	overlay_credits.text = ART_CREDITS if not ART_SETTINGS.use_original() else "Original pixel art made for Smash Nine Realms.  F2 shows the prototype art and its credits."
+	overlay_credits.text = ART_CREDITS
 	overlay.add_child(overlay_credits)
 	_pin(overlay_credits, BOTTOM_CENTER)
 
@@ -296,12 +334,8 @@ func _show_portraits(characters: Array[Dictionary], body: String) -> void:
 		frame.color = Color(data.color, 0.35)
 		frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		portrait_strip.add_child(frame)
-		var picture := TextureRect.new()
-		picture.position = frame.position + Vector2(2, 2)
-		picture.size = Vector2(64, 64)
-		picture.texture = portrait
-		picture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		picture.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var picture := _portrait_rect(frame.position + Vector2(2, 2), Vector2(64, 64))
+		_set_portrait(picture, portrait)
 		portrait_strip.add_child(picture)
 		var key := Label.new()
 		key.position = Vector2(0, index * 76 + 20)
@@ -346,13 +380,13 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	if is_instance_valid(results_grid):
 		results_grid.queue_free()
 	results_grid = GridContainer.new()
-	results_grid.columns = 7
+	results_grid.columns = 8
 	results_grid.position = Vector2(200, 250)
 	results_grid.add_theme_constant_override("h_separation", 34)
 	results_grid.add_theme_constant_override("v_separation", 4)
 	overlay.add_child(results_grid)
 	_pin(results_grid, TOP_CENTER)
-	for header in ["#", "Fighter", "Survived", "KOs", "Damage", "Souls", "Cards"]:
+	for header in ["#", "", "Fighter", "Survived", "KOs", "Damage", "Souls", "Cards"]:
 		_add_result_cell(header, Color(1.0, 0.82, 0.4))
 	for index in standings.size():
 		var player: Node = standings[index]
@@ -360,6 +394,10 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 			continue
 		var color := Color(1.0, 0.92, 0.55) if player == human else Color.WHITE
 		_add_result_cell(str(index + 1), color)
+		var face := _portrait_rect(Vector2.ZERO, Vector2(28, 28))
+		face.custom_minimum_size = Vector2(28, 28)
+		_set_portrait(face, ART_SETTINGS.character_portrait(player.character_id, player.body_type))
+		results_grid.add_child(face)
 		_add_result_cell(("P1 " if player == human else "") + player.display_name, color)
 		var seconds := int(survival.get(player, -1.0))
 		_add_result_cell("%d:%02d" % [seconds / 60, seconds % 60] if seconds >= 0 else "-", color)
@@ -367,6 +405,7 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		_add_result_cell("%.0f" % player.damage_dealt, color)
 		_add_result_cell(str(player.souls), color)
 		_add_result_cell(", ".join(player.upgrades), color)
+	_add_result_cell("", Color.WHITE)
 	_add_result_cell("", Color.WHITE)
 	_add_result_cell("[R] play again", Color(1.0, 0.82, 0.4))
 	overlay_credits.visible = false
@@ -398,8 +437,9 @@ func set_warning_banner(seconds: int, hazard_warning := "") -> void:
 
 ## The in-match HUD hides behind the start screen so it does not show through it.
 func _set_match_hud_visible(visible_now: bool) -> void:
-	for node in [clock_label, realm_label, status_label, info_label, minimap_root]:
+	for node in [clock_label, realm_label, status_label, info_label, minimap_root, focus_portrait]:
 		node.visible = visible_now
+	focus_frame.visible = visible_now and focus_portrait.texture != null
 	if not visible_now:
 		warning_label.visible = false
 		card_panel.visible = false
