@@ -8,5 +8,5 @@ git add -- `
   'reports/codex-art-08a'
 
 git commit `
-  -m 'art: add hi-res character assets for unit A' `
+  -m 'art: rework unit A hi-res sprite sheets' `
   -m 'Co-Authored-By: Codex <noreply@openai.com>'

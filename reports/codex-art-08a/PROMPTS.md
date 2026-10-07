@@ -37,3 +37,17 @@ Avoid: old 2-head chibi proportions, giant head, blurry scaling, checkerboard or
 - Nova male/female: 2.5-head proportion; momentum punch with teal-to-gold impact; crossed forearms in compact gravity field.
 - Yuki: 2.5-head proportion; talisman flick and paper trail; hand sign with red-gold rectangular ward.
 
+## CODEX-ART-08R rework prompts (built-in ImageGen)
+
+각 생성 호출은 기존 `*_v2_source.png`를 편집 대상으로, 승인된 `*_illustration.png`를 디자인/체형 참조로 사용했다. 공통 지시는 다음과 같다.
+
+> Preserve the exact 6-column by 7-row layout and 23 used frames (idle 4, walk 6, jump 1, fall 1, attack 4, shield 6, hurt 1). Redraw the character with longer legs and torso and a smaller, narrower head at the requested 3-head or 2.5-head proportion. Keep costume, palette, weapon or magic, facing direction and animation meaning. Use crisp high-resolution pixel art on a transparent background. Keep every character, weapon and effect inside its own cell with generous transparent padding. No colored matte, fringe, halo, text, grid or watermark.
+
+캐릭터별 추가 조건:
+
+- Frey: 3 heads, winged silver helm, navy/gold armor, cape, sword and round shield.
+- Nova 남성: 2.5 heads, swept navy hair, navy/white tech armor, cyan gravity gauntlets and compact energy effects.
+- Nova 여성: 2.5 heads, female athletic silhouette, navy hair, shared Nova armor/gauntlets and compact energy effects.
+- Yuki: 2.5 heads, long black hair with red ornaments, black/red/ivory robes, paper talismans and compact red-gold ward barriers.
+
+생성 원본은 각각 `frey_v2_source.png`, `nova_male_v2_source.png`, `nova_female_v2_source.png`, `yuki_v2_source.png`에 저장했고, 최종 시트는 Godot `Image` API 후처리 결과다.
