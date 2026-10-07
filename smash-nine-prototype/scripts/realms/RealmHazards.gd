@@ -112,6 +112,7 @@ func _start_warning(realm_index: int) -> void:
 				var rect: Rect2 = column
 				entry.visuals.append(_rect_node(rect, PILLAR_WARNING_COLOR))
 				entry.visuals.append(_rect_node(Rect2(rect.position.x, rect.end.y - 8.0, rect.size.x, 8.0), VENT_COLOR))
+				entry.visuals.append(_particles(Rect2(rect.position.x, rect.end.y - 10.0, rect.size.x, 6.0), Color(1.0, 0.6, 0.2, 0.9), 10, 0.5, 90.0, false))
 		"quake":
 			for platform in _platform_rects(realm_index):
 				var top: Rect2 = platform
@@ -127,10 +128,14 @@ func _start_active(realm_index: int) -> void:
 			entry.timer = float(entry.hazard.get("active", 0.6))
 			for column in entry.columns:
 				entry.visuals.append(_rect_node(column, PILLAR_COLOR))
+				entry.visuals.append(_particles(column, Color(1.0, 0.82, 0.35, 0.95), 40, 0.6, 520.0, false))
 			shake_requested.emit(realm_index, 4.0, 0.25)
 		"quake":
 			entry.timer = 0.0
 			_quake(realm_index, entry.hazard)
+			for platform in _platform_rects(realm_index):
+				var top: Rect2 = platform
+				_particles(Rect2(top.position.x, top.position.y - 4.0, top.size.x, 4.0), Color(0.82, 0.72, 0.55, 0.85), clampi(int(top.size.x / 18.0), 6, 40), 0.7, 160.0, true).finished.connect(_free_finished)
 			shake_requested.emit(realm_index, 9.0, 0.45)
 
 func _end(realm_index: int) -> void:
@@ -247,3 +252,30 @@ func get_threat(realm_index: int) -> Dictionary:
 	if str(entry.phase) == "idle":
 		return {}
 	return {"type": str(entry.hazard.type), "phase": str(entry.phase), "time_left": float(entry.timer), "columns": entry.columns}
+
+## Particle burst or stream over a world rect (CPU particles: web/Compatibility safe).
+func _particles(rect: Rect2, color: Color, amount: int, lifetime: float, rise: float, one_shot: bool) -> CPUParticles2D:
+	var particles := CPUParticles2D.new()
+	particles.position = rect.get_center()
+	particles.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	particles.emission_rect_extents = rect.size * 0.5
+	particles.amount = amount
+	particles.lifetime = lifetime
+	particles.one_shot = one_shot
+	particles.explosiveness = 0.9 if one_shot else 0.0
+	particles.direction = Vector2(0.0, -1.0)
+	particles.spread = 25.0
+	particles.gravity = Vector2(0.0, -rise * 0.5 if rise > 0.0 else 600.0)
+	particles.initial_velocity_min = absf(rise) * 0.6
+	particles.initial_velocity_max = absf(rise)
+	particles.scale_amount_min = 2.0
+	particles.scale_amount_max = 4.0
+	particles.color = color
+	particles.emitting = true
+	add_child(particles)
+	return particles
+
+func _free_finished() -> void:
+	for child in get_children():
+		if child is CPUParticles2D and child.one_shot and not child.emitting:
+			child.queue_free()

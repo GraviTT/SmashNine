@@ -325,6 +325,12 @@ func _add_platform_details(body: Node2D, size: Vector2, base_color: Color, accen
 				crack.points = PackedVector2Array([Vector2(x, -size.y * 0.5 + 8), Vector2(x + 8, -2), Vector2(x + 2, size.y * 0.5 - 5)])
 				body.add_child(crack)
 		"icicles":
+			# Frost sheen: Niflheim floors are slippery (RealmHazards ice).
+			var sheen := ColorRect.new()
+			sheen.color = Color(0.92, 0.98, 1.0, 0.45)
+			sheen.size = Vector2(size.x - 8.0, 3.0)
+			sheen.position = Vector2(-size.x * 0.5 + 4.0, -size.y * 0.5 + 5.0)
+			body.add_child(sheen)
 			for index in mini(segment_count, 9):
 				var icicle := Polygon2D.new()
 				var x := -size.x * 0.5 + 20 + index * size.x / float(mini(segment_count, 9))
