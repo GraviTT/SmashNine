@@ -1,13 +1,14 @@
 extends RefCounted
-## Which art set the game draws: the procedural/third-party prototype look or the
-## original art made for the game (Codex builders, routine 2026-10-07). The user picks
-## the default after comparing; F2 on the start screen switches and reloads the scene.
+## Which art set the game draws: the original art made for the game (Codex builders,
+## routines 2026-10-07; the default since the user adopted it, D20) or the old
+## procedural/third-party prototype look. F2 on the start screen switches and reloads.
 ## Anything missing from the original set falls back to the prototype look.
 
 const STYLE_PROTOTYPE := "prototype"
 const STYLE_ORIGINAL := "original"
+const DEFAULT_STYLE := STYLE_ORIGINAL
 
-static var style := STYLE_PROTOTYPE
+static var style := DEFAULT_STYLE
 
 static func use_original() -> bool:
 	return style == STYLE_ORIGINAL

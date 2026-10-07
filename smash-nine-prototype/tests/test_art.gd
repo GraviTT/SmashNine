@@ -15,6 +15,11 @@ func _initialize() -> void:
 	call_deferred("_run")
 
 func _run() -> void:
+	# The user adopted the original art (2026-10-07): it is what a fresh game shows.
+	if ART_SETTINGS.style != ART_SETTINGS.STYLE_ORIGINAL:
+		_fail("Default art style is %s, expected original" % ART_SETTINGS.style)
+		quit(1)
+		return
 	for style in [ART_SETTINGS.STYLE_ORIGINAL, ART_SETTINGS.STYLE_PROTOTYPE]:
 		ART_SETTINGS.style = style
 		await _check_style(style == ART_SETTINGS.STYLE_ORIGINAL)

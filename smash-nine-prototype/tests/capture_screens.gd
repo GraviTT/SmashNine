@@ -2,7 +2,7 @@ extends SceneTree
 ## Visual check (needs a window, not --headless): saves PNGs of the start screen,
 ## a fight, a soul card offer, a collapse warning, the open center, sudden death
 ## and the result screen. Match time is skipped forward through MatchDirector.
-## Usage: godot --path . -s tests/capture_screens.gd -- --out=../reports/screens-m1 [--art=original]
+## Usage: godot --path . -s tests/capture_screens.gd -- --out=../reports/screens-m1 [--art=prototype]
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
@@ -13,8 +13,8 @@ var main: Node
 func _initialize() -> void:
 	out_dir = ProjectSettings.globalize_path("res://").path_join("../reports/screens")
 	for arg in OS.get_cmdline_user_args():
-		if arg == "--art=original":
-			ART_SETTINGS.style = ART_SETTINGS.STYLE_ORIGINAL
+		if arg.begins_with("--art="):
+			ART_SETTINGS.style = arg.get_slice("=", 1)
 		if arg.begins_with("--out="):
 			out_dir = ProjectSettings.globalize_path("res://").path_join(arg.get_slice("=", 1))
 	DirAccess.make_dir_recursive_absolute(out_dir)
