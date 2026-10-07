@@ -58,8 +58,11 @@ func _check_style(original: bool) -> void:
 	var uses_sheet: bool = frame.atlas.resource_path == FREY_SHEET
 	if uses_sheet != original:
 		_fail("%s: Frey sheet is %s" % [label, frame.atlas.resource_path])
+	if (main.hud.overlay_logo.texture != null) != original:
+		_fail("%s: the title logo should load only in the original style" % label)
 	if original:
 		_check_character_sheets(main)
+		_check_brave_luna(main)
 	main.queue_free()
 	await process_frame
 
@@ -84,3 +87,18 @@ func _check_character_sheets(main: Node) -> void:
 			elif player.character_sprite.scale != Vector2(2.0, 2.0):
 				_fail("%s sheet should be drawn at scale 2, got %s" % [label, player.character_sprite.scale])
 			player.queue_free()
+
+## Brave Luna draws her own sheet while transformed, the normal one otherwise.
+func _check_brave_luna(main: Node) -> void:
+	var luna: Node = PLAYER_FACTORY.create("luna")
+	main.add_child(luna)
+	luna.setup(CHARACTER_REGISTRY.get_characters()["luna"], 91, false)
+	if not luna.character_sprite.sprite_frames.has_animation(&"luna_brave_attack"):
+		_fail("Brave Luna's sheet is not loaded")
+	elif luna._get_sprite_animation_name(&"idle") != &"luna_idle":
+		_fail("Normal Luna should draw luna_idle")
+	else:
+		luna.transformed = true
+		if luna._get_sprite_animation_name(&"idle") != &"luna_brave_idle":
+			_fail("Transformed Luna should draw luna_brave_idle")
+	luna.queue_free()

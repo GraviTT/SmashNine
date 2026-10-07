@@ -4,6 +4,7 @@ extends CanvasLayer
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const ART_CREDITS := "Prototype character art: Viking Adventure by FerDDN & Jose Maria Costa  /  Purple Mage by Foozle (CC0)  /  Free Platformer Girl by Franco Giachetti, LudicArts.com (CC BY 3.0)  /  Action Hero by Printer Not Found (CC0)"
+const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug"
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
 const CARD_COLOR := Color(0.1, 0.08, 0.2, 0.92)
@@ -29,6 +30,7 @@ var card_labels: Array[Label] = []
 var card_icons: Array[TextureRect] = []
 var overlay: Control
 var overlay_title: Label
+var overlay_logo: TextureRect
 var overlay_body: Label
 var overlay_credits: Label
 
@@ -239,6 +241,18 @@ func _build_overlay() -> void:
 	overlay_title.add_theme_color_override("font_color", Color(1.0, 0.82, 0.4))
 	overlay.add_child(overlay_title)
 	_pin(overlay_title, TOP_CENTER)
+	# Original title logo (CODEX-ART-06) drawn at half size in place of the title text.
+	overlay_logo = TextureRect.new()
+	overlay_logo.position = Vector2(480, 92)
+	overlay_logo.size = Vector2(320, 100)
+	overlay_logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	overlay_logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	overlay_logo.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	overlay_logo.texture = ART_SETTINGS.original_texture(TITLE_LOGO_ART)
+	overlay_logo.visible = false
+	overlay_logo.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(overlay_logo)
+	_pin(overlay_logo, TOP_CENTER)
 	overlay_body = Label.new()
 	overlay_body.position = Vector2(240, 200)
 	overlay_body.size = Vector2(800, 480)
@@ -253,12 +267,14 @@ func _build_overlay() -> void:
 	overlay_credits.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	overlay_credits.add_theme_font_size_override("font_size", 12)
 	overlay_credits.modulate = TEXT_DIM
-	overlay_credits.text = ART_CREDITS
+	# The third-party prototype art only shows in the prototype style (F2).
+	overlay_credits.text = ART_CREDITS if not ART_SETTINGS.use_original() else "Original pixel art made for Smash Nine Realms.  F2 shows the prototype art and its credits."
 	overlay.add_child(overlay_credits)
 	_pin(overlay_credits, BOTTOM_CENTER)
 
 func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
-	overlay_title.text = "SMASH NINE REALMS"
+	overlay_title.text = "SMASH NINE REALMS" if overlay_logo.texture == null else ""
+	overlay_logo.visible = overlay_logo.texture != null
 	var lines: Array[String] = ["Nine realms are collapsing into the heart of Yggdrasil.", "Be the last one standing.", "", "Choose your fighter"]
 	for index in characters.size():
 		var data: Dictionary = characters[index]
@@ -280,6 +296,7 @@ func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 	overlay.visible = true
 
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node) -> void:
+	overlay_logo.visible = false
 	overlay_title.text = "%s WINS" % winner.display_name.to_upper() if is_instance_valid(winner) else "DRAW"
 	overlay_body.text = "Decided by %s" % reason
 	info_label.visible = false

@@ -5,7 +5,9 @@ extends RefCounted
 ## Rises between standable platforms stay under the bots' 185 px jump reach.
 ## "hazard" (optional) is read by RealmHazards: ice (floor traction), eruption (telegraphed
 ## fire pillars on platforms), quake (telegraphed stun for everyone on the ground), bushes
-## (standing in one hides a fighter; "spots" are bush bottoms on platform tops).
+## (standing in one hides a fighter; "spots" are bush bottoms on platform tops), beams
+## (telegraphed light columns that stun), vines (a temporary one-way bridge; "bridges"
+## are realm-local rects).
 
 const PLATFORM_MAIN := "main"
 const PLATFORM_SUB := "sub"
@@ -24,6 +26,7 @@ static func build_maps() -> Array:
 		"grid": Vector2i(0, 0),
 		"theme": "valkyrie_gate",
 		"identity": "Balanced ground",
+		"hazard": {"type": "beams", "text": "Light of Asgard", "warn_text": "Light of Asgard - step out of the glowing columns!", "interval": [9.0, 12.0], "warning": 1.1, "active": 0.5, "count": 3, "width": 70.0, "height": 720.0, "damage": 6.0, "knockback": 120.0, "stun": 0.45},
 		"art": {"dir": "res://assets/art/realm_asgard", "cap_main": 52, "cap_sub": 32, "dim": 0.38},
 		"background": Color(0.02, 0.04, 0.08),
 		"accent": Color(1.0, 0.72, 0.34),
@@ -156,6 +159,7 @@ static func build_maps() -> Array:
 		"grid": Vector2i(1, 2),
 		"theme": "sunken_temple",
 		"identity": "High-ground decisions",
+		"hazard": {"type": "vines", "text": "Growing vines", "warn_text": "Vines are growing a new path", "interval": [8.0, 11.0], "warning": 1.2, "active": 9.0, "bridges": [Rect2(440, 288, 400, 24), Rect2(390, 470, 150, 24), Rect2(740, 470, 150, 24)]},
 		"art": {"dir": "res://assets/art/realm_vanaheim", "cap_main": 46, "cap_sub": 32, "dim": 0.38},
 		"background": Color(0.0, 0.055, 0.045),
 		"accent": Color(0.42, 0.95, 0.55),

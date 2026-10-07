@@ -9,6 +9,7 @@ const JUMP_TEXTURE := preload("res://assets/characters/luna/jump.png")
 const ATTACK_TEXTURE := preload("res://assets/characters/luna/attack.png")
 const HURT_TEXTURE := preload("res://assets/characters/luna/hurt.png")
 
+const BRAVE_SHEET_ART := "res://assets/art/luna/luna_brave_sheet.png"
 const TRANSFORMATION_DURATION := 6.0
 const TRANSFORMATION_MOVEMENT_MULTIPLIER := 1.16
 const BRAVE_COMBO_RESET_TIME := 0.42
@@ -17,6 +18,7 @@ const STAR_BLOOM_COLOR := Color(0.44, 0.92, 1.0, 0.66)
 const BRAVE_IMPACT_COLOR := Color(1.0, 0.84, 0.28, 0.76)
 
 var transformed := false
+var has_brave_sheet := false
 var transformation_timer := 0.0
 var transformation_finishing := false
 var transformation_aura: Node2D
@@ -29,6 +31,7 @@ var heart_laser_duration := 0.0
 
 func configure_character_sprite() -> void:
 	if _configure_original_sheet("luna"):
+		_add_brave_sheet()
 		return
 	var frames := ANIMATION.create_frames()
 	ANIMATION.add_strip(frames, &"luna_idle", IDLE_TEXTURE, Vector2i(49, 120), 0, 10, 7.0, true)
@@ -40,6 +43,22 @@ func configure_character_sprite() -> void:
 	ANIMATION.add_strip(frames, &"luna_hurt", HURT_TEXTURE, Vector2i(149, 128), 0, 1, 1.0, false)
 	character_sprite.sprite_frames = frames
 	character_sprite.play(&"luna_idle")
+
+## Brave Luna's own sheet (CODEX-ART-06), cut like the normal one into luna_brave_*.
+func _add_brave_sheet() -> void:
+	var sheet := SHEET_ART.original_texture(BRAVE_SHEET_ART)
+	if sheet == null:
+		return
+	for row in ORIGINAL_SHEET_ROWS.size():
+		var spec: Array = ORIGINAL_SHEET_ROWS[row]
+		ANIMATION.add_grid(character_sprite.sprite_frames, StringName("luna_brave_%s" % spec[0]), sheet, Vector2i(64, 64), 6, row * 6, int(spec[1]), float(spec[2]), bool(spec[3]))
+	has_brave_sheet = true
+
+## While transformed, every animation comes from the Brave sheet when there is one.
+func _get_sprite_animation_name(base_name: StringName) -> StringName:
+	if transformed and has_brave_sheet:
+		return StringName("luna_brave_%s" % base_name)
+	return super._get_sprite_animation_name(base_name)
 
 func get_character_sprite_style() -> Dictionary:
 	return {

@@ -149,7 +149,7 @@ func _avoid_hazards(player, intent: Dictionary) -> Dictionary:
 		"quake":
 			if threat.phase == "warning" and float(threat.time_left) < QUAKE_JUMP_LEAD and player.is_on_floor():
 				intent["jump"] = true
-		"eruption":
+		"eruption", "beams":
 			var body: Vector2 = player.global_position + Vector2(0.0, -32.0)
 			for column in threat.columns:
 				var danger: Rect2 = (column as Rect2).grow_individual(VENT_MARGIN, 0.0, VENT_MARGIN, 0.0)

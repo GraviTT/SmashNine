@@ -1,6 +1,7 @@
 extends SceneTree
 ## Realm gimmick tests (RealmHazards): ice traction, eruption pillars, quake stun, off switch,
-## Midgard bushes (hide, reveal on attack, bots notice only up close).
+## Midgard bushes (hide, reveal on attack, bots notice only up close), Asgard light beams
+## (stun once), Vanaheim vine bridges (grow, then wither).
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
@@ -19,7 +20,7 @@ func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
 	layout = REALM_LAYOUT.new()
-	var tests: Array[Callable] = [_test_ice_traction, _test_eruption_hits_once, _test_disabled_hazards_stay_idle, _test_quake_stuns_grounded_fighters, _test_bushes_conceal]
+	var tests: Array[Callable] = [_test_ice_traction, _test_eruption_hits_once, _test_disabled_hazards_stay_idle, _test_quake_stuns_grounded_fighters, _test_bushes_conceal, _test_beams_stun_once, _test_vine_bridge_grows_and_withers]
 	for test in tests:
 		await test.call()
 		if failed:
@@ -85,7 +86,14 @@ func _test_eruption_hits_once() -> void:
 		return
 	var column: Rect2 = columns[0]
 	burned.global_position = Vector2(column.get_center().x, column.end.y)
-	safe.global_position = Vector2(column.position.x - 400.0, column.end.y)
+	# A spot clear of every pillar (with the 21 px body margin _burn uses).
+	for offset in [-400.0, 400.0, -250.0, 250.0, -600.0, 600.0]:
+		safe.global_position = Vector2(column.get_center().x + offset, column.end.y)
+		var clear := true
+		for other in columns:
+			clear = clear and not (other as Rect2).grow_individual(30.0, 0.0, 30.0, 0.0).has_point(safe.global_position + Vector2(0.0, -32.0))
+		if clear:
+			break
 	var hp_before: float = burned.hp
 	var safe_hp: float = safe.hp
 	hazards.advance(0.5)
@@ -204,3 +212,58 @@ func _test_bushes_conceal() -> void:
 		return
 	for node in [hazards, hider, seeker]:
 		node.queue_free()
+
+func _test_beams_stun_once() -> void:
+	var asgard := _realm("Asgard")
+	var hazards := _new_hazards()
+	var struck := _new_player("frey", 1, asgard)
+	hazards.register_combatant(struck)
+	hazards.trigger(asgard)
+	var columns: Array = hazards.get_columns(asgard)
+	if columns.size() != 3:
+		_fail("Light of Asgard should mark 3 columns, got %d" % columns.size())
+		return
+	var column: Rect2 = columns[0]
+	struck.global_position = Vector2(column.get_center().x, column.end.y)
+	var hp_before: float = struck.hp
+	hazards.advance(0.6)
+	if struck.hp != hp_before:
+		_fail("A light beam hurt during its warning")
+		return
+	for step in 10:
+		hazards.advance(0.1)
+	var hazard: Dictionary = layout.get_realm(asgard).hazard
+	if not is_equal_approx(hp_before - struck.hp, float(hazard.damage)) or struck.hitstun_timer < float(hazard.stun) - 0.01:
+		_fail("A light beam should deal %.0f once and stun %.2f s (dealt %.1f, stun %.2f)" % [float(hazard.damage), float(hazard.stun), hp_before - struck.hp, struck.hitstun_timer])
+		return
+	if struck.knockback_velocity.y < 0.0:
+		_fail("A light beam should not launch upward")
+		return
+	for node in [hazards, struck]:
+		node.queue_free()
+
+func _test_vine_bridge_grows_and_withers() -> void:
+	var vanaheim := _realm("Vanaheim")
+	var hazards := _new_hazards()
+	hazards.trigger(vanaheim)
+	await process_frame
+	if not get_nodes_in_group("vine_bridges").is_empty():
+		_fail("A vine bridge appeared during the sprouting warning")
+		return
+	hazards.advance(1.3)
+	await process_frame
+	var bridges := get_nodes_in_group("vine_bridges")
+	if bridges.size() != 1 or bridges[0].collision_layer != 1:
+		_fail("One solid vine bridge should grow after the warning, got %d" % bridges.size())
+		return
+	var span: Rect2 = hazards.get_columns(vanaheim)[0]
+	if not span.has_point(bridges[0].global_position):
+		_fail("The vine bridge should sit on the chosen span")
+		return
+	for step in 10:
+		hazards.advance(1.0)
+	await process_frame
+	if not get_nodes_in_group("vine_bridges").is_empty():
+		_fail("The vine bridge should wither after its time")
+		return
+	hazards.queue_free()

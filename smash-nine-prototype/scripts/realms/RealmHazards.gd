@@ -5,6 +5,9 @@ extends Node2D
 ## - eruption: fire pillars rise from platform spots after a warning; a hit launches upward
 ## - quake: after a rumble warning, everyone on the ground is stunned and popped up;
 ##   jumping during the warning avoids it
+## - beams: light columns fall on platform spots after a warning; a hit stuns in place
+## - vines: after a sprouting warning a vine bridge grows across a gap for a while, then
+##   withers (anyone standing on it drops)
 ## - bushes: a fighter inside a bush is concealed (faded, bots only notice within
 ##   notice_range); attacking or getting hit reveals them for a moment
 ## Timing uses a seeded RNG, so a match seed replays the same hazards.
@@ -19,6 +22,12 @@ const RUMBLE_COLOR := Color(0.95, 0.78, 0.45, 0.85)
 const DAMAGE_FIXED := "fixed"
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const BUSH_ART := "res://assets/art/realm_midgard/bush.png"
+const BEAM_COLOR := Color(1.0, 0.95, 0.62, 0.72)
+const BEAM_WARNING_COLOR := Color(1.0, 0.9, 0.5, 0.14)
+const BEAM_GLYPH_COLOR := Color(1.0, 0.86, 0.42, 0.9)
+const VINE_COLOR := Color(0.3, 0.72, 0.32)
+const VINE_DARK_COLOR := Color(0.14, 0.38, 0.17)
+const WORLD_LAYER := 1
 const BUSH_COLORS: Array[Color] = [Color(0.16, 0.42, 0.18), Color(0.22, 0.55, 0.22), Color(0.3, 0.66, 0.28)]
 
 var enabled := true
@@ -78,7 +87,7 @@ func advance(delta: float) -> void:
 				_end(realm_index)
 			continue
 		match str(entry.hazard.type):
-			"eruption", "quake":
+			"eruption", "quake", "beams", "vines":
 				_advance_timed(realm_index, entry, delta)
 
 func _update_traction() -> void:
@@ -177,7 +186,7 @@ func _advance_timed(realm_index: int, entry: Dictionary, delta: float) -> void:
 				_start_active(realm_index)
 		"active":
 			entry.timer = float(entry.timer) - delta
-			if str(entry.hazard.type) == "eruption":
+			if str(entry.hazard.type) == "eruption" or str(entry.hazard.type) == "beams":
 				_burn(realm_index, entry)
 			if entry.timer <= 0.0:
 				_end(realm_index)
@@ -201,6 +210,19 @@ func _start_warning(realm_index: int) -> void:
 				var top: Rect2 = platform
 				entry.visuals.append(_rect_node(Rect2(top.position.x, top.position.y - 10.0, top.size.x, 10.0), RUMBLE_COLOR))
 			shake_requested.emit(realm_index, 3.0, float(entry.timer))
+		"beams":
+			entry.columns = _pick_columns(realm_index, entry.hazard)
+			for column in entry.columns:
+				var rect: Rect2 = column
+				entry.visuals.append(_rect_node(rect, BEAM_WARNING_COLOR))
+				entry.visuals.append(_rect_node(Rect2(rect.position.x, rect.end.y - 6.0, rect.size.x, 6.0), BEAM_GLYPH_COLOR))
+		"vines":
+			var bridges: Array = entry.hazard.get("bridges", [])
+			var local: Rect2 = bridges[_rng.randi_range(0, bridges.size() - 1)]
+			var rect := Rect2(layout.get_origin(realm_index) + local.position, local.size)
+			entry.columns = [rect]
+			for end_x in [rect.position.x, rect.end.x - 24.0]:
+				entry.visuals.append(_particles(Rect2(end_x, rect.position.y, 24.0, rect.size.y), Color(0.45, 0.9, 0.4, 0.9), 12, 0.6, 60.0, false))
 
 func _start_active(realm_index: int) -> void:
 	var entry: Dictionary = _realms[realm_index]
@@ -213,6 +235,16 @@ func _start_active(realm_index: int) -> void:
 				entry.visuals.append(_rect_node(column, PILLAR_COLOR))
 				entry.visuals.append(_particles(column, Color(1.0, 0.82, 0.35, 0.95), 40, 0.6, 520.0, false))
 			shake_requested.emit(realm_index, 4.0, 0.25)
+		"beams":
+			entry.timer = float(entry.hazard.get("active", 0.5))
+			for column in entry.columns:
+				entry.visuals.append(_rect_node(column, BEAM_COLOR))
+				entry.visuals.append(_particles(column, Color(1.0, 0.95, 0.7, 0.95), 30, 0.5, -420.0, false))
+			shake_requested.emit(realm_index, 3.0, 0.2)
+		"vines":
+			entry.timer = float(entry.hazard.get("active", 9.0))
+			for column in entry.columns:
+				entry.visuals.append(_vine_bridge(column))
 		"quake":
 			entry.timer = 0.0
 			_quake(realm_index, entry.hazard)
@@ -239,7 +271,10 @@ func _burn(realm_index: int, entry: Dictionary) -> void:
 			var rect: Rect2 = column
 			if rect.grow_individual(21.0, 0.0, 21.0, 0.0).has_point(body):
 				entry.hit.append(combatant)
-				combatant.apply_hit(null, float(entry.hazard.damage), float(entry.hazard.knockback), Vector2(0.0, -1.0), DAMAGE_FIXED)
+				if entry.hazard.has("stun"):
+					combatant.apply_stun_hit(null, float(entry.hazard.damage), float(entry.hazard.knockback), Vector2(0.0, 1.0), float(entry.hazard.stun), DAMAGE_FIXED)
+				else:
+					combatant.apply_hit(null, float(entry.hazard.damage), float(entry.hazard.knockback), Vector2(0.0, -1.0), DAMAGE_FIXED)
 				break
 
 ## Everyone standing on the ground is stunned and popped up; airborne fighters are safe.
@@ -247,6 +282,49 @@ func _quake(realm_index: int, hazard: Dictionary) -> void:
 	for combatant in _fighters_in(realm_index):
 		if combatant.is_on_floor():
 			combatant.apply_stun_hit(null, float(hazard.damage), float(hazard.pop), Vector2(0.0, -1.0), float(hazard.stun), DAMAGE_FIXED)
+
+## A one-way vine platform (like a thin sub platform) that lives as one of the hazard's
+## visuals, so ending the hazard removes it.
+func _vine_bridge(rect: Rect2) -> Node:
+	var bridge := StaticBody2D.new()
+	bridge.name = "VineBridge"
+	bridge.collision_layer = WORLD_LAYER
+	bridge.collision_mask = 0
+	bridge.add_to_group("platforms")
+	bridge.add_to_group("vine_bridges")
+	bridge.set_meta("platform_role", "sub")
+	bridge.set_meta("allows_drop_through", true)
+	bridge.position = rect.get_center()
+	var shape := CollisionShape2D.new()
+	var box := RectangleShape2D.new()
+	box.size = rect.size
+	shape.shape = box
+	shape.one_way_collision = true
+	shape.one_way_collision_margin = 12.0
+	bridge.add_child(shape)
+	var stem := ColorRect.new()
+	stem.color = VINE_DARK_COLOR
+	stem.size = rect.size
+	stem.position = -rect.size * 0.5
+	bridge.add_child(stem)
+	var top := ColorRect.new()
+	top.color = VINE_COLOR
+	top.size = Vector2(rect.size.x, 6.0)
+	top.position = Vector2(-rect.size.x * 0.5, -rect.size.y * 0.5)
+	bridge.add_child(top)
+	for leaf in int(rect.size.x / 28.0):
+		var bud := Polygon2D.new()
+		var x := -rect.size.x * 0.5 + 14.0 + leaf * 28.0
+		bud.polygon = PackedVector2Array([Vector2(x - 6, -rect.size.y * 0.5), Vector2(x, -rect.size.y * 0.5 - 9), Vector2(x + 6, -rect.size.y * 0.5)])
+		bud.color = VINE_COLOR.lightened(0.15)
+		bridge.add_child(bud)
+	# Drawn with the platforms, behind fighters (this node sits above them).
+	bridge.z_as_relative = false
+	bridge.z_index = 0
+	bridge.scale = Vector2(0.2, 1.0)
+	add_child(bridge)
+	bridge.create_tween().tween_property(bridge, "scale", Vector2.ONE, 0.35)
+	return bridge
 
 func _fighters_in(realm_index: int) -> Array[Node]:
 	var result: Array[Node] = []
