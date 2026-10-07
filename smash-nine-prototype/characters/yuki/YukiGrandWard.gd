@@ -5,6 +5,8 @@ const VFX := preload("res://scripts/Vfx.gd")
 const WARNING_TIME := 0.7
 const ACTIVE_TIME := 2.35
 const PULSE_INTERVAL := 0.58
+const SEAL_WARNING_ALPHA := 0.35
+const SEAL_ACTIVE_ALPHA := 0.6
 ## Tuned 2026-10-08 (5.5 -> ~12 damage per cast after the match scale).
 const PULSE_DAMAGE := 5.0
 const FINAL_PULSE_DAMAGE := 28.0
@@ -18,6 +20,7 @@ var activated := false
 var ring: Line2D
 var core: ColorRect
 var seal: AnimatedSprite2D
+var talismans: Array[ColorRect] = []
 
 func _ready() -> void:
 	add_to_group("yuki_grand_wards")
@@ -33,8 +36,10 @@ func _ready() -> void:
 	ring.points = points
 	add_child(ring)
 	# The seal art spans the field (256 px drawn at 1.6x = 410 px = 2 x FIELD_RADIUS).
-	seal = VFX.spawn(self, "yuki_ult_seal", Vector2.ZERO, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0), true, -1, Color(1, 1, 1, 0.55), true)
+	# Drawn with the platforms, behind the fighters, and see-through: the fight inside must read.
+	seal = VFX.spawn(self, "yuki_ult_seal", Vector2.ZERO, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0), true, 0, Color(1, 1, 1, SEAL_WARNING_ALPHA), true)
 	if seal != null:
+		seal.z_as_relative = false
 		ring.width = 2.0
 	core = ColorRect.new()
 	core.size = Vector2(56, 56)
@@ -50,6 +55,12 @@ func _ready() -> void:
 		talisman.rotation = direction.angle() + PI * 0.5
 		talisman.color = Color(0.72, 0.94, 1.0, 0.9)
 		add_child(talisman)
+		talismans.append(talisman)
+	# The seal art already draws the core and the four talismans.
+	if seal != null:
+		core.modulate.a = 0.0
+		for talisman in talismans:
+			talisman.visible = false
 
 func configure(new_owner: Node, new_realm_index: int) -> void:
 	owner_node = new_owner
@@ -68,7 +79,7 @@ func _physics_process(delta: float) -> void:
 			activated = true
 			pulse_timer = 0.0
 			if seal != null:
-				seal.modulate = Color(1, 1, 1, 0.95)
+				seal.modulate = Color(1, 1, 1, SEAL_ACTIVE_ALPHA)
 			core.color = Color(0.7, 0.94, 1.0, 0.5)
 		return
 	active_timer += delta

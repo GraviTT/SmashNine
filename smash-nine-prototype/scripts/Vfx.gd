@@ -52,6 +52,10 @@ static func spawn(parent: Node, effect: String, at: Vector2, scale := Vector2.ON
 		sprite.animation_finished.connect(sprite.queue_free)
 	return sprite
 
+## True when the effect art will draw (art present and the original style on).
+static func available(effect: String) -> bool:
+	return _frames(effect, false) != null
+
 ## The strip's frames as separate textures (for tiling a beam), or an empty array.
 static func frame_textures(effect: String) -> Array[Texture2D]:
 	var key := "%s/textures" % effect
