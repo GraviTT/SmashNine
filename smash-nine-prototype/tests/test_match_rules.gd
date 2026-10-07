@@ -163,6 +163,10 @@ func _test_elimination_is_permanent_and_single_winner() -> void:
 	if standings[0] != players[2] or standings[1] != players[1] or standings[2] != players[0]:
 		_fail("Standings should be winner, then eliminations in reverse order")
 		return
+	# Results screen "Survived": elimination time, or the whole match for the winner.
+	if director.get_survival_time(players[0]) > 0.01 or absf(director.get_survival_time(players[1]) - 10.0) > 0.05 or absf(director.get_survival_time(players[2]) - director.match_elapsed) > 0.001:
+		_fail("Survival times should be 0 / 10 / match length, got %.2f / %.2f / %.2f" % [director.get_survival_time(players[0]), director.get_survival_time(players[1]), director.get_survival_time(players[2])])
+		return
 	for player in players:
 		player.queue_free()
 	director.queue_free()

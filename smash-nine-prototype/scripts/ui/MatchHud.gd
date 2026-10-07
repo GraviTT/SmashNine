@@ -334,7 +334,8 @@ func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 	overlay_credits.visible = true
 	overlay.visible = true
 
-func show_results(winner: Node, reason: String, standings: Array[Node], human: Node) -> void:
+## survival: combatant -> seconds survived (MatchDirector.get_survival_time).
+func show_results(winner: Node, reason: String, standings: Array[Node], human: Node, survival: Dictionary = {}) -> void:
 	overlay_logo.visible = false
 	if is_instance_valid(portrait_strip):
 		portrait_strip.visible = false
@@ -345,13 +346,13 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	if is_instance_valid(results_grid):
 		results_grid.queue_free()
 	results_grid = GridContainer.new()
-	results_grid.columns = 6
-	results_grid.position = Vector2(250, 250)
+	results_grid.columns = 7
+	results_grid.position = Vector2(200, 250)
 	results_grid.add_theme_constant_override("h_separation", 34)
 	results_grid.add_theme_constant_override("v_separation", 4)
 	overlay.add_child(results_grid)
 	_pin(results_grid, TOP_CENTER)
-	for header in ["#", "Fighter", "KOs", "Damage", "Souls", "Cards"]:
+	for header in ["#", "Fighter", "Survived", "KOs", "Damage", "Souls", "Cards"]:
 		_add_result_cell(header, Color(1.0, 0.82, 0.4))
 	for index in standings.size():
 		var player: Node = standings[index]
@@ -360,6 +361,8 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		var color := Color(1.0, 0.92, 0.55) if player == human else Color.WHITE
 		_add_result_cell(str(index + 1), color)
 		_add_result_cell(("P1 " if player == human else "") + player.display_name, color)
+		var seconds := int(survival.get(player, -1.0))
+		_add_result_cell("%d:%02d" % [seconds / 60, seconds % 60] if seconds >= 0 else "-", color)
 		_add_result_cell(str(player.score), color)
 		_add_result_cell("%.0f" % player.damage_dealt, color)
 		_add_result_cell(str(player.souls), color)

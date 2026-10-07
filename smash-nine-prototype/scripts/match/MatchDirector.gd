@@ -76,6 +76,8 @@ var warning_realms: Array[int] = []
 var warning_ends_at := 0.0
 var combatants: Array[Node] = []
 var elimination_order: Array[Node] = []
+## combatant -> match time of elimination (results screen "Survived")
+var elimination_times: Dictionary = {}
 var match_over := false
 var winner: Node
 var finish_reason := ""
@@ -92,6 +94,7 @@ func setup(new_layout: REALM_LAYOUT) -> void:
 	warning_realms.clear()
 	combatants.clear()
 	elimination_order.clear()
+	elimination_times.clear()
 	_eliminated_since_check.clear()
 	_batch_depth = 0
 	match_over = false
@@ -264,6 +267,7 @@ func _on_combatant_defeated(combatant: Node, _attacker: Node) -> void:
 	if match_over or elimination_order.has(combatant):
 		return
 	elimination_order.append(combatant)
+	elimination_times[combatant] = match_elapsed
 	_eliminated_since_check.append(combatant)
 	if _batch_depth > 0 or _survivor_check_queued:
 		return
@@ -318,6 +322,10 @@ func _finish(new_winner: Node, reason: String) -> void:
 	var winner_name: String = new_winner.display_name if is_instance_valid(new_winner) else "Nobody"
 	announcement.emit("%s wins (%s)." % [winner_name, reason])
 	match_finished.emit(new_winner, reason)
+
+## Seconds a combatant stayed in the match: until elimination, or the whole match.
+func get_survival_time(combatant: Node) -> float:
+	return float(elimination_times.get(combatant, match_elapsed))
 
 ## Final standings, best first: winner, other survivors by rank, then eliminated in reverse order.
 func get_standings() -> Array[Node]:

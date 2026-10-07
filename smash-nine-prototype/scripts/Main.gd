@@ -223,7 +223,11 @@ func _on_match_finished(winner: Node, reason: String) -> void:
 	_freeze_combat()
 	if is_instance_valid(winner):
 		spectate_target = winner
-	hud.show_results(winner, reason, director.get_standings(), _get_human_player())
+	var standings := director.get_standings()
+	var survival := {}
+	for combatant in standings:
+		survival[combatant] = director.get_survival_time(combatant)
+	hud.show_results(winner, reason, standings, _get_human_player(), survival)
 
 ## The result screen is a snapshot: fighters, monsters, hitboxes and projectiles stop,
 ## and fighters are protected from attacks whose start-up timers were already running.
