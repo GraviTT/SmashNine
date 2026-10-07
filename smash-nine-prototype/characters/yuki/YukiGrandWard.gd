@@ -1,12 +1,13 @@
 extends Node2D
 
 const FIELD_RADIUS := 205.0
+const VFX := preload("res://scripts/Vfx.gd")
 const WARNING_TIME := 0.7
 const ACTIVE_TIME := 2.35
 const PULSE_INTERVAL := 0.58
 ## Tuned 2026-10-08 (5.5 -> ~12 damage per cast after the match scale).
 const PULSE_DAMAGE := 5.0
-const FINAL_PULSE_DAMAGE := 22.0
+const FINAL_PULSE_DAMAGE := 28.0
 
 var owner_node: Node
 var realm_index := 0
@@ -16,6 +17,7 @@ var pulse_timer := 0.0
 var activated := false
 var ring: Line2D
 var core: ColorRect
+var seal: AnimatedSprite2D
 
 func _ready() -> void:
 	add_to_group("yuki_grand_wards")
@@ -30,6 +32,10 @@ func _ready() -> void:
 		points.append(Vector2(cos(angle), sin(angle)) * FIELD_RADIUS)
 	ring.points = points
 	add_child(ring)
+	# The seal art spans the field (256 px drawn at 1.6x = 410 px = 2 x FIELD_RADIUS).
+	seal = VFX.spawn(self, "yuki_ult_seal", Vector2.ZERO, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0), true, -1, Color(1, 1, 1, 0.55), true)
+	if seal != null:
+		ring.width = 2.0
 	core = ColorRect.new()
 	core.size = Vector2(56, 56)
 	core.position = -core.size * 0.5
@@ -61,6 +67,8 @@ func _physics_process(delta: float) -> void:
 		if warning_timer <= 0.0:
 			activated = true
 			pulse_timer = 0.0
+			if seal != null:
+				seal.modulate = Color(1, 1, 1, 0.95)
 			core.color = Color(0.7, 0.94, 1.0, 0.5)
 		return
 	active_timer += delta
@@ -71,6 +79,7 @@ func _physics_process(delta: float) -> void:
 		_pulse(false)
 	if active_timer >= ACTIVE_TIME:
 		_pulse(true)
+		VFX.spawn(get_parent(), "yuki_ult_burst", global_position, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0))
 		_play_final_effect()
 		queue_free()
 

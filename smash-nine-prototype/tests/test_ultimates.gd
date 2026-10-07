@@ -6,6 +6,8 @@ extends SceneTree
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
+const VFX := preload("res://scripts/Vfx.gd")
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 
 var arena: Node2D
 var failed := false
@@ -16,7 +18,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_cast_signal_and_window, _test_ultimate_hitstop, _test_cutin]:
+	for test in [_test_cast_signal_and_window, _test_ultimate_hitstop, _test_cutin, _test_effects, _test_nova_pull]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -100,4 +102,34 @@ func _test_cutin() -> void:
 	if main.hud.cutin_root.visible:
 		_fail("The cut-in should be gone after about a second")
 	main.queue_free()
+	await process_frame
+
+## Every ultimate effect strip plays with its frame count in the original style; the plain
+## style (F2) falls back to the old shapes.
+func _test_effects() -> void:
+	for effect in VFX.SPECS:
+		var sprite := VFX.spawn(arena, effect, Vector2.ZERO)
+		if sprite == null or sprite.sprite_frames.get_frame_count(&"play") != int(VFX.SPECS[effect][0]):
+			_fail("Effect %s did not load with %d frames" % [effect, int(VFX.SPECS[effect][0])])
+			return
+		sprite.queue_free()
+	ART_SETTINGS.style = ART_SETTINGS.STYLE_PROTOTYPE
+	var plain := VFX.spawn(arena, "frey_ult_wave", Vector2.ZERO)
+	ART_SETTINGS.style = ART_SETTINGS.STYLE_ORIGINAL
+	if plain != null:
+		_fail("The plain style should not draw effect art")
+	await process_frame
+
+## Nova's core drags nearby opponents toward it while it stands.
+func _test_nova_pull() -> void:
+	var nova := _fighter("nova", 1, Vector2(0, 0))
+	var victim := _fighter("frey", 2, Vector2(300, 0))
+	nova.ultimate_phase = nova.ULTIMATE_CORE
+	nova.ultimate_center = Vector2(150, 0)
+	nova._update_ultimate(0.1)
+	if victim.knockback_velocity.x >= 0.0:
+		_fail("Nova's core should pull a nearby opponent toward it (velocity %s)" % victim.knockback_velocity)
+	nova.ultimate_phase = nova.ULTIMATE_NONE
+	nova.queue_free()
+	victim.queue_free()
 	await process_frame

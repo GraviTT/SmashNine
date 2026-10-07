@@ -1,6 +1,7 @@
 extends "res://characters/common/PlayerBase.gd"
 
 const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
+const VFX := preload("res://scripts/Vfx.gd")
 const COMBO_RESET_TIME := 0.46
 const DASH_HOLD_TIME := 0.13
 const DASH_SPEED := 760.0
@@ -247,6 +248,7 @@ func _ultimate_impact() -> void:
 			Vector2(130 * side, -14),
 			Vector2(ULTIMATE_WAVE_REACH * side, -10)
 		], ULTIMATE_WAVE_DAMAGE, 420, Vector2(side, -0.12), Color(1.0, 0.72, 0.18, 0.72), 0.24, 2.0)
+		VFX.spawn(get_parent(), "frey_ult_wave", global_position + Vector2(18 * side, 2), Vector2(side, 1.0))
 	_play_ultimate_release()
 	# Aftershock: a second, launching ring once the stun has landed.
 	var epoch := action_epoch
@@ -259,8 +261,10 @@ func _ultimate_impact() -> void:
 			Vector2(120 * side, -26),
 			Vector2(200 * side, -22)
 		], ULTIMATE_AFTERSHOCK_DAMAGE, 560, Vector2(0.5 * side, -1.0), Color(1.0, 0.86, 0.36, 0.7), 0.18, Vector2(260 * side, -720), 0.3)
+		VFX.spawn(get_parent(), "frey_ult_wave", global_position + Vector2(10 * side, 2), Vector2(0.85 * side, 1.45), false, 4, Color(1.0, 1.0, 0.8))
 
 func _play_ultimate_charge() -> void:
+	VFX.spawn(get_parent(), "frey_ult_charge", global_position, Vector2(1.3, 1.3))
 	body.color = Color(1.0, 0.92, 0.42)
 	var body_tween := body.create_tween()
 	body_tween.tween_property(body, "scale", Vector2(0.82, 1.16), 0.1)

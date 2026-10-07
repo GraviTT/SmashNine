@@ -4,6 +4,7 @@ extends "res://characters/common/PlayerBase.gd"
 ## shield that takes hits without knockback and throws them back, and six gem swords.
 ## Two air jumps come from RioData ("air_jumps").
 
+const VFX := preload("res://scripts/Vfx.gd")
 const COMBO_RESET_TIME := 0.4
 const BLINK_DISTANCE := 200.0
 const BLINK_HOLD := 0.06
@@ -20,8 +21,8 @@ const OVERDRIVE_FIRE_GAP := 0.07
 const OVERDRIVE_RADIUS := 58.0
 const OVERDRIVE_SPIN := 7.0
 const OVERDRIVE_AIM_RANGE := 720.0
-const OVERDRIVE_SWORD_DAMAGE := 9.0
-const OVERDRIVE_LAST_DAMAGE := 14.0
+const OVERDRIVE_SWORD_DAMAGE := 11.0
+const OVERDRIVE_LAST_DAMAGE := 18.0
 const MANA_COLOR := Color(0.45, 0.78, 1.0, 0.6)
 const MANA_WAVE_ART := "res://assets/art/effects/rio_mana_wave.png"
 const GEM_SWORD_ART := "res://assets/art/effects/rio_gem_sword.png"
@@ -41,6 +42,7 @@ var rune_absorbed_knockback := 0.0
 var rune_visual: Line2D
 var overdrive_swords: Array[Node2D] = []
 var overdrive_time := 0.0
+var overdrive_circle: AnimatedSprite2D
 
 func configure_character_sprite() -> void:
 	_configure_original_sheet("rio")
@@ -342,6 +344,7 @@ func _overdrive_start() -> void:
 		add_child(sword)
 		overdrive_swords.append(sword)
 	_update_overdrive_orbit(0.0)
+	overdrive_circle = VFX.spawn(self, "rio_ult_circle", Vector2(0, -36), Vector2(0.85, 0.85), true, -1, Color.WHITE, true)
 	if not await _wait_action(OVERDRIVE_ORBIT_TIME):
 		_clear_overdrive()
 		return
@@ -350,6 +353,7 @@ func _overdrive_start() -> void:
 		if not await _wait_action(OVERDRIVE_FIRE_GAP):
 			_clear_overdrive()
 			return
+	_clear_overdrive()
 
 func _make_gem_sword(color: Color) -> Node2D:
 	var sword := Polygon2D.new()
@@ -383,6 +387,8 @@ func _fire_gem_sword() -> void:
 	projectile.global_position = from
 	if not projectile.set_art(GEM_SWORD_ART, sword.color.lightened(0.2), 1.0):
 		projectile.rotation = direction.angle()
+	projectile.impact_vfx = "rio_ult_impact"
+	projectile.impact_tint = sword.color.lightened(0.3)
 	sword.queue_free()
 
 ## Held direction for a human; otherwise the nearest opponent in this realm; else facing.
@@ -406,6 +412,9 @@ func _overdrive_aim(from: Vector2) -> Vector2:
 	return Vector2(facing, 0)
 
 func _clear_overdrive() -> void:
+	if is_instance_valid(overdrive_circle):
+		overdrive_circle.queue_free()
+	overdrive_circle = null
 	for sword in overdrive_swords:
 		if is_instance_valid(sword):
 			sword.queue_free()

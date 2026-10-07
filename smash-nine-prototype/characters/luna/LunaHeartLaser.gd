@@ -1,6 +1,7 @@
 extends Area2D
 
 const HIT_INTERVAL := 0.22
+const VFX := preload("res://scripts/Vfx.gd")
 
 var source: Node
 var direction := Vector2.RIGHT
@@ -11,6 +12,9 @@ var knockback_per_tick := 95.0
 var beam_length := 560.0
 var beam_height := 112.0
 var target_cooldowns: Dictionary = {}
+## Original beam art: a tiled strip whose frame advances, plus the heart head at the far end.
+var beam_art: TextureRect
+var beam_frames: Array[Texture2D] = []
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var outer_visual: Polygon2D = $OuterVisual
@@ -46,6 +50,24 @@ func configure(new_source: Node, cast_direction: Vector2, beam_duration: float) 
 	outline.width = 5.0
 	outline.default_color = Color(0.52, 0.94, 1.0, 0.86)
 	outline.antialiased = true
+	beam_frames = VFX.frame_textures("luna_ult_laser")
+	if not beam_frames.is_empty():
+		var art_scale := beam_height / 96.0
+		beam_art = TextureRect.new()
+		beam_art.texture = beam_frames[0]
+		beam_art.stretch_mode = TextureRect.STRETCH_TILE
+		beam_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		beam_art.size = Vector2(beam_length, 96.0)
+		beam_art.scale = Vector2(1.0, art_scale)
+		beam_art.position = Vector2(-beam_length * 0.5, -48.0 * art_scale)
+		beam_art.material = CanvasItemMaterial.new()
+		beam_art.material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+		beam_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(beam_art)
+		VFX.spawn(self, "luna_ult_laser_head", Vector2(beam_length * 0.5, 0), Vector2(1.3, 1.3), true, 1, Color.WHITE, true)
+		outer_visual.visible = false
+		outline.visible = false
+		core_visual.color.a = 0.35
 	scale = Vector2(1.0, 0.14)
 	var tween := create_tween()
 	tween.tween_property(self, "scale", Vector2.ONE, minf(0.1, duration * 0.35))
@@ -58,6 +80,8 @@ func _physics_process(delta: float) -> void:
 	elapsed += delta
 	_update_position()
 	_update_target_cooldowns(delta)
+	if beam_art != null:
+		beam_art.texture = beam_frames[int(elapsed * VFX.fps("luna_ult_laser")) % beam_frames.size()]
 	var pulse := 0.9 + sin(elapsed * 34.0) * 0.1
 	outer_visual.modulate.a = 0.7 + pulse * 0.22
 	core_visual.scale.y = pulse

@@ -10,6 +10,10 @@ var elapsed := 0.0
 var hit_targets: Array[Node] = []
 var damage_type := "normal"
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const VFX := preload("res://scripts/Vfx.gd")
+## Effect strip played where this projectile hits (scripts/Vfx.gd name), tinted.
+var impact_vfx := ""
+var impact_tint := Color.WHITE
 
 @onready var shape: CollisionShape2D = $CollisionShape2D
 @onready var visual: ColorRect = $Visual
@@ -66,6 +70,8 @@ func _on_body_entered(body: Node) -> void:
 	if body.has_method("apply_hit"):
 		hit_targets.append(body)
 		body.apply_hit(source, damage, knockback, direction, damage_type)
+		if impact_vfx != "":
+			VFX.spawn(get_parent(), impact_vfx, global_position, Vector2(1.4, 1.4), false, 5, impact_tint)
 		queue_free()
 
 func _discard_orphaned_projectile() -> void:

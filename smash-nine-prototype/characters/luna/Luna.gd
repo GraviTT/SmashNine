@@ -2,6 +2,7 @@ extends "res://characters/common/PlayerBase.gd"
 
 const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
 const COMET_SCRIPT := preload("res://characters/luna/LunaComet.gd")
+const VFX := preload("res://scripts/Vfx.gd")
 const HEART_LASER_SCRIPT := preload("res://characters/luna/LunaHeartLaser.gd")
 
 const BRAVE_SHEET_ART := "res://assets/art/luna/luna_brave_sheet.png"
@@ -318,6 +319,7 @@ func _enter_transformation() -> void:
 	attack_lock_timer = minf(attack_lock_timer, 0.12)
 	_create_transformation_aura()
 	_play_star_bloom(Vector2(0, -34), 62.0, Color(1.0, 0.86, 0.32, 0.92), 0.22)
+	VFX.spawn(self, "luna_ult_transform", Vector2(0, -42), Vector2(1.4, 1.4), false, 5, Color.WHITE, true)
 	# The transformation itself bursts: everyone close is thrown up (added 2026-10-08).
 	_spawn_sweeping_launch_attack(Vector2(TRANSFORM_BURST_RADIUS * 2.0, TRANSFORM_BURST_RADIUS * 1.6), [Vector2(0, -40), Vector2(0, -42)], TRANSFORM_BURST_DAMAGE, 460, Vector2(0, -1), Color(1.0, 0.7, 0.9, 0.4), 0.16, Vector2(0, -560), 0.3)
 

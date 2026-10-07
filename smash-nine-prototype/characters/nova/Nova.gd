@@ -2,6 +2,7 @@ extends "res://characters/common/PlayerBase.gd"
 
 const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
 const GRAVITY_BURST_SCRIPT := preload("res://characters/nova/NovaGravityBurst.gd")
+const VFX := preload("res://scripts/Vfx.gd")
 const BODY_HITBOX_SCRIPT := preload("res://characters/nova/NovaBodyHitbox.gd")
 
 const MOMENTUM_START_SPEED := 170.0
@@ -10,6 +11,8 @@ const VECTOR_SHIFT_DURATION := 0.22
 const VECTOR_SHIFT_ACCELERATION := 5400.0
 const VECTOR_SHIFT_MAX_SPEED := 760.0
 const ULTIMATE_CORE_DISTANCE := 105.0
+const ULTIMATE_PULL_RADIUS := 230.0
+const ULTIMATE_PULL_STRENGTH := 240.0
 const ULTIMATE_MIN_ORBIT_RADIUS := 52.0
 const ULTIMATE_MAX_TUNING_RADIUS := 260.0
 const ULTIMATE_NEAR_ORBIT_SPEED := 1080.0
@@ -320,6 +323,8 @@ func _update_ultimate(delta: float) -> void:
 	if ultimate_phase == ULTIMATE_NONE:
 		return
 	ultimate_elapsed += delta
+	if ultimate_phase == ULTIMATE_CORE or ultimate_phase == ULTIMATE_ORBIT:
+		_pull_toward_core(delta)
 	if is_instance_valid(singularity_visual):
 		singularity_visual.rotation += delta * 4.5 * ultimate_orbit_sign
 	if ultimate_phase == ULTIMATE_ORBIT:
@@ -394,7 +399,17 @@ func _finish_ultimate_impact() -> void:
 	var radius := lerpf(124.0, 170.0, ultimate_launch_power)
 	_spawn_gravity_burst(radius, lerpf(34.0, 46.0, ultimate_launch_power), lerpf(700.0, 940.0, ultimate_launch_power), ultimate_launch_power, Color(0.48, 0.3, 0.92, 0.68), "ultimate")
 	_play_impact_flash(global_position + Vector2(0, -30), radius, Color(1.0, 0.62, 0.24, 0.88))
+	VFX.spawn(get_parent(), "nova_ult_burst", global_position + Vector2(0, -30), Vector2.ONE * (radius * 2.2 / 256.0), false, 6)
 	attack_lock_timer = maxf(attack_lock_timer, 0.48)
+
+## Event Horizon: while the core stands, nearby opponents are dragged toward it, so the
+## slingshot and its burst catch them (added 2026-10-08: the burst alone often missed).
+func _pull_toward_core(delta: float) -> void:
+	for target in get_tree().get_nodes_in_group("players"):
+		if target == self or target.is_defeated or target.realm_index != realm_index:
+			continue
+		if target.global_position.distance_to(ultimate_center) <= ULTIMATE_PULL_RADIUS:
+			target.apply_control_pull(ultimate_center, ULTIMATE_PULL_STRENGTH, delta, 0.15, false)
 
 func _spawn_ultimate_body_hitbox(radius: float, damage: float, knockback: float, lifetime: float, end_on_hit: bool, color: Color) -> void:
 	_clear_ultimate_body_hitbox()
@@ -486,7 +501,9 @@ func _create_singularity_visual() -> void:
 	singularity_visual.z_index = 6
 	get_parent().add_child(singularity_visual)
 	singularity_visual.global_position = ultimate_center + Vector2(0, -32)
+	var core_art := VFX.spawn(singularity_visual, "nova_ult_core", Vector2.ZERO, Vector2(1.1, 1.1), true, 0, Color.WHITE, true)
 	var core := Polygon2D.new()
+	core.visible = core_art == null
 	core.polygon = _make_star_points(28.0, 17.0)
 	core.color = Color(0.12, 0.06, 0.24, 0.94)
 	singularity_visual.add_child(core)
