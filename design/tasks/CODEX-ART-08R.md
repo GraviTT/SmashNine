@@ -28,3 +28,12 @@ Audit of the first pass (v1 sheets for comparison: edge 0, fringe 0):
 - Per sheet: idle frame 0 enlarged 4x with horizontal guide lines at the top of the head, the chin and the feet, and the measured head ratio (total / head).
 - Updated contact sheet (v1 at 2x, v2 at 1x, face, illustration). Update `reports/codex-art-08<a|b>/README.md` (Korean) with a "rework" section.
 - Commit, or update `reports/codex-art-08<a|b>/commit.ps1` (writable paths only; message ending `Co-Authored-By: Codex <noreply@openai.com>`).
+
+## Unit A first pass (lead audit, 14:43)
+
+| Sheet | edge_px | fringe_px | idle height | Lead's look |
+| --- | ---: | ---: | ---: | --- |
+| frey_sheet.png | 459 | 0 | 111 | head ≈ 45 px of ≈ 111 → about 2.5 heads, target 3 (100 px); short bars from neighbouring frames under the attack and shield rows |
+| nova_male_sheet.png | 102 | 0 | 93–97 | close to 2.5; clipped at cell edges |
+| nova_female_sheet.png | 556 | 13 | 93–95 | clipped at cell edges in most rows |
+| yuki_sheet.png | 686 | (4810) | 99–100 | the fringe count is mostly her red outfit, so it does not apply to Yuki: check the outline for halos by eye and report it; too tall for 88 |
