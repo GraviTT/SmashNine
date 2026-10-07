@@ -32,7 +32,7 @@ const KNOWN_CUT := {
 	"frey_sheet.png": ["r4c3"],
 	"luna_sheet.png": ["r4c3"],
 	"nova_female_sheet.png": ["r4c1", "r4c2"],
-	"rio_female_sheet.png": ["r4c0", "r4c1", "r4c2", "r4c3", "r5c1", "r5c2", "r5c3", "r5c4"],
+	"rio_female_sheet.png": ["r4c0", "r4c1", "r4c2", "r4c3"],
 }
 
 var failures: Array[String] = []
