@@ -1,5 +1,7 @@
 # Smash Nine Realms — agent guide
 
+("Smash Nine Realms" / SmashNine is a working title.)
+
 2D pixel platform-brawler battle royale prototype in Godot 4.7 (GDScript).
 Claude is the lead: it owns the product code, decides, fixes and merges.
 Codex runs as units (tester, analyst, builder) in its own clones and writes only the paths its task card allows.
@@ -66,6 +68,7 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | builder × 2 | `design/tasks/CODEX-ART-05.md` | `assets/art/{monsters,objects}` / `{effects,ui}`, `reports/codex-art-05{a,b}/` | done — merged `180d148`, `4186bb0` |
 | builder | `design/tasks/CODEX-ART-06.md` | `assets/art/luna/luna_brave_*`, `assets/art/ui/title_logo*`, `reports/codex-art-06/` | done — merged `a1150a7` |
 | builder | `design/tasks/CODEX-ART-07.md` | `assets/art/hazards/`, `reports/codex-art-07/` | done — merged `64a1df7` |
+| builder × 2 | `design/tasks/CODEX-ART-08.md` | `assets/art/{frey,nova,yuki}` / `{rio,luna}`, `tests/art_preview/hires_{a,b}/`, `reports/codex-art-08{a,b}/` | running |
 | analyst | `design/tasks/CODEX-ANALYST-03.md` | `tests/analysis/review03/`, `reports/codex-analyst-03/` | done — merged `e0af6bf`; P1 crystal hits fixed `30043dc` |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
