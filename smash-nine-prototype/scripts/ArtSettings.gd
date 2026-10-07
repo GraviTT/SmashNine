@@ -44,3 +44,18 @@ static func original_character_sheet(character_id: String, body := "", always :=
 		if ResourceLoader.exists(path):
 			return load(path) as Texture2D
 	return null
+
+## A sprite for right-facing effect art (projectiles) pointed along `direction`: art
+## aimed left is mirrored instead of turned upside down. Scale 2 matches the fighters.
+static func aimed_sprite(texture: Texture2D, direction: Vector2, art_scale := 2.0) -> Sprite2D:
+	var sprite := Sprite2D.new()
+	sprite.name = "ArtSprite"
+	sprite.texture = texture
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.scale = Vector2(art_scale, art_scale)
+	if direction.x < 0.0:
+		sprite.flip_h = true
+		sprite.rotation = (-direction).angle()
+	else:
+		sprite.rotation = direction.angle()
+	return sprite

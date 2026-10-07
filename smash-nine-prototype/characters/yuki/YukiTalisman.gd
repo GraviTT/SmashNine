@@ -1,5 +1,8 @@
 extends Area2D
 
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const TALISMAN_ART := "res://assets/art/effects/yuki_talisman.png"
+
 const WORLD_LAYER := 1
 const PLAYER_LAYER := 2
 const MONSTER_LAYER := 4
@@ -19,6 +22,7 @@ var hit_targets: Array[Node] = []
 
 var shape: CollisionShape2D
 var visual: ColorRect
+var art_sprite: Sprite2D
 
 func _ready() -> void:
 	add_to_group("yuki_talismans")
@@ -42,6 +46,12 @@ func configure(new_source: Node, size: Vector2, new_damage: float, new_knockback
 	_set_size(size)
 	visual.color = color
 	visual.rotation = direction.angle()
+	# Original talisman art while it flies; the burst keeps the coloured ward rect.
+	var art := ART_SETTINGS.original_texture(TALISMAN_ART)
+	if art != null:
+		art_sprite = ART_SETTINGS.aimed_sprite(art, direction, 2.0)
+		add_child(art_sprite)
+		visual.color.a = 0.0
 
 func _physics_process(delta: float) -> void:
 	elapsed += delta
@@ -83,6 +93,8 @@ func _begin_burst() -> void:
 	_set_size(burst_size)
 	visual.rotation = 0.0
 	visual.color = Color(0.68, 0.92, 1.0, 0.66)
+	if is_instance_valid(art_sprite):
+		art_sprite.visible = false
 	_hit_overlapping_bodies()
 
 func _set_size(size: Vector2) -> void:

@@ -74,6 +74,7 @@ const ORIGINAL_SHEET_ROWS := [["idle", 4, 7.0, true], ["walk", 6, 10.0, true], [
 const ORIGINAL_SHEET_STYLE := {"position": Vector2(0, -32), "scale": Vector2(2.0, 2.0), "filter": CanvasItem.TEXTURE_FILTER_NEAREST}
 ## Air jumps a character can ever hold (base + Sky Step cards).
 const MAX_AIR_JUMPS := 3
+const HIT_SPARK_ART := "res://assets/art/effects/hit_spark.png"
 
 var player_id := 0
 var character_id := "frey"
@@ -1428,8 +1429,23 @@ func _play_hit_feedback(damage: float, direction: Vector2, final_knockback: floa
 	number_tween.tween_callback(number.queue_free)
 
 func _spawn_hit_effect(hit_position: Vector2, damage: float, base_knockback: float) -> void:
-	var spark := ColorRect.new()
 	var spark_size := clampf(18.0 + damage * 1.35 + base_knockback * 0.035, 24.0, 56.0)
+	var spark_sheet := SHEET_ART.original_texture(HIT_SPARK_ART)
+	if spark_sheet != null:
+		# Original 4-frame burst (48 px cells), sized like the old spark.
+		var burst := AnimatedSprite2D.new()
+		var frames := SHEET_FRAMES.create_frames()
+		SHEET_FRAMES.add_strip(frames, &"burst", spark_sheet, Vector2i(48, 48), 0, 4, 44.0, false)
+		burst.sprite_frames = frames
+		burst.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		burst.scale = Vector2.ONE * (spark_size / 24.0)
+		burst.position = hit_position
+		burst.z_index = 4
+		get_parent().add_child(burst)
+		burst.animation_finished.connect(burst.queue_free)
+		burst.play(&"burst")
+		return
+	var spark := ColorRect.new()
 	spark.size = Vector2(spark_size, spark_size)
 	spark.position = hit_position - spark.size * 0.5
 	spark.color = Color(1.0, 0.88, 0.32, clampf(0.68 + base_knockback / 1600.0, 0.72, 0.92))

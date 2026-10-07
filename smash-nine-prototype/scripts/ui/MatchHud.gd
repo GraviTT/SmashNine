@@ -26,6 +26,7 @@ var minimap_labels: Dictionary = {}
 var card_panel: Control
 var card_title: Label
 var card_labels: Array[Label] = []
+var card_icons: Array[TextureRect] = []
 var overlay: Control
 var overlay_title: Label
 var overlay_body: Label
@@ -184,9 +185,16 @@ func _build_card_panel() -> void:
 		back.color = CARD_COLOR
 		back.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		card_panel.add_child(back)
+		var icon := TextureRect.new()
+		icon.position = back.position + Vector2(8, 24)
+		icon.size = Vector2(48, 48)
+		icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card_panel.add_child(icon)
+		card_icons.append(icon)
 		var label := Label.new()
-		label.position = back.position + Vector2(10, 8)
-		label.size = back.size - Vector2(20, 16)
+		label.position = back.position + Vector2(64, 8)
+		label.size = back.size - Vector2(72, 16)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.add_theme_font_size_override("font_size", 15)
 		card_panel.add_child(label)
@@ -200,8 +208,11 @@ func show_card_offer(cards: Array, seconds_left: float) -> void:
 		if index < cards.size():
 			var card: Dictionary = cards[index]
 			label.text = "[%d] %s\n%s\n(%s)" % [index + 1, card.title, card.text, card.kind]
+			# Original card icon (assets/art/ui/card_<id>.png); none in the prototype style.
+			card_icons[index].texture = ART_SETTINGS.original_texture("res://assets/art/ui/card_%s.png" % card.id)
 		else:
 			label.text = ""
+			card_icons[index].texture = null
 
 func hide_card_offer() -> void:
 	card_panel.visible = false

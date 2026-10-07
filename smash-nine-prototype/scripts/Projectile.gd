@@ -9,6 +9,7 @@ var lifetime := 1.25
 var elapsed := 0.0
 var hit_targets: Array[Node] = []
 var damage_type := "normal"
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 
 @onready var shape: CollisionShape2D = $CollisionShape2D
 @onready var visual: ColorRect = $Visual
@@ -32,6 +33,18 @@ func configure(new_source: Node, size: Vector2, new_damage: float, new_knockback
 	visual.size = size
 	visual.position = -size * 0.5
 	visual.color = color
+
+## Original art in place of the coloured rect (the hitbox stays). Returns false when the
+## art is missing or the prototype style is on.
+func set_art(path: String, tint := Color.WHITE, art_scale := 2.0) -> bool:
+	var texture := ART_SETTINGS.original_texture(path)
+	if texture == null:
+		return false
+	var sprite := ART_SETTINGS.aimed_sprite(texture, direction, art_scale)
+	sprite.modulate = tint
+	add_child(sprite)
+	visual.visible = false
+	return true
 
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(source):

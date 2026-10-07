@@ -21,6 +21,8 @@ const OVERDRIVE_RADIUS := 58.0
 const OVERDRIVE_SPIN := 7.0
 const OVERDRIVE_AIM_RANGE := 720.0
 const MANA_COLOR := Color(0.45, 0.78, 1.0, 0.6)
+const MANA_WAVE_ART := "res://assets/art/effects/rio_mana_wave.png"
+const GEM_SWORD_ART := "res://assets/art/effects/rio_gem_sword.png"
 const RUNE_COLOR := Color(0.35, 0.72, 1.0, 0.9)
 const GEM_COLORS: Array[Color] = [
 	Color(1.0, 0.35, 0.45), Color(1.0, 0.75, 0.3), Color(0.5, 1.0, 0.5),
@@ -143,7 +145,8 @@ func _mana_wave() -> void:
 		Vector2(62 * facing, -34),
 		Vector2(100 * facing, -16)
 	], 7, 260, Vector2(facing, -0.14), Color(0.55, 0.85, 1.0, 0.66), 0.1)
-	_spawn_projectile(Vector2(24, 54), 6, 300, Vector2(facing, 0), Color(0.5, 0.85, 1.0, 0.7), 640.0, 0.24)
+	var wave := _spawn_projectile(Vector2(24, 54), 6, 300, Vector2(facing, 0), Color(0.5, 0.85, 1.0, 0.7), 640.0, 0.24)
+	wave.set_art(MANA_WAVE_ART, Color.WHITE, 1.0)
 
 func _rising_slash(airborne: bool) -> void:
 	velocity.y = minf(velocity.y, -300.0 if airborne else -140.0)
@@ -373,9 +376,10 @@ func _fire_gem_sword() -> void:
 		return
 	var from := sword.global_position
 	var direction := _overdrive_aim(from)
-	var projectile := _spawn_projectile(Vector2(44, 12), 6, 320, direction, sword.color, 980.0, 0.62)
+	var projectile := _spawn_projectile(Vector2(28, 28), 6, 320, direction, sword.color, 980.0, 0.62)
 	projectile.global_position = from
-	projectile.rotation = direction.angle()
+	if not projectile.set_art(GEM_SWORD_ART, sword.color.lightened(0.2), 1.0):
+		projectile.rotation = direction.angle()
 	sword.queue_free()
 
 ## Held direction for a human; otherwise the nearest opponent in this realm; else facing.
