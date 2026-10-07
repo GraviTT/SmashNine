@@ -2,12 +2,13 @@ extends SceneTree
 ## Visual check (needs a window, not --headless): saves PNGs of the start screen,
 ## a fight, a soul card offer, a collapse warning, the open center, sudden death
 ## and the result screen. Match time is skipped forward through MatchDirector.
-## Usage: godot --path . -s tests/capture_screens.gd -- --out=../reports/screens-m1 [--art=prototype]
+## Usage: godot --path . -s tests/capture_screens.gd -- --out=../reports/screens-m1 [--art=prototype] [--pick=rio] [--body=female]
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 
 var out_dir := ""
+var pick := "frey"
 var main: Node
 
 func _initialize() -> void:
@@ -15,6 +16,10 @@ func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--art="):
 			ART_SETTINGS.style = arg.get_slice("=", 1)
+		if arg.begins_with("--pick="):
+			pick = arg.get_slice("=", 1)
+		if arg.begins_with("--body="):
+			main_script().human_body = arg.get_slice("=", 1)
 		if arg.begins_with("--out="):
 			out_dir = ProjectSettings.globalize_path("res://").path_join(arg.get_slice("=", 1))
 	DirAccess.make_dir_recursive_absolute(out_dir)
@@ -26,7 +31,7 @@ func _run() -> void:
 	root.add_child(main)
 	await _settle(10)
 	await _shot("01_start_screen")
-	main._start_match("frey")
+	main._start_match(pick)
 	await _settle(150)
 	await _shot("02_corner_fight")
 	var human: Node = main.players[0]
@@ -66,3 +71,6 @@ func _shot(shot_name: String) -> void:
 	var path := out_dir.path_join("%s.png" % shot_name)
 	image.save_png(path)
 	print("saved ", path)
+
+func main_script() -> Script:
+	return load("res://scripts/Main.gd")
