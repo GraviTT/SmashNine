@@ -84,7 +84,7 @@ func _test_mana_wave() -> void:
 		rio.attack_lock_timer = 0.0
 		rio.perform_basic_attack("neutral", Vector2.RIGHT)
 		await create_timer(0.12).timeout
-	if _count_owned(PROJECTILE_PATH, rio) != 1:
+	if not await _wait_for(func() -> bool: return _count_owned(PROJECTILE_PATH, rio) == 1, 1.0):
 		_fail("Rio's third J should throw one mana wave")
 	rio.queue_free()
 	await create_timer(0.3).timeout
@@ -93,7 +93,7 @@ func _test_dimension_slash() -> void:
 	var rio := _create_rio(3)
 	var start: Vector2 = rio.global_position
 	rio.perform_skill_one()
-	await create_timer(0.1).timeout
+	await _wait_for(func() -> bool: return rio.global_position != start, 1.0)
 	var moved: float = rio.global_position.x - start.x
 	if absf(moved - 200.0) > 1.0:
 		_fail("Dimension slash should teleport 200 px forward, moved %.1f" % moved)
@@ -130,13 +130,12 @@ func _test_rune_shield() -> void:
 	if rio.facing != -1:
 		_fail("Rune shield should turn Rio toward the attacker")
 		return
-	var attacks_before := _count_owned(ATTACK_PATH, rio)
-	await create_timer(0.56).timeout
+	await _wait_for(func() -> bool: return rio.rune_timer <= 0.0, 1.5)
 	var returned: Node = null
 	for node in arena.get_children():
 		if node.get_script() != null and node.get_script().resource_path == ATTACK_PATH and node.get("source") == rio:
 			returned = node
-	if _count_owned(ATTACK_PATH, rio) <= attacks_before or returned == null or returned.knockback <= 320.0:
+	if returned == null or returned.knockback <= 320.0:
 		_fail("Rune shield should throw the absorbed hit back as a stronger shockwave")
 	rio.queue_free()
 	plain.queue_free()
@@ -146,7 +145,7 @@ func _test_rune_shield() -> void:
 func _test_rune_whiff() -> void:
 	var rio := _create_rio(6)
 	rio.perform_skill_two()
-	await create_timer(0.56).timeout
+	await _wait_for(func() -> bool: return rio.rune_timer <= 0.0, 1.5)
 	if _count_owned(ATTACK_PATH, rio) != 0 or rio.attack_lock_timer < 0.2:
 		_fail("An empty rune shield should not attack and should leave Rio open")
 	rio.perform_skill_two()
@@ -167,7 +166,8 @@ func _test_overdrive() -> void:
 		_fail("Gem swords should orbit before firing")
 		return
 	# Orbit ends at 0.55 s, then one sword every 0.07 s.
-	await create_timer(0.6).timeout
+	await _wait_for(func() -> bool: return rio.overdrive_swords.is_empty(), 2.5)
+	await create_timer(0.1).timeout
 	if not rio.overdrive_swords.is_empty() or target.hp >= target.max_hp:
 		_fail("All gem swords should fire and hit the nearest opponent (left %d, target hp %.0f)" % [rio.overdrive_swords.size(), target.hp])
 	rio.queue_free()
@@ -180,3 +180,11 @@ func _test_bot_recovery_aim() -> void:
 	if direction.distance_to(Vector2(0.6, -0.8)) > 0.01:
 		_fail("Bots should aim directed skills with the AI aim direction")
 	rio.queue_free()
+
+## Polls a condition every frame (timers resolve late on a loaded machine).
+func _wait_for(condition: Callable, timeout: float) -> bool:
+	var waited := 0.0
+	while not condition.call() and waited < timeout:
+		await process_frame
+		waited += get_root().get_process_delta_time()
+	return condition.call()

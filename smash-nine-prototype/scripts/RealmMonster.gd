@@ -14,6 +14,14 @@ const PLAYER_LAYER := 2
 const MONSTER_LAYER := 4
 const ATTACK_SCRIPT := preload("res://scripts/Attack.gd")
 const PROJECTILE_SCRIPT := preload("res://scripts/Projectile.gd")
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const FRAMES := preload("res://characters/common/CharacterAnimation.gd")
+const FIREBALL_ART := "res://assets/art/monsters/ember_fireball.png"
+## Original sheets (CODEX-ART-05): 6x4 cells of 64 px, rows idle 4 / walk 6 / attack 4 / hurt 1,
+## feet at y=48. Drawn at 1.5x so monsters stay smaller than fighters.
+const ART_ROWS := [["idle", 4, 6.0, true], ["walk", 6, 10.0, true], ["attack", 4, 12.0, false], ["hurt", 1, 1.0, false]]
+const ART_SCALE := 1.5
+const ATTACK_ANIMATION_TIME := 0.33
 
 var monster_type := "mossling"
 var display_name := "Mossling"
@@ -38,6 +46,8 @@ var wander_direction := 0.0
 var attack_timer := 0.0
 var hitstun_timer := 0.0
 var knockback_velocity := Vector2.ZERO
+var art_sprite: AnimatedSprite2D
+var attack_animation_timer := 0.0
 var is_realm_active := true
 
 var body_visual: ColorRect
@@ -92,7 +102,11 @@ func _build_body() -> void:
 	body_visual.pivot_offset = shape.size * 0.5
 	add_child(body_visual)
 
-	if monster_type == "mossling":
+	art_sprite = _build_art_sprite()
+	if art_sprite != null:
+		body_visual.visible = false
+		add_child(art_sprite)
+	elif monster_type == "mossling":
 		var cap := ColorRect.new()
 		cap.size = Vector2(50, 14)
 		cap.position = Vector2(-25, -50)
@@ -149,6 +163,39 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	velocity -= knockback_velocity
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1050.0 * delta)
+	_update_art(delta)
+
+func _build_art_sprite() -> AnimatedSprite2D:
+	var sheet := ART_SETTINGS.original_texture("res://assets/art/monsters/%s_sheet.png" % monster_type)
+	if sheet == null:
+		return null
+	var frames := FRAMES.create_frames()
+	for row in ART_ROWS.size():
+		var spec: Array = ART_ROWS[row]
+		FRAMES.add_grid(frames, StringName(spec[0]), sheet, Vector2i(64, 64), 6, row * 6, int(spec[1]), float(spec[2]), bool(spec[3]))
+	var sprite := AnimatedSprite2D.new()
+	sprite.name = "ArtSprite"
+	sprite.sprite_frames = frames
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.scale = Vector2(ART_SCALE, ART_SCALE)
+	sprite.position = Vector2(0, -16.0 * ART_SCALE)
+	sprite.play(&"idle")
+	return sprite
+
+func _update_art(delta: float) -> void:
+	if art_sprite == null:
+		return
+	attack_animation_timer = maxf(attack_animation_timer - delta, 0.0)
+	art_sprite.flip_h = facing < 0
+	var animation := &"idle"
+	if hitstun_timer > 0.0:
+		animation = &"hurt"
+	elif attack_animation_timer > 0.0:
+		animation = &"attack"
+	elif absf(velocity.x) > 15.0:
+		animation = &"walk"
+	if art_sprite.animation != animation:
+		art_sprite.play(animation)
 
 func _update_behavior(delta: float) -> void:
 	if state == State.NEUTRAL:
@@ -228,6 +275,7 @@ func _spawn_melee_attack() -> void:
 	get_parent().add_child(attack)
 	attack.global_position = global_position
 	attack.configure(self, Vector2(56, 42), Vector2(42 * facing, -28), attack_damage, MELEE_KNOCKBACK, Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
+	attack_animation_timer = ATTACK_ANIMATION_TIME
 
 func _spawn_projectile(direction: Vector2) -> void:
 	var projectile := Area2D.new()
@@ -243,6 +291,8 @@ func _spawn_projectile(direction: Vector2) -> void:
 	get_parent().add_child(projectile)
 	projectile.global_position = global_position + Vector2(32 * facing, -34)
 	projectile.configure(self, Vector2(24, 18), attack_damage, PROJECTILE_KNOCKBACK, direction, Color(1.0, 0.42, 0.12, 0.82), 390.0, 1.35)
+	projectile.set_art(FIREBALL_ART, Color.WHITE, 1.5)
+	attack_animation_timer = ATTACK_ANIMATION_TIME
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := "normal") -> bool:
 	if state == State.DEFEATED:
@@ -316,6 +366,10 @@ func _die(attacker: Node) -> void:
 	queue_free()
 
 func _flash_hit() -> void:
+	if art_sprite != null:
+		art_sprite.modulate = Color(2.2, 2.2, 2.2)
+		art_sprite.create_tween().tween_property(art_sprite, "modulate", Color.WHITE, 0.1)
+		return
 	if not is_instance_valid(body_visual):
 		return
 	body_visual.color = Color.WHITE
