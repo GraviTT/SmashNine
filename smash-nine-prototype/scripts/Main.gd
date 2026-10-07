@@ -4,6 +4,7 @@ extends Node2D
 ## Bots call get_ai_* / move_ai_through_portal / get_realm_state on their parent.
 
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const REALM_LAYOUT_SCRIPT := preload("res://scripts/realms/RealmLayout.gd")
 const REALM_WORLD_SCRIPT := preload("res://scripts/realms/RealmWorld.gd")
@@ -183,6 +184,10 @@ func _handle_global_input() -> bool:
 			if Input.is_action_just_pressed(CHOOSE_ACTIONS[index]):
 				_start_match(ids[index])
 				return false
+		if Input.is_action_just_pressed("toggle_art"):
+			ART_SETTINGS.toggle()
+			get_tree().reload_current_scene()
+			return true
 		if Input.is_action_just_pressed("watch_bots"):
 			bots_only = true
 			_start_match("")

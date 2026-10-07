@@ -5,6 +5,7 @@ extends Node2D
 
 const REALM_BACKDROP_SCRIPT := preload("res://scripts/RealmBackdrop.gd")
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const WORLD_LAYER := 1
 const PLATFORM_MAIN := "main"
 const PLATFORM_SUB := "sub"
@@ -51,7 +52,7 @@ func refresh_dynamic(state_of: Callable, is_warning: Callable) -> void:
 		if state == "stable" or state == "warning":
 			for portal in layout.get_portals(i, state_of):
 				var warned: bool = is_warning.call(portal.source) or is_warning.call(portal.destination)
-				_create_portal_visual(dynamic, portal.layout.position, portal.layout.label, portal.destination, warned)
+				_create_portal_visual(dynamic, portal.layout.position, portal.layout.label, portal.destination, portal.source, warned)
 
 ## Shows the deadly zones outside [safe_left, safe_right] (world x) in a realm; pass an empty band to hide.
 func set_hazard_band(realm_index: int, safe_left: float, safe_right: float) -> void:
@@ -98,6 +99,7 @@ func _build_terrain(parent: Node2D, realm_index: int) -> void:
 	backdrop.position = origin
 	parent.add_child(backdrop)
 	backdrop.configure(layout.get_size(realm_index), layout.get_tile_size(realm_index), str(map.theme), map.background, map.accent, BACKDROP_MARGIN)
+	_add_painted_backdrop(parent, realm_index, backdrop)
 
 	var decor := _get_decor(str(map.theme))
 	for tile_offset in layout.tile_offsets(realm_index):
@@ -106,7 +108,59 @@ func _build_terrain(parent: Node2D, realm_index: int) -> void:
 			var concept_tags: Array[String] = []
 			for tag in platform.concept_tags:
 				concept_tags.append(tag)
-			_create_platform(parent, origin + tile_offset + platform.center, platform.size, platform.color, platform.role, concept_tags, map.accent, decor)
+			var body := _create_platform(parent, origin + tile_offset + platform.center, platform.size, platform.color, platform.role, concept_tags, map.accent, decor)
+			_paint_platform(body, realm_index, platform.role, platform.size)
+
+## Original art (ArtSettings): bg_far + bg_mid stretched over the realm in front of the
+## procedural backdrop, which stays as the fallback and fills the margin around it.
+func _add_painted_backdrop(parent: Node2D, realm_index: int, backdrop: Node2D) -> void:
+	var realm_size: Vector2 = layout.get_size(realm_index)
+	var layers := 0
+	for layer in ["bg_far", "bg_mid"]:
+		var texture := _realm_art(realm_index, layer)
+		if texture == null:
+			continue
+		var rect := TextureRect.new()
+		rect.name = "Painted_%s" % layer
+		rect.texture = texture
+		rect.position = layout.get_origin(realm_index)
+		rect.size = realm_size
+		rect.stretch_mode = TextureRect.STRETCH_SCALE
+		rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		rect.z_index = -19 + layers
+		rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		parent.add_child(rect)
+		layers += 1
+	if layers > 0:
+		backdrop.set_meta("painted_over", true)
+
+## Original art for a platform: a 3-slice strip (caps + tiled middle) replaces the coloured
+## rectangles but keeps the same collision body.
+func _paint_platform(body: Node2D, realm_index: int, role: String, size: Vector2) -> void:
+	var texture := _realm_art(realm_index, "platform_main" if role == PLATFORM_MAIN else "platform_sub")
+	if texture == null:
+		return
+	for child in body.get_children():
+		if child is CanvasItem:
+			child.visible = false
+	var cap := int(layout.get_realm(realm_index).art.get("cap", 16))
+	var strip := NinePatchRect.new()
+	strip.name = "PaintedPlatform"
+	strip.texture = texture
+	strip.patch_margin_left = cap
+	strip.patch_margin_right = cap
+	strip.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT
+	strip.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	strip.position = -size * 0.5
+	strip.size = size
+	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	body.add_child(strip)
+
+func _realm_art(realm_index: int, art_name: String) -> Texture2D:
+	var art: Dictionary = layout.get_realm(realm_index).get("art", {})
+	if art.is_empty():
+		return null
+	return ART_SETTINGS.original_texture("%s/%s.png" % [art.dir, art_name])
 
 func _get_decor(theme: String) -> String:
 	match theme:
@@ -156,21 +210,34 @@ func _create_state_overlay(parent: Node2D, realm_index: int, state: String) -> v
 	label.text = "SEALED" if state == "locked" else "REALM COLLAPSED"
 	overlay_root.add_child(label)
 
-func _create_portal_visual(parent: Node2D, center: Vector2, label_text: String, destination_index: int, warned: bool) -> void:
+func _create_portal_visual(parent: Node2D, center: Vector2, label_text: String, destination_index: int, source_index: int, warned: bool) -> void:
 	var realm: Dictionary = layout.get_realm(destination_index)
-	var frame := ColorRect.new()
-	frame.size = REALM_LAYOUT.PORTAL_SIZE
-	frame.position = center - REALM_LAYOUT.PORTAL_SIZE * 0.5
-	frame.color = Color(realm.accent.r, realm.accent.g, realm.accent.b, 0.26)
-	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	parent.add_child(frame)
+	var painted := _realm_art(source_index, "portal")
+	if painted != null:
+		# Original art: the portal sprite tinted toward the destination realm's colour.
+		var sprite := TextureRect.new()
+		sprite.texture = painted
+		sprite.size = REALM_LAYOUT.PORTAL_SIZE
+		sprite.position = center - REALM_LAYOUT.PORTAL_SIZE * 0.5
+		sprite.stretch_mode = TextureRect.STRETCH_SCALE
+		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		sprite.modulate = Color.WHITE.lerp(realm.accent, 0.35)
+		sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		parent.add_child(sprite)
+	else:
+		var frame := ColorRect.new()
+		frame.size = REALM_LAYOUT.PORTAL_SIZE
+		frame.position = center - REALM_LAYOUT.PORTAL_SIZE * 0.5
+		frame.color = Color(realm.accent.r, realm.accent.g, realm.accent.b, 0.26)
+		frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		parent.add_child(frame)
 
-	var core := ColorRect.new()
-	core.size = Vector2(46, 46)
-	core.position = center - core.size * 0.5
-	core.color = Color(realm.accent.r, realm.accent.g, realm.accent.b, 0.62)
-	core.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	parent.add_child(core)
+		var core := ColorRect.new()
+		core.size = Vector2(46, 46)
+		core.position = center - core.size * 0.5
+		core.color = Color(realm.accent.r, realm.accent.g, realm.accent.b, 0.62)
+		core.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		parent.add_child(core)
 
 	var label := Label.new()
 	label.position = center + Vector2(-80, -78)
@@ -190,7 +257,7 @@ func _create_portal_visual(parent: Node2D, center: Vector2, label_text: String, 
 		parent.add_child(countdown)
 		countdown_displays.append({"label": countdown, "kind": "portal"})
 
-func _create_platform(parent: Node2D, center: Vector2, size: Vector2, color: Color, role: String, concept_tags: Array[String], accent: Color, decor: String) -> void:
+func _create_platform(parent: Node2D, center: Vector2, size: Vector2, color: Color, role: String, concept_tags: Array[String], accent: Color, decor: String) -> StaticBody2D:
 	var body := StaticBody2D.new()
 	body.name = "MainPlatform" if role == PLATFORM_MAIN else "SubPlatform"
 	body.collision_layer = WORLD_LAYER
@@ -225,6 +292,7 @@ func _create_platform(parent: Node2D, center: Vector2, size: Vector2, color: Col
 	body.add_child(edge)
 	_add_platform_details(body, size, color, accent, decor)
 	parent.add_child(body)
+	return body
 
 func _add_platform_details(body: Node2D, size: Vector2, base_color: Color, accent: Color, decor: String) -> void:
 	var segment_count := clampi(int(size.x / 78.0), 2, 12)

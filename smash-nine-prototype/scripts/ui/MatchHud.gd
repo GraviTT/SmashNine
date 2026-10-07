@@ -2,6 +2,7 @@ extends CanvasLayer
 ## In-match overlay: phase clock, survivors, souls, 3x3 realm minimap, soul card
 ## offer, announcement line, debug panel (F3), and the start / result screens.
 
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const ART_CREDITS := "Prototype character art: Viking Adventure by FerDDN & Jose Maria Costa  /  Purple Mage by Foozle (CC0)  /  Free Platformer Girl by Franco Giachetti, LudicArts.com (CC BY 3.0)  /  Action Hero by Printer Not Found (CC0)"
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug"
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
@@ -253,6 +254,7 @@ func show_start_screen(characters: Array[Dictionary]) -> void:
 		lines.append("[%d]  %s  -  %s" % [index + 1, data.name, data.role])
 	lines.append("")
 	lines.append("[B]  Watch a bots-only match")
+	lines.append("[F2]  Art: %s  (switch)" % ART_SETTINGS.label())
 	lines.append("")
 	lines.append(CONTROLS_HINT)
 	_set_match_hud_visible(false)
