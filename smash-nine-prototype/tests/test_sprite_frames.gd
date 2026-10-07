@@ -19,21 +19,17 @@ const SHEETS := [
 	"res://assets/art/rio/rio_male_sheet.png", "res://assets/art/rio/rio_female_sheet.png",
 ]
 ## Straight edges that are in the source art itself (re-extracting the pose whole from its
-## source adds nothing): shield rims, aura rings, a slash tip.
+## source adds nothing): shield rims, aura rings, a slash tip, Luna's hair edge.
 const SOURCE_EDGES := {
 	"frey_sheet.png": ["r0c2", "r5c0", "r5c1", "r5c2", "r5c4"],
+	"luna_sheet.png": ["r4c3"],
 	"luna_brave_sheet.png": ["r4c3"],
 	"nova_male_sheet.png": ["r5c1", "r5c2", "r5c3", "r5c4"],
 	"nova_female_sheet.png": ["r2c0", "r5c0", "r5c2", "r5c3"],
 	"rio_male_sheet.png": ["r4c1"],
 }
-## Still cut: these poses overlap their neighbours in the generated source (CODEX-ART-12).
-const KNOWN_CUT := {
-	"frey_sheet.png": ["r4c3"],
-	"luna_sheet.png": ["r4c3"],
-	"nova_female_sheet.png": ["r4c1", "r4c2"],
-	"rio_female_sheet.png": ["r4c0", "r4c1", "r4c2", "r4c3"],
-}
+## Still cut (none since CODEX-ART-12 round 2, 2026-10-08). A frame listed here may look cut.
+const KNOWN_CUT := {}
 
 var failures: Array[String] = []
 
