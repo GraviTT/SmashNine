@@ -13,6 +13,7 @@ const MATCH_DIRECTOR_SCRIPT := preload("res://scripts/match/MatchDirector.gd")
 const SOUL_GROWTH_SCRIPT := preload("res://scripts/match/SoulGrowth.gd")
 const MATCH_HUD_SCRIPT := preload("res://scripts/ui/MatchHud.gd")
 const REALM_MONSTER_SPAWNER_SCRIPT := preload("res://scripts/RealmMonsterSpawner.gd")
+const SOUL_CRYSTAL_SPAWNER_SCRIPT := preload("res://scripts/SoulCrystalSpawner.gd")
 const CENTRAL_REALM_INDEX := REALM_LAYOUT_SCRIPT.CENTRAL_REALM_INDEX
 const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
@@ -42,6 +43,7 @@ var hazards: REALM_HAZARDS_SCRIPT
 var hud: MATCH_HUD_SCRIPT
 var camera: Camera2D
 var realm_monster_spawner: Node
+var soul_crystal_spawner: Node
 var characters := CHARACTER_REGISTRY.get_characters()
 
 var players: Array[Node] = []
@@ -101,6 +103,11 @@ func _create_realm_monster_spawner() -> void:
 	realm_monster_spawner.set_script(REALM_MONSTER_SPAWNER_SCRIPT)
 	add_child(realm_monster_spawner)
 	realm_monster_spawner.configure(Callable(layout, "get_spawn_points"), Callable(director, "get_playable_indices"))
+	soul_crystal_spawner = Node.new()
+	soul_crystal_spawner.name = "SoulCrystalSpawner"
+	soul_crystal_spawner.set_script(SOUL_CRYSTAL_SPAWNER_SCRIPT)
+	add_child(soul_crystal_spawner)
+	soul_crystal_spawner.configure(Callable(layout, "get_spawn_points"), Callable(director, "get_playable_indices"), match_seed)
 
 func _create_camera() -> void:
 	camera = Camera2D.new()
@@ -147,6 +154,7 @@ func _start_match(human_character_id: String) -> void:
 	hud.hide_overlay()
 	hud.show_message(MATCH_HUD_SCRIPT.CONTROLS_HINT)
 	realm_monster_spawner.sync_playable_realms(director.get_playable_indices())
+	soul_crystal_spawner.sync_playable_realms(director.get_playable_indices())
 	_spawn_players(human_character_id)
 	_set_map(players[0].realm_index)
 
@@ -235,6 +243,7 @@ func get_winner() -> Node:
 func _on_realm_state_changed(_realm_index: int, _state: String) -> void:
 	world.refresh_dynamic(Callable(director, "get_state"), Callable(director, "is_warning"))
 	realm_monster_spawner.sync_playable_realms(director.get_playable_indices())
+	soul_crystal_spawner.sync_playable_realms(director.get_playable_indices())
 	active_portals = _get_portals_for_realm(current_map_index)
 	hud.rebuild_minimap(layout, director, current_map_index)
 	_sync_combatant_visibility()
@@ -311,7 +320,9 @@ func _spawn_players(human_character_id: String) -> void:
 		start_realms.append_array(layout.get_edge_indices())
 	start_realms.shuffle()
 	var used_points: Dictionary = {}
-	var first_id := maxi(ids.find(human_character_id), 0)
+	# Bots-only matches rotate the roster by seed, so with five characters and eight seats
+	# every character gets the double seat across seeds.
+	var first_id := maxi(ids.find(human_character_id), 0) if human_character_id != "" else posmod(match_seed, ids.size())
 	for i in player_count:
 		var slot := (i / 2) % start_realms.size()
 		var seat := i % 2

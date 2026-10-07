@@ -125,7 +125,7 @@ func _mana_slash_one() -> void:
 		Vector2(12 * facing, -40),
 		Vector2(52 * facing, -34),
 		Vector2(90 * facing, -26)
-	], 6, 200, Vector2(facing, -0.06), MANA_COLOR, 0.075)
+	], 7, 200, Vector2(facing, -0.06), MANA_COLOR, 0.075)
 
 func _mana_slash_two() -> void:
 	velocity.x += facing * 100.0
@@ -133,7 +133,7 @@ func _mana_slash_two() -> void:
 		Vector2(10 * facing, -22),
 		Vector2(54 * facing, -34),
 		Vector2(94 * facing, -46)
-	], 7, 230, Vector2(facing, -0.12), MANA_COLOR, 0.08)
+	], 8, 230, Vector2(facing, -0.12), MANA_COLOR, 0.08)
 
 ## Third swing: a short slash plus a mana wave that flies about 150 px.
 func _mana_wave() -> void:
@@ -142,8 +142,8 @@ func _mana_wave() -> void:
 		Vector2(16 * facing, -50),
 		Vector2(62 * facing, -34),
 		Vector2(100 * facing, -16)
-	], 6, 260, Vector2(facing, -0.14), Color(0.55, 0.85, 1.0, 0.66), 0.1)
-	_spawn_projectile(Vector2(24, 54), 5, 300, Vector2(facing, 0), Color(0.5, 0.85, 1.0, 0.7), 640.0, 0.24)
+	], 7, 260, Vector2(facing, -0.14), Color(0.55, 0.85, 1.0, 0.66), 0.1)
+	_spawn_projectile(Vector2(24, 54), 6, 300, Vector2(facing, 0), Color(0.5, 0.85, 1.0, 0.7), 640.0, 0.24)
 
 func _rising_slash(airborne: bool) -> void:
 	velocity.y = minf(velocity.y, -300.0 if airborne else -140.0)
@@ -243,7 +243,7 @@ func _dimension_slash(direction: Vector2) -> void:
 		back + Vector2(0, -34),
 		back * 0.5 + Vector2(0, -34),
 		Vector2(0, -34)
-	], 9, 340, Vector2(direction.x, direction.y - 0.15), Color(0.62, 0.55, 1.0, 0.7), 0.08)
+	], 10, 340, Vector2(direction.x, direction.y - 0.15), Color(0.62, 0.55, 1.0, 0.7), 0.08)
 	_play_blink_trail(start, global_position)
 
 # --- L: rune shield ---

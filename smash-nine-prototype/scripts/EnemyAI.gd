@@ -63,7 +63,7 @@ const COMBAT_PROFILES := {
 	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false},
 	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
 	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true},
-	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true}
+	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true}
 }
 const BUSH_NOTICE_RANGE := 140.0
 const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
@@ -447,7 +447,14 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 	else:
 		attack_name = "skill_2"
 	if attack_name == "skill_1" and not _mobility_skill_is_safe(player):
-		return "basic" if distance_x <= 195.0 else "skill_2"
+		attack_name = "basic" if distance_x <= 195.0 else "skill_2"
+	# A counter skill (Rio's rune shield) only when the target is swinging right now.
+	if bool(profile.get("reactive_skill_2", false)):
+		var target_swinging: bool = is_instance_valid(target) and float(target.get("attack_lock_timer") if target.get("attack_lock_timer") != null else 0.0) > 0.0
+		if attack_name == "skill_2" and not target_swinging:
+			attack_name = "basic"
+		elif target_swinging and distance_x < 150.0 and randf() < 0.45:
+			attack_name = "skill_2"
 	return attack_name
 
 func _mobility_skill_is_safe(player) -> bool:
@@ -678,6 +685,18 @@ func _find_target(player) -> Node:
 		if score < best_score:
 			best_score = score
 			best = candidate
+	# Soul crystals: worth more than a monster and they do not fight back.
+	for candidate in player.get_tree().get_nodes_in_group("soul_crystals"):
+		if not _is_valid_target_candidate(player, candidate):
+			continue
+		var offset: Vector2 = candidate.global_position - player.global_position
+		var distance: float = offset.length()
+		if distance > MONSTER_TARGET_RANGE:
+			continue
+		var score: float = distance + 260.0 + absf(offset.y) * 0.12
+		if score < best_score:
+			best_score = score
+			best = candidate
 	return best
 
 func _is_recent_attacker(player, candidate: Node) -> bool:
@@ -692,7 +711,7 @@ func _should_disengage(player) -> bool:
 func _target_invalid(player) -> bool:
 	if not _is_valid_target_candidate(player, target):
 		return true
-	var max_range: float = MONSTER_TARGET_RANGE * 1.25 if target.is_in_group("realm_monsters") else PLAYER_TARGET_RANGE * 1.1
+	var max_range: float = MONSTER_TARGET_RANGE * 1.25 if target.is_in_group("realm_monsters") or target.is_in_group("soul_crystals") else PLAYER_TARGET_RANGE * 1.1
 	return player.global_position.distance_to(target.global_position) > max_range
 
 func _is_valid_target_candidate(player, candidate: Node) -> bool:
@@ -704,7 +723,7 @@ func _is_valid_target_candidate(player, candidate: Node) -> bool:
 		# Hidden in a bush: noticed only up close (RealmHazards bushes).
 		if bool(candidate.get("concealed")) and player.global_position.distance_to(candidate.global_position) > BUSH_NOTICE_RANGE:
 			return false
-	elif candidate.is_in_group("realm_monsters"):
+	elif candidate.is_in_group("realm_monsters") or candidate.is_in_group("soul_crystals"):
 		var hp_value: Variant = candidate.get("hp")
 		if hp_value == null or float(hp_value) <= 0.0:
 			return false

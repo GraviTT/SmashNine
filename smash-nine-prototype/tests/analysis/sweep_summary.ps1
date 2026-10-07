@@ -20,7 +20,8 @@ $eliminations = @($rows | ForEach-Object { $_.eliminations })
 "elimination causes: " + (($eliminations | Group-Object cause | ForEach-Object { "$($_.Name)=$($_.Count)" }) -join "  ")
 $results = @($rows | ForEach-Object { $_.player_results })
 "character   wins  share  avg dmg  avg souls  avg picks"
-foreach ($character in @("frey", "yuki", "luna", "nova")) {
+# Roster from the data (Rio joined 2026-10-07), in order of first appearance.
+foreach ($character in @($results | ForEach-Object { $_.character } | Select-Object -Unique)) {
 	$wins = @($rows | Where-Object { $_.winner_character -eq $character }).Count
 	$mine = @($results | Where-Object { $_.character -eq $character })
 	$damage = ($mine | Measure-Object -Property damage_dealt -Average).Average
