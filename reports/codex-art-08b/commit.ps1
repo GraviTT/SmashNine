@@ -7,4 +7,4 @@ git add -- `
   'reports/codex-art-08b'
 
 git diff --cached --check
-git commit -m 'art: add Rio and Luna hi-res character assets' -m 'Co-Authored-By: Codex <noreply@openai.com>'
+git commit -m 'art: rework Rio and Luna v2 sprite sheets' -m 'Co-Authored-By: Codex <noreply@openai.com>'

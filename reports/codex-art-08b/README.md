@@ -1,75 +1,76 @@
-# CODEX-ART-08B 결과 보고
+# CODEX-ART-08B 리워크 결과 보고
 
 ## 완료
 
-Unit B 담당 순서대로 Rio 남성, Rio 여성, Luna의 메인 일러스트와 얼굴 포트레이트를 만들고, Rio 남성/여성·Luna·Brave Luna의 v2 스프라이트 시트를 만들었다. 기존 의상, 색상, 머리, 무기와 실루엣 아이디어를 참조 이미지로 고정하고 인체 비례와 픽셀 디테일을 높였다.
+Unit B의 v2 시트 4장(Rio 남성, Rio 여성, Luna, Brave Luna)을 리워크했다. 기존 메인 일러스트와 얼굴 초상화는 변경하지 않았다. Rio는 메인 일러스트의 길어진 체형을 반영해 이미지 생성 도구로 다시 그린 원본을 사용했고, Luna 계열은 기존 디자인과 2.2등신 실루엣을 유지하면서 Godot `Image` API로 크기·정렬·마감만 다시 처리했다.
 
 제품 소스(`scripts/`, `characters/`, `scenes/`, `project.godot`)는 수정하지 않았다.
 
-## 산출물
+## 리워크에서 변경한 내용
 
-| 캐릭터 | 메인 일러스트 | 얼굴 | v2 시트 |
-|---|---|---|---|
-| Rio 남성 | `assets/art/rio/rio_male_illustration.png` (1024×1536) | `rio_male_face.png` (256×256) | `rio_male_sheet.png` (768×896) |
-| Rio 여성 | `assets/art/rio/rio_female_illustration.png` (1024×1536) | `rio_female_face.png` (256×256) | `rio_female_sheet.png` (768×896) |
-| Luna | `assets/art/luna/luna_illustration.png` (1024×1536) | `luna_face.png` (256×256) | `luna_sheet.png` (768×896) |
-| Brave Luna | 시간 우선순위에 따라 별도 일러스트 없음 | Luna 얼굴 공유 가능 | `luna_brave_sheet.png` (768×896) |
+- Rio 남/여: 머리를 좁히고 몸통과 다리를 늘린 3등신 원본으로 교체했다.
+- 네 시트 모두 128×128 셀의 바깥 2px 링을 완전 투명으로 유지했다.
+- 넓은 검격·방패 효과는 잘라내지 않고 셀 내부에 들어오도록 프레임 전체를 균일 축소했다.
+- 순수 빨강 배경 제거 잔여 픽셀을 투명 처리했다.
+- 작은 고립 조각을 연결 성분 기준으로 제거해 이웃 프레임 잔상을 없앴다.
+- 모든 사용 프레임의 발 기준을 y=120에 두고, 전체 불투명 중심을 x≈64에 맞췄다.
+- v1 2배 / v2 1배 / 얼굴 / 일러스트 구성을 유지한 컨택트 시트를 갱신했다.
 
-생성 원본은 같은 아트 폴더의 `*_illustration_source.png`, `*_v2_source.png`에 보관했다. 사용한 최종 프롬프트와 방식은 `PROMPTS.md`에 기록했다.
+## 감사 결과: 전 / 후
 
-## 측정 사실
+`sheet_audit.gd`의 실제 출력값이다. 높이는 첫 번째 idle 프레임 하나가 아니라 idle 4프레임 전체 값이다.
 
-모든 시트는 6×7, 셀 128×128이며 행 계약은 idle 4 / walk 6 / jump 1 / fall 1 / attack 4 / shield 6 / hurt 1이다. 각 시트의 사용 프레임은 23개이고, 나머지 19개 셀은 완전 투명하다.
+| 시트 | 전 edge_px | 전 fringe_px | 전 idle 높이 | 후 edge_px | 후 fringe_px | 후 stray_px | 후 idle 높이 |
+|---|---:|---:|---|---:|---:|---:|---|
+| `rio_male_sheet.png` | 121 | 0 | 102, 102, 102, 103 | 0 | 0 | 0 | 96, 95, 95, 95 |
+| `rio_female_sheet.png` | 259 | 0 | 100, 100, 99, 99 | 0 | 0 | 0 | 94, 93, 93, 93 |
+| `luna_sheet.png` | 238 | 69 | 92, 91, 93, 92 | 0 | 0 | 0 | 82, 81, 83, 82 |
+| `luna_brave_sheet.png` | 164 | 43 | 92, 92, 92, 92 | 0 | 0 | 0 | 82, 82, 82, 82 |
 
-| 시트 | 목표 몸 높이 | 프레임 수 | 최종 불투명 중심 x 범위 | 전체 알파 경계 높이 범위 |
+목표 idle 높이는 순서대로 98 / 96 / 84 / 84px이며, 네 시트 모두 목표 대비 0~-3px 범위다. `alignment.csv` 기준 모든 사용 프레임의 불투명 중심 x 범위는 63.52~64.48이다.
+
+## 머리 비율과 4배 가이드
+
+가이드 선 색은 청록=머리 위, 노랑=턱, 분홍=발(y=120)이다. 측정은 idle 0의 가시 알파 경계와 수동 턱선을 사용했다.
+
+| 시트 | 전체 높이 | 머리 높이 | 측정 비율 | 목표 |
 |---|---:|---:|---:|---:|
-| Rio 남성 | 98 px | 23 | 63.54–64.74 | 89–121 px |
-| Rio 여성 | 96 px | 23 | 63.51–64.50 | 95–121 px |
-| Luna | 84 px | 23 | 63.59–64.46 | 87–98 px |
-| Brave Luna | 84 px | 23 | 63.58–64.49 | 84–113 px |
+| Rio 남성 | 97px | 33px | 2.94등신 | 3.0 |
+| Rio 여성 | 95px | 32px | 2.97등신 | 3.0 |
+| Luna | 83px | 38px | 2.18등신 | 2.2 |
+| Brave Luna | 83px | 38px | 2.18등신 | 2.2 |
 
-- 모든 프레임의 배치 기준은 중심 x=64, 발 기준선 y=120이다.
-- 표의 `전체 알파 경계 높이`는 머리카락, 무기, 공격·방패 이펙트를 포함하므로 몸 높이보다 클 수 있다.
-- 프레임별 경계, 불투명 중심, 불투명 픽셀 수는 `alignment.csv`에 있다.
-- 4개 시트 합계 사용 프레임 92개, 미사용 셀 76개를 자동 검증했다.
+- `rio_male_idle4x_ratio_2_94.png`
+- `rio_female_idle4x_ratio_2_97.png`
+- `luna_idle4x_ratio_2_18.png`
+- `luna_brave_idle4x_ratio_2_18.png`
 
-## 시각적 확인
+## 시각 자료
 
-`contact_sheet.png`는 캐릭터별로 왼쪽부터 v1 시트 2배, v2 시트 1배, 얼굴, 축소 일러스트를 배치했다. Brave Luna 행은 별도 일러스트를 만들지 않아 시트 비교만 있다.
+- `contact_sheet.png`: 행마다 v1 2배, 리워크 v2 1배, 얼굴, 메인 일러스트 순서다.
+- 위 4개의 `*_idle4x_ratio_*.png`: idle 0을 최근접 4배 확대한 비율 가이드다.
 
-## 검증
+## 확인 및 테스트
 
-실행 명령:
+실행 결과:
 
-```powershell
-& 'C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_win64_console.exe' --headless --path . -s tests/art_preview/hires_b/build_hires_b.gd
-& 'C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_win64_console.exe' --headless --path . -s tests/art_preview/hires_b/verify_hires_b.gd
+```text
+HIRES_B_BUILD_OK
+HIRES_B_VERIFY_OK illustrations=3 faces=3 sheets=4 frames=92 unused_cells=76
 ```
 
-최종 결과: `HIRES_B_BUILD_OK`, `HIRES_B_VERIFY_OK illustrations=3 faces=3 sheets=4 frames=92 unused_cells=76`.
+감사 스크립트에서 네 시트 모두 `edge_px=0`, `fringe_px=0`, `stray_px=0`을 확인했다. 사용 프레임 92개와 미사용 투명 셀 76개도 검증했다. Godot의 `Failed to read the root certificate store` 한 줄은 안내된 샌드박스 잡음이며, 그 외 SCRIPT ERROR / Parse Error / ERROR는 최종 실행에서 발생하지 않았다.
 
-Godot가 출력한 `Failed to read the root certificate store`는 카드에 명시된 샌드박스 잡음이다. `Image.load_from_file`의 export 경고는 오프라인 아트 빌드/검증 스크립트가 PNG를 직접 읽기 때문에 발생하며 게임 런타임 경고가 아니다.
+## 사람이 판단해야 할 부분
 
-## 리드 통합 메모
+- 1배 화면에서 Rio의 길어진 몸통·다리가 기존 캐릭터 정체성을 유지하는지
+- 공격 프레임을 셀 안에 넣기 위해 축소한 크기가 실제 전투에서 충분히 읽히는지
+- Luna 계열 일부 초승달·방패 효과의 단단한 수직 실루엣이 애니메이션 재생 시 자연스러운지
+- 얼굴·일러스트와 리워크 시트의 장비 및 색상 일관성이 최종 선택 화면 기준에 맞는지
 
-- 기존 시트 파일명을 그대로 교체했지만 셀은 64px에서 128px로 바뀌었다. 리드의 v2 계약에서 128×128 셀, 1배 렌더링, 발 y=120을 사용해야 한다.
-- `Luna.gd`의 Brave 시트 추가 경로도 현재 64×64를 직접 지정하므로 리드의 v2 전환에서 함께 128×128로 바뀌어야 한다.
-- 새 얼굴 파일은 기존 `*_portrait.png`를 덮어쓰지 않았다. HUD/캐릭터 선택 화면에서 새 `*_face.png`를 명시적으로 연결해야 한다.
-- 메인 일러스트는 현재 런타임에 연결하지 않았다.
+## 하지 않은 작업
 
-## 사람이 판단할 부분
-
-다음은 측정값이 아니라 미감 결정이다.
-
-- Rio 여성 일러스트의 노출도와 갑옷/치마 비율이 최종 캐릭터 톤에 맞는지
-- Luna 일러스트의 프릴과 별 장식 밀도가 기존 단순 실루엣에 비해 과하지 않은지
-- 1배 화면에서 Rio의 룬 방패와 Luna의 별 방패가 충분히 읽히는지
-- 공격 이펙트가 128px 셀 경계에서 끊기는 모습이 애니메이션 재생 중 허용 가능한지
-- 얼굴 컷의 어깨 비중과 시선 방향이 실제 HUD 64–96px에서 적절한지
-
-## 남은 작업
-
-- Brave Luna 별도 메인 일러스트와 별도 얼굴은 선택 사항이라 만들지 않았다.
-- 실제 게임 연결과 플레이 화면 캡처는 제품 소스 쓰기 금지 및 리드의 v2 전환 작업과 겹치므로 수행하지 않았다.
-- 전체 게임 테스트는 제품 코드가 아직 이 브랜치에서 v2 시트 계약으로 전환되지 않아 실행하지 않았다.
+- 메인 일러스트와 얼굴 초상화는 리드 지시대로 수정하지 않았다.
+- Brave Luna 별도 일러스트·얼굴은 만들지 않았다.
+- 제품 소스 연결과 실제 게임 플레이 화면 캡처는 이 유닛의 쓰기 범위 밖이라 수행하지 않았다.
 
