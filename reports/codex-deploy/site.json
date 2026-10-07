@@ -1,0 +1,31 @@
+{
+  "project_id": "appgprj_6ac65f43555481918a37077e8c63c66c",
+  "url": null,
+  "registered_site_origin": "https://smash-nine-prototype.tt9.chatgpt.site",
+  "access": "owner_only",
+  "version_number": null,
+  "version_id": null,
+  "deployment_id": null,
+  "game_source_commit_sha": "97d70c2926c42241a1ef5ba3824795d8af0664cc",
+  "build_command": "powershell -ExecutionPolicy Bypass -File tools/build_web.ps1",
+  "deployed_at_utc": null,
+  "verified_at_utc": null,
+  "verified_routes": [],
+  "status": "failed_before_version_save",
+  "recorded_at_utc": "2026-10-07T15:06:22.0711353Z",
+  "build": {
+    "output_directory": "build/web",
+    "zip_path": "build/SmashNine-web.zip",
+    "zip_size_bytes": 36819860,
+    "zip_size_mib": 35.11,
+    "index_wasm_size_bytes": 39509339,
+    "index_pck_size_bytes": 26684744
+  },
+  "failure": {
+    "stage": "sites_source_push",
+    "code": "artifacts_git_receive_pack_object_too_large",
+    "message": "Sites 원격 소스 저장소가 대용량 Git 객체를 거부하여 버전 저장 및 배포 전에 중단됨.",
+    "rejected_file": null,
+    "server_named_rejected_file": false
+  }
+}

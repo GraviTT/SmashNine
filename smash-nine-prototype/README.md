@@ -59,7 +59,8 @@ Credits: `assets/THIRD_PARTY_ASSETS.md` (all art is original; the third-party pr
 
 ## Web build
 
-- Build and zip: `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1` (from the repo root) → `build/web/` and `build/SmashNine-web.zip` (~10 MB, ready for an itch.io HTML5 upload or any static host).
+- Build and zip: `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1` (from the repo root) → `build/web/` and `build/SmashNine-web.zip` (~14 MB, ready for an itch.io HTML5 upload or any static host). Files over 5 MiB (the engine wasm) are split into `.partN` files and joined in the browser by `tools/web_part_loader.js`, because some hosts reject big single files (`-PartMB 0` keeps them whole).
+- Codex deploys to its Sites hosting: `design/tasks/CODEX-DEPLOY-01.prompt.md`, records in `reports/codex-deploy/` and `.openai/hosting.json`.
 - Local check: `node tools/serve_web.js build/web 8060`, then open http://localhost:8060.
 - Publish to GitHub Pages: `powershell -ExecutionPolicy Bypass -File tools/deploy_pages.ps1` (builds, then replaces the one-commit `gh-pages` branch). Site: https://gravitt.github.io/SmashNine/
 - Uses the Compatibility renderer and a no-threads web template, so it needs no special server headers. Requires the Godot 4.7.stable web export templates in `%APPDATA%\Godot\export_templates\4.7.stable`.

@@ -1,31 +1,26 @@
 # Codex 웹 배포 요청 (Sites)
 
-CuRun과 같은 방식: Codex가 빌드해서 Sites(`*.chatgpt.site`)에 올리고, 사이트 정보를 `.openai/hosting.json`과 `reports/codex-deploy/site.json`에 남긴다. 다음부터는 같은 사이트에 새 버전만 올린다.
+CuRun과 같은 방식: Codex가 빌드해서 Sites(`*.chatgpt.site`)에 올리고, 사이트 정보를 `.openai/hosting.json`과 `reports/codex-deploy/site.json`에 남긴다.
 
-## A. 첫 배포 (사이트가 아직 없을 때)
+- 사이트는 2026-10-07에 등록됨: `appgprj_6ac65f43555481918a37077e8c63c66c`, `https://smash-nine-prototype.tt9.chatgpt.site`, 소유자 전용. 첫 업로드는 `artifacts_git_receive_pack_object_too_large`로 거부돼 아직 게시된 버전이 없다.
+- 거부 원인: 파일 하나가 너무 컸다(`index.wasm` 37.7 MiB, `index.pck` 25.4 MiB). Sites에 받아들여진 가장 큰 파일로 아는 것은 CuRun의 6.4 MB.
+- 수정(리드, 2026-10-08): `tools/build_web.ps1`이 5 MiB가 넘는 파일을 `<이름>.part0`, `.part1` … 로 나누고, `index.html`에 넣은 로더(`tools/web_part_loader.js`)가 브라우저에서 이어 붙인다. 아트 생성 원본 PNG가 pck에 들어가던 것도 빼서 `index.pck`는 4.3 MiB가 됐다. 지금 빌드의 가장 큰 파일은 5 MiB.
+- 실패한 업로드가 남긴 로컬 소스 저장소 `build/sites-source`(거부된 큰 파일 이력이 든 커밋)는 지웠다.
+
+## 다음 배포 (지금 쓸 문구)
 
 ```text
-C:\Users\TH\Documents\AI\GameProject\SmashNine 의 Godot 웹 빌드를 Sites에 새 사이트로 배포해 줘. (SmashNine은 가제)
+C:\Users\TH\Documents\AI\GameProject\SmashNine 에서 `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`로 빌드해서(결과 build/web/), reports/codex-deploy/site.json의 기존 사이트에 새 버전으로 배포만 해줘.
 
-1. 확인: `git fetch origin` 후 `git status`가 깨끗하고 main이 origin/main과 같은지 본다. 다르면 배포하지 말고 보고.
-2. 빌드: 저장소 루트에서 `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`
-   - Godot 웹 export(Compatibility 렌더러, 스레드 없는 템플릿)를 build/web/ 에 만든다(index.html, index.js, index.wasm, index.pck 등, 모두 상대 경로). 마지막 줄 "Web build: ..." 와 zip 크기.
-   - Godot 콘솔: C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_win64_console.exe, 웹 템플릿은 %APPDATA%\Godot\export_templates\4.7.stable 에 설치돼 있다. 샌드박스의 "Failed to read the root certificate store" ERROR 한 줄은 알려진 잡음.
-3. 배포: build/web/ 폴더 전체를 정적 사이트로 Sites에 새 사이트로 올린다. 접근은 CuRun처럼 소유자 전용(기본값)으로 두고 넓히지 않는다.
-   - 스레드 없는 빌드라 COOP/COEP 헤더는 필요 없다. index.wasm(수십 MB)과 index.pck가 그대로 올라가야 한다. 파일 크기 제한 등으로 거부되면 무엇이 거부됐는지 보고하고 멈춘다.
-4. 기록: 사이트 ID를 `.openai/hosting.json`에, 배포 정보를 `reports/codex-deploy/site.json`에 남긴다(project_id, url, access, version_number, version_id, deployment_id, game_source_commit_sha = 배포한 main 커밋, build_command = "powershell -ExecutionPolicy Bypass -File tools/build_web.ps1", deployed_at_utc, verified_at_utc, verified_routes). `reports/codex-deploy/README.md`(한국어)에 확인 결과를 적는다.
-5. 확인: 실제 브라우저로 사이트를 열어 시작 화면(로고, 왼쪽 얼굴 초상화 5개, "[5] Rio", "[V] Body" 줄)이 뜨는지, 5 키로 경기가 시작되는지, 브라우저 콘솔에 게임 오류가 없는지 본다. 소유자 로그인이 필요하면 그 사실을 적는다. 본 것과 짐작한 것을 나눠 적는다.
-
-규칙
-- 쓰는 곳은 build/(git이 무시하는 산출물), `.openai/hosting.json`, `reports/codex-deploy/**` 뿐이다. 제품 코드·문서·설정(전역 git 설정 포함)은 바꾸지 않는다.
-- 커밋·push 하지 않는다. 기록 파일은 리드가 확인하고 커밋한다.
-- GitHub Pages(gh-pages 브랜치, tools/deploy_pages.ps1)는 건드리지 않는다.
-
-최종 보고(한국어): 배포한 main 커밋, 빌드 결과(zip 크기), 사이트 URL과 접근 범위, 버전·배포 ID, 브라우저 확인 결과, 문제가 있었다면 무엇이었는지.
+- 빌드 출력 끝의 "Largest file"이 5 MiB 이하인지 본다. build/web/ 에는 index.wasm 대신 index.wasm.part0~7 이 있고 index.html의 로더가 이어 붙이니, 파일을 합치거나 빼지 말고 build/web/ 그대로 올린다.
+- 지난번 업로드는 큰 파일 때문에 거부됐다. 새 Sites 소스 커밋에 그 큰 파일(옛 index.wasm, index.pck) 이력이 섞이지 않게 새로 시작한다(지난번 로컬 소스 저장소 build/sites-source 는 리드가 지웠다).
+- 확인: 실제 브라우저로 사이트를 열어 시작 화면(로고, 왼쪽 얼굴 초상화 5개, "[5] Rio", "[V] Body" 줄), 5 키로 경기 시작, 콘솔 오류 없음, 네트워크에서 index.wasm.part0~7 과 index.pck 가 200 인지 본다. 소유자 로그인이 필요하면 적는다.
+- site.json(버전·배포 ID, game_source_commit_sha, deployed_at_utc, verified_at_utc, verified_routes, status)과 reports/codex-deploy/README.md만 갱신하고, 커밋·push와 다른 파일 수정은 하지 말 것.
+- 또 거부되면 서버 오류 문구 그대로, 어떤 파일 크기에서 거부됐는지 알 수 있는 만큼 보고하고 멈춘다(조각 크기를 줄여 다시 빌드하는 것은 리드가 정한다: `tools/build_web.ps1 -PartMB 2`).
 ```
 
-## B. 이후 배포 (사이트가 있을 때, 한 줄)
+## 그다음부터 (한 줄)
 
 ```text
-C:\Users\TH\Documents\AI\GameProject\SmashNine 에서 `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`로 빌드해서(결과 build/web/), reports/codex-deploy/site.json의 기존 사이트에 새 버전으로 배포만 해줘. site.json과 reports/codex-deploy/README.md만 갱신하고, 커밋·push와 다른 파일 수정은 하지 말 것.
+C:\Users\TH\Documents\AI\GameProject\SmashNine 에서 `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`로 빌드해서(결과 build/web/, 큰 파일은 .partN 조각 그대로), reports/codex-deploy/site.json의 기존 사이트에 새 버전으로 배포만 해줘. site.json과 reports/codex-deploy/README.md만 갱신하고, 커밋·push와 다른 파일 수정은 하지 말 것.
 ```
