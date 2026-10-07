@@ -6,6 +6,7 @@ static func get_data() -> Dictionary:
 		"name": "Nova",
 		"role": "Gravity Hero",
 		"color": Color(0.32, 0.95, 1.0),
+		"bodies": ["male", "female"],
 		"max_hp": 104.0,
 		"attack": 114.0,
 		"defense": 14.0,

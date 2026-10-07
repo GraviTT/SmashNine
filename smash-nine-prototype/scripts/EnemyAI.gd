@@ -62,7 +62,8 @@ const COMBAT_PROFILES := {
 	"frey": {"min_range": 45.0, "max_range": 170.0, "attack_range": 200.0, "kite": false},
 	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false},
 	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
-	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true}
+	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true},
+	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true}
 }
 const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
 
@@ -106,6 +107,8 @@ var planned_drop_direction: float = 0.0
 var planned_drop_target: Vector2 = Vector2.INF
 var row_transition_direction: float = 0.0
 var row_transition_target: int = -1
+## Direction for a directed skill (Rio's dimension slash back to a platform); zero = facing.
+var aim_direction: Vector2 = Vector2.ZERO
 
 func update(player, delta: float) -> void:
 	if player.is_dummy or player.hitstun_timer > 0.0:
@@ -187,6 +190,7 @@ func reset(position: Vector2) -> void:
 	planned_drop_target = Vector2.INF
 	row_transition_direction = 0.0
 	row_transition_target = -1
+	aim_direction = Vector2.ZERO
 
 func _target_timers(delta: float) -> void:
 	decision_timer = maxf(decision_timer - delta, 0.0)
@@ -272,6 +276,7 @@ func _intent(move: float = 0.0, jump: bool = false, attack: String = "") -> Dict
 
 func _apply_intent(player, intent: Dictionary) -> void:
 	player.move_input = float(intent.get("move", 0.0))
+	aim_direction = intent.get("aim", Vector2.ZERO)
 	if bool(intent.get("jump", false)):
 		player.jump_buffer_timer = JUMP_BUFFER
 	var attack_name: String = str(intent.get("attack", ""))
@@ -445,7 +450,7 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 	return attack_name
 
 func _mobility_skill_is_safe(player) -> bool:
-	if player.character_id != "frey" and player.character_id != "nova":
+	if not ["frey", "nova", "rio"].has(player.character_id):
 		return true
 	if not player.is_on_floor():
 		return false
@@ -603,7 +608,12 @@ func _recover_intent(player) -> Dictionary:
 	if below_target and player.velocity.y > 60.0 and player.air_jumps_left > 0 and jump_retry_timer <= 0.0:
 		jump = true
 		jump_retry_timer = RECOVER_JUMP_RETRY
-	return _intent(direction, jump)
+	var intent: Dictionary = _intent(direction, jump)
+	# Out of jumps: a recovery skill (Rio's dimension slash) aimed at the platform.
+	if below_target and player.air_jumps_left <= 0 and player.velocity.y > 60.0 and bool(_combat_profile(player).get("recovery_skill", false)):
+		intent["aim"] = (recovery_target - player.global_position).normalized()
+		intent["attack"] = "skill_1"
+	return intent
 
 ## Nearest platform top we can still reach: close horizontally, and preferably not above us.
 func _choose_recovery_point(player) -> Vector2:

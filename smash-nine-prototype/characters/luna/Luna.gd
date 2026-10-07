@@ -28,6 +28,8 @@ var heart_laser_cast_id := 0
 var heart_laser_duration := 0.0
 
 func configure_character_sprite() -> void:
+	if _configure_original_sheet("luna"):
+		return
 	var frames := ANIMATION.create_frames()
 	ANIMATION.add_strip(frames, &"luna_idle", IDLE_TEXTURE, Vector2i(49, 120), 0, 10, 7.0, true)
 	ANIMATION.add_strip(frames, &"luna_walk", RUN_TEXTURE, Vector2i(106, 124), 0, 10, 10.0, true)

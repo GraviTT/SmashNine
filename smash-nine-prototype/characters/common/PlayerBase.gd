@@ -67,11 +67,21 @@ const RECOVERY_DELAY := 4.0
 const DAMAGE_NORMAL := "normal"
 const DAMAGE_FIXED := "fixed"
 const ENEMY_AI_SCRIPT := preload("res://scripts/EnemyAI.gd")
+const SHEET_ART := preload("res://scripts/ArtSettings.gd")
+const SHEET_FRAMES := preload("res://characters/common/CharacterAnimation.gd")
+## Original sheets (CODEX-ART-02/03): 6 columns x 7 rows of 64 px cells, one row per animation.
+const ORIGINAL_SHEET_ROWS := [["idle", 4, 7.0, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 4, 14.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+const ORIGINAL_SHEET_STYLE := {"position": Vector2(0, -32), "scale": Vector2(2.0, 2.0), "filter": CanvasItem.TEXTURE_FILTER_NEAREST}
+## Air jumps a character can ever hold (base + Sky Step cards).
+const MAX_AIR_JUMPS := 3
 
 var player_id := 0
 var character_id := "frey"
 var display_name := "Frey"
 var role := "Bruiser"
+## "male" or "female": which original sheet to draw for characters that have both (set before _ready).
+var body_type := ""
+var uses_original_sheet := false
 var body_color := Color.WHITE
 var max_hp := 100.0
 var hp := 100.0
@@ -137,6 +147,7 @@ var respawn_count := 0
 var last_attacker: Node
 var last_attacker_timer := 0.0
 var invulnerable_timer := 0.0
+var last_hit_absorbed := false
 var action_epoch := 0
 var ultimate_cooldown_timer := 0.0
 var realm_index := 0
@@ -164,6 +175,7 @@ var last_yuki_activation_hit := -1
 var control_slow_timer := 0.0
 var control_jump_slow_timer := 0.0
 var action_locked_until_land := false
+var base_air_jumps := 1
 var max_air_jumps := 1
 var air_jumps_left := 1
 var sprite_action := &""
@@ -230,6 +242,7 @@ func _apply_character_data(data: Dictionary) -> void:
 	speed_growth = float(growth.get("speed", 0.0))
 	jump_velocity = data.jump
 	base_weight = data.weight
+	base_air_jumps = int(data.get("air_jumps", 1))
 	_apply_growth_stats(false)
 
 ## Base stats + the character's growth curve (advanced by soul picks) + card modifiers.
@@ -242,7 +255,7 @@ func _apply_growth_stats(restore_gained_hp: bool) -> void:
 	speed = (base_speed + speed_growth * growth_steps) * float(upgrade_modifiers.speed_multiplier)
 	weight = base_weight * float(upgrade_modifiers.weight_multiplier)
 	ringout_damage_scale = float(upgrade_modifiers.ringout_damage_scale)
-	max_air_jumps = 1 + int(upgrade_modifiers.bonus_air_jumps)
+	max_air_jumps = mini(base_air_jumps + int(upgrade_modifiers.bonus_air_jumps), MAX_AIR_JUMPS)
 	if restore_gained_hp and max_hp > previous_max_hp:
 		hp = minf(hp + max_hp - previous_max_hp, max_hp)
 
@@ -670,8 +683,32 @@ func character_cleanup() -> void:
 func character_on_tagged_attack_landed(_hit_tag: String) -> void:
 	pass
 
+## A character defence that takes a hit without knockback or hitstun (Rio's rune shield):
+## return the damage multiplier while it is up, or -1 when hits land normally.
+func character_hit_absorption() -> float:
+	return -1.0
+
+func character_on_hit_absorbed(_attacker: Node, _knockback: float, _direction: Vector2) -> void:
+	pass
+
 func configure_character_sprite() -> void:
 	pass
+
+## Cuts the character's original sheet (ArtSettings, body_type variant first) into the
+## shared animations. Returns false when there is none, so the caller keeps its prototype
+## art. `always` uses the sheet even in the prototype style (characters with no other art).
+func _configure_original_sheet(id: String, always := false) -> bool:
+	var sheet := SHEET_ART.original_character_sheet(id, body_type, always)
+	if sheet == null:
+		return false
+	var frames := SHEET_FRAMES.create_frames()
+	for row in ORIGINAL_SHEET_ROWS.size():
+		var spec: Array = ORIGINAL_SHEET_ROWS[row]
+		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [id, spec[0]]), sheet, Vector2i(64, 64), 6, row * 6, int(spec[1]), float(spec[2]), bool(spec[3]))
+	character_sprite.sprite_frames = frames
+	character_sprite.play(StringName("%s_idle" % id))
+	uses_original_sheet = true
+	return true
 
 func get_character_sprite_style() -> Dictionary:
 	return {
@@ -813,6 +850,8 @@ func _get_late_skill_direction() -> Vector2:
 		)
 		if direction.length() > 0.2:
 			return direction.normalized()
+	elif ai_controller.aim_direction.length() > 0.2:
+		return ai_controller.aim_direction.normalized()
 	return Vector2(facing, 0)
 
 func _spawn_attack(size: Vector2, offset: Vector2, damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, damage_type := DAMAGE_NORMAL) -> void:
@@ -875,7 +914,7 @@ func _spawn_sweeping_launch_attack(size: Vector2, points: Array[Vector2], damage
 	attack.global_position = global_position
 	attack.configure_sweep_launch(self, size, points, damage, knockback, direction, color, lifetime, launch_velocity, hitstun_duration, hit_tag, damage_type)
 
-func _spawn_projectile(size: Vector2, damage: float, knockback: float, direction: Vector2, color: Color, projectile_speed: float, lifetime: float, damage_type := DAMAGE_NORMAL) -> void:
+func _spawn_projectile(size: Vector2, damage: float, knockback: float, direction: Vector2, color: Color, projectile_speed: float, lifetime: float, damage_type := DAMAGE_NORMAL) -> Node:
 	var projectile := Area2D.new()
 	projectile.set_script(projectile_scene)
 	projectile.collision_layer = 0
@@ -889,6 +928,7 @@ func _spawn_projectile(size: Vector2, damage: float, knockback: float, direction
 	get_parent().add_child(projectile)
 	projectile.global_position = global_position + direction.normalized() * 44 + Vector2(0, -12)
 	projectile.configure(self, size, damage, knockback, direction, color, projectile_speed, lifetime, damage_type)
+	return projectile
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := DAMAGE_NORMAL) -> bool:
 	if is_defeated or is_invulnerable():
@@ -900,12 +940,17 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	if is_guarding and guard_result == GUARD_NONE:
 		_stop_guard(true)
 	_remember_attacker(attacker)
+	var absorption := character_hit_absorption() if guard_result == GUARD_NONE else -1.0
 	var final_damage := _calculate_incoming_damage(attacker, damage, damage_type)
 	var guard_reduction := _get_guard_reduction() if guard_result == GUARD_BLOCK else 0.0
 	final_damage *= 1.0 - guard_reduction
+	if absorption >= 0.0:
+		final_damage *= absorption
 	hp = maxf(hp - final_damage, 0.0)
 	_credit_damage(attacker, final_damage)
 	damaged.emit(self, final_damage, attacker if is_instance_valid(attacker) else null, "hit")
+	if _finish_absorbed_hit(absorption, attacker, base_knockback, direction, final_damage):
+		return true
 	var danger := 1.0 + (1.0 - hp / max_hp) * LOW_HP_KNOCKBACK_BONUS
 	var final_knockback := base_knockback * danger * KNOCKBACK_SCALE / weight
 	final_knockback *= 1.0 - guard_reduction * GUARD_KNOCKBACK_REDUCTION_SCALE
@@ -942,6 +987,20 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 		_defeat(last_attacker)
 	return true
 
+## The absorbed part of a hit: damage is already applied; no knockback, hitstun or cancel.
+func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, direction: Vector2, final_damage: float) -> bool:
+	last_hit_absorbed = absorption >= 0.0
+	if not last_hit_absorbed:
+		return false
+	character_on_hit_absorbed(attacker, knockback, direction)
+	hitstop_timer = VICTIM_HITSTOP * 0.5
+	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, 0.0)
+	hp_changed.emit(self)
+	_update_visuals()
+	if hp <= 0.0:
+		_defeat(last_attacker)
+	return true
+
 func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vector2, hitstun_duration: float, effect_knockback: float, direction: Vector2, damage_type := DAMAGE_NORMAL) -> bool:
 	if is_defeated or is_invulnerable():
 		return false
@@ -952,12 +1011,17 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 	if is_guarding and guard_result == GUARD_NONE:
 		_stop_guard(true)
 	_remember_attacker(attacker)
+	var absorption := character_hit_absorption() if guard_result == GUARD_NONE else -1.0
 	var final_damage := _calculate_incoming_damage(attacker, damage, damage_type)
 	var guard_reduction := _get_guard_reduction() if guard_result == GUARD_BLOCK else 0.0
 	final_damage *= 1.0 - guard_reduction
+	if absorption >= 0.0:
+		final_damage *= absorption
 	hp = maxf(hp - final_damage, 0.0)
 	_credit_damage(attacker, final_damage)
 	damaged.emit(self, final_damage, attacker if is_instance_valid(attacker) else null, "hit")
+	if _finish_absorbed_hit(absorption, attacker, launch_velocity.length(), direction, final_damage):
+		return true
 	var hit_direction := direction.normalized()
 	if hit_direction == Vector2.ZERO:
 		hit_direction = launch_velocity.normalized()
@@ -994,6 +1058,8 @@ func apply_stun_hit(attacker: Node, damage: float, base_knockback: float, direct
 	var guard_result := _get_guard_result(attacker, direction)
 	if not apply_hit(attacker, damage, base_knockback, direction, damage_type):
 		return false
+	if last_hit_absorbed:
+		return true
 	var final_stun := stun_duration * 0.3 if guard_result == GUARD_BLOCK else stun_duration
 	hitstun_timer = maxf(hitstun_timer, final_stun)
 	_play_stun_effect(final_stun)
@@ -1411,7 +1477,7 @@ func _get_sprite_animation_name(base_name: StringName) -> StringName:
 func _apply_character_sprite_style() -> void:
 	if not is_instance_valid(character_sprite):
 		return
-	var style := get_character_sprite_style()
+	var style: Dictionary = ORIGINAL_SHEET_STYLE if uses_original_sheet else get_character_sprite_style()
 	character_sprite.position = style.get("position", Vector2(0, -32))
 	character_sprite.scale = style.get("scale", Vector2(2.0, 2.0))
 	character_sprite.texture_filter = style.get("filter", CanvasItem.TEXTURE_FILTER_NEAREST)

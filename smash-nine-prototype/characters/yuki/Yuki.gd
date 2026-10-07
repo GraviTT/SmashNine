@@ -14,6 +14,8 @@ var seals: Array[Node] = []
 var activation_id := 0
 
 func configure_character_sprite() -> void:
+	if _configure_original_sheet("yuki"):
+		return
 	var frames := ANIMATION.create_frames()
 	ANIMATION.add_strip(frames, &"yuki_idle", IDLE_TEXTURE, Vector2i(128, 128), 0, 6, 7.0, true)
 	ANIMATION.add_strip(frames, &"yuki_walk", RUN_TEXTURE, Vector2i(128, 128), 0, 6, 10.0, true)

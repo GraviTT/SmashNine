@@ -26,7 +26,18 @@ static func original_texture(path: String) -> Texture2D:
 		return null
 	return load(path) as Texture2D
 
-## A character's sheet: assets/art/<id>/<id>_sheet.png when the original style is on.
-static func character_sheet(character_id: String, fallback: Texture2D) -> Texture2D:
-	var sheet := original_texture("res://assets/art/%s/%s_sheet.png" % [character_id, character_id])
-	return sheet if sheet != null else fallback
+## A character's original sheet, or null: assets/art/<id>/<id>_<body>_sheet.png for a
+## character drawn in two bodies (male characters get a male and a female sheet, user
+## 2026-10-07), else assets/art/<id>/<id>_sheet.png. `always` ignores the style switch
+## (a character that has no prototype art).
+static func original_character_sheet(character_id: String, body := "", always := false) -> Texture2D:
+	if not always and not use_original():
+		return null
+	var paths: Array[String] = []
+	if body != "":
+		paths.append("res://assets/art/%s/%s_%s_sheet.png" % [character_id, character_id, body])
+	paths.append("res://assets/art/%s/%s_sheet.png" % [character_id, character_id])
+	for path in paths:
+		if ResourceLoader.exists(path):
+			return load(path) as Texture2D
+	return null

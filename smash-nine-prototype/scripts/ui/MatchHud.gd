@@ -246,12 +246,18 @@ func _build_overlay() -> void:
 	overlay.add_child(overlay_credits)
 	_pin(overlay_credits, BOTTOM_CENTER)
 
-func show_start_screen(characters: Array[Dictionary]) -> void:
+func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 	overlay_title.text = "SMASH NINE REALMS"
 	var lines: Array[String] = ["Nine realms are collapsing into the heart of Yggdrasil.", "Be the last one standing.", "", "Choose your fighter"]
 	for index in characters.size():
 		var data: Dictionary = characters[index]
 		lines.append("[%d]  %s  -  %s" % [index + 1, data.name, data.role])
+	var two_bodies: Array[String] = []
+	for data in characters:
+		if data.get("bodies", []).size() > 1:
+			two_bodies.append(str(data.name))
+	if not two_bodies.is_empty():
+		lines.append("[V]  Body for %s: %s  (switch)" % [", ".join(two_bodies), body.capitalize()])
 	lines.append("")
 	lines.append("[B]  Watch a bots-only match")
 	lines.append("[F2]  Art: %s  (switch)" % ART_SETTINGS.label())

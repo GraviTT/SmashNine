@@ -6,6 +6,7 @@ static func get_data() -> Dictionary:
 		"name": "Luna",
 		"role": "Star Magical Girl",
 		"color": Color(1.0, 0.48, 0.9),
+		"bodies": ["female"],
 		"max_hp": 98.0,
 		"attack": 112.0,
 		"defense": 12.0,

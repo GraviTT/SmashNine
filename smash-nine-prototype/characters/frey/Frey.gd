@@ -2,7 +2,6 @@ extends "res://characters/common/PlayerBase.gd"
 
 const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
 const PROTOTYPE_TEXTURE := preload("res://assets/characters/frey/frey_prototype.png")
-const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const COMBO_RESET_TIME := 0.46
 const DASH_HOLD_TIME := 0.13
 const DASH_SPEED := 760.0
@@ -15,16 +14,16 @@ var rising_followup_timer := 0.0
 var ultimate_diving := false
 
 func configure_character_sprite() -> void:
+	if _configure_original_sheet("frey"):
+		return
 	var frames := ANIMATION.create_frames()
-	# Same 6x7 grid of 64x64 cells in both sheets (CODEX-ART-02 keeps the layout).
-	var sheet := ART_SETTINGS.character_sheet("frey", PROTOTYPE_TEXTURE)
-	ANIMATION.add_grid(frames, &"frey_idle", sheet, Vector2i(64, 64), 6, 0, 4, 7.0, true)
-	ANIMATION.add_grid(frames, &"frey_walk", sheet, Vector2i(64, 64), 6, 6, 6, 10.0, true)
-	ANIMATION.add_grid(frames, &"frey_jump", sheet, Vector2i(64, 64), 6, 12, 1, 1.0, false)
-	ANIMATION.add_grid(frames, &"frey_fall", sheet, Vector2i(64, 64), 6, 18, 1, 1.0, false)
-	ANIMATION.add_grid(frames, &"frey_attack", sheet, Vector2i(64, 64), 6, 24, 4, 14.0, false)
-	ANIMATION.add_grid(frames, &"frey_shield", sheet, Vector2i(64, 64), 6, 30, 6, 12.0, false)
-	ANIMATION.add_grid(frames, &"frey_hurt", sheet, Vector2i(64, 64), 6, 36, 1, 1.0, false)
+	ANIMATION.add_grid(frames, &"frey_idle", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 0, 4, 7.0, true)
+	ANIMATION.add_grid(frames, &"frey_walk", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 6, 6, 10.0, true)
+	ANIMATION.add_grid(frames, &"frey_jump", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 12, 1, 1.0, false)
+	ANIMATION.add_grid(frames, &"frey_fall", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 18, 1, 1.0, false)
+	ANIMATION.add_grid(frames, &"frey_attack", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 24, 4, 14.0, false)
+	ANIMATION.add_grid(frames, &"frey_shield", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 30, 6, 12.0, false)
+	ANIMATION.add_grid(frames, &"frey_hurt", PROTOTYPE_TEXTURE, Vector2i(64, 64), 6, 36, 1, 1.0, false)
 	character_sprite.sprite_frames = frames
 	character_sprite.play(&"frey_idle")
 

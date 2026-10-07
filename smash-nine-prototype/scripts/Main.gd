@@ -18,7 +18,12 @@ const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
 const CAMERA_ZOOM := 0.85
 const CAMERA_EDGE_PADDING := 80.0
-const CHOOSE_ACTIONS: Array[String] = ["choose_1", "choose_2", "choose_3", "choose_4"]
+const CHOOSE_ACTIONS: Array[String] = ["choose_1", "choose_2", "choose_3", "choose_4", "choose_5"]
+const BODY_TYPES: Array[String] = ["male", "female"]
+
+## The body P1 plays characters that come in two (Nova, Rio); V on the start screen.
+## Static so it survives the scene reload of F2 and R.
+static var human_body := "male"
 
 ## Every slot is a bot and the camera spectates (soak tests, attract mode). Skips the start screen.
 @export var bots_only := false
@@ -51,12 +56,15 @@ var offscreen_ai_realm_step_timer := 0.0
 var shake_time := 0.0
 var shake_strength := 0.0
 var _shake_rng := RandomNumberGenerator.new()
+## Bots' body types, separate from the global RNG so it does not shift seeded matches.
+var _body_rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	if match_seed < 0:
 		randomize()
 		match_seed = randi()
 	seed(match_seed)
+	_body_rng.seed = match_seed
 	layout = REALM_LAYOUT_SCRIPT.new()
 	_create_director()
 	_create_soul_growth()
@@ -68,7 +76,7 @@ func _ready() -> void:
 	if bots_only:
 		_start_match("")
 	else:
-		hud.show_start_screen(_get_character_list())
+		hud.show_start_screen(_get_character_list(), human_body)
 
 func _create_director() -> void:
 	director = MATCH_DIRECTOR_SCRIPT.new()
@@ -184,6 +192,9 @@ func _handle_global_input() -> bool:
 			if Input.is_action_just_pressed(CHOOSE_ACTIONS[index]):
 				_start_match(ids[index])
 				return false
+		if Input.is_action_just_pressed("toggle_body"):
+			human_body = BODY_TYPES[(BODY_TYPES.find(human_body) + 1) % BODY_TYPES.size()]
+			hud.show_start_screen(_get_character_list(), human_body)
 		if Input.is_action_just_pressed("toggle_art"):
 			ART_SETTINGS.toggle()
 			get_tree().reload_current_scene()
@@ -307,7 +318,7 @@ func _spawn_players(human_character_id: String) -> void:
 		var realm_index := start_realms[slot]
 		var character_id: String = ids[(first_id + slot + seat) % ids.size()]
 		var human := i == 0 and not bots_only
-		_add_player(character_id, human, _take_spawn_point(realm_index, used_points), realm_index)
+		_add_player(character_id, human, _take_spawn_point(realm_index, used_points), realm_index, _pick_body(character_id, human))
 	_sync_combatant_visibility()
 
 func _take_spawn_point(realm_index: int, used_points: Dictionary) -> Vector2:
@@ -326,8 +337,15 @@ func _take_spawn_point(realm_index: int, used_points: Dictionary) -> Vector2:
 			return point
 	return points[0]
 
-func _add_player(character_id: String, human: bool, position: Vector2, realm_index: int) -> Node:
-	var player := PLAYER_FACTORY.create(character_id)
+## P1 keeps the start-screen choice when the character has it; bots roll (seeded).
+func _pick_body(character_id: String, human: bool) -> String:
+	var bodies := CHARACTER_REGISTRY.get_bodies(character_id)
+	if human and bodies.has(human_body):
+		return human_body
+	return bodies[_body_rng.randi_range(0, bodies.size() - 1)]
+
+func _add_player(character_id: String, human: bool, position: Vector2, realm_index: int, body_type := "") -> Node:
+	var player := PLAYER_FACTORY.create(character_id, body_type)
 	add_child(player)
 	player.global_position = position
 	player.setup(characters[character_id], players.size() + 1, human)

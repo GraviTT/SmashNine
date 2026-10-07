@@ -6,6 +6,7 @@ static func get_data() -> Dictionary:
 		"name": "Frey",
 		"role": "Valkyrie Bruiser",
 		"color": Color(1.0, 0.72, 0.36),
+		"bodies": ["female"],
 		"max_hp": 115.0,
 		"attack": 118.0,
 		"defense": 18.0,

@@ -55,6 +55,8 @@ var ultimate_preview_line: Line2D
 var ultimate_preview_target: Line2D
 
 func configure_character_sprite() -> void:
+	if _configure_original_sheet("nova"):
+		return
 	var frames := ANIMATION.create_frames()
 	# Nova's atlas stores each animation on a separate row.
 	ANIMATION.add_grid(frames, &"nova_idle", PROTOTYPE_TEXTURE, Vector2i(64, 64), 14, 28, 1, 1.0, true)

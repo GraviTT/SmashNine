@@ -6,6 +6,7 @@ static func get_data() -> Dictionary:
 		"name": "Yuki",
 		"role": "Onmyoji Controller",
 		"color": Color(0.62, 0.86, 1.0),
+		"bodies": ["female"],
 		"max_hp": 92.0,
 		"attack": 108.0,
 		"defense": 8.0,

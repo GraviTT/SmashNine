@@ -7,7 +7,8 @@ const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const WORLD_LAYER := 1
 const PLAYER_LAYER := 2
 
-static func create(character_id := "") -> CharacterBody2D:
+## body_type picks the male or female original sheet for characters drawn in both.
+static func create(character_id := "", body_type := "") -> CharacterBody2D:
 	var player: CharacterBody2D
 	var character_scene := CHARACTER_REGISTRY.get_scene(character_id)
 	if character_scene != null:
@@ -17,6 +18,8 @@ static func create(character_id := "") -> CharacterBody2D:
 		player.set_script(PLAYER_BASE_SCRIPT)
 	player.collision_layer = PLAYER_LAYER
 	player.collision_mask = WORLD_LAYER
+	if body_type != "":
+		player.set("body_type", body_type)
 
 	var shape := CollisionShape2D.new()
 	var rect := RectangleShape2D.new()

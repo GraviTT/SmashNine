@@ -16,8 +16,8 @@ func _run() -> void:
 	root.add_child(arena)
 	main = MAIN_SCRIPT.new()
 	characters = CHARACTER_REGISTRY.get_characters()
-	if characters.size() != 4:
-		_fail("Registry did not return all four characters")
+	if characters.size() != 5:
+		_fail("Registry did not return all five characters")
 		return
 	if not await _test_public_ability_dispatch():
 		return
