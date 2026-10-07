@@ -141,9 +141,10 @@ func _paint_platform(body: Node2D, realm_index: int, role: String, size: Vector2
 	if texture == null:
 		return
 	for child in body.get_children():
-		if child is CanvasItem:
+		if child is CanvasItem and child.name != "Edge":
 			child.visible = false
-	var cap := int(layout.get_realm(realm_index).art.get("cap", 16))
+	var art: Dictionary = layout.get_realm(realm_index).art
+	var cap := int(art.get("cap_main", 16) if role == PLATFORM_MAIN else art.get("cap_sub", 16))
 	var strip := NinePatchRect.new()
 	strip.name = "PaintedPlatform"
 	strip.texture = texture
@@ -155,6 +156,10 @@ func _paint_platform(body: Node2D, realm_index: int, role: String, size: Vector2
 	strip.size = size
 	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	body.add_child(strip)
+	# The accent edge stays on top: walkable surfaces must read against busy painted backgrounds.
+	var edge := body.get_node_or_null("Edge")
+	if edge != null:
+		body.move_child(edge, -1)
 
 func _realm_art(realm_index: int, art_name: String) -> Texture2D:
 	var art: Dictionary = layout.get_realm(realm_index).get("art", {})
@@ -286,6 +291,7 @@ func _create_platform(parent: Node2D, center: Vector2, size: Vector2, color: Col
 	underside.position = Vector2(-size.x * 0.5, size.y * 0.5 - underside.size.y)
 	body.add_child(underside)
 	var edge := ColorRect.new()
+	edge.name = "Edge"
 	edge.color = Color(accent.r, accent.g, accent.b, 0.72 if role == PLATFORM_MAIN else 0.5)
 	edge.size = Vector2(size.x, 5.0 if role == PLATFORM_MAIN else 3.0)
 	edge.position = -size * 0.5

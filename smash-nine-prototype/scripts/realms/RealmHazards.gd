@@ -237,3 +237,13 @@ func get_warning_text(realm_index: int) -> String:
 	if not enabled or not _realms.has(realm_index) or str(_realms[realm_index].phase) != "warning":
 		return ""
 	return str(_realms[realm_index].hazard.get("warn_text", ""))
+
+## What bots may know about a realm's hazard right now (the same cues a player sees):
+## {"type", "phase", "time_left", "columns"}; empty when nothing is happening.
+func get_threat(realm_index: int) -> Dictionary:
+	if not enabled or not _realms.has(realm_index):
+		return {}
+	var entry: Dictionary = _realms[realm_index]
+	if str(entry.phase) == "idle":
+		return {}
+	return {"type": str(entry.hazard.type), "phase": str(entry.phase), "time_left": float(entry.timer), "columns": entry.columns}

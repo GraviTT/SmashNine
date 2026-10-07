@@ -420,6 +420,9 @@ func move_ai_through_portal(ai_player: Node, portal: Dictionary) -> void:
 		return
 	_move_through_portal(ai_player, portal)
 
+func get_ai_hazard(realm_index: int) -> Dictionary:
+	return hazards.get_threat(realm_index) if is_instance_valid(hazards) else {}
+
 func get_realm_state(realm_index: int) -> String:
 	return director.get_state(realm_index)
 

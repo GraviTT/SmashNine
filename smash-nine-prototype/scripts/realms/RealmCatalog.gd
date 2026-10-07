@@ -190,7 +190,7 @@ static func build_maps() -> Array:
 		"grid": Vector2i(1, 1),
 		"theme": "starfall_shrine",
 		"identity": "Endgame brawl",
-		"art": {"dir": "res://assets/art/realm_center", "cap": 16},
+		"art": {"dir": "res://assets/art/realm_center", "cap_main": 54, "cap_sub": 32},
 		"background": Color(0.055, 0.025, 0.065),
 		"accent": Color(1.0, 0.55, 0.95),
 		"size": CENTER_SIZE,

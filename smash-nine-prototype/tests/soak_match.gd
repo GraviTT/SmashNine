@@ -22,6 +22,7 @@ var sampled_frames := 0
 var shared_realm_frames := 0
 var pvp_hits := 0
 var monster_hits := 0
+var hazard_hits := 0
 
 func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
@@ -125,6 +126,7 @@ func _collect_result(finished_early: bool) -> Dictionary:
 		"eliminations": elimination_log,
 		"pvp_hits": pvp_hits,
 		"monster_hits": monster_hits,
+		"hazard_hits": hazard_hits,
 		"shared_realm_ratio": snappedf(float(shared_realm_frames) / maxf(float(sampled_frames), 1.0), 0.01),
 		"node_count": int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))
 	}
@@ -140,6 +142,8 @@ func _attacker_kind(attacker: Variant) -> String:
 
 ## Counts only direct hits by source (PlayerBase.damaged), not ring-out or zone damage.
 func _on_damaged(_player: Node, _amount: float, attacker: Variant, source: String) -> void:
+	if source == "hit" and attacker == null:
+		hazard_hits += 1
 	if source != "hit":
 		return
 	var kind := _attacker_kind(attacker)

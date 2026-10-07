@@ -53,6 +53,9 @@ const ULTIMATE_FOLLOWUPS := {"nova": [0.35, 0.55], "luna": [4.4]}
 const ULTIMATE_USE_CHANCE := 0.45
 const PASSIVE_PLAYER_PENALTY := 900.0
 const DISENGAGE_HP_RATIO := 0.35
+const HAZARD_REACTION_CHANCE := 0.8
+const QUAKE_JUMP_LEAD := 0.35
+const VENT_MARGIN := 40.0
 ## Engagement distances per fighter, from each kit's reach (CODEX-ANALYST-01: one 235 px
 ## profile for everyone erased Yuki's range). "kite" fighters back off when crowded.
 const COMBAT_PROFILES := {
@@ -88,6 +91,7 @@ var recovery_target: Vector2 = Vector2.ZERO
 var recovery_jump_used: bool = false
 var ultimate_followup_delays: Array[float] = []
 var ultimate_followup_timer: float = 0.0
+var hazard_reaction: int = -1
 
 var stuck_anchor: Vector2 = Vector2.ZERO
 var stuck_timer: float = 0.0
@@ -119,8 +123,37 @@ func update(player, delta: float) -> void:
 		_select_state(player)
 
 	var intent: Dictionary = _build_intent(player, delta)
+	intent = _avoid_hazards(player, intent)
 	last_commanded_move = float(intent.get("move", 0.0))
 	_apply_intent(player, intent)
+
+## Realm hazards (RealmHazards.get_threat via the parent): jump just before a quake lands,
+## step out of eruption vents. Each warning gets one reaction roll so bots are not perfect.
+func _avoid_hazards(player, intent: Dictionary) -> Dictionary:
+	var parent: Node = player.get_parent()
+	if parent == null or not parent.has_method("get_ai_hazard"):
+		return intent
+	var threat: Dictionary = parent.get_ai_hazard(player.realm_index)
+	if threat.is_empty():
+		hazard_reaction = -1
+		return intent
+	if hazard_reaction < 0:
+		hazard_reaction = 1 if randf() < HAZARD_REACTION_CHANCE else 0
+	if hazard_reaction == 0:
+		return intent
+	match str(threat.type):
+		"quake":
+			if threat.phase == "warning" and float(threat.time_left) < QUAKE_JUMP_LEAD and player.is_on_floor():
+				intent["jump"] = true
+		"eruption":
+			var body: Vector2 = player.global_position + Vector2(0.0, -32.0)
+			for column in threat.columns:
+				var danger: Rect2 = (column as Rect2).grow_individual(VENT_MARGIN, 0.0, VENT_MARGIN, 0.0)
+				if danger.has_point(body):
+					intent["move"] = -1.0 if body.x < danger.get_center().x else 1.0
+					intent["attack"] = ""
+					break
+	return intent
 
 func reset(position: Vector2) -> void:
 	state = STATE_WANDER
