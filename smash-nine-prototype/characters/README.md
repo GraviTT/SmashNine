@@ -40,6 +40,8 @@ characters/
 7. `CharacterRegistry.gd`에 씬과 데이터 한 항목을 등록한다.
 8. 선택 입력이나 전용 UI가 필요할 때만 `Main.gd`를 수정한다.
 
+원본 스프라이트(기본값, `design/DECISIONS.md` D22·D23)는 `assets/art/<id>/<id>_sheet.png` 또는 체형별 `<id>_male_sheet.png`·`<id>_female_sheet.png`(6×7, 64px 셀). `configure_character_sprite` 맨 앞에서 `_configure_original_sheet("<id>")`를 부르면 공통 규격으로 잘리고, 없으면 프로토타입 아트로 넘어간다. 캐릭터 데이터의 `bodies`에 체형 목록을 적는다(여성 캐릭터는 `["female"]`, 남성 캐릭터는 `["male", "female"]`).
+
 전용 투사체나 설치물은 해당 캐릭터 폴더 안에 둔다. 원본 그림 파일은 `assets/characters/<id>/`에 유지하되, 그 참조는 캐릭터 스크립트가 소유한다.
 
 ## Character Document

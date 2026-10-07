@@ -23,7 +23,7 @@ Design decisions and their reasons: `../design/DECISIONS.md`. Milestones: `../de
 | F3 | debug panel |
 | R | play again (result screen) |
 
-Start screen: 1–4 picks Frey, Yuki, Luna or Nova; B watches a bots-only match; F2 switches between the prototype art and the original art (center realm, Frey).
+Start screen: 1–5 picks Frey, Yuki, Luna, Nova or Rio; V switches the body (male/female) for Nova and Rio; B watches a bots-only match; F2 switches between the original art (default) and the old prototype art.
 
 ## Match rules (M1)
 
@@ -34,7 +34,8 @@ Start screen: 1–4 picks Frey, Yuki, Luna or Nova; B watches a bots-only match;
 - Collapse and sudden death never take out the last fighter: if everyone left would fall, the healthiest keeps 1 HP. A same-frame double KO in combat is a draw.
 - Souls come from damage, knock-outs and monsters. At 25/50/75 souls you pick one of three cards (5 s, then auto-pick); each pick also grows your character's base stats.
 - Early phases forgive more: out-of-combat HP recovery until the edge realms fall, and bots mostly farm until provoked.
-- Realm hazards: Niflheim floors are icy (you slide, knockback carries further); Muspelheim vents glow, then fire pillars launch anyone on them; Jotunheim rumbles, then a quake stuns everyone on the ground (jump to avoid it).
+- Realm hazards: Niflheim floors are icy (you slide, knockback carries further); Muspelheim vents glow, then fire pillars launch anyone on them; Jotunheim rumbles, then a quake stuns everyone on the ground (jump to avoid it); Midgard bushes hide you (bots only notice you up close; attacking reveals you); Asgard light columns stun; Vanaheim vines grow a temporary bridge.
+- Soul crystals: one floats in every playable realm. Three hits break it for 10 souls; it grows back after 25 s.
 
 ## Project layout
 

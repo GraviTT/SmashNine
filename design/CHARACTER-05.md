@@ -1,5 +1,7 @@
 # 5번째 캐릭터 설계안 (선택은 사용자)
 
+> 2026-10-07 사용자 선택: A안 Rio. 구현 `smash-nine-prototype/characters/rio/` (`Rio.md`), 결정 D21.
+
 작성: Claude, 근무 루틴 2026-10-07. **독립 검증 없음** (Codex 토론 없이 리드 단독 초안).
 근거: `smash-nine/GAME_DESIGN_DOCUMENT.md` 로스터, `smash-nine/Concept2.png` 8번 패널, `FINAL_GAME_GOAL.md` "Character Combat Identity", 현재 4인의 문서(`smash-nine-prototype/characters/*/*.md`).
 

@@ -61,6 +61,12 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | analyst + tester | `design/tasks/CODEX-RETEST-02.md` | `tests/analysis/` + `reports/codex-analyst-02/`; `tests/playtest/` + `reports/codex-tester-02/` | done — merged `379cf08`, `0378a11` |
 | builder | `design/tasks/CODEX-ART-01.md` | `assets/art/realm_center/`, `tests/art_preview/realm/`, `reports/codex-art-01/` | done — merged `bb0cbe0` |
 | builder | `design/tasks/CODEX-ART-02.md` | `assets/art/frey/`, `tests/art_preview/frey/`, `reports/codex-art-02/` | done — merged `bb8aa88` |
+| builder × 2 | `design/tasks/CODEX-ART-03.md` | `assets/art/{yuki,nova}` / `{luna,rio}`, `tests/art_preview/chars_{a,b}/`, `reports/codex-art-03{a,b}/` | done — merged `1bb2801`, `05d7360` |
+| builder × 2 | `design/tasks/CODEX-ART-04.md` | `assets/art/realm_*` (8 outer realms), `tests/art_preview/realms_{a,b}/`, `reports/codex-art-04{a,b}/` | done — merged `a2ef42d`, `8566f0f` |
+| builder × 2 | `design/tasks/CODEX-ART-05.md` | `assets/art/{monsters,objects}` / `{effects,ui}`, `reports/codex-art-05{a,b}/` | done — merged `180d148`, `4186bb0` |
+| builder | `design/tasks/CODEX-ART-06.md` | `assets/art/luna/luna_brave_*`, `assets/art/ui/title_logo*`, `reports/codex-art-06/` | done — merged `a1150a7` |
+| builder | `design/tasks/CODEX-ART-07.md` | `assets/art/hazards/`, `reports/codex-art-07/` | done — merged `64a1df7` |
+| analyst | `design/tasks/CODEX-ANALYST-03.md` | `tests/analysis/review03/`, `reports/codex-analyst-03/` | done — merged `e0af6bf`; P1 crystal hits fixed `30043dc` |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
 
