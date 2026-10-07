@@ -68,8 +68,13 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | builder × 2 | `design/tasks/CODEX-ART-05.md` | `assets/art/{monsters,objects}` / `{effects,ui}`, `reports/codex-art-05{a,b}/` | done — merged `180d148`, `4186bb0` |
 | builder | `design/tasks/CODEX-ART-06.md` | `assets/art/luna/luna_brave_*`, `assets/art/ui/title_logo*`, `reports/codex-art-06/` | done — merged `a1150a7` |
 | builder | `design/tasks/CODEX-ART-07.md` | `assets/art/hazards/`, `reports/codex-art-07/` | done — merged `64a1df7` |
-| builder × 2 | `design/tasks/CODEX-ART-08.md` | `assets/art/{frey,nova,yuki}` / `{rio,luna}`, `tests/art_preview/hires_{a,b}/`, `reports/codex-art-08{a,b}/` | running |
+| builder × 2 | `design/tasks/CODEX-ART-08.md`, `CODEX-ART-08R.md` | `assets/art/{frey,nova,yuki}` / `{rio,luna}`, `tests/art_preview/hires_{a,b}/`, `reports/codex-art-08{a,b}/` | done — merged `7a9ab85`, `f770854`; rework `7f8f117`, `ac5ca94` |
 | analyst | `design/tasks/CODEX-ANALYST-03.md` | `tests/analysis/review03/`, `reports/codex-analyst-03/` | done — merged `e0af6bf`; P1 crystal hits fixed `30043dc` |
+| builder | `design/tasks/CODEX-ART-09.md` | 8 fighter sheets, `tests/art_preview/sprite_fix_a/`, `reports/codex-art-09/` | done — merged `f0f606d` (31 frames; the lead re-extracted 35 more, `bbfd473`) |
+| builder | `design/tasks/CODEX-ART-10.md` | `assets/art/vfx/`, `tests/art_preview/ult_vfx_b/`, `reports/codex-art-10/` | done — merged `2685c54` |
+| builder | `design/tasks/CODEX-ART-11.md` | `assets/art/{monsters,objects}/`, `tests/art_preview/monsters_v2_b/`, `reports/codex-art-11/` | done — merged `093ecba` |
+| builder | `design/tasks/CODEX-ART-12.md` | 3 fighter sheets, `tests/art_preview/sprite_fix_a2/`, `reports/codex-art-12/` | running (routine 2026-10-08) |
+| analyst | `design/tasks/CODEX-QA-12.md` | `tests/analysis/codex_qa_12/`, `reports/codex-qa-12/` | running (routine 2026-10-08) |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
 
