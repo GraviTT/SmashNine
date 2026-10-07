@@ -106,6 +106,10 @@ func _check_brave_luna(main: Node) -> void:
 ## v1 sheets (64 px cells) draw at 2x, v2 (128 px cells) at 1x; feet on the origin either way.
 func _sheet_drawn_right(player: Node, label: String) -> bool:
 	var cell: int = player.original_sheet_cell
+	# Every fighter has the v2 sheet since CODEX-ART-08 (D25): 128 px cells, per-character proportions.
+	if cell != 128:
+		_fail("%s still has a v1 sheet (cell %d)" % [label, cell])
+		return false
 	var expected_scale := 128.0 / float(cell)
 	var feet := 48.0 if cell == 64 else 120.0
 	var sprite: AnimatedSprite2D = player.character_sprite
