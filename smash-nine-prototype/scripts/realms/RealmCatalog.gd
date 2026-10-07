@@ -3,6 +3,8 @@ extends RefCounted
 ## colours, size, platforms, spawn points and portal stand points.
 ## Coordinates are local to one tile of `size`; `tiles` repeats the tile (1x1 by default).
 ## Rises between standable platforms stay under the bots' 185 px jump reach.
+## "hazard" (optional) is read by RealmHazards: ice (floor traction), eruption (telegraphed
+## fire pillars on platforms), quake (telegraphed stun for everyone on the ground).
 
 const PLATFORM_MAIN := "main"
 const PLATFORM_SUB := "sub"
@@ -62,6 +64,7 @@ static func build_maps() -> Array:
 		"grid": Vector2i(2, 0),
 		"theme": "frost_steps",
 		"identity": "Stair-step chases",
+		"hazard": {"type": "ice", "text": "Slippery ice", "traction": 0.22},
 		"background": Color(0.02, 0.065, 0.085),
 		"accent": Color(0.66, 0.95, 1.0),
 		"size": OUTER_SIZE,
@@ -103,6 +106,7 @@ static func build_maps() -> Array:
 		"grid": Vector2i(2, 1),
 		"theme": "ember_ring",
 		"identity": "Forced brawls",
+		"hazard": {"type": "eruption", "text": "Magma eruptions", "warn_text": "Magma rising - get off the glowing vents!", "interval": [7.0, 10.0], "warning": 1.2, "active": 0.7, "count": 2, "width": 80.0, "height": 460.0, "damage": 7.0, "knockback": 560.0},
 		"background": Color(0.075, 0.025, 0.015),
 		"accent": Color(1.0, 0.36, 0.16),
 		"size": OUTER_SIZE,
@@ -164,6 +168,7 @@ static func build_maps() -> Array:
 		"grid": Vector2i(2, 2),
 		"theme": "gravity_well",
 		"identity": "Thin ledges, open center",
+		"hazard": {"type": "quake", "text": "Earthquakes", "warn_text": "Earthquake! Jump to avoid it", "interval": [12.0, 16.0], "warning": 1.6, "stun": 0.55, "damage": 4.0, "pop": 260.0},
 		"background": Color(0.03, 0.035, 0.06),
 		"accent": Color(0.62, 0.72, 0.95),
 		"size": OUTER_SIZE,

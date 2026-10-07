@@ -1,6 +1,6 @@
 extends SceneTree
 ## Runs the real Main scene with bots only and reports match health.
-## Usage: godot --headless --path . --fixed-fps 60 -s tests/soak_match.gd -- --seconds=480 --seed=7 [--players=8]
+## Usage: godot --headless --path . --fixed-fps 60 -s tests/soak_match.gd -- --seconds=480 --seed=7 [--players=8] [--no-hazards]
 ## Prints status lines every 30 in-game seconds and one final "SOAK_RESULT {json}" line.
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
@@ -11,6 +11,7 @@ var main: Node
 var seconds := 480.0
 var seed_value := -1
 var player_count := 0
+var hazards_on := true
 var defeats := 0
 var defeats_by_player: Dictionary = {}
 var nan_positions := 0
@@ -26,6 +27,8 @@ func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--seconds="):
 			seconds = float(arg.get_slice("=", 1))
+		elif arg == "--no-hazards":
+			hazards_on = false
 		elif arg.begins_with("--players="):
 			player_count = int(arg.get_slice("=", 1))
 		elif arg.begins_with("--seed="):
@@ -39,6 +42,7 @@ func _run() -> void:
 	main.bots_only = true
 	if seed_value >= 0:
 		main.match_seed = seed_value
+	main.realm_hazards = hazards_on
 	if player_count > 0:
 		main.player_count = player_count
 	root.add_child(main)

@@ -122,6 +122,9 @@ var ringout_damage_scale := 1.0
 var incoming_damage_scale := 1.0
 var recovery_rate := 0.0
 var ai_aggression := 1.0
+## Floor grip set by realm hazards each frame (1 = normal, Niflheim ice is lower):
+## scales ground friction, ground acceleration and how fast ground knockback fades.
+var ground_traction := 1.0
 var time_since_damage := 0.0
 var _hp_last_tick := -1.0
 var score := 0
@@ -564,7 +567,8 @@ func _apply_movement(delta: float) -> void:
 			var gravity_scale := FALL_GRAVITY_MULTIPLIER if velocity.y > 0.0 else 1.0
 			velocity.y = minf(velocity.y + GRAVITY * gravity_scale * delta, MAX_FALL_SPEED)
 
-	var accel := FLOOR_ACCEL if is_on_floor() else AIR_ACCEL
+	var on_floor := is_on_floor()
+	var accel := FLOOR_ACCEL * (0.4 + 0.6 * ground_traction) if on_floor else AIR_ACCEL
 	var control_speed_scale := 0.55 if control_slow_timer > 0.0 else 1.0
 	var character_movement_multiplier := get_character_movement_multiplier()
 	var mobility_scale := 1.0
@@ -575,7 +579,7 @@ func _apply_movement(delta: float) -> void:
 			facing = signi(int(move_input))
 			velocity.x = move_toward(velocity.x, move_input * speed * control_speed_scale * mobility_scale * character_movement_multiplier, accel * mobility_scale * character_movement_multiplier * delta)
 		else:
-			velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
+			velocity.x = move_toward(velocity.x, 0.0, FRICTION * (ground_traction if is_on_floor() else 1.0) * delta)
 
 		if attack_lock_timer <= 0.0 and jump_buffer_timer > 0.0 and coyote_timer > 0.0:
 			velocity.y = jump_velocity * (0.78 if control_jump_slow_timer > 0.0 else 1.0)
@@ -1099,7 +1103,7 @@ func _get_hit_direction(direction: Vector2, was_grounded: bool) -> Vector2:
 	return hit_direction.normalized()
 
 func _get_knockback_decay(final_knockback: float, was_grounded: bool) -> float:
-	var decay := KNOCKBACK_GROUND_DECAY if was_grounded else KNOCKBACK_AIR_DECAY
+	var decay := KNOCKBACK_GROUND_DECAY * (0.5 + 0.5 * ground_traction) if was_grounded else KNOCKBACK_AIR_DECAY
 	if final_knockback >= 480.0:
 		decay *= STRONG_KNOCKBACK_DECAY_SCALE
 	return decay

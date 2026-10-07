@@ -308,10 +308,13 @@ func set_realm_title(text: String, accent: Color) -> void:
 	realm_label.add_theme_color_override("font_color", Color(accent.r, accent.g, accent.b, 0.9))
 
 ## seconds < 0 hides the banner.
-func set_warning_banner(seconds: int) -> void:
-	warning_label.visible = seconds >= 0
+## Collapse countdown (seconds >= 0) wins over a realm hazard warning; both empty hides it.
+func set_warning_banner(seconds: int, hazard_warning := "") -> void:
+	warning_label.visible = seconds >= 0 or hazard_warning != ""
 	if seconds >= 0:
 		warning_label.text = "COLLAPSE WARNING  %d\nfind a portal to a safe realm" % seconds
+	elif hazard_warning != "":
+		warning_label.text = hazard_warning.to_upper()
 
 ## The in-match HUD hides behind the start screen so it does not show through it.
 func _set_match_hud_visible(visible_now: bool) -> void:

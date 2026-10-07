@@ -7,6 +7,7 @@ const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const REALM_LAYOUT_SCRIPT := preload("res://scripts/realms/RealmLayout.gd")
 const REALM_WORLD_SCRIPT := preload("res://scripts/realms/RealmWorld.gd")
+const REALM_HAZARDS_SCRIPT := preload("res://scripts/realms/RealmHazards.gd")
 const MATCH_DIRECTOR_SCRIPT := preload("res://scripts/match/MatchDirector.gd")
 const SOUL_GROWTH_SCRIPT := preload("res://scripts/match/SoulGrowth.gd")
 const MATCH_HUD_SCRIPT := preload("res://scripts/ui/MatchHud.gd")
@@ -24,11 +25,14 @@ const CHOOSE_ACTIONS: Array[String] = ["choose_1", "choose_2", "choose_3", "choo
 @export var player_count := 8
 ## -1 picks a random seed; soak tests pass a fixed one.
 @export var match_seed := -1
+## Realm gimmicks (ice, eruptions, quakes). Off restores the plain M1 arenas.
+@export var realm_hazards := true
 
 var layout: REALM_LAYOUT_SCRIPT
 var director: MATCH_DIRECTOR_SCRIPT
 var soul_growth: SOUL_GROWTH_SCRIPT
 var world: REALM_WORLD_SCRIPT
+var hazards: REALM_HAZARDS_SCRIPT
 var hud: MATCH_HUD_SCRIPT
 var camera: Camera2D
 var realm_monster_spawner: Node
@@ -43,6 +47,9 @@ var current_map_index := CENTRAL_REALM_INDEX
 var spawn_points: Array[Vector2] = []
 var active_portals: Array[Dictionary] = []
 var offscreen_ai_realm_step_timer := 0.0
+var shake_time := 0.0
+var shake_strength := 0.0
+var _shake_rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	if match_seed < 0:
@@ -105,6 +112,18 @@ func _create_world() -> void:
 	add_child(world)
 	move_child(world, 0)
 	world.build(layout, Callable(director, "get_state"), Callable(director, "is_warning"))
+	hazards = REALM_HAZARDS_SCRIPT.new()
+	hazards.name = "RealmHazards"
+	hazards.z_index = 2
+	world.add_child(hazards)
+	hazards.setup(layout, Callable(director, "get_state"), match_seed)
+	hazards.enabled = realm_hazards
+	hazards.shake_requested.connect(_on_shake_requested)
+
+func _on_shake_requested(realm_index: int, strength: float, duration: float) -> void:
+	if realm_index == current_map_index:
+		shake_strength = maxf(shake_strength if shake_time > 0.0 else 0.0, strength)
+		shake_time = maxf(shake_time, duration)
 
 func _get_character_list() -> Array[Dictionary]:
 	var list: Array[Dictionary] = []
@@ -130,6 +149,7 @@ func _process(delta: float) -> void:
 		return
 	if not match_over:
 		director.advance(delta)
+		hazards.advance(delta)
 		_apply_phase_rules()
 		_update_offscreen_ai_realm_movement()
 		_handle_portal_input()
@@ -222,6 +242,11 @@ func _update_camera_follow() -> void:
 	if is_instance_valid(focus) and focus.realm_index != current_map_index and director.is_playable(focus.realm_index):
 		_set_map(focus.realm_index)
 	camera.global_position = _get_camera_target()
+	if shake_time > 0.0:
+		shake_time = maxf(shake_time - get_process_delta_time(), 0.0)
+		camera.offset = Vector2(_shake_rng.randf_range(-1.0, 1.0), _shake_rng.randf_range(-1.0, 1.0)) * shake_strength
+	else:
+		camera.offset = Vector2.ZERO
 
 ## Follows the focus inside the realm; an axis smaller than the view stays centred.
 func _get_camera_target() -> Vector2:
@@ -305,6 +330,7 @@ func _add_player(character_id: String, human: bool, position: Vector2, realm_ind
 	player.respawned.connect(_on_combatant_respawned)
 	player.defeated.connect(_on_player_defeated)
 	director.register_combatant(player)
+	hazards.register_combatant(player)
 	soul_growth.register_player(player)
 	players.append(player)
 	return player
@@ -428,8 +454,9 @@ func _update_hud() -> void:
 		if is_instance_valid(label):
 			label.text = "%ds" % seconds_left
 	var realm: Dictionary = layout.get_realm(current_map_index)
-	hud.set_realm_title("%s  -  %s" % [realm.name, realm.subtitle], realm.accent)
-	hud.set_warning_banner(seconds_left if director.is_warning(current_map_index) and not match_over else -1)
+	var hazard_text: String = hazards.get_hazard_text(current_map_index) if hazards.enabled else ""
+	hud.set_realm_title("%s  -  %s%s" % [realm.name, realm.subtitle, "   |   " + hazard_text if hazard_text != "" else ""], realm.accent)
+	hud.set_warning_banner(seconds_left if director.is_warning(current_map_index) and not match_over else -1, hazards.get_warning_text(current_map_index) if not match_over else "")
 	var human := _get_human_player()
 	var offer: Dictionary = soul_growth.get_offer(human) if is_instance_valid(human) else {}
 	if not offer.is_empty() and not match_over:
