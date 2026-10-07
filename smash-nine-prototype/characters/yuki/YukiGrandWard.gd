@@ -7,9 +7,10 @@ const ACTIVE_TIME := 2.35
 const PULSE_INTERVAL := 0.58
 const SEAL_WARNING_ALPHA := 0.35
 const SEAL_ACTIVE_ALPHA := 0.4
-## Tuned 2026-10-08 (5.5 -> ~12 damage per cast after the match scale).
-const PULSE_DAMAGE := 6.0
-const FINAL_PULSE_DAMAGE := 32.0
+## Tuned 2026-10-08 to ~12 damage per cast after the match scale. The first measurements missed
+## the final pulse (it fell outside the 3.5 s window), so 6 / 32 measured 21.3; back to 4 / 16.
+const PULSE_DAMAGE := 4.0
+const FINAL_PULSE_DAMAGE := 16.0
 ## Pull toward the centre while the ward is active (190 before 2026-10-08; Nova's core pulls 240).
 const FIELD_PULL_STRENGTH := 240.0
 
