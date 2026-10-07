@@ -37,3 +37,16 @@ Do not change any other frame: the other 173 frames must stay pixel-identical (c
 ## Report (`reports/codex-art-12/README.md`, Korean)
 
 Per frame: what was cut, how you separated it, before/after board; the pixel-identical check for the other frames; what a human should still judge. Commit, or `reports/codex-art-12/commit.ps1` staging only the writable paths, message ending `Co-Authored-By: Codex <noreply@openai.com>`.
+
+## Round 2 (branch `codex/sprite-fix-a3`, 2026-10-08 ~03:00)
+
+Round 1 fixed Rio female shield r5c1–r5c4 (merged `21b3682`). Still cut, all **attack** frames where the body or effect touches the neighbouring pose in the source:
+
+| Sheet | Frames |
+| --- | --- |
+| `rio/rio_female_sheet.png` | r4c0 (slash cut at top), r4c1, r4c2 (hair/cape cut on the left), r4c3 (cape cut on the left) |
+| `frey/frey_sheet.png` | r4c2 (sword and blue slash missing), r4c3 (cut both sides) |
+| `nova/nova_female_sheet.png` | r4c1, r4c2 |
+| `luna/luna_sheet.png` | r4c3 (wand and sparkles cut on the left) |
+
+Same rules as above, plus: the attack frames in these rows were shrunk by the original builder to fit the cell, so **match the body size of the other frames in the same attack row** (not the idle size). Writable paths add `smash-nine-prototype/assets/art/luna/luna_sheet.png`, `smash-nine-prototype/tests/art_preview/sprite_fix_a3/**`, `reports/codex-art-12/round2/**`. Keep inspection images out of `smash-nine-prototype/` (put them under `reports/codex-art-12/round2/`).
