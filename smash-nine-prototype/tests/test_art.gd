@@ -26,7 +26,7 @@ func _run() -> void:
 		if failed:
 			quit(1)
 			return
-	print("Art tests passed (original and prototype)")
+	print("Art tests passed (original and prototype, every character and body)")
 	quit(0)
 
 func _fail(message: String) -> void:
@@ -58,5 +58,29 @@ func _check_style(original: bool) -> void:
 	var uses_sheet: bool = frame.atlas.resource_path == FREY_SHEET
 	if uses_sheet != original:
 		_fail("%s: Frey sheet is %s" % [label, frame.atlas.resource_path])
+	if original:
+		_check_character_sheets(main)
 	main.queue_free()
 	await process_frame
+
+## Every character draws its original sheet in every body it has (male characters
+## both, user 2026-10-07), cut into the shared 6x7 layout and drawn at scale 2.
+func _check_character_sheets(main: Node) -> void:
+	var characters := CHARACTER_REGISTRY.get_characters()
+	for character_id in CHARACTER_REGISTRY.get_character_ids():
+		for body in CHARACTER_REGISTRY.get_bodies(character_id):
+			var player: Node = PLAYER_FACTORY.create(character_id, body)
+			main.add_child(player)
+			player.setup(characters[character_id], 90, false)
+			var expected := "res://assets/art/%s/%s_%s_sheet.png" % [character_id, character_id, body]
+			if not ResourceLoader.exists(expected):
+				expected = "res://assets/art/%s/%s_sheet.png" % [character_id, character_id]
+			var frames: SpriteFrames = player.character_sprite.sprite_frames
+			var label := "%s (%s)" % [character_id, body]
+			if not player.uses_original_sheet or frames.get_frame_texture(StringName("%s_idle" % character_id), 0).atlas.resource_path != expected:
+				_fail("%s does not draw %s" % [label, expected])
+			elif frames.get_frame_count(StringName("%s_walk" % character_id)) != 6 or frames.get_frame_count(StringName("%s_shield" % character_id)) != 6:
+				_fail("%s sheet is not cut in the shared layout" % label)
+			elif player.character_sprite.scale != Vector2(2.0, 2.0):
+				_fail("%s sheet should be drawn at scale 2, got %s" % [label, player.character_sprite.scale])
+			player.queue_free()

@@ -3,18 +3,23 @@ extends SceneTree
 const MAIN_SCRIPT := preload("res://scripts/Main.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 
 func _initialize() -> void:
 	call_deferred("_run")
 
+## The prototype cut of each character (original sheets are checked in test_art).
+## Rio has no prototype art and uses the original 6x7 sheet in both styles.
 func _run() -> void:
+	ART_SETTINGS.style = ART_SETTINGS.STYLE_PROTOTYPE
 	var main := MAIN_SCRIPT.new()
 	var characters := CHARACTER_REGISTRY.get_characters()
 	var expected_counts := {
 		"frey": {"idle": 4, "walk": 6, "jump": 1, "fall": 1, "attack": 4, "shield": 6, "hurt": 1},
 		"yuki": {"idle": 6, "walk": 6, "jump": 5, "fall": 5, "attack": 10, "shield": 1, "hurt": 5},
 		"luna": {"idle": 10, "walk": 10, "jump": 5, "fall": 5, "attack": 15, "shield": 1, "hurt": 1},
-		"nova": {"idle": 1, "walk": 14, "jump": 4, "fall": 4, "attack": 6, "shield": 1, "hurt": 1}
+		"nova": {"idle": 1, "walk": 14, "jump": 4, "fall": 4, "attack": 6, "shield": 1, "hurt": 1},
+		"rio": {"idle": 4, "walk": 6, "jump": 1, "fall": 1, "attack": 4, "shield": 6, "hurt": 1}
 	}
 	for character_id in expected_counts:
 		var player := PLAYER_FACTORY.create(character_id)

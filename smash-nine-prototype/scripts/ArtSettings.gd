@@ -37,6 +37,9 @@ static func original_character_sheet(character_id: String, body := "", always :=
 	if body != "":
 		paths.append("res://assets/art/%s/%s_%s_sheet.png" % [character_id, character_id, body])
 	paths.append("res://assets/art/%s/%s_sheet.png" % [character_id, character_id])
+	# No body asked for (tests, the dummy path): any body the character has.
+	for any_body in ["male", "female"]:
+		paths.append("res://assets/art/%s/%s_%s_sheet.png" % [character_id, character_id, any_body])
 	for path in paths:
 		if ResourceLoader.exists(path):
 			return load(path) as Texture2D
