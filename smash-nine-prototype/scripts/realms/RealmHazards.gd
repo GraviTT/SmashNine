@@ -22,6 +22,12 @@ const RUMBLE_COLOR := Color(0.95, 0.78, 0.45, 0.85)
 const DAMAGE_FIXED := "fixed"
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const BUSH_ART := "res://assets/art/realm_midgard/bush.png"
+## Hazard effect art (CODEX-ART-07); coloured rects remain the fallback.
+const FIRE_PILLAR_ART := "res://assets/art/hazards/fire_pillar.png"
+const LIGHT_BEAM_ART := "res://assets/art/hazards/light_beam.png"
+const VENT_GLYPH_ART := "res://assets/art/hazards/vent_glyph.png"
+const VINE_BRIDGE_ART := "res://assets/art/hazards/vine_bridge.png"
+const BEAM_GLYPH_TINT := Color(1.0, 0.92, 0.55)
 const BEAM_COLOR := Color(1.0, 0.95, 0.62, 0.72)
 const BEAM_WARNING_COLOR := Color(1.0, 0.9, 0.5, 0.14)
 const BEAM_GLYPH_COLOR := Color(1.0, 0.86, 0.42, 0.9)
@@ -203,7 +209,7 @@ func _start_warning(realm_index: int) -> void:
 			for column in entry.columns:
 				var rect: Rect2 = column
 				entry.visuals.append(_rect_node(rect, PILLAR_WARNING_COLOR))
-				entry.visuals.append(_rect_node(Rect2(rect.position.x, rect.end.y - 8.0, rect.size.x, 8.0), VENT_COLOR))
+				entry.visuals.append(_art_node(Rect2(rect.position.x, rect.end.y - 12.0, rect.size.x, 16.0), VENT_GLYPH_ART, VENT_COLOR))
 				entry.visuals.append(_particles(Rect2(rect.position.x, rect.end.y - 10.0, rect.size.x, 6.0), Color(1.0, 0.6, 0.2, 0.9), 10, 0.5, 90.0, false))
 		"quake":
 			for platform in _platform_rects(realm_index):
@@ -215,7 +221,7 @@ func _start_warning(realm_index: int) -> void:
 			for column in entry.columns:
 				var rect: Rect2 = column
 				entry.visuals.append(_rect_node(rect, BEAM_WARNING_COLOR))
-				entry.visuals.append(_rect_node(Rect2(rect.position.x, rect.end.y - 6.0, rect.size.x, 6.0), BEAM_GLYPH_COLOR))
+				entry.visuals.append(_art_node(Rect2(rect.position.x, rect.end.y - 12.0, rect.size.x, 16.0), VENT_GLYPH_ART, BEAM_GLYPH_COLOR, BEAM_GLYPH_TINT))
 		"vines":
 			var bridges: Array = entry.hazard.get("bridges", [])
 			var local: Rect2 = bridges[_rng.randi_range(0, bridges.size() - 1)]
@@ -232,13 +238,16 @@ func _start_active(realm_index: int) -> void:
 		"eruption":
 			entry.timer = float(entry.hazard.get("active", 0.6))
 			for column in entry.columns:
-				entry.visuals.append(_rect_node(column, PILLAR_COLOR))
+				# The flame art is narrower than the hit zone: a faint band shows the full width.
+				entry.visuals.append(_rect_node(column, Color(PILLAR_COLOR, 0.2)))
+				entry.visuals.append(_art_node(column, FIRE_PILLAR_ART, PILLAR_COLOR))
 				entry.visuals.append(_particles(column, Color(1.0, 0.82, 0.35, 0.95), 40, 0.6, 520.0, false))
 			shake_requested.emit(realm_index, 4.0, 0.25)
 		"beams":
 			entry.timer = float(entry.hazard.get("active", 0.5))
 			for column in entry.columns:
-				entry.visuals.append(_rect_node(column, BEAM_COLOR))
+				entry.visuals.append(_rect_node(column, Color(BEAM_COLOR, 0.2)))
+				entry.visuals.append(_art_node(column, LIGHT_BEAM_ART, BEAM_COLOR))
 				entry.visuals.append(_particles(column, Color(1.0, 0.95, 0.7, 0.95), 30, 0.5, -420.0, false))
 			shake_requested.emit(realm_index, 3.0, 0.2)
 		"vines":
@@ -302,13 +311,27 @@ func _vine_bridge(rect: Rect2) -> Node:
 	shape.one_way_collision = true
 	shape.one_way_collision_margin = 12.0
 	bridge.add_child(shape)
+	var art := ART_SETTINGS.original_texture(VINE_BRIDGE_ART)
+	if art != null:
+		var strip := NinePatchRect.new()
+		strip.texture = art
+		strip.position = -rect.size * 0.5
+		strip.size = rect.size
+		strip.patch_margin_left = 24
+		strip.patch_margin_right = 24
+		strip.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT
+		strip.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		bridge.add_child(strip)
 	var stem := ColorRect.new()
 	stem.color = VINE_DARK_COLOR
+	stem.visible = art == null
 	stem.size = rect.size
 	stem.position = -rect.size * 0.5
 	bridge.add_child(stem)
 	var top := ColorRect.new()
 	top.color = VINE_COLOR
+	top.visible = art == null
 	top.size = Vector2(rect.size.x, 6.0)
 	top.position = Vector2(-rect.size.x * 0.5, -rect.size.y * 0.5)
 	bridge.add_child(top)
@@ -317,6 +340,7 @@ func _vine_bridge(rect: Rect2) -> Node:
 		var x := -rect.size.x * 0.5 + 14.0 + leaf * 28.0
 		bud.polygon = PackedVector2Array([Vector2(x - 6, -rect.size.y * 0.5), Vector2(x, -rect.size.y * 0.5 - 9), Vector2(x + 6, -rect.size.y * 0.5)])
 		bud.color = VINE_COLOR.lightened(0.15)
+		bud.visible = art == null
 		bridge.add_child(bud)
 	# Drawn with the platforms, behind fighters (this node sits above them).
 	bridge.z_as_relative = false
@@ -385,6 +409,27 @@ func _rect_node(rect: Rect2, color: Color) -> ColorRect:
 	node.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(node)
 	return node
+
+## Original effect art stretched over a rect (caps > 0: a 3-slice strip
+## tiled across instead); the coloured rect when the art is missing or the prototype style is on.
+func _art_node(rect: Rect2, path: String, fallback: Color, tint := Color.WHITE, caps := 0) -> Control:
+	var texture := ART_SETTINGS.original_texture(path)
+	if texture == null:
+		return _rect_node(rect, fallback)
+	var strip := NinePatchRect.new()
+	strip.texture = texture
+	strip.position = rect.position
+	strip.size = rect.size
+	strip.patch_margin_left = caps
+	strip.patch_margin_right = caps
+	strip.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT if caps > 0 else NinePatchRect.AXIS_STRETCH_MODE_STRETCH
+	# One stretched column: tiled, every 128 px repeat showed its own base.
+	strip.axis_stretch_vertical = NinePatchRect.AXIS_STRETCH_MODE_STRETCH
+	strip.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	strip.modulate = tint
+	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(strip)
+	return strip
 
 func _pulse_visuals(entry: Dictionary) -> void:
 	var alpha := 0.55 + 0.45 * sin(float(entry.timer) * 18.0)
