@@ -35,9 +35,11 @@ func _ready() -> void:
 	collision_mask = 0
 	var collision := CollisionShape2D.new()
 	var shape := RectangleShape2D.new()
-	shape.size = Vector2(36, 52)
+	# The crystal floats over a spawn point (54-80 px above the platform), but its hitbox
+	# hangs down to the floor: grounded swings land at about 34 px above the feet.
+	shape.size = Vector2(40, 116)
 	collision.shape = shape
-	collision.position = Vector2(0, -26)
+	collision.position = Vector2(0, 6)
 	add_child(collision)
 	visual = _build_visual()
 	add_child(visual)

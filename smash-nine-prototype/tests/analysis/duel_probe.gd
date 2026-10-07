@@ -32,6 +32,11 @@ func _run() -> void:
 		monster.queue_free()
 	main.realm_monster_spawner.set_process(false)
 	main.realm_monster_spawner.monsters_by_realm.clear()
+	# Soul crystals (2026-10-07) also pull bots away from the duel.
+	main.soul_crystal_spawner.set_process(false)
+	main.soul_crystal_spawner.spawn_points_provider = Callable()
+	for crystal in get_nodes_in_group("soul_crystals"):
+		crystal.queue_free()
 	node_added.connect(_on_node_added)
 	for player in main.players:
 		spawned[player.display_name] = 0

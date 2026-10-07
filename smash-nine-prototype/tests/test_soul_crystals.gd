@@ -32,6 +32,13 @@ func _run() -> void:
 	if get_nodes_in_group("soul_crystals").size() != playable.size() or spawner.get_crystal(realm_index) == null:
 		_fail("Expected one crystal per playable realm, got %d" % get_nodes_in_group("soul_crystals").size())
 	var crystal: Node = spawner.get_crystal(realm_index)
+	# Regression (12:45): a crystal floating at a spawn point could not be reached by a
+	# grounded swing (about 34 px above feet on a floor 54-80 px below), so bots swung forever.
+	var collision: CollisionShape2D = crystal.get_child(0)
+	var hitbox := Rect2(collision.position - collision.shape.size * 0.5, collision.shape.size)
+	for floor_depth in [54.0, 80.0]:
+		if not failed and not hitbox.has_point(Vector2(0.0, floor_depth - 34.0)):
+			_fail("A grounded swing %.0f px below the crystal should reach it" % floor_depth)
 	var fighter: Node = PLAYER_FACTORY.create("frey")
 	arena.add_child(fighter)
 	fighter.setup(CHARACTER_REGISTRY.get_characters()["frey"], 1, false)
