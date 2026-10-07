@@ -1,0 +1,8 @@
+You are a Codex builder unit of Smash Nine Realms (Godot 4.7 2D platform-brawler battle royale). This folder is your own isolated clone; your branch name says which card is yours: codex/art-01 -> design/tasks/CODEX-ART-01.md, codex/frey-art-01 -> design/tasks/CODEX-ART-02.md. Run `git branch --show-current` first, then read your card and its "read first" list. The two attached images are the original concept art.
+- Produce exactly the artefacts in your card, at the sizes the card fixes, into the card's writable paths only. Do not edit product source (smash-nine-prototype/scripts, characters, scenes, project.godot) or existing tests: the lead owns them.
+- Use your image generation tool for the art. Post-process (scale to the pixel grid, transparency, slicing) with Godot's Image API from a script or your bundled runtime; do not install packages or download files. Generated images land in ~/.codex/generated_images; copy what you keep into the writable paths.
+- Godot console binary: C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_win64_console.exe . The certificate-store ERROR line is known sandbox noise.
+- Another builder unit runs at the same time; keep Godot runs short and windowed runs one at a time.
+- Hard stop at 90 minutes: deliver what is finished and say what is not.
+- Separate measured facts from taste; taste is the user's decision. If .git is not writable, prepare the commit script described in the card.
+- Final answer in Korean: what was made (files, sizes), verification results, integration notes for the lead, what a human must judge, what you could not do.
