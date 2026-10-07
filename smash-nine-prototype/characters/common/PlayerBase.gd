@@ -148,6 +148,8 @@ var last_attacker: Node
 var last_attacker_timer := 0.0
 var invulnerable_timer := 0.0
 var last_hit_absorbed := false
+## Hidden in a bush (RealmHazards): faded, and bots only notice up close.
+var concealed := false
 var action_epoch := 0
 var ultimate_cooldown_timer := 0.0
 var realm_index := 0
@@ -322,7 +324,7 @@ func _update_match_timers(delta: float) -> void:
 	last_attacker_timer = maxf(last_attacker_timer - delta, 0.0)
 	if invulnerable_timer > 0.0:
 		invulnerable_timer = maxf(invulnerable_timer - delta, 0.0)
-		modulate.a = 1.0 if invulnerable_timer <= 0.0 or int(invulnerable_timer * 12.0) % 2 == 0 else 0.45
+		modulate.a = _visible_alpha() if invulnerable_timer <= 0.0 or int(invulnerable_timer * 12.0) % 2 == 0 else 0.45
 	_update_recovery(delta)
 
 ## Out-of-combat regeneration while the match allows it (MatchDirector.RECOVERY_RATE).
@@ -337,6 +339,18 @@ func _update_recovery(delta: float) -> void:
 		if int(hp) != before:
 			_update_visuals()
 	_hp_last_tick = hp
+
+## P1 still sees themselves faintly; everyone else almost disappears, name and bars too.
+func set_concealed(value: bool) -> void:
+	if concealed == value:
+		return
+	concealed = value
+	modulate.a = _visible_alpha()
+
+func _visible_alpha() -> float:
+	if not concealed:
+		return 1.0
+	return 0.55 if is_human else 0.18
 
 func is_invulnerable() -> bool:
 	return invulnerable_timer > 0.0

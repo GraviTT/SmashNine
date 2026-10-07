@@ -4,7 +4,8 @@ extends RefCounted
 ## Coordinates are local to one tile of `size`; `tiles` repeats the tile (1x1 by default).
 ## Rises between standable platforms stay under the bots' 185 px jump reach.
 ## "hazard" (optional) is read by RealmHazards: ice (floor traction), eruption (telegraphed
-## fire pillars on platforms), quake (telegraphed stun for everyone on the ground).
+## fire pillars on platforms), quake (telegraphed stun for everyone on the ground), bushes
+## (standing in one hides a fighter; "spots" are bush bottoms on platform tops).
 
 const PLATFORM_MAIN := "main"
 const PLATFORM_SUB := "sub"
@@ -43,6 +44,7 @@ static func build_maps() -> Array:
 		"grid": Vector2i(1, 0),
 		"theme": "market_rooftops",
 		"identity": "Asymmetric streets",
+		"hazard": {"type": "bushes", "text": "Hiding bushes", "spots": [Vector2(230, 592), Vector2(1020, 567), Vector2(560, 434)], "size": Vector2(150, 64), "reveal": 0.8, "notice_range": 140.0},
 		"background": Color(0.045, 0.04, 0.03),
 		"accent": Color(0.95, 0.72, 0.42),
 		"size": OUTER_SIZE,

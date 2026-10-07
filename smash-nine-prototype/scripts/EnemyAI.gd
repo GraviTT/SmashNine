@@ -65,6 +65,7 @@ const COMBAT_PROFILES := {
 	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true},
 	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true}
 }
+const BUSH_NOTICE_RANGE := 140.0
 const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
 
 const OFFSCREEN_THINK_MIN := 1.4
@@ -699,6 +700,9 @@ func _is_valid_target_candidate(player, candidate: Node) -> bool:
 		return false
 	if candidate.is_in_group("players"):
 		if bool(candidate.get("is_dummy")) or bool(candidate.get("is_defeated")):
+			return false
+		# Hidden in a bush: noticed only up close (RealmHazards bushes).
+		if bool(candidate.get("concealed")) and player.global_position.distance_to(candidate.global_position) > BUSH_NOTICE_RANGE:
 			return false
 	elif candidate.is_in_group("realm_monsters"):
 		var hp_value: Variant = candidate.get("hp")

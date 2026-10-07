@@ -1,6 +1,7 @@
 extends SceneTree
 ## Visual check of the realm gimmicks (windowed, not headless): eruption warning and
-## pillars in Muspelheim, quake warning in Jotunheim, the ice realm title in Niflheim.
+## pillars in Muspelheim, quake warning in Jotunheim, the ice realm title in Niflheim,
+## a bot hidden in a Midgard bush.
 ## Usage: godot --path . -s tests/capture_hazards.gd -- --out=../reports/screens-hazards
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
@@ -35,6 +36,13 @@ func _run() -> void:
 				await _shot("eruption_active")
 		else:
 			await _shot("ice_realm")
+	var midgard := _realm("Midgard")
+	_show(midgard)
+	await _frames(10)
+	var bush: Rect2 = main.hazards.get_bushes(midgard)[0]
+	main.players[0].global_position = Vector2(bush.get_center().x, bush.end.y - 4.0)
+	await _frames(6)
+	await _shot("midgard_bushes")
 	print("Hazard screens saved to ", out_dir)
 	quit(0)
 

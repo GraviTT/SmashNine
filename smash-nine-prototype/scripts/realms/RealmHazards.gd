@@ -5,6 +5,8 @@ extends Node2D
 ## - eruption: fire pillars rise from platform spots after a warning; a hit launches upward
 ## - quake: after a rumble warning, everyone on the ground is stunned and popped up;
 ##   jumping during the warning avoids it
+## - bushes: a fighter inside a bush is concealed (faded, bots only notice within
+##   notice_range); attacking or getting hit reveals them for a moment
 ## Timing uses a seeded RNG, so a match seed replays the same hazards.
 
 signal shake_requested(realm_index: int, strength: float, duration: float)
@@ -15,6 +17,9 @@ const PILLAR_WARNING_COLOR := Color(1.0, 0.55, 0.12, 0.16)
 const VENT_COLOR := Color(1.0, 0.5, 0.1, 0.9)
 const RUMBLE_COLOR := Color(0.95, 0.78, 0.45, 0.85)
 const DAMAGE_FIXED := "fixed"
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const BUSH_ART := "res://assets/art/realm_midgard/bush.png"
+const BUSH_COLORS: Array[Color] = [Color(0.16, 0.42, 0.18), Color(0.22, 0.55, 0.22), Color(0.3, 0.66, 0.28)]
 
 var enabled := true
 var layout: REALM_LAYOUT
@@ -24,6 +29,8 @@ var _rng := RandomNumberGenerator.new()
 ## realm_index -> {"hazard": Dictionary, "phase": String, "timer": float, "next_in": float,
 ##                 "columns": Array[Rect2], "hit": Array[Node], "visuals": Array[Node]}
 var _realms: Dictionary = {}
+## combatant -> seconds left before an attacker or a hit fighter can hide again
+var _revealed: Dictionary = {}
 
 func setup(new_layout: REALM_LAYOUT, new_state_of: Callable, match_seed: int) -> void:
 	layout = new_layout
@@ -35,6 +42,9 @@ func setup(new_layout: REALM_LAYOUT, new_state_of: Callable, match_seed: int) ->
 		if hazard.is_empty():
 			continue
 		_realms[realm_index] = {"hazard": hazard, "phase": "idle", "timer": 0.0, "next_in": _next_interval(hazard), "columns": [], "hit": [], "visuals": []}
+		if str(hazard.type) == "bushes":
+			_realms[realm_index]["bushes"] = _bush_rects(realm_index, hazard)
+			_realms[realm_index]["visuals"] = _bush_visuals(_realms[realm_index].bushes)
 
 func register_combatant(combatant: Node) -> void:
 	if not combatants.has(combatant):
@@ -58,6 +68,7 @@ func trigger(realm_index: int) -> void:
 
 func advance(delta: float) -> void:
 	_update_traction()
+	_update_concealment(delta)
 	if not enabled:
 		return
 	for realm_index in _realms:
@@ -80,6 +91,78 @@ func _update_traction() -> void:
 			if str(hazard.type) == "ice":
 				traction = float(hazard.get("traction", 1.0))
 		combatant.ground_traction = traction
+
+func get_bushes(realm_index: int) -> Array:
+	return _realms[realm_index].get("bushes", []) if _realms.has(realm_index) else []
+
+## Who is hidden right now. Off, unplayable or revealed means visible.
+func _update_concealment(delta: float) -> void:
+	for combatant in combatants:
+		if not is_instance_valid(combatant):
+			continue
+		var left := maxf(float(_revealed.get(combatant, 0.0)) - delta, 0.0)
+		if combatant.attack_lock_timer > 0.0 or combatant.hitstun_timer > 0.0:
+			left = float(_bush_hazard(combatant.realm_index).get("reveal", 0.8))
+		_revealed[combatant] = left
+		var hidden := false
+		if enabled and left <= 0.0 and not combatant.is_defeated and _is_playable(combatant.realm_index):
+			var body_point: Vector2 = combatant.global_position + Vector2(0, -24)
+			for bush in get_bushes(combatant.realm_index):
+				hidden = hidden or (bush as Rect2).has_point(body_point)
+		combatant.set_concealed(hidden)
+	for realm_index in _realms:
+		var entry: Dictionary = _realms[realm_index]
+		if entry.has("bushes"):
+			var show := enabled and _is_playable(realm_index)
+			for node in entry.visuals:
+				if is_instance_valid(node):
+					node.visible = show
+
+func _bush_hazard(realm_index: int) -> Dictionary:
+	if _realms.has(realm_index) and str(_realms[realm_index].hazard.type) == "bushes":
+		return _realms[realm_index].hazard
+	return {}
+
+func _bush_rects(realm_index: int, hazard: Dictionary) -> Array[Rect2]:
+	var rects: Array[Rect2] = []
+	var size: Vector2 = hazard.get("size", Vector2(150, 64))
+	var origin: Vector2 = layout.get_origin(realm_index)
+	for spot in hazard.get("spots", []):
+		var bottom: Vector2 = origin + spot
+		rects.append(Rect2(bottom.x - size.x * 0.5, bottom.y - size.y + 4.0, size.x, size.y))
+	return rects
+
+## Drawn in front of fighters (this node sits above them). Original art when present,
+## otherwise a clump of leafy blobs.
+func _bush_visuals(rects: Array[Rect2]) -> Array[Node]:
+	var nodes: Array[Node] = []
+	var texture := ART_SETTINGS.original_texture(BUSH_ART)
+	for rect in rects:
+		var bush := Node2D.new()
+		bush.name = "Bush"
+		bush.position = rect.position
+		if texture != null:
+			var sprite := Sprite2D.new()
+			sprite.texture = texture
+			sprite.centered = false
+			sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			sprite.scale = rect.size / texture.get_size()
+			bush.add_child(sprite)
+		else:
+			for blob in 7:
+				var leaf := Polygon2D.new()
+				var radius := rect.size.y * (0.34 + 0.06 * float(blob % 3))
+				var center := Vector2(rect.size.x * (0.12 + 0.76 * blob / 6.0), rect.size.y - radius * 0.9 - float(blob % 2) * 8.0)
+				var points := PackedVector2Array()
+				for step in 10:
+					var angle := TAU * step / 10.0
+					points.append(center + Vector2(cos(angle) * radius * 1.15, sin(angle) * radius))
+				leaf.polygon = points
+				leaf.color = BUSH_COLORS[blob % BUSH_COLORS.size()]
+				bush.add_child(leaf)
+		add_child(bush)
+		nodes.append(bush)
+	return nodes
 
 func _advance_timed(realm_index: int, entry: Dictionary, delta: float) -> void:
 	match str(entry.phase):
