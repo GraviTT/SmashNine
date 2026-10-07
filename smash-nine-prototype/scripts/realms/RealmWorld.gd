@@ -6,6 +6,7 @@ extends Node2D
 const REALM_BACKDROP_SCRIPT := preload("res://scripts/RealmBackdrop.gd")
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const SHARED_PORTAL_ART := "res://assets/art/realm_center/portal.png"
 const WORLD_LAYER := 1
 const PLATFORM_MAIN := "main"
 const PLATFORM_SUB := "sub"
@@ -133,6 +134,18 @@ func _add_painted_backdrop(parent: Node2D, realm_index: int, backdrop: Node2D) -
 		layers += 1
 	if layers > 0:
 		backdrop.set_meta("painted_over", true)
+		# "dim" darkens busy paintings behind the play area so fighters and platforms read
+		# (FINAL_GAME_GOAL: backgrounds must not hurt combat readability).
+		var dim := float(layout.get_realm(realm_index).art.get("dim", 0.0))
+		if dim > 0.0:
+			var shade := ColorRect.new()
+			shade.name = "Painted_dim"
+			shade.color = Color(0.0, 0.0, 0.0, dim)
+			shade.position = layout.get_origin(realm_index)
+			shade.size = realm_size
+			shade.z_index = -19 + layers
+			shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			parent.add_child(shade)
 
 ## Original art for a platform: a 3-slice strip (caps + tiled middle) replaces the coloured
 ## rectangles but keeps the same collision body.
@@ -218,6 +231,9 @@ func _create_state_overlay(parent: Node2D, realm_index: int, state: String) -> v
 func _create_portal_visual(parent: Node2D, center: Vector2, label_text: String, destination_index: int, source_index: int, warned: bool) -> void:
 	var realm: Dictionary = layout.get_realm(destination_index)
 	var painted := _realm_art(source_index, "portal")
+	if painted == null and not layout.get_realm(source_index).get("art", {}).is_empty():
+		# Outer realms share the center realm's portal art.
+		painted = ART_SETTINGS.original_texture(SHARED_PORTAL_ART)
 	if painted != null:
 		# Original art: the portal sprite tinted toward the destination realm's colour.
 		var sprite := TextureRect.new()
