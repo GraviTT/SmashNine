@@ -73,8 +73,8 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | builder | `design/tasks/CODEX-ART-09.md` | 8 fighter sheets, `tests/art_preview/sprite_fix_a/`, `reports/codex-art-09/` | done — merged `f0f606d` (31 frames; the lead re-extracted 35 more, `bbfd473`) |
 | builder | `design/tasks/CODEX-ART-10.md` | `assets/art/vfx/`, `tests/art_preview/ult_vfx_b/`, `reports/codex-art-10/` | done — merged `2685c54` |
 | builder | `design/tasks/CODEX-ART-11.md` | `assets/art/{monsters,objects}/`, `tests/art_preview/monsters_v2_b/`, `reports/codex-art-11/` | done — merged `093ecba` |
-| builder | `design/tasks/CODEX-ART-12.md` | 3 fighter sheets, `tests/art_preview/sprite_fix_a2/`, `reports/codex-art-12/` | running (routine 2026-10-08) |
-| analyst | `design/tasks/CODEX-QA-12.md` | `tests/analysis/codex_qa_12/`, `reports/codex-qa-12/` | running (routine 2026-10-08) |
+| builder | `design/tasks/CODEX-ART-12.md` | 4 fighter sheets, `tests/art_preview/sprite_fix_a{2,3}/`, `reports/codex-art-12/` | done — merged `21b3682` (cells pasted), `6c09768` |
+| analyst | `design/tasks/CODEX-QA-12.md` | `tests/analysis/codex_qa_12/`, `reports/codex-qa-12/` | done — merged `3821cb3`; P1 ×2, P2 fixed `906b014` |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
 
