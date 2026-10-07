@@ -17,10 +17,13 @@ const PROJECTILE_SCRIPT := preload("res://scripts/Projectile.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const FRAMES := preload("res://characters/common/CharacterAnimation.gd")
 const FIREBALL_ART := "res://assets/art/monsters/ember_fireball.png"
-## Original sheets (CODEX-ART-05): 6x4 cells of 64 px, rows idle 4 / walk 6 / attack 4 / hurt 1,
-## feet at y=48. Drawn at 1.5x so monsters stay smaller than fighters.
+## Original sheets: 6x4 cells, rows idle 4 / walk 6 / attack 4 / hurt 1, feet at 3/4 of the cell.
+## The cell size is read from the sheet (width / 6): 96 px cells (CODEX-ART-11) draw at 1x, the
+## older 64 px cells (CODEX-ART-05) at 1.5x, so a monster is 96 screen px either way.
 const ART_ROWS := [["idle", 4, 6.0, true], ["walk", 6, 10.0, true], ["attack", 4, 12.0, false], ["hurt", 1, 1.0, false]]
-const ART_SCALE := 1.5
+const ART_SCREEN_CELL := 96.0
+## Fireball art: 36 px at 1x, or the older 24 px at 1.5x.
+const FIREBALL_SCREEN_SIZE := 36.0
 const ATTACK_ANIMATION_TIME := 0.33
 
 var monster_type := "mossling"
@@ -169,16 +172,19 @@ func _build_art_sprite() -> AnimatedSprite2D:
 	var sheet := ART_SETTINGS.original_texture("res://assets/art/monsters/%s_sheet.png" % monster_type)
 	if sheet == null:
 		return null
+	var cell := sheet.get_width() / 6
+	var art_scale := ART_SCREEN_CELL / cell
 	var frames := FRAMES.create_frames()
 	for row in ART_ROWS.size():
 		var spec: Array = ART_ROWS[row]
-		FRAMES.add_grid(frames, StringName(spec[0]), sheet, Vector2i(64, 64), 6, row * 6, int(spec[1]), float(spec[2]), bool(spec[3]))
+		FRAMES.add_grid(frames, StringName(spec[0]), sheet, Vector2i(cell, cell), 6, row * 6, int(spec[1]), float(spec[2]), bool(spec[3]))
 	var sprite := AnimatedSprite2D.new()
 	sprite.name = "ArtSprite"
 	sprite.sprite_frames = frames
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	sprite.scale = Vector2(ART_SCALE, ART_SCALE)
-	sprite.position = Vector2(0, -16.0 * ART_SCALE)
+	sprite.scale = Vector2(art_scale, art_scale)
+	# Feet sit a quarter cell below the centre.
+	sprite.position = Vector2(0, -cell * 0.25 * art_scale)
 	sprite.play(&"idle")
 	return sprite
 
@@ -291,7 +297,9 @@ func _spawn_projectile(direction: Vector2) -> void:
 	get_parent().add_child(projectile)
 	projectile.global_position = global_position + Vector2(32 * facing, -34)
 	projectile.configure(self, Vector2(24, 18), attack_damage, PROJECTILE_KNOCKBACK, direction, Color(1.0, 0.42, 0.12, 0.82), 390.0, 1.35)
-	projectile.set_art(FIREBALL_ART, Color.WHITE, 1.5)
+	var fireball := ART_SETTINGS.original_texture(FIREBALL_ART)
+	if fireball != null:
+		projectile.set_art(FIREBALL_ART, Color.WHITE, FIREBALL_SCREEN_SIZE / fireball.get_width())
 	attack_animation_timer = ATTACK_ANIMATION_TIME
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := "normal") -> bool:

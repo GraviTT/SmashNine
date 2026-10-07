@@ -13,7 +13,10 @@ const SHATTER_PATH := "res://assets/art/objects/soul_crystal_shatter.png"
 const MONSTER_LAYER := 4
 const HITS_TO_BREAK := 3
 const SOUL_REWARD := 10
-const ART_SCALE := 1.5
+## Strips of 4 frames with the crystal's bottom a quarter frame below the centre. 72x96 frames
+## (CODEX-ART-11) draw at 1x, the older 48x64 ones at 1.5x.
+const ART_FRAMES := 4
+const ART_SCREEN_WIDTH := 72.0
 const CRYSTAL_COLOR := Color(0.72, 0.45, 1.0)
 
 var realm_index := 0
@@ -57,9 +60,8 @@ func _build_visual() -> Node2D:
 		var sprite := AnimatedSprite2D.new()
 		sprite.sprite_frames = _strip_frames(sheet, &"shimmer", 6.0, true)
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		sprite.scale = Vector2(ART_SCALE, ART_SCALE)
-		# Strip cells are 48x64 with the crystal's bottom near y=56.
-		sprite.position = Vector2(0, -24.0 * ART_SCALE)
+		sprite.scale = Vector2.ONE * _art_scale(sheet)
+		sprite.position = Vector2(0, -_art_bottom(sheet))
 		sprite.play(&"shimmer")
 		return sprite
 	var root := Node2D.new()
@@ -77,17 +79,24 @@ func _build_visual() -> Node2D:
 	root.add_child(shine)
 	return root
 
+static func _art_scale(texture: Texture2D) -> float:
+	return ART_SCREEN_WIDTH / (texture.get_width() / ART_FRAMES)
+
+## Distance from the frame centre down to the crystal's bottom, in screen pixels.
+static func _art_bottom(texture: Texture2D) -> float:
+	return texture.get_height() * 0.375 * _art_scale(texture)
+
 static func _strip_frames(texture: Texture2D, animation: StringName, fps: float, loops: bool) -> SpriteFrames:
 	var frames := SpriteFrames.new()
 	frames.clear_all()
 	frames.add_animation(animation)
 	frames.set_animation_speed(animation, fps)
 	frames.set_animation_loop(animation, loops)
-	var count := int(texture.get_width() / 48)
-	for index in count:
+	var width := texture.get_width() / ART_FRAMES
+	for index in ART_FRAMES:
 		var frame := AtlasTexture.new()
 		frame.atlas = texture
-		frame.region = Rect2(index * 48, 0, 48, 64)
+		frame.region = Rect2(index * width, 0, width, texture.get_height())
 		frames.add_frame(animation, frame)
 	return frames
 
@@ -141,10 +150,10 @@ func _play_shatter() -> void:
 		var sprite := AnimatedSprite2D.new()
 		sprite.sprite_frames = _strip_frames(sheet, &"shatter", 12.0, false)
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		sprite.scale = Vector2(ART_SCALE, ART_SCALE)
+		sprite.scale = Vector2.ONE * _art_scale(sheet)
 		sprite.play(&"shatter")
 		effect = sprite
-		effect.position = global_position + Vector2(0, -24.0 * ART_SCALE)
+		effect.position = global_position + Vector2(0, -_art_bottom(sheet))
 	else:
 		var burst := Polygon2D.new()
 		burst.polygon = PackedVector2Array([Vector2(0, -30), Vector2(30, 0), Vector2(0, 30), Vector2(-30, 0)])
