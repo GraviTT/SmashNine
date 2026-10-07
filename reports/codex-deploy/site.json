@@ -1,31 +1,50 @@
 {
   "project_id": "appgprj_6ac65f43555481918a37077e8c63c66c",
-  "url": null,
+  "url": "https://smash-nine-prototype.tt9.chatgpt.site",
   "registered_site_origin": "https://smash-nine-prototype.tt9.chatgpt.site",
   "access": "owner_only",
-  "version_number": null,
-  "version_id": null,
-  "deployment_id": null,
-  "game_source_commit_sha": "97d70c2926c42241a1ef5ba3824795d8af0664cc",
+  "version_number": 1,
+  "version_id": "appgprj_6ac65f43555481918a37077e8c63c66c~appgver_336704462edc8191bb9baf823f8f7371",
+  "deployment_id": "appgdep_6ac66b0c4cdc8191877bf733c39e9dbd",
+  "sites_source_commit_sha": "c586eb2336c029f2fc0422a984e7fbbd060c2329",
+  "game_source_commit_sha": "55fcea86dc7d9b1d27a3755f76403c61ad098342",
   "build_command": "powershell -ExecutionPolicy Bypass -File tools/build_web.ps1",
-  "deployed_at_utc": null,
-  "verified_at_utc": null,
-  "verified_routes": [],
-  "status": "failed_before_version_save",
-  "recorded_at_utc": "2026-10-07T15:06:22.0711353Z",
+  "deployed_at_utc": "2026-10-07T15:54:11.581258Z",
+  "verified_at_utc": "2026-10-07T15:56:30.3242757Z",
+  "verified_routes": [
+    {
+      "route": "/",
+      "status": "owner_login_required",
+      "observed": "Sites 로그인 게이트와 auth.openai.com 보안 확인 화면까지 확인",
+      "game_content_verified": false
+    }
+  ],
+  "status": "deployed_verified_by_owner",
   "build": {
     "output_directory": "build/web",
     "zip_path": "build/SmashNine-web.zip",
-    "zip_size_bytes": 36819860,
-    "zip_size_mib": 35.11,
-    "index_wasm_size_bytes": 39509339,
-    "index_pck_size_bytes": 26684744
+    "zip_size_bytes": 14704178,
+    "zip_size_mib": 14.02,
+    "largest_file": "index.wasm.part0",
+    "largest_file_size_bytes": 5242880,
+    "largest_file_size_mib": 5,
+    "index_wasm_present": false,
+    "index_wasm_part_count": 8,
+    "index_pck_size_bytes": 4537468
   },
-  "failure": {
-    "stage": "sites_source_push",
-    "code": "artifacts_git_receive_pack_object_too_large",
-    "message": "Sites 원격 소스 저장소가 대용량 Git 객체를 거부하여 버전 저장 및 배포 전에 중단됨.",
-    "rejected_file": null,
-    "server_named_rejected_file": false
+  "browser_verification": {
+    "owner_login_required": true,
+    "start_screen_verified": false,
+    "five_key_match_start_verified": false,
+    "game_console_errors_verified": false,
+    "network_parts_200_verified": false,
+    "network_pck_200_verified": false,
+    "blocker": "ChatGPT 로그인 진행 중 auth.openai.com의 Cloudflare 보안 확인 화면에서 더 진행되지 않음"
+  },
+  "user_verification": {
+    "date": "2026-10-08",
+    "by": "owner",
+    "result": "played the deployed version 1 in the browser (owner login)",
+    "source": "user: 배포 후 플레이 완료"
   }
 }
