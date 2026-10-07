@@ -6,7 +6,7 @@ const WARNING_TIME := 0.7
 const ACTIVE_TIME := 2.35
 const PULSE_INTERVAL := 0.58
 const SEAL_WARNING_ALPHA := 0.35
-const SEAL_ACTIVE_ALPHA := 0.6
+const SEAL_ACTIVE_ALPHA := 0.4
 ## Tuned 2026-10-08 (5.5 -> ~12 damage per cast after the match scale).
 const PULSE_DAMAGE := 6.0
 const FINAL_PULSE_DAMAGE := 32.0
@@ -69,7 +69,8 @@ func configure(new_owner: Node, new_realm_index: int) -> void:
 	realm_index = new_realm_index
 
 func _physics_process(delta: float) -> void:
-	if not is_instance_valid(owner_node):
+	# The ward ends with Yuki: defeated, or gone to another realm (Codex QA-12).
+	if not is_instance_valid(owner_node) or owner_node.is_defeated or int(owner_node.realm_index) != realm_index:
 		queue_free()
 		return
 	if not activated:
@@ -104,6 +105,9 @@ func _apply_field_control(delta: float) -> void:
 			target.apply_control_pull(global_position, FIELD_PULL_STRENGTH, delta, 0.16, true)
 
 func _pulse(final_pulse: bool) -> void:
+	if not is_instance_valid(owner_node) or owner_node.is_defeated:
+		return
+	var landed_at := Vector2.INF
 	for target in _get_targets():
 		if target == owner_node or not _same_realm(target):
 			continue
@@ -113,10 +117,16 @@ func _pulse(final_pulse: bool) -> void:
 		var direction := offset.normalized()
 		if direction == Vector2.ZERO:
 			direction = Vector2.UP
+		var landed = false
 		if final_pulse and target.has_method("apply_stun_hit"):
-			target.apply_stun_hit(owner_node, FINAL_PULSE_DAMAGE, 520.0, direction, 1.2)
+			landed = target.apply_stun_hit(owner_node, FINAL_PULSE_DAMAGE, 520.0, direction, 1.2)
 		elif not final_pulse and target.has_method("apply_hit"):
-			target.apply_hit(owner_node, PULSE_DAMAGE, 90.0, -direction)
+			landed = target.apply_hit(owner_node, PULSE_DAMAGE, 90.0, -direction)
+		if landed != false and landed_at == Vector2.INF:
+			landed_at = target.global_position + Vector2(0, -28)
+	# Once per pulse, like a strike landing: the camera shake for ultimate hits (Codex QA-12).
+	if landed_at != Vector2.INF and owner_node.ultimate_window_timer > 0.0:
+		owner_node.ultimate_hit.emit(owner_node, landed_at)
 	var pulse_scale := 1.22 if final_pulse else 1.08
 	var tween := core.create_tween()
 	tween.tween_property(core, "scale", Vector2.ONE * pulse_scale, 0.08)

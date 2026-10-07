@@ -2,6 +2,8 @@ extends SceneTree
 ## Ultimates (routine 2026-10-08): a real cast emits ultimate_cast once and opens the
 ## character's ultimate window (follow-up presses do not re-emit); hits inside the window
 ## get the longer hitstop; the HUD cut-in shows the caster and fades out.
+## Codex QA-12 findings: a map move ends the window; Yuki's ward ends with Yuki and its hits
+## signal like a strike.
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
@@ -18,7 +20,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_cast_signal_and_window, _test_ultimate_hitstop, _test_cutin, _test_effects, _test_nova_pull]:
+	for test in [_test_cast_signal_and_window, _test_ultimate_hitstop, _test_window_ends_on_map_move, _test_yuki_ward_lifecycle, _test_cutin, _test_effects, _test_nova_pull]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -79,6 +81,48 @@ func _test_ultimate_hitstop() -> void:
 	if hits.size() != 1 or attacker.hitstop_timer <= attacker.ATTACKER_HITSTOP * 1.5:
 		_fail("An ultimate hit should signal once and give the attacker the longer hitstop")
 	attacker.queue_free()
+	victim.queue_free()
+	await process_frame
+
+func _test_window_ends_on_map_move() -> void:
+	var fighter := _fighter("frey", 1, Vector2.ZERO)
+	fighter.ultimate_window_timer = 1.25
+	var points: Array[Vector2] = [Vector2.ZERO]
+	fighter.reset_for_map(Vector2.ZERO, points)
+	var hits: Array = []
+	fighter.ultimate_hit.connect(func(_p: Node, _at: Vector2) -> void: hits.append(true))
+	fighter.on_attack_landed(Vector2.ZERO, 5.0, 200.0)
+	if fighter.ultimate_window_timer > 0.0 or not hits.is_empty():
+		_fail("A map move should end the ultimate window (timer %.2f, ultimate hits %d)" % [fighter.ultimate_window_timer, hits.size()])
+	fighter.queue_free()
+	await process_frame
+
+func _test_yuki_ward_lifecycle() -> void:
+	var yuki := _fighter("yuki", 1, Vector2.ZERO)
+	var victim := _fighter("frey", 2, Vector2(40, 0))
+	var ward := Node2D.new()
+	ward.set_script(load("res://characters/yuki/YukiGrandWard.gd"))
+	arena.add_child(ward)
+	ward.global_position = Vector2.ZERO
+	ward.configure(yuki, yuki.realm_index)
+	# A landed pulse inside the window signals ultimate_hit (camera shake) once.
+	yuki.ultimate_window_timer = 3.0
+	var hits: Array = []
+	yuki.ultimate_hit.connect(func(_p: Node, _at: Vector2) -> void: hits.append(true))
+	ward._pulse(false)
+	if hits.size() != 1:
+		_fail("A ward pulse that lands should signal ultimate_hit once (got %d)" % hits.size())
+	# Yuki defeated: the ward does no more damage and goes away.
+	yuki.is_defeated = true
+	victim.hitstun_timer = 0.0
+	victim.hitstop_timer = 0.0
+	var hp_before: float = victim.hp
+	ward._pulse(false)
+	await physics_frame
+	await physics_frame
+	if victim.hp < hp_before or (is_instance_valid(ward) and not ward.is_queued_for_deletion()):
+		_fail("Yuki's ward should end when Yuki is defeated (damage %.2f, ward alive %s)" % [hp_before - victim.hp, is_instance_valid(ward)])
+	yuki.queue_free()
 	victim.queue_free()
 	await process_frame
 

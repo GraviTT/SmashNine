@@ -10,8 +10,9 @@ extends SceneTree
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const FRAME_TIME := 1.0 / 60.0
 const MAX_SECONDS := 480.0
-## Seconds after the cast that count as the ultimate (how long each one stays dangerous).
-const WINDOWS := {"frey": 2.0, "yuki": 3.5, "luna": 7.0, "nova": 3.2, "rio": 1.8}
+## Seconds after the cast that count as the ultimate: the fighter's own ultimate_window
+## (character data). Until 03:00 on 2026-10-08 this was a copy that gave Yuki 3.5 s, which
+## missed the ward's final pulse (it lands about 3.57 s after the press).
 const KO_GRACE := 2.0
 
 var main: Node
@@ -53,7 +54,7 @@ func _run() -> void:
 			var cooldown: float = player.ultimate_cooldown_timer
 			if cooldown > float(last_cooldown[player]) + 10.0:
 				casts[player].append({"t": now, "damage": 0.0, "hits": 0, "kos": 0})
-				window_until[player] = now + float(WINDOWS.get(player.character_id, 2.0))
+				window_until[player] = now + float(player.ultimate_window)
 			last_cooldown[player] = cooldown
 			if now > float(window_until[player]):
 				normal_time[player] = float(normal_time[player]) + FRAME_TIME

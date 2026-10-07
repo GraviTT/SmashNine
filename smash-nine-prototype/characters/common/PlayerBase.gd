@@ -1282,6 +1282,7 @@ func _credit_damage(attacker: Node, amount: float) -> void:
 func _defeat(attacker: Node) -> void:
 	cancel_pending_actions()
 	_clear_drop_through_exception()
+	ultimate_window_timer = 0.0
 	_reset_guard_state()
 	_end_skill_dash()
 	character_cleanup()
@@ -1305,6 +1306,7 @@ func _respawn_after_defeat() -> void:
 func _respawn() -> void:
 	cancel_pending_actions()
 	_clear_drop_through_exception()
+	ultimate_window_timer = 0.0
 	_reset_guard_state()
 	character_on_respawn()
 	if not spawn_points.is_empty():
@@ -1354,8 +1356,11 @@ func _apply_realm_active_state() -> void:
 	set_physics_process(true)
 
 func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
+	# The ultimate window ends too, so later normal hits do not get the ultimate hitstop
+	# (Codex QA-12).
 	cancel_pending_actions()
 	_clear_drop_through_exception()
+	ultimate_window_timer = 0.0
 	_reset_guard_state()
 	character_cleanup()
 	character_on_respawn()

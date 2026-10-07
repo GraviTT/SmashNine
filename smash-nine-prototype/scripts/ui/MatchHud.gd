@@ -7,6 +7,11 @@ const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug"
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
+## Cut-in band heights: above the fighters when the caster is in the lower half of the screen,
+## below them otherwise, so the band never covers the cast itself (Codex QA-12: at a fixed
+## y 230 it hid Frey and the first wave).
+const CUTIN_HIGH_Y := 172.0
+const CUTIN_LOW_Y := 536.0
 const CARD_COLOR := Color(0.1, 0.08, 0.2, 0.92)
 const TEXT_DIM := Color(1.0, 1.0, 1.0, 0.7)
 const REFERENCE_SIZE := Vector2(1280, 720)
@@ -251,6 +256,10 @@ func _build_cutin() -> void:
 
 ## Slides the caster's face in from the left for about 0.9 s and flashes the screen.
 func show_ultimate_cutin(player: Node) -> void:
+	var caster_y := 360.0
+	if player is CanvasItem:
+		caster_y = (player as CanvasItem).get_global_transform_with_canvas().origin.y
+	cutin_root.position.y = CUTIN_HIGH_Y if caster_y > get_viewport().get_visible_rect().size.y * 0.5 else CUTIN_LOW_Y
 	_set_portrait(cutin_face, ART_SETTINGS.character_portrait(player.character_id, player.body_type))
 	cutin_band.color = Color(player.body_color.darkened(0.35), 0.86)
 	cutin_name.text = ("P1 " if player.is_human else "") + str(player.display_name)
