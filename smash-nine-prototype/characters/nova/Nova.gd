@@ -390,8 +390,9 @@ func _finish_ultimate_impact() -> void:
 	_clear_ultimate_launch_preview()
 	_clear_singularity_visual()
 	_reset_character_rotation()
-	var radius := lerpf(108.0, 152.0, ultimate_launch_power)
-	_spawn_gravity_burst(radius, lerpf(22.0, 31.0, ultimate_launch_power), lerpf(700.0, 940.0, ultimate_launch_power), ultimate_launch_power, Color(0.48, 0.3, 0.92, 0.68), "ultimate")
+	# Tuned 2026-10-08 (6.3 -> ~12 damage per cast after the match scale).
+	var radius := lerpf(124.0, 170.0, ultimate_launch_power)
+	_spawn_gravity_burst(radius, lerpf(34.0, 46.0, ultimate_launch_power), lerpf(700.0, 940.0, ultimate_launch_power), ultimate_launch_power, Color(0.48, 0.3, 0.92, 0.68), "ultimate")
 	_play_impact_flash(global_position + Vector2(0, -30), radius, Color(1.0, 0.62, 0.24, 0.88))
 	attack_lock_timer = maxf(attack_lock_timer, 0.48)
 

@@ -4,6 +4,9 @@ const FIELD_RADIUS := 205.0
 const WARNING_TIME := 0.7
 const ACTIVE_TIME := 2.35
 const PULSE_INTERVAL := 0.58
+## Tuned 2026-10-08 (5.5 -> ~12 damage per cast after the match scale).
+const PULSE_DAMAGE := 5.0
+const FINAL_PULSE_DAMAGE := 22.0
 
 var owner_node: Node
 var realm_index := 0
@@ -89,9 +92,9 @@ func _pulse(final_pulse: bool) -> void:
 		if direction == Vector2.ZERO:
 			direction = Vector2.UP
 		if final_pulse and target.has_method("apply_stun_hit"):
-			target.apply_stun_hit(owner_node, 12.0, 520.0, direction, 1.2)
+			target.apply_stun_hit(owner_node, FINAL_PULSE_DAMAGE, 520.0, direction, 1.2)
 		elif not final_pulse and target.has_method("apply_hit"):
-			target.apply_hit(owner_node, 3.0, 90.0, -direction)
+			target.apply_hit(owner_node, PULSE_DAMAGE, 90.0, -direction)
 	var pulse_scale := 1.22 if final_pulse else 1.08
 	var tween := core.create_tween()
 	tween.tween_property(core, "scale", Vector2.ONE * pulse_scale, 0.08)

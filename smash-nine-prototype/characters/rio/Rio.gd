@@ -20,6 +20,8 @@ const OVERDRIVE_FIRE_GAP := 0.07
 const OVERDRIVE_RADIUS := 58.0
 const OVERDRIVE_SPIN := 7.0
 const OVERDRIVE_AIM_RANGE := 720.0
+const OVERDRIVE_SWORD_DAMAGE := 9.0
+const OVERDRIVE_LAST_DAMAGE := 14.0
 const MANA_COLOR := Color(0.45, 0.78, 1.0, 0.6)
 const MANA_WAVE_ART := "res://assets/art/effects/rio_mana_wave.png"
 const GEM_SWORD_ART := "res://assets/art/effects/rio_gem_sword.png"
@@ -375,7 +377,9 @@ func _fire_gem_sword() -> void:
 		return
 	var from := sword.global_position
 	var direction := _overdrive_aim(from)
-	var projectile := _spawn_projectile(Vector2(28, 28), 6, 320, direction, sword.color, 980.0, 0.62)
+	# The last sword hits hardest (tuned 2026-10-08: 6.4 -> ~12 damage per cast after the scale).
+	var last := overdrive_swords.is_empty()
+	var projectile := _spawn_projectile(Vector2(28, 28), OVERDRIVE_LAST_DAMAGE if last else OVERDRIVE_SWORD_DAMAGE, 520 if last else 320, direction, sword.color, 980.0, 0.62)
 	projectile.global_position = from
 	if not projectile.set_art(GEM_SWORD_ART, sword.color.lightened(0.2), 1.0):
 		projectile.rotation = direction.angle()

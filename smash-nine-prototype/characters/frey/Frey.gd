@@ -6,6 +6,11 @@ const DASH_HOLD_TIME := 0.13
 const DASH_SPEED := 760.0
 const DASH_TIME := 0.18
 const RISING_FOLLOWUP_WINDOW := 0.18
+## Valkyrie Descent (tuned 2026-10-08: 4.5 -> ~12 damage per cast after the match scale).
+const ULTIMATE_WAVE_DAMAGE := 26.0
+const ULTIMATE_WAVE_REACH := 240.0
+const ULTIMATE_AFTERSHOCK_DELAY := 0.28
+const ULTIMATE_AFTERSHOCK_DAMAGE := 10.0
 
 var combo_step := 0
 var combo_timer := 0.0
@@ -236,17 +241,24 @@ func _ultimate_impact() -> void:
 	_end_skill_dash()
 	velocity = Vector2.ZERO
 	body.color = body_color
-	_spawn_sweeping_stun_attack(Vector2(72, 50), [
-		Vector2(-42, -18),
-		Vector2(-108, -14),
-		Vector2(-184, -10)
-	], 14, 360, Vector2(-1.0, -0.12), Color(1.0, 0.72, 0.18, 0.72), 0.22, 2.0)
-	_spawn_sweeping_stun_attack(Vector2(72, 50), [
-		Vector2(42, -18),
-		Vector2(108, -14),
-		Vector2(184, -10)
-	], 14, 360, Vector2(1.0, -0.12), Color(1.0, 0.72, 0.18, 0.72), 0.22, 2.0)
+	for side in [-1.0, 1.0]:
+		_spawn_sweeping_stun_attack(Vector2(76, 54), [
+			Vector2(42 * side, -18),
+			Vector2(130 * side, -14),
+			Vector2(ULTIMATE_WAVE_REACH * side, -10)
+		], ULTIMATE_WAVE_DAMAGE, 420, Vector2(side, -0.12), Color(1.0, 0.72, 0.18, 0.72), 0.24, 2.0)
 	_play_ultimate_release()
+	# Aftershock: a second, launching ring once the stun has landed.
+	var epoch := action_epoch
+	await get_tree().create_timer(ULTIMATE_AFTERSHOCK_DELAY).timeout
+	if epoch != action_epoch or is_defeated:
+		return
+	for side in [-1.0, 1.0]:
+		_spawn_sweeping_launch_attack(Vector2(84, 70), [
+			Vector2(30 * side, -30),
+			Vector2(120 * side, -26),
+			Vector2(200 * side, -22)
+		], ULTIMATE_AFTERSHOCK_DAMAGE, 560, Vector2(0.5 * side, -1.0), Color(1.0, 0.86, 0.36, 0.7), 0.18, Vector2(260 * side, -720), 0.3)
 
 func _play_ultimate_charge() -> void:
 	body.color = Color(1.0, 0.92, 0.42)

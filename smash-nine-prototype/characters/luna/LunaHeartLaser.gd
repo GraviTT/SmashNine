@@ -6,7 +6,7 @@ var source: Node
 var direction := Vector2.RIGHT
 var duration := 1.0
 var elapsed := 0.0
-var damage_per_tick := 2.2
+var damage_per_tick := 3.4
 var knockback_per_tick := 95.0
 var beam_length := 560.0
 var beam_height := 112.0
