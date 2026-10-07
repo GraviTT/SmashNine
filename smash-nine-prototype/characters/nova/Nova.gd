@@ -13,6 +13,11 @@ const VECTOR_SHIFT_MAX_SPEED := 760.0
 const ULTIMATE_CORE_DISTANCE := 105.0
 const ULTIMATE_PULL_RADIUS := 230.0
 const ULTIMATE_PULL_STRENGTH := 240.0
+## The core collapses as Nova slings off, hitting whoever it gathered (added 2026-10-08: the
+## launch flies along the orbit's tangent, away from the pulled-in opponents).
+const ULTIMATE_COLLAPSE_RADIUS := 118.0
+const ULTIMATE_COLLAPSE_DAMAGE := 18.0
+const ULTIMATE_COLLAPSE_KNOCKBACK := 300.0
 const ULTIMATE_MIN_ORBIT_RADIUS := 52.0
 const ULTIMATE_MAX_TUNING_RADIUS := 260.0
 const ULTIMATE_NEAR_ORBIT_SPEED := 1080.0
@@ -252,7 +257,7 @@ func _gravity_brake_start() -> void:
 	_spawn_gravity_burst(radius, damage, knockback, momentum, _momentum_color(momentum), "brake")
 	_play_impact_flash(global_position + Vector2(0, -30), radius, _momentum_color(momentum))
 
-func _spawn_gravity_burst(radius: float, damage: float, knockback: float, momentum: float, color: Color, hit_tag: String) -> void:
+func _spawn_gravity_burst(radius: float, damage: float, knockback: float, momentum: float, color: Color, hit_tag: String) -> Area2D:
 	var burst := Area2D.new()
 	burst.set_script(GRAVITY_BURST_SCRIPT)
 	burst.collision_layer = 0
@@ -266,6 +271,7 @@ func _spawn_gravity_burst(radius: float, damage: float, knockback: float, moment
 	get_parent().add_child(burst)
 	burst.global_position = global_position + Vector2(0, -30)
 	burst.configure(self, radius, damage, knockback, momentum, color, hit_tag)
+	return burst
 
 func on_nova_gravity_burst_landed(momentum: float, hit_tag: String) -> void:
 	if hit_tag != "brake" or momentum < 0.6 or brake_restore_consumed:
@@ -363,6 +369,10 @@ func _begin_ultimate_launch(tangent: Vector2) -> void:
 	_clear_ultimate_launch_preview()
 	_spawn_ultimate_body_hitbox(42.0, lerpf(15.0, 22.0, ultimate_launch_power), lerpf(480.0, 700.0, ultimate_launch_power), ultimate_launch_duration + 0.08, true, Color(1.0, 0.56, 0.24, 0.68))
 	_play_launch_flash(ultimate_launch_direction)
+	var core_point := ultimate_center + Vector2(0, -32)
+	var collapse := _spawn_gravity_burst(ULTIMATE_COLLAPSE_RADIUS, ULTIMATE_COLLAPSE_DAMAGE, ULTIMATE_COLLAPSE_KNOCKBACK, ultimate_launch_power, Color(0.62, 0.42, 1.0, 0.6), "ultimate")
+	collapse.global_position = core_point
+	VFX.spawn(get_parent(), "nova_ult_burst", core_point, Vector2.ONE * (ULTIMATE_COLLAPSE_RADIUS * 2.2 / 256.0), false, 6, Color(0.82, 0.72, 1.0))
 
 func _redirect_ultimate_launch_with_vector_shift() -> void:
 	if ultimate_phase != ULTIMATE_LAUNCH or not ultimate_launch_shift_available:

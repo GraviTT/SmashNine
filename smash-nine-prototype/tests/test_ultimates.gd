@@ -129,6 +129,16 @@ func _test_nova_pull() -> void:
 	nova._update_ultimate(0.1)
 	if victim.knockback_velocity.x >= 0.0:
 		_fail("Nova's core should pull a nearby opponent toward it (velocity %s)" % victim.knockback_velocity)
+	# Slinging off collapses the core: a burst appears where the core stood.
+	nova.ultimate_phase = nova.ULTIMATE_ORBIT
+	nova._begin_ultimate_launch(Vector2.RIGHT)
+	var collapse_found := false
+	for child in arena.get_children():
+		if child is Area2D and child.get("hit_tag") == "ultimate" and child.global_position.distance_to(nova.ultimate_center + Vector2(0, -32)) < 1.0:
+			collapse_found = true
+	if not collapse_found:
+		_fail("Nova's launch should collapse the core with a burst at its centre")
+	nova._cancel_ultimate()
 	nova.ultimate_phase = nova.ULTIMATE_NONE
 	nova.queue_free()
 	victim.queue_free()
