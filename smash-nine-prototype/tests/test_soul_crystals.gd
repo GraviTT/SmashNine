@@ -44,6 +44,16 @@ func _run() -> void:
 	fighter.setup(CHARACTER_REGISTRY.get_characters()["frey"], 1, false)
 	fighter.set_physics_process(false)
 	layout.assign_combatant(fighter, realm_index)
+	# Regression (CODEX-ANALYST-03 P1): a real sweeping swing from the floor below must crack
+	# it; as a StaticBody2D the moving attack area never registered the crystal.
+	fighter.global_position = crystal.global_position + Vector2(-40, 60)
+	fighter.facing = 1
+	fighter.perform_basic_attack("neutral", Vector2.RIGHT)
+	for frame in 30:
+		await physics_frame
+	if not failed and crystal.hp != float(CRYSTAL_SCRIPT.HITS_TO_BREAK - 1):
+		_fail("A real grounded swing should crack the crystal once (hp %.0f)" % crystal.hp)
+	crystal.hp = float(CRYSTAL_SCRIPT.HITS_TO_BREAK)
 	fighter.global_position = crystal.global_position + Vector2(-120, 0)
 	if not failed and not fighter.ai_controller._is_valid_target_candidate(fighter, crystal):
 		_fail("Bots should see a standing crystal in their realm as a target")

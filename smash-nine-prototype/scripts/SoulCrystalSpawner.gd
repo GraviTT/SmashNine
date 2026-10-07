@@ -20,6 +20,8 @@ func sync_playable_realms(playable_realms: Array[int]) -> void:
 	for realm_index in crystals.keys():
 		if not playable_realms.has(realm_index):
 			if is_instance_valid(crystals[realm_index]):
+				# Off right away: a crystal queued for deletion must not pay this frame.
+				crystals[realm_index].set_realm_active(false)
 				crystals[realm_index].queue_free()
 			crystals.erase(realm_index)
 	for realm_index in playable_realms:
@@ -35,7 +37,7 @@ func _spawn(realm_index: int) -> void:
 	var points: Array = spawn_points_provider.call(realm_index)
 	if points.is_empty():
 		return
-	var crystal := StaticBody2D.new()
+	var crystal := CharacterBody2D.new()
 	crystal.set_script(CRYSTAL_SCRIPT)
 	crystal.setup(realm_index, points[_rng.randi_range(0, points.size() - 1)])
 	get_parent().add_child(crystal)

@@ -1,8 +1,9 @@
-extends StaticBody2D
+extends CharacterBody2D
 ## Soul crystal (concept panel 9, ROADMAP M2): floats over a realm spawn point, breaks
 ## after HITS_TO_BREAK landed attacks from fighters and pays SOUL_REWARD souls to the
 ## fighter who breaks it. It sits on the monster layer, so every attack can hit it,
-## but it blocks no one.
+## but it blocks no one. A CharacterBody2D that never moves: sweeping attack areas did
+## not register a StaticBody2D (CODEX-ANALYST-03 P1, lead probe tests/analysis/lead/).
 
 signal broken(crystal: Node, attacker: Node)
 
@@ -107,7 +108,7 @@ func apply_control_pull(_center: Vector2, _strength: float, _delta: float, _slow
 
 ## Only fighters crack it; the last hit breaks it.
 func _take_hit(attacker: Node) -> bool:
-	if is_broken or not is_realm_active or not is_instance_valid(attacker) or not attacker.is_in_group("players"):
+	if is_broken or not is_realm_active or is_queued_for_deletion() or not is_instance_valid(attacker) or not attacker.is_in_group("players"):
 		return false
 	hp -= 1.0
 	_flash()
