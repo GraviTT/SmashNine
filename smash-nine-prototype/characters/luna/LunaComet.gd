@@ -1,6 +1,8 @@
 extends Area2D
 
 const ATTACK_SCRIPT := preload("res://scripts/Attack.gd")
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const STAR_ART := "res://assets/art/effects/luna_star.png"
 
 var source: Node
 var direction := Vector2.RIGHT
@@ -35,6 +37,17 @@ func configure(new_source: Node, new_direction: Vector2, new_damage: float, new_
 	collision_shape.shape = shape
 	visual.polygon = _make_star_points(15.0, 7.0)
 	visual.color = Color(1.0, 0.92, 0.45, 0.96)
+	# Original star bolt (CODEX-ART-05); this node is already turned to the direction,
+	# so the sprite only flips upright when flying left.
+	var art := ART_SETTINGS.original_texture(STAR_ART)
+	if art != null:
+		var sprite := Sprite2D.new()
+		sprite.texture = art
+		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		sprite.scale = Vector2(2.0, 2.0)
+		sprite.flip_v = direction.x < 0.0
+		add_child(sprite)
+		visual.visible = false
 
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(source):

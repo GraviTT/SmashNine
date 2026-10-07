@@ -301,6 +301,7 @@ func _vine_bridge(rect: Rect2) -> Node:
 	bridge.collision_mask = 0
 	bridge.add_to_group("platforms")
 	bridge.add_to_group("vine_bridges")
+	bridge.add_to_group("sub_platforms")
 	bridge.set_meta("platform_role", "sub")
 	bridge.set_meta("allows_drop_through", true)
 	bridge.position = rect.get_center()
