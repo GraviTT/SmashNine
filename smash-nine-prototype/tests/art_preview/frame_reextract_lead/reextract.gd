@@ -9,8 +9,10 @@ extends SceneTree
 ## missing part while keeping what the frame has (it loses at most MAX_LOST_SHARE of what it
 ## adds, MAX_LOST at most), so frames that were fine, sheets that no longer match their source (hand-edited
 ## effects, the Rio rework) and Codex A's hand fixes stay. The new
-## pose is scaled like the sheet and placed where the current frame's body is (row and column
-## coverage matched), so it does not jump; it is shifted or shrunk only to keep the 4 px margin.
+## pose keeps the current frame's scale (the builder shrank some wide frames on their own; the
+## scale that best covers the current frame is searched) and is placed where the current
+## frame's body is (row and column coverage matched), so the body neither grows nor jumps. Parts
+## that still do not fit the cell (wide slashes) are trimmed at the 4 px margin.
 ## Usage: godot --headless --path . -s tests/art_preview/frame_reextract_lead/reextract.gd --
 ##        --flags=<frame_audit.csv> [--dry] [--board=<dir>] [--rejected] [sheet ids...]
 ## --rejected also writes <sheet>_rejected.png: flagged frames whose re-extraction was refused.
@@ -34,6 +36,8 @@ const MAX_LOST := 260
 const BIG_SHARE := 0.08
 ## Small groups farther than this (source px) from every pose are dropped as specks.
 const STRAY_DISTANCE := 40.0
+## Scale factors (times the sheet scale) tried to match each current frame's own scale.
+const SCALE_FACTORS := [1.0, 0.97, 0.94, 0.91, 0.88, 0.85, 0.82, 0.79, 0.76, 0.73, 0.70]
 const NEIGHBOURS := [Vector2i(-1, -1), Vector2i(0, -1), Vector2i(1, -1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(0, 1), Vector2i(1, 1)]
 const SHEETS := {
 	"frey": ["res://assets/art/frey/frey_v2_source.png", "res://assets/art/frey/frey_sheet.png"],
@@ -130,18 +134,19 @@ func _process_sheet(id: String) -> void:
 				print("  %s r%dc%d (%s): poses touch in the source, kept" % [id, row, column, flagged[key]])
 				continue
 			var current := _cell(sheet, row, column)
-			var fresh := _render_pose(source, labels, groups, pose, w, scale)
-			var placed := _place(fresh, current, source, labels, groups, pose, w, scale)
+			var placed: Image
 			var added := 0
 			var lost := 0
-			for y in CELL:
-				for x in CELL:
-					var a_new := placed.get_pixel(x, y).a > 0.5
-					var a_cur := current.get_pixel(x, y).a > 0.5
-					if a_new and not a_cur:
-						added += 1
-					elif a_cur and not a_new:
-						lost += 1
+			var best_score := INF
+			for factor: float in SCALE_FACTORS:
+				var candidate := _place(_render_pose(source, labels, groups, pose, w, scale * factor), current)
+				var counts := _difference(candidate, current)
+				var score: float = counts.y + 0.1 * counts.x
+				if score < best_score:
+					best_score = score
+					placed = candidate
+					added = counts.x
+					lost = counts.y
 			if added < MIN_ADDED or lost > mini(MAX_LOST, maxi(MAX_LOST_FLOOR, roundi(added * MAX_LOST_SHARE))):
 				print("  %s r%dc%d (%s): +%d -%d, re-extracted pose does not match, kept" % [id, row, column, flagged[key], added, lost])
 				rejected_pairs.append([current, placed])
@@ -350,19 +355,35 @@ func _render_pose(source: Image, labels: PackedInt32Array, groups: Array, pose: 
 	return image
 
 ## Puts the pose in a 128 px cell where the current frame's body is: the column and row
-## coverage of the two is matched (sum of absolute differences), then the pose is shifted
-## (or, if it cannot fit, shrunk) to keep the margin.
-func _place(fresh: Image, current: Image, source: Image, labels: PackedInt32Array, groups: Array, pose: Array, w: int, scale: float) -> Image:
-	var limit := CELL - MARGIN * 2
-	if fresh.get_width() > limit or fresh.get_height() > limit - 4:
-		var fit := minf(float(limit) / fresh.get_width(), float(limit - 4) / fresh.get_height())
-		fresh = _render_pose(source, labels, groups, pose, w, scale * fit)
+## coverage of the two is matched (sum of absolute differences). A pose that fits is shifted
+## inside the margin; one that does not keeps the matched place and is trimmed at the margin.
+func _place(fresh: Image, current: Image) -> Image:
 	var offset := Vector2i(_best_offset(_coverage(current, true), _coverage(fresh, true)), _best_offset(_coverage(current, false), _coverage(fresh, false)))
-	offset.x = clampi(offset.x, MARGIN, CELL - MARGIN - fresh.get_width())
-	offset.y = clampi(offset.y, MARGIN, CELL - MARGIN - fresh.get_height())
+	if fresh.get_width() <= CELL - MARGIN * 2:
+		offset.x = clampi(offset.x, MARGIN, CELL - MARGIN - fresh.get_width())
+	if fresh.get_height() <= CELL - MARGIN * 2:
+		offset.y = clampi(offset.y, MARGIN, CELL - MARGIN - fresh.get_height())
 	var cell := Image.create_empty(CELL, CELL, false, Image.FORMAT_RGBA8)
 	cell.blit_rect(fresh, Rect2i(Vector2i.ZERO, fresh.get_size()), offset)
+	for y in CELL:
+		for x in CELL:
+			if x < MARGIN or y < MARGIN or x >= CELL - MARGIN or y >= CELL - MARGIN:
+				cell.set_pixel(x, y, Color(0, 0, 0, 0))
 	return cell
+
+## (pixels only in a, pixels only in b) for two cells.
+func _difference(a: Image, b: Image) -> Vector2i:
+	var only_a := 0
+	var only_b := 0
+	for y in CELL:
+		for x in CELL:
+			var in_a := a.get_pixel(x, y).a > 0.5
+			var in_b := b.get_pixel(x, y).a > 0.5
+			if in_a and not in_b:
+				only_a += 1
+			elif in_b and not in_a:
+				only_b += 1
+	return Vector2i(only_a, only_b)
 
 func _coverage(image: Image, columns: bool) -> PackedInt32Array:
 	var size := image.get_width() if columns else image.get_height()
