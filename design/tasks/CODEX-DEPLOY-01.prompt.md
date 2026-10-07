@@ -1,26 +1,31 @@
-SmashNine(가제) 웹 빌드를 GitHub Pages에 배포해 줘.
+# Codex 웹 배포 요청 (Sites)
 
-- 저장소: C:/Users/TH/Documents/AI/GameProject/SmashNine (리드의 main 체크아웃. SmashNine-units 아래 유닛 클론이 아님)
-- 사이트: https://gravitt.github.io/SmashNine/
-- 지금 배포된 것: gh-pages 커밋 메시지 "Deploy web build from 58bf86e"
-- 배포할 것: origin/main 최신 (작성 시점 802b7c6, 캐릭터 아트 v2)
+CuRun과 같은 방식: Codex가 빌드해서 Sites(`*.chatgpt.site`)에 올리고, 사이트 정보를 `.openai/hosting.json`과 `reports/codex-deploy/site.json`에 남긴다. 다음부터는 같은 사이트에 새 버전만 올린다.
 
-## 순서
-1. 상태 확인: `git fetch origin` 후 `git status`가 깨끗하고 main이 origin/main과 같은지 본다. 다르면 배포하지 말고 그대로 보고한다.
-2. 검사: smash-nine-prototype/ 에서 `powershell -ExecutionPolicy Bypass -File tests/run_all.ps1` → 마지막 줄 ALL PASSED.
-   - 샌드박스에서 모든 Godot 실행에 찍히는 "ERROR: Failed to read the root certificate store" 한 줄은 알려진 잡음이다(AGENTS.md). 실패 원인이 이 줄뿐이면 통과로 보고 그 사실을 따로 적는다. 다른 오류로 실패하면 배포하지 말고 보고한다.
-3. 배포: 저장소 루트에서 `powershell -ExecutionPolicy Bypass -File tools/deploy_pages.ps1`
-   - 이 스크립트가 웹 export(tools/build_web.ps1)를 하고, build/gh-pages 에 커밋 하나짜리 저장소를 만들어 origin 의 gh-pages 브랜치에 force push 한다. 마지막 줄은 "Deployed <sha> to gh-pages. Site: ..."
-4. 확인:
-   - `git ls-remote origin gh-pages` 가 새 커밋을 가리키고, 그 커밋 메시지가 "Deploy web build from <main 짧은 sha>" 인지.
-   - 1–2분 뒤 사이트의 index.html, index.pck, index.wasm 이 200 으로 응답하는지. 가능하면 브라우저로 시작 화면을 열어 로고, 왼쪽 얼굴 초상화 5개, "[5] Rio", "[V] Body" 줄이 보이는지.
+## A. 첫 배포 (사이트가 아직 없을 때)
 
-## 규칙
-- main 브랜치에는 커밋하거나 push 하지 않는다. force push 는 gh-pages 에만(스크립트가 하는 것). main 을 force push 하지 않는다.
-- 제품 코드, 문서, 설정(전역 git 설정 포함)을 바꾸지 않는다. build/ 는 git 이 무시하는 산출물이라 생겨도 된다.
-- 네트워크(git push, 사이트 확인)가 필요하다. 샌드박스나 인증 때문에 막히면 무엇이 막혔는지 그대로 보고하고 멈춘다. 자격 증명을 새로 만들거나 바꾸지 않는다.
-- push 가 HTTP 408 로 실패하면 한 번 더 시도한다(이 저장소에는 http.postBuffer 가 이미 크게 설정돼 있다). 또 실패하면 보고한다.
-- Godot 콘솔: C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_win64_console.exe (GODOT_BIN 으로 바꿀 수 있음). 웹 템플릿: %APPDATA%\Godot\export_templates\4.7.stable (설치돼 있음).
+```text
+C:\Users\TH\Documents\AI\GameProject\SmashNine 의 Godot 웹 빌드를 Sites에 새 사이트로 배포해 줘. (SmashNine은 가제)
 
-## 최종 보고 (한국어)
-배포한 main 커밋, 검사 결과, 빌드 zip 크기, gh-pages 새 커밋과 메시지, 사이트 확인 결과(직접 확인한 것과 짐작한 것을 나눠서), 문제가 있었다면 무엇이었는지.
+1. 확인: `git fetch origin` 후 `git status`가 깨끗하고 main이 origin/main과 같은지 본다. 다르면 배포하지 말고 보고.
+2. 빌드: 저장소 루트에서 `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`
+   - Godot 웹 export(Compatibility 렌더러, 스레드 없는 템플릿)를 build/web/ 에 만든다(index.html, index.js, index.wasm, index.pck 등, 모두 상대 경로). 마지막 줄 "Web build: ..." 와 zip 크기.
+   - Godot 콘솔: C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_win64_console.exe, 웹 템플릿은 %APPDATA%\Godot\export_templates\4.7.stable 에 설치돼 있다. 샌드박스의 "Failed to read the root certificate store" ERROR 한 줄은 알려진 잡음.
+3. 배포: build/web/ 폴더 전체를 정적 사이트로 Sites에 새 사이트로 올린다. 접근은 CuRun처럼 소유자 전용(기본값)으로 두고 넓히지 않는다.
+   - 스레드 없는 빌드라 COOP/COEP 헤더는 필요 없다. index.wasm(수십 MB)과 index.pck가 그대로 올라가야 한다. 파일 크기 제한 등으로 거부되면 무엇이 거부됐는지 보고하고 멈춘다.
+4. 기록: 사이트 ID를 `.openai/hosting.json`에, 배포 정보를 `reports/codex-deploy/site.json`에 남긴다(project_id, url, access, version_number, version_id, deployment_id, game_source_commit_sha = 배포한 main 커밋, build_command = "powershell -ExecutionPolicy Bypass -File tools/build_web.ps1", deployed_at_utc, verified_at_utc, verified_routes). `reports/codex-deploy/README.md`(한국어)에 확인 결과를 적는다.
+5. 확인: 실제 브라우저로 사이트를 열어 시작 화면(로고, 왼쪽 얼굴 초상화 5개, "[5] Rio", "[V] Body" 줄)이 뜨는지, 5 키로 경기가 시작되는지, 브라우저 콘솔에 게임 오류가 없는지 본다. 소유자 로그인이 필요하면 그 사실을 적는다. 본 것과 짐작한 것을 나눠 적는다.
+
+규칙
+- 쓰는 곳은 build/(git이 무시하는 산출물), `.openai/hosting.json`, `reports/codex-deploy/**` 뿐이다. 제품 코드·문서·설정(전역 git 설정 포함)은 바꾸지 않는다.
+- 커밋·push 하지 않는다. 기록 파일은 리드가 확인하고 커밋한다.
+- GitHub Pages(gh-pages 브랜치, tools/deploy_pages.ps1)는 건드리지 않는다.
+
+최종 보고(한국어): 배포한 main 커밋, 빌드 결과(zip 크기), 사이트 URL과 접근 범위, 버전·배포 ID, 브라우저 확인 결과, 문제가 있었다면 무엇이었는지.
+```
+
+## B. 이후 배포 (사이트가 있을 때, 한 줄)
+
+```text
+C:\Users\TH\Documents\AI\GameProject\SmashNine 에서 `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`로 빌드해서(결과 build/web/), reports/codex-deploy/site.json의 기존 사이트에 새 버전으로 배포만 해줘. site.json과 reports/codex-deploy/README.md만 갱신하고, 커밋·push와 다른 파일 수정은 하지 말 것.
+```
