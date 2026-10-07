@@ -8,8 +8,10 @@ const PULSE_INTERVAL := 0.58
 const SEAL_WARNING_ALPHA := 0.35
 const SEAL_ACTIVE_ALPHA := 0.6
 ## Tuned 2026-10-08 (5.5 -> ~12 damage per cast after the match scale).
-const PULSE_DAMAGE := 5.0
-const FINAL_PULSE_DAMAGE := 28.0
+const PULSE_DAMAGE := 6.0
+const FINAL_PULSE_DAMAGE := 32.0
+## Pull toward the centre while the ward is active (190 before 2026-10-08; Nova's core pulls 240).
+const FIELD_PULL_STRENGTH := 240.0
 
 var owner_node: Node
 var realm_index := 0
@@ -99,7 +101,7 @@ func _apply_field_control(delta: float) -> void:
 		if target == owner_node or not _same_realm(target):
 			continue
 		if global_position.distance_to(target.global_position) <= FIELD_RADIUS and target.has_method("apply_control_pull"):
-			target.apply_control_pull(global_position, 190.0, delta, 0.16, true)
+			target.apply_control_pull(global_position, FIELD_PULL_STRENGTH, delta, 0.16, true)
 
 func _pulse(final_pulse: bool) -> void:
 	for target in _get_targets():
