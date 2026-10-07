@@ -5,6 +5,8 @@ static func get_data() -> Dictionary:
 		"id": "luna",
 		"name": "Luna",
 		"role": "Star Magical Girl",
+		"ultimate_name": "Brave Luna",
+		"ultimate_window": 7.0,
 		"color": Color(1.0, 0.48, 0.9),
 		"bodies": ["female"],
 		"max_hp": 98.0,

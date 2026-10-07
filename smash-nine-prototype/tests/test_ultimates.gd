@@ -1,0 +1,103 @@
+extends SceneTree
+## Ultimates (routine 2026-10-08): a real cast emits ultimate_cast once and opens the
+## character's ultimate window (follow-up presses do not re-emit); hits inside the window
+## get the longer hitstop; the HUD cut-in shows the caster and fades out.
+
+const MAIN_SCENE := "res://scenes/Main.tscn"
+const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
+const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
+
+var arena: Node2D
+var failed := false
+
+func _initialize() -> void:
+	call_deferred("_run")
+
+func _run() -> void:
+	arena = Node2D.new()
+	root.add_child(arena)
+	for test in [_test_cast_signal_and_window, _test_ultimate_hitstop, _test_cutin]:
+		await test.call()
+		if failed:
+			quit(1)
+			return
+	print("Ultimate tests passed")
+	arena.queue_free()
+	await process_frame
+	quit(0)
+
+func _fail(message: String) -> void:
+	push_error(message)
+	failed = true
+
+func _fighter(character_id: String, player_id: int, at: Vector2) -> Node:
+	var fighter: Node = PLAYER_FACTORY.create(character_id)
+	arena.add_child(fighter)
+	fighter.global_position = at
+	fighter.setup(CHARACTER_REGISTRY.get_characters()[character_id], player_id, false)
+	fighter.ringout_y = 100000.0
+	fighter.set_physics_process(false)
+	return fighter
+
+func _test_cast_signal_and_window() -> void:
+	var characters := CHARACTER_REGISTRY.get_characters()
+	for id in CHARACTER_REGISTRY.get_character_ids():
+		var fighter := _fighter(id, 1, Vector2(0, 0))
+		var casts: Array = []
+		fighter.ultimate_cast.connect(func(player: Node) -> void: casts.append(player))
+		fighter.ultimate()
+		if casts.size() != 1 or not is_equal_approx(fighter.ultimate_window_timer, float(characters[id].ultimate_window)):
+			_fail("%s: a cast should emit once and open a %.1f s window (casts %d, window %.2f)" % [id, float(characters[id].ultimate_window), casts.size(), fighter.ultimate_window_timer])
+		if str(fighter.ultimate_name) == "" or str(fighter.ultimate_name) == "Ultimate":
+			_fail("%s has no ultimate name" % id)
+		# Follow-up presses (Nova's stages, Luna's laser) or a press on cooldown: no new cast.
+		fighter.attack_lock_timer = 0.0
+		fighter.ultimate()
+		if casts.size() != 1:
+			_fail("%s: a second press emitted another cast" % id)
+		fighter.queue_free()
+		await process_frame
+		if failed:
+			return
+
+func _test_ultimate_hitstop() -> void:
+	var attacker := _fighter("frey", 1, Vector2(0, 0))
+	var victim := _fighter("yuki", 2, Vector2(60, 0))
+	victim.apply_hit(attacker, 5.0, 200.0, Vector2.RIGHT)
+	var normal: float = victim.hitstop_timer
+	attacker.ultimate_window_timer = 1.0
+	victim.hitstop_timer = 0.0
+	victim.hitstun_timer = 0.0
+	victim.apply_hit(attacker, 5.0, 200.0, Vector2.RIGHT)
+	if victim.hitstop_timer <= normal * 1.5:
+		_fail("Hits inside an ultimate window should freeze longer (%.3f vs %.3f)" % [victim.hitstop_timer, normal])
+	var hits: Array = []
+	attacker.ultimate_hit.connect(func(_p: Node, _at: Vector2) -> void: hits.append(true))
+	attacker.on_attack_landed(Vector2.ZERO, 5.0, 200.0)
+	if hits.size() != 1 or attacker.hitstop_timer <= attacker.ATTACKER_HITSTOP * 1.5:
+		_fail("An ultimate hit should signal once and give the attacker the longer hitstop")
+	attacker.queue_free()
+	victim.queue_free()
+	await process_frame
+
+func _test_cutin() -> void:
+	var main: Node = load(MAIN_SCENE).instantiate()
+	main.bots_only = true
+	main.player_count = 2
+	root.add_child(main)
+	await process_frame
+	var caster: Node = main.players[0]
+	main._set_map(caster.realm_index)
+	# Bots are fighting, so a press can be refused (hitstun, attack lock): test the wiring and
+	# the handler directly.
+	if not caster.ultimate_cast.is_connected(main._on_ultimate_cast):
+		_fail("Main should listen to every fighter's ultimate_cast")
+	main._on_ultimate_cast(caster)
+	await process_frame
+	if not main.hud.cutin_root.visible or main.hud.cutin_title.text != str(caster.ultimate_name).to_upper():
+		_fail("Casting on screen should show the cut-in with the ultimate name")
+	await create_timer(1.2).timeout
+	if main.hud.cutin_root.visible:
+		_fail("The cut-in should be gone after about a second")
+	main.queue_free()
+	await process_frame

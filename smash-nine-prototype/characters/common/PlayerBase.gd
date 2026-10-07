@@ -8,6 +8,10 @@ signal damaged(player: Node, amount: float, attacker: Node, source: String)
 signal defeated(player: Node, attacker: Node)
 signal respawned(player: Node)
 signal souls_changed(player: Node)
+## A real ultimate cast (not a follow-up press): the HUD cut-in, flash and shake hang on it.
+signal ultimate_cast(player: Node)
+## A hit landed while this fighter's ultimate window is open (stronger hitstop, camera shake).
+signal ultimate_hit(player: Node, hit_position: Vector2)
 ## Emitted once per crossed threshold in SOUL_THRESHOLDS; pick_number is 1-based.
 signal soul_threshold_reached(player: Node, pick_number: int)
 
@@ -79,12 +83,18 @@ const SHEET_FEET_Y := {64: 48, 128: 120}
 const SHEET_SCREEN_CELL := 128.0
 ## Air jumps a character can ever hold (base + Sky Step cards).
 const MAX_AIR_JUMPS := 3
+## Hits inside an ultimate window freeze both fighters this much longer.
+const ULTIMATE_HITSTOP_SCALE := 2.2
 const HIT_SPARK_ART := "res://assets/art/effects/hit_spark.png"
 
 var player_id := 0
 var character_id := "frey"
 var display_name := "Frey"
 var role := "Bruiser"
+var ultimate_name := "Ultimate"
+## Seconds after a cast that count as the ultimate (data "ultimate_window"; Luna: her Brave form).
+var ultimate_window := 2.0
+var ultimate_window_timer := 0.0
 ## "male" or "female": which original sheet to draw for characters that have both (set before _ready).
 var body_type := ""
 var uses_original_sheet := false
@@ -239,6 +249,8 @@ func _apply_character_data(data: Dictionary) -> void:
 	character_id = data.id
 	display_name = data.name
 	role = data.role
+	ultimate_name = str(data.get("ultimate_name", "Ultimate"))
+	ultimate_window = float(data.get("ultimate_window", 2.0))
 	body_color = data.color
 	base_max_hp = float(data.max_hp)
 	base_attack_power = float(data.get("attack", 100.0))
@@ -328,6 +340,7 @@ func _physics_process(delta: float) -> void:
 
 func _update_match_timers(delta: float) -> void:
 	ultimate_cooldown_timer = maxf(ultimate_cooldown_timer - delta, 0.0)
+	ultimate_window_timer = maxf(ultimate_window_timer - delta, 0.0)
 	last_attacker_timer = maxf(last_attacker_timer - delta, 0.0)
 	if invulnerable_timer > 0.0:
 		invulnerable_timer = maxf(invulnerable_timer - delta, 0.0)
@@ -660,7 +673,9 @@ func ultimate() -> void:
 	if not _can_start_attack() or not is_ultimate_ready():
 		return
 	ultimate_cooldown_timer = ULTIMATE_COOLDOWN
+	ultimate_window_timer = ultimate_window
 	perform_ultimate()
+	ultimate_cast.emit(self)
 
 func is_ultimate_ready() -> bool:
 	return ultimate_cooldown_timer <= 0.0
@@ -1012,7 +1027,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 		_play_guard_block_effect()
 	else:
 		_play_sprite_action(&"hurt", hitstun_timer)
-	hitstop_timer = VICTIM_HITSTOP
+	hitstop_timer = VICTIM_HITSTOP * _hitstop_scale_from(attacker)
 	attack_buffer_timer = 0.0
 	jump_buffer_timer = 0.0
 	movement_freeze_timer = 0.0
@@ -1029,6 +1044,11 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	return true
 
 ## The absorbed part of a hit: damage is already applied; no knockback, hitstun or cancel.
+func _hitstop_scale_from(attacker: Node) -> float:
+	if is_instance_valid(attacker) and float(attacker.get("ultimate_window_timer") if attacker.get("ultimate_window_timer") != null else 0.0) > 0.0:
+		return ULTIMATE_HITSTOP_SCALE
+	return 1.0
+
 func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, direction: Vector2, final_damage: float) -> bool:
 	last_hit_absorbed = absorption >= 0.0
 	if not last_hit_absorbed:
@@ -1081,7 +1101,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 		_play_guard_block_effect()
 	else:
 		_play_sprite_action(&"hurt", hitstun_timer)
-	hitstop_timer = VICTIM_HITSTOP
+	hitstop_timer = VICTIM_HITSTOP * _hitstop_scale_from(attacker)
 	attack_buffer_timer = 0.0
 	jump_buffer_timer = 0.0
 	movement_freeze_timer = 0.0
@@ -1425,6 +1445,9 @@ func _apply_player_soft_collision(delta: float) -> void:
 
 func on_attack_landed(hit_position: Vector2, damage: float, base_knockback: float) -> void:
 	hitstop_timer = ATTACKER_HITSTOP
+	if ultimate_window_timer > 0.0:
+		hitstop_timer = ATTACKER_HITSTOP * ULTIMATE_HITSTOP_SCALE
+		ultimate_hit.emit(self, hit_position)
 	_spawn_hit_effect(hit_position, damage, base_knockback)
 	_spawn_hit_slash(hit_position, base_knockback)
 	var shake := clampf(base_knockback / 8500.0, 0.018, 0.055)

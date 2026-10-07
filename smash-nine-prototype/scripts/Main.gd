@@ -19,6 +19,8 @@ const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
 const CAMERA_ZOOM := 0.85
 const CAMERA_EDGE_PADDING := 80.0
+const ULTIMATE_CAST_SHAKE := 6.0
+const ULTIMATE_HIT_SHAKE := 3.5
 const CHOOSE_ACTIONS: Array[String] = ["choose_1", "choose_2", "choose_3", "choose_4", "choose_5"]
 const BODY_TYPES: Array[String] = ["male", "female"]
 
@@ -367,11 +369,24 @@ func _add_player(character_id: String, human: bool, position: Vector2, realm_ind
 	layout.assign_combatant(player, realm_index)
 	player.respawned.connect(_on_combatant_respawned)
 	player.defeated.connect(_on_player_defeated)
+	player.ultimate_cast.connect(_on_ultimate_cast)
+	player.ultimate_hit.connect(_on_ultimate_hit)
 	director.register_combatant(player)
 	hazards.register_combatant(player)
 	soul_growth.register_player(player)
 	players.append(player)
 	return player
+
+## Ultimates on screen (or P1's anywhere) get the face cut-in, a flash and a shake.
+func _on_ultimate_cast(player: Node) -> void:
+	if not is_instance_valid(player) or not (player.is_human or player.realm_index == current_map_index):
+		return
+	hud.show_ultimate_cutin(player)
+	_on_shake_requested(player.realm_index, ULTIMATE_CAST_SHAKE, 0.25)
+
+func _on_ultimate_hit(player: Node, _hit_position: Vector2) -> void:
+	if is_instance_valid(player):
+		_on_shake_requested(player.realm_index, ULTIMATE_HIT_SHAKE, 0.12)
 
 func _get_human_player() -> Node:
 	if players.is_empty():

@@ -36,6 +36,15 @@ var overlay: Control
 var overlay_title: Label
 var overlay_logo: TextureRect
 var portrait_strip: Control
+## Ultimate cut-in: a coloured band with the caster's face, name and ultimate name.
+var cutin_root: Control
+var cutin_band: ColorRect
+var cutin_face: TextureRect
+var cutin_name: Label
+var cutin_title: Label
+var cutin_tween: Tween
+var flash_rect: ColorRect
+var flash_tween: Tween
 var overlay_body: Label
 var overlay_credits: Label
 
@@ -68,6 +77,7 @@ func _ready() -> void:
 	add_child(minimap_root)
 
 	_build_card_panel()
+	_build_cutin()
 	_build_overlay()
 	# Keep each element on its screen edge for any window shape (web canvases are not 16:9).
 	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [warning_label, TOP_CENTER],
@@ -204,6 +214,64 @@ func _get_state_color(state: String, is_current: bool) -> Color:
 			return Color(0.03, 0.03, 0.035, 0.86)
 		_:
 			return Color(0.14, 0.18, 0.22, 0.72)
+
+# --- Ultimate cut-in ---
+
+func _build_cutin() -> void:
+	flash_rect = ColorRect.new()
+	flash_rect.name = "UltimateFlash"
+	flash_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	flash_rect.color = Color(1, 1, 1, 0)
+	flash_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(flash_rect)
+	cutin_root = Control.new()
+	cutin_root.name = "UltimateCutin"
+	cutin_root.position = Vector2(0, 230)
+	cutin_root.size = Vector2(560, 112)
+	cutin_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	cutin_root.visible = false
+	add_child(cutin_root)
+	_pin(cutin_root, Vector2(0.0, 0.5))
+	cutin_band = ColorRect.new()
+	cutin_band.size = Vector2(560, 112)
+	cutin_band.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	cutin_root.add_child(cutin_band)
+	var shine := ColorRect.new()
+	shine.position = Vector2(0, 100)
+	shine.size = Vector2(560, 6)
+	shine.color = Color(1, 1, 1, 0.65)
+	shine.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	cutin_root.add_child(shine)
+	cutin_face = _portrait_rect(Vector2(16, 4), Vector2(104, 104))
+	cutin_root.add_child(cutin_face)
+	cutin_name = _label(Vector2(136, 14), Vector2(410, 30), 18, HORIZONTAL_ALIGNMENT_LEFT)
+	cutin_name.reparent(cutin_root, false)
+	cutin_title = _label(Vector2(136, 44), Vector2(410, 50), 32, HORIZONTAL_ALIGNMENT_LEFT)
+	cutin_title.reparent(cutin_root, false)
+
+## Slides the caster's face in from the left for about 0.9 s and flashes the screen.
+func show_ultimate_cutin(player: Node) -> void:
+	_set_portrait(cutin_face, ART_SETTINGS.character_portrait(player.character_id, player.body_type))
+	cutin_band.color = Color(player.body_color.darkened(0.35), 0.86)
+	cutin_name.text = ("P1 " if player.is_human else "") + str(player.display_name)
+	cutin_title.text = str(player.ultimate_name).to_upper()
+	cutin_root.visible = true
+	cutin_root.modulate.a = 1.0
+	if cutin_tween != null and cutin_tween.is_valid():
+		cutin_tween.kill()
+	var rest_x := cutin_root.position.x
+	cutin_band.position.x = -560.0
+	cutin_tween = create_tween()
+	cutin_tween.tween_property(cutin_band, "position:x", 0.0, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	cutin_tween.tween_interval(0.62)
+	cutin_tween.tween_property(cutin_root, "modulate:a", 0.0, 0.18)
+	cutin_tween.tween_callback(func() -> void: cutin_root.visible = false)
+	cutin_root.position.x = rest_x
+	if flash_tween != null and flash_tween.is_valid():
+		flash_tween.kill()
+	flash_rect.color = Color(1, 1, 1, 0.24)
+	flash_tween = create_tween()
+	flash_tween.tween_property(flash_rect, "color:a", 0.0, 0.2)
 
 # --- Soul card offer ---
 

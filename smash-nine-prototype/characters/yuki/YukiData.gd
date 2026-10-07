@@ -5,6 +5,8 @@ static func get_data() -> Dictionary:
 		"id": "yuki",
 		"name": "Yuki",
 		"role": "Onmyoji Controller",
+		"ultimate_name": "Four-Direction Grand Ward",
+		"ultimate_window": 3.5,
 		"color": Color(0.62, 0.86, 1.0),
 		"bodies": ["female"],
 		"max_hp": 92.0,
