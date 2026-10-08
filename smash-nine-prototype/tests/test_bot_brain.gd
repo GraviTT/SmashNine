@@ -18,7 +18,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -178,4 +178,29 @@ func _test_nova_redirect() -> void:
 		_fail("A bot-driven Nova launch flying away should redirect toward its target")
 	nova.queue_free()
 	foe.queue_free()
+	await process_frame
+
+## Codex QA-14: 94 portal moves per match. A move resets the bot (reset()), which now starts a
+## stay, and off-screen hops wait for it (collapse warnings still escape at once).
+func _test_portal_grace() -> void:
+	var bot := _fighter("rio", 1, Vector2(0, 0))
+	bot.set_physics_process(false)
+	var ai = bot.ai_controller
+	ai.reset(bot.global_position)
+	if ai.portal_cooldown < ai.PORTAL_COOLDOWN - 0.01:
+		_fail("Arriving through a portal should start a stay (cooldown %.1f)" % ai.portal_cooldown)
+	var portals: Array[Dictionary] = [{"rect": Rect2(100, -40, 60, 60), "destination": 1, "destination_state": "stable"}]
+	var hops := 0
+	for think in 20:
+		ai.offscreen_timer = 0.0
+		var portal: Dictionary = ai.update_offscreen_realm(bot, 0.25, [] as Array[Node], portals, "stable", func(_i: int) -> String: return "stable", func(_a: int, _b: int) -> int: return 1)
+		if not portal.is_empty():
+			hops += 1
+	if hops > 0:
+		_fail("An off-screen bot should not hop again during its stay (%d hops)" % hops)
+	ai.offscreen_timer = 0.0
+	var escape: Dictionary = ai.update_offscreen_realm(bot, 0.25, [] as Array[Node], portals, "warning", func(_i: int) -> String: return "stable", func(_a: int, _b: int) -> int: return 1)
+	if escape.is_empty():
+		_fail("A collapse warning should still send the bot through a portal")
+	bot.queue_free()
 	await process_frame

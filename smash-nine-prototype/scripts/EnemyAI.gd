@@ -20,7 +20,12 @@ const ACTION_TIME_MIN := 0.42
 const ACTION_TIME_MAX := 0.9
 const ATTACK_COOLDOWN_MIN := 0.48
 const ATTACK_COOLDOWN_MAX := 1.05
-const PORTAL_COOLDOWN := 3.0
+## After any portal move (also off screen) a bot stays this long (Codex QA-14: 94 portal
+## moves per match, because a move reset the cooldown and off-screen hops ignored it).
+const PORTAL_COOLDOWN := 8.0
+## Roaming through a portal only after this long without a target, at this chance per decision.
+const ROAM_AFTER := 4.0
+const ROAM_CHANCE := 0.05
 const PORTAL_REACHED := 58.0
 const JUMP_BUFFER := 0.12
 
@@ -92,6 +97,9 @@ const ULTIMATE_PATIENCE := 12.0
 ## 30% HP, toward a safe realm, at most every 10 s.
 const DISENGAGE_LATE_AGGRESSION := 0.8
 const DISENGAGE_COOLDOWN := 10.0
+const BACK_OFF_TIME := 4.0
+## Players outrank monsters once this few fighters remain (QA-14: 4).
+const FEW_LEFT := 4
 ## Nova's slingshot (debate): orbit after 0.25-0.4 s, launch when the orbit's tangent points
 ## within 20 degrees of where the target will be (0.15 s ahead), forced at 0.8 s; 0.12-0.2 s
 ## after launch, redirect with skill one (75%) if still more than 25 degrees off.
@@ -121,11 +129,11 @@ const COMBAT_PROFILES := {
 const BUSH_NOTICE_RANGE := 140.0 * GAME_SCALE.WORLD
 const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
 
-const OFFSCREEN_THINK_MIN := 1.4
-const OFFSCREEN_THINK_MAX := 4.5
-const OFFSCREEN_STAY_CHANCE := 0.82
-const OFFSCREEN_CHASE_CHANCE := 0.38
-const OFFSCREEN_WANDER_CHANCE := 0.12
+const OFFSCREEN_THINK_MIN := 3.0
+const OFFSCREEN_THINK_MAX := 7.0
+const OFFSCREEN_STAY_CHANCE := 0.92
+const OFFSCREEN_CHASE_CHANCE := 0.3
+const OFFSCREEN_WANDER_CHANCE := 0.05
 
 var state: String = STATE_WANDER
 var target: Node
@@ -178,6 +186,8 @@ var progress_best: float = INF
 var progress_timer: float = 0.0
 var ultimate_ready_time: float = 0.0
 var disengage_cooldown: float = 0.0
+var no_target_time: float = 0.0
+var back_off_timer: float = 0.0
 var nova_stage_timer: float = -1.0
 var nova_redirect_timer: float = -1.0
 var debug_reason: String = ""
@@ -194,6 +204,8 @@ func update(player, delta: float) -> void:
 	_update_target_progress(player, delta)
 	ultimate_ready_time = ultimate_ready_time + delta if player.is_ultimate_ready() else 0.0
 	disengage_cooldown = maxf(disengage_cooldown - delta, 0.0)
+	back_off_timer = maxf(back_off_timer - delta, 0.0)
+	no_target_time = 0.0 if is_instance_valid(target) else no_target_time + delta
 
 	if _needs_recovery(player):
 		if state != STATE_RECOVER:
@@ -258,7 +270,8 @@ func reset(position: Vector2) -> void:
 	decision_timer = 0.0
 	action_timer = 0.0
 	attack_cooldown = 0.0
-	portal_cooldown = 0.0
+	# Just arrived (portal, relocation, respawn, start): stay a while.
+	portal_cooldown = PORTAL_COOLDOWN
 	offscreen_timer = randf_range(OFFSCREEN_THINK_MIN, OFFSCREEN_THINK_MAX)
 	action = "hold"
 	last_action = ""
@@ -324,7 +337,7 @@ func _select_state(player) -> void:
 			_enter_state(STATE_PURSUE)
 		return
 
-	if portal_cooldown <= 0.0 and randf() < 0.1:
+	if portal_cooldown <= 0.0 and no_target_time >= ROAM_AFTER and randf() < ROAM_CHANCE:
 		var roaming_portal: Dictionary = _find_portal_target(player)
 		if not roaming_portal.is_empty():
 			portal_target = roaming_portal
@@ -523,6 +536,9 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 	if distance_y > 120.0 * GAME_SCALE.COMBAT:
 		candidates = ["approach", "jump_in"]
 		debug_reason = "target on another level"
+	if back_off_timer > 0.0:
+		candidates = ["retreat"]
+		debug_reason = "low HP: backing off"
 
 	action = _pick_non_repeating_action(candidates)
 	last_action = action
@@ -565,6 +581,12 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 		attack_name = "skill_2"
 	if attack_name == "skill_1" and not _mobility_skill_is_safe(player):
 		attack_name = "basic" if distance_x <= 195.0 * GAME_SCALE.COMBAT else "skill_2"
+	# Nova's vector shift closes distance; Yuki's binding talisman needs a target close and on
+	# the same level (QA-14: 2.4% and 5.7% hit rates when thrown at any range).
+	if attack_name == "skill_1" and player.character_id == "nova" and distance_x < float(profile.attack_range) * 0.5:
+		attack_name = "basic"
+	if attack_name == "skill_1" and player.character_id == "yuki" and (distance_x > float(profile.attack_range) * 0.7 or distance_y > NAV_SAME_LEVEL):
+		attack_name = "basic"
 	# A counter skill (Rio's rune shield) only when the target is swinging right now.
 	if bool(profile.get("reactive_skill_2", false)):
 		var target_swinging: bool = is_instance_valid(target) and float(target.get("attack_lock_timer") if target.get("attack_lock_timer") != null else 0.0) > 0.0
@@ -799,7 +821,7 @@ func _find_target(player) -> Node:
 ## [score, candidate] for every valid target, lower is better.
 func _scored_targets(player) -> Array:
 	var result: Array = []
-	var few_left := _alive_fighters(player) <= 3
+	var few_left := _alive_fighters(player) <= FEW_LEFT
 	for candidate in player.get_tree().get_nodes_in_group("players"):
 		if not _is_valid_target_candidate(player, candidate) or float(ignored_targets.get(candidate, 0.0)) > 0.0:
 			continue
@@ -847,10 +869,14 @@ func _should_disengage(player) -> bool:
 		return false
 	if _alive_fighters(player) <= 2 or player.hp / player.max_hp >= DISENGAGE_HP_RATIO:
 		return false
-	var portal: Dictionary = _find_portal_target(player)
-	if portal.is_empty() or str(portal.get("destination_state", "")) != "stable":
-		return false
 	disengage_cooldown = DISENGAGE_COOLDOWN
+	var portal: Dictionary = _find_portal_target(player)
+	# Only to a stable realm with nobody in it (QA-14: retreats into company were hit again
+	# 89% of the time); otherwise back off where we are for a few seconds.
+	if portal.is_empty() or str(portal.get("destination_state", "")) != "stable" or _opponents_in_realm(player, int(portal.get("destination", -1))) > 0:
+		back_off_timer = BACK_OFF_TIME
+		debug_reason = "low HP: backing off"
+		return false
 	return true
 
 func _target_invalid(player) -> bool:
@@ -1055,6 +1081,8 @@ func update_offscreen_realm(player, delta: float, combatants: Array[Node], porta
 	offscreen_timer = randf_range(OFFSCREEN_THINK_MIN, OFFSCREEN_THINK_MAX)
 	if current_state == "warning":
 		return _pick_escape_portal(portals, get_realm_state)
+	if portal_cooldown > 0.0:
+		return {}
 
 	var local_opponents: Array[Node] = _offscreen_opponents(player, combatants)
 	if not local_opponents.is_empty() and randf() < OFFSCREEN_STAY_CHANCE:
@@ -1356,3 +1384,11 @@ func _drive_nova_slingshot(player, delta: float) -> void:
 			if rad_to_deg(absf(launch.angle_to(wanted_launch))) > NOVA_REDIRECT_ANGLE and randf() < NOVA_REDIRECT_CHANCE:
 				aim_direction = wanted_launch
 				player.skill_one()
+
+## Living opponents in a realm (for choosing where to retreat).
+func _opponents_in_realm(player, realm: int) -> int:
+	var count := 0
+	for candidate in player.get_tree().get_nodes_in_group("players"):
+		if candidate != player and int(candidate.get("realm_index")) == realm and not bool(candidate.get("is_defeated")) and not bool(candidate.get("is_dummy")):
+			count += 1
+	return count
