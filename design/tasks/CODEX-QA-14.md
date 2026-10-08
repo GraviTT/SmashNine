@@ -102,3 +102,7 @@ Since your round 7: the user played and cut attack reach and effects from x2 to 
 6. **Hit rate by start distance** per character at x1.5 (bins of 60 px), to check the basic-reach limits still fit (Rio 120 × 1.5 = 180 px, Yuki 240 × 1.5 = 360 px).
 
 Same writable paths; report `reports/codex-qa-14/round8.md` (Korean); commit script `commit-round8.ps1`. End with a ranked list of fixes with the numbers behind each.
+
+## Round 9 · routes and targets (branch `codex/bot-data-14i`)
+
+The lead's round-9 commit `1b79472` (`reports/debate-bot-ai/log.md`, "Round 9") follows your round-8 list: the route planner uses the platform rects and only links platforms across gaps the movement can cross (NAV_GAP_JUMP ≈ 172 px, drops 300 px), a jump up starts within 165 px of the waypoint's platform, the blocked-way rule applies only out of attack range, a monster only after us is not progress, and nobody kites from a crystal. Rerun **the same probe on the same seeds 101–112** (attacks x1.5 as in R8) and give R8 / R9 for every metric with a keep/revert verdict per change. Watch: close drops by cause (R8 88: wrong level 51, gap 35) and all drops (390), Yuki's central-brawl targets and PvP damage per minute (R8 42.1% monsters, 27.05), input-less engages over 5 s, stuck time, standoffs, match length, ring-outs and recovery. Also split recovery entries by cause (walked or dashed off a ledge, air-down, knocked off, other; R8 2,185 episodes). Same writable paths; report `reports/codex-qa-14/round9.md` (Korean); commit script `commit-round9.ps1`.
