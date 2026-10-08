@@ -1,85 +1,97 @@
-# Decision: making the bots smarter (2026-10-08)
+# 결정: 봇을 더 똑똑하게 (2026-10-08)
 
-User: "봇 문제는 현재 밝혀진 것들을 Codex와 토론하여 해결하고, 더 똑똑하게 만들어 볼것." · "Codex에게 데이터를 모으게 할것."
+사용자: "봇 문제는 현재 밝혀진 것들을 Codex와 토론하여 해결하고, 더 똑똑하게 만들어 볼것." · "Codex에게 데이터를 모으게 할것."
 
-Lead: Claude (decides, implements). Opponent and measurer: Codex. Question and ranked criteria: `question.md`. Log of every round: `log.md`.
+리드: Claude(결정·구현). 반론과 측정: Codex. 질문과 판단 기준(순위): `question.md`. 라운드별 기록: `log.md`(영어 작업 기록).
 
-## How it was decided
+## 어떻게 정했나
 
-1. Round 1: Codex answered blind (`blind.md`), then attacked the lead's sealed position with 7 points (`attack.md`). The lead accepted D1, D2, D4, D7, partly D3, D5, D6 (`log.md`).
-2. Round 2: Codex rebutted with new evidence only (`round-2.md`): it conceded D5 and D6 and found two new defects (N1, N2) and a bug in the D3 implementation; all fixed.
-3. Factual disagreements became measurements: Codex QA-14 probe (`smash-nine-prototype/tests/analysis/codex_qa_14/`, `run_probe.ps1`) on the same 12 seeds (101–112, 8 bots, `--fixed-fps 60`), run before the changes (R1) and after each round of changes (R2, R3, R4). Rounds 3 and 4 of `log.md` are the lead's decisions on that data.
-4. Two decisions went against Codex's reading, each with its reason and then measured: guards for combo follow-ups (Codex judged R3 fair; R4 doubled blocks and parries, 155 → 312) and Rio's basics only within reach (Codex advised an A/B first; R4 Rio side-basic hit rate 56.3% → 75.0%, wins 5 → 6, PvP damage per minute 41.8 → 35.9).
+1. **1라운드:** Codex가 리드 입장을 보지 않은 채 먼저 답하고(`blind.md`), 이어 봉인해 둔 리드 입장을 7가지로 공격했습니다(`attack.md`). 리드는 D1·D2·D4·D7을 받아들이고, D3·D5·D6은 일부만 받아들였습니다(`log.md`).
+2. **2라운드:** Codex는 새 근거로만 반박했습니다(`round-2.md`). D5·D6은 Codex가 물러섰고, 새 결함 두 가지(N1·N2)와 D3 구현 버그를 찾아내 모두 고쳤습니다.
+3. **측정:** 사실에 대한 의견 차이는 측정으로 가렸습니다. Codex QA-14 프로브(`smash-nine-prototype/tests/analysis/codex_qa_14/`, `run_probe.ps1`)로 같은 12개 시드(101–112, 봇 8명, `--fixed-fps 60`)를 돌렸습니다. 변경 전(R1)과 매 변경 뒤(R2~R7)에 같은 방식으로 쟀고, `log.md`의 3~8라운드가 그 데이터에 대한 리드의 결정입니다.
+4. **Codex와 다르게 정한 것 두 가지:** 이유를 적고 정한 뒤 측정으로 확인했습니다.
+   - **콤보 후속타 가드:** Codex는 R3 수준이면 공정하다고 봤습니다. 되살린 뒤 R4에서 막기+패링이 155 → 312로 늘었습니다.
+   - **Rio 기본 공격을 닿는 거리에서만:** Codex는 A/B 측정을 먼저 하자고 했습니다. R4에서 Rio 옆 기본 공격 적중률이 56.3% → 75.0%가 됐습니다.
 
-## What the bots do now (`scripts/EnemyAI.gd`, decision D28)
+## 지금 봇이 하는 일 (`scripts/EnemyAI.gd`, 결정 D28)
 
-| Area | Rule | Round |
+| 영역 | 규칙 | 라운드 |
 | --- | --- | --- |
-| Aiming | basics aim up / down at a steep target (48 px, slope 0.65); no air-down over the void; skills aim at the target; dash skills stay level | 1 |
-| Guarding | sees a swing start (watched every frame, also in hitstun; `attack_serial`) → 55%, 0.14–0.24 s later, toward the attacker on the main axis; skipped when the attacker turned away or left, kept when it stays close (combo follow-ups); 15% guard ahead in engage, 50% at a ledge while the escape cools down | 1–5 |
-| Air jumps | the climb keeps the last air jump; routes need only one jump | 1 |
-| Targets | levels judged by where bodies stand; hitting the target (fighters, monsters, crystals) within 3 s is progress, and so is a target on our level while the way toward it is open; a target on another level that does not get 90 px closer in 2.5 s is ignored 5 s; from the central brawl or 4 left, players before monsters | 1, 3, 4, 6, 8 |
-| Portals and retreat | 8 s stay after any portal move; roam only after 4 s with no target; low HP retreats only to an empty stable realm, else backs off 4 s | 2 |
-| Ledges | a kiting bot does not back off a ledge: it jumps past an opponent on its level (every 2.5 s at most, only with floor to land on) and holds against one below | 3–4 |
-| Recovery | air jumps when below the ledge and falling; out of jumps, Frey / Nova / Rio use their directional skill whenever it can start, at most twice per recovery (Rio: within 290 px, aimed above the ledge, one blink per airtime; Nova: one shift per airtime) | 2–7 |
-| Ultimates | opportunity score (target in reach, low, stunned, another opponent near); Nova's slingshot launches at the target or toward safe floor and redirects | 1 |
-| Skills | Nova's vector shift only to close distance; Yuki's binding talisman close and on its level; Rio's rune shield only against a swing; basics within reach (Rio 240 px, Yuki 480 px) | 2, 4, 6 |
+| 조준 | 표적이 가파르게 위·아래에 있으면(높이 차 48px 이상, 기울기 0.65 이상) 기본 공격을 위·아래로 씀. 아래가 낭떠러지면 공중 아래 공격 안 함. 기술은 표적 쪽으로, 돌진 기술은 수평 유지 | 1 |
+| 가드 | 상대가 휘두르기 시작하는 걸 매 프레임 지켜봄(경직 중에도, `attack_serial`). 55% 확률로 0.14~0.24초 뒤 공격자 쪽(상하좌우)으로 가드. 공격자가 돌아섰거나 떠났으면 올리지 않고, 가까이 남아 있으면 올림(콤보 후속타). 교전 중 15% 미리 가드, 절벽에서 뛰어넘기 쿨다운 중이면 50% | 1–5 |
+| 공중 점프 | 오를 때 마지막 공중 점프는 복귀용으로 남김. 길찾기는 한 번 점프로 오를 높이까지만 | 1 |
+| 표적 | 다른 층인지는 서 있는 발판으로 판단. 3초 안에 표적(선수·몬스터·수정)을 때렸으면 진전으로 침. 같은 층 표적은 그쪽 길이 열려 있을 때만 진전. 다른 층 표적에게 2.5초 동안 90px도 못 다가가면 5초 무시. 중앙전이거나 4명 이하가 남으면 몬스터보다 선수 먼저 | 1, 3, 4, 6, 8 |
+| 포털·후퇴 | 포털 이동 뒤 8초 머묾. 표적 없이 4초가 지나야 돌아다니러 이동. 저체력 후퇴는 아무도 없는 안정 렐름으로만, 아니면 4초 제자리 후퇴 | 2 |
+| 절벽 | 거리 두는 봇은 절벽 쪽으로 물러서지 않음. 같은 층 상대는 뛰어넘고(2.5초에 한 번, 착지할 바닥이 있을 때만), 아래층 상대 앞에서는 그 자리를 지킴 | 3–4 |
+| 복귀 | 발판보다 낮아 떨어지는 중이면 공중 점프. 점프가 없으면 Frey·Nova·Rio는 방향 기술을 지금 쓸 수 있을 때만, 복귀 한 번에 최대 2번 씀. Rio는 290px 안에서 모서리 위를 겨냥하고 공중 순간이동 1회, Nova는 공중 벡터 시프트 1회 | 2–7 |
+| 궁극기 | 기회 점수로 사용(표적이 닿는 거리, 저체력, 경직, 다른 상대가 가까움). Nova 투석은 표적이나 안전한 바닥 쪽으로 쏘고 방향을 한 번 바꿈 | 1 |
+| 기술 | Nova 벡터 시프트는 거리를 좁힐 때만. Yuki 결박 부적은 가깝고 같은 층일 때만. Rio 룬 실드는 상대가 휘두를 때만. 기본 공격은 닿는 거리에서만(Rio 240px, Yuki 480px) | 2, 4, 6 |
 
-## Measured result (same seeds; R1 before any change)
+## 측정 결과 (같은 시드, R1은 변경 전)
 
-| Metric | R1 | R2 | R3 | R4 | R5 | R6 | R7 |
+| 지표 | R1 | R2 | R3 | R4 | R5 | R6 | R7 |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Match length, median | 305.7 s | 315.4 s | 277.8 s | 293.1 s | 285.9 s | 290.1 s | 286.1 s |
-| Portal moves per match | 94.3 | 20.9 | 21.0 | 19.7 | 19.3 | 20.3 | 20.0 |
-| Ring-outs (12 matches) | 143 | 135 | 114 | 117 | 123 | 122 | 128 |
-| Recovery success | 91.2% | 92.6% | 93.8% | 92.6% | 91.1% | 92.4% | 91.3% |
-| Up / down / air-up / air-down attacks | 0 | 3,299 | used by all | used by all | used by all | used by all | used by all |
-| Guards: blocks + parries | 0 | 463 | 155 | 312 | 411 | 406 | 418 |
-| No-target time | 2.5% | 9.2% | 6.6% | 5.5% | 6.2% | 6.2% | — |
-| No-progress time | 7.0% | 2.3% | 3.4% | 5.4% | 6.1% | 4.85% | 4.12% |
-| Wrong drops (close or just hit) | — | — | 146 | 4 | 59 | 98 | 107 |
-| Central brawl: player targets | 86.5% | 75.2% | 78.7% | 84.4% | 85.5% | 88.9% | 84.3% |
-| 20 s+ standoffs (longest) | 5 (90.9 s) | 1 (56.6 s) | 3 (42.0 s) | 2 (68.9 s) | 6 (171.1 s) | 5 (48.9 s) | 4 (188.9 s) |
-| Nova launches followed by PvP damage | — | 75.0% | 85.7% | 88.4% | 88.5% | 85.2% | 90.2% |
+| 경기 길이 중앙값 | 305.7초 | 315.4초 | 277.8초 | 293.1초 | 285.9초 | 290.1초 | 286.1초 |
+| 경기당 포털 이동 | 94.3 | 20.9 | 21.0 | 19.7 | 19.3 | 20.3 | 20.0 |
+| 링아웃(12판) | 143 | 135 | 114 | 117 | 123 | 122 | 128 |
+| 복귀 성공률 | 91.2% | 92.6% | 93.8% | 92.6% | 91.1% | 92.4% | 91.3% |
+| 위·아래·공중 위·공중 아래 공격 | 0 | 3,299 | 전원 사용 | 전원 사용 | 전원 사용 | 전원 사용 | 전원 사용 |
+| 가드: 막기+패링 | 0 | 463 | 155 | 312 | 411 | 406 | 418 |
+| 표적 없음 시간 | 2.5% | 9.2% | 6.6% | 5.5% | 6.2% | 6.2% | — |
+| 진전 없음 시간 | 7.0% | 2.3% | 3.4% | 5.4% | 6.1% | 4.85% | 4.12% |
+| 잘못된 포기(가깝거나 방금 때린 표적) | — | — | 146 | 4 | 59 | 98 | 107 |
+| 중앙전 선수 표적 | 86.5% | 75.2% | 78.7% | 84.4% | 85.5% | 88.9% | 84.3% |
+| 20초+ 대치(최장) | 5(90.9초) | 1(56.6초) | 3(42.0초) | 2(68.9초) | 6(171.1초) | 5(48.9초) | 4(188.9초) |
+| Nova 궁극기 발사 뒤 PvP 피해 | — | 75.0% | 85.7% | 88.4% | 88.5% | 85.2% | 90.2% |
 
-Reports: `reports/codex-qa-14/README.md` (R1), `round2.md` … `round7.md`.
+리포트: `reports/codex-qa-14/README.md`(R1), `round2.md` … `round7.md`.
 
-## After R4 (round 5, `log.md`)
+## R4 이후 (5라운드, `log.md`)
 
-R4 showed three measured problems; fixed without a new design:
-- no-progress time 647 → 1,104 s: keeping close targets with a route every time → now one extra window per target on a fresh route;
-- Nova's recovery skill with a reach limit reached a floor 3 of 21 times (3 of 15 without) → reverted for Nova; Rio keeps it (2 of 10 → 2 of 4);
-- recovery skills asked every frame (Nova 2,200 asks, 21 uses; this also pulled the intent hit rate down to 35.4%) → asked once per recovery.
+R4에서 측정된 문제 세 가지를 새 설계 없이 고쳤습니다.
+- **진전 없음 시간 647 → 1,104초:** 경로가 있는 가까운 표적을 매번 붙잡은 탓이었습니다. 표적마다 한 번만 새 경로로 연장하게 했습니다.
+- **Nova 복귀 기술:** 거리 제한을 걸었더니 바닥 도달이 21번 중 3번이었습니다(제한 없이는 15번 중 3번). Nova는 되돌리고, Rio는 유지했습니다(10번 중 2번 → 4번 중 2번).
+- **복귀 기술 요청을 매 프레임 보냄:** Nova는 2,200번 요청에 실제 사용 21번이었고, 이 때문에 공격 적중률 통계도 35.4%로 낮게 잡혔습니다. 복귀 한 번에 한 번만 요청하게 했습니다.
 
-R5 (`round5.md`): asking once per recovery matched asks to uses but cut Frey from 18/19 floors reached to 6/13 and Nova to 0/22 (both can use their skill again in the air); the extra window raised no-progress time again (1,239 s) and 20 s+ standoffs to 6 (longest 171 s); the ledge guard cut Yuki ledge ring-outs 13 → 8 and blocks + parries rose to 411.
+**R5(`round5.md`):**
+- 복귀당 한 번 요청으로 요청과 사용은 일치했지만, Frey 바닥 도달이 19번 중 18번 → 13번 중 6번, Nova는 22번 중 0번이 됐습니다. 둘 다 공중에서 기술을 다시 쓸 수 있는 캐릭터입니다.
+- 연장 때문에 진전 없음이 다시 1,239초로 늘고, 20초+ 대치가 6건(최장 171초)이 됐습니다.
+- 절벽 가드로 Yuki 절벽 링아웃은 13 → 8로 줄었고, 막기+패링은 411로 늘었습니다.
 
-## Round 6 (`log.md`)
+## 6라운드 (`log.md`)
 
-- the close-target extension is removed (rounds 4–5: no-progress time 647 → 1,104 → 1,239 s); hits on the target still count as progress;
-- recovery skills are asked whenever they can start (`PlayerBase.can_use_skill_one()`, Rio adds its one blink per airtime), so Frey and Nova use them again after each use without asking every frame;
-- Yuki throws basics only within 480 px (round 5: 503 of 718 missed from 360 px out).
+- 가까운 표적 연장을 없앴습니다(4~5라운드에 진전 없음 647 → 1,104 → 1,239초). 표적을 때리는 중이면 진전으로 치는 규칙은 남겼습니다.
+- 복귀 기술은 지금 쓸 수 있을 때마다 요청합니다(`PlayerBase.can_use_skill_one()`, Rio는 공중 순간이동 1회를 더 확인). Frey·Nova는 매 프레임 요청하지 않으면서 쓸 때마다 다시 쓸 수 있습니다.
+- Yuki는 480px 안에서만 기본 공격을 던집니다(R5에서 360px 밖 718번 중 503번 빗나감).
 
-R6 (`round6.md`): extension removal and Yuki reach kept (no-progress 4.85%, longest standoff 48.9 s, central player targets 88.9%, Yuki side-basic 50.5%); recovery asks redesigned again: Frey dashed 437 times in long recoveries and Nova asked 35,321 frames for 27 uses.
+**R6(`round6.md`):** 연장 제거와 Yuki 거리 제한은 유지했습니다(진전 없음 4.85%, 최장 대치 48.9초, 중앙전 선수 표적 88.9%, Yuki 옆 기본 공격 적중 50.5%). 복귀 기술 요청은 다시 손봐야 했습니다. 긴 복귀 중 Frey가 대시를 437번 썼고, Nova는 27번 쓰는 동안 35,321프레임을 요청했습니다.
 
-## Round 7 (`log.md`)
+## 7라운드 (`log.md`)
 
-- Nova knows its one vector shift per airtime (`can_use_skill_one()`), like Rio's blink;
-- at most 2 recovery-skill uses per recovery.
+- Nova도 공중 벡터 시프트 1회를 판단에 넣었습니다(`can_use_skill_one()`, Rio 순간이동처럼).
+- 복귀 한 번에 복귀 기술을 최대 2번만 씁니다.
 
-R7 (`round7.md`, last measurement of this session): both kept — Nova asked 24 frames for 24 uses (was 35,321 for 27), Frey used its dash 23 times (was 437; at most 2 per recovery, no violation); Frey ring-outs 15 → 19 and recovery success 92.4% → 91.3% are the small cost. Codex traced the one long standoff (seed 112, 188.9 s): two Freys 401.2 px apart at the edges of two platforms — 1 px beyond the 400 px attack reach, no landing within the 240 px jump search — "engaged" without moving or attacking, because a same-level target always counted as progress.
+**R7(`round7.md`, 이번 세션 마지막 측정):**
+- 두 변경 모두 유지했습니다. Nova는 24프레임 요청에 24번 사용(전에는 35,321프레임에 27번), Frey 대시는 23번(전에는 437번, 복귀당 최대 2번 위반 0)입니다.
+- 작은 비용이 있습니다. Frey 링아웃이 15 → 19로, 복귀 성공률이 92.4% → 91.3%로 나빠졌습니다.
+- Codex가 긴 대치 한 건(seed 112, 188.9초)을 추적했습니다. 두 Frey가 두 발판 끝에서 401.2px 떨어져 있었습니다. 공격 사거리 400px에 1px이 모자라고, 점프 착지 탐색 240px 안에 착지할 곳도 없었습니다. 같은 층 표적은 무조건 진전으로 쳤기 때문에 둘 다 움직이지도 공격하지도 않으면서 "교전 중"으로 남았습니다.
 
-## After the last measurement (round 8, unmeasured)
+## 마지막 측정 뒤 (8라운드, 아직 측정 전)
 
-- A target on our level counts as progress only while the way toward it is open: being blocked toward it (a gap with no landing, marked by `_terrain_move_intent`) within the last second makes it a normal no-progress case, dropped after 2.5 s; being blocked away from it (backing into a ledge) does not. Regression test `_test_gap_dead_band` reproduces seed 112's geometry. Not yet measured by Codex.
+- 같은 층 표적은 그쪽 길이 열려 있을 때만 진전으로 칩니다. 최근 1초 안에 표적 쪽으로 막혔으면(착지할 곳 없는 틈, `_terrain_move_intent`가 표시) 진전 없음으로 보고 2.5초 뒤 포기합니다. 등 뒤로 막힌 것(절벽 쪽으로 물러서기)은 세지 않습니다.
+- 회귀 테스트 `_test_gap_dead_band`가 seed 112의 배치를 재현하고, 7라운드 코드에서는 실패합니다. Codex 측정은 아직 하지 않았습니다.
 
-## Open — for the next session (Codex round 7)
+## 다음 세션에 할 것 (Codex 7라운드 제안)
 
-- Measure round 8 (the dead-band fix) on the same seeds; look at seed 112.
-- Split the 107 close or just-hit drops by route-failure cause; check whether Frey's second recovery dash shortened the distance in the 4 failed recoveries; classify how the 85 zero-jump ring-outs spent their jumps; track Yuki's ledge ring-outs (10 → 13) and central-brawl monster targets (7.9% → 13.3%).
+- 8라운드(발판 끝 대치 수정)를 같은 시드로 측정하고 seed 112를 확인합니다.
+- 가깝거나 방금 때린 표적 포기 107건을 경로 실패 원인별로 나눕니다.
+- 실패한 복귀 4건에서 Frey의 두 번째 대시가 거리를 줄였는지 봅니다.
+- 공중 점프를 다 쓴 채 링아웃된 85건이 점프를 어디에 썼는지 분류합니다.
+- Yuki 절벽 링아웃(10 → 13)과 중앙전 몬스터 표적(7.9% → 13.3%)을 추적합니다.
 
-## Open — for the user
+## 사람이 판단할 것
 
-- **How the bots feel to fight** (only a person can judge): guards now block combo follow-ups; bots aim up and down, recover with skills and stop chasing what they cannot reach.
-- **Rio won 6 of 12 matches in R4** (5 in R3): a character balance question, not a bot one; a larger sweep before deciding.
-- **Low-HP retreat is still useless when it happens** (R4: 8 retreats, all re-engaged and hit again within 10 s): rare now; remove or keep is a design call.
-- Match length is back near the 5-minute floor of the criteria (R4 median 293 s; range 259–319 s).
+- **봇을 상대할 때 느낌:** 사람만 판단할 수 있습니다. 이제 콤보 후속타를 막고, 위아래로 공격하고, 기술로 복귀하며, 닿지 않는 표적은 쫓지 않습니다.
+- **Rio 강세:** R3·R4에서는 12판 중 5·6승이었지만, R5~R7은 2·3·3승입니다(12판 기대치 약 2.4승). 지금 데이터로는 쏠림이 뚜렷하지 않고, 판단 전에 더 큰 스윕이 필요합니다.
+- **저체력 후퇴:** 일어나면 여전히 효과가 없습니다(R4: 8번 모두 10초 안에 다시 교전하고 다시 맞음). 지금은 드뭅니다. 뺄지 둘지는 설계 판단입니다.
+- **경기 길이:** 판단 기준의 하한(5분) 근처입니다. R7 중앙값은 286초이고, 범위 191.7~415.9초 가운데 415.9초는 seed 112 대치 때문이며 8라운드에서 고쳤습니다.

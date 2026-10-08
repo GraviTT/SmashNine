@@ -24,3 +24,13 @@ C:\Users\TH\Documents\AI\GameProject\SmashNine 에서 `powershell -ExecutionPoli
 ```text
 C:\Users\TH\Documents\AI\GameProject\SmashNine 에서 `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`로 빌드해서(결과 build/web/, 큰 파일은 .partN 조각 그대로), reports/codex-deploy/site.json의 기존 사이트에 새 버전으로 배포만 해줘. site.json과 reports/codex-deploy/README.md만 갱신하고, 커밋·push와 다른 파일 수정은 하지 말 것.
 ```
+
+## 2026-10-08 오후 버전 (봇 개선·HUD·스킬 아이콘 확인 포함)
+
+```text
+C:\Users\TH\Documents\AI\GameProject\SmashNine 에서 `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`로 빌드해서(결과 build/web/, 큰 파일은 .partN 조각 그대로), reports/codex-deploy/site.json의 기존 사이트에 새 버전으로 배포만 해줘.
+- 빌드 출력 끝의 "Largest file"이 5 MiB 이하인지 본다.
+- 확인: 실제 브라우저로 사이트를 열어 시작 화면이 뜨는지, 5 키로 경기를 시작해 오른쪽 아래에 스킬 아이콘 네 칸(J K L I)과 조작키 한 줄, 오른쪽에 봇 패널이 보이는지, 콘솔 오류가 없는지 본다. 소유자 로그인이 필요하면 적는다.
+- site.json(버전·배포 ID, game_source_commit_sha, deployed_at_utc, verified_at_utc, verified_routes, status)과 reports/codex-deploy/README.md만 갱신하고, 커밋·push와 다른 파일 수정은 하지 말 것.
+- 거부되면 서버 오류 문구 그대로 보고하고 멈춘다.
+```
