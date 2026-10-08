@@ -90,3 +90,15 @@ The lead's round-6 commit `16ae156` (`reports/debate-bot-ai/log.md`, "Round 6"):
 ## Round 7 · last measurement this session (branch `codex/bot-data-14g`)
 
 The lead's round-7 commit `089154d` (`reports/debate-bot-ai/log.md`, "Round 7"): Nova's `can_use_skill_one()` knows its one vector shift per airtime, and every fighter uses its recovery skill at most twice per recovery. Rerun **the same probe on the same seeds 101–112**; give R5 / R6 / R7 for every metric and a keep/revert verdict per change. Watch: recovery-skill asks vs uses and floors reached (Frey R6 437 uses, Nova 35,321 asking frames / 27 uses, Rio 8/8/4), recovery success and ring-outs per character, no-progress time and standoffs, progress drops (R6 318, 98 close or just hit), match length. Same writable paths; report `reports/codex-qa-14/round7.md`; commit script `commit-round7.ps1`. End with the open items you would hand to the next session.
+
+## Round 8 · attacks x1.5 and the next-session items (branch `codex/bot-data-14h`)
+
+Since your round 7: the user played and cut attack reach and effects from x2 to **x1.5** (`GameScale.COMBAT`, commit `c8f5d98`; maps unchanged, bots' fighting distances follow the same constant), and the lead's round-8 dead-band fix (`d5bcea1`: a same-level target counts as progress only while the way toward it is open) is not measured yet. Rerun **the same probe on the same seeds 101–112** and give R7 / R8 for every metric (say which differences the scale change alone can explain), then the items you listed for the next session (`reports/debate-bot-ai/decision.md`):
+1. **Dead band:** seed 112 and every seed — engage episodes over 5 s with no move and no attack (positions, gap width, distance); at x1.5 Frey's reach is 300 px, so other distances may form one.
+2. **Close or just-hit drops:** split by cause — no route at all, route exists but not followed (stuck, gap with no landing, wrong level reached), target moved away, other.
+3. **Frey's failed recoveries:** did the second dash shorten the distance to the ledge?
+4. **Zero-jump ring-outs:** where the jumps went before the ring-out (spent in this recovery, spent climbing, spent in combat jumps, knocked off during an air attack, other).
+5. **Yuki ledge ring-outs** and **central-brawl monster targets** (R7 13 and 13.3%).
+6. **Hit rate by start distance** per character at x1.5 (bins of 60 px), to check the basic-reach limits still fit (Rio 120 × 1.5 = 180 px, Yuki 240 × 1.5 = 360 px).
+
+Same writable paths; report `reports/codex-qa-14/round8.md` (Korean); commit script `commit-round8.ps1`. End with a ranked list of fixes with the numbers behind each.
