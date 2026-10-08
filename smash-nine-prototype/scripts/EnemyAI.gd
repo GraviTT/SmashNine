@@ -71,12 +71,16 @@ const RECOVER_START_FROM_BOTTOM := 40.0
 const RECOVER_EXIT_FROM_BOTTOM := 60.0
 const RECOVER_JUMP_RETRY := 0.3
 const VOID_PROBE_DEPTH := 700.0 * GAME_SCALE.WORLD
-## Recovery starts only when no floor lies under the fall path: probed straight down at these
-## times ahead along the current horizontal speed (Codex QA-14 round 9: 77% of 2,386 recovery
-## entries were bots dropping or dashing to a lower platform that was not straight below, so the
-## straight-down probe called it a fall into the void and spent air jumps).
-const FALL_PROBE_TIMES: Array[float] = [0.0, 0.25, 0.5, 0.8]
-const FALL_PROBE_MAX_AHEAD := 360.0 * GAME_SCALE.WORLD
+## Recovery starts only when the fall itself does not hit a floor within FALL_PROBE_STEPS x
+## FALL_PROBE_STEP seconds (Codex QA-14 round 9: 77% of 2,386 recovery entries were bots dropping
+## to a lower platform that was not straight below; round 10: probing straight down from points
+## ahead also counted floors the fall passes under, and 162 of 332 such falls turned into late
+## recoveries). The arc uses the fighters' fall gravity and speed cap (PlayerBase GRAVITY x
+## FALL_GRAVITY_MULTIPLIER, MAX_FALL_SPEED) and keeps the horizontal speed.
+const FALL_PROBE_STEP := 0.1
+const FALL_PROBE_STEPS := 10
+const FALL_GRAVITY := 1850.0 * GAME_SCALE.GRAVITY * 1.18
+const FALL_MAX_SPEED := 980.0 * GAME_SCALE.JUMP_SPEED
 ## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
 ## Fixed extra ultimate presses (Luna's heart laser). Nova's slingshot is driven by aim
 ## instead (_drive_nova_slingshot).
@@ -844,15 +848,16 @@ func _needs_recovery(player) -> bool:
 	# Falling with nothing under the fall path: start heading back now, not near the blast line.
 	return local_position.y > player.realm_size.y - RECOVER_START_FROM_BOTTOM or not _landing_in_fall(player)
 
-## Some floor lies under the path the fighter is falling along (straight down now, and where its
-## horizontal speed takes it in the next 0.8 s).
+## The fall arc (gravity included, horizontal speed kept) meets a floor within a second.
 func _landing_in_fall(player) -> bool:
-	var foot: Vector2 = player.global_position
-	for seconds in FALL_PROBE_TIMES:
-		var ahead: float = clampf(player.velocity.x * seconds, -FALL_PROBE_MAX_AHEAD, FALL_PROBE_MAX_AHEAD)
-		var from: Vector2 = foot + Vector2(ahead, 0.0)
-		if _ray_hits_world(player, from, from + Vector2(0.0, VOID_PROBE_DEPTH)):
+	var at: Vector2 = player.global_position
+	var motion: Vector2 = player.velocity
+	for step in FALL_PROBE_STEPS:
+		motion.y = minf(motion.y + FALL_GRAVITY * FALL_PROBE_STEP, FALL_MAX_SPEED)
+		var next: Vector2 = at + motion * FALL_PROBE_STEP
+		if _ray_hits_world(player, at, next):
 			return true
+		at = next
 	return false
 
 func _over_void(player) -> bool:

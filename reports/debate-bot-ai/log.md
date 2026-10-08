@@ -124,3 +124,13 @@ All five round-9 changes kept: Yuki central-brawl monster targets 42% → 10%, d
 | R10-1 self-inflicted recoveries (Codex #1) | **accept** | Recovery starts only when no floor lies under the fall path: straight-down probes at 0, 0.25, 0.5 and 0.8 s ahead along the horizontal speed (the straight-down probe called every drop to an offset lower platform a fall into the void, and the recovery spent air jumps). |
 | R10-2 in-range but idle (Codex #2) | **accept** | The blocked-way rule spares a bot that attacked within 2.5 s, not one merely in attack range. |
 | R10-3 no-route fallback (Codex #3) | **later** | Needs a design for what a bot does when no target is reachable (nearest reachable point, roam, other target). |
+
+## Round 11 (measurement: Codex QA-14 round 10, `reports/codex-qa-14/round10.md`)
+
+Both round-10 changes kept: recovery entries 2,386 → 1,346 (self-inflicted 1,840 → 798), input-less engages 4 → 0, standoffs 6 → 3, no-progress 994 → 724 s, hit rate 52.5%. Regression: ring-outs 97 → 108 and zero-jump ring-outs 57 → 71 — of 332 falls the new probe kept out of recovery, 162 turned into late recoveries, because probing straight down from points ahead also counted floors the arc passes under.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R11-1 fall probe safety (Codex #1) | **accept** | The probe follows the fall arc itself (fall gravity 1850 x 1.2 x 1.18, speed cap 980 x 1.3416, horizontal speed kept, 10 steps of 0.1 s) and counts a landing only where the arc meets a floor. Test: a floor the arc passes under (fails on the round-10 brain). |
+| R11-2 Nova/Rio zero-jump (Codex #2) | **measure** | Expected to follow from R11-1; round 11 checks. |
+| no-route fallback, Frey no-progress, central targets, air-side hits (Codex #3-5) | **later** | Left for the next session with the round-11 numbers. |

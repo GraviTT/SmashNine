@@ -683,8 +683,9 @@ var last_attacker: Node
 	right.queue_free()
 	await process_frame
 
-## Round 10 (Codex QA-14 round 9: 77% of recovery entries were bots dropping to a lower platform
-## that was not straight below): falling toward floor along the fall path is not a recovery.
+## Round 10-11 (Codex QA-14 round 9: 77% of recovery entries were bots dropping to a lower
+## platform that was not straight below): a fall whose arc meets a floor is not a recovery; one
+## that passes under a floor is.
 func _test_fall_path_landing() -> void:
 	var lower := _floor(Vector2(300, 0), 300)
 	var bot := _fighter("nova", 1, Vector2(0, -300))
@@ -699,6 +700,15 @@ func _test_fall_path_landing() -> void:
 	bot.velocity = Vector2(-420, 200)
 	if not ai._needs_recovery(bot):
 		_fail("Falling away from every floor should start a recovery")
+	# Round 11: a floor ahead and below that the arc passes under is no landing (round 10 counted
+	# it: 162 of 332 such falls became late recoveries).
+	# Floor x 320-620 at the start height + 300: straight down from 0.8 s ahead (x 336) hits it, the
+	# arc reaches that height at x ~171 and passes under it.
+	lower.global_position = Vector2(470, 20)
+	await physics_frame
+	bot.velocity = Vector2(420, 200)
+	if not ai._needs_recovery(bot):
+		_fail("A floor the fall passes under should not hold off the recovery")
 	bot.queue_free()
 	lower.queue_free()
 	await process_frame
