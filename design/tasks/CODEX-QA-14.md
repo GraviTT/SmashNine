@@ -44,3 +44,13 @@
 ## Report (`reports/codex-qa-14/README.md`, Korean)
 
 Data tables first, then the debate (one row per proposal: verdict, evidence, suggested change), then your extra findings, then how to rerun the probe. Commit, or `reports/codex-qa-14/commit.ps1` staging only the writable paths, message ending `Co-Authored-By: Codex <noreply@openai.com>`.
+
+## Round 2 · retest (branch `codex/bot-data-14b`)
+
+The lead changed the bots after your round 1 and the debate (`reports/debate-bot-ai/`): commits `8277419`, `021c649`, `41e8f94` (Yuki talisman engine error), `34443e3` (portal stays, retreat only to empty realms, gated skills, players first from 4 left). Rerun **the same probe on the same seeds 101–112** and give a before/after table for every metric of round 1, plus:
+- per attacking character: guard reactions triggered, guards raised, blocks/parries achieved, and any reaction guard first detected while the attacker was already in recovery (debate D3);
+- up/down/air-up/air-down attack use and hit rates per character; self ring-outs right after an air-down;
+- Nova ultimate: launches forced at the time limit vs aimed, redirects, hit rate;
+- ring-outs with 0 air jumps left, recovery success per character;
+- portal moves per match and why (escape, roam, retreat, off-screen hop);
+- anything that got worse. Same writable paths; report in `reports/codex-qa-14/round2.md`.
