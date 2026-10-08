@@ -697,6 +697,7 @@ func _test_fall_path_landing() -> void:
 	bot.velocity = Vector2(420, 200)
 	if ai._needs_recovery(bot):
 		_fail("Falling toward a lower platform ahead should not start a recovery")
+	ai.fall_check_timer = 0.0
 	bot.velocity = Vector2(-420, 200)
 	if not ai._needs_recovery(bot):
 		_fail("Falling away from every floor should start a recovery")
@@ -706,9 +707,20 @@ func _test_fall_path_landing() -> void:
 	# arc reaches that height at x ~171 and passes under it.
 	lower.global_position = Vector2(470, 20)
 	await physics_frame
+	ai.fall_check_timer = 0.0
 	bot.velocity = Vector2(420, 200)
 	if not ai._needs_recovery(bot):
 		_fail("A floor the fall passes under should not hold off the recovery")
+	# Round 12: steering back toward a platform behind counts (round 11 rejected 867 such falls,
+	# 856 landed): moving left with input left over a floor that starts just behind.
+	lower.global_position = Vector2(-140, 20)
+	await physics_frame
+	ai.fall_check_timer = 0.0
+	bot.velocity = Vector2(60, 200)
+	bot.move_input = -1.0
+	if ai._needs_recovery(bot):
+		_fail("Steering toward a floor within reach should not start a recovery")
+	bot.move_input = 0.0
 	bot.queue_free()
 	lower.queue_free()
 	await process_frame

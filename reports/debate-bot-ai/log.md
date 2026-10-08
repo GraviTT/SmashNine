@@ -134,3 +134,11 @@ Both round-10 changes kept: recovery entries 2,386 → 1,346 (self-inflicted 1,8
 | R11-1 fall probe safety (Codex #1) | **accept** | The probe follows the fall arc itself (fall gravity 1850 x 1.2 x 1.18, speed cap 980 x 1.3416, horizontal speed kept, 10 steps of 0.1 s) and counts a landing only where the arc meets a floor. Test: a floor the arc passes under (fails on the round-10 brain). |
 | R11-2 Nova/Rio zero-jump (Codex #2) | **measure** | Expected to follow from R11-1; round 11 checks. |
 | no-route fallback, Frey no-progress, central targets, air-side hits (Codex #3-5) | **later** | Left for the next session with the round-11 numbers. |
+
+## Round 12 (measurement: Codex QA-14 round 11, `reports/codex-qa-14/round11.md`)
+
+Round 11 (the arc with the horizontal speed kept, one point): ring-outs 108 → 94, zero-jump 71 → 63, recovery 95.2%, but too strict — 867 falls round 10 accepted were rejected and 856 of them landed (recovery entries +50%, match median +34 s, no-progress +54%). Codex: revert, or a hybrid with air steering and body width.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R12-1 hybrid fall check | **accept (hybrid)** | The arc follows the fighter's current move input with its air acceleration (4300 x 1.2) up to its run speed, gravity and speed cap as before, and casts at both feet and the centre (42 px body); cached for 0.1 s while falling. It accepts steered landings (round 11 did not) and still rejects floors the arc passes under (round 10 accepted them). Tests for both. |
