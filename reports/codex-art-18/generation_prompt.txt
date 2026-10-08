@@ -1,0 +1,13 @@
+Built-in image generation mode; stylized-concept; transparent background requested.
+
+Create one clean sprite-sheet concept arranged in an exact 4-column by 6-row grid, one centered icon per cell, no dividers and no labels. Rows, in order:
+1 Frey: chained valkyrie sword; diagonal dash-strike sword; rising cleave; downward sword impact with wing-like shockwaves.
+2 Yuki: flying snow talisman; binding talisman with ice brackets; wards releasing in a circular burst; grand ward of four talismans around an ice seal.
+3 Luna: echoing star; comet star; crescent moon ring; radiant transformation star with a small heart.
+4 Brave Luna: heart-tipped radiant rush; heart comet; heavy crescent breaker; heart-shaped laser burst.
+5 Nova: cyan-violet vector punch/arrow; directional shift arrow; gravity brake hex shield; event-horizon gravity well with slingshot arc.
+6 Rio: mana sword slash; dimensional rift slash; rune shield; six gem swords orbiting a magic core.
+
+Style: crisp hand-crafted game pixel art matching the supplied Smash Nine Realms references; bold readable silhouettes; dark navy outline; 3-5 colors plus white highlight; chunky pixels; generous transparent padding. Character palettes: Frey gold/steel blue, Yuki ice blue/talisman red, Luna pink/star gold, Brave Luna brighter pink/cyan/gold with hearts, Nova violet/cyan, Rio mana blue/gem colors. No letters, numbers, words, key names, frames, slot backgrounds, UI panels, characters, or cell borders. Ultimate in column 4 is slightly richer with radiating marks.
+
+The generated concept did not preserve alpha; it was retained only as `source_concept.png`. Final game icons were reconstructed and post-processed with Godot Image API and have verified transparency.
