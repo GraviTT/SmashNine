@@ -76,6 +76,12 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | builder | `design/tasks/CODEX-ART-12.md` | 4 fighter sheets, `tests/art_preview/sprite_fix_a{2,3}/`, `reports/codex-art-12/` | done — merged `21b3682` (cells pasted), `6c09768` |
 | analyst | `design/tasks/CODEX-QA-12.md` | `tests/analysis/codex_qa_12/`, `reports/codex-qa-12/` | done — merged `3821cb3`; P1 ×2, P2 fixed `906b014` |
 | builder | `design/tasks/CODEX-ART-13.md` | `assets/art/attack_vfx/`, `tests/art_preview/attack_vfx_a/`, `reports/codex-art-13/` | done — merged `b171919`, in game `8eb19a6` |
+| builder | `design/tasks/CODEX-ART-14.md` | `assets/art/effects/`, `assets/art/vfx/`, `tests/art_preview/fx_1x_b/`, `reports/codex-art-14/` | done — merged `ace17e1` (effects and ultimate art at 1x for the 2x combat scale) |
+| builder | `design/tasks/CODEX-ART-15.md` | `assets/art/realm_*/bg_*.png`, `tests/art_preview/realm_bg_c/`, `reports/codex-art-15/` | done — merged `c9bf67e` (realm backgrounds at 1.5x) |
+| builder | `design/tasks/CODEX-ART-16.md` | `assets/art/attack_vfx/`, Rio sheets, Frey sheet, `tests/art_preview/attack_vfx_2x_a/`, `reports/codex-art-16/` | running |
+| analyst | `design/tasks/CODEX-QA-14.md` | `tests/analysis/codex_qa_14/`, `reports/codex-qa-14/` | running (bot data) |
+| analyst (debate) | `reports/debate-bot-ai/` | none (read-only, ephemeral rounds) | rounds 1–2 done; changes `8277419`, `021c649` |
+| tester | `design/tasks/CODEX-QA-15.md` | `tests/analysis/codex_qa_15/`, `reports/codex-qa-15/` | queued (art QA from game screens) |
 | analyst | `design/tasks/CODEX-QA-13.md` | `tests/analysis/codex_qa_13/`, `reports/codex-qa-13/` | done — merged `f102677`; findings fixed (see run log 2026-10-08 work) |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
