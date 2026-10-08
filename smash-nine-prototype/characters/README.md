@@ -42,6 +42,8 @@ characters/
 
 원본 스프라이트(기본값, `design/DECISIONS.md` D22·D23)는 `assets/art/<id>/<id>_sheet.png` 또는 체형별 `<id>_male_sheet.png`·`<id>_female_sheet.png`(6×7; v1 64px 칸 2배, v2 128px 칸 1배 — 로더가 시트 폭으로 구분, D25). 메인 일러스트 `<id>[_<body>]_illustration.png`, 얼굴 초상화 `<id>[_<body>]_face.png`. `configure_character_sprite` 맨 앞에서 `_configure_original_sheet("<id>")`를 부르면 공통 규격으로 잘린다(프로토타입 아트는 2026-10-07 삭제). 캐릭터 데이터의 `bodies`에 체형 목록을 적는다(여성 캐릭터는 `["female"]`, 남성 캐릭터는 `["male", "female"]`).
 
+**배율(D27, `scripts/GameScale.gd`):** 캐릭터 스크립트의 공격 수치(판정 크기, 몸 기준 위치, 투사체 크기·속도)는 예전 1배 기준으로 적는다. `_spawn_attack`·`_spawn_sweeping_*`·`_spawn_projectile`이 COMBAT(2배)를 한 번 곱하므로 다시 곱하지 않는다. 헬퍼를 거치지 않는 전용 공격 스크립트(폭발 반경, 결계, 레이저 등)는 거기서 `GAME_SCALE.COMBAT`를 곱한다. 복귀에 쓰는 이동 거리(순간이동, 돌진)는 WORLD, 상승·낙하 속도는 JUMP_SPEED를 곱한다. 근접 타격은 `<id>_slash` 아트를 자동으로 그리고(`attack_effect_name()`으로 바꿈), 전용 아트를 그리는 기술은 그동안 `attack_art_enabled = false`로 둔다.
+
 전용 투사체나 설치물은 해당 캐릭터 폴더 안에 둔다. 원본 그림 파일은 `assets/characters/<id>/`에 유지하되, 그 참조는 캐릭터 스크립트가 소유한다.
 
 ## Character Document
