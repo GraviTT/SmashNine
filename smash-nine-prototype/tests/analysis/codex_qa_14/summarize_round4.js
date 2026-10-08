@@ -81,6 +81,24 @@ for (const character of chars) {
 }
 
 const wins = Object.fromEntries(chars.map(character => [character, data.matches.filter(row => row.winner === character).length]));
+const recoveryEpisodeUseCounts = {};
+for (const row of data.recovery_skill_events || []) {
+  const key = `${row.seed}|${row.character}|${row.recovery_episode}`;
+  recoveryEpisodeUseCounts[key] = Number(recoveryEpisodeUseCounts[key] || 0) + 1;
+}
+const recoveryEpisodeUses = {};
+for (const character of ['frey', 'nova', 'rio']) {
+  const counts = Object.entries(recoveryEpisodeUseCounts)
+    .filter(([key]) => key.split('|')[1] === character)
+    .map(([, count]) => count);
+  recoveryEpisodeUses[character] = {
+    episodes_with_use: counts.length,
+    one_use: counts.filter(count => count === 1).length,
+    two_uses: counts.filter(count => count === 2).length,
+    three_plus: counts.filter(count => count >= 3).length,
+    max_uses: counts.length ? Math.max(...counts) : 0
+  };
+}
 const byCharacter = {};
 for (const character of chars) {
   const stateCounts = Object.fromEntries(stateOrder.map(label => [label, sum(phases.map(phase => Number(t.states[`${character}|${phase}|${label}`] || 0)))]));
@@ -149,6 +167,8 @@ const summary = {
   recovery_skills: t.recovery_skills,
   recovery_skill_asks: t.recovery_skill_asks || {},
   recovery_skill_ask_events: data.recovery_skill_ask_events || [],
+  recovery_skill_episode_uses: recoveryEpisodeUses,
+  standoff_trace_events: data.standoff_trace_events || [],
   progress_extensions: t.progress_extensions || {},
   progress_extension_events: data.progress_extension_events || [],
   cornered_guards: t.cornered_guards || {},

@@ -9,7 +9,7 @@ const HIT_WINDOW := 0.4
 const NO_PROGRESS_MIN_SECONDS := 3.0
 const NO_PROGRESS_MIN_PIXELS := 100.0
 const LOW_HP_FOLLOW_SECONDS := 10.0
-const OUT_PATH := "res://../reports/codex-qa-14/round6-results.json"
+const OUT_PATH := "res://../reports/codex-qa-14/round7-results.json"
 const AIR_DOWN_RINGOUT_WINDOW := 2.0
 const NOVA_LAUNCH_HIT_WINDOW := 3.2
 const CORNER_ESCAPE_RINGOUT_WINDOW := 3.0
@@ -56,6 +56,8 @@ var corner_escape_rows: Array[Dictionary] = []
 var recovery_skill_rows: Array[Dictionary] = []
 var recovery_skill_ask_rows: Array[Dictionary] = []
 var progress_extension_rows: Array[Dictionary] = []
+var standoff_trace_rows: Array[Dictionary] = []
+var standoff_trace_last: Dictionary = {}
 var match_ringouts := 0
 var match_portals := 0
 var match_relocations := 0
@@ -84,7 +86,7 @@ func _run_all() -> void:
 	for value in seeds:
 		await _run_match(value)
 	var result := {
-		"schema": 6,
+		"schema": 7,
 		"seeds": seeds,
 		"players": player_count,
 		"sample_interval": SAMPLE_INTERVAL,
@@ -101,6 +103,7 @@ func _run_all() -> void:
 		"recovery_skill_events": recovery_skill_rows,
 		"recovery_skill_ask_events": recovery_skill_ask_rows,
 		"progress_extension_events": progress_extension_rows,
+		"standoff_trace_events": standoff_trace_rows,
 		"round2_definitions": {
 			"reaction_in_recovery": "reactive guard timer first seen after the observed attack's conservative per-character startup bound",
 			"block": "damage signal arrived while the defender was still guarding (wrong-direction guards are lowered before the signal)",
@@ -130,6 +133,11 @@ func _run_all() -> void:
 			"recovery_skill_ask": "totals count each physics frame carrying a recover-state skill_1 intent; event rows keep successful-looking frames plus the rising edge of each rejected streak",
 			"recovery_episode": "monotonic per-fighter recovery entry number; repeated uses in one recovery share the same number",
 			"progress_extension": "removed in round 6; extension totals and events remain empty for schema compatibility"
+		},
+		"round7_definitions": {
+			"recovery_skill_episode_uses": "derived by grouping observed recovery_skill_events by seed, character and recovery_episode; any group above two is a cap violation",
+			"nova_rejected_ask_streak": "a recovery skill ask event with attack_locked_after_intent=false; repeated unavailable-air-shift frame spam should disappear in round 7",
+			"standoff_trace": "every 5s after a same-realm no-PvP-damage interval reaches 20s; records each surviving participant's state, target, reason, position and intent"
 		}
 	}
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../reports/codex-qa-14"))
@@ -194,6 +202,7 @@ func _reset_match_memory() -> void:
 	pending_attacks.clear()
 	entity_hp.clear()
 	standoff_memory.clear()
+	standoff_trace_last.clear()
 	last_pvp_damage.clear()
 	warning_members.clear()
 	escaped_warning.clear()
@@ -847,9 +856,32 @@ func _observe_standoffs(realm_counts: Dictionary, now: float) -> void:
 			var last_damage := float(last_pvp_damage.get(realm, -INF))
 			if last_damage > float(standoff_memory[realm]):
 				standoff_memory[realm] = last_damage
+			var duration := now - float(standoff_memory[realm])
+			if duration >= 20.0 and now - float(standoff_trace_last.get(realm, -INF)) >= 5.0:
+				standoff_trace_last[realm] = now
+				_record_standoff_trace(realm, now, duration)
 		elif standoff_memory.has(realm):
 			_finalize_standoff(realm, float(standoff_memory[realm]), now)
 			standoff_memory.erase(realm)
+			standoff_trace_last.erase(realm)
+
+func _record_standoff_trace(realm: int, now: float, duration: float) -> void:
+	var participants: Array[Dictionary] = []
+	for player in main.players:
+		if not is_instance_valid(player) or player.is_defeated or int(player.realm_index) != realm:
+			continue
+		var snapshot: Dictionary = player.ai_controller.debug_snapshot(player)
+		var target: Node = player.ai_controller.target if is_instance_valid(player.ai_controller.target) else null
+		participants.append({
+			"character": str(player.character_id), "hp": snappedf(float(player.hp), 0.1),
+			"x": snappedf(player.global_position.x, 0.1), "y": snappedf(player.global_position.y, 0.1),
+			"state": str(snapshot.get("state", "")), "action": str(snapshot.get("action", "")), "reason": str(snapshot.get("reason", "")),
+			"target_kind": str(snapshot.get("target_kind", "none")), "target_name": str(snapshot.get("target", "")),
+			"target_distance": snappedf(player.global_position.distance_to(target.global_position), 0.1) if is_instance_valid(target) else -1.0,
+			"target_realm": int(target.get("realm_index")) if is_instance_valid(target) and target.get("realm_index") != null else -1,
+			"move": snappedf(float(snapshot.get("move", 0.0)), 0.01), "jump": bool(snapshot.get("jump", false)), "attack": str(snapshot.get("attack", ""))
+		})
+	standoff_trace_rows.append({"seed": match_seed, "time": snappedf(now, 0.1), "realm": realm, "no_damage_seconds": snappedf(duration, 0.1), "participants": participants})
 
 func _finalize_standoff(realm: int, started: float, ended: float) -> void:
 	var duration := ended - started
