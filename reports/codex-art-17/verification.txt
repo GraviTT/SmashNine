@@ -1,0 +1,21 @@
+quake_warning.png size=(384, 16) expected=(384, 16) ok=true
+quake_impact.png size=(768, 64) expected=(768, 64) ok=true
+vine_bridge.png size=(96, 24) expected=(96, 24) ok=true
+light_beam_base.png size=(96, 64) expected=(96, 64) ok=true
+light_beam_mid.png size=(576, 128) expected=(576, 128) ok=true
+light_beam_top.png size=(96, 64) expected=(96, 64) ok=true
+fire_pillar_base.png size=(96, 64) expected=(96, 64) ok=true
+fire_pillar_mid.png size=(576, 128) expected=(576, 128) ok=true
+fire_pillar_top.png size=(96, 64) expected=(96, 64) ok=true
+mossling_sheet.png size=(576, 384) expected=(576, 384) ok=true
+ember_imp_sheet.png size=(576, 384) expected=(576, 384) ok=true
+yuki_seal_idle.png size=(256, 64) expected=(256, 64) ok=true
+light_mid_seam_mismatch=0
+fire_mid_seam_mismatch=0
+quake_warning_horizontal_seam_mismatch=0
+vine_bridge_horizontal_seam_mismatch=0
+monster_cells=6x4 cell=96x96 preserved=true
+quake_warning_anchor=top-left per 96x16 frame; horizontal repeat
+quake_impact_anchor=bottom-center (64,63) per 128x64 frame
+column_base_anchor=bottom-center (48,63); mid vertical repeat; top join anchor=bottom-center (48,63)
+yuki_seal_anchor=bottom-center (32,63) per 64x64 frame

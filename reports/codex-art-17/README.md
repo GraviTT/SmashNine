@@ -1,0 +1,100 @@
+# CODEX-ART-17 결과 보고
+
+## 완료
+
+게임 내 아트 QA에서 지적된 지진 경고/충격, 덩굴 다리, 아스가르드 광선, 무스펠하임 불기둥, 몬스터 배경 위장, 유키 봉인 부적을 교체·보강했습니다. 신규 원화는 built-in ImageGen으로 생성했고, 최종 게임 파일은 Godot 4.7 `Image` API 빌드 스크립트로 크기·팔레트·알파·프레임·타일 경계를 결정적으로 정리했습니다.
+
+제품 소스(`scripts/`, `characters/`, `scenes/`, `project.godot`)와 기존 테스트는 수정하지 않았습니다. 기존 `light_beam.png`, `fire_pillar.png` fallback도 그대로 보존했습니다.
+
+## 산출물
+
+| 항목 | 파일 | 규격 | 앵커 / 권장 재생 |
+|---|---|---:|---|
+| 지진 경고 | `quake_warning.png` | 384×16, 96×16 × 4 | 좌상단, 수평 반복, 8 fps loop |
+| 지진 충격 | `quake_impact.png` | 768×64, 128×64 × 6 | 하단 중앙 `(64,63)`, 12 fps one-shot |
+| 덩굴 다리 | `vine_bridge.png` | 96×24 | 좌상단, 96 px 수평 반복, 정적 |
+| 아스가르드 광선 | `light_beam_{base,mid,top}.png` | 96×64 / 576×128 / 96×64 | base·top 하단 중앙 `(48,63)`, mid 96×128 × 6 세로 반복, 10 fps |
+| 무스펠하임 불기둥 | `fire_pillar_{base,mid,top}.png` | 같은 규격 | base·top 하단 중앙 `(48,63)`, mid 12 fps |
+| 몬스터 림 | `mossling_sheet.png`, `ember_imp_sheet.png` | 각각 576×384, 96 셀 6×4 | 기존 프레임 위치·실루엣·발 기준 유지 |
+| 유키 대기 봉인 | `yuki_seal_idle.png` | 256×64, 64×64 × 4 | 하단 중앙 `(32,63)`, 4 fps loop |
+
+경로는 각각 `smash-nine-prototype/assets/art/hazards/`, `monsters/`, `effects/` 아래입니다.
+
+## 변경 전 / 변경 후
+
+### 1. 유키 봉인 부적
+
+- 변경 전 QA: [`03_yuki_seal_placeholder_3x.png`](../codex-qa-15/evidence/03_yuki_seal_placeholder_3x.png) — 단색 직사각형 placeholder.
+- 변경 후: [`yuki_seal_after_4x.png`](yuki_seal_after_4x.png) — 크림색 종이·주홍 인장·청보라 도깨비불과 약한 마름모 펄스의 4프레임.
+
+육안 판단: 64 px 셀에서도 종이 부적이라는 정체가 즉시 읽히고, 5초 대기 오브젝트에 맞게 공격 이펙트보다 차분합니다.
+
+### 2. 요툰헤임 지진
+
+- 변경 전 QA: [`04_quake_bars_2x.png`](../codex-qa-15/evidence/04_quake_bars_2x.png) — 플랫폼 위의 평평한 금색 막대.
+- 변경 후 전체 프레임: [`hazards_after_2x.png`](hazards_after_2x.png) 상단 — 균열이 약→강→잔광으로 맥동하는 4프레임 경고와 바닥 접점이 고정된 6프레임 먼지/암석 버스트.
+
+육안 판단: 경고가 “바닥이 갈라진다”는 의미로 바뀌었고, 충격 프레임은 낮은 분진→상승 암석→침하 순서로 읽힙니다.
+
+### 3. 덩굴 다리
+
+- 변경 전 QA: [`06_vine_warning_active.png`](../codex-qa-15/evidence/06_vine_warning_active.png) — 숲과 일반 플랫폼에 묻히는 가는 녹색 선.
+- 변경 후: [`hazards_after_2x.png`](hazards_after_2x.png) 중단 왼쪽 — 전체 길이를 채우는 꼬인 뿌리, 읽히는 말린 끝, 1–2 px 황록색 보행면 림과 작은 꽃봉오리.
+
+육안 판단: 배경 수풀보다 밝은 상단선이 먼저 보이며, 아래 뿌리 덩어리가 임시 생체 다리의 재질을 설명합니다.
+
+### 4. 광선 / 불기둥
+
+- 변경 전 QA: [`07_stretched_hazards.png`](../codex-qa-15/evidence/07_stretched_hazards.png) — 64×128 한 장을 1080/690 px 높이로 늘려 굵기와 픽셀이 왜곡됨.
+- 변경 후: [`hazards_after_2x.png`](hazards_after_2x.png) 하단 두 줄 — 바닥 충돌 base, 6프레임의 반복 가능한 mid, 하늘/불꽃 끝 top으로 분리.
+- 2배 반복 검사: [`seam_checks_2x.png`](seam_checks_2x.png).
+
+육안 판단: 흰금/청색 룬 광선과 황백/적주황 불기둥의 색·실루엣이 명확히 다르고, 긴 기둥에서도 픽셀 굵기가 일정합니다.
+
+### 5. 몬스터 대비
+
+- 변경 전 QA: [`09_monster_camouflage.png`](../codex-qa-15/evidence/09_monster_camouflage.png).
+- 변경 후 Mossling/Vanaheim: [`mossling_vanaheim_2x.png`](mossling_vanaheim_2x.png).
+- 변경 후 Ember Imp/Muspelheim: [`ember_imp_muspelheim_2x.png`](ember_imp_muspelheim_2x.png).
+
+육안 판단: Mossling의 청록/크림 림은 녹색 수풀과, Ember Imp의 보라/옅은 금색 림은 붉은 용암 배경과 실루엣을 분리합니다. 원본 몸체와 프레임 위치는 바꾸지 않았습니다.
+
+## 수치 검증
+
+`verification.txt`에서 다음을 Godot 이미지 픽셀 단위로 확인했습니다.
+
+- 카드에 지정된 12개 PNG 크기 전부 일치.
+- 몬스터 시트 576×384, 96×96 셀 6×4 유지.
+- `light_beam_mid` / `fire_pillar_mid`: 각 6프레임 위·아래 4행 불일치 픽셀 **0**.
+- `quake_warning` 4프레임 / `vine_bridge`: 좌우 경계 불일치 픽셀 **0**.
+- 결과 PNG를 2배/4배 최근접 확대해 직접 확인했습니다.
+- 빌드 스크립트를 연속 2회 실행한 뒤 12개 최종 PNG의 SHA-256을 비교했고 불일치 파일은 **0개**였습니다.
+
+빌드 실행 결과는 `ART17_BUILD_OK`였습니다. Godot의 `Image.load_from_file` export 경고는 에디터 런타임용이 아닌 제작 스크립트에서 직접 PNG를 읽기 때문에 발생합니다. 마지막 certificate-store ERROR는 카드에 기재된 샌드박스 노이즈입니다. 그 외 parse/runtime 오류가 없는 최종 빌드를 사용했습니다.
+
+## 리드 통합 메모
+
+1. `quake_warning`은 플랫폼 길이에 맞춰 현재 프레임의 96×16 셀을 수평 반복하고, `quake_impact`는 각 플랫폼 충돌점에 하단 중앙을 맞춥니다.
+2. 광선/불기둥은 base를 바닥에 놓고, 선택한 mid 프레임 하나만 128 px 단위로 반복/마지막 크롭한 뒤, 최상단에 top의 하단 중앙을 연결합니다. 전체 시트를 늘리지 않습니다.
+3. import는 filter/mipmap off, repeat는 코드/Region 반복 방식에 맞춥니다. 아트 자체의 경계 픽셀은 일치합니다.
+4. 몬스터 런타임 셀 크기와 애니메이션 인덱스는 바꾸지 않아야 합니다.
+5. 봉인 부적은 4 fps loop를 권장하며, 5초 대기 중 마지막 프레임 고정 대신 계속 순환하는 편이 맥동이 자연스럽습니다.
+
+## 사람이 최종 판단할 부분
+
+- 실제 카메라 줌/배경 dim이 적용된 경기 화면에서 몬스터 림이 너무 강하지 않은지.
+- 1080 px 광선과 690 px 불기둥에서 mid 애니메이션 속도가 지나치게 부산하지 않은지.
+- base가 각 렐름 플랫폼 표면과 만나는 높이 및 top이 화면 밖으로 잘릴 때의 처리.
+- 유키 옆에 배치했을 때 부적의 64 px 시각 크기와 캐릭터/포털과의 우선순위.
+- 지진 경고 8 fps와 실제 경고 시간의 동기감.
+
+제품 코드 통합과 실제 인게임 캡처는 이 카드의 쓰기 금지 범위이므로 수행하지 않았습니다.
+
+## 재생성
+
+- 원화: `source/` (built-in ImageGen, 투명 배경)
+- 정확한 프롬프트: [`PROMPTS.md`](PROMPTS.md)
+- 후처리/미리보기: `smash-nine-prototype/tests/art_preview/hazard_art_17/build_assets.gd`
+- 원본 분석 보조: `probe_source.gd`
+
+`.git`이 쓰기 불가인 환경이므로 커밋 대신 [`commit.ps1`](commit.ps1)을 준비했습니다. 이 스크립트는 카드 허용 경로만 stage하고 커밋합니다.
