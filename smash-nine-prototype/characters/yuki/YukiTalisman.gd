@@ -75,9 +75,11 @@ func _on_body_entered(body: Node) -> void:
 		return
 	if body.has_method("is_owned_by") and body.is_owned_by(source):
 		return
+	# The burst resizes the collision shape: never inside the physics callback (it errors while
+	# queries flush), so it starts right after (found 2026-10-08 once bots aimed up and down).
 	if body.is_in_group("platforms"):
 		if mode == "drop" or mode == "flare":
-			_begin_burst()
+			_begin_burst.call_deferred()
 		else:
 			queue_free()
 		return
@@ -85,7 +87,7 @@ func _on_body_entered(body: Node) -> void:
 	if mode == "straight" and hit_targets.has(body):
 		queue_free()
 	elif mode == "drop" and hit_targets.has(body):
-		_begin_burst()
+		_begin_burst.call_deferred()
 
 func _begin_burst() -> void:
 	if burst_time > 0.0:
