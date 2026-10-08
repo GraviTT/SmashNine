@@ -32,3 +32,12 @@ Godot 4.7용 투명 RGBA 픽셀 아트입니다. 신규 ART-17 자산은 **아�
 - 결정적 빌드: `tests/art_preview/hazard_art_17/build_assets.gd`
 - 크기·타일 경계 수치: `reports/codex-art-17/verification.txt`
 - 2배 확대 프레임/반복 확인: `reports/codex-art-17/hazards_after_2x.png`, `seam_checks_2x.png`
+
+## ART-17 Round 2 타일 경계 수정
+
+- `light_beam_mid.png`와 `fire_pillar_mid.png`의 모든 96×128 프레임은 128개 행 전체에 유효 픽셀이 있으며, 빈 행과 셀 폭의 1/3(32 px) 미만인 행이 없습니다.
+- 두 mid 시트의 모든 프레임은 상단 4행과 하단 4행이 서로 완전히 같습니다. 따라서 `1→2→3→4→5→6`뿐 아니라 `6→1`을 포함한 임의 프레임 연결에도 투명 틈이 생기지 않습니다.
+- 프레임 속도와 사용법은 그대로입니다: 광선 10 fps loop, 불기둥 12 fps loop, 각 96×128 셀을 세로 반복합니다.
+- `quake_impact.png`는 두 번째 burst가 아니라 하나의 burst-and-settle로 읽히도록 기존 프레임을 `old4, old1, old3, old2, old5, old6` 순으로 재배열했습니다. 크기 128×64 × 6, 하단 중앙 앵커 `(64,63)`, 12 fps one-shot은 그대로입니다.
+- 결정적 수정·검증 스크립트: `tests/art_preview/hazard_art_17/round2_fix.gd`
+- 수치 기록과 2배 연결 프리뷰: `reports/codex-art-17/round2-verification.txt`, `round2_tile_sequence_2x.png`

@@ -1,0 +1,13 @@
+light_beam_mid.png size=(576, 128) expected=(576, 128) ok=true
+light_beam_mid.png before: f1 empty=0 under_1_3=0 min_fill=66; f2 empty=13 under_1_3=13 min_fill=0; f3 empty=2 under_1_3=13 min_fill=0; f4 empty=4 under_1_3=13 min_fill=0; f5 empty=0 under_1_3=0 min_fill=63; f6 empty=0 under_1_3=0 min_fill=63
+light_beam_mid.png after:  f1 empty=0 under_1_3=0 min_fill=66; f2 empty=0 under_1_3=0 min_fill=51; f3 empty=0 under_1_3=0 min_fill=44; f4 empty=0 under_1_3=0 min_fill=52; f5 empty=0 under_1_3=0 min_fill=63; f6 empty=0 under_1_3=0 min_fill=63
+light_beam_mid.png after_cross_frame_top_bottom_4_mismatch=0
+fire_pillar_mid.png size=(576, 128) expected=(576, 128) ok=true
+fire_pillar_mid.png before: f1 empty=0 under_1_3=0 min_fill=67; f2 empty=12 under_1_3=13 min_fill=0; f3 empty=2 under_1_3=13 min_fill=0; f4 empty=6 under_1_3=13 min_fill=0; f5 empty=7 under_1_3=13 min_fill=0; f6 empty=0 under_1_3=0 min_fill=62
+fire_pillar_mid.png after:  f1 empty=0 under_1_3=0 min_fill=67; f2 empty=0 under_1_3=0 min_fill=51; f3 empty=0 under_1_3=0 min_fill=51; f4 empty=0 under_1_3=0 min_fill=46; f5 empty=0 under_1_3=0 min_fill=53; f6 empty=0 under_1_3=0 min_fill=62
+fire_pillar_mid.png after_cross_frame_top_bottom_4_mismatch=0
+quake_impact.png size=(768, 64) expected=(768, 64) ok=true
+quake_impact before: f1 bounds=[P: (2, 26), S: (124, 37)] occupied=1696; f2 bounds=[P: (11, 2), S: (106, 61)] occupied=2568; f3 bounds=[P: (33, 2), S: (62, 61)] occupied=1867; f4 bounds=[P: (45, 2), S: (37, 61)] occupied=981; f5 bounds=[P: (28, 2), S: (72, 61)] occupied=1986; f6 bounds=[P: (2, 5), S: (124, 58)] occupied=2607
+quake_impact after:  f1 bounds=[P: (45, 2), S: (37, 61)] occupied=981; f2 bounds=[P: (2, 26), S: (124, 37)] occupied=1696; f3 bounds=[P: (33, 2), S: (62, 61)] occupied=1867; f4 bounds=[P: (11, 2), S: (106, 61)] occupied=2568; f5 bounds=[P: (28, 2), S: (72, 61)] occupied=1986; f6 bounds=[P: (2, 5), S: (124, 58)] occupied=2607
+quake_impact_order=old4,old1,old3,old2,old5,old6
+anchors_unchanged=mid top-left per 96x128 cell; quake bottom-center (64,63) per 128x64 cell
