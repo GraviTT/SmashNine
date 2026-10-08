@@ -81,9 +81,30 @@ func _run() -> void:
 	if failed:
 		quit(1)
 		return
+	_check_spawn_heights()
+	if failed:
+		quit(1)
+		return
 	print("Soul crystal tests passed")
 	quit(0)
 
 func _fail(message: String) -> void:
 	push_error(message)
 	failed = true
+
+## Crystals float at spawn points. With the realms scaled 1.5x (GameScale.WORLD) every spawn
+## must still sit as close above its platform as the authored layouts (at most 80 px), or a
+## grounded swing cannot reach the crystal (CODEX-QA-13: 74-97 px before the fix).
+func _check_spawn_heights() -> void:
+	for realm_index in layout.realm_count():
+		var origin: Vector2 = layout.get_origin(realm_index)
+		var platforms: Array = layout.get_realm(realm_index).platforms
+		for point: Vector2 in layout.get_realm(realm_index).spawns:
+			var best_gap := INF
+			for platform_data: Dictionary in platforms:
+				var top: float = platform_data.center.y - platform_data.size.y * 0.5
+				if absf(point.x - platform_data.center.x) <= platform_data.size.x * 0.5 + 8.0 and top - point.y >= -4.0:
+					best_gap = minf(best_gap, top - point.y)
+			if best_gap != INF and best_gap > 80.0:
+				_fail("%s: spawn %s floats %.0f px over its platform (max 80)" % [layout.get_realm(realm_index).name, origin + point, best_gap])
+				return

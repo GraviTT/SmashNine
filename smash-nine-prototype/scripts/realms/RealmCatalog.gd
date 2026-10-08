@@ -235,22 +235,43 @@ static func scaled_maps(scale: float) -> Array:
 	var maps := build_maps()
 	for map: Dictionary in maps:
 		map["size"] = map.get("size", OUTER_SIZE) * scale
+		var authored: Array = map.platforms.duplicate(true)
 		for platform_data: Dictionary in map.platforms:
 			platform_data["center"] = platform_data.center * scale
 			platform_data["size"] = Vector2(platform_data.size.x * scale, platform_data.size.y)
 		var spawns: Array = []
 		for spawn: Vector2 in map.spawns:
-			spawns.append(spawn * scale)
+			spawns.append(_scaled_stand_point(spawn, authored, scale))
 		map["spawns"] = spawns
 		var portals := {}
 		for side in map.portals:
-			portals[side] = map.portals[side] * scale
+			portals[side] = _scaled_stand_point(map.portals[side], authored, scale)
 		map["portals"] = portals
 		if map.has("hazard"):
-			map["hazard"] = _scaled_hazard(map.hazard, scale)
+			map["hazard"] = _scaled_hazard(map.hazard, scale, authored)
 	return maps
 
-static func _scaled_hazard(hazard: Dictionary, scale: float) -> Dictionary:
+## A point that stands on (or floats a little above) a platform keeps its height above that
+## platform's top: platform centres scale but their thickness does not, so plain scaling would
+## lift portals, bush bottoms and spawns off the platforms (CODEX-QA-13). Points over no
+## platform scale plainly.
+static func _scaled_stand_point(point: Vector2, authored: Array, scale: float) -> Vector2:
+	var best_gap := INF
+	var best_top := 0.0
+	var best_height := 0.0
+	for platform_data: Dictionary in authored:
+		var top: float = platform_data.center.y - platform_data.size.y * 0.5
+		var gap: float = top - point.y
+		if absf(point.x - platform_data.center.x) <= platform_data.size.x * 0.5 + 8.0 and gap >= -4.0 and gap < best_gap:
+			best_gap = gap
+			best_top = top
+			best_height = platform_data.size.y
+	if best_gap == INF:
+		return point * scale
+	var scaled_top := (best_top + best_height * 0.5) * scale - best_height * 0.5
+	return Vector2(point.x * scale, scaled_top - best_gap)
+
+static func _scaled_hazard(hazard: Dictionary, scale: float, authored: Array) -> Dictionary:
 	var scaled := hazard.duplicate(true)
 	for key in ["width", "height", "notice_range"]:
 		if scaled.has(key):
@@ -258,7 +279,7 @@ static func _scaled_hazard(hazard: Dictionary, scale: float) -> Dictionary:
 	if scaled.has("spots"):
 		var spots: Array = []
 		for spot: Vector2 in scaled.spots:
-			spots.append(spot * scale)
+			spots.append(_scaled_stand_point(spot, authored, scale))
 		scaled["spots"] = spots
 	if scaled.has("size"):
 		scaled["size"] = Vector2(scaled.size.x * scale, scaled.size.y)

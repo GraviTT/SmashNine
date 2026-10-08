@@ -55,7 +55,7 @@ const VOID_PROBE_DEPTH := 700.0 * GAME_SCALE.WORLD
 ## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
 const ULTIMATE_FOLLOWUPS := {"nova": [0.35, 0.55], "luna": [4.4]}
 const ULTIMATE_USE_CHANCE := 0.45
-const PASSIVE_PLAYER_PENALTY := 900.0
+const PASSIVE_PLAYER_PENALTY := 900.0 * GAME_SCALE.WORLD
 const DISENGAGE_HP_RATIO := 0.35
 const HAZARD_REACTION_CHANCE := 0.8
 const QUAKE_JUMP_LEAD := 0.35
@@ -69,7 +69,7 @@ const COMBAT_PROFILES := {
 	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true},
 	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true}
 }
-const BUSH_NOTICE_RANGE := 140.0
+const BUSH_NOTICE_RANGE := 140.0 * GAME_SCALE.WORLD
 const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
 
 const OFFSCREEN_THINK_MIN := 1.4
@@ -412,7 +412,7 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 	else:
 		candidates = ["hold", "cross", "approach", "jump_in"]
 
-	if distance_y > 120.0:
+	if distance_y > 120.0 * GAME_SCALE.COMBAT:
 		candidates = ["approach", "jump_in"]
 
 	action = _pick_non_repeating_action(candidates)
@@ -442,7 +442,7 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 		return "ultimate"
 	var roll: float = randf()
 	var attack_name: String
-	if distance_x < 88.0:
+	if distance_x < 88.0 * GAME_SCALE.COMBAT:
 		attack_name = "basic" if roll < 0.82 else "skill_1"
 	elif roll < 0.62:
 		attack_name = "basic"
@@ -504,6 +504,11 @@ func _terrain_move_intent(player, direction: float, wants_jump: bool, allow_gap_
 			return _intent(0.0, true)
 		return _intent()
 	if not player.is_on_floor():
+		# Rises taller than one jump (NAV_JUMP_RISE plans with the air jump): jump again near
+		# the top of the first one while the destination is still above (CODEX-QA-13).
+		if wants_jump and player.air_jumps_left > 0 and player.velocity.y > -120.0 and jump_retry_timer <= 0.0:
+			jump_retry_timer = JUMP_RETRY_TIME
+			return _intent(direction, true)
 		return _intent(direction, false)
 	if blocked_timer > 0.0 and signf(direction) == signf(blocked_direction):
 		return _intent()

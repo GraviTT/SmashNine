@@ -17,6 +17,7 @@ const SOUL_CRYSTAL_SPAWNER_SCRIPT := preload("res://scripts/SoulCrystalSpawner.g
 const CENTRAL_REALM_INDEX := REALM_LAYOUT_SCRIPT.CENTRAL_REALM_INDEX
 const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const CAMERA_ZOOM := 0.85
 ## Off-screen fighter arrows sit this far inside the screen edge.
 const OFFSCREEN_MARKER_INSET := 34.0
@@ -350,7 +351,7 @@ func _take_spawn_point(realm_index: int, used_points: Dictionary) -> Vector2:
 	for point in points:
 		var far_enough := true
 		for other in taken:
-			if point.distance_to(other) < 320.0:
+			if point.distance_to(other) < 320.0 * GAME_SCALE.WORLD:
 				far_enough = false
 				break
 		if far_enough:

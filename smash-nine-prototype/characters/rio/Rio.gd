@@ -328,9 +328,10 @@ func _play_rune_burst() -> void:
 	ring.z_index = 4
 	for corner in 6:
 		var angle := TAU * corner / 6.0 + PI / 6.0
-		ring.add_point(Vector2(cos(angle), sin(angle)) * 40.0)
+		# The counter ring shows the counter hit area (GameScale.COMBAT).
+		ring.add_point(Vector2(cos(angle), sin(angle)) * 40.0 * GAME_SCALE.COMBAT)
 	get_parent().add_child(ring)
-	ring.global_position = global_position + Vector2(40 * facing, -36)
+	ring.global_position = global_position + Vector2(40 * facing * GAME_SCALE.COMBAT, -36)
 	var tween := ring.create_tween()
 	tween.tween_property(ring, "scale", Vector2(2.4, 2.4), 0.16)
 	tween.parallel().tween_property(ring, "modulate:a", 0.0, 0.16)

@@ -217,7 +217,7 @@ func _update_behavior(delta: float) -> void:
 		return_to_neutral()
 		return
 	var offset: Vector2 = target.global_position - global_position
-	if absf(offset.x) > 720.0 or absf(offset.y) > 360.0:
+	if absf(offset.x) > 720.0 * GAME_SCALE.WORLD or absf(offset.y) > 360.0 * GAME_SCALE.WORLD:
 		return_to_neutral()
 		return
 	facing = 1 if offset.x >= 0.0 else -1
@@ -239,7 +239,7 @@ func _update_neutral_wander(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, wander_direction * move_speed * 0.55, 850.0 * delta)
 
 func _update_melee_aggro(offset: Vector2) -> void:
-	if absf(offset.x) <= attack_range and absf(offset.y) < 90.0:
+	if absf(offset.x) <= attack_range and absf(offset.y) < 90.0 * GAME_SCALE.WORLD:
 		velocity.x = move_toward(velocity.x, 0.0, 1000.0 * get_physics_process_delta_time())
 		if attack_timer <= 0.0:
 			attack_timer = attack_cooldown
@@ -256,7 +256,7 @@ func _update_ranged_aggro(offset: Vector2) -> void:
 	var direction := signf(offset.x)
 	if distance < 145.0 * GAME_SCALE.WORLD and _has_floor_ahead(-direction):
 		velocity.x = -direction * move_speed
-	elif distance > 260.0 and _has_floor_ahead(direction):
+	elif distance > 260.0 * GAME_SCALE.WORLD and _has_floor_ahead(direction):
 		velocity.x = direction * move_speed * 0.7
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, 900.0 * get_physics_process_delta_time())
