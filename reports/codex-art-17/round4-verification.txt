@@ -1,0 +1,15 @@
+Round 4 fire internal dark-row verification
+brightness=Godot Color.get_luminance mean over local x=36..59; check rows=100..120
+threshold=no row more than 0.08 darker than mean of immediate neighbours
+sheet_size=(576, 128) expected=(576, 128) ok=true
+changed_outside_allowed_rows=0
+f1 before_rows108..112=0.409/0.341/0.339/0.376/0.435 after_rows108..112=0.409/0.341/0.339/0.376/0.435 max_dark_before=0.0345 max_dark_after=0.0345 changed_pixels=0 body=67 edge_before=67/67/67/67/67/67/67/67 edge_after=67/67/67/67/67/67/67/67 wrap_before=0.0000 wrap_after=0.0000
+f2 before_rows108..112=0.661/0.634/0.493/0.718/0.701 after_rows108..112=0.661/0.634/0.675/0.718/0.701 max_dark_before=0.1833 max_dark_after=0.0340 changed_pixels=51 body=57 edge_before=55/55/55/55/55/55/55/55 edge_after=55/55/55/55/55/55/55/55 wrap_before=0.0000 wrap_after=0.0000
+f3 before_rows108..112=0.700/0.612/0.519/0.740/0.735 after_rows108..112=0.700/0.612/0.675/0.740/0.735 max_dark_before=0.1566 max_dark_after=0.0754 changed_pixels=51 body=54 edge_before=54/54/54/54/54/54/54/54 edge_after=54/54/54/54/54/54/54/54 wrap_before=0.0157 wrap_after=0.0157
+f4 before_rows108..112=0.716/0.697/0.510/0.498/0.516 after_rows108..112=0.716/0.697/0.668/0.641/0.612 max_dark_before=0.0875 max_dark_after=0.0255 changed_pixels=144 body=49 edge_before=49/49/49/49/49/49/49/49 edge_after=49/49/49/49/49/49/49/49 wrap_before=0.0157 wrap_after=0.0157
+f5 before_rows108..112=0.565/0.587/0.414/0.481/0.485 after_rows108..112=0.565/0.587/0.533/0.481/0.485 max_dark_before=0.1200 max_dark_after=0.0426 changed_pixels=53 body=58 edge_before=58/58/56/56/58/58/58/58 edge_after=58/58/56/56/58/58/58/58 wrap_before=0.0118 wrap_after=0.0118
+f6 before_rows108..112=0.443/0.528/0.520/0.529/0.555 after_rows108..112=0.443/0.528/0.520/0.529/0.555 max_dark_before=0.0478 max_dark_after=0.0478 changed_pixels=0 body=64 edge_before=62/62/62/62/62/62/62/62 edge_after=62/62/62/62/62/62/62/62 wrap_before=0.0118 wrap_after=0.0118
+alpha_shape=unchanged; RGB only on f2:r110, f3:r110, f4:r110..112, f5:r110
+anchors_unchanged=top-left per 96x128 cell; fire 12 fps loop
+preview=round4_fire_self_tiles_2x.png; each frame repeated 3x under itself at nearest-neighbour 2x
+comparison=round4_fire_before_after_4x.png; top before, bottom after, source rows 96..123
