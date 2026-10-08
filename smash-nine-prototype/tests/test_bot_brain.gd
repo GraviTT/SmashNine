@@ -508,35 +508,36 @@ func _test_yuki_basic_reach() -> void:
 	await process_frame
 
 ## Round 8 (Codex QA-14 round 7, seed 112): two bots on the same level across a gap they cannot
-## cross, just out of reach, must not stay "engaged" forever: a blocked way is not progress.
+## cross, just out of reach, must not stay "engaged" forever: a way blocked toward the target is
+## not progress (the bot really tries to walk across here; the round-7 brain kept the target).
 func _test_gap_dead_band() -> void:
 	var left := _floor(Vector2(-300, 0), 400)
-	var right := _floor(Vector2(301 + 200, 0), 400)
-	var bot := _fighter("frey", 1, Vector2(-110, -2))
+	var right := _floor(Vector2(501, 0), 400)
+	var bot := _fighter("frey", 1, Vector2(-300, -2))
 	var foe := _fighter("frey", 2, Vector2(291, -2))
+	bot.is_dummy = true
+	foe.is_dummy = true
+	for frame in 20:
+		await physics_frame
 	bot.set_physics_process(false)
 	foe.set_physics_process(false)
-	await physics_frame
+	bot.global_position = Vector2(-110, -2)
+	bot.is_dummy = false
+	if not bot.is_on_floor():
+		_fail("Test setup: the bot should stand at the edge of its platform")
 	var ai = bot.ai_controller
 	ai.state = ai.STATE_ENGAGE
 	ai.target = foe
 	ai._update_target_progress(bot, 0.1)
-	# The way is open: same level counts as progress.
+	# Walking away from the gap is open: same level stays progress.
 	for step in 30:
+		ai._terrain_move_intent(bot, -1.0, false, true)
 		ai._update_target_progress(bot, 0.1)
 	if ai.target != foe:
 		_fail("A target on our level with an open way should be kept")
-	# Blocked away from it (backing into a ledge): still progress.
-	for step in 30:
-		ai.blocked_age = 0.0
-		ai.blocked_direction = -1.0
-		ai._update_target_progress(bot, 0.1)
-	if ai.target != foe:
-		_fail("Being blocked away from the target (at our back) should not drop it")
-	# Blocked toward it by the gap (as _terrain_move_intent marks it every retry): dropped after 2.5 s.
-	for step in 30:
-		ai.blocked_age = 0.0
-		ai.blocked_direction = 1.0
+	# Walking toward it hits the gap with no landing: dropped after 2.5 s.
+	for step in 40:
+		ai._terrain_move_intent(bot, 1.0, false, true)
 		ai._update_target_progress(bot, 0.1)
 	if ai.target != null:
 		_fail("A target across a gap the bot cannot cross should be dropped, not engaged forever")
