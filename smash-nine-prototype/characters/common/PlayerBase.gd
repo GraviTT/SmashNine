@@ -492,6 +492,9 @@ func _update_guard_direction_from_input() -> void:
 		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_up", "move_down")
 	)
+	# Bots guard toward the attacker they saw (EnemyAI.guard_aim; debate 2026-10-08, D2).
+	if not is_human and ai_controller.guard_aim.length() > 0.2:
+		direction = ai_controller.guard_aim
 	if direction.length() < 0.2:
 		direction = Vector2(facing, 0.0)
 	guard_direction = _to_cardinal_direction(direction)
@@ -805,6 +808,10 @@ func _try_buffered_attack() -> void:
 func _get_attack_direction() -> Vector2:
 	var x := Input.get_axis("move_left", "move_right") if is_human else float(facing)
 	var y := Input.get_axis("move_up", "move_down") if is_human else 0.0
+	# Bots aim like a held stick: up and down attacks at targets above and below (2026-10-08).
+	if not is_human and ai_controller.aim_direction.length() > 0.2:
+		x = ai_controller.aim_direction.x
+		y = ai_controller.aim_direction.y
 	var direction := Vector2(x, y)
 	if direction.length() < 0.2:
 		direction = Vector2(facing, 0)

@@ -38,7 +38,9 @@ const JUMP_RETRY_TIME := 0.48
 const NAV_REPLAN_DISTANCE := 240.0 * GAME_SCALE.WORLD
 const NAV_SAME_LEVEL := 92.0 * GAME_SCALE.WORLD
 const NAV_HORIZONTAL_REACH := 470.0 * GAME_SCALE.WORLD
-const NAV_JUMP_RISE := 185.0 * GAME_SCALE.JUMP_HEIGHT
+## Routes only use rises one ground jump clears (debate D1: the air jump stays for recovery);
+## 125 x JUMP_HEIGHT = 187.5 px, under every fighter's single jump (198-234 px).
+const NAV_JUMP_RISE := 125.0 * GAME_SCALE.JUMP_HEIGHT
 const NAV_JUMP_REACH := 470.0 * GAME_SCALE.WORLD
 const NAV_DROP_DEPTH := 360.0 * GAME_SCALE.WORLD
 const NAV_DROP_REACH := 470.0 * GAME_SCALE.WORLD
@@ -53,10 +55,57 @@ const RECOVER_EXIT_FROM_BOTTOM := 60.0
 const RECOVER_JUMP_RETRY := 0.3
 const VOID_PROBE_DEPTH := 700.0 * GAME_SCALE.WORLD
 ## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
-const ULTIMATE_FOLLOWUPS := {"nova": [0.35, 0.55], "luna": [4.4]}
-const ULTIMATE_USE_CHANCE := 0.45
+## Fixed extra ultimate presses (Luna's heart laser). Nova's slingshot is driven by aim
+## instead (_drive_nova_slingshot).
+const ULTIMATE_FOLLOWUPS := {"luna": [4.4]}
+## Guarding (2026-10-08, bots never guarded before): when an opponent in reach starts an
+## attack, guard after a human-like delay, some of the time, for a short hold.
+const GUARD_CHANCE := 0.55
+const GUARD_REACTION_MIN := 0.14
+const GUARD_REACTION_MAX := 0.24
+const GUARD_HOLD_MIN := 0.28
+const GUARD_HOLD_MAX := 0.5
+## Anticipatory guard (debate D3): an opponent within its reach, facing us, while we are not
+## attacking: this chance per decision to raise guard for a moment, as a human would.
+const GUARD_ANTICIPATE_CHANCE := 0.15
+const GUARD_ANTICIPATE_MIN := 0.25
+const GUARD_ANTICIPATE_MAX := 0.4
+## Guard when the attacker's own reach (its profile) plus this margin covers us, and the height
+## gap is under GUARD_HEIGHT (both x GameScale.COMBAT).
+const GUARD_REACH_MARGIN := 40.0
+const GUARD_HEIGHT := 90.0
+## Aiming: up or down when the target is at least AIM_VERTICAL_MIN px above or below and the
+## slope is at least AIM_VERTICAL_SLOPE (|dy| >= 0.65 |dx|, about 33 degrees).
+const AIM_VERTICAL_MIN := 48.0
+const AIM_VERTICAL_SLOPE := 0.65
+## Progress check: a target that is on another level and not 60 px (x WORLD) closer after
+## 2.5 s is dropped and ignored for 5 s.
+const PROGRESS_TIME := 2.5
+const PROGRESS_DISTANCE := 60.0
+const IGNORE_TIME := 5.0
+## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, already at
+## the combat scale), score >= 3 fires 70% of the time, >= 2 once it has been ready 12 s.
+const ULTIMATE_REACH := {"frey": 480.0, "yuki": 820.0, "luna": 420.0, "nova": 460.0, "rio": 900.0}
+const ULTIMATE_FIRE_CHANCE := 0.7
+const ULTIMATE_PATIENCE := 12.0
+## Low-HP retreat (debate): never in a final duel or late (aggression >= 0.8); otherwise under
+## 30% HP, toward a safe realm, at most every 10 s.
+const DISENGAGE_LATE_AGGRESSION := 0.8
+const DISENGAGE_COOLDOWN := 10.0
+## Nova's slingshot (debate): orbit after 0.25-0.4 s, launch when the orbit's tangent points
+## within 20 degrees of where the target will be (0.15 s ahead), forced at 0.8 s; 0.12-0.2 s
+## after launch, redirect with skill one (75%) if still more than 25 degrees off.
+const NOVA_ORBIT_DELAY_MIN := 0.25
+const NOVA_ORBIT_DELAY_MAX := 0.4
+const NOVA_LAUNCH_ANGLE := 20.0
+const NOVA_LAUNCH_LATEST := 0.8
+const NOVA_REDIRECT_DELAY_MIN := 0.12
+const NOVA_REDIRECT_DELAY_MAX := 0.2
+const NOVA_REDIRECT_ANGLE := 25.0
+const NOVA_REDIRECT_CHANCE := 0.75
+const TARGET_LEAD_TIME := 0.15
 const PASSIVE_PLAYER_PENALTY := 900.0 * GAME_SCALE.WORLD
-const DISENGAGE_HP_RATIO := 0.35
+const DISENGAGE_HP_RATIO := 0.3
 const HAZARD_REACTION_CHANCE := 0.8
 const QUAKE_JUMP_LEAD := 0.35
 const VENT_MARGIN := 40.0
@@ -117,6 +166,20 @@ var aim_direction: Vector2 = Vector2.ZERO
 ## Dev view (the F4 bot panel and analysis probes): the last intent sent to the fighter and
 ## why the bot is doing what it does, in a few words.
 var last_intent: Dictionary = {}
+var guard_hold_timer: float = 0.0
+var guard_delay_timer: float = -1.0
+var watched_attack_locks: Dictionary = {}
+## Direction to guard toward (read by PlayerBase when the guard starts).
+var guard_aim: Vector2 = Vector2.ZERO
+var guard_threat_from: Node
+var ignored_targets: Dictionary = {}
+var progress_target: Node
+var progress_best: float = INF
+var progress_timer: float = 0.0
+var ultimate_ready_time: float = 0.0
+var disengage_cooldown: float = 0.0
+var nova_stage_timer: float = -1.0
+var nova_redirect_timer: float = -1.0
 var debug_reason: String = ""
 
 func update(player, delta: float) -> void:
@@ -126,7 +189,11 @@ func update(player, delta: float) -> void:
 
 	_target_timers(delta)
 	_update_ultimate_followups(player, delta)
+	_drive_nova_slingshot(player, delta)
 	_update_stuck(player, delta)
+	_update_target_progress(player, delta)
+	ultimate_ready_time = ultimate_ready_time + delta if player.is_ultimate_ready() else 0.0
+	disengage_cooldown = maxf(disengage_cooldown - delta, 0.0)
 
 	if _needs_recovery(player):
 		if state != STATE_RECOVER:
@@ -135,6 +202,10 @@ func update(player, delta: float) -> void:
 
 	if decision_timer <= 0.0 or _must_replan(player):
 		_select_state(player)
+
+	if _update_guard(player, delta):
+		last_intent = {"move": 0.0, "jump": false, "attack": "", "guard": true}
+		return
 
 	var intent: Dictionary = _build_intent(player, delta)
 	intent = _avoid_hazards(player, intent)
@@ -171,6 +242,14 @@ func _avoid_hazards(player, intent: Dictionary) -> Dictionary:
 	return intent
 
 func reset(position: Vector2) -> void:
+	guard_hold_timer = 0.0
+	guard_delay_timer = -1.0
+	watched_attack_locks.clear()
+	ignored_targets.clear()
+	progress_target = null
+	progress_timer = 0.0
+	nova_stage_timer = -1.0
+	nova_redirect_timer = -1.0
 	state = STATE_WANDER
 	target = null
 	target_lock_timer = 0.0
@@ -212,6 +291,10 @@ func _target_timers(delta: float) -> void:
 	portal_cooldown = maxf(portal_cooldown - delta, 0.0)
 	blocked_timer = maxf(blocked_timer - delta, 0.0)
 	jump_retry_timer = maxf(jump_retry_timer - delta, 0.0)
+	for ignored in ignored_targets.keys():
+		ignored_targets[ignored] = float(ignored_targets[ignored]) - delta
+		if float(ignored_targets[ignored]) <= 0.0 or not is_instance_valid(ignored):
+			ignored_targets.erase(ignored)
 
 func _select_state(player) -> void:
 	decision_timer = randf_range(DECISION_TIME_MIN, DECISION_TIME_MAX)
@@ -294,7 +377,8 @@ func _intent(move: float = 0.0, jump: bool = false, attack: String = "") -> Dict
 
 func _apply_intent(player, intent: Dictionary) -> void:
 	player.move_input = float(intent.get("move", 0.0))
-	aim_direction = intent.get("aim", Vector2.ZERO)
+	# The aim holds through an attack's start-up: skills read it when they fire.
+	aim_direction = intent.get("aim", aim_direction if player.attack_lock_timer > 0.0 else Vector2.ZERO)
 	if bool(intent.get("jump", false)):
 		player.jump_buffer_timer = JUMP_BUFFER
 	var attack_name: String = str(intent.get("attack", ""))
@@ -404,9 +488,14 @@ func _engage_intent(player, delta: float) -> Dictionary:
 		"hold":
 			move = 0.0
 
-	var terrain_intent: Dictionary = _terrain_move_intent(player, move, jump, action == "approach" or action == "jump_in")
+	# A target on a lower level: step off the ledge toward it when there is a landing (the
+	# engage band reaches farther down since attacks doubled; it used to stand on the edge).
+	var drop_down: bool = offset.y > NAV_SAME_LEVEL and move != 0.0 and signf(move) == target_direction and _has_drop_landing(player, target_direction)
+	var terrain_intent: Dictionary = _terrain_move_intent(player, move, jump, action == "approach" or action == "jump_in", drop_down)
 	var attack_name: String = _choose_attack(player, distance_x, distance_y)
 	terrain_intent["attack"] = attack_name
+	if attack_name != "":
+		terrain_intent["aim"] = _attack_aim(player, attack_name)
 	return terrain_intent
 
 func _choose_engage_action(player, distance_x: float, distance_y: float, target_direction: float) -> void:
@@ -435,6 +524,7 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 
 	action = _pick_non_repeating_action(candidates)
 	last_action = action
+	_maybe_anticipate_guard(player)
 	action_timer = randf_range(ACTION_TIME_MIN, ACTION_TIME_MAX)
 	action_direction = target_direction if randf() < 0.5 else -target_direction
 
@@ -456,8 +546,11 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 		return ""
 
 	attack_cooldown = randf_range(ATTACK_COOLDOWN_MIN, ATTACK_COOLDOWN_MAX)
-	if player.is_ultimate_ready() and is_instance_valid(target) and target.is_in_group("players") and randf() < ULTIMATE_USE_CHANCE:
-		return "ultimate"
+	if player.is_ultimate_ready() and is_instance_valid(target) and target.is_in_group("players"):
+		var score := _ultimate_score(player)
+		if (score >= 3 or (score >= 2 and ultimate_ready_time >= ULTIMATE_PATIENCE)) and randf() < ULTIMATE_FIRE_CHANCE:
+			debug_reason = "ultimate: good moment (score %d)" % score
+			return "ultimate"
 	var roll: float = randf()
 	var attack_name: String
 	if distance_x < 88.0 * GAME_SCALE.COMBAT:
@@ -522,9 +615,10 @@ func _terrain_move_intent(player, direction: float, wants_jump: bool, allow_gap_
 			return _intent(0.0, true)
 		return _intent()
 	if not player.is_on_floor():
-		# Rises taller than one jump (NAV_JUMP_RISE plans with the air jump): jump again near
-		# the top of the first one while the destination is still above (CODEX-QA-13).
-		if wants_jump and player.air_jumps_left > 0 and player.velocity.y > -120.0 and jump_retry_timer <= 0.0:
+		# A rise taller than one jump: jump again near the top while the destination is still
+		# above, only with an air jump to spare and over solid ground (the last one is kept
+		# for recovery; debate D1).
+		if wants_jump and player.air_jumps_left >= 2 and player.velocity.y > -120.0 and jump_retry_timer <= 0.0 and not _over_void(player):
 			jump_retry_timer = JUMP_RETRY_TIME
 			return _intent(direction, true)
 		return _intent(direction, false)
@@ -685,55 +779,77 @@ func _refresh_target(player) -> void:
 	target_lock_timer = TARGET_LOCK_TIME if is_instance_valid(target) else 0.0
 
 func _find_target(player) -> Node:
-	var best: Node = null
-	var best_score: float = INF
+	var scored: Array = _scored_targets(player)
+	scored.sort_custom(func(a: Array, b: Array) -> bool: return float(a[0]) < float(b[0]))
+	# The best few candidates are checked for a route (one path search each, only for
+	# targets on another level); unreachable ones are skipped (debate 2026-10-08).
+	var checks := 0
+	for entry: Array in scored:
+		var candidate: Node = entry[1]
+		if absf(candidate.global_position.y - player.global_position.y) <= NAV_SAME_LEVEL or checks >= 3:
+			return candidate
+		checks += 1
+		if _has_route_to(player, candidate.global_position):
+			return candidate
+		ignored_targets[candidate] = IGNORE_TIME
+	return null
+
+## [score, candidate] for every valid target, lower is better.
+func _scored_targets(player) -> Array:
+	var result: Array = []
+	var few_left := _alive_fighters(player) <= 3
 	for candidate in player.get_tree().get_nodes_in_group("players"):
-		if not _is_valid_target_candidate(player, candidate):
+		if not _is_valid_target_candidate(player, candidate) or float(ignored_targets.get(candidate, 0.0)) > 0.0:
 			continue
 		var offset: Vector2 = candidate.global_position - player.global_position
 		var distance: float = offset.length()
 		if distance > PLAYER_TARGET_RANGE:
 			continue
 		var score: float = distance + absf(offset.y) * 0.12
-		# Low aggression (early phases): prefer monsters unless this player hit us recently.
-		if not _is_recent_attacker(player, candidate):
+		# Low aggression (early phases): prefer monsters unless this player hit us recently,
+		# or only a few fighters are left (then players come first).
+		if not _is_recent_attacker(player, candidate) and not few_left:
 			score += (1.0 - float(player.ai_aggression)) * PASSIVE_PLAYER_PENALTY
-		if score < best_score:
-			best_score = score
-			best = candidate
+		result.append([score, candidate])
 	for candidate in player.get_tree().get_nodes_in_group("realm_monsters"):
-		if not _is_valid_target_candidate(player, candidate):
+		if not _is_valid_target_candidate(player, candidate) or float(ignored_targets.get(candidate, 0.0)) > 0.0:
 			continue
 		var offset: Vector2 = candidate.global_position - player.global_position
 		var distance: float = offset.length()
 		if distance > MONSTER_TARGET_RANGE:
 			continue
 		var score: float = distance + 320.0 * GAME_SCALE.WORLD + absf(offset.y) * 0.12
-		if score < best_score:
-			best_score = score
-			best = candidate
+		if few_left:
+			score += PASSIVE_PLAYER_PENALTY
+		result.append([score, candidate])
 	# Soul crystals: worth more than a monster and they do not fight back.
 	for candidate in player.get_tree().get_nodes_in_group("soul_crystals"):
-		if not _is_valid_target_candidate(player, candidate):
+		if not _is_valid_target_candidate(player, candidate) or float(ignored_targets.get(candidate, 0.0)) > 0.0:
 			continue
 		var offset: Vector2 = candidate.global_position - player.global_position
 		var distance: float = offset.length()
 		if distance > MONSTER_TARGET_RANGE:
 			continue
 		var score: float = distance + 260.0 * GAME_SCALE.WORLD + absf(offset.y) * 0.12
-		if score < best_score:
-			best_score = score
-			best = candidate
-	return best
+		if few_left:
+			score += PASSIVE_PLAYER_PENALTY
+		result.append([score, candidate])
+	return result
 
 func _is_recent_attacker(player, candidate: Node) -> bool:
 	return candidate == player.last_attacker and float(player.last_attacker_timer) > 0.0
 
 ## Hurt bots leave the realm while the match is still forgiving (aggression below 0.9).
 func _should_disengage(player) -> bool:
-	if float(player.ai_aggression) >= 0.9 or portal_cooldown > 0.0:
+	if float(player.ai_aggression) >= DISENGAGE_LATE_AGGRESSION or portal_cooldown > 0.0 or disengage_cooldown > 0.0:
 		return false
-	return player.hp / player.max_hp < DISENGAGE_HP_RATIO
+	if _alive_fighters(player) <= 2 or player.hp / player.max_hp >= DISENGAGE_HP_RATIO:
+		return false
+	var portal: Dictionary = _find_portal_target(player)
+	if portal.is_empty() or str(portal.get("destination_state", "")) != "stable":
+		return false
+	disengage_cooldown = DISENGAGE_COOLDOWN
+	return true
 
 func _target_invalid(player) -> bool:
 	if not _is_valid_target_candidate(player, target):
@@ -1034,3 +1150,204 @@ func debug_snapshot(player) -> Dictionary:
 		"portal_destination": int(portal_target.get("destination", -1)) if state == STATE_PORTAL else -1,
 		"stuck": stuck_timer,
 	}
+
+## Aim for an attack toward the target's body: steep enough means an up or down attack,
+## otherwise sideways. Mobility skills (Frey, Nova, Rio skill 1) never aim down, so a dash
+## does not carry the bot off a ledge.
+func _attack_aim(player, attack_name: String) -> Vector2:
+	if not is_instance_valid(target):
+		return Vector2.ZERO
+	var offset: Vector2 = _predicted_target_position() - player.global_position
+	if offset.length() < 1.0:
+		return Vector2(float(player.facing), 0.0)
+	var side: float = signf(offset.x) if absf(offset.x) > 1.0 else float(player.facing)
+	if attack_name == "skill_1" and ["frey", "nova", "rio"].has(player.character_id):
+		var dash := offset.normalized()
+		dash.y = minf(dash.y, 0.2)
+		return dash.normalized()
+	if attack_name != "basic":
+		return offset.normalized()
+	if absf(offset.y) >= AIM_VERTICAL_MIN and absf(offset.y) >= AIM_VERTICAL_SLOPE * absf(offset.x):
+		# A down attack in the air is a dive for some fighters (Nova, Rio): only over floor
+		# (debate D7).
+		if offset.y > 0.0 and not player.is_on_floor() and (_over_void(player) or not _has_drop_landing(player, side)):
+			return Vector2(side, 0.0)
+		return Vector2(0.3 * side, signf(offset.y)).normalized()
+	return Vector2(side, 0.0)
+
+## Guard against an attack an opponent in reach has just started. Returns true while the
+## bot is guarding or about to (the guard takes over its turn).
+func _update_guard(player, delta: float) -> bool:
+	if player.is_guarding:
+		guard_hold_timer -= delta
+		if guard_hold_timer <= 0.0:
+			player._stop_guard(true)
+			return false
+		return true
+	if guard_delay_timer >= 0.0:
+		guard_delay_timer -= delta
+		if guard_delay_timer < 0.0:
+			if _start_guard_against(player, guard_threat_from):
+				guard_hold_timer = randf_range(GUARD_HOLD_MIN, GUARD_HOLD_MAX)
+				debug_reason = "blocking an attack"
+				return true
+		return false
+	var threat := _new_attack_threat(player)
+	if threat != null and randf() < GUARD_CHANCE:
+		guard_threat_from = threat
+		guard_delay_timer = randf_range(GUARD_REACTION_MIN, GUARD_REACTION_MAX)
+	return false
+
+## Raises guard toward an opponent (PlayerBase reads guard_aim when the guard starts).
+func _start_guard_against(player, opponent: Node) -> bool:
+	if is_instance_valid(opponent):
+		guard_aim = Vector2(signf(opponent.global_position.x - player.global_position.x), 0.0)
+	player._try_start_guard()
+	guard_aim = Vector2.ZERO
+	return bool(player.is_guarding)
+
+## Debate D3: sometimes guard ahead of a swing, when an opponent in reach faces us and we are
+## not attacking. Called once per engage decision.
+func _maybe_anticipate_guard(player) -> void:
+	if player.is_guarding or player.attack_lock_timer > 0.0 or not player.is_on_floor() or not is_instance_valid(target) or not target.is_in_group("players"):
+		return
+	var offset: Vector2 = player.global_position - target.global_position
+	var reach: float = float(_scaled_profile(COMBAT_PROFILES.get(target.character_id, DEFAULT_COMBAT_PROFILE)).attack_range)
+	var facing_us := signf(offset.x) == float(target.facing)
+	if facing_us and absf(offset.x) <= reach and absf(offset.y) <= GUARD_HEIGHT * GAME_SCALE.COMBAT and randf() < GUARD_ANTICIPATE_CHANCE:
+		if _start_guard_against(player, target):
+			guard_hold_timer = randf_range(GUARD_ANTICIPATE_MIN, GUARD_ANTICIPATE_MAX)
+			debug_reason = "guarding ahead of a swing"
+
+## The opponent who, this frame, starts a swing at this bot from within its reach (or null).
+func _new_attack_threat(player) -> Node:
+	var threat: Node = null
+	for candidate in player.get_tree().get_nodes_in_group("players"):
+		if candidate == player or not _is_valid_target_candidate(player, candidate):
+			continue
+		var lock := float(candidate.attack_lock_timer)
+		var previous := float(watched_attack_locks.get(candidate, 0.0))
+		watched_attack_locks[candidate] = lock
+		if lock <= previous or previous > 0.0:
+			continue
+		var offset: Vector2 = player.global_position - candidate.global_position
+		var facing_us := signf(offset.x) == float(candidate.facing) or absf(offset.x) < 24.0
+		var reach: float = float(_scaled_profile(COMBAT_PROFILES.get(candidate.character_id, DEFAULT_COMBAT_PROFILE)).attack_range) + GUARD_REACH_MARGIN * GAME_SCALE.COMBAT
+		if facing_us and absf(offset.x) <= reach and absf(offset.y) <= GUARD_HEIGHT * GAME_SCALE.COMBAT and player.is_on_floor():
+			threat = candidate
+	return threat
+
+func _alive_fighters(player) -> int:
+	var count := 0
+	for candidate in player.get_tree().get_nodes_in_group("players"):
+		if is_instance_valid(candidate) and not bool(candidate.get("is_defeated")) and not bool(candidate.get("is_dummy")):
+			count += 1
+	return count
+
+## Where the target will be shortly (bodies are aimed at, not where they were).
+func _predicted_target_position() -> Vector2:
+	if not is_instance_valid(target):
+		return Vector2.ZERO
+	var motion: Variant = target.get("velocity")
+	return target.global_position + (motion as Vector2 if motion is Vector2 else Vector2.ZERO) * TARGET_LEAD_TIME
+
+## A route over the navigation graph ends near the point (same platform level).
+func _has_route_to(player, point: Vector2) -> bool:
+	var route: Array[Vector2] = _plan_navigation_path(player, point)
+	if route.is_empty():
+		return false
+	var end: Vector2 = route[route.size() - 1]
+	return absf(end.y - point.y) <= NAV_SAME_LEVEL * 1.5
+
+## Drops a target that stays on another level without getting closer (debate 2026-10-08).
+func _update_target_progress(player, delta: float) -> void:
+	if not is_instance_valid(target) or (state != STATE_ENGAGE and state != STATE_PURSUE):
+		progress_target = null
+		return
+	var distance: float = player.global_position.distance_to(target.global_position)
+	if target != progress_target:
+		progress_target = target
+		progress_best = distance
+		progress_timer = 0.0
+		return
+	if distance < progress_best - PROGRESS_DISTANCE * GAME_SCALE.WORLD:
+		progress_best = distance
+		progress_timer = 0.0
+		return
+	progress_timer += delta
+	if progress_timer >= PROGRESS_TIME and absf(target.global_position.y - player.global_position.y) > NAV_SAME_LEVEL:
+		ignored_targets[target] = IGNORE_TIME
+		debug_reason = "gave up: target out of reach"
+		target = null
+		target_lock_timer = 0.0
+		progress_target = null
+		decision_timer = 0.0
+
+## How good a moment this is for the ultimate: +2 target within its reach, +1 target low (35%),
+## +1 target stunned or mid-swing, +1 another opponent near it, -3 Nova's launch near a ledge.
+func _ultimate_score(player) -> int:
+	if not is_instance_valid(target):
+		return 0
+	var score := 0
+	var distance: float = player.global_position.distance_to(target.global_position)
+	if distance <= float(ULTIMATE_REACH.get(player.character_id, 400.0)):
+		score += 2
+	if float(target.hp) / maxf(float(target.max_hp), 1.0) <= 0.35:
+		score += 1
+	if float(target.hitstun_timer) > 0.0 or float(target.attack_lock_timer) > 0.0:
+		score += 1
+	for other in player.get_tree().get_nodes_in_group("players"):
+		if other != player and other != target and _is_valid_target_candidate(player, other) and other.global_position.distance_to(target.global_position) <= 260.0 * GAME_SCALE.COMBAT:
+			score += 1
+			break
+	if player.character_id == "nova" and not _mobility_skill_is_safe(player):
+		score -= 3
+	# Luna's ultimate is a 6 s transformation: worth more while she can stay in the fight.
+	if player.character_id == "luna" and float(player.hp) / maxf(float(player.max_hp), 1.0) >= 0.5:
+		score += 1
+	return score
+
+## Nova's three-press slingshot, aimed: orbit shortly after the core, launch when the tangent
+## points at the target (or at 0.8 s), then redirect once if the launch is off.
+func _drive_nova_slingshot(player, delta: float) -> void:
+	if player.character_id != "nova":
+		return
+	var phase := int(player.get("ultimate_phase"))
+	if phase == 0:
+		nova_stage_timer = -1.0
+		nova_redirect_timer = -1.0
+		return
+	if phase == 1:
+		if nova_stage_timer < 0.0:
+			nova_stage_timer = randf_range(NOVA_ORBIT_DELAY_MIN, NOVA_ORBIT_DELAY_MAX)
+		nova_stage_timer -= delta
+		if nova_stage_timer <= 0.0:
+			nova_stage_timer = 0.0
+			player.ultimate()
+		return
+	if phase == 2:
+		nova_stage_timer += delta
+		var tangent: Vector2 = player._get_ultimate_tangent()
+		var core: Vector2 = player.ultimate_center
+		var collapse_radius: float = float(player.ULTIMATE_COLLAPSE_RADIUS) * GAME_SCALE.COMBAT
+		var wanted: Vector2
+		var tolerance := NOVA_LAUNCH_ANGLE
+		if is_instance_valid(target) and target.global_position.distance_to(core) > collapse_radius:
+			wanted = (_predicted_target_position() - player.global_position).normalized()
+		else:
+			# A target at the core is the collapse's (debate D4: the tangent is ~90 degrees from
+			# it); launch toward the realm's floor centre, a safe landing.
+			wanted = (Vector2(player.realm_origin.x + player.realm_size.x * 0.5, player.global_position.y + 40.0) - player.global_position).normalized()
+			tolerance = 30.0
+		if nova_stage_timer >= NOVA_LAUNCH_LATEST or rad_to_deg(absf(tangent.angle_to(wanted))) <= tolerance:
+			player.ultimate()
+			nova_redirect_timer = randf_range(NOVA_REDIRECT_DELAY_MIN, NOVA_REDIRECT_DELAY_MAX)
+		return
+	if phase == 3 and nova_redirect_timer >= 0.0:
+		nova_redirect_timer -= delta
+		if nova_redirect_timer < 0.0 and is_instance_valid(target):
+			var wanted_launch: Vector2 = (_predicted_target_position() - player.global_position).normalized()
+			var launch: Vector2 = player.ultimate_launch_direction
+			if rad_to_deg(absf(launch.angle_to(wanted_launch))) > NOVA_REDIRECT_ANGLE and randf() < NOVA_REDIRECT_CHANCE:
+				aim_direction = wanted_launch
+				player.skill_one()
