@@ -345,9 +345,11 @@ func _test_late_swing_no_guard() -> void:
 ## Round 3: Yuki kites; at a ledge it jumps past the opponent instead of backing off the edge
 ## (Codex QA-14 round 2: 44 of 135 ring-outs were Yuki's).
 func _test_cornered_escape() -> void:
-	var ground := _floor(Vector2(0, 0), 400)
-	var bot := _fighter("yuki", 1, Vector2(-180, -2))
-	var foe := _fighter("frey", 2, Vector2(-120, -2))
+	# Distances come from the scales and Yuki's profile, so the same situations are tested at any
+	# GameScale (the first version assumed COMBAT 2.0).
+	var ground := _floor(Vector2(0, 0), 300)
+	var bot := _fighter("yuki", 1, Vector2(-130, -2))
+	var foe := _fighter("frey", 2, Vector2(-70, -2))
 	foe.set_physics_process(false)
 	for frame in 20:
 		await physics_frame
@@ -356,32 +358,40 @@ func _test_cornered_escape() -> void:
 		_fail("Test setup: the bot should stand near the left ledge")
 	var ai = bot.ai_controller
 	ai.target = foe
-	ai._choose_engage_action(bot, 60.0, 0.0, 1.0)
+	var min_range: float = float(ai._combat_profile(bot).min_range)
+	var close := 60.0
+	# Kiting range, but landing 90 px past the opponent would be off the 300 px platform.
+	var no_landing: float = 150.0 + 130.0 - float(ai.ESCAPE_LANDING_PAST) + 30.0
+	# On another level, but still inside the engage height.
+	var lower: float = (ai.NAV_SAME_LEVEL + 120.0 * ai.GAME_SCALE.COMBAT) * 0.5
+	if no_landing >= min_range or lower <= ai.NAV_SAME_LEVEL:
+		_fail("Test setup: distances out of range (no_landing %.0f, min_range %.0f, lower %.0f)" % [no_landing, min_range, lower])
+	ai._choose_engage_action(bot, close, 0.0, 1.0)
 	if ai.action != "escape":
 		_fail("A kiting bot with a ledge behind it should jump past, not retreat (action %s)" % ai.action)
 	# Cornered by an opponent on a lower level, it holds the ledge instead of walking toward it.
 	ai.last_action = ""
-	ai._choose_engage_action(bot, 60.0, 200.0, 1.0)
+	ai._choose_engage_action(bot, close, lower, 1.0)
 	if ai.action != "hold":
 		_fail("Cornered by an opponent on another level, a kiting bot should hold (action %s)" % ai.action)
 	# Round 4: one escape per 2.5 s, then it holds; and none without floor past the opponent.
 	ai.last_action = ""
-	ai._choose_engage_action(bot, 60.0, 0.0, 1.0)
+	ai._choose_engage_action(bot, close, 0.0, 1.0)
 	if ai.action != "hold":
 		_fail("Right after an escape a cornered bot should hold (action %s)" % ai.action)
 	ai.escape_cooldown = 0.0
 	ai.last_action = ""
-	ai._choose_engage_action(bot, 330.0, 0.0, 1.0)
+	ai._choose_engage_action(bot, no_landing, 0.0, 1.0)
 	if ai.action != "hold":
 		_fail("With no floor past the opponent a cornered bot should hold (action %s)" % ai.action)
 	# With open floor behind, it keeps its range as before.
-	bot.global_position = Vector2(60, -2)
-	foe.global_position = Vector2(120, -2)
+	bot.global_position = Vector2(140, -2)
+	foe.global_position = Vector2(200, -2)
 	await physics_frame
 	ai.last_action = ""
 	var retreats := 0
 	for roll in 12:
-		ai._choose_engage_action(bot, 60.0, 0.0, 1.0)
+		ai._choose_engage_action(bot, close, 0.0, 1.0)
 		retreats += 1 if ai.action == "retreat" else 0
 		ai.last_action = ""
 	if retreats == 0:

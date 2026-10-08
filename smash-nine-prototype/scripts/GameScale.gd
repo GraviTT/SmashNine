@@ -1,11 +1,13 @@
 extends RefCounted
 ## Global scales (routine 2026-10-08 work; user: "공격 범위와 이펙트들이 지금보다 최소 2배",
-## "맵 1.5배"). Fighters keep their size (1x art, 42x64 hurtbox); attacks and realms are
+## "맵 1.5배"; 2026-10-09 after playing: "공격 범위가 2배가 되니 좀 과도한 느낌이다. 1.5배로
+## 변경하고, 맵은 그대로 둔다"). Fighters keep their size (1x art, 42x64 hurtbox); attacks and realms are
 ## measured against them through these numbers, so a scale can be tried or rolled back in
 ## one place.
 
-## Attack reach and hit areas, projectiles, attack effects, bots' fighting distances.
-const COMBAT := 2.0
+## Attack reach and hit areas, projectiles, attack effects, bots' fighting distances
+## (2.0 on 2026-10-08, 1.5 since 2026-10-09).
+const COMBAT := 1.5
 ## Realm layouts: platform spans, portals, spawns, hazards, blast lines.
 const WORLD := 1.5
 ## Run speeds, dash and knockback distances (the realms grow 1.5x, fighters cover them a
@@ -23,8 +25,8 @@ const JUMP_SPEED := 1.3416
 const KNOCKBACK := WORLD
 
 ## Attack offsets are measured from the body's centre (origin at the feet, 64 px hurtbox),
-## so a chest-high slash stays chest-high while its reach doubles, and an upward or downward
-## attack reaches twice as far up or down.
+## so a chest-high slash stays chest-high while its reach grows by COMBAT, and an upward or
+## downward attack reaches that much farther up or down.
 const BODY_CENTRE := Vector2(0, -32)
 
 static func attack_point(point: Vector2) -> Vector2:

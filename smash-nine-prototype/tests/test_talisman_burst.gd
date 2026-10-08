@@ -2,7 +2,8 @@ extends SceneTree
 ## Yuki's dropping talisman bursts when it hits a fighter. The burst resizes the collision
 ## shape; done inside the body-entered callback it raised "Can't change this state while
 ## flushing queries" (found 2026-10-08 once bots started aiming down; run_all fails on engine
-## errors, so this test fails if it comes back).
+## errors, so this test fails if it comes back). With the original art the burst draws Yuki's
+## ward-burst strip, not the light-blue placeholder box (2026-10-09).
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -30,16 +31,26 @@ func _run() -> void:
 		if child.get("burst_size") != null:
 			talisman = child
 	var burst_seen := false
+	var box_shown := false
+	var burst_art := false
 	for frame in 40:
 		await physics_frame
 		if not is_instance_valid(talisman):
 			break
 		if float(talisman.burst_time) > 0.0:
 			burst_seen = true
+			box_shown = box_shown or talisman.visual.color.a > 0.0
+			for child in arena.get_children():
+				if str(child.name).begins_with("Vfx_yuki_l"):
+					burst_art = true
 	arena.queue_free()
 	await process_frame
 	if not burst_seen:
 		push_error("The dropping talisman should burst on the fighter it hits")
+		quit(1)
+		return
+	if box_shown or not burst_art:
+		push_error("The burst should draw the ward-burst art, not the placeholder box (box %s, art %s)" % [box_shown, burst_art])
 		quit(1)
 		return
 	print("Talisman burst tests passed")

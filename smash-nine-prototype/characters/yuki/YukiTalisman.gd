@@ -3,6 +3,9 @@ extends Area2D
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const TALISMAN_ART := "res://assets/art/effects/yuki_talisman.png"
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
+const VFX := preload("res://scripts/Vfx.gd")
+## The burst art (Yuki's ward burst, CODEX-ART-13) is authored 192 px wide.
+const BURST_ART_WIDTH := 192.0
 
 const WORLD_LAYER := 1
 const PLAYER_LAYER := 2
@@ -99,6 +102,10 @@ func _begin_burst() -> void:
 	visual.color = Color(0.68, 0.92, 1.0, 0.66)
 	if is_instance_valid(art_sprite):
 		art_sprite.visible = false
+		# With the original art the burst is Yuki's ward-burst strip, not a light-blue box
+		# (seen in game 2026-10-09); the coloured rect stays for the plain style (F2).
+		if VFX.spawn(get_parent(), "yuki_l", global_position, Vector2.ONE * (maxf(burst_size.x, burst_size.y) / BURST_ART_WIDTH), false, 5) != null:
+			visual.color.a = 0.0
 	_hit_overlapping_bodies()
 
 func _set_size(size: Vector2) -> void:
