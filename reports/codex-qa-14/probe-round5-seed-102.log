@@ -1,0 +1,63 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+QA14_MATCH seed=102 seconds=290.2 ringouts=7 portals=23 relocations=1 recovery=147/7 standoffs=0
+QA14_SUMMARY matches=1 wall=99.8s ringouts=7 low_hp_portals=1 standoffs=0
+QA14_RECOVERY yuki success=16 fail=0 unfinished=0
+QA14_RECOVERY rio success=24 fail=1 unfinished=0
+QA14_RECOVERY frey success=54 fail=2 unfinished=0
+QA14_RECOVERY luna success=5 fail=1 unfinished=0
+QA14_RECOVERY nova success=48 fail=2 unfinished=1
+QA14_ATTACK luna|basic_air_side uses=23 hits=10 rate=0.435 damage=85.3
+QA14_ATTACK nova|basic_air_side uses=28 hits=6 rate=0.214 damage=31.3
+QA14_ATTACK rio|basic_air_side uses=28 hits=16 rate=0.571 damage=65.6
+QA14_ATTACK frey|basic_air_side uses=40 hits=15 rate=0.375 damage=88.8
+QA14_ATTACK yuki|basic_air_side uses=11 hits=1 rate=0.091 damage=1.9
+QA14_ATTACK frey|basic_air_up uses=19 hits=10 rate=0.526 damage=99.0
+QA14_ATTACK frey|basic_side uses=180 hits=112 rate=0.622 damage=575.6
+QA14_ATTACK yuki|basic_up uses=11 hits=5 rate=0.455 damage=7.1
+QA14_ATTACK rio|basic_side uses=134 hits=97 rate=0.724 damage=520.4
+QA14_ATTACK nova|basic_side uses=224 hits=106 rate=0.473 damage=512.2
+QA14_ATTACK rio|skill_1 uses=33 hits=24 rate=0.727 damage=170.8
+QA14_ATTACK luna|basic_side uses=94 hits=64 rate=0.681 damage=298.1
+QA14_ATTACK yuki|basic_air_down uses=18 hits=9 rate=0.500 damage=58.2
+QA14_ATTACK luna|skill_1 uses=43 hits=19 rate=0.442 damage=248.7
+QA14_ATTACK yuki|basic_side uses=84 hits=35 rate=0.417 damage=173.7
+QA14_ATTACK luna|skill_2 uses=9 hits=2 rate=0.222 damage=11.7
+QA14_ATTACK nova|basic_down uses=37 hits=3 rate=0.081 damage=7.0
+QA14_ATTACK yuki|skill_1 uses=18 hits=1 rate=0.056 damage=10.4
+QA14_ATTACK rio|basic_up uses=26 hits=11 rate=0.423 damage=46.0
+QA14_ATTACK frey|skill_2 uses=19 hits=3 rate=0.158 damage=14.3
+QA14_ATTACK frey|basic_air_down uses=13 hits=5 rate=0.385 damage=26.6
+QA14_ATTACK luna|basic_up uses=10 hits=3 rate=0.300 damage=3.5
+QA14_ATTACK frey|skill_1 uses=21 hits=15 rate=0.714 damage=102.5
+QA14_ATTACK rio|basic_air_up uses=11 hits=4 rate=0.364 damage=26.2
+QA14_ATTACK luna|basic_air_down uses=10 hits=5 rate=0.500 damage=51.3
+QA14_ATTACK luna|basic_down uses=1 hits=1 rate=1.000 damage=1.0
+QA14_ATTACK nova|ultimate uses=15 hits=4 rate=0.267 damage=19.7
+QA14_ATTACK rio|ultimate uses=13 hits=0 rate=0.000 damage=0.0
+QA14_ATTACK yuki|ultimate uses=5 hits=0 rate=0.000 damage=0.0
+QA14_ATTACK nova|skill_2 uses=30 hits=3 rate=0.100 damage=26.9
+QA14_ATTACK nova|basic_up uses=13 hits=5 rate=0.385 damage=13.1
+QA14_ATTACK rio|basic_down uses=29 hits=1 rate=0.034 damage=3.3
+QA14_ATTACK luna|ultimate uses=3 hits=1 rate=0.333 damage=3.5
+QA14_ATTACK frey|ultimate uses=12 hits=2 rate=0.167 damage=14.6
+QA14_ATTACK rio|skill_2 uses=12 hits=0 rate=0.000 damage=0.0
+QA14_ATTACK nova|skill_1 uses=11 hits=0 rate=0.000 damage=0.0
+QA14_ATTACK frey|basic_up uses=27 hits=11 rate=0.407 damage=53.4
+QA14_ATTACK nova|basic_air_down uses=19 hits=13 rate=0.684 damage=88.9
+QA14_ATTACK yuki|basic_air_up uses=7 hits=4 rate=0.571 damage=13.9
+QA14_ATTACK nova|basic_air_up uses=17 hits=12 rate=0.706 damage=61.0
+QA14_ATTACK rio|basic_air_down uses=37 hits=17 rate=0.459 damage=133.9
+QA14_ATTACK yuki|skill_2 uses=15 hits=3 rate=0.200 damage=12.7
+QA14_ATTACK yuki|basic_down uses=25 hits=4 rate=0.160 damage=17.4
+QA14_ATTACK luna|basic_air_up uses=7 hits=1 rate=0.143 damage=12.6
+QA14_ATTACK frey|basic_down uses=6 hits=1 rate=0.167 damage=4.0
+QA14_GUARD attacker=yuki reactions=28 too_late=3 raised=20 blocks=4 parries=1 combo2=0 combo3=0 recovery_detections=0
+QA14_GUARD attacker=frey reactions=66 too_late=8 raised=61 blocks=12 parries=6 combo2=0 combo3=0 recovery_detections=0
+QA14_GUARD attacker=nova reactions=72 too_late=12 raised=49 blocks=6 parries=3 combo2=0 combo3=0 recovery_detections=1
+QA14_GUARD attacker=luna reactions=20 too_late=3 raised=17 blocks=3 parries=3 combo2=0 combo3=0 recovery_detections=0
+QA14_GUARD attacker=rio reactions=35 too_late=5 raised=22 blocks=4 parries=0 combo2=0 combo3=0 recovery_detections=1
+QA14_NOVA launches=5 aimed=5 forced=0 redirects=0 hits=5
+QA14_OUTPUT C:/Users/TH/Documents/AI/GameProject/SmashNine-units/analyst/SmashNine/smash-nine-prototype/../reports/codex-qa-14/round5-results.json
