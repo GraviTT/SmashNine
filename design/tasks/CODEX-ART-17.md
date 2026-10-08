@@ -58,3 +58,16 @@ Measured (opaque width in px: body rows 20–107 / rows 0–3 and 124–127):
 | 6 | 63 / 67 | 64 / 67 |
 
 Fix both `fire_pillar_mid.png` and `light_beam_mid.png` (same sizes, frame order and timing): every frame seamless with itself — its bottom rows continue into its own top rows in width, centre and pattern; no row wider than the frame's body; no dark line at the joint; keep all 128 rows filled. Edit the existing frames (no regeneration). Verify with numbers (per frame: width of rows 0–3 and 124–127 within ±2 px of its body, wrap difference between row 127 and row 0) and a preview tiling each frame 3x under itself at 2x. Same writable paths; report section "Round 3"; commit script `reports/codex-art-17/commit-round3.ps1`.
+
+## Round 4 · one dark row in the fire frames (branch `codex/hazard-art-17d`)
+
+After round 3 the joints are clean (light beam seamless in game). One thin dark line still crosses every repeat of the fire pillar in game, about 23 px above each joint at the in-game scale (lead capture `C:/Users/TH/Documents/AI/GameProject/SmashNine-units/lead-captures/art17c/hazard_05_active.png`, rows y = 255, 391, 527 at x 445–495). It is **row 110** of `fire_pillar_mid.png` frames 2–5 — where the round-2 fill of rows 111–123 meets the original frame's dark bottom edge. Measured centre brightness (x 36–59 of the frame):
+
+| Frame | rows 108 / 109 / **110** / 111 / 112 |
+| --- | --- |
+| 2 | 0.66 / 0.63 / **0.49** / 0.72 / 0.70 |
+| 3 | 0.70 / 0.61 / **0.52** / 0.74 / 0.74 |
+| 4 | 0.72 / 0.70 / **0.51** / 0.50 / 0.52 (rows 110–112) |
+| 5 | 0.57 / 0.59 / **0.41** / 0.48 / 0.48 |
+
+Frame 1's soft valley at rows 107–112 is the original art; leave it. `light_beam_mid` frames 2–4 dip only softly at rows 108–110 (0.73–0.84 vs 0.88+); smooth them only if it shows at 1x. Blend the dark row(s) into their neighbours (same colours, no new shapes); keep everything else, including the round-3 joints. Verify: no row in rows 100–120 more than 0.08 darker than the mean of its two neighbours (centre band), and the round-3 joint numbers unchanged. Same writable paths; report section "Round 4"; commit script `reports/codex-art-17/commit-round4.ps1`.
