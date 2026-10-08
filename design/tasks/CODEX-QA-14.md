@@ -78,3 +78,7 @@ After your round 3 the lead changed the bots again (`reports/debate-bot-ai/log.m
 - central-brawl target shares and recover share; match length per seed; anything worse.
 
 Same writable paths; report in `reports/codex-qa-14/round4.md`; commit script `commit-round4.ps1`. Say plainly for each lead change whether the data supports keeping it.
+
+## Round 5 · confirmation (branch `codex/bot-data-14e`)
+
+The lead's round-5 commit `bbee6b2` (`reports/debate-bot-ai/log.md`, "Round 5") follows your round-4 verdicts: close targets with a route get one extra progress window on a fresh route, Nova's recovery skill is back to "from anywhere" (Rio keeps 290 px), recovery skills are asked once per recovery, and a bot holding a ledge while its escape cools down guards early half the time. Rerun **the same probe on the same seeds 101–112**; give R3 / R4 / R5 for every metric, and say for each round-5 change whether the data supports it. Watch especially: no-progress time (R4 1,103.5 s), recovery-skill asks vs uses and floors reached (Nova, Rio), intent hit rate, Yuki ring-outs after hits near a ledge (R4 13), central-brawl targets, match length, Rio wins. Same writable paths; report `reports/codex-qa-14/round5.md`; commit script `commit-round5.ps1`.
