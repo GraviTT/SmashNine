@@ -1,13 +1,16 @@
 extends SceneTree
 ## Realm gimmick tests (RealmHazards): ice traction, eruption pillars, quake stun, off switch,
 ## Midgard bushes (hide, reveal on attack, bots notice only up close), Asgard light beams
-## (stun once), Vanaheim vine bridges (grow, then wither).
+## (stun once), Vanaheim vine bridges (grow, then wither); hazard columns drawn in three parts
+## (CODEX-ART-17) with the coloured rect for the prototype style; Yuki's seal art.
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
 const REALM_HAZARDS := preload("res://scripts/realms/RealmHazards.gd")
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const SEAL_SCRIPT := preload("res://characters/yuki/YukiSeal.gd")
 
 var arena: Node2D
 var layout: RefCounted
@@ -20,7 +23,7 @@ func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
 	layout = REALM_LAYOUT.new()
-	var tests: Array[Callable] = [_test_ice_traction, _test_eruption_hits_once, _test_disabled_hazards_stay_idle, _test_quake_stuns_grounded_fighters, _test_bushes_conceal, _test_beams_stun_once, _test_vine_bridge_grows_and_withers]
+	var tests: Array[Callable] = [_test_ice_traction, _test_eruption_hits_once, _test_disabled_hazards_stay_idle, _test_quake_stuns_grounded_fighters, _test_bushes_conceal, _test_beams_stun_once, _test_vine_bridge_grows_and_withers, _test_column_art_parts, _test_seal_art]
 	for test in tests:
 		await test.call()
 		if failed:
@@ -269,3 +272,36 @@ func _test_vine_bridge_grows_and_withers() -> void:
 		_fail("The vine bridge should wither after its time")
 		return
 	hazards.queue_free()
+
+## A column is a middle strip repeated down the column with its top and base as children, as
+## wide as the column; the prototype style (F2) keeps the coloured rect.
+func _test_column_art_parts() -> void:
+	var hazards := _new_hazards()
+	var column := Rect2(100, 0, 120, 690)
+	for kind in ["fire_pillar", "light_beam"]:
+		var art: Control = hazards._column_art(column, kind, "", Color.RED)
+		if not (art is TextureRect) or art.get_child_count() != 2:
+			_fail("%s column should be a tiled middle with a top and a base (%s)" % [kind, art])
+			return
+		var drawn_width: float = art.size.x * art.scale.x
+		if absf(drawn_width - column.size.x) > 0.5 or absf(art.position.y + art.size.y * art.scale.y - column.end.y) > 0.5:
+			_fail("%s column art should span the column to its floor (width %.1f)" % [kind, drawn_width])
+		art.queue_free()
+	ART_SETTINGS.toggle()
+	var plain: Control = hazards._column_art(column, "fire_pillar", "", Color.RED)
+	ART_SETTINGS.toggle()
+	if not (plain is ColorRect):
+		_fail("The prototype style should draw the coloured column rect (%s)" % plain)
+	plain.queue_free()
+	hazards.queue_free()
+	await process_frame
+
+## Yuki's waiting seal shows its paper art and hides the placeholder rect and outline.
+func _test_seal_art() -> void:
+	var seal := StaticBody2D.new()
+	seal.set_script(SEAL_SCRIPT)
+	arena.add_child(seal)
+	if seal.idle_art == null or seal.visual.visible or seal.aura.visible:
+		_fail("The planted seal should show its art instead of the placeholder rect")
+	seal.queue_free()
+	await process_frame

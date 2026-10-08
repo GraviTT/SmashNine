@@ -8,6 +8,8 @@ extends RefCounted
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const DIR := "res://assets/art/vfx/%s.png"
 const ATTACK_DIR := "res://assets/art/attack_vfx/%s.png"
+const EFFECTS_DIR := "res://assets/art/effects/%s.png"
+const HAZARDS_DIR := "res://assets/art/hazards/%s.png"
 ## name: [frames, fps, anchor in the frame, additive(, folder pattern when not DIR)]
 const SPECS := {
 	"frey_ult_charge": [6, 24.0, Vector2(64, 124), true],
@@ -37,6 +39,13 @@ const SPECS := {
 	"rio_slash": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],
 	"rio_k": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],
 	"rio_l": [6, 18.0, Vector2(0, 80), false, ATTACK_DIR],
+	# CODEX-ART-17, drawn 1 art px = 1 screen px: Yuki's waiting seal, the quake (warning cracks
+	# tiled along platform tops, impact bursts), animated middles of the hazard columns.
+	"yuki_seal_idle": [4, 4.0, Vector2(32, 63), false, EFFECTS_DIR],
+	"quake_warning": [4, 8.0, Vector2.ZERO, false, HAZARDS_DIR],
+	"quake_impact": [6, 12.0, Vector2(64, 63), false, HAZARDS_DIR],
+	"light_beam_mid": [6, 10.0, Vector2.ZERO, false, HAZARDS_DIR],
+	"fire_pillar_mid": [6, 12.0, Vector2.ZERO, false, HAZARDS_DIR],
 }
 
 ## Frame widths the anchors and callers' scales were written for. A strip redrawn bigger

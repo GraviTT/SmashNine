@@ -18,6 +18,10 @@ var active := false
 var active_elapsed := 0.0
 var visual: ColorRect
 var aura: Line2D
+## The waiting paper seal (CODEX-ART-17); the coloured rect and outline stay for the plain style.
+var idle_art: AnimatedSprite2D
+## The art's anchor is its bottom centre; the paper's middle sits this far above it.
+const IDLE_ART_DROP := 28.0
 
 func _ready() -> void:
 	add_to_group("yuki_seals")
@@ -42,6 +46,10 @@ func _ready() -> void:
 	aura.antialiased = true
 	aura.points = PackedVector2Array([Vector2(-18, -25), Vector2(18, -25), Vector2(18, 25), Vector2(-18, 25), Vector2(-18, -25)])
 	add_child(aura)
+	idle_art = VFX.spawn(self, "yuki_seal_idle", Vector2(0.0, IDLE_ART_DROP), Vector2.ONE, true, 3, Color.WHITE, true)
+	if idle_art != null:
+		visual.visible = false
+		aura.visible = false
 
 func configure(new_owner: Node, new_realm_index: int, duration := 5.0) -> void:
 	owner_node = new_owner
@@ -72,6 +80,8 @@ func activate(new_activation_id: int) -> void:
 	collision_layer = 0
 	visual.color = Color(0.9, 0.98, 1.0, 1.0)
 	aura.default_color = Color(0.7, 0.94, 1.0, 0.9)
+	if idle_art != null:
+		idle_art.modulate = Color(1.5, 1.5, 1.8)
 
 func is_owned_by(node: Node) -> bool:
 	return node == owner_node

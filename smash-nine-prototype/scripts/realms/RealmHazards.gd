@@ -28,6 +28,18 @@ const FIRE_PILLAR_ART := "res://assets/art/hazards/fire_pillar.png"
 const LIGHT_BEAM_ART := "res://assets/art/hazards/light_beam.png"
 const VENT_GLYPH_ART := "res://assets/art/hazards/vent_glyph.png"
 const VINE_BRIDGE_ART := "res://assets/art/hazards/vine_bridge.png"
+const VFX := preload("res://scripts/Vfx.gd")
+## Hazard columns in three parts (CODEX-ART-17): a base on the floor, an animated middle
+## repeated up the column (the last tile cropped), a top where it ends. The single stretched
+## pictures above stay as the fallback. kind: [base, middle strip (Vfx), top]
+const COLUMN_PARTS := {
+	"fire_pillar": ["res://assets/art/hazards/fire_pillar_base.png", "fire_pillar_mid", "res://assets/art/hazards/fire_pillar_top.png"],
+	"light_beam": ["res://assets/art/hazards/light_beam_base.png", "light_beam_mid", "res://assets/art/hazards/light_beam_top.png"],
+}
+## Part anchors (bottom centre of the 96 px wide base and top).
+const COLUMN_PART_ANCHOR := Vector2(48, 63)
+## Quake impact bursts along each platform about this far apart (at most 8 per platform).
+const QUAKE_IMPACT_SPACING := 180.0
 const BEAM_GLYPH_TINT := Color(1.0, 0.92, 0.55)
 const BEAM_COLOR := Color(1.0, 0.95, 0.62, 0.72)
 const BEAM_WARNING_COLOR := Color(1.0, 0.9, 0.5, 0.14)
@@ -215,7 +227,13 @@ func _start_warning(realm_index: int) -> void:
 		"quake":
 			for platform in _platform_rects(realm_index):
 				var top: Rect2 = platform
-				entry.visuals.append(_rect_node(Rect2(top.position.x, top.position.y - 10.0, top.size.x, 10.0), RUMBLE_COLOR))
+				# Cracks along the top (CODEX-ART-17; QA-15: the flat bar did not read as a quake)
+				# over a fainter band, so the warning still shows from afar.
+				var cracks := _tiled_strip(Rect2(top.position.x, top.position.y - 14.0, top.size.x, 16.0), "quake_warning")
+				var band_color := RUMBLE_COLOR if cracks == null else Color(RUMBLE_COLOR, RUMBLE_COLOR.a * 0.4)
+				entry.visuals.append(_rect_node(Rect2(top.position.x, top.position.y - 10.0, top.size.x, 10.0), band_color))
+				if cracks != null:
+					entry.visuals.append(cracks)
 			shake_requested.emit(realm_index, 3.0, float(entry.timer))
 		"beams":
 			entry.columns = _pick_columns(realm_index, entry.hazard)
@@ -241,14 +259,14 @@ func _start_active(realm_index: int) -> void:
 			for column in entry.columns:
 				# The flame art is narrower than the hit zone: a faint band shows the full width.
 				entry.visuals.append(_rect_node(column, Color(PILLAR_COLOR, 0.2)))
-				entry.visuals.append(_art_node(column, FIRE_PILLAR_ART, PILLAR_COLOR))
+				entry.visuals.append(_column_art(column, "fire_pillar", FIRE_PILLAR_ART, PILLAR_COLOR))
 				entry.visuals.append(_particles(column, Color(1.0, 0.82, 0.35, 0.95), 40, 0.6, 520.0, false))
 			shake_requested.emit(realm_index, 4.0, 0.25)
 		"beams":
 			entry.timer = float(entry.hazard.get("active", 0.5))
 			for column in entry.columns:
 				entry.visuals.append(_rect_node(column, Color(BEAM_COLOR, 0.2)))
-				entry.visuals.append(_art_node(column, LIGHT_BEAM_ART, BEAM_COLOR))
+				entry.visuals.append(_column_art(column, "light_beam", LIGHT_BEAM_ART, BEAM_COLOR))
 				entry.visuals.append(_particles(column, Color(1.0, 0.95, 0.7, 0.95), 30, 0.5, -420.0, false))
 			shake_requested.emit(realm_index, 3.0, 0.2)
 		"vines":
@@ -261,6 +279,11 @@ func _start_active(realm_index: int) -> void:
 			for platform in _platform_rects(realm_index):
 				var top: Rect2 = platform
 				_particles(Rect2(top.position.x, top.position.y - 4.0, top.size.x, 4.0), Color(0.82, 0.72, 0.55, 0.85), clampi(int(top.size.x / 18.0), 6, 40), 0.7, 160.0, true).finished.connect(_free_finished)
+				# Dust-and-rock bursts along the platform (CODEX-ART-17); they free themselves.
+				var bursts := clampi(int(top.size.x / QUAKE_IMPACT_SPACING), 1, 8)
+				for index in bursts:
+					var burst_x := top.position.x + top.size.x * (float(index) + 0.5) / float(bursts)
+					VFX.spawn(self, "quake_impact", Vector2(burst_x, top.position.y + 1.0), Vector2.ONE, false, 3, Color.WHITE, true)
 			shake_requested.emit(realm_index, 9.0, 0.45)
 
 func _end(realm_index: int) -> void:
@@ -432,6 +455,53 @@ func _art_node(rect: Rect2, path: String, fallback: Color, tint := Color.WHITE, 
 	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(strip)
 	return strip
+
+## An animated Vfx strip tiled over a rect at an art scale (the frames swap at the strip's
+## rate); null when the art is missing or the prototype style is on.
+func _tiled_strip(rect: Rect2, effect: String, art_scale := 1.0) -> TextureRect:
+	var frames := VFX.frame_textures(effect)
+	if frames.is_empty():
+		return null
+	var strip := TextureRect.new()
+	strip.texture = frames[0]
+	strip.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	strip.stretch_mode = TextureRect.STRETCH_TILE
+	strip.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+	strip.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	strip.position = rect.position
+	strip.scale = Vector2(art_scale, art_scale)
+	strip.size = rect.size / art_scale
+	add_child(strip)
+	if frames.size() > 1:
+		var tween := strip.create_tween().set_loops()
+		for frame in frames:
+			tween.tween_callback(strip.set.bind("texture", frame))
+			tween.tween_interval(1.0 / VFX.fps(effect))
+	return strip
+
+## A hazard column from COLUMN_PARTS, scaled to the column's width: the top caps the column,
+## the middle repeats down to the floor and the base sits on it. Falls back to the single
+## stretched picture (then the coloured rect) when a part is missing or the plain style is on.
+func _column_art(column: Rect2, kind: String, fallback_path: String, fallback_color: Color) -> Control:
+	var parts: Array = COLUMN_PARTS[kind]
+	var base := ART_SETTINGS.original_texture(parts[0])
+	var top := ART_SETTINGS.original_texture(parts[2])
+	if base == null or top == null or VFX.frame_textures(parts[1]).is_empty():
+		return _art_node(column, fallback_path, fallback_color)
+	var art_scale := column.size.x / float(base.get_width())
+	var top_height := float(top.get_height()) * art_scale
+	var middle := _tiled_strip(Rect2(column.position.x, column.position.y + top_height, column.size.x, maxf(column.size.y - top_height, 1.0)), parts[1], art_scale)
+	# Top and base are children of the (scaled) middle: anchors at its top and at the floor.
+	for part in [[top, 0.0], [base, column.size.y - top_height]]:
+		var sprite := Sprite2D.new()
+		sprite.texture = part[0]
+		sprite.centered = false
+		sprite.offset = -COLUMN_PART_ANCHOR
+		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		sprite.position = Vector2(column.size.x * 0.5, float(part[1])) / art_scale
+		middle.add_child(sprite)
+	return middle
 
 func _pulse_visuals(entry: Dictionary) -> void:
 	var alpha := 0.55 + 0.45 * sin(float(entry.timer) * 18.0)
