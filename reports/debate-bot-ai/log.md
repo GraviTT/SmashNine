@@ -69,3 +69,15 @@ Codex's verdicts on round 4: keep the ledge hold, hits-on-monsters progress, clo
 | R5-4 Yuki at the ledge | **partly** | Holding the ledge while the escape cools down now raises an early guard half the time. No Luna-specific jump rule: a failed recovery spends its jumps, so zero jumps at ring-out alone does not show a bad jump earlier. |
 
 Conclusion: `decision.md`.
+
+## Round 6 (measurement: Codex QA-14 round 5, `reports/codex-qa-14/round5.md`) — lead decisions
+
+Codex kept: recovery asks matched to uses (Frey 13/13, Nova 22/22, Rio 8/8) and the early guard at a ledge (Yuki ledge ring-outs 13 → 8; blocks + parries 312 → 411). It asked to revert or redesign the close-target extension (no-progress 1,103.5 → 1,238.8 s; 20 s+ standoffs 2 → 6, longest 171 s) and Nova's recovery (0/22). New finding by the lead from the same data: "once per recovery" also cut Frey from 18/19 floors reached to 6/13 — Frey and Nova can use their skill again in the air, and the old every-frame asking had let them.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R6-1 close-target extension | **remove** (Codex: per-target extension) | A target the bot has a route to but still does not reach in 2.5 s is better dropped: the route exists on paper and the bot fails to follow it. Keeping it (R4) or extending it (R5) only added no-progress time and standoffs. Hits on the target still count as progress, which is what removed the wrong drops (R3 58 recent-hit drops → R4 3). |
+| R6-2 recovery asks | **change** | Asked whenever the skill can start (`PlayerBase.can_use_skill_one()`; Rio adds its one blink per airtime): no asks while locked or out of blinks, and again after each use. Nova from anywhere, Rio within 290 px. |
+| R6-3 Yuki long throws | **accept** | Basics within 480 px (`basic_reach` 240, scaled). |
+
+Next: Codex QA-14 round 6 on the same seeds; `decision.md` updated with R5 and round 6.

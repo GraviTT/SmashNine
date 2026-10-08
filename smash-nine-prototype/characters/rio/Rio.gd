@@ -80,6 +80,9 @@ func perform_skill_two() -> void:
 		return
 	_rune_shield_start()
 
+func can_use_skill_one() -> bool:
+	return super() and (is_on_floor() or air_blink_available)
+
 func skill_cooldown(slot: String) -> Vector2:
 	if slot == "l":
 		return Vector2(rune_cooldown_timer, RUNE_COOLDOWN)

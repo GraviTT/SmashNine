@@ -703,6 +703,11 @@ func ultimate() -> void:
 func is_ultimate_ready() -> bool:
 	return ultimate_cooldown_timer <= 0.0
 
+## Skill one would start right now (bots ask for a recovery skill only then). Characters with
+## their own limits add them (Rio: one blink per airtime).
+func can_use_skill_one() -> bool:
+	return _can_start_attack()
+
 ## [seconds left, full cooldown] for a skill bar slot ("j", "k", "l", "i"); zero when the move
 ## has no cooldown. Characters with a skill cooldown add theirs (Rio's rune shield).
 func skill_cooldown(slot: String) -> Vector2:

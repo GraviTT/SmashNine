@@ -109,8 +109,6 @@ const ESCAPE_LANDING_PAST := 90.0
 ## A hit on the target within this long counts as progress (round 3: 146 of 325 drops were
 ## targets within 300 px or hit in the last 3 s).
 const TRADE_MEMORY := 3.0
-## A target this close is kept while a route to where it stands exists.
-const PROGRESS_KEEP_NEAR := 300.0
 ## Cornered with the escape still cooling down, a kiting bot guards ahead this often per
 ## decision (round 4: Yuki's ring-outs from hits near a ledge rose 8 -> 13 once it held there).
 const CORNERED_GUARD_CHANCE := 0.5
@@ -158,7 +156,7 @@ const COMBAT_PROFILES := {
 	"frey": {"min_range": 45.0, "max_range": 170.0, "attack_range": 200.0, "kite": false, "recovery_skill": true},
 	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false, "recovery_skill": true},
 	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
-	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true},
+	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true, "basic_reach": 240.0},
 	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true, "basic_reach": 120.0}
 }
 const BUSH_NOTICE_RANGE := 140.0 * GAME_SCALE.WORLD
@@ -220,12 +218,6 @@ var guard_aim: Vector2 = Vector2.ZERO
 var guard_threat_from: Node
 var ignored_targets: Dictionary = {}
 var progress_target: Node
-## The target that already got its one extra progress window (round 4: keeping close targets
-## with a route every time made no-progress time 647 -> 1,104 s).
-var progress_extended: Node
-## The recovery skill is asked for once per recovery (round 4: Nova and Rio asked 2,200 and
-## 1,148 times for 21 and 4 uses).
-var recovery_skill_asked: bool = false
 var progress_best: float = INF
 var progress_timer: float = 0.0
 var ultimate_ready_time: float = 0.0
@@ -408,7 +400,6 @@ func _enter_state(next_state: String) -> void:
 	if next_state == STATE_RECOVER:
 		recovery_target = Vector2.ZERO
 		recovery_jump_used = false
-		recovery_skill_asked = false
 
 func _must_replan(player) -> bool:
 	if state == STATE_RECOVER:
@@ -659,7 +650,8 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 		elif target_swinging and distance_x < 150.0 * GAME_SCALE.COMBAT and randf() < 0.45:
 			attack_name = "skill_2"
 	# A basic thrown from beyond its reach only misses (round 3: Rio's side basics missed 89%
-	# from 240 px and 92% beyond 360 px); keep closing in instead.
+	# from 240 px and 92% beyond 360 px; round 5: Yuki's talismans 70% beyond 360 px); keep
+	# closing in instead.
 	if attack_name == "basic" and profile.has("basic_reach") and distance_x > float(profile.basic_reach):
 		attack_name = ""
 	return attack_name
@@ -837,8 +829,11 @@ func _recover_intent(player) -> Dictionary:
 		var reach: float = float(RECOVERY_SKILL_REACH.get(player.character_id, 100000.0))
 		var local_y: float = player.global_position.y - player.realm_origin.y
 		var last_chance: bool = local_y > player.realm_size.y - RECOVERY_LAST_CHANCE
-		if not recovery_skill_asked and player.attack_lock_timer <= 0.0 and (player.global_position.distance_to(aim_point) <= reach or last_chance):
-			recovery_skill_asked = true
+		# Asked only when the fighter is free to act (round 4: asking every frame made 2,200
+		# asks for 21 uses), but again after each use (round 5: once per recovery cut Frey from
+		# 18 of 19 floors reached to 6 of 13).
+		var free: bool = player.can_use_skill_one() if player.has_method("can_use_skill_one") else player.attack_lock_timer <= 0.0
+		if free and (player.global_position.distance_to(aim_point) <= reach or last_chance):
 			intent["aim"] = (aim_point - player.global_position).normalized()
 			intent["attack"] = "skill_1"
 			debug_reason = "off the stage: recovery skill"
@@ -1403,13 +1398,6 @@ func _update_target_progress(player, delta: float) -> void:
 		progress_timer = 0.0
 		return
 	progress_timer += delta
-	if progress_timer >= PROGRESS_TIME and target != progress_extended and distance <= PROGRESS_KEEP_NEAR * GAME_SCALE.WORLD and _has_route_to(player, _standing_point(player, target)):
-		# One more window on a fresh route; after that it is dropped like any other.
-		progress_extended = target
-		progress_timer = 0.0
-		progress_best = distance
-		_clear_navigation_path()
-		return
 	if progress_timer >= PROGRESS_TIME:
 		ignored_targets[target] = IGNORE_TIME
 		debug_reason = "gave up: target out of reach"

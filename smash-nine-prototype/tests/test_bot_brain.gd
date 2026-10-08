@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_one_extension]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -217,7 +217,8 @@ func _test_portal_grace() -> void:
 ## platform like Rio (Codex QA-14: 78% of ring-outs had no air jump left). Round 4 (QA-14
 ## round 3: Rio reached a floor 2 of 10 times): Rio waits until the ledge is within the skill's
 ## reach and aims a little above it; Frey (18 of 19) and Nova (round 4: the limit did not help)
-## go from anywhere. Round 5: asked once per recovery (round 4: 2,200 asks for 21 uses).
+## go from anywhere. Round 6: asked only while free to act (round 4: 2,200 asks for 21 uses),
+## and again after each use (round 5: once per recovery cut Frey from 18/19 to 6/13).
 func _test_recovery_skill() -> void:
 	for id in ["frey", "nova", "rio"]:
 		var bot := _fighter(id, 1, Vector2(0, 300))
@@ -233,9 +234,18 @@ func _test_recovery_skill() -> void:
 		var aim: Vector2 = intent.get("aim", Vector2.ZERO)
 		if str(intent.get("attack", "")) != "skill_1" or aim.y >= 0.0 or aim.x <= 0.0:
 			_fail("%s out of jumps below a close ledge should aim its skill up toward it (%s)" % [id, intent])
+		bot.attack_lock_timer = 0.3
 		if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
-			_fail("%s should ask for its recovery skill only once per recovery" % id)
-		ai.recovery_skill_asked = false
+			_fail("%s should not ask for its recovery skill while it is still busy" % id)
+		bot.attack_lock_timer = 0.0
+		if str(ai._recover_intent(bot).get("attack", "")) != "skill_1":
+			_fail("%s should ask again once it is free to act" % id)
+		if id == "rio":
+			# One blink per airtime: after it, Rio does not keep asking in the air.
+			bot.air_blink_available = false
+			if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
+				_fail("Rio should not ask for a second blink in the same airtime")
+			bot.air_blink_available = true
 		ai.recovery_target = Vector2(600, -100)
 		intent = ai._recover_intent(bot)
 		var far_skill: bool = str(intent.get("attack", "")) == "skill_1"
@@ -422,10 +432,10 @@ func _test_rio_basic_reach() -> void:
 	foe.queue_free()
 	await process_frame
 
-## Round 5: a close target on another level with a route gets one more progress window on a
-## fresh route, then it is dropped like any other (round 4: keeping it every time made
-## no-progress time 647 -> 1,104 s).
-func _test_near_target_one_extension() -> void:
+## Round 6: a close target on another level that never gets closer is dropped after 2.5 s even
+## when a route exists (rounds 4-5: keeping or extending such targets raised no-progress time
+## 647 -> 1,104 -> 1,239 s). Hits on it still count as progress (round 4).
+func _test_near_target_dropped() -> void:
 	var nav_script := GDScript.new()
 	nav_script.source_code = "extends Node2D
 var points: Array[Vector2] = []
@@ -456,13 +466,32 @@ func get_ai_navigation_points_for_realm(_realm: int) -> Array[Vector2]:
 	ai._update_target_progress(bot, 0.1)
 	for step in 30:
 		ai._update_target_progress(bot, 0.1)
-	if ai.target != foe or ai.progress_extended != foe:
-		_fail("A close target with a route should get one extra window first")
-	for step in 30:
-		ai._update_target_progress(bot, 0.1)
 	if ai.target != null:
-		_fail("After its one extra window a close target that never gets closer should be dropped")
+		_fail("A close target on another level that never gets closer should be dropped after 2.5 s")
 	holder.queue_free()
 	lower.queue_free()
 	upper.queue_free()
+	await process_frame
+
+## Round 6: Yuki does not throw talismans from beyond 480 px (round 5: 503 of 718 missed from
+## 360 px out).
+func _test_yuki_basic_reach() -> void:
+	var bot := _fighter("yuki", 1, Vector2(0, 0))
+	var foe := _fighter("frey", 2, Vector2(600, 0))
+	bot.set_physics_process(false)
+	foe.set_physics_process(false)
+	var ai = bot.ai_controller
+	ai.target = foe
+	bot.ultimate_cooldown_timer = 30.0
+	var far_basics := 0
+	var near_basics := 0
+	for roll in 40:
+		ai.attack_cooldown = 0.0
+		far_basics += 1 if ai._choose_attack(bot, 600.0, 0.0) == "basic" else 0
+		ai.attack_cooldown = 0.0
+		near_basics += 1 if ai._choose_attack(bot, 300.0, 0.0) == "basic" else 0
+	if far_basics > 0 or near_basics == 0:
+		_fail("Yuki basics: %d from 600 px (want 0), %d from 300 px (want some)" % [far_basics, near_basics])
+	bot.queue_free()
+	foe.queue_free()
 	await process_frame
