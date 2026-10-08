@@ -1,0 +1,19 @@
+Round 3 column self-tiling verification
+alpha_threshold=0.12 body_width=median(row spans 20..107) edge_rows=0..3,124..127
+light_beam_mid.png size=(576, 128) expected=(576, 128) ok=true
+  f1 body=66 edge=66/66/66/66/66/66/66/66 edge_max_delta=0 edge_center_max_delta=0.0 max_span=68 empty=0 under_1_3=0 wrap_diff=0.000 changed_interior=0 changed_edge=466
+  f2 body=53 edge=53/53/52/52/53/53/53/53 edge_max_delta=1 edge_center_max_delta=0.5 max_span=55 empty=0 under_1_3=0 wrap_diff=0.000 changed_interior=0 changed_edge=514
+  f3 body=47 edge=47/47/47/47/45/45/47/47 edge_max_delta=2 edge_center_max_delta=1.0 max_span=48 empty=0 under_1_3=0 wrap_diff=0.000 changed_interior=0 changed_edge=482
+  f4 body=55 edge=55/55/55/55/55/55/55/55 edge_max_delta=0 edge_center_max_delta=0.0 max_span=57 empty=0 under_1_3=0 wrap_diff=0.000 changed_interior=0 changed_edge=487
+  f5 body=63 edge=63/63/63/63/63/63/63/63 edge_max_delta=0 edge_center_max_delta=0.0 max_span=66 empty=0 under_1_3=0 wrap_diff=0.000 changed_interior=0 changed_edge=463
+  f6 body=65 edge=63/63/63/63/63/63/63/63 edge_max_delta=2 edge_center_max_delta=1.0 max_span=65 empty=0 under_1_3=0 wrap_diff=0.000 changed_interior=0 changed_edge=456
+fire_pillar_mid.png size=(576, 128) expected=(576, 128) ok=true
+  f1 body=67 edge=67/67/67/67/67/67/67/67 edge_max_delta=0 edge_center_max_delta=0.0 max_span=67 empty=0 under_1_3=0 wrap_diff=0.000 changed_interior=0 changed_edge=506
+  f2 body=57 edge=55/55/55/55/55/55/55/55 edge_max_delta=2 edge_center_max_delta=1.0 max_span=57 empty=0 under_1_3=0 wrap_diff=0.000 changed_interior=0 changed_edge=536
+  f3 body=54 edge=54/54/54/54/54/54/54/54 edge_max_delta=0 edge_center_max_delta=0.0 max_span=55 empty=0 under_1_3=0 wrap_diff=0.016 changed_interior=0 changed_edge=536
+  f4 body=49 edge=49/49/49/49/49/49/49/49 edge_max_delta=0 edge_center_max_delta=0.0 max_span=51 empty=0 under_1_3=0 wrap_diff=0.016 changed_interior=0 changed_edge=535
+  f5 body=58 edge=58/58/56/56/58/58/58/58 edge_max_delta=2 edge_center_max_delta=1.0 max_span=59 empty=0 under_1_3=0 wrap_diff=0.012 changed_interior=0 changed_edge=536
+  f6 body=64 edge=62/62/62/62/62/62/62/62 edge_max_delta=2 edge_center_max_delta=0.0 max_span=66 empty=0 under_1_3=0 wrap_diff=0.012 changed_interior=0 changed_edge=533
+anchors_unchanged=top-left per 96x128 cell; light 10 fps loop; fire 12 fps loop
+preview=round3_self_tiles_2x.png; each frame repeated 3x under itself at nearest-neighbor 2x
+joint_comparison=round3_joints_before_after_4x.png; rows are before/after light, before/after fire
