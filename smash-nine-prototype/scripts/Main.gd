@@ -547,7 +547,8 @@ func _update_hud() -> void:
 			label.text = "%ds" % seconds_left
 	var realm: Dictionary = layout.get_realm(current_map_index)
 	var hazard_text: String = hazards.get_hazard_text(current_map_index) if hazards.enabled else ""
-	hud.set_realm_title("%s  -  %s%s" % [realm.name, realm.subtitle, "   |   " + hazard_text if hazard_text != "" else ""], realm.accent)
+	hud.set_realm_title("%s  -  %s" % [realm.name, realm.subtitle], realm.accent, hazard_text)
+	hud.tick_info(get_process_delta_time())
 	hud.set_warning_banner(seconds_left if director.is_warning(current_map_index) and not match_over else -1, hazards.get_warning_text(current_map_index) if not match_over else "")
 	var human := _get_human_player()
 	var offer: Dictionary = soul_growth.get_offer(human) if is_instance_valid(human) else {}

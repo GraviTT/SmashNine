@@ -3,13 +3,18 @@ extends CanvasLayer
 ## offer, announcement line, debug panel (F3), and the start / result screens.
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug  F4 bots"
 ## Live bot panel (F4, development aid 2026-10-08): on by default while the game is tested.
 const BOT_PANEL_SHOWN_AT_START := true
-const BOT_PANEL_WIDTH := 352.0
-const BOT_ROW_FACE := 34.0
+const BOT_PANEL_WIDTH := 300.0
+const BOT_ROW_FACE := 26.0
+## The bottom line (controls hint, then match messages) fades out this long after it was
+## last set (QA-15 #9: the controls covered the floor all match).
+const CONTROLS_HINT_TIME := 8.0
+const MESSAGE_TIME := 4.0
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
 ## Cut-in band heights: above the fighters when the caster is in the lower half of the screen,
 ## below them otherwise, so the band never covers the cast itself (Codex QA-12: at a fixed
@@ -56,6 +61,9 @@ var flash_rect: ColorRect
 ## Arrows at the screen edge toward fighters in the shown realm who are off screen (realms
 ## are bigger than the view since 2026-10-08).
 var offscreen_root: Node2D
+var hazard_label: Label
+var info_timer := 0.0
+var info_fade: Tween
 ## Right-hand list of every fighter: face, realm, HP and what its bot is trying to do.
 var bot_panel: PanelContainer
 var bot_rows: VBoxContainer
@@ -77,7 +85,11 @@ func _ready() -> void:
 	add_child(focus_frame)
 	focus_portrait = _portrait_rect(Vector2(1186, 10), Vector2(76, 76))
 	add_child(focus_portrait)
-	realm_label = _label(Vector2(390, 40), Vector2(500, 26), 16, HORIZONTAL_ALIGNMENT_CENTER)
+	# Realm title, then its hazard on a third line, both kept left of the status block (QA-15:
+	# a long title ran into "Frey HP ..." on the right).
+	realm_label = _label(Vector2(400, 40), Vector2(380, 24), 16, HORIZONTAL_ALIGNMENT_CENTER)
+	realm_label.clip_text = true
+	hazard_label = _label(Vector2(400, 62), Vector2(380, 20), 13, HORIZONTAL_ALIGNMENT_CENTER)
 	warning_label = _label(Vector2(240, 96), Vector2(800, 90), 30, HORIZONTAL_ALIGNMENT_CENTER)
 	warning_label.add_theme_color_override("font_color", Color(1.0, 0.42, 0.22))
 	warning_label.visible = false
@@ -89,7 +101,7 @@ func _ready() -> void:
 	minimap_root = Control.new()
 	minimap_root.name = "RealmMinimap"
 	minimap_root.position = Vector2(24, 52)
-	minimap_root.size = Vector2(190, 110)
+	minimap_root.size = Vector2(212, 116)
 	minimap_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(minimap_root)
 
@@ -101,9 +113,9 @@ func _ready() -> void:
 	_build_bot_panel()
 	_build_overlay()
 	# Keep each element on its screen edge for any window shape (web canvases are not 16:9).
-	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [warning_label, TOP_CENTER],
+	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [hazard_label, TOP_CENTER], [warning_label, TOP_CENTER],
 			[status_label, TOP_RIGHT], [focus_frame, TOP_RIGHT], [focus_portrait, TOP_RIGHT],
-			[debug_label, TOP_RIGHT], [info_label, BOTTOM_LEFT],
+			[debug_label, TOP_RIGHT], [bot_panel, TOP_RIGHT], [info_label, BOTTOM_LEFT],
 			[card_panel, BOTTOM_CENTER]]:
 		_pin(entry[0], entry[1])
 
@@ -134,6 +146,14 @@ func _label(position: Vector2, size: Vector2, font_size: int, alignment: Horizon
 
 func show_message(text: String) -> void:
 	info_label.text = text
+	_show_info(CONTROLS_HINT_TIME if text == CONTROLS_HINT else MESSAGE_TIME)
+
+func _show_info(seconds: float) -> void:
+	if info_fade != null and info_fade.is_valid():
+		info_fade.kill()
+	info_label.modulate.a = 1.0
+	info_label.visible = clock_label.visible
+	info_timer = seconds
 
 func set_debug_text(text: String) -> void:
 	debug_label.text = text
@@ -149,7 +169,7 @@ func _build_bot_panel() -> void:
 	bot_panel.name = "BotPanel"
 	bot_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.02, 0.03, 0.06, 0.72)
+	style.bg_color = Color(0.02, 0.03, 0.06, 0.55)
 	style.set_corner_radius_all(4)
 	style.content_margin_left = 6
 	style.content_margin_right = 6
@@ -181,7 +201,7 @@ func update_bot_panel(rows: Array) -> void:
 		face.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		row.add_child(face)
 		var text := Label.new()
-		text.add_theme_font_size_override("font_size", 11)
+		text.add_theme_font_size_override("font_size", 10)
 		text.add_theme_constant_override("line_spacing", -2)
 		text.custom_minimum_size = Vector2(BOT_PANEL_WIDTH - BOT_ROW_FACE - 18.0, 0.0)
 		text.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -252,11 +272,17 @@ func _format_time(seconds: float) -> String:
 
 # --- Minimap ---
 
+## Names that fit a minimap cell (QA-15: long names were cut mid-word).
+const SHORT_REALM_NAMES := {"Svartalfheim": "Svartalf", "Yggdrasil Heart": "Yggdrasil", "Muspelheim": "Muspel"}
+
+func _short_realm_name(full: String) -> String:
+	return str(SHORT_REALM_NAMES.get(full, full.left(9)))
+
 func rebuild_minimap(layout: RefCounted, director: Node, current_index: int) -> void:
 	for child in minimap_root.get_children():
 		child.queue_free()
 	minimap_labels.clear()
-	var cell := Vector2(60, 34)
+	var cell := Vector2(68, 36)
 	for i in layout.realm_count():
 		var grid: Vector2i = layout.get_realm(i).grid
 		var box := ColorRect.new()
@@ -268,9 +294,9 @@ func rebuild_minimap(layout: RefCounted, director: Node, current_index: int) -> 
 		var label := Label.new()
 		label.position = box.position + Vector2(3, 1)
 		label.size = cell - Vector2(6, 2)
-		label.add_theme_font_size_override("font_size", 9)
+		label.add_theme_font_size_override("font_size", 10)
 		minimap_root.add_child(label)
-		minimap_labels[i] = {"label": label, "name": str(layout.get_realm(i).name).left(9)}
+		minimap_labels[i] = {"label": label, "name": _short_realm_name(str(layout.get_realm(i).name))}
 	update_minimap_labels(director, {})
 
 ## counts: realm_index -> living combatants there
@@ -552,6 +578,11 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		portrait_strip.visible = false
 	overlay_title.text = "%s WINS" % winner.display_name.to_upper() if is_instance_valid(winner) else "DRAW"
 	overlay_body.text = "Decided by %s" % reason
+	# The table stands alone: no clock, status, minimap, portrait, bot panel or arrows behind it.
+	_set_match_hud_visible(false)
+	bot_panel.visible = false
+	offscreen_root.visible = false
+	hazard_label.visible = false
 	info_label.visible = false
 	warning_label.visible = false
 	if is_instance_valid(results_grid):
@@ -581,12 +612,20 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		_add_result_cell(str(player.score), color)
 		_add_result_cell("%.0f" % player.damage_dealt, color)
 		_add_result_cell(str(player.souls), color)
-		_add_result_cell(", ".join(player.upgrades), color)
+		_add_result_cell(", ".join(_card_names(player.upgrades)), color)
 	_add_result_cell("", Color.WHITE)
 	_add_result_cell("", Color.WHITE)
 	_add_result_cell("[R] play again", Color(1.0, 0.82, 0.4))
 	overlay_credits.visible = false
 	overlay.visible = true
+
+## Display names for picked card ids (results showed "sky_step", "last_stand").
+func _card_names(ids: Array) -> Array[String]:
+	var names: Array[String] = []
+	for id in ids:
+		var card: Dictionary = SOUL_CARDS.find(str(id))
+		names.append(str(card.get("title", str(id).replace("_", " ").capitalize())))
+	return names
 
 func _add_result_cell(text: String, color: Color) -> void:
 	var cell := Label.new()
@@ -599,9 +638,23 @@ func hide_overlay() -> void:
 	_set_match_hud_visible(true)
 	overlay.visible = false
 
-func set_realm_title(text: String, accent: Color) -> void:
+func set_realm_title(text: String, accent: Color, hazard_text := "") -> void:
 	realm_label.text = text
 	realm_label.add_theme_color_override("font_color", Color(accent.r, accent.g, accent.b, 0.9))
+	hazard_label.text = hazard_text
+	hazard_label.add_theme_color_override("font_color", Color(accent.r, accent.g, accent.b, 0.75))
+
+## Counts the bottom line down; it fades out when its time is up.
+func tick_info(delta: float) -> void:
+	if info_timer <= 0.0 or not info_label.visible:
+		return
+	info_timer -= delta
+	if info_timer <= 0.0:
+		info_fade = info_label.create_tween()
+		info_fade.tween_property(info_label, "modulate:a", 0.0, 0.6)
+		info_fade.tween_callback(func() -> void:
+			info_label.visible = false
+			info_label.modulate.a = 1.0)
 
 ## seconds < 0 hides the banner.
 ## Collapse countdown (seconds >= 0) wins over a realm hazard warning; both empty hides it.
@@ -614,8 +667,10 @@ func set_warning_banner(seconds: int, hazard_warning := "") -> void:
 
 ## The in-match HUD hides behind the start screen so it does not show through it.
 func _set_match_hud_visible(visible_now: bool) -> void:
-	for node in [clock_label, realm_label, status_label, info_label, minimap_root, focus_portrait]:
+	for node in [clock_label, realm_label, hazard_label, status_label, info_label, minimap_root, focus_portrait]:
 		node.visible = visible_now
+	if visible_now:
+		_show_info(CONTROLS_HINT_TIME)
 	focus_frame.visible = visible_now and focus_portrait.texture != null
 	if not visible_now:
 		warning_label.visible = false
