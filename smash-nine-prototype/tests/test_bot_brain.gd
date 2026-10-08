@@ -18,7 +18,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -204,3 +204,21 @@ func _test_portal_grace() -> void:
 		_fail("A collapse warning should still send the bot through a portal")
 	bot.queue_free()
 	await process_frame
+
+## Out of air jumps below the stage, Frey and Nova use their directional skill toward the
+## platform like Rio (Codex QA-14: 78% of ring-outs had no air jump left).
+func _test_recovery_skill() -> void:
+	for id in ["frey", "nova", "rio"]:
+		var bot := _fighter(id, 1, Vector2(0, 300))
+		bot.set_physics_process(false)
+		var ai = bot.ai_controller
+		ai.state = ai.STATE_RECOVER
+		ai.recovery_target = Vector2(260, 0)
+		bot.velocity = Vector2(0, 120)
+		bot.air_jumps_left = 0
+		var intent: Dictionary = ai._recover_intent(bot)
+		var aim: Vector2 = intent.get("aim", Vector2.ZERO)
+		if str(intent.get("attack", "")) != "skill_1" or aim.y >= 0.0 or aim.x <= 0.0:
+			_fail("%s out of jumps below the stage should aim its skill up toward the platform (%s)" % [id, intent])
+		bot.queue_free()
+		await process_frame

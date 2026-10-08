@@ -120,8 +120,8 @@ const VENT_MARGIN := 40.0
 ## Engagement distances per fighter, from each kit's reach (CODEX-ANALYST-01: one 235 px
 ## profile for everyone erased Yuki's range). "kite" fighters back off when crowded.
 const COMBAT_PROFILES := {
-	"frey": {"min_range": 45.0, "max_range": 170.0, "attack_range": 200.0, "kite": false},
-	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false},
+	"frey": {"min_range": 45.0, "max_range": 170.0, "attack_range": 200.0, "kite": false, "recovery_skill": true},
+	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false, "recovery_skill": true},
 	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
 	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true},
 	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true}
@@ -762,7 +762,8 @@ func _recover_intent(player) -> Dictionary:
 		jump = true
 		jump_retry_timer = RECOVER_JUMP_RETRY
 	var intent: Dictionary = _intent(direction, jump)
-	# Out of jumps: a recovery skill (Rio's dimension slash) aimed at the platform.
+	# Out of jumps: a recovery skill aimed at the platform (Rio's dimension slash, Frey's dash
+	# strike, Nova's vector shift; Codex QA-14: 78% of ring-outs had no air jump left).
 	if below_target and player.air_jumps_left <= 0 and player.velocity.y > 60.0 and bool(_combat_profile(player).get("recovery_skill", false)):
 		intent["aim"] = (recovery_target - player.global_position).normalized()
 		intent["attack"] = "skill_1"
