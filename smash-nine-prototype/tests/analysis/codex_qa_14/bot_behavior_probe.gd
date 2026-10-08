@@ -9,7 +9,9 @@ const HIT_WINDOW := 0.4
 const NO_PROGRESS_MIN_SECONDS := 3.0
 const NO_PROGRESS_MIN_PIXELS := 100.0
 const LOW_HP_FOLLOW_SECONDS := 10.0
-const OUT_PATH := "res://../reports/codex-qa-14/results.json"
+const OUT_PATH := "res://../reports/codex-qa-14/round2-results.json"
+const AIR_DOWN_RINGOUT_WINDOW := 2.0
+const NOVA_LAUNCH_HIT_WINDOW := 3.2
 
 var seeds: Array[int] = []
 var seconds := 480.0
@@ -21,7 +23,9 @@ var totals: Dictionary = {
 	"samples": {}, "states": {}, "actions": {}, "targets": {}, "stuck": {},
 	"target_switches": {}, "target_active_seconds": {}, "no_progress": {},
 	"attacks": {}, "character_seconds": {}, "pvp_damage": {}, "pve_damage": {},
-	"recovery": {}, "portals": {}, "standoffs": []
+	"recovery": {}, "portals": {}, "portal_reasons": {}, "standoffs": [],
+	"guards_by_attacker": {}, "nova": {"launches": 0, "aimed": 0, "forced": 0, "redirects": 0, "hits": 0},
+	"air_down_self_ringouts": {}
 }
 var match_rows: Array[Dictionary] = []
 var ringout_rows: Array[Dictionary] = []
@@ -37,6 +41,7 @@ var last_pvp_damage: Dictionary = {}
 var warning_members: Dictionary = {}
 var escaped_warning: Dictionary = {}
 var recent_relocations: Dictionary = {}
+var seen_parry_effects: Dictionary = {}
 var match_ringouts := 0
 var match_portals := 0
 var match_relocations := 0
@@ -65,7 +70,7 @@ func _run_all() -> void:
 	for value in seeds:
 		await _run_match(value)
 	var result := {
-		"schema": 1,
+		"schema": 2,
 		"seeds": seeds,
 		"players": player_count,
 		"sample_interval": SAMPLE_INTERVAL,
@@ -76,7 +81,14 @@ func _run_all() -> void:
 		"totals": totals,
 		"ringouts": ringout_rows,
 		"low_hp_portals": low_hp_rows,
-		"relocations": relocation_rows
+		"relocations": relocation_rows,
+		"round2_definitions": {
+			"reaction_in_recovery": "reactive guard timer first seen after the observed attack's conservative per-character startup bound",
+			"block": "damage signal arrived while the defender was still guarding (wrong-direction guards are lowered before the signal)",
+			"parry": "the 92x92 parry effect created by PlayerBase was observed and attributed to the nearby attacker receiving parry recoil",
+			"air_down_self_ringout": "same fighter rang out within 2.0 s after starting a basic air-down",
+			"nova_launch_hit": "Nova dealt PvP damage within 3.2 s after the slingshot launch"
+		}
 	}
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../reports/codex-qa-14"))
 	var file := FileAccess.open(OUT_PATH, FileAccess.WRITE)
@@ -144,6 +156,7 @@ func _reset_match_memory() -> void:
 	warning_members.clear()
 	escaped_warning.clear()
 	recent_relocations.clear()
+	seen_parry_effects.clear()
 	match_ringouts = 0
 	match_portals = 0
 	match_relocations = 0
@@ -163,7 +176,16 @@ func _new_player_memory(player: Node) -> Dictionary:
 		"recovery": false,
 		"portal_reason": "",
 		"low_hp_pending": [],
-		"last_hp": float(player.hp)
+		"last_hp": float(player.hp),
+		"last_is_guarding": bool(player.is_guarding),
+		"last_guard_delay": float(player.ai_controller.guard_delay_timer),
+		"last_attack_lock": float(player.attack_lock_timer),
+		"attack_started_time": -99.0,
+		"attack_startup_bound": 999.0,
+		"last_air_down_time": -99.0,
+		"nova_phase": int(player.get("ultimate_phase")) if player.character_id == "nova" else -1,
+		"nova_stage_timer": float(player.ai_controller.nova_stage_timer) if player.character_id == "nova" else -1.0,
+		"nova_launch_pending": {}
 	}
 
 func _observe_frame() -> void:
@@ -179,11 +201,19 @@ func _observe_frame() -> void:
 		var memory: Dictionary = player_memory[pid]
 		var snapshot: Dictionary = player.ai_controller.debug_snapshot(player)
 		_observe_attack(player, snapshot, memory, now)
+		_observe_guard(player, memory, now)
+		_observe_nova(player, memory, now)
 		_observe_recovery(player, snapshot, memory, now)
 		_observe_realm_change(player, snapshot, memory, now)
 		_observe_low_hp_followup(player, snapshot, memory, now)
 		memory.last_hp = float(player.hp)
 		player_memory[pid] = memory
+	_observe_parry_effects()
+	# Preserve every fighter's previous-frame attack lock until all guard/parry observers ran;
+	# otherwise detection depends on player iteration order.
+	for player in main.players:
+		if is_instance_valid(player) and player_memory.has(player.get_instance_id()):
+			player_memory[player.get_instance_id()].last_attack_lock = float(player.attack_lock_timer)
 	_observe_entity_hp(now)
 	sample_timer -= FRAME_TIME
 	if sample_timer <= 0.0:
@@ -199,14 +229,125 @@ func _observe_attack(player: Node, snapshot: Dictionary, memory: Dictionary, now
 		return
 	var attack_type := attack_text
 	if attack_text == "basic":
-		attack_type = "basic_side" if player.is_on_floor() else "basic_air_side"
+		var attack_direction: Vector2 = player._get_attack_direction()
+		attack_type = "basic_%s" % str(player._get_basic_attack_type(attack_direction))
 	memory.last_attack_text = attack_text
 	memory.last_attack_time = now
+	memory.attack_started_time = now
+	memory.attack_startup_bound = _attack_startup_bound(str(player.character_id), attack_type)
+	if attack_type == "basic_air_down":
+		memory.last_air_down_time = now
 	var key := "%s|%s" % [player.character_id, attack_type]
 	var stats: Dictionary = totals.attacks.get(key, {"uses": 0, "hits": 0, "damage": 0.0})
 	stats.uses = int(stats.uses) + 1
 	totals.attacks[key] = stats
 	pending_attacks[player.get_instance_id()] = {"time": now, "key": key, "hit": false}
+
+func _attack_startup_bound(character: String, attack_type: String) -> float:
+	# Conservative (largest) basic startup for each kit. A reaction counted after this bound is
+	# certainly in recovery for basic attacks; skills/ultimates use 999 and are never guessed.
+	if not attack_type.begins_with("basic_"):
+		return 999.0
+	return {"frey": 0.17, "luna": 0.21, "nova": 0.10, "rio": 0.08, "yuki": 0.16}.get(character, 0.25)
+
+func _guard_stats(attacker_character: String) -> Dictionary:
+	var stats: Dictionary = totals.guards_by_attacker.get(attacker_character, {
+		"reactions": 0, "raised": 0, "blocks": 0, "parries": 0, "reaction_in_recovery": 0
+	})
+	return stats
+
+func _observe_guard(defender: Node, memory: Dictionary, now: float) -> void:
+	var ai = defender.ai_controller
+	var delay := float(ai.guard_delay_timer)
+	var guarding := bool(defender.is_guarding)
+	var threat: Node = ai.guard_threat_from if is_instance_valid(ai.guard_threat_from) else null
+	if delay >= 0.0 and float(memory.last_guard_delay) < 0.0 and is_instance_valid(threat):
+		var attacker_character := str(threat.character_id)
+		var stats := _guard_stats(attacker_character)
+		stats.reactions = int(stats.reactions) + 1
+		var attacker_memory: Dictionary = player_memory.get(threat.get_instance_id(), {})
+		if not attacker_memory.is_empty() and now - float(attacker_memory.attack_started_time) >= float(attacker_memory.attack_startup_bound):
+			stats.reaction_in_recovery = int(stats.reaction_in_recovery) + 1
+		totals.guards_by_attacker[attacker_character] = stats
+	if guarding and not bool(memory.last_is_guarding):
+		var source: Node = threat if str(ai.debug_reason) == "blocking an attack" and is_instance_valid(threat) else ai.target
+		if is_instance_valid(source) and source.is_in_group("players"):
+			var stats := _guard_stats(str(source.character_id))
+			stats.raised = int(stats.raised) + 1
+			totals.guards_by_attacker[str(source.character_id)] = stats
+	memory.last_is_guarding = guarding
+	memory.last_guard_delay = delay
+
+func _nearest_parried_attacker(defender: Node) -> Node:
+	var best: Node
+	var best_distance := INF
+	for candidate in main.players:
+		if not is_instance_valid(candidate) or candidate == defender or candidate.is_defeated:
+			continue
+		var candidate_memory: Dictionary = player_memory.get(candidate.get_instance_id(), {})
+		if candidate_memory.is_empty():
+			continue
+		var lock_ended := float(candidate_memory.last_attack_lock) > 0.0 and float(candidate.attack_lock_timer) <= 0.0
+		var parry_recoil := float(candidate.hitstop_timer) >= 0.04
+		if not lock_ended and not parry_recoil:
+			continue
+		var distance: float = defender.global_position.distance_to(candidate.global_position)
+		if distance < best_distance and distance <= 700.0:
+			best_distance = distance
+			best = candidate
+	return best
+
+func _observe_parry_effects() -> void:
+	# PlayerBase._play_parry_effect creates a 92x92 ColorRect directly under Main. Unlike block
+	# damage, parries emit no signal, so the effect is the only exact read-only observation hook.
+	for child in main.get_children():
+		if not child is ColorRect or (child as ColorRect).size != Vector2(92.0, 92.0):
+			continue
+		var effect_id := child.get_instance_id()
+		if seen_parry_effects.has(effect_id):
+			continue
+		seen_parry_effects[effect_id] = true
+		var effect_center: Vector2 = (child as ColorRect).position + Vector2(46.0, 78.0)
+		var defender: Node
+		var best_distance := INF
+		for player in main.players:
+			if not is_instance_valid(player) or not bool(player.is_guarding):
+				continue
+			var distance: float = effect_center.distance_to(player.global_position)
+			if distance < best_distance:
+				best_distance = distance
+				defender = player
+		if not is_instance_valid(defender) or best_distance > 8.0:
+			continue
+		var attacker := _nearest_parried_attacker(defender)
+		if is_instance_valid(attacker):
+			var stats := _guard_stats(str(attacker.character_id))
+			stats.parries = int(stats.parries) + 1
+			totals.guards_by_attacker[str(attacker.character_id)] = stats
+
+func _observe_nova(player: Node, memory: Dictionary, now: float) -> void:
+	if str(player.character_id) != "nova":
+		return
+	var phase := int(player.get("ultimate_phase"))
+	var previous_phase := int(memory.nova_phase)
+	if previous_phase == 2 and phase == 3:
+		var forced := float(memory.nova_stage_timer) >= 0.79
+		totals.nova.launches = int(totals.nova.launches) + 1
+		totals.nova.forced = int(totals.nova.forced) + (1 if forced else 0)
+		totals.nova.aimed = int(totals.nova.aimed) + (0 if forced else 1)
+		memory.nova_launch_pending = {"time": now, "hit": false, "direction": player.ultimate_launch_direction}
+	if phase == 3 and previous_phase == 3 and not memory.nova_launch_pending.is_empty():
+		var old_direction: Vector2 = memory.nova_launch_pending.direction
+		var new_direction: Vector2 = player.ultimate_launch_direction
+		if old_direction.length() > 0.1 and new_direction.length() > 0.1 and absf(old_direction.angle_to(new_direction)) > 0.05:
+			totals.nova.redirects = int(totals.nova.redirects) + 1
+			memory.nova_launch_pending.direction = new_direction
+	if not memory.nova_launch_pending.is_empty() and (phase == 0 or now - float(memory.nova_launch_pending.time) > NOVA_LAUNCH_HIT_WINDOW):
+		if bool(memory.nova_launch_pending.hit):
+			totals.nova.hits = int(totals.nova.hits) + 1
+		memory.nova_launch_pending = {}
+	memory.nova_phase = phase
+	memory.nova_stage_timer = float(player.ai_controller.nova_stage_timer)
 
 func _mark_attack_hit(attacker: Node, damage: float, now: float) -> void:
 	if not is_instance_valid(attacker) or not attacker.is_in_group("players"):
@@ -279,6 +420,14 @@ func _observe_realm_change(player: Node, snapshot: Dictionary, memory: Dictionar
 	if not relocated:
 		match_portals += 1
 		_add_number(totals.portals, "all", 1.0)
+		var portal_reason := "off_screen_hop"
+		if str(memory.portal_reason).begins_with("realm collapsing") or (str(memory.portal_reason) == "" and str(main.director.get_state(old_realm)) == "warning"):
+			portal_reason = "escape"
+		elif str(memory.portal_reason).begins_with("low HP"):
+			portal_reason = "retreat"
+		elif str(memory.portal_reason).begins_with("nobody here"):
+			portal_reason = "roam"
+		_add_number(totals.portal_reasons, portal_reason, 1.0)
 		if str(memory.portal_reason).begins_with("low HP"):
 			_add_number(totals.portals, "low_hp", 1.0)
 			memory.low_hp_pending.append({"seed": match_seed, "character": str(player.character_id), "time": now, "from": old_realm, "to": new_realm, "hp_before": snappedf(player.hp, 0.1), "damaged": false, "engaged": false, "defeated": false})
@@ -417,8 +566,16 @@ func _on_damaged(player: Node, amount: float, attacker: Node, source: String) ->
 	if source == "hit":
 		last_pvp_damage[int(player.realm_index)] = now
 		if is_instance_valid(attacker) and attacker.is_in_group("players"):
+			if bool(player.is_guarding):
+				var guard_stats := _guard_stats(str(attacker.character_id))
+				guard_stats.blocks = int(guard_stats.blocks) + 1
+				totals.guards_by_attacker[str(attacker.character_id)] = guard_stats
 			_mark_attack_hit(attacker, amount, now)
 			_add_number(totals.pvp_damage, str(attacker.character_id), amount)
+			if str(attacker.character_id) == "nova":
+				var attacker_memory: Dictionary = player_memory.get(attacker.get_instance_id(), {})
+				if not attacker_memory.is_empty() and not attacker_memory.nova_launch_pending.is_empty() and now - float(attacker_memory.nova_launch_pending.time) <= NOVA_LAUNCH_HIT_WINDOW:
+					attacker_memory.nova_launch_pending.hit = true
 		return
 	var previous_ringouts := int(player_memory[pid].ringouts) if player_memory.has(pid) else int(player.respawn_count)
 	if int(player.respawn_count) <= previous_ringouts:
@@ -437,6 +594,8 @@ func _on_damaged(player: Node, amount: float, attacker: Node, source: String) ->
 		"air_jumps_left": int(player.air_jumps_left), "max_air_jumps": int(player.max_air_jumps),
 		"during_recovery": recovery_active, "realm": int(player.realm_index)
 	})
+	if now - float(memory.last_air_down_time) <= AIR_DOWN_RINGOUT_WINDOW:
+		_add_number(totals.air_down_self_ringouts, str(player.character_id), 1.0)
 	player_memory[pid] = memory
 
 func _on_defeated(player: Node, _attacker: Node) -> void:
@@ -480,6 +639,10 @@ func _finalize_match_episodes() -> void:
 			event["follow_seconds"] = snappedf(followed, 0.1)
 			event["survived_10s"] = not player.is_defeated and followed >= LOW_HP_FOLLOW_SECONDS
 			low_hp_rows.append(event.duplicate())
+		if str(player.character_id) == "nova" and not memory.nova_launch_pending.is_empty():
+			if bool(memory.nova_launch_pending.hit):
+				totals.nova.hits = int(totals.nova.hits) + 1
+			memory.nova_launch_pending = {}
 	for realm in standoff_memory:
 		_finalize_standoff(int(realm), float(standoff_memory[realm]), now)
 
@@ -499,4 +662,8 @@ func _print_summary(result: Dictionary) -> void:
 	for key in totals.attacks:
 		var row: Dictionary = totals.attacks[key]
 		print("QA14_ATTACK %s uses=%d hits=%d rate=%.3f damage=%.1f" % [key, row.uses, row.hits, float(row.hits) / maxf(float(row.uses), 1.0), row.damage])
+	for attacker in totals.guards_by_attacker:
+		var guard_row: Dictionary = totals.guards_by_attacker[attacker]
+		print("QA14_GUARD attacker=%s reactions=%d raised=%d blocks=%d parries=%d recovery_detections=%d" % [attacker, guard_row.reactions, guard_row.raised, guard_row.blocks, guard_row.parries, guard_row.reaction_in_recovery])
+	print("QA14_NOVA launches=%d aimed=%d forced=%d redirects=%d hits=%d" % [totals.nova.launches, totals.nova.aimed, totals.nova.forced, totals.nova.redirects, totals.nova.hits])
 	print("QA14_OUTPUT ", ProjectSettings.globalize_path(OUT_PATH))

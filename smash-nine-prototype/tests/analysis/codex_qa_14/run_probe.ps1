@@ -19,5 +19,5 @@ if ($LASTEXITCODE -ne 0) {
 	exit $LASTEXITCODE
 }
 
-$result = Join-Path $repo 'reports/codex-qa-14/results.json'
+$result = Join-Path $repo 'reports/codex-qa-14/round2-results.json'
 Write-Host "Probe JSON: $result"
