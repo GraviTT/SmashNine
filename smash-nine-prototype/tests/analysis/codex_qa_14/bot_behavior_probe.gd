@@ -9,7 +9,7 @@ const HIT_WINDOW := 0.4
 const NO_PROGRESS_MIN_SECONDS := 3.0
 const NO_PROGRESS_MIN_PIXELS := 100.0
 const LOW_HP_FOLLOW_SECONDS := 10.0
-const OUT_PATH := "res://../reports/codex-qa-14/round5-results.json"
+const OUT_PATH := "res://../reports/codex-qa-14/round6-results.json"
 const AIR_DOWN_RINGOUT_WINDOW := 2.0
 const NOVA_LAUNCH_HIT_WINDOW := 3.2
 const CORNER_ESCAPE_RINGOUT_WINDOW := 3.0
@@ -84,7 +84,7 @@ func _run_all() -> void:
 	for value in seeds:
 		await _run_match(value)
 	var result := {
-		"schema": 5,
+		"schema": 6,
 		"seeds": seeds,
 		"players": player_count,
 		"sample_interval": SAMPLE_INTERVAL,
@@ -125,6 +125,11 @@ func _run_all() -> void:
 			"recovery_skill_ask": "rising edge of EnemyAI.recovery_skill_asked; used remains an observed character activation, not an intent",
 			"progress_extension": "rising change of EnemyAI.progress_extended; dropped_after_extension means that same target later entered ignored_targets",
 			"cornered_guard": "guard raised on a new hold decision while escape_cooldown > 0 and _cornered() is true; block is attributed while that guard remains recent"
+		},
+		"round6_definitions": {
+			"recovery_skill_ask": "totals count each physics frame carrying a recover-state skill_1 intent; event rows keep successful-looking frames plus the rising edge of each rejected streak",
+			"recovery_episode": "monotonic per-fighter recovery entry number; repeated uses in one recovery share the same number",
+			"progress_extension": "removed in round 6; extension totals and events remain empty for schema compatibility"
 		}
 	}
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../reports/codex-qa-14"))
@@ -228,6 +233,7 @@ func _new_player_memory(player: Node) -> Dictionary:
 		,"last_reason": "",
 		"last_attack_serial": int(player.attack_serial),
 		"last_vector_shift_active": bool(player.get("vector_shift_active")) if player.character_id == "nova" else false,
+		"last_vector_shift_timer": float(player.get("vector_shift_timer")) if player.character_id == "nova" else 0.0,
 		"last_air_blink_available": bool(player.get("air_blink_available")) if player.character_id == "rio" else false,
 		"last_corner_escape_time": -99.0,
 		"recovery_skill_pending": [],
@@ -242,8 +248,8 @@ func _new_player_memory(player: Node) -> Dictionary:
 		"last_pvp_hit_received": -99.0,
 		"last_damage_time": -99.0,
 		"last_damage_source": "",
-		"last_recovery_skill_asked": bool(player.ai_controller.recovery_skill_asked),
-		"last_progress_extended_id": -1,
+		"last_recovery_skill_intent": false,
+		"recovery_episode": 0,
 		"last_action_timer": float(player.ai_controller.action_timer),
 		"last_corner_guard_time": -99.0
 	}
@@ -261,7 +267,7 @@ func _observe_frame() -> void:
 		var memory: Dictionary = player_memory[pid]
 		var snapshot: Dictionary = player.ai_controller.debug_snapshot(player)
 		_observe_round3(player, snapshot, memory, now)
-		_observe_round5(player, snapshot, memory, now)
+		_observe_round6(player, snapshot, memory, now)
 		_observe_attack(player, snapshot, memory, now)
 		_observe_guard(player, memory, now)
 		_observe_nova(player, memory, now)
@@ -308,35 +314,22 @@ func _observe_round3(player: Node, snapshot: Dictionary, memory: Dictionary, now
 		_observe_exact_swing(player, snapshot, memory, now, serial)
 		memory.last_attack_serial = serial
 
-func _observe_round5(player: Node, snapshot: Dictionary, memory: Dictionary, now: float) -> void:
+func _observe_round6(player: Node, snapshot: Dictionary, memory: Dictionary, now: float) -> void:
 	var ai = player.ai_controller
 	var character := str(player.character_id)
-	var asked := bool(ai.recovery_skill_asked)
-	if asked and not bool(memory.last_recovery_skill_asked):
+	var asked := str(snapshot.state) == "recover" and str(snapshot.attack) == "skill_1"
+	if asked:
 		var recovery_distance: float = player.global_position.distance_to(ai.recovery_target + Vector2(0.0, -60.0))
+		var episode: int = int(memory.recovery_episode) + (0 if bool(memory.recovery) else 1)
+		var locked_after_intent: bool = float(player.attack_lock_timer) > 0.0
 		_add_number(totals.recovery_skill_asks, character, 1.0)
-		recovery_skill_ask_rows.append({
-			"seed": match_seed, "time": snappedf(now, 0.01), "character": character,
-			"distance": snappedf(recovery_distance, 0.1), "intent": str(snapshot.attack),
-			"attack_locked": float(player.attack_lock_timer) > 0.0
-		})
-	memory.last_recovery_skill_asked = asked
-
-	var extended_value: Variant = ai.progress_extended
-	var extended_id: int = -1
-	if is_instance_valid(extended_value):
-		extended_id = extended_value.get_instance_id()
-	if extended_id != -1 and extended_id != int(memory.last_progress_extended_id):
-		var extension_stats: Dictionary = totals.progress_extensions.get(character, {"extended": 0, "dropped_after_extension": 0})
-		extension_stats.extended = int(extension_stats.extended) + 1
-		totals.progress_extensions[character] = extension_stats
-		progress_extension_rows.append({
-			"seed": match_seed, "time": snappedf(now, 0.01), "character": character,
-			"target_id": extended_id, "target_kind": _target_kind(extended_value),
-			"distance": snappedf(player.global_position.distance_to(extended_value.global_position), 0.1),
-			"dropped_after_extension": false
-		})
-	memory.last_progress_extended_id = extended_id
+		if locked_after_intent or not bool(memory.last_recovery_skill_intent):
+			recovery_skill_ask_rows.append({
+				"seed": match_seed, "time": snappedf(now, 0.01), "character": character,
+				"distance": snappedf(recovery_distance, 0.1), "intent": str(snapshot.attack),
+				"recovery_episode": episode, "attack_locked_after_intent": locked_after_intent
+			})
+	memory.last_recovery_skill_intent = asked
 
 	var action_timer := float(ai.action_timer)
 	var new_decision := action_timer > float(memory.last_action_timer) + FRAME_TIME * 2.0
@@ -377,9 +370,12 @@ func _observe_recovery_skill_activation(player: Node, snapshot: Dictionary, memo
 	if str(snapshot.state) == "recover" and str(snapshot.attack) == "skill_1":
 		match character:
 			"frey":
-				activated = float(memory.last_attack_lock) <= 0.0 and float(player.attack_lock_timer) > 0.0
+				# Consecutive dash strikes can restart on the exact frame the prior lock expires,
+				# so the sampled previous lock need not reach zero; a fresh lock rises sharply.
+				activated = float(player.attack_lock_timer) > float(memory.last_attack_lock) + 0.1
 			"nova":
-				activated = bool(player.get("vector_shift_active")) and not bool(memory.last_vector_shift_active)
+				# A repeat can restart while vector_shift_active is still true; its timer rises.
+				activated = float(player.get("vector_shift_timer")) > float(memory.last_vector_shift_timer) + 0.05
 			"rio":
 				activated = bool(memory.last_air_blink_available) and not bool(player.get("air_blink_available"))
 	if activated:
@@ -388,9 +384,11 @@ func _observe_recovery_skill_activation(player: Node, snapshot: Dictionary, memo
 		recovery_stats.used = int(recovery_stats.used) + 1
 		totals.recovery_skills[character] = recovery_stats
 		var activation_distance: float = player.global_position.distance_to(player.ai_controller.recovery_target + Vector2(0.0, -60.0))
-		memory.recovery_skill_pending.append({"seed": match_seed, "time": snappedf(now, 0.01), "character": character, "distance": snappedf(activation_distance, 0.1), "reached_floor": false})
+		var episode: int = int(memory.recovery_episode) + (0 if bool(memory.recovery) else 1)
+		memory.recovery_skill_pending.append({"seed": match_seed, "time": snappedf(now, 0.01), "character": character, "distance": snappedf(activation_distance, 0.1), "recovery_episode": episode, "reached_floor": false})
 	if character == "nova":
 		memory.last_vector_shift_active = bool(player.get("vector_shift_active"))
+		memory.last_vector_shift_timer = float(player.get("vector_shift_timer"))
 	elif character == "rio":
 		memory.last_air_blink_available = bool(player.get("air_blink_available"))
 
@@ -419,7 +417,7 @@ func _observe_target_drop(player: Node, now: float, known_dropped: Node = null) 
 		"seed": match_seed, "time": snappedf(now, 0.01), "character": str(player.character_id),
 		"target_kind": kind, "distance": snappedf(distance, 0.1), "within_300": distance >= 0.0 and distance <= 300.0,
 		"traded_within_3s": traded,
-		"after_extension": is_instance_valid(dropped) and dropped == player.ai_controller.progress_extended
+		"after_extension": false
 	}
 	target_drop_rows.append(row)
 	var stats: Dictionary = totals.target_drops.get(str(player.character_id), {"all": 0, "within_300": 0, "traded_within_3s": 0})
@@ -427,15 +425,6 @@ func _observe_target_drop(player: Node, now: float, known_dropped: Node = null) 
 	stats.within_300 = int(stats.within_300) + (1 if bool(row.within_300) else 0)
 	stats.traded_within_3s = int(stats.traded_within_3s) + (1 if traded else 0)
 	totals.target_drops[str(player.character_id)] = stats
-	if bool(row.after_extension):
-		var extension_stats: Dictionary = totals.progress_extensions.get(str(player.character_id), {"extended": 0, "dropped_after_extension": 0})
-		extension_stats.dropped_after_extension = int(extension_stats.dropped_after_extension) + 1
-		totals.progress_extensions[str(player.character_id)] = extension_stats
-		for index in range(progress_extension_rows.size() - 1, -1, -1):
-			var extension_event: Dictionary = progress_extension_rows[index]
-			if int(extension_event.target_id) == dropped.get_instance_id() and str(extension_event.character) == str(player.character_id) and int(extension_event.seed) == match_seed:
-				extension_event.dropped_after_extension = true
-				break
 
 func _observe_exact_swing(player: Node, snapshot: Dictionary, memory: Dictionary, now: float, serial: int) -> void:
 	var attack_type := _current_attack_type(player, snapshot)
@@ -697,6 +686,7 @@ func _observe_recovery(player: Node, snapshot: Dictionary, memory: Dictionary, n
 	var recovering := str(snapshot.state) == "recover"
 	if recovering and not bool(memory.recovery):
 		memory.recovery = true
+		memory.recovery_episode = int(memory.recovery_episode) + 1
 		memory.recovery_started = now
 		memory.recovery_air_jumps = int(player.air_jumps_left)
 		if str(player.character_id) == "frey":
