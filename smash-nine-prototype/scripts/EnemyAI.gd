@@ -204,6 +204,8 @@ func update(player, delta: float) -> void:
 		_select_state(player)
 
 	if _update_guard(player, delta):
+		# A neutral intent: the last move input must not keep pushing the fighter (debate N2).
+		_apply_intent(player, _intent())
 		last_intent = {"move": 0.0, "jump": false, "attack": "", "guard": true}
 		return
 
@@ -1178,6 +1180,7 @@ func _attack_aim(player, attack_name: String) -> Vector2:
 ## Guard against an attack an opponent in reach has just started. Returns true while the
 ## bot is guarding or about to (the guard takes over its turn).
 func _update_guard(player, delta: float) -> bool:
+	var threat := _new_attack_threat(player)
 	if player.is_guarding:
 		guard_hold_timer -= delta
 		if guard_hold_timer <= 0.0:
@@ -1192,7 +1195,6 @@ func _update_guard(player, delta: float) -> bool:
 				debug_reason = "blocking an attack"
 				return true
 		return false
-	var threat := _new_attack_threat(player)
 	if threat != null and randf() < GUARD_CHANCE:
 		guard_threat_from = threat
 		guard_delay_timer = randf_range(GUARD_REACTION_MIN, GUARD_REACTION_MAX)
@@ -1201,7 +1203,10 @@ func _update_guard(player, delta: float) -> bool:
 ## Raises guard toward an opponent (PlayerBase reads guard_aim when the guard starts).
 func _start_guard_against(player, opponent: Node) -> bool:
 	if is_instance_valid(opponent):
-		guard_aim = Vector2(signf(opponent.global_position.x - player.global_position.x), 0.0)
+		# Along the main axis toward the attacker, so attacks from straight above or below are
+		# guarded too (debate N1; PlayerBase turns it into a cardinal direction).
+		var toward: Vector2 = opponent.global_position - player.global_position
+		guard_aim = Vector2(0.0, signf(toward.y)) if absf(toward.y) > absf(toward.x) else Vector2(signf(toward.x), 0.0)
 	player._try_start_guard()
 	guard_aim = Vector2.ZERO
 	return bool(player.is_guarding)

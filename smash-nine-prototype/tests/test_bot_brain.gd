@@ -99,6 +99,21 @@ func _test_guard_faces_attacker() -> void:
 	elif bot.guard_direction.x >= 0.0:
 		_fail("A guard against an attacker behind should face it (guard %s)" % bot.guard_direction)
 	bot._stop_guard(false)
+	bot.guard_recovery_timer = 0.0
+	# Debate N1: an attacker straight above is guarded upward.
+	foe.global_position = bot.global_position + Vector2(6, -150)
+	if not bot.ai_controller._start_guard_against(bot, foe) or bot.guard_direction.y >= 0.0:
+		_fail("A guard against an attacker above should face up (guard %s)" % bot.guard_direction)
+	bot._stop_guard(false)
+	bot.guard_recovery_timer = 0.0
+	# Debate N2: while the bot guards, its old move input stops.
+	bot.move_input = 1.0
+	bot.ai_controller.guard_hold_timer = 0.3
+	bot.ai_controller._start_guard_against(bot, foe)
+	bot.ai_controller.update(bot, 0.016)
+	if not is_zero_approx(bot.move_input):
+		_fail("A guarding bot should stop its move input (move %.2f)" % bot.move_input)
+	bot._stop_guard(false)
 	bot.queue_free()
 	foe.queue_free()
 	ground.queue_free()

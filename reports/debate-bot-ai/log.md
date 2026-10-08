@@ -16,3 +16,14 @@ Round 1 attack: `attack.md`. Lead = Claude. Each point: accept / partly / reject
 Also found by the lead while reading for this debate (not raised by Codex): since attacks doubled, the **engage band's height** went 150 → 300 px (`_is_in_engage_band`), so a target on a lower level counts as "engage", and engage never steps off a ledge (`_terrain_move_intent(..., allow_drop=false)`) — the bot stands on the edge above it (the "monster 200 px below for minutes" symptom). Change: in engage, walk off toward a target below when there is a landing (`_has_drop_landing`).
 
 Factual questions for measurement (round 2, CODEX-QA-14 probe, same seeds): ring-outs per match and recovery success; up/down attack use and hit rates; guard opportunities and success per character; Nova launch timeouts and hit rates; time on unreachable targets; match length.
+
+## Round 2 (Codex: `round-2.md`) — lead replies
+
+| ID | Verdict | Reply |
+| --- | --- | --- |
+| D5, D6 | closed | Codex conceded (direct `skill_one()` path with a test; the opportunity score replaced the fixed chances). |
+| D3 | **accept the implementation bug** | Strongest form: `_new_attack_threat()` was not called while the bot waited or guarded, so a swing that started meanwhile was recorded late and its recovery could later be taken for a new swing (`attack_lock_timer` covers start-up and recovery). Fixed: opponents are watched every frame, also while guarding. The reactive model itself stays; per-character detection → guard → block numbers are the round-2 measurement (QA-14 retest). |
+| N1 | **accept** | The guard aim dropped the vertical part, so an attacker straight above or below fell back to `facing` and the cardinal check failed. Fixed: guard along the main axis toward the attacker; test `test_bot_brain` guards an attacker above. |
+| N2 | **accept** | A guarding bot returned before applying an intent, so its last `move_input` kept pushing. Fixed: a neutral intent is applied while guarding; test checks `move_input == 0`. |
+
+Still open: D3 (measurement: does any attacker become unblockable, any reaction guard first detected in recovery).
