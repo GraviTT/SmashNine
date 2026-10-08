@@ -142,3 +142,13 @@ Round 11 (the arc with the horizontal speed kept, one point): ring-outs 108 → 
 | ID | Verdict | Decision |
 | --- | --- | --- |
 | R12-1 hybrid fall check | **accept (hybrid)** | The arc follows the fighter's current move input with its air acceleration (4300 x 1.2) up to its run speed, gravity and speed cap as before, and casts at both feet and the centre (42 px body); cached for 0.1 s while falling. It accepts steered landings (round 11 did not) and still rejects floors the arc passes under (round 10 accepted them). Tests for both. |
+
+## Round 13 (measurement: Codex QA-14 round 12, `reports/codex-qa-14/round12.md`) — fall check decided
+
+Round 12 (arc steered by the move input, both feet): ring-outs 120 and zero-jump ring-outs 80, the worst of the four fall checks; verdicts flipped without input changes 705 times and 1,014 of 1,367 accepted falls needed a late recovery. Codex: revert; use round 10 as the baseline while a new predictor is built.
+
+Fall checks on the same seeds (ring-outs / recovery entries / no-progress / median): straight down 97 / 2,386 / 994 s / 287 s; straight down from points ahead 108 / 1,346 / 724 s / 276 s; arc 94 / 2,022 / 1,118 s / 310 s; steered arc 120 / 1,559 / 737 s / 296 s.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R13-1 fall check | **lead decides: the round-11 arc** (Codex: round 10) | The arc has the fewest self-inflicted deaths (94) and best recovery success (95.2%) and is the only one with matches in the criteria's 5–7 minutes; its cost is no-progress time and extra recovery entries, almost all of which land (856 of 859). The code is back to the measured round-11 state (`84bb424`); a better predictor is the next session's first item. |

@@ -81,14 +81,11 @@ const FALL_PROBE_STEP := 0.1
 const FALL_PROBE_STEPS := 10
 const FALL_GRAVITY := 1850.0 * GAME_SCALE.GRAVITY * 1.18
 const FALL_MAX_SPEED := 980.0 * GAME_SCALE.JUMP_SPEED
-## Round 12 (Codex QA-14 round 11: the arc with the horizontal speed kept and one point rejected
-## 867 falls that round 10 accepted, and 856 of them landed — fighters steer hard in the air): the
-## arc follows the fighter's current move input with its air acceleration (PlayerBase AIR_ACCEL)
-## up to its run speed, and the body's width (42 px hurtbox) counts at both feet. Checked every
-## FALL_CHECK_INTERVAL s while falling.
-const FALL_AIR_ACCEL := 4300.0 * GAME_SCALE.MOVE
-const FALL_BODY_HALF := 21.0
-const FALL_CHECK_INTERVAL := 0.1
+## Measured over rounds 9-12 (same seeds; ring-outs / recovery entries / no-progress / median):
+## straight down 97 / 2,386 / 994 s / 287 s; straight down from points ahead 108 / 1,346 / 724 s /
+## 276 s; this arc 94 / 2,022 / 1,118 s / 310 s; the arc steered by the move input with the body's
+## width 120 / 1,559 / 737 s / 296 s. This arc kills the fewest bots and keeps matches in the 5-7
+## minute range; its extra recoveries almost all land (round 11: 856 of 859).
 ## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
 ## Fixed extra ultimate presses (Luna's heart laser). Nova's slingshot is driven by aim
 ## instead (_drive_nova_slingshot).
@@ -262,8 +259,6 @@ var no_target_time: float = 0.0
 var escape_cooldown: float = 0.0
 ## Seconds since this bot last attacked (the blocked-way rule spares a bot that is attacking).
 var attack_age: float = 100.0
-var fall_check_timer: float = 0.0
-var fall_check_landing: bool = true
 var back_off_timer: float = 0.0
 var nova_stage_timer: float = -1.0
 var nova_redirect_timer: float = -1.0
@@ -286,7 +281,6 @@ func update(player, delta: float) -> void:
 	escape_cooldown = maxf(escape_cooldown - delta, 0.0)
 	blocked_age += delta
 	attack_age += delta
-	fall_check_timer = maxf(fall_check_timer - delta, 0.0)
 	no_target_time = 0.0 if is_instance_valid(target) else no_target_time + delta
 
 	if _needs_recovery(player):
@@ -859,27 +853,15 @@ func _needs_recovery(player) -> bool:
 	# Falling with nothing under the fall path: start heading back now, not near the blast line.
 	return local_position.y > player.realm_size.y - RECOVER_START_FROM_BOTTOM or not _landing_in_fall(player)
 
-## The fall arc meets a floor within a second, if the fighter keeps steering as it does now
-## (its move input with air acceleration up to run speed, gravity, the body's width).
+## The fall arc (gravity included, horizontal speed kept) meets a floor within a second.
 func _landing_in_fall(player) -> bool:
-	if fall_check_timer > 0.0:
-		return fall_check_landing
-	fall_check_timer = FALL_CHECK_INTERVAL
-	fall_check_landing = false
 	var at: Vector2 = player.global_position
 	var motion: Vector2 = player.velocity
-	var steer: float = float(player.get("move_input")) if player.get("move_input") != null else 0.0
-	var run_speed: float = float(player.get("speed")) if player.get("speed") != null else 330.0
 	for step in FALL_PROBE_STEPS:
-		if not is_zero_approx(steer):
-			motion.x = move_toward(motion.x, steer * run_speed, FALL_AIR_ACCEL * FALL_PROBE_STEP)
 		motion.y = minf(motion.y + FALL_GRAVITY * FALL_PROBE_STEP, FALL_MAX_SPEED)
 		var next: Vector2 = at + motion * FALL_PROBE_STEP
-		for foot in [-FALL_BODY_HALF, 0.0, FALL_BODY_HALF]:
-			var side := Vector2(foot, 0.0)
-			if _ray_hits_world(player, at + side, next + side):
-				fall_check_landing = true
-				return true
+		if _ray_hits_world(player, at, next):
+			return true
 		at = next
 	return false
 
