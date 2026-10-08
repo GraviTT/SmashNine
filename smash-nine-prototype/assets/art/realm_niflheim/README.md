@@ -24,3 +24,8 @@ Godot 4.7용 `Niflheim / Land of ice` 원본 배경·플랫폼 세트다. 내장
 
 Platforms intentionally avoid white bloom so the runtime frost sheen and cyan accent edge can remain readable on top.
 
+## 1.5배 렐름 배경 갱신 (CODEX-ART-15)
+
+- `bg_far.png` / `bg_mid.png`: 1920×1080, 960×540 논리 픽셀을 2배 최근접 확대, 좌상단 `(0, 0)` 기준.
+- 원경 프롬프트: 기존 니플하임을 카메라 1.5배 줌아웃한 16:9 확장 장면. 오로라·빙하 계단·얼음 폭포·고대 교량을 확장하며 청록 얼음 정체성을 유지.
+- 중경: 기존 투명 빙벽 프레임을 새 논리 격자에서 재구성하고 알파를 0/0.5/1로 정리했다.

@@ -18,3 +18,9 @@ Godot 4.7용 무스펠하임 원경·중경·플랫폼 세트다. 내장 `image_
 플랫폼 시트: `Transparent 16:9 pixel-art source sheet with exactly two isolated side-view Muspelheim platforms: heavy black-basalt main platform above and thin one-way ledge below; perfectly flat tops, symmetric caps, restrained ember fissures, long repeatable middles; no scene, fire pillars, characters, text, logo or watermark.`
 
 `bg_mid.png`는 원경 원본의 가장자리 색을 어둡게 재매핑해 만든 투명 실루엣이다. 실제 분출 경고/불기둥을 가리지 않도록 플랫폼 균열 발광은 제한했다.
+
+## 1.5배 렐름 배경 갱신 (CODEX-ART-15)
+
+- `bg_far.png` / `bg_mid.png`: 1920×1080, 960×540 논리 픽셀을 2배 최근접 확대, 좌상단 `(0, 0)` 기준.
+- 원경 프롬프트: 기존 무스펠하임을 카메라 1.5배 줌아웃한 16:9 확장 장면. 화산·현무암 성채·용암 폭포·외곽 칼데라를 확장하되 중앙 전투 띠의 용암 밝기를 억제.
+- 중경: 기존 투명 현무암 프레임을 새 논리 격자에서 재구성하고 알파를 0/0.5/1로 정리했다.

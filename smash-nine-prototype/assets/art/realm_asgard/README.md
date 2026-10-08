@@ -24,3 +24,8 @@ Godot 4.7용 `Asgard / Realm of the gods` 원본 배경·플랫폼 세트다. �
 
 The attached concept art was used only for broad world identity; the accepted center-realm contact sheet was the pixel scale, layer-separation and palette-discipline reference.
 
+## 1.5배 렐름 배경 갱신 (CODEX-ART-15)
+
+- `bg_far.png` / `bg_mid.png`: 1920×1080, 960×540 논리 픽셀을 2배 최근접 확대, 좌상단 `(0, 0)` 기준.
+- 원경 프롬프트: 기존 아스가르드를 카메라 1.5배 줌아웃한 16:9 확장 장면. 발키리 관문·공중 성채·설산·구름 바다를 새 외곽까지 확장하고 전투 띠는 저대비로 유지.
+- 중경: 기존 투명 신전 기둥·구름 프레임을 새 논리 격자에서 재구성하고 알파를 0/0.5/1로 정리했다.

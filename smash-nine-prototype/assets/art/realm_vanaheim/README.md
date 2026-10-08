@@ -18,3 +18,9 @@ Godot 4.7용 바나하임 원경·중경·플랫폼 세트다. 내장 `image_gen
 플랫폼 시트: `Transparent 16:9 pixel-art source sheet with exactly two isolated side-view Vanaheim platforms: ancient green temple-stone main platform above and thin mossy ledge below; perfectly flat tops, symmetric caps, restrained moss and root carvings, long repeatable middles; no environment, characters, text, logo or watermark.`
 
 `bg_mid.png`는 원경 가장자리와 상단 모서리 수관을 투명 실루엣으로 재구성했다. 녹색 전용 팔레트라 프레이 외 다른 녹색 캐릭터의 윤곽은 사람이 실제 전투에서 확인해야 한다.
+
+## 1.5배 렐름 배경 갱신 (CODEX-ART-15)
+
+- `bg_far.png` / `bg_mid.png`: 1920×1080, 960×540 논리 픽셀을 2배 최근접 확대, 좌상단 `(0, 0)` 기준.
+- 원경 프롬프트: 기존 바나하임을 카메라 1.5배 줌아웃한 16:9 확장 장면. 침수 신전·숲 테라스·폭포·뿌리를 확장하되 중앙 나무 기둥 없이 시야를 유지.
+- 중경: 기존 투명 수관·유적 프레임을 새 논리 격자에서 재구성하고 알파를 0/0.5/1로 정리했다.

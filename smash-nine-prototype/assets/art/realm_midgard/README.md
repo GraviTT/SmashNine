@@ -26,3 +26,8 @@ Godot 4.7용 `Midgard / World of humans` 원본 배경·플랫폼·수풀 세트
 
 The bush is generated and post-processed as an integration candidate; product code placement and occlusion order remain the lead's responsibility.
 
+## 1.5배 렐름 배경 갱신 (CODEX-ART-15)
+
+- `bg_far.png` / `bg_mid.png`: 1920×1080, 960×540 논리 픽셀을 2배 최근접 확대, 좌상단 `(0, 0)` 기준.
+- 원경 프롬프트: 기존 미드가르드 강변 시장을 카메라 1.5배 줌아웃한 16:9 확장 장면. 교량·시계탑·목조 지붕·농가·강둑을 확장하고 비대칭 도시 정체성을 유지.
+- 중경: 기존 투명 목조 건물·간판 프레임을 새 논리 격자에서 재구성하고 알파를 0/0.5/1로 정리했다.
