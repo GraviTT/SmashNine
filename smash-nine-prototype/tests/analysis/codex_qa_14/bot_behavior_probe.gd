@@ -9,7 +9,7 @@ const HIT_WINDOW := 0.4
 const NO_PROGRESS_MIN_SECONDS := 3.0
 const NO_PROGRESS_MIN_PIXELS := 100.0
 const LOW_HP_FOLLOW_SECONDS := 10.0
-const OUT_PATH := "res://../reports/codex-qa-14/round4-results.json"
+const OUT_PATH := "res://../reports/codex-qa-14/round5-results.json"
 const AIR_DOWN_RINGOUT_WINDOW := 2.0
 const NOVA_LAUNCH_HIT_WINDOW := 3.2
 const CORNER_ESCAPE_RINGOUT_WINDOW := 3.0
@@ -31,7 +31,8 @@ var totals: Dictionary = {
 	"guards_by_attacker": {}, "nova": {"launches": 0, "aimed": 0, "forced": 0, "redirects": 0, "hits": 0},
 	"air_down_self_ringouts": {}, "target_drops": {}, "corner_escapes": {},
 	"swing_context": {}, "recovery_skills": {}, "yuki_ledge_ringouts": {"all": 0, "near_ledge": 0},
-	"frey_recovery_entries": {"knocked_off": 0, "walked_or_dashed_off": 0, "other": 0}
+	"frey_recovery_entries": {"knocked_off": 0, "walked_or_dashed_off": 0, "other": 0},
+	"recovery_skill_asks": {}, "progress_extensions": {}, "cornered_guards": {}
 }
 var match_rows: Array[Dictionary] = []
 var ringout_rows: Array[Dictionary] = []
@@ -53,6 +54,8 @@ var pending_swing_context: Dictionary = {}
 var target_drop_rows: Array[Dictionary] = []
 var corner_escape_rows: Array[Dictionary] = []
 var recovery_skill_rows: Array[Dictionary] = []
+var recovery_skill_ask_rows: Array[Dictionary] = []
+var progress_extension_rows: Array[Dictionary] = []
 var match_ringouts := 0
 var match_portals := 0
 var match_relocations := 0
@@ -81,7 +84,7 @@ func _run_all() -> void:
 	for value in seeds:
 		await _run_match(value)
 	var result := {
-		"schema": 4,
+		"schema": 5,
 		"seeds": seeds,
 		"players": player_count,
 		"sample_interval": SAMPLE_INTERVAL,
@@ -96,6 +99,8 @@ func _run_all() -> void:
 		"target_drop_events": target_drop_rows,
 		"corner_escape_events": corner_escape_rows,
 		"recovery_skill_events": recovery_skill_rows,
+		"recovery_skill_ask_events": recovery_skill_ask_rows,
+		"progress_extension_events": progress_extension_rows,
 		"round2_definitions": {
 			"reaction_in_recovery": "reactive guard timer first seen after the observed attack's conservative per-character startup bound",
 			"block": "damage signal arrived while the defender was still guarding (wrong-direction guards are lowered before the signal)",
@@ -115,6 +120,11 @@ func _run_all() -> void:
 		"round4_definitions": {
 			"combo_block": "a guarded damage event attributed to Frey/Rio ground-side combo step 2 or 3 from combo_step at attack_serial increment",
 			"frey_recovery_entry": "knocked_off if PvP-damaged within 3s; otherwise walked_or_dashed_off if recover began outside the realm sides or over void; remaining entries are other"
+		},
+		"round5_definitions": {
+			"recovery_skill_ask": "rising edge of EnemyAI.recovery_skill_asked; used remains an observed character activation, not an intent",
+			"progress_extension": "rising change of EnemyAI.progress_extended; dropped_after_extension means that same target later entered ignored_targets",
+			"cornered_guard": "guard raised on a new hold decision while escape_cooldown > 0 and _cornered() is true; block is attributed while that guard remains recent"
 		}
 	}
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../reports/codex-qa-14"))
@@ -231,7 +241,11 @@ func _new_player_memory(player: Node) -> Dictionary:
 		"last_combo_serial": -1,
 		"last_pvp_hit_received": -99.0,
 		"last_damage_time": -99.0,
-		"last_damage_source": ""
+		"last_damage_source": "",
+		"last_recovery_skill_asked": bool(player.ai_controller.recovery_skill_asked),
+		"last_progress_extended_id": -1,
+		"last_action_timer": float(player.ai_controller.action_timer),
+		"last_corner_guard_time": -99.0
 	}
 
 func _observe_frame() -> void:
@@ -247,6 +261,7 @@ func _observe_frame() -> void:
 		var memory: Dictionary = player_memory[pid]
 		var snapshot: Dictionary = player.ai_controller.debug_snapshot(player)
 		_observe_round3(player, snapshot, memory, now)
+		_observe_round5(player, snapshot, memory, now)
 		_observe_attack(player, snapshot, memory, now)
 		_observe_guard(player, memory, now)
 		_observe_nova(player, memory, now)
@@ -293,6 +308,49 @@ func _observe_round3(player: Node, snapshot: Dictionary, memory: Dictionary, now
 		_observe_exact_swing(player, snapshot, memory, now, serial)
 		memory.last_attack_serial = serial
 
+func _observe_round5(player: Node, snapshot: Dictionary, memory: Dictionary, now: float) -> void:
+	var ai = player.ai_controller
+	var character := str(player.character_id)
+	var asked := bool(ai.recovery_skill_asked)
+	if asked and not bool(memory.last_recovery_skill_asked):
+		var recovery_distance: float = player.global_position.distance_to(ai.recovery_target + Vector2(0.0, -60.0))
+		_add_number(totals.recovery_skill_asks, character, 1.0)
+		recovery_skill_ask_rows.append({
+			"seed": match_seed, "time": snappedf(now, 0.01), "character": character,
+			"distance": snappedf(recovery_distance, 0.1), "intent": str(snapshot.attack),
+			"attack_locked": float(player.attack_lock_timer) > 0.0
+		})
+	memory.last_recovery_skill_asked = asked
+
+	var extended_value: Variant = ai.progress_extended
+	var extended_id: int = -1
+	if is_instance_valid(extended_value):
+		extended_id = extended_value.get_instance_id()
+	if extended_id != -1 and extended_id != int(memory.last_progress_extended_id):
+		var extension_stats: Dictionary = totals.progress_extensions.get(character, {"extended": 0, "dropped_after_extension": 0})
+		extension_stats.extended = int(extension_stats.extended) + 1
+		totals.progress_extensions[character] = extension_stats
+		progress_extension_rows.append({
+			"seed": match_seed, "time": snappedf(now, 0.01), "character": character,
+			"target_id": extended_id, "target_kind": _target_kind(extended_value),
+			"distance": snappedf(player.global_position.distance_to(extended_value.global_position), 0.1),
+			"dropped_after_extension": false
+		})
+	memory.last_progress_extended_id = extended_id
+
+	var action_timer := float(ai.action_timer)
+	var new_decision := action_timer > float(memory.last_action_timer) + FRAME_TIME * 2.0
+	if new_decision and str(snapshot.action) == "hold" and float(ai.escape_cooldown) > 0.0 and is_instance_valid(ai.target):
+		var target_direction := signf(ai.target.global_position.x - player.global_position.x)
+		if target_direction != 0.0 and bool(ai._cornered(player, target_direction)):
+			var guard_stats: Dictionary = totals.cornered_guards.get(character, {"opportunities": 0, "raised": 0, "blocks": 0, "parries": 0, "ringouts_within_3s": 0})
+			guard_stats.opportunities = int(guard_stats.opportunities) + 1
+			if bool(player.is_guarding) and not bool(memory.last_is_guarding):
+				guard_stats.raised = int(guard_stats.raised) + 1
+				memory.last_corner_guard_time = now
+			totals.cornered_guards[character] = guard_stats
+	memory.last_action_timer = action_timer
+
 func _observe_progress_drop_edge(player: Node, memory: Dictionary, now: float) -> void:
 	var current_ids: Dictionary = {}
 	var previous_ids: Dictionary = memory.ignored_target_ids
@@ -329,7 +387,8 @@ func _observe_recovery_skill_activation(player: Node, snapshot: Dictionary, memo
 		var recovery_stats: Dictionary = totals.recovery_skills.get(character, {"used": 0, "reached_floor": 0})
 		recovery_stats.used = int(recovery_stats.used) + 1
 		totals.recovery_skills[character] = recovery_stats
-		memory.recovery_skill_pending.append({"seed": match_seed, "time": snappedf(now, 0.01), "character": character, "reached_floor": false})
+		var activation_distance: float = player.global_position.distance_to(player.ai_controller.recovery_target + Vector2(0.0, -60.0))
+		memory.recovery_skill_pending.append({"seed": match_seed, "time": snappedf(now, 0.01), "character": character, "distance": snappedf(activation_distance, 0.1), "reached_floor": false})
 	if character == "nova":
 		memory.last_vector_shift_active = bool(player.get("vector_shift_active"))
 	elif character == "rio":
@@ -359,7 +418,8 @@ func _observe_target_drop(player: Node, now: float, known_dropped: Node = null) 
 	var row := {
 		"seed": match_seed, "time": snappedf(now, 0.01), "character": str(player.character_id),
 		"target_kind": kind, "distance": snappedf(distance, 0.1), "within_300": distance >= 0.0 and distance <= 300.0,
-		"traded_within_3s": traded
+		"traded_within_3s": traded,
+		"after_extension": is_instance_valid(dropped) and dropped == player.ai_controller.progress_extended
 	}
 	target_drop_rows.append(row)
 	var stats: Dictionary = totals.target_drops.get(str(player.character_id), {"all": 0, "within_300": 0, "traded_within_3s": 0})
@@ -367,6 +427,15 @@ func _observe_target_drop(player: Node, now: float, known_dropped: Node = null) 
 	stats.within_300 = int(stats.within_300) + (1 if bool(row.within_300) else 0)
 	stats.traded_within_3s = int(stats.traded_within_3s) + (1 if traded else 0)
 	totals.target_drops[str(player.character_id)] = stats
+	if bool(row.after_extension):
+		var extension_stats: Dictionary = totals.progress_extensions.get(str(player.character_id), {"extended": 0, "dropped_after_extension": 0})
+		extension_stats.dropped_after_extension = int(extension_stats.dropped_after_extension) + 1
+		totals.progress_extensions[str(player.character_id)] = extension_stats
+		for index in range(progress_extension_rows.size() - 1, -1, -1):
+			var extension_event: Dictionary = progress_extension_rows[index]
+			if int(extension_event.target_id) == dropped.get_instance_id() and str(extension_event.character) == str(player.character_id) and int(extension_event.seed) == match_seed:
+				extension_event.dropped_after_extension = true
+				break
 
 func _observe_exact_swing(player: Node, snapshot: Dictionary, memory: Dictionary, now: float, serial: int) -> void:
 	var attack_type := _current_attack_type(player, snapshot)
@@ -544,6 +613,11 @@ func _observe_parry_effects() -> void:
 			var stats := _guard_stats(str(attacker.character_id))
 			stats.parries = int(stats.parries) + 1
 			totals.guards_by_attacker[str(attacker.character_id)] = stats
+			var defender_memory: Dictionary = player_memory.get(defender.get_instance_id(), {})
+			if not defender_memory.is_empty() and float(main.director.match_elapsed) - float(defender_memory.get("last_corner_guard_time", -99.0)) <= 1.0:
+				var corner_stats: Dictionary = totals.cornered_guards.get(str(defender.character_id), {"opportunities": 0, "raised": 0, "blocks": 0, "parries": 0, "ringouts_within_3s": 0})
+				corner_stats.parries = int(corner_stats.parries) + 1
+				totals.cornered_guards[str(defender.character_id)] = corner_stats
 
 func _observe_nova(player: Node, memory: Dictionary, now: float) -> void:
 	if str(player.character_id) != "nova":
@@ -822,6 +896,10 @@ func _on_damaged(player: Node, amount: float, attacker: Node, source: String) ->
 				elif combo_step == 3:
 					guard_stats.combo_3_blocks = int(guard_stats.combo_3_blocks) + 1
 				totals.guards_by_attacker[str(attacker.character_id)] = guard_stats
+				if now - float(memory.get("last_corner_guard_time", -99.0)) <= 1.0:
+					var corner_stats: Dictionary = totals.cornered_guards.get(str(player.character_id), {"opportunities": 0, "raised": 0, "blocks": 0, "parries": 0, "ringouts_within_3s": 0})
+					corner_stats.blocks = int(corner_stats.blocks) + 1
+					totals.cornered_guards[str(player.character_id)] = corner_stats
 			_mark_attack_hit(attacker, amount, now)
 			_mark_swing_context_hit(attacker, now)
 			_add_number(totals.pvp_damage, str(attacker.character_id), amount)
@@ -863,6 +941,10 @@ func _on_damaged(player: Node, amount: float, attacker: Node, source: String) ->
 			if escape_event.character == str(player.character_id) and int(escape_event.seed) == match_seed and now - float(escape_event.time) <= CORNER_ESCAPE_RINGOUT_WINDOW:
 				escape_event.ringout_within_3s = true
 				break
+	if now - float(memory.get("last_corner_guard_time", -99.0)) <= CORNER_ESCAPE_RINGOUT_WINDOW:
+		var corner_stats: Dictionary = totals.cornered_guards.get(str(player.character_id), {"opportunities": 0, "raised": 0, "blocks": 0, "parries": 0, "ringouts_within_3s": 0})
+		corner_stats.ringouts_within_3s = int(corner_stats.ringouts_within_3s) + 1
+		totals.cornered_guards[str(player.character_id)] = corner_stats
 	if str(player.character_id) == "yuki":
 		totals.yuki_ledge_ringouts.all = int(totals.yuki_ledge_ringouts.all) + 1
 		if bool(memory.last_yuki_hit_near_ledge) and is_instance_valid(player.last_attacker):

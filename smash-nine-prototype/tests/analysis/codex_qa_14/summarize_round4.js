@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const reportDir = path.resolve(__dirname, '../../../../reports/codex-qa-14');
-const data = JSON.parse(fs.readFileSync(path.join(reportDir, 'round4-results.json'), 'utf8').replace(/^\uFEFF/, ''));
+const roundName = process.argv[2] || 'round4';
+const data = JSON.parse(fs.readFileSync(path.join(reportDir, `${roundName}-results.json`), 'utf8').replace(/^\uFEFF/, ''));
 const t = data.totals;
 const chars = ['frey', 'luna', 'nova', 'rio', 'yuki'];
 const phases = ['Exploration', 'Corner collapse warning', 'Convergence', 'Central brawl'];
@@ -146,6 +147,11 @@ const summary = {
   guards: t.guards_by_attacker,
   escapes: t.corner_escapes,
   recovery_skills: t.recovery_skills,
+  recovery_skill_asks: t.recovery_skill_asks || {},
+  recovery_skill_ask_events: data.recovery_skill_ask_events || [],
+  progress_extensions: t.progress_extensions || {},
+  progress_extension_events: data.progress_extension_events || [],
+  cornered_guards: t.cornered_guards || {},
   frey_recovery_entries: t.frey_recovery_entries,
   yuki: {side_distance: swingDistance('yuki', 'basic_side'), side_targets: swingTargets('yuki', 'basic_side'), ledge_ringouts: t.yuki_ledge_ringouts},
   rio: {side_distance: swingDistance('rio', 'basic_side'), side_targets: swingTargets('rio', 'basic_side'), pvp_dpm: byCharacter.rio.attack.pvp_dpm, wins: wins.rio},
@@ -155,5 +161,5 @@ const summary = {
   stuck_worst: Object.entries(t.stuck).sort((a, b) => b[1] - a[1]).slice(0, 10)
 };
 
-fs.writeFileSync(path.join(reportDir, 'round4-summary.json'), JSON.stringify(summary, null, 2) + '\n');
+fs.writeFileSync(path.join(reportDir, `${roundName}-summary.json`), JSON.stringify(summary, null, 2) + '\n');
 console.log(JSON.stringify(summary, null, 2));
