@@ -3,48 +3,48 @@
   "url": "https://smash-nine-prototype.tt9.chatgpt.site",
   "registered_site_origin": "https://smash-nine-prototype.tt9.chatgpt.site",
   "access": "owner_only",
-  "version_number": 1,
-  "version_id": "appgprj_6ac65f43555481918a37077e8c63c66c~appgver_336704462edc8191bb9baf823f8f7371",
-  "deployment_id": "appgdep_6ac66b0c4cdc8191877bf733c39e9dbd",
-  "sites_source_commit_sha": "c586eb2336c029f2fc0422a984e7fbbd060c2329",
-  "game_source_commit_sha": "55fcea86dc7d9b1d27a3755f76403c61ad098342",
+  "version_number": 2,
+  "version_id": "appgprj_6ac65f43555481918a37077e8c63c66c~appgver_1cbe1d226c648191a13750584efcd5a4",
+  "deployment_id": "appgdep_6ac770f7cc208191bd7a489d18ca1039",
+  "sites_source_commit_sha": "fb8dcac645affb1e74a34adc57378a3147eaf7d5",
+  "game_source_commit_sha": "ae406ffa07d095106542926b3a12ca2da3a6ed09",
   "build_command": "powershell -ExecutionPolicy Bypass -File tools/build_web.ps1",
-  "deployed_at_utc": "2026-10-07T15:54:11.581258Z",
-  "verified_at_utc": "2026-10-07T15:56:30.3242757Z",
+  "deployed_at_utc": "2026-10-08T10:31:39.249242Z",
+  "verified_at_utc": "2026-10-08T10:35:27.7731774Z",
   "verified_routes": [
     {
       "route": "/",
-      "status": "owner_login_required",
-      "observed": "Sites 로그인 게이트와 auth.openai.com 보안 확인 화면까지 확인",
-      "game_content_verified": false
+      "status": "loaded_authenticated_owner",
+      "observed": "소유자 로그인 상태의 Chrome에서 시작 화면과 5 키 경기 시작 후 HUD 및 봇 패널을 실제 확인",
+      "game_content_verified": true
     }
   ],
-  "status": "deployed_verified_by_owner",
+  "status": "deployed_verified",
   "build": {
     "output_directory": "build/web",
     "zip_path": "build/SmashNine-web.zip",
-    "zip_size_bytes": 14704178,
-    "zip_size_mib": 14.02,
+    "zip_size_bytes": 16775078,
+    "zip_size_mib": 16.0,
     "largest_file": "index.wasm.part0",
     "largest_file_size_bytes": 5242880,
     "largest_file_size_mib": 5,
+    "largest_file_at_or_below_5_mib": true,
     "index_wasm_present": false,
     "index_wasm_part_count": 8,
-    "index_pck_size_bytes": 4537468
+    "index_pck_present": false,
+    "index_pck_part_count": 2,
+    "index_pck_total_size_bytes": 6630200
   },
   "browser_verification": {
     "owner_login_required": true,
-    "start_screen_verified": false,
-    "five_key_match_start_verified": false,
-    "game_console_errors_verified": false,
-    "network_parts_200_verified": false,
-    "network_pck_200_verified": false,
-    "blocker": "ChatGPT 로그인 진행 중 auth.openai.com의 Cloudflare 보안 확인 화면에서 더 진행되지 않음"
-  },
-  "user_verification": {
-    "date": "2026-10-08",
-    "by": "owner",
-    "result": "played the deployed version 1 in the browser (owner login)",
-    "source": "user: 배포 후 플레이 완료"
+    "authenticated_owner_session_used": true,
+    "start_screen_verified": true,
+    "five_key_match_start_verified": true,
+    "skill_icons_j_k_l_i_verified": true,
+    "controls_single_line_verified": true,
+    "bot_panel_verified": true,
+    "game_console_errors_verified": true,
+    "game_console_error_count": 0,
+    "blocker": null
   }
 }
