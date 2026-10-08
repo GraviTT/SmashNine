@@ -257,6 +257,9 @@ func _on_realm_state_changed(_realm_index: int, _state: String) -> void:
 	_sync_combatant_visibility()
 
 func _on_combatant_relocated(combatant: Node, realm_index: int) -> void:
+	# The collapse marked fighters in the falling realm inactive before moving them: they play
+	# on in the realm they land in (otherwise a fighter caught at 4:00 froze for good).
+	combatant.set_realm_active(director.is_playable(realm_index))
 	if combatant == _get_human_player():
 		_show_message("Caught in the collapse! Thrown into %s." % layout.get_realm(realm_index).name)
 
