@@ -93,3 +93,13 @@ Codex kept: removing the close-target extension (no-progress 1,238.8 → 999.8 s
 | Progress drops 199 → 318 | **measure** | The extension removal brings back R3-style drops of close targets the bot cannot reach in practice; Codex's suggestion of a per-target retry only when the route improved is left for the next session. |
 
 Round 7 is this session's last measurement; whatever it shows goes into `decision.md` with the open items.
+
+## Round 8 (measurement: Codex QA-14 round 7, `reports/codex-qa-14/round7.md`) — after the last measurement
+
+Codex kept both round-7 changes (Nova 24 asks for 24 uses; Frey 23 dashes, at most 2 per recovery). Its trace of seed 112's 188.9 s standoff: two Freys 401.2 px apart at the edges of two platforms — 1 px beyond Frey's 400 px attack reach, no landing within the 240 px jump search, so `engage` with no move and no attack; the progress rule counted a same-level target as progress.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R8-1 gap dead band | **accept** | Same level counts as progress only while the way toward the target is open: blocked toward it within the last second (`blocked_age`, `blocked_direction` from `_terrain_move_intent`) makes it no-progress, dropped after 2.5 s; blocked away from it does not. Test `_test_gap_dead_band`. Unmeasured by Codex this session. |
+
+Open for the next session: Codex's list at the end of `round7.md` and `decision.md`.

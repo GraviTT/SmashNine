@@ -36,6 +36,8 @@ const LONG_LANDING_DISTANCE := 160.0 * GAME_SCALE.WORLD
 const LANDING_PATCH_HALF_WIDTH := 24.0
 const EDGE_BRAKE_LOOKAHEAD := 0.14
 const BLOCKED_PATH_TIME := 0.65
+## A path blocked within this long still counts as blocked (it is retried every 0.65 s).
+const BLOCKED_MEMORY := 1.0
 const WAYPOINT_REACHED := 58.0
 const STUCK_CHECK_TIME := 1.1
 const STUCK_DISTANCE := 20.0
@@ -198,6 +200,8 @@ var stuck_timer: float = 0.0
 var last_commanded_move: float = 0.0
 var blocked_direction: float = 0.0
 var blocked_timer: float = 0.0
+## Seconds since the way ahead was last found blocked (a gap with no landing).
+var blocked_age: float = 100.0
 var jump_retry_timer: float = 0.0
 var navigation_path: Array[Vector2] = []
 var navigation_index: int = 0
@@ -248,6 +252,7 @@ func update(player, delta: float) -> void:
 	disengage_cooldown = maxf(disengage_cooldown - delta, 0.0)
 	back_off_timer = maxf(back_off_timer - delta, 0.0)
 	escape_cooldown = maxf(escape_cooldown - delta, 0.0)
+	blocked_age += delta
 	no_target_time = 0.0 if is_instance_valid(target) else no_target_time + delta
 
 	if _needs_recovery(player):
@@ -732,6 +737,7 @@ func _terrain_move_intent(player, direction: float, wants_jump: bool, allow_gap_
 		return _intent()
 	blocked_direction = direction
 	blocked_timer = BLOCKED_PATH_TIME
+	blocked_age = 0.0
 	decision_timer = 0.0
 	waypoint = Vector2.ZERO
 	_clear_navigation_path()
@@ -1398,8 +1404,12 @@ func _update_target_progress(player, delta: float) -> void:
 		progress_timer = 0.0
 		return
 	# Closer, trading hits, or standing on our level (judged by floors, so a jump or a launch
-	# is not "another level") all count as progress.
-	if distance < progress_best - PROGRESS_DISTANCE * GAME_SCALE.WORLD or _trading_hits(player, target) or not _stands_on_other_level(player, target):
+	# is not "another level") all count as progress — our level only while the way is open
+	# (Codex QA-14 round 7, seed 112: two Freys 401 px apart at the edges of two platforms,
+	# 1 px out of reach and no landing to jump to, "engaged" for 189 s without moving).
+	var blocked_toward: bool = blocked_age < BLOCKED_MEMORY and signf(blocked_direction) == signf(target.global_position.x - player.global_position.x)
+	var open_same_level: bool = not blocked_toward and not _stands_on_other_level(player, target)
+	if distance < progress_best - PROGRESS_DISTANCE * GAME_SCALE.WORLD or _trading_hits(player, target) or open_same_level:
 		progress_best = minf(progress_best, distance)
 		progress_timer = 0.0
 		return

@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -505,4 +505,43 @@ func _test_yuki_basic_reach() -> void:
 		_fail("Yuki basics: %d from 600 px (want 0), %d from 300 px (want some)" % [far_basics, near_basics])
 	bot.queue_free()
 	foe.queue_free()
+	await process_frame
+
+## Round 8 (Codex QA-14 round 7, seed 112): two bots on the same level across a gap they cannot
+## cross, just out of reach, must not stay "engaged" forever: a blocked way is not progress.
+func _test_gap_dead_band() -> void:
+	var left := _floor(Vector2(-300, 0), 400)
+	var right := _floor(Vector2(301 + 200, 0), 400)
+	var bot := _fighter("frey", 1, Vector2(-110, -2))
+	var foe := _fighter("frey", 2, Vector2(291, -2))
+	bot.set_physics_process(false)
+	foe.set_physics_process(false)
+	await physics_frame
+	var ai = bot.ai_controller
+	ai.state = ai.STATE_ENGAGE
+	ai.target = foe
+	ai._update_target_progress(bot, 0.1)
+	# The way is open: same level counts as progress.
+	for step in 30:
+		ai._update_target_progress(bot, 0.1)
+	if ai.target != foe:
+		_fail("A target on our level with an open way should be kept")
+	# Blocked away from it (backing into a ledge): still progress.
+	for step in 30:
+		ai.blocked_age = 0.0
+		ai.blocked_direction = -1.0
+		ai._update_target_progress(bot, 0.1)
+	if ai.target != foe:
+		_fail("Being blocked away from the target (at our back) should not drop it")
+	# Blocked toward it by the gap (as _terrain_move_intent marks it every retry): dropped after 2.5 s.
+	for step in 30:
+		ai.blocked_age = 0.0
+		ai.blocked_direction = 1.0
+		ai._update_target_progress(bot, 0.1)
+	if ai.target != null:
+		_fail("A target across a gap the bot cannot cross should be dropped, not engaged forever")
+	bot.queue_free()
+	foe.queue_free()
+	left.queue_free()
+	right.queue_free()
 	await process_frame

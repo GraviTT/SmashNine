@@ -18,31 +18,31 @@ Lead: Claude (decides, implements). Opponent and measurer: Codex. Question and r
 | Aiming | basics aim up / down at a steep target (48 px, slope 0.65); no air-down over the void; skills aim at the target; dash skills stay level | 1 |
 | Guarding | sees a swing start (watched every frame, also in hitstun; `attack_serial`) → 55%, 0.14–0.24 s later, toward the attacker on the main axis; skipped when the attacker turned away or left, kept when it stays close (combo follow-ups); 15% guard ahead in engage, 50% at a ledge while the escape cools down | 1–5 |
 | Air jumps | the climb keeps the last air jump; routes need only one jump | 1 |
-| Targets | levels judged by where bodies stand; hitting the target (fighters, monsters, crystals) within 3 s is progress; a target on another level that does not get 90 px closer in 2.5 s is ignored 5 s; from the central brawl or 4 left, players before monsters | 1, 3, 4, 6 |
+| Targets | levels judged by where bodies stand; hitting the target (fighters, monsters, crystals) within 3 s is progress, and so is a target on our level while the way toward it is open; a target on another level that does not get 90 px closer in 2.5 s is ignored 5 s; from the central brawl or 4 left, players before monsters | 1, 3, 4, 6, 8 |
 | Portals and retreat | 8 s stay after any portal move; roam only after 4 s with no target; low HP retreats only to an empty stable realm, else backs off 4 s | 2 |
 | Ledges | a kiting bot does not back off a ledge: it jumps past an opponent on its level (every 2.5 s at most, only with floor to land on) and holds against one below | 3–4 |
-| Recovery | air jumps when below the ledge and falling; out of jumps, Frey / Nova / Rio use their directional skill whenever it can start (Rio: within 290 px, aimed above the ledge, one blink per airtime) | 2–6 |
+| Recovery | air jumps when below the ledge and falling; out of jumps, Frey / Nova / Rio use their directional skill whenever it can start, at most twice per recovery (Rio: within 290 px, aimed above the ledge, one blink per airtime; Nova: one shift per airtime) | 2–7 |
 | Ultimates | opportunity score (target in reach, low, stunned, another opponent near); Nova's slingshot launches at the target or toward safe floor and redirects | 1 |
 | Skills | Nova's vector shift only to close distance; Yuki's binding talisman close and on its level; Rio's rune shield only against a swing; basics within reach (Rio 240 px, Yuki 480 px) | 2, 4, 6 |
 
 ## Measured result (same seeds; R1 before any change)
 
-| Metric | R1 | R2 | R3 | R4 | R5 | R6 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Match length, median | 305.7 s | 315.4 s | 277.8 s | 293.1 s | 285.9 s | 290.1 s |
-| Portal moves per match | 94.3 | 20.9 | 21.0 | 19.7 | 19.3 | 20.3 |
-| Ring-outs (12 matches) | 143 | 135 | 114 | 117 | 123 | 122 |
-| Recovery success | 91.2% | 92.6% | 93.8% | 92.6% | 91.1% | 92.4% |
-| Up / down / air-up / air-down attacks | 0 | 3,299 | used by all | used by all | used by all | used by all |
-| Guards: blocks + parries | 0 | 463 | 155 | 312 | 411 | 406 |
-| No-target time | 2.5% | 9.2% | 6.6% | 5.5% | 6.2% | 6.2% |
-| No-progress time | 7.0% | 2.3% | 3.4% | 5.4% | 6.1% | 4.85% |
-| Wrong drops (close or just hit) | — | — | 146 | 4 | 59 | 98 |
-| Central brawl: player targets | 86.5% | 75.2% | 78.7% | 84.4% | 85.5% | 88.9% |
-| 20 s+ standoffs (longest) | 5 (90.9 s) | 1 (56.6 s) | 3 (42.0 s) | 2 (68.9 s) | 6 (171.1 s) | 5 (48.9 s) |
-| Nova launches followed by PvP damage | — | 75.0% | 85.7% | 88.4% | 88.5% | 85.2% |
+| Metric | R1 | R2 | R3 | R4 | R5 | R6 | R7 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Match length, median | 305.7 s | 315.4 s | 277.8 s | 293.1 s | 285.9 s | 290.1 s | 286.1 s |
+| Portal moves per match | 94.3 | 20.9 | 21.0 | 19.7 | 19.3 | 20.3 | 20.0 |
+| Ring-outs (12 matches) | 143 | 135 | 114 | 117 | 123 | 122 | 128 |
+| Recovery success | 91.2% | 92.6% | 93.8% | 92.6% | 91.1% | 92.4% | 91.3% |
+| Up / down / air-up / air-down attacks | 0 | 3,299 | used by all | used by all | used by all | used by all | used by all |
+| Guards: blocks + parries | 0 | 463 | 155 | 312 | 411 | 406 | 418 |
+| No-target time | 2.5% | 9.2% | 6.6% | 5.5% | 6.2% | 6.2% | — |
+| No-progress time | 7.0% | 2.3% | 3.4% | 5.4% | 6.1% | 4.85% | 4.12% |
+| Wrong drops (close or just hit) | — | — | 146 | 4 | 59 | 98 | 107 |
+| Central brawl: player targets | 86.5% | 75.2% | 78.7% | 84.4% | 85.5% | 88.9% | 84.3% |
+| 20 s+ standoffs (longest) | 5 (90.9 s) | 1 (56.6 s) | 3 (42.0 s) | 2 (68.9 s) | 6 (171.1 s) | 5 (48.9 s) | 4 (188.9 s) |
+| Nova launches followed by PvP damage | — | 75.0% | 85.7% | 88.4% | 88.5% | 85.2% | 90.2% |
 
-Reports: `reports/codex-qa-14/README.md` (R1), `round2.md` … `round5.md`.
+Reports: `reports/codex-qa-14/README.md` (R1), `round2.md` … `round7.md`.
 
 ## After R4 (round 5, `log.md`)
 
@@ -66,7 +66,16 @@ R6 (`round6.md`): extension removal and Yuki reach kept (no-progress 4.85%, long
 - Nova knows its one vector shift per airtime (`can_use_skill_one()`), like Rio's blink;
 - at most 2 recovery-skill uses per recovery.
 
-Codex QA-14 round 7 is the last measurement of this session (`round7.md`).
+R7 (`round7.md`, last measurement of this session): both kept — Nova asked 24 frames for 24 uses (was 35,321 for 27), Frey used its dash 23 times (was 437; at most 2 per recovery, no violation); Frey ring-outs 15 → 19 and recovery success 92.4% → 91.3% are the small cost. Codex traced the one long standoff (seed 112, 188.9 s): two Freys 401.2 px apart at the edges of two platforms — 1 px beyond the 400 px attack reach, no landing within the 240 px jump search — "engaged" without moving or attacking, because a same-level target always counted as progress.
+
+## After the last measurement (round 8, unmeasured)
+
+- A target on our level counts as progress only while the way toward it is open: being blocked toward it (a gap with no landing, marked by `_terrain_move_intent`) within the last second makes it a normal no-progress case, dropped after 2.5 s; being blocked away from it (backing into a ledge) does not. Regression test `_test_gap_dead_band` reproduces seed 112's geometry. Not yet measured by Codex.
+
+## Open — for the next session (Codex round 7)
+
+- Measure round 8 (the dead-band fix) on the same seeds; look at seed 112.
+- Split the 107 close or just-hit drops by route-failure cause; check whether Frey's second recovery dash shortened the distance in the 4 failed recoveries; classify how the 85 zero-jump ring-outs spent their jumps; track Yuki's ledge ring-outs (10 → 13) and central-brawl monster targets (7.9% → 13.3%).
 
 ## Open — for the user
 
