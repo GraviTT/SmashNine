@@ -25,6 +25,7 @@ const CORNER_GRIDS: Array[Vector2i] = [Vector2i(0, 0), Vector2i(2, 0), Vector2i(
 var maps: Array = []
 var _spawn_cache: Dictionary = {}
 var _navigation_cache: Dictionary = {}
+var _platform_cache: Dictionary = {}
 
 func _init() -> void:
 	maps = REALM_CATALOG.scaled_maps(GAME_SCALE.WORLD)
@@ -138,6 +139,20 @@ func get_navigation_points(realm_index: int) -> Array[Vector2]:
 				points.append(Vector2(center.x + inset, stand_y))
 	_navigation_cache[realm_index] = points
 	return points
+
+## Every platform of a realm as a world rect (its top is where fighters stand), for the bots'
+## route planner: which navigation points share a platform and how wide the gaps are.
+func get_platform_rects(realm_index: int) -> Array[Rect2]:
+	if _platform_cache.has(realm_index):
+		return _platform_cache[realm_index]
+	var rects: Array[Rect2] = []
+	var origin := get_origin(realm_index)
+	for tile_offset in tile_offsets(realm_index):
+		for platform_data in maps[realm_index].platforms:
+			var size: Vector2 = platform_data.size
+			rects.append(Rect2(origin + tile_offset + platform_data.center - size * 0.5, size))
+	_platform_cache[realm_index] = rects
+	return rects
 
 ## Grid neighbours that physically exist, regardless of their current state.
 func get_neighbor_directions(realm_index: int) -> Array[Vector2i]:

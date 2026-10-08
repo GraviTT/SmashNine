@@ -470,6 +470,9 @@ func _move_through_portal(combatant: Node, portal: Dictionary) -> void:
 func get_ai_navigation_points_for_realm(realm_index: int) -> Array[Vector2]:
 	return layout.get_navigation_points(realm_index)
 
+func get_ai_platform_rects_for_realm(realm_index: int) -> Array[Rect2]:
+	return layout.get_platform_rects(realm_index)
+
 func get_ai_portals_for_realm(realm_index: int) -> Array:
 	if realm_index < 0 or realm_index >= layout.realm_count():
 		return []

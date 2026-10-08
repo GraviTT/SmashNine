@@ -103,3 +103,14 @@ Codex kept both round-7 changes (Nova 24 asks for 24 uses; Frey 23 dashes, at mo
 | R8-1 gap dead band | **accept** | Same level counts as progress only while the way toward the target is open: blocked toward it within the last second (`blocked_age`, `blocked_direction` from `_terrain_move_intent`) makes it no-progress, dropped after 2.5 s; blocked away from it does not. Test `_test_gap_dead_band`. Unmeasured by Codex this session. |
 
 Open for the next session: Codex's list at the end of `round7.md` and `decision.md`.
+
+## Round 9 (measurement: Codex QA-14 round 8 at attacks x1.5, `reports/codex-qa-14/round8.md`)
+
+Round 8 (attacks x1.5 + the dead-band fix): seed 112's stall gone (415.9 → 263.1 s), ring-outs 128 → 110, recovery 91.3% → 94.8%, no-progress 845 → 707 s, longest standoff 189 → 90 s, hit rate 45.4% → 49.8%. Zero-jump ring-outs: 69 of 70 spent the last jump in that recovery (no wasted jumps). Frey's second dash shortened the distance ~190 px in both failed recoveries (keep the cap). Basic-reach limits fit the data. Problems: Yuki central-brawl monster targets 8% → 42% (PvP damage per minute 36 → 27); 86 of 88 close drops were routes the movement could not follow (wrong level 51, gap without landing 35); recovery episodes 1,498 → 2,185; two input-less engages (Luna 10 s with a monster 200 px below, Yuki 5.7 s with a crystal).
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R9-1 routes vs movement (Codex #2) | **accept** | The planner gets the platform rects (`RealmLayout.get_platform_rects`, `Main.get_ai_platform_rects_for_realm`); links between platforms need a gap the movement crosses (`NAV_GAP_JUMP` = landing search − patch − floor probe ≈ 172 px, drops 300 px); a jump up starts within 165 px of the waypoint's platform. |
+| R9-2 Yuki central monsters (Codex #1) | **accept, different fix** | Likely cause: the round-8 blocked-way rule also dropped targets within attack range (a ranged fighter across a gap). The rule now applies only out of attack range. Codex's stronger option (no monsters while a valid player exists) is held until round 9 shows whether this suffices. |
+| R9-3 input-less engages (Codex #4) | **accept** | A monster only after us is not progress (Luna/monster stall); no kiting from crystals (Yuki/crystal). |
+| R9-4 recovery entries (Codex #3) | **measure** | Round 9 splits recovery entries by cause (walked or dashed off, air-down, knockback). |

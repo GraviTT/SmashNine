@@ -52,6 +52,16 @@ const NAV_JUMP_REACH := 470.0 * GAME_SCALE.WORLD
 const NAV_DROP_DEPTH := 360.0 * GAME_SCALE.WORLD
 const NAV_DROP_REACH := 470.0 * GAME_SCALE.WORLD
 const NAV_DROP_MIN_HORIZONTAL := 86.0 * GAME_SCALE.WORLD
+## Routes only use links the movement can follow (Codex QA-14 round 8: 86 of 88 dropped close
+## targets had a route the bot could not follow — a gap wider than the gap jump finds a landing
+## for, or a jump up started far from the platform and landed on the wrong level). Between two
+## platforms on one level: the gap jump looks for floor 118 or 160 px (x WORLD) ahead once the
+## floor ends 44 px ahead, so it crosses this much.
+const NAV_GAP_JUMP := LONG_LANDING_DISTANCE - LANDING_PATCH_HALF_WIDTH - FLOOR_PROBE_AHEAD
+## Dropping to a lower platform covers this much gap while falling.
+const NAV_GAP_DROP := 200.0 * GAME_SCALE.WORLD
+## A jump up to a waypoint starts only this close (horizontally) to the platform it stands on.
+const NAV_JUMP_START := 110.0 * GAME_SCALE.WORLD
 const DROP_PROBE_DEPTH := 390.0 * GAME_SCALE.WORLD
 
 ## Realm geometry comes from the player (PlayerBase.realm_size); offsets below are relative to it.
@@ -576,7 +586,9 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 		candidates = ["approach", "approach", "jump_in"]
 		debug_reason = "too far to hit"
 	elif distance_x < min_range:
-		if bool(profile.kite):
+		# Kiting is for things that fight back; a crystal is just hit (round 8: Yuki backed away
+		# from a crystal for 5.7 s).
+		if bool(profile.kite) and not (is_instance_valid(target) and target.is_in_group("soul_crystals")):
 			candidates = ["retreat", "retreat", "hold"]
 			debug_reason = "too close: keeping range"
 		else:
@@ -688,6 +700,14 @@ func _navigate_to_intent(player, destination: Vector2) -> Dictionary:
 	var offset: Vector2 = destination - player.global_position
 	var direction: float = _direction_to(player.global_position.x, destination.x)
 	var wants_jump: bool = offset.y < -48.0
+	# Jump up only from near the platform the waypoint stands on (round 8: jumps started far away
+	# landed on the wrong level); walk under it first.
+	if wants_jump and player.is_on_floor():
+		var spans: Array[Rect2] = _platform_rects(player)
+		var span := _span_index(destination, spans)
+		var reach_x: float = absf(offset.x) if span < 0 else maxf(0.0, maxf(spans[span].position.x - player.global_position.x, player.global_position.x - spans[span].end.x))
+		if reach_x > NAV_JUMP_START:
+			wants_jump = false
 	var allow_drop: bool = offset.y > 72.0
 	if allow_drop and player.is_on_floor():
 		if planned_drop_target == Vector2.INF or planned_drop_target.distance_to(destination) > WAYPOINT_REACHED:
@@ -1027,6 +1047,7 @@ func _plan_navigation_path(player, desired_goal: Vector2) -> Array[Vector2]:
 	if navigation_points.is_empty():
 		return []
 
+	var spans: Array[Rect2] = _platform_rects(player)
 	var nodes: Array[Vector2] = [player.global_position]
 	nodes.append_array(navigation_points)
 	var goal_index: int = 1
@@ -1048,7 +1069,7 @@ func _plan_navigation_path(player, desired_goal: Vector2) -> Array[Vector2]:
 			return _reconstruct_navigation_path(nodes, came_from, current)
 		open_nodes.erase(current)
 		for neighbor in nodes.size():
-			if neighbor == current or not _navigation_link_is_reachable(nodes[current], nodes[neighbor]):
+			if neighbor == current or not _navigation_link_ok(nodes[current], nodes[neighbor], spans):
 				continue
 			var tentative_score: float = float(g_score.get(current, INF)) + _navigation_link_cost(nodes[current], nodes[neighbor])
 			if tentative_score >= float(g_score.get(neighbor, INF)):
@@ -1087,6 +1108,39 @@ func _navigation_link_is_reachable(from: Vector2, to: Vector2) -> bool:
 	if delta.y < 0.0:
 		return -delta.y <= NAV_JUMP_RISE and horizontal <= NAV_JUMP_REACH
 	return delta.y <= NAV_DROP_DEPTH and horizontal >= NAV_DROP_MIN_HORIZONTAL and horizontal <= NAV_DROP_REACH
+
+## The distance rule above, and between two platforms a gap the movement can cross.
+func _navigation_link_ok(from: Vector2, to: Vector2, spans: Array[Rect2]) -> bool:
+	if not _navigation_link_is_reachable(from, to):
+		return false
+	var a := _span_index(from, spans)
+	var b := _span_index(to, spans)
+	if a < 0 or b < 0 or a == b:
+		return true
+	var gap := _span_gap(spans[a], spans[b])
+	if to.y - from.y > NAV_SAME_LEVEL:
+		return gap <= NAV_GAP_DROP
+	return gap <= NAV_GAP_JUMP
+
+## The platform whose top a point stands on (within a few px), or -1.
+func _span_index(point: Vector2, spans: Array[Rect2]) -> int:
+	for index in spans.size():
+		var span: Rect2 = spans[index]
+		if absf(span.position.y - point.y) <= 8.0 and point.x >= span.position.x - 4.0 and point.x <= span.end.x + 4.0:
+			return index
+	return -1
+
+## Horizontal space between two platforms (0 when they overlap in x).
+func _span_gap(a: Rect2, b: Rect2) -> float:
+	return maxf(0.0, maxf(a.position.x, b.position.x) - minf(a.end.x, b.end.x))
+
+## The realm's platform rects from the parent (empty without one; routes then use the plain
+## distance rule).
+func _platform_rects(player) -> Array[Rect2]:
+	var parent: Node = player.get_parent()
+	if parent == null or not parent.has_method("get_ai_platform_rects_for_realm"):
+		return [] as Array[Rect2]
+	return parent.get_ai_platform_rects_for_realm(player.realm_index)
 
 func _navigation_link_cost(from: Vector2, to: Vector2) -> float:
 	var delta: Vector2 = to - from
@@ -1407,7 +1461,10 @@ func _update_target_progress(player, delta: float) -> void:
 	# is not "another level") all count as progress — our level only while the way is open
 	# (Codex QA-14 round 7, seed 112: two Freys 401 px apart at the edges of two platforms,
 	# 1 px out of reach and no landing to jump to, "engaged" for 189 s without moving).
-	var blocked_toward: bool = blocked_age < BLOCKED_MEMORY and signf(blocked_direction) == signf(target.global_position.x - player.global_position.x)
+	# ... and only out of attack range: a ranged fighter across a gap still fights (round 8: Yuki
+	# dropped players it could hit, central-brawl monster targets 8% -> 42%).
+	var out_of_reach: bool = absf(target.global_position.x - player.global_position.x) > float(_combat_profile(player).attack_range)
+	var blocked_toward: bool = out_of_reach and blocked_age < BLOCKED_MEMORY and signf(blocked_direction) == signf(target.global_position.x - player.global_position.x)
 	var open_same_level: bool = not blocked_toward and not _stands_on_other_level(player, target)
 	if distance < progress_best - PROGRESS_DISTANCE * GAME_SCALE.WORLD or _trading_hits(player, target) or open_same_level:
 		progress_best = minf(progress_best, distance)
@@ -1518,12 +1575,14 @@ func _stands_on_other_level(player, body: Node) -> bool:
 	return absf(theirs.y - own.y) > NAV_SAME_LEVEL
 
 ## One of us hit the other within TRADE_MEMORY (fighters keep a countdown from their attacker
-## memory; monsters and crystals the physics frame of the last hit), or a monster is after us.
+## memory; monsters and crystals the physics frame of the last hit).
 func _trading_hits(player, body: Node) -> bool:
 	if _is_recent_attacker(player, body):
 		return true
+	# A monster that is only after us is not progress (round 8: Luna and a monster 200 px below
+	# each other, neither able to reach, 10 s without input).
 	if body.get("last_attacker") != player:
-		return body.is_in_group("realm_monsters") and body.get("target") == player
+		return false
 	var timer: Variant = body.get("last_attacker_timer")
 	if timer != null:
 		return float(timer) > FIGHTER_ATTACKER_MEMORY - TRADE_MEMORY

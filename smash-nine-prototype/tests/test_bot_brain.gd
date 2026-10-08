@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -551,6 +551,122 @@ func _test_gap_dead_band() -> void:
 		ai._update_target_progress(bot, 0.1)
 	if ai.target != null:
 		_fail("A target across a gap the bot cannot cross should be dropped, not engaged forever")
+	bot.queue_free()
+	foe.queue_free()
+	left.queue_free()
+	right.queue_free()
+	await process_frame
+
+## Round 9 (Codex QA-14 round 8: 86 of 88 dropped close targets had routes the movement could
+## not follow): between platforms a route only crosses gaps the gap jump can, and a jump up to a
+## waypoint starts near the platform it stands on.
+func _test_routes_follow_movement() -> void:
+	var nav_script := GDScript.new()
+	nav_script.source_code = "extends Node2D
+var points: Array[Vector2] = []
+var rects: Array[Rect2] = []
+func get_ai_navigation_points_for_realm(_realm: int) -> Array[Vector2]:
+	return points
+func get_ai_platform_rects_for_realm(_realm: int) -> Array[Rect2]:
+	return rects
+"
+	nav_script.reload()
+	var holder := Node2D.new()
+	holder.set_script(nav_script)
+	arena.add_child(holder)
+	var bot: Node = PLAYER_FACTORY.create("frey")
+	holder.add_child(bot)
+	bot.setup(CHARACTER_REGISTRY.get_characters()["frey"], 1, false)
+	bot.set_physics_process(false)
+	var ai = bot.ai_controller
+	# Same value as NAV_GAP_JUMP, from constants the older brains have too.
+	var gap_jump: float = float(ai.LONG_LANDING_DISTANCE) - float(ai.LANDING_PATCH_HALF_WIDTH) - float(ai.FLOOR_PROBE_AHEAD)
+	# Two platforms on one level, a gap too wide for the gap jump: no route across.
+	for gap in [gap_jump + 60.0, gap_jump - 30.0]:
+		var left := Rect2(-400, 0, 300, 40)
+		var right := Rect2(-100 + gap, 0, 300, 40)
+		holder.rects = [left, right] as Array[Rect2]
+		holder.points = [Vector2(-250, 0), Vector2(-130, 0), right.position + Vector2(30, 0), right.position + Vector2(150, 0)] as Array[Vector2]
+		bot.global_position = Vector2(-250, 0)
+		var route: Array[Vector2] = ai._plan_navigation_path(bot, right.position + Vector2(150, 0))
+		var crosses: bool = not route.is_empty() and route[route.size() - 1].x > right.position.x
+		if crosses != (gap <= gap_jump):
+			_fail("A route across a %.0f px gap should %s (gap jump %.0f)" % [gap, "exist" if gap <= gap_jump else "not exist", gap_jump])
+	# A waypoint on a platform above: no jump while far from that platform, a jump when near.
+	var ground := _floor(Vector2(0, 0), 1600)
+	holder.rects = [Rect2(-800, 0, 1600, 40), Rect2(400, -150, 300, 30)] as Array[Rect2]
+	bot.set_physics_process(true)
+	bot.is_dummy = true
+	bot.global_position = Vector2(0, -2)
+	for frame in 20:
+		await physics_frame
+	bot.set_physics_process(false)
+	bot.is_dummy = false
+	ai.jump_retry_timer = 0.0
+	var far: Dictionary = ai._navigate_to_intent(bot, Vector2(550, -150))
+	if bool(far.get("jump", false)):
+		_fail("A jump up should not start 400 px away from the platform above")
+	bot.global_position = Vector2(330, -2)
+	ai.jump_retry_timer = 0.0
+	var near: Dictionary = ai._navigate_to_intent(bot, Vector2(550, -150))
+	if not bool(near.get("jump", false)):
+		_fail("Close under the platform above, the bot should jump up to it")
+	holder.queue_free()
+	ground.queue_free()
+	await process_frame
+
+## Round 9: a blocked way does not drop a target still in attack range (a ranged fighter fights
+## across a gap); a monster that is only after us is not progress; nobody kites from a crystal.
+func _test_round9_targets() -> void:
+	var left := _floor(Vector2(-300, 0), 400)
+	var right := _floor(Vector2(501, 0), 400)
+	var bot := _fighter("yuki", 1, Vector2(-300, -2))
+	var foe := _fighter("frey", 2, Vector2(291, -2))
+	bot.is_dummy = true
+	foe.is_dummy = true
+	for frame in 20:
+		await physics_frame
+	bot.set_physics_process(false)
+	foe.set_physics_process(false)
+	bot.global_position = Vector2(-110, -2)
+	bot.is_dummy = false
+	var ai = bot.ai_controller
+	ai.state = ai.STATE_ENGAGE
+	ai.target = foe
+	ai._update_target_progress(bot, 0.1)
+	for step in 40:
+		ai._terrain_move_intent(bot, 1.0, false, true)
+		ai._update_target_progress(bot, 0.1)
+	if ai.target != foe:
+		_fail("A target across a gap but within attack range should be kept (Yuki reach %.0f, gap target 401 px)" % float(ai._combat_profile(bot).attack_range))
+	# A monster after us that we never hit is not progress.
+	var monster_script := GDScript.new()
+	monster_script.source_code = "extends Node2D
+var target: Node
+var last_attacker: Node
+"
+	monster_script.reload()
+	var monster := Node2D.new()
+	monster.set_script(monster_script)
+	monster.add_to_group("realm_monsters")
+	arena.add_child(monster)
+	monster.target = bot
+	if ai._trading_hits(bot, monster):
+		_fail("A monster that is only after us should not count as trading hits")
+	monster.queue_free()
+	# A crystal close by is hit, not kited from.
+	var crystal: Node = load("res://scripts/SoulCrystal.gd").new()
+	arena.add_child(crystal)
+	crystal.global_position = bot.global_position + Vector2(40, 0)
+	ai.target = crystal
+	var retreats := 0
+	for roll in 12:
+		ai.last_action = ""
+		ai._choose_engage_action(bot, 40.0, 0.0, 1.0)
+		retreats += 1 if ai.action == "retreat" else 0
+	if retreats > 0:
+		_fail("Yuki should not back away from a crystal (%d retreats)" % retreats)
+	crystal.queue_free()
 	bot.queue_free()
 	foe.queue_free()
 	left.queue_free()
