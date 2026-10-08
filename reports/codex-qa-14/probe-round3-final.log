@@ -1,0 +1,25 @@
+﻿**********************
+Windows PowerShell 기록 시작
+시작 시간: 20261008150421
+사용자 이름: TH\CodexSandboxOffline
+RunAs 사용자: TH\CodexSandboxOffline
+구성 이름: 
+Machine: TH (Microsoft Windows NT 10.0.26200.0)
+호스트 응용 프로그램: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$ErrorActionPreference='Continue'; Start-Transcript -Path reports/codex-qa-14/probe-round3-final.log -Force; powershell -ExecutionPolicy Bypass -File smash-nine-prototype/tests/analysis/codex_qa_14/run_probe.ps1 -Seed 101 -Count 12 -Seconds 480; $probeCode=$LASTEXITCODE; Stop-Transcript; exit $probeCode
+프로세스 ID: 7396
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+기록이 시작되었습니다. 출력 파일은 reports/codex-qa-14/probe-round3-final.log입니다.
+
+**********************
+Windows PowerShell 기록 끝
+종료 시간: 20261008151846
+**********************
