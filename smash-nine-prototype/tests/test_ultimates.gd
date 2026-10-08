@@ -138,6 +138,10 @@ func _test_cutin() -> void:
 	# the handler directly.
 	if not caster.ultimate_cast.is_connected(main._on_ultimate_cast):
 		_fail("Main should listen to every fighter's ultimate_cast")
+	# The other bots keep fighting; none may cast its own ultimate (a new cut-in) during the
+	# check (flaked once in run_all, 2026-10-08).
+	for fighter in main.players:
+		fighter.ultimate_cooldown_timer = 100.0
 	main._on_ultimate_cast(caster)
 	await process_frame
 	if not main.hud.cutin_root.visible or main.hud.cutin_title.text != str(caster.ultimate_name).to_upper():
