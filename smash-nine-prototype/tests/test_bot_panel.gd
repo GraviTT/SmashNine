@@ -1,6 +1,7 @@
 extends SceneTree
 ## Live bot panel (F4, 2026-10-08): one row per fighter with what its bot is doing; the HUD
-## clock and status keep updating next to it; F4 hides it.
+## clock and status keep updating next to it; F4 hides it. The results table hides it and the
+## rest of the match HUD (QA-15); the next match brings back what F4 chose.
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
 
@@ -37,6 +38,18 @@ func _run() -> void:
 	hud.toggle_bot_panel()
 	if hud.bot_panel.visible:
 		push_error("F4 should hide the bot panel")
+		failed = true
+	hud.toggle_bot_panel()
+	var standings: Array[Node] = []
+	standings.assign(main.players)
+	hud.show_results(main.players[0], "test", standings, null)
+	for node in [hud.bot_panel, hud.clock_label, hud.status_label, hud.minimap_root, hud.offscreen_root, hud.hazard_label]:
+		if node.visible:
+			push_error("The results table should hide %s" % node.name)
+			failed = true
+	hud._set_match_hud_visible(true)
+	if not hud.bot_panel.visible or not hud.offscreen_root.visible:
+		push_error("The next match should bring back the bot panel and the off-screen arrows")
 		failed = true
 	main.queue_free()
 	await process_frame

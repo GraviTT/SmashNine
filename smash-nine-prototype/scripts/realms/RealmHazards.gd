@@ -40,6 +40,9 @@ const COLUMN_PARTS := {
 const COLUMN_PART_ANCHOR := Vector2(48, 63)
 ## Quake impact bursts along each platform about this far apart (at most 8 per platform).
 const QUAKE_IMPACT_SPACING := 180.0
+## The faint band that shows a column's full hit width behind its art (QA-15: 0.2 greyed out
+## fighters inside the column).
+const RANGE_BAND_ALPHA := 0.12
 const BEAM_GLYPH_TINT := Color(1.0, 0.92, 0.55)
 const BEAM_COLOR := Color(1.0, 0.95, 0.62, 0.72)
 const BEAM_WARNING_COLOR := Color(1.0, 0.9, 0.5, 0.14)
@@ -258,14 +261,14 @@ func _start_active(realm_index: int) -> void:
 			entry.timer = float(entry.hazard.get("active", 0.6))
 			for column in entry.columns:
 				# The flame art is narrower than the hit zone: a faint band shows the full width.
-				entry.visuals.append(_rect_node(column, Color(PILLAR_COLOR, 0.2)))
+				entry.visuals.append(_rect_node(column, Color(PILLAR_COLOR, RANGE_BAND_ALPHA)))
 				entry.visuals.append(_column_art(column, "fire_pillar", FIRE_PILLAR_ART, PILLAR_COLOR))
 				entry.visuals.append(_particles(column, Color(1.0, 0.82, 0.35, 0.95), 40, 0.6, 520.0, false))
 			shake_requested.emit(realm_index, 4.0, 0.25)
 		"beams":
 			entry.timer = float(entry.hazard.get("active", 0.5))
 			for column in entry.columns:
-				entry.visuals.append(_rect_node(column, Color(BEAM_COLOR, 0.2)))
+				entry.visuals.append(_rect_node(column, Color(BEAM_COLOR, RANGE_BAND_ALPHA)))
 				entry.visuals.append(_column_art(column, "light_beam", LIGHT_BEAM_ART, BEAM_COLOR))
 				entry.visuals.append(_particles(column, Color(1.0, 0.95, 0.7, 0.95), 30, 0.5, -420.0, false))
 			shake_requested.emit(realm_index, 3.0, 0.2)

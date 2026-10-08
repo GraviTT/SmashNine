@@ -16,6 +16,8 @@ const BOT_ROW_FACE := 26.0
 const CONTROLS_HINT_TIME := 8.0
 const MESSAGE_TIME := 4.0
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
+## The results table hides the match behind it (QA-15: the world showed through at 0.78).
+const RESULTS_BACK_COLOR := Color(0.03, 0.03, 0.07, 0.92)
 ## Cut-in band heights: above the fighters when the caster is in the lower half of the screen,
 ## below them otherwise, so the band never covers the cast itself (Codex QA-12: at a fixed
 ## y 230 it hid Frey and the first wave).
@@ -47,6 +49,9 @@ var card_title: Label
 var card_labels: Array[Label] = []
 var card_icons: Array[TextureRect] = []
 var overlay: Control
+var overlay_back: ColorRect
+## The bot panel's on/off choice (F4), kept while screens hide the match HUD.
+var bot_panel_wanted := BOT_PANEL_SHOWN_AT_START
 var overlay_title: Label
 var overlay_logo: TextureRect
 var portrait_strip: Control
@@ -162,6 +167,9 @@ func toggle_debug() -> void:
 	debug_label.visible = not debug_label.visible
 
 func toggle_bot_panel() -> void:
+	if not clock_label.visible:
+		bot_panel_wanted = not bot_panel_wanted
+		return
 	bot_panel.visible = not bot_panel.visible
 
 func _build_bot_panel() -> void:
@@ -471,11 +479,11 @@ func _build_overlay() -> void:
 	overlay.visible = false
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(overlay)
-	var back := ColorRect.new()
-	back.set_anchors_preset(Control.PRESET_FULL_RECT)
-	back.color = PANEL_COLOR
-	back.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	overlay.add_child(back)
+	overlay_back = ColorRect.new()
+	overlay_back.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay_back.color = PANEL_COLOR
+	overlay_back.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(overlay_back)
 	overlay_title = Label.new()
 	overlay_title.position = Vector2(0, 110)
 	overlay_title.size = Vector2(1280, 70)
@@ -569,6 +577,7 @@ func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 	_set_match_hud_visible(false)
 	overlay_body.text = "\n".join(lines)
 	overlay_credits.visible = true
+	overlay_back.color = PANEL_COLOR
 	overlay.visible = true
 
 ## survival: combatant -> seconds survived (MatchDirector.get_survival_time).
@@ -580,8 +589,7 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	overlay_body.text = "Decided by %s" % reason
 	# The table stands alone: no clock, status, minimap, portrait, bot panel or arrows behind it.
 	_set_match_hud_visible(false)
-	bot_panel.visible = false
-	offscreen_root.visible = false
+	overlay_back.color = RESULTS_BACK_COLOR
 	hazard_label.visible = false
 	info_label.visible = false
 	warning_label.visible = false
@@ -667,8 +675,14 @@ func set_warning_banner(seconds: int, hazard_warning := "") -> void:
 
 ## The in-match HUD hides behind the start screen so it does not show through it.
 func _set_match_hud_visible(visible_now: bool) -> void:
+	if not visible_now and clock_label.visible:
+		bot_panel_wanted = bot_panel.visible
 	for node in [clock_label, realm_label, hazard_label, status_label, info_label, minimap_root, focus_portrait]:
 		node.visible = visible_now
+	# The bot panel and the off-screen arrows belong to the match too (they showed through the
+	# results table, QA-15).
+	bot_panel.visible = visible_now and bot_panel_wanted
+	offscreen_root.visible = visible_now
 	if visible_now:
 		_show_info(CONTROLS_HINT_TIME)
 	focus_frame.visible = visible_now and focus_portrait.texture != null
