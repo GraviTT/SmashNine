@@ -1,0 +1,3135 @@
+{
+	"corner_escape_events": [
+		{
+			"character": "yuki",
+			"realm": 2,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 0.67
+		},
+		{
+			"character": "yuki",
+			"realm": 1,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 11.87
+		},
+		{
+			"character": "yuki",
+			"realm": 1,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 30.2
+		},
+		{
+			"character": "yuki",
+			"realm": 1,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 58.8
+		},
+		{
+			"character": "rio",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 98.12
+		},
+		{
+			"character": "rio",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 101.33
+		},
+		{
+			"character": "yuki",
+			"realm": 0,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 110.55
+		},
+		{
+			"character": "yuki",
+			"realm": 0,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 115.45
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 145.15
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 151.42
+		},
+		{
+			"character": "frey",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 153.83
+		},
+		{
+			"character": "rio",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 156.0
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 171.82
+		},
+		{
+			"character": "rio",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 182.4
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 183.55
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 186.93
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 191.28
+		},
+		{
+			"character": "rio",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 193.8
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 194.78
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 198.18
+		},
+		{
+			"character": "yuki",
+			"realm": 3,
+			"ringout_within_3s": false,
+			"seed": 112,
+			"time": 209.77
+		}
+	],
+	"dead_band_events": [],
+	"hit_window": 0.4,
+	"low_hp_portals": [
+		{
+			"character": "rio",
+			"damaged": true,
+			"defeated": false,
+			"engaged": true,
+			"follow_seconds": 10.0,
+			"from": 0,
+			"hp_after": 30.9,
+			"hp_before": 28.9,
+			"seed": 112,
+			"survived_10s": true,
+			"time": 86.6833333333297,
+			"to": 3
+		},
+		{
+			"character": "luna",
+			"damaged": true,
+			"defeated": true,
+			"engaged": true,
+			"follow_seconds": 1.5,
+			"from": 5,
+			"hp_after": 0.0,
+			"hp_before": 1.8,
+			"seed": 112,
+			"survived_10s": false,
+			"time": 105.949999999995,
+			"to": 6
+		}
+	],
+	"matches": [
+		{
+			"finished": true,
+			"portals": 17,
+			"reason": "last survivor",
+			"recovery_fail": 7,
+			"recovery_success": 228,
+			"relocations": 0,
+			"ringouts": 8,
+			"seconds": 263.1,
+			"seed": 112,
+			"standoffs": 0,
+			"winner": "nova"
+		}
+	],
+	"no_progress_definition": "target episode >=3s whose distance never shrank by max(100px, 10% of start distance)",
+	"players": 8,
+	"progress_extension_events": [],
+	"recovery_skill_ask_events": [
+		{
+			"attack_locked_after_intent": true,
+			"character": "frey",
+			"distance": 202.1,
+			"intent": "skill_1",
+			"recovery_episode": 1,
+			"seed": 112,
+			"time": 82.88
+		},
+		{
+			"attack_locked_after_intent": true,
+			"character": "rio",
+			"distance": 308.9,
+			"intent": "skill_1",
+			"recovery_episode": 25,
+			"seed": 112,
+			"time": 217.08
+		}
+	],
+	"recovery_skill_events": [
+		{
+			"character": "frey",
+			"distance": 202.1,
+			"distance_end": 53.7,
+			"min_distance_after": 33.4,
+			"reached_floor": true,
+			"recovery_episode": 1,
+			"seed": 112,
+			"shortened_by": 168.7,
+			"time": 82.88,
+			"use_index": 1
+		},
+		{
+			"character": "rio",
+			"distance": 308.9,
+			"distance_end": 1017.2,
+			"min_distance_after": 178.5,
+			"reached_floor": false,
+			"recovery_episode": 25,
+			"seed": 112,
+			"shortened_by": 130.4,
+			"time": 217.08,
+			"use_index": 1
+		}
+	],
+	"relocations": [],
+	"ringouts": [
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 1,
+			"attacker": "rio",
+			"during_recovery": false,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 7,
+			"seed": 112,
+			"time": 16.3,
+			"victim": "nova",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 1
+			},
+			"air_jumps_left": 0,
+			"attacker": "rio",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 4,
+			"seed": 112,
+			"time": 78.6,
+			"victim": "nova",
+			"zero_jump_cause": "recovery"
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 1
+			},
+			"air_jumps_left": 0,
+			"attacker": "nova",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 5,
+			"seed": 112,
+			"time": 95.0,
+			"victim": "luna",
+			"zero_jump_cause": "recovery"
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 1
+			},
+			"air_jumps_left": 1,
+			"attacker": "nova",
+			"during_recovery": true,
+			"max_air_jumps": 2,
+			"phase": "Exploration",
+			"realm": 4,
+			"seed": 112,
+			"time": 116.5,
+			"victim": "rio",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 1,
+			"attacker": "environment",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Corner collapse warning",
+			"realm": 4,
+			"seed": 112,
+			"time": 122.2,
+			"victim": "nova",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 2
+			},
+			"air_jumps_left": 0,
+			"attacker": "frey",
+			"during_recovery": true,
+			"max_air_jumps": 2,
+			"phase": "Convergence",
+			"realm": 8,
+			"seed": 112,
+			"time": 218.0,
+			"victim": "rio",
+			"zero_jump_cause": "recovery"
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 1,
+			"attacker": "frey",
+			"during_recovery": false,
+			"max_air_jumps": 1,
+			"phase": "Central brawl",
+			"realm": 8,
+			"seed": 112,
+			"time": 244.3,
+			"victim": "nova",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 2,
+			"attacker": "nova",
+			"during_recovery": true,
+			"max_air_jumps": 2,
+			"phase": "Central brawl",
+			"realm": 8,
+			"seed": 112,
+			"time": 254.2,
+			"victim": "nova",
+			"zero_jump_cause": ""
+		}
+	],
+	"round2_definitions": {
+		"air_down_self_ringout": "same fighter rang out within 2.0 s after starting a basic air-down",
+		"block": "damage signal arrived while the defender was still guarding (wrong-direction guards are lowered before the signal)",
+		"nova_launch_hit": "Nova dealt PvP damage within 3.2 s after the slingshot launch",
+		"parry": "the 92x92 parry effect created by PlayerBase was observed and attributed to the nearby attacker receiving parry recoil",
+		"reaction_in_recovery": "reactive guard timer first seen after the observed attack's conservative per-character startup bound"
+	},
+	"round3_definitions": {
+		"corner_escape": "debug reason changed to 'cornered: jumping past'",
+		"distance_buckets": "target distance at exact attack_serial increment: 0-120, 120-240, 240-360, 360+ px",
+		"recent_trade": "the bot and dropped target exchanged a measured damage event in either direction during the prior 3.0 s",
+		"recovery_skill": "skill_1 coincided with attack_serial increment while state was recover; reached_floor means that recovery episode later exited recover without a ring-out",
+		"target_drop": "debug reason changed to 'gave up: target out of reach'; dropped target recovered from ignored_targets",
+		"too_late": "debug reason changed to 'too late to block' after a queued reaction expired",
+		"yuki_near_ledge": "Yuki's last attributed PvP hit before ring-out occurred while _cornered() found no floor within 225 px behind her, away from the attacker"
+	},
+	"round4_definitions": {
+		"combo_block": "a guarded damage event attributed to Frey/Rio ground-side combo step 2 or 3 from combo_step at attack_serial increment",
+		"frey_recovery_entry": "knocked_off if PvP-damaged within 3s; otherwise walked_or_dashed_off if recover began outside the realm sides or over void; remaining entries are other"
+	},
+	"round5_definitions": {
+		"cornered_guard": "guard raised on a new hold decision while escape_cooldown > 0 and _cornered() is true; block is attributed while that guard remains recent",
+		"progress_extension": "rising change of EnemyAI.progress_extended; dropped_after_extension means that same target later entered ignored_targets",
+		"recovery_skill_ask": "rising edge of EnemyAI.recovery_skill_asked; used remains an observed character activation, not an intent"
+	},
+	"round6_definitions": {
+		"progress_extension": "removed in round 6; extension totals and events remain empty for schema compatibility",
+		"recovery_episode": "monotonic per-fighter recovery entry number; repeated uses in one recovery share the same number",
+		"recovery_skill_ask": "totals count each physics frame carrying a recover-state skill_1 intent; event rows keep successful-looking frames plus the rising edge of each rejected streak"
+	},
+	"round7_definitions": {
+		"nova_rejected_ask_streak": "a recovery skill ask event with attack_locked_after_intent=false; repeated unavailable-air-shift frame spam should disappear in round 7",
+		"recovery_skill_episode_uses": "derived by grouping observed recovery_skill_events by seed, character and recovery_episode; any group above two is a cap violation",
+		"standoff_trace": "every 5s after a same-realm no-PvP-damage interval reaches 20s; records each surviving participant's state, target, reason, position and intent"
+	},
+	"round8_definitions": {
+		"dead_band": "continuous engage episode >=5s with move=0, jump=false and attack empty; gap_width is a coarse 80px-ray estimate between both floor edges",
+		"distance_60": "target distance at exact attack_serial increment in 60px bins through 600px, then 600_plus",
+		"drop_cause": "classification at the progress-drop frame; route existence is recomputed read-only, target_moved means >=90px away along the starting separation vector",
+		"recovery_dash_distance": "distance from fighter to recovery_target + (0,-60); shortened_by compares activation distance with the minimum later distance in that recovery",
+		"zero_jump_cause": "air-jump spend context of the last consumed jump in the current airtime, overridden when the knock occurred during an airborne attack within 8s"
+	},
+	"sample_interval": 0.25,
+	"schema": 8,
+	"seeds": [
+		112
+	],
+	"standoff_trace_events": [],
+	"target_drop_events": [
+		{
+			"after_extension": false,
+			"blocked_age": 0.58,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "frey",
+			"distance": 365.7,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "crystal",
+			"target_moved_away": false,
+			"time": 7.55,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.52,
+			"cause": "route_not_followed_wrong_level",
+			"character": "frey",
+			"distance": 345.5,
+			"gap_no_landing": false,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 10.08,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.47,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "luna",
+			"distance": 556.5,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 20.82,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": false
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.47,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "frey",
+			"distance": 374.1,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 24.38,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": false
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.47,
+			"cause": "target_moved_away",
+			"character": "frey",
+			"distance": 635.6,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": true,
+			"time": 32.33,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": false
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.22,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "nova",
+			"distance": 299.0,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 39.68,
+			"traded_within_3s": false,
+			"within_300": true,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.03,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "rio",
+			"distance": 1022.8,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 40.47,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": false
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.27,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "nova",
+			"distance": 284.6,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "player",
+			"target_moved_away": false,
+			"time": 46.93,
+			"traded_within_3s": false,
+			"within_300": true,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.38,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "rio",
+			"distance": 297.8,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "player",
+			"target_moved_away": false,
+			"time": 46.98,
+			"traded_within_3s": false,
+			"within_300": true,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.58,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "frey",
+			"distance": 339.0,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "player",
+			"target_moved_away": false,
+			"time": 47.27,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": false
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.33,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "frey",
+			"distance": 333.4,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 74.48,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.55,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "frey",
+			"distance": 364.2,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "crystal",
+			"target_moved_away": false,
+			"time": 74.93,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.6,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "yuki",
+			"distance": 404.3,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 96.67,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 3.17,
+			"cause": "route_not_followed_wrong_level",
+			"character": "nova",
+			"distance": 362.6,
+			"gap_no_landing": false,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 136.77,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 1.2,
+			"cause": "route_not_followed_wrong_level",
+			"character": "nova",
+			"distance": 222.6,
+			"gap_no_landing": false,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 154.05,
+			"traded_within_3s": false,
+			"within_300": true,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 1.62,
+			"cause": "route_not_followed_wrong_level",
+			"character": "nova",
+			"distance": 179.0,
+			"gap_no_landing": false,
+			"route_exists": true,
+			"seed": 112,
+			"stuck": false,
+			"target_kind": "crystal",
+			"target_moved_away": false,
+			"time": 209.18,
+			"traded_within_3s": false,
+			"within_300": true,
+			"wrong_level": true
+		}
+	],
+	"totals": {
+		"actions": {
+			"frey|Central brawl|approach": 23.0,
+			"frey|Central brawl|cross": 21.0,
+			"frey|Central brawl|hold": 16.0,
+			"frey|Central brawl|jump_in": 14.0,
+			"frey|Convergence|approach": 120.0,
+			"frey|Convergence|cross": 58.0,
+			"frey|Convergence|escape": 2.0,
+			"frey|Convergence|hold": 69.0,
+			"frey|Convergence|jump_in": 45.0,
+			"frey|Convergence|retreat": 25.0,
+			"frey|Corner collapse warning|approach": 72.0,
+			"frey|Corner collapse warning|cross": 18.0,
+			"frey|Corner collapse warning|hold": 59.0,
+			"frey|Corner collapse warning|jump_in": 41.0,
+			"frey|Exploration|approach": 198.0,
+			"frey|Exploration|cross": 146.0,
+			"frey|Exploration|hold": 156.0,
+			"frey|Exploration|jump_in": 149.0,
+			"luna|Exploration|approach": 99.0,
+			"luna|Exploration|cross": 86.0,
+			"luna|Exploration|hold": 117.0,
+			"luna|Exploration|jump_in": 45.0,
+			"luna|Exploration|retreat": 8.0,
+			"nova|Central brawl|approach": 31.0,
+			"nova|Central brawl|cross": 23.0,
+			"nova|Central brawl|hold": 35.0,
+			"nova|Central brawl|jump_in": 21.0,
+			"nova|Convergence|approach": 99.0,
+			"nova|Convergence|cross": 92.0,
+			"nova|Convergence|hold": 132.0,
+			"nova|Convergence|jump_in": 61.0,
+			"nova|Corner collapse warning|approach": 36.0,
+			"nova|Corner collapse warning|cross": 22.0,
+			"nova|Corner collapse warning|hold": 35.0,
+			"nova|Corner collapse warning|jump_in": 34.0,
+			"nova|Exploration|approach": 172.0,
+			"nova|Exploration|cross": 162.0,
+			"nova|Exploration|hold": 201.0,
+			"nova|Exploration|jump_in": 86.0,
+			"rio|Convergence|approach": 41.0,
+			"rio|Convergence|cross": 39.0,
+			"rio|Convergence|escape": 9.0,
+			"rio|Convergence|hold": 46.0,
+			"rio|Convergence|jump_in": 7.0,
+			"rio|Convergence|retreat": 27.0,
+			"rio|Corner collapse warning|approach": 58.0,
+			"rio|Corner collapse warning|cross": 35.0,
+			"rio|Corner collapse warning|hold": 41.0,
+			"rio|Corner collapse warning|jump_in": 18.0,
+			"rio|Corner collapse warning|retreat": 13.0,
+			"rio|Exploration|approach": 215.0,
+			"rio|Exploration|cross": 161.0,
+			"rio|Exploration|escape": 6.0,
+			"rio|Exploration|hold": 206.0,
+			"rio|Exploration|jump_in": 161.0,
+			"rio|Exploration|retreat": 8.0,
+			"yuki|Convergence|approach": 18.0,
+			"yuki|Convergence|cross": 24.0,
+			"yuki|Convergence|escape": 21.0,
+			"yuki|Convergence|hold": 84.0,
+			"yuki|Convergence|jump_in": 12.0,
+			"yuki|Convergence|retreat": 88.0,
+			"yuki|Corner collapse warning|approach": 15.0,
+			"yuki|Corner collapse warning|escape": 2.0,
+			"yuki|Corner collapse warning|hold": 40.0,
+			"yuki|Corner collapse warning|jump_in": 13.0,
+			"yuki|Corner collapse warning|retreat": 44.0,
+			"yuki|Exploration|approach": 52.0,
+			"yuki|Exploration|cross": 42.0,
+			"yuki|Exploration|escape": 19.0,
+			"yuki|Exploration|hold": 108.0,
+			"yuki|Exploration|jump_in": 79.0,
+			"yuki|Exploration|retreat": 64.0
+		},
+		"air_down_self_ringouts": {},
+		"attacks": {
+			"frey|basic_air_down": {
+				"damage": 49.6324628636381,
+				"hits": 9,
+				"uses": 22
+			},
+			"frey|basic_air_side": {
+				"damage": 51.8199575054404,
+				"hits": 15,
+				"uses": 38
+			},
+			"frey|basic_air_up": {
+				"damage": 21.2168888888889,
+				"hits": 6,
+				"uses": 15
+			},
+			"frey|basic_down": {
+				"damage": 3.38913738019169,
+				"hits": 1,
+				"uses": 8
+			},
+			"frey|basic_side": {
+				"damage": 455.691623177016,
+				"hits": 91,
+				"uses": 140
+			},
+			"frey|basic_up": {
+				"damage": 13.0940107615445,
+				"hits": 6,
+				"uses": 13
+			},
+			"frey|skill_1": {
+				"damage": 259.748234359214,
+				"hits": 26,
+				"uses": 38
+			},
+			"frey|skill_2": {
+				"damage": 9.08697284101312,
+				"hits": 3,
+				"uses": 20
+			},
+			"frey|ultimate": {
+				"damage": 55.3633957365718,
+				"hits": 6,
+				"uses": 12
+			},
+			"luna|basic_air_down": {
+				"damage": 3.35263157894737,
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_air_side": {
+				"damage": 9.87295321637427,
+				"hits": 5,
+				"uses": 14
+			},
+			"luna|basic_air_up": {
+				"damage": 5.2875,
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_side": {
+				"damage": 42.2863187134503,
+				"hits": 26,
+				"uses": 46
+			},
+			"luna|basic_up": {
+				"damage": 2.95570175438596,
+				"hits": 2,
+				"uses": 5
+			},
+			"luna|skill_1": {
+				"damage": 10.4047324561404,
+				"hits": 4,
+				"uses": 16
+			},
+			"luna|skill_2": {
+				"damage": 0.0,
+				"hits": 1,
+				"uses": 4
+			},
+			"luna|ultimate": {
+				"damage": 7.48754385964912,
+				"hits": 2,
+				"uses": 3
+			},
+			"nova|basic_air_down": {
+				"damage": 203.351822409668,
+				"hits": 16,
+				"uses": 18
+			},
+			"nova|basic_air_side": {
+				"damage": 45.5651200622853,
+				"hits": 11,
+				"uses": 40
+			},
+			"nova|basic_air_up": {
+				"damage": 42.2990302137465,
+				"hits": 7,
+				"uses": 14
+			},
+			"nova|basic_down": {
+				"damage": 13.0426671619166,
+				"hits": 5,
+				"uses": 8
+			},
+			"nova|basic_side": {
+				"damage": 542.146515072843,
+				"hits": 113,
+				"uses": 180
+			},
+			"nova|basic_up": {
+				"damage": 7.74721051061883,
+				"hits": 5,
+				"uses": 11
+			},
+			"nova|skill_1": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 6
+			},
+			"nova|skill_2": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 14
+			},
+			"nova|ultimate": {
+				"damage": 10.0314661270615,
+				"hits": 4,
+				"uses": 10
+			},
+			"rio|basic_air_down": {
+				"damage": 50.9116943214109,
+				"hits": 12,
+				"uses": 19
+			},
+			"rio|basic_air_side": {
+				"damage": 38.0169666953279,
+				"hits": 9,
+				"uses": 15
+			},
+			"rio|basic_air_up": {
+				"damage": 9.08337146748772,
+				"hits": 4,
+				"uses": 7
+			},
+			"rio|basic_down": {
+				"damage": 1.94449511400651,
+				"hits": 1,
+				"uses": 3
+			},
+			"rio|basic_side": {
+				"damage": 570.076838335518,
+				"hits": 95,
+				"uses": 121
+			},
+			"rio|basic_up": {
+				"damage": 13.0272810084707,
+				"hits": 8,
+				"uses": 10
+			},
+			"rio|skill_1": {
+				"damage": 80.8727675170592,
+				"hits": 13,
+				"uses": 19
+			},
+			"rio|skill_2": {
+				"damage": 14.0086613333333,
+				"hits": 1,
+				"uses": 13
+			},
+			"rio|ultimate": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 9
+			},
+			"yuki|basic_air_down": {
+				"damage": 33.0435021034616,
+				"hits": 4,
+				"uses": 10
+			},
+			"yuki|basic_air_side": {
+				"damage": 12.5045964023074,
+				"hits": 4,
+				"uses": 14
+			},
+			"yuki|basic_air_up": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|basic_side": {
+				"damage": 199.742620385279,
+				"hits": 39,
+				"uses": 73
+			},
+			"yuki|basic_up": {
+				"damage": 0.0,
+				"hits": 1,
+				"uses": 5
+			},
+			"yuki|skill_1": {
+				"damage": 5.41279577128422,
+				"hits": 4,
+				"uses": 30
+			},
+			"yuki|skill_2": {
+				"damage": 10.0577380752312,
+				"hits": 4,
+				"uses": 24
+			},
+			"yuki|ultimate": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 6
+			}
+		},
+		"character_seconds": {
+			"frey": 445.75,
+			"luna": 107.5,
+			"nova": 526.25,
+			"rio": 369.25,
+			"yuki": 215.0
+		},
+		"corner_escapes": {
+			"frey": 1.0,
+			"rio": 5.0,
+			"yuki": 15.0
+		},
+		"cornered_guards": {
+			"rio": {
+				"blocks": 0,
+				"opportunities": 4,
+				"parries": 0,
+				"raised": 1,
+				"ringouts_within_3s": 0
+			},
+			"yuki": {
+				"blocks": 0,
+				"opportunities": 17,
+				"parries": 0,
+				"raised": 4,
+				"ringouts_within_3s": 0
+			}
+		},
+		"frey_recovery_entries": {
+			"knocked_off": 10,
+			"other": 1,
+			"walked_or_dashed_off": 17
+		},
+		"guards_by_attacker": {
+			"frey": {
+				"blocks": 7,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 8,
+				"raised": 44,
+				"reaction_in_recovery": 0,
+				"reactions": 67,
+				"too_late": 13
+			},
+			"luna": {
+				"blocks": 2,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 4,
+				"raised": 20,
+				"reaction_in_recovery": 0,
+				"reactions": 13,
+				"too_late": 2
+			},
+			"nova": {
+				"blocks": 7,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 3,
+				"raised": 34,
+				"reaction_in_recovery": 1,
+				"reactions": 38,
+				"too_late": 6
+			},
+			"rio": {
+				"blocks": 8,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 0,
+				"raised": 34,
+				"reaction_in_recovery": 1,
+				"reactions": 34,
+				"too_late": 5
+			},
+			"yuki": {
+				"blocks": 4,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 3,
+				"raised": 25,
+				"reaction_in_recovery": 1,
+				"reactions": 31,
+				"too_late": 7
+			}
+		},
+		"no_progress": {
+			"frey": {
+				"episodes": 1,
+				"far_y_seconds": 1.75,
+				"phases": {
+					"Corner collapse warning": 4.0,
+					"Exploration": 19.75
+				},
+				"seconds": 23.75
+			},
+			"nova": {
+				"episodes": 2,
+				"far_y_seconds": 17.5,
+				"phases": {
+					"Convergence": 40.75,
+					"Corner collapse warning": 21.0,
+					"Exploration": 7.75
+				},
+				"seconds": 69.5
+			},
+			"rio": {
+				"episodes": 1,
+				"far_y_seconds": 3.5,
+				"phases": {
+					"Convergence": 22.5
+				},
+				"seconds": 22.5
+			},
+			"yuki": {
+				"episodes": 1,
+				"far_y_seconds": 3.5,
+				"phases": {
+					"Exploration": 3.5
+				},
+				"seconds": 3.5
+			}
+		},
+		"nova": {
+			"aimed": 7,
+			"forced": 0,
+			"hits": 7,
+			"launches": 7,
+			"redirects": 2
+		},
+		"portal_reasons": {
+			"escape": 8.0,
+			"off_screen_hop": 5.0,
+			"retreat": 2.0,
+			"roam": 2.0
+		},
+		"portals": {
+			"all": 17.0,
+			"collapse_escape": 8.0,
+			"low_hp": 2.0
+		},
+		"progress_extensions": {},
+		"pve_damage": {
+			"frey": 552.688,
+			"luna": 24.9735,
+			"nova": 669.695614561571,
+			"rio": 565.794091491377,
+			"yuki": 208.7856
+		},
+		"pvp_damage": {
+			"frey": 385.130114647919,
+			"luna": 69.0917763157895,
+			"nova": 372.438977327086,
+			"rio": 277.559450313863,
+			"yuki": 98.0893669704321
+		},
+		"recovery": {
+			"frey": {
+				"fail": 0,
+				"success": 28,
+				"unfinished": 0
+			},
+			"luna": {
+				"fail": 1,
+				"success": 8,
+				"unfinished": 0
+			},
+			"nova": {
+				"fail": 3,
+				"success": 143,
+				"unfinished": 0
+			},
+			"rio": {
+				"fail": 2,
+				"success": 37,
+				"unfinished": 1
+			},
+			"yuki": {
+				"fail": 0,
+				"success": 12,
+				"unfinished": 0
+			}
+		},
+		"recovery_skill_asks": {
+			"frey": 1.0,
+			"rio": 1.0
+		},
+		"recovery_skills": {
+			"frey": {
+				"reached_floor": 1,
+				"used": 1
+			},
+			"rio": {
+				"reached_floor": 0,
+				"used": 1
+			}
+		},
+		"samples": {
+			"frey|Central brawl": 93.0,
+			"frey|Convergence": 490.0,
+			"frey|Corner collapse warning": 240.0,
+			"frey|Exploration": 960.0,
+			"luna|Exploration": 430.0,
+			"nova|Central brawl": 185.0,
+			"nova|Convergence": 720.0,
+			"nova|Corner collapse warning": 240.0,
+			"nova|Exploration": 960.0,
+			"rio|Convergence": 277.0,
+			"rio|Corner collapse warning": 240.0,
+			"rio|Exploration": 960.0,
+			"yuki|Convergence": 260.0,
+			"yuki|Corner collapse warning": 120.0,
+			"yuki|Exploration": 480.0
+		},
+		"standoffs": [],
+		"states": {
+			"frey|Central brawl|engage": 74.0,
+			"frey|Central brawl|pursue": 2.0,
+			"frey|Central brawl|recover": 17.0,
+			"frey|Convergence|engage": 319.0,
+			"frey|Convergence|pursue": 168.0,
+			"frey|Convergence|recover": 3.0,
+			"frey|Corner collapse warning|engage": 190.0,
+			"frey|Corner collapse warning|portal": 4.0,
+			"frey|Corner collapse warning|pursue": 45.0,
+			"frey|Corner collapse warning|recover": 1.0,
+			"frey|Exploration|engage": 649.0,
+			"frey|Exploration|portal": 2.0,
+			"frey|Exploration|pursue": 190.0,
+			"frey|Exploration|recover": 20.0,
+			"frey|Exploration|wander": 99.0,
+			"luna|Exploration|engage": 355.0,
+			"luna|Exploration|portal": 4.0,
+			"luna|Exploration|pursue": 46.0,
+			"luna|Exploration|recover": 24.0,
+			"luna|Exploration|wander": 1.0,
+			"nova|Central brawl|engage": 110.0,
+			"nova|Central brawl|pursue": 65.0,
+			"nova|Central brawl|recover": 8.0,
+			"nova|Central brawl|wander": 2.0,
+			"nova|Convergence|engage": 384.0,
+			"nova|Convergence|portal": 7.0,
+			"nova|Convergence|pursue": 115.0,
+			"nova|Convergence|recover": 207.0,
+			"nova|Convergence|wander": 7.0,
+			"nova|Corner collapse warning|engage": 127.0,
+			"nova|Corner collapse warning|portal": 1.0,
+			"nova|Corner collapse warning|pursue": 31.0,
+			"nova|Corner collapse warning|recover": 81.0,
+			"nova|Exploration|engage": 621.0,
+			"nova|Exploration|portal": 2.0,
+			"nova|Exploration|pursue": 139.0,
+			"nova|Exploration|recover": 175.0,
+			"nova|Exploration|wander": 23.0,
+			"rio|Convergence|engage": 169.0,
+			"rio|Convergence|pursue": 60.0,
+			"rio|Convergence|recover": 48.0,
+			"rio|Corner collapse warning|engage": 165.0,
+			"rio|Corner collapse warning|pursue": 45.0,
+			"rio|Corner collapse warning|recover": 30.0,
+			"rio|Exploration|engage": 757.0,
+			"rio|Exploration|portal": 1.0,
+			"rio|Exploration|pursue": 122.0,
+			"rio|Exploration|recover": 45.0,
+			"rio|Exploration|wander": 35.0,
+			"yuki|Convergence|engage": 247.0,
+			"yuki|Convergence|pursue": 10.0,
+			"yuki|Convergence|recover": 3.0,
+			"yuki|Corner collapse warning|engage": 114.0,
+			"yuki|Corner collapse warning|portal": 3.0,
+			"yuki|Corner collapse warning|pursue": 2.0,
+			"yuki|Corner collapse warning|recover": 1.0,
+			"yuki|Exploration|engage": 364.0,
+			"yuki|Exploration|pursue": 81.0,
+			"yuki|Exploration|recover": 31.0,
+			"yuki|Exploration|wander": 4.0
+		},
+		"stuck": {
+			"0|1300|500": 0.25,
+			"0|500|700": 0.25,
+			"3|1400|900": 0.25,
+			"3|1700|800": 0.25,
+			"5|1400|800": 0.5,
+			"5|400|800": 0.25,
+			"7|600|400": 0.25
+		},
+		"swing_context": {
+			"frey|basic_air_down|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_air_down|0_120|player": {
+				"hits": 2,
+				"uses": 4
+			},
+			"frey|basic_air_down|120_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_air_down|120_240|monster": {
+				"hits": 2,
+				"uses": 4
+			},
+			"frey|basic_air_down|120_240|player": {
+				"hits": 3,
+				"uses": 10
+			},
+			"frey|basic_air_down|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|0_120|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"frey|basic_air_side|0_120|player": {
+				"hits": 5,
+				"uses": 10
+			},
+			"frey|basic_air_side|120_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|120_240|player": {
+				"hits": 6,
+				"uses": 9
+			},
+			"frey|basic_air_side|240_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|240_360|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"frey|basic_air_side|240_360|player": {
+				"hits": 2,
+				"uses": 7
+			},
+			"frey|basic_air_up|0_120|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_air_up|0_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_air_up|120_240|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"frey|basic_air_up|120_240|player": {
+				"hits": 2,
+				"uses": 7
+			},
+			"frey|basic_down|0_120|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"frey|basic_down|120_240|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|basic_down|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_side|0_120|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"frey|basic_side|0_120|monster": {
+				"hits": 32,
+				"uses": 37
+			},
+			"frey|basic_side|0_120|player": {
+				"hits": 33,
+				"uses": 40
+			},
+			"frey|basic_side|120_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|120_240|monster": {
+				"hits": 6,
+				"uses": 7
+			},
+			"frey|basic_side|120_240|player": {
+				"hits": 13,
+				"uses": 21
+			},
+			"frey|basic_side|240_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_side|240_360|player": {
+				"hits": 4,
+				"uses": 10
+			},
+			"frey|basic_up|0_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_up|0_120|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|basic_up|120_240|player": {
+				"hits": 3,
+				"uses": 8
+			},
+			"frey|basic_up|240_360|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|skill_1|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_2|120_240|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"frey|skill_2|120_240|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|skill_2|240_360|monster": {
+				"hits": 1,
+				"uses": 6
+			},
+			"frey|skill_2|240_360|player": {
+				"hits": 1,
+				"uses": 6
+			},
+			"luna|basic_air_down|120_240|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_air_side|0_120|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|0_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|120_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_side|120_240|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"luna|basic_air_side|120_240|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"luna|basic_air_side|240_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|360_plus|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"luna|basic_air_up|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_up|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|0_120|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"luna|basic_side|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|0_120|player": {
+				"hits": 19,
+				"uses": 23
+			},
+			"luna|basic_side|120_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|120_240|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|120_240|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_side|240_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|240_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|240_360|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_side|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_up|0_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_up|120_240|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"luna|basic_up|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|0_120|player": {
+				"hits": 3,
+				"uses": 8
+			},
+			"luna|skill_1|240_360|monster": {
+				"hits": 1,
+				"uses": 3
+			},
+			"luna|skill_1|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|360_plus|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"luna|skill_2|120_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_2|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_2|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_2|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_down|0_120|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_air_down|0_120|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_air_down|120_240|monster": {
+				"hits": 8,
+				"uses": 8
+			},
+			"nova|basic_air_down|120_240|player": {
+				"hits": 4,
+				"uses": 4
+			},
+			"nova|basic_air_down|240_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|0_120|crystal": {
+				"hits": 3,
+				"uses": 4
+			},
+			"nova|basic_air_side|0_120|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"nova|basic_air_side|0_120|player": {
+				"hits": 2,
+				"uses": 6
+			},
+			"nova|basic_air_side|120_240|monster": {
+				"hits": 2,
+				"uses": 4
+			},
+			"nova|basic_air_side|120_240|player": {
+				"hits": 2,
+				"uses": 9
+			},
+			"nova|basic_air_side|240_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|240_360|monster": {
+				"hits": 0,
+				"uses": 7
+			},
+			"nova|basic_air_side|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|360_plus|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"nova|basic_air_up|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_up|120_240|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"nova|basic_air_up|120_240|player": {
+				"hits": 4,
+				"uses": 6
+			},
+			"nova|basic_air_up|240_360|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"nova|basic_down|0_120|player": {
+				"hits": 4,
+				"uses": 4
+			},
+			"nova|basic_down|120_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_down|240_360|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"nova|basic_side|0_120|crystal": {
+				"hits": 7,
+				"uses": 8
+			},
+			"nova|basic_side|0_120|monster": {
+				"hits": 49,
+				"uses": 52
+			},
+			"nova|basic_side|0_120|player": {
+				"hits": 50,
+				"uses": 61
+			},
+			"nova|basic_side|120_240|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_side|120_240|monster": {
+				"hits": 1,
+				"uses": 7
+			},
+			"nova|basic_side|120_240|player": {
+				"hits": 2,
+				"uses": 9
+			},
+			"nova|basic_side|240_360|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"nova|basic_side|240_360|player": {
+				"hits": 1,
+				"uses": 7
+			},
+			"nova|basic_side|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_up|0_120|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_up|0_120|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_up|120_240|player": {
+				"hits": 1,
+				"uses": 6
+			},
+			"rio|basic_air_down|120_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_air_side|0_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_air_side|0_120|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"rio|basic_air_side|0_120|player": {
+				"hits": 3,
+				"uses": 4
+			},
+			"rio|basic_air_side|120_240|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_air_side|120_240|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"rio|basic_air_side|120_240|player": {
+				"hits": 2,
+				"uses": 4
+			},
+			"rio|basic_air_up|0_120|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"rio|basic_air_up|120_240|player": {
+				"hits": 2,
+				"uses": 4
+			},
+			"rio|basic_down|0_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_down|120_240|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"rio|basic_side|0_120|crystal": {
+				"hits": 4,
+				"uses": 4
+			},
+			"rio|basic_side|0_120|monster": {
+				"hits": 50,
+				"uses": 53
+			},
+			"rio|basic_side|0_120|player": {
+				"hits": 29,
+				"uses": 36
+			},
+			"rio|basic_side|120_240|crystal": {
+				"hits": 3,
+				"uses": 3
+			},
+			"rio|basic_side|120_240|monster": {
+				"hits": 8,
+				"uses": 10
+			},
+			"rio|basic_side|120_240|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"rio|basic_up|0_120|crystal": {
+				"hits": 4,
+				"uses": 5
+			},
+			"rio|basic_up|0_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_up|120_240|player": {
+				"hits": 4,
+				"uses": 4
+			},
+			"rio|skill_1|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|0_120|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|120_240|monster": {
+				"hits": 3,
+				"uses": 5
+			},
+			"yuki|basic_air_down|120_240|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"yuki|basic_air_down|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_side|0_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|basic_air_side|120_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|120_240|player": {
+				"hits": 2,
+				"uses": 4
+			},
+			"yuki|basic_air_side|240_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|240_360|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|basic_air_side|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_up|120_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_up|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_up|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|0_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_side|0_120|monster": {
+				"hits": 7,
+				"uses": 8
+			},
+			"yuki|basic_side|0_120|player": {
+				"hits": 5,
+				"uses": 7
+			},
+			"yuki|basic_side|120_240|crystal": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|basic_side|120_240|monster": {
+				"hits": 6,
+				"uses": 8
+			},
+			"yuki|basic_side|120_240|player": {
+				"hits": 4,
+				"uses": 8
+			},
+			"yuki|basic_side|240_360|crystal": {
+				"hits": 2,
+				"uses": 4
+			},
+			"yuki|basic_side|240_360|monster": {
+				"hits": 7,
+				"uses": 10
+			},
+			"yuki|basic_side|240_360|player": {
+				"hits": 7,
+				"uses": 13
+			},
+			"yuki|basic_side|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_up|0_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_up|0_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_up|240_360|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|basic_up|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|0_120|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_1|0_120|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"yuki|skill_1|120_240|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|120_240|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"yuki|skill_1|120_240|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_1|240_360|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_1|240_360|player": {
+				"hits": 1,
+				"uses": 4
+			},
+			"yuki|skill_1|360_plus|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|360_plus|monster": {
+				"hits": 0,
+				"uses": 5
+			},
+			"yuki|skill_1|360_plus|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_2|120_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|skill_2|120_240|monster": {
+				"hits": 2,
+				"uses": 6
+			},
+			"yuki|skill_2|120_240|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_2|240_360|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"yuki|skill_2|240_360|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_2|360_plus|crystal": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_2|360_plus|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_2|360_plus|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"yuki|ultimate|120_240|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|ultimate|240_360|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|ultimate|360_plus|player": {
+				"hits": 0,
+				"uses": 2
+			}
+		},
+		"swing_context_60": {
+			"frey|basic_air_down|0_60|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_air_down|0_60|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"frey|basic_air_down|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_air_down|120_180|monster": {
+				"hits": 2,
+				"uses": 4
+			},
+			"frey|basic_air_down|120_180|player": {
+				"hits": 1,
+				"uses": 6
+			},
+			"frey|basic_air_down|180_240|player": {
+				"hits": 2,
+				"uses": 4
+			},
+			"frey|basic_air_down|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_down|60_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|0_60|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"frey|basic_air_side|0_60|player": {
+				"hits": 3,
+				"uses": 3
+			},
+			"frey|basic_air_side|120_180|player": {
+				"hits": 3,
+				"uses": 3
+			},
+			"frey|basic_air_side|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|180_240|player": {
+				"hits": 3,
+				"uses": 6
+			},
+			"frey|basic_air_side|240_300|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|240_300|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"frey|basic_air_side|240_300|player": {
+				"hits": 2,
+				"uses": 5
+			},
+			"frey|basic_air_side|300_360|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"frey|basic_air_side|60_120|player": {
+				"hits": 2,
+				"uses": 7
+			},
+			"frey|basic_air_up|120_180|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"frey|basic_air_up|120_180|player": {
+				"hits": 2,
+				"uses": 6
+			},
+			"frey|basic_air_up|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_up|60_120|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_air_up|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_down|0_60|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_down|120_180|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_down|180_240|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"frey|basic_down|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_down|60_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_side|0_60|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|0_60|monster": {
+				"hits": 23,
+				"uses": 27
+			},
+			"frey|basic_side|0_60|player": {
+				"hits": 20,
+				"uses": 26
+			},
+			"frey|basic_side|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|120_180|monster": {
+				"hits": 5,
+				"uses": 5
+			},
+			"frey|basic_side|120_180|player": {
+				"hits": 10,
+				"uses": 13
+			},
+			"frey|basic_side|180_240|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_side|180_240|player": {
+				"hits": 3,
+				"uses": 8
+			},
+			"frey|basic_side|240_300|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_side|240_300|player": {
+				"hits": 4,
+				"uses": 10
+			},
+			"frey|basic_side|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|60_120|monster": {
+				"hits": 9,
+				"uses": 10
+			},
+			"frey|basic_side|60_120|player": {
+				"hits": 13,
+				"uses": 14
+			},
+			"frey|basic_up|0_60|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_up|120_180|player": {
+				"hits": 3,
+				"uses": 5
+			},
+			"frey|basic_up|180_240|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"frey|basic_up|300_360|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_up|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_up|60_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_1|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_2|120_180|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_2|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_2|180_240|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|skill_2|240_300|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"frey|skill_2|240_300|player": {
+				"hits": 1,
+				"uses": 5
+			},
+			"frey|skill_2|300_360|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|skill_2|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_down|120_180|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_air_side|0_60|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_side|120_180|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"luna|basic_air_side|120_180|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"luna|basic_air_side|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|240_300|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|360_420|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|360_420|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"luna|basic_air_side|60_120|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_up|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_up|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|0_60|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|0_60|player": {
+				"hits": 13,
+				"uses": 17
+			},
+			"luna|basic_side|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|120_180|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_side|180_240|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|240_300|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|300_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|300_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|360_420|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|60_120|player": {
+				"hits": 6,
+				"uses": 6
+			},
+			"luna|basic_up|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_up|120_180|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_up|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_up|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|0_60|player": {
+				"hits": 2,
+				"uses": 7
+			},
+			"luna|skill_1|300_360|monster": {
+				"hits": 1,
+				"uses": 3
+			},
+			"luna|skill_1|360_420|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|420_480|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|480_540|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_2|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_2|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_2|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_2|360_420|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_down|0_60|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|120_180|monster": {
+				"hits": 5,
+				"uses": 5
+			},
+			"nova|basic_air_down|120_180|player": {
+				"hits": 3,
+				"uses": 3
+			},
+			"nova|basic_air_down|180_240|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"nova|basic_air_down|180_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|240_300|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_down|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_side|0_60|crystal": {
+				"hits": 3,
+				"uses": 4
+			},
+			"nova|basic_air_side|0_60|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_air_side|0_60|player": {
+				"hits": 1,
+				"uses": 4
+			},
+			"nova|basic_air_side|120_180|monster": {
+				"hits": 2,
+				"uses": 4
+			},
+			"nova|basic_air_side|120_180|player": {
+				"hits": 2,
+				"uses": 6
+			},
+			"nova|basic_air_side|180_240|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"nova|basic_air_side|240_300|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"nova|basic_air_side|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|300_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|300_360|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"nova|basic_air_side|360_420|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|360_420|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"nova|basic_air_side|60_120|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"nova|basic_air_up|120_180|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_air_up|120_180|player": {
+				"hits": 4,
+				"uses": 4
+			},
+			"nova|basic_air_up|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_up|180_240|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"nova|basic_air_up|240_300|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"nova|basic_air_up|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_down|0_60|player": {
+				"hits": 3,
+				"uses": 3
+			},
+			"nova|basic_down|120_180|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_down|240_300|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"nova|basic_down|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_side|0_60|crystal": {
+				"hits": 3,
+				"uses": 4
+			},
+			"nova|basic_side|0_60|monster": {
+				"hits": 25,
+				"uses": 27
+			},
+			"nova|basic_side|0_60|player": {
+				"hits": 39,
+				"uses": 49
+			},
+			"nova|basic_side|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_side|120_180|monster": {
+				"hits": 1,
+				"uses": 6
+			},
+			"nova|basic_side|120_180|player": {
+				"hits": 2,
+				"uses": 5
+			},
+			"nova|basic_side|180_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_side|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|180_240|player": {
+				"hits": 0,
+				"uses": 4
+			},
+			"nova|basic_side|240_300|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"nova|basic_side|240_300|player": {
+				"hits": 1,
+				"uses": 5
+			},
+			"nova|basic_side|300_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|300_360|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"nova|basic_side|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|60_120|crystal": {
+				"hits": 4,
+				"uses": 4
+			},
+			"nova|basic_side|60_120|monster": {
+				"hits": 24,
+				"uses": 25
+			},
+			"nova|basic_side|60_120|player": {
+				"hits": 11,
+				"uses": 12
+			},
+			"nova|basic_up|0_60|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_up|120_180|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"nova|basic_up|180_240|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"nova|basic_up|60_120|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"rio|basic_air_down|120_180|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_air_side|0_60|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"rio|basic_air_side|0_60|player": {
+				"hits": 3,
+				"uses": 4
+			},
+			"rio|basic_air_side|120_180|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_air_side|120_180|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_air_side|120_180|player": {
+				"hits": 2,
+				"uses": 4
+			},
+			"rio|basic_air_side|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_air_side|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_air_side|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_air_up|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_air_up|120_180|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"rio|basic_air_up|180_240|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"rio|basic_air_up|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"rio|basic_down|120_180|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"rio|basic_down|60_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_side|0_60|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_side|0_60|monster": {
+				"hits": 31,
+				"uses": 34
+			},
+			"rio|basic_side|0_60|player": {
+				"hits": 23,
+				"uses": 29
+			},
+			"rio|basic_side|120_180|crystal": {
+				"hits": 3,
+				"uses": 3
+			},
+			"rio|basic_side|120_180|monster": {
+				"hits": 8,
+				"uses": 10
+			},
+			"rio|basic_side|120_180|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"rio|basic_side|60_120|crystal": {
+				"hits": 3,
+				"uses": 3
+			},
+			"rio|basic_side|60_120|monster": {
+				"hits": 19,
+				"uses": 19
+			},
+			"rio|basic_side|60_120|player": {
+				"hits": 6,
+				"uses": 7
+			},
+			"rio|basic_up|0_60|crystal": {
+				"hits": 3,
+				"uses": 4
+			},
+			"rio|basic_up|120_180|player": {
+				"hits": 3,
+				"uses": 3
+			},
+			"rio|basic_up|180_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_up|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_up|60_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|skill_1|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|120_180|monster": {
+				"hits": 3,
+				"uses": 4
+			},
+			"yuki|basic_air_down|120_180|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"yuki|basic_air_down|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|60_120|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|0_60|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|120_180|player": {
+				"hits": 2,
+				"uses": 4
+			},
+			"yuki|basic_air_side|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|300_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|300_360|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|basic_air_side|360_420|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_side|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_up|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_up|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_up|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|0_60|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_side|0_60|player": {
+				"hits": 3,
+				"uses": 4
+			},
+			"yuki|basic_side|120_180|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_side|120_180|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|basic_side|180_240|crystal": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|basic_side|180_240|monster": {
+				"hits": 5,
+				"uses": 7
+			},
+			"yuki|basic_side|180_240|player": {
+				"hits": 4,
+				"uses": 5
+			},
+			"yuki|basic_side|240_300|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"yuki|basic_side|240_300|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|basic_side|240_300|player": {
+				"hits": 2,
+				"uses": 5
+			},
+			"yuki|basic_side|300_360|crystal": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|basic_side|300_360|monster": {
+				"hits": 6,
+				"uses": 8
+			},
+			"yuki|basic_side|300_360|player": {
+				"hits": 5,
+				"uses": 8
+			},
+			"yuki|basic_side|360_420|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_side|60_120|monster": {
+				"hits": 6,
+				"uses": 7
+			},
+			"yuki|basic_side|60_120|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"yuki|basic_up|0_60|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_up|0_60|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_up|240_300|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|basic_up|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|0_60|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|skill_1|120_180|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|180_240|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"yuki|skill_1|180_240|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_1|240_300|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_1|240_300|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|skill_1|300_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|300_360|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_1|360_420|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|360_420|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"yuki|skill_1|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|420_480|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|480_540|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|60_120|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|skill_2|120_180|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_2|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|180_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|skill_2|180_240|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"yuki|skill_2|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|240_300|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_2|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|300_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|360_420|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|360_420|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_2|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|420_480|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|420_480|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|skill_2|480_540|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|600_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|ultimate|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|ultimate|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|ultimate|240_300|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|ultimate|480_540|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|ultimate|600_plus|player": {
+				"hits": 0,
+				"uses": 1
+			}
+		},
+		"target_active_seconds": {
+			"frey": 414.25,
+			"luna": 105.5,
+			"nova": 490.5,
+			"rio": 352.75,
+			"yuki": 212.5
+		},
+		"target_drop_causes": {
+			"route_not_followed_gap_no_landing": 11.0,
+			"route_not_followed_wrong_level": 4.0,
+			"target_moved_away": 1.0
+		},
+		"target_drops": {
+			"frey": {
+				"all": 7,
+				"traded_within_3s": 0,
+				"within_300": 0
+			},
+			"luna": {
+				"all": 1,
+				"traded_within_3s": 0,
+				"within_300": 0
+			},
+			"nova": {
+				"all": 5,
+				"traded_within_3s": 0,
+				"within_300": 4
+			},
+			"rio": {
+				"all": 2,
+				"traded_within_3s": 0,
+				"within_300": 1
+			},
+			"yuki": {
+				"all": 1,
+				"traded_within_3s": 0,
+				"within_300": 0
+			}
+		},
+		"target_switches": {
+			"frey": 107.0,
+			"luna": 16.0,
+			"nova": 108.0,
+			"rio": 92.0,
+			"yuki": 62.0
+		},
+		"targets": {
+			"frey|Central brawl|player": 93.0,
+			"frey|Convergence|monster": 33.0,
+			"frey|Convergence|player": 457.0,
+			"frey|Corner collapse warning|crystal": 11.0,
+			"frey|Corner collapse warning|monster": 34.0,
+			"frey|Corner collapse warning|none": 5.0,
+			"frey|Corner collapse warning|player": 190.0,
+			"frey|Exploration|crystal": 77.0,
+			"frey|Exploration|monster": 356.0,
+			"frey|Exploration|none": 121.0,
+			"frey|Exploration|player": 406.0,
+			"luna|Exploration|crystal": 15.0,
+			"luna|Exploration|monster": 87.0,
+			"luna|Exploration|none": 8.0,
+			"luna|Exploration|player": 320.0,
+			"nova|Central brawl|none": 2.0,
+			"nova|Central brawl|player": 183.0,
+			"nova|Convergence|crystal": 309.0,
+			"nova|Convergence|monster": 196.0,
+			"nova|Convergence|none": 21.0,
+			"nova|Convergence|player": 194.0,
+			"nova|Corner collapse warning|crystal": 93.0,
+			"nova|Corner collapse warning|monster": 94.0,
+			"nova|Corner collapse warning|none": 6.0,
+			"nova|Corner collapse warning|player": 47.0,
+			"nova|Exploration|crystal": 19.0,
+			"nova|Exploration|monster": 293.0,
+			"nova|Exploration|none": 114.0,
+			"nova|Exploration|player": 534.0,
+			"rio|Convergence|crystal": 4.0,
+			"rio|Convergence|monster": 34.0,
+			"rio|Convergence|player": 239.0,
+			"rio|Corner collapse warning|crystal": 13.0,
+			"rio|Corner collapse warning|monster": 118.0,
+			"rio|Corner collapse warning|none": 5.0,
+			"rio|Corner collapse warning|player": 104.0,
+			"rio|Exploration|crystal": 79.0,
+			"rio|Exploration|monster": 438.0,
+			"rio|Exploration|none": 61.0,
+			"rio|Exploration|player": 382.0,
+			"yuki|Convergence|crystal": 25.0,
+			"yuki|Convergence|monster": 71.0,
+			"yuki|Convergence|none": 3.0,
+			"yuki|Convergence|player": 161.0,
+			"yuki|Corner collapse warning|crystal": 10.0,
+			"yuki|Corner collapse warning|monster": 15.0,
+			"yuki|Corner collapse warning|player": 95.0,
+			"yuki|Exploration|crystal": 68.0,
+			"yuki|Exploration|monster": 274.0,
+			"yuki|Exploration|none": 7.0,
+			"yuki|Exploration|player": 131.0
+		},
+		"yuki_ledge_ringouts": {
+			"all": 0,
+			"near_ledge": 0
+		},
+		"zero_jump_ringout_causes": {
+			"recovery": 3.0
+		}
+	},
+	"wall_seconds": 125.147
+}

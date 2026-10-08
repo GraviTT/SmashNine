@@ -52,6 +52,19 @@ function swingTargets(character, attackType) {
   return result;
 }
 
+function swingDistance60(character, basicOnly = true) {
+  const result = {};
+  for (const [key, value] of Object.entries(t.swing_context_60 || {})) {
+    const [keyCharacter, keyAttack, bucket] = key.split('|');
+    if (keyCharacter !== character || (basicOnly && !keyAttack.startsWith('basic_'))) continue;
+    result[bucket] ||= {uses: 0, hits: 0};
+    result[bucket].uses += Number(value.uses || 0);
+    result[bucket].hits += Number(value.hits || 0);
+  }
+  for (const value of Object.values(result)) value.hit_rate = round(pct(value.hits, value.uses));
+  return Object.fromEntries(Object.entries(result).sort(([a], [b]) => Number.parseInt(a) - Number.parseInt(b)));
+}
+
 const lengths = data.matches.map(row => Number(row.seconds)).sort((a, b) => a - b);
 const allAttacks = Object.values(t.attacks);
 const totalAttackUses = sum(allAttacks.map(row => row.uses));
@@ -99,6 +112,18 @@ for (const character of ['frey', 'nova', 'rio']) {
     max_uses: counts.length ? Math.max(...counts) : 0
   };
 }
+const freyFailedSecondDashes = (data.recovery_skill_events || []).filter(row => row.character === 'frey' && Number(row.use_index) === 2 && !row.reached_floor);
+const deadBandsBySeed = {};
+for (const row of data.dead_band_events || []) {
+  deadBandsBySeed[row.seed] ||= {count: 0, seconds: 0, longest: 0};
+  deadBandsBySeed[row.seed].count++;
+  deadBandsBySeed[row.seed].seconds += Number(row.duration || 0);
+  deadBandsBySeed[row.seed].longest = Math.max(deadBandsBySeed[row.seed].longest, Number(row.duration || 0));
+}
+for (const value of Object.values(deadBandsBySeed)) {
+  value.seconds = round(value.seconds, 1);
+  value.longest = round(value.longest, 1);
+}
 const byCharacter = {};
 for (const character of chars) {
   const stateCounts = Object.fromEntries(stateOrder.map(label => [label, sum(phases.map(phase => Number(t.states[`${character}|${phase}|${label}`] || 0)))]));
@@ -115,7 +140,8 @@ for (const character of chars) {
     attack: attackByCharacter(character),
     ringouts: ringouts[character],
     recovery: {...recovery, rate: round(pct(Number(recovery.success || 0), recoveryTotal))},
-    distance: swingDistance(character)
+    distance: swingDistance(character),
+    distance_60_basic: swingDistance60(character)
   };
 }
 
@@ -168,6 +194,14 @@ const summary = {
   recovery_skill_asks: t.recovery_skill_asks || {},
   recovery_skill_ask_events: data.recovery_skill_ask_events || [],
   recovery_skill_episode_uses: recoveryEpisodeUses,
+	dead_bands: {count: (data.dead_band_events || []).length, by_seed: deadBandsBySeed, events: data.dead_band_events || []},
+	target_drop_causes: t.target_drop_causes || {},
+	zero_jump_ringout_causes: t.zero_jump_ringout_causes || {},
+	frey_failed_second_dashes: {
+		count: freyFailedSecondDashes.length,
+		shortened: freyFailedSecondDashes.filter(row => Number(row.shortened_by || 0) > 0).length,
+		rows: freyFailedSecondDashes
+	},
   standoff_trace_events: data.standoff_trace_events || [],
   progress_extensions: t.progress_extensions || {},
   progress_extension_events: data.progress_extension_events || [],
