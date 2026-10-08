@@ -5,7 +5,11 @@ extends CanvasLayer
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
-const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug"
+const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug  F4 bots"
+## Live bot panel (F4, development aid 2026-10-08): on by default while the game is tested.
+const BOT_PANEL_SHOWN_AT_START := true
+const BOT_PANEL_WIDTH := 352.0
+const BOT_ROW_FACE := 34.0
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
 ## Cut-in band heights: above the fighters when the caster is in the lower half of the screen,
 ## below them otherwise, so the band never covers the cast itself (Codex QA-12: at a fixed
@@ -52,6 +56,10 @@ var flash_rect: ColorRect
 ## Arrows at the screen edge toward fighters in the shown realm who are off screen (realms
 ## are bigger than the view since 2026-10-08).
 var offscreen_root: Node2D
+## Right-hand list of every fighter: face, realm, HP and what its bot is trying to do.
+var bot_panel: PanelContainer
+var bot_rows: VBoxContainer
+var bot_row_nodes: Array = []
 var offscreen_markers: Array[Polygon2D] = []
 var flash_tween: Tween
 var overlay_body: Label
@@ -90,6 +98,7 @@ func _ready() -> void:
 	offscreen_root = Node2D.new()
 	offscreen_root.name = "OffscreenMarkers"
 	add_child(offscreen_root)
+	_build_bot_panel()
 	_build_overlay()
 	# Keep each element on its screen edge for any window shape (web canvases are not 16:9).
 	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [warning_label, TOP_CENTER],
@@ -131,6 +140,70 @@ func set_debug_text(text: String) -> void:
 
 func toggle_debug() -> void:
 	debug_label.visible = not debug_label.visible
+
+func toggle_bot_panel() -> void:
+	bot_panel.visible = not bot_panel.visible
+
+func _build_bot_panel() -> void:
+	bot_panel = PanelContainer.new()
+	bot_panel.name = "BotPanel"
+	bot_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.02, 0.03, 0.06, 0.72)
+	style.set_corner_radius_all(4)
+	style.content_margin_left = 6
+	style.content_margin_right = 6
+	style.content_margin_top = 4
+	style.content_margin_bottom = 4
+	bot_panel.add_theme_stylebox_override("panel", style)
+	bot_panel.position = Vector2(1280.0 - BOT_PANEL_WIDTH - 6.0, 96.0)
+	bot_panel.size = Vector2(BOT_PANEL_WIDTH, 0.0)
+	bot_panel.visible = BOT_PANEL_SHOWN_AT_START
+	add_child(bot_panel)
+	bot_rows = VBoxContainer.new()
+	bot_rows.add_theme_constant_override("separation", 3)
+	bot_rows.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bot_panel.add_child(bot_rows)
+
+## rows: [{"face": Texture2D or null, "color": Color, "title": String, "lines": String,
+## "dim": bool}], one per fighter, in a stable order.
+func update_bot_panel(rows: Array) -> void:
+	if not bot_panel.visible:
+		return
+	while bot_row_nodes.size() < rows.size():
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 6)
+		row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var face := TextureRect.new()
+		face.custom_minimum_size = Vector2(BOT_ROW_FACE, BOT_ROW_FACE)
+		face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		face.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		row.add_child(face)
+		var text := Label.new()
+		text.add_theme_font_size_override("font_size", 11)
+		text.add_theme_constant_override("line_spacing", -2)
+		text.custom_minimum_size = Vector2(BOT_PANEL_WIDTH - BOT_ROW_FACE - 18.0, 0.0)
+		text.autowrap_mode = TextServer.AUTOWRAP_OFF
+		text.clip_text = true
+		text.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		row.add_child(text)
+		bot_rows.add_child(row)
+		bot_row_nodes.append({"row": row, "face": face, "text": text})
+	for index in bot_row_nodes.size():
+		var nodes: Dictionary = bot_row_nodes[index]
+		var row: HBoxContainer = nodes.row
+		row.visible = index < rows.size()
+		if not row.visible:
+			continue
+		var data: Dictionary = rows[index]
+		var face: TextureRect = nodes.face
+		face.texture = data.get("face")
+		var text: Label = nodes.text
+		text.text = "%s\n%s" % [data.title, data.lines]
+		var color: Color = data.color
+		text.add_theme_color_override("font_color", color.lerp(Color.WHITE, 0.55))
+		row.modulate = Color(1, 1, 1, 0.5 if bool(data.get("dim", false)) else 1.0)
 
 func set_clock(phase: String, elapsed: float, next_label: String, next_in: float) -> void:
 	var text := "%s   %s" % [phase, _format_time(elapsed)]

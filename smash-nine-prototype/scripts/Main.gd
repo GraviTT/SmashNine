@@ -21,6 +21,11 @@ const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const CAMERA_ZOOM := 0.85
 ## Off-screen fighter arrows sit this far inside the screen edge.
 const OFFSCREEN_MARKER_INSET := 34.0
+## The live bot panel refreshes this often (seconds).
+const BOT_PANEL_REFRESH := 0.1
+const BOT_STATE_LABELS := {"wander": "WANDER", "pursue": "CHASE", "engage": "FIGHT", "portal": "PORTAL", "recover": "RECOVER"}
+const BOT_ATTACK_KEYS := {"basic": "J", "skill_1": "K", "skill_2": "L", "ultimate": "I"}
+var bot_panel_timer := 0.0
 const CAMERA_EDGE_PADDING := 80.0
 const ULTIMATE_CAST_SHAKE := 6.0
 const ULTIMATE_HIT_SHAKE := 3.5
@@ -199,6 +204,8 @@ func _apply_phase_rules() -> void:
 func _handle_global_input() -> bool:
 	if Input.is_action_just_pressed("toggle_debug"):
 		hud.toggle_debug()
+	if Input.is_action_just_pressed("toggle_bot_panel"):
+		hud.toggle_bot_panel()
 	if not match_started:
 		var ids := CHARACTER_REGISTRY.get_character_ids()
 		for index in mini(CHOOSE_ACTIONS.size(), ids.size()):
@@ -526,6 +533,10 @@ func _offscreen_markers() -> Array:
 
 func _update_hud() -> void:
 	hud.set_offscreen_markers(_offscreen_markers() if match_started and not match_over else [])
+	bot_panel_timer -= get_process_delta_time()
+	if bot_panel_timer <= 0.0:
+		bot_panel_timer = BOT_PANEL_REFRESH
+		hud.update_bot_panel(_bot_panel_rows())
 	hud.set_clock(director.get_phase_name(), director.match_elapsed, director.get_next_event_label(), director.get_next_event_in())
 	hud.set_status(director.get_alive_combatants().size(), players.size(), _get_focus_player())
 	hud.update_minimap_labels(director, _count_alive_by_realm())
@@ -544,6 +555,52 @@ func _update_hud() -> void:
 		hud.show_card_offer(offer.cards, offer.time_left)
 	if hud.debug_label.visible:
 		_update_debug_text()
+
+## One row per fighter for the live bot panel: who, where, HP, and for bots what they are
+## trying to do right now (EnemyAI.debug_snapshot). Fighters outside the shown realm dim.
+func _bot_panel_rows() -> Array:
+	var rows: Array = []
+	for player in players:
+		if not is_instance_valid(player):
+			continue
+		var title := "%s%s  %s  HP %d/%d" % ["P1 " if player.is_human else "", player.display_name, layout.get_realm(player.realm_index).name, roundi(player.hp), roundi(player.max_hp)]
+		var lines := ""
+		if player.is_defeated:
+			lines = "OUT"
+		elif player.is_human:
+			lines = "you"
+		else:
+			lines = _bot_plan_text(player)
+		rows.append({
+			"face": ART_SETTINGS.character_portrait(player.character_id, player.body_type),
+			"color": player.body_color,
+			"title": title,
+			"lines": lines,
+			"dim": player.is_defeated or player.realm_index != current_map_index,
+		})
+	return rows
+
+func _bot_plan_text(player: Node) -> String:
+	var plan: Dictionary = player.ai_controller.debug_snapshot(player)
+	var head := str(BOT_STATE_LABELS.get(plan.state, str(plan.state).to_upper()))
+	if str(plan.action) != "":
+		head += " " + str(plan.action).replace("_", " ")
+	# Portal: where to. Fight and chase: whom, and how far (x, y) from the fighter.
+	if int(plan.portal_destination) >= 0:
+		head += " > %s" % layout.get_realm(int(plan.portal_destination)).name
+	elif str(plan.target) != "" and (plan.state == "engage" or plan.state == "pursue"):
+		var gap: Vector2 = plan.gap
+		head += " > %s (%d, %d)" % [plan.target, roundi(gap.x), roundi(gap.y)]
+	var move := float(plan.move)
+	var doing: Array[String] = []
+	doing.append("move >" if move > 0.1 else ("move <" if move < -0.1 else "stand"))
+	if bool(plan.jump):
+		doing.append("jump")
+	if str(plan.attack) != "":
+		doing.append("attack %s" % BOT_ATTACK_KEYS.get(str(plan.attack), str(plan.attack)))
+	if float(plan.stuck) >= 0.5:
+		doing.append("STUCK %.1fs" % float(plan.stuck))
+	return "%s\n%s  | %s" % [head, " ".join(doing), plan.reason]
 
 func _update_debug_text() -> void:
 	var lines: Array[String] = [

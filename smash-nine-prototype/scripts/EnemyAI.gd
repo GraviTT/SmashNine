@@ -114,6 +114,10 @@ var row_transition_direction: float = 0.0
 var row_transition_target: int = -1
 ## Direction for a directed skill (Rio's dimension slash back to a platform); zero = facing.
 var aim_direction: Vector2 = Vector2.ZERO
+## Dev view (the F4 bot panel and analysis probes): the last intent sent to the fighter and
+## why the bot is doing what it does, in a few words.
+var last_intent: Dictionary = {}
+var debug_reason: String = ""
 
 func update(player, delta: float) -> void:
 	if player.is_dummy or player.hitstun_timer > 0.0:
@@ -125,6 +129,8 @@ func update(player, delta: float) -> void:
 	_update_stuck(player, delta)
 
 	if _needs_recovery(player):
+		if state != STATE_RECOVER:
+			debug_reason = "off the stage: getting back"
 		_enter_state(STATE_RECOVER)
 
 	if decision_timer <= 0.0 or _must_replan(player):
@@ -133,6 +139,7 @@ func update(player, delta: float) -> void:
 	var intent: Dictionary = _build_intent(player, delta)
 	intent = _avoid_hazards(player, intent)
 	last_commanded_move = float(intent.get("move", 0.0))
+	last_intent = intent
 	_apply_intent(player, intent)
 
 ## Realm hazards (RealmHazards.get_threat via the parent): jump just before a quake lands,
@@ -210,12 +217,14 @@ func _select_state(player) -> void:
 	decision_timer = randf_range(DECISION_TIME_MIN, DECISION_TIME_MAX)
 
 	if state == STATE_RECOVER and not _recovery_complete(player):
+		debug_reason = "off the stage: getting back"
 		return
 
 	if _realm_is_warning(player) or _should_disengage(player):
 		var escape_portal: Dictionary = _find_portal_target(player)
 		if not escape_portal.is_empty():
 			portal_target = escape_portal
+			debug_reason = "realm collapsing: leaving" if _realm_is_warning(player) else "low HP: leaving the fight"
 			_enter_state(STATE_PORTAL)
 			return
 
@@ -223,8 +232,10 @@ func _select_state(player) -> void:
 	if is_instance_valid(target):
 		var offset: Vector2 = target.global_position - player.global_position
 		if _is_in_engage_band(player, offset):
+			debug_reason = "in fighting range"
 			_enter_state(STATE_ENGAGE)
 		else:
+			debug_reason = "target out of range: chasing"
 			_enter_state(STATE_PURSUE)
 		return
 
@@ -232,9 +243,11 @@ func _select_state(player) -> void:
 		var roaming_portal: Dictionary = _find_portal_target(player)
 		if not roaming_portal.is_empty():
 			portal_target = roaming_portal
+			debug_reason = "nobody here: roaming"
 			_enter_state(STATE_PORTAL)
 			return
 
+	debug_reason = "no target: wandering"
 	_enter_state(STATE_WANDER)
 
 func _enter_state(next_state: String) -> void:
@@ -404,16 +417,21 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 
 	if distance_x > max_range:
 		candidates = ["approach", "approach", "jump_in"]
+		debug_reason = "too far to hit"
 	elif distance_x < min_range:
 		if bool(profile.kite):
 			candidates = ["retreat", "retreat", "hold"]
+			debug_reason = "too close: keeping range"
 		else:
 			candidates = ["hold", "hold", "cross", "approach"]
+			debug_reason = "close in"
 	else:
 		candidates = ["hold", "cross", "approach", "jump_in"]
+		debug_reason = "in range: mixing up"
 
 	if distance_y > 120.0 * GAME_SCALE.COMBAT:
 		candidates = ["approach", "jump_in"]
+		debug_reason = "target on another level"
 
 	action = _pick_non_repeating_action(candidates)
 	last_action = action
@@ -985,3 +1003,34 @@ static func _scaled_profile(profile: Dictionary) -> Dictionary:
 	for key in ["min_range", "max_range", "attack_range"]:
 		scaled[key] = float(profile[key]) * GAME_SCALE.COMBAT
 	return scaled
+
+## One bot's current plan for the dev panel and probes (state, engage action, target, last
+## intent, reason). Gap is the target's offset from the fighter.
+func debug_snapshot(player) -> Dictionary:
+	var target_kind := ""
+	var target_name := ""
+	var gap := Vector2.ZERO
+	if is_instance_valid(target):
+		if target.is_in_group("players"):
+			target_kind = "player"
+			target_name = str(target.get("display_name"))
+		elif target.is_in_group("soul_crystals"):
+			target_kind = "crystal"
+			target_name = "Soul crystal"
+		else:
+			target_kind = "monster"
+			target_name = str(target.get("display_name")) if target.get("display_name") != null else "Monster"
+		gap = target.global_position - player.global_position
+	return {
+		"state": state,
+		"action": action if state == STATE_ENGAGE else "",
+		"reason": debug_reason,
+		"target_kind": target_kind,
+		"target": target_name,
+		"gap": gap,
+		"move": float(last_intent.get("move", 0.0)),
+		"jump": bool(last_intent.get("jump", false)),
+		"attack": str(last_intent.get("attack", "")),
+		"portal_destination": int(portal_target.get("destination", -1)) if state == STATE_PORTAL else -1,
+		"stuck": stuck_timer,
+	}
