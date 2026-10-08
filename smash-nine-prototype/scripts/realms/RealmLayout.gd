@@ -3,14 +3,15 @@ extends RefCounted
 ## points, blast lines and portal placement. Static per match, so results are cached.
 
 const REALM_CATALOG := preload("res://scripts/realms/RealmCatalog.gd")
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
 
 const CENTRAL_REALM_INDEX := 8
 const VIEWPORT_CENTER := Vector2(640, 360)
 const REALM_WORLD_SPACING := Vector2(4600, 2800)
 ## Recovery room below and beside a realm. One-screen realms put the bottom line only
 ## ~340 px under the main floor at 220, so a knock-off was a 0.6 s fall to death.
-const BLAST_MARGIN_BOTTOM := 480.0
-const BLAST_MARGIN_SIDE := 300.0
+const BLAST_MARGIN_BOTTOM := 480.0 * GAME_SCALE.WORLD
+const BLAST_MARGIN_SIDE := 300.0 * GAME_SCALE.WORLD
 const PORTAL_SIZE := Vector2(92, 92)
 const PORTAL_LABELS := {
 	Vector2i(0, -1): "UP",
@@ -26,7 +27,7 @@ var _spawn_cache: Dictionary = {}
 var _navigation_cache: Dictionary = {}
 
 func _init() -> void:
-	maps = REALM_CATALOG.build_maps()
+	maps = REALM_CATALOG.scaled_maps(GAME_SCALE.WORLD)
 
 func realm_count() -> int:
 	return maps.size()
@@ -127,12 +128,12 @@ func get_navigation_points(realm_index: int) -> Array[Vector2]:
 			var stand_y: float = center.y - float(platform.size.y) * 0.5
 			points.append(Vector2(center.x, stand_y))
 			var half_width: float = float(platform.size.x) * 0.5
-			if half_width >= 80.0:
-				var edge_offset: float = half_width - minf(34.0, half_width * 0.25)
+			if half_width >= 80.0 * GAME_SCALE.WORLD:
+				var edge_offset: float = half_width - minf(34.0 * GAME_SCALE.WORLD, half_width * 0.25)
 				points.append(Vector2(center.x - edge_offset, stand_y))
 				points.append(Vector2(center.x + edge_offset, stand_y))
-			if float(platform.size.x) >= 500.0:
-				var inset: float = minf(float(platform.size.x) * 0.32, 190.0)
+			if float(platform.size.x) >= 500.0 * GAME_SCALE.WORLD:
+				var inset: float = minf(float(platform.size.x) * 0.32, 190.0 * GAME_SCALE.WORLD)
 				points.append(Vector2(center.x - inset, stand_y))
 				points.append(Vector2(center.x + inset, stand_y))
 	_navigation_cache[realm_index] = points

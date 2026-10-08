@@ -140,8 +140,10 @@ func _test_quake_stuns_grounded_fighters() -> void:
 	for player in [grounded, airborne]:
 		player.is_dummy = true
 		main.layout.assign_combatant(player, jotunheim)
-	grounded.reset_for_map(Vector2(main.layout.get_origin(jotunheim).x + 640.0, main.layout.get_origin(jotunheim).y + 560.0), main.layout.get_spawn_points(jotunheim))
-	airborne.reset_for_map(Vector2(main.layout.get_origin(jotunheim).x + 700.0, main.layout.get_origin(jotunheim).y + 560.0), main.layout.get_spawn_points(jotunheim))
+	# Authored 1280x720 coordinates, times the realm scale.
+	var world: float = main.layout.GAME_SCALE.WORLD
+	grounded.reset_for_map(main.layout.get_origin(jotunheim) + Vector2(640.0, 560.0) * world, main.layout.get_spawn_points(jotunheim))
+	airborne.reset_for_map(main.layout.get_origin(jotunheim) + Vector2(700.0, 560.0) * world, main.layout.get_spawn_points(jotunheim))
 	main._sync_combatant_visibility()
 	await create_timer(1.0).timeout
 	if not grounded.is_on_floor():

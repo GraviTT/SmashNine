@@ -2,6 +2,7 @@ extends Area2D
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const TALISMAN_ART := "res://assets/art/effects/yuki_talisman.png"
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
 
 const WORLD_LAYER := 1
 const PLAYER_LAYER := 2
@@ -49,7 +50,7 @@ func configure(new_source: Node, size: Vector2, new_damage: float, new_knockback
 	# Original talisman art while it flies; the burst keeps the coloured ward rect.
 	var art := ART_SETTINGS.original_texture(TALISMAN_ART)
 	if art != null:
-		art_sprite = ART_SETTINGS.aimed_sprite(art, direction, 2.0)
+		art_sprite = ART_SETTINGS.aimed_sprite(art, direction, 2.0 * GAME_SCALE.COMBAT)
 		add_child(art_sprite)
 		visual.color.a = 0.0
 

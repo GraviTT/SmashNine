@@ -1,5 +1,9 @@
 extends RefCounted
 
+## Realm, movement and attack scales (routine 2026-10-08): navigation distances follow the
+## realms (WORLD, jump heights JUMP_HEIGHT), fighting distances follow attack reach (COMBAT).
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
+
 const STATE_WANDER := "wander"
 const STATE_PURSUE := "pursue"
 const STATE_ENGAGE := "engage"
@@ -7,8 +11,8 @@ const STATE_PORTAL := "portal"
 const STATE_RECOVER := "recover"
 
 const WORLD_LAYER := 1
-const PLAYER_TARGET_RANGE := 5200.0
-const MONSTER_TARGET_RANGE := 1500.0
+const PLAYER_TARGET_RANGE := 5200.0 * GAME_SCALE.WORLD
+const MONSTER_TARGET_RANGE := 1500.0 * GAME_SCALE.WORLD
 const TARGET_LOCK_TIME := 1.6
 const DECISION_TIME_MIN := 0.35
 const DECISION_TIME_MAX := 0.7
@@ -21,9 +25,9 @@ const PORTAL_REACHED := 58.0
 const JUMP_BUFFER := 0.12
 
 const FLOOR_PROBE_AHEAD := 44.0
-const FLOOR_PROBE_DEPTH := 94.0
-const SHORT_LANDING_DISTANCE := 118.0
-const LONG_LANDING_DISTANCE := 160.0
+const FLOOR_PROBE_DEPTH := 94.0 * GAME_SCALE.WORLD
+const SHORT_LANDING_DISTANCE := 118.0 * GAME_SCALE.WORLD
+const LONG_LANDING_DISTANCE := 160.0 * GAME_SCALE.WORLD
 const LANDING_PATCH_HALF_WIDTH := 24.0
 const EDGE_BRAKE_LOOKAHEAD := 0.14
 const BLOCKED_PATH_TIME := 0.65
@@ -31,23 +35,23 @@ const WAYPOINT_REACHED := 58.0
 const STUCK_CHECK_TIME := 1.1
 const STUCK_DISTANCE := 20.0
 const JUMP_RETRY_TIME := 0.48
-const NAV_REPLAN_DISTANCE := 240.0
-const NAV_SAME_LEVEL := 92.0
-const NAV_HORIZONTAL_REACH := 470.0
-const NAV_JUMP_RISE := 185.0
-const NAV_JUMP_REACH := 470.0
-const NAV_DROP_DEPTH := 360.0
-const NAV_DROP_REACH := 470.0
-const NAV_DROP_MIN_HORIZONTAL := 86.0
-const DROP_PROBE_DEPTH := 390.0
+const NAV_REPLAN_DISTANCE := 240.0 * GAME_SCALE.WORLD
+const NAV_SAME_LEVEL := 92.0 * GAME_SCALE.WORLD
+const NAV_HORIZONTAL_REACH := 470.0 * GAME_SCALE.WORLD
+const NAV_JUMP_RISE := 185.0 * GAME_SCALE.JUMP_HEIGHT
+const NAV_JUMP_REACH := 470.0 * GAME_SCALE.WORLD
+const NAV_DROP_DEPTH := 360.0 * GAME_SCALE.WORLD
+const NAV_DROP_REACH := 470.0 * GAME_SCALE.WORLD
+const NAV_DROP_MIN_HORIZONTAL := 86.0 * GAME_SCALE.WORLD
+const DROP_PROBE_DEPTH := 390.0 * GAME_SCALE.WORLD
 
 ## Realm geometry comes from the player (PlayerBase.realm_size); offsets below are relative to it.
-const ROW_HEIGHT := 720.0
+const ROW_HEIGHT := 720.0 * GAME_SCALE.WORLD
 const RECOVER_SIDE_SLACK := 20.0
 const RECOVER_START_FROM_BOTTOM := 40.0
 const RECOVER_EXIT_FROM_BOTTOM := 60.0
 const RECOVER_JUMP_RETRY := 0.3
-const VOID_PROBE_DEPTH := 700.0
+const VOID_PROBE_DEPTH := 700.0 * GAME_SCALE.WORLD
 ## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
 const ULTIMATE_FOLLOWUPS := {"nova": [0.35, 0.55], "luna": [4.4]}
 const ULTIMATE_USE_CHANCE := 0.45
@@ -350,9 +354,9 @@ func _downward_row_transition_intent(player, target_position: Vector2) -> Dictio
 			jump_retry_timer = JUMP_RETRY_TIME
 		return _intent(row_transition_direction, step_jump)
 	var local_x: float = player.global_position.x - player.realm_origin.x
-	var crossed_outer_edge: bool = local_x < 145.0 or local_x > realm_width - 145.0
-	var crossed_row_boundary: bool = local_y > float(current_row + 1) * ROW_HEIGHT + 80.0
-	var recovery_jump: bool = player.air_jumps_left > 0 and player.velocity.y > 320.0 and local_y > float(current_row + 1) * ROW_HEIGHT + 260.0
+	var crossed_outer_edge: bool = local_x < 145.0 * GAME_SCALE.WORLD or local_x > realm_width - 145.0 * GAME_SCALE.WORLD
+	var crossed_row_boundary: bool = local_y > float(current_row + 1) * ROW_HEIGHT + 80.0 * GAME_SCALE.WORLD
+	var recovery_jump: bool = player.air_jumps_left > 0 and player.velocity.y > 320.0 * GAME_SCALE.JUMP_SPEED and local_y > float(current_row + 1) * ROW_HEIGHT + 260.0 * GAME_SCALE.WORLD
 	var air_direction: float = -row_transition_direction if crossed_outer_edge or crossed_row_boundary else row_transition_direction
 	return _intent(air_direction, recovery_jump)
 
@@ -430,7 +434,7 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 	if attack_cooldown > 0.0 or player.attack_lock_timer > 0.0:
 		return ""
 	var profile: Dictionary = _combat_profile(player)
-	if distance_x > float(profile.attack_range) or distance_y > 115.0:
+	if distance_x > float(profile.attack_range) or distance_y > 115.0 * GAME_SCALE.COMBAT:
 		return ""
 
 	attack_cooldown = randf_range(ATTACK_COOLDOWN_MIN, ATTACK_COOLDOWN_MAX)
@@ -447,13 +451,13 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 	else:
 		attack_name = "skill_2"
 	if attack_name == "skill_1" and not _mobility_skill_is_safe(player):
-		attack_name = "basic" if distance_x <= 195.0 else "skill_2"
+		attack_name = "basic" if distance_x <= 195.0 * GAME_SCALE.COMBAT else "skill_2"
 	# A counter skill (Rio's rune shield) only when the target is swinging right now.
 	if bool(profile.get("reactive_skill_2", false)):
 		var target_swinging: bool = is_instance_valid(target) and float(target.get("attack_lock_timer") if target.get("attack_lock_timer") != null else 0.0) > 0.0
 		if attack_name == "skill_2" and not target_swinging:
 			attack_name = "basic"
-		elif target_swinging and distance_x < 150.0 and randf() < 0.45:
+		elif target_swinging and distance_x < 150.0 * GAME_SCALE.COMBAT and randf() < 0.45:
 			attack_name = "skill_2"
 	return attack_name
 
@@ -464,16 +468,16 @@ func _mobility_skill_is_safe(player) -> bool:
 		return false
 	var direction: float = float(player.facing)
 	var local_x: float = player.global_position.x - player.realm_origin.x
-	if direction < 0.0 and local_x < 220.0:
+	if direction < 0.0 and local_x < 220.0 * GAME_SCALE.WORLD:
 		return false
-	if direction > 0.0 and local_x > player.realm_size.x - 220.0:
+	if direction > 0.0 and local_x > player.realm_size.x - 220.0 * GAME_SCALE.WORLD:
 		return false
-	if _has_floor_ahead(player, direction, 90.0) and _has_floor_ahead(player, direction, 155.0):
+	if _has_floor_ahead(player, direction, 90.0 * GAME_SCALE.WORLD) and _has_floor_ahead(player, direction, 155.0 * GAME_SCALE.WORLD):
 		return true
 	return _has_landing_patch(player, direction, LONG_LANDING_DISTANCE)
 
 func _combat_profile(player) -> Dictionary:
-	return COMBAT_PROFILES.get(player.character_id, DEFAULT_COMBAT_PROFILE)
+	return _scaled_profile(COMBAT_PROFILES.get(player.character_id, DEFAULT_COMBAT_PROFILE))
 
 func _navigate_to_intent(player, destination: Vector2) -> Dictionary:
 	var offset: Vector2 = destination - player.global_position
@@ -535,7 +539,7 @@ func _choose_drop_direction(player, destination_x: float) -> float:
 		preferred = float(player.facing)
 	var preferred_edge: float = _floor_edge_distance(player, preferred)
 	var opposite_edge: float = _floor_edge_distance(player, -preferred)
-	if preferred_edge <= opposite_edge + 100.0:
+	if preferred_edge <= opposite_edge + 100.0 * GAME_SCALE.WORLD:
 		return preferred
 	return -preferred
 
@@ -551,7 +555,7 @@ func _has_drop_landing(player, direction: float) -> bool:
 	if is_zero_approx(direction):
 		return false
 	var foot: Vector2 = player.global_position
-	for distance in [72.0, 118.0]:
+	for distance in [72.0 * GAME_SCALE.WORLD, 118.0 * GAME_SCALE.WORLD]:
 		var ray_x: float = direction * float(distance)
 		if _ray_hits_world(player, foot + Vector2(ray_x, 12.0), foot + Vector2(ray_x, DROP_PROBE_DEPTH)):
 			return true
@@ -681,7 +685,7 @@ func _find_target(player) -> Node:
 		var distance: float = offset.length()
 		if distance > MONSTER_TARGET_RANGE:
 			continue
-		var score: float = distance + 320.0 + absf(offset.y) * 0.12
+		var score: float = distance + 320.0 * GAME_SCALE.WORLD + absf(offset.y) * 0.12
 		if score < best_score:
 			best_score = score
 			best = candidate
@@ -693,7 +697,7 @@ func _find_target(player) -> Node:
 		var distance: float = offset.length()
 		if distance > MONSTER_TARGET_RANGE:
 			continue
-		var score: float = distance + 260.0 + absf(offset.y) * 0.12
+		var score: float = distance + 260.0 * GAME_SCALE.WORLD + absf(offset.y) * 0.12
 		if score < best_score:
 			best_score = score
 			best = candidate
@@ -733,7 +737,7 @@ func _is_valid_target_candidate(player, candidate: Node) -> bool:
 
 func _is_in_engage_band(player, offset: Vector2) -> bool:
 	var profile: Dictionary = _combat_profile(player)
-	return absf(offset.x) <= float(profile.max_range) + 70.0 and absf(offset.y) <= 150.0
+	return absf(offset.x) <= float(profile.max_range) + 70.0 * GAME_SCALE.COMBAT and absf(offset.y) <= 150.0 * GAME_SCALE.COMBAT
 
 func _choose_pursuit_destination(player, target_position: Vector2) -> Vector2:
 	if absf(target_position.y - player.global_position.y) <= NAV_SAME_LEVEL:
@@ -849,7 +853,7 @@ func _choose_wander_point(player) -> Vector2:
 	for point in available_points:
 		var local_x: float = point.x - player.realm_origin.x
 		var distance: float = player.global_position.distance_to(point)
-		if local_x >= 120.0 and local_x <= player.realm_size.x - 120.0 and distance >= 320.0 and distance <= 1250.0:
+		if local_x >= 120.0 * GAME_SCALE.WORLD and local_x <= player.realm_size.x - 120.0 * GAME_SCALE.WORLD and distance >= 320.0 * GAME_SCALE.WORLD and distance <= 1250.0 * GAME_SCALE.WORLD:
 			safe_points.append(point)
 	if safe_points.is_empty():
 		return player.realm_origin + Vector2(player.realm_size.x * 0.5, player.realm_size.y * 0.75)
@@ -969,3 +973,10 @@ func _random_portal(portals: Array[Dictionary]) -> Dictionary:
 		return {}
 	var index: int = randi_range(0, portals.size() - 1)
 	return portals[index]
+
+## A combat profile with its distances times the attack reach scale.
+static func _scaled_profile(profile: Dictionary) -> Dictionary:
+	var scaled := profile.duplicate()
+	for key in ["min_range", "max_range", "attack_range"]:
+		scaled[key] = float(profile[key]) * GAME_SCALE.COMBAT
+	return scaled

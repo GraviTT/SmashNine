@@ -50,8 +50,9 @@ func _spawn_talisman(size: Vector2, damage: float, knockback: float, direction: 
 	talisman.add_child(shape)
 	talisman.add_child(visual)
 	get_parent().add_child(talisman)
-	talisman.global_position = global_position + direction.normalized() * 38.0 + Vector2(0, -34)
-	talisman.configure(self, size, damage, knockback, direction, Color(0.58, 0.88, 1.0, 0.9), talisman_speed, lifetime, mode, burst_size)
+	# Talismans are projectiles: size, speed (so range) and burst double (GameScale.COMBAT).
+	talisman.global_position = global_position + direction.normalized() * 38.0 * GAME_SCALE.COMBAT * 0.75 + Vector2(0, -34)
+	talisman.configure(self, size * GAME_SCALE.COMBAT, damage, knockback, direction, Color(0.58, 0.88, 1.0, 0.9), talisman_speed * GAME_SCALE.COMBAT, lifetime, mode, burst_size * GAME_SCALE.COMBAT)
 
 func _ground_ward() -> void:
 	_spawn_sweeping_attack(Vector2(54, 46), [
@@ -115,7 +116,7 @@ func _cast_grand_ward(direction: Vector2) -> void:
 	var ward := Node2D.new()
 	ward.set_script(GRAND_WARD_SCRIPT)
 	get_parent().add_child(ward)
-	var offset := direction * 220.0
+	var offset := direction * 220.0 * GAME_SCALE.COMBAT
 	if absf(direction.x) > 0.0:
 		offset.y = -38.0
 	elif direction == Vector2.DOWN and is_on_floor():

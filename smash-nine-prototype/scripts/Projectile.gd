@@ -14,6 +14,8 @@ const VFX := preload("res://scripts/Vfx.gd")
 ## Effect strip played where this projectile hits (scripts/Vfx.gd name), tinted.
 var impact_vfx := ""
 var impact_tint := Color.WHITE
+## Fighters' projectiles are drawn at GameScale.COMBAT (set by PlayerBase); monsters' at 1.
+var art_scale_multiplier := 1.0
 
 @onready var shape: CollisionShape2D = $CollisionShape2D
 @onready var visual: ColorRect = $Visual
@@ -44,7 +46,7 @@ func set_art(path: String, tint := Color.WHITE, art_scale := 2.0) -> bool:
 	var texture := ART_SETTINGS.original_texture(path)
 	if texture == null:
 		return false
-	var sprite := ART_SETTINGS.aimed_sprite(texture, direction, art_scale)
+	var sprite := ART_SETTINGS.aimed_sprite(texture, direction, art_scale * art_scale_multiplier)
 	sprite.modulate = tint
 	add_child(sprite)
 	visual.visible = false
@@ -71,7 +73,7 @@ func _on_body_entered(body: Node) -> void:
 		hit_targets.append(body)
 		body.apply_hit(source, damage, knockback, direction, damage_type)
 		if impact_vfx != "":
-			VFX.spawn(get_parent(), impact_vfx, global_position, Vector2(1.4, 1.4), false, 5, impact_tint)
+			VFX.spawn(get_parent(), impact_vfx, global_position, Vector2.ONE * 1.4 * art_scale_multiplier, false, 5, impact_tint)
 		queue_free()
 
 func _discard_orphaned_projectile() -> void:

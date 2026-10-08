@@ -109,7 +109,7 @@ func _combo_slash_three() -> void:
 	], 13, 430, Vector2(facing, -0.18), Color(1.0, 0.62, 0.24, 0.64), 0.12)
 
 func _up_slash() -> void:
-	velocity.y = minf(velocity.y, -120.0)
+	velocity.y = minf(velocity.y, -120.0 * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_attack(Vector2(40, 44), [
 		Vector2(14 * facing, -28),
 		Vector2(8 * facing, -68),
@@ -178,7 +178,7 @@ func _play_dash_hold() -> void:
 
 func _dash_strike(dash_direction: Vector2) -> void:
 	velocity = dash_direction * 180.0
-	skill_dash_velocity = dash_direction * DASH_SPEED
+	skill_dash_velocity = dash_direction * DASH_SPEED * GAME_SCALE.WORLD
 	skill_dash_timer = DASH_TIME
 	body.rotation = dash_direction.angle()
 	_spawn_sweeping_attack(Vector2(58, 42), [
@@ -199,7 +199,7 @@ func _rising_cleave_start() -> void:
 	_start_attack(0.22, 0.38, Callable(self, "_rising_cleave"))
 
 func _rising_cleave() -> void:
-	velocity.y = minf(velocity.y, -560.0)
+	velocity.y = minf(velocity.y, -560.0 * GAME_SCALE.JUMP_SPEED)
 	velocity.x += facing * 45.0
 	_spawn_sweeping_launch_attack(Vector2(58, 58), [
 		Vector2(24 * facing, -20),
@@ -228,7 +228,7 @@ func _ultimate_start() -> void:
 		_ultimate_dive()
 
 func _ultimate_dive() -> void:
-	VFX.spawn(get_parent(), "frey_ult_charge", global_position, Vector2(1.3, 1.3))
+	VFX.spawn(get_parent(), "frey_ult_charge", global_position, Vector2.ONE * 1.3 * sqrt(GAME_SCALE.COMBAT))
 	ultimate_diving = true
 	velocity = Vector2.ZERO
 	skill_dash_velocity = Vector2(0.0, 1050.0)
@@ -251,7 +251,7 @@ func _ultimate_impact() -> void:
 			Vector2(130 * side, -14),
 			Vector2(ULTIMATE_WAVE_REACH * side, -10)
 		], ULTIMATE_WAVE_DAMAGE, 420, Vector2(side, -0.12), Color(1.0, 0.72, 0.18, wave_alpha), 0.24, 2.0)
-		VFX.spawn(get_parent(), "frey_ult_wave", global_position + Vector2(18 * side, 2), Vector2(side, 1.0))
+		VFX.spawn(get_parent(), "frey_ult_wave", global_position + Vector2(18 * side, 2), Vector2(side, 1.0) * GAME_SCALE.COMBAT)
 	_play_ultimate_release()
 	# Aftershock: a second, launching ring once the stun has landed.
 	var epoch := action_epoch
@@ -264,10 +264,10 @@ func _ultimate_impact() -> void:
 			Vector2(120 * side, -26),
 			Vector2(200 * side, -22)
 		], ULTIMATE_AFTERSHOCK_DAMAGE, 560, Vector2(0.5 * side, -1.0), Color(1.0, 0.86, 0.36, wave_alpha), 0.18, Vector2(260 * side, -720), 0.3)
-		VFX.spawn(get_parent(), "frey_ult_wave", global_position + Vector2(10 * side, 2), Vector2(0.85 * side, 1.45), false, 4, Color(1.0, 1.0, 0.8))
+		VFX.spawn(get_parent(), "frey_ult_wave", global_position + Vector2(10 * side, 2), Vector2(0.85 * side, 1.45) * GAME_SCALE.COMBAT, false, 4, Color(1.0, 1.0, 0.8))
 
 func _play_ultimate_charge() -> void:
-	VFX.spawn(get_parent(), "frey_ult_charge", global_position, Vector2(1.3, 1.3))
+	VFX.spawn(get_parent(), "frey_ult_charge", global_position, Vector2.ONE * 1.3 * sqrt(GAME_SCALE.COMBAT))
 	body.color = Color(1.0, 0.92, 0.42)
 	var body_tween := body.create_tween()
 	body_tween.tween_property(body, "scale", Vector2(0.82, 1.16), 0.1)
@@ -307,7 +307,7 @@ func _spike_start() -> void:
 	action_locked_until_land = true
 	current_attack_started_airborne = true
 	velocity.x += facing * 150.0
-	velocity.y = minf(velocity.y, -110.0)
+	velocity.y = minf(velocity.y, -110.0 * GAME_SCALE.JUMP_SPEED)
 	_play_attack_windup()
 	if not await _wait_action(0.055):
 		return

@@ -15,6 +15,7 @@ extends Node2D
 signal shake_requested(realm_index: int, strength: float, duration: float)
 
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const PILLAR_COLOR := Color(1.0, 0.36, 0.08, 0.72)
 const PILLAR_WARNING_COLOR := Color(1.0, 0.55, 0.12, 0.16)
 const VENT_COLOR := Color(1.0, 0.5, 0.1, 0.9)
@@ -378,7 +379,7 @@ func _pick_columns(realm_index: int, hazard: Dictionary) -> Array[Rect2]:
 			var x := _rng.randf_range(platform.position.x + width * 0.5, platform.end.x - width * 0.5)
 			var too_close := false
 			for other in columns:
-				too_close = too_close or absf(other.get_center().x - x) < 140.0
+				too_close = too_close or absf(other.get_center().x - x) < 140.0 * GAME_SCALE.WORLD
 			if not too_close:
 				columns.append(Rect2(x - width * 0.5, platform.position.y - height, width, height))
 			break

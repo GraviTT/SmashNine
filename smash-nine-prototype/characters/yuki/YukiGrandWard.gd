@@ -1,6 +1,8 @@
 extends Node2D
 
-const FIELD_RADIUS := 205.0
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
+## The ward's field is an attack area: GameScale.COMBAT.
+const FIELD_RADIUS := 205.0 * GAME_SCALE.COMBAT
 const VFX := preload("res://scripts/Vfx.gd")
 const WARNING_TIME := 0.7
 const ACTIVE_TIME := 2.35
@@ -38,7 +40,7 @@ func _ready() -> void:
 		points.append(Vector2(cos(angle), sin(angle)) * FIELD_RADIUS)
 	ring.points = points
 	add_child(ring)
-	# The seal art spans the field (256 px drawn at 1.6x = 410 px = 2 x FIELD_RADIUS).
+	# The seal art spans the field (256 px scaled to 2 x FIELD_RADIUS).
 	# Drawn with the platforms, behind the fighters, and see-through: the fight inside must read.
 	seal = VFX.spawn(self, "yuki_ult_seal", Vector2.ZERO, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0), true, 0, Color(1, 1, 1, SEAL_WARNING_ALPHA), true)
 	if seal != null:

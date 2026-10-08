@@ -2,6 +2,7 @@ extends Area2D
 
 const HIT_INTERVAL := 0.22
 const VFX := preload("res://scripts/Vfx.gd")
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
 
 var source: Node
 var direction := Vector2.RIGHT
@@ -28,6 +29,9 @@ func _ready() -> void:
 
 func configure(new_source: Node, cast_direction: Vector2, beam_duration: float) -> void:
 	source = new_source
+	# The beam is an attack area: twice as long and tall (GameScale.COMBAT).
+	beam_length *= GAME_SCALE.COMBAT
+	beam_height *= GAME_SCALE.COMBAT
 	direction = cast_direction.normalized()
 	if direction == Vector2.ZERO:
 		direction = Vector2.RIGHT
@@ -64,7 +68,7 @@ func configure(new_source: Node, cast_direction: Vector2, beam_duration: float) 
 		beam_art.material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 		beam_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(beam_art)
-		VFX.spawn(self, "luna_ult_laser_head", Vector2(beam_length * 0.5, 0), Vector2(1.3, 1.3), true, 1, Color.WHITE, true)
+		VFX.spawn(self, "luna_ult_laser_head", Vector2(beam_length * 0.5, 0), Vector2.ONE * 1.3 * GAME_SCALE.COMBAT, true, 1, Color.WHITE, true)
 		outer_visual.visible = false
 		outline.visible = false
 		core_visual.color.a = 0.35

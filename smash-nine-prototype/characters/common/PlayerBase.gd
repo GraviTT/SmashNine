@@ -15,20 +15,24 @@ signal ultimate_hit(player: Node, hit_position: Vector2)
 ## Emitted once per crossed threshold in SOUL_THRESHOLDS; pick_number is 1-based.
 signal soul_threshold_reached(player: Node, pick_number: int)
 
-const GRAVITY := 1850.0
-const FLOOR_ACCEL := 5500.0
-const AIR_ACCEL := 4300.0
-const FRICTION := 5200.0
+## Attack, realm and movement scales (scripts/GameScale.gd, routine 2026-10-08).
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
+
+const GRAVITY := 1850.0 * GAME_SCALE.GRAVITY
+const FLOOR_ACCEL := 5500.0 * GAME_SCALE.MOVE
+const AIR_ACCEL := 4300.0 * GAME_SCALE.MOVE
+const FRICTION := 5200.0 * GAME_SCALE.MOVE
 const COYOTE_TIME := 0.1
 const JUMP_BUFFER := 0.12
 const ATTACK_BUFFER := 0.11
 const JUMP_CUT_MULTIPLIER := 0.42
 const FALL_GRAVITY_MULTIPLIER := 1.18
-const MAX_FALL_SPEED := 980.0
+const MAX_FALL_SPEED := 980.0 * GAME_SCALE.JUMP_SPEED
 const KNOCKBACK_SCALE := 1.05
-const KNOCKBACK_DECAY := 1150.0
-const KNOCKBACK_GROUND_DECAY := 1480.0
-const KNOCKBACK_AIR_DECAY := 980.0
+## Decays scale with knockback speed (GameScale.KNOCKBACK): same duration, longer travel.
+const KNOCKBACK_DECAY := 1150.0 * GAME_SCALE.KNOCKBACK
+const KNOCKBACK_GROUND_DECAY := 1480.0 * GAME_SCALE.KNOCKBACK
+const KNOCKBACK_AIR_DECAY := 980.0 * GAME_SCALE.KNOCKBACK
 const STRONG_KNOCKBACK_DECAY_SCALE := 0.82
 const LOW_HP_KNOCKBACK_BONUS := 0.75
 const HITSTUN_MIN := 0.095
@@ -41,7 +45,7 @@ const ATTACK_AIR_MOBILITY := 0.72
 const ATTACKER_HITSTOP := 0.045
 const VICTIM_HITSTOP := 0.065
 const AIR_ATTACK_LANDING_RECOVERY := 0.075
-const SKILL_DASH_DECAY := 2100.0
+const SKILL_DASH_DECAY := 2100.0 * GAME_SCALE.WORLD
 const WORLD_LAYER := 1
 const PLAYER_LAYER := 2
 const MONSTER_LAYER := 4
@@ -49,7 +53,7 @@ const PLAYER_SOFT_RADIUS := 40.0
 const PLAYER_SOFT_PUSH := 260.0
 const DROP_TAP_WINDOW := 0.28
 const DROP_THROUGH_TIME := 0.32
-const DROP_THROUGH_SPEED := 240.0
+const DROP_THROUGH_SPEED := 240.0 * GAME_SCALE.JUMP_SPEED
 const GUARD_PARRY_WINDOW := 0.1
 const GUARD_RECOVERY := 0.26
 const GUARD_DECAY_TIME := 5.0
@@ -241,7 +245,7 @@ func setup_dummy(new_player_id: int) -> void:
 	attack_power = 100.0
 	defense = 0.0
 	speed = 0.0
-	jump_velocity = -650.0
+	jump_velocity = -650.0 * GAME_SCALE.JUMP_SPEED
 	weight = 1.25
 	call_deferred("_update_visuals")
 
@@ -255,13 +259,13 @@ func _apply_character_data(data: Dictionary) -> void:
 	base_max_hp = float(data.max_hp)
 	base_attack_power = float(data.get("attack", 100.0))
 	base_defense = float(data.get("defense", 0.0))
-	base_speed = float(data.speed)
+	base_speed = float(data.speed) * GAME_SCALE.MOVE
 	var growth: Dictionary = data.get("growth", {})
 	hp_growth = float(growth.get("max_hp", 0.0))
 	attack_growth = float(growth.get("attack", 0.0))
 	defense_growth = float(growth.get("defense", 0.0))
-	speed_growth = float(growth.get("speed", 0.0))
-	jump_velocity = data.jump
+	speed_growth = float(growth.get("speed", 0.0)) * GAME_SCALE.MOVE
+	jump_velocity = data.jump * GAME_SCALE.JUMP_SPEED
 	base_weight = data.weight
 	base_air_jumps = int(data.get("air_jumps", 1))
 	_apply_growth_stats(false)
@@ -923,7 +927,7 @@ func _spawn_attack(size: Vector2, offset: Vector2, damage: float, knockback: flo
 	attack.add_child(visual)
 	get_parent().add_child(attack)
 	attack.global_position = global_position
-	attack.configure(self, size, offset, damage, knockback, direction, color, lifetime, damage_type)
+	attack.configure(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_point(offset), damage, knockback, direction, color, lifetime, damage_type)
 
 func _spawn_sweeping_attack(size: Vector2, points: Array[Vector2], damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, damage_type := DAMAGE_NORMAL) -> void:
 	var attack := Area2D.new()
@@ -938,7 +942,7 @@ func _spawn_sweeping_attack(size: Vector2, points: Array[Vector2], damage: float
 	attack.add_child(visual)
 	get_parent().add_child(attack)
 	attack.global_position = global_position
-	attack.configure_sweep(self, size, points, damage, knockback, direction, color, lifetime, damage_type)
+	attack.configure_sweep(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, damage_type)
 
 func _spawn_sweeping_stun_attack(size: Vector2, points: Array[Vector2], damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, stun_duration: float, damage_type := DAMAGE_NORMAL) -> void:
 	var attack := Area2D.new()
@@ -953,7 +957,7 @@ func _spawn_sweeping_stun_attack(size: Vector2, points: Array[Vector2], damage: 
 	attack.add_child(visual)
 	get_parent().add_child(attack)
 	attack.global_position = global_position
-	attack.configure_sweep_stun(self, size, points, damage, knockback, direction, color, lifetime, stun_duration, damage_type)
+	attack.configure_sweep_stun(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, stun_duration, damage_type)
 
 func _spawn_sweeping_launch_attack(size: Vector2, points: Array[Vector2], damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, launch_velocity: Vector2, hitstun_duration: float, hit_tag := "", damage_type := DAMAGE_NORMAL) -> void:
 	var attack := Area2D.new()
@@ -968,7 +972,7 @@ func _spawn_sweeping_launch_attack(size: Vector2, points: Array[Vector2], damage
 	attack.add_child(visual)
 	get_parent().add_child(attack)
 	attack.global_position = global_position
-	attack.configure_sweep_launch(self, size, points, damage, knockback, direction, color, lifetime, launch_velocity, hitstun_duration, hit_tag, damage_type)
+	attack.configure_sweep_launch(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, launch_velocity, hitstun_duration, hit_tag, damage_type)
 
 func _spawn_projectile(size: Vector2, damage: float, knockback: float, direction: Vector2, color: Color, projectile_speed: float, lifetime: float, damage_type := DAMAGE_NORMAL) -> Node:
 	var projectile := Area2D.new()
@@ -982,8 +986,10 @@ func _spawn_projectile(size: Vector2, damage: float, knockback: float, direction
 	projectile.add_child(shape)
 	projectile.add_child(visual)
 	get_parent().add_child(projectile)
-	projectile.global_position = global_position + direction.normalized() * 44 + Vector2(0, -12)
-	projectile.configure(self, size, damage, knockback, direction, color, projectile_speed, lifetime, damage_type)
+	# Twice the size and speed: the same flight time covers twice the range (GameScale.COMBAT).
+	projectile.global_position = global_position + direction.normalized() * 44.0 * GAME_SCALE.COMBAT * 0.75 + Vector2(0, -12)
+	projectile.art_scale_multiplier = GAME_SCALE.COMBAT
+	projectile.configure(self, size * GAME_SCALE.COMBAT, damage, knockback, direction, color, projectile_speed * GAME_SCALE.COMBAT, lifetime, damage_type)
 	return projectile
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := DAMAGE_NORMAL) -> bool:
@@ -1018,7 +1024,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 			hit_direction = hit_direction.normalized()
 		velocity.y = 0.0
 		knockback_velocity.y = 0.0
-	knockback_velocity += hit_direction * final_knockback
+	knockback_velocity += hit_direction * final_knockback * GAME_SCALE.KNOCKBACK
 	current_knockback_decay = _get_knockback_decay(final_knockback, was_grounded)
 	hitstun_timer = _get_hitstun(final_knockback, was_grounded)
 	if guard_result == GUARD_BLOCK:
@@ -1092,7 +1098,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 		applied_launch.y = 0.0
 		velocity.y = 0.0
 		knockback_velocity.y = 0.0
-	knockback_velocity += applied_launch / weight
+	knockback_velocity += applied_launch / weight * GAME_SCALE.KNOCKBACK
 	current_knockback_decay = KNOCKBACK_GROUND_DECAY if guard_result == GUARD_BLOCK else KNOCKBACK_AIR_DECAY
 	hitstun_timer = clampf(hitstun_duration, HITSTUN_MIN, HITSTUN_MAX)
 	if guard_result == GUARD_BLOCK:
@@ -1130,7 +1136,7 @@ func apply_control_pull(center: Vector2, strength: float, delta: float, slow_dur
 	if is_defeated or is_invulnerable():
 		return
 	var pull_direction := (center - global_position).normalized()
-	knockback_velocity += pull_direction * strength * delta
+	knockback_velocity += pull_direction * strength * GAME_SCALE.KNOCKBACK * delta
 	current_knockback_decay = KNOCKBACK_AIR_DECAY
 	control_slow_timer = maxf(control_slow_timer, slow_duration)
 	if slow_jump:
@@ -1483,7 +1489,7 @@ func _play_hit_feedback(damage: float, direction: Vector2, final_knockback: floa
 	number_tween.tween_callback(number.queue_free)
 
 func _spawn_hit_effect(hit_position: Vector2, damage: float, base_knockback: float) -> void:
-	var spark_size := clampf(18.0 + damage * 1.35 + base_knockback * 0.035, 24.0, 56.0)
+	var spark_size := clampf(18.0 + damage * 1.35 + base_knockback * 0.035, 24.0, 56.0) * GAME_SCALE.COMBAT
 	var spark_sheet := SHEET_ART.original_texture(HIT_SPARK_ART)
 	if spark_sheet != null:
 		# Original 4-frame burst (48 px cells), sized like the old spark.
@@ -1511,8 +1517,8 @@ func _spawn_hit_effect(hit_position: Vector2, damage: float, base_knockback: flo
 
 func _spawn_hit_slash(hit_position: Vector2, base_knockback: float) -> void:
 	var slash := ColorRect.new()
-	var slash_length := clampf(base_knockback * 0.18, 46.0, 92.0)
-	slash.size = Vector2(slash_length, 6.0)
+	var slash_length := clampf(base_knockback * 0.18, 46.0, 92.0) * GAME_SCALE.COMBAT
+	slash.size = Vector2(slash_length, 6.0 * GAME_SCALE.COMBAT)
 	slash.position = hit_position - slash.size * 0.5
 	slash.rotation = randf_range(-0.45, 0.45)
 	slash.color = Color(1.0, 1.0, 0.82, 0.86)

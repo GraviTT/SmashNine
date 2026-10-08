@@ -3,8 +3,10 @@ extends StaticBody2D
 signal removed(seal: Node)
 
 const MONSTER_LAYER := 4
-const PULL_RADIUS := 135.0
-const BURST_RADIUS := 148.0
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
+## The seal's pull and burst are attacks: GameScale.COMBAT.
+const PULL_RADIUS := 135.0 * GAME_SCALE.COMBAT
+const BURST_RADIUS := 148.0 * GAME_SCALE.COMBAT
 const ACTIVE_TIME := 0.58
 
 var owner_node: Node

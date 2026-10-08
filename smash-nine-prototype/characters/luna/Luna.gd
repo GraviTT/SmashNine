@@ -130,7 +130,7 @@ func _star_side_arc(airborne: bool) -> void:
 	_spawn_delayed_bloom(Vector2(108 * facing, -30), Vector2(74, 64), 6.5 if airborne else 7.0, 275 if airborne else 305, Vector2(facing, -0.1), 0.065)
 
 func _star_up_arc(airborne: bool) -> void:
-	velocity.y = minf(velocity.y, -90.0 if airborne else -45.0)
+	velocity.y = minf(velocity.y, (-90.0 if airborne else -45.0) * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_attack(Vector2(36, 38), [
 		Vector2(18 * facing, -28),
 		Vector2(12 * facing, -72),
@@ -140,7 +140,7 @@ func _star_up_arc(airborne: bool) -> void:
 
 func _star_down_arc(airborne: bool) -> void:
 	if airborne:
-		velocity.y = maxf(velocity.y, 90.0)
+		velocity.y = maxf(velocity.y, 90.0 * GAME_SCALE.JUMP_SPEED)
 	else:
 		velocity.x += facing * 35.0
 	var bloom_offset := Vector2(42 * facing, 58) if airborne else Vector2(58 * facing, 20)
@@ -177,7 +177,7 @@ func _spawn_star_comet(direction: Vector2) -> void:
 	comet.add_child(shape)
 	comet.add_child(visual)
 	get_parent().add_child(comet)
-	comet.global_position = global_position + Vector2(0, -34) + direction.normalized() * 38.0
+	comet.global_position = global_position + Vector2(0, -34) + direction.normalized() * 38.0 * GAME_SCALE.COMBAT * 0.75
 	comet.configure(self, direction, 12.0, 390.0)
 
 func _moon_ring() -> void:
@@ -228,7 +228,7 @@ func _brave_spin_kick() -> void:
 	_play_star_bloom(Vector2(88 * facing, -30), 35.0, BRAVE_IMPACT_COLOR, 0.14)
 
 func _brave_uppercut(airborne: bool) -> void:
-	velocity.y = minf(velocity.y, -430.0 if not airborne else -330.0)
+	velocity.y = minf(velocity.y, (-430.0 if not airborne else -330.0) * GAME_SCALE.JUMP_SPEED)
 	velocity.x += facing * 45.0
 	_spawn_sweeping_launch_attack(Vector2(42, 46), [Vector2(12 * facing, -28), Vector2(30 * facing, -68), Vector2(44 * facing, -108)], 10, 430, Vector2(0.12 * facing, -1), BRAVE_IMPACT_COLOR, 0.12, Vector2(72 * facing, -620), 0.28)
 	_play_star_bloom(Vector2(42 * facing, -106), 31.0, BRAVE_IMPACT_COLOR, 0.13)
@@ -247,7 +247,7 @@ func _brave_flying_kick() -> void:
 func _brave_dive_kick() -> void:
 	action_locked_until_land = true
 	velocity.x += facing * 125.0
-	velocity.y = maxf(velocity.y, 610.0)
+	velocity.y = maxf(velocity.y, 610.0 * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_attack(Vector2(42, 38), [Vector2(8 * facing, -22), Vector2(26 * facing, 24), Vector2(48 * facing, 78)], 10, 475, Vector2(0.16 * facing, 1), BRAVE_IMPACT_COLOR, 0.13)
 	_play_star_bloom(Vector2(46 * facing, 74), 32.0, BRAVE_IMPACT_COLOR, 0.13)
 
@@ -259,7 +259,7 @@ func _brave_comet_drive(direction: Vector2) -> void:
 	if absf(direction.x) > 0.2:
 		facing = signi(int(direction.x))
 	velocity = direction * 120.0
-	skill_dash_velocity = direction * 650.0
+	skill_dash_velocity = direction * 650.0 * GAME_SCALE.WORLD
 	skill_dash_timer = 0.14
 	body.rotation = direction.angle()
 	_spawn_sweeping_attack(Vector2(46, 34), [
@@ -319,7 +319,7 @@ func _enter_transformation() -> void:
 	attack_lock_timer = minf(attack_lock_timer, 0.12)
 	_create_transformation_aura()
 	_play_star_bloom(Vector2(0, -34), 62.0, Color(1.0, 0.86, 0.32, 0.92), 0.22)
-	VFX.spawn(self, "luna_ult_transform", Vector2(0, -42), Vector2(1.4, 1.4), false, 5, Color.WHITE, true)
+	VFX.spawn(self, "luna_ult_transform", Vector2(0, -42), Vector2.ONE * 1.4 * GAME_SCALE.COMBAT, false, 5, Color.WHITE, true)
 	# The transformation itself bursts: everyone close is thrown up (added 2026-10-08).
 	_spawn_sweeping_launch_attack(Vector2(TRANSFORM_BURST_RADIUS * 2.0, TRANSFORM_BURST_RADIUS * 1.6), [Vector2(0, -40), Vector2(0, -42)], TRANSFORM_BURST_DAMAGE, 460, Vector2(0, -1), Color(1.0, 0.7, 0.9, 0.4), 0.16, Vector2(0, -560), 0.3)
 
@@ -456,6 +456,9 @@ func _play_finale_charge() -> void:
 func _play_star_bloom(offset: Vector2, radius: float, color: Color, duration := 0.16) -> void:
 	if not is_instance_valid(get_parent()):
 		return
+	# Blooms mark attacks: placed and sized like them (GameScale.COMBAT).
+	offset = GAME_SCALE.attack_point(offset)
+	radius *= GAME_SCALE.COMBAT
 	var star := Polygon2D.new()
 	star.polygon = _make_star_points(radius, radius * 0.42)
 	star.color = color
@@ -470,6 +473,7 @@ func _play_star_bloom(offset: Vector2, radius: float, color: Color, duration := 
 	tween.tween_callback(star.queue_free)
 
 func _play_moon_ring_flash(radius: float) -> void:
+	radius *= GAME_SCALE.COMBAT
 	var ring := Line2D.new()
 	ring.points = _make_circle_points(radius, 28)
 	ring.closed = true

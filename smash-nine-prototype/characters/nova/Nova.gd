@@ -5,11 +5,12 @@ const GRAVITY_BURST_SCRIPT := preload("res://characters/nova/NovaGravityBurst.gd
 const VFX := preload("res://scripts/Vfx.gd")
 const BODY_HITBOX_SCRIPT := preload("res://characters/nova/NovaBodyHitbox.gd")
 
-const MOMENTUM_START_SPEED := 170.0
-const MOMENTUM_MAX_SPEED := 700.0
+## Speeds follow the run speed (GameScale.MOVE); launches cover the bigger realms (WORLD).
+const MOMENTUM_START_SPEED := 170.0 * GAME_SCALE.MOVE
+const MOMENTUM_MAX_SPEED := 700.0 * GAME_SCALE.MOVE
 const VECTOR_SHIFT_DURATION := 0.22
-const VECTOR_SHIFT_ACCELERATION := 5400.0
-const VECTOR_SHIFT_MAX_SPEED := 760.0
+const VECTOR_SHIFT_ACCELERATION := 5400.0 * GAME_SCALE.MOVE
+const VECTOR_SHIFT_MAX_SPEED := 760.0 * GAME_SCALE.MOVE
 const ULTIMATE_CORE_DISTANCE := 105.0
 const ULTIMATE_PULL_RADIUS := 230.0
 const ULTIMATE_PULL_STRENGTH := 240.0
@@ -22,8 +23,8 @@ const ULTIMATE_MIN_ORBIT_RADIUS := 52.0
 const ULTIMATE_MAX_TUNING_RADIUS := 260.0
 const ULTIMATE_NEAR_ORBIT_SPEED := 1080.0
 const ULTIMATE_FAR_ORBIT_SPEED := 560.0
-const ULTIMATE_FAST_LAUNCH_SPEED := 1460.0
-const ULTIMATE_SLOW_LAUNCH_SPEED := 860.0
+const ULTIMATE_FAST_LAUNCH_SPEED := 1460.0 * GAME_SCALE.WORLD
+const ULTIMATE_SLOW_LAUNCH_SPEED := 860.0 * GAME_SCALE.WORLD
 const ULTIMATE_FAST_LAUNCH_DURATION := 0.46
 const ULTIMATE_SLOW_LAUNCH_DURATION := 0.3
 const ULTIMATE_NONE := 0
@@ -115,7 +116,7 @@ func character_physics_process(delta: float) -> void:
 		if vector_shift_timer <= 0.0:
 			vector_shift_active = false
 	if meteor_diving:
-		velocity.y = minf(velocity.y + 2600.0 * delta, 1120.0)
+		velocity.y = minf(velocity.y + 2600.0 * GAME_SCALE.JUMP_SPEED * delta, 1120.0 * GAME_SCALE.JUMP_SPEED)
 	_update_ultimate(delta)
 	_update_momentum_visual()
 
@@ -145,7 +146,7 @@ func apply_character_gravity(delta: float) -> bool:
 	if not vector_shift_active:
 		return false
 	if is_on_floor() and vector_shift_direction.y < -0.1:
-		velocity.y = minf(velocity.y, -110.0)
+		velocity.y = minf(velocity.y, -110.0 * GAME_SCALE.JUMP_SPEED)
 	velocity += vector_shift_direction * VECTOR_SHIFT_ACCELERATION * delta
 	if velocity.length() > VECTOR_SHIFT_MAX_SPEED:
 		velocity = velocity.normalized() * VECTOR_SHIFT_MAX_SPEED
@@ -186,7 +187,7 @@ func _vector_uppercut(momentum: float, airborne: bool) -> void:
 	var rise_speed := lerpf(-390.0, -570.0, momentum)
 	if airborne:
 		rise_speed *= 0.88
-	velocity.y = minf(velocity.y, rise_speed)
+	velocity.y = minf(velocity.y, rise_speed * GAME_SCALE.JUMP_SPEED)
 	velocity.x += facing * lerpf(35.0, 85.0, momentum)
 	var launch_velocity := Vector2(facing * lerpf(55.0, 105.0, momentum), lerpf(-470.0, -720.0, momentum))
 	_spawn_sweeping_launch_attack(Vector2(lerpf(38.0, 48.0, momentum), lerpf(48.0, 62.0, momentum)), [
@@ -194,7 +195,7 @@ func _vector_uppercut(momentum: float, airborne: bool) -> void:
 		Vector2(26 * facing, -70),
 		Vector2(38 * facing, lerpf(-108.0, -138.0, momentum))
 	], lerpf(7.0, 11.0, momentum), lerpf(300.0, 510.0, momentum), Vector2(0.12 * facing, -1), _momentum_color(momentum), 0.11, launch_velocity, lerpf(0.22, 0.32, momentum))
-	_play_impact_flash(global_position + Vector2(36 * facing, -112), lerpf(28.0, 42.0, momentum), _momentum_color(momentum))
+	_play_impact_flash(global_position + GAME_SCALE.attack_point(Vector2(36 * facing, -112)), lerpf(28.0, 42.0, momentum), _momentum_color(momentum))
 
 func _compression_stomp(momentum: float) -> void:
 	velocity.x *= 0.55
@@ -207,7 +208,7 @@ func _meteor_kick_start(momentum: float) -> void:
 	meteor_momentum_ratio = maxf(momentum, 0.35)
 	action_locked_until_land = true
 	velocity.x += facing * lerpf(45.0, 110.0, momentum)
-	velocity.y = maxf(velocity.y, lerpf(560.0, 760.0, momentum))
+	velocity.y = maxf(velocity.y, lerpf(560.0, 760.0, momentum) * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_attack(Vector2(40, 46), [
 		Vector2(0, -24),
 		Vector2(12 * facing, 24),
@@ -270,7 +271,7 @@ func _spawn_gravity_burst(radius: float, damage: float, knockback: float, moment
 	burst.add_child(visual)
 	get_parent().add_child(burst)
 	burst.global_position = global_position + Vector2(0, -30)
-	burst.configure(self, radius, damage, knockback, momentum, color, hit_tag)
+	burst.configure(self, radius * GAME_SCALE.COMBAT, damage, knockback, momentum, color, hit_tag)
 	return burst
 
 func on_nova_gravity_burst_landed(momentum: float, hit_tag: String) -> void:
@@ -372,7 +373,7 @@ func _begin_ultimate_launch(tangent: Vector2) -> void:
 	var core_point := ultimate_center + Vector2(0, -32)
 	var collapse := _spawn_gravity_burst(ULTIMATE_COLLAPSE_RADIUS, ULTIMATE_COLLAPSE_DAMAGE, ULTIMATE_COLLAPSE_KNOCKBACK, ultimate_launch_power, Color(0.62, 0.42, 1.0, 0.6), "ultimate")
 	collapse.global_position = core_point
-	VFX.spawn(get_parent(), "nova_ult_burst", core_point, Vector2.ONE * (ULTIMATE_COLLAPSE_RADIUS * 2.2 / 256.0), false, 6, Color(0.82, 0.72, 1.0))
+	VFX.spawn(get_parent(), "nova_ult_burst", core_point, Vector2.ONE * (ULTIMATE_COLLAPSE_RADIUS * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6, Color(0.82, 0.72, 1.0))
 
 func _redirect_ultimate_launch_with_vector_shift() -> void:
 	if ultimate_phase != ULTIMATE_LAUNCH or not ultimate_launch_shift_available:
@@ -409,7 +410,7 @@ func _finish_ultimate_impact() -> void:
 	var radius := lerpf(124.0, 170.0, ultimate_launch_power)
 	_spawn_gravity_burst(radius, lerpf(34.0, 46.0, ultimate_launch_power), lerpf(700.0, 940.0, ultimate_launch_power), ultimate_launch_power, Color(0.48, 0.3, 0.92, 0.68), "ultimate")
 	_play_impact_flash(global_position + Vector2(0, -30), radius, Color(1.0, 0.62, 0.24, 0.88))
-	VFX.spawn(get_parent(), "nova_ult_burst", global_position + Vector2(0, -30), Vector2.ONE * (radius * 2.2 / 256.0), false, 6)
+	VFX.spawn(get_parent(), "nova_ult_burst", global_position + Vector2(0, -30), Vector2.ONE * (radius * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6)
 	attack_lock_timer = maxf(attack_lock_timer, 0.48)
 
 ## Event Horizon: while the core stands, nearby opponents are dragged toward it, so the
@@ -418,7 +419,7 @@ func _pull_toward_core(delta: float) -> void:
 	for target in get_tree().get_nodes_in_group("players"):
 		if target == self or target.is_defeated or target.realm_index != realm_index:
 			continue
-		if target.global_position.distance_to(ultimate_center) <= ULTIMATE_PULL_RADIUS:
+		if target.global_position.distance_to(ultimate_center) <= ULTIMATE_PULL_RADIUS * GAME_SCALE.COMBAT:
 			target.apply_control_pull(ultimate_center, ULTIMATE_PULL_STRENGTH, delta, 0.15, false)
 
 func _spawn_ultimate_body_hitbox(radius: float, damage: float, knockback: float, lifetime: float, end_on_hit: bool, color: Color) -> void:
@@ -435,7 +436,7 @@ func _spawn_ultimate_body_hitbox(radius: float, damage: float, knockback: float,
 	hitbox.add_child(visual)
 	get_parent().add_child(hitbox)
 	hitbox.global_position = global_position + Vector2(0, -32)
-	hitbox.configure(self, radius, damage, knockback, lifetime, color, end_on_hit)
+	hitbox.configure(self, radius * GAME_SCALE.COMBAT, damage, knockback, lifetime, color, end_on_hit)
 	ultimate_body_hitbox = hitbox
 
 func _cancel_ultimate() -> void:
@@ -511,7 +512,7 @@ func _create_singularity_visual() -> void:
 	singularity_visual.z_index = 6
 	get_parent().add_child(singularity_visual)
 	singularity_visual.global_position = ultimate_center + Vector2(0, -32)
-	var core_art := VFX.spawn(singularity_visual, "nova_ult_core", Vector2.ZERO, Vector2(1.1, 1.1), true, 0, Color.WHITE, true)
+	var core_art := VFX.spawn(singularity_visual, "nova_ult_core", Vector2.ZERO, Vector2.ONE * 1.1 * GAME_SCALE.COMBAT, true, 0, Color.WHITE, true)
 	var core := Polygon2D.new()
 	core.visible = core_art == null
 	core.polygon = _make_star_points(28.0, 17.0)
@@ -626,6 +627,7 @@ func _play_shift_recharge_flash() -> void:
 	tween.tween_callback(ring.queue_free)
 
 func _play_impact_flash(world_position: Vector2, radius: float, color: Color) -> void:
+	radius *= GAME_SCALE.COMBAT
 	var flash := Polygon2D.new()
 	flash.polygon = _make_star_points(radius, radius * 0.48)
 	flash.color = color

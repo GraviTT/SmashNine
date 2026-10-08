@@ -95,8 +95,10 @@ func _test_dimension_slash() -> void:
 	rio.perform_skill_one()
 	await _wait_for(func() -> bool: return rio.global_position != start, 1.0)
 	var moved: float = rio.global_position.x - start.x
-	if absf(moved - 200.0) > 1.0:
-		_fail("Dimension slash should teleport 200 px forward, moved %.1f" % moved)
+	# The blink grows with the realms (GameScale.WORLD).
+	var expected: float = rio.BLINK_DISTANCE * rio.GAME_SCALE.WORLD
+	if absf(moved - expected) > 1.0:
+		_fail("Dimension slash should teleport %.0f px forward, moved %.1f" % [expected, moved])
 		return
 	if _count_owned(ATTACK_PATH, rio) < 1:
 		_fail("Dimension slash should cut along its path")

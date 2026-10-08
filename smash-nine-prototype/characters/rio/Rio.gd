@@ -152,7 +152,7 @@ func _mana_wave() -> void:
 	wave.set_art(MANA_WAVE_ART, Color.WHITE, 1.0)
 
 func _rising_slash(airborne: bool) -> void:
-	velocity.y = minf(velocity.y, -300.0 if airborne else -140.0)
+	velocity.y = minf(velocity.y, (-300.0 if airborne else -140.0) * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_launch_attack(Vector2(40, 46), [
 		Vector2(16 * facing, -24),
 		Vector2(10 * facing, -70),
@@ -182,14 +182,14 @@ func _plunge_start() -> void:
 	_play_sprite_action(&"attack", 0.5)
 	action_locked_until_land = true
 	current_attack_started_airborne = true
-	velocity = Vector2(facing * 60.0, -80.0)
+	velocity = Vector2(facing * 60.0, -80.0 * GAME_SCALE.JUMP_SPEED)
 	_play_attack_windup()
 	if not await _wait_action(0.08):
 		return
 	if is_defeated or hitstun_timer > 0.0:
 		return
 	var dive := Vector2(0.45 * facing, 1.0).normalized()
-	skill_dash_velocity = dive * 820.0
+	skill_dash_velocity = dive * 820.0 * GAME_SCALE.WORLD
 	skill_dash_timer = 0.22
 	_spawn_sweeping_attack(Vector2(38, 50), [
 		Vector2(0, -30),
@@ -236,14 +236,14 @@ func _dimension_slash_start() -> void:
 ## Teleports up to BLINK_DISTANCE (stopped by solid ground) and cuts along the gap.
 func _dimension_slash(direction: Vector2) -> void:
 	var start := global_position
-	var travel := direction * BLINK_DISTANCE
+	var travel := direction * BLINK_DISTANCE * GAME_SCALE.WORLD
 	var collision := move_and_collide(travel, true)
 	if collision != null:
 		travel = collision.get_travel()
 	global_position = start + travel
 	velocity = direction * 160.0
 	if direction.y < -0.3:
-		velocity.y = minf(velocity.y, -220.0)
+		velocity.y = minf(velocity.y, -220.0 * GAME_SCALE.JUMP_SPEED)
 	var back := start - global_position
 	_spawn_sweeping_attack(Vector2(56, 44), [
 		back + Vector2(0, -34),
@@ -341,10 +341,11 @@ func _overdrive_start() -> void:
 	overdrive_time = 0.0
 	for index in OVERDRIVE_SWORDS:
 		var sword := _make_gem_sword(GEM_COLORS[index % GEM_COLORS.size()])
+		sword.scale = Vector2.ONE * GAME_SCALE.COMBAT
 		add_child(sword)
 		overdrive_swords.append(sword)
 	_update_overdrive_orbit(0.0)
-	overdrive_circle = VFX.spawn(self, "rio_ult_circle", Vector2(0, -36), Vector2(0.85, 0.85), true, -1, Color.WHITE, true)
+	overdrive_circle = VFX.spawn(self, "rio_ult_circle", Vector2(0, -36), Vector2.ONE * 0.85 * GAME_SCALE.COMBAT, true, -1, Color.WHITE, true)
 	if not await _wait_action(OVERDRIVE_ORBIT_TIME):
 		_clear_overdrive()
 		return
@@ -372,7 +373,7 @@ func _update_overdrive_orbit(delta: float) -> void:
 		if not is_instance_valid(sword):
 			continue
 		var angle := overdrive_time * OVERDRIVE_SPIN + TAU * index / float(OVERDRIVE_SWORDS)
-		sword.position = Vector2(0, -36) + Vector2(cos(angle), sin(angle)) * OVERDRIVE_RADIUS
+		sword.position = Vector2(0, -36) + Vector2(cos(angle), sin(angle)) * OVERDRIVE_RADIUS * GAME_SCALE.COMBAT
 		sword.rotation = angle + PI * 0.5
 
 func _fire_gem_sword() -> void:
@@ -398,7 +399,7 @@ func _overdrive_aim(from: Vector2) -> Vector2:
 		if held.length() > 0.2:
 			return held.normalized()
 	var best_target := Vector2.INF
-	var best_distance := OVERDRIVE_AIM_RANGE
+	var best_distance := OVERDRIVE_AIM_RANGE * GAME_SCALE.COMBAT
 	for other in get_tree().get_nodes_in_group("players"):
 		if other == self or other.is_defeated or other.realm_index != realm_index:
 			continue

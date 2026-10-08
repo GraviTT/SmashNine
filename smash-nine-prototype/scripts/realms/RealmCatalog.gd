@@ -3,6 +3,9 @@ extends RefCounted
 ## colours, size, platforms, spawn points and portal stand points.
 ## Coordinates are local to one tile of `size`; `tiles` repeats the tile (1x1 by default).
 ## Rises between standable platforms stay under the bots' 185 px jump reach.
+## The numbers here are the authored 1280x720 layouts; RealmLayout reads them through
+## scaled_maps(), which grows positions and spans by GameScale.WORLD (platform thickness,
+## hazard heights of bush tops and bridge thickness stay: fighters keep their size).
 ## "hazard" (optional) is read by RealmHazards: ice (floor traction), eruption (telegraphed
 ## fire pillars on platforms), quake (telegraphed stun for everyone on the ground), bushes
 ## (standing in one hides a fighter; "spots" are bush bottoms on platform tops), beams
@@ -226,6 +229,45 @@ static func build_maps() -> Array:
 		"portals": {LEFT: Vector2(270, 913), RIGHT: Vector2(1650, 913), UP: Vector2(960, 263), DOWN: Vector2(960, 913)}
 	}
 	]
+
+## build_maps() with every position and span times scale (routine 2026-10-08: realms 1.5x).
+static func scaled_maps(scale: float) -> Array:
+	var maps := build_maps()
+	for map: Dictionary in maps:
+		map["size"] = map.get("size", OUTER_SIZE) * scale
+		for platform_data: Dictionary in map.platforms:
+			platform_data["center"] = platform_data.center * scale
+			platform_data["size"] = Vector2(platform_data.size.x * scale, platform_data.size.y)
+		var spawns: Array = []
+		for spawn: Vector2 in map.spawns:
+			spawns.append(spawn * scale)
+		map["spawns"] = spawns
+		var portals := {}
+		for side in map.portals:
+			portals[side] = map.portals[side] * scale
+		map["portals"] = portals
+		if map.has("hazard"):
+			map["hazard"] = _scaled_hazard(map.hazard, scale)
+	return maps
+
+static func _scaled_hazard(hazard: Dictionary, scale: float) -> Dictionary:
+	var scaled := hazard.duplicate(true)
+	for key in ["width", "height", "notice_range"]:
+		if scaled.has(key):
+			scaled[key] = float(scaled[key]) * scale
+	if scaled.has("spots"):
+		var spots: Array = []
+		for spot: Vector2 in scaled.spots:
+			spots.append(spot * scale)
+		scaled["spots"] = spots
+	if scaled.has("size"):
+		scaled["size"] = Vector2(scaled.size.x * scale, scaled.size.y)
+	if scaled.has("bridges"):
+		var bridges: Array = []
+		for rect: Rect2 in scaled.bridges:
+			bridges.append(Rect2(rect.position * scale, Vector2(rect.size.x * scale, rect.size.y)))
+		scaled["bridges"] = bridges
+	return scaled
 
 static func main_platform(center: Vector2, size: Vector2, color: Color, concept_tags: Array[String] = []) -> Dictionary:
 	return platform(center, size, color, PLATFORM_MAIN, concept_tags)

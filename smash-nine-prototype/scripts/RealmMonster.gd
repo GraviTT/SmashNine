@@ -4,8 +4,11 @@ signal defeated(monster: Node, attacker: Node, soul_reward: int)
 
 enum State { NEUTRAL, AGGRO, DEFEATED }
 
-const GRAVITY := 1850.0
-const FALL_OUT_DEPTH := 900.0
+## Monsters belong to the realm: distances follow GameScale.WORLD, speeds MOVE, falls and
+## knockback the fighters' scales (routine 2026-10-08).
+const GAME_SCALE := preload("res://scripts/GameScale.gd")
+const GRAVITY := 1850.0 * GAME_SCALE.GRAVITY
+const FALL_OUT_DEPTH := 900.0 * GAME_SCALE.WORLD
 ## Monsters are soul sources, not the main threat: light pushes on one-screen realms (design D7).
 const MELEE_KNOCKBACK := 140.0
 const PROJECTILE_KNOCKBACK := 110.0
@@ -81,6 +84,9 @@ func setup(type_id: String, new_realm_index: int, spawn_position: Vector2) -> vo
 		soul_reward = 6
 		body_color = Color(0.38, 0.82, 0.32)
 	hp = max_hp
+	move_speed *= GAME_SCALE.MOVE
+	attack_range *= GAME_SCALE.WORLD
+	patrol_radius *= GAME_SCALE.WORLD
 
 func _ready() -> void:
 	add_to_group("realm_monsters")
@@ -154,7 +160,7 @@ func _physics_process(delta: float) -> void:
 	hitstun_timer = maxf(hitstun_timer - delta, 0.0)
 	control_slow_timer = maxf(control_slow_timer - delta, 0.0)
 	if not is_on_floor():
-		velocity.y = minf(velocity.y + GRAVITY * delta, 900.0)
+		velocity.y = minf(velocity.y + GRAVITY * delta, 900.0 * GAME_SCALE.JUMP_SPEED)
 
 	if hitstun_timer > 0.0:
 		velocity.x = knockback_velocity.x
@@ -165,7 +171,7 @@ func _physics_process(delta: float) -> void:
 	velocity += knockback_velocity
 	move_and_slide()
 	velocity -= knockback_velocity
-	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1050.0 * delta)
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1050.0 * GAME_SCALE.KNOCKBACK * delta)
 	_update_art(delta)
 
 func _build_art_sprite() -> AnimatedSprite2D:
@@ -248,13 +254,13 @@ func _update_melee_aggro(offset: Vector2) -> void:
 func _update_ranged_aggro(offset: Vector2) -> void:
 	var distance := absf(offset.x)
 	var direction := signf(offset.x)
-	if distance < 145.0 and _has_floor_ahead(-direction):
+	if distance < 145.0 * GAME_SCALE.WORLD and _has_floor_ahead(-direction):
 		velocity.x = -direction * move_speed
 	elif distance > 260.0 and _has_floor_ahead(direction):
 		velocity.x = direction * move_speed * 0.7
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, 900.0 * get_physics_process_delta_time())
-	if distance <= attack_range and absf(offset.y) < 150.0 and attack_timer <= 0.0:
+	if distance <= attack_range and absf(offset.y) < 150.0 * GAME_SCALE.WORLD and attack_timer <= 0.0:
 		attack_timer = attack_cooldown
 		_spawn_projectile(offset.normalized())
 
@@ -280,7 +286,7 @@ func _spawn_melee_attack() -> void:
 	attack.add_child(visual)
 	get_parent().add_child(attack)
 	attack.global_position = global_position
-	attack.configure(self, Vector2(56, 42), Vector2(42 * facing, -28), attack_damage, MELEE_KNOCKBACK, Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
+	attack.configure(self, Vector2(56, 42) * GAME_SCALE.WORLD, Vector2(42 * facing, -28) * GAME_SCALE.WORLD, attack_damage, MELEE_KNOCKBACK, Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
 	attack_animation_timer = ATTACK_ANIMATION_TIME
 
 func _spawn_projectile(direction: Vector2) -> void:
@@ -296,7 +302,8 @@ func _spawn_projectile(direction: Vector2) -> void:
 	projectile.add_child(visual)
 	get_parent().add_child(projectile)
 	projectile.global_position = global_position + Vector2(32 * facing, -34)
-	projectile.configure(self, Vector2(24, 18), attack_damage, PROJECTILE_KNOCKBACK, direction, Color(1.0, 0.42, 0.12, 0.82), 390.0, 1.35)
+	projectile.configure(self, Vector2(24, 18) * GAME_SCALE.WORLD, attack_damage, PROJECTILE_KNOCKBACK, direction, Color(1.0, 0.42, 0.12, 0.82), 390.0 * GAME_SCALE.WORLD, 1.35)
+	projectile.art_scale_multiplier = GAME_SCALE.WORLD
 	var fireball := ART_SETTINGS.original_texture(FIREBALL_ART)
 	if fireball != null:
 		projectile.set_art(FIREBALL_ART, Color.WHITE, FIREBALL_SCREEN_SIZE / fireball.get_width())
@@ -317,7 +324,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	var hit_direction := direction.normalized()
 	if hit_direction == Vector2.ZERO:
 		hit_direction = Vector2.RIGHT
-	knockback_velocity += hit_direction * base_knockback * 0.55
+	knockback_velocity += hit_direction * base_knockback * 0.55 * GAME_SCALE.KNOCKBACK
 	hitstun_timer = clampf(base_knockback / 1800.0, 0.08, 0.24)
 	_flash_hit()
 	_update_visuals()
@@ -328,7 +335,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vector2, hitstun_duration: float, _effect_knockback: float, direction: Vector2, damage_type := "normal") -> bool:
 	if not apply_hit(attacker, damage, launch_velocity.length(), direction, damage_type):
 		return false
-	knockback_velocity += launch_velocity * 0.35
+	knockback_velocity += launch_velocity * 0.35 * GAME_SCALE.KNOCKBACK
 	hitstun_timer = maxf(hitstun_timer, hitstun_duration)
 	return true
 
@@ -341,7 +348,7 @@ func apply_stun_hit(attacker: Node, damage: float, base_knockback: float, direct
 func apply_control_pull(center: Vector2, strength: float, delta: float, slow_duration: float, _slow_jump := false) -> void:
 	if state == State.DEFEATED:
 		return
-	knockback_velocity += (center - global_position).normalized() * strength * delta
+	knockback_velocity += (center - global_position).normalized() * strength * GAME_SCALE.KNOCKBACK * delta
 	control_slow_timer = maxf(control_slow_timer, slow_duration)
 
 func apply_yuki_seal_burst(attacker: Node, activation_id: int, damage: float, knockback: float, direction: Vector2) -> bool:
