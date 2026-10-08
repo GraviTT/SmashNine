@@ -9,7 +9,7 @@ const HIT_WINDOW := 0.4
 const NO_PROGRESS_MIN_SECONDS := 3.0
 const NO_PROGRESS_MIN_PIXELS := 100.0
 const LOW_HP_FOLLOW_SECONDS := 10.0
-const OUT_PATH := "res://../reports/codex-qa-14/round3-results.json"
+const OUT_PATH := "res://../reports/codex-qa-14/round4-results.json"
 const AIR_DOWN_RINGOUT_WINDOW := 2.0
 const NOVA_LAUNCH_HIT_WINDOW := 3.2
 const CORNER_ESCAPE_RINGOUT_WINDOW := 3.0
@@ -30,7 +30,8 @@ var totals: Dictionary = {
 	"recovery": {}, "portals": {}, "portal_reasons": {}, "standoffs": [],
 	"guards_by_attacker": {}, "nova": {"launches": 0, "aimed": 0, "forced": 0, "redirects": 0, "hits": 0},
 	"air_down_self_ringouts": {}, "target_drops": {}, "corner_escapes": {},
-	"swing_context": {}, "recovery_skills": {}, "yuki_ledge_ringouts": {"all": 0, "near_ledge": 0}
+	"swing_context": {}, "recovery_skills": {}, "yuki_ledge_ringouts": {"all": 0, "near_ledge": 0},
+	"frey_recovery_entries": {"knocked_off": 0, "walked_or_dashed_off": 0, "other": 0}
 }
 var match_rows: Array[Dictionary] = []
 var ringout_rows: Array[Dictionary] = []
@@ -80,7 +81,7 @@ func _run_all() -> void:
 	for value in seeds:
 		await _run_match(value)
 	var result := {
-		"schema": 3,
+		"schema": 4,
 		"seeds": seeds,
 		"players": player_count,
 		"sample_interval": SAMPLE_INTERVAL,
@@ -110,6 +111,10 @@ func _run_all() -> void:
 			"too_late": "debug reason changed to 'too late to block' after a queued reaction expired",
 			"recovery_skill": "skill_1 coincided with attack_serial increment while state was recover; reached_floor means that recovery episode later exited recover without a ring-out",
 			"yuki_near_ledge": "Yuki's last attributed PvP hit before ring-out occurred while _cornered() found no floor within 225 px behind her, away from the attacker"
+		},
+		"round4_definitions": {
+			"combo_block": "a guarded damage event attributed to Frey/Rio ground-side combo step 2 or 3 from combo_step at attack_serial increment",
+			"frey_recovery_entry": "knocked_off if PvP-damaged within 3s; otherwise walked_or_dashed_off if recover began outside the realm sides or over void; remaining entries are other"
 		}
 	}
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../reports/codex-qa-14"))
@@ -221,7 +226,12 @@ func _new_player_memory(player: Node) -> Dictionary:
 		"ignored_target_ids": {},
 		"last_progress_target": player.ai_controller.progress_target,
 		"last_progress_timer": float(player.ai_controller.progress_timer),
-		"last_progress_drop_time": -99.0
+		"last_progress_drop_time": -99.0,
+		"last_combo_step": 0,
+		"last_combo_serial": -1,
+		"last_pvp_hit_received": -99.0,
+		"last_damage_time": -99.0,
+		"last_damage_source": ""
 	}
 
 func _observe_frame() -> void:
@@ -360,7 +370,23 @@ func _observe_target_drop(player: Node, now: float, known_dropped: Node = null) 
 
 func _observe_exact_swing(player: Node, snapshot: Dictionary, memory: Dictionary, now: float, serial: int) -> void:
 	var attack_type := _current_attack_type(player, snapshot)
+	memory.last_combo_step = _combo_swing_step(player, attack_type)
+	memory.last_combo_serial = serial
 	_record_swing_context(player, attack_type, now, serial)
+
+func _combo_swing_step(player: Node, attack_type: String) -> int:
+	if attack_type != "basic_side" or not ["frey", "rio"].has(str(player.character_id)):
+		return 0
+	var next_step: Variant = player.get("combo_step")
+	var timer: Variant = player.get("combo_timer")
+	if next_step == null or timer == null:
+		return 0
+	# Both kits advance combo_step after swings 1/2 and reset it immediately after swing 3.
+	if int(next_step) == 1:
+		return 1
+	if int(next_step) == 2:
+		return 2
+	return 3 if float(timer) <= 0.0 else 0
 
 func _record_swing_context(player: Node, attack_type: String, now: float, serial: int) -> void:
 	var target_value: Variant = player.ai_controller.target
@@ -445,7 +471,8 @@ func _attack_startup_bound(character: String, attack_type: String) -> float:
 
 func _guard_stats(attacker_character: String) -> Dictionary:
 	var stats: Dictionary = totals.guards_by_attacker.get(attacker_character, {
-		"reactions": 0, "raised": 0, "blocks": 0, "parries": 0, "reaction_in_recovery": 0, "too_late": 0
+		"reactions": 0, "raised": 0, "blocks": 0, "parries": 0, "reaction_in_recovery": 0, "too_late": 0,
+		"combo_2_blocks": 0, "combo_3_blocks": 0
 	})
 	return stats
 
@@ -598,6 +625,16 @@ func _observe_recovery(player: Node, snapshot: Dictionary, memory: Dictionary, n
 		memory.recovery = true
 		memory.recovery_started = now
 		memory.recovery_air_jumps = int(player.air_jumps_left)
+		if str(player.character_id) == "frey":
+			var entry_kind := "other"
+			if now - float(memory.last_pvp_hit_received) <= 3.0:
+				entry_kind = "knocked_off"
+			else:
+				var local_position: Vector2 = player.global_position - player.realm_origin
+				var outside_sides: bool = local_position.x < 0.0 or local_position.x > player.realm_size.x
+				if outside_sides or player.ai_controller._over_void(player):
+					entry_kind = "walked_or_dashed_off"
+			totals.frey_recovery_entries[entry_kind] = int(totals.frey_recovery_entries.get(entry_kind, 0)) + 1
 	elif not recovering and bool(memory.recovery):
 		memory.recovery = false
 		match_recovery_success += 1
@@ -763,6 +800,11 @@ func _on_damaged(player: Node, amount: float, attacker: Node, source: String) ->
 	var now: float = main.director.match_elapsed
 	var pid := player.get_instance_id()
 	var memory: Dictionary = player_memory.get(pid, {})
+	if not memory.is_empty():
+		memory.last_damage_time = now
+		memory.last_damage_source = source
+		if source == "hit" and is_instance_valid(attacker) and attacker.is_in_group("players"):
+			memory.last_pvp_hit_received = now
 	if player_memory.has(pid):
 		for event in player_memory[pid].low_hp_pending:
 			event.damaged = true
@@ -773,6 +815,12 @@ func _on_damaged(player: Node, amount: float, attacker: Node, source: String) ->
 			if bool(player.is_guarding):
 				var guard_stats := _guard_stats(str(attacker.character_id))
 				guard_stats.blocks = int(guard_stats.blocks) + 1
+				var attacker_memory: Dictionary = player_memory.get(attacker.get_instance_id(), {})
+				var combo_step := int(attacker_memory.get("last_combo_step", 0))
+				if combo_step == 2:
+					guard_stats.combo_2_blocks = int(guard_stats.combo_2_blocks) + 1
+				elif combo_step == 3:
+					guard_stats.combo_3_blocks = int(guard_stats.combo_3_blocks) + 1
 				totals.guards_by_attacker[str(attacker.character_id)] = guard_stats
 			_mark_attack_hit(attacker, amount, now)
 			_mark_swing_context_hit(attacker, now)
@@ -892,6 +940,6 @@ func _print_summary(result: Dictionary) -> void:
 		print("QA14_ATTACK %s uses=%d hits=%d rate=%.3f damage=%.1f" % [key, row.uses, row.hits, float(row.hits) / maxf(float(row.uses), 1.0), row.damage])
 	for attacker in totals.guards_by_attacker:
 		var guard_row: Dictionary = totals.guards_by_attacker[attacker]
-		print("QA14_GUARD attacker=%s reactions=%d too_late=%d raised=%d blocks=%d parries=%d recovery_detections=%d" % [attacker, guard_row.reactions, guard_row.get("too_late", 0), guard_row.raised, guard_row.blocks, guard_row.parries, guard_row.reaction_in_recovery])
+		print("QA14_GUARD attacker=%s reactions=%d too_late=%d raised=%d blocks=%d parries=%d combo2=%d combo3=%d recovery_detections=%d" % [attacker, guard_row.reactions, guard_row.get("too_late", 0), guard_row.raised, guard_row.blocks, guard_row.parries, guard_row.get("combo_2_blocks", 0), guard_row.get("combo_3_blocks", 0), guard_row.reaction_in_recovery])
 	print("QA14_NOVA launches=%d aimed=%d forced=%d redirects=%d hits=%d" % [totals.nova.launches, totals.nova.aimed, totals.nova.forced, totals.nova.redirects, totals.nova.hits])
 	print("QA14_OUTPUT ", ProjectSettings.globalize_path(OUT_PATH))
