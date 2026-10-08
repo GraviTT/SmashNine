@@ -54,3 +54,15 @@ The lead changed the bots after your round 1 and the debate (`reports/debate-bot
 - ring-outs with 0 air jumps left, recovery success per character;
 - portal moves per match and why (escape, roam, retreat, off-screen hop);
 - anything that got worse. Same writable paths; report in `reports/codex-qa-14/round2.md`.
+
+## Round 3 · retest (branch `codex/bot-data-14c`)
+
+The lead changed the bots again after your round 2 (`reports/debate-bot-ai/log.md`, "Round 3"): `ce4f0af` (levels judged by where bodies stand, trading hits counts as progress, players first from the central brawl or 4 left, swings watched every frame with `attack_serial` / `attack_elapsed` / `attack_startup` and no guard more than 0.1 s past the wind-up, a cornered retreat jumps past the opponent) and `0aad85c` (Frey and Nova also use skill 1 to recover; it was not in your round 2). Rerun **the same probe on the same seeds 101–112**; give round 1 / round 2 / round 3 for every metric you reported, plus:
+- no-target time, `wander`, target switches per minute, central-brawl target shares (your targets: player ≥ 90%, none ≤ 1%, switches ≤ 16/min); targets dropped by the progress rule (reason `gave up: target out of reach`) and how many of those were within 300 px or had traded hits in the 3 s before;
+- per attacking character: reactions detected, reactions that ended as `too late to block`, guards raised, blocks, parries; reactions first detected in recovery (your round-2 check);
+- cornered escapes (`cornered: jumping past`) per character and ring-outs within 3 s after one; Yuki ring-outs whose hit landed within 225 px of a ledge;
+- misses by distance at the swing (0–120, 120–240, 240–360, 360+ px) and by target kind, per character — Rio first (its side basics fell 45.2% → 27.4%);
+- recovery success per character, and skill-1 recoveries (Frey, Nova, Rio): used, reached a floor;
+- match length per seed; anything that got worse.
+
+Reading `ai_controller` members per physics frame from the probe is fine (read only). Same writable paths; report in `reports/codex-qa-14/round3.md`.
