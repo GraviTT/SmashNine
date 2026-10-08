@@ -6,7 +6,8 @@ extends SceneTree
 ## keeps the last jump for recovery (D1); a bot-driven Nova launch redirects toward its
 ## target (D5). Round 3 (Codex QA-14 round 2 data): a target that jumps during a close fight is
 ## kept, levels are judged by floors; a swing that began during hitstun or is past its wind-up
-## raises no guard; a kiting bot at a ledge jumps past instead of backing off.
+## raises no guard unless the attacker stays close (round 4); a kiting bot at a ledge jumps past
+## instead of backing off, at most every 2.5 s and only with floor beyond the opponent.
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -20,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -213,20 +214,29 @@ func _test_portal_grace() -> void:
 	await process_frame
 
 ## Out of air jumps below the stage, Frey and Nova use their directional skill toward the
-## platform like Rio (Codex QA-14: 78% of ring-outs had no air jump left).
+## platform like Rio (Codex QA-14: 78% of ring-outs had no air jump left). Round 4 (QA-14
+## round 3: Nova reached a floor 3 of 15 times, Rio 2 of 10): Nova and Rio wait until the ledge
+## is within the skill's reach and aim a little above it; Frey (18 of 19) goes from anywhere.
 func _test_recovery_skill() -> void:
 	for id in ["frey", "nova", "rio"]:
 		var bot := _fighter(id, 1, Vector2(0, 300))
 		bot.set_physics_process(false)
+		bot.realm_origin = Vector2(-960, -540)
+		bot.realm_size = Vector2(1920, 1080)
 		var ai = bot.ai_controller
 		ai.state = ai.STATE_RECOVER
-		ai.recovery_target = Vector2(260, 0)
+		ai.recovery_target = Vector2(120, 160)
 		bot.velocity = Vector2(0, 120)
 		bot.air_jumps_left = 0
 		var intent: Dictionary = ai._recover_intent(bot)
 		var aim: Vector2 = intent.get("aim", Vector2.ZERO)
 		if str(intent.get("attack", "")) != "skill_1" or aim.y >= 0.0 or aim.x <= 0.0:
-			_fail("%s out of jumps below the stage should aim its skill up toward the platform (%s)" % [id, intent])
+			_fail("%s out of jumps below a close ledge should aim its skill up toward it (%s)" % [id, intent])
+		ai.recovery_target = Vector2(600, -100)
+		intent = ai._recover_intent(bot)
+		var far_skill: bool = str(intent.get("attack", "")) == "skill_1"
+		if far_skill != (id == "frey"):
+			_fail("%s with the ledge out of reach: skill %s (only Frey should use it from afar)" % [id, far_skill])
 		bot.queue_free()
 		await process_frame
 
@@ -281,11 +291,21 @@ func _test_late_swing_no_guard() -> void:
 	if bot.is_guarding:
 		bot._stop_guard(false)
 	bot.guard_recovery_timer = 0.0
+	# Past the wind-up with the attacker turned away: no guard.
 	foe.attack_elapsed = 0.08 + ai.GUARD_LATE_GRACE + 0.05
+	foe.facing = 1
 	ai.guard_threat_from = foe
 	ai.guard_delay_timer = 0.0
 	if ai._update_guard(bot, 0.016) or bot.is_guarding:
-		_fail("No guard once the swing is past its wind-up")
+		_fail("No guard once the swing is past its wind-up and the attacker turned away")
+	# Round 4: past the wind-up but still close and facing us, the guard braces for the next
+	# swing (QA-14 round 3: skipping these cut blocks and parries from 463 to 155).
+	foe.facing = -1
+	ai.guard_delay_timer = 0.0
+	if not ai._update_guard(bot, 0.016) or not bot.is_guarding:
+		_fail("A close attacker facing us should still get a guard for its follow-up")
+	bot._stop_guard(false)
+	bot.guard_recovery_timer = 0.0
 	# In time, it guards.
 	foe.attack_elapsed = 0.02
 	ai.guard_delay_timer = 0.0
@@ -319,6 +339,16 @@ func _test_cornered_escape() -> void:
 	ai._choose_engage_action(bot, 60.0, 200.0, 1.0)
 	if ai.action != "hold":
 		_fail("Cornered by an opponent on another level, a kiting bot should hold (action %s)" % ai.action)
+	# Round 4: one escape per 2.5 s, then it holds; and none without floor past the opponent.
+	ai.last_action = ""
+	ai._choose_engage_action(bot, 60.0, 0.0, 1.0)
+	if ai.action != "hold":
+		_fail("Right after an escape a cornered bot should hold (action %s)" % ai.action)
+	ai.escape_cooldown = 0.0
+	ai.last_action = ""
+	ai._choose_engage_action(bot, 330.0, 0.0, 1.0)
+	if ai.action != "hold":
+		_fail("With no floor past the opponent a cornered bot should hold (action %s)" % ai.action)
 	# With open floor behind, it keeps its range as before.
 	bot.global_position = Vector2(60, -2)
 	foe.global_position = Vector2(120, -2)
@@ -334,4 +364,56 @@ func _test_cornered_escape() -> void:
 	bot.queue_free()
 	foe.queue_free()
 	ground.queue_free()
+	await process_frame
+
+## Round 4: hitting the target in the last 3 s counts as progress for every target kind
+## (fighters by their attacker memory, crystals and monsters by the frame of the last hit).
+func _test_trading_hits() -> void:
+	var bot := _fighter("frey", 1, Vector2(0, 0))
+	var foe := _fighter("rio", 2, Vector2(200, 260))
+	bot.set_physics_process(false)
+	foe.set_physics_process(false)
+	var ai = bot.ai_controller
+	foe.last_attacker = bot
+	foe.last_attacker_timer = 7.0
+	if not ai._trading_hits(bot, foe):
+		_fail("A fighter we hit a second ago should count as trading hits")
+	foe.last_attacker_timer = 3.0
+	if ai._trading_hits(bot, foe):
+		_fail("A fighter we hit five seconds ago should not count as trading hits")
+	var crystal: Node = load("res://scripts/SoulCrystal.gd").new()
+	arena.add_child(crystal)
+	crystal.last_attacker = bot
+	crystal.last_hit_frame = Engine.get_physics_frames()
+	if not ai._trading_hits(bot, crystal):
+		_fail("A crystal we just hit should count as trading hits")
+	crystal.last_hit_frame = Engine.get_physics_frames() - 600
+	if ai._trading_hits(bot, crystal):
+		_fail("A crystal hit ten seconds ago should not count as trading hits")
+	crystal.queue_free()
+	bot.queue_free()
+	foe.queue_free()
+	await process_frame
+
+## Round 4: Rio does not throw basics from beyond their reach (QA-14 round 3: 89-92% missed
+## from 240 px out).
+func _test_rio_basic_reach() -> void:
+	var bot := _fighter("rio", 1, Vector2(0, 0))
+	var foe := _fighter("frey", 2, Vector2(300, 0))
+	bot.set_physics_process(false)
+	foe.set_physics_process(false)
+	var ai = bot.ai_controller
+	ai.target = foe
+	bot.ultimate_cooldown_timer = 30.0
+	var far_basics := 0
+	var near_basics := 0
+	for roll in 40:
+		ai.attack_cooldown = 0.0
+		far_basics += 1 if ai._choose_attack(bot, 300.0, 0.0) == "basic" else 0
+		ai.attack_cooldown = 0.0
+		near_basics += 1 if ai._choose_attack(bot, 100.0, 0.0) == "basic" else 0
+	if far_basics > 0 or near_basics == 0:
+		_fail("Rio basics: %d from 300 px (want 0), %d from 100 px (want some)" % [far_basics, near_basics])
+	bot.queue_free()
+	foe.queue_free()
 	await process_frame

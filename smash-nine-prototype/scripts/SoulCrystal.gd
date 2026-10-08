@@ -24,6 +24,9 @@ var is_realm_active := true
 var display_name := "Soul Crystal"
 ## Hits left; bots read "hp" like a monster's to know it is still standing.
 var hp := float(HITS_TO_BREAK)
+## Who hit it last and on which physics frame (bots count hitting their target as progress).
+var last_attacker: Node
+var last_hit_frame := -100000
 var max_hp := float(HITS_TO_BREAK)
 var is_broken := false
 var visual: Node2D
@@ -120,6 +123,8 @@ func _take_hit(attacker: Node) -> bool:
 	if is_broken or not is_realm_active or is_queued_for_deletion() or not is_instance_valid(attacker) or not attacker.is_in_group("players"):
 		return false
 	hp -= 1.0
+	last_attacker = attacker
+	last_hit_frame = Engine.get_physics_frames()
 	_flash()
 	if hp <= 0.0:
 		is_broken = true

@@ -41,3 +41,18 @@ Same seeds 101–112, bots of `34443e3` (before `0aad85c` recovery skills). Bett
 | Rio hit rate | **measure** | Rio's attack count rose 4,043 → 5,156 and side basics fell 45.2% → 27.4%. Candidates: basics thrown from up to its 460 px profile range while its slashes reach about 240 px, or more swings at monsters. Round 3 measures Rio's misses by distance and target kind before changing it. |
 
 Next: Codex QA-14 round 3 (same probe, same seeds) on the new bots; `decision.md` after it.
+
+## Round 4 (measurement: Codex QA-14 round 3, `reports/codex-qa-14/round3.md`) — lead decisions
+
+Bots of `ce4f0af` (round 3) plus `0aad85c` (Frey/Nova recovery skill). Better than round 2: match median 315.4 → 277.8 s, ring-outs 135 → 114, zero-jump ring-outs 71.1% → 58.8%, recovery 93.8%, hit rate 41.6%, no-target 9.2% → 6.6%, Nova launches followed by PvP damage 85.7%. Worse: no-progress time 2.3% → 3.4% (325 progress drops, 95% monsters and crystals, 146 of them within 300 px or hit in the last 3 s), central-brawl player targets 78.7% (target 90%), blocks and parries 463 → 155, Yuki escapes 701 (22.9% of its engage time; 10 ring-outs within 3 s), Nova and Rio recovery skills reached a floor 3/15 and 2/10.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R4-1 progress drops (Codex top 1) | **accept** | Monsters and crystals now remember who hit them last on the physics-frame clock (`last_attacker`, `last_hit_frame`); hitting the target within 3 s counts as progress for every target kind, and a monster that is after us too. A target within 300 px is kept while a route to where it stands exists. |
+| R4-2 Yuki escapes (Codex top 2) | **accept** | One escape per 2.5 s, and only with floor 90 px past the opponent to land on; otherwise hold. (After the round-3 measurement, `2811081` already turned escapes toward a target on another level into holding the ledge.) |
+| R4-3 recovery skills (Codex top 3) | **accept** | Nova and Rio use the skill once the ledge is within its reach (260 / 290 px) and aim 60 px above it; the last chance near the realm bottom still takes it; Frey (18/19) unchanged. |
+| R4-4 guards | **change, against Codex's reading** | Codex judged round 3 fair (every attacker blocked sometimes). The lead's view: the skipped reactions were also the guard that blocks the rest of a combo (73% of reactions skipped; blocks and parries 463 → 155). A reaction past the wind-up now still raises the guard while the attacker stays in reach and faces us; it is skipped when the attacker turned away or left. Measure blocks per attacker again. |
+| R4-5 Rio basics from range | **change, Codex advised an A/B first** | Rio's side basics missed 88.5% at 240–360 px and 91.8% beyond; swinging at air reads as a dumb bot. Basics need the target within 240 px (profile `basic_reach`, scaled); otherwise it closes in or uses a skill. Measured in round 4 against Rio's PvP damage per minute (41.8). |
+| Frey recover state 12.2% | **measure** | Frey's recover-state time tripled (4.2% → 12.2%) while its ring-outs fell 25 → 14 and recovery is 97%: round 4 reports where Frey enters recovery. |
+
+Next: Codex QA-14 round 4 (same probe, same seeds); then `decision.md`.

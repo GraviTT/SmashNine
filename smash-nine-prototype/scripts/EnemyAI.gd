@@ -102,6 +102,23 @@ const LATE_NON_PLAYER_PENALTY := 1000000.0
 ## (round 2: Yuki, who retreats 38% of its engage time, had 44 of 135 ring-outs).
 const RETREAT_EDGE_MARGIN := 150.0 * GAME_SCALE.WORLD
 const ESCAPE_JUMP_DISTANCE := 140.0 * GAME_SCALE.COMBAT
+## Round 4 (Codex QA-14 round 3): Yuki chose the escape 701 times in 12 matches; at most one
+## per this many seconds, and only with floor beyond the opponent to land on.
+const ESCAPE_COOLDOWN := 2.5
+const ESCAPE_LANDING_PAST := 90.0
+## A hit on the target within this long counts as progress (round 3: 146 of 325 drops were
+## targets within 300 px or hit in the last 3 s).
+const TRADE_MEMORY := 3.0
+## A target this close is kept while a route to where it stands exists.
+const PROGRESS_KEEP_NEAR := 300.0
+## A fighter's attacker memory counts down from this (PlayerBase.LAST_ATTACKER_MEMORY).
+const FIGHTER_ATTACKER_MEMORY := 8.0
+## Out of jumps, a directional recovery skill only once the ledge is this close (px; round 3:
+## Nova reached a floor 3 of 15 times, Rio 2 of 10, Frey 18 of 19), aimed a little above it;
+## the last chance near the bottom of the realm still takes it.
+const RECOVERY_SKILL_REACH := {"frey": 100000.0, "nova": 260.0, "rio": 290.0}
+const RECOVERY_SKILL_AIM_ABOVE := 60.0
+const RECOVERY_LAST_CHANCE := 140.0
 ## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, already at
 ## the combat scale), score >= 3 fires 70% of the time, >= 2 once it has been ready 12 s.
 const ULTIMATE_REACH := {"frey": 480.0, "yuki": 820.0, "luna": 420.0, "nova": 460.0, "rio": 900.0}
@@ -138,7 +155,7 @@ const COMBAT_PROFILES := {
 	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false, "recovery_skill": true},
 	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
 	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true},
-	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true}
+	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true, "basic_reach": 120.0}
 }
 const BUSH_NOTICE_RANGE := 140.0 * GAME_SCALE.WORLD
 const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
@@ -204,6 +221,7 @@ var progress_timer: float = 0.0
 var ultimate_ready_time: float = 0.0
 var disengage_cooldown: float = 0.0
 var no_target_time: float = 0.0
+var escape_cooldown: float = 0.0
 var back_off_timer: float = 0.0
 var nova_stage_timer: float = -1.0
 var nova_redirect_timer: float = -1.0
@@ -223,6 +241,7 @@ func update(player, delta: float) -> void:
 	ultimate_ready_time = ultimate_ready_time + delta if player.is_ultimate_ready() else 0.0
 	disengage_cooldown = maxf(disengage_cooldown - delta, 0.0)
 	back_off_timer = maxf(back_off_timer - delta, 0.0)
+	escape_cooldown = maxf(escape_cooldown - delta, 0.0)
 	no_target_time = 0.0 if is_instance_valid(target) else no_target_time + delta
 
 	if _needs_recovery(player):
@@ -564,8 +583,9 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 	if candidates.has("retreat") and _cornered(player, target_direction):
 		# Past an opponent on our level; one on another level is held off from here (walking
 		# toward it would drop a kiting fighter right next to it).
-		if distance_y <= NAV_SAME_LEVEL:
+		if distance_y <= NAV_SAME_LEVEL and escape_cooldown <= 0.0 and _has_floor_ahead(player, target_direction, distance_x + ESCAPE_LANDING_PAST):
 			candidates = ["escape"]
+			escape_cooldown = ESCAPE_COOLDOWN
 			debug_reason = "cornered: jumping past"
 		else:
 			candidates = ["hold"]
@@ -625,6 +645,10 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 			attack_name = "basic"
 		elif target_swinging and distance_x < 150.0 * GAME_SCALE.COMBAT and randf() < 0.45:
 			attack_name = "skill_2"
+	# A basic thrown from beyond its reach only misses (round 3: Rio's side basics missed 89%
+	# from 240 px and 92% beyond 360 px); keep closing in instead.
+	if attack_name == "basic" and profile.has("basic_reach") and distance_x > float(profile.basic_reach):
+		attack_name = ""
 	return attack_name
 
 func _mobility_skill_is_safe(player) -> bool:
@@ -796,8 +820,14 @@ func _recover_intent(player) -> Dictionary:
 	# Out of jumps: a recovery skill aimed at the platform (Rio's dimension slash, Frey's dash
 	# strike, Nova's vector shift; Codex QA-14: 78% of ring-outs had no air jump left).
 	if below_target and player.air_jumps_left <= 0 and player.velocity.y > 60.0 and bool(_combat_profile(player).get("recovery_skill", false)):
-		intent["aim"] = (recovery_target - player.global_position).normalized()
-		intent["attack"] = "skill_1"
+		var aim_point: Vector2 = recovery_target + Vector2(0.0, -RECOVERY_SKILL_AIM_ABOVE)
+		var reach: float = float(RECOVERY_SKILL_REACH.get(player.character_id, 100000.0))
+		var local_y: float = player.global_position.y - player.realm_origin.y
+		var last_chance: bool = local_y > player.realm_size.y - RECOVERY_LAST_CHANCE
+		if player.global_position.distance_to(aim_point) <= reach or last_chance:
+			intent["aim"] = (aim_point - player.global_position).normalized()
+			intent["attack"] = "skill_1"
+			debug_reason = "off the stage: recovery skill"
 	return intent
 
 ## Nearest platform top we can still reach: close horizontally, and preferably not above us.
@@ -1184,8 +1214,9 @@ func _random_portal(portals: Array[Dictionary]) -> Dictionary:
 ## A combat profile with its distances times the attack reach scale.
 static func _scaled_profile(profile: Dictionary) -> Dictionary:
 	var scaled := profile.duplicate()
-	for key in ["min_range", "max_range", "attack_range"]:
-		scaled[key] = float(profile[key]) * GAME_SCALE.COMBAT
+	for key in ["min_range", "max_range", "attack_range", "basic_reach"]:
+		if profile.has(key):
+			scaled[key] = float(profile[key]) * GAME_SCALE.COMBAT
 	return scaled
 
 ## One bot's current plan for the dev panel and probes (state, engage action, target, last
@@ -1256,7 +1287,10 @@ func _update_guard(player, delta: float) -> bool:
 	if guard_delay_timer >= 0.0:
 		guard_delay_timer -= delta
 		if guard_delay_timer < 0.0:
-			if not _swing_still_coming(guard_threat_from):
+			# Past the wind-up, the guard still goes up while the attacker stays close and faces
+			# us: its next swing is coming (round 3: skipping these cut blocks and parries from
+			# 463 to 155).
+			if not _swing_still_coming(guard_threat_from) and not _attacker_close(player, guard_threat_from):
 				debug_reason = "too late to block"
 				return false
 			if _start_guard_against(player, guard_threat_from):
@@ -1355,6 +1389,10 @@ func _update_target_progress(player, delta: float) -> void:
 		progress_timer = 0.0
 		return
 	progress_timer += delta
+	if progress_timer >= PROGRESS_TIME and distance <= PROGRESS_KEEP_NEAR * GAME_SCALE.WORLD and _has_route_to(player, _standing_point(player, target)):
+		progress_timer = 0.0
+		progress_best = distance
+		return
 	if progress_timer >= PROGRESS_TIME:
 		ignored_targets[target] = IGNORE_TIME
 		debug_reason = "gave up: target out of reach"
@@ -1458,12 +1496,27 @@ func _stands_on_other_level(player, body: Node) -> bool:
 		return false
 	return absf(theirs.y - own.y) > NAV_SAME_LEVEL
 
-## One of us hit the other recently.
+## One of us hit the other within TRADE_MEMORY (fighters keep a countdown from their attacker
+## memory; monsters and crystals the physics frame of the last hit), or a monster is after us.
 func _trading_hits(player, body: Node) -> bool:
 	if _is_recent_attacker(player, body):
 		return true
+	if body.get("last_attacker") != player:
+		return body.is_in_group("realm_monsters") and body.get("target") == player
 	var timer: Variant = body.get("last_attacker_timer")
-	return body.get("last_attacker") == player and timer != null and float(timer) > 0.0
+	if timer != null:
+		return float(timer) > FIGHTER_ATTACKER_MEMORY - TRADE_MEMORY
+	var frame: Variant = body.get("last_hit_frame")
+	return frame != null and Engine.get_physics_frames() - int(frame) <= int(TRADE_MEMORY * Engine.physics_ticks_per_second)
+
+## The attacker a guard reacts to is still in reach, facing us, in our realm.
+func _attacker_close(player, opponent: Node) -> bool:
+	if not is_instance_valid(opponent) or not _is_valid_target_candidate(player, opponent):
+		return false
+	var offset: Vector2 = player.global_position - opponent.global_position
+	var facing_us := signf(offset.x) == float(opponent.facing) or absf(offset.x) < 24.0
+	var reach: float = float(_scaled_profile(COMBAT_PROFILES.get(opponent.character_id, DEFAULT_COMBAT_PROFILE)).attack_range) + GUARD_REACH_MARGIN * GAME_SCALE.COMBAT
+	return facing_us and absf(offset.x) <= reach and absf(offset.y) <= GUARD_HEIGHT * GAME_SCALE.COMBAT
 
 ## On a floor with a ledge (no floor) within RETREAT_EDGE_MARGIN behind, away from the target.
 func _cornered(player, target_direction: float) -> bool:

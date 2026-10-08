@@ -44,6 +44,9 @@ var last_yuki_activation_hit := -1
 var body_color := Color(0.38, 0.82, 0.32)
 var state := State.NEUTRAL
 var target: Node
+## Who hit it last and on which physics frame (bots count hitting their target as progress).
+var last_attacker: Node
+var last_hit_frame := -100000
 var facing := 1
 var patrol_center := Vector2.ZERO
 var patrol_radius := 230.0
@@ -325,6 +328,8 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	if is_instance_valid(attacker) and attacker.is_in_group("players"):
 		state = State.AGGRO
 		target = attacker
+		last_attacker = attacker
+		last_hit_frame = Engine.get_physics_frames()
 	var hit_direction := direction.normalized()
 	if hit_direction == Vector2.ZERO:
 		hit_direction = Vector2.RIGHT
