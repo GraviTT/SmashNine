@@ -83,6 +83,7 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | analyst (debate) | `reports/debate-bot-ai/` | none (read-only, ephemeral rounds) | rounds 1–2 done, round 3 decided from the QA-14 data (`log.md`); changes `8277419`, `021c649`, `34443e3`, `ce4f0af` |
 | tester | `design/tasks/CODEX-QA-15.md` | `tests/analysis/codex_qa_15/`, `reports/codex-qa-15/` | done — merged `352c244`; HUD fixes `391c555`, `2f1bfff`; art → ART-17 |
 | builder | `design/tasks/CODEX-ART-17.md` | `assets/art/hazards/`, monster sheets, `assets/art/effects/yuki_seal_idle.png`, `tests/art_preview/hazard_art_17/`, `reports/codex-art-17/` | done — merged `f1092c7`, round 2 `e608d6f`; in game `5128e39` |
+| builder | `design/tasks/CODEX-ART-18.md` | `assets/art/skill_icons/`, `tests/art_preview/skill_icons_18/`, `reports/codex-art-18/` | done — merged `a39807f`; skill bar `28693e8` |
 | analyst | `design/tasks/CODEX-QA-13.md` | `tests/analysis/codex_qa_13/`, `reports/codex-qa-13/` | done — merged `f102677`; findings fixed (see run log 2026-10-08 work) |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
