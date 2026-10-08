@@ -1,0 +1,869 @@
+{
+  "match": {
+    "median": 293.1,
+    "min": 259.1,
+    "max": 319,
+    "per_seed": [
+      {
+        "finished": true,
+        "portals": 21,
+        "reason": "last survivor",
+        "recovery_fail": 12,
+        "recovery_success": 157,
+        "relocations": 1,
+        "ringouts": 11,
+        "seconds": 293.6,
+        "seed": 101,
+        "standoffs": 1,
+        "winner": "rio"
+      },
+      {
+        "finished": true,
+        "portals": 20,
+        "reason": "last survivor",
+        "recovery_fail": 12,
+        "recovery_success": 152,
+        "relocations": 0,
+        "ringouts": 10,
+        "seconds": 311.6,
+        "seed": 102,
+        "standoffs": 1,
+        "winner": "frey"
+      },
+      {
+        "finished": true,
+        "portals": 15,
+        "reason": "last survivor",
+        "recovery_fail": 12,
+        "recovery_success": 104,
+        "relocations": 2,
+        "ringouts": 9,
+        "seconds": 259.1,
+        "seed": 103,
+        "standoffs": 0,
+        "winner": "yuki"
+      },
+      {
+        "finished": true,
+        "portals": 23,
+        "reason": "last survivor",
+        "recovery_fail": 10,
+        "recovery_success": 103,
+        "relocations": 0,
+        "ringouts": 10,
+        "seconds": 314.6,
+        "seed": 104,
+        "standoffs": 0,
+        "winner": "rio"
+      },
+      {
+        "finished": true,
+        "portals": 20,
+        "reason": "last survivor",
+        "recovery_fail": 9,
+        "recovery_success": 65,
+        "relocations": 1,
+        "ringouts": 7,
+        "seconds": 319,
+        "seed": 105,
+        "standoffs": 0,
+        "winner": "yuki"
+      },
+      {
+        "finished": true,
+        "portals": 15,
+        "reason": "last survivor",
+        "recovery_fail": 17,
+        "recovery_success": 204,
+        "relocations": 2,
+        "ringouts": 15,
+        "seconds": 292.7,
+        "seed": 106,
+        "standoffs": 0,
+        "winner": "rio"
+      },
+      {
+        "finished": true,
+        "portals": 20,
+        "reason": "last survivor",
+        "recovery_fail": 5,
+        "recovery_success": 92,
+        "relocations": 0,
+        "ringouts": 6,
+        "seconds": 261.2,
+        "seed": 107,
+        "standoffs": 0,
+        "winner": "luna"
+      },
+      {
+        "finished": true,
+        "portals": 23,
+        "reason": "last survivor",
+        "recovery_fail": 11,
+        "recovery_success": 125,
+        "relocations": 0,
+        "ringouts": 12,
+        "seconds": 289.6,
+        "seed": 108,
+        "standoffs": 0,
+        "winner": "frey"
+      },
+      {
+        "finished": true,
+        "portals": 18,
+        "reason": "last survivor",
+        "recovery_fail": 5,
+        "recovery_success": 149,
+        "relocations": 1,
+        "ringouts": 5,
+        "seconds": 316.2,
+        "seed": 109,
+        "standoffs": 0,
+        "winner": "rio"
+      },
+      {
+        "finished": true,
+        "portals": 26,
+        "reason": "last survivor",
+        "recovery_fail": 11,
+        "recovery_success": 108,
+        "relocations": 0,
+        "ringouts": 11,
+        "seconds": 271.4,
+        "seed": 110,
+        "standoffs": 0,
+        "winner": "yuki"
+      },
+      {
+        "finished": true,
+        "portals": 15,
+        "reason": "last survivor",
+        "recovery_fail": 13,
+        "recovery_success": 132,
+        "relocations": 1,
+        "ringouts": 11,
+        "seconds": 261.4,
+        "seed": 111,
+        "standoffs": 0,
+        "winner": "rio"
+      },
+      {
+        "finished": true,
+        "portals": 20,
+        "reason": "last survivor",
+        "recovery_fail": 7,
+        "recovery_success": 160,
+        "relocations": 2,
+        "ringouts": 10,
+        "seconds": 297.8,
+        "seed": 112,
+        "standoffs": 0,
+        "winner": "rio"
+      }
+    ],
+    "wins": {
+      "frey": 2,
+      "luna": 1,
+      "nova": 0,
+      "rio": 6,
+      "yuki": 3
+    }
+  },
+  "global": {
+    "ringouts": 117,
+    "ringouts_per_match": 9.75,
+    "zero_jump_ringouts": 77,
+    "recovery_success": 1551,
+    "recovery_total": 1675,
+    "portals": 236,
+    "portal_reasons": {
+      "escape": 117,
+      "off_screen_hop": 107,
+      "retreat": 8,
+      "roam": 4
+    },
+    "collapse_escape": 109,
+    "collapse_relocation": 10,
+    "no_target_pct": 5.54,
+    "wander_pct": 2.94,
+    "switches_per_target_minute": 14.31,
+    "target_drops": 83,
+    "no_progress_episodes": 89,
+    "no_progress_seconds": 1103.5,
+    "no_progress_active_pct": 5.4,
+    "stuck_seconds": 40.8,
+    "stuck_pct": 0.2,
+    "standoffs": [
+      {
+        "duration": 61.6,
+        "realm": 1,
+        "seed": 101,
+        "start": 148.7
+      },
+      {
+        "duration": 68.9,
+        "realm": 7,
+        "seed": 102,
+        "start": 56.1
+      }
+    ],
+    "attack_uses": 19986,
+    "attack_hits": 7077,
+    "attack_hit_rate": 35.41
+  },
+  "by_character": {
+    "frey": {
+      "states": {
+        "wander": 2.62,
+        "pursue": 15.14,
+        "engage": 71.12,
+        "portal": 0.32,
+        "recover": 10.8
+      },
+      "targets": {
+        "player": 49.5,
+        "monster": 36.33,
+        "crystal": 7.63,
+        "none": 6.54
+      },
+      "switches_per_target_minute": 14.83,
+      "no_progress": {
+        "episodes": 21,
+        "far_y_seconds": 135.75,
+        "phases": {
+          "Convergence": 43.25,
+          "Corner collapse warning": 29.5,
+          "Exploration": 131.5,
+          "Central brawl": 10.25
+        },
+        "seconds": 214.5
+      },
+      "attack": {
+        "uses": 4059,
+        "hits": 1590,
+        "hit_rate": 39.17,
+        "pvp_dpm": 41.23,
+        "pve_dpm": 96.17
+      },
+      "ringouts": {
+        "all": 13,
+        "zero_jumps": 4
+      },
+      "recovery": {
+        "fail": 11,
+        "success": 323,
+        "unfinished": 3,
+        "rate": 95.85
+      },
+      "distance": {
+        "0_120": {
+          "uses": 959,
+          "hits": 762,
+          "miss_rate": 20.54
+        },
+        "120_240": {
+          "uses": 820,
+          "hits": 456,
+          "miss_rate": 44.39
+        },
+        "240_360": {
+          "uses": 604,
+          "hits": 79,
+          "miss_rate": 86.92
+        },
+        "360_plus": {
+          "uses": 306,
+          "hits": 14,
+          "miss_rate": 95.42
+        }
+      }
+    },
+    "luna": {
+      "states": {
+        "wander": 3.59,
+        "pursue": 13.11,
+        "engage": 74.23,
+        "portal": 3.5,
+        "recover": 5.56
+      },
+      "targets": {
+        "player": 46.35,
+        "monster": 40.27,
+        "crystal": 7.4,
+        "none": 5.99
+      },
+      "switches_per_target_minute": 14.57,
+      "no_progress": {
+        "episodes": 24,
+        "far_y_seconds": 221.5,
+        "phases": {
+          "Convergence": 92.25,
+          "Corner collapse warning": 15.5,
+          "Exploration": 187,
+          "Central brawl": 22.5
+        },
+        "seconds": 317.25
+      },
+      "attack": {
+        "uses": 3123,
+        "hits": 1415,
+        "hit_rate": 45.31,
+        "pvp_dpm": 37.9,
+        "pve_dpm": 79.37
+      },
+      "ringouts": {
+        "all": 29,
+        "zero_jumps": 25
+      },
+      "recovery": {
+        "fail": 28,
+        "success": 254,
+        "unfinished": 2,
+        "rate": 89.44
+      },
+      "distance": {
+        "0_120": {
+          "uses": 838,
+          "hits": 647,
+          "miss_rate": 22.79
+        },
+        "120_240": {
+          "uses": 690,
+          "hits": 452,
+          "miss_rate": 34.49
+        },
+        "240_360": {
+          "uses": 529,
+          "hits": 212,
+          "miss_rate": 59.92
+        },
+        "360_plus": {
+          "uses": 751,
+          "hits": 60,
+          "miss_rate": 92.01
+        }
+      }
+    },
+    "nova": {
+      "states": {
+        "wander": 3.51,
+        "pursue": 10.82,
+        "engage": 76.62,
+        "portal": 2.04,
+        "recover": 7.01
+      },
+      "targets": {
+        "player": 44.82,
+        "monster": 42.15,
+        "crystal": 7.19,
+        "none": 5.83
+      },
+      "switches_per_target_minute": 16.13,
+      "no_progress": {
+        "episodes": 17,
+        "far_y_seconds": 92,
+        "phases": {
+          "Exploration": 92.75,
+          "Convergence": 44,
+          "Corner collapse warning": 13.5
+        },
+        "seconds": 150.25
+      },
+      "attack": {
+        "uses": 5330,
+        "hits": 1464,
+        "hit_rate": 27.47,
+        "pvp_dpm": 47.64,
+        "pve_dpm": 107.73
+      },
+      "ringouts": {
+        "all": 30,
+        "zero_jumps": 20
+      },
+      "recovery": {
+        "fail": 27,
+        "success": 294,
+        "unfinished": 7,
+        "rate": 89.63
+      },
+      "distance": {
+        "0_120": {
+          "uses": 1019,
+          "hits": 886,
+          "miss_rate": 13.05
+        },
+        "120_240": {
+          "uses": 825,
+          "hits": 465,
+          "miss_rate": 43.64
+        },
+        "240_360": {
+          "uses": 455,
+          "hits": 46,
+          "miss_rate": 89.89
+        },
+        "360_plus": {
+          "uses": 326,
+          "hits": 17,
+          "miss_rate": 94.79
+        }
+      }
+    },
+    "rio": {
+      "states": {
+        "wander": 2.06,
+        "pursue": 13.49,
+        "engage": 73.98,
+        "portal": 1.89,
+        "recover": 8.57
+      },
+      "targets": {
+        "player": 41.56,
+        "monster": 40.92,
+        "crystal": 12.61,
+        "none": 4.91
+      },
+      "switches_per_target_minute": 13.55,
+      "no_progress": {
+        "episodes": 21,
+        "far_y_seconds": 135,
+        "phases": {
+          "Convergence": 206,
+          "Corner collapse warning": 17.5,
+          "Exploration": 100.25,
+          "Central brawl": 16.5
+        },
+        "seconds": 340.25
+      },
+      "attack": {
+        "uses": 3824,
+        "hits": 1531,
+        "hit_rate": 40.04,
+        "pvp_dpm": 35.85,
+        "pve_dpm": 98.32
+      },
+      "ringouts": {
+        "all": 13,
+        "zero_jumps": 2
+      },
+      "recovery": {
+        "fail": 10,
+        "success": 495,
+        "unfinished": 3,
+        "rate": 97.44
+      },
+      "distance": {
+        "0_120": {
+          "uses": 1030,
+          "hits": 857,
+          "miss_rate": 16.8
+        },
+        "120_240": {
+          "uses": 742,
+          "hits": 319,
+          "miss_rate": 57.01
+        },
+        "240_360": {
+          "uses": 193,
+          "hits": 10,
+          "miss_rate": 94.82
+        },
+        "360_plus": {
+          "uses": 2,
+          "hits": 0,
+          "miss_rate": 100
+        }
+      }
+    },
+    "yuki": {
+      "states": {
+        "wander": 3.1,
+        "pursue": 6.93,
+        "engage": 82.95,
+        "portal": 2.54,
+        "recover": 4.48
+      },
+      "targets": {
+        "player": 51.24,
+        "monster": 36.46,
+        "crystal": 7.9,
+        "none": 4.41
+      },
+      "switches_per_target_minute": 12.58,
+      "no_progress": {
+        "episodes": 6,
+        "far_y_seconds": 37.25,
+        "phases": {
+          "Central brawl": 3.5,
+          "Convergence": 55.75,
+          "Exploration": 5.25,
+          "Corner collapse warning": 16.75
+        },
+        "seconds": 81.25
+      },
+      "attack": {
+        "uses": 3650,
+        "hits": 1077,
+        "hit_rate": 29.51,
+        "pvp_dpm": 35.65,
+        "pve_dpm": 45.68
+      },
+      "ringouts": {
+        "all": 32,
+        "zero_jumps": 26
+      },
+      "recovery": {
+        "fail": 29,
+        "success": 185,
+        "unfinished": 4,
+        "rate": 84.86
+      },
+      "distance": {
+        "0_120": {
+          "uses": 395,
+          "hits": 202,
+          "miss_rate": 48.86
+        },
+        "120_240": {
+          "uses": 890,
+          "hits": 384,
+          "miss_rate": 56.85
+        },
+        "240_360": {
+          "uses": 999,
+          "hits": 206,
+          "miss_rate": 79.38
+        },
+        "360_plus": {
+          "uses": 1138,
+          "hits": 270,
+          "miss_rate": 76.27
+        }
+      }
+    }
+  },
+  "by_phase": {
+    "Exploration": {
+      "states": {
+        "wander": 3.26,
+        "pursue": 11.95,
+        "engage": 76.27,
+        "portal": 0.2,
+        "recover": 8.32
+      },
+      "targets": {
+        "player": 36.44,
+        "monster": 47.69,
+        "crystal": 9.6,
+        "none": 6.27
+      }
+    },
+    "Corner collapse warning": {
+      "states": {
+        "wander": 2.8,
+        "pursue": 9.85,
+        "engage": 72.45,
+        "portal": 8.76,
+        "recover": 6.13
+      },
+      "targets": {
+        "player": 48.47,
+        "monster": 39.2,
+        "crystal": 6.65,
+        "none": 5.67
+      }
+    },
+    "Convergence": {
+      "states": {
+        "wander": 2.84,
+        "pursue": 13.12,
+        "engage": 72.74,
+        "portal": 3.44,
+        "recover": 7.86
+      },
+      "targets": {
+        "player": 54.65,
+        "monster": 30.3,
+        "crystal": 9.96,
+        "none": 5.09
+      }
+    },
+    "Central brawl": {
+      "states": {
+        "wander": 1.4,
+        "pursue": 12.29,
+        "engage": 84.4,
+        "portal": 0,
+        "recover": 1.91
+      },
+      "targets": {
+        "player": 84.4,
+        "monster": 12.16,
+        "crystal": 1.45,
+        "none": 2
+      }
+    }
+  },
+  "drops_by_kind": {
+    "monster": {
+      "all": 60,
+      "within_300": 1,
+      "traded_within_3s": 2,
+      "either": 3
+    },
+    "crystal": {
+      "all": 19,
+      "within_300": 0,
+      "traded_within_3s": 1,
+      "either": 1
+    },
+    "player": {
+      "all": 4,
+      "within_300": 0,
+      "traded_within_3s": 0,
+      "either": 0
+    }
+  },
+  "guards": {
+    "frey": {
+      "blocks": 64,
+      "combo_2_blocks": 0,
+      "combo_3_blocks": 1,
+      "parries": 17,
+      "raised": 351,
+      "reaction_in_recovery": 5,
+      "reactions": 472,
+      "too_late": 64
+    },
+    "luna": {
+      "blocks": 39,
+      "combo_2_blocks": 0,
+      "combo_3_blocks": 0,
+      "parries": 34,
+      "raised": 369,
+      "reaction_in_recovery": 20,
+      "reactions": 499,
+      "too_late": 34
+    },
+    "nova": {
+      "blocks": 48,
+      "combo_2_blocks": 0,
+      "combo_3_blocks": 0,
+      "parries": 10,
+      "raised": 297,
+      "reaction_in_recovery": 12,
+      "reactions": 470,
+      "too_late": 71
+    },
+    "rio": {
+      "blocks": 41,
+      "combo_2_blocks": 0,
+      "combo_3_blocks": 1,
+      "parries": 9,
+      "raised": 235,
+      "reaction_in_recovery": 12,
+      "reactions": 355,
+      "too_late": 66
+    },
+    "yuki": {
+      "blocks": 30,
+      "combo_2_blocks": 0,
+      "combo_3_blocks": 0,
+      "parries": 20,
+      "raised": 332,
+      "reaction_in_recovery": 16,
+      "reactions": 496,
+      "too_late": 64
+    }
+  },
+  "escapes": {
+    "frey": 24,
+    "nova": 12,
+    "rio": 15,
+    "yuki": 313,
+    "yuki_ringout_within_3s": 9,
+    "luna": 28,
+    "frey_ringout_within_3s": 1,
+    "nova_ringout_within_3s": 1
+  },
+  "recovery_skills": {
+    "frey": {
+      "reached_floor": 18,
+      "used": 19
+    },
+    "nova": {
+      "reached_floor": 3,
+      "used": 21
+    },
+    "rio": {
+      "reached_floor": 2,
+      "used": 4
+    }
+  },
+  "frey_recovery_entries": {
+    "knocked_off": 82,
+    "other": 5,
+    "walked_or_dashed_off": 250
+  },
+  "yuki": {
+    "side_distance": {
+      "0_120": {
+        "uses": 217,
+        "hits": 158,
+        "miss_rate": 27.19
+      },
+      "120_240": {
+        "uses": 204,
+        "hits": 165,
+        "miss_rate": 19.12
+      },
+      "240_360": {
+        "uses": 388,
+        "hits": 143,
+        "miss_rate": 63.14
+      },
+      "360_plus": {
+        "uses": 714,
+        "hits": 209,
+        "miss_rate": 70.73
+      }
+    },
+    "side_targets": {
+      "monster": {
+        "uses": 721,
+        "hits": 302,
+        "miss_rate": 58.11
+      },
+      "player": {
+        "uses": 717,
+        "hits": 340,
+        "miss_rate": 52.58
+      },
+      "crystal": {
+        "uses": 84,
+        "hits": 33,
+        "miss_rate": 60.71
+      },
+      "none": {
+        "uses": 1,
+        "hits": 0,
+        "miss_rate": 100
+      }
+    },
+    "ledge_ringouts": {
+      "all": 32,
+      "near_ledge": 13
+    }
+  },
+  "rio": {
+    "side_distance": {
+      "0_120": {
+        "uses": 867,
+        "hits": 732,
+        "miss_rate": 15.57
+      },
+      "120_240": {
+        "uses": 222,
+        "hits": 194,
+        "miss_rate": 12.61
+      },
+      "240_360": {
+        "uses": 21,
+        "hits": 0,
+        "miss_rate": 100
+      },
+      "360_plus": {
+        "uses": 0,
+        "hits": 0,
+        "miss_rate": 0
+      }
+    },
+    "side_targets": {
+      "crystal": {
+        "uses": 49,
+        "hits": 44,
+        "miss_rate": 10.2
+      },
+      "monster": {
+        "uses": 661,
+        "hits": 572,
+        "miss_rate": 13.46
+      },
+      "player": {
+        "uses": 400,
+        "hits": 310,
+        "miss_rate": 22.5
+      }
+    },
+    "pvp_dpm": 35.85,
+    "wins": 6
+  },
+  "nova": {
+    "aimed": 43,
+    "forced": 0,
+    "hits": 38,
+    "launches": 43,
+    "redirects": 8
+  },
+  "portal": {
+    "all": {
+      "all": 236,
+      "collapse_escape": 109,
+      "collapse_relocation": 10,
+      "low_hp": 8
+    },
+    "reasons": {
+      "escape": 117,
+      "off_screen_hop": 107,
+      "retreat": 8,
+      "roam": 4
+    }
+  },
+  "air_down_self_ringouts": {
+    "rio": 1,
+    "nova": 2,
+    "yuki": 1
+  },
+  "stuck_worst": [
+    [
+      "7|700|900",
+      2.25
+    ],
+    [
+      "1|300|900",
+      2
+    ],
+    [
+      "4|1100|900",
+      1.75
+    ],
+    [
+      "2|500|400",
+      1.75
+    ],
+    [
+      "4|1500|700",
+      1.5
+    ],
+    [
+      "4|1000|900",
+      1.5
+    ],
+    [
+      "2|900|700",
+      1.25
+    ],
+    [
+      "1|800|600",
+      1.25
+    ],
+    [
+      "3|1500|600",
+      1.25
+    ],
+    [
+      "8|1200|1400",
+      1.25
+    ]
+  ]
+}
