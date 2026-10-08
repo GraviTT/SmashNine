@@ -4,6 +4,7 @@ signal removed(seal: Node)
 
 const MONSTER_LAYER := 4
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
+const VFX := preload("res://scripts/Vfx.gd")
 ## The seal's pull and burst are attacks: GameScale.COMBAT.
 const PULL_RADIUS := 135.0 * GAME_SCALE.COMBAT
 const BURST_RADIUS := 148.0 * GAME_SCALE.COMBAT
@@ -20,6 +21,8 @@ var aura: Line2D
 
 func _ready() -> void:
 	add_to_group("yuki_seals")
+	# The binding seal snapping shut (yuki_k, CODEX-ART-13), once it is placed.
+	_play_seal_art.call_deferred()
 	collision_layer = MONSTER_LAYER
 	collision_mask = 0
 	var collision := CollisionShape2D.new()
@@ -121,7 +124,11 @@ func _play_break_effect() -> void:
 	tween.parallel().tween_property(shard, "modulate:a", 0.0, 0.12)
 	tween.tween_callback(shard.queue_free)
 
+func _play_seal_art() -> void:
+	VFX.spawn(get_parent(), "yuki_k", global_position + Vector2(0, -4), Vector2.ONE * 1.1, false, 5)
+
 func _play_burst_effect() -> void:
+	VFX.spawn(get_parent(), "yuki_l", global_position, Vector2.ONE * (BURST_RADIUS * 2.0 / 192.0), false, 6)
 	var burst := ColorRect.new()
 	burst.size = Vector2(BURST_RADIUS * 2.0, BURST_RADIUS * 2.0)
 	burst.position = global_position - burst.size * 0.5

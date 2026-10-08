@@ -16,6 +16,9 @@ var forced_hitstun_duration := 0.0
 var forced_stun_duration := 0.0
 var hit_tag := ""
 var damage_type := "normal"
+## Set when the attacker drew effect art for this hit: the coloured rectangle and its trail
+## stay hidden (the hit area works the same).
+var art_drawn := false
 
 @onready var shape: CollisionShape2D = $CollisionShape2D
 @onready var visual: ColorRect = $Visual
@@ -40,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	global_position = source_origin + _sample_motion(elapsed / lifetime)
 	visual.rotation = _sample_motion_tangent(elapsed / lifetime).angle()
 	_hit_overlapping_bodies()
-	if trail_timer <= 0.0:
+	if trail_timer <= 0.0 and not art_drawn:
 		trail_timer = 0.018
 		_spawn_trail_afterimage()
 

@@ -245,11 +245,16 @@ func _dimension_slash(direction: Vector2) -> void:
 	if direction.y < -0.3:
 		velocity.y = minf(velocity.y, -220.0 * GAME_SCALE.JUMP_SPEED)
 	var back := start - global_position
+	# The cut runs along the path actually blinked: the attack helpers double reach about
+	# the body (GameScale.COMBAT), so the path is passed at half length.
+	attack_art_enabled = false
 	_spawn_sweeping_attack(Vector2(56, 44), [
-		back + Vector2(0, -34),
-		back * 0.5 + Vector2(0, -34),
+		back / GAME_SCALE.COMBAT + Vector2(0, -34),
+		back * 0.5 / GAME_SCALE.COMBAT + Vector2(0, -34),
 		Vector2(0, -34)
 	], 10, 340, Vector2(direction.x, direction.y - 0.15), Color(0.62, 0.55, 1.0, 0.7), 0.08)
+	attack_art_enabled = true
+	_draw_skill_art("rio_k", start + GAME_SCALE.BODY_CENTRE, direction, maxf(travel.length() / 256.0, 0.5))
 	_play_blink_trail(start, global_position)
 
 # --- L: rune shield ---
@@ -262,6 +267,7 @@ func _rune_shield_start() -> void:
 	rune_absorbed_knockback = 0.0
 	attack_lock_timer = RUNE_DURATION
 	_play_sprite_action(&"shield", RUNE_DURATION)
+	_draw_skill_art("rio_l", Vector2(14.0 * facing, -36.0), Vector2(facing, 0.0), 1.3, true)
 	current_attack_started_airborne = false
 	_freeze_movement(RUNE_DURATION)
 	velocity = Vector2.ZERO

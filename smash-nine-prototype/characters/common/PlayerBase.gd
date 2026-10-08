@@ -17,6 +17,8 @@ signal soul_threshold_reached(player: Node, pick_number: int)
 
 ## Attack, realm and movement scales (scripts/GameScale.gd, routine 2026-10-08).
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
+## Effect strips (scripts/Vfx.gd): melee hits draw the character's slash art (CODEX-ART-13).
+const EFFECT_STRIPS := preload("res://scripts/Vfx.gd")
 
 const GRAVITY := 1850.0 * GAME_SCALE.GRAVITY
 const FLOOR_ACCEL := 5500.0 * GAME_SCALE.MOVE
@@ -175,6 +177,9 @@ var action_epoch := 0
 var ultimate_cooldown_timer := 0.0
 var realm_index := 0
 var is_realm_active := true
+## False while a move draws its own effect art: its hit areas skip the generic slash (the
+## coloured rectangle hides either way when art is on).
+var attack_art_enabled := true
 var realm_origin := Vector2.ZERO
 var realm_size := Vector2(1280, 720)
 var ringout_y := 900.0
@@ -928,6 +933,7 @@ func _spawn_attack(size: Vector2, offset: Vector2, damage: float, knockback: flo
 	get_parent().add_child(attack)
 	attack.global_position = global_position
 	attack.configure(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_point(offset), damage, knockback, direction, color, lifetime, damage_type)
+	_draw_attack_art(attack, size * GAME_SCALE.COMBAT, [GAME_SCALE.attack_point(offset)] as Array[Vector2], direction)
 
 func _spawn_sweeping_attack(size: Vector2, points: Array[Vector2], damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, damage_type := DAMAGE_NORMAL) -> void:
 	var attack := Area2D.new()
@@ -943,6 +949,7 @@ func _spawn_sweeping_attack(size: Vector2, points: Array[Vector2], damage: float
 	get_parent().add_child(attack)
 	attack.global_position = global_position
 	attack.configure_sweep(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, damage_type)
+	_draw_attack_art(attack, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), direction)
 
 func _spawn_sweeping_stun_attack(size: Vector2, points: Array[Vector2], damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, stun_duration: float, damage_type := DAMAGE_NORMAL) -> void:
 	var attack := Area2D.new()
@@ -958,6 +965,7 @@ func _spawn_sweeping_stun_attack(size: Vector2, points: Array[Vector2], damage: 
 	get_parent().add_child(attack)
 	attack.global_position = global_position
 	attack.configure_sweep_stun(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, stun_duration, damage_type)
+	_draw_attack_art(attack, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), direction)
 
 func _spawn_sweeping_launch_attack(size: Vector2, points: Array[Vector2], damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, launch_velocity: Vector2, hitstun_duration: float, hit_tag := "", damage_type := DAMAGE_NORMAL) -> void:
 	var attack := Area2D.new()
@@ -973,6 +981,41 @@ func _spawn_sweeping_launch_attack(size: Vector2, points: Array[Vector2], damage
 	get_parent().add_child(attack)
 	attack.global_position = global_position
 	attack.configure_sweep_launch(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, launch_velocity, hitstun_duration, hit_tag, damage_type)
+	_draw_attack_art(attack, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), direction)
+
+## The character's slash strip over a melee hit: anchored at the body centre, turned toward
+## the attack, as long as the hit area reaches. Nothing in the plain style or without art.
+func _draw_attack_art(attack: Node, hit_size: Vector2, points: Array[Vector2], direction: Vector2) -> void:
+	var effect := attack_effect_name()
+	if effect == "" or not EFFECT_STRIPS.SPECS.has(effect) or not EFFECT_STRIPS.available(effect):
+		return
+	attack.art_drawn = true
+	attack.get_node("Visual").visible = false
+	if not attack_art_enabled:
+		# The move draws its own effect art: only the rectangle goes.
+		return
+	var aim := direction.normalized() if direction.length() > 0.01 else Vector2(facing, 0.0)
+	var reach := 0.0
+	for point in points:
+		reach = maxf(reach, (point - GAME_SCALE.BODY_CENTRE).dot(aim) + maxf(hit_size.x, hit_size.y) * 0.5)
+	var art_scale := clampf(reach / EFFECT_STRIPS.frame_width(effect), 0.5, 3.0)
+	var sprite := EFFECT_STRIPS.spawn(get_parent(), effect, global_position + GAME_SCALE.BODY_CENTRE, Vector2.ONE * art_scale, false, 5)
+	if sprite == null:
+		return
+	sprite.rotation = aim.angle()
+	sprite.flip_v = aim.x < 0.0
+
+## Effect strip for this fighter's melee hits (scripts/Vfx.gd name), "" for none.
+func attack_effect_name() -> String:
+	return "%s_slash" % character_id
+
+## A skill's own effect strip at a point, turned toward aim (art drawn facing right).
+func _draw_skill_art(effect: String, at: Vector2, aim: Vector2, art_scale: float, local := false) -> AnimatedSprite2D:
+	var sprite := EFFECT_STRIPS.spawn(self if local else get_parent(), effect, at, Vector2.ONE * art_scale, false, 5, Color.WHITE, local)
+	if sprite != null and aim.length() > 0.01:
+		sprite.rotation = aim.angle()
+		sprite.flip_v = aim.x < 0.0
+	return sprite
 
 func _spawn_projectile(size: Vector2, damage: float, knockback: float, direction: Vector2, color: Color, projectile_speed: float, lifetime: float, damage_type := DAMAGE_NORMAL) -> Node:
 	var projectile := Area2D.new()

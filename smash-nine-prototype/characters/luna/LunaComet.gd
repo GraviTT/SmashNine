@@ -98,6 +98,10 @@ func _finish_detonation() -> void:
 		get_parent().add_child(attack)
 		attack.global_position = global_position
 		attack.configure(source, bloom_size, Vector2.ZERO, bloom_damage, bloom_knockback, direction, bloom_color, 0.13)
+		# With the original art the star flash shows the bloom; the rectangle stays hidden.
+		if ART_SETTINGS.original_texture(STAR_ART) != null:
+			attack.art_drawn = true
+			attack_visual.visible = false
 		_spawn_bloom_flash()
 	queue_free()
 

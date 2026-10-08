@@ -179,15 +179,23 @@ func _spawn_star_comet(direction: Vector2) -> void:
 	get_parent().add_child(comet)
 	comet.global_position = global_position + Vector2(0, -34) + direction.normalized() * 38.0 * GAME_SCALE.COMBAT * 0.75
 	comet.configure(self, direction, 12.0, 390.0)
+	_draw_skill_art("luna_k", comet.global_position, direction, GAME_SCALE.COMBAT * 0.75)
+
+func attack_effect_name() -> String:
+	return "luna_brave_slash" if transformed else "luna_slash"
 
 func _moon_ring() -> void:
 	if not is_on_floor():
 		velocity.y *= 0.5
+	# The ring has its own art (luna_l) around her instead of two generic slashes.
+	attack_art_enabled = false
 	var right_points := _make_arc_points(90.0, -PI * 0.5, PI * 0.5, 7)
 	var left_points := _make_arc_points(90.0, -PI * 0.5, -PI * 1.5, 7)
 	_spawn_sweeping_attack(Vector2(44, 38), right_points, 12, 405, Vector2(1, -0.08), Color(0.46, 0.94, 1.0, 0.58), 0.24)
 	_spawn_sweeping_attack(Vector2(44, 38), left_points, 12, 405, Vector2(-1, -0.08), Color(1.0, 0.5, 0.92, 0.58), 0.24)
+	attack_art_enabled = true
 	_play_moon_ring_flash(90.0)
+	_draw_skill_art("luna_l", global_position + GAME_SCALE.BODY_CENTRE, Vector2.ZERO, (180.0 + 44.0) * GAME_SCALE.COMBAT / 192.0)
 
 func _perform_brave_basic(attack_type: String) -> void:
 	match attack_type:
@@ -321,7 +329,9 @@ func _enter_transformation() -> void:
 	_play_star_bloom(Vector2(0, -34), 62.0, Color(1.0, 0.86, 0.32, 0.92), 0.22)
 	VFX.spawn(self, "luna_ult_transform", Vector2(0, -42), Vector2.ONE * 1.4 * GAME_SCALE.COMBAT, false, 5, Color.WHITE, true)
 	# The transformation itself bursts: everyone close is thrown up (added 2026-10-08).
+	attack_art_enabled = false
 	_spawn_sweeping_launch_attack(Vector2(TRANSFORM_BURST_RADIUS * 2.0, TRANSFORM_BURST_RADIUS * 1.6), [Vector2(0, -40), Vector2(0, -42)], TRANSFORM_BURST_DAMAGE, 460, Vector2(0, -1), Color(1.0, 0.7, 0.9, 0.4), 0.16, Vector2(0, -560), 0.3)
+	attack_art_enabled = true
 
 func _heart_laser_start() -> void:
 	heart_laser_duration = maxf(transformation_timer, 0.05)

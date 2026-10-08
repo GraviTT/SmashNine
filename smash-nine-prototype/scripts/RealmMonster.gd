@@ -287,6 +287,10 @@ func _spawn_melee_attack() -> void:
 	get_parent().add_child(attack)
 	attack.global_position = global_position
 	attack.configure(self, Vector2(56, 42) * GAME_SCALE.WORLD, Vector2(42 * facing, -28) * GAME_SCALE.WORLD, attack_damage, MELEE_KNOCKBACK, Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
+	# With the original art the bite shows in the attack animation; the rectangle stays hidden.
+	if art_sprite != null:
+		attack.art_drawn = true
+		attack.get_node("Visual").visible = false
 	attack_animation_timer = ATTACK_ANIMATION_TIME
 
 func _spawn_projectile(direction: Vector2) -> void:

@@ -3,10 +3,12 @@ extends RefCounted
 ## equal frames. spawn() turns one into an AnimatedSprite2D whose anchor point (from the art's
 ## README) sits on the given position; a one-shot effect frees itself after its last frame.
 ## Missing art, or the plain procedural style (F2), returns null so callers keep their shapes.
+## Basic attack and skill strips (assets/art/attack_vfx/, CODEX-ART-13) use the same calls.
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const DIR := "res://assets/art/vfx/%s.png"
-## name: [frames, fps, anchor in the frame, additive]
+const ATTACK_DIR := "res://assets/art/attack_vfx/%s.png"
+## name: [frames, fps, anchor in the frame, additive(, folder pattern when not DIR)]
 const SPECS := {
 	"frey_ult_charge": [6, 24.0, Vector2(64, 124), true],
 	"frey_ult_wave": [8, 30.0, Vector2(0, 96), true],
@@ -19,6 +21,22 @@ const SPECS := {
 	"nova_ult_burst": [8, 48.0, Vector2(128, 128), false],
 	"rio_ult_circle": [6, 18.0, Vector2(96, 96), true],
 	"rio_ult_impact": [6, 36.0, Vector2(32, 32), true],
+	"frey_slash": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],
+	"frey_k": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],
+	"frey_l": [6, 30.0, Vector2(64, 188), true, ATTACK_DIR],
+	"yuki_slash": [6, 30.0, Vector2(0, 64), true, ATTACK_DIR],
+	"yuki_k": [6, 18.0, Vector2(64, 64), false, ATTACK_DIR],
+	"yuki_l": [6, 24.0, Vector2(96, 96), true, ATTACK_DIR],
+	"luna_slash": [6, 30.0, Vector2(0, 64), true, ATTACK_DIR],
+	"luna_k": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],
+	"luna_l": [6, 24.0, Vector2(96, 96), true, ATTACK_DIR],
+	"luna_brave_slash": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],
+	"nova_slash": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],
+	"nova_k": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],
+	"nova_l": [6, 24.0, Vector2(96, 188), false, ATTACK_DIR],
+	"rio_slash": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],
+	"rio_k": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],
+	"rio_l": [6, 18.0, Vector2(0, 80), false, ATTACK_DIR],
 }
 
 static var _cache: Dictionary = {}
@@ -64,7 +82,7 @@ static func frame_textures(effect: String) -> Array[Texture2D]:
 	if _cache.has(key):
 		return _cache[key]
 	var result: Array[Texture2D] = []
-	var texture := ART_SETTINGS.original_texture(DIR % effect)
+	var texture := ART_SETTINGS.original_texture(_path(effect))
 	if texture != null:
 		var image := texture.get_image()
 		var count := int(SPECS[effect][0])
@@ -87,7 +105,7 @@ static func _frames(effect: String, loop: bool) -> SpriteFrames:
 		return null
 	if _cache.has(key):
 		return _cache[key]
-	var texture := ART_SETTINGS.original_texture(DIR % effect)
+	var texture := ART_SETTINGS.original_texture(_path(effect))
 	if texture == null:
 		return null
 	var spec: Array = SPECS[effect]
@@ -105,6 +123,17 @@ static func _frames(effect: String, loop: bool) -> SpriteFrames:
 		frames.add_frame(&"play", frame)
 	_cache[key] = frames
 	return frames
+
+static func _path(effect: String) -> String:
+	var spec: Array = SPECS[effect]
+	return (spec[4] if spec.size() > 4 else DIR) % effect
+
+## Frame width of an effect strip in pixels (0 when the art is missing).
+static func frame_width(effect: String) -> float:
+	var frames := _frames(effect, false)
+	if frames == null:
+		return 0.0
+	return float(frames.get_frame_texture(&"play", 0).get_width())
 
 static func _additive_material() -> CanvasItemMaterial:
 	if _additive == null:

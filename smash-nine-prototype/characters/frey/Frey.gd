@@ -181,11 +181,15 @@ func _dash_strike(dash_direction: Vector2) -> void:
 	skill_dash_velocity = dash_direction * DASH_SPEED * GAME_SCALE.WORLD
 	skill_dash_timer = DASH_TIME
 	body.rotation = dash_direction.angle()
+	# Dash strike draws its own streak (frey_k) instead of the generic slash.
+	attack_art_enabled = false
 	_spawn_sweeping_attack(Vector2(58, 42), [
 		Vector2(0, -34) + dash_direction * 20.0,
 		Vector2(0, -34) + dash_direction * 92.0,
 		Vector2(0, -34) + dash_direction * 172.0
 	], 16, 470, dash_direction, Color(1.0, 0.42, 0.2, 0.64), 0.16)
+	attack_art_enabled = true
+	_draw_skill_art("frey_k", global_position + GAME_SCALE.BODY_CENTRE, dash_direction, (172.0 * GAME_SCALE.COMBAT + 58.0) / 224.0)
 
 func _end_skill_dash() -> void:
 	ultimate_diving = false
@@ -201,11 +205,17 @@ func _rising_cleave_start() -> void:
 func _rising_cleave() -> void:
 	velocity.y = minf(velocity.y, -560.0 * GAME_SCALE.JUMP_SPEED)
 	velocity.x += facing * 45.0
+	attack_art_enabled = false
 	_spawn_sweeping_launch_attack(Vector2(58, 58), [
 		Vector2(24 * facing, -20),
 		Vector2(44 * facing, -76),
 		Vector2(62 * facing, -136)
 	], 15, 510, Vector2(0.16 * facing, -1), Color(1.0, 0.9, 0.45, 0.62), 0.16, Vector2(105 * facing, -760), 0.32, "frey_rising_cleave")
+	attack_art_enabled = true
+	# Rising arc (frey_l, drawn upward from the feet) in front of her.
+	var cleave := EFFECT_STRIPS.spawn(get_parent(), "frey_l", global_position + Vector2(44.0 * GAME_SCALE.COMBAT * facing, 0), Vector2.ONE * (136.0 * GAME_SCALE.COMBAT + 58.0) / 192.0, false, 5)
+	if cleave != null:
+		cleave.flip_h = facing < 0
 
 func _ultimate_start() -> void:
 	_reset_combo()
@@ -245,6 +255,8 @@ func _ultimate_impact() -> void:
 	body.color = body_color
 	# With the wave art the hitbox rectangle only needs to hint where it is.
 	var wave_alpha := 0.16 if VFX.available("frey_ult_wave") else 0.72
+	# The waves have their own art: no generic slash on them.
+	attack_art_enabled = false
 	for side in [-1.0, 1.0]:
 		_spawn_sweeping_stun_attack(Vector2(76, 54), [
 			Vector2(42 * side, -18),
@@ -252,12 +264,14 @@ func _ultimate_impact() -> void:
 			Vector2(ULTIMATE_WAVE_REACH * side, -10)
 		], ULTIMATE_WAVE_DAMAGE, 420, Vector2(side, -0.12), Color(1.0, 0.72, 0.18, wave_alpha), 0.24, 2.0)
 		VFX.spawn(get_parent(), "frey_ult_wave", global_position + Vector2(18 * side, 2), Vector2(side, 1.0) * GAME_SCALE.COMBAT)
+	attack_art_enabled = true
 	_play_ultimate_release()
 	# Aftershock: a second, launching ring once the stun has landed.
 	var epoch := action_epoch
 	await get_tree().create_timer(ULTIMATE_AFTERSHOCK_DELAY).timeout
 	if epoch != action_epoch or is_defeated:
 		return
+	attack_art_enabled = false
 	for side in [-1.0, 1.0]:
 		_spawn_sweeping_launch_attack(Vector2(84, 70), [
 			Vector2(30 * side, -30),
@@ -265,6 +279,7 @@ func _ultimate_impact() -> void:
 			Vector2(200 * side, -22)
 		], ULTIMATE_AFTERSHOCK_DAMAGE, 560, Vector2(0.5 * side, -1.0), Color(1.0, 0.86, 0.36, wave_alpha), 0.18, Vector2(260 * side, -720), 0.3)
 		VFX.spawn(get_parent(), "frey_ult_wave", global_position + Vector2(10 * side, 2), Vector2(0.85 * side, 1.45) * GAME_SCALE.COMBAT, false, 4, Color(1.0, 1.0, 0.8))
+	attack_art_enabled = true
 
 func _play_ultimate_charge() -> void:
 	VFX.spawn(get_parent(), "frey_ult_charge", global_position, Vector2.ONE * 1.3 * sqrt(GAME_SCALE.COMBAT))

@@ -224,6 +224,8 @@ func _start_vector_shift() -> void:
 	vector_shift_active = true
 	vector_shift_timer = VECTOR_SHIFT_DURATION
 	vector_shift_direction = direction.normalized()
+	# Shift trail (nova_k): starts behind her and streaks the way she goes.
+	_draw_skill_art("nova_k", global_position + GAME_SCALE.BODY_CENTRE - vector_shift_direction * 90.0, vector_shift_direction, 1.2)
 	if not is_on_floor():
 		air_vector_shift_available = false
 	if absf(vector_shift_direction.x) > 0.18:
@@ -257,6 +259,7 @@ func _gravity_brake_start() -> void:
 	var knockback := lerpf(210.0, 640.0, momentum)
 	_spawn_gravity_burst(radius, damage, knockback, momentum, _momentum_color(momentum), "brake")
 	_play_impact_flash(global_position + Vector2(0, -30), radius, _momentum_color(momentum))
+	_draw_skill_art("nova_l", global_position, Vector2.ZERO, radius * GAME_SCALE.COMBAT * 2.0 / 192.0)
 
 func _spawn_gravity_burst(radius: float, damage: float, knockback: float, momentum: float, color: Color, hit_tag: String) -> Area2D:
 	var burst := Area2D.new()

@@ -20,7 +20,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_cast_signal_and_window, _test_ultimate_hitstop, _test_window_ends_on_map_move, _test_yuki_ward_lifecycle, _test_cutin, _test_effects, _test_nova_pull]:
+	for test in [_test_cast_signal_and_window, _test_ultimate_hitstop, _test_window_ends_on_map_move, _test_yuki_ward_lifecycle, _test_cutin, _test_effects, _test_attack_art, _test_nova_pull]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -163,6 +163,32 @@ func _test_effects() -> void:
 	if plain != null:
 		_fail("The plain style should not draw effect art")
 	await process_frame
+
+## Melee hits draw the character's slash strip (CODEX-ART-13) and hide the coloured
+## rectangle; the plain style (F2) keeps the rectangle and draws no art.
+func _test_attack_art() -> void:
+	var frey := _fighter("frey", 1, Vector2(0, 0))
+	var points: Array[Vector2] = [Vector2(14, -34), Vector2(58, -32)]
+	frey._spawn_sweeping_attack(Vector2(42, 34), points, 1.0, 10.0, Vector2.RIGHT, Color.WHITE, 0.2)
+	var attack := _last_attack()
+	var slash := arena.find_child("Vfx_frey_slash", true, false)
+	if attack == null or slash == null or attack.get_node("Visual").visible:
+		_fail("A melee hit should draw frey_slash and hide its rectangle (attack %s, slash %s)" % [attack, slash])
+	ART_SETTINGS.style = ART_SETTINGS.STYLE_PROTOTYPE
+	frey._spawn_sweeping_attack(Vector2(42, 34), points, 1.0, 10.0, Vector2.RIGHT, Color.WHITE, 0.2)
+	var plain := _last_attack()
+	ART_SETTINGS.style = ART_SETTINGS.STYLE_ORIGINAL
+	if plain == null or not plain.get_node("Visual").visible:
+		_fail("The plain style should keep the hit rectangle")
+	frey.queue_free()
+	await process_frame
+
+func _last_attack() -> Node:
+	var found: Node = null
+	for child in arena.get_children():
+		if child is Area2D and child.get("art_drawn") != null:
+			found = child
+	return found
 
 ## Nova's core drags nearby opponents toward it while it stands.
 func _test_nova_pull() -> void:
