@@ -1,17 +1,17 @@
 # Smash Nine Realms effect art
 
-Godot 4.7용 원본 픽셀 이펙트 세트다. 모든 PNG는 RGBA, 투명 배경, 최근접 픽셀 그리드이며 게임에서는 2배로 그리는 것을 기준으로 했다.
+Godot 4.7용 1x 픽셀 이펙트 세트다. 모든 PNG는 RGBA, 투명 배경, 최근접 픽셀 그리드이며 2026-10-08의 2배 전투 스케일에서 보이는 크기 자체로 다시 제작했다. 런타임에서 예전 저해상도 파일을 확대하지 않는다.
 
 ## 파일 계약
 
-| 파일 | 크기 | 용도 |
-|---|---:|---|
-| `hit_spark.png` | 192×48 | 48×48 4프레임의 흰색-금색 피격 스파크. 왼쪽부터 접촉광, 큰 폭발, 분리 광선, 잔광이다. |
-| `yuki_talisman.png` | 32×16 | 오른쪽으로 비행하는 상아색·주홍색 부적. |
-| `luna_star.png` | 24×24 | 분홍·노랑 중심과 청록 잔광을 가진 별 탄환. |
-| `rio_mana_wave.png` | 24×56 | 오른쪽으로 휘어진 세로형 청색 마력 검기. 24×54 히트박스를 감싼다. |
-| `rio_gem_sword.png` | 48×16 | 오른쪽을 향한 회색 보석 검. 런타임에서 여섯 색으로 틴트한다. |
-| `nova_gravity_orb.png` | 32×32 | 남청 핵과 청록→금색 궤도를 가진 중력 구체. |
+| 파일 | 전체 크기 | 프레임 | 앵커(px) | 용도 |
+|---|---:|---:|---:|---|
+| `hit_spark.png` | 384×96 | 4 × 96×96 | (48,48), 중앙 | 흰색-금색 피격 스파크. 왼쪽부터 접촉광, 큰 폭발, 분리 광선, 잔광이다. |
+| `yuki_talisman.png` | 128×64 | 1 | (64,32), 중앙 | 오른쪽으로 비행하는 상아색·주홍색 부적. |
+| `luna_star.png` | 96×96 | 1 | (48,48), 중앙 | 분홍·노랑 중심과 청록 잔광을 가진 오른쪽 진행 별 탄환. |
+| `rio_mana_wave.png` | 48×112 | 1 | (24,56), 중앙 | 오른쪽으로 휘어진 세로형 청색 마력 검기. 기존 24×54 히트박스의 2배 표시를 감싼다. |
+| `rio_gem_sword.png` | 96×32 | 1 | (48,16), 중앙 | 오른쪽을 향한 회색 보석 검. 런타임에서 여섯 색으로 틴트한다. |
+| `nova_gravity_orb.png` | 32×32 | 1 | (16,16), 중앙 | 이번 카드 범위 밖의 기존 중력 구체. |
 
 ## 팔레트와 그리기
 
@@ -31,8 +31,8 @@ Godot 4.7용 원본 픽셀 이펙트 세트다. 모든 PNG는 RGBA, 투명 배�
 - Rio sword: `single slim greyscale throwing gem sword pointing right; crystal diamond guard; no hue colours`.
 - Nova: `single compact gravity orb; dark-indigo core; broken teal-to-gold orbital arcs; square gravity motes`.
 
-`tests/art_preview/effects_b/build_assets.gd`가 생성 원본을 불러 알파 컷오프, 불투명 영역 크롭, 최근접 축소, 자산별 제한 팔레트 매핑, 지정 캔버스 중앙 정렬을 수행해 이 파일들을 재생성한다.
+`tests/art_preview/fx_1x_b/build_fx.gd`가 새 생성 원화와 보존된 고해상도 생성 원본을 불러 알파 컷오프, 불투명 영역 크롭, 최종 밀도 샘플링, 제한 팔레트 매핑, 지정 캔버스 정렬을 수행한다. `verify_fx.gd`는 크기·프레임·RGBA8·이진 알파·최소 3px 여백을 검증한다.
 
 ## 리드 통합 메모
 
-현재 제품 코드는 대부분 `ColorRect`/`Polygon2D`를 시각 노드로 만든다. 리드는 물리 히트박스를 그대로 두고 `Sprite2D` 자식만 추가하거나 교체해야 한다. 이동 방향이 왼쪽이면 텍스처를 수평 반전하고, `rio_gem_sword.png`에는 기존 `GEM_COLORS`를 `modulate`로 적용한다. `hit_spark.png`는 48×48 AtlasTexture 4장을 약 0.09초 안에 재생하면 된다.
+제품 코드는 새 원본 픽셀 크기에 맞춰 기존 표시 배율을 내려야 한다. 유키 부적·루나 별은 4x→1x, 리오 검기·보석검은 2x→1x가 같은 화면 크기다. 이동 방향이 왼쪽이면 텍스처를 수평 반전하고, `rio_gem_sword.png`에는 기존 `GEM_COLORS`를 `modulate`로 적용한다. `hit_spark.png`는 96×96 AtlasTexture 4장으로 자르고 기존 표시 크기별 스케일을 절반으로 조정한다. 물리 히트박스는 바꾸지 않는다.
