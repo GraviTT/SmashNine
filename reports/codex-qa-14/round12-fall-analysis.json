@@ -1,0 +1,190 @@
+{
+  "r12_accepted": {
+    "total": 1367,
+    "outcomes": {
+      "recover": 1003,
+      "landed": 353,
+      "ringout": 9,
+      "unfinished": 2
+    },
+    "landed": 353,
+    "did_not_land": 1014,
+    "entered_recovery": 0,
+    "duration_median": 0.2,
+    "duration_p90": 0.39,
+    "characters": {
+      "nova": {
+        "recover": 171,
+        "landed": 71,
+        "ringout": 3,
+        "unfinished": 1
+      },
+      "rio": {
+        "recover": 376,
+        "landed": 77,
+        "ringout": 1,
+        "unfinished": 1
+      },
+      "luna": {
+        "landed": 71,
+        "recover": 185,
+        "ringout": 1
+      },
+      "yuki": {
+        "landed": 57,
+        "recover": 81
+      },
+      "frey": {
+        "landed": 77,
+        "recover": 190,
+        "ringout": 4
+      }
+    },
+    "linked_recovery_entries": 0,
+    "linked_causes": {},
+    "linked_outcomes": {}
+  },
+  "r12_rejected_r10_accepted": {
+    "total": 621,
+    "outcomes": {
+      "landed": 614,
+      "ringout": 7
+    },
+    "landed": 614,
+    "did_not_land": 7,
+    "entered_recovery": 621,
+    "duration_median": 0.73,
+    "duration_p90": 0.85,
+    "characters": {
+      "nova": {
+        "landed": 108,
+        "ringout": 2
+      },
+      "yuki": {
+        "landed": 79
+      },
+      "luna": {
+        "landed": 107,
+        "ringout": 3
+      },
+      "frey": {
+        "landed": 99
+      },
+      "rio": {
+        "landed": 221,
+        "ringout": 2
+      }
+    },
+    "linked_recovery_entries": 621,
+    "linked_causes": {
+      "knocked_off": 151,
+      "other": 169,
+      "air_down": 21,
+      "walked_or_dashed_off": 280
+    },
+    "linked_outcomes": {
+      "success": 614,
+      "ringout": 7
+    }
+  },
+  "r12_rejected_r11_accepted": {
+    "total": 125,
+    "outcomes": {
+      "landed": 124,
+      "ringout": 1
+    },
+    "landed": 124,
+    "did_not_land": 1,
+    "entered_recovery": 125,
+    "duration_median": 0.39,
+    "duration_p90": 0.85,
+    "characters": {
+      "yuki": {
+        "landed": 29
+      },
+      "rio": {
+        "landed": 31
+      },
+      "luna": {
+        "landed": 20,
+        "ringout": 1
+      },
+      "frey": {
+        "landed": 23
+      },
+      "nova": {
+        "landed": 21
+      }
+    },
+    "linked_recovery_entries": 125,
+    "linked_causes": {
+      "other": 57,
+      "knocked_off": 59,
+      "air_down": 7,
+      "walked_or_dashed_off": 2
+    },
+    "linked_outcomes": {
+      "success": 124,
+      "ringout": 1
+    }
+  },
+  "accepted_predictor_overlap": {
+    "r10": 224,
+    "r11": 192,
+    "r12_only_vs_r10_r11": 1142
+  },
+  "accepted_predictor_matrix": {
+    "r10_false|r11_false": {
+      "total": 1142,
+      "recover": 945,
+      "landed": 187,
+      "ringout": 8,
+      "unfinished": 2
+    },
+    "r10_true|r11_true": {
+      "total": 191,
+      "landed": 146,
+      "recover": 45
+    },
+    "r10_true|r11_false": {
+      "total": 33,
+      "landed": 20,
+      "recover": 12,
+      "ringout": 1
+    },
+    "r10_false|r11_true": {
+      "total": 1,
+      "recover": 1
+    }
+  },
+  "accepted_late_recovery_followup": {
+    "linked": 1003,
+    "outcomes": {
+      "ringout": 76,
+      "success": 927
+    },
+    "causes": {
+      "knocked_off": 256,
+      "walked_or_dashed_off": 742,
+      "other": 2,
+      "air_down": 3
+    }
+  },
+  "accepted_input_trace": {
+    "total": 1367,
+    "move_input_changed": 407,
+    "move_input_reversed": 136,
+    "intent_move_changed": 345,
+    "intent_move_reversed": 153,
+    "late_recovery": {
+      "total": 1003,
+      "move_input_changed": 298,
+      "move_input_reversed": 106,
+      "intent_move_changed": 252,
+      "intent_move_reversed": 122,
+      "r10_still_accepted_last": 243,
+      "r11_still_accepted_last": 89
+    }
+  },
+  "r10_rejected_r11_accepts": 97
+}
