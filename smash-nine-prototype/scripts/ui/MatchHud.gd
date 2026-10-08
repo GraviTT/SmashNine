@@ -7,13 +7,23 @@ const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug  F4 bots"
+## Bottom right, all match (user 2026-10-08: "화면 오른쪽 아래에 조작키를 간단히 표시하고, 스킬
+## 아이콘도 간단하게"): the focused fighter's four moves as icon slots with their keys, and the
+## other keys in one short line under them.
+const CONTROLS_SHORT := "A/D move   W jump   S+S drop   Space guard   Q portal   F4 bots"
+const SKILL_ICON_ART := "res://assets/art/skill_icons/%s.png"
+const SKILL_SLOTS: Array[String] = ["j", "k", "l", "i"]
+const SKILL_SLOT_SIZE := 48.0
+const SKILL_SLOT_GAP := 6.0
+const SKILL_BAR_MARGIN := 12.0
+const SKILL_SLOT_COLOR := Color(0.08, 0.09, 0.14, 0.82)
+const SKILL_READY_COLOR := Color(1.0, 0.82, 0.35)
 ## Live bot panel (F4, development aid 2026-10-08): on by default while the game is tested.
 const BOT_PANEL_SHOWN_AT_START := true
 const BOT_PANEL_WIDTH := 300.0
 const BOT_ROW_FACE := 26.0
-## The bottom line (controls hint, then match messages) fades out this long after it was
-## last set (QA-15 #9: the controls covered the floor all match).
-const CONTROLS_HINT_TIME := 8.0
+## The bottom-left line shows match messages and fades out this long after each (QA-15 #9: the
+## controls covered the floor all match; they now sit bottom right).
 const MESSAGE_TIME := 4.0
 const PANEL_COLOR := Color(0.03, 0.03, 0.07, 0.78)
 ## The results table hides the match behind it (QA-15: the world showed through at 0.78).
@@ -30,6 +40,7 @@ const TOP_CENTER := Vector2(0.5, 0.0)
 const TOP_RIGHT := Vector2(1.0, 0.0)
 const BOTTOM_LEFT := Vector2(0.0, 1.0)
 const BOTTOM_CENTER := Vector2(0.5, 1.0)
+const BOTTOM_RIGHT := Vector2(1.0, 1.0)
 
 var info_label: Label
 var clock_label: Label
@@ -67,6 +78,12 @@ var flash_rect: ColorRect
 ## are bigger than the view since 2026-10-08).
 var offscreen_root: Node2D
 var hazard_label: Label
+var skill_bar: Control
+var controls_label: Label
+## slot -> {"style", "icon", "glyph", "key", "shade", "time"}
+var skill_slots: Dictionary = {}
+var skill_icon_set := ""
+var skill_pulse := 0.0
 var info_timer := 0.0
 var info_fade: Tween
 ## Right-hand list of every fighter: face, realm, HP and what its bot is trying to do.
@@ -98,8 +115,18 @@ func _ready() -> void:
 	warning_label = _label(Vector2(240, 96), Vector2(800, 90), 30, HORIZONTAL_ALIGNMENT_CENTER)
 	warning_label.add_theme_color_override("font_color", Color(1.0, 0.42, 0.22))
 	warning_label.visible = false
-	info_label = _label(Vector2(24, 664), Vector2(1232, 48), 15, HORIZONTAL_ALIGNMENT_LEFT)
-	info_label.text = CONTROLS_HINT
+	# Messages only; it stops short of the skill bar on the right.
+	info_label = _label(Vector2(24, 664), Vector2(820, 48), 15, HORIZONTAL_ALIGNMENT_LEFT)
+	info_label.visible = false
+	# Sized to its text on a faint backing, so platforms behind it do not cut through the words.
+	var controls_width := controls_label_width()
+	controls_label = _label(Vector2(1280.0 - SKILL_BAR_MARGIN - controls_width, 720.0 - SKILL_BAR_MARGIN - 18.0), Vector2(controls_width, 18), 12, HORIZONTAL_ALIGNMENT_CENTER)
+	controls_label.text = CONTROLS_SHORT
+	var backing := StyleBoxFlat.new()
+	backing.bg_color = Color(0.02, 0.03, 0.06, 0.55)
+	backing.set_corner_radius_all(4)
+	controls_label.add_theme_stylebox_override("normal", backing)
+	_build_skill_bar()
 	debug_label = _label(Vector2(870, 80), Vector2(390, 360), 13, HORIZONTAL_ALIGNMENT_LEFT)
 	debug_label.visible = false
 
@@ -121,6 +148,7 @@ func _ready() -> void:
 	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [hazard_label, TOP_CENTER], [warning_label, TOP_CENTER],
 			[status_label, TOP_RIGHT], [focus_frame, TOP_RIGHT], [focus_portrait, TOP_RIGHT],
 			[debug_label, TOP_RIGHT], [bot_panel, TOP_RIGHT], [info_label, BOTTOM_LEFT],
+			[skill_bar, BOTTOM_RIGHT], [controls_label, BOTTOM_RIGHT],
 			[card_panel, BOTTOM_CENTER]]:
 		_pin(entry[0], entry[1])
 
@@ -151,7 +179,7 @@ func _label(position: Vector2, size: Vector2, font_size: int, alignment: Horizon
 
 func show_message(text: String) -> void:
 	info_label.text = text
-	_show_info(CONTROLS_HINT_TIME if text == CONTROLS_HINT else MESSAGE_TIME)
+	_show_info(MESSAGE_TIME)
 
 func _show_info(seconds: float) -> void:
 	if info_fade != null and info_fade.is_valid():
@@ -171,6 +199,111 @@ func toggle_bot_panel() -> void:
 		bot_panel_wanted = not bot_panel_wanted
 		return
 	bot_panel.visible = not bot_panel.visible
+
+func controls_label_width() -> float:
+	return ThemeDB.fallback_font.get_string_size(CONTROLS_SHORT, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 14.0
+
+func _build_skill_bar() -> void:
+	skill_bar = Control.new()
+	skill_bar.name = "SkillBar"
+	skill_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var width := SKILL_SLOTS.size() * SKILL_SLOT_SIZE + (SKILL_SLOTS.size() - 1) * SKILL_SLOT_GAP
+	skill_bar.size = Vector2(width, SKILL_SLOT_SIZE)
+	skill_bar.position = Vector2(1280.0 - SKILL_BAR_MARGIN - width, 720.0 - SKILL_BAR_MARGIN - 18.0 - 6.0 - SKILL_SLOT_SIZE)
+	add_child(skill_bar)
+	for index in SKILL_SLOTS.size():
+		var slot: String = SKILL_SLOTS[index]
+		var panel := Panel.new()
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		panel.position = Vector2(index * (SKILL_SLOT_SIZE + SKILL_SLOT_GAP), 0.0)
+		panel.size = Vector2(SKILL_SLOT_SIZE, SKILL_SLOT_SIZE)
+		panel.clip_contents = true
+		var style := StyleBoxFlat.new()
+		style.bg_color = SKILL_SLOT_COLOR
+		style.set_corner_radius_all(6)
+		style.set_border_width_all(1)
+		style.border_color = Color(1, 1, 1, 0.25)
+		panel.add_theme_stylebox_override("panel", style)
+		skill_bar.add_child(panel)
+		# The icon (CODEX-ART-18, 40 px at 1:1), or the key letter in the fighter's colour.
+		var icon := TextureRect.new()
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		icon.position = Vector2(4, 4)
+		icon.size = Vector2(40, 40)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		panel.add_child(icon)
+		var glyph := _slot_label(slot.to_upper(), Vector2.ZERO, panel.size, 22, HORIZONTAL_ALIGNMENT_CENTER)
+		glyph.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		panel.add_child(glyph)
+		# Cooldown: a shade from the top for the share still to wait, and the seconds.
+		var shade := ColorRect.new()
+		shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		shade.color = Color(0.0, 0.0, 0.0, 0.62)
+		shade.size = Vector2(SKILL_SLOT_SIZE, 0.0)
+		panel.add_child(shade)
+		var time := _slot_label("", Vector2.ZERO, panel.size, 16, HORIZONTAL_ALIGNMENT_CENTER)
+		time.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		panel.add_child(time)
+		var key := _slot_label(slot.to_upper(), Vector2(29, 29), Vector2(16, 16), 11, HORIZONTAL_ALIGNMENT_CENTER)
+		key.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		var badge := StyleBoxFlat.new()
+		badge.bg_color = Color(0.0, 0.0, 0.0, 0.7)
+		badge.set_corner_radius_all(3)
+		key.add_theme_stylebox_override("normal", badge)
+		panel.add_child(key)
+		skill_slots[slot] = {"style": style, "icon": icon, "glyph": glyph, "key": key, "shade": shade, "time": time}
+
+func _slot_label(text: String, position: Vector2, size: Vector2, font_size: int, alignment: HorizontalAlignment) -> Label:
+	var label := Label.new()
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.text = text
+	label.position = position
+	label.size = size
+	label.horizontal_alignment = alignment
+	label.add_theme_font_size_override("font_size", font_size)
+	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
+	label.add_theme_constant_override("outline_size", 3)
+	return label
+
+## The focused fighter's moves: icons by character (Brave Luna's set while she is transformed),
+## a shade and seconds while a move cools down, a gold edge when the ultimate is ready.
+func update_skill_bar(fighter: Node, delta: float) -> void:
+	if not skill_bar.visible:
+		return
+	if not is_instance_valid(fighter):
+		skill_bar.modulate.a = 0.0
+		return
+	skill_bar.modulate.a = 0.55 if bool(fighter.get("is_defeated")) else 1.0
+	var character_id := str(fighter.get("character_id"))
+	var icon_set := "%s%s|%s" % [character_id, "_brave" if fighter.get("transformed") == true else "", ART_SETTINGS.use_original()]
+	if icon_set != skill_icon_set:
+		skill_icon_set = icon_set
+		var accent: Color = fighter.get("body_color") if fighter.get("body_color") is Color else Color.WHITE
+		for slot in SKILL_SLOTS:
+			var nodes: Dictionary = skill_slots[slot]
+			var texture := ART_SETTINGS.original_texture(SKILL_ICON_ART % ("%s_%s" % [icon_set.get_slice("|", 0), slot]))
+			nodes.icon.texture = texture
+			nodes.glyph.add_theme_color_override("font_color", accent.lerp(Color.WHITE, 0.35))
+			nodes.key.visible = texture != null
+	skill_pulse += delta
+	for slot in SKILL_SLOTS:
+		var nodes: Dictionary = skill_slots[slot]
+		var cooldown: Vector2 = fighter.skill_cooldown(slot) if fighter.has_method("skill_cooldown") else Vector2.ZERO
+		var waiting: float = clampf(cooldown.x / cooldown.y, 0.0, 1.0) if cooldown.y > 0.0 else 0.0
+		nodes.shade.size = Vector2(SKILL_SLOT_SIZE, SKILL_SLOT_SIZE * waiting)
+		nodes.time.text = "%d" % ceili(cooldown.x) if cooldown.x > 0.0 else ""
+		# Without an icon the key letter fills the slot; the seconds take its place while waiting.
+		nodes.glyph.visible = nodes.icon.texture == null and cooldown.x <= 0.0
+		var style: StyleBoxFlat = nodes.style
+		if slot == "i" and cooldown.x <= 0.0:
+			var pulse := 0.65 + 0.35 * sin(skill_pulse * 6.0)
+			style.border_color = Color(SKILL_READY_COLOR, pulse)
+			style.set_border_width_all(2)
+		else:
+			style.border_color = Color(1, 1, 1, 0.25)
+			style.set_border_width_all(1)
 
 func _build_bot_panel() -> void:
 	bot_panel = PanelContainer.new()
@@ -677,14 +810,15 @@ func set_warning_banner(seconds: int, hazard_warning := "") -> void:
 func _set_match_hud_visible(visible_now: bool) -> void:
 	if not visible_now and clock_label.visible:
 		bot_panel_wanted = bot_panel.visible
-	for node in [clock_label, realm_label, hazard_label, status_label, info_label, minimap_root, focus_portrait]:
+	for node in [clock_label, realm_label, hazard_label, status_label, minimap_root, focus_portrait, skill_bar, controls_label]:
 		node.visible = visible_now
+	# A fresh screen starts without an old message.
+	info_label.visible = false
+	info_timer = 0.0
 	# The bot panel and the off-screen arrows belong to the match too (they showed through the
 	# results table, QA-15).
 	bot_panel.visible = visible_now and bot_panel_wanted
 	offscreen_root.visible = visible_now
-	if visible_now:
-		_show_info(CONTROLS_HINT_TIME)
 	focus_frame.visible = visible_now and focus_portrait.texture != null
 	if not visible_now:
 		warning_label.visible = false

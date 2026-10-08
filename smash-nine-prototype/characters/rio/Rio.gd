@@ -80,6 +80,11 @@ func perform_skill_two() -> void:
 		return
 	_rune_shield_start()
 
+func skill_cooldown(slot: String) -> Vector2:
+	if slot == "l":
+		return Vector2(rune_cooldown_timer, RUNE_COOLDOWN)
+	return super(slot)
+
 func perform_ultimate() -> void:
 	_overdrive_start()
 

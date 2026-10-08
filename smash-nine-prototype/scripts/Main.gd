@@ -162,7 +162,6 @@ func _get_character_list() -> Array[Dictionary]:
 func _start_match(human_character_id: String) -> void:
 	match_started = true
 	hud.hide_overlay()
-	hud.show_message(MATCH_HUD_SCRIPT.CONTROLS_HINT)
 	realm_monster_spawner.sync_playable_realms(director.get_playable_indices())
 	soul_crystal_spawner.sync_playable_realms(director.get_playable_indices())
 	_spawn_players(human_character_id)
@@ -539,6 +538,7 @@ func _update_hud() -> void:
 		hud.update_bot_panel(_bot_panel_rows())
 	hud.set_clock(director.get_phase_name(), director.match_elapsed, director.get_next_event_label(), director.get_next_event_in())
 	hud.set_status(director.get_alive_combatants().size(), players.size(), _get_focus_player())
+	hud.update_skill_bar(_get_focus_player(), get_process_delta_time())
 	hud.update_minimap_labels(director, _count_alive_by_realm())
 	var seconds_left: int = director.get_warning_seconds_left()
 	for display in world.countdown_displays:

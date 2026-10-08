@@ -703,6 +703,13 @@ func ultimate() -> void:
 func is_ultimate_ready() -> bool:
 	return ultimate_cooldown_timer <= 0.0
 
+## [seconds left, full cooldown] for a skill bar slot ("j", "k", "l", "i"); zero when the move
+## has no cooldown. Characters with a skill cooldown add theirs (Rio's rune shield).
+func skill_cooldown(slot: String) -> Vector2:
+	if slot == "i":
+		return Vector2(ultimate_cooldown_timer, ULTIMATE_COOLDOWN)
+	return Vector2.ZERO
+
 func perform_basic_attack(_attack_type: String, _direction: Vector2) -> void:
 	pass
 
