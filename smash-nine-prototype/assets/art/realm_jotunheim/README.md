@@ -18,3 +18,9 @@ Godot 4.7용 요툰하임 원경·중경·플랫폼 세트다. 내장 `image_gen
 플랫폼 시트: `Transparent 16:9 pixel-art source sheet with exactly two isolated side-view Jotunheim platforms: massive slate monolith main platform above and thin giant-stone ledge below; flat tops, symmetric masonry ends, restrained runes and quake cracks, long repeatable middles; no snow, rubble, environment, characters, text, logo or watermark.`
 
 `bg_mid.png`는 원경 가장자리의 거석을 어둡게 재매핑한 투명 실루엣이다. 지진 경고와 점프 회피를 읽기 쉽도록 밝은 룬은 발판 상단 강조선보다 약하게 유지했다.
+
+## 1.5배 렐름 배경 갱신 (CODEX-ART-15)
+
+- `bg_far.png` / `bg_mid.png`: 1920×1080, 960×540 논리 픽셀을 2배 최근접 확대, 좌상단 `(0, 0)` 기준.
+- 원경 프롬프트: 기존 요툰하임을 카메라 1.5배 줌아웃한 16:9 확장 장면. 거석·거인 갈비뼈·협곡·끊어진 교량을 외곽으로 확장하고 열린 중앙을 유지.
+- 중경: 기존 투명 거석 프레임을 새 논리 격자에서 재구성하고 알파를 0/0.5/1로 정리했다.

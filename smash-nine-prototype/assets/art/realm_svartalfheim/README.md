@@ -18,3 +18,9 @@ Godot 4.7용 스바르트알프하임 원경·중경·플랫폼 세트다. 내�
 플랫폼 시트: `Transparent 16:9 pixel-art source sheet with exactly two isolated side-view Svartalfheim platforms: dark iron-and-bronze main platform above and thin metal ledge below; flat tops, symmetric end housings, restrained rivets and braces, long repeatable middles; no environment, characters, text, logo or watermark.`
 
 `bg_mid.png`는 원경 원본의 가장자리 색을 어둡게 재매핑한 투명 실루엣이다. 플랫폼은 상승형 배치가 배경 기계 구조와 혼동되지 않도록 밝은 황동색을 작은 면적으로만 썼다.
+
+## 1.5배 렐름 배경 갱신 (CODEX-ART-15)
+
+- `bg_far.png` / `bg_mid.png`: 1920×1080, 960×540 논리 픽셀을 2배 최근접 확대, 좌상단 `(0, 0)` 기준.
+- 원경 프롬프트: 기존 스바르트알프하임을 카메라 1.5배 줌아웃한 16:9 확장 장면. 용광로·기어탑·광산 승강기·동굴 벽을 확장하고 황동 불빛은 작게 제한.
+- 중경: 기존 투명 기계 도시 프레임을 새 논리 격자에서 재구성하고 알파를 0/0.5/1로 정리했다.
