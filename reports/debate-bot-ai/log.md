@@ -81,3 +81,15 @@ Codex kept: recovery asks matched to uses (Frey 13/13, Nova 22/22, Rio 8/8) and 
 | R6-3 Yuki long throws | **accept** | Basics within 480 px (`basic_reach` 240, scaled). |
 
 Next: Codex QA-14 round 6 on the same seeds; `decision.md` updated with R5 and round 6.
+
+## Round 7 (measurement: Codex QA-14 round 6, `reports/codex-qa-14/round6.md`) — lead decisions
+
+Codex kept: removing the close-target extension (no-progress 1,238.8 → 999.8 s, longest standoff 171.1 → 48.9 s, central-brawl player targets 88.9%) and Yuki's 480 px basics (side-basic hit rate 44.1% → 50.5%, PvP damage per minute 35.4 → 36.3). It asked to redesign "ask whenever it can start": Frey dashed 437 times (416 in two long recoveries; recovery 94.3% → 97.0%), Nova asked 35,321 frames for 27 uses because `can_use_skill_one()` did not know its one shift per airtime. Rio's gate (8/8 uses, 4 floors) stays.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R7-1 Nova availability | **accept** | `Nova.can_use_skill_one()` adds `air_vector_shift_available`, like Rio's blink. |
+| R7-2 Frey dash spam | **accept** | At most 2 recovery-skill uses per recovery, for every fighter. |
+| Progress drops 199 → 318 | **measure** | The extension removal brings back R3-style drops of close targets the bot cannot reach in practice; Codex's suggestion of a per-target retry only when the route improved is left for the next session. |
+
+Round 7 is this session's last measurement; whatever it shows goes into `decision.md` with the open items.

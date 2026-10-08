@@ -84,6 +84,11 @@ func perform_basic_attack(attack_type: String, input_direction: Vector2) -> void
 		_:
 			_start_attack(0.065, 0.17, Callable(self, "_vector_side_strike").bind(momentum, false, Vector2(facing, -0.04)))
 
+## One vector shift per airtime, like the skill itself (Codex QA-14 round 6: bots asked for it
+## 35,321 frames for 27 uses).
+func can_use_skill_one() -> bool:
+	return super() and (is_on_floor() or air_vector_shift_available)
+
 func perform_skill_one() -> void:
 	_start_vector_shift()
 

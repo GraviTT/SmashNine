@@ -218,7 +218,8 @@ func _test_portal_grace() -> void:
 ## round 3: Rio reached a floor 2 of 10 times): Rio waits until the ledge is within the skill's
 ## reach and aims a little above it; Frey (18 of 19) and Nova (round 4: the limit did not help)
 ## go from anywhere. Round 6: asked only while free to act (round 4: 2,200 asks for 21 uses),
-## and again after each use (round 5: once per recovery cut Frey from 18/19 to 6/13).
+## and again after each use (round 5: once per recovery cut Frey from 18/19 to 6/13), at most
+## twice per recovery and only while the skill can start in the air (round 7).
 func _test_recovery_skill() -> void:
 	for id in ["frey", "nova", "rio"]:
 		var bot := _fighter(id, 1, Vector2(0, 300))
@@ -240,12 +241,22 @@ func _test_recovery_skill() -> void:
 		bot.attack_lock_timer = 0.0
 		if str(ai._recover_intent(bot).get("attack", "")) != "skill_1":
 			_fail("%s should ask again once it is free to act" % id)
+		# Round 7: at most two uses per recovery (round 6: Frey dashed 437 times).
+		if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
+			_fail("%s should stop after two recovery-skill uses in one recovery" % id)
+		ai.recovery_skill_uses = 0
 		if id == "rio":
 			# One blink per airtime: after it, Rio does not keep asking in the air.
 			bot.air_blink_available = false
 			if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
 				_fail("Rio should not ask for a second blink in the same airtime")
 			bot.air_blink_available = true
+		if id == "nova":
+			# One vector shift per airtime (round 6: 35,321 asking frames for 27 uses).
+			bot.air_vector_shift_available = false
+			if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
+				_fail("Nova should not ask for a second vector shift in the same airtime")
+			bot.air_vector_shift_available = true
 		ai.recovery_target = Vector2(600, -100)
 		intent = ai._recover_intent(bot)
 		var far_skill: bool = str(intent.get("attack", "")) == "skill_1"

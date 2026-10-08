@@ -120,6 +120,9 @@ const FIGHTER_ATTACKER_MEMORY := 8.0
 ## go from anywhere (Nova with the limit: 3 of 21 instead of 3 of 15, round 4).
 const RECOVERY_SKILL_REACH := {"frey": 100000.0, "nova": 100000.0, "rio": 290.0}
 const RECOVERY_SKILL_AIM_ABOVE := 60.0
+## At most this many recovery-skill uses per recovery (round 6: Frey dashed 437 times, 416 of
+## them in two long recoveries).
+const RECOVERY_SKILL_MAX_USES := 2
 const RECOVERY_LAST_CHANCE := 140.0
 ## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, already at
 ## the combat scale), score >= 3 fires 70% of the time, >= 2 once it has been ready 12 s.
@@ -185,6 +188,7 @@ var waypoint: Vector2 = Vector2.ZERO
 var portal_target: Dictionary = {}
 var recovery_target: Vector2 = Vector2.ZERO
 var recovery_jump_used: bool = false
+var recovery_skill_uses: int = 0
 var ultimate_followup_delays: Array[float] = []
 var ultimate_followup_timer: float = 0.0
 var hazard_reaction: int = -1
@@ -400,6 +404,7 @@ func _enter_state(next_state: String) -> void:
 	if next_state == STATE_RECOVER:
 		recovery_target = Vector2.ZERO
 		recovery_jump_used = false
+		recovery_skill_uses = 0
 
 func _must_replan(player) -> bool:
 	if state == STATE_RECOVER:
@@ -833,7 +838,8 @@ func _recover_intent(player) -> Dictionary:
 		# asks for 21 uses), but again after each use (round 5: once per recovery cut Frey from
 		# 18 of 19 floors reached to 6 of 13).
 		var free: bool = player.can_use_skill_one() if player.has_method("can_use_skill_one") else player.attack_lock_timer <= 0.0
-		if free and (player.global_position.distance_to(aim_point) <= reach or last_chance):
+		if free and recovery_skill_uses < RECOVERY_SKILL_MAX_USES and (player.global_position.distance_to(aim_point) <= reach or last_chance):
+			recovery_skill_uses += 1
 			intent["aim"] = (aim_point - player.global_position).normalized()
 			intent["attack"] = "skill_1"
 			debug_reason = "off the stage: recovery skill"

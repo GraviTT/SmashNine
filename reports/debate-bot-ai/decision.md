@@ -27,20 +27,20 @@ Lead: Claude (decides, implements). Opponent and measurer: Codex. Question and r
 
 ## Measured result (same seeds; R1 before any change)
 
-| Metric | R1 | R2 | R3 | R4 | R5 |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Match length, median | 305.7 s | 315.4 s | 277.8 s | 293.1 s | 285.9 s |
-| Portal moves per match | 94.3 | 20.9 | 21.0 | 19.7 | 19.3 |
-| Ring-outs (12 matches) | 143 | 135 | 114 | 117 | 123 |
-| Recovery success | 91.2% | 92.6% | 93.8% | 92.6% | 91.1% |
-| Up / down / air-up / air-down attacks | 0 | 3,299 | used by all | used by all | used by all |
-| Guards: blocks + parries | 0 | 463 | 155 | 312 | 411 |
-| No-target time | 2.5% | 9.2% | 6.6% | 5.5% | 6.2% |
-| No-progress time | 7.0% | 2.3% | 3.4% | 5.4% | 6.1% |
-| Wrong drops (close or just hit) | — | — | 146 | 4 | 59 |
-| Central brawl: player targets | 86.5% | 75.2% | 78.7% | 84.4% | 85.5% |
-| 20 s+ standoffs (longest) | 5 (90.9 s) | 1 (56.6 s) | 3 (42.0 s) | 2 (68.9 s) | 6 (171.1 s) |
-| Nova launches followed by PvP damage | — | 75.0% | 85.7% | 88.4% | 88.5% |
+| Metric | R1 | R2 | R3 | R4 | R5 | R6 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Match length, median | 305.7 s | 315.4 s | 277.8 s | 293.1 s | 285.9 s | 290.1 s |
+| Portal moves per match | 94.3 | 20.9 | 21.0 | 19.7 | 19.3 | 20.3 |
+| Ring-outs (12 matches) | 143 | 135 | 114 | 117 | 123 | 122 |
+| Recovery success | 91.2% | 92.6% | 93.8% | 92.6% | 91.1% | 92.4% |
+| Up / down / air-up / air-down attacks | 0 | 3,299 | used by all | used by all | used by all | used by all |
+| Guards: blocks + parries | 0 | 463 | 155 | 312 | 411 | 406 |
+| No-target time | 2.5% | 9.2% | 6.6% | 5.5% | 6.2% | 6.2% |
+| No-progress time | 7.0% | 2.3% | 3.4% | 5.4% | 6.1% | 4.85% |
+| Wrong drops (close or just hit) | — | — | 146 | 4 | 59 | 98 |
+| Central brawl: player targets | 86.5% | 75.2% | 78.7% | 84.4% | 85.5% | 88.9% |
+| 20 s+ standoffs (longest) | 5 (90.9 s) | 1 (56.6 s) | 3 (42.0 s) | 2 (68.9 s) | 6 (171.1 s) | 5 (48.9 s) |
+| Nova launches followed by PvP damage | — | 75.0% | 85.7% | 88.4% | 88.5% | 85.2% |
 
 Reports: `reports/codex-qa-14/README.md` (R1), `round2.md` … `round5.md`.
 
@@ -59,7 +59,14 @@ R5 (`round5.md`): asking once per recovery matched asks to uses but cut Frey fro
 - recovery skills are asked whenever they can start (`PlayerBase.can_use_skill_one()`, Rio adds its one blink per airtime), so Frey and Nova use them again after each use without asking every frame;
 - Yuki throws basics only within 480 px (round 5: 503 of 718 missed from 360 px out).
 
-Codex QA-14 round 6 measures these (`round6.md`).
+R6 (`round6.md`): extension removal and Yuki reach kept (no-progress 4.85%, longest standoff 48.9 s, central player targets 88.9%, Yuki side-basic 50.5%); recovery asks redesigned again: Frey dashed 437 times in long recoveries and Nova asked 35,321 frames for 27 uses.
+
+## Round 7 (`log.md`)
+
+- Nova knows its one vector shift per airtime (`can_use_skill_one()`), like Rio's blink;
+- at most 2 recovery-skill uses per recovery.
+
+Codex QA-14 round 7 is the last measurement of this session (`round7.md`).
 
 ## Open — for the user
 
