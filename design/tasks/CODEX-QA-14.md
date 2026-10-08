@@ -66,3 +66,15 @@ The lead changed the bots again after your round 2 (`reports/debate-bot-ai/log.m
 - match length per seed; anything that got worse.
 
 Reading `ai_controller` members per physics frame from the probe is fine (read only). Same writable paths; report in `reports/codex-qa-14/round3.md`.
+
+## Round 4 · final retest (branch `codex/bot-data-14d`)
+
+After your round 3 the lead changed the bots again (`reports/debate-bot-ai/log.md`, "Round 4"): `2811081` (a cornered kiter holds the ledge when the opponent is on another level) and `b4a83d7` (progress counts hits on monsters and crystals via `last_attacker` / `last_hit_frame`, close targets with a route are kept, escapes at most every 2.5 s and only with floor past the opponent, Nova/Rio recovery skill only within reach, a guard still rises against a close attacker facing us, Rio's basics need the target within 240 px). Rerun **the same probe on the same seeds 101–112** and give R1 / R2 / R3 / R4 for every metric, plus:
+- progress drops by target kind with your round-3 split (within 300 px, traded hits in the 3 s before);
+- guards per attacker: reactions, too late, raised, blocks, parries — and blocks of a combo's 2nd/3rd swing if you can tell them;
+- escapes per character and ring-outs within 3 s after one; Yuki side-basic hit rate and misses by distance;
+- Rio: side-basic attempts and hit rate by distance, PvP damage per minute (round 3: 41.8), wins;
+- recovery skill 1 (Frey, Nova, Rio): used, reached a floor; Frey's recover-state share and where Frey enters recovery (knocked off / walked or dashed off / other);
+- central-brawl target shares and recover share; match length per seed; anything worse.
+
+Same writable paths; report in `reports/codex-qa-14/round4.md`; commit script `commit-round4.ps1`. Say plainly for each lead change whether the data supports keeping it.
