@@ -49,6 +49,10 @@ var cutin_name: Label
 var cutin_title: Label
 var cutin_tween: Tween
 var flash_rect: ColorRect
+## Arrows at the screen edge toward fighters in the shown realm who are off screen (realms
+## are bigger than the view since 2026-10-08).
+var offscreen_root: Node2D
+var offscreen_markers: Array[Polygon2D] = []
 var flash_tween: Tween
 var overlay_body: Label
 var overlay_credits: Label
@@ -83,6 +87,9 @@ func _ready() -> void:
 
 	_build_card_panel()
 	_build_cutin()
+	offscreen_root = Node2D.new()
+	offscreen_root.name = "OffscreenMarkers"
+	add_child(offscreen_root)
 	_build_overlay()
 	# Keep each element on its screen edge for any window shape (web canvases are not 16:9).
 	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [warning_label, TOP_CENTER],
@@ -221,6 +228,26 @@ func _get_state_color(state: String, is_current: bool) -> Color:
 			return Color(0.14, 0.18, 0.22, 0.72)
 
 # --- Ultimate cut-in ---
+
+## markers: [{"position": screen point on the edge, "angle": radians, "color": Color}]
+func set_offscreen_markers(markers: Array) -> void:
+	while offscreen_markers.size() < markers.size():
+		var arrow := Polygon2D.new()
+		arrow.polygon = PackedVector2Array([Vector2(16, 0), Vector2(-9, -12), Vector2(-4, 0), Vector2(-9, 12)])
+		var outline := Line2D.new()
+		outline.points = PackedVector2Array([Vector2(16, 0), Vector2(-9, -12), Vector2(-4, 0), Vector2(-9, 12), Vector2(16, 0)])
+		outline.width = 2.0
+		outline.default_color = Color(0.02, 0.02, 0.05, 0.85)
+		arrow.add_child(outline)
+		offscreen_root.add_child(arrow)
+		offscreen_markers.append(arrow)
+	for index in offscreen_markers.size():
+		var arrow := offscreen_markers[index]
+		arrow.visible = index < markers.size()
+		if arrow.visible:
+			arrow.position = markers[index].position
+			arrow.rotation = float(markers[index].angle)
+			arrow.color = Color(markers[index].color, 0.92)
 
 func _build_cutin() -> void:
 	flash_rect = ColorRect.new()

@@ -18,6 +18,8 @@ const CENTRAL_REALM_INDEX := REALM_LAYOUT_SCRIPT.CENTRAL_REALM_INDEX
 const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
 const CAMERA_ZOOM := 0.85
+## Off-screen fighter arrows sit this far inside the screen edge.
+const OFFSCREEN_MARKER_INSET := 34.0
 const CAMERA_EDGE_PADDING := 80.0
 const ULTIMATE_CAST_SHAKE := 6.0
 const ULTIMATE_HIT_SHAKE := 3.5
@@ -500,7 +502,26 @@ func _can_update_offscreen_ai(combatant: Node) -> bool:
 
 # --- HUD, debug and practice ---
 
+## Fighters in the shown realm outside the camera view, as arrows on the screen edge.
+func _offscreen_markers() -> Array:
+	var result: Array = []
+	var view_size := get_viewport().get_visible_rect().size
+	var centre := view_size * 0.5
+	var inner := centre - Vector2(OFFSCREEN_MARKER_INSET, OFFSCREEN_MARKER_INSET)
+	var focus := _get_focus_player()
+	for player in players:
+		if player == focus or not _is_in_view(player):
+			continue
+		var screen: Vector2 = (player as CanvasItem).get_global_transform_with_canvas() * Vector2(0, -32)
+		if Rect2(Vector2.ZERO, view_size).has_point(screen):
+			continue
+		var direction := (screen - centre).normalized()
+		var reach := minf(inner.x / maxf(absf(direction.x), 0.001), inner.y / maxf(absf(direction.y), 0.001))
+		result.append({"position": centre + direction * reach, "angle": direction.angle(), "color": player.body_color})
+	return result
+
 func _update_hud() -> void:
+	hud.set_offscreen_markers(_offscreen_markers() if match_started and not match_over else [])
 	hud.set_clock(director.get_phase_name(), director.match_elapsed, director.get_next_event_label(), director.get_next_event_in())
 	hud.set_status(director.get_alive_combatants().size(), players.size(), _get_focus_player())
 	hud.update_minimap_labels(director, _count_alive_by_realm())
