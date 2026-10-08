@@ -1,0 +1,5874 @@
+{
+	"corner_escape_events": [
+		{
+			"character": "yuki",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 40.5
+		},
+		{
+			"character": "yuki",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 63.13
+		},
+		{
+			"character": "yuki",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 72.85
+		},
+		{
+			"character": "yuki",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 81.12
+		},
+		{
+			"character": "yuki",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 94.17
+		},
+		{
+			"character": "yuki",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 100.03
+		},
+		{
+			"character": "yuki",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 103.88
+		},
+		{
+			"character": "yuki",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 109.77
+		},
+		{
+			"character": "frey",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 127.78
+		},
+		{
+			"character": "frey",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 153.23
+		},
+		{
+			"character": "rio",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 162.32
+		},
+		{
+			"character": "frey",
+			"realm": 4,
+			"ringout_within_3s": false,
+			"seed": 102,
+			"time": 180.65
+		}
+	],
+	"dead_band_events": [],
+	"hit_window": 0.4,
+	"low_hp_portals": [],
+	"matches": [
+		{
+			"finished": true,
+			"portals": 14,
+			"reason": "last survivor",
+			"recovery_fail": 8,
+			"recovery_success": 47,
+			"relocations": 0,
+			"ringouts": 9,
+			"seconds": 217.2,
+			"seed": 102,
+			"standoffs": 0,
+			"winner": "rio"
+		}
+	],
+	"no_progress_definition": "target episode >=3s whose distance never shrank by max(100px, 10% of start distance)",
+	"players": 8,
+	"progress_extension_events": [],
+	"r10_only_fall_events": [
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.78,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9799.2,
+				"y": 6292.4
+			},
+			"r11_landing": false,
+			"realm": 7,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 4.9,
+			"velocity": {
+				"x": -61.9,
+				"y": 636.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 1.05,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9318.1,
+				"y": 6239.0
+			},
+			"r11_landing": false,
+			"realm": 7,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 6.85,
+			"velocity": {
+				"x": 396.0,
+				"y": 1314.8
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.81,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10204.2,
+				"y": 741.0
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.01,
+			"seed": 102,
+			"time": 7.22,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "rio",
+			"duration": 0.77,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 837.7,
+				"y": 6239.0
+			},
+			"r11_landing": false,
+			"realm": 5,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 7.4,
+			"velocity": {
+				"x": -420.0,
+				"y": 34.2
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10207.9,
+				"y": 741.0
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 8.23,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10205.4,
+				"y": 741.0
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 9.23,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10203.0,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 10.23,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10206.7,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 11.23,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.95,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10367.0,
+				"y": 6300.8
+			},
+			"r11_landing": false,
+			"realm": 7,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 14.5,
+			"velocity": {
+				"x": 263.5,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10204.3,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 16.78,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.9,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10465.3,
+				"y": 6300.8
+			},
+			"r11_landing": false,
+			"realm": 7,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 17.53,
+			"velocity": {
+				"x": 366.0,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10208.0,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 17.8,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10205.6,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 18.8,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10203.1,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 19.8,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10206.8,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 20.8,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.82,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10204.4,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 21.8,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.81,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10208.1,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.01,
+			"seed": 102,
+			"time": 22.82,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.4,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10369.7,
+				"y": 6289.2
+			},
+			"r11_landing": false,
+			"realm": 7,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 23.7,
+			"velocity": {
+				"x": 396.0,
+				"y": 33.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.81,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10205.7,
+				"y": 741.1
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.01,
+			"seed": 102,
+			"time": 23.82,
+			"velocity": {
+				"x": 366.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.19,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9978.6,
+				"y": 6460.6
+			},
+			"r11_landing": true,
+			"realm": 7,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 24.63,
+			"velocity": {
+				"x": -86.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.5,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10398.0,
+				"y": 6289.2
+			},
+			"r11_landing": false,
+			"realm": 7,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 26.9,
+			"velocity": {
+				"x": 172.0,
+				"y": 33.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.26,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9954.4,
+				"y": 6323.8
+			},
+			"r11_landing": true,
+			"realm": 7,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 39.82,
+			"velocity": {
+				"x": -264.9,
+				"y": 328.5
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.27,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10493.7,
+				"y": 724.8
+			},
+			"r11_landing": true,
+			"realm": 2,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 44.7,
+			"velocity": {
+				"x": -262.0,
+				"y": 328.5
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.55,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10341.6,
+				"y": 701.8
+			},
+			"r11_landing": false,
+			"realm": 2,
+			"recovery_delay": 0.01,
+			"seed": 102,
+			"time": 45.42,
+			"velocity": {
+				"x": -366.0,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "nova",
+			"duration": 2.15,
+			"entered_recovery": true,
+			"outcome": "ringout",
+			"position": {
+				"x": 1911.6,
+				"y": 889.7
+			},
+			"r11_landing": false,
+			"realm": 0,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 53.52,
+			"velocity": {
+				"x": -436.3,
+				"y": 1314.8
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "frey",
+			"duration": 0.75,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9665.2,
+				"y": 3482.9
+			},
+			"r11_landing": true,
+			"realm": 4,
+			"recovery_delay": 0.01,
+			"seed": 102,
+			"time": 58.22,
+			"velocity": {
+				"x": -127.9,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "rio",
+			"duration": 0.18,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10676.8,
+				"y": 3529.4
+			},
+			"r11_landing": false,
+			"realm": 4,
+			"recovery_delay": 0.01,
+			"seed": 102,
+			"time": 94.22,
+			"velocity": {
+				"x": 185.8,
+				"y": 3.7
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.73,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 1816.2,
+				"y": 3439.2
+			},
+			"r11_landing": false,
+			"realm": 3,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 97.9,
+			"velocity": {
+				"x": -260.8,
+				"y": 342.6
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.73,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 1815.7,
+				"y": 3439.3
+			},
+			"r11_landing": false,
+			"realm": 3,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 98.9,
+			"velocity": {
+				"x": -260.8,
+				"y": 342.6
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "frey",
+			"duration": 0.27,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10695.6,
+				"y": 3288.2
+			},
+			"r11_landing": false,
+			"realm": 4,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 99.6,
+			"velocity": {
+				"x": 267.8,
+				"y": 317.0
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 1.65,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 1815.1,
+				"y": 3439.3
+			},
+			"r11_landing": false,
+			"realm": 3,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 99.9,
+			"velocity": {
+				"x": -260.8,
+				"y": 342.6
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "frey",
+			"duration": 0.73,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9621.1,
+				"y": 3485.3
+			},
+			"r11_landing": false,
+			"realm": 4,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 110.85,
+			"velocity": {
+				"x": -351.6,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.78,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10848.2,
+				"y": 3642.2
+			},
+			"r11_landing": false,
+			"realm": 4,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 114.17,
+			"velocity": {
+				"x": -430.0,
+				"y": 953.9
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.47,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 210.1,
+				"y": 3121.6
+			},
+			"r11_landing": false,
+			"realm": 3,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 173.93,
+			"velocity": {
+				"x": -430.8,
+				"y": 25.3
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "frey",
+			"duration": 0.27,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10694.5,
+				"y": 3286.1
+			},
+			"r11_landing": false,
+			"realm": 4,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 181.18,
+			"velocity": {
+				"x": 165.7,
+				"y": 310.5
+			}
+		}
+	],
+	"r11_only_fall_events": [
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.93,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10369.7,
+				"y": 6301.9
+			},
+			"r10_landing": true,
+			"realm": 7,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 14.52,
+			"velocity": {
+				"x": 159.5,
+				"y": 66.5
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.19,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9978.6,
+				"y": 6460.6
+			},
+			"r10_landing": true,
+			"realm": 7,
+			"recovery_delay": 0.02,
+			"seed": 102,
+			"time": 24.63,
+			"velocity": {
+				"x": -86.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.48,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10399.1,
+				"y": 6290.5
+			},
+			"r10_landing": true,
+			"realm": 7,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 26.92,
+			"velocity": {
+				"x": 68.0,
+				"y": 76.7
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.26,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9954.4,
+				"y": 6323.8
+			},
+			"r10_landing": true,
+			"realm": 7,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 39.82,
+			"velocity": {
+				"x": -264.9,
+				"y": 328.5
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.27,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10493.7,
+				"y": 724.8
+			},
+			"r10_landing": true,
+			"realm": 2,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 44.7,
+			"velocity": {
+				"x": -262.0,
+				"y": 328.5
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "frey",
+			"duration": 0.75,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 9665.2,
+				"y": 3482.9
+			},
+			"r10_landing": true,
+			"realm": 4,
+			"recovery_delay": 0.01,
+			"seed": 102,
+			"time": 58.22,
+			"velocity": {
+				"x": -127.9,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "rio",
+			"duration": 0.17,
+			"entered_recovery": true,
+			"outcome": "landed",
+			"position": {
+				"x": 10678.1,
+				"y": 3530.2
+			},
+			"r10_landing": true,
+			"realm": 4,
+			"recovery_delay": 0.0,
+			"seed": 102,
+			"time": 94.23,
+			"velocity": {
+				"x": 81.8,
+				"y": 47.3
+			}
+		}
+	],
+	"recovery_entry_events": [
+		{
+			"air_down_age": 103.9,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.8,
+			"episode": 1,
+			"outcome": "success",
+			"position": {
+				"x": 9799.2,
+				"y": 6292.4
+			},
+			"pvp_hit_age": 103.9,
+			"realm": 7,
+			"seed": 102,
+			"time": 4.9,
+			"velocity": {
+				"x": -61.9,
+				"y": 636.9
+			}
+		},
+		{
+			"air_down_age": 105.85,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "yuki",
+			"duration": 1.07,
+			"episode": 1,
+			"outcome": "success",
+			"position": {
+				"x": 9318.1,
+				"y": 6239.0
+			},
+			"pvp_hit_age": 0.57,
+			"realm": 7,
+			"seed": 102,
+			"time": 6.85,
+			"velocity": {
+				"x": 396.0,
+				"y": 1314.8
+			}
+		},
+		{
+			"air_down_age": 106.23,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.82,
+			"episode": 1,
+			"outcome": "success",
+			"position": {
+				"x": 10208.9,
+				"y": 742.4
+			},
+			"pvp_hit_age": 106.23,
+			"realm": 2,
+			"seed": 102,
+			"time": 7.23,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 106.42,
+			"air_jumps_left": 1,
+			"cause": "other",
+			"character": "rio",
+			"duration": 0.76,
+			"episode": 1,
+			"outcome": "success",
+			"position": {
+				"x": 830.7,
+				"y": 6240.3
+			},
+			"pvp_hit_age": 106.42,
+			"realm": 5,
+			"seed": 102,
+			"time": 7.42,
+			"velocity": {
+				"x": -420.0,
+				"y": 77.9
+			}
+		},
+		{
+			"air_down_age": 107.25,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.82,
+			"episode": 2,
+			"outcome": "success",
+			"position": {
+				"x": 10212.5,
+				"y": 742.4
+			},
+			"pvp_hit_age": 107.25,
+			"realm": 2,
+			"seed": 102,
+			"time": 8.25,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 108.25,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.82,
+			"episode": 3,
+			"outcome": "success",
+			"position": {
+				"x": 10210.1,
+				"y": 742.4
+			},
+			"pvp_hit_age": 108.25,
+			"realm": 2,
+			"seed": 102,
+			"time": 9.25,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 109.25,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.82,
+			"episode": 4,
+			"outcome": "success",
+			"position": {
+				"x": 10207.7,
+				"y": 742.5
+			},
+			"pvp_hit_age": 109.25,
+			"realm": 2,
+			"seed": 102,
+			"time": 10.25,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 110.25,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.82,
+			"episode": 5,
+			"outcome": "success",
+			"position": {
+				"x": 10211.4,
+				"y": 742.5
+			},
+			"pvp_hit_age": 110.25,
+			"realm": 2,
+			"seed": 102,
+			"time": 11.25,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 5.73,
+			"air_jumps_left": 1,
+			"cause": "other",
+			"character": "frey",
+			"duration": 0.95,
+			"episode": 2,
+			"outcome": "success",
+			"position": {
+				"x": 10369.7,
+				"y": 6301.9
+			},
+			"pvp_hit_age": 113.52,
+			"realm": 7,
+			"seed": 102,
+			"time": 14.52,
+			"velocity": {
+				"x": 159.5,
+				"y": 66.5
+			}
+		},
+		{
+			"air_down_age": 113.7,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "nova",
+			"duration": 2.13,
+			"episode": 1,
+			"outcome": "ringout",
+			"position": {
+				"x": 1588.0,
+				"y": 1021.0
+			},
+			"pvp_hit_age": 9.37,
+			"realm": 0,
+			"seed": 102,
+			"time": 14.7,
+			"velocity": {
+				"x": -99.7,
+				"y": 122.9
+			}
+		},
+		{
+			"air_down_age": 115.8,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.82,
+			"episode": 6,
+			"outcome": "success",
+			"position": {
+				"x": 10209.0,
+				"y": 742.5
+			},
+			"pvp_hit_age": 115.8,
+			"realm": 2,
+			"seed": 102,
+			"time": 16.8,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 8.77,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.9,
+			"episode": 3,
+			"outcome": "success",
+			"position": {
+				"x": 10471.4,
+				"y": 6301.9
+			},
+			"pvp_hit_age": 116.55,
+			"realm": 7,
+			"seed": 102,
+			"time": 17.55,
+			"velocity": {
+				"x": 366.0,
+				"y": 66.5
+			}
+		},
+		{
+			"air_down_age": 116.82,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.81,
+			"episode": 7,
+			"outcome": "success",
+			"position": {
+				"x": 10212.6,
+				"y": 742.5
+			},
+			"pvp_hit_age": 116.82,
+			"realm": 2,
+			"seed": 102,
+			"time": 17.82,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 117.82,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.81,
+			"episode": 8,
+			"outcome": "success",
+			"position": {
+				"x": 10210.2,
+				"y": 742.5
+			},
+			"pvp_hit_age": 117.82,
+			"realm": 2,
+			"seed": 102,
+			"time": 18.82,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 118.82,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.81,
+			"episode": 9,
+			"outcome": "success",
+			"position": {
+				"x": 10207.8,
+				"y": 742.5
+			},
+			"pvp_hit_age": 118.82,
+			"realm": 2,
+			"seed": 102,
+			"time": 19.82,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 119.82,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.81,
+			"episode": 10,
+			"outcome": "success",
+			"position": {
+				"x": 10211.5,
+				"y": 742.4
+			},
+			"pvp_hit_age": 119.82,
+			"realm": 2,
+			"seed": 102,
+			"time": 20.82,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 119.87,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "nova",
+			"duration": 0.01,
+			"episode": 1,
+			"outcome": "ringout",
+			"position": {
+				"x": 2309.9,
+				"y": 5467.7
+			},
+			"pvp_hit_age": 0.5,
+			"realm": 5,
+			"seed": 102,
+			"time": 20.87,
+			"velocity": {
+				"x": -86.0,
+				"y": 866.5
+			}
+		},
+		{
+			"air_down_age": 120.82,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.81,
+			"episode": 11,
+			"outcome": "success",
+			"position": {
+				"x": 10209.1,
+				"y": 742.4
+			},
+			"pvp_hit_age": 120.82,
+			"realm": 2,
+			"seed": 102,
+			"time": 21.82,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 121.83,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.82,
+			"episode": 12,
+			"outcome": "success",
+			"position": {
+				"x": 10212.8,
+				"y": 742.4
+			},
+			"pvp_hit_age": 121.83,
+			"realm": 2,
+			"seed": 102,
+			"time": 22.83,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 122.72,
+			"air_jumps_left": 1,
+			"cause": "other",
+			"character": "yuki",
+			"duration": 0.4,
+			"episode": 2,
+			"outcome": "success",
+			"position": {
+				"x": 10374.6,
+				"y": 6290.5
+			},
+			"pvp_hit_age": 17.43,
+			"realm": 7,
+			"seed": 102,
+			"time": 23.72,
+			"velocity": {
+				"x": 292.0,
+				"y": 76.7
+			}
+		},
+		{
+			"air_down_age": 122.83,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.82,
+			"episode": 13,
+			"outcome": "success",
+			"position": {
+				"x": 10210.3,
+				"y": 742.4
+			},
+			"pvp_hit_age": 122.83,
+			"realm": 2,
+			"seed": 102,
+			"time": 23.83,
+			"velocity": {
+				"x": 280.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 15.87,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "frey",
+			"duration": 0.18,
+			"episode": 4,
+			"outcome": "success",
+			"position": {
+				"x": 9978.6,
+				"y": 6462.0
+			},
+			"pvp_hit_age": 1.38,
+			"realm": 7,
+			"seed": 102,
+			"time": 24.65,
+			"velocity": {
+				"x": 0.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 123.8,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "yuki",
+			"duration": 0.18,
+			"episode": 3,
+			"outcome": "success",
+			"position": {
+				"x": 10462.1,
+				"y": 6373.4
+			},
+			"pvp_hit_age": 18.52,
+			"realm": 7,
+			"seed": 102,
+			"time": 24.8,
+			"velocity": {
+				"x": 172.0,
+				"y": 644.3
+			}
+		},
+		{
+			"air_down_age": 125.92,
+			"air_jumps_left": 1,
+			"cause": "other",
+			"character": "yuki",
+			"duration": 0.56,
+			"episode": 4,
+			"outcome": "success",
+			"position": {
+				"x": 10399.1,
+				"y": 6290.5
+			},
+			"pvp_hit_age": 20.63,
+			"realm": 7,
+			"seed": 102,
+			"time": 26.92,
+			"velocity": {
+				"x": 68.0,
+				"y": 76.7
+			}
+		},
+		{
+			"air_down_age": 18.58,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.83,
+			"episode": 5,
+			"outcome": "success",
+			"position": {
+				"x": 10462.0,
+				"y": 6499.8
+			},
+			"pvp_hit_age": 4.1,
+			"realm": 7,
+			"seed": 102,
+			"time": 27.37,
+			"velocity": {
+				"x": 81.8,
+				"y": 67.7
+			}
+		},
+		{
+			"air_down_age": 8.03,
+			"air_jumps_left": 1,
+			"cause": "other",
+			"character": "frey",
+			"duration": 0.28,
+			"episode": 6,
+			"outcome": "success",
+			"position": {
+				"x": 9954.4,
+				"y": 6323.8
+			},
+			"pvp_hit_age": 16.55,
+			"realm": 7,
+			"seed": 102,
+			"time": 39.82,
+			"velocity": {
+				"x": -264.9,
+				"y": 328.5
+			}
+		},
+		{
+			"air_down_age": 2.13,
+			"air_jumps_left": 1,
+			"cause": "other",
+			"character": "frey",
+			"duration": 0.28,
+			"episode": 14,
+			"outcome": "success",
+			"position": {
+				"x": 10493.7,
+				"y": 724.8
+			},
+			"pvp_hit_age": 143.7,
+			"realm": 2,
+			"seed": 102,
+			"time": 44.7,
+			"velocity": {
+				"x": -262.0,
+				"y": 328.5
+			}
+		},
+		{
+			"air_down_age": 2.87,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "frey",
+			"duration": 0.55,
+			"episode": 15,
+			"outcome": "success",
+			"position": {
+				"x": 10337.2,
+				"y": 702.9
+			},
+			"pvp_hit_age": 144.43,
+			"realm": 2,
+			"seed": 102,
+			"time": 45.43,
+			"velocity": {
+				"x": -262.0,
+				"y": 66.5
+			}
+		},
+		{
+			"air_down_age": 147.12,
+			"air_jumps_left": 0,
+			"cause": "knocked_off",
+			"character": "yuki",
+			"duration": 3.18,
+			"episode": 5,
+			"outcome": "ringout",
+			"position": {
+				"x": 9445.9,
+				"y": 3754.8
+			},
+			"pvp_hit_age": 0.52,
+			"realm": 4,
+			"seed": 102,
+			"time": 48.12,
+			"velocity": {
+				"x": -310.0,
+				"y": -830.7
+			}
+		},
+		{
+			"air_down_age": 23.97,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "luna",
+			"duration": 0.23,
+			"episode": 1,
+			"outcome": "ringout",
+			"position": {
+				"x": 1982.4,
+				"y": 152.5
+			},
+			"pvp_hit_age": 0.67,
+			"realm": 0,
+			"seed": 102,
+			"time": 53.47,
+			"velocity": {
+				"x": -449.6,
+				"y": 1314.8
+			}
+		},
+		{
+			"air_down_age": 13.87,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "nova",
+			"duration": 2.15,
+			"episode": 2,
+			"outcome": "ringout",
+			"position": {
+				"x": 1911.6,
+				"y": 889.7
+			},
+			"pvp_hit_age": 0.72,
+			"realm": 0,
+			"seed": 102,
+			"time": 53.52,
+			"velocity": {
+				"x": -436.3,
+				"y": 1314.8
+			}
+		},
+		{
+			"air_down_age": 10.78,
+			"air_jumps_left": 3,
+			"cause": "walked_or_dashed_off",
+			"character": "rio",
+			"duration": 0.1,
+			"episode": 2,
+			"outcome": "success",
+			"position": {
+				"x": 1258.4,
+				"y": 6478.6
+			},
+			"pvp_hit_age": 18.03,
+			"realm": 5,
+			"seed": 102,
+			"time": 53.77,
+			"velocity": {
+				"x": 92.4,
+				"y": 648.2
+			}
+		},
+		{
+			"air_down_age": 11.35,
+			"air_jumps_left": 3,
+			"cause": "walked_or_dashed_off",
+			"character": "rio",
+			"duration": 0.25,
+			"episode": 3,
+			"outcome": "success",
+			"position": {
+				"x": 1260.7,
+				"y": 6308.6
+			},
+			"pvp_hit_age": 18.6,
+			"realm": 5,
+			"seed": 102,
+			"time": 54.33,
+			"velocity": {
+				"x": 86.0,
+				"y": 49.9
+			}
+		},
+		{
+			"air_down_age": 26.45,
+			"air_jumps_left": 2,
+			"cause": "knocked_off",
+			"character": "frey",
+			"duration": 0.75,
+			"episode": 7,
+			"outcome": "success",
+			"position": {
+				"x": 9664.8,
+				"y": 3484.0
+			},
+			"pvp_hit_age": 0.72,
+			"realm": 4,
+			"seed": 102,
+			"time": 58.23,
+			"velocity": {
+				"x": -23.9,
+				"y": 66.5
+			}
+		},
+		{
+			"air_down_age": 5.53,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "rio",
+			"duration": 0.97,
+			"episode": 1,
+			"outcome": "success",
+			"position": {
+				"x": 9361.8,
+				"y": 3336.3
+			},
+			"pvp_hit_age": 0.57,
+			"realm": 4,
+			"seed": 102,
+			"time": 61.05,
+			"velocity": {
+				"x": 0.0,
+				"y": -853.8
+			}
+		},
+		{
+			"air_down_age": 29.35,
+			"air_jumps_left": 2,
+			"cause": "knocked_off",
+			"character": "frey",
+			"duration": 1.55,
+			"episode": 8,
+			"outcome": "success",
+			"position": {
+				"x": 9323.5,
+				"y": 3391.6
+			},
+			"pvp_hit_age": 0.62,
+			"realm": 4,
+			"seed": 102,
+			"time": 61.13,
+			"velocity": {
+				"x": 243.8,
+				"y": 976.6
+			}
+		},
+		{
+			"air_down_age": 6.85,
+			"air_jumps_left": 2,
+			"cause": "knocked_off",
+			"character": "rio",
+			"duration": 0.96,
+			"episode": 2,
+			"outcome": "success",
+			"position": {
+				"x": 9318.8,
+				"y": 3272.3
+			},
+			"pvp_hit_age": 1.3,
+			"realm": 4,
+			"seed": 102,
+			"time": 62.37,
+			"velocity": {
+				"x": -307.6,
+				"y": 339.8
+			}
+		},
+		{
+			"air_down_age": 4.38,
+			"air_jumps_left": 2,
+			"cause": "knocked_off",
+			"character": "frey",
+			"duration": 0.83,
+			"episode": 16,
+			"outcome": "success",
+			"position": {
+				"x": 9497.6,
+				"y": 3470.8
+			},
+			"pvp_hit_age": 1.57,
+			"realm": 4,
+			"seed": 102,
+			"time": 63.62,
+			"velocity": {
+				"x": 61.9,
+				"y": 80.7
+			}
+		},
+		{
+			"air_down_age": 7.25,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "yuki",
+			"duration": 0.88,
+			"episode": 6,
+			"outcome": "success",
+			"position": {
+				"x": 9510.9,
+				"y": 3569.7
+			},
+			"pvp_hit_age": 0.38,
+			"realm": 4,
+			"seed": 102,
+			"time": 74.37,
+			"velocity": {
+				"x": -310.0,
+				"y": 779.2
+			}
+		},
+		{
+			"air_down_age": 13.25,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "yuki",
+			"duration": 0.75,
+			"episode": 7,
+			"outcome": "success",
+			"position": {
+				"x": 9539.5,
+				"y": 3484.9
+			},
+			"pvp_hit_age": 6.38,
+			"realm": 4,
+			"seed": 102,
+			"time": 80.37,
+			"velocity": {
+				"x": -310.0,
+				"y": 338.7
+			}
+		},
+		{
+			"air_down_age": 0.05,
+			"air_jumps_left": 2,
+			"cause": "knocked_off",
+			"character": "rio",
+			"duration": 0.19,
+			"episode": 3,
+			"outcome": "success",
+			"position": {
+				"x": 10678.1,
+				"y": 3530.2
+			},
+			"pvp_hit_age": 2.4,
+			"realm": 4,
+			"seed": 102,
+			"time": 94.23,
+			"velocity": {
+				"x": 81.8,
+				"y": 47.3
+			}
+		},
+		{
+			"air_down_age": 54.92,
+			"air_jumps_left": 3,
+			"cause": "walked_or_dashed_off",
+			"character": "rio",
+			"duration": 0.75,
+			"episode": 4,
+			"outcome": "success",
+			"position": {
+				"x": 1816.2,
+				"y": 3439.2
+			},
+			"pvp_hit_age": 62.17,
+			"realm": 3,
+			"seed": 102,
+			"time": 97.9,
+			"velocity": {
+				"x": -260.8,
+				"y": 342.6
+			}
+		},
+		{
+			"air_down_age": 55.92,
+			"air_jumps_left": 3,
+			"cause": "walked_or_dashed_off",
+			"character": "rio",
+			"duration": 0.75,
+			"episode": 5,
+			"outcome": "success",
+			"position": {
+				"x": 1815.7,
+				"y": 3439.3
+			},
+			"pvp_hit_age": 63.17,
+			"realm": 3,
+			"seed": 102,
+			"time": 98.9,
+			"velocity": {
+				"x": -260.8,
+				"y": 342.6
+			}
+		},
+		{
+			"air_down_age": 26.92,
+			"air_jumps_left": 2,
+			"cause": "other",
+			"character": "frey",
+			"duration": 0.28,
+			"episode": 9,
+			"outcome": "success",
+			"position": {
+				"x": 10695.6,
+				"y": 3288.2
+			},
+			"pvp_hit_age": 3.23,
+			"realm": 4,
+			"seed": 102,
+			"time": 99.6,
+			"velocity": {
+				"x": 267.8,
+				"y": 317.0
+			}
+		},
+		{
+			"air_down_age": 56.92,
+			"air_jumps_left": 3,
+			"cause": "walked_or_dashed_off",
+			"character": "rio",
+			"duration": 0.38,
+			"episode": 6,
+			"outcome": "success",
+			"position": {
+				"x": 1815.1,
+				"y": 3439.3
+			},
+			"pvp_hit_age": 64.17,
+			"realm": 3,
+			"seed": 102,
+			"time": 99.9,
+			"velocity": {
+				"x": -260.8,
+				"y": 342.6
+			}
+		},
+		{
+			"air_down_age": 4.48,
+			"air_jumps_left": 2,
+			"cause": "knocked_off",
+			"character": "frey",
+			"duration": 0.73,
+			"episode": 17,
+			"outcome": "success",
+			"position": {
+				"x": 9617.0,
+				"y": 3486.4
+			},
+			"pvp_hit_age": 2.85,
+			"realm": 4,
+			"seed": 102,
+			"time": 110.87,
+			"velocity": {
+				"x": -247.6,
+				"y": 66.5
+			}
+		},
+		{
+			"air_down_age": 31.33,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "nova",
+			"duration": 0.11,
+			"episode": 2,
+			"outcome": "ringout",
+			"position": {
+				"x": 2029.5,
+				"y": 416.6
+			},
+			"pvp_hit_age": 0.7,
+			"realm": 0,
+			"seed": 102,
+			"time": 112.27,
+			"velocity": {
+				"x": -473.6,
+				"y": 1215.8
+			}
+		},
+		{
+			"air_down_age": 9.65,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "yuki",
+			"duration": 0.8,
+			"episode": 8,
+			"outcome": "success",
+			"position": {
+				"x": 10848.2,
+				"y": 3642.2
+			},
+			"pvp_hit_age": 0.38,
+			"realm": 4,
+			"seed": 102,
+			"time": 114.17,
+			"velocity": {
+				"x": -430.0,
+				"y": 953.9
+			}
+		},
+		{
+			"air_down_age": 65.23,
+			"air_jumps_left": 1,
+			"cause": "knocked_off",
+			"character": "nova",
+			"duration": 0.41,
+			"episode": 3,
+			"outcome": "ringout",
+			"position": {
+				"x": 37.8,
+				"y": 3090.1
+			},
+			"pvp_hit_age": 0.6,
+			"realm": 3,
+			"seed": 102,
+			"time": 146.17,
+			"velocity": {
+				"x": 86.0,
+				"y": 1128.5
+			}
+		},
+		{
+			"air_down_age": 108.45,
+			"air_jumps_left": 3,
+			"cause": "knocked_off",
+			"character": "rio",
+			"duration": 1.75,
+			"episode": 7,
+			"outcome": "ringout",
+			"position": {
+				"x": 1663.7,
+				"y": 3709.7
+			},
+			"pvp_hit_age": 0.45,
+			"realm": 3,
+			"seed": 102,
+			"time": 151.43,
+			"velocity": {
+				"x": -61.9,
+				"y": 410.6
+			}
+		},
+		{
+			"air_down_age": 0.83,
+			"air_jumps_left": 3,
+			"cause": "air_down",
+			"character": "rio",
+			"duration": 0.47,
+			"episode": 8,
+			"outcome": "success",
+			"position": {
+				"x": 204.7,
+				"y": 3122.7
+			},
+			"pvp_hit_age": 11.7,
+			"realm": 3,
+			"seed": 102,
+			"time": 173.95,
+			"velocity": {
+				"x": -326.8,
+				"y": 69.0
+			}
+		},
+		{
+			"air_down_age": 1.35,
+			"air_jumps_left": 1,
+			"cause": "air_down",
+			"character": "rio",
+			"duration": 0.43,
+			"episode": 4,
+			"outcome": "success",
+			"position": {
+				"x": 10711.0,
+				"y": 3269.5
+			},
+			"pvp_hit_age": 5.35,
+			"realm": 4,
+			"seed": 102,
+			"time": 180.97,
+			"velocity": {
+				"x": 361.3,
+				"y": -853.8
+			}
+		},
+		{
+			"air_down_age": 0.38,
+			"air_jumps_left": 2,
+			"cause": "knocked_off",
+			"character": "frey",
+			"duration": 0.29,
+			"episode": 18,
+			"outcome": "success",
+			"position": {
+				"x": 10694.5,
+				"y": 3286.1
+			},
+			"pvp_hit_age": 1.42,
+			"realm": 4,
+			"seed": 102,
+			"time": 181.18,
+			"velocity": {
+				"x": 165.7,
+				"y": 310.5
+			}
+		},
+		{
+			"air_down_age": 23.53,
+			"air_jumps_left": 1,
+			"cause": "walked_or_dashed_off",
+			"character": "rio",
+			"duration": 0.68,
+			"episode": 5,
+			"outcome": "success",
+			"position": {
+				"x": 9568.9,
+				"y": 3749.5
+			},
+			"pvp_hit_age": 17.6,
+			"realm": 4,
+			"seed": 102,
+			"time": 205.37,
+			"velocity": {
+				"x": 0.0,
+				"y": -853.8
+			}
+		},
+		{
+			"air_down_age": 28.18,
+			"air_jumps_left": 3,
+			"cause": "walked_or_dashed_off",
+			"character": "rio",
+			"duration": 0.76,
+			"episode": 9,
+			"outcome": "success",
+			"position": {
+				"x": 1711.9,
+				"y": 3447.6
+			},
+			"pvp_hit_age": 50.77,
+			"realm": 3,
+			"seed": 102,
+			"time": 213.02,
+			"velocity": {
+				"x": 0.0,
+				"y": 49.9
+			}
+		}
+	],
+	"recovery_skill_ask_events": [
+		{
+			"attack_locked_after_intent": true,
+			"character": "nova",
+			"distance": 352.7,
+			"intent": "skill_1",
+			"recovery_episode": 1,
+			"seed": 102,
+			"time": 15.73
+		},
+		{
+			"attack_locked_after_intent": true,
+			"character": "nova",
+			"distance": 375.7,
+			"intent": "skill_1",
+			"recovery_episode": 2,
+			"seed": 102,
+			"time": 54.68
+		},
+		{
+			"attack_locked_after_intent": true,
+			"character": "rio",
+			"distance": 173.2,
+			"intent": "skill_1",
+			"recovery_episode": 7,
+			"seed": 102,
+			"time": 152.27
+		}
+	],
+	"recovery_skill_events": [
+		{
+			"character": "nova",
+			"distance": 352.7,
+			"distance_end": 971.4,
+			"min_distance_after": 176.9,
+			"reached_floor": false,
+			"recovery_episode": 1,
+			"seed": 102,
+			"shortened_by": 175.8,
+			"time": 15.73,
+			"use_index": 1
+		},
+		{
+			"character": "nova",
+			"distance": 375.7,
+			"distance_end": 972.7,
+			"min_distance_after": 267.2,
+			"reached_floor": false,
+			"recovery_episode": 2,
+			"seed": 102,
+			"shortened_by": 108.5,
+			"time": 54.68,
+			"use_index": 1
+		},
+		{
+			"character": "rio",
+			"distance": 173.2,
+			"distance_end": 987.4,
+			"min_distance_after": 171.1,
+			"reached_floor": false,
+			"recovery_episode": 7,
+			"seed": 102,
+			"shortened_by": 2.1,
+			"time": 152.27,
+			"use_index": 1
+		}
+	],
+	"relocations": [],
+	"ringouts": [
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 1
+			},
+			"air_jumps_left": 0,
+			"attacker": "environment",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 0,
+			"seed": 102,
+			"time": 16.8,
+			"victim": "nova",
+			"zero_jump_cause": "recovery"
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 1,
+			"attacker": "rio",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 5,
+			"seed": 102,
+			"time": 20.9,
+			"victim": "nova",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 1,
+			"attacker": "yuki",
+			"during_recovery": false,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 7,
+			"seed": 102,
+			"time": 24.6,
+			"victim": "frey",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 1
+			},
+			"air_jumps_left": 0,
+			"attacker": "frey",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 4,
+			"seed": 102,
+			"time": 51.3,
+			"victim": "yuki",
+			"zero_jump_cause": "recovery"
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 1,
+			"attacker": "nova",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 0,
+			"seed": 102,
+			"time": 53.7,
+			"victim": "luna",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 1
+			},
+			"air_jumps_left": 0,
+			"attacker": "nova",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 0,
+			"seed": 102,
+			"time": 55.7,
+			"victim": "nova",
+			"zero_jump_cause": "recovery"
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 1,
+			"attacker": "environment",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Exploration",
+			"realm": 0,
+			"seed": 102,
+			"time": 112.4,
+			"victim": "nova",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 0
+			},
+			"air_jumps_left": 1,
+			"attacker": "rio",
+			"during_recovery": true,
+			"max_air_jumps": 1,
+			"phase": "Corner collapse warning",
+			"realm": 3,
+			"seed": 102,
+			"time": 146.6,
+			"victim": "nova",
+			"zero_jump_cause": ""
+		},
+		{
+			"air_jump_spends": {
+				"climbing": 0,
+				"combat": 0,
+				"other": 0,
+				"recovery": 3
+			},
+			"air_jumps_left": 0,
+			"attacker": "nova",
+			"during_recovery": true,
+			"max_air_jumps": 3,
+			"phase": "Convergence",
+			"realm": 3,
+			"seed": 102,
+			"time": 153.2,
+			"victim": "rio",
+			"zero_jump_cause": "recovery"
+		}
+	],
+	"round12_definitions": {
+		"r10_only_fall": "R10 accepts and live R12 rejects; r11_landing records whether R11 accepted at the same frame",
+		"r11_only_fall": "R11 accepts and live R12 rejects; entered_recovery records whether live R12 recovery began before landing or ring-out",
+		"saved_fall": "straight-down says void and live R12 accepts; r10_landing/r11_landing record the older predictors at the same frame"
+	},
+	"sample_interval": 0.25,
+	"saved_fall_events": [
+		{
+			"air_jumps_left": 2,
+			"character": "rio",
+			"duration": 0.03,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 686.1,
+				"y": 6537.9
+			},
+			"last_reason": "in range: mixing up",
+			"last_state": "engage",
+			"last_time": 1.18,
+			"last_velocity": {
+				"x": 193.3,
+				"y": 0.0
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 680.7,
+				"y": 6536.7
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": true,
+			"realm": 5,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 1.0,
+			"time": 1.15,
+			"velocity": {
+				"x": 69.4,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.23,
+			"intent_move_changes": 2,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 9799.2,
+				"y": 6292.4
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 4.9,
+			"last_velocity": {
+				"x": -61.9,
+				"y": 636.9
+			},
+			"move_input_changes": 2,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 9842.8,
+				"y": 6210.0
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 4.67,
+			"velocity": {
+				"x": -263.5,
+				"y": 25.7
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.18,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9318.1,
+				"y": 6239.0
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 6.85,
+			"last_velocity": {
+				"x": 396.0,
+				"y": 1314.8
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 9406.3,
+				"y": 6198.1
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 0.0,
+			"time": 6.67,
+			"velocity": {
+				"x": 0.0,
+				"y": 910.2
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.53,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 0,
+			"last_intent_move": 0.0,
+			"last_move_input": 0.0,
+			"last_position": {
+				"x": 9935.9,
+				"y": 6507.0
+			},
+			"last_reason": "target out of range: chasing",
+			"last_state": "pursue",
+			"last_time": 15.05,
+			"last_velocity": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 9840.7,
+				"y": 6116.2
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": true,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 1.0,
+			"time": 14.52,
+			"velocity": {
+				"x": 396.0,
+				"y": 33.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "nova",
+			"duration": 0.17,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 1,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 2309.9,
+				"y": 5467.7
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 20.87,
+			"last_velocity": {
+				"x": -86.0,
+				"y": 866.5
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 1762.4,
+				"y": 5581.1
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 5,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 0.0,
+			"time": 20.7,
+			"velocity": {
+				"x": 0.0,
+				"y": 429.9
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.32,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 0,
+			"last_intent_move": 0.0,
+			"last_move_input": 0.0,
+			"last_position": {
+				"x": 1202.3,
+				"y": 6538.0
+			},
+			"last_reason": "target out of range: chasing",
+			"last_state": "pursue",
+			"last_time": 23.35,
+			"last_velocity": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 1313.8,
+				"y": 6393.5
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": true,
+			"realm": 5,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 23.03,
+			"velocity": {
+				"x": -423.6,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.23,
+			"intent_move_changes": 2,
+			"intent_move_reversals": 1,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 10462.1,
+				"y": 6373.4
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 24.8,
+			"last_velocity": {
+				"x": 172.0,
+				"y": 644.3
+			},
+			"move_input_changes": 2,
+			"move_input_reversals": 1,
+			"outcome": "recover",
+			"position": {
+				"x": 10450.7,
+				"y": 6289.2
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": 0.0,
+			"start_move_input": 0.0,
+			"time": 24.57,
+			"velocity": {
+				"x": 0.0,
+				"y": 33.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.38,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 1,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9916.7,
+				"y": 6506.9
+			},
+			"last_reason": "target out of range: chasing",
+			"last_state": "pursue",
+			"last_time": 25.65,
+			"last_velocity": {
+				"x": 366.0,
+				"y": 0.0
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 1,
+			"outcome": "landed",
+			"position": {
+				"x": 9822.4,
+				"y": 6300.8
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": true,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 25.27,
+			"velocity": {
+				"x": -366.0,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.02,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 10440.9,
+				"y": 6506.9
+			},
+			"last_reason": "in range: mixing up",
+			"last_state": "engage",
+			"last_time": 26.95,
+			"last_velocity": {
+				"x": 366.0,
+				"y": 0.0
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 10434.8,
+				"y": 6505.6
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 1.0,
+			"time": 26.93,
+			"velocity": {
+				"x": 366.0,
+				"y": 264.8
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.72,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 0,
+			"last_intent_move": 0.0,
+			"last_move_input": 0.0,
+			"last_position": {
+				"x": 9704.8,
+				"y": 6334.0
+			},
+			"last_reason": "in range: mixing up",
+			"last_state": "engage",
+			"last_time": 32.07,
+			"last_velocity": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 9822.5,
+				"y": 6300.8
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": true,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 31.35,
+			"velocity": {
+				"x": -263.5,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.53,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9983.0,
+				"y": 6506.9
+			},
+			"last_reason": "target out of range: chasing",
+			"last_state": "pursue",
+			"last_time": 36.13,
+			"last_velocity": {
+				"x": 366.0,
+				"y": 0.0
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 9787.9,
+				"y": 6127.8
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": true,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 1.0,
+			"time": 35.6,
+			"velocity": {
+				"x": 366.0,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "frey",
+			"duration": 0.15,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 0,
+			"last_intent_move": 0.0,
+			"last_move_input": 0.0,
+			"last_position": {
+				"x": 9754.6,
+				"y": 6334.0
+			},
+			"last_reason": "no target: wandering",
+			"last_state": "wander",
+			"last_time": 40.68,
+			"last_velocity": {
+				"x": 0.0,
+				"y": 0.0
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 9793.4,
+				"y": 6300.7
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": true,
+			"realm": 7,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 40.53,
+			"velocity": {
+				"x": -368.9,
+				"y": 22.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.02,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": 0.0,
+			"last_position": {
+				"x": 9571.7,
+				"y": 3688.9
+			},
+			"last_reason": "too close: keeping range",
+			"last_state": "engage",
+			"last_time": 47.87,
+			"last_velocity": {
+				"x": 0.0,
+				"y": 169.8
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 9581.8,
+				"y": 3687.7
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": 0.0,
+			"time": 47.85,
+			"velocity": {
+				"x": 0.0,
+				"y": 429.9
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.24,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 1,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9445.9,
+				"y": 3754.8
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 48.12,
+			"last_velocity": {
+				"x": -310.0,
+				"y": -830.7
+			},
+			"move_input_changes": 2,
+			"move_input_reversals": 1,
+			"outcome": "recover",
+			"position": {
+				"x": 9562.1,
+				"y": 3689.1
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": 0.0,
+			"time": 47.88,
+			"velocity": {
+				"x": 0.0,
+				"y": 169.8
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "luna",
+			"duration": 0.1,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 1982.4,
+				"y": 152.5
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 53.47,
+			"last_velocity": {
+				"x": -449.6,
+				"y": 1314.8
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 1807.5,
+				"y": 205.0
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": true,
+			"realm": 0,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 53.37,
+			"velocity": {
+				"x": -449.6,
+				"y": 1314.8
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "nova",
+			"duration": 0.12,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 1911.6,
+				"y": 889.7
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 53.52,
+			"last_velocity": {
+				"x": -436.3,
+				"y": 1314.8
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 1771.1,
+				"y": 848.1
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 0,
+			"seed": 102,
+			"start_intent_move": 0.0,
+			"start_move_input": 0.0,
+			"time": 53.4,
+			"velocity": {
+				"x": 0.0,
+				"y": 1314.8
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.24,
+			"intent_move_changes": 2,
+			"intent_move_reversals": 2,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 1258.4,
+				"y": 6478.6
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 53.77,
+			"last_velocity": {
+				"x": 92.4,
+				"y": 648.2
+			},
+			"move_input_changes": 2,
+			"move_input_reversals": 2,
+			"outcome": "recover",
+			"position": {
+				"x": 1308.5,
+				"y": 6393.5
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": false,
+			"r11_landing": true,
+			"r11_landing_last": false,
+			"realm": 5,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 53.53,
+			"velocity": {
+				"x": -423.6,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "frey",
+			"duration": 0.45,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9323.5,
+				"y": 3391.6
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 61.13,
+			"last_velocity": {
+				"x": 243.8,
+				"y": 976.6
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 9569.1,
+				"y": 3450.9
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": 0.0,
+			"start_move_input": 0.0,
+			"time": 60.68,
+			"velocity": {
+				"x": 0.0,
+				"y": 123.9
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "rio",
+			"duration": 0.35,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 0.0,
+			"last_move_input": 0.0,
+			"last_position": {
+				"x": 9361.8,
+				"y": 3336.3
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 61.05,
+			"last_velocity": {
+				"x": 0.0,
+				"y": -853.8
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 9582.4,
+				"y": 3401.9
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": true,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": 0.0,
+			"start_move_input": 0.0,
+			"time": 60.7,
+			"velocity": {
+				"x": 0.0,
+				"y": 473.6
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "rio",
+			"duration": 0.12,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 1,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9318.8,
+				"y": 3272.3
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 62.37,
+			"last_velocity": {
+				"x": -307.6,
+				"y": 339.8
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 1,
+			"outcome": "recover",
+			"position": {
+				"x": 9356.1,
+				"y": 3247.9
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 62.25,
+			"velocity": {
+				"x": -307.6,
+				"y": 34.2
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.32,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 1175.2,
+				"y": 6537.9
+			},
+			"last_reason": "no target: wandering",
+			"last_state": "wander",
+			"last_time": 62.72,
+			"last_velocity": {
+				"x": -427.2,
+				"y": 0.0
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 1310.5,
+				"y": 6393.5
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": true,
+			"realm": 5,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 62.4,
+			"velocity": {
+				"x": -427.2,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.32,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 742.5,
+				"y": 6537.9
+			},
+			"last_reason": "no target: wandering",
+			"last_state": "wander",
+			"last_time": 70.1,
+			"last_velocity": {
+				"x": 427.2,
+				"y": 0.0
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 607.2,
+				"y": 6393.5
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": true,
+			"realm": 5,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 1.0,
+			"time": 69.78,
+			"velocity": {
+				"x": 427.2,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.27,
+			"intent_move_changes": 2,
+			"intent_move_reversals": 1,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9510.9,
+				"y": 3569.7
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 74.37,
+			"last_velocity": {
+				"x": -310.0,
+				"y": 779.2
+			},
+			"move_input_changes": 2,
+			"move_input_reversals": 1,
+			"outcome": "recover",
+			"position": {
+				"x": 9587.6,
+				"y": 3461.6
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": 0.0,
+			"start_move_input": 0.0,
+			"time": 74.1,
+			"velocity": {
+				"x": 0.0,
+				"y": 80.7
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.12,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 1,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9539.5,
+				"y": 3484.9
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 80.37,
+			"last_velocity": {
+				"x": -310.0,
+				"y": 338.7
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 1,
+			"outcome": "recover",
+			"position": {
+				"x": 9584.2,
+				"y": 3460.7
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 80.25,
+			"velocity": {
+				"x": -396.0,
+				"y": 33.0
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.12,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 1816.2,
+				"y": 3439.2
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 97.9,
+			"last_velocity": {
+				"x": -260.8,
+				"y": 342.6
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 1816.6,
+				"y": 3414.5
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 3,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 97.78,
+			"velocity": {
+				"x": 341.2,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.12,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 1815.7,
+				"y": 3439.3
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 98.9,
+			"last_velocity": {
+				"x": -260.8,
+				"y": 342.6
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 1816.0,
+				"y": 3414.6
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 3,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 98.78,
+			"velocity": {
+				"x": 341.2,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.12,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 1815.1,
+				"y": 3439.3
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 99.9,
+			"last_velocity": {
+				"x": -260.8,
+				"y": 342.6
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 1815.4,
+				"y": 3414.6
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 3,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 99.78,
+			"velocity": {
+				"x": 341.2,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "nova",
+			"duration": 0.09,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 2029.5,
+				"y": 416.6
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 112.27,
+			"last_velocity": {
+				"x": -473.6,
+				"y": 1215.8
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 1780.4,
+				"y": 447.5
+			},
+			"predictor": "both",
+			"r10_landing": true,
+			"r10_landing_last": true,
+			"r11_landing": true,
+			"r11_landing_last": false,
+			"realm": 0,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 112.18,
+			"velocity": {
+				"x": -473.6,
+				"y": 997.5
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "yuki",
+			"duration": 0.42,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 10848.2,
+				"y": 3642.2
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 114.17,
+			"last_velocity": {
+				"x": -430.0,
+				"y": 953.9
+			},
+			"move_input_changes": 2,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 10763.4,
+				"y": 3467.0
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": -1.0,
+			"start_move_input": -1.0,
+			"time": 113.75,
+			"velocity": {
+				"x": 346.0,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 1,
+			"character": "nova",
+			"duration": 0.05,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 37.8,
+				"y": 3090.1
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 146.17,
+			"last_velocity": {
+				"x": 86.0,
+				"y": 1128.5
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 132.9,
+				"y": 3117.4
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 3,
+			"seed": 102,
+			"start_intent_move": 0.0,
+			"start_move_input": 0.0,
+			"time": 146.12,
+			"velocity": {
+				"x": 0.0,
+				"y": 997.5
+			}
+		},
+		{
+			"air_jumps_left": 3,
+			"character": "rio",
+			"duration": 0.13,
+			"intent_move_changes": 1,
+			"intent_move_reversals": 0,
+			"last_intent_move": -1.0,
+			"last_move_input": -1.0,
+			"last_position": {
+				"x": 1663.7,
+				"y": 3709.7
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 151.43,
+			"last_velocity": {
+				"x": -61.9,
+				"y": 410.6
+			},
+			"move_input_changes": 1,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 1658.3,
+				"y": 3677.1
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 3,
+			"seed": 102,
+			"start_intent_move": 0.0,
+			"start_move_input": 0.0,
+			"time": 151.3,
+			"velocity": {
+				"x": 0.0,
+				"y": 61.4
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "frey",
+			"duration": 0.4,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9673.4,
+				"y": 3688.9
+			},
+			"last_reason": "target out of range: chasing",
+			"last_state": "pursue",
+			"last_time": 152.92,
+			"last_velocity": {
+				"x": 374.6,
+				"y": 0.0
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 9560.8,
+				"y": 3467.0
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": true,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 1.0,
+			"time": 152.52,
+			"velocity": {
+				"x": -288.6,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "rio",
+			"duration": 0.4,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9683.7,
+				"y": 3688.9
+			},
+			"last_reason": "target out of range: chasing",
+			"last_state": "pursue",
+			"last_time": 204.73,
+			"last_velocity": {
+				"x": 465.3,
+				"y": 0.0
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "landed",
+			"position": {
+				"x": 9559.7,
+				"y": 3467.1
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": true,
+			"r11_landing": false,
+			"r11_landing_last": true,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 1.0,
+			"time": 204.33,
+			"velocity": {
+				"x": -379.3,
+				"y": 37.0
+			}
+		},
+		{
+			"air_jumps_left": 2,
+			"character": "rio",
+			"duration": 0.24,
+			"intent_move_changes": 0,
+			"intent_move_reversals": 0,
+			"last_intent_move": 1.0,
+			"last_move_input": 1.0,
+			"last_position": {
+				"x": 9568.9,
+				"y": 3749.5
+			},
+			"last_reason": "off the stage: getting back",
+			"last_state": "recover",
+			"last_time": 205.37,
+			"last_velocity": {
+				"x": 0.0,
+				"y": -853.8
+			},
+			"move_input_changes": 0,
+			"move_input_reversals": 0,
+			"outcome": "recover",
+			"position": {
+				"x": 9566.2,
+				"y": 3689.5
+			},
+			"predictor": "arc_only",
+			"r10_landing": false,
+			"r10_landing_last": false,
+			"r11_landing": false,
+			"r11_landing_last": false,
+			"realm": 4,
+			"seed": 102,
+			"start_intent_move": 1.0,
+			"start_move_input": 1.0,
+			"time": 205.13,
+			"velocity": {
+				"x": -159.3,
+				"y": 37.0
+			}
+		}
+	],
+	"schema": 12,
+	"seeds": [
+		102
+	],
+	"standoff_trace_events": [],
+	"target_drop_events": [
+		{
+			"after_extension": false,
+			"blocked_age": 0.12,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "frey",
+			"distance": 362.8,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 102,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 2.95,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.33,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "frey",
+			"distance": 400.0,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 102,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 6.08,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 7.32,
+			"cause": "route_not_followed_wrong_level",
+			"character": "nova",
+			"distance": 202.9,
+			"gap_no_landing": false,
+			"route_exists": true,
+			"seed": 102,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 13.23,
+			"traded_within_3s": false,
+			"within_300": true,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.08,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "frey",
+			"distance": 477.4,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 102,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 16.05,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 10.7,
+			"cause": "route_not_followed_stuck",
+			"character": "rio",
+			"distance": 221.0,
+			"gap_no_landing": false,
+			"route_exists": true,
+			"seed": 102,
+			"stuck": true,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 16.97,
+			"traded_within_3s": false,
+			"within_300": true,
+			"wrong_level": true
+		},
+		{
+			"after_extension": false,
+			"blocked_age": 0.2,
+			"cause": "route_not_followed_gap_no_landing",
+			"character": "nova",
+			"distance": 496.9,
+			"gap_no_landing": true,
+			"route_exists": true,
+			"seed": 102,
+			"stuck": false,
+			"target_kind": "monster",
+			"target_moved_away": false,
+			"time": 38.33,
+			"traded_within_3s": false,
+			"within_300": false,
+			"wrong_level": true
+		}
+	],
+	"totals": {
+		"actions": {
+			"frey|Convergence|approach": 18.0,
+			"frey|Convergence|cross": 6.0,
+			"frey|Convergence|escape": 5.0,
+			"frey|Convergence|hold": 42.0,
+			"frey|Convergence|jump_in": 21.0,
+			"frey|Convergence|retreat": 29.0,
+			"frey|Corner collapse warning|approach": 25.0,
+			"frey|Corner collapse warning|cross": 17.0,
+			"frey|Corner collapse warning|escape": 3.0,
+			"frey|Corner collapse warning|hold": 39.0,
+			"frey|Corner collapse warning|jump_in": 25.0,
+			"frey|Corner collapse warning|retreat": 23.0,
+			"frey|Exploration|approach": 194.0,
+			"frey|Exploration|cross": 87.0,
+			"frey|Exploration|hold": 168.0,
+			"frey|Exploration|jump_in": 153.0,
+			"luna|Exploration|approach": 56.0,
+			"luna|Exploration|cross": 74.0,
+			"luna|Exploration|hold": 74.0,
+			"luna|Exploration|jump_in": 32.0,
+			"nova|Convergence|approach": 6.0,
+			"nova|Convergence|cross": 3.0,
+			"nova|Convergence|hold": 1.0,
+			"nova|Convergence|jump_in": 3.0,
+			"nova|Corner collapse warning|approach": 17.0,
+			"nova|Corner collapse warning|cross": 22.0,
+			"nova|Corner collapse warning|hold": 35.0,
+			"nova|Corner collapse warning|jump_in": 7.0,
+			"nova|Exploration|approach": 184.0,
+			"nova|Exploration|cross": 157.0,
+			"nova|Exploration|hold": 139.0,
+			"nova|Exploration|jump_in": 89.0,
+			"rio|Convergence|approach": 87.0,
+			"rio|Convergence|cross": 38.0,
+			"rio|Convergence|escape": 2.0,
+			"rio|Convergence|hold": 83.0,
+			"rio|Convergence|jump_in": 57.0,
+			"rio|Convergence|retreat": 30.0,
+			"rio|Corner collapse warning|approach": 66.0,
+			"rio|Corner collapse warning|cross": 40.0,
+			"rio|Corner collapse warning|hold": 62.0,
+			"rio|Corner collapse warning|jump_in": 42.0,
+			"rio|Exploration|approach": 194.0,
+			"rio|Exploration|cross": 144.0,
+			"rio|Exploration|hold": 202.0,
+			"rio|Exploration|jump_in": 139.0,
+			"yuki|Corner collapse warning|cross": 2.0,
+			"yuki|Corner collapse warning|hold": 5.0,
+			"yuki|Corner collapse warning|jump_in": 5.0,
+			"yuki|Corner collapse warning|retreat": 10.0,
+			"yuki|Exploration|approach": 63.0,
+			"yuki|Exploration|cross": 42.0,
+			"yuki|Exploration|escape": 28.0,
+			"yuki|Exploration|hold": 100.0,
+			"yuki|Exploration|jump_in": 71.0,
+			"yuki|Exploration|retreat": 80.0
+		},
+		"air_down_self_ringouts": {},
+		"attacks": {
+			"frey|basic_air_down": {
+				"damage": 54.8457383186234,
+				"hits": 8,
+				"uses": 16
+			},
+			"frey|basic_air_side": {
+				"damage": 80.0674505215128,
+				"hits": 14,
+				"uses": 34
+			},
+			"frey|basic_air_up": {
+				"damage": 57.9804439618772,
+				"hits": 7,
+				"uses": 13
+			},
+			"frey|basic_down": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 4
+			},
+			"frey|basic_side": {
+				"damage": 312.407478542531,
+				"hits": 64,
+				"uses": 98
+			},
+			"frey|basic_up": {
+				"damage": 46.9662985500714,
+				"hits": 8,
+				"uses": 12
+			},
+			"frey|skill_1": {
+				"damage": 170.255408069214,
+				"hits": 12,
+				"uses": 18
+			},
+			"frey|skill_2": {
+				"damage": 8.96380952380952,
+				"hits": 2,
+				"uses": 14
+			},
+			"frey|ultimate": {
+				"damage": 59.1539466129924,
+				"hits": 6,
+				"uses": 9
+			},
+			"luna|basic_air_down": {
+				"damage": 8.13866666666667,
+				"hits": 2,
+				"uses": 3
+			},
+			"luna|basic_air_side": {
+				"damage": 4.98711111111111,
+				"hits": 2,
+				"uses": 3
+			},
+			"luna|basic_down": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 2
+			},
+			"luna|basic_side": {
+				"damage": 101.753695555556,
+				"hits": 22,
+				"uses": 33
+			},
+			"luna|basic_up": {
+				"damage": 1.74222222222222,
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1": {
+				"damage": 42.2300028827375,
+				"hits": 8,
+				"uses": 13
+			},
+			"luna|skill_2": {
+				"damage": 2.98666666666667,
+				"hits": 1,
+				"uses": 4
+			},
+			"luna|ultimate": {
+				"damage": 4.16173333333333,
+				"hits": 1,
+				"uses": 5
+			},
+			"nova|basic_air_down": {
+				"damage": 69.484181953927,
+				"hits": 6,
+				"uses": 6
+			},
+			"nova|basic_air_side": {
+				"damage": 36.46944,
+				"hits": 4,
+				"uses": 9
+			},
+			"nova|basic_air_up": {
+				"damage": 5.33370970363866,
+				"hits": 2,
+				"uses": 3
+			},
+			"nova|basic_down": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side": {
+				"damage": 651.357794620101,
+				"hits": 94,
+				"uses": 125
+			},
+			"nova|basic_up": {
+				"damage": 2.38441411764706,
+				"hits": 1,
+				"uses": 3
+			},
+			"nova|skill_1": {
+				"damage": 9.856,
+				"hits": 1,
+				"uses": 6
+			},
+			"nova|skill_2": {
+				"damage": 5.53494069712743,
+				"hits": 2,
+				"uses": 9
+			},
+			"nova|ultimate": {
+				"damage": 0.680841485579515,
+				"hits": 1,
+				"uses": 7
+			},
+			"rio|basic_air_down": {
+				"damage": 158.592862103567,
+				"hits": 23,
+				"uses": 32
+			},
+			"rio|basic_air_side": {
+				"damage": 104.646295411021,
+				"hits": 23,
+				"uses": 33
+			},
+			"rio|basic_air_up": {
+				"damage": 38.9429396727201,
+				"hits": 7,
+				"uses": 14
+			},
+			"rio|basic_down": {
+				"damage": 4.84355678693646,
+				"hits": 2,
+				"uses": 3
+			},
+			"rio|basic_side": {
+				"damage": 704.984223382939,
+				"hits": 100,
+				"uses": 127
+			},
+			"rio|basic_up": {
+				"damage": 7.8935313140789,
+				"hits": 10,
+				"uses": 12
+			},
+			"rio|skill_1": {
+				"damage": 160.889796555345,
+				"hits": 17,
+				"uses": 23
+			},
+			"rio|skill_2": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 12
+			},
+			"rio|ultimate": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 9
+			},
+			"yuki|basic_air_down": {
+				"damage": 11.542196026657,
+				"hits": 3,
+				"uses": 9
+			},
+			"yuki|basic_air_side": {
+				"damage": 8.87933554817276,
+				"hits": 4,
+				"uses": 9
+			},
+			"yuki|basic_air_up": {
+				"damage": 1.83529411764706,
+				"hits": 1,
+				"uses": 3
+			},
+			"yuki|basic_down": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|basic_side": {
+				"damage": 70.8966470199928,
+				"hits": 16,
+				"uses": 482
+			},
+			"yuki|basic_up": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 23
+			},
+			"yuki|skill_2": {
+				"damage": 4.17065806702955,
+				"hits": 2,
+				"uses": 4
+			},
+			"yuki|ultimate": {
+				"damage": 0.0,
+				"hits": 0,
+				"uses": 4
+			}
+		},
+		"character_seconds": {
+			"frey": 319.25,
+			"luna": 64.25,
+			"nova": 227.5,
+			"rio": 434.5,
+			"yuki": 125.5
+		},
+		"corner_escapes": {
+			"frey": 3.0,
+			"rio": 1.0,
+			"yuki": 8.0
+		},
+		"cornered_guards": {
+			"frey": {
+				"blocks": 0,
+				"opportunities": 2,
+				"parries": 0,
+				"raised": 0,
+				"ringouts_within_3s": 0
+			},
+			"yuki": {
+				"blocks": 0,
+				"opportunities": 4,
+				"parries": 1,
+				"raised": 1,
+				"ringouts_within_3s": 0
+			}
+		},
+		"frey_recovery_entries": {
+			"knocked_off": 6,
+			"other": 4,
+			"walked_or_dashed_off": 17
+		},
+		"guards_by_attacker": {
+			"frey": {
+				"blocks": 1,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 2,
+				"raised": 16,
+				"reaction_in_recovery": 0,
+				"reactions": 28,
+				"too_late": 8
+			},
+			"luna": {
+				"blocks": 2,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 2,
+				"raised": 9,
+				"reaction_in_recovery": 0,
+				"reactions": 12,
+				"too_late": 2
+			},
+			"nova": {
+				"blocks": 9,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 1,
+				"raised": 23,
+				"reaction_in_recovery": 0,
+				"reactions": 34,
+				"too_late": 7
+			},
+			"rio": {
+				"blocks": 6,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 2,
+				"raised": 24,
+				"reaction_in_recovery": 0,
+				"reactions": 25,
+				"too_late": 4
+			},
+			"yuki": {
+				"blocks": 0,
+				"combo_2_blocks": 0,
+				"combo_3_blocks": 0,
+				"parries": 1,
+				"raised": 10,
+				"reaction_in_recovery": 0,
+				"reactions": 13,
+				"too_late": 2
+			}
+		},
+		"no_progress": {
+			"frey": {
+				"episodes": 1,
+				"far_y_seconds": 1.5,
+				"phases": {
+					"Convergence": 1.0,
+					"Corner collapse warning": 24.0
+				},
+				"seconds": 25.0
+			}
+		},
+		"nova": {
+			"aimed": 2,
+			"forced": 0,
+			"hits": 2,
+			"launches": 2,
+			"redirects": 0
+		},
+		"portal_reasons": {
+			"escape": 4.0,
+			"off_screen_hop": 8.0,
+			"roam": 2.0
+		},
+		"portals": {
+			"all": 14.0,
+			"collapse_escape": 4.0
+		},
+		"progress_extensions": {},
+		"pve_damage": {
+			"frey": 548.48912,
+			"luna": 110.422206391509,
+			"nova": 665.88326285709,
+			"rio": 930.807711040683,
+			"yuki": 63.72
+		},
+		"pvp_damage": {
+			"frey": 256.250208577899,
+			"luna": 55.5778920467836,
+			"nova": 179.22597715624,
+			"rio": 288.604122713437,
+			"yuki": 102.323537548292
+		},
+		"r10_only_falls": {
+			"frey|landed": 24.0,
+			"nova|ringout": 1.0,
+			"rio|landed": 6.0,
+			"yuki|landed": 4.0
+		},
+		"recovery": {
+			"frey": {
+				"fail": 0,
+				"success": 27,
+				"unfinished": 0
+			},
+			"luna": {
+				"fail": 1,
+				"success": 0,
+				"unfinished": 0
+			},
+			"nova": {
+				"fail": 5,
+				"success": 0,
+				"unfinished": 0
+			},
+			"rio": {
+				"fail": 1,
+				"success": 13,
+				"unfinished": 0
+			},
+			"yuki": {
+				"fail": 1,
+				"success": 7,
+				"unfinished": 0
+			}
+		},
+		"recovery_entries": {
+			"frey|knocked_off": 6.0,
+			"frey|other": 4.0,
+			"frey|walked_or_dashed_off": 17.0,
+			"luna|knocked_off": 1.0,
+			"nova|knocked_off": 4.0,
+			"nova|walked_or_dashed_off": 1.0,
+			"rio|air_down": 2.0,
+			"rio|knocked_off": 4.0,
+			"rio|other": 1.0,
+			"rio|walked_or_dashed_off": 7.0,
+			"yuki|knocked_off": 4.0,
+			"yuki|other": 2.0,
+			"yuki|walked_or_dashed_off": 2.0
+		},
+		"recovery_skill_asks": {
+			"nova": 2.0,
+			"rio": 1.0
+		},
+		"recovery_skills": {
+			"nova": {
+				"reached_floor": 0,
+				"used": 2
+			},
+			"rio": {
+				"reached_floor": 0,
+				"used": 1
+			}
+		},
+		"samples": {
+			"frey|Convergence": 157.0,
+			"frey|Corner collapse warning": 160.0,
+			"frey|Exploration": 960.0,
+			"luna|Exploration": 257.0,
+			"nova|Convergence": 49.0,
+			"nova|Corner collapse warning": 120.0,
+			"nova|Exploration": 741.0,
+			"rio|Convergence": 538.0,
+			"rio|Corner collapse warning": 240.0,
+			"rio|Exploration": 960.0,
+			"yuki|Corner collapse warning": 22.0,
+			"yuki|Exploration": 480.0
+		},
+		"saved_falls": {
+			"frey|landed": 6.0,
+			"frey|recover": 2.0,
+			"luna|recover": 1.0,
+			"nova|recover": 4.0,
+			"rio|landed": 5.0,
+			"rio|recover": 8.0,
+			"yuki|landed": 2.0,
+			"yuki|recover": 6.0
+		},
+		"standoffs": [],
+		"states": {
+			"frey|Convergence|engage": 121.0,
+			"frey|Convergence|pursue": 32.0,
+			"frey|Convergence|recover": 1.0,
+			"frey|Convergence|wander": 3.0,
+			"frey|Corner collapse warning|engage": 132.0,
+			"frey|Corner collapse warning|pursue": 28.0,
+			"frey|Exploration|engage": 602.0,
+			"frey|Exploration|portal": 9.0,
+			"frey|Exploration|pursue": 237.0,
+			"frey|Exploration|recover": 78.0,
+			"frey|Exploration|wander": 34.0,
+			"luna|Exploration|engage": 236.0,
+			"luna|Exploration|portal": 1.0,
+			"luna|Exploration|pursue": 18.0,
+			"luna|Exploration|recover": 1.0,
+			"luna|Exploration|wander": 1.0,
+			"nova|Convergence|engage": 13.0,
+			"nova|Convergence|pursue": 8.0,
+			"nova|Convergence|wander": 28.0,
+			"nova|Corner collapse warning|engage": 81.0,
+			"nova|Corner collapse warning|pursue": 17.0,
+			"nova|Corner collapse warning|recover": 2.0,
+			"nova|Corner collapse warning|wander": 20.0,
+			"nova|Exploration|engage": 569.0,
+			"nova|Exploration|pursue": 119.0,
+			"nova|Exploration|recover": 19.0,
+			"nova|Exploration|wander": 34.0,
+			"rio|Convergence|engage": 297.0,
+			"rio|Convergence|portal": 11.0,
+			"rio|Convergence|pursue": 98.0,
+			"rio|Convergence|recover": 18.0,
+			"rio|Convergence|wander": 114.0,
+			"rio|Corner collapse warning|engage": 210.0,
+			"rio|Corner collapse warning|portal": 4.0,
+			"rio|Corner collapse warning|pursue": 25.0,
+			"rio|Corner collapse warning|wander": 1.0,
+			"rio|Exploration|engage": 679.0,
+			"rio|Exploration|portal": 3.0,
+			"rio|Exploration|pursue": 138.0,
+			"rio|Exploration|recover": 21.0,
+			"rio|Exploration|wander": 119.0,
+			"yuki|Corner collapse warning|engage": 22.0,
+			"yuki|Exploration|engage": 384.0,
+			"yuki|Exploration|portal": 3.0,
+			"yuki|Exploration|pursue": 53.0,
+			"yuki|Exploration|recover": 30.0,
+			"yuki|Exploration|wander": 10.0
+		},
+		"stuck": {
+			"2|700|700": 0.5,
+			"4|1000|700": 0.25,
+			"4|1000|800": 0.25,
+			"4|1300|900": 0.25,
+			"4|900|900": 0.25,
+			"8|2100|1400": 0.25
+		},
+		"swing_context": {
+			"frey|basic_air_down|0_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_air_down|120_240|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_down|120_240|monster": {
+				"hits": 3,
+				"uses": 6
+			},
+			"frey|basic_air_down|120_240|player": {
+				"hits": 4,
+				"uses": 6
+			},
+			"frey|basic_air_down|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|0_120|monster": {
+				"hits": 3,
+				"uses": 5
+			},
+			"frey|basic_air_side|0_120|player": {
+				"hits": 6,
+				"uses": 11
+			},
+			"frey|basic_air_side|120_240|monster": {
+				"hits": 3,
+				"uses": 4
+			},
+			"frey|basic_air_side|120_240|player": {
+				"hits": 1,
+				"uses": 4
+			},
+			"frey|basic_air_side|240_360|monster": {
+				"hits": 0,
+				"uses": 5
+			},
+			"frey|basic_air_side|240_360|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|basic_air_up|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_air_up|0_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_air_up|120_240|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"frey|basic_air_up|120_240|player": {
+				"hits": 2,
+				"uses": 5
+			},
+			"frey|basic_air_up|240_360|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"frey|basic_down|120_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_side|0_120|crystal": {
+				"hits": 3,
+				"uses": 3
+			},
+			"frey|basic_side|0_120|monster": {
+				"hits": 20,
+				"uses": 21
+			},
+			"frey|basic_side|0_120|player": {
+				"hits": 26,
+				"uses": 36
+			},
+			"frey|basic_side|120_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|120_240|monster": {
+				"hits": 6,
+				"uses": 6
+			},
+			"frey|basic_side|120_240|player": {
+				"hits": 5,
+				"uses": 9
+			},
+			"frey|basic_side|240_360|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|240_360|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|240_360|player": {
+				"hits": 1,
+				"uses": 6
+			},
+			"frey|basic_up|0_120|crystal": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_up|0_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_up|120_240|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"frey|basic_up|120_240|player": {
+				"hits": 3,
+				"uses": 5
+			},
+			"frey|skill_2|120_240|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"frey|skill_2|120_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|skill_2|240_360|crystal": {
+				"hits": 0,
+				"uses": 2
+			},
+			"frey|skill_2|240_360|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|skill_2|240_360|player": {
+				"hits": 0,
+				"uses": 6
+			},
+			"luna|basic_air_down|0_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_down|120_240|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_down|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_side|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_side|120_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_side|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_down|0_120|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"luna|basic_side|0_120|monster": {
+				"hits": 10,
+				"uses": 10
+			},
+			"luna|basic_side|0_120|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"luna|basic_side|120_240|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"luna|basic_side|120_240|player": {
+				"hits": 6,
+				"uses": 8
+			},
+			"luna|basic_side|240_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|240_360|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"luna|basic_side|360_plus|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_up|120_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|0_120|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"luna|skill_1|120_240|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|skill_1|120_240|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|skill_1|240_360|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|240_360|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"luna|skill_1|360_plus|crystal": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|skill_2|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_2|240_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_2|240_360|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_2|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_down|0_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|0_120|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_air_down|0_120|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_air_down|120_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_side|0_120|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"nova|basic_air_side|0_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|120_240|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|120_240|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_side|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_up|0_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_up|120_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_up|240_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_down|240_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|0_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_side|0_120|monster": {
+				"hits": 54,
+				"uses": 56
+			},
+			"nova|basic_side|0_120|player": {
+				"hits": 27,
+				"uses": 27
+			},
+			"nova|basic_side|120_240|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_side|120_240|monster": {
+				"hits": 5,
+				"uses": 14
+			},
+			"nova|basic_side|120_240|player": {
+				"hits": 5,
+				"uses": 9
+			},
+			"nova|basic_side|240_360|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"nova|basic_side|240_360|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"nova|basic_side|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_up|120_240|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"nova|basic_up|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|skill_1|360_plus|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"rio|basic_air_side|0_120|crystal": {
+				"hits": 2,
+				"uses": 3
+			},
+			"rio|basic_air_side|0_120|monster": {
+				"hits": 6,
+				"uses": 8
+			},
+			"rio|basic_air_side|0_120|player": {
+				"hits": 11,
+				"uses": 11
+			},
+			"rio|basic_air_side|120_240|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_air_side|120_240|player": {
+				"hits": 3,
+				"uses": 10
+			},
+			"rio|basic_air_up|0_120|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"rio|basic_air_up|0_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"rio|basic_air_up|120_240|monster": {
+				"hits": 3,
+				"uses": 5
+			},
+			"rio|basic_air_up|120_240|player": {
+				"hits": 3,
+				"uses": 4
+			},
+			"rio|basic_down|0_120|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"rio|basic_down|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_side|0_120|crystal": {
+				"hits": 4,
+				"uses": 4
+			},
+			"rio|basic_side|0_120|monster": {
+				"hits": 60,
+				"uses": 70
+			},
+			"rio|basic_side|0_120|player": {
+				"hits": 24,
+				"uses": 30
+			},
+			"rio|basic_side|120_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_side|120_240|monster": {
+				"hits": 10,
+				"uses": 10
+			},
+			"rio|basic_side|120_240|player": {
+				"hits": 1,
+				"uses": 5
+			},
+			"rio|basic_up|0_120|crystal": {
+				"hits": 7,
+				"uses": 8
+			},
+			"rio|basic_up|0_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_up|120_240|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"rio|skill_1|360_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_down|0_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|120_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|120_240|player": {
+				"hits": 2,
+				"uses": 6
+			},
+			"yuki|basic_air_side|0_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_side|0_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_side|0_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|120_240|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"yuki|basic_air_side|240_360|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|basic_air_side|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_up|0_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_up|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_down|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|0_120|crystal": {
+				"hits": 3,
+				"uses": 3
+			},
+			"yuki|basic_side|0_120|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"yuki|basic_side|0_120|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"yuki|basic_side|120_240|monster": {
+				"hits": 5,
+				"uses": 5
+			},
+			"yuki|basic_side|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|240_360|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|basic_side|240_360|player": {
+				"hits": 3,
+				"uses": 4
+			},
+			"yuki|basic_side|360_plus|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_up|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|0_120|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|0_120|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_1|0_120|player": {
+				"hits": 0,
+				"uses": 6
+			},
+			"yuki|skill_1|120_240|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_1|120_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|240_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|240_360|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_1|240_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|360_plus|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_1|360_plus|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_2|120_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|240_360|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|skill_2|360_plus|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|ultimate|360_plus|player": {
+				"hits": 0,
+				"uses": 4
+			}
+		},
+		"swing_context_60": {
+			"frey|basic_air_down|120_180|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_down|120_180|monster": {
+				"hits": 3,
+				"uses": 5
+			},
+			"frey|basic_air_down|120_180|player": {
+				"hits": 3,
+				"uses": 5
+			},
+			"frey|basic_air_down|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_down|180_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_air_down|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_down|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_air_side|0_60|monster": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|basic_air_side|0_60|player": {
+				"hits": 2,
+				"uses": 5
+			},
+			"frey|basic_air_side|120_180|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"frey|basic_air_side|120_180|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|basic_air_side|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|240_300|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_air_side|240_300|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|basic_air_side|300_360|monster": {
+				"hits": 0,
+				"uses": 4
+			},
+			"frey|basic_air_side|60_120|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"frey|basic_air_side|60_120|player": {
+				"hits": 4,
+				"uses": 6
+			},
+			"frey|basic_air_up|120_180|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"frey|basic_air_up|120_180|player": {
+				"hits": 2,
+				"uses": 5
+			},
+			"frey|basic_air_up|240_300|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"frey|basic_air_up|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_air_up|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_down|120_180|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_side|0_60|crystal": {
+				"hits": 2,
+				"uses": 2
+			},
+			"frey|basic_side|0_60|monster": {
+				"hits": 13,
+				"uses": 13
+			},
+			"frey|basic_side|0_60|player": {
+				"hits": 17,
+				"uses": 23
+			},
+			"frey|basic_side|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|120_180|monster": {
+				"hits": 5,
+				"uses": 5
+			},
+			"frey|basic_side|120_180|player": {
+				"hits": 3,
+				"uses": 5
+			},
+			"frey|basic_side|180_240|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|180_240|player": {
+				"hits": 2,
+				"uses": 4
+			},
+			"frey|basic_side|240_300|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|240_300|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|240_300|player": {
+				"hits": 1,
+				"uses": 5
+			},
+			"frey|basic_side|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|basic_side|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|basic_side|60_120|monster": {
+				"hits": 7,
+				"uses": 8
+			},
+			"frey|basic_side|60_120|player": {
+				"hits": 9,
+				"uses": 13
+			},
+			"frey|basic_up|120_180|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"frey|basic_up|120_180|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"frey|basic_up|180_240|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"frey|basic_up|60_120|crystal": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|basic_up|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|skill_2|120_180|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_2|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_2|180_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"frey|skill_2|240_300|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_2|240_300|monster": {
+				"hits": 1,
+				"uses": 2
+			},
+			"frey|skill_2|240_300|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"frey|skill_2|300_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"frey|skill_2|300_360|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"luna|basic_air_down|180_240|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_down|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_air_down|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_side|0_60|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_side|120_180|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_air_side|480_540|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_down|0_60|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_down|60_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|0_60|monster": {
+				"hits": 7,
+				"uses": 7
+			},
+			"luna|basic_side|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|basic_side|120_180|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"luna|basic_side|120_180|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"luna|basic_side|180_240|player": {
+				"hits": 4,
+				"uses": 5
+			},
+			"luna|basic_side|240_300|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"luna|basic_side|300_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|360_420|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|basic_side|60_120|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"luna|basic_side|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|basic_up|120_180|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|120_180|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|180_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|240_300|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|240_300|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"luna|skill_1|300_360|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|420_480|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_1|480_540|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_1|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_2|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_2|240_300|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"luna|skill_2|240_300|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"luna|skill_2|420_480|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_down|0_60|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|120_180|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_down|60_120|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"nova|basic_air_side|0_60|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"nova|basic_air_side|0_60|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|120_180|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_side|180_240|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_side|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_up|120_180|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_air_up|240_300|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_air_up|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_down|240_300|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|0_60|monster": {
+				"hits": 31,
+				"uses": 32
+			},
+			"nova|basic_side|0_60|player": {
+				"hits": 21,
+				"uses": 21
+			},
+			"nova|basic_side|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_side|120_180|monster": {
+				"hits": 5,
+				"uses": 9
+			},
+			"nova|basic_side|120_180|player": {
+				"hits": 4,
+				"uses": 4
+			},
+			"nova|basic_side|180_240|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_side|180_240|monster": {
+				"hits": 0,
+				"uses": 5
+			},
+			"nova|basic_side|180_240|player": {
+				"hits": 1,
+				"uses": 5
+			},
+			"nova|basic_side|240_300|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"nova|basic_side|240_300|player": {
+				"hits": 0,
+				"uses": 3
+			},
+			"nova|basic_side|300_360|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|360_420|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_side|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_side|60_120|monster": {
+				"hits": 23,
+				"uses": 24
+			},
+			"nova|basic_side|60_120|player": {
+				"hits": 6,
+				"uses": 6
+			},
+			"nova|basic_up|120_180|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"nova|basic_up|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|basic_up|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"nova|skill_1|600_plus|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"rio|basic_air_side|0_60|crystal": {
+				"hits": 2,
+				"uses": 3
+			},
+			"rio|basic_air_side|0_60|monster": {
+				"hits": 4,
+				"uses": 5
+			},
+			"rio|basic_air_side|0_60|player": {
+				"hits": 6,
+				"uses": 6
+			},
+			"rio|basic_air_side|120_180|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_air_side|120_180|player": {
+				"hits": 2,
+				"uses": 9
+			},
+			"rio|basic_air_side|180_240|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_air_side|60_120|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"rio|basic_air_side|60_120|player": {
+				"hits": 5,
+				"uses": 5
+			},
+			"rio|basic_air_up|120_180|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"rio|basic_air_up|120_180|player": {
+				"hits": 3,
+				"uses": 4
+			},
+			"rio|basic_air_up|180_240|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"rio|basic_air_up|60_120|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"rio|basic_air_up|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"rio|basic_down|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_down|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|basic_down|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_side|0_60|crystal": {
+				"hits": 3,
+				"uses": 3
+			},
+			"rio|basic_side|0_60|monster": {
+				"hits": 34,
+				"uses": 42
+			},
+			"rio|basic_side|0_60|player": {
+				"hits": 17,
+				"uses": 23
+			},
+			"rio|basic_side|120_180|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_side|120_180|monster": {
+				"hits": 10,
+				"uses": 10
+			},
+			"rio|basic_side|120_180|player": {
+				"hits": 1,
+				"uses": 5
+			},
+			"rio|basic_side|60_120|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_side|60_120|monster": {
+				"hits": 26,
+				"uses": 28
+			},
+			"rio|basic_side|60_120|player": {
+				"hits": 7,
+				"uses": 7
+			},
+			"rio|basic_up|0_60|crystal": {
+				"hits": 7,
+				"uses": 7
+			},
+			"rio|basic_up|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"rio|basic_up|120_180|player": {
+				"hits": 2,
+				"uses": 3
+			},
+			"rio|basic_up|60_120|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"rio|skill_1|600_plus|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|120_180|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|120_180|player": {
+				"hits": 2,
+				"uses": 5
+			},
+			"yuki|basic_air_down|180_240|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_down|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_down|60_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|0_60|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_side|120_180|player": {
+				"hits": 1,
+				"uses": 3
+			},
+			"yuki|basic_air_side|240_300|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|basic_air_side|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_side|60_120|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_air_side|60_120|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_up|240_300|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_air_up|60_120|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_down|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|0_60|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_side|120_180|monster": {
+				"hits": 3,
+				"uses": 3
+			},
+			"yuki|basic_side|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|180_240|monster": {
+				"hits": 2,
+				"uses": 2
+			},
+			"yuki|basic_side|240_300|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|240_300|player": {
+				"hits": 2,
+				"uses": 2
+			},
+			"yuki|basic_side|300_360|monster": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|basic_side|300_360|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|basic_side|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|basic_side|60_120|crystal": {
+				"hits": 3,
+				"uses": 3
+			},
+			"yuki|basic_side|60_120|monster": {
+				"hits": 2,
+				"uses": 3
+			},
+			"yuki|basic_side|60_120|player": {
+				"hits": 1,
+				"uses": 2
+			},
+			"yuki|basic_up|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|0_60|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|0_60|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|0_60|player": {
+				"hits": 0,
+				"uses": 4
+			},
+			"yuki|skill_1|120_180|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|120_180|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|180_240|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_1|300_360|crystal": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|300_360|monster": {
+				"hits": 0,
+				"uses": 3
+			},
+			"yuki|skill_1|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|360_420|monster": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_1|420_480|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|420_480|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_1|60_120|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_1|60_120|player": {
+				"hits": 0,
+				"uses": 2
+			},
+			"yuki|skill_2|180_240|monster": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|240_300|player": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|skill_2|300_360|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|skill_2|360_420|crystal": {
+				"hits": 1,
+				"uses": 1
+			},
+			"yuki|ultimate|360_420|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|ultimate|420_480|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|ultimate|480_540|player": {
+				"hits": 0,
+				"uses": 1
+			},
+			"yuki|ultimate|600_plus|player": {
+				"hits": 0,
+				"uses": 1
+			}
+		},
+		"target_active_seconds": {
+			"frey": 304.75,
+			"luna": 63.0,
+			"nova": 197.75,
+			"rio": 355.75,
+			"yuki": 121.5
+		},
+		"target_drop_causes": {
+			"route_not_followed_gap_no_landing": 4.0,
+			"route_not_followed_stuck": 1.0,
+			"route_not_followed_wrong_level": 1.0
+		},
+		"target_drops": {
+			"frey": {
+				"all": 3,
+				"traded_within_3s": 0,
+				"within_300": 0
+			},
+			"nova": {
+				"all": 2,
+				"traded_within_3s": 0,
+				"within_300": 1
+			},
+			"rio": {
+				"all": 1,
+				"traded_within_3s": 0,
+				"within_300": 1
+			}
+		},
+		"target_switches": {
+			"frey": 76.0,
+			"luna": 12.0,
+			"nova": 66.0,
+			"rio": 110.0,
+			"yuki": 30.0
+		},
+		"targets": {
+			"frey|Convergence|monster": 88.0,
+			"frey|Convergence|none": 5.0,
+			"frey|Convergence|player": 64.0,
+			"frey|Corner collapse warning|monster": 3.0,
+			"frey|Corner collapse warning|player": 157.0,
+			"frey|Exploration|crystal": 47.0,
+			"frey|Exploration|monster": 345.0,
+			"frey|Exploration|none": 53.0,
+			"frey|Exploration|player": 515.0,
+			"luna|Exploration|crystal": 28.0,
+			"luna|Exploration|monster": 69.0,
+			"luna|Exploration|none": 5.0,
+			"luna|Exploration|player": 155.0,
+			"nova|Convergence|crystal": 8.0,
+			"nova|Convergence|none": 28.0,
+			"nova|Convergence|player": 13.0,
+			"nova|Corner collapse warning|crystal": 7.0,
+			"nova|Corner collapse warning|monster": 26.0,
+			"nova|Corner collapse warning|none": 26.0,
+			"nova|Corner collapse warning|player": 61.0,
+			"nova|Exploration|crystal": 33.0,
+			"nova|Exploration|monster": 374.0,
+			"nova|Exploration|none": 65.0,
+			"nova|Exploration|player": 269.0,
+			"rio|Convergence|crystal": 43.0,
+			"rio|Convergence|monster": 142.0,
+			"rio|Convergence|none": 142.0,
+			"rio|Convergence|player": 211.0,
+			"rio|Corner collapse warning|crystal": 17.0,
+			"rio|Corner collapse warning|monster": 36.0,
+			"rio|Corner collapse warning|none": 15.0,
+			"rio|Corner collapse warning|player": 172.0,
+			"rio|Exploration|crystal": 61.0,
+			"rio|Exploration|monster": 439.0,
+			"rio|Exploration|none": 158.0,
+			"rio|Exploration|player": 302.0,
+			"yuki|Corner collapse warning|player": 22.0,
+			"yuki|Exploration|crystal": 24.0,
+			"yuki|Exploration|monster": 156.0,
+			"yuki|Exploration|none": 16.0,
+			"yuki|Exploration|player": 284.0
+		},
+		"yuki_ledge_ringouts": {
+			"all": 1,
+			"near_ledge": 0
+		},
+		"zero_jump_ringout_causes": {
+			"recovery": 4.0
+		}
+	},
+	"wall_seconds": 81.774
+}
