@@ -70,6 +70,9 @@ const GUARD_REACTION_MIN := 0.14
 const GUARD_REACTION_MAX := 0.24
 const GUARD_HOLD_MIN := 0.28
 const GUARD_HOLD_MAX := 0.5
+## No guard once the swing it reacts to is this far past its wind-up: the hit is over (round 2:
+## at least 26 reactions began while the attack was already in recovery).
+const GUARD_LATE_GRACE := 0.1
 ## Anticipatory guard (debate D3): an opponent within its reach, facing us, while we are not
 ## attacking: this chance per decision to raise guard for a moment, as a human would.
 const GUARD_ANTICIPATE_CHANCE := 0.15
@@ -88,6 +91,17 @@ const AIM_VERTICAL_SLOPE := 0.65
 const PROGRESS_TIME := 2.5
 const PROGRESS_DISTANCE := 60.0
 const IGNORE_TIME := 5.0
+## "Another level" is judged by where a body stands (the floor under it while airborne), probed
+## this far down (Codex QA-14 round 2: jumping or launched targets read as another level, so
+## close fights were dropped and no-target time rose from 2-3% to 8-11%).
+const STANDING_PROBE_DEPTH := 900.0 * GAME_SCALE.WORLD
+## Once players come first (central brawl, or few left) monsters and crystals sort after every
+## player (round 2: central-brawl player targets fell to 75%, monsters rose to 17%).
+const LATE_NON_PLAYER_PENALTY := 1000000.0
+## A kiting fighter does not back into a ledge closer than this; it jumps past the opponent
+## (round 2: Yuki, who retreats 38% of its engage time, had 44 of 135 ring-outs).
+const RETREAT_EDGE_MARGIN := 150.0 * GAME_SCALE.WORLD
+const ESCAPE_JUMP_DISTANCE := 140.0 * GAME_SCALE.COMBAT
 ## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, already at
 ## the combat scale), score >= 3 fires 70% of the time, >= 2 once it has been ready 12 s.
 const ULTIMATE_REACH := {"frey": 480.0, "yuki": 820.0, "luna": 420.0, "nova": 460.0, "rio": 900.0}
@@ -177,6 +191,9 @@ var last_intent: Dictionary = {}
 var guard_hold_timer: float = 0.0
 var guard_delay_timer: float = -1.0
 var watched_attack_locks: Dictionary = {}
+## The swing seen starting this frame (watched every frame, also in hitstun, so a swing that
+## began meanwhile is not mistaken for a new one afterwards).
+var pending_threat: Node
 ## Direction to guard toward (read by PlayerBase when the guard starts).
 var guard_aim: Vector2 = Vector2.ZERO
 var guard_threat_from: Node
@@ -193,6 +210,7 @@ var nova_redirect_timer: float = -1.0
 var debug_reason: String = ""
 
 func update(player, delta: float) -> void:
+	pending_threat = _new_attack_threat(player)
 	if player.is_dummy or player.hitstun_timer > 0.0:
 		_apply_intent(player, _intent())
 		return
@@ -502,11 +520,15 @@ func _engage_intent(player, delta: float) -> Dictionary:
 			jump = player.is_on_floor() and (offset.y < -55.0 or not _has_floor_ahead(player, target_direction, FLOOR_PROBE_AHEAD))
 		"hold":
 			move = 0.0
+		"escape":
+			# Toward the opponent and over it, to open floor behind it.
+			move = target_direction
+			jump = player.is_on_floor() and distance_x < ESCAPE_JUMP_DISTANCE
 
 	# A target on a lower level: step off the ledge toward it when there is a landing (the
 	# engage band reaches farther down since attacks doubled; it used to stand on the edge).
 	var drop_down: bool = offset.y > NAV_SAME_LEVEL and move != 0.0 and signf(move) == target_direction and _has_drop_landing(player, target_direction)
-	var terrain_intent: Dictionary = _terrain_move_intent(player, move, jump, action == "approach" or action == "jump_in", drop_down)
+	var terrain_intent: Dictionary = _terrain_move_intent(player, move, jump, action == "approach" or action == "jump_in" or action == "escape", drop_down)
 	var attack_name: String = _choose_attack(player, distance_x, distance_y)
 	terrain_intent["attack"] = attack_name
 	if attack_name != "":
@@ -539,6 +561,9 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 	if back_off_timer > 0.0:
 		candidates = ["retreat"]
 		debug_reason = "low HP: backing off"
+	if candidates.has("retreat") and _cornered(player, target_direction):
+		candidates = ["escape"]
+		debug_reason = "cornered: jumping past"
 
 	action = _pick_non_repeating_action(candidates)
 	last_action = action
@@ -809,12 +834,17 @@ func _find_target(player) -> Node:
 	# The best few candidates are checked for a route (one path search each, only for
 	# targets on another level); unreachable ones are skipped (debate 2026-10-08).
 	var checks := 0
+	var own_floor: Vector2 = _standing_point(player, player)
 	for entry: Array in scored:
 		var candidate: Node = entry[1]
-		if absf(candidate.global_position.y - player.global_position.y) <= NAV_SAME_LEVEL or checks >= 3:
+		var stands: Vector2 = _standing_point(player, candidate)
+		# Over the void (falling or recovering): neither reachable nor worth ignoring.
+		if stands == Vector2.INF:
+			continue
+		if own_floor == Vector2.INF or absf(stands.y - own_floor.y) <= NAV_SAME_LEVEL or checks >= 3:
 			return candidate
 		checks += 1
-		if _has_route_to(player, candidate.global_position):
+		if _has_route_to(player, stands):
 			return candidate
 		ignored_targets[candidate] = IGNORE_TIME
 	return null
@@ -823,6 +853,7 @@ func _find_target(player) -> Node:
 func _scored_targets(player) -> Array:
 	var result: Array = []
 	var few_left := _alive_fighters(player) <= FEW_LEFT
+	var players_first: bool = few_left or float(player.ai_aggression) >= 1.0
 	for candidate in player.get_tree().get_nodes_in_group("players"):
 		if not _is_valid_target_candidate(player, candidate) or float(ignored_targets.get(candidate, 0.0)) > 0.0:
 			continue
@@ -844,8 +875,8 @@ func _scored_targets(player) -> Array:
 		if distance > MONSTER_TARGET_RANGE:
 			continue
 		var score: float = distance + 320.0 * GAME_SCALE.WORLD + absf(offset.y) * 0.12
-		if few_left:
-			score += PASSIVE_PLAYER_PENALTY
+		if players_first:
+			score += LATE_NON_PLAYER_PENALTY
 		result.append([score, candidate])
 	# Soul crystals: worth more than a monster and they do not fight back.
 	for candidate in player.get_tree().get_nodes_in_group("soul_crystals"):
@@ -856,8 +887,8 @@ func _scored_targets(player) -> Array:
 		if distance > MONSTER_TARGET_RANGE:
 			continue
 		var score: float = distance + 260.0 * GAME_SCALE.WORLD + absf(offset.y) * 0.12
-		if few_left:
-			score += PASSIVE_PLAYER_PENALTY
+		if players_first:
+			score += LATE_NON_PLAYER_PENALTY
 		result.append([score, candidate])
 	return result
 
@@ -1209,7 +1240,7 @@ func _attack_aim(player, attack_name: String) -> Vector2:
 ## Guard against an attack an opponent in reach has just started. Returns true while the
 ## bot is guarding or about to (the guard takes over its turn).
 func _update_guard(player, delta: float) -> bool:
-	var threat := _new_attack_threat(player)
+	var threat := pending_threat
 	if player.is_guarding:
 		guard_hold_timer -= delta
 		if guard_hold_timer <= 0.0:
@@ -1219,6 +1250,9 @@ func _update_guard(player, delta: float) -> bool:
 	if guard_delay_timer >= 0.0:
 		guard_delay_timer -= delta
 		if guard_delay_timer < 0.0:
+			if not _swing_still_coming(guard_threat_from):
+				debug_reason = "too late to block"
+				return false
 			if _start_guard_against(player, guard_threat_from):
 				guard_hold_timer = randf_range(GUARD_HOLD_MIN, GUARD_HOLD_MAX)
 				debug_reason = "blocking an attack"
@@ -1257,12 +1291,16 @@ func _maybe_anticipate_guard(player) -> void:
 func _new_attack_threat(player) -> Node:
 	var threat: Node = null
 	for candidate in player.get_tree().get_nodes_in_group("players"):
-		if candidate == player or not _is_valid_target_candidate(player, candidate):
+		if candidate == player:
 			continue
+		# Every fighter is recorded every frame before any filter, so one that comes into view
+		# or into the realm mid-swing is not taken for a fresh swing.
 		var lock := float(candidate.attack_lock_timer)
-		var previous := float(watched_attack_locks.get(candidate, 0.0))
-		watched_attack_locks[candidate] = lock
-		if lock <= previous or previous > 0.0:
+		var serial := int(candidate.get("attack_serial") if candidate.get("attack_serial") != null else 0)
+		var seen: Array = watched_attack_locks.get(candidate, [lock, serial])
+		watched_attack_locks[candidate] = [lock, serial]
+		var started: bool = serial != int(seen[1]) or (lock > 0.0 and float(seen[0]) <= 0.0)
+		if not started or not _is_valid_target_candidate(player, candidate):
 			continue
 		var offset: Vector2 = player.global_position - candidate.global_position
 		var facing_us := signf(offset.x) == float(candidate.facing) or absf(offset.x) < 24.0
@@ -1304,12 +1342,14 @@ func _update_target_progress(player, delta: float) -> void:
 		progress_best = distance
 		progress_timer = 0.0
 		return
-	if distance < progress_best - PROGRESS_DISTANCE * GAME_SCALE.WORLD:
-		progress_best = distance
+	# Closer, trading hits, or standing on our level (judged by floors, so a jump or a launch
+	# is not "another level") all count as progress.
+	if distance < progress_best - PROGRESS_DISTANCE * GAME_SCALE.WORLD or _trading_hits(player, target) or not _stands_on_other_level(player, target):
+		progress_best = minf(progress_best, distance)
 		progress_timer = 0.0
 		return
 	progress_timer += delta
-	if progress_timer >= PROGRESS_TIME and absf(target.global_position.y - player.global_position.y) > NAV_SAME_LEVEL:
+	if progress_timer >= PROGRESS_TIME:
 		ignored_targets[target] = IGNORE_TIME
 		debug_reason = "gave up: target out of reach"
 		target = null
@@ -1393,3 +1433,46 @@ func _opponents_in_realm(player, realm: int) -> int:
 		if candidate != player and int(candidate.get("realm_index")) == realm and not bool(candidate.get("is_defeated")) and not bool(candidate.get("is_dummy")):
 			count += 1
 	return count
+
+## Where a body stands: its own position on a floor, the floor under it while airborne, or INF
+## over the void.
+func _standing_point(player, body: Node) -> Vector2:
+	var at: Vector2 = body.global_position
+	if not (body is CharacterBody2D) or (body as CharacterBody2D).is_on_floor():
+		return at
+	var query := PhysicsRayQueryParameters2D.create(at + Vector2(0.0, -4.0), at + Vector2(0.0, STANDING_PROBE_DEPTH), WORLD_LAYER, [player.get_rid()])
+	var hit: Dictionary = player.get_world_2d().direct_space_state.intersect_ray(query)
+	return hit.position if not hit.is_empty() else Vector2.INF
+
+## Both stand on floors more than a level apart.
+func _stands_on_other_level(player, body: Node) -> bool:
+	var own: Vector2 = _standing_point(player, player)
+	var theirs: Vector2 = _standing_point(player, body)
+	if own == Vector2.INF or theirs == Vector2.INF:
+		return false
+	return absf(theirs.y - own.y) > NAV_SAME_LEVEL
+
+## One of us hit the other recently.
+func _trading_hits(player, body: Node) -> bool:
+	if _is_recent_attacker(player, body):
+		return true
+	var timer: Variant = body.get("last_attacker_timer")
+	return body.get("last_attacker") == player and timer != null and float(timer) > 0.0
+
+## On a floor with a ledge (no floor) within RETREAT_EDGE_MARGIN behind, away from the target.
+func _cornered(player, target_direction: float) -> bool:
+	if not player.is_on_floor():
+		return false
+	var back := -target_direction
+	return not _has_floor_ahead(player, back, RETREAT_EDGE_MARGIN * 0.5) or not _has_floor_ahead(player, back, RETREAT_EDGE_MARGIN)
+
+## The swing a guard reacts to can still land: it is on, and not past its wind-up by more than
+## GUARD_LATE_GRACE.
+func _swing_still_coming(opponent: Node) -> bool:
+	if not is_instance_valid(opponent) or float(opponent.get("attack_lock_timer")) <= 0.0:
+		return false
+	var elapsed: Variant = opponent.get("attack_elapsed")
+	var startup: Variant = opponent.get("attack_startup")
+	if elapsed == null or startup == null:
+		return true
+	return float(elapsed) <= float(startup) + GUARD_LATE_GRACE

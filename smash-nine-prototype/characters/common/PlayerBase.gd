@@ -193,6 +193,12 @@ var coyote_timer := 0.0
 var jump_buffer_timer := 0.0
 var attack_buffer_timer := 0.0
 var attack_lock_timer := 0.0
+## What a watcher can see of the current swing, the way a player reads the wind-up pose (bots
+## guard from it; Codex QA-14 round 2 / debate D3): swings started so far, time since this one
+## started, and its wind-up (0 for moves that act at once).
+var attack_serial := 0
+var attack_elapsed := 0.0
+var attack_startup := 0.0
 var hitstun_timer := 0.0
 var hitstop_timer := 0.0
 var current_attack_started_airborne := false
@@ -314,6 +320,11 @@ func _physics_process(delta: float) -> void:
 		hitstop_timer = maxf(hitstop_timer - delta, 0.0)
 		return
 	attack_lock_timer = maxf(attack_lock_timer - delta, 0.0)
+	if attack_lock_timer > 0.0:
+		attack_elapsed += delta
+	else:
+		attack_elapsed = 0.0
+		attack_startup = 0.0
 	_update_match_timers(delta)
 	control_slow_timer = maxf(control_slow_timer - delta, 0.0)
 	control_jump_slow_timer = maxf(control_jump_slow_timer - delta, 0.0)
@@ -844,6 +855,9 @@ func _dir_size(direction: Vector2, base_size: Vector2) -> Vector2:
 
 func _start_attack(startup: float, recovery: float, action: Callable) -> void:
 	attack_lock_timer = startup + recovery
+	attack_serial += 1
+	attack_elapsed = 0.0
+	attack_startup = startup
 	_play_sprite_action(&"attack", startup + recovery)
 	var attack_facing := facing
 	current_attack_started_airborne = not is_on_floor()

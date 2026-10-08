@@ -4,7 +4,9 @@ extends SceneTree
 ## a guard faces the attacker, also one behind the bot (D2); a target on another level that
 ## does not get closer is dropped and ignored (D4 lead finding / blind 1); the climb air jump
 ## keeps the last jump for recovery (D1); a bot-driven Nova launch redirects toward its
-## target (D5).
+## target (D5). Round 3 (Codex QA-14 round 2 data): a target that jumps during a close fight is
+## kept, levels are judged by floors; a swing that began during hitstun or is past its wind-up
+## raises no guard; a kiting bot at a ledge jumps past instead of backing off.
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -18,7 +20,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -120,10 +122,13 @@ func _test_guard_faces_attacker() -> void:
 	await process_frame
 
 func _test_drop_unreachable_target() -> void:
-	var bot := _fighter("luna", 1, Vector2(0, 0))
-	var monster_like := _fighter("yuki", 2, Vector2(60, 260))
+	var upper := _floor(Vector2(0, 0), 300)
+	var lower := _floor(Vector2(60, 260), 300)
+	var bot := _fighter("luna", 1, Vector2(0, -2))
+	var monster_like := _fighter("yuki", 2, Vector2(60, 258))
 	bot.set_physics_process(false)
 	monster_like.set_physics_process(false)
+	await physics_frame
 	var ai = bot.ai_controller
 	ai.state = ai.STATE_ENGAGE
 	ai.target = monster_like
@@ -133,6 +138,8 @@ func _test_drop_unreachable_target() -> void:
 		_fail("A target on another level that never gets closer should be dropped and ignored")
 	bot.queue_free()
 	monster_like.queue_free()
+	upper.queue_free()
+	lower.queue_free()
 	await process_frame
 
 func _test_climb_keeps_last_air_jump() -> void:
@@ -222,3 +229,104 @@ func _test_recovery_skill() -> void:
 			_fail("%s out of jumps below the stage should aim its skill up toward the platform (%s)" % [id, intent])
 		bot.queue_free()
 		await process_frame
+
+## Round 3: a target jumping above our own floor in a close fight is not "another level" (the
+## old check read its height, so bots dropped close fights whenever the target jumped).
+func _test_keep_jumping_target() -> void:
+	var ground := _floor(Vector2(0, 0), 900)
+	var bot := _fighter("frey", 1, Vector2(0, -2))
+	var foe := _fighter("rio", 2, Vector2(90, -240))
+	bot.set_physics_process(false)
+	foe.set_physics_process(false)
+	await physics_frame
+	var ai = bot.ai_controller
+	ai.state = ai.STATE_ENGAGE
+	ai.target = foe
+	for step in 40:
+		ai._update_target_progress(bot, 0.1)
+	if ai.target != foe:
+		_fail("A target jumping above the same floor should be kept, not dropped as unreachable")
+	if ai._find_target(bot) != foe:
+		_fail("A jumping target above the same floor should still be chosen as the target")
+	bot.queue_free()
+	foe.queue_free()
+	ground.queue_free()
+	await process_frame
+
+## Round 3 (debate D3): a swing that started while the bot was in hitstun is not taken for a new
+## one afterwards, and a reaction that comes after the wind-up has passed raises no guard.
+func _test_late_swing_no_guard() -> void:
+	var ground := _floor(Vector2(0, 0), 900)
+	var bot := _fighter("frey", 1, Vector2(0, -2))
+	var foe := _fighter("rio", 2, Vector2(120, -2))
+	foe.set_physics_process(false)
+	foe.facing = -1
+	for frame in 20:
+		await physics_frame
+	bot.set_physics_process(false)
+	var ai = bot.ai_controller
+	ai.update(bot, 0.016)
+	# The swing starts while the bot is stunned; the bot still watches it.
+	bot.hitstun_timer = 0.3
+	foe.attack_lock_timer = 0.3
+	foe.attack_serial += 1
+	foe.attack_elapsed = 0.0
+	foe.attack_startup = 0.08
+	ai.update(bot, 0.016)
+	bot.hitstun_timer = 0.0
+	ai.update(bot, 0.016)
+	if ai.pending_threat != null:
+		_fail("A swing that began during hitstun should not count as a new swing afterwards")
+	# A reaction that ends after the wind-up and the grace raises no guard.
+	if bot.is_guarding:
+		bot._stop_guard(false)
+	bot.guard_recovery_timer = 0.0
+	foe.attack_elapsed = 0.08 + ai.GUARD_LATE_GRACE + 0.05
+	ai.guard_threat_from = foe
+	ai.guard_delay_timer = 0.0
+	if ai._update_guard(bot, 0.016) or bot.is_guarding:
+		_fail("No guard once the swing is past its wind-up")
+	# In time, it guards.
+	foe.attack_elapsed = 0.02
+	ai.guard_delay_timer = 0.0
+	if not ai._update_guard(bot, 0.016) or not bot.is_guarding:
+		_fail("A reaction during the wind-up should raise the guard")
+	bot._stop_guard(false)
+	bot.queue_free()
+	foe.queue_free()
+	ground.queue_free()
+	await process_frame
+
+## Round 3: Yuki kites; at a ledge it jumps past the opponent instead of backing off the edge
+## (Codex QA-14 round 2: 44 of 135 ring-outs were Yuki's).
+func _test_cornered_escape() -> void:
+	var ground := _floor(Vector2(0, 0), 400)
+	var bot := _fighter("yuki", 1, Vector2(-180, -2))
+	var foe := _fighter("frey", 2, Vector2(-120, -2))
+	foe.set_physics_process(false)
+	for frame in 20:
+		await physics_frame
+	bot.set_physics_process(false)
+	if not bot.is_on_floor():
+		_fail("Test setup: the bot should stand near the left ledge")
+	var ai = bot.ai_controller
+	ai.target = foe
+	ai._choose_engage_action(bot, 60.0, 0.0, 1.0)
+	if ai.action != "escape":
+		_fail("A kiting bot with a ledge behind it should jump past, not retreat (action %s)" % ai.action)
+	# With open floor behind, it keeps its range as before.
+	bot.global_position = Vector2(60, -2)
+	foe.global_position = Vector2(120, -2)
+	await physics_frame
+	ai.last_action = ""
+	var retreats := 0
+	for roll in 12:
+		ai._choose_engage_action(bot, 60.0, 0.0, 1.0)
+		retreats += 1 if ai.action == "retreat" else 0
+		ai.last_action = ""
+	if retreats == 0:
+		_fail("With floor behind, a kiting bot should still retreat to keep its range")
+	bot.queue_free()
+	foe.queue_free()
+	ground.queue_free()
+	await process_frame
