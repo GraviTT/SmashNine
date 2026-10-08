@@ -562,8 +562,14 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 		candidates = ["retreat"]
 		debug_reason = "low HP: backing off"
 	if candidates.has("retreat") and _cornered(player, target_direction):
-		candidates = ["escape"]
-		debug_reason = "cornered: jumping past"
+		# Past an opponent on our level; one on another level is held off from here (walking
+		# toward it would drop a kiting fighter right next to it).
+		if distance_y <= NAV_SAME_LEVEL:
+			candidates = ["escape"]
+			debug_reason = "cornered: jumping past"
+		else:
+			candidates = ["hold"]
+			debug_reason = "cornered: holding the ledge"
 
 	action = _pick_non_repeating_action(candidates)
 	last_action = action

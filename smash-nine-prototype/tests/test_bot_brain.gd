@@ -314,6 +314,11 @@ func _test_cornered_escape() -> void:
 	ai._choose_engage_action(bot, 60.0, 0.0, 1.0)
 	if ai.action != "escape":
 		_fail("A kiting bot with a ledge behind it should jump past, not retreat (action %s)" % ai.action)
+	# Cornered by an opponent on a lower level, it holds the ledge instead of walking toward it.
+	ai.last_action = ""
+	ai._choose_engage_action(bot, 60.0, 200.0, 1.0)
+	if ai.action != "hold":
+		_fail("Cornered by an opponent on another level, a kiting bot should hold (action %s)" % ai.action)
 	# With open floor behind, it keeps its range as before.
 	bot.global_position = Vector2(60, -2)
 	foe.global_position = Vector2(120, -2)
