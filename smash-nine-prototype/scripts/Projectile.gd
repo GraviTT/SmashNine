@@ -16,6 +16,8 @@ var impact_vfx := ""
 var impact_tint := Color.WHITE
 ## Fighters' projectiles are drawn at GameScale.COMBAT (set by PlayerBase); monsters' at 1.
 var art_scale_multiplier := 1.0
+## Widths the callers' art scales were written for (files redrawn bigger draw smaller).
+const AUTHORED_ART_WIDTH := {"rio_gem_sword.png": 48.0, "rio_mana_wave.png": 24.0, "yuki_talisman.png": 32.0, "luna_star.png": 24.0}
 
 @onready var shape: CollisionShape2D = $CollisionShape2D
 @onready var visual: ColorRect = $Visual
@@ -46,7 +48,8 @@ func set_art(path: String, tint := Color.WHITE, art_scale := 2.0) -> bool:
 	var texture := ART_SETTINGS.original_texture(path)
 	if texture == null:
 		return false
-	var sprite := ART_SETTINGS.aimed_sprite(texture, direction, art_scale * art_scale_multiplier)
+	var ratio := ART_SETTINGS.size_ratio(texture, float(AUTHORED_ART_WIDTH.get(path.get_file(), texture.get_width())))
+	var sprite := ART_SETTINGS.aimed_sprite(texture, direction, art_scale * art_scale_multiplier / ratio)
 	sprite.modulate = tint
 	add_child(sprite)
 	visual.visible = false

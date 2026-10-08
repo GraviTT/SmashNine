@@ -39,6 +39,18 @@ const SPECS := {
 	"rio_l": [6, 18.0, Vector2(0, 80), false, ATTACK_DIR],
 }
 
+## Frame widths the anchors and callers' scales were written for. A strip redrawn bigger
+## (CODEX-ART-14/16: frames twice as large at 1x density) is drawn smaller by the ratio, so
+## the same call shows it at the same size with finer pixels.
+const AUTHORED_WIDTH := {
+	"frey_ult_charge": 128, "frey_ult_wave": 256, "yuki_ult_seal": 256, "yuki_ult_burst": 256,
+	"luna_ult_transform": 192, "luna_ult_laser": 128, "luna_ult_laser_head": 96, "nova_ult_core": 128,
+	"nova_ult_burst": 256, "rio_ult_circle": 192, "rio_ult_impact": 64,
+	"frey_slash": 192, "frey_k": 224, "frey_l": 128, "yuki_slash": 192, "yuki_k": 128, "yuki_l": 192,
+	"luna_slash": 192, "luna_k": 160, "luna_l": 192, "luna_brave_slash": 224, "nova_slash": 160,
+	"nova_k": 224, "nova_l": 192, "rio_slash": 192, "rio_k": 256, "rio_l": 128,
+}
+
 static var _cache: Dictionary = {}
 static var _additive: CanvasItemMaterial
 
@@ -48,13 +60,14 @@ static func spawn(parent: Node, effect: String, at: Vector2, scale := Vector2.ON
 	if frames == null or parent == null:
 		return null
 	var spec: Array = SPECS[effect]
+	var ratio := size_ratio(effect)
 	var sprite := AnimatedSprite2D.new()
 	sprite.name = "Vfx_%s" % effect
 	sprite.add_to_group("vfx")
 	sprite.sprite_frames = frames
 	sprite.centered = false
-	sprite.offset = -spec[2]
-	sprite.scale = scale
+	sprite.offset = -spec[2] * ratio
+	sprite.scale = scale / ratio
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.z_index = z
 	sprite.modulate = tint
@@ -128,12 +141,20 @@ static func _path(effect: String) -> String:
 	var spec: Array = SPECS[effect]
 	return (spec[4] if spec.size() > 4 else DIR) % effect
 
-## Frame width of an effect strip in pixels (0 when the art is missing).
+## Frame width of an effect strip as callers measure it (the authored width; 0 when the art
+## is missing). spawn() turns that into the file's real size.
 static func frame_width(effect: String) -> float:
 	var frames := _frames(effect, false)
 	if frames == null:
 		return 0.0
-	return float(frames.get_frame_texture(&"play", 0).get_width())
+	return float(AUTHORED_WIDTH.get(effect, frames.get_frame_texture(&"play", 0).get_width()))
+
+## Real frame width over the authored one (2 for a strip redrawn twice as large).
+static func size_ratio(effect: String) -> float:
+	var frames := _frames(effect, false)
+	if frames == null or not AUTHORED_WIDTH.has(effect):
+		return 1.0
+	return float(frames.get_frame_texture(&"play", 0).get_width()) / float(AUTHORED_WIDTH[effect])
 
 static func _additive_material() -> CanvasItemMaterial:
 	if _additive == null:

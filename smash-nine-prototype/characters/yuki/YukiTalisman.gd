@@ -50,7 +50,8 @@ func configure(new_source: Node, size: Vector2, new_damage: float, new_knockback
 	# Original talisman art while it flies; the burst keeps the coloured ward rect.
 	var art := ART_SETTINGS.original_texture(TALISMAN_ART)
 	if art != null:
-		art_sprite = ART_SETTINGS.aimed_sprite(art, direction, 2.0 * GAME_SCALE.COMBAT)
+		# 32 px wide when written; a redrawn larger file draws smaller (same size on screen).
+		art_sprite = ART_SETTINGS.aimed_sprite(art, direction, 2.0 * GAME_SCALE.COMBAT / ART_SETTINGS.size_ratio(art, 32.0))
 		add_child(art_sprite)
 		visual.color.a = 0.0
 

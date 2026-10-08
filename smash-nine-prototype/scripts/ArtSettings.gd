@@ -46,6 +46,14 @@ static func original_character_sheet(character_id: String, body := "") -> Textur
 
 ## A sprite for right-facing effect art (projectiles) pointed along `direction`: art
 ## aimed left is mirrored instead of turned upside down. Scale 2 matches the fighters.
+## Effect files redrawn at a larger size for today's scales (CODEX-ART-14/16) are drawn smaller
+## by this ratio, so code written for the old size keeps its on-screen size: actual width over
+## the width the code was written for (1 for the old files).
+static func size_ratio(texture: Texture2D, authored_width: float) -> float:
+	if texture == null or authored_width <= 0.0:
+		return 1.0
+	return maxf(float(texture.get_width()) / authored_width, 0.01)
+
 static func aimed_sprite(texture: Texture2D, direction: Vector2, art_scale := 2.0) -> Sprite2D:
 	var sprite := Sprite2D.new()
 	sprite.name = "ArtSprite"

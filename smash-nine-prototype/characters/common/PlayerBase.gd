@@ -1538,10 +1538,12 @@ func _spawn_hit_effect(hit_position: Vector2, damage: float, base_knockback: flo
 		# Original 4-frame burst (48 px cells), sized like the old spark.
 		var burst := AnimatedSprite2D.new()
 		var frames := SHEET_FRAMES.create_frames()
-		SHEET_FRAMES.add_strip(frames, &"burst", spark_sheet, Vector2i(48, 48), 0, 4, 44.0, false)
+		var cell := spark_sheet.get_height()
+		SHEET_FRAMES.add_strip(frames, &"burst", spark_sheet, Vector2i(cell, cell), 0, 4, 44.0, false)
 		burst.sprite_frames = frames
 		burst.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		burst.scale = Vector2.ONE * (spark_size / 24.0)
+		# The burst fills about twice spark_size whatever the file's cell size.
+		burst.scale = Vector2.ONE * (spark_size * 2.0 / cell)
 		burst.position = hit_position
 		burst.z_index = 4
 		get_parent().add_child(burst)

@@ -56,14 +56,16 @@ func configure(new_source: Node, cast_direction: Vector2, beam_duration: float) 
 	outline.antialiased = true
 	beam_frames = VFX.frame_textures("luna_ult_laser")
 	if not beam_frames.is_empty():
-		var art_scale := beam_height / 96.0
+		# Tiles keep their proportions: scaled to the beam's height, repeated along its length.
+		var frame_height := float(beam_frames[0].get_height())
+		var art_scale := beam_height / frame_height
 		beam_art = TextureRect.new()
 		beam_art.texture = beam_frames[0]
 		beam_art.stretch_mode = TextureRect.STRETCH_TILE
 		beam_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		beam_art.size = Vector2(beam_length, 96.0)
-		beam_art.scale = Vector2(1.0, art_scale)
-		beam_art.position = Vector2(-beam_length * 0.5, -48.0 * art_scale)
+		beam_art.size = Vector2(beam_length / art_scale, frame_height)
+		beam_art.scale = Vector2(art_scale, art_scale)
+		beam_art.position = Vector2(-beam_length * 0.5, -frame_height * 0.5 * art_scale)
 		beam_art.material = CanvasItemMaterial.new()
 		beam_art.material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 		beam_art.mouse_filter = Control.MOUSE_FILTER_IGNORE

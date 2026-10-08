@@ -51,7 +51,8 @@ func configure(new_source: Node, new_direction: Vector2, new_damage: float, new_
 		var sprite := Sprite2D.new()
 		sprite.texture = art
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		sprite.scale = Vector2(2.0, 2.0)
+		# 24 px wide when written; a redrawn larger file draws smaller (same size on screen).
+		sprite.scale = Vector2.ONE * 2.0 / ART_SETTINGS.size_ratio(art, 24.0)
 		sprite.flip_v = direction.x < 0.0
 		add_child(sprite)
 		visual.visible = false
