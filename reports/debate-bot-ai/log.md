@@ -114,3 +114,13 @@ Round 8 (attacks x1.5 + the dead-band fix): seed 112's stall gone (415.9 → 263
 | R9-2 Yuki central monsters (Codex #1) | **accept, different fix** | Likely cause: the round-8 blocked-way rule also dropped targets within attack range (a ranged fighter across a gap). The rule now applies only out of attack range. Codex's stronger option (no monsters while a valid player exists) is held until round 9 shows whether this suffices. |
 | R9-3 input-less engages (Codex #4) | **accept** | A monster only after us is not progress (Luna/monster stall); no kiting from crystals (Yuki/crystal). |
 | R9-4 recovery entries (Codex #3) | **measure** | Round 9 splits recovery entries by cause (walked or dashed off, air-down, knockback). |
+
+## Round 10 (measurement: Codex QA-14 round 9, `reports/codex-qa-14/round9.md`)
+
+All five round-9 changes kept: Yuki central-brawl monster targets 42% → 10%, drops 390 → 304 (gap-caused 229 → 120), ring-outs per match 9.17 → 8.08, recovery 96.2%. New: 1,840 of 2,386 recovery entries (77%) were self-inflicted (walked or dashed off; Nova 667); no-progress 707 → 994 s, standoffs 3 → 6, input-less engages 2 → 4 (Yuki held a monster 607 px away across a 407 px gap for 5 s), no-route cases 14 → 71.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R10-1 self-inflicted recoveries (Codex #1) | **accept** | Recovery starts only when no floor lies under the fall path: straight-down probes at 0, 0.25, 0.5 and 0.8 s ahead along the horizontal speed (the straight-down probe called every drop to an offset lower platform a fall into the void, and the recovery spent air jumps). |
+| R10-2 in-range but idle (Codex #2) | **accept** | The blocked-way rule spares a bot that attacked within 2.5 s, not one merely in attack range. |
+| R10-3 no-route fallback (Codex #3) | **later** | Needs a design for what a bot does when no target is reachable (nearest reachable point, roam, other target). |

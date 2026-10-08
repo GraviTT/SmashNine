@@ -71,6 +71,12 @@ const RECOVER_START_FROM_BOTTOM := 40.0
 const RECOVER_EXIT_FROM_BOTTOM := 60.0
 const RECOVER_JUMP_RETRY := 0.3
 const VOID_PROBE_DEPTH := 700.0 * GAME_SCALE.WORLD
+## Recovery starts only when no floor lies under the fall path: probed straight down at these
+## times ahead along the current horizontal speed (Codex QA-14 round 9: 77% of 2,386 recovery
+## entries were bots dropping or dashing to a lower platform that was not straight below, so the
+## straight-down probe called it a fall into the void and spent air jumps).
+const FALL_PROBE_TIMES: Array[float] = [0.0, 0.25, 0.5, 0.8]
+const FALL_PROBE_MAX_AHEAD := 360.0 * GAME_SCALE.WORLD
 ## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
 ## Fixed extra ultimate presses (Luna's heart laser). Nova's slingshot is driven by aim
 ## instead (_drive_nova_slingshot).
@@ -242,6 +248,8 @@ var ultimate_ready_time: float = 0.0
 var disengage_cooldown: float = 0.0
 var no_target_time: float = 0.0
 var escape_cooldown: float = 0.0
+## Seconds since this bot last attacked (the blocked-way rule spares a bot that is attacking).
+var attack_age: float = 100.0
 var back_off_timer: float = 0.0
 var nova_stage_timer: float = -1.0
 var nova_redirect_timer: float = -1.0
@@ -263,6 +271,7 @@ func update(player, delta: float) -> void:
 	back_off_timer = maxf(back_off_timer - delta, 0.0)
 	escape_cooldown = maxf(escape_cooldown - delta, 0.0)
 	blocked_age += delta
+	attack_age += delta
 	no_target_time = 0.0 if is_instance_valid(target) else no_target_time + delta
 
 	if _needs_recovery(player):
@@ -573,6 +582,7 @@ func _engage_intent(player, delta: float) -> Dictionary:
 	var attack_name: String = _choose_attack(player, distance_x, distance_y)
 	terrain_intent["attack"] = attack_name
 	if attack_name != "":
+		attack_age = 0.0
 		terrain_intent["aim"] = _attack_aim(player, attack_name)
 	return terrain_intent
 
@@ -831,8 +841,19 @@ func _needs_recovery(player) -> bool:
 		return true
 	if player.is_on_floor() or player.velocity.y <= 0.0:
 		return false
-	# Falling with nothing below: start heading back now, not near the blast line.
-	return local_position.y > player.realm_size.y - RECOVER_START_FROM_BOTTOM or _over_void(player)
+	# Falling with nothing under the fall path: start heading back now, not near the blast line.
+	return local_position.y > player.realm_size.y - RECOVER_START_FROM_BOTTOM or not _landing_in_fall(player)
+
+## Some floor lies under the path the fighter is falling along (straight down now, and where its
+## horizontal speed takes it in the next 0.8 s).
+func _landing_in_fall(player) -> bool:
+	var foot: Vector2 = player.global_position
+	for seconds in FALL_PROBE_TIMES:
+		var ahead: float = clampf(player.velocity.x * seconds, -FALL_PROBE_MAX_AHEAD, FALL_PROBE_MAX_AHEAD)
+		var from: Vector2 = foot + Vector2(ahead, 0.0)
+		if _ray_hits_world(player, from, from + Vector2(0.0, VOID_PROBE_DEPTH)):
+			return true
+	return false
 
 func _over_void(player) -> bool:
 	var foot: Vector2 = player.global_position
@@ -1461,10 +1482,11 @@ func _update_target_progress(player, delta: float) -> void:
 	# is not "another level") all count as progress — our level only while the way is open
 	# (Codex QA-14 round 7, seed 112: two Freys 401 px apart at the edges of two platforms,
 	# 1 px out of reach and no landing to jump to, "engaged" for 189 s without moving).
-	# ... and only out of attack range: a ranged fighter across a gap still fights (round 8: Yuki
-	# dropped players it could hit, central-brawl monster targets 8% -> 42%).
-	var out_of_reach: bool = absf(target.global_position.x - player.global_position.x) > float(_combat_profile(player).attack_range)
-	var blocked_toward: bool = out_of_reach and blocked_age < BLOCKED_MEMORY and signf(blocked_direction) == signf(target.global_position.x - player.global_position.x)
+	# ... unless the bot is still attacking it: a ranged fighter across a gap fights on (round 8:
+	# Yuki dropped players it could hit), one that only stands there does not (round 9: Yuki held
+	# a monster 607 px away across a 407 px gap for 5 s without moving or attacking).
+	var attacking: bool = attack_age < PROGRESS_TIME
+	var blocked_toward: bool = not attacking and blocked_age < BLOCKED_MEMORY and signf(blocked_direction) == signf(target.global_position.x - player.global_position.x)
 	var open_same_level: bool = not blocked_toward and not _stands_on_other_level(player, target)
 	if distance < progress_best - PROGRESS_DISTANCE * GAME_SCALE.WORLD or _trading_hits(player, target) or open_same_level:
 		progress_best = minf(progress_best, distance)

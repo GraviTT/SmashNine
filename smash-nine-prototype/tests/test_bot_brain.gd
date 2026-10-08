@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -615,8 +615,10 @@ func get_ai_platform_rects_for_realm(_realm: int) -> Array[Rect2]:
 	ground.queue_free()
 	await process_frame
 
-## Round 9: a blocked way does not drop a target still in attack range (a ranged fighter fights
-## across a gap); a monster that is only after us is not progress; nobody kites from a crystal.
+## Round 9-10: a blocked way does not drop a target the bot keeps attacking (a ranged fighter
+## fights across a gap) but does drop one it only stands facing (round 9: Yuki held a monster
+## 607 px away for 5 s); a monster that is only after us is not progress; nobody kites from a
+## crystal.
 func _test_round9_targets() -> void:
 	var left := _floor(Vector2(-300, 0), 400)
 	var right := _floor(Vector2(501, 0), 400)
@@ -636,9 +638,17 @@ func _test_round9_targets() -> void:
 	ai._update_target_progress(bot, 0.1)
 	for step in 40:
 		ai._terrain_move_intent(bot, 1.0, false, true)
+		ai.attack_age = 0.0
 		ai._update_target_progress(bot, 0.1)
 	if ai.target != foe:
-		_fail("A target across a gap but within attack range should be kept (Yuki reach %.0f, gap target 401 px)" % float(ai._combat_profile(bot).attack_range))
+		_fail("A target across a gap that the bot keeps attacking should be kept")
+	# 2.5 s until it no longer counts as attacking, then 2.5 s without progress.
+	for step in 60:
+		ai._terrain_move_intent(bot, 1.0, false, true)
+		ai.attack_age += 0.1
+		ai._update_target_progress(bot, 0.1)
+	if ai.target != null:
+		_fail("A target across a gap that the bot only stands facing should be dropped")
 	# A monster after us that we never hit is not progress.
 	var monster_script := GDScript.new()
 	monster_script.source_code = "extends Node2D
@@ -671,4 +681,24 @@ var last_attacker: Node
 	foe.queue_free()
 	left.queue_free()
 	right.queue_free()
+	await process_frame
+
+## Round 10 (Codex QA-14 round 9: 77% of recovery entries were bots dropping to a lower platform
+## that was not straight below): falling toward floor along the fall path is not a recovery.
+func _test_fall_path_landing() -> void:
+	var lower := _floor(Vector2(300, 0), 300)
+	var bot := _fighter("nova", 1, Vector2(0, -300))
+	bot.set_physics_process(false)
+	await physics_frame
+	var ai = bot.ai_controller
+	bot.realm_origin = Vector2(-960, -540)
+	bot.realm_size = Vector2(1920, 1080)
+	bot.velocity = Vector2(420, 200)
+	if ai._needs_recovery(bot):
+		_fail("Falling toward a lower platform ahead should not start a recovery")
+	bot.velocity = Vector2(-420, 200)
+	if not ai._needs_recovery(bot):
+		_fail("Falling away from every floor should start a recovery")
+	bot.queue_free()
+	lower.queue_free()
 	await process_frame
