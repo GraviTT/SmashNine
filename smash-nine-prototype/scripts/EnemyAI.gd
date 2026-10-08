@@ -111,12 +111,16 @@ const ESCAPE_LANDING_PAST := 90.0
 const TRADE_MEMORY := 3.0
 ## A target this close is kept while a route to where it stands exists.
 const PROGRESS_KEEP_NEAR := 300.0
+## Cornered with the escape still cooling down, a kiting bot guards ahead this often per
+## decision (round 4: Yuki's ring-outs from hits near a ledge rose 8 -> 13 once it held there).
+const CORNERED_GUARD_CHANCE := 0.5
 ## A fighter's attacker memory counts down from this (PlayerBase.LAST_ATTACKER_MEMORY).
 const FIGHTER_ATTACKER_MEMORY := 8.0
 ## Out of jumps, a directional recovery skill only once the ledge is this close (px; round 3:
-## Nova reached a floor 3 of 15 times, Rio 2 of 10, Frey 18 of 19), aimed a little above it;
-## the last chance near the bottom of the realm still takes it.
-const RECOVERY_SKILL_REACH := {"frey": 100000.0, "nova": 260.0, "rio": 290.0}
+## Rio reached a floor 2 of 10 times, 2 of 4 with the limit in round 4), aimed a little above
+## it; the last chance near the bottom of the realm still takes it. Frey (18 of 19) and Nova
+## go from anywhere (Nova with the limit: 3 of 21 instead of 3 of 15, round 4).
+const RECOVERY_SKILL_REACH := {"frey": 100000.0, "nova": 100000.0, "rio": 290.0}
 const RECOVERY_SKILL_AIM_ABOVE := 60.0
 const RECOVERY_LAST_CHANCE := 140.0
 ## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, already at
@@ -216,6 +220,12 @@ var guard_aim: Vector2 = Vector2.ZERO
 var guard_threat_from: Node
 var ignored_targets: Dictionary = {}
 var progress_target: Node
+## The target that already got its one extra progress window (round 4: keeping close targets
+## with a route every time made no-progress time 647 -> 1,104 s).
+var progress_extended: Node
+## The recovery skill is asked for once per recovery (round 4: Nova and Rio asked 2,200 and
+## 1,148 times for 21 and 4 uses).
+var recovery_skill_asked: bool = false
 var progress_best: float = INF
 var progress_timer: float = 0.0
 var ultimate_ready_time: float = 0.0
@@ -398,6 +408,7 @@ func _enter_state(next_state: String) -> void:
 	if next_state == STATE_RECOVER:
 		recovery_target = Vector2.ZERO
 		recovery_jump_used = false
+		recovery_skill_asked = false
 
 func _must_replan(player) -> bool:
 	if state == STATE_RECOVER:
@@ -590,6 +601,8 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 		else:
 			candidates = ["hold"]
 			debug_reason = "cornered: holding the ledge"
+			if escape_cooldown > 0.0 and randf() < CORNERED_GUARD_CHANCE:
+				_maybe_anticipate_guard(player, 1.0)
 
 	action = _pick_non_repeating_action(candidates)
 	last_action = action
@@ -824,7 +837,8 @@ func _recover_intent(player) -> Dictionary:
 		var reach: float = float(RECOVERY_SKILL_REACH.get(player.character_id, 100000.0))
 		var local_y: float = player.global_position.y - player.realm_origin.y
 		var last_chance: bool = local_y > player.realm_size.y - RECOVERY_LAST_CHANCE
-		if player.global_position.distance_to(aim_point) <= reach or last_chance:
+		if not recovery_skill_asked and player.attack_lock_timer <= 0.0 and (player.global_position.distance_to(aim_point) <= reach or last_chance):
+			recovery_skill_asked = true
 			intent["aim"] = (aim_point - player.global_position).normalized()
 			intent["attack"] = "skill_1"
 			debug_reason = "off the stage: recovery skill"
@@ -1316,13 +1330,13 @@ func _start_guard_against(player, opponent: Node) -> bool:
 
 ## Debate D3: sometimes guard ahead of a swing, when an opponent in reach faces us and we are
 ## not attacking. Called once per engage decision.
-func _maybe_anticipate_guard(player) -> void:
+func _maybe_anticipate_guard(player, chance := GUARD_ANTICIPATE_CHANCE) -> void:
 	if player.is_guarding or player.attack_lock_timer > 0.0 or not player.is_on_floor() or not is_instance_valid(target) or not target.is_in_group("players"):
 		return
 	var offset: Vector2 = player.global_position - target.global_position
 	var reach: float = float(_scaled_profile(COMBAT_PROFILES.get(target.character_id, DEFAULT_COMBAT_PROFILE)).attack_range)
 	var facing_us := signf(offset.x) == float(target.facing)
-	if facing_us and absf(offset.x) <= reach and absf(offset.y) <= GUARD_HEIGHT * GAME_SCALE.COMBAT and randf() < GUARD_ANTICIPATE_CHANCE:
+	if facing_us and absf(offset.x) <= reach and absf(offset.y) <= GUARD_HEIGHT * GAME_SCALE.COMBAT and randf() < chance:
 		if _start_guard_against(player, target):
 			guard_hold_timer = randf_range(GUARD_ANTICIPATE_MIN, GUARD_ANTICIPATE_MAX)
 			debug_reason = "guarding ahead of a swing"
@@ -1389,9 +1403,12 @@ func _update_target_progress(player, delta: float) -> void:
 		progress_timer = 0.0
 		return
 	progress_timer += delta
-	if progress_timer >= PROGRESS_TIME and distance <= PROGRESS_KEEP_NEAR * GAME_SCALE.WORLD and _has_route_to(player, _standing_point(player, target)):
+	if progress_timer >= PROGRESS_TIME and target != progress_extended and distance <= PROGRESS_KEEP_NEAR * GAME_SCALE.WORLD and _has_route_to(player, _standing_point(player, target)):
+		# One more window on a fresh route; after that it is dropped like any other.
+		progress_extended = target
 		progress_timer = 0.0
 		progress_best = distance
+		_clear_navigation_path()
 		return
 	if progress_timer >= PROGRESS_TIME:
 		ignored_targets[target] = IGNORE_TIME

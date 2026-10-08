@@ -56,3 +56,16 @@ Bots of `ce4f0af` (round 3) plus `0aad85c` (Frey/Nova recovery skill). Better th
 | Frey recover state 12.2% | **measure** | Frey's recover-state time tripled (4.2% → 12.2%) while its ring-outs fell 25 → 14 and recovery is 97%: round 4 reports where Frey enters recovery. |
 
 Next: Codex QA-14 round 4 (same probe, same seeds); then `decision.md`.
+
+## Round 5 (measurement: Codex QA-14 round 4, `reports/codex-qa-14/round4.md`) — lead decisions
+
+Codex's verdicts on round 4: keep the ledge hold, hits-on-monsters progress, close-target keep (with a fix), escape limits, Rio's recovery reach, the combo guard (blocks + parries 155 → 312) and Rio's basic reach (240 px+ starts 501 → 21, side-basic hit rate 56.3% → 75.0%); revert or redesign Nova's recovery reach (floor reached 3/15 → 3/21). Regressions: no-progress time 647.5 → 1,103.5 s, recovery-skill intents asked every frame (Nova 2,200 / Rio 1,148 for 21 / 4 uses), Yuki ring-outs after hits near a ledge 8 → 13, zero-jump ring-outs 58.8% → 65.8% (Luna 25 of 29).
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R5-1 close-target keep | **accept** | One extra progress window per target, on a fresh route (`_clear_navigation_path()`); after it the target is dropped like any other. Test with a navigation stub. |
+| R5-2 Nova recovery reach | **accept (revert)** | Nova uses the skill from anywhere again; Rio keeps the 290 px limit. |
+| R5-3 recovery intents | **accept** | Asked once per recovery and only when not attack-locked. |
+| R5-4 Yuki at the ledge | **partly** | Holding the ledge while the escape cools down now raises an early guard half the time. No Luna-specific jump rule: a failed recovery spends its jumps, so zero jumps at ring-out alone does not show a bad jump earlier. |
+
+Conclusion: `decision.md`.

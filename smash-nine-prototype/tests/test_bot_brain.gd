@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_one_extension]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -215,8 +215,9 @@ func _test_portal_grace() -> void:
 
 ## Out of air jumps below the stage, Frey and Nova use their directional skill toward the
 ## platform like Rio (Codex QA-14: 78% of ring-outs had no air jump left). Round 4 (QA-14
-## round 3: Nova reached a floor 3 of 15 times, Rio 2 of 10): Nova and Rio wait until the ledge
-## is within the skill's reach and aim a little above it; Frey (18 of 19) goes from anywhere.
+## round 3: Rio reached a floor 2 of 10 times): Rio waits until the ledge is within the skill's
+## reach and aims a little above it; Frey (18 of 19) and Nova (round 4: the limit did not help)
+## go from anywhere. Round 5: asked once per recovery (round 4: 2,200 asks for 21 uses).
 func _test_recovery_skill() -> void:
 	for id in ["frey", "nova", "rio"]:
 		var bot := _fighter(id, 1, Vector2(0, 300))
@@ -232,11 +233,14 @@ func _test_recovery_skill() -> void:
 		var aim: Vector2 = intent.get("aim", Vector2.ZERO)
 		if str(intent.get("attack", "")) != "skill_1" or aim.y >= 0.0 or aim.x <= 0.0:
 			_fail("%s out of jumps below a close ledge should aim its skill up toward it (%s)" % [id, intent])
+		if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
+			_fail("%s should ask for its recovery skill only once per recovery" % id)
+		ai.recovery_skill_asked = false
 		ai.recovery_target = Vector2(600, -100)
 		intent = ai._recover_intent(bot)
 		var far_skill: bool = str(intent.get("attack", "")) == "skill_1"
-		if far_skill != (id == "frey"):
-			_fail("%s with the ledge out of reach: skill %s (only Frey should use it from afar)" % [id, far_skill])
+		if far_skill != (id != "rio"):
+			_fail("%s with the ledge out of reach: skill %s (Frey and Nova use it from afar, Rio waits)" % [id, far_skill])
 		bot.queue_free()
 		await process_frame
 
@@ -416,4 +420,49 @@ func _test_rio_basic_reach() -> void:
 		_fail("Rio basics: %d from 300 px (want 0), %d from 100 px (want some)" % [far_basics, near_basics])
 	bot.queue_free()
 	foe.queue_free()
+	await process_frame
+
+## Round 5: a close target on another level with a route gets one more progress window on a
+## fresh route, then it is dropped like any other (round 4: keeping it every time made
+## no-progress time 647 -> 1,104 s).
+func _test_near_target_one_extension() -> void:
+	var nav_script := GDScript.new()
+	nav_script.source_code = "extends Node2D
+var points: Array[Vector2] = []
+func get_ai_navigation_points_for_realm(_realm: int) -> Array[Vector2]:
+	return points
+"
+	nav_script.reload()
+	var holder := Node2D.new()
+	holder.set_script(nav_script)
+	arena.add_child(holder)
+	holder.points = [Vector2(0, -2), Vector2(80, -132), Vector2(160, -262)] as Array[Vector2]
+	var lower := _floor(Vector2(0, 0), 300)
+	var upper := _floor(Vector2(160, -260), 200)
+	var bot: Node = PLAYER_FACTORY.create("frey")
+	holder.add_child(bot)
+	bot.global_position = Vector2(0, -2)
+	bot.setup(CHARACTER_REGISTRY.get_characters()["frey"], 1, false)
+	var foe: Node = PLAYER_FACTORY.create("rio")
+	holder.add_child(foe)
+	foe.global_position = Vector2(160, -262)
+	foe.setup(CHARACTER_REGISTRY.get_characters()["rio"], 2, false)
+	bot.set_physics_process(false)
+	foe.set_physics_process(false)
+	await physics_frame
+	var ai = bot.ai_controller
+	ai.state = ai.STATE_ENGAGE
+	ai.target = foe
+	ai._update_target_progress(bot, 0.1)
+	for step in 30:
+		ai._update_target_progress(bot, 0.1)
+	if ai.target != foe or ai.progress_extended != foe:
+		_fail("A close target with a route should get one extra window first")
+	for step in 30:
+		ai._update_target_progress(bot, 0.1)
+	if ai.target != null:
+		_fail("After its one extra window a close target that never gets closer should be dropped")
+	holder.queue_free()
+	lower.queue_free()
+	upper.queue_free()
 	await process_frame

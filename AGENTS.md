@@ -79,10 +79,10 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | builder | `design/tasks/CODEX-ART-14.md` | `assets/art/effects/`, `assets/art/vfx/`, `tests/art_preview/fx_1x_b/`, `reports/codex-art-14/` | done — merged `ace17e1` (effects and ultimate art at 1x for the 2x combat scale) |
 | builder | `design/tasks/CODEX-ART-15.md` | `assets/art/realm_*/bg_*.png`, `tests/art_preview/realm_bg_c/`, `reports/codex-art-15/` | done — merged `c9bf67e` (realm backgrounds at 1.5x) |
 | builder | `design/tasks/CODEX-ART-16.md` | `assets/art/attack_vfx/`, Rio sheets, Frey sheet, `tests/art_preview/attack_vfx_2x_a/`, `reports/codex-art-16/` | done — merged `863c4e2` (attack art at 2x, Rio attack/guard rows, Frey attack 4 shield) |
-| analyst | `design/tasks/CODEX-QA-14.md` | `tests/analysis/codex_qa_14/`, `reports/codex-qa-14/` | round 1 merged `d7f0c64`, round 2 retest `2729819`; round 3 retest running (`codex/bot-data-14c`) |
-| analyst (debate) | `reports/debate-bot-ai/` | none (read-only, ephemeral rounds) | rounds 1–2 done, round 3 decided from the QA-14 data (`log.md`); changes `8277419`, `021c649`, `34443e3`, `ce4f0af` |
+| analyst | `design/tasks/CODEX-QA-14.md` | `tests/analysis/codex_qa_14/`, `reports/codex-qa-14/` | round 1 merged `d7f0c64`, retests round 2 `2729819`, round 3 `8e8a642`, round 4 `f6d1a82`; round 5 confirmation (`codex/bot-data-14e`) |
+| analyst (debate) | `reports/debate-bot-ai/` | none (read-only, ephemeral rounds) | rounds 1–2 done, rounds 3–5 decided from the QA-14 data (`log.md`), conclusion `decision.md`; changes `8277419`, `021c649`, `34443e3`, `ce4f0af`, `b4a83d7`, round 5 |
 | tester | `design/tasks/CODEX-QA-15.md` | `tests/analysis/codex_qa_15/`, `reports/codex-qa-15/` | done — merged `352c244`; HUD fixes `391c555`, `2f1bfff`; art → ART-17 |
-| builder | `design/tasks/CODEX-ART-17.md` | `assets/art/hazards/`, monster sheets, `assets/art/effects/yuki_seal_idle.png`, `tests/art_preview/hazard_art_17/`, `reports/codex-art-17/` | done — merged `f1092c7`, round 2 `e608d6f`; in game `5128e39` |
+| builder | `design/tasks/CODEX-ART-17.md` | `assets/art/hazards/`, monster sheets, `assets/art/effects/yuki_seal_idle.png`, `tests/art_preview/hazard_art_17/`, `reports/codex-art-17/` | done — merged `f1092c7`, rounds 2–4 `e608d6f`, `6aed1a0`, round 4 merge; in game `5128e39`; lead fill of fire row 110 `68fecfa` |
 | builder | `design/tasks/CODEX-ART-18.md` | `assets/art/skill_icons/`, `tests/art_preview/skill_icons_18/`, `reports/codex-art-18/` | done — merged `a39807f`; skill bar `28693e8` |
 | analyst | `design/tasks/CODEX-QA-13.md` | `tests/analysis/codex_qa_13/`, `reports/codex-qa-13/` | done — merged `f102677`; findings fixed (see run log 2026-10-08 work) |
 
