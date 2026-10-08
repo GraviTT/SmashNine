@@ -41,3 +41,20 @@ Integrated in game (column = top + middle repeated down + base, scaled to the co
 | 3 | `quake_impact.png` | frame sizes run small, big, medium, tiny, big, medium; the 4th drops back | say whether it is a deliberate second burst; otherwise order it to burst then settle |
 
 In game every repeat of a short frame showed a ~12 px gap that flickered as the frames changed. Verify with numbers (per frame: empty rows 0, rows under 1/3 filled 0) and a preview that tiles frames in the sequence 1,2,3,4,5,6 and 6,1 vertically at 2x. Same writable paths; report section "Round 2" in `reports/codex-art-17/README.md`; commit script `reports/codex-art-17/commit-round2.ps1`.
+
+## Round 3 · column joints (branch `codex/hazard-art-17c`)
+
+**My round-2 card was wrong:** it asked for the top and bottom 4 rows to match across all six frames. The game shows the **same frame in every repeat** of a column at a time (one tiled strip, frames swapped together), so each frame only has to tile with **itself**. Forcing frame 1's 67 px band onto the narrower frames now sticks out on both sides at every repeat and reads as rings around the column (lead capture `C:/Users/TH/Documents/AI/GameProject/SmashNine-units/lead-captures/art17b/hazard_05_active.png`; zoom at fire x 410–530, y 230–570).
+
+Measured (opaque width in px: body rows 20–107 / rows 0–3 and 124–127):
+
+| Frame | fire_pillar_mid | light_beam_mid |
+| --- | --- | --- |
+| 1 | 67 / 67 | 66 / 67 |
+| 2 | 56 / 67 | 52 / 67 |
+| 3 | 54 / 67 | 46 / 67 |
+| 4 | 49 / 67 | 55 / 67 |
+| 5 | 57 / 67 | 63 / 67 |
+| 6 | 63 / 67 | 64 / 67 |
+
+Fix both `fire_pillar_mid.png` and `light_beam_mid.png` (same sizes, frame order and timing): every frame seamless with itself — its bottom rows continue into its own top rows in width, centre and pattern; no row wider than the frame's body; no dark line at the joint; keep all 128 rows filled. Edit the existing frames (no regeneration). Verify with numbers (per frame: width of rows 0–3 and 124–127 within ±2 px of its body, wrap difference between row 127 and row 0) and a preview tiling each frame 3x under itself at 2x. Same writable paths; report section "Round 3"; commit script `reports/codex-art-17/commit-round3.ps1`.
