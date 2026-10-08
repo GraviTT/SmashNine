@@ -75,6 +75,8 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | builder | `design/tasks/CODEX-ART-11.md` | `assets/art/{monsters,objects}/`, `tests/art_preview/monsters_v2_b/`, `reports/codex-art-11/` | done — merged `093ecba` |
 | builder | `design/tasks/CODEX-ART-12.md` | 4 fighter sheets, `tests/art_preview/sprite_fix_a{2,3}/`, `reports/codex-art-12/` | done — merged `21b3682` (cells pasted), `6c09768` |
 | analyst | `design/tasks/CODEX-QA-12.md` | `tests/analysis/codex_qa_12/`, `reports/codex-qa-12/` | done — merged `3821cb3`; P1 ×2, P2 fixed `906b014` |
+| builder | `design/tasks/CODEX-ART-13.md` | `assets/art/attack_vfx/`, `tests/art_preview/attack_vfx_a/`, `reports/codex-art-13/` | done — merged `b171919`, in game `8eb19a6` |
+| analyst | `design/tasks/CODEX-QA-13.md` | `tests/analysis/codex_qa_13/`, `reports/codex-qa-13/` | running (routine 2026-10-08 work) |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
 
