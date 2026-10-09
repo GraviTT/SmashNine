@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing, _test_ultimate_reach_scale, _test_gap_routes]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing, _test_ultimate_reach_scale, _test_gap_routes, _test_nova_early_shift]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -798,6 +798,32 @@ func get_ai_platform_rects_for_realm(_realm: int) -> Array[Rect2]:
 	left.queue_free()
 	near_right.queue_free()
 	await process_frame
+
+## Round 13 (lead's measurement: the vector shift lifts Nova 274 px from a 300 px/s fall, 22 px
+## from 900): out of jumps over the void, Nova shifts early in the fall, before it is below the
+## platform; Frey's dash keeps waiting until it is below; nobody uses it early when falling fast.
+func _test_nova_early_shift() -> void:
+	for id in ["nova", "frey"]:
+		var bot := _fighter(id, 1, Vector2(0, 0))
+		bot.set_physics_process(false)
+		bot.realm_origin = Vector2(-960, -540)
+		bot.realm_size = Vector2(1920, 1080)
+		await physics_frame
+		var ai = bot.ai_controller
+		ai.state = ai.STATE_RECOVER
+		# The platform point is lower than the fighter: not "below the target" yet.
+		ai.recovery_target = Vector2(300, 60)
+		bot.air_jumps_left = 0
+		bot.velocity = Vector2(0, 150)
+		var asked: bool = str(ai._recover_intent(bot).get("attack", "")) == "skill_1"
+		if asked != (id == "nova"):
+			_fail("%s out of jumps over the void, falling slowly above the platform: recovery skill %s (only Nova should use it this early)" % [id, asked])
+		ai.recovery_skill_uses = 0
+		bot.velocity = Vector2(0, 900)
+		if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
+			_fail("%s falling at 900 px/s above the platform should not use its recovery skill yet" % id)
+		bot.queue_free()
+		await process_frame
 
 ## 2026-10-09: the ultimate's "target in reach" follows the attack scale (it stayed at the x2
 ## values when attacks went to x1.5, so bots fired from a third farther than the areas reach).

@@ -151,6 +151,12 @@ const RECOVERY_SKILL_AIM_ABOVE := 60.0
 ## them in two long recoveries).
 const RECOVERY_SKILL_MAX_USES := 2
 const RECOVERY_LAST_CHANCE := 140.0
+## Nova's vector shift adds speed to the fall it starts from, so it lifts only early in a fall
+## (lead's measurement 2026-10-09, shift straight up: highest point 321 / 274 / 232 / 118 / 22 /
+## 0 px above the start at fall speeds 0 / 300 / 500 / 700 / 900 / 1,100 px/s; R11: 21 uses, 5
+## floors reached, used once below the platform, nearly at full fall speed). Out of jumps with
+## no floor under the fall, Nova shifts while falling slower than this, not only once below.
+const NOVA_SHIFT_FALL_LIMIT := 450.0
 ## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, times
 ## GameScale.COMBAT like every fighting distance: Frey's wave 240, Nova's pull 230, Yuki's ward
 ## twice its 205 radius; set at attacks x2 as 480 / 820 / 420 / 460 / 900 and left there when
@@ -896,7 +902,8 @@ func _recover_intent(player) -> Dictionary:
 	var intent: Dictionary = _intent(direction, jump)
 	# Out of jumps: a recovery skill aimed at the platform (Rio's dimension slash, Frey's dash
 	# strike, Nova's vector shift; Codex QA-14: 78% of ring-outs had no air jump left).
-	if below_target and player.air_jumps_left <= 0 and player.velocity.y > 60.0 and bool(_combat_profile(player).get("recovery_skill", false)):
+	var early_shift: bool = player.character_id == "nova" and player.velocity.y <= NOVA_SHIFT_FALL_LIMIT and not _landing_in_fall(player)
+	if (below_target or early_shift) and player.air_jumps_left <= 0 and player.velocity.y > 60.0 and bool(_combat_profile(player).get("recovery_skill", false)):
 		var aim_point: Vector2 = recovery_target + Vector2(0.0, -RECOVERY_SKILL_AIM_ABOVE)
 		var reach: float = float(RECOVERY_SKILL_REACH.get(player.character_id, 100000.0))
 		var local_y: float = player.global_position.y - player.realm_origin.y
