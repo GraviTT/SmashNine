@@ -80,10 +80,13 @@ func _test_air_jumps() -> void:
 
 func _test_mana_wave() -> void:
 	var rio := _create_rio(2)
+	# Each call takes the next combo step at once (Rio's timers do not run here), so the
+	# spacing cannot race; the wave is watched from the third swing on.
 	for swing in 3:
+		if swing > 0:
+			await create_timer(0.12).timeout
 		rio.attack_lock_timer = 0.0
 		rio.perform_basic_attack("neutral", Vector2.RIGHT)
-		await create_timer(0.12).timeout
 	if not await _wait_for(func() -> bool: return _count_owned(PROJECTILE_PATH, rio) == 1, 1.0):
 		_fail("Rio's third J should throw one mana wave")
 	rio.queue_free()
@@ -93,6 +96,8 @@ func _test_dimension_slash() -> void:
 	var rio := _create_rio(3)
 	var start: Vector2 = rio.global_position
 	rio.perform_skill_one()
+	# Ends on the first physics frame after the blink, before the cut (spawned with it, 0.08 s)
+	# runs any frame of its own, so the cut is still there to count below.
 	await _wait_for(func() -> bool: return rio.global_position != start, 1.0)
 	var moved: float = rio.global_position.x - start.x
 	# The blink grows with the realms (GameScale.WORLD).
@@ -132,6 +137,7 @@ func _test_rune_shield() -> void:
 	if rio.facing != -1:
 		_fail("Rune shield should turn Rio toward the attacker")
 		return
+	# Ends on the first physics frame after the release, while the 0.12 s shockwave is there.
 	await _wait_for(func() -> bool: return rio.rune_timer <= 0.0, 1.5)
 	var returned: Node = null
 	for node in arena.get_children():
@@ -163,8 +169,10 @@ func _test_overdrive() -> void:
 	if rio.overdrive_swords.size() != 6:
 		_fail("Infinity Overdrive should summon 6 gem swords, got %d" % rio.overdrive_swords.size())
 		return
-	await create_timer(0.4).timeout
-	if _count_owned(PROJECTILE_PATH, rio) != 0:
+	# Watched every physics frame through the first 0.3 s of the 0.55 s orbit. On a loaded
+	# machine timers advance in steps of up to ~0.15 s, so a single real-time look at 0.4 s
+	# could come after the orbit's end.
+	if await _wait_for(func() -> bool: return _count_owned(PROJECTILE_PATH, rio) != 0, 0.3):
 		_fail("Gem swords should orbit before firing")
 		return
 	# Orbit ends at 0.55 s, then one sword every 0.07 s.
@@ -183,10 +191,13 @@ func _test_bot_recovery_aim() -> void:
 		_fail("Bots should aim directed skills with the AI aim direction")
 	rio.queue_free()
 
-## Polls a condition every frame (timers resolve late on a loaded machine).
+## Polls a condition every physics frame, for up to `timeout` seconds of game time.
+## physics_frame comes before any node's _physics_process, so a hit area spawned by a timer
+## is seen before its own frames can expire it; a loaded machine runs several physics
+## frames per process frame, and a process-frame poll missed a 0.08 s cut (2026-10-09).
 func _wait_for(condition: Callable, timeout: float) -> bool:
 	var waited := 0.0
 	while not condition.call() and waited < timeout:
-		await process_frame
-		waited += get_root().get_process_delta_time()
+		await physics_frame
+		waited += get_root().get_physics_process_delta_time()
 	return condition.call()
