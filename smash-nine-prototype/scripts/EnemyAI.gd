@@ -93,6 +93,12 @@ const FALL_MAX_SPEED := 980.0 * GAME_SCALE.JUMP_SPEED
 ## Fixed extra ultimate presses (Luna's heart laser). Nova's slingshot is driven by aim
 ## instead (_drive_nova_slingshot).
 const ULTIMATE_FOLLOWUPS := {"luna": [4.4]}
+## Frey's spike: when her rising cleave lands, re-press L inside the window after a human-like
+## delay, most of the time (2026-10-10: bots never re-pressed it; the window was also out of
+## reach for everyone until the spike became a cancel).
+const SPIKE_CHANCE := 0.75
+const SPIKE_DELAY_MIN := 0.06
+const SPIKE_DELAY_MAX := 0.12
 ## Guarding (2026-10-08, bots never guarded before): when an opponent in reach starts an
 ## attack, guard after a human-like delay, some of the time, for a short hold.
 const GUARD_CHANCE := 0.55
@@ -274,6 +280,9 @@ var back_off_timer: float = 0.0
 var nova_stage_timer: float = -1.0
 var nova_redirect_timer: float = -1.0
 var debug_reason: String = ""
+## -1: no spike planned for the current window; otherwise seconds until the re-press.
+var spike_delay: float = -1.0
+var spike_window_seen: bool = false
 
 func update(player, delta: float) -> void:
 	pending_threat = _new_attack_threat(player)
@@ -282,6 +291,7 @@ func update(player, delta: float) -> void:
 		return
 
 	_target_timers(delta)
+	_update_spike_followup(player, delta)
 	_update_ultimate_followups(player, delta)
 	_drive_nova_slingshot(player, delta)
 	_update_stuck(player, delta)
@@ -499,6 +509,23 @@ func _apply_intent(player, intent: Dictionary) -> void:
 			player.ultimate()
 			if was_ready and not player.is_ultimate_ready():
 				_schedule_ultimate_followups(player)
+
+func _update_spike_followup(player, delta: float) -> void:
+	var window: Variant = player.get("rising_followup_timer")
+	if window == null or float(window) <= 0.0:
+		spike_window_seen = false
+		spike_delay = -1.0
+		return
+	if not spike_window_seen:
+		spike_window_seen = true
+		spike_delay = randf_range(SPIKE_DELAY_MIN, SPIKE_DELAY_MAX) if randf() < SPIKE_CHANCE else -1.0
+	if spike_delay < 0.0:
+		return
+	spike_delay -= delta
+	if spike_delay <= 0.0:
+		spike_delay = -1.0
+		if player.try_skill_two_followup():
+			debug_reason = "launched: spike follow-up"
 
 func _schedule_ultimate_followups(player) -> void:
 	ultimate_followup_delays.clear()

@@ -99,6 +99,8 @@ func _finish_detonation() -> void:
 		get_parent().add_child(attack)
 		attack.global_position = global_position
 		attack.configure(source, bloom_size, Vector2.ZERO, bloom_damage, bloom_knockback, direction, bloom_color, 0.13)
+		# Luna's star charge: one star per comet burst that lands.
+		attack.set_meta("luna_charge", "comet_%d" % get_instance_id())
 		# With the original art the star flash shows the bloom; the rectangle stays hidden.
 		if ART_SETTINGS.original_texture(STAR_ART) != null:
 			attack.art_drawn = true

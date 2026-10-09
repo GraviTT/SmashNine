@@ -14,6 +14,14 @@ const BRAVE_COMBO_RESET_TIME := 0.42
 const STAR_TRAIL_COLOR := Color(1.0, 0.48, 0.9, 0.52)
 const STAR_BLOOM_COLOR := Color(0.44, 0.92, 1.0, 0.66)
 const BRAVE_IMPACT_COLOR := Color(1.0, 0.84, 0.28, 0.76)
+## Passive "별빛 충전" (2026-10-10 night; lead's design with Codex QA-17's precise-echo idea):
+## a precise star echo (its trail and its bloom both hit the same target), a comet burst or a
+## moon ring hit each gives one star (up to STAR_CHARGE_MAX, circling her). A full set cuts the
+## ultimate's remaining cooldown by STAR_CHARGE_COOLDOWN_CUT; while the ultimate is ready the stars
+## wait and are spent on the next cooldown. Normal-form play that lands earns Brave Luna sooner.
+const STAR_CHARGE_MAX := 5
+const STAR_CHARGE_COOLDOWN_CUT := 6.0
+const STAR_ORBIT_RADIUS := 44.0
 
 var transformed := false
 var has_brave_sheet := false
@@ -26,6 +34,14 @@ var brave_combo_timer := 0.0
 var heart_laser: Node
 var heart_laser_cast_id := 0
 var heart_laser_duration := 0.0
+var star_charge := 0
+var star_swing_id := 0
+## swing id -> {"trail": [bodies], "bloom": [bodies], "done": bool}
+var star_swing_hits: Dictionary = {}
+## Comet and moon-ring casts that already gave their star.
+var star_charged_casts: Dictionary = {}
+var star_charge_orbit: Node2D
+var star_charge_spin := 0.0
 
 ## Original sheet only (third-party prototype art removed 2026-10-07, user).
 func configure_character_sprite() -> void:
@@ -77,6 +93,10 @@ func try_ultimate_followup() -> bool:
 	return true
 
 func character_physics_process(delta: float) -> void:
+	_spend_full_charge()
+	if is_instance_valid(star_charge_orbit):
+		star_charge_spin += delta * 2.2
+		star_charge_orbit.rotation = star_charge_spin
 	brave_combo_timer = maxf(brave_combo_timer - delta, 0.0)
 	if brave_combo_timer <= 0.0:
 		brave_combo_step = 0
@@ -95,11 +115,74 @@ func character_physics_process(delta: float) -> void:
 func character_on_hit() -> void:
 	_reset_brave_combo()
 
+func character_on_attack_hit_body(body: Node, attack: Node) -> void:
+	if attack.has_meta("luna_star"):
+		_record_star_echo_hit(body, attack.get_meta("luna_star") as Vector2i)
+	var cast: Variant = attack.get_meta("luna_charge") if attack.has_meta("luna_charge") else null
+	if cast != null and not star_charged_casts.has(cast):
+		star_charged_casts[cast] = true
+		_gain_star()
+
+func _record_star_echo_hit(body: Node, star: Vector2i) -> void:
+	var entry: Dictionary = star_swing_hits.get(star.x, {"trail": [], "bloom": [], "done": false})
+	if bool(entry.done):
+		return
+	var part := "trail" if star.y == 0 else "bloom"
+	(entry[part] as Array).append(body)
+	star_swing_hits[star.x] = entry
+	if (entry.trail as Array).has(body) and (entry.bloom as Array).has(body):
+		entry.done = true
+		_gain_star()
+
+func _gain_star() -> void:
+	star_charge = mini(star_charge + 1, STAR_CHARGE_MAX)
+	_update_star_orbit()
+	_spend_full_charge()
+
+## A full set cuts the cooldown at once; while the ultimate is ready it waits for the next one.
+func _spend_full_charge() -> void:
+	if star_charge < STAR_CHARGE_MAX or ultimate_cooldown_timer <= 0.0:
+		return
+	star_charge = 0
+	ultimate_cooldown_timer = maxf(ultimate_cooldown_timer - STAR_CHARGE_COOLDOWN_CUT, 0.0)
+	_update_star_orbit()
+	_play_star_bloom(Vector2(0, -40), 46.0, Color(1.0, 0.92, 0.45, 0.9), 0.22)
+
+func _update_star_orbit() -> void:
+	if star_charge <= 0:
+		if is_instance_valid(star_charge_orbit):
+			star_charge_orbit.queue_free()
+		star_charge_orbit = null
+		return
+	if not is_instance_valid(star_charge_orbit):
+		star_charge_orbit = Node2D.new()
+		star_charge_orbit.name = "LunaStarCharge"
+		star_charge_orbit.position = Vector2(0, -44)
+		star_charge_orbit.z_index = 5
+		add_child(star_charge_orbit)
+	for child in star_charge_orbit.get_children():
+		child.queue_free()
+	for index in star_charge:
+		var star := Polygon2D.new()
+		star.polygon = _make_star_points(7.0, 3.0)
+		star.color = Color(1.0, 0.9, 0.42, 0.95)
+		var angle := TAU * float(index) / float(STAR_CHARGE_MAX)
+		star.position = Vector2(cos(angle), sin(angle)) * STAR_ORBIT_RADIUS
+		star_charge_orbit.add_child(star)
+
+func _reset_star_charge() -> void:
+	star_charge = 0
+	star_swing_hits.clear()
+	star_charged_casts.clear()
+	_update_star_orbit()
+
 func character_on_respawn() -> void:
 	_end_transformation(true)
+	_reset_star_charge()
 
 func character_cleanup() -> void:
 	_end_transformation(true)
+	_reset_star_charge()
 
 func _perform_star_basic(attack_type: String, _direction: Vector2) -> void:
 	if not is_on_floor():
@@ -119,6 +202,7 @@ func _perform_star_basic(attack_type: String, _direction: Vector2) -> void:
 			_start_attack(0.1, 0.25, Callable(self, "_star_side_arc").bind(false))
 
 func _star_side_arc(airborne: bool) -> void:
+	star_swing_id += 1
 	if airborne:
 		velocity.x += facing * 65.0
 		velocity.y *= 0.55
@@ -127,18 +211,22 @@ func _star_side_arc(airborne: bool) -> void:
 		Vector2(52 * facing, -37),
 		Vector2(92 * facing, -30)
 	], 3.5, 95, Vector2(facing, -0.04), STAR_TRAIL_COLOR, 0.1)
-	_spawn_delayed_bloom(Vector2(108 * facing, -30), Vector2(74, 64), 6.5 if airborne else 7.0, 275 if airborne else 305, Vector2(facing, -0.1), 0.065)
+	last_attack.set_meta("luna_star", Vector2i(star_swing_id, 0))
+	_spawn_delayed_bloom(Vector2(108 * facing, -30), Vector2(74, 64), 6.5 if airborne else 7.0, 275 if airborne else 305, Vector2(facing, -0.1), 0.065, star_swing_id)
 
 func _star_up_arc(airborne: bool) -> void:
+	star_swing_id += 1
 	velocity.y = minf(velocity.y, (-90.0 if airborne else -45.0) * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_attack(Vector2(36, 38), [
 		Vector2(18 * facing, -28),
 		Vector2(12 * facing, -72),
 		Vector2(0, -112)
 	], 3.5, 90, Vector2(0.1 * facing, -1), STAR_TRAIL_COLOR, 0.11)
-	_spawn_delayed_bloom(Vector2(0, -126), Vector2(68, 74), 7.0, 325, Vector2(0.08 * facing, -1), 0.07)
+	last_attack.set_meta("luna_star", Vector2i(star_swing_id, 0))
+	_spawn_delayed_bloom(Vector2(0, -126), Vector2(68, 74), 7.0, 325, Vector2(0.08 * facing, -1), 0.07, star_swing_id)
 
 func _star_down_arc(airborne: bool) -> void:
+	star_swing_id += 1
 	if airborne:
 		velocity.y = maxf(velocity.y, 90.0 * GAME_SCALE.JUMP_SPEED)
 	else:
@@ -149,14 +237,17 @@ func _star_down_arc(airborne: bool) -> void:
 		Vector2(32 * facing, 4),
 		bloom_offset
 	], 4.0, 110, Vector2(0.18 * facing, 1), STAR_TRAIL_COLOR, 0.12)
-	_spawn_delayed_bloom(bloom_offset, Vector2(78, 62), 8.0, 355, Vector2(0.2 * facing, 1), 0.075)
+	last_attack.set_meta("luna_star", Vector2i(star_swing_id, 0))
+	_spawn_delayed_bloom(bloom_offset, Vector2(78, 62), 8.0, 355, Vector2(0.2 * facing, 1), 0.075, star_swing_id)
 
-func _spawn_delayed_bloom(offset: Vector2, size: Vector2, damage: float, knockback: float, direction: Vector2, delay: float) -> void:
+func _spawn_delayed_bloom(offset: Vector2, size: Vector2, damage: float, knockback: float, direction: Vector2, delay: float, swing_id := -1) -> void:
 	if not await _wait_action(delay):
 		return
 	if is_defeated or hitstun_timer > 0.0 or transformed:
 		return
 	_spawn_attack(size, offset, damage, knockback, direction, STAR_BLOOM_COLOR, 0.12)
+	if swing_id >= 0:
+		last_attack.set_meta("luna_star", Vector2i(swing_id, 1))
 	_play_star_bloom(offset, maxf(size.x, size.y) * 0.42, Color(0.5, 0.96, 1.0, 0.82))
 
 func _star_comet_start() -> void:
@@ -191,8 +282,11 @@ func _moon_ring() -> void:
 	attack_art_enabled = false
 	var right_points := _make_arc_points(90.0, -PI * 0.5, PI * 0.5, 7)
 	var left_points := _make_arc_points(90.0, -PI * 0.5, -PI * 1.5, 7)
+	var cast := "ring_%d" % Time.get_ticks_usec()
 	_spawn_sweeping_attack(Vector2(44, 38), right_points, 12, 405, Vector2(1, -0.08), Color(0.46, 0.94, 1.0, 0.58), 0.24)
+	last_attack.set_meta("luna_charge", cast)
 	_spawn_sweeping_attack(Vector2(44, 38), left_points, 12, 405, Vector2(-1, -0.08), Color(1.0, 0.5, 0.92, 0.58), 0.24)
+	last_attack.set_meta("luna_charge", cast)
 	attack_art_enabled = true
 	_play_moon_ring_flash(90.0)
 	_draw_skill_art("luna_l", global_position + GAME_SCALE.BODY_CENTRE, Vector2.ZERO, (180.0 + 44.0) * GAME_SCALE.COMBAT / 192.0)
@@ -213,21 +307,27 @@ func _perform_brave_basic(attack_type: String) -> void:
 			_start_attack(0.05, 0.12, Callable(self, "_brave_flying_kick"))
 		_:
 			match _consume_brave_combo_step():
+				# The Brave attack row reads jab, star punch, body kick, spinning kick: each hit plays
+				# its own frames (they all replayed the whole row before).
 				0:
-					_start_attack(0.045, 0.1, Callable(self, "_brave_jab"))
+					_start_attack(0.045, 0.1, Callable(self, "_brave_jab"), Vector2i(0, 1))
 				1:
-					_start_attack(0.055, 0.11, Callable(self, "_brave_body_kick"))
+					_start_attack(0.055, 0.11, Callable(self, "_brave_body_kick"), Vector2i(2, 2))
 				_:
-					_start_attack(0.075, 0.18, Callable(self, "_brave_spin_kick"))
+					_start_attack(0.075, 0.18, Callable(self, "_brave_spin_kick"), Vector2i(3, 3))
 
 func _brave_jab() -> void:
 	velocity.x += facing * 90.0
 	_spawn_sweeping_attack(Vector2(34, 28), [Vector2(8 * facing, -38), Vector2(42 * facing, -36), Vector2(70 * facing, -34)], 5, 150, Vector2(facing, -0.02), BRAVE_IMPACT_COLOR, 0.075)
+	# On hit the body kick can start at once and lands inside the jab's hitstun.
+	last_attack.set_meta("chain_cancel", 0.0)
 	_play_star_bloom(Vector2(68 * facing, -34), 24.0, BRAVE_IMPACT_COLOR, 0.1)
 
 func _brave_body_kick() -> void:
 	velocity.x += facing * 120.0
 	_spawn_sweeping_attack(Vector2(38, 30), [Vector2(10 * facing, -32), Vector2(48 * facing, -28), Vector2(80 * facing, -22)], 6, 205, Vector2(facing, -0.06), BRAVE_IMPACT_COLOR, 0.085)
+	# On hit the spinning kick can start at once and lands inside the hitstun.
+	last_attack.set_meta("chain_cancel", 0.0)
 	_play_star_bloom(Vector2(78 * facing, -22), 27.0, BRAVE_IMPACT_COLOR, 0.11)
 
 func _brave_spin_kick() -> void:
@@ -261,7 +361,7 @@ func _brave_dive_kick() -> void:
 
 func _brave_comet_drive_start() -> void:
 	var direction := _get_attack_direction()
-	_start_attack(0.07, 0.16, Callable(self, "_brave_comet_drive").bind(direction))
+	_start_attack(0.07, 0.16, Callable(self, "_brave_comet_drive").bind(direction), Vector2i(1, 1))
 
 func _brave_comet_drive(direction: Vector2) -> void:
 	if absf(direction.x) > 0.2:

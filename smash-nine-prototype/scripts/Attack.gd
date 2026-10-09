@@ -159,6 +159,8 @@ func _hit_body(body: Node) -> void:
 			source.on_attack_landed(global_position, damage, knockback)
 		if hit_landed != false and hit_tag != "" and is_instance_valid(source) and source.has_method("on_tagged_attack_landed"):
 			source.on_tagged_attack_landed(hit_tag)
+		if hit_landed != false and is_instance_valid(source) and source.has_method("on_attack_hit_body"):
+			source.on_attack_hit_body(body, self)
 
 func _discard_orphaned_attack() -> void:
 	set_deferred("monitoring", false)

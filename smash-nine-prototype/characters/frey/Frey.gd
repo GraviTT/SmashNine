@@ -12,35 +12,50 @@ const ULTIMATE_WAVE_DAMAGE := 26.0
 const ULTIMATE_WAVE_REACH := 240.0
 const ULTIMATE_AFTERSHOCK_DELAY := 0.28
 const ULTIMATE_AFTERSHOCK_DAMAGE := 10.0
+## Passive "발키리의 추격" (2026-10-10 night; Codex QA-17 blind proposal 1, lead's numbers): a
+## launcher that lands (L rising cleave, up J) marks its target for PURSUIT_TIME; airborne and
+## moving toward it, Frey flies PURSUIT_SPEED times faster. Ends on her next attack, on landing,
+## or when she is hit. No damage or knockback change (her balance is on hold: identity, not power).
+## Air acceleration alone would not show: she reaches full air speed in 0.07 s.
+const PURSUIT_TIME := 1.0
+const PURSUIT_SPEED := 1.15
+const PURSUIT_MARK_RISE := 118.0
 
 var combo_step := 0
 var combo_timer := 0.0
 var rising_followup_timer := 0.0
 var ultimate_diving := false
+var pursuit_target: Node2D
+var pursuit_timer := 0.0
+var pursuit_mark: Node2D
 
 ## Original sheet only (third-party prototype art removed 2026-10-07, user).
 func configure_character_sprite() -> void:
 	_configure_original_sheet("frey")
 
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
+	_end_pursuit()
 	match attack_type:
 		"up", "air_up":
 			_reset_combo()
-			_start_attack(0.12, 0.23, Callable(self, "_up_slash"))
+			_start_attack(0.12, 0.23, Callable(self, "_up_slash"), Vector2i(1, 3))
 		"down", "air_down":
 			_reset_combo()
-			_start_attack(0.17, 0.29, Callable(self, "_down_cut"))
+			_start_attack(0.17, 0.29, Callable(self, "_down_cut"), Vector2i(2, 3))
 		"air_side":
 			_reset_combo()
-			_start_attack(0.08, 0.17, Callable(self, "_air_slash"))
+			_start_attack(0.08, 0.17, Callable(self, "_air_slash"), Vector2i(1, 2))
 		_:
+			# Each hit plays its own part of the attack row: a quick cut, a second cut, the wide
+			# finisher (they all replayed the whole row before).
 			match _consume_combo_step():
 				0:
-					_start_attack(0.07, 0.16, Callable(self, "_combo_slash_one"))
+					_start_attack(0.07, 0.16, Callable(self, "_combo_slash_one"), Vector2i(0, 1))
 				1:
-					_start_attack(0.08, 0.18, Callable(self, "_combo_slash_two"))
+					_start_attack(0.08, 0.18, Callable(self, "_combo_slash_two"), Vector2i(1, 2))
 				_:
-					_start_attack(0.11, 0.26, Callable(self, "_combo_slash_three"))
+					_play_finisher_glint()
+					_start_attack(0.11, 0.26, Callable(self, "_combo_slash_three"), Vector2i(2, 3))
 
 func perform_skill_one() -> void:
 	_dash_strike_start()
@@ -51,14 +66,18 @@ func perform_skill_two() -> void:
 func perform_ultimate() -> void:
 	_ultimate_start()
 
+## The spike cancels the rising cleave's recovery: the window opens while that recovery still
+## locks attacks, so with the plain attack check it could never be pressed (lead's trace
+## 2026-10-10: hit at 0.22 s, window 0.18 s, lock until 0.6 s).
 func try_skill_two_followup() -> bool:
-	if rising_followup_timer <= 0.0 or not _can_start_attack():
+	if rising_followup_timer <= 0.0 or hitstun_timer > 0.0 or is_guarding or action_locked_until_land:
 		return false
 	_spike_start()
 	return true
 
 func character_physics_process(delta: float) -> void:
 	rising_followup_timer = maxf(rising_followup_timer - delta, 0.0)
+	_update_pursuit(delta)
 	combo_timer = maxf(combo_timer - delta, 0.0)
 	if combo_timer <= 0.0:
 		combo_step = 0
@@ -71,6 +90,62 @@ func character_on_hit() -> void:
 	rising_followup_timer = 0.0
 	ultimate_diving = false
 	_reset_combo()
+	_end_pursuit()
+
+func character_on_attack_hit_body(body: Node, attack: Node) -> void:
+	if attack.has_meta("frey_launcher") and body is Node2D:
+		_mark_pursuit(body as Node2D)
+
+func get_character_movement_multiplier() -> float:
+	if pursuit_timer <= 0.0 or is_on_floor() or not is_instance_valid(pursuit_target) or absf(move_input) <= 0.1:
+		return 1.0
+	var toward := signf(pursuit_target.global_position.x - global_position.x)
+	return PURSUIT_SPEED if toward != 0.0 and signf(move_input) == toward else 1.0
+
+func _mark_pursuit(target: Node2D) -> void:
+	pursuit_target = target
+	pursuit_timer = PURSUIT_TIME
+	if not is_instance_valid(pursuit_mark):
+		pursuit_mark = _make_pursuit_mark()
+		get_parent().add_child(pursuit_mark)
+	pursuit_mark.global_position = target.global_position + Vector2(0, -PURSUIT_MARK_RISE)
+
+func _update_pursuit(delta: float) -> void:
+	if pursuit_timer <= 0.0:
+		return
+	pursuit_timer -= delta
+	var landed := is_on_floor() and pursuit_timer < PURSUIT_TIME - 0.1
+	if pursuit_timer <= 0.0 or landed or not is_instance_valid(pursuit_target) or pursuit_target.get("is_defeated") == true:
+		_end_pursuit()
+		return
+	if is_instance_valid(pursuit_mark):
+		pursuit_mark.global_position = pursuit_target.global_position + Vector2(0, -PURSUIT_MARK_RISE)
+		pursuit_mark.modulate.a = 0.55 + 0.45 * absf(sin(pursuit_timer * 14.0))
+
+func _end_pursuit() -> void:
+	pursuit_timer = 0.0
+	pursuit_target = null
+	if is_instance_valid(pursuit_mark):
+		pursuit_mark.queue_free()
+	pursuit_mark = null
+
+## Two small gold wings over the marked target.
+func _make_pursuit_mark() -> Node2D:
+	var mark := Node2D.new()
+	mark.name = "FreyPursuitMark"
+	mark.z_index = 6
+	for side in [-1.0, 1.0]:
+		var wing := Polygon2D.new()
+		wing.polygon = PackedVector2Array([Vector2(0, 0), Vector2(22 * side, -12), Vector2(30 * side, -2), Vector2(18 * side, 2), Vector2(26 * side, 8), Vector2(6 * side, 6)])
+		wing.color = Color(1.0, 0.86, 0.36, 0.95)
+		mark.add_child(wing)
+		var edge := Line2D.new()
+		edge.points = wing.polygon
+		edge.closed = true
+		edge.width = 2.0
+		edge.default_color = Color(0.32, 0.2, 0.06, 0.9)
+		mark.add_child(edge)
+	return mark
 
 func character_on_respawn() -> void:
 	character_on_hit()
@@ -91,6 +166,8 @@ func _combo_slash_one() -> void:
 		Vector2(58 * facing, -32),
 		Vector2(100 * facing, -30)
 	], 8, 235, Vector2(facing, -0.06), Color(1.0, 0.72, 0.34, 0.55), 0.085)
+	# On hit, J2 can start at once (after the hitstop) and lands inside the target's hitstun.
+	last_attack.set_meta("chain_cancel", 0.0)
 
 func _combo_slash_two() -> void:
 	velocity.x += facing * 125.0
@@ -99,6 +176,8 @@ func _combo_slash_two() -> void:
 		Vector2(62 * facing, -34),
 		Vector2(108 * facing, -24)
 	], 9, 275, Vector2(facing, -0.1), Color(1.0, 0.78, 0.36, 0.58), 0.095)
+	# On hit, J3 can start at once and lands inside the hitstun.
+	last_attack.set_meta("chain_cancel", 0.0)
 
 func _combo_slash_three() -> void:
 	velocity.x += facing * 75.0
@@ -115,6 +194,7 @@ func _up_slash() -> void:
 		Vector2(8 * facing, -68),
 		Vector2(0, -114)
 	], 10, 310, Vector2(0.12 * facing, -1), Color(1.0, 0.82, 0.4, 0.56), 0.105)
+	last_attack.set_meta("frey_launcher", true)
 
 func _down_cut() -> void:
 	velocity.y += 130.0
@@ -152,7 +232,8 @@ func _reset_combo() -> void:
 func _dash_strike_start() -> void:
 	character_on_hit()
 	attack_lock_timer = DASH_HOLD_TIME + 0.34
-	_play_sprite_action(&"attack", DASH_HOLD_TIME + 0.34)
+	# Wind-up frame held while she aims, then the thrust frame for the dash.
+	_play_sprite_pose(&"attack", 0, 0, DASH_HOLD_TIME)
 	current_attack_started_airborne = not is_on_floor()
 	_freeze_movement(DASH_HOLD_TIME)
 	var held_facing := facing
@@ -168,7 +249,16 @@ func _dash_strike_start() -> void:
 	else:
 		facing = held_facing
 	movement_freeze_timer = 0.0
+	_play_sprite_pose(&"attack", 3, 3, 0.34)
 	_dash_strike(dash_direction)
+
+## A white glint before the third hit: the finisher is coming.
+func _play_finisher_glint() -> void:
+	if not is_instance_valid(character_sprite):
+		return
+	character_sprite.self_modulate = Color(1.8, 1.8, 1.8)
+	var tween := character_sprite.create_tween()
+	tween.tween_property(character_sprite, "self_modulate", Color.WHITE, 0.1)
 
 func _play_dash_hold() -> void:
 	var tween := create_tween()
@@ -200,7 +290,8 @@ func _rising_cleave_start() -> void:
 	var horizontal := _get_late_horizontal_direction()
 	if horizontal != 0:
 		facing = horizontal
-	_start_attack(0.22, 0.38, Callable(self, "_rising_cleave"))
+	_end_pursuit()
+	_start_attack(0.22, 0.38, Callable(self, "_rising_cleave"), Vector2i(1, 3))
 
 func _rising_cleave() -> void:
 	velocity.y = minf(velocity.y, -560.0 * GAME_SCALE.JUMP_SPEED)
@@ -211,6 +302,7 @@ func _rising_cleave() -> void:
 		Vector2(44 * facing, -76),
 		Vector2(62 * facing, -136)
 	], 15, 510, Vector2(0.16 * facing, -1), Color(1.0, 0.9, 0.45, 0.62), 0.16, Vector2(105 * facing, -760), 0.32, "frey_rising_cleave")
+	last_attack.set_meta("frey_launcher", true)
 	attack_art_enabled = true
 	# Rising arc (frey_l, drawn upward from the feet) in front of her.
 	var cleave := EFFECT_STRIPS.spawn(get_parent(), "frey_l", global_position + Vector2(44.0 * GAME_SCALE.COMBAT * facing, 0), Vector2.ONE * (136.0 * GAME_SCALE.COMBAT + 58.0) / 192.0, false, 5)
@@ -323,8 +415,9 @@ func _play_ultimate_release() -> void:
 func _spike_start() -> void:
 	rising_followup_timer = 0.0
 	_reset_combo()
+	_end_pursuit()
 	attack_lock_timer = 0.22
-	_play_sprite_action(&"attack", 0.22)
+	_play_sprite_pose(&"attack", 2, 3, 0.22)
 	action_locked_until_land = true
 	current_attack_started_airborne = true
 	velocity.x += facing * 150.0
@@ -340,7 +433,29 @@ func _spike_start() -> void:
 		Vector2(150 * facing, -8)
 	], 18, 700, Vector2(facing, 0.18), Color(1.0, 0.38, 0.12, 0.7), 0.14)
 
+## The spike window: a gold ring around Frey and a bright flash on her (the body rectangle this
+## used to colour is hidden behind the sprite).
 func _play_followup_flash() -> void:
+	var ring := Line2D.new()
+	ring.width = 3.0
+	ring.default_color = Color(1.0, 0.9, 0.42, 0.95)
+	ring.closed = true
+	var points := PackedVector2Array()
+	for index in 24:
+		var angle := TAU * float(index) / 24.0
+		points.append(Vector2(cos(angle), sin(angle)) * 46.0)
+	ring.points = points
+	ring.position = Vector2(0, -40)
+	ring.z_index = 6
+	add_child(ring)
+	var ring_tween := ring.create_tween()
+	ring_tween.tween_property(ring, "scale", Vector2(1.5, 1.5), RISING_FOLLOWUP_WINDOW)
+	ring_tween.parallel().tween_property(ring, "modulate:a", 0.0, RISING_FOLLOWUP_WINDOW)
+	ring_tween.tween_callback(ring.queue_free)
+	if is_instance_valid(character_sprite):
+		character_sprite.self_modulate = Color(1.6, 1.5, 0.85)
+		var sprite_tween := character_sprite.create_tween()
+		sprite_tween.tween_property(character_sprite, "self_modulate", Color.WHITE, RISING_FOLLOWUP_WINDOW)
 	body.color = Color(1.0, 1.0, 0.58)
 	var tween := create_tween()
 	tween.tween_property(body, "color", Color(1.0, 0.75, 0.32), 0.045)

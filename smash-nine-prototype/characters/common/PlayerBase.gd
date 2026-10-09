@@ -220,6 +220,11 @@ var max_air_jumps := 1
 var air_jumps_left := 1
 var sprite_action := &""
 var sprite_action_timer := 0.0
+## Last frame of a pose (_play_sprite_pose) to hold until the action ends; -1 for none.
+var sprite_pose_last := -1
+## The attack area the last _spawn_* call created (characters tag it with set_meta to know later
+## which move hit whom: Frey's launchers, Luna's precise star echoes).
+var last_attack: Node
 
 @onready var body: ColorRect = $Body
 @onready var character_sprite: AnimatedSprite2D = get_node_or_null("CharacterSprite") as AnimatedSprite2D
@@ -343,6 +348,7 @@ func _physics_process(delta: float) -> void:
 	sprite_action_timer = maxf(sprite_action_timer - delta, 0.0)
 	if sprite_action_timer <= 0.0:
 		sprite_action = &""
+		_end_sprite_pose()
 	var was_skill_dashing := skill_dash_timer > 0.0
 	skill_dash_timer = maxf(skill_dash_timer - delta, 0.0)
 	if was_skill_dashing and skill_dash_timer <= 0.0:
@@ -874,12 +880,16 @@ func _dir_size(direction: Vector2, base_size: Vector2) -> Vector2:
 		return Vector2(base_size.y, base_size.x)
 	return base_size
 
-func _start_attack(startup: float, recovery: float, action: Callable) -> void:
+## pose: frames of the attack row this move plays (first, last), or (-1, -1) for the whole row.
+func _start_attack(startup: float, recovery: float, action: Callable, pose := Vector2i(-1, -1)) -> void:
 	attack_lock_timer = startup + recovery
 	attack_serial += 1
 	attack_elapsed = 0.0
 	attack_startup = startup
-	_play_sprite_action(&"attack", startup + recovery)
+	if pose.x >= 0:
+		_play_sprite_pose(&"attack", pose.x, pose.y, startup + recovery)
+	else:
+		_play_sprite_action(&"attack", startup + recovery)
 	var attack_facing := facing
 	current_attack_started_airborne = not is_on_floor()
 	_play_attack_windup()
@@ -976,6 +986,7 @@ func _spawn_attack(size: Vector2, offset: Vector2, damage: float, knockback: flo
 	attack.add_child(shape)
 	attack.add_child(visual)
 	get_parent().add_child(attack)
+	last_attack = attack
 	attack.global_position = global_position
 	attack.configure(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_point(offset), damage, knockback, direction, color, lifetime, damage_type)
 	_draw_attack_art(attack, size * GAME_SCALE.COMBAT, [GAME_SCALE.attack_point(offset)] as Array[Vector2], direction)
@@ -992,6 +1003,7 @@ func _spawn_sweeping_attack(size: Vector2, points: Array[Vector2], damage: float
 	attack.add_child(shape)
 	attack.add_child(visual)
 	get_parent().add_child(attack)
+	last_attack = attack
 	attack.global_position = global_position
 	attack.configure_sweep(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, damage_type)
 	_draw_attack_art(attack, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), direction)
@@ -1008,6 +1020,7 @@ func _spawn_sweeping_stun_attack(size: Vector2, points: Array[Vector2], damage: 
 	attack.add_child(shape)
 	attack.add_child(visual)
 	get_parent().add_child(attack)
+	last_attack = attack
 	attack.global_position = global_position
 	attack.configure_sweep_stun(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, stun_duration, damage_type)
 	_draw_attack_art(attack, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), direction)
@@ -1024,6 +1037,7 @@ func _spawn_sweeping_launch_attack(size: Vector2, points: Array[Vector2], damage
 	attack.add_child(shape)
 	attack.add_child(visual)
 	get_parent().add_child(attack)
+	last_attack = attack
 	attack.global_position = global_position
 	attack.configure_sweep_launch(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, launch_velocity, hitstun_duration, hit_tag, damage_type)
 	_draw_attack_art(attack, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), direction)
@@ -1580,6 +1594,22 @@ func on_attack_landed(hit_position: Vector2, damage: float, base_knockback: floa
 func on_tagged_attack_landed(hit_tag: String) -> void:
 	character_on_tagged_attack_landed(hit_tag)
 
+## Every landed hit of this fighter's attack areas, with the body hit and the attack (its meta
+## says which move it was).
+func on_attack_hit_body(body: Node, attack: Node) -> void:
+	_cancel_chain_recovery(attack)
+	character_on_attack_hit_body(body, attack)
+
+func character_on_attack_hit_body(_body: Node, _attack: Node) -> void:
+	pass
+
+## A chain hit that lands cuts its own recovery to the meta "chain_cancel" seconds, so the next
+## hit of the chain arrives inside the target's hitstun (2026-10-10: Frey's and Brave Luna's
+## chains left the target 7-12 frames free between hits). A miss keeps the full recovery.
+func _cancel_chain_recovery(attack: Node) -> void:
+	if attack.has_meta("chain_cancel"):
+		attack_lock_timer = minf(attack_lock_timer, float(attack.get_meta("chain_cancel")))
+
 func _play_hit_feedback(damage: float, direction: Vector2, final_knockback: float) -> void:
 	body.color = Color(1.0, 1.0, 1.0)
 	var impact_scale := clampf(final_knockback / 700.0, 0.0, 1.0)
@@ -1695,9 +1725,37 @@ func _apply_character_sprite_style() -> void:
 func _play_sprite_action(animation_name: StringName, duration: float) -> void:
 	if not _uses_character_sprite():
 		return
+	_end_sprite_pose()
 	sprite_action = animation_name
 	sprite_action_timer = maxf(duration, 0.01)
 	character_sprite.play(_get_sprite_animation_name(animation_name))
+
+## Plays frames first..last of an action row across the duration and holds the last one, so
+## moves that share one sheet row read differently: a quick cut, a wide finisher, a held thrust
+## (2026-10-10: every Frey and Luna move played the same 4-frame attack row from frame 0).
+func _play_sprite_pose(animation_name: StringName, first: int, last: int, duration: float) -> void:
+	if not _uses_character_sprite():
+		return
+	_play_sprite_action(animation_name, duration)
+	var anim := character_sprite.animation
+	var count := character_sprite.sprite_frames.get_frame_count(anim)
+	var start := clampi(first, 0, count - 1)
+	var stop := clampi(last, start, count - 1)
+	character_sprite.frame = start
+	sprite_pose_last = stop
+	var fps := character_sprite.sprite_frames.get_animation_speed(anim)
+	# Reach the last frame by about two thirds of the move, then hold it.
+	var wanted := float(stop - start) / maxf(duration * 0.66, 0.02)
+	character_sprite.speed_scale = maxf(wanted / maxf(fps, 0.01), 0.01) if stop > start else 1.0
+	if stop == start:
+		character_sprite.pause()
+
+func _end_sprite_pose() -> void:
+	if sprite_pose_last < 0:
+		return
+	sprite_pose_last = -1
+	if is_instance_valid(character_sprite):
+		character_sprite.speed_scale = 1.0
 
 func _update_character_sprite(force := false) -> void:
 	if not _uses_character_sprite():
@@ -1713,5 +1771,10 @@ func _update_character_sprite(force := false) -> void:
 	elif absf(velocity.x) > 20.0 or absf(move_input) > 0.1:
 		target = &"walk"
 	var target_animation := _get_sprite_animation_name(target)
+	if sprite_pose_last >= 0 and character_sprite.animation == target_animation:
+		if character_sprite.frame >= sprite_pose_last and character_sprite.is_playing():
+			character_sprite.frame = sprite_pose_last
+			character_sprite.pause()
+		return
 	if force or character_sprite.animation != target_animation:
 		character_sprite.play(target_animation)
