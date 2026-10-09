@@ -23,7 +23,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var frey_moves := ["J1", "J2", "J3", "up J", "down J", "air J", "K dash", "L rising", "L spike input", "ultimate"]
-	var luna_moves := ["normal J", "normal up J", "normal down J", "air J", "normal K", "normal L", "Brave J1", "Brave J2", "Brave J3", "Brave up J", "Brave K", "Brave L", "transform", "heart laser"]
+	var luna_moves := ["normal J", "normal up J", "normal down J", "air J", "normal K", "normal L", "Brave J1", "Brave J2", "Brave J3", "Brave up J", "Brave K", "Brave L", "transform", "heart laser", "star charge"]
 	await _capture_character("frey", frey_moves, out_dir.path_join("frey-move-contact-sheet.png"))
 	await _capture_character("luna", luna_moves, out_dir.path_join("luna-move-contact-sheet.png"))
 	_release_all()
@@ -121,6 +121,10 @@ func _prepare_move(character: String, move: String) -> void:
 	if move in ["down J", "normal down J"]:
 		_hold("move_right", false)
 		_hold("move_down", true)
+	if move == "star charge":
+		# Setup only: show three charge stars circling her (the passive mark art).
+		fighter.star_charge = 3
+		fighter._update_star_orbit()
 	if move == "L spike input":
 		_tap("skill_2")
 		for frame in 40:
