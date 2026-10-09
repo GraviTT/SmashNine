@@ -1,0 +1,10 @@
+CODEX-ART-22 Godot attempt (single process)
+Command: Godot_v4.7-stable_win64_console.exe --headless --path . -s tests/art_preview/passive_marks_22/build_and_verify.gd
+Result: engine crashed before the builder script ran.
+
+ERROR: Failed to open 'user://logs/godot2026-10-10T05.03.29.log'.
+   at: copy (core/io/dir_access.cpp:429)
+CrashHandlerException: Program crashed with signal 11
+Engine version: Godot Engine v4.7.stable.official (5b4e0cb0fd279832bbdd69fed5354d4e5ad26f88)
+
+No product code or existing tests were changed. Generation and verification continued with build_and_verify.ps1.
