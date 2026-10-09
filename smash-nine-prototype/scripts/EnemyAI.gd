@@ -977,12 +977,12 @@ func _find_target(player) -> Node:
 		# Over the void (falling or recovering): neither reachable nor worth ignoring.
 		if stands == Vector2.INF:
 			continue
-		if own_floor == Vector2.INF or checks >= 3:
-			return candidate
-		# Our level counts as reachable only without a gap the gap jump cannot cross, or within
-		# hitting distance (Codex QA-14 rounds 10-12: 101 / 110 / 87 drops a round had no route at
-		# all, nearly all on our level across such a gap, 600-750 px away).
-		if absf(stands.y - own_floor.y) <= NAV_SAME_LEVEL and (_walkable_between(player, own_floor, stands) or absf(stands.x - own_floor.x) <= _hit_reach(player)):
+		# A candidate on our level is taken without a route check. Checking it too (no target across
+		# a gap the gap jump cannot cross) cut no-route drops 110 -> 5 but cost more than it saved
+		# (Codex QA-14 rounds 15-16, A/B on the same seeds: no-progress 1,596 against 1,051 s,
+		# no-target 11.1 against 8.7%, Yuki ring-outs 37 against 24); a fallback to a same-level
+		# candidate with a reachable point in reach is the next thing to try.
+		if own_floor == Vector2.INF or absf(stands.y - own_floor.y) <= NAV_SAME_LEVEL or checks >= 3:
 			return candidate
 		checks += 1
 		if _has_route_to(player, stands):
@@ -1639,18 +1639,6 @@ func _stands_on_other_level(player, body: Node) -> bool:
 		return false
 	return absf(theirs.y - own.y) > NAV_SAME_LEVEL
 
-## Both points stand on one platform, or on two platforms one gap jump apart and not higher than
-## the gap jump finds a landing (without platform rects, or off them, assume walking straight gets
-## there). "Our level" reaches 138 px up, the gap jump only 90 (round 13 fixture, seed 112: a
-## platform 140 px up read as a blocked way).
-func _walkable_between(player, from: Vector2, to: Vector2) -> bool:
-	var spans: Array[Rect2] = _platform_rects(player)
-	var a := _span_index(from, spans)
-	var b := _span_index(to, spans)
-	if a < 0 or b < 0 or a == b:
-		return true
-	return _span_gap(spans[a], spans[b]) <= NAV_GAP_JUMP and from.y - to.y <= LANDING_PATCH_RISE
-
 ## The body stands on a platform above ours that one jump reaches from here: higher than the gap
 ## jump lands, no higher than a route's jump rise, and within the jump-start distance of it.
 func _climb_to(player, body: Node) -> bool:
@@ -1669,11 +1657,6 @@ func _climb_to(player, body: Node) -> bool:
 		return false
 	var reach_x: float = maxf(0.0, maxf(spans[span].position.x - player.global_position.x, player.global_position.x - spans[span].end.x))
 	return reach_x <= NAV_JUMP_START
-
-## How far this fighter's attacks land from: its basic reach, or the distance it fights at.
-func _hit_reach(player) -> float:
-	var profile: Dictionary = _combat_profile(player)
-	return float(profile.get("basic_reach", profile.max_range))
 
 ## One of us hit the other within TRADE_MEMORY (fighters keep a countdown from their attacker
 ## memory; monsters and crystals the physics frame of the last hit).
