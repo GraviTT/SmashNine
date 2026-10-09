@@ -2,6 +2,7 @@
 
 사용자 요청(2026-10-09): "특정 캐릭터가 아닌 모든 기본적인 봇들의 행동 원리를 정리하고, 기본에서 뻗어나가 특정 캐릭터는 추가적으로 어떻게 행동하다 라는 것을 이미지로 정리."
 
+- 봇 조절의 전체 과정과 다시 시작하는 법: `design/BOT_TUNING.md`.
 - 근거 코드: `smash-nine-prototype/scripts/EnemyAI.gd` (봇 두뇌, 모든 캐릭터가 같은 파일을 씀). 캐릭터 차이는 같은 파일 안의 캐릭터별 표(거리 프로필, 복귀 기술, 궁극기 사거리)와 캐릭터별 예외 몇 줄뿐입니다.
 - 그림: `bot-behavior-tree.png`(Codex ART-19가 만든 위→아래 트리, 글자는 `tree.json` 그대로). 문구를 고친 뒤 `node reports/codex-art-19/render.js`로 다시 그립니다(`--all`이면 세 변형과 비교판까지). 이 문서는 그림보다 자세한 설명입니다.
 - 거리는 게임 화면 px입니다. 공격 범위 1.5배(`GameScale.COMBAT`)와 맵 1.5배(`GameScale.WORLD`)를 반영한 값입니다.

@@ -10,6 +10,8 @@ Codex runs as units (tester, analyst, builder) in its own clones and writes only
 
 1. `design/DECISIONS.md` — current decisions and the numbers behind them (wins over every other doc)
 2. `design/ROADMAP.md` — milestones and done-criteria
+   - Current priority (2026-10-10, D30): finish the characters first; bot tuning is paused.
+   - `design/BOT_TUNING.md` — bot tuning handbook (Korean): the whole process so far, current state, how to measure, lessons, the queue to resume. Read it before touching `EnemyAI.gd` or changing a character's kit (section 6 lists what the bot must follow).
 3. `smash-nine-prototype/FINAL_GAME_GOAL.md` — what the game must feel like
 4. `smash-nine/Concept1.png`, `smash-nine/Concept2.png` — concept art (realm map, timeline, growth, art tone)
 5. `smash-nine/GAME_DESIGN_DOCUMENT.md` — older GDD; lore and roster reference only
