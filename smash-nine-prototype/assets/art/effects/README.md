@@ -12,6 +12,10 @@ Godot 4.7용 1x 픽셀 이펙트 세트다. 모든 PNG는 RGBA, 투명 배경, �
 | `rio_mana_wave.png` | 48×112 | 1 | (24,56), 중앙 | 오른쪽으로 휘어진 세로형 청색 마력 검기. 기존 24×54 히트박스의 2배 표시를 감싼다. |
 | `rio_gem_sword.png` | 96×32 | 1 | (48,16), 중앙 | 오른쪽을 향한 회색 보석 검. 런타임에서 여섯 색으로 틴트한다. |
 | `nova_gravity_orb.png` | 32×32 | 1 | (16,16), 중앙 | 이번 카드 범위 밖의 기존 중력 구체. |
+| `parry_flash.png` | 768×128 | 6 × 128×128 | (64,64), 중앙 | 패리 성공용 금백색 링 충격파와 4방향 섬광. 0.15초, additive. |
+| `landing_dust.png` | 480×32 | 5 × 96×32 | (48,31), 아래 중앙 | 공중 공격 착지 때 좌우로 굴러 나가는 따뜻한 회색 먼지. 0.12초, normal. |
+| `hit_streak.png` | 640×24 | 4 × 160×24 | (80,12), 중앙 | 피격점의 양끝이 뾰족한 금백색 횡베기 선. 코드가 x축 69–138px로 조절, 0.08초, additive. |
+| `yuki_seal_break.png` | 480×96 | 5 × 96×96 | (48,48), 중앙 | 대기 중인 유키 부적이 4–6개 조각과 연청색 불꽃으로 찢어지는 효과. 0.15초, normal. |
 
 ## 팔레트와 그리기
 
@@ -30,9 +34,17 @@ Godot 4.7용 1x 픽셀 이펙트 세트다. 모든 PNG는 RGBA, 투명 배경, �
 - Rio wave: `single tall narrow blue mana crescent bowed right; cyan leading edge; deep-blue body; squared trailing fragments`.
 - Rio sword: `single slim greyscale throwing gem sword pointing right; crystal diamond guard; no hue colours`.
 - Nova: `single compact gravity orb; dark-indigo core; broken teal-to-gold orbital arcs; square gravity motes`.
+- Parry flash: `six-frame perfect-block clang; gold-white ring shockwave and sharp four-point glint; contact -> ring -> full clang -> broken rays -> motes -> almost faded; clearly distinct from hit spark`.
+- Landing dust: `five-frame pair of compact warm-grey dust puffs rolling left and right along the ground; compressed contact -> billows -> scattered clumps -> almost faded`.
+- Hit streak: `four-frame sharp horizontal white-gold slash line; needle-point ends, brightest middle; ignition -> brilliant line -> split taper and sparks -> almost faded; never a flat rectangle`.
+- Yuki seal break: `five-frame ivory paper talisman with vermilion marks tearing into 4–6 fragments and light-blue sparks; intact crack -> torn centre -> separating fragments -> outward fall -> almost faded; match yuki_seal_idle`.
 
 `tests/art_preview/fx_1x_b/build_fx.gd`가 새 생성 원화와 보존된 고해상도 생성 원본을 불러 알파 컷오프, 불투명 영역 크롭, 최종 밀도 샘플링, 제한 팔레트 매핑, 지정 캔버스 정렬을 수행한다. `verify_fx.gd`는 크기·프레임·RGBA8·이진 알파·최소 3px 여백을 검증한다.
+
+CODEX-ART-20의 네 짧은 효과는 `tests/art_preview/flash_art_20/build_effects.gd`가 ImageGen 원화에서 잘라낸 뒤 최근접 축소, 제한 팔레트 매핑, 이진 알파와 앵커 정렬을 수행한다. 각 결과는 두 렐름 배경색에서 1x/4x 접촉 시트로 확인했다.
 
 ## 리드 통합 메모
 
 제품 코드는 새 원본 픽셀 크기에 맞춰 기존 표시 배율을 내려야 한다. 유키 부적·루나 별은 4x→1x, 리오 검기·보석검은 2x→1x가 같은 화면 크기다. 이동 방향이 왼쪽이면 텍스처를 수평 반전하고, `rio_gem_sword.png`에는 기존 `GEM_COLORS`를 `modulate`로 적용한다. `hit_spark.png`는 96×96 AtlasTexture 4장으로 자르고 기존 표시 크기별 스케일을 절반으로 조정한다. 물리 히트박스는 바꾸지 않는다.
+
+짧은 효과 네 장은 모두 1 art px = 1 screen px다. `parry_flash`(6프레임/0.15초)와 `hit_streak`(4프레임/0.08초)은 additive, `landing_dust`(5프레임/0.12초)와 `yuki_seal_break`(5프레임/0.15초)은 normal로 재생한다. 위 표의 앵커를 그대로 사용하고, 마지막 프레임 뒤 one-shot으로 해제한다.
