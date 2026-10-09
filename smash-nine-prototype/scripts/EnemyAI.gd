@@ -154,12 +154,11 @@ const RECOVERY_SKILL_AIM_ABOVE := 60.0
 ## them in two long recoveries).
 const RECOVERY_SKILL_MAX_USES := 2
 const RECOVERY_LAST_CHANCE := 140.0
-## Nova's vector shift adds speed to the fall it starts from, so it lifts only early in a fall
-## (lead's measurement 2026-10-09, shift straight up: highest point 321 / 274 / 232 / 118 / 22 /
-## 0 px above the start at fall speeds 0 / 300 / 500 / 700 / 900 / 1,100 px/s; R11: 21 uses, 5
-## floors reached, used once below the platform, nearly at full fall speed). Out of jumps with
-## no floor under the fall, Nova shifts while falling slower than this, not only once below.
-const NOVA_SHIFT_FALL_LIMIT := 450.0
+## Nova's vector shift adds speed to the fall it starts from (lead's measurement 2026-10-09, shift
+## straight up: highest point 321 / 274 / 232 / 118 / 22 / 0 px above the start at fall speeds 0 /
+## 300 / 500 / 700 / 900 / 1,100 px/s), but shifting early in any fall with no floor under it did
+## worse (Codex QA-14 round 14: floors reached 2 of 17 against 5 of 21; 3 aimed level or down, 12
+## of 16 still falling 0.5 s later). A redesign needs an upward aim and the apex it would reach.
 ## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, times
 ## GameScale.COMBAT like every fighting distance: Frey's wave 240, Nova's pull 230, Yuki's ward
 ## twice its 205 radius; set at attacks x2 as 480 / 820 / 420 / 460 / 900 and left there when
@@ -596,17 +595,15 @@ func _engage_intent(player, delta: float) -> Dictionary:
 			move = target_direction
 			jump = player.is_on_floor() and distance_x < ESCAPE_JUMP_DISTANCE
 
-	var terrain_intent: Dictionary
-	if (action == "approach" or action == "jump_in") and not _straight_way_to(player, target):
-		# Closing in on a target on another level, or across a gap, follows the route (Codex QA-14
-		# rounds 10-12: 82-109 drops a round were blocked by a gap toward such a target and 73-91
-		# landed on the wrong level, all with a route the engage walk ignored).
-		terrain_intent = _navigate_to_intent(player, _navigation_destination(player, _standing_point(player, target)))
-	else:
-		# A target on a lower level: step off the ledge toward it when there is a landing (the
-		# engage band reaches farther down since attacks doubled; it used to stand on the edge).
-		var drop_down: bool = offset.y > NAV_SAME_LEVEL and move != 0.0 and signf(move) == target_direction and _has_drop_landing(player, target_direction)
-		terrain_intent = _terrain_move_intent(player, move, jump, action == "approach" or action == "jump_in" or action == "escape", drop_down)
+	# A target on a lower level: step off the ledge toward it when there is a landing (the
+	# engage band reaches farther down since attacks doubled; it used to stand on the edge).
+	var drop_down: bool = offset.y > NAV_SAME_LEVEL and move != 0.0 and signf(move) == target_direction and _has_drop_landing(player, target_direction)
+	# A target on a platform overhead that one jump reaches: jump up to it, from a ledge too (Codex
+	# QA-14 round 13 fixture, seed 112: Luna at her platform's edge under the crystal's platform
+	# read the edge as a blocked way). Following the whole route while engaged was measured worse
+	# (round 14: no-progress +46%, recovery entries +48%) and is not done.
+	var climb: bool = (action == "approach" or action == "jump_in") and _climb_to(player, target)
+	var terrain_intent: Dictionary = _terrain_move_intent(player, move, jump or climb, action == "approach" or action == "jump_in" or action == "escape", drop_down, climb)
 	var attack_name: String = _choose_attack(player, distance_x, distance_y)
 	terrain_intent["attack"] = attack_name
 	if attack_name != "":
@@ -917,8 +914,7 @@ func _recover_intent(player) -> Dictionary:
 	var intent: Dictionary = _intent(direction, jump)
 	# Out of jumps: a recovery skill aimed at the platform (Rio's dimension slash, Frey's dash
 	# strike, Nova's vector shift; Codex QA-14: 78% of ring-outs had no air jump left).
-	var early_shift: bool = player.character_id == "nova" and player.velocity.y <= NOVA_SHIFT_FALL_LIMIT and not _landing_in_fall(player)
-	if (below_target or early_shift) and player.air_jumps_left <= 0 and player.velocity.y > 60.0 and bool(_combat_profile(player).get("recovery_skill", false)):
+	if below_target and player.air_jumps_left <= 0 and player.velocity.y > 60.0 and bool(_combat_profile(player).get("recovery_skill", false)):
 		var aim_point: Vector2 = recovery_target + Vector2(0.0, -RECOVERY_SKILL_AIM_ABOVE)
 		var reach: float = float(RECOVERY_SKILL_REACH.get(player.character_id, 100000.0))
 		var local_y: float = player.global_position.y - player.realm_origin.y
@@ -1084,7 +1080,7 @@ func _is_in_engage_band(player, offset: Vector2) -> bool:
 	return absf(offset.x) <= float(profile.max_range) + 70.0 * GAME_SCALE.COMBAT and absf(offset.y) <= 150.0 * GAME_SCALE.COMBAT
 
 func _choose_pursuit_destination(player, target_position: Vector2) -> Vector2:
-	if absf(target_position.y - player.global_position.y) <= NAV_SAME_LEVEL and _straight_way_to(player, target):
+	if absf(target_position.y - player.global_position.y) <= NAV_SAME_LEVEL:
 		_clear_navigation_path()
 		return target_position
 	return _navigation_destination(player, target_position)
@@ -1655,16 +1651,24 @@ func _walkable_between(player, from: Vector2, to: Vector2) -> bool:
 		return true
 	return _span_gap(spans[a], spans[b]) <= NAV_GAP_JUMP and from.y - to.y <= LANDING_PATCH_RISE
 
-## Walking straight at the body gets there: it stands on our level with no uncrossable gap
-## between (over the void either way, nothing better is known).
-func _straight_way_to(player, body: Node) -> bool:
-	if not is_instance_valid(body):
-		return true
+## The body stands on a platform above ours that one jump reaches from here: higher than the gap
+## jump lands, no higher than a route's jump rise, and within the jump-start distance of it.
+func _climb_to(player, body: Node) -> bool:
+	if not is_instance_valid(body) or not player.is_on_floor():
+		return false
 	var own := _standing_point(player, player)
 	var theirs := _standing_point(player, body)
 	if own == Vector2.INF or theirs == Vector2.INF:
-		return true
-	return absf(theirs.y - own.y) <= NAV_SAME_LEVEL and _walkable_between(player, own, theirs)
+		return false
+	var rise: float = own.y - theirs.y
+	if rise <= LANDING_PATCH_RISE or rise > NAV_JUMP_RISE:
+		return false
+	var spans: Array[Rect2] = _platform_rects(player)
+	var span := _span_index(theirs, spans)
+	if span < 0:
+		return false
+	var reach_x: float = maxf(0.0, maxf(spans[span].position.x - player.global_position.x, player.global_position.x - spans[span].end.x))
+	return reach_x <= NAV_JUMP_START
 
 ## How far this fighter's attacks land from: its basic reach, or the distance it fights at.
 func _hit_reach(player) -> float:
