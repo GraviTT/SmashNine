@@ -120,6 +120,9 @@ func _test_gravity_brake_scaling() -> bool:
 
 func _test_gravity_slingshot() -> bool:
 	var nova := _create_nova(6, true)
+	# Its physics runs for the orbit, so its bot brain would run too and press the slingshot
+	# stages itself (it launched during the orbit wait on a loaded machine): no bot here.
+	nova.is_dummy = true
 	nova.velocity = Vector2(520.0, 0.0)
 	nova.ultimate()
 	if nova.ultimate_phase != nova.ULTIMATE_CORE or not is_instance_valid(nova.singularity_visual):
@@ -140,8 +143,10 @@ func _test_gravity_slingshot() -> bool:
 		_fail("Nova ultimate launch preview was too short to represent its destination")
 		return false
 	var orbit_position: Vector2 = nova.global_position
-	for attempt in 20:
-		await create_timer(0.01).timeout
+	# A fixed 0.1 s of game time: a real-time wait runs long on a loaded machine, and the orbit
+	# (a lap in about 0.35 s) can come back round to where it started.
+	for frame in 6:
+		await physics_frame
 	if nova.global_position.distance_to(orbit_position) < 8.0:
 		_fail("Nova ultimate did not move along its gravity orbit")
 		return false
@@ -158,12 +163,8 @@ func _test_gravity_slingshot() -> bool:
 	if nova.ultimate_launch_shift_available or nova.ultimate_launch_direction.dot(pre_shift_direction) > 0.9:
 		_fail("Nova ultimate launch did not allow K to redirect its trajectory")
 		return false
-	var saw_final_burst := false
-	for attempt in 100:
-		if nova.ultimate_phase == nova.ULTIMATE_NONE and is_instance_valid(_find_source_script(nova, BURST_PATH)):
-			saw_final_burst = true
-			break
-		await create_timer(0.01).timeout
+	# The impact burst lives 0.14 s: watched every physics frame.
+	var saw_final_burst := await _wait_for(func() -> bool: return nova.ultimate_phase == nova.ULTIMATE_NONE and is_instance_valid(_find_source_script(nova, BURST_PATH)), 1.5)
 	if not saw_final_burst:
 		_fail("Nova ultimate did not end in a gravity impact burst")
 		return false
@@ -191,6 +192,16 @@ func _wait_for_source_script(source: Node, script_path: String) -> Node:
 			return found
 		await create_timer(0.005).timeout
 	return null
+
+## Polls a condition every physics frame, for up to `timeout` seconds of game time.
+## physics_frame comes before any node's _physics_process, so a hit area is seen before its
+## own frames can expire it (as in test_rio_prototype.gd).
+func _wait_for(condition: Callable, timeout: float) -> bool:
+	var waited := 0.0
+	while not condition.call() and waited < timeout:
+		await physics_frame
+		waited += get_root().get_physics_process_delta_time()
+	return condition.call()
 
 func _find_source_script(source: Node, script_path: String) -> Node:
 	for child in arena.get_children():
