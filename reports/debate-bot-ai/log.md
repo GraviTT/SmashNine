@@ -179,3 +179,12 @@ Round 13 (current R11 code, reproduced exactly): suppressing recovery on the fal
 | R15-5 counter is no attack; route jump from a ledge; 90 px walkable rise | **keep** | Input-less engages 2 → 0; both fixtures are tests. |
 | R15-6 seed-112 fixture without route following | **new, narrow** (`bae0c26`) | Approaching a target on a platform overhead one jump reaches (rise 90–187.5 px, within 165 px), jump to it, from a ledge too. Round 15 measures. |
 | edge-graze stabilisation, Yuki ring-outs (R14 24), no-target fallback, new standoff fixtures | **later** | After round 15. |
+
+## Round 16 (measurement: Codex QA-14 rounds 15–16, `round15.md`, `round16.md`) — 2026-10-10
+
+Round 15 confirmed both round-14 reverts (walked-off recoveries 1,522 → 806, Nova floors 2/17 → 6/21) and kept the narrow climb (input-less 0, longest standoff 104 → 29.5 s), but against R11: ring-outs 94 → 119 (Yuki 16 → 37), wrong-level no-progress 432 → 970 s, no-target 8.2 → 11.1%. Round 16 reverted one change at a time on the current code (same seeds): S0 (R11 target choice) and U0 (R11 ultimate reach).
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R16-1 strict target choice | **revert** (Codex: rework) | S0 vs R15: no-progress 1,596 → 1,051 s (under R11's 1,118), wrong-level 970 → 510 s, no-target 11.1 → 8.7%, Yuki ring-outs 37 → 24; no-route drops 5 → 84 (~2.5 s each, ~210 s). Product `_find_target` now equals the S0 variant. A same-level fallback that needs a reachable point in reach is next session's A/B. |
+| R16-2 ultimate reach x COMBAT | **keep** (Codex: revert) | A correctness fix for the x1.5 attacks; U0's lower ring-outs have no mechanism in the data — Yuki ring-outs after an ultimate hit were higher with the old reach (18 of 31 vs S0's 10 of 24), activations similar, and Yuki ring-outs ranged 16–37 across near-identical code. A 24-seed A/B (S0 vs S0 + old reach) settles it next session. |
