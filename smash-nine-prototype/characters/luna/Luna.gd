@@ -410,6 +410,7 @@ func _brave_comet_drive(direction: Vector2) -> void:
 		Vector2(0, -34) + direction * 58.0,
 		Vector2(0, -34) + direction * 112.0
 	], 11, 425, direction, BRAVE_IMPACT_COLOR, 0.12)
+	last_attack.set_meta("chain_cancel", 0.0)
 	_play_star_bloom(Vector2(0, -34) + direction * 108.0, 31.0, BRAVE_IMPACT_COLOR, 0.12)
 
 func _brave_luna_breaker() -> void:

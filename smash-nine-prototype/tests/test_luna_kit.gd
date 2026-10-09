@@ -4,7 +4,8 @@ extends SceneTree
 ## remaining cooldown, and while the ultimate is ready the stars wait; the Brave J chain plays
 ## the jab, body kick and spinning kick frames of the Brave attack row; the side echo's bloom opens
 ## on the body its trail struck, so walking in while swinging still lands both (Codex QA-17: 1 of 8);
-## a Luna bot whose laser press comes while she is mid-attack presses again until it fires.
+## a Luna bot whose laser press comes while she is mid-attack presses again until it fires; a
+## Brave comet drive (K) that lands cancels its recovery so the jab follows inside the hitstun.
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -23,6 +24,7 @@ func _run() -> void:
 	await _test_full_charge()
 	await _test_brave_chain_poses()
 	await _test_bot_laser_retry()
+	await _test_brave_k_into_jab()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -143,6 +145,48 @@ func _test_full_charge() -> void:
 	if int(luna.star_charge) != 0 or float(luna.ultimate_cooldown_timer) > 24.1:
 		_fail("Waiting stars should be spent on the next cooldown (stars %d, cooldown %.1f)" % [luna.star_charge, luna.ultimate_cooldown_timer])
 	luna.queue_free()
+	await process_frame
+
+## Codex QA-17: Brave K -> J connected 0 of 8 (the comet drive's recovery let the target fly off).
+func _test_brave_k_into_jab() -> void:
+	var ground := _floor(Vector2(0, 0), 1400)
+	var luna := _fighter("luna", 1, Vector2(0, -2))
+	for frame in 20:
+		await physics_frame
+	luna._enter_transformation()
+	for frame in 30:
+		await physics_frame
+	# The training dummy Codex measured with (lighter than Frey, so the comet drive throws it farther).
+	var target: Node = PLAYER_FACTORY.create("")
+	arena.add_child(target)
+	target.global_position = Vector2(luna.global_position.x + 120.0, -2)
+	target.setup_dummy(3)
+	target.ringout_y = 100000.0
+	for frame in 6:
+		await physics_frame
+	var hits := []
+	target.damaged.connect(func(_v, _amount, _att, _src): hits.append(float(target.hitstun_timer) + float(target.hitstop_timer)))
+	luna.facing = 1
+	luna.perform_skill_one()
+	for frame in 30:
+		await physics_frame
+		if hits.size() >= 1 and luna._can_start_attack():
+			break
+	if hits.size() >= 1:
+		luna.perform_basic_attack("neutral", Vector2.RIGHT)
+		for frame in 20:
+			await physics_frame
+			if hits.size() >= 2:
+				break
+	if hits.size() < 2:
+		_fail("Brave K then J: the jab should land after a comet drive that hit (%d hits)" % hits.size())
+	elif float(hits[1]) < 0.1:
+		# Before the cancel the jab only made it with 0.023 s left: frame-perfect, and 0 of 8 in
+		# Codex QA-17's input. Now a player has room to press it.
+		_fail("Brave K then J: the jab should land with at least 0.1 s of the comet drive's hitstun left (%.3f)" % float(hits[1]))
+	luna.queue_free()
+	target.queue_free()
+	ground.queue_free()
 	await process_frame
 
 func _test_bot_laser_retry() -> void:
