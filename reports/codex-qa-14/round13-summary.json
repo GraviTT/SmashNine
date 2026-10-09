@@ -1,0 +1,931 @@
+{
+  "baseline": {
+    "all_equal": true,
+    "rows": [
+      {
+        "seed": 101,
+        "expected": {
+          "seconds": 342.5,
+          "winner": "luna",
+          "ringouts": 7,
+          "portals": 17,
+          "recovery_entries": 135
+        },
+        "actual": {
+          "seconds": 342.5,
+          "winner": "luna",
+          "ringouts": 7,
+          "portals": 17,
+          "recovery_entries": 135
+        },
+        "equal": true
+      },
+      {
+        "seed": 102,
+        "expected": {
+          "seconds": 324.8,
+          "winner": "yuki",
+          "ringouts": 11,
+          "portals": 18,
+          "recovery_entries": 258
+        },
+        "actual": {
+          "seconds": 324.8,
+          "winner": "yuki",
+          "ringouts": 11,
+          "portals": 18,
+          "recovery_entries": 258
+        },
+        "equal": true
+      },
+      {
+        "seed": 103,
+        "expected": {
+          "seconds": 339.6,
+          "winner": "nova",
+          "ringouts": 6,
+          "portals": 19,
+          "recovery_entries": 160
+        },
+        "actual": {
+          "seconds": 339.6,
+          "winner": "nova",
+          "ringouts": 6,
+          "portals": 19,
+          "recovery_entries": 160
+        },
+        "equal": true
+      },
+      {
+        "seed": 104,
+        "expected": {
+          "seconds": 298.1,
+          "winner": "frey",
+          "ringouts": 11,
+          "portals": 16,
+          "recovery_entries": 170
+        },
+        "actual": {
+          "seconds": 298.1,
+          "winner": "frey",
+          "ringouts": 11,
+          "portals": 16,
+          "recovery_entries": 170
+        },
+        "equal": true
+      },
+      {
+        "seed": 105,
+        "expected": {
+          "seconds": 304.1,
+          "winner": "frey",
+          "ringouts": 9,
+          "portals": 19,
+          "recovery_entries": 112
+        },
+        "actual": {
+          "seconds": 304.1,
+          "winner": "frey",
+          "ringouts": 9,
+          "portals": 19,
+          "recovery_entries": 112
+        },
+        "equal": true
+      },
+      {
+        "seed": 106,
+        "expected": {
+          "seconds": 316.7,
+          "winner": "rio",
+          "ringouts": 11,
+          "portals": 23,
+          "recovery_entries": 153
+        },
+        "actual": {
+          "seconds": 316.7,
+          "winner": "rio",
+          "ringouts": 11,
+          "portals": 23,
+          "recovery_entries": 153
+        },
+        "equal": true
+      },
+      {
+        "seed": 107,
+        "expected": {
+          "seconds": 320.3,
+          "winner": "frey",
+          "ringouts": 5,
+          "portals": 17,
+          "recovery_entries": 113
+        },
+        "actual": {
+          "seconds": 320.3,
+          "winner": "frey",
+          "ringouts": 5,
+          "portals": 17,
+          "recovery_entries": 113
+        },
+        "equal": true
+      },
+      {
+        "seed": 108,
+        "expected": {
+          "seconds": 333.4,
+          "winner": "luna",
+          "ringouts": 0,
+          "portals": 34,
+          "recovery_entries": 273
+        },
+        "actual": {
+          "seconds": 333.4,
+          "winner": "luna",
+          "ringouts": 0,
+          "portals": 34,
+          "recovery_entries": 273
+        },
+        "equal": true
+      },
+      {
+        "seed": 109,
+        "expected": {
+          "seconds": 294.4,
+          "winner": "luna",
+          "ringouts": 10,
+          "portals": 22,
+          "recovery_entries": 122
+        },
+        "actual": {
+          "seconds": 294.4,
+          "winner": "luna",
+          "ringouts": 10,
+          "portals": 22,
+          "recovery_entries": 122
+        },
+        "equal": true
+      },
+      {
+        "seed": 110,
+        "expected": {
+          "seconds": 272,
+          "winner": "frey",
+          "ringouts": 12,
+          "portals": 22,
+          "recovery_entries": 147
+        },
+        "actual": {
+          "seconds": 272,
+          "winner": "frey",
+          "ringouts": 12,
+          "portals": 22,
+          "recovery_entries": 147
+        },
+        "equal": true
+      },
+      {
+        "seed": 111,
+        "expected": {
+          "seconds": 267.3,
+          "winner": "nova",
+          "ringouts": 4,
+          "portals": 21,
+          "recovery_entries": 131
+        },
+        "actual": {
+          "seconds": 267.3,
+          "winner": "nova",
+          "ringouts": 4,
+          "portals": 21,
+          "recovery_entries": 131
+        },
+        "equal": true
+      },
+      {
+        "seed": 112,
+        "expected": {
+          "seconds": 274.3,
+          "winner": "rio",
+          "ringouts": 8,
+          "portals": 24,
+          "recovery_entries": 248
+        },
+        "actual": {
+          "seconds": 274.3,
+          "winner": "rio",
+          "ringouts": 8,
+          "portals": 24,
+          "recovery_entries": 248
+        },
+        "equal": true
+      }
+    ]
+  },
+  "comparison_rounds": {
+    "r10": {
+      "match_median": 276.1,
+      "ringouts": 108,
+      "recovery_entries": 1346,
+      "no_progress": 724.3,
+      "hit_rate": 52.52
+    },
+    "r11": {
+      "match_median": 310.4,
+      "ringouts": 94,
+      "recovery_entries": 2022,
+      "no_progress": 1117.5,
+      "hit_rate": 47.13
+    },
+    "r12": {
+      "match_median": 295.6,
+      "ringouts": 120,
+      "recovery_entries": 1559,
+      "no_progress": 737,
+      "hit_rate": 51.5
+    }
+  },
+  "flips": {
+    "total": 1438,
+    "by_class": {
+      "other": 487,
+      "velocity_hit_knockback_wall": 200,
+      "edge_graze": 593,
+      "move_input_changed": 150,
+      "horizon_shift": 8
+    },
+    "by_character": {
+      "frey": {
+        "total": 286,
+        "before_ringout": 6,
+        "by_class": {
+          "edge_graze": 121,
+          "other": 105,
+          "velocity_hit_knockback_wall": 29,
+          "move_input_changed": 31
+        }
+      },
+      "luna": {
+        "total": 282,
+        "before_ringout": 8,
+        "by_class": {
+          "other": 96,
+          "edge_graze": 114,
+          "move_input_changed": 28,
+          "velocity_hit_knockback_wall": 44
+        }
+      },
+      "nova": {
+        "total": 319,
+        "before_ringout": 22,
+        "by_class": {
+          "other": 108,
+          "edge_graze": 130,
+          "velocity_hit_knockback_wall": 38,
+          "move_input_changed": 36,
+          "horizon_shift": 7
+        }
+      },
+      "rio": {
+        "total": 350,
+        "before_ringout": 6,
+        "by_class": {
+          "velocity_hit_knockback_wall": 52,
+          "edge_graze": 131,
+          "other": 137,
+          "move_input_changed": 29,
+          "horizon_shift": 1
+        }
+      },
+      "yuki": {
+        "total": 201,
+        "before_ringout": 1,
+        "by_class": {
+          "edge_graze": 97,
+          "other": 41,
+          "velocity_hit_knockback_wall": 37,
+          "move_input_changed": 26
+        }
+      }
+    },
+    "before_ringout": 43,
+    "directions": {
+      "no_landing_to_landing": 919,
+      "landing_to_no_landing": 519
+    },
+    "frame_count": 366090,
+    "frame_hit": 274618
+  },
+  "ab": {
+    "with_recovery": {
+      "total": 867,
+      "outcomes": {
+        "landed": 856,
+        "ringout": 9,
+        "unfinished": 2
+      },
+      "by_character": {
+        "frey": {
+          "total": 175,
+          "outcomes": {
+            "landed": 171,
+            "ringout": 4
+          },
+          "entered_recovery": 173
+        },
+        "luna": {
+          "total": 195,
+          "outcomes": {
+            "landed": 194,
+            "ringout": 1
+          },
+          "entered_recovery": 194
+        },
+        "nova": {
+          "total": 168,
+          "outcomes": {
+            "landed": 165,
+            "ringout": 2,
+            "unfinished": 1
+          },
+          "entered_recovery": 167
+        },
+        "rio": {
+          "total": 205,
+          "outcomes": {
+            "landed": 203,
+            "ringout": 2
+          },
+          "entered_recovery": 202
+        },
+        "yuki": {
+          "total": 124,
+          "outcomes": {
+            "landed": 123,
+            "unfinished": 1
+          },
+          "entered_recovery": 123
+        }
+      }
+    },
+    "without_recovery": {
+      "total": 384,
+      "outcomes": {
+        "landed": 234,
+        "ringout": 150
+      },
+      "by_character": {
+        "frey": {
+          "total": 67,
+          "outcomes": {
+            "landed": 37,
+            "ringout": 30
+          }
+        },
+        "luna": {
+          "total": 69,
+          "outcomes": {
+            "landed": 31,
+            "ringout": 38
+          }
+        },
+        "nova": {
+          "total": 97,
+          "outcomes": {
+            "landed": 61,
+            "ringout": 36
+          }
+        },
+        "rio": {
+          "total": 84,
+          "outcomes": {
+            "landed": 58,
+            "ringout": 26
+          }
+        },
+        "yuki": {
+          "total": 67,
+          "outcomes": {
+            "landed": 47,
+            "ringout": 20
+          }
+        }
+      }
+    },
+    "matches": {
+      "frey": {
+        "a_ringouts": 14,
+        "b_ringouts": 40
+      },
+      "luna": {
+        "a_ringouts": 24,
+        "b_ringouts": 59
+      },
+      "nova": {
+        "a_ringouts": 31,
+        "b_ringouts": 54
+      },
+      "rio": {
+        "a_ringouts": 9,
+        "b_ringouts": 32
+      },
+      "yuki": {
+        "a_ringouts": 16,
+        "b_ringouts": 34
+      }
+    },
+    "a_ringouts": 94,
+    "b_ringouts": 219,
+    "a_match_median": 310.4,
+    "b_match_median": 284.95
+  },
+  "luna_yuki_ringouts": {
+    "luna": {
+      "total": 24,
+      "zero_jump": 17,
+      "last_jump_context": {
+        "recovery": 17
+      },
+      "recovery_target_height_median": 904.65,
+      "horizontal_to_ledge_median": 232.2,
+      "blast_distance_median": -12.6,
+      "pvp_hit_within_3s": 22,
+      "movement_skill_ready": 2,
+      "slowing_skill_ready": 24
+    },
+    "yuki": {
+      "total": 16,
+      "zero_jump": 16,
+      "last_jump_context": {
+        "recovery": 16
+      },
+      "recovery_target_height_median": 928.8,
+      "horizontal_to_ledge_median": 23.9,
+      "blast_distance_median": -12.3,
+      "pvp_hit_within_3s": 15,
+      "movement_skill_ready": 0,
+      "slowing_skill_ready": 16
+    }
+  },
+  "no_route": {
+    "total": 110,
+    "target_kind": {
+      "monster": 85,
+      "crystal": 9,
+      "player": 16
+    },
+    "reasons": {
+      "gap_wider_than_gap_jump": 106,
+      "rise_over_one_jump": 4
+    },
+    "reachable_within_attack": 35,
+    "next_target": 104,
+    "next_target_delay_median": 0,
+    "portal": 9,
+    "wander": 88,
+    "next_damage": 26,
+    "next_damage_delay_median": 6.23
+  },
+  "fixtures": {
+    "inputless_found": [
+      {
+        "seed": 106,
+        "character": "rio",
+        "duration": 5.02,
+        "target_kind": "player",
+        "distance": 306.5
+      },
+      {
+        "seed": 112,
+        "character": "luna",
+        "duration": 5.65,
+        "target_kind": "crystal",
+        "distance": 256.4
+      }
+    ],
+    "top_gaps": [
+      {
+        "spot_key": "7|10000|6250|10000|6450",
+        "count": 5
+      },
+      {
+        "spot_key": "7|9950|6500|9600|6300",
+        "count": 4
+      },
+      {
+        "spot_key": "7|10350|6500|10750|6300",
+        "count": 3
+      },
+      {
+        "spot_key": "6|5200|6550|5000|6350",
+        "count": 3
+      },
+      {
+        "spot_key": "5|1200|6550|1550|6350",
+        "count": 2
+      }
+    ]
+  },
+  "recovery_skills": {
+    "frey": {
+      "uses": 21,
+      "floor": 9,
+      "ringout_or_no_floor": 12,
+      "hit_within_0_5": 2,
+      "displacement_0_5": {
+        "dx_mean": 9.55,
+        "dy_mean": -17.67
+      },
+      "shortened_by_mean": 187.53,
+      "shortened_floor_mean": 226.42,
+      "shortened_no_floor_mean": 158.37,
+      "displacement_magnitude_0_5_mean": 179.81,
+      "ledge_abs_dx_median": 190.6,
+      "ledge_dy_median": -38.9,
+      "air_jumps_zero": 21
+    },
+    "nova": {
+      "uses": 21,
+      "floor": 5,
+      "ringout_or_no_floor": 16,
+      "hit_within_0_5": 3,
+      "displacement_0_5": {
+        "dx_mean": 7.98,
+        "dy_mean": -3.9
+      },
+      "shortened_by_mean": 107.82,
+      "shortened_floor_mean": 148.8,
+      "shortened_no_floor_mean": 95.02,
+      "displacement_magnitude_0_5_mean": 180.62,
+      "ledge_abs_dx_median": 75.4,
+      "ledge_dy_median": -117.6,
+      "air_jumps_zero": 21
+    },
+    "rio": {
+      "uses": 5,
+      "floor": 1,
+      "ringout_or_no_floor": 4,
+      "hit_within_0_5": 0,
+      "displacement_0_5": {
+        "dx_mean": 124.1,
+        "dy_mean": 110.24
+      },
+      "shortened_by_mean": 161.88,
+      "shortened_floor_mean": 127.9,
+      "shortened_no_floor_mean": 170.38,
+      "displacement_magnitude_0_5_mean": 272.86,
+      "ledge_abs_dx_median": 78.6,
+      "ledge_dy_median": -120,
+      "air_jumps_zero": 5
+    }
+  },
+  "no_progress_causes": {
+    "frey|blocked_gap": 28.5,
+    "frey|no_route": 18.5,
+    "frey|pursue_no_closer": 44.75,
+    "frey|stuck": 0.25,
+    "frey|wrong_level": 67.5,
+    "luna|blocked_gap": 10.25,
+    "luna|no_route": 17.75,
+    "luna|pursue_no_closer": 60.5,
+    "luna|wrong_level": 87.75,
+    "nova|blocked_gap": 59.25,
+    "nova|no_route": 38.75,
+    "nova|pursue_no_closer": 69,
+    "nova|wrong_level": 101.5,
+    "rio|blocked_gap": 121.5,
+    "rio|no_route": 35.5,
+    "rio|pursue_no_closer": 146,
+    "rio|wrong_level": 136.25,
+    "yuki|pursue_no_closer": 20.5,
+    "yuki|wrong_level": 38.75,
+    "luna|stuck": 0.5,
+    "nova|stuck": 0.25,
+    "yuki|blocked_gap": 7.25,
+    "rio|stuck": 1.25,
+    "yuki|no_route": 5.5
+  },
+  "attack_requests": {
+    "basic_air_down": 3127,
+    "basic_air_side": 1669,
+    "basic_air_up": 554,
+    "basic_side": 15608,
+    "basic_up": 655,
+    "skill_1": 14294,
+    "skill_2": 821,
+    "ultimate": 714,
+    "basic_down": 303
+  },
+  "attack_requests_by_character": {
+    "frey": {
+      "basic_air_down": 238,
+      "basic_air_side": 418,
+      "basic_air_up": 158,
+      "basic_side": 1987,
+      "basic_up": 148,
+      "skill_1": 12782,
+      "skill_2": 114,
+      "ultimate": 162,
+      "basic_down": 98
+    },
+    "luna": {
+      "basic_air_down": 138,
+      "basic_air_side": 336,
+      "basic_air_up": 105,
+      "basic_down": 45,
+      "basic_side": 1731,
+      "basic_up": 119,
+      "skill_1": 689,
+      "skill_2": 175,
+      "ultimate": 106
+    },
+    "nova": {
+      "basic_air_down": 2273,
+      "basic_air_side": 457,
+      "basic_air_up": 93,
+      "basic_down": 52,
+      "basic_side": 2155,
+      "basic_up": 134,
+      "skill_1": 104,
+      "skill_2": 157,
+      "ultimate": 125
+    },
+    "rio": {
+      "basic_air_down": 247,
+      "basic_air_side": 224,
+      "basic_air_up": 138,
+      "basic_side": 1590,
+      "basic_up": 131,
+      "skill_1": 291,
+      "skill_2": 204,
+      "ultimate": 192,
+      "basic_down": 43
+    },
+    "yuki": {
+      "basic_air_down": 231,
+      "basic_air_side": 234,
+      "basic_air_up": 60,
+      "basic_down": 65,
+      "basic_side": 8145,
+      "basic_up": 123,
+      "skill_1": 428,
+      "skill_2": 171,
+      "ultimate": 129
+    }
+  },
+  "attack_activations": {
+    "basic_air_down": {
+      "uses": 672,
+      "hits": 370,
+      "hit_rate": 55.06
+    },
+    "basic_air_side": {
+      "uses": 966,
+      "hits": 412,
+      "hit_rate": 42.65
+    },
+    "basic_air_up": {
+      "uses": 483,
+      "hits": 299,
+      "hit_rate": 61.9
+    },
+    "basic_side": {
+      "uses": 6712,
+      "hits": 4751,
+      "hit_rate": 70.78
+    },
+    "basic_up": {
+      "uses": 625,
+      "hits": 346,
+      "hit_rate": 55.36
+    },
+    "skill_1": {
+      "uses": 926,
+      "hits": 331,
+      "hit_rate": 35.75
+    },
+    "skill_2": {
+      "uses": 392,
+      "hits": 89,
+      "hit_rate": 22.7
+    },
+    "basic_down": {
+      "uses": 258,
+      "hits": 54,
+      "hit_rate": 20.93
+    },
+    "ultimate": {
+      "uses": 61,
+      "hits": 0,
+      "hit_rate": 0
+    }
+  },
+  "attack_activations_by_character": {
+    "frey": {
+      "basic_air_down": {
+        "uses": 211,
+        "hits": 86,
+        "hit_rate": 40.76
+      },
+      "basic_air_side": {
+        "uses": 252,
+        "hits": 103,
+        "hit_rate": 40.87
+      },
+      "basic_air_up": {
+        "uses": 140,
+        "hits": 76,
+        "hit_rate": 54.29
+      },
+      "basic_side": {
+        "uses": 1550,
+        "hits": 1096,
+        "hit_rate": 70.71
+      },
+      "basic_up": {
+        "uses": 142,
+        "hits": 80,
+        "hit_rate": 56.34
+      },
+      "skill_1": {
+        "uses": 21,
+        "hits": 4,
+        "hit_rate": 19.05
+      },
+      "skill_2": {
+        "uses": 108,
+        "hits": 22,
+        "hit_rate": 20.37
+      },
+      "basic_down": {
+        "uses": 69,
+        "hits": 14,
+        "hit_rate": 20.29
+      }
+    },
+    "luna": {
+      "basic_air_down": {
+        "uses": 114,
+        "hits": 59,
+        "hit_rate": 51.75
+      },
+      "basic_air_side": {
+        "uses": 182,
+        "hits": 88,
+        "hit_rate": 48.35
+      },
+      "basic_air_up": {
+        "uses": 98,
+        "hits": 71,
+        "hit_rate": 72.45
+      },
+      "basic_down": {
+        "uses": 42,
+        "hits": 13,
+        "hit_rate": 30.95
+      },
+      "basic_side": {
+        "uses": 1399,
+        "hits": 903,
+        "hit_rate": 64.55
+      },
+      "basic_up": {
+        "uses": 109,
+        "hits": 77,
+        "hit_rate": 70.64
+      },
+      "skill_1": {
+        "uses": 568,
+        "hits": 306,
+        "hit_rate": 53.87
+      },
+      "skill_2": {
+        "uses": 147,
+        "hits": 42,
+        "hit_rate": 28.57
+      }
+    },
+    "nova": {
+      "basic_air_down": {
+        "uses": 120,
+        "hits": 97,
+        "hit_rate": 80.83
+      },
+      "basic_air_side": {
+        "uses": 230,
+        "hits": 84,
+        "hit_rate": 36.52
+      },
+      "basic_air_up": {
+        "uses": 90,
+        "hits": 54,
+        "hit_rate": 60
+      },
+      "basic_down": {
+        "uses": 47,
+        "hits": 9,
+        "hit_rate": 19.15
+      },
+      "basic_side": {
+        "uses": 1616,
+        "hits": 1120,
+        "hit_rate": 69.31
+      },
+      "basic_up": {
+        "uses": 128,
+        "hits": 71,
+        "hit_rate": 55.47
+      },
+      "skill_1": {
+        "uses": 21,
+        "hits": 0,
+        "hit_rate": 0
+      }
+    },
+    "rio": {
+      "basic_air_side": {
+        "uses": 146,
+        "hits": 83,
+        "hit_rate": 56.85
+      },
+      "basic_air_up": {
+        "uses": 96,
+        "hits": 63,
+        "hit_rate": 65.63
+      },
+      "basic_side": {
+        "uses": 1306,
+        "hits": 1066,
+        "hit_rate": 81.62
+      },
+      "basic_up": {
+        "uses": 124,
+        "hits": 83,
+        "hit_rate": 66.94
+      },
+      "basic_down": {
+        "uses": 36,
+        "hits": 10,
+        "hit_rate": 27.78
+      },
+      "skill_1": {
+        "uses": 5,
+        "hits": 0,
+        "hit_rate": 0
+      },
+      "basic_air_down": {
+        "uses": 2,
+        "hits": 1,
+        "hit_rate": 50
+      }
+    },
+    "yuki": {
+      "basic_air_down": {
+        "uses": 225,
+        "hits": 127,
+        "hit_rate": 56.44
+      },
+      "basic_air_side": {
+        "uses": 156,
+        "hits": 54,
+        "hit_rate": 34.62
+      },
+      "basic_air_up": {
+        "uses": 59,
+        "hits": 35,
+        "hit_rate": 59.32
+      },
+      "basic_side": {
+        "uses": 841,
+        "hits": 566,
+        "hit_rate": 67.3
+      },
+      "basic_up": {
+        "uses": 122,
+        "hits": 35,
+        "hit_rate": 28.69
+      },
+      "skill_1": {
+        "uses": 311,
+        "hits": 21,
+        "hit_rate": 6.75
+      },
+      "skill_2": {
+        "uses": 137,
+        "hits": 25,
+        "hit_rate": 18.25
+      },
+      "ultimate": {
+        "uses": 61,
+        "hits": 0,
+        "hit_rate": 0
+      },
+      "basic_down": {
+        "uses": 64,
+        "hits": 8,
+        "hit_rate": 12.5
+      }
+    }
+  },
+  "errors": {
+    "note": "logs are scanned separately; certificate-store line is expected sandbox noise"
+  }
+}
