@@ -1,0 +1,181 @@
+﻿{
+  "schema": 1,
+  "definition": "recent ultimate = PvP damage while attacker ultimate_window_timer > 0, followed by Nova ring-out within 3 seconds",
+  "baseline": {
+    "path": "reports/codex-qa-14/round16-s0-results.json",
+    "nova_ringouts": 29,
+    "recent_ultimate_hits": 10,
+    "recent_ultimate_attacker": {
+      "rio": 8,
+      "frey": 1,
+      "nova": 1
+    },
+    "recent_pvp_attacker": {
+      "luna": 3,
+      "rio": 9,
+      "frey": 1,
+      "nova": 2
+    },
+    "credited_attacker": {
+      "rio": 13,
+      "luna": 7,
+      "environment": 5,
+      "frey": 1,
+      "nova": 3
+    },
+    "during_recovery": 28,
+    "recent_ultimate_and_recovery": 9,
+    "recent_ultimate_and_zero_jumps": 5,
+    "environment_credit": 5,
+    "per_seed": {
+      "101": 5,
+      "102": 2,
+      "103": 2,
+      "105": 2,
+      "106": 3,
+      "107": 2,
+      "109": 1,
+      "110": 4,
+      "111": 4,
+      "112": 4
+    },
+    "ultimates": {
+      "luna": {
+        "casts": 71,
+        "hit_casts": 63,
+        "hit_events": 329,
+        "damage": 618.73
+      },
+      "rio": {
+        "casts": 78,
+        "hit_casts": 63,
+        "hit_events": 310,
+        "damage": 930.3
+      },
+      "nova": {
+        "casts": 79,
+        "hit_casts": 69,
+        "hit_events": 180,
+        "damage": 1037.56
+      },
+      "yuki": {
+        "casts": 77,
+        "hit_casts": 68,
+        "hit_events": 466,
+        "damage": 833.23
+      },
+      "frey": {
+        "casts": 89,
+        "hit_casts": 74,
+        "hit_events": 148,
+        "damage": 663.8
+      }
+    },
+    "nova_ultimate_driver": {
+      "aimed": 52,
+      "forced": 0,
+      "hits": 39,
+      "launches": 52,
+      "redirects": 16
+    }
+  },
+  "current": {
+    "path": "reports/codex-qa-14/round16-current-results.json",
+    "nova_ringouts": 42,
+    "recent_ultimate_hits": 23,
+    "recent_ultimate_attacker": {
+      "rio": 12,
+      "luna": 4,
+      "nova": 5,
+      "frey": 2
+    },
+    "recent_pvp_attacker": {
+      "rio": 12,
+      "luna": 6,
+      "nova": 5,
+      "yuki": 1,
+      "frey": 2
+    },
+    "credited_attacker": {
+      "environment": 7,
+      "rio": 14,
+      "frey": 4,
+      "luna": 9,
+      "nova": 6,
+      "yuki": 2
+    },
+    "during_recovery": 38,
+    "recent_ultimate_and_recovery": 19,
+    "recent_ultimate_and_zero_jumps": 10,
+    "environment_credit": 7,
+    "per_seed": {
+      "101": 6,
+      "102": 3,
+      "103": 3,
+      "105": 3,
+      "106": 4,
+      "107": 6,
+      "108": 2,
+      "109": 2,
+      "110": 5,
+      "111": 4,
+      "112": 4
+    },
+    "ultimates": {
+      "rio": {
+        "casts": 87,
+        "hit_casts": 84,
+        "hit_events": 490,
+        "damage": 1537.37
+      },
+      "luna": {
+        "casts": 101,
+        "hit_casts": 97,
+        "hit_events": 682,
+        "damage": 1139.17
+      },
+      "nova": {
+        "casts": 59,
+        "hit_casts": 58,
+        "hit_events": 193,
+        "damage": 1262.03
+      },
+      "yuki": {
+        "casts": 70,
+        "hit_casts": 65,
+        "hit_events": 458,
+        "damage": 785.66
+      },
+      "frey": {
+        "casts": 92,
+        "hit_casts": 79,
+        "hit_events": 181,
+        "damage": 814.39
+      }
+    },
+    "nova_ultimate_driver": {
+      "aimed": 58,
+      "forced": 0,
+      "hits": 47,
+      "launches": 58,
+      "redirects": 19
+    }
+  },
+  "delta": {
+    "nova_ringouts": 13,
+    "recent_ultimate_hits": 13,
+    "recent_ultimate_attacker": {
+      "rio": 4,
+      "luna": 4,
+      "nova": 4,
+      "frey": 1
+    },
+    "during_recovery": 10,
+    "environment_credit": 2
+  },
+  "limits": [
+    "Character id is recorded but player instance id is not, so duplicate-character attacker identity cannot be reconstructed.",
+    "The observer records ultimate damage received, not the victim's own ultimate movement; own-slingshot attribution is unavailable.",
+    "Same seeds do not preserve the same fight after gameplay changes; this is association, not an armor-only causal A/B."
+  ]
+}

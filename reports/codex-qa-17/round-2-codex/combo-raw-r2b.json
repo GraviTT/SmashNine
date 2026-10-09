@@ -1,0 +1,5595 @@
+{
+	"dummy_trials": 8,
+	"fixed_fps": 60,
+	"fixes": [
+		"Brave target placed only after transform burst, landing, hitstun, and attacker recovery",
+		"L-spike follow-up pressed while rising_followup_timer > 0 without _can_start_attack",
+		"post_final_hit_travel resets when each new hit lands"
+	],
+	"input_method": "InputEventAction into PlayerBase._unhandled_input frame by frame; fixture target placement only before Brave route",
+	"moving_bot_trials": 4,
+	"schema": 2,
+	"summary": {
+		"frey|J1-J2-J3|bot": {
+			"avg_hits": 1.83,
+			"avg_knockback_distance": 155.1,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [
+				-8,
+				-8,
+				-8,
+				-8,
+				-8,
+				-8,
+				-8,
+				-8,
+				-6,
+				-6,
+				-6
+			],
+			"hits": 22,
+			"kb": 1861.2,
+			"trials": 12
+		},
+		"frey|J1-J2-J3|dummy": {
+			"avg_hits": 3.0,
+			"avg_knockback_distance": 196.1,
+			"connect_rate": 1.0,
+			"connects": 24,
+			"gaps": [
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-7,
+				-5,
+				-6,
+				-5,
+				-6,
+				-5,
+				-7,
+				-5,
+				-6,
+				-5,
+				-6,
+				-5,
+				-7,
+				-5,
+				-6,
+				-5,
+				-6
+			],
+			"hits": 72,
+			"kb": 4706.8,
+			"trials": 24
+		},
+		"frey|K-J|bot": {
+			"avg_hits": 1.0,
+			"avg_knockback_distance": 35.5,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 4,
+			"kb": 141.8,
+			"trials": 4
+		},
+		"frey|K-J|dummy": {
+			"avg_hits": 2.0,
+			"avg_knockback_distance": 21.5,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [
+				10,
+				10,
+				10,
+				10,
+				10,
+				10,
+				10,
+				10
+			],
+			"hits": 16,
+			"kb": 172.0,
+			"trials": 8
+		},
+		"frey|L-airJ|bot": {
+			"avg_hits": 0.0,
+			"avg_knockback_distance": 0.0,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 0,
+			"kb": 0.0,
+			"trials": 4
+		},
+		"frey|L-airJ|dummy": {
+			"avg_hits": 1.0,
+			"avg_knockback_distance": 113.9,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 8,
+			"kb": 911.2,
+			"trials": 8
+		},
+		"frey|L-spike|bot": {
+			"avg_hits": 0.0,
+			"avg_knockback_distance": 0.0,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 0,
+			"kb": 0.0,
+			"trials": 4
+		},
+		"frey|L-spike|dummy": {
+			"avg_hits": 2.0,
+			"avg_knockback_distance": 297.7,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [
+				-19,
+				-19,
+				-19,
+				-19,
+				-19,
+				-19,
+				-19,
+				-19
+			],
+			"hits": 16,
+			"kb": 2381.6,
+			"trials": 8
+		},
+		"frey|upJ-airUpJ|bot": {
+			"avg_hits": 0.0,
+			"avg_knockback_distance": 0.0,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 0,
+			"kb": 0.0,
+			"trials": 4
+		},
+		"frey|upJ-airUpJ|dummy": {
+			"avg_hits": 1.0,
+			"avg_knockback_distance": 20.0,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 8,
+			"kb": 160.0,
+			"trials": 8
+		},
+		"luna|Brave-J1-J2-J3|bot": {
+			"avg_hits": 3.75,
+			"avg_knockback_distance": 86.3,
+			"connect_rate": 1.0,
+			"connects": 4,
+			"gaps": [
+				999,
+				999,
+				-2,
+				16,
+				19,
+				-3,
+				-7,
+				8,
+				16,
+				16,
+				19
+			],
+			"hits": 15,
+			"kb": 345.1,
+			"trials": 4
+		},
+		"luna|Brave-J1-J2-J3|dummy": {
+			"avg_hits": 3.0,
+			"avg_knockback_distance": 223.1,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [
+				-10,
+				-9,
+				-10,
+				-9,
+				-10,
+				-9,
+				-10,
+				-9,
+				-10,
+				-9,
+				-10,
+				-9,
+				-10,
+				-9,
+				-10,
+				-9
+			],
+			"hits": 24,
+			"kb": 1784.8,
+			"trials": 8
+		},
+		"luna|Brave-K-J|bot": {
+			"avg_hits": 1.75,
+			"avg_knockback_distance": 67.3,
+			"connect_rate": 0.75,
+			"connects": 3,
+			"gaps": [
+				-9,
+				9,
+				12
+			],
+			"hits": 7,
+			"kb": 269.2,
+			"trials": 4
+		},
+		"luna|Brave-K-J|dummy": {
+			"avg_hits": 2.0,
+			"avg_knockback_distance": 124.9,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [
+				-18,
+				-18,
+				-18,
+				-18,
+				-18,
+				-18,
+				-18,
+				-18
+			],
+			"hits": 16,
+			"kb": 999.2,
+			"trials": 8
+		},
+		"luna|Brave-L|bot": {
+			"avg_hits": 0.75,
+			"avg_knockback_distance": 25.0,
+			"connect_rate": 0.75,
+			"connects": 3,
+			"gaps": [],
+			"hits": 3,
+			"kb": 100.2,
+			"trials": 4
+		},
+		"luna|Brave-L|dummy": {
+			"avg_hits": 1.0,
+			"avg_knockback_distance": 192.7,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [],
+			"hits": 8,
+			"kb": 1541.6,
+			"trials": 8
+		},
+		"luna|Brave-upJ-airUpJ|bot": {
+			"avg_hits": 0.0,
+			"avg_knockback_distance": 0.0,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 0,
+			"kb": 0.0,
+			"trials": 4
+		},
+		"luna|Brave-upJ-airUpJ|dummy": {
+			"avg_hits": 2.0,
+			"avg_knockback_distance": 75.5,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [
+				-7,
+				-7,
+				-7,
+				-7,
+				-7,
+				-7,
+				-7,
+				-7
+			],
+			"hits": 16,
+			"kb": 604.0,
+			"trials": 8
+		},
+		"luna|J-K|bot": {
+			"avg_hits": 0.5,
+			"avg_knockback_distance": 54.2,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 2,
+			"kb": 216.7,
+			"trials": 4
+		},
+		"luna|J-K|dummy": {
+			"avg_hits": 3.0,
+			"avg_knockback_distance": 58.5,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [
+				-8,
+				17,
+				-8,
+				17,
+				-8,
+				17,
+				-8,
+				17,
+				-8,
+				17,
+				-8,
+				17,
+				-8,
+				17,
+				-8,
+				17
+			],
+			"hits": 24,
+			"kb": 468.0,
+			"trials": 8
+		},
+		"luna|J-trail-bloom|bot": {
+			"avg_hits": 0.0,
+			"avg_knockback_distance": 0.0,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 0,
+			"kb": 0.0,
+			"trials": 4
+		},
+		"luna|J-trail-bloom|dummy": {
+			"avg_hits": 2.0,
+			"avg_knockback_distance": 60.0,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [
+				-8,
+				-8,
+				-8,
+				-8,
+				-8,
+				-8,
+				-8,
+				-8
+			],
+			"hits": 16,
+			"kb": 480.0,
+			"trials": 8
+		},
+		"luna|L-sweet|bot": {
+			"avg_hits": 0.0,
+			"avg_knockback_distance": 0.0,
+			"connect_rate": 0.0,
+			"connects": 0,
+			"gaps": [],
+			"hits": 0,
+			"kb": 0.0,
+			"trials": 4
+		},
+		"luna|L-sweet|dummy": {
+			"avg_hits": 1.0,
+			"avg_knockback_distance": 61.8,
+			"connect_rate": 1.0,
+			"connects": 8,
+			"gaps": [],
+			"hits": 8,
+			"kb": 494.4,
+			"trials": 8
+		}
+	},
+	"trials": [
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(45.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(57.59269, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(97.74605, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(45.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(57.59269, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(97.74605, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(45.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(57.59269, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(97.74605, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(45.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(57.59269, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(97.74605, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(45.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(57.59269, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(97.74605, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 4
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(45.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(57.59269, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(97.74605, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 5
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(45.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(57.59269, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(97.74605, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 6
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(45.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(57.59269, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(97.74605, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 7
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(42.22733, -0.003069)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 24,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(60.6915, -3.221335)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 184.8,
+			"moving_bot": true,
+			"net_target_displacement": 203.3,
+			"post_final_hit_travel": 184.8,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(47.66754, -0.040093)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 24,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(66.12225, -3.255704)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 184.8,
+			"moving_bot": true,
+			"net_target_displacement": 203.3,
+			"post_final_hit_travel": 184.8,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(-9.700477, -0.068323)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 24,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(12.25859, -3.281677)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 167.0,
+			"moving_bot": true,
+			"net_target_displacement": 148.4,
+			"post_final_hit_travel": 167.0,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(47.82915, -0.001981)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 24,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(66.29361, -3.220325)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 184.8,
+			"moving_bot": true,
+			"net_target_displacement": 203.3,
+			"post_final_hit_travel": 184.8,
+			"route": "J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(60.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(72.59268, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(112.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(60.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(72.59268, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(112.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(60.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(72.59268, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(112.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(60.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(72.59268, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(112.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(60.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(72.59268, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(112.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 4
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(60.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(72.59268, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(112.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 5
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(60.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(72.59268, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(112.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 6
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 6,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(60.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 13,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(72.59268, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 22,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(112.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 200.6,
+			"moving_bot": false,
+			"net_target_displacement": 253.3,
+			"post_final_hit_travel": 200.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 7
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(60.46635, -0.004752)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 24,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(78.9301, -3.222898)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 184.8,
+			"moving_bot": true,
+			"net_target_displacement": 203.3,
+			"post_final_hit_travel": 184.8,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(58.5448, -0.000137)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 24,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(77.00972, -3.218613)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 184.8,
+			"moving_bot": true,
+			"net_target_displacement": 203.3,
+			"post_final_hit_travel": 184.8,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(-18.02083, -0.074772)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 24,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(4.925172, -3.287897)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 167.6,
+			"moving_bot": true,
+			"net_target_displacement": 127.7,
+			"post_final_hit_travel": 167.6,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(-18.76902, -0.06329)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 24,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(3.491703, -3.277237)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 167.0,
+			"moving_bot": true,
+			"net_target_displacement": 126.3,
+			"post_final_hit_travel": 167.0,
+			"route": "J1-J2-J3",
+			"start_distance": 60.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(120.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 14,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(132.5927, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 24,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(179.5674, -0.074889)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 184.1,
+			"moving_bot": false,
+			"net_target_displacement": 243.7,
+			"post_final_hit_travel": 184.1,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(120.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 14,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(132.5927, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 24,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(179.5674, -0.074889)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 184.1,
+			"moving_bot": false,
+			"net_target_displacement": 243.7,
+			"post_final_hit_travel": 184.1,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(120.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 14,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(132.5927, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 23,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(172.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 196.3,
+			"moving_bot": false,
+			"net_target_displacement": 249.0,
+			"post_final_hit_travel": 196.3,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(120.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 14,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(132.5927, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 24,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(179.5674, -0.074889)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 184.1,
+			"moving_bot": false,
+			"net_target_displacement": 243.7,
+			"post_final_hit_travel": 184.1,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(120.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 14,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(132.5927, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 24,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(179.5674, -0.074889)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 184.1,
+			"moving_bot": false,
+			"net_target_displacement": 243.7,
+			"post_final_hit_travel": 184.1,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 4
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(120.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 14,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(132.5927, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 23,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(172.746, -0.074871)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 196.3,
+			"moving_bot": false,
+			"net_target_displacement": 249.0,
+			"post_final_hit_travel": 196.3,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 5
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(120.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 14,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(132.5927, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 24,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(179.5674, -0.074889)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 184.1,
+			"moving_bot": false,
+			"net_target_displacement": 243.7,
+			"post_final_hit_travel": 184.1,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 6
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-5,
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 9.44,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.114,
+					"position": "(120.0, -0.00524)"
+				},
+				{
+					"damage": 10.62,
+					"frame": 14,
+					"gap_from_previous": -5,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.169,
+					"position": "(132.5927, -1.576532)"
+				},
+				{
+					"damage": 15.34,
+					"frame": 24,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.212,
+					"position": "(179.5674, -0.074889)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 184.1,
+			"moving_bot": false,
+			"net_target_displacement": 243.7,
+			"post_final_hit_travel": 184.1,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 7
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 161.0,
+			"post_final_hit_travel": 0.0,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 20,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(119.4139, -0.00177)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 29,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(147.2066, -0.965075)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 145.2,
+			"moving_bot": true,
+			"net_target_displacement": 173.0,
+			"post_final_hit_travel": 145.2,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 20,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(117.252, -0.005817)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 29,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(145.0438, -0.968832)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 145.2,
+			"moving_bot": true,
+			"net_target_displacement": 173.0,
+			"post_final_hit_travel": 145.2,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [
+				-6
+			],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 20,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(121.0978, -0.057447)"
+				},
+				{
+					"damage": 9.65,
+					"frame": 29,
+					"gap_from_previous": -6,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.236,
+					"position": "(148.8763, -1.016759)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 145.2,
+			"moving_bot": true,
+			"net_target_displacement": 173.0,
+			"post_final_hit_travel": 145.2,
+			"route": "J1-J2-J3",
+			"start_distance": 120.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-19
+			],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				},
+				{
+					"damage": 21.24,
+					"frame": 21,
+					"gap_from_previous": -19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.34,
+					"position": "(84.15354, -29.45235)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 297.7,
+			"moving_bot": false,
+			"net_target_displacement": 305.7,
+			"post_final_hit_travel": 297.7,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-19
+			],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				},
+				{
+					"damage": 21.24,
+					"frame": 21,
+					"gap_from_previous": -19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.34,
+					"position": "(84.15354, -29.45235)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 297.7,
+			"moving_bot": false,
+			"net_target_displacement": 305.7,
+			"post_final_hit_travel": 297.7,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-19
+			],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				},
+				{
+					"damage": 21.24,
+					"frame": 21,
+					"gap_from_previous": -19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.34,
+					"position": "(84.15354, -29.45235)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 297.7,
+			"moving_bot": false,
+			"net_target_displacement": 305.7,
+			"post_final_hit_travel": 297.7,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-19
+			],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				},
+				{
+					"damage": 21.24,
+					"frame": 21,
+					"gap_from_previous": -19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.34,
+					"position": "(84.15354, -29.45235)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 297.7,
+			"moving_bot": false,
+			"net_target_displacement": 305.7,
+			"post_final_hit_travel": 297.7,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-19
+			],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				},
+				{
+					"damage": 21.24,
+					"frame": 21,
+					"gap_from_previous": -19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.34,
+					"position": "(84.15354, -29.45235)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 297.7,
+			"moving_bot": false,
+			"net_target_displacement": 305.7,
+			"post_final_hit_travel": 297.7,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 4
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-19
+			],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				},
+				{
+					"damage": 21.24,
+					"frame": 21,
+					"gap_from_previous": -19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.34,
+					"position": "(84.15354, -29.45235)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 297.7,
+			"moving_bot": false,
+			"net_target_displacement": 305.7,
+			"post_final_hit_travel": 297.7,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 5
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-19
+			],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				},
+				{
+					"damage": 21.24,
+					"frame": 21,
+					"gap_from_previous": -19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.34,
+					"position": "(84.15354, -29.45235)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 297.7,
+			"moving_bot": false,
+			"net_target_displacement": 305.7,
+			"post_final_hit_travel": 297.7,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 6
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-19
+			],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				},
+				{
+					"damage": 21.24,
+					"frame": 21,
+					"gap_from_previous": -19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.34,
+					"position": "(84.15354, -29.45235)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 297.7,
+			"moving_bot": false,
+			"net_target_displacement": 305.7,
+			"post_final_hit_travel": 297.7,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 7
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 414.5,
+			"post_final_hit_travel": 0.0,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 311.7,
+			"post_final_hit_travel": 0.0,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 315.1,
+			"post_final_hit_travel": 0.0,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 675.7,
+			"post_final_hit_travel": 0.0,
+			"route": "L-spike",
+			"start_distance": 80.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 113.9,
+			"moving_bot": false,
+			"net_target_displacement": 40.5,
+			"post_final_hit_travel": 113.9,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 113.9,
+			"moving_bot": false,
+			"net_target_displacement": 40.5,
+			"post_final_hit_travel": 113.9,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 113.9,
+			"moving_bot": false,
+			"net_target_displacement": 40.5,
+			"post_final_hit_travel": 113.9,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 113.9,
+			"moving_bot": false,
+			"net_target_displacement": 40.5,
+			"post_final_hit_travel": 113.9,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 113.9,
+			"moving_bot": false,
+			"net_target_displacement": 40.5,
+			"post_final_hit_travel": 113.9,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 4
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 113.9,
+			"moving_bot": false,
+			"net_target_displacement": 40.5,
+			"post_final_hit_travel": 113.9,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 5
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 113.9,
+			"moving_bot": false,
+			"net_target_displacement": 40.5,
+			"post_final_hit_travel": 113.9,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 6
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.7,
+					"frame": 15,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.32,
+					"position": "(80.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 113.9,
+			"moving_bot": false,
+			"net_target_displacement": 40.5,
+			"post_final_hit_travel": 113.9,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 7
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 686.9,
+			"post_final_hit_travel": 0.0,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 299.8,
+			"post_final_hit_travel": 0.0,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 471.0,
+			"post_final_hit_travel": 0.0,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 525.0,
+			"post_final_hit_travel": 0.0,
+			"route": "L-airJ",
+			"start_distance": 80.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				10
+			],
+			"hit_rows": [
+				{
+					"damage": 18.88,
+					"frame": 11,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.229,
+					"position": "(150.0, -0.00524)"
+				},
+				{
+					"damage": 9.44,
+					"frame": 39,
+					"gap_from_previous": 10,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.115,
+					"position": "(233.1234, -0.074725)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 21.5,
+			"moving_bot": false,
+			"net_target_displacement": 104.6,
+			"post_final_hit_travel": 21.5,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				10
+			],
+			"hit_rows": [
+				{
+					"damage": 18.88,
+					"frame": 11,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.229,
+					"position": "(150.0, -0.00524)"
+				},
+				{
+					"damage": 9.44,
+					"frame": 39,
+					"gap_from_previous": 10,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.115,
+					"position": "(233.1234, -0.074725)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 21.5,
+			"moving_bot": false,
+			"net_target_displacement": 104.6,
+			"post_final_hit_travel": 21.5,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				10
+			],
+			"hit_rows": [
+				{
+					"damage": 18.88,
+					"frame": 11,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.229,
+					"position": "(150.0, -0.00524)"
+				},
+				{
+					"damage": 9.44,
+					"frame": 39,
+					"gap_from_previous": 10,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.115,
+					"position": "(233.1234, -0.074725)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 21.5,
+			"moving_bot": false,
+			"net_target_displacement": 104.6,
+			"post_final_hit_travel": 21.5,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				10
+			],
+			"hit_rows": [
+				{
+					"damage": 18.88,
+					"frame": 11,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.229,
+					"position": "(150.0, -0.00524)"
+				},
+				{
+					"damage": 9.44,
+					"frame": 39,
+					"gap_from_previous": 10,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.115,
+					"position": "(233.1234, -0.074725)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 21.5,
+			"moving_bot": false,
+			"net_target_displacement": 104.6,
+			"post_final_hit_travel": 21.5,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				10
+			],
+			"hit_rows": [
+				{
+					"damage": 18.88,
+					"frame": 11,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.229,
+					"position": "(150.0, -0.00524)"
+				},
+				{
+					"damage": 9.44,
+					"frame": 39,
+					"gap_from_previous": 10,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.115,
+					"position": "(233.1234, -0.074725)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 21.5,
+			"moving_bot": false,
+			"net_target_displacement": 104.6,
+			"post_final_hit_travel": 21.5,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 4
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				10
+			],
+			"hit_rows": [
+				{
+					"damage": 18.88,
+					"frame": 11,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.229,
+					"position": "(150.0, -0.00524)"
+				},
+				{
+					"damage": 9.44,
+					"frame": 39,
+					"gap_from_previous": 10,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.115,
+					"position": "(233.1234, -0.074725)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 21.5,
+			"moving_bot": false,
+			"net_target_displacement": 104.6,
+			"post_final_hit_travel": 21.5,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 5
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				10
+			],
+			"hit_rows": [
+				{
+					"damage": 18.88,
+					"frame": 11,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.229,
+					"position": "(150.0, -0.00524)"
+				},
+				{
+					"damage": 9.44,
+					"frame": 39,
+					"gap_from_previous": 10,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.115,
+					"position": "(233.1234, -0.074725)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 21.5,
+			"moving_bot": false,
+			"net_target_displacement": 104.6,
+			"post_final_hit_travel": 21.5,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 6
+		},
+		{
+			"character": "frey",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				10
+			],
+			"hit_rows": [
+				{
+					"damage": 18.88,
+					"frame": 11,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.229,
+					"position": "(150.0, -0.00524)"
+				},
+				{
+					"damage": 9.44,
+					"frame": 39,
+					"gap_from_previous": 10,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.115,
+					"position": "(233.1234, -0.074725)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 21.5,
+			"moving_bot": false,
+			"net_target_displacement": 104.6,
+			"post_final_hit_travel": 21.5,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 7
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(11.59264, -0.030037)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 45.1,
+			"moving_bot": true,
+			"net_target_displacement": 136.5,
+			"post_final_hit_travel": 45.1,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 2.43,
+					"frame": 40,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.043,
+					"position": "(151.8248, -0.029331)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 8.9,
+			"moving_bot": true,
+			"net_target_displacement": 10.8,
+			"post_final_hit_travel": 8.9,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(13.08205, -0.074764)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 47.1,
+			"moving_bot": true,
+			"net_target_displacement": 68.1,
+			"post_final_hit_travel": 47.1,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 8.58,
+					"frame": 40,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.16,
+					"position": "(150.1201, -0.03733)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 40.7,
+			"moving_bot": true,
+			"net_target_displacement": 40.9,
+			"post_final_hit_travel": 40.7,
+			"route": "K-J",
+			"start_distance": 150.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 11.8,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.15,
+					"position": "(45.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 20.0,
+			"moving_bot": false,
+			"net_target_displacement": 4.6,
+			"post_final_hit_travel": 20.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 11.8,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.15,
+					"position": "(45.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 20.0,
+			"moving_bot": false,
+			"net_target_displacement": 4.6,
+			"post_final_hit_travel": 20.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 11.8,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.15,
+					"position": "(45.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 20.0,
+			"moving_bot": false,
+			"net_target_displacement": 4.6,
+			"post_final_hit_travel": 20.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 11.8,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.15,
+					"position": "(45.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 20.0,
+			"moving_bot": false,
+			"net_target_displacement": 4.6,
+			"post_final_hit_travel": 20.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 3
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 11.8,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.15,
+					"position": "(45.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 20.0,
+			"moving_bot": false,
+			"net_target_displacement": 4.6,
+			"post_final_hit_travel": 20.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 4
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 11.8,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.15,
+					"position": "(45.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 20.0,
+			"moving_bot": false,
+			"net_target_displacement": 4.6,
+			"post_final_hit_travel": 20.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 5
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 11.8,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.15,
+					"position": "(45.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 20.0,
+			"moving_bot": false,
+			"net_target_displacement": 4.6,
+			"post_final_hit_travel": 20.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 6
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 11.8,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.15,
+					"position": "(45.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 20.0,
+			"moving_bot": false,
+			"net_target_displacement": 4.6,
+			"post_final_hit_travel": 20.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 7
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 32.8,
+			"post_final_hit_travel": 0.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 0
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 53.6,
+			"post_final_hit_travel": 0.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 1
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 61.9,
+			"post_final_hit_travel": 0.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 2
+		},
+		{
+			"character": "frey",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 38.1,
+			"post_final_hit_travel": 0.0,
+			"route": "upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 60.0,
+			"moving_bot": false,
+			"net_target_displacement": 60.0,
+			"post_final_hit_travel": 60.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 60.0,
+			"moving_bot": false,
+			"net_target_displacement": 60.0,
+			"post_final_hit_travel": 60.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 60.0,
+			"moving_bot": false,
+			"net_target_displacement": 60.0,
+			"post_final_hit_travel": 60.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 60.0,
+			"moving_bot": false,
+			"net_target_displacement": 60.0,
+			"post_final_hit_travel": 60.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 60.0,
+			"moving_bot": false,
+			"net_target_displacement": 60.0,
+			"post_final_hit_travel": 60.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 4
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 60.0,
+			"moving_bot": false,
+			"net_target_displacement": 60.0,
+			"post_final_hit_travel": 60.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 5
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 60.0,
+			"moving_bot": false,
+			"net_target_displacement": 60.0,
+			"post_final_hit_travel": 60.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 6
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-8
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 60.0,
+			"moving_bot": false,
+			"net_target_displacement": 60.0,
+			"post_final_hit_travel": 60.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 7
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 36.4,
+			"post_final_hit_travel": 0.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 92.5,
+			"post_final_hit_travel": 0.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 9.0,
+			"post_final_hit_travel": 0.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 34.4,
+			"post_final_hit_travel": 0.0,
+			"route": "J-trail-bloom",
+			"start_distance": 110.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8,
+				17
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 13.44,
+					"frame": 42,
+					"gap_from_previous": 17,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.191,
+					"position": "(170.0484, -0.074728)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 58.5,
+			"moving_bot": false,
+			"net_target_displacement": 118.5,
+			"post_final_hit_travel": 58.5,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8,
+				17
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 13.44,
+					"frame": 42,
+					"gap_from_previous": 17,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.191,
+					"position": "(170.0484, -0.074728)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 58.5,
+			"moving_bot": false,
+			"net_target_displacement": 118.5,
+			"post_final_hit_travel": 58.5,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8,
+				17
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 13.44,
+					"frame": 42,
+					"gap_from_previous": 17,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.191,
+					"position": "(170.0484, -0.074728)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 58.5,
+			"moving_bot": false,
+			"net_target_displacement": 118.5,
+			"post_final_hit_travel": 58.5,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8,
+				17
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 13.44,
+					"frame": 42,
+					"gap_from_previous": 17,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.191,
+					"position": "(170.0484, -0.074728)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 58.5,
+			"moving_bot": false,
+			"net_target_displacement": 118.5,
+			"post_final_hit_travel": 58.5,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8,
+				17
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 13.44,
+					"frame": 42,
+					"gap_from_previous": 17,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.191,
+					"position": "(170.0484, -0.074728)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 58.5,
+			"moving_bot": false,
+			"net_target_displacement": 118.5,
+			"post_final_hit_travel": 58.5,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 4
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8,
+				17
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 13.44,
+					"frame": 42,
+					"gap_from_previous": 17,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.191,
+					"position": "(170.0484, -0.074728)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 58.5,
+			"moving_bot": false,
+			"net_target_displacement": 118.5,
+			"post_final_hit_travel": 58.5,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 5
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8,
+				17
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 13.44,
+					"frame": 42,
+					"gap_from_previous": 17,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.191,
+					"position": "(170.0484, -0.074728)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 58.5,
+			"moving_bot": false,
+			"net_target_displacement": 118.5,
+			"post_final_hit_travel": 58.5,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 6
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-8,
+				17
+			],
+			"hit_rows": [
+				{
+					"damage": 3.92,
+					"frame": 9,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 7.84,
+					"frame": 12,
+					"gap_from_previous": -8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.148,
+					"position": "(110.0, -0.00524)"
+				},
+				{
+					"damage": 13.44,
+					"frame": 42,
+					"gap_from_previous": 17,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.191,
+					"position": "(170.0484, -0.074728)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 58.5,
+			"moving_bot": false,
+			"net_target_displacement": 118.5,
+			"post_final_hit_travel": 58.5,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 7
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 12.22,
+					"frame": 46,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.273,
+					"position": "(374.0216, -0.001598)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 102.1,
+			"moving_bot": true,
+			"net_target_displacement": 349.8,
+			"post_final_hit_travel": 102.1,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 11.9,
+			"post_final_hit_travel": 0.0,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 12.22,
+					"frame": 27,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.273,
+					"position": "(110.2402, -0.05873)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 114.6,
+			"moving_bot": true,
+			"net_target_displacement": 114.6,
+			"post_final_hit_travel": 114.6,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 3,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 54.7,
+			"post_final_hit_travel": 0.0,
+			"route": "J-K",
+			"start_distance": 110.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 13.44,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.196,
+					"position": "(135.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 61.8,
+			"moving_bot": false,
+			"net_target_displacement": 61.8,
+			"post_final_hit_travel": 61.8,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 13.44,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.196,
+					"position": "(135.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 61.8,
+			"moving_bot": false,
+			"net_target_displacement": 61.8,
+			"post_final_hit_travel": 61.8,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 13.44,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.196,
+					"position": "(135.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 61.8,
+			"moving_bot": false,
+			"net_target_displacement": 61.8,
+			"post_final_hit_travel": 61.8,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 13.44,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.196,
+					"position": "(135.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 61.8,
+			"moving_bot": false,
+			"net_target_displacement": 61.8,
+			"post_final_hit_travel": 61.8,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 13.44,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.196,
+					"position": "(135.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 61.8,
+			"moving_bot": false,
+			"net_target_displacement": 61.8,
+			"post_final_hit_travel": 61.8,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 4
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 13.44,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.196,
+					"position": "(135.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 61.8,
+			"moving_bot": false,
+			"net_target_displacement": 61.8,
+			"post_final_hit_travel": 61.8,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 5
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 13.44,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.196,
+					"position": "(135.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 61.8,
+			"moving_bot": false,
+			"net_target_displacement": 61.8,
+			"post_final_hit_travel": 61.8,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 6
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 13.44,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.196,
+					"position": "(135.0, -0.00524)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 61.8,
+			"moving_bot": false,
+			"net_target_displacement": 61.8,
+			"post_final_hit_travel": 61.8,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 7
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 32.1,
+			"post_final_hit_travel": 0.0,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 104.1,
+			"post_final_hit_travel": 0.0,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 143.0,
+			"post_final_hit_travel": 0.0,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 172.6,
+			"post_final_hit_travel": 0.0,
+			"route": "L-sweet",
+			"start_distance": 135.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-10,
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 5.6,
+					"frame": 4,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(40.52014, -0.001823)"
+				},
+				{
+					"damage": 6.72,
+					"frame": 10,
+					"gap_from_previous": -10,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.1,
+					"position": "(40.52014, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 17,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.225,
+					"position": "(40.52014, -0.001823)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 223.1,
+			"moving_bot": false,
+			"net_target_displacement": 223.1,
+			"post_final_hit_travel": 223.1,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-10,
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 5.6,
+					"frame": 4,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(44.72518, -0.001823)"
+				},
+				{
+					"damage": 6.72,
+					"frame": 10,
+					"gap_from_previous": -10,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.1,
+					"position": "(44.72518, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 17,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.225,
+					"position": "(44.72518, -0.001823)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 223.1,
+			"moving_bot": false,
+			"net_target_displacement": 223.1,
+			"post_final_hit_travel": 223.1,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-10,
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 5.6,
+					"frame": 4,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(47.96069, -0.001823)"
+				},
+				{
+					"damage": 6.72,
+					"frame": 10,
+					"gap_from_previous": -10,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.1,
+					"position": "(47.96069, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 17,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.225,
+					"position": "(47.96069, -0.001823)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 223.1,
+			"moving_bot": false,
+			"net_target_displacement": 223.1,
+			"post_final_hit_travel": 223.1,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-10,
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 5.6,
+					"frame": 4,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(40.10421, -0.001823)"
+				},
+				{
+					"damage": 6.72,
+					"frame": 10,
+					"gap_from_previous": -10,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.1,
+					"position": "(40.10421, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 17,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.225,
+					"position": "(40.10421, -0.001823)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 223.1,
+			"moving_bot": false,
+			"net_target_displacement": 223.1,
+			"post_final_hit_travel": 223.1,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-10,
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 5.6,
+					"frame": 4,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(49.27223, -0.001823)"
+				},
+				{
+					"damage": 6.72,
+					"frame": 10,
+					"gap_from_previous": -10,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.1,
+					"position": "(49.27223, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 17,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.225,
+					"position": "(49.27223, -0.001823)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 223.1,
+			"moving_bot": false,
+			"net_target_displacement": 223.1,
+			"post_final_hit_travel": 223.1,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 4
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-10,
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 5.6,
+					"frame": 4,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(44.09342, -0.001823)"
+				},
+				{
+					"damage": 6.72,
+					"frame": 10,
+					"gap_from_previous": -10,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.1,
+					"position": "(44.09342, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 17,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.225,
+					"position": "(44.09342, -0.001823)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 223.1,
+			"moving_bot": false,
+			"net_target_displacement": 223.1,
+			"post_final_hit_travel": 223.1,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 5
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-10,
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 5.6,
+					"frame": 4,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(45.17918, -0.001823)"
+				},
+				{
+					"damage": 6.72,
+					"frame": 10,
+					"gap_from_previous": -10,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.1,
+					"position": "(45.17918, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 17,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.225,
+					"position": "(45.17918, -0.001823)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 223.1,
+			"moving_bot": false,
+			"net_target_displacement": 223.1,
+			"post_final_hit_travel": 223.1,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 6
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-10,
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 5.6,
+					"frame": 4,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(49.66602, -0.001823)"
+				},
+				{
+					"damage": 6.72,
+					"frame": 10,
+					"gap_from_previous": -10,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.1,
+					"position": "(49.66602, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 17,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.225,
+					"position": "(49.66602, -0.001823)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 223.1,
+			"moving_bot": false,
+			"net_target_displacement": 223.1,
+			"post_final_hit_travel": 223.1,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 7
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				999,
+				999,
+				-2
+			],
+			"hit_rows": [
+				{
+					"damage": 3.56,
+					"frame": 8,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.033,
+					"hitstun_after": 0.0,
+					"position": "(19.40285, -0.000061)"
+				},
+				{
+					"damage": 7.13,
+					"frame": 12,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.033,
+					"hitstun_after": 0.0,
+					"position": "(26.12286, -0.000061)"
+				},
+				{
+					"damage": 7.13,
+					"frame": 41,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.033,
+					"hitstun_after": 0.0,
+					"position": "(184.1162, -0.000061)"
+				},
+				{
+					"damage": 3.56,
+					"frame": 42,
+					"gap_from_previous": -2,
+					"hitstop_after": 0.033,
+					"hitstun_after": 0.0,
+					"position": "(184.1162, -0.000061)"
+				}
+			],
+			"hits": 4,
+			"knockback_distance": 218.0,
+			"moving_bot": true,
+			"net_target_displacement": 38.9,
+			"post_final_hit_travel": 218.0,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				16,
+				19,
+				-3
+			],
+			"hit_rows": [
+				{
+					"damage": 3.56,
+					"frame": 8,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(-46.67332, -0.000061)"
+				},
+				{
+					"damage": 0.94,
+					"frame": 34,
+					"gap_from_previous": 16,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.043,
+					"position": "(9.112717, -0.074799)"
+				},
+				{
+					"damage": 3.56,
+					"frame": 60,
+					"gap_from_previous": 19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(107.0446, -0.074799)"
+				},
+				{
+					"damage": 7.13,
+					"frame": 68,
+					"gap_from_previous": -3,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.218,
+					"position": "(125.011, -0.074725)"
+				}
+			],
+			"hits": 4,
+			"knockback_distance": 81.0,
+			"moving_bot": true,
+			"net_target_displacement": 284.9,
+			"post_final_hit_travel": 81.0,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				-7,
+				8,
+				16
+			],
+			"hit_rows": [
+				{
+					"damage": 3.56,
+					"frame": 8,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(-37.71198, -0.000061)"
+				},
+				{
+					"damage": 7.13,
+					"frame": 12,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.211,
+					"position": "(-37.71198, -0.000061)"
+				},
+				{
+					"damage": 3.56,
+					"frame": 37,
+					"gap_from_previous": 8,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(37.36034, -0.074892)"
+				},
+				{
+					"damage": 0.97,
+					"frame": 63,
+					"gap_from_previous": 16,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.043,
+					"position": "(50.66945, -0.020376)"
+				}
+			],
+			"hits": 4,
+			"knockback_distance": 21.7,
+			"moving_bot": true,
+			"net_target_displacement": 168.2,
+			"post_final_hit_travel": 21.7,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 3,
+			"gap_frames": [
+				16,
+				19
+			],
+			"hit_rows": [
+				{
+					"damage": 3.56,
+					"frame": 8,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(-47.61111, -0.000061)"
+				},
+				{
+					"damage": 0.96,
+					"frame": 34,
+					"gap_from_previous": 16,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.043,
+					"position": "(-1.636558, -0.074799)"
+				},
+				{
+					"damage": 3.56,
+					"frame": 60,
+					"gap_from_previous": 19,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(35.89661, -0.074799)"
+				}
+			],
+			"hits": 3,
+			"knockback_distance": 24.4,
+			"moving_bot": true,
+			"net_target_displacement": 140.2,
+			"post_final_hit_travel": 24.4,
+			"route": "Brave-J1-J2-J3",
+			"start_distance": 45.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 11.2,
+					"frame": 5,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(47.88828, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 25,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(61.1461, -72.2187)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 75.5,
+			"moving_bot": false,
+			"net_target_displacement": 133.4,
+			"post_final_hit_travel": 75.5,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 11.2,
+					"frame": 5,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(41.22633, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 25,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(54.48416, -72.2187)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 75.5,
+			"moving_bot": false,
+			"net_target_displacement": 133.4,
+			"post_final_hit_travel": 75.5,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 11.2,
+					"frame": 5,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(40.41711, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 25,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(53.67494, -72.2187)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 75.5,
+			"moving_bot": false,
+			"net_target_displacement": 133.4,
+			"post_final_hit_travel": 75.5,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 11.2,
+					"frame": 5,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(41.77256, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 25,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(55.03038, -72.2187)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 75.5,
+			"moving_bot": false,
+			"net_target_displacement": 133.4,
+			"post_final_hit_travel": 75.5,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 11.2,
+					"frame": 5,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(48.17389, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 25,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(61.43172, -72.2187)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 75.5,
+			"moving_bot": false,
+			"net_target_displacement": 133.4,
+			"post_final_hit_travel": 75.5,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 4
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 11.2,
+					"frame": 5,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(43.58742, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 25,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(56.84524, -72.2187)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 75.5,
+			"moving_bot": false,
+			"net_target_displacement": 133.4,
+			"post_final_hit_travel": 75.5,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 5
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 11.2,
+					"frame": 5,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(47.1461, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 25,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(60.40392, -72.2187)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 75.5,
+			"moving_bot": false,
+			"net_target_displacement": 133.4,
+			"post_final_hit_travel": 75.5,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 6
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-7
+			],
+			"hit_rows": [
+				{
+					"damage": 11.2,
+					"frame": 5,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(49.77828, -0.001823)"
+				},
+				{
+					"damage": 11.2,
+					"frame": 25,
+					"gap_from_previous": -7,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.28,
+					"position": "(63.0361, -72.2187)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 75.5,
+			"moving_bot": false,
+			"net_target_displacement": 133.4,
+			"post_final_hit_travel": 75.5,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 7
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 146.5,
+			"post_final_hit_travel": 0.0,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 29.5,
+			"post_final_hit_travel": 0.0,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 90.3,
+			"post_final_hit_travel": 0.0,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 113.7,
+			"post_final_hit_travel": 0.0,
+			"route": "Brave-upJ-airUpJ",
+			"start_distance": 45.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-18
+			],
+			"hit_rows": [
+				{
+					"damage": 12.32,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.208,
+					"position": "(116.534, -0.001823)"
+				},
+				{
+					"damage": 5.6,
+					"frame": 12,
+					"gap_from_previous": -18,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(116.534, -0.001823)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 124.9,
+			"moving_bot": false,
+			"net_target_displacement": 124.9,
+			"post_final_hit_travel": 124.9,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-18
+			],
+			"hit_rows": [
+				{
+					"damage": 12.32,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.208,
+					"position": "(122.9347, -0.001823)"
+				},
+				{
+					"damage": 5.6,
+					"frame": 12,
+					"gap_from_previous": -18,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(122.9347, -0.001823)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 124.9,
+			"moving_bot": false,
+			"net_target_displacement": 124.9,
+			"post_final_hit_travel": 124.9,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-18
+			],
+			"hit_rows": [
+				{
+					"damage": 12.32,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.208,
+					"position": "(114.6606, -0.001823)"
+				},
+				{
+					"damage": 5.6,
+					"frame": 12,
+					"gap_from_previous": -18,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(114.6606, -0.001823)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 124.9,
+			"moving_bot": false,
+			"net_target_displacement": 124.9,
+			"post_final_hit_travel": 124.9,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-18
+			],
+			"hit_rows": [
+				{
+					"damage": 12.32,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.208,
+					"position": "(125.0188, -0.001823)"
+				},
+				{
+					"damage": 5.6,
+					"frame": 12,
+					"gap_from_previous": -18,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(125.0188, -0.001823)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 124.9,
+			"moving_bot": false,
+			"net_target_displacement": 124.9,
+			"post_final_hit_travel": 124.9,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-18
+			],
+			"hit_rows": [
+				{
+					"damage": 12.32,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.208,
+					"position": "(119.3748, -0.001823)"
+				},
+				{
+					"damage": 5.6,
+					"frame": 12,
+					"gap_from_previous": -18,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(119.3748, -0.001823)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 124.9,
+			"moving_bot": false,
+			"net_target_displacement": 124.9,
+			"post_final_hit_travel": 124.9,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 4
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-18
+			],
+			"hit_rows": [
+				{
+					"damage": 12.32,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.208,
+					"position": "(124.3185, -0.001823)"
+				},
+				{
+					"damage": 5.6,
+					"frame": 12,
+					"gap_from_previous": -18,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(124.3185, -0.001823)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 124.9,
+			"moving_bot": false,
+			"net_target_displacement": 124.9,
+			"post_final_hit_travel": 124.9,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 5
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-18
+			],
+			"hit_rows": [
+				{
+					"damage": 12.32,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.208,
+					"position": "(117.2753, -0.001823)"
+				},
+				{
+					"damage": 5.6,
+					"frame": 12,
+					"gap_from_previous": -18,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(117.2753, -0.001823)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 124.9,
+			"moving_bot": false,
+			"net_target_displacement": 124.9,
+			"post_final_hit_travel": 124.9,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 6
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-18
+			],
+			"hit_rows": [
+				{
+					"damage": 12.32,
+					"frame": 7,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.208,
+					"position": "(117.1371, -0.001823)"
+				},
+				{
+					"damage": 5.6,
+					"frame": 12,
+					"gap_from_previous": -18,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.095,
+					"position": "(117.1371, -0.001823)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 124.9,
+			"moving_bot": false,
+			"net_target_displacement": 124.9,
+			"post_final_hit_travel": 124.9,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 7
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				-9
+			],
+			"hit_rows": [
+				{
+					"damage": 3.56,
+					"frame": 17,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(41.27589, -0.000061)"
+				},
+				{
+					"damage": 7.13,
+					"frame": 19,
+					"gap_from_previous": -9,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.211,
+					"position": "(41.27589, -0.000061)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 117.4,
+			"moving_bot": true,
+			"net_target_displacement": 117.4,
+			"post_final_hit_travel": 117.4,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 2,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 12.22,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.033,
+					"hitstun_after": 0.0,
+					"position": "(104.4384, -0.000061)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 134.2,
+			"moving_bot": true,
+			"net_target_displacement": 2.2,
+			"post_final_hit_travel": 134.2,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				9
+			],
+			"hit_rows": [
+				{
+					"damage": 12.22,
+					"frame": 13,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.273,
+					"position": "(9.978487, -0.000061)"
+				},
+				{
+					"damage": 3.56,
+					"frame": 43,
+					"gap_from_previous": 9,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.095,
+					"position": "(72.07372, -0.075011)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 17.6,
+			"moving_bot": true,
+			"net_target_displacement": 73.7,
+			"post_final_hit_travel": 17.6,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 2,
+			"gap_frames": [
+				12
+			],
+			"hit_rows": [
+				{
+					"damage": 12.22,
+					"frame": 14,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.273,
+					"position": "(41.37057, -0.000061)"
+				},
+				{
+					"damage": 7.13,
+					"frame": 47,
+					"gap_from_previous": 12,
+					"hitstop_after": 0.033,
+					"hitstun_after": 0.0,
+					"position": "(229.0776, -0.075011)"
+				}
+			],
+			"hits": 2,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 226.7,
+			"post_final_hit_travel": 0.0,
+			"route": "Brave-K-J",
+			"start_distance": 120.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.92,
+					"frame": 10,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.34,
+					"position": "(98.1666, -0.001823)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 192.7,
+			"moving_bot": false,
+			"net_target_displacement": 192.7,
+			"post_final_hit_travel": 192.7,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.92,
+					"frame": 10,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.34,
+					"position": "(94.97421, -0.001823)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 192.7,
+			"moving_bot": false,
+			"net_target_displacement": 192.7,
+			"post_final_hit_travel": 192.7,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.92,
+					"frame": 10,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.34,
+					"position": "(103.153, -0.001823)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 192.7,
+			"moving_bot": false,
+			"net_target_displacement": 192.7,
+			"post_final_hit_travel": 192.7,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.92,
+					"frame": 10,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.34,
+					"position": "(98.693, -0.001823)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 192.7,
+			"moving_bot": false,
+			"net_target_displacement": 192.7,
+			"post_final_hit_travel": 192.7,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 3
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.92,
+					"frame": 10,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.34,
+					"position": "(95.74358, -0.001823)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 192.7,
+			"moving_bot": false,
+			"net_target_displacement": 192.7,
+			"post_final_hit_travel": 192.7,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 4
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.92,
+					"frame": 10,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.34,
+					"position": "(104.1706, -0.001823)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 192.7,
+			"moving_bot": false,
+			"net_target_displacement": 192.7,
+			"post_final_hit_travel": 192.7,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 5
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.92,
+					"frame": 10,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.34,
+					"position": "(103.6621, -0.001823)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 192.7,
+			"moving_bot": false,
+			"net_target_displacement": 192.7,
+			"post_final_hit_travel": 192.7,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 6
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 17.92,
+					"frame": 10,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.143,
+					"hitstun_after": 0.34,
+					"position": "(95.0658, -0.001823)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 192.7,
+			"moving_bot": false,
+			"net_target_displacement": 192.7,
+			"post_final_hit_travel": 192.7,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 7
+		},
+		{
+			"character": "luna",
+			"connected": false,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [],
+			"hits": 0,
+			"knockback_distance": 0.0,
+			"moving_bot": true,
+			"net_target_displacement": 3.8,
+			"post_final_hit_travel": 0.0,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 0
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 3.27,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.063,
+					"position": "(-0.634443, -0.000061)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 39.6,
+			"moving_bot": true,
+			"net_target_displacement": 7.4,
+			"post_final_hit_travel": 39.6,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 1
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 12.22,
+					"frame": 21,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.033,
+					"hitstun_after": 0.0,
+					"position": "(10.73096, -0.000061)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 27.5,
+			"moving_bot": true,
+			"net_target_displacement": 44.1,
+			"post_final_hit_travel": 27.5,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 2
+		},
+		{
+			"character": "luna",
+			"connected": true,
+			"expected_hits": 1,
+			"gap_frames": [],
+			"hit_rows": [
+				{
+					"damage": 3.27,
+					"frame": 19,
+					"gap_from_previous": 999,
+					"hitstop_after": 0.065,
+					"hitstun_after": 0.063,
+					"position": "(-1.384863, -0.000061)"
+				}
+			],
+			"hits": 1,
+			"knockback_distance": 33.1,
+			"moving_bot": true,
+			"net_target_displacement": 8.5,
+			"post_final_hit_travel": 33.1,
+			"route": "Brave-L",
+			"start_distance": 100.0,
+			"trial": 3
+		}
+	]
+}
