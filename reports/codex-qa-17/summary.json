@@ -1,0 +1,580 @@
+{
+  "bot_usage": {
+    "attacks": {
+      "frey|basic_air_down": {
+        "uses": 209,
+        "hits": 80,
+        "damage": 521.68,
+        "hit_events_per_use": 0.383,
+        "damage_per_use": 2.496
+      },
+      "frey|basic_air_side": {
+        "uses": 260,
+        "hits": 102,
+        "damage": 455.87,
+        "hit_events_per_use": 0.392,
+        "damage_per_use": 1.753
+      },
+      "frey|basic_air_up": {
+        "uses": 130,
+        "hits": 63,
+        "damage": 353.99,
+        "hit_events_per_use": 0.485,
+        "damage_per_use": 2.723
+      },
+      "frey|basic_down": {
+        "uses": 57,
+        "hits": 19,
+        "damage": 59.74,
+        "hit_events_per_use": 0.333,
+        "damage_per_use": 1.048
+      },
+      "frey|basic_side": {
+        "uses": 1572,
+        "hits": 1012,
+        "damage": 5667.72,
+        "hit_events_per_use": 0.644,
+        "damage_per_use": 3.605
+      },
+      "frey|basic_up": {
+        "uses": 159,
+        "hits": 86,
+        "damage": 157.05,
+        "hit_events_per_use": 0.541,
+        "damage_per_use": 0.988
+      },
+      "frey|skill_1": {
+        "uses": 333,
+        "hits": 234,
+        "damage": 2101.25,
+        "hit_events_per_use": 0.703,
+        "damage_per_use": 6.31
+      },
+      "frey|skill_2": {
+        "uses": 116,
+        "hits": 17,
+        "damage": 135.46,
+        "hit_events_per_use": 0.147,
+        "damage_per_use": 1.168
+      },
+      "frey|ultimate": {
+        "uses": 113,
+        "hits": 51,
+        "damage": 425.8,
+        "hit_events_per_use": 0.451,
+        "damage_per_use": 3.768
+      },
+      "luna|basic_air_down": {
+        "uses": 94,
+        "hits": 58,
+        "damage": 267.21,
+        "hit_events_per_use": 0.617,
+        "damage_per_use": 2.843
+      },
+      "luna|basic_air_side": {
+        "uses": 239,
+        "hits": 87,
+        "damage": 399.5,
+        "hit_events_per_use": 0.364,
+        "damage_per_use": 1.672
+      },
+      "luna|basic_air_up": {
+        "uses": 68,
+        "hits": 38,
+        "damage": 217.98,
+        "hit_events_per_use": 0.559,
+        "damage_per_use": 3.206
+      },
+      "luna|basic_down": {
+        "uses": 53,
+        "hits": 9,
+        "damage": 40.14,
+        "hit_events_per_use": 0.17,
+        "damage_per_use": 0.757
+      },
+      "luna|basic_side": {
+        "uses": 2099,
+        "hits": 812,
+        "damage": 3931.63,
+        "hit_events_per_use": 0.387,
+        "damage_per_use": 1.873
+      },
+      "luna|basic_up": {
+        "uses": 86,
+        "hits": 54,
+        "damage": 155.95,
+        "hit_events_per_use": 0.628,
+        "damage_per_use": 1.813
+      },
+      "luna|skill_1": {
+        "uses": 565,
+        "hits": 282,
+        "damage": 2194.44,
+        "hit_events_per_use": 0.499,
+        "damage_per_use": 3.884
+      },
+      "luna|skill_2": {
+        "uses": 130,
+        "hits": 33,
+        "damage": 323.57,
+        "hit_events_per_use": 0.254,
+        "damage_per_use": 2.489
+      },
+      "luna|ultimate": {
+        "uses": 77,
+        "hits": 30,
+        "damage": 139.76,
+        "hit_events_per_use": 0.39,
+        "damage_per_use": 1.815
+      }
+    },
+    "ultimates": {
+      "luna": {
+        "casts": 71,
+        "casts_with_hit": 63,
+        "hit_events": 329,
+        "damage": 618.73,
+        "cast_hit_rate": 0.887,
+        "damage_per_cast": 8.715
+      },
+      "frey": {
+        "casts": 89,
+        "casts_with_hit": 74,
+        "hit_events": 148,
+        "damage": 663.8,
+        "cast_hit_rate": 0.831,
+        "damage_per_cast": 7.458
+      }
+    },
+    "note": "hits are hit events, not unique successful activations; Luna trail+bloom can exceed one hit per use"
+  },
+  "combos": [
+    {
+      "character": "frey",
+      "route": "J1-J2-J3",
+      "distance": 45,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 1,
+      "avg_hits": 3,
+      "median_gap_frames": 8,
+      "gap_range": [
+        7,
+        9
+      ],
+      "avg_knockback_distance": 70.9
+    },
+    {
+      "character": "frey",
+      "route": "J1-J2-J3",
+      "distance": 45,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 1.75,
+      "median_gap_frames": 4,
+      "gap_range": [
+        4,
+        4
+      ],
+      "avg_knockback_distance": 58.6
+    },
+    {
+      "character": "frey",
+      "route": "J1-J2-J3",
+      "distance": 60,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 1,
+      "avg_hits": 3,
+      "median_gap_frames": 8,
+      "gap_range": [
+        7,
+        9
+      ],
+      "avg_knockback_distance": 70.9
+    },
+    {
+      "character": "frey",
+      "route": "J1-J2-J3",
+      "distance": 60,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 1.5,
+      "median_gap_frames": 4,
+      "gap_range": [
+        4,
+        4
+      ],
+      "avg_knockback_distance": 59
+    },
+    {
+      "character": "frey",
+      "route": "J1-J2-J3",
+      "distance": 120,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 1,
+      "avg_hits": 3,
+      "median_gap_frames": 7.5,
+      "gap_range": [
+        6,
+        9
+      ],
+      "avg_knockback_distance": 70.9
+    },
+    {
+      "character": "frey",
+      "route": "J1-J2-J3",
+      "distance": 120,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 1.75,
+      "median_gap_frames": 4,
+      "gap_range": [
+        4,
+        4
+      ],
+      "avg_knockback_distance": 59.5
+    },
+    {
+      "character": "frey",
+      "route": "L-spike",
+      "distance": 80,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 0,
+      "avg_hits": 1,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 113.9
+    },
+    {
+      "character": "frey",
+      "route": "L-spike",
+      "distance": 80,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 0,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 0
+    },
+    {
+      "character": "frey",
+      "route": "L-airJ",
+      "distance": 80,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 0,
+      "avg_hits": 1,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 113.9
+    },
+    {
+      "character": "frey",
+      "route": "L-airJ",
+      "distance": 80,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 0,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 0
+    },
+    {
+      "character": "frey",
+      "route": "K-J",
+      "distance": 150,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 1,
+      "avg_hits": 2,
+      "median_gap_frames": 10,
+      "gap_range": [
+        10,
+        10
+      ],
+      "avg_knockback_distance": 83.1
+    },
+    {
+      "character": "frey",
+      "route": "K-J",
+      "distance": 150,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 1,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 46.1
+    },
+    {
+      "character": "frey",
+      "route": "upJ-airUpJ",
+      "distance": 45,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 0,
+      "avg_hits": 1,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 20
+    },
+    {
+      "character": "frey",
+      "route": "upJ-airUpJ",
+      "distance": 45,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 0,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 0
+    },
+    {
+      "character": "luna",
+      "route": "J-trail-bloom",
+      "distance": 110,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 0.125,
+      "avg_hits": 1.13,
+      "median_gap_frames": -3,
+      "gap_range": [
+        -3,
+        -3
+      ],
+      "avg_knockback_distance": 8.2
+    },
+    {
+      "character": "luna",
+      "route": "J-trail-bloom",
+      "distance": 110,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 0,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 0
+    },
+    {
+      "character": "luna",
+      "route": "J-K",
+      "distance": 110,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 0.25,
+      "avg_hits": 2.25,
+      "median_gap_frames": 20,
+      "gap_range": [
+        -3,
+        20
+      ],
+      "avg_knockback_distance": 58
+    },
+    {
+      "character": "luna",
+      "route": "J-K",
+      "distance": 110,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 0.25,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 26.6
+    },
+    {
+      "character": "luna",
+      "route": "L-sweet",
+      "distance": 135,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 1,
+      "avg_hits": 1,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 61.8
+    },
+    {
+      "character": "luna",
+      "route": "L-sweet",
+      "distance": 135,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 0,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 0
+    },
+    {
+      "character": "luna",
+      "route": "Brave-J1-J2-J3",
+      "distance": 45,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 0,
+      "avg_hits": 1,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 69.6
+    },
+    {
+      "character": "luna",
+      "route": "Brave-J1-J2-J3",
+      "distance": 45,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0.25,
+      "avg_hits": 1,
+      "median_gap_frames": 1,
+      "gap_range": [
+        -5,
+        7
+      ],
+      "avg_knockback_distance": 59.1
+    },
+    {
+      "character": "luna",
+      "route": "Brave-upJ-airUpJ",
+      "distance": 45,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 1,
+      "avg_hits": 2,
+      "median_gap_frames": -7,
+      "gap_range": [
+        -7,
+        -7
+      ],
+      "avg_knockback_distance": 82.7
+    },
+    {
+      "character": "luna",
+      "route": "Brave-upJ-airUpJ",
+      "distance": 45,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0,
+      "avg_hits": 0.25,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 58.9
+    },
+    {
+      "character": "luna",
+      "route": "Brave-K-J",
+      "distance": 120,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 0,
+      "avg_hits": 1,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 134.9
+    },
+    {
+      "character": "luna",
+      "route": "Brave-K-J",
+      "distance": 120,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0.25,
+      "avg_hits": 0.5,
+      "median_gap_frames": 9,
+      "gap_range": [
+        9,
+        9
+      ],
+      "avg_knockback_distance": 27.3
+    },
+    {
+      "character": "luna",
+      "route": "Brave-L",
+      "distance": 100,
+      "target": "dummy",
+      "trials": 8,
+      "connect_rate": 1,
+      "avg_hits": 1,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 281.5
+    },
+    {
+      "character": "luna",
+      "route": "Brave-L",
+      "distance": 100,
+      "target": "moving bot",
+      "trials": 4,
+      "connect_rate": 0.5,
+      "avg_hits": 0.5,
+      "median_gap_frames": null,
+      "gap_range": [],
+      "avg_knockback_distance": 70.5
+    }
+  ],
+  "match_probe": {
+    "seeds": [
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312
+    ],
+    "seconds_cap": 90,
+    "ultimates": {
+      "luna": {
+        "casts": 32,
+        "hit_within_1s": 7,
+        "likely_cancelled": 0
+      },
+      "rio": {
+        "casts": 36,
+        "hit_within_1s": 15,
+        "likely_cancelled": 9
+      },
+      "nova": {
+        "casts": 35,
+        "hit_within_1s": 9,
+        "likely_cancelled": 1
+      },
+      "frey": {
+        "casts": 38,
+        "hit_within_1s": 6,
+        "likely_cancelled": 2
+      },
+      "yuki": {
+        "casts": 29,
+        "hit_within_1s": 12,
+        "likely_cancelled": 4
+      }
+    },
+    "luna": {
+      "casts": 32,
+      "forms": 31,
+      "heart_lasers": 24,
+      "average_form_seconds": 6.2
+    },
+    "frey_followups": {
+      "opportunities": 10,
+      "spikes": 0
+    },
+    "limitation": "90-second early-match samples; likely_cancelled is an inference, not a product cancellation signal"
+  }
+}
