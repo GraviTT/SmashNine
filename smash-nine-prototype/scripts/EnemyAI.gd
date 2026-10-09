@@ -93,6 +93,10 @@ const FALL_MAX_SPEED := 980.0 * GAME_SCALE.JUMP_SPEED
 ## Fixed extra ultimate presses (Luna's heart laser). Nova's slingshot is driven by aim
 ## instead (_drive_nova_slingshot).
 const ULTIMATE_FOLLOWUPS := {"luna": [4.4]}
+## A follow-up press that started nothing (Brave Luna was mid-attack when her laser press came) is
+## pressed again every frame for up to this long (2026-10-10: Codex QA-17 found the single press
+## lost whenever she was busy; the button press is consumed either way).
+const ULTIMATE_FOLLOWUP_RETRY := 0.6
 ## Frey's spike: when her rising cleave lands, re-press L inside the window after a human-like
 ## delay, most of the time (2026-10-10: bots never re-pressed it; the window was also out of
 ## reach for everyone until the spike became a cancel).
@@ -235,6 +239,7 @@ var recovery_jump_used: bool = false
 var recovery_skill_uses: int = 0
 var ultimate_followup_delays: Array[float] = []
 var ultimate_followup_timer: float = 0.0
+var ultimate_followup_retry: float = 0.0
 var hazard_reaction: int = -1
 
 var stuck_anchor: Vector2 = Vector2.ZERO
@@ -381,6 +386,7 @@ func reset(position: Vector2) -> void:
 	stuck_anchor = position
 	ultimate_followup_delays.clear()
 	ultimate_followup_timer = 0.0
+	ultimate_followup_retry = 0.0
 	stuck_timer = 0.0
 	last_commanded_move = 0.0
 	blocked_direction = 0.0
@@ -534,12 +540,19 @@ func _schedule_ultimate_followups(player) -> void:
 	ultimate_followup_timer = ultimate_followup_delays.pop_front() if not ultimate_followup_delays.is_empty() else 0.0
 
 func _update_ultimate_followups(player, delta: float) -> void:
+	if ultimate_followup_retry > 0.0:
+		ultimate_followup_retry = maxf(ultimate_followup_retry - delta, 0.0)
+		player.ultimate()
+		if player.get("ultimate_followup_started") == true:
+			ultimate_followup_retry = 0.0
 	if ultimate_followup_timer <= 0.0:
 		return
 	ultimate_followup_timer -= delta
 	if ultimate_followup_timer > 0.0:
 		return
 	player.ultimate()
+	if player.get("ultimate_followup_started") != true:
+		ultimate_followup_retry = ULTIMATE_FOLLOWUP_RETRY
 	ultimate_followup_timer = ultimate_followup_delays.pop_front() if not ultimate_followup_delays.is_empty() else 0.0
 
 func _wander_intent(player) -> Dictionary:

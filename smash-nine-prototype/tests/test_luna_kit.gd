@@ -3,7 +3,8 @@ extends SceneTree
 ## (trail and bloom on the same target) gives a star, a full set of five cuts the ultimate's
 ## remaining cooldown, and while the ultimate is ready the stars wait; the Brave J chain plays
 ## the jab, body kick and spinning kick frames of the Brave attack row; the side echo's bloom opens
-## on the body its trail struck, so walking in while swinging still lands both (Codex QA-17: 1 of 8).
+## on the body its trail struck, so walking in while swinging still lands both (Codex QA-17: 1 of 8);
+## a Luna bot whose laser press comes while she is mid-attack presses again until it fires.
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -21,6 +22,7 @@ func _run() -> void:
 	await _test_echo_walk_in()
 	await _test_full_charge()
 	await _test_brave_chain_poses()
+	await _test_bot_laser_retry()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -140,6 +142,24 @@ func _test_full_charge() -> void:
 	await physics_frame
 	if int(luna.star_charge) != 0 or float(luna.ultimate_cooldown_timer) > 24.1:
 		_fail("Waiting stars should be spent on the next cooldown (stars %d, cooldown %.1f)" % [luna.star_charge, luna.ultimate_cooldown_timer])
+	luna.queue_free()
+	await process_frame
+
+func _test_bot_laser_retry() -> void:
+	var luna := _fighter("luna", 1, Vector2(0, -400))
+	luna.set_physics_process(false)
+	luna.is_dummy = false
+	var ai = luna.ai_controller
+	luna._enter_transformation()
+	luna.attack_lock_timer = 0.2
+	ai.ultimate_followup_timer = 0.05
+	for step in 50:
+		luna.attack_lock_timer = maxf(float(luna.attack_lock_timer) - 0.016, 0.0)
+		ai._update_ultimate_followups(luna, 0.016)
+		if bool(luna.transformation_finishing):
+			break
+	if not bool(luna.transformation_finishing):
+		_fail("A Luna bot whose laser press came mid-attack should press again and fire the heart laser")
 	luna.queue_free()
 	await process_frame
 

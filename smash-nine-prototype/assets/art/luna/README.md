@@ -15,6 +15,14 @@ costume, five-point star wand, palette, and proportion reference.
 - Target proportion: approximately 2.2 heads tall
 - Palette identity: hot pink/violet, pale cyan, warm gold; dark violet outline
 
+## Design notes (kept from the v1 sheet)
+
+- Female magical girl and mid-range star mage: jewel wand, bright star motifs, wide readable magic
+- Wand swing for attack and a small star barrier for shield
+- Pink hair with a large midnight-purple bow for a strong small-scale silhouette
+- Short cape/skirt outfit; five-point star wand head and cyan-violet crescent trails
+- Approximate palette: `#F35DA9`, `#662A91`, `#BCEBFF`, `#FFE06B`, outline `#171631` (deliberately separate from Frey's gold/steel)
+
 ## CODEX-ART-21 review
 
 All 23 used frames were checked individually at 4× and in row sequence. Idle frames 2 and 3

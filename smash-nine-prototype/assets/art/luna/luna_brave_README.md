@@ -15,6 +15,13 @@ silhouette with cyan-white starlight gauntlets and a low fighter stance.
 - Runtime: position `(0, -56)`, scale `1`, nearest-neighbour filtering
 - Target proportion: approximately 2.2 heads tall
 
+## Visual direction (kept from the v1 sheet)
+
+- Keeps normal Luna's pink hair, large midnight-purple bow, star hair clip, magenta eyes, costume palette and chibi proportions
+- Glowing cyan-white starlight gauntlets, armored boots and a low fighter stance
+- The attack row reads as jab, star-punch impact, body kick and spinning kick. `Luna.gd` relies on this order: the Brave J chain plays frames 0-1 (jab), 2 (body kick) and 3 (spinning kick), and Brave K holds frame 1 (star punch)
+- The shield row uses raised/crossed forearms behind a compact star barrier
+
 ## CODEX-ART-21 review
 
 All 23 used frames were checked individually at 4× and in row sequence. The current attack row

@@ -1,7 +1,7 @@
 {
-  "note": "Exact labels for the bot behaviour diagram (CODEX-ART-19). Draw every string exactly as written; do not shorten, translate or reword. Source: smash-nine-prototype/scripts/EnemyAI.gd, 2026-10-09.",
+  "note": "Exact labels for the bot behaviour diagram (CODEX-ART-19). Draw every string exactly as written; do not shorten, translate or reword. Source: smash-nine-prototype/scripts/EnemyAI.gd, 2026-10-10.",
   "title": "봇 행동 원리",
-  "subtitle": "모든 봇의 기본 원리와 캐릭터별 추가 행동 · 2026-10-09 코드 기준 · 공격 범위 1.5배",
+  "subtitle": "모든 봇의 기본 원리와 캐릭터별 추가 행동 · 2026-10-10 코드 기준 · 공격 범위 1.5배",
   "root": "기본 봇\n(모든 캐릭터 공통)",
   "groups": [
     {
@@ -114,6 +114,7 @@
       "leaves": [
         "K 돌진 베기: 앞에 바닥이 충분할 때만, 아래로는 거의 안 꺾음",
         "복귀: K 돌진을 거리에 상관없이 (최대 2번)",
+        "L 올려치기가 맞으면 75% 확률로 0.06~0.12초 뒤 L 다시 (강스파이크)",
         "궁극기 사거리 360px"
       ]
     },
@@ -126,7 +127,7 @@
       "profile": "최소 165 · 최대 435 · 공격 495px",
       "leaves": [
         "궁극기(6초 변신): 체력 50% 이상이면 점수 +1",
-        "변신 4.4초 뒤 하트 레이저 자동 사용",
+        "변신 4.4초 뒤 하트 레이저 (공격 중이면 0.6초 동안 다시 누름)",
         "궁극기 사거리 315px",
         "복귀 기술 없음 (공중 점프만)"
       ]

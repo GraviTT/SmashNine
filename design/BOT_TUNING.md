@@ -6,7 +6,7 @@
 
 - **봇 조절은 잠시 멈춤 (2026-10-10 사용자: "이제부터는 각 캐릭터들을 먼저 완성시키는 방향으로 간다", 결정 D30).** 다시 시작할 때는 7번 "다음에 할 것"부터 합니다.
 - **캐릭터를 바꾸면 봇도 같이 손봐야 합니다.** 6번 "캐릭터를 바꿀 때 봇 체크리스트"를 보세요.
-- **현재 봇 코드:** Codex QA-14 16라운드의 S0 변형과 같습니다(커밋 `a069c9e`, `smash-nine-prototype/scripts/EnemyAI.gd`).
+- **현재 봇 코드:** Codex QA-14 16라운드의 S0 변형(커밋 `a069c9e`, `smash-nine-prototype/scripts/EnemyAI.gd`)에 캐릭터 키트 변경에 따른 수정 2건을 더했습니다(2026-10-10 밤): Frey 강스파이크 재입력, Luna 하트 레이저 재입력(아래 6번). 아래 측정치는 그 전 S0 기준이며, 새 측정은 Codex QA-17 2차(`reports/codex-qa-17/round-2/`)에 있습니다.
 - **현재 측정치:** 같은 시드 101–112, 8봇, 12판 기준입니다.
 
 | 지표 | 값 | 비고 |
@@ -121,7 +121,8 @@
 | 바뀐 것 | 봇에서 볼 곳 |
 | --- | --- |
 | 공격·기술 사거리 | `COMBAT_PROFILES`(최소·최대·공격 거리, `basic_reach`). 값은 `GameScale.COMBAT`이 곱해지기 전 기준입니다 |
-| 궁극기 범위·방식 | `ULTIMATE_REACH`(배율 전 기준), `_ultimate_score`의 캐릭터 예외(Nova −3, Luna +1), `ULTIMATE_FOLLOWUPS`(Luna 하트 레이저 4.4초), `_drive_nova_slingshot` |
+| 궁극기 범위·방식 | `ULTIMATE_REACH`(배율 전 기준), `_ultimate_score`의 캐릭터 예외(Nova −3, Luna +1), `ULTIMATE_FOLLOWUPS`(Luna 하트 레이저 4.4초; 그 누름이 아무것도 시작 못 하면 `ULTIMATE_FOLLOWUP_RETRY` 0.6초 동안 매 프레임 다시 누름 — 캐릭터는 실제로 다음 단계를 시작할 때 `ultimate_followup_started`를 켭니다), `_drive_nova_slingshot` |
+| 맞힌 뒤 다시 누르는 기술 | Frey 강스파이크: `_update_spike_followup`이 `rising_followup_timer`(올려치기 적중 뒤 0.18초 창)를 보고 `SPIKE_CHANCE` 75%로 `SPIKE_DELAY_MIN~MAX`(0.06~0.12초) 뒤 `try_skill_two_followup()` |
 | 돌진 기술(K) | `_mobility_skill_is_safe` 대상(Frey·Nova·Rio), `_attack_aim`의 돌진 조준(아래로 안 꺾음) |
 | 복귀 수단 | 프로필 `recovery_skill`, `RECOVERY_SKILL_REACH`, 캐릭터의 `can_use_skill_one()`(공중 사용 횟수) |
 | 캐릭터별 기술 규칙 | Nova K는 195px 이상, Yuki K 결박은 가깝고 같은 층, Rio L 룬 실드는 상대가 휘두를 때만(공격으로 안 셈) |
