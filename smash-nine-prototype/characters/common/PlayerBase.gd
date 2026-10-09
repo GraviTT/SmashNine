@@ -71,6 +71,11 @@ const GROWTH_STEPS_PER_PICK := 3
 const SOULS_PER_DAMAGE := 0.2
 const SOULS_PER_KNOCKOUT := 12
 const ULTIMATE_COOLDOWN := 30.0
+## Super armor right after an ultimate starts (and after each follow-up press: Nova's slingshot
+## stages, Luna's heart laser): hits still deal their damage but cause no knockback, hitstun or
+## cancel (user 2026-10-10: "궁극기들은 난전 상황에서 평타만 맞아도 끊기는 경우가 많으니 궁극기
+## 사용 직후에는 짧은 슈퍼아머가 필요하다").
+const ULTIMATE_ARMOR_TIME := 0.6
 const RESPAWN_PROTECTION := 1.0
 const LAST_ATTACKER_MEMORY := 8.0
 const RECOVERY_DELAY := 4.0
@@ -101,6 +106,7 @@ var ultimate_name := "Ultimate"
 ## Seconds after a cast that count as the ultimate (data "ultimate_window"; Luna: her Brave form).
 var ultimate_window := 2.0
 var ultimate_window_timer := 0.0
+var ultimate_armor_timer := 0.0
 ## "male" or "female": which original sheet to draw for characters that have both (set before _ready).
 var body_type := ""
 var uses_original_sheet := false
@@ -361,6 +367,7 @@ func _physics_process(delta: float) -> void:
 func _update_match_timers(delta: float) -> void:
 	ultimate_cooldown_timer = maxf(ultimate_cooldown_timer - delta, 0.0)
 	ultimate_window_timer = maxf(ultimate_window_timer - delta, 0.0)
+	ultimate_armor_timer = maxf(ultimate_armor_timer - delta, 0.0)
 	last_attacker_timer = maxf(last_attacker_timer - delta, 0.0)
 	if invulnerable_timer > 0.0:
 		invulnerable_timer = maxf(invulnerable_timer - delta, 0.0)
@@ -692,11 +699,13 @@ func skill_two() -> void:
 func ultimate() -> void:
 	# Follow-up presses (Nova's slingshot stages, Luna's heart laser) are part of the same ultimate.
 	if try_ultimate_followup():
+		ultimate_armor_timer = ULTIMATE_ARMOR_TIME
 		return
 	if not _can_start_attack() or not is_ultimate_ready():
 		return
 	ultimate_cooldown_timer = ULTIMATE_COOLDOWN
 	ultimate_window_timer = ultimate_window
+	ultimate_armor_timer = ULTIMATE_ARMOR_TIME
 	perform_ultimate()
 	ultimate_cast.emit(self)
 
@@ -1081,7 +1090,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	if is_guarding and guard_result == GUARD_NONE:
 		_stop_guard(true)
 	_remember_attacker(attacker)
-	var absorption := character_hit_absorption() if guard_result == GUARD_NONE else -1.0
+	var absorption := _incoming_absorption() if guard_result == GUARD_NONE else -1.0
 	var final_damage := _calculate_incoming_damage(attacker, damage, damage_type)
 	var guard_reduction := _get_guard_reduction() if guard_result == GUARD_BLOCK else 0.0
 	final_damage *= 1.0 - guard_reduction
@@ -1134,11 +1143,23 @@ func _hitstop_scale_from(attacker: Node) -> float:
 		return ULTIMATE_HITSTOP_SCALE
 	return 1.0
 
+## The share of a hit that lands without knockback, hitstun or cancel, or -1 for a normal hit:
+## the character's own absorption (Rio's rune shield), else the ultimate's super armor (full
+## damage).
+func _incoming_absorption() -> float:
+	var own := character_hit_absorption()
+	if own >= 0.0:
+		return own
+	return 1.0 if ultimate_armor_timer > 0.0 else -1.0
+
 func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, direction: Vector2, final_damage: float) -> bool:
 	last_hit_absorbed = absorption >= 0.0
 	if not last_hit_absorbed:
 		return false
-	character_on_hit_absorbed(attacker, knockback, direction)
+	if character_hit_absorption() >= 0.0:
+		character_on_hit_absorbed(attacker, knockback, direction)
+	else:
+		_play_armor_flash()
 	hitstop_timer = VICTIM_HITSTOP * 0.5
 	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, 0.0)
 	hp_changed.emit(self)
@@ -1146,6 +1167,14 @@ func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, d
 	if hp <= 0.0:
 		_defeat(last_attacker)
 	return true
+
+## A hit taken in the ultimate's super armor: a short gold flash on the fighter.
+func _play_armor_flash() -> void:
+	if not is_instance_valid(character_sprite):
+		return
+	character_sprite.self_modulate = Color(1.7, 1.45, 0.75)
+	var tween := character_sprite.create_tween()
+	tween.tween_property(character_sprite, "self_modulate", Color.WHITE, 0.14)
 
 func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vector2, hitstun_duration: float, effect_knockback: float, direction: Vector2, damage_type := DAMAGE_NORMAL) -> bool:
 	if is_defeated or is_invulnerable():
@@ -1157,7 +1186,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 	if is_guarding and guard_result == GUARD_NONE:
 		_stop_guard(true)
 	_remember_attacker(attacker)
-	var absorption := character_hit_absorption() if guard_result == GUARD_NONE else -1.0
+	var absorption := _incoming_absorption() if guard_result == GUARD_NONE else -1.0
 	var final_damage := _calculate_incoming_damage(attacker, damage, damage_type)
 	var guard_reduction := _get_guard_reduction() if guard_result == GUARD_BLOCK else 0.0
 	final_damage *= 1.0 - guard_reduction
@@ -1370,6 +1399,7 @@ func _defeat(attacker: Node) -> void:
 	cancel_pending_actions()
 	_clear_drop_through_exception()
 	ultimate_window_timer = 0.0
+	ultimate_armor_timer = 0.0
 	_reset_guard_state()
 	_end_skill_dash()
 	character_cleanup()
@@ -1394,6 +1424,7 @@ func _respawn() -> void:
 	cancel_pending_actions()
 	_clear_drop_through_exception()
 	ultimate_window_timer = 0.0
+	ultimate_armor_timer = 0.0
 	_reset_guard_state()
 	character_on_respawn()
 	if not spawn_points.is_empty():
@@ -1448,6 +1479,7 @@ func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	cancel_pending_actions()
 	_clear_drop_through_exception()
 	ultimate_window_timer = 0.0
+	ultimate_armor_timer = 0.0
 	_reset_guard_state()
 	character_cleanup()
 	character_on_respawn()
