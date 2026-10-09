@@ -77,21 +77,23 @@ func _test_comet_and_ring() -> bool:
 		return false
 	var attacks_before_bloom := _count_nodes_with_script(ATTACK_PATH)
 	comet._detonate()
-	await process_frame
-	if _count_nodes_with_script(ATTACK_PATH) <= attacks_before_bloom:
+	# The bloom lives 0.13 s; one late process frame can outlast it, a physics frame cannot.
+	if not await _wait_for(func() -> bool: return _count_nodes_with_script(ATTACK_PATH) > attacks_before_bloom, 0.5):
 		_fail("Luna comet did not create its range-end bloom attack")
 		return false
-	await create_timer(0.16).timeout
 	luna.attack_lock_timer = 0.0
-	var attacks_before_ring := _count_nodes_with_script(ATTACK_PATH)
+	# Counted as they are created, like the star echo, so the bloom running out meanwhile
+	# cannot hide a half.
+	var ring_halves: Array[Node] = []
+	var on_node_added := func(node: Node) -> void:
+		var script: Script = node.get_script()
+		if script != null and script.resource_path == ATTACK_PATH:
+			ring_halves.append(node)
+	node_added.connect(on_node_added)
 	luna.skill_two()
-	var saw_both_ring_halves := false
-	for attempt in 80:
-		if _count_nodes_with_script(ATTACK_PATH) >= attacks_before_ring + 2:
-			saw_both_ring_halves = true
-			break
-		await create_timer(0.01).timeout
-	if not saw_both_ring_halves:
+	await _wait_for(func() -> bool: return ring_halves.size() >= 2, 1.0)
+	node_added.disconnect(on_node_added)
+	if ring_halves.size() < 2:
 		_fail("Luna L did not create both rotating ring halves")
 		return false
 	luna.queue_free()
@@ -178,6 +180,16 @@ func _find_node_with_script(script_path: String) -> Node:
 		if child.get_script() != null and child.get_script().resource_path == script_path:
 			return child
 	return null
+
+## Polls a condition every physics frame, for up to `timeout` seconds of game time.
+## physics_frame comes before any node's _physics_process, so a hit area is seen before its
+## own frames can expire it (as in test_rio_prototype.gd).
+func _wait_for(condition: Callable, timeout: float) -> bool:
+	var waited := 0.0
+	while not condition.call() and waited < timeout:
+		await physics_frame
+		waited += get_root().get_physics_process_delta_time()
+	return condition.call()
 
 func _fail(message: String) -> void:
 	push_error(message)
