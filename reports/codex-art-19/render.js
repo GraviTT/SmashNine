@@ -13,7 +13,8 @@ const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
 const BROWSER = fs.existsSync(CHROME) ? CHROME : EDGE;
 const W = 3840;
-const H = 2800;
+// Canvas height: variant C grows it to fit its content (lead 2026-10-09).
+let H = 2800;
 const DARK = "#1F2430";
 const BG = "#F7F8FB";
 const WHITE = "#FFFFFF";
@@ -43,7 +44,7 @@ function estimate(text, size, bold = false) {
 	for (const ch of text) {
 		if (ch === " ") units += 0.34;
 		else if (/^[\x00-\x7F]$/.test(ch)) units += /[MW@%]/.test(ch) ? 0.78 : 0.57;
-		else units += 0.96;
+		else units += 1.0;
 	}
 	return units * size * (bold ? 1.03 : 1);
 }
@@ -125,8 +126,8 @@ function header(state) {
 }
 
 function footer(state) {
-	let s = `<path d="M120 2728 H3720" stroke="#D9DEEA" stroke-width="3"/>`;
-	s += textTag(state, data.footer, 1920, 2772, 3500, 28, {anchor: "middle", parent: "footer", fill: "#535B6E"});
+	let s = `<path d="M120 ${H - 72} H3720" stroke="#D9DEEA" stroke-width="3"/>`;
+	s += textTag(state, data.footer, 1920, H - 28, 3500, 28, {anchor: "middle", parent: "footer", fill: "#535B6E"});
 	return s;
 }
 
@@ -195,6 +196,13 @@ function drawCharacter(state, character, id, x, y, w, h, compact = false) {
 		cy += lines.length * 36 + 11;
 	}
 	return s;
+}
+
+// The height drawCharacter needs for its leaves (non-compact layout).
+function characterHeight(character, w) {
+	let cy = 224;
+	for (const leaf of character.leaves) cy += wrap(leaf, w - 66, 28).length * 36 + 11;
+	return cy + 24;
 }
 
 function drawCharactersLabel(state, x, y, w = 390, h = 94) {
@@ -288,26 +296,41 @@ function renderB() {
 
 function renderC() {
 	const state = {texts: [], nodes: [], textBoxes: []};
+	const colX = [80, 1000, 1920, 2840];
+	// The columns are as tall as the tallest one needs, and the characters start below them
+	// (lead 2026-10-09: longer labels pushed the last fight branch into the characters label).
+	let inner = 1152;
+	for (const group of data.groups) {
+		let total = 18 * (group.branches.length - 1);
+		for (const branch of group.branches) total += branchHeight(branch, 824, 28);
+		inner = Math.max(inner, total);
+	}
+	const branchesBottom = 616 + inner;
+	const columnHeight = branchesBottom + 102 - 470;
+	const labelY = 470 + columnHeight;
+	const charY = labelY + 130;
+	let cardH = 700;
+	for (const character of data.characters) cardH = Math.max(cardH, characterHeight(character, 704));
+	H = charY + cardH + 100;
 	let s = svgStart() + header(state);
 	const rootX = 1640, rootY = 260;
 	s += `<g id="connectors">`;
-	const colX = [80, 1000, 1920, 2840];
 	for (let i = 0; i < 4; i++) {
 		const center = colX[i] + 440;
 		s += connector([[1920, 430], [1920, 448], [center, 448], [center, 470]], data.groups[i].color, 8);
 	}
-	s += connector([[1920, 430], [1920, 1897]], "#FFB53D", 9);
+	s += connector([[1920, 430], [1920, labelY + 27]], "#FFB53D", 9);
 	s += `</g>`;
 	s += drawRoot(state, rootX, rootY, 560, 170);
 	for (let gi = 0; gi < 4; gi++) {
 		const group = data.groups[gi];
 		const x = colX[gi];
-		s += `<rect x="${x}" y="470" width="880" height="1400" rx="30" fill="${tint(group.color, 0.96)}" stroke="${tint(group.color, 0.55)}" stroke-width="3"/>`;
+		s += `<rect x="${x}" y="470" width="880" height="${columnHeight}" rx="30" fill="${tint(group.color, 0.96)}" stroke="${tint(group.color, 0.55)}" stroke-width="3"/>`;
 		s += drawGroupLabel(state, group, `c-g-${group.id}`, x + 305, 490, 270, 94);
 		let y = 616;
 		for (let bi = 0; bi < group.branches.length; bi++) {
 			const branch = group.branches[bi];
-			const remaining = 1768 - y;
+			const remaining = branchesBottom - y;
 			const natural = branchHeight(branch, 824, 28);
 			const countLeft = group.branches.length - bi;
 			const h = Math.max(natural, Math.floor((remaining - (countLeft - 1) * 18) / countLeft));
@@ -316,12 +339,12 @@ function renderC() {
 			y += h + 18;
 		}
 	}
-	s += drawCharactersLabel(state, 1700, 1870, 440, 94);
-	const cw = 704, gap = 28, start = 104, charY = 2000;
+	s += drawCharactersLabel(state, 1700, labelY, 440, 94);
+	const cw = 704, gap = 28, start = 104;
 	for (let i = 0; i < data.characters.length; i++) {
 		const cx = start + i * (cw + gap);
-		s += connector([[1920, 1964], [1920, 1982], [cx + cw / 2, 1982], [cx + cw / 2, charY]], data.characters[i].color, 6);
-		s += drawCharacter(state, data.characters[i], `c-char-${data.characters[i].id}`, cx, charY, cw, 700, false);
+		s += connector([[1920, labelY + 94], [1920, labelY + 112], [cx + cw / 2, labelY + 112], [cx + cw / 2, charY]], data.characters[i].color, 6);
+		s += drawCharacter(state, data.characters[i], `c-char-${data.characters[i].id}`, cx, charY, cw, cardH, false);
 	}
 	s += footer(state) + `</svg>`;
 	return {svg: s, state};
@@ -415,8 +438,11 @@ function makeContact(variants) {
 }
 
 function main() {
+	// Default: re-render the chosen variant C only (lead 2026-10-09); --all also renders A and B and
+	// the comparison sheet.
+	const all = process.argv.includes("--all");
 	fs.mkdirSync(OUT, {recursive: true});
-	const variants = {a: renderA(), b: renderB(), c: renderC()};
+	const variants = all ? {a: renderA(), b: renderB(), c: renderC()} : {c: renderC()};
 	const checks = {generatedAt: new Date().toISOString(), source: path.relative(ROOT, DATA_PATH), variants: {}, contrast: {}};
 	for (const [name, result] of Object.entries(variants)) {
 		const text = compareText(result.state.texts);
@@ -435,7 +461,9 @@ function main() {
 	}
 
 	fs.copyFileSync(path.join(OUT, "variant-c.png"), FINAL_PATH);
-	const compose = cp.spawnSync("powershell", ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", path.join(OUT, "compose.ps1"), "-OutDir", OUT, "-FinalPath", FINAL_PATH], {encoding: "utf8", timeout: 45000});
+	const composeArgs = ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", path.join(OUT, "compose.ps1"), "-OutDir", OUT, "-FinalPath", FINAL_PATH];
+	if (!all) composeArgs.push("-FinalOnly");
+	const compose = cp.spawnSync("powershell", composeArgs, {encoding: "utf8", timeout: 45000});
 	if (compose.error || compose.status !== 0) throw new Error(`compose failed: ${compose.error || compose.status}\n${compose.stderr || compose.stdout}`);
 
 	checks.final = {chosen: "variant-c", png: pngSize(FINAL_PATH), halfPreview: pngSize(path.join(OUT, "chosen-50.png")), contact: pngSize(path.join(OUT, "contact.png"))};
