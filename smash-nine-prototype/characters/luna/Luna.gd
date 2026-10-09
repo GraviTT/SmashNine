@@ -27,6 +27,8 @@ const STAR_ORBIT_RADIUS := 44.0
 ## the target). Only a body at least ECHO_HOME_MIN ahead of her (scaled px, body centre to body
 ## centre) is followed, and never farther than the bloom's own place, so a foe hugging Normal Luna
 ## still slips under the bloom.
+## Star-charge art (Codex ART-22); the drawn star stays as the fallback while the file is missing.
+const STAR_CHARGE_ART := "res://assets/art/effects/passive/luna_star_charge.png"
 const ECHO_HOME_MIN := 75.0
 const ECHO_HOME_RISE := 48.0
 
@@ -179,10 +181,19 @@ func _update_star_orbit() -> void:
 		add_child(star_charge_orbit)
 	for child in star_charge_orbit.get_children():
 		child.queue_free()
+	var art: Texture2D = load(STAR_CHARGE_ART) if ResourceLoader.exists(STAR_CHARGE_ART) else null
 	for index in star_charge:
-		var star := Polygon2D.new()
-		star.polygon = _make_star_points(7.0, 3.0)
-		star.color = Color(1.0, 0.9, 0.42, 0.95)
+		var star: Node2D
+		if art != null:
+			var icon := Sprite2D.new()
+			icon.texture = art
+			icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			star = icon
+		else:
+			var shape := Polygon2D.new()
+			shape.polygon = _make_star_points(7.0, 3.0)
+			shape.color = Color(1.0, 0.9, 0.42, 0.95)
+			star = shape
 		var angle := TAU * float(index) / float(STAR_CHARGE_MAX)
 		star.position = Vector2(cos(angle), sin(angle)) * STAR_ORBIT_RADIUS
 		star_charge_orbit.add_child(star)

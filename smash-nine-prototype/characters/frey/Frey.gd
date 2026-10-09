@@ -130,10 +130,20 @@ func _end_pursuit() -> void:
 	pursuit_mark = null
 
 ## Two small gold wings over the marked target.
+## Passive-mark art (Codex ART-22); the drawn shapes stay as the fallback while a file is missing.
+const PURSUIT_MARK_ART := "res://assets/art/effects/passive/frey_pursuit_mark.png"
+const SPIKE_RING_ART := "res://assets/art/effects/passive/frey_spike_ring.png"
+
 func _make_pursuit_mark() -> Node2D:
 	var mark := Node2D.new()
 	mark.name = "FreyPursuitMark"
 	mark.z_index = 6
+	if ResourceLoader.exists(PURSUIT_MARK_ART):
+		var art := Sprite2D.new()
+		art.texture = load(PURSUIT_MARK_ART)
+		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		mark.add_child(art)
+		return mark
 	for side in [-1.0, 1.0]:
 		var wing := Polygon2D.new()
 		wing.polygon = PackedVector2Array([Vector2(0, 0), Vector2(22 * side, -12), Vector2(30 * side, -2), Vector2(18 * side, 2), Vector2(26 * side, 8), Vector2(6 * side, 6)])
@@ -436,15 +446,23 @@ func _spike_start() -> void:
 ## The spike window: a gold ring around Frey and a bright flash on her (the body rectangle this
 ## used to colour is hidden behind the sprite).
 func _play_followup_flash() -> void:
-	var ring := Line2D.new()
-	ring.width = 3.0
-	ring.default_color = Color(1.0, 0.9, 0.42, 0.95)
-	ring.closed = true
-	var points := PackedVector2Array()
-	for index in 24:
-		var angle := TAU * float(index) / 24.0
-		points.append(Vector2(cos(angle), sin(angle)) * 46.0)
-	ring.points = points
+	var ring: Node2D
+	if ResourceLoader.exists(SPIKE_RING_ART):
+		var art := Sprite2D.new()
+		art.texture = load(SPIKE_RING_ART)
+		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		ring = art
+	else:
+		var line := Line2D.new()
+		line.width = 3.0
+		line.default_color = Color(1.0, 0.9, 0.42, 0.95)
+		line.closed = true
+		var points := PackedVector2Array()
+		for index in 24:
+			var angle := TAU * float(index) / 24.0
+			points.append(Vector2(cos(angle), sin(angle)) * 46.0)
+		line.points = points
+		ring = line
 	ring.position = Vector2(0, -40)
 	ring.z_index = 6
 	add_child(ring)
