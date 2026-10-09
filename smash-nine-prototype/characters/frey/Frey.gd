@@ -289,6 +289,9 @@ func _play_ultimate_charge() -> void:
 	body_tween.tween_property(body, "scale", Vector2(1.12, 0.9), 0.08)
 	body_tween.tween_property(body, "scale", Vector2.ONE, 0.08)
 	body_tween.parallel().tween_property(body, "color", body_color, 0.08)
+	# The charge art above is the glow; the rectangle only without it (2026-10-09).
+	if VFX.available("frey_ult_charge"):
+		return
 	var glow := ColorRect.new()
 	glow.size = Vector2(70, 86)
 	glow.position = global_position + Vector2(-35, -76)
@@ -302,6 +305,9 @@ func _play_ultimate_charge() -> void:
 	glow_tween.tween_callback(glow.queue_free)
 
 func _play_ultimate_release() -> void:
+	# The wave art spawned with it shows the release; the flat flash only without it (2026-10-09).
+	if VFX.available("frey_ult_wave"):
+		return
 	var flash := ColorRect.new()
 	flash.size = Vector2(150, 24)
 	flash.position = global_position + Vector2(-75, -18)

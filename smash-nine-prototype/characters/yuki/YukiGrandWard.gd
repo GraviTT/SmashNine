@@ -146,6 +146,10 @@ func _same_realm(target: Node) -> bool:
 	return target_realm == null or int(target_realm) == realm_index
 
 func _play_final_effect() -> void:
+	# The ward-burst art spawned with it is the flash; a 2 x FIELD_RADIUS square on top of it read
+	# as a placeholder box (2026-10-09). The square stays only as the no-art fallback.
+	if VFX.available("yuki_ult_burst"):
+		return
 	var flash := ColorRect.new()
 	flash.size = Vector2(FIELD_RADIUS * 2.0, FIELD_RADIUS * 2.0)
 	flash.position = global_position - flash.size * 0.5

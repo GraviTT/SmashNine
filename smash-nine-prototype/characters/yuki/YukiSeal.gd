@@ -139,6 +139,10 @@ func _play_seal_art() -> void:
 
 func _play_burst_effect() -> void:
 	VFX.spawn(get_parent(), "yuki_l", global_position, Vector2.ONE * (BURST_RADIUS * 2.0 / 192.0), false, 6)
+	# The ward-burst art is the burst; the square behind it only without the art (2026-10-09, as
+	# for the talisman burst).
+	if VFX.available("yuki_l"):
+		return
 	var burst := ColorRect.new()
 	burst.size = Vector2(BURST_RADIUS * 2.0, BURST_RADIUS * 2.0)
 	burst.position = global_position - burst.size * 0.5
