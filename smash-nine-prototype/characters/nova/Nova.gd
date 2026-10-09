@@ -108,9 +108,11 @@ func try_skill_one_followup() -> bool:
 func try_ultimate_followup() -> bool:
 	if ultimate_phase == ULTIMATE_CORE:
 		_begin_ultimate_orbit()
+		ultimate_followup_started = true
 		return true
 	if ultimate_phase == ULTIMATE_ORBIT:
 		_begin_ultimate_launch(_get_ultimate_tangent())
+		ultimate_followup_started = true
 		return true
 	return ultimate_phase != ULTIMATE_NONE
 

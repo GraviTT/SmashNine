@@ -22,3 +22,23 @@
 3. **Score** each of the seven criteria 1–5 for Frey and for Luna with the evidence, and list the top five fixes per character.
 
 Writable: `reports/codex-qa-17/**`, `smash-nine-prototype/tests/analysis/codex_qa_17/**`. Report `reports/codex-qa-17/README.md` (Korean): the proposals, the measurements, the scorecards, the ranked fixes. Commit, or `reports/codex-qa-17/commit.ps1` staging only the writable paths, message ending `Co-Authored-By: Codex <noreply@openai.com>`. Keep large raw data out of the commit.
+
+## Round 2 · retest after the lead's changes (2026-10-10 night)
+
+The lead changed Frey and Luna after Round 1 (commits `be8b14c`, `a2ff0bc` and the Luna echo / armor commit on top; read `characters/frey/Frey.md` and `characters/luna/Luna.md`, sections "Passive" and "2026-10-10 개선"):
+- every ultimate: 0.6 s super armor after the cast and after each follow-up press that starts a new stage (Nova orbit/launch, Luna heart laser; mashing the key renews nothing) — damage only, no knockback/hitstun/cancel; gold flash;
+- Frey: passive "발키리의 추격" (a landed launcher marks the target for 1 s; airborne Frey moves ×1.15 toward it), the spike re-press now cancels the rising cleave's recovery (window 0.18 s after the cleave lands), Frey bots re-press it, J1/J2 cancel their recovery on hit (true combo), per-move sprite frames;
+- Luna: passive "별빛 충전" (precise echo / comet burst / moon ring hit = a star, five cut the ultimate cooldown by 6 s), the side echo's bloom opens on the body the trail struck (75 px or farther ahead), Brave jab/body kick cancel their recovery on hit, per-move frames.
+
+Re-run **the same inputs as Round 1** on the new main and report before → after:
+1. **Combos:** `combo_probe.gd`, same routes, trials and distances. Fixes to the probe itself: the Brave routes must start after the transformation burst is over (it launched the dummy in Round 1: wait until the target has landed and left hitstun, or place the target after the burst), and `L-spike` must press L again while `rising_followup_timer > 0` without waiting for `_can_start_attack()` (the spike now cancels the recovery). Add Frey J1-J2-J3 push distance after the third hit (it is larger now) and L → air J / up J → air up J with the pursuit speed (does the pursuit make them connect?).
+2. **Passives in matches:** per match and per character: Frey marks made, seconds spent pursuing; Luna stars by source (echo, comet, ring), full charges, seconds of cooldown cut, ultimate casts per match against Round 16 S0.
+3. **Bot use:** Frey spike re-presses per opportunity (Round 1: 0 of 10) and spike hits; Frey L and Luna J hit events per use against Round 16 S0.
+4. **Ultimate interruptions:** `match_probe.gd`, seeds 301–312, 90 s, same as Round 1: casts, hit within 1 s, "likely cancelled", plus how many hits the armor absorbed.
+5. **Readability:** `capture_moves.gd` again, new contact sheets; say whether Frey J1/J2/J3 and Brave jab/body kick/spin kick now read as different moves, and whether the spike ring, the pursuit wings and Luna's star orbit can be seen.
+6. **Sweep:** 12 matches, seeds 101–112, 8 bots, 480 s, current bot code (= Round 16 S0) with `bot_behavior_probe_round16.gd` (variant `current`): win rate, ring-outs, damage per minute for all five, against Round 16 S0. Frey's balance is on hold: report, do not propose numbers for her unless something is broken.
+7. **Scorecards:** the seven criteria again for Frey and Luna (Round 1 → Round 2 with evidence) and the top remaining fixes.
+
+Order if time runs short: 1, 4, 3, 2, 6, 5, 7 (always write 7 with what you have). Run at most two Godot processes at once (a Codex art builder runs at the same time).
+
+Writable: `reports/codex-qa-17/round-2/**`, `smash-nine-prototype/tests/analysis/codex_qa_17/**` (new files or `_r2` copies; keep Round 1 files as they are). Report `reports/codex-qa-17/round-2/README.md` (Korean). Commit, or `reports/codex-qa-17/round-2/commit.ps1` staging only the writable paths, message ending `Co-Authored-By: Codex <noreply@openai.com>`. Keep large raw data out of the commit.

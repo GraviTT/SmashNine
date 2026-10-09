@@ -2,7 +2,8 @@ extends SceneTree
 ## Luna, 2026-10-10 night (finishing criteria): the passive "별빛 충전" — a precise star echo
 ## (trail and bloom on the same target) gives a star, a full set of five cuts the ultimate's
 ## remaining cooldown, and while the ultimate is ready the stars wait; the Brave J chain plays
-## the jab, body kick and spinning kick frames of the Brave attack row.
+## the jab, body kick and spinning kick frames of the Brave attack row; the side echo's bloom opens
+## on the body its trail struck, so walking in while swinging still lands both (Codex QA-17: 1 of 8).
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -17,6 +18,7 @@ func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
 	await _test_precise_echo_star()
+	await _test_echo_walk_in()
 	await _test_full_charge()
 	await _test_brave_chain_poses()
 	arena.queue_free()
@@ -77,6 +79,47 @@ func _test_precise_echo_star() -> void:
 	foe.queue_free()
 	ground.queue_free()
 	await process_frame
+
+## Codex QA-17's input: a player holding toward a dummy 110 px away presses J. Luna walks in while
+## the swing comes out; the fixed bloom used to open past the target.
+func _test_echo_walk_in() -> void:
+	var misses := 0
+	for trial in 4:
+		var ground := _floor(Vector2(0, 0), 1400)
+		var luna: Node = PLAYER_FACTORY.create("luna")
+		arena.add_child(luna)
+		luna.global_position = Vector2(0, -2)
+		luna.setup(CHARACTER_REGISTRY.get_characters()["luna"], 1, true)
+		luna.ringout_y = 100000.0
+		var dummy: Node = PLAYER_FACTORY.create("")
+		arena.add_child(dummy)
+		dummy.global_position = Vector2(110, -2)
+		dummy.setup_dummy(2)
+		dummy.ringout_y = 100000.0
+		for frame in 8 + trial:
+			await physics_frame
+		var hits := []
+		dummy.damaged.connect(func(_v, amount, _att, _src): hits.append(amount))
+		Input.action_press("move_right")
+		var press := InputEventAction.new()
+		press.action = "basic_attack"
+		press.pressed = true
+		Input.parse_input_event(press)
+		var release := InputEventAction.new()
+		release.action = "basic_attack"
+		release.pressed = false
+		Input.parse_input_event(release)
+		for frame in 40:
+			await physics_frame
+		Input.action_release("move_right")
+		if hits.size() < 2:
+			misses += 1
+		luna.queue_free()
+		dummy.queue_free()
+		ground.queue_free()
+		await process_frame
+	if misses > 0:
+		_fail("Walking in from 110 px, the side star echo should land its trail and its bloom (%d of 4 missed the bloom)" % misses)
 
 func _test_full_charge() -> void:
 	var luna := _fighter("luna", 1, Vector2(0, -400))

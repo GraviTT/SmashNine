@@ -2,7 +2,8 @@ extends SceneTree
 ## Super armor right after an ultimate starts (user 2026-10-10: ultimates were cut off by a basic
 ## hit in brawls): a hit in the first ULTIMATE_ARMOR_TIME deals its damage but no knockback, no
 ## hitstun and no cancel; after it, hits interrupt as before. Rio's own rune absorption stays
-## separate.
+## separate. Only a follow-up press that starts a new stage renews the armor: mashing the key
+## during Brave Luna or Nova's launch does not keep it up.
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -18,6 +19,7 @@ func _run() -> void:
 	root.add_child(arena)
 	await _test_nova_slingshot_armor()
 	await _test_frey_dive_armor()
+	await _test_mashing_keeps_no_armor()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -65,6 +67,40 @@ func _test_nova_slingshot_armor() -> void:
 		_fail("Once the super armor is over, a hit should cause hitstun again")
 	nova.queue_free()
 	foe.queue_free()
+	await process_frame
+
+## Mashing I used to renew the armor on every press while Luna was transformed (her follow-up
+## press is consumed even when no laser starts) and through Nova's launch.
+func _test_mashing_keeps_no_armor() -> void:
+	var luna := _fighter("luna", 1, Vector2(0, -400))
+	luna.set_physics_process(false)
+	luna._enter_transformation()
+	luna.ultimate_armor_timer = 0.0
+	luna.attack_lock_timer = 0.3
+	luna.ultimate()
+	if float(luna.ultimate_armor_timer) > 0.0:
+		_fail("A Brave Luna press that starts no heart laser (she is mid-attack) should not renew the armor")
+	luna.attack_lock_timer = 0.0
+	luna.ultimate()
+	if float(luna.ultimate_armor_timer) <= 0.0:
+		_fail("The press that starts Luna's heart laser should renew the armor")
+	luna.ultimate_armor_timer = 0.0
+	luna.ultimate()
+	if float(luna.ultimate_armor_timer) > 0.0:
+		_fail("Pressing again during the heart laser should not renew the armor")
+	luna.queue_free()
+	var nova := _fighter("nova", 2, Vector2(400, -400))
+	nova.set_physics_process(false)
+	nova.ultimate()
+	nova.ultimate()
+	nova.ultimate()
+	if int(nova.ultimate_phase) == 0:
+		_fail("Test setup: Nova's slingshot should still be running after its three presses")
+	nova.ultimate_armor_timer = 0.0
+	nova.ultimate()
+	if float(nova.ultimate_armor_timer) > 0.0:
+		_fail("Pressing again during Nova's launch should not renew the armor")
+	nova.queue_free()
 	await process_frame
 
 ## Frey's air ultimate dive used to stop on any hit (character_on_hit -> ultimate_diving = false).

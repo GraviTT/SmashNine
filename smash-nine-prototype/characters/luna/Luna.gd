@@ -22,6 +22,13 @@ const BRAVE_IMPACT_COLOR := Color(1.0, 0.84, 0.28, 0.76)
 const STAR_CHARGE_MAX := 5
 const STAR_CHARGE_COOLDOWN_CUT := 6.0
 const STAR_ORBIT_RADIUS := 44.0
+## The side star echo's bloom opens on the body its trail struck (2026-10-10 night: Codex QA-17
+## measured the fixed bloom missing 7 of 8 times when Luna walked in from 110 px — it bloomed past
+## the target). Only a body at least ECHO_HOME_MIN ahead of her (scaled px, body centre to body
+## centre) is followed, and never farther than the bloom's own place, so a foe hugging Normal Luna
+## still slips under the bloom.
+const ECHO_HOME_MIN := 75.0
+const ECHO_HOME_RISE := 48.0
 
 var transformed := false
 var has_brave_sheet := false
@@ -90,6 +97,7 @@ func try_ultimate_followup() -> bool:
 		return false
 	if not transformation_finishing and _can_start_attack():
 		_heart_laser_start()
+		ultimate_followup_started = true
 	return true
 
 func character_physics_process(delta: float) -> void:
@@ -122,6 +130,15 @@ func character_on_attack_hit_body(body: Node, attack: Node) -> void:
 	if cast != null and not star_charged_casts.has(cast):
 		star_charged_casts[cast] = true
 		_gain_star()
+
+## A new star echo swing; books of swings and casts long finished are dropped.
+func _next_star_swing() -> void:
+	star_swing_id += 1
+	for key in star_swing_hits.keys():
+		if int(key) < star_swing_id - 6:
+			star_swing_hits.erase(key)
+	if star_charged_casts.size() > 48:
+		star_charged_casts.clear()
 
 func _record_star_echo_hit(body: Node, star: Vector2i) -> void:
 	var entry: Dictionary = star_swing_hits.get(star.x, {"trail": [], "bloom": [], "done": false})
@@ -202,7 +219,7 @@ func _perform_star_basic(attack_type: String, _direction: Vector2) -> void:
 			_start_attack(0.1, 0.25, Callable(self, "_star_side_arc").bind(false))
 
 func _star_side_arc(airborne: bool) -> void:
-	star_swing_id += 1
+	_next_star_swing()
 	if airborne:
 		velocity.x += facing * 65.0
 		velocity.y *= 0.55
@@ -212,10 +229,10 @@ func _star_side_arc(airborne: bool) -> void:
 		Vector2(92 * facing, -30)
 	], 3.5, 95, Vector2(facing, -0.04), STAR_TRAIL_COLOR, 0.1)
 	last_attack.set_meta("luna_star", Vector2i(star_swing_id, 0))
-	_spawn_delayed_bloom(Vector2(108 * facing, -30), Vector2(74, 64), 6.5 if airborne else 7.0, 275 if airborne else 305, Vector2(facing, -0.1), 0.065, star_swing_id)
+	_spawn_delayed_bloom(Vector2(108 * facing, -30), Vector2(74, 64), 6.5 if airborne else 7.0, 275 if airborne else 305, Vector2(facing, -0.1), 0.065, star_swing_id, true)
 
 func _star_up_arc(airborne: bool) -> void:
-	star_swing_id += 1
+	_next_star_swing()
 	velocity.y = minf(velocity.y, (-90.0 if airborne else -45.0) * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_attack(Vector2(36, 38), [
 		Vector2(18 * facing, -28),
@@ -226,7 +243,7 @@ func _star_up_arc(airborne: bool) -> void:
 	_spawn_delayed_bloom(Vector2(0, -126), Vector2(68, 74), 7.0, 325, Vector2(0.08 * facing, -1), 0.07, star_swing_id)
 
 func _star_down_arc(airborne: bool) -> void:
-	star_swing_id += 1
+	_next_star_swing()
 	if airborne:
 		velocity.y = maxf(velocity.y, 90.0 * GAME_SCALE.JUMP_SPEED)
 	else:
@@ -240,15 +257,33 @@ func _star_down_arc(airborne: bool) -> void:
 	last_attack.set_meta("luna_star", Vector2i(star_swing_id, 0))
 	_spawn_delayed_bloom(bloom_offset, Vector2(78, 62), 8.0, 355, Vector2(0.2 * facing, 1), 0.075, star_swing_id)
 
-func _spawn_delayed_bloom(offset: Vector2, size: Vector2, damage: float, knockback: float, direction: Vector2, delay: float, swing_id := -1) -> void:
+func _spawn_delayed_bloom(offset: Vector2, size: Vector2, damage: float, knockback: float, direction: Vector2, delay: float, swing_id := -1, follow_struck := false) -> void:
 	if not await _wait_action(delay):
 		return
 	if is_defeated or hitstun_timer > 0.0 or transformed:
 		return
+	if follow_struck:
+		offset = _echo_bloom_offset(offset, swing_id)
 	_spawn_attack(size, offset, damage, knockback, direction, STAR_BLOOM_COLOR, 0.12)
 	if swing_id >= 0:
 		last_attack.set_meta("luna_star", Vector2i(swing_id, 1))
 	_play_star_bloom(offset, maxf(size.x, size.y) * 0.42, Color(0.5, 0.96, 1.0, 0.82))
+
+## Where the bloom opens: on the first body this swing's trail struck if it stands between
+## ECHO_HOME_MIN and the bloom's own place (within ECHO_HOME_RISE up or down), else its own place.
+func _echo_bloom_offset(offset: Vector2, swing_id: int) -> Vector2:
+	var entry: Dictionary = star_swing_hits.get(swing_id, {})
+	var placed := GAME_SCALE.attack_point(offset)
+	for body in entry.get("trail", []):
+		if not is_instance_valid(body) or not body is Node2D:
+			continue
+		var centre: Vector2 = (body as Node2D).global_position + GAME_SCALE.BODY_CENTRE - global_position
+		var ahead := centre.x * float(facing)
+		if ahead < ECHO_HOME_MIN or ahead > placed.x * float(facing):
+			continue
+		centre.y = clampf(centre.y, placed.y - ECHO_HOME_RISE, placed.y + ECHO_HOME_RISE)
+		return GAME_SCALE.BODY_CENTRE + (centre - GAME_SCALE.BODY_CENTRE) / GAME_SCALE.COMBAT
+	return offset
 
 func _star_comet_start() -> void:
 	var direction := _get_attack_direction()

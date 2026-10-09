@@ -107,6 +107,9 @@ var ultimate_name := "Ultimate"
 var ultimate_window := 2.0
 var ultimate_window_timer := 0.0
 var ultimate_armor_timer := 0.0
+## Set by a character when a follow-up press really starts a new stage of its ultimate (Nova's
+## orbit or launch, Luna's heart laser); only those presses renew the armor, not mashing the key.
+var ultimate_followup_started := false
 ## "male" or "female": which original sheet to draw for characters that have both (set before _ready).
 var body_type := ""
 var uses_original_sheet := false
@@ -704,8 +707,10 @@ func skill_two() -> void:
 
 func ultimate() -> void:
 	# Follow-up presses (Nova's slingshot stages, Luna's heart laser) are part of the same ultimate.
+	ultimate_followup_started = false
 	if try_ultimate_followup():
-		ultimate_armor_timer = ULTIMATE_ARMOR_TIME
+		if ultimate_followup_started:
+			ultimate_armor_timer = ULTIMATE_ARMOR_TIME
 		return
 	if not _can_start_attack() or not is_ultimate_ready():
 		return
