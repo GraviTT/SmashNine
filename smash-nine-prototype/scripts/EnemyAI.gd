@@ -34,6 +34,9 @@ const FLOOR_PROBE_DEPTH := 94.0 * GAME_SCALE.WORLD
 const SHORT_LANDING_DISTANCE := 118.0 * GAME_SCALE.WORLD
 const LONG_LANDING_DISTANCE := 160.0 * GAME_SCALE.WORLD
 const LANDING_PATCH_HALF_WIDTH := 24.0
+## The gap jump looks for its landing from this far above the feet down to LANDING_PATCH_DROP below.
+const LANDING_PATCH_RISE := 90.0
+const LANDING_PATCH_DROP := 145.0
 const EDGE_BRAKE_LOOKAHEAD := 0.14
 const BLOCKED_PATH_TIME := 0.65
 ## A path blocked within this long still counts as blocked (it is retried every 0.65 s).
@@ -607,7 +610,11 @@ func _engage_intent(player, delta: float) -> Dictionary:
 	var attack_name: String = _choose_attack(player, distance_x, distance_y)
 	terrain_intent["attack"] = attack_name
 	if attack_name != "":
-		attack_age = 0.0
+		# A counter raised while the target swings (Rio's rune shield) is not an attack on it and keeps
+		# no blocked target (Codex QA-14 round 13 fixture, seed 106: Rio 304 px from Nova across a
+		# 210 px gap, out of its 180 px reach, shielded whenever Nova swung and stood 5 s).
+		if not (attack_name == "skill_2" and bool(_combat_profile(player).get("reactive_skill_2", false))):
+			attack_age = 0.0
 		terrain_intent["aim"] = _attack_aim(player, attack_name)
 	return terrain_intent
 
@@ -755,9 +762,11 @@ func _navigate_to_intent(player, destination: Vector2) -> Dictionary:
 	else:
 		planned_drop_direction = 0.0
 		planned_drop_target = Vector2.INF
-	return _terrain_move_intent(player, direction, wants_jump, true, allow_drop)
+	return _terrain_move_intent(player, direction, wants_jump, true, allow_drop, wants_jump)
 
-func _terrain_move_intent(player, direction: float, wants_jump: bool, allow_gap_jump: bool, allow_drop: bool = false) -> Dictionary:
+## route_jump: the route's next point is on a platform above, close enough to jump to (checked by
+## the planner and the jump-start distance), so a ledge in front is no reason to stop.
+func _terrain_move_intent(player, direction: float, wants_jump: bool, allow_gap_jump: bool, allow_drop: bool = false, route_jump: bool = false) -> Dictionary:
 	if is_zero_approx(direction):
 		if wants_jump and player.is_on_floor() and jump_retry_timer <= 0.0:
 			jump_retry_timer = JUMP_RETRY_TIME
@@ -771,6 +780,12 @@ func _terrain_move_intent(player, direction: float, wants_jump: bool, allow_gap_
 			jump_retry_timer = JUMP_RETRY_TIME
 			return _intent(direction, true)
 		return _intent(direction, false)
+	# Up to a platform overhead from the end of ours (Codex QA-14 round 13 fixture, seed 112: Luna
+	# at her platform's edge under a platform 140 px higher, its crystal above it, read the edge
+	# as a blocked way and stood 5.7 s).
+	if route_jump and jump_retry_timer <= 0.0 and not _has_floor_ahead(player, direction, FLOOR_PROBE_AHEAD + absf(player.velocity.x) * EDGE_BRAKE_LOOKAHEAD):
+		jump_retry_timer = JUMP_RETRY_TIME
+		return _intent(direction, true)
 	if blocked_timer > 0.0 and signf(direction) == signf(blocked_direction):
 		return _intent()
 	if stuck_timer >= 0.45 and jump_retry_timer <= 0.0:
@@ -844,9 +859,9 @@ func _has_landing_patch(player, direction: float, distance: float) -> bool:
 	var center_x: float = direction * distance
 	var inner_x: float = center_x - direction * LANDING_PATCH_HALF_WIDTH
 	var outer_x: float = center_x + direction * LANDING_PATCH_HALF_WIDTH
-	var center_hit: bool = _ray_hits_world(player, foot + Vector2(center_x, -90.0), foot + Vector2(center_x, 145.0))
-	var inner_hit: bool = _ray_hits_world(player, foot + Vector2(inner_x, -90.0), foot + Vector2(inner_x, 145.0))
-	var outer_hit: bool = _ray_hits_world(player, foot + Vector2(outer_x, -90.0), foot + Vector2(outer_x, 145.0))
+	var center_hit: bool = _ray_hits_world(player, foot + Vector2(center_x, -LANDING_PATCH_RISE), foot + Vector2(center_x, LANDING_PATCH_DROP))
+	var inner_hit: bool = _ray_hits_world(player, foot + Vector2(inner_x, -LANDING_PATCH_RISE), foot + Vector2(inner_x, LANDING_PATCH_DROP))
+	var outer_hit: bool = _ray_hits_world(player, foot + Vector2(outer_x, -LANDING_PATCH_RISE), foot + Vector2(outer_x, LANDING_PATCH_DROP))
 	return center_hit and inner_hit and outer_hit
 
 func _ray_hits_world(player, from: Vector2, to: Vector2) -> bool:
@@ -1628,15 +1643,17 @@ func _stands_on_other_level(player, body: Node) -> bool:
 		return false
 	return absf(theirs.y - own.y) > NAV_SAME_LEVEL
 
-## Both points stand on one platform, or on two platforms one gap jump apart (without platform
-## rects, or off them, assume walking straight gets there).
+## Both points stand on one platform, or on two platforms one gap jump apart and not higher than
+## the gap jump finds a landing (without platform rects, or off them, assume walking straight gets
+## there). "Our level" reaches 138 px up, the gap jump only 90 (round 13 fixture, seed 112: a
+## platform 140 px up read as a blocked way).
 func _walkable_between(player, from: Vector2, to: Vector2) -> bool:
 	var spans: Array[Rect2] = _platform_rects(player)
 	var a := _span_index(from, spans)
 	var b := _span_index(to, spans)
 	if a < 0 or b < 0 or a == b:
 		return true
-	return _span_gap(spans[a], spans[b]) <= NAV_GAP_JUMP
+	return _span_gap(spans[a], spans[b]) <= NAV_GAP_JUMP and from.y - to.y <= LANDING_PATCH_RISE
 
 ## Walking straight at the body gets there: it stands on our level with no uncrossable gap
 ## between (over the void either way, nothing better is known).

@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing, _test_ultimate_reach_scale, _test_gap_routes, _test_nova_early_shift]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing, _test_ultimate_reach_scale, _test_gap_routes, _test_nova_early_shift, _test_round13_fixtures]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -824,6 +824,116 @@ func _test_nova_early_shift() -> void:
 			_fail("%s falling at 900 px/s above the platform should not use its recovery skill yet" % id)
 		bot.queue_free()
 		await process_frame
+
+## The two input-less engages Codex QA-14 round 13 captured (reports/codex-qa-14/fixtures-round13/,
+## platforms and bodies as recorded, moved near the origin). Seed 106: Rio at its platform's edge,
+## Nova 304 px away across a 210 px gap; Rio's rune shield (a counter) counted as attacking, so it
+## kept the target for 5 s without moving. Seed 112: Luna at her platform's edge under a platform
+## 140 px higher with the crystal above it; the edge read as a blocked way and she never jumped.
+func _test_round13_fixtures() -> void:
+	var nav_script := GDScript.new()
+	nav_script.source_code = "extends Node2D
+var points: Array[Vector2] = []
+var rects: Array[Rect2] = []
+func get_ai_navigation_points_for_realm(_realm: int) -> Array[Vector2]:
+	return points
+func get_ai_platform_rects_for_realm(_realm: int) -> Array[Rect2]:
+	return rects
+"
+	nav_script.reload()
+	# Seed 106 (realm 1 at x - 5000, y - 862).
+	var holder := Node2D.new()
+	holder.set_script(nav_script)
+	arena.add_child(holder)
+	var floors: Array[Node] = [_floor(Vector2(110, 37.5), 705), _floor(Vector2(995, 0), 645), _floor(Vector2(440, -203), 405)]
+	holder.rects = [Rect2(-242.5, 37.5, 705, 46), Rect2(672.5, 0, 645, 46), Rect2(237.5, -203, 405, 32)] as Array[Rect2]
+	holder.points = [Vector2(-150, 37.5), Vector2(400, 37.5), Vector2(720, 0), Vector2(1250, 0), Vector2(300, -203), Vector2(600, -203)] as Array[Vector2]
+	var rio: Node = PLAYER_FACTORY.create("rio")
+	holder.add_child(rio)
+	rio.setup(CHARACTER_REGISTRY.get_characters()["rio"], 1, false)
+	var nova: Node = PLAYER_FACTORY.create("nova")
+	holder.add_child(nova)
+	nova.setup(CHARACTER_REGISTRY.get_characters()["nova"], 2, false)
+	rio.global_position = Vector2(760, -2)
+	nova.global_position = Vector2(411, 35)
+	rio.is_dummy = true
+	nova.is_dummy = true
+	for frame in 20:
+		await physics_frame
+	rio.set_physics_process(false)
+	nova.set_physics_process(false)
+	rio.global_position = Vector2(715.2, -0.1)
+	rio.is_dummy = false
+	rio.ultimate_cooldown_timer = 30.0
+	var ai = rio.ai_controller
+	ai.state = ai.STATE_ENGAGE
+	ai.target = nova
+	ai.action = "approach"
+	ai.action_timer = 10.0
+	ai._update_target_progress(rio, 0.05)
+	var kept_for := 0.0
+	for step in 120:
+		# Nova keeps swinging: Rio may raise its rune shield, which is no attack on Nova.
+		nova.attack_lock_timer = 0.3
+		ai.attack_cooldown = 0.0
+		ai.action_timer = 10.0
+		ai._engage_intent(rio, 0.05)
+		ai._update_target_progress(rio, 0.05)
+		if ai.target != nova:
+			break
+		kept_for += 0.05
+	if ai.target == nova:
+		_fail("Seed 106 fixture: Rio 304 px from Nova across a gap it cannot cross, shielding when Nova swings, should drop it (kept %.1f s)" % kept_for)
+	holder.queue_free()
+	for body in floors:
+		body.queue_free()
+	await process_frame
+	# Seed 112 (realm 5 at x - 5000, y - 6552).
+	holder = Node2D.new()
+	holder.set_script(nav_script)
+	arena.add_child(holder)
+	floors = [_floor(Vector2(560, 0), 780), _floor(Vector2(-25, -139.5), 525)]
+	holder.rects = [Rect2(170, 0, 780, 46), Rect2(-287.5, -139.5, 525, 32)] as Array[Rect2]
+	holder.points = [Vector2(220, 0), Vector2(700, 0), Vector2(-200, -139.5), Vector2(100, -139.5)] as Array[Vector2]
+	var luna: Node = PLAYER_FACTORY.create("luna")
+	holder.add_child(luna)
+	luna.setup(CHARACTER_REGISTRY.get_characters()["luna"], 1, false)
+	luna.global_position = Vector2(300, -2)
+	luna.is_dummy = true
+	for frame in 20:
+		await physics_frame
+	luna.set_physics_process(false)
+	luna.global_position = Vector2(192.8, -0.1)
+	luna.is_dummy = false
+	var crystal: Node = load("res://scripts/SoulCrystal.gd").new()
+	holder.add_child(crystal)
+	crystal.global_position = Vector2(20, -189.5)
+	await physics_frame
+	ai = luna.ai_controller
+	# As recorded (the platform above 139.4 px up: "another level"), and 2 px higher (137.5 px: "our
+	# level", but higher than the gap jump lands).
+	for height in [-0.1, -2.0]:
+		luna.global_position = Vector2(192.8, height)
+		ai.state = ai.STATE_ENGAGE
+		ai.target = crystal
+		ai.action = "approach"
+		ai.jump_retry_timer = 0.0
+		ai.blocked_timer = 0.0
+		ai._clear_navigation_path()
+		var jumped := false
+		for step in 30:
+			ai.action_timer = 10.0
+			var intent: Dictionary = ai._engage_intent(luna, 0.05)
+			if bool(intent.get("jump", false)):
+				jumped = true
+				break
+			ai._target_timers(0.05)
+		if not jumped:
+			_fail("Seed 112 fixture (feet at %.1f): Luna at her platform's edge with the crystal on the platform above should jump up to it" % height)
+	holder.queue_free()
+	for body in floors:
+		body.queue_free()
+	await process_frame
 
 ## 2026-10-09: the ultimate's "target in reach" follows the attack scale (it stayed at the x2
 ## values when attacks went to x1.5, so bots fired from a third farther than the areas reach).
