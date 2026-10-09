@@ -46,6 +46,11 @@ const SPECS := {
 	"quake_impact": [6, 12.0, Vector2(64, 63), false, HAZARDS_DIR],
 	"light_beam_mid": [6, 10.0, Vector2.ZERO, false, HAZARDS_DIR],
 	"fire_pillar_mid": [6, 12.0, Vector2.ZERO, false, HAZARDS_DIR],
+	# CODEX-ART-20, 1 art px = 1 screen px: the short flashes that were coloured rectangles.
+	"parry_flash": [6, 40.0, Vector2(64, 64), true, EFFECTS_DIR],
+	"landing_dust": [5, 41.667, Vector2(48, 31), false, EFFECTS_DIR],
+	"hit_streak": [4, 50.0, Vector2(80, 12), true, EFFECTS_DIR],
+	"yuki_seal_break": [5, 33.333, Vector2(48, 48), false, EFFECTS_DIR],
 }
 
 ## Frame widths the anchors and callers' scales were written for. A strip redrawn bigger

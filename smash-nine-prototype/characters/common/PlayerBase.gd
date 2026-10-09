@@ -913,6 +913,9 @@ func _handle_landing_state() -> void:
 	was_on_floor_last_frame = is_on_floor()
 
 func _spawn_landing_puff() -> void:
+	# Dust puffs (CODEX-ART-20); the flat bar only without the art.
+	if EFFECT_STRIPS.spawn(get_parent(), "landing_dust", global_position, Vector2.ONE, false, 4) != null:
+		return
 	var puff := ColorRect.new()
 	puff.size = Vector2(44, 8)
 	puff.position = global_position + Vector2(-22, -5)
@@ -1278,16 +1281,18 @@ func _play_guard_block_effect() -> void:
 	tween.tween_property(guard_visual, "scale", Vector2.ONE, 0.1)
 
 func _play_parry_effect() -> void:
-	var flash := ColorRect.new()
-	flash.size = Vector2(92, 92)
-	flash.position = global_position - Vector2(46, 78)
-	flash.pivot_offset = flash.size * 0.5
-	flash.color = Color(1.0, 0.96, 0.48, 0.92)
-	get_parent().add_child(flash)
-	var tween := flash.create_tween()
-	tween.tween_property(flash, "scale", Vector2(1.75, 1.75), 0.1)
-	tween.parallel().tween_property(flash, "modulate:a", 0.0, 0.13)
-	tween.tween_callback(flash.queue_free)
+	# The parry ring and glint (CODEX-ART-20); the yellow square only without the art.
+	if EFFECT_STRIPS.spawn(get_parent(), "parry_flash", global_position + Vector2(0, -32), Vector2.ONE, false, 5) == null:
+		var flash := ColorRect.new()
+		flash.size = Vector2(92, 92)
+		flash.position = global_position - Vector2(46, 78)
+		flash.pivot_offset = flash.size * 0.5
+		flash.color = Color(1.0, 0.96, 0.48, 0.92)
+		get_parent().add_child(flash)
+		var tween := flash.create_tween()
+		tween.tween_property(flash, "scale", Vector2(1.75, 1.75), 0.1)
+		tween.parallel().tween_property(flash, "modulate:a", 0.0, 0.13)
+		tween.tween_callback(flash.queue_free)
 	body.color = Color.WHITE
 	var body_tween := body.create_tween()
 	body_tween.tween_property(body, "color", Color(1.0, 1.0, 0.65), 0.045)
@@ -1594,8 +1599,13 @@ func _spawn_hit_effect(hit_position: Vector2, damage: float, base_knockback: flo
 	tween.tween_callback(spark.queue_free)
 
 func _spawn_hit_slash(hit_position: Vector2, base_knockback: float) -> void:
-	var slash := ColorRect.new()
 	var slash_length := clampf(base_knockback * 0.18, 46.0, 92.0) * GAME_SCALE.COMBAT
+	# A tapered streak (CODEX-ART-20, 160 px long) stretched to the length; the bar only without it.
+	var streak := EFFECT_STRIPS.spawn(get_parent(), "hit_streak", hit_position, Vector2(slash_length / 160.0, 1.0), false, 4)
+	if streak != null:
+		streak.rotation = randf_range(-0.45, 0.45)
+		return
+	var slash := ColorRect.new()
 	slash.size = Vector2(slash_length, 6.0 * GAME_SCALE.COMBAT)
 	slash.position = hit_position - slash.size * 0.5
 	slash.rotation = randf_range(-0.45, 0.45)

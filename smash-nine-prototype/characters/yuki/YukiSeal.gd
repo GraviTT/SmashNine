@@ -124,6 +124,9 @@ func _same_realm(target: Node) -> bool:
 	return target_realm == null or int(target_realm) == realm_index
 
 func _play_break_effect() -> void:
+	# The seal tearing apart (CODEX-ART-20); the squashed square only without the art.
+	if VFX.spawn(get_parent(), "yuki_seal_break", global_position, Vector2.ONE, false, 5) != null:
+		return
 	var shard := ColorRect.new()
 	shard.size = Vector2(38, 38)
 	shard.position = global_position - shard.size * 0.5
