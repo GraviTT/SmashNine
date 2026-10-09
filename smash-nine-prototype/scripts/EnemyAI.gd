@@ -151,9 +151,12 @@ const RECOVERY_SKILL_AIM_ABOVE := 60.0
 ## them in two long recoveries).
 const RECOVERY_SKILL_MAX_USES := 2
 const RECOVERY_LAST_CHANCE := 140.0
-## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, already at
-## the combat scale), score >= 3 fires 70% of the time, >= 2 once it has been ready 12 s.
-const ULTIMATE_REACH := {"frey": 480.0, "yuki": 820.0, "luna": 420.0, "nova": 460.0, "rio": 900.0}
+## Ultimate use by an opportunity score (debate 2026-10-08): reach per fighter (px, times
+## GameScale.COMBAT like every fighting distance: Frey's wave 240, Nova's pull 230, Yuki's ward
+## twice its 205 radius; set at attacks x2 as 480 / 820 / 420 / 460 / 900 and left there when
+## attacks went to x1.5 on 2026-10-09), score >= 3 fires 70% of the time, >= 2 once it has been
+## ready 12 s.
+const ULTIMATE_REACH := {"frey": 240.0, "yuki": 410.0, "luna": 210.0, "nova": 230.0, "rio": 450.0}
 const ULTIMATE_FIRE_CHANCE := 0.7
 const ULTIMATE_PATIENCE := 12.0
 ## Low-HP retreat (debate): never in a final duel or late (aggression >= 0.8); otherwise under
@@ -1518,7 +1521,7 @@ func _ultimate_score(player) -> int:
 		return 0
 	var score := 0
 	var distance: float = player.global_position.distance_to(target.global_position)
-	if distance <= float(ULTIMATE_REACH.get(player.character_id, 400.0)):
+	if distance <= float(ULTIMATE_REACH.get(player.character_id, 200.0)) * GAME_SCALE.COMBAT:
 		score += 2
 	if float(target.hp) / maxf(float(target.max_hp), 1.0) <= 0.35:
 		score += 1

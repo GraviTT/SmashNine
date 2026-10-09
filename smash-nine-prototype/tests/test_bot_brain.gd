@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing, _test_ultimate_reach_scale]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -712,3 +712,25 @@ func _test_fall_path_landing() -> void:
 	bot.queue_free()
 	lower.queue_free()
 	await process_frame
+
+## 2026-10-09: the ultimate's "target in reach" follows the attack scale (it stayed at the x2
+## values when attacks went to x1.5, so bots fired from a third farther than the areas reach).
+func _test_ultimate_reach_scale() -> void:
+	var bases := {"frey": 240.0, "yuki": 410.0, "luna": 210.0, "nova": 230.0, "rio": 450.0}
+	for character_id: String in bases:
+		var bot := _fighter(character_id, 1, Vector2(0, 0))
+		var foe := _fighter("frey", 2, Vector2(0, 0))
+		bot.set_physics_process(false)
+		foe.set_physics_process(false)
+		var ai = bot.ai_controller
+		ai.target = foe
+		var reach: float = float(bases[character_id]) * float(ai.GAME_SCALE.COMBAT)
+		foe.global_position = Vector2(reach - 10.0, 0)
+		var inside: int = ai._ultimate_score(bot)
+		foe.global_position = Vector2(reach + 10.0, 0)
+		var outside: int = ai._ultimate_score(bot)
+		if inside - outside != 2:
+			_fail("%s: a target just inside its ultimate's reach (%.0f px) should score 2 more than one just outside (%d vs %d)" % [character_id, reach, inside, outside])
+		bot.queue_free()
+		foe.queue_free()
+		await process_frame
