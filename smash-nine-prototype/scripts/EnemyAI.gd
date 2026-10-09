@@ -587,10 +587,17 @@ func _engage_intent(player, delta: float) -> Dictionary:
 			move = target_direction
 			jump = player.is_on_floor() and distance_x < ESCAPE_JUMP_DISTANCE
 
-	# A target on a lower level: step off the ledge toward it when there is a landing (the
-	# engage band reaches farther down since attacks doubled; it used to stand on the edge).
-	var drop_down: bool = offset.y > NAV_SAME_LEVEL and move != 0.0 and signf(move) == target_direction and _has_drop_landing(player, target_direction)
-	var terrain_intent: Dictionary = _terrain_move_intent(player, move, jump, action == "approach" or action == "jump_in" or action == "escape", drop_down)
+	var terrain_intent: Dictionary
+	if (action == "approach" or action == "jump_in") and not _straight_way_to(player, target):
+		# Closing in on a target on another level, or across a gap, follows the route (Codex QA-14
+		# rounds 10-12: 82-109 drops a round were blocked by a gap toward such a target and 73-91
+		# landed on the wrong level, all with a route the engage walk ignored).
+		terrain_intent = _navigate_to_intent(player, _navigation_destination(player, _standing_point(player, target)))
+	else:
+		# A target on a lower level: step off the ledge toward it when there is a landing (the
+		# engage band reaches farther down since attacks doubled; it used to stand on the edge).
+		var drop_down: bool = offset.y > NAV_SAME_LEVEL and move != 0.0 and signf(move) == target_direction and _has_drop_landing(player, target_direction)
+		terrain_intent = _terrain_move_intent(player, move, jump, action == "approach" or action == "jump_in" or action == "escape", drop_down)
 	var attack_name: String = _choose_attack(player, distance_x, distance_y)
 	terrain_intent["attack"] = attack_name
 	if attack_name != "":
@@ -952,7 +959,12 @@ func _find_target(player) -> Node:
 		# Over the void (falling or recovering): neither reachable nor worth ignoring.
 		if stands == Vector2.INF:
 			continue
-		if own_floor == Vector2.INF or absf(stands.y - own_floor.y) <= NAV_SAME_LEVEL or checks >= 3:
+		if own_floor == Vector2.INF or checks >= 3:
+			return candidate
+		# Our level counts as reachable only without a gap the gap jump cannot cross, or within
+		# hitting distance (Codex QA-14 rounds 10-12: 101 / 110 / 87 drops a round had no route at
+		# all, nearly all on our level across such a gap, 600-750 px away).
+		if absf(stands.y - own_floor.y) <= NAV_SAME_LEVEL and (_walkable_between(player, own_floor, stands) or absf(stands.x - own_floor.x) <= _hit_reach(player)):
 			return candidate
 		checks += 1
 		if _has_route_to(player, stands):
@@ -1050,7 +1062,7 @@ func _is_in_engage_band(player, offset: Vector2) -> bool:
 	return absf(offset.x) <= float(profile.max_range) + 70.0 * GAME_SCALE.COMBAT and absf(offset.y) <= 150.0 * GAME_SCALE.COMBAT
 
 func _choose_pursuit_destination(player, target_position: Vector2) -> Vector2:
-	if absf(target_position.y - player.global_position.y) <= NAV_SAME_LEVEL:
+	if absf(target_position.y - player.global_position.y) <= NAV_SAME_LEVEL and _straight_way_to(player, target):
 		_clear_navigation_path()
 		return target_position
 	return _navigation_destination(player, target_position)
@@ -1608,6 +1620,32 @@ func _stands_on_other_level(player, body: Node) -> bool:
 	if own == Vector2.INF or theirs == Vector2.INF:
 		return false
 	return absf(theirs.y - own.y) > NAV_SAME_LEVEL
+
+## Both points stand on one platform, or on two platforms one gap jump apart (without platform
+## rects, or off them, assume walking straight gets there).
+func _walkable_between(player, from: Vector2, to: Vector2) -> bool:
+	var spans: Array[Rect2] = _platform_rects(player)
+	var a := _span_index(from, spans)
+	var b := _span_index(to, spans)
+	if a < 0 or b < 0 or a == b:
+		return true
+	return _span_gap(spans[a], spans[b]) <= NAV_GAP_JUMP
+
+## Walking straight at the body gets there: it stands on our level with no uncrossable gap
+## between (over the void either way, nothing better is known).
+func _straight_way_to(player, body: Node) -> bool:
+	if not is_instance_valid(body):
+		return true
+	var own := _standing_point(player, player)
+	var theirs := _standing_point(player, body)
+	if own == Vector2.INF or theirs == Vector2.INF:
+		return true
+	return absf(theirs.y - own.y) <= NAV_SAME_LEVEL and _walkable_between(player, own, theirs)
+
+## How far this fighter's attacks land from: its basic reach, or the distance it fights at.
+func _hit_reach(player) -> float:
+	var profile: Dictionary = _combat_profile(player)
+	return float(profile.get("basic_reach", profile.max_range))
 
 ## One of us hit the other within TRADE_MEMORY (fighters keep a countdown from their attacker
 ## memory; monsters and crystals the physics frame of the last hit).

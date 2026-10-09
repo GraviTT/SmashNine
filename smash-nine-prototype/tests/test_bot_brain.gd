@@ -21,7 +21,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing, _test_ultimate_reach_scale]:
+	for test in [_test_aim, _test_no_dive_over_void, _test_guard_faces_attacker, _test_drop_unreachable_target, _test_climb_keeps_last_air_jump, _test_nova_redirect, _test_portal_grace, _test_recovery_skill, _test_keep_jumping_target, _test_late_swing_no_guard, _test_cornered_escape, _test_trading_hits, _test_rio_basic_reach, _test_near_target_dropped, _test_yuki_basic_reach, _test_gap_dead_band, _test_routes_follow_movement, _test_round9_targets, _test_fall_path_landing, _test_ultimate_reach_scale, _test_gap_routes]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -711,6 +711,92 @@ func _test_fall_path_landing() -> void:
 		_fail("A floor the fall passes under should not hold off the recovery")
 	bot.queue_free()
 	lower.queue_free()
+	await process_frame
+
+## Round 13 (Codex QA-14 rounds 10-12: of ~300 target drops a round, 87-110 had no route at all
+## — on our level across a gap the gap jump cannot cross — and 155-197 had a route the engage
+## walk ignored): a target across such a gap is chosen only with a route or within hitting
+## distance, and pursuit and the engage approach follow the route.
+func _test_gap_routes() -> void:
+	var nav_script := GDScript.new()
+	nav_script.source_code = "extends Node2D
+var points: Array[Vector2] = []
+var rects: Array[Rect2] = []
+func get_ai_navigation_points_for_realm(_realm: int) -> Array[Vector2]:
+	return points
+func get_ai_platform_rects_for_realm(_realm: int) -> Array[Rect2]:
+	return rects
+"
+	nav_script.reload()
+	var holder := Node2D.new()
+	holder.set_script(nav_script)
+	arena.add_child(holder)
+	var bot: Node = PLAYER_FACTORY.create("frey")
+	holder.add_child(bot)
+	bot.setup(CHARACTER_REGISTRY.get_characters()["frey"], 1, false)
+	var foe: Node = PLAYER_FACTORY.create("rio")
+	holder.add_child(foe)
+	foe.setup(CHARACTER_REGISTRY.get_characters()["rio"], 2, false)
+	bot.set_physics_process(false)
+	foe.set_physics_process(false)
+	var ai = bot.ai_controller
+	# Two platforms on one level, 400 px apart (the gap jump crosses about 172).
+	var left := _floor(Vector2(-300, 0), 400)
+	var right := _floor(Vector2(500, 0), 400)
+	holder.rects = [Rect2(-500, 0, 400, 40), Rect2(300, 0, 400, 40)] as Array[Rect2]
+	holder.points = [Vector2(-450, 0), Vector2(-150, 0), Vector2(350, 0), Vector2(600, 0)] as Array[Vector2]
+	bot.global_position = Vector2(-200, -2)
+	foe.global_position = Vector2(550, -2)
+	await physics_frame
+	await physics_frame
+	if ai._find_target(bot) != null:
+		_fail("A target on our level across a gap no route crosses, 750 px away, should not be chosen")
+	ai.ignored_targets.clear()
+	# A lower platform links the two: now there is a route, and the approach follows it.
+	var lower := _floor(Vector2(100, 150), 500)
+	holder.rects = [Rect2(-500, 0, 400, 40), Rect2(300, 0, 400, 40), Rect2(-150, 150, 500, 40)] as Array[Rect2]
+	holder.points = [Vector2(-450, 0), Vector2(-150, 0), Vector2(0, 150), Vector2(200, 150), Vector2(350, 0), Vector2(600, 0)] as Array[Vector2]
+	await physics_frame
+	await physics_frame
+	if ai._find_target(bot) != foe:
+		_fail("A target across the gap with a route over the lower platform should be chosen")
+	ai.target = foe
+	var destination: Vector2 = ai._choose_pursuit_destination(bot, foe.global_position)
+	if destination.x >= 300.0:
+		_fail("Pursuit across the gap should head for the route's first waypoint, not straight at the target (%s)" % destination)
+	ai._clear_navigation_path()
+	ai.state = ai.STATE_ENGAGE
+	ai.action = "approach"
+	ai.action_timer = 1.0
+	ai._engage_intent(bot, 0.016)
+	if ai.navigation_path.is_empty():
+		_fail("The engage approach toward a target across the gap should follow a route")
+	ai._clear_navigation_path()
+	lower.queue_free()
+	right.queue_free()
+	# A 250 px gap: Yuki can hit a target 320 px away across it (basic reach 360), Frey cannot
+	# (fights at 255) and there is no route.
+	var near_right := _floor(Vector2(350, 0), 400)
+	holder.rects = [Rect2(-500, 0, 400, 40), Rect2(150, 0, 400, 40)] as Array[Rect2]
+	holder.points = [Vector2(-450, 0), Vector2(-150, 0), Vector2(200, 0), Vector2(450, 0)] as Array[Vector2]
+	bot.global_position = Vector2(-120, -2)
+	foe.global_position = Vector2(200, -2)
+	await physics_frame
+	await physics_frame
+	if ai._find_target(bot) != null:
+		_fail("Frey should not choose a target 320 px away across a gap it cannot cross")
+	var yuki: Node = PLAYER_FACTORY.create("yuki")
+	holder.add_child(yuki)
+	yuki.setup(CHARACTER_REGISTRY.get_characters()["yuki"], 3, false)
+	yuki.set_physics_process(false)
+	yuki.global_position = Vector2(-120, -2)
+	bot.global_position = Vector2(-450, -400)
+	await physics_frame
+	if yuki.ai_controller._find_target(yuki) != foe:
+		_fail("Yuki should choose a target it can hit across the gap (320 px, basic reach 360)")
+	holder.queue_free()
+	left.queue_free()
+	near_right.queue_free()
 	await process_frame
 
 ## 2026-10-09: the ultimate's "target in reach" follows the attack scale (it stayed at the x2
