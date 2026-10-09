@@ -165,3 +165,17 @@ The user asked to work through `decision.md`'s next-session list. Codex round 13
 | R14-4 Nova recovery skill (open item: 21 uses, 5 floors) | **fix** (`114581a`) | Lead's measurement: the shift adds speed to the current fall (straight up: highest point 321 / 274 / 232 / 118 / 22 / 0 px at fall speeds 0 / 300 / 500 / 700 / 900 / 1,100 px/s). Bots used it once below the platform, near full fall speed. Out of jumps with no floor under the fall, Nova shifts while falling slower than 450 px/s. |
 | R14-5 short-flash rectangles | **fix part** (`6a3222b`) | Four rectangles drawn on top of existing art removed (Frey ultimate charge/release, Yuki ward end, seal burst); the four without art (parry, landing puff, hit streak, seal break) go to CODEX-ART-20. |
 | fall predictor, Luna/Yuki ring-outs, fixtures, no-progress / hit rate | **measure** | Codex round 13 items 2–8; decided from its data. |
+
+## Round 15 (measurement: Codex QA-14 rounds 13–14, `round13.md`, `round14.md`)
+
+Round 13 (current R11 code, reproduced exactly): suppressing recovery on the falls R10 would accept raised ring-outs 94 → 219 — the round-11 arc stays (lead's round-13 call confirmed; Codex had suggested R10). Verdict flips: 41% edge grazes within 12 px. Luna/Yuki zero-jump ring-outs: all spent the last jump in the final recovery, ~900 px below the platform after PvP hits, with no lifting skill — a kit question for the user. Hit-rate "drop" R10 → R11 was mostly counting requests as attacks.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R15-1 ultimate reach x COMBAT | **keep** | Full-window ultimate hits 330 / 397 (83%); 0.4 s rate 21.5 → 22.3%. |
+| R15-2 target choice across uncrossable gaps | **keep** | No-route drops 110 → 6; no unchecked-after-three choices observed. |
+| R15-3 route following in pursuit and the engage walk | **revert** (`bae0c26`) | Drops 171 → 59, but no-progress 1,118 → 1,633 s, recovery entries 2,022 → 2,999 (walked off 881 → 1,522), match median 310 → 280 s, longest standoff 104 s. |
+| R15-4 Nova's early shift | **revert** (`bae0c26`) | Floors reached 2 / 17 (R11 5 / 21): some aimed level or down, 12 of 16 still falling 0.5 s later. Redesign needs an upward aim and the apex it would reach. |
+| R15-5 counter is no attack; route jump from a ledge; 90 px walkable rise | **keep** | Input-less engages 2 → 0; both fixtures are tests. |
+| R15-6 seed-112 fixture without route following | **new, narrow** (`bae0c26`) | Approaching a target on a platform overhead one jump reaches (rise 90–187.5 px, within 165 px), jump to it, from a ledge too. Round 15 measures. |
+| edge-graze stabilisation, Yuki ring-outs (R14 24), no-target fallback, new standoff fixtures | **later** | After round 15. |
