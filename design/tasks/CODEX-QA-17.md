@@ -42,3 +42,16 @@ Re-run **the same inputs as Round 1** on the new main and report before → afte
 Order if time runs short: 1, 4, 3, 2, 6, 5, 7 (always write 7 with what you have). Run at most two Godot processes at once (a Codex art builder runs at the same time).
 
 Writable: `reports/codex-qa-17/round-2/**`, `smash-nine-prototype/tests/analysis/codex_qa_17/**` (new files or `_r2` copies; keep Round 1 files as they are). Report `reports/codex-qa-17/round-2/README.md` (Korean). Commit, or `reports/codex-qa-17/round-2/commit.ps1` staging only the writable paths, message ending `Co-Authored-By: Codex <noreply@openai.com>`. Keep large raw data out of the commit.
+
+### Round 2b · independent check after the usage limit (2026-10-10, ~50 min)
+
+Round 2 stopped at 04:17 (Codex usage limit). The lead then re-ran the Round 1 probes itself: `reports/codex-qa-17/round-2/README.md` and the probes in `smash-nine-prototype/tests/analysis/lead/` (`combo_probe_r2.gd`, `match_probe_r2.gd`, `sweep_r2.gd`, `capture_moves_r2.gd`, `compare_sweep_r2.js`). Changes since the card: Luna bots re-press the heart laser for 0.6 s when the 4.4 s press starts nothing (`9f782f9`); a Brave K that lands cancels its recovery so the jab follows (`4a45778`).
+
+The user restored the Codex quota at about 04:55. Your job now is **independent verification**, not a repeat of everything:
+1. **Score first, blind:** before reading the lead's round-2 README, score the seven criteria for Frey and Luna from the code, the docs, the new contact sheets and your own measurements (write them down first).
+2. **Combos with your own probe** (your Round 1 `combo_probe.gd` plus the two fixes in this card, written by you): before → after on the latest main, including Brave K → J. Compare with the lead's table and say where you disagree.
+3. **Spike and laser in matches:** fix your `match_probe.gd` spike detection (the spike sets `rising_followup_timer` to 0 on the frame it starts, so "window open and locked until landing" never shows at once), then seeds 301–312, 90 s: Frey spikes per opportunity, Luna lasers per transformation, interruptions with the armor.
+4. **Nova ring-outs:** the lead's 12-match sweep shows Nova ringed out 29 → 42 times (23 within 3 s of being hit by an ultimate, was 10) and Nova casting 79 → 59 ultimates. Find the cause from data (whose ultimates, Nova's own slingshot finishing off-stage, Frey/Luna's longer pushes...) and say whether it comes from tonight's changes.
+5. **Red-team the lead's round-2 README:** claims the data does not support, measurement mistakes, missing caveats.
+
+Order if time runs short: 1, 2, 4, 3, 5. Writable: `reports/codex-qa-17/round-2-codex/**`, `smash-nine-prototype/tests/analysis/codex_qa_17/**` (new files or `_r2b` copies). Report `reports/codex-qa-17/round-2-codex/README.md` (Korean). Commit, or `reports/codex-qa-17/round-2-codex/commit.ps1` staging only those paths, message ending `Co-Authored-By: Codex <noreply@openai.com>`. At most two Godot processes at once.

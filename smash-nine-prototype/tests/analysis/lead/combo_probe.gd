@@ -31,10 +31,10 @@ func _fighter(id: String, pid: int, at: Vector2) -> Node:
 	f.is_dummy = true
 	return f
 
-func _chain(attacker_id: String, brave: bool, distance: float, presses: int) -> String:
+func _chain(attacker_id: String, brave: bool, distance: float, presses: int, defender := "frey", lift := 0.0) -> String:
 	var ground := _floor(Vector2(0, 0), 2000)
 	var a := _fighter(attacker_id, 1, Vector2(0, -2))
-	var d := _fighter("frey", 2, Vector2(distance, -2))
+	var d := _fighter(defender, 2, Vector2(distance, -2))
 	for frame in 20:
 		await physics_frame
 	a.facing = 1
@@ -46,6 +46,10 @@ func _chain(attacker_id: String, brave: bool, distance: float, presses: int) -> 
 		d.global_position = Vector2(distance, -2)
 		for frame in 4:
 			await physics_frame
+	if lift > 0.0:
+		# The defender was jumping: hit on the way up (the moving-bot case of the round-2 retest).
+		d.velocity.y = -lift
+		await physics_frame
 	var hits: Array = []
 	d.damaged.connect(func(_v, amount, _att, _src): hits.append([Engine.get_physics_frames(), amount, float(d.hitstun_timer)]))
 	var free_frames := [0]
@@ -62,7 +66,7 @@ func _chain(attacker_id: String, brave: bool, distance: float, presses: int) -> 
 		frame_count += 1
 	for frame in 40:
 		await physics_frame
-	var out := "%s%s d=%.0f presses at %s hits %s target_x=%.0f" % [attacker_id, " brave" if brave else "", distance, str(log), str(hits), d.global_position.x]
+	var out := "%s%s vs %s lift=%.0f d=%.0f presses at %s hits %s target_x=%.0f" % [attacker_id, " brave" if brave else "", defender, lift, distance, str(log), str(hits), d.global_position.x]
 	a.queue_free()
 	d.queue_free()
 	ground.queue_free()
@@ -72,8 +76,12 @@ func _chain(attacker_id: String, brave: bool, distance: float, presses: int) -> 
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	print(await _chain("frey", false, 45.0, 3))
-	print(await _chain("frey", false, 120.0, 3))
-	print(await _chain("luna", true, 45.0, 3))
-	print(await _chain("luna", true, 90.0, 3))
+	for defender in ["frey", "rio", "luna", "nova", "yuki"]:
+		print(await _chain("frey", false, 45.0, 3, defender))
+	for defender in ["frey", "rio", "luna", "nova", "yuki"]:
+		print(await _chain("luna", true, 45.0, 3, defender))
+	for lift in [200.0, 400.0, 600.0]:
+		for defender in ["rio", "frey"]:
+			print(await _chain("frey", false, 45.0, 3, defender, lift))
+			print(await _chain("luna", true, 45.0, 3, defender, lift))
 	quit(0)

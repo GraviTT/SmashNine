@@ -10,7 +10,7 @@ Codex runs as units (tester, analyst, builder) in its own clones and writes only
 
 1. `design/DECISIONS.md` — current decisions and the numbers behind them (wins over every other doc)
 2. `design/ROADMAP.md` — milestones and done-criteria
-   - Current priority (2026-10-10, D30): finish the characters first; bot tuning is paused.
+   - Current priority (2026-10-10, D30): finish the characters first; bot tuning is paused. The seven finishing criteria and the first Frey/Luna pass are D31.
    - `design/BOT_TUNING.md` — bot tuning handbook (Korean): the whole process so far, current state, how to measure, lessons, the queue to resume. Read it before touching `EnemyAI.gd` or changing a character's kit (section 6 lists what the bot must follow).
 3. `smash-nine-prototype/FINAL_GAME_GOAL.md` — what the game must feel like
 4. `smash-nine/Concept1.png`, `smash-nine/Concept2.png` — concept art (realm map, timeline, growth, art tone)
@@ -86,8 +86,8 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | tester | `design/tasks/CODEX-QA-15.md` | `tests/analysis/codex_qa_15/`, `reports/codex-qa-15/` | done — merged `352c244`; HUD fixes `391c555`, `2f1bfff`; art → ART-17 |
 | builder | `design/tasks/CODEX-ART-17.md` | `assets/art/hazards/`, monster sheets, `assets/art/effects/yuki_seal_idle.png`, `tests/art_preview/hazard_art_17/`, `reports/codex-art-17/` | done — merged `f1092c7`, rounds 2–4 `e608d6f`, `6aed1a0`, round 4 merge; in game `5128e39`; lead fill of fire row 110 `68fecfa` |
 | builder | `design/tasks/CODEX-ART-18.md` | `assets/art/skill_icons/`, `tests/art_preview/skill_icons_18/`, `reports/codex-art-18/` | done — merged `a39807f`; skill bar `28693e8` |
-| builder | `design/tasks/CODEX-ART-21.md` | `assets/art/frey/`, `assets/art/luna/` (sheets, READMEs), `tests/art_preview/sprite_review_21/`, `reports/codex-art-21/` | running (2026-10-10 night): Frey/Luna sprites frame by frame |
-| analyst | `design/tasks/CODEX-QA-17.md` | `tests/analysis/codex_qa_17/`, `reports/codex-qa-17/` | running (2026-10-10 night): Frey/Luna against the seven finishing criteria |
+| builder | `design/tasks/CODEX-ART-21.md` | `assets/art/frey/`, `assets/art/luna/` (sheets, READMEs), `tests/art_preview/sprite_review_21/`, `reports/codex-art-21/` | done — merged `4aa39e3` (69 frames checked at 4x, 3 redrawn, feet and alpha cleaned; the lead kept a curated report, Luna README design notes restored `9f782f9`) |
+| analyst | `design/tasks/CODEX-QA-17.md` | `tests/analysis/codex_qa_17/`, `reports/codex-qa-17/` | round 1 merged `12c0b2f` (scorecards Frey 20/35, Luna 22/35, combo probes); round 2 stopped by the Codex usage limit at 04:17 — the lead re-ran the same probes, `reports/codex-qa-17/round-2/` (not independent); round 2b (independent check, quota restored by the user) running |
 | builder | `design/tasks/CODEX-ART-20.md` | `assets/art/effects/` (4 strips), `tests/art_preview/flash_art_20/`, `reports/codex-art-20/` | done — merged `d5e4635`; wired in `f35dbc6` |
 | builder | `design/tasks/CODEX-ART-19.md` | `reports/codex-art-19/`, `reports/bot-behavior/bot-behavior-tree.png` | done — merged `f0d830c`; labels fixed and re-rendered `78cd3e5` (re-render: `node reports/codex-art-19/render.js`) |
 | analyst | `design/tasks/CODEX-QA-13.md` | `tests/analysis/codex_qa_13/`, `reports/codex-qa-13/` | done — merged `f102677`; findings fixed (see run log 2026-10-08 work) |
