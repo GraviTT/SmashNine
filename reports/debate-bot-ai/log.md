@@ -152,3 +152,16 @@ Fall checks on the same seeds (ring-outs / recovery entries / no-progress / medi
 | ID | Verdict | Decision |
 | --- | --- | --- |
 | R13-1 fall check | **lead decides: the round-11 arc** (Codex: round 10) | The arc has the fewest self-inflicted deaths (94) and best recovery success (95.2%) and is the only one with matches in the criteria's 5–7 minutes; its cost is no-progress time and extra recovery entries, almost all of which land (856 of 859). The code is back to the measured round-11 state (`84bb424`); a better predictor is the next session's first item. |
+
+## Round 14 (2026-10-09 evening: the next-session list; lead's own analysis while Codex QA-14 round 13 measures)
+
+The user asked to work through `decision.md`'s next-session list. Codex round 13 measures the current (round-11) code with new instrumentation; meanwhile the lead analysed the existing R10–R12 drop rows and measured Nova's shift.
+
+| ID | Verdict | Decision |
+| --- | --- | --- |
+| R14-1 ultimate reach | **fix** (`f0dc673`) | `ULTIMATE_REACH` was set at attacks x2 and stayed there at x1.5: bots scored a target a third farther than the areas reach as "in reach". Now base x `GameScale.COMBAT`. Found while writing the behaviour summary (`reports/bot-behavior/`). |
+| R14-2 no-route drops (open item since R10-3) | **fix** (`a94d3d6`) | R11 drop rows: no route 110, 106 of them on the bot's own level across a gap the gap jump cannot cross — target choice skipped the route check for its own level. A same-level target needs no such gap, or a route, or to be within hitting distance (basic reach, else max range). Prevention rather than a fallback: the unreachable target is ignored for 5 s at choice time and the next one is taken. |
+| R14-3 route not followed (gap 98, wrong level 73 in R11) | **fix** (`a94d3d6`) | 77 of the 98 and all 73 were targets on another level with a route: the engage approach walked straight at them. Pursuit and the engage approach now follow the route when walking straight does not get there. |
+| R14-4 Nova recovery skill (open item: 21 uses, 5 floors) | **fix** (`114581a`) | Lead's measurement: the shift adds speed to the current fall (straight up: highest point 321 / 274 / 232 / 118 / 22 / 0 px at fall speeds 0 / 300 / 500 / 700 / 900 / 1,100 px/s). Bots used it once below the platform, near full fall speed. Out of jumps with no floor under the fall, Nova shifts while falling slower than 450 px/s. |
+| R14-5 short-flash rectangles | **fix part** (`6a3222b`) | Four rectangles drawn on top of existing art removed (Frey ultimate charge/release, Yuki ward end, seal burst); the four without art (parry, landing puff, hit streak, seal break) go to CODEX-ART-20. |
+| fall predictor, Luna/Yuki ring-outs, fixtures, no-progress / hit rate | **measure** | Codex round 13 items 2–8; decided from its data. |
