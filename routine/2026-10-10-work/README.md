@@ -25,6 +25,12 @@
 
 ## 기록 (시간순)
 - 20:02 승인, 시계 시작. 배포 기록 v4 커밋 `5936c5c`.
+- 20:05 그림 재고(`results/art_inventory.md`)·카드 3장·프롬프트 커밋 `a4a972f` push. 유닛 클론 3개(builder-art, builder-frey, builder-ui; builder-ui는 새로) a4a972f에서 가지.
+- 20:06 Codex 3개 실행(타임아웃 115분, 카드 안 105분 하드 스톱): A `codex/moves-23` xhigh, B `codex/skill-fx-24` high, C `codex/monsters-ui-25` high. 세 개 모두 카드를 읽고 imagegen 시작 확인.
+- 20:37 Codex B(ART-24) 끝(31분): 효과 스트립 22개(Luna 5·Nova 7·Rio 3·Yuki 1·공통 2 + 포털·봉인·붕괴·경고) + 연결(그림 우선, 도형 폴백), test_skill_fx_art. 리드 검수: 비교판 2장 확인(세 배경·Frey 칸 옆 크기 맞음, 알파 0/255), diff 11파일 +222/−5, 쓰기 경로 확인 → 병합 `05c20a7`. 봉인·붕괴는 렐름 위에 256/320px 타일을 깔아(렐름당 약 30~40개) 성능은 soak로 확인. Codex 자평 약점: Yuki 결계 얇은 원(640px), Nova 파편 무게감, 봉인 타일 반복감 → 사람 판단.
+- 20:38 Codex B 2차(ART-26, xhigh, 92분): Nova(남·여)·Yuki·Rio(남·여) 기술별 줄 시트, 그림만(연결은 ART-23 로더 병합 뒤).
+- 20:39 Codex A(ART-23) 끝(33분): Frey 7줄 31프레임·Luna 5줄 23·Brave 8줄 38 + 로더·포즈 연결·test_moves_sheet. 리드 검수: 비교판 3장에서 캐릭터 일관성은 좋음. 그러나 잘린 칼·몸이 보여 칸 가장자리 측정(리드 스크립트, 가장자리 불투명 3px 이상) → **Frey 20·Luna 19·Brave 12칸이 옆 칸으로 넘침**(이웃 칸 수치가 짝을 이룸 = 고정 폭으로 자름, 10-08과 같은 원인). 지금 시트는 0. 병합 보류.
+- 20:41 Codex A 수정 라운드(xhigh, 90분): 프레임별 경계 상자로 다시 뽑기, 가장자리 0칸이 완료 기준, Frey 강하 3·4·스파이크 5·Brave 급강하 4·5 다시 그림 → 이어서 Rio v2 공격·방어 줄, 남으면 날아감(tumble) 줄 + 연결.
 
 ## 결과
 
