@@ -203,8 +203,10 @@ func _build_art_sprite() -> AnimatedSprite2D:
 	sprite.sprite_frames = frames
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.scale = Vector2(art_scale, art_scale)
-	# Feet sit a quarter cell below the centre.
-	sprite.position = Vector2(0, -cell * 0.25 * art_scale)
+	# Most sheets use feet y=72. The larger ART-27 Jotunheim redraw uses y=80 so its
+	# silhouette can match mossling without clipping; compensate the visual pivot only.
+	var feet_from_center := 32.0 if art_sheet_path.ends_with("/jotunheim_rune_golem_sheet.png") else cell * 0.25
+	sprite.position = Vector2(0, -feet_from_center * art_scale)
 	sprite.play(&"idle")
 	return sprite
 
