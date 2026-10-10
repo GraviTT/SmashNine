@@ -6,8 +6,17 @@ const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
+const TITLE_BACKGROUND_ART := "res://assets/art/ui/title_bg.png"
 const REALM_EMBLEM_ART := "res://assets/art/ui/realm_emblems/%s.png"
 const CUTIN_BAND_ART := "res://assets/art/vfx/ult_cutin_band.png"
+const HUD_FRAME_ART := "res://assets/art/ui/frames/%s.png"
+const HUD_FRAME_MARGINS := {
+	"skill_slot": 10,
+	"hp_bar": 8,
+	"card_panel": 14,
+	"result_panel": 18,
+	"menu_button": 10,
+}
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug  F4 bots"
 ## Bottom right, all match (user 2026-10-08: "화면 오른쪽 아래에 조작키를 간단히 표시하고, 스킬
 ## 아이콘도 간단하게"): the focused fighter's four moves as icon slots with their keys, and the
@@ -50,6 +59,8 @@ var realm_label: Label
 var warning_label: Label
 var results_grid: GridContainer
 var status_label: Label
+var hp_bar: Control
+var hp_fill: ColorRect
 ## The followed fighter's face (CODEX-ART-08) beside the status line.
 var focus_frame: ColorRect
 var focus_portrait: TextureRect
@@ -63,6 +74,9 @@ var card_labels: Array[Label] = []
 var card_icons: Array[TextureRect] = []
 var overlay: Control
 var overlay_back: ColorRect
+var overlay_background_art: TextureRect
+var result_panel_frame: Control
+var menu_frame_root: Control
 ## The bot panel's on/off choice (F4), kept while screens hide the match HUD.
 var bot_panel_wanted := BOT_PANEL_SHOWN_AT_START
 var overlay_title: Label
@@ -100,6 +114,7 @@ var overlay_credits: Label
 func _ready() -> void:
 	name = "UI"
 	clock_label = _label(Vector2(390, 12), Vector2(500, 30), 20, HORIZONTAL_ALIGNMENT_CENTER)
+	_build_hp_bar()
 	status_label = _label(Vector2(782, 12), Vector2(390, 60), 16, HORIZONTAL_ALIGNMENT_RIGHT)
 	focus_frame = ColorRect.new()
 	focus_frame.position = Vector2(1184, 8)
@@ -150,6 +165,7 @@ func _ready() -> void:
 	for entry in [[clock_label, TOP_CENTER], [realm_label, TOP_CENTER], [hazard_label, TOP_CENTER], [warning_label, TOP_CENTER],
 			[status_label, TOP_RIGHT], [focus_frame, TOP_RIGHT], [focus_portrait, TOP_RIGHT],
 			[debug_label, TOP_RIGHT], [bot_panel, TOP_RIGHT], [info_label, BOTTOM_LEFT],
+			[hp_bar, TOP_RIGHT],
 			[skill_bar, BOTTOM_RIGHT], [controls_label, BOTTOM_RIGHT],
 			[card_panel, BOTTOM_CENTER]]:
 		_pin(entry[0], entry[1])
@@ -205,6 +221,53 @@ func toggle_bot_panel() -> void:
 func controls_label_width() -> float:
 	return ThemeDB.fallback_font.get_string_size(CONTROLS_SHORT, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 14.0
 
+## Loads an authored 9-slice in original-art mode. The returned ColorRect preserves the
+## exact previous block-colour presentation for F2 prototype mode and missing files.
+func _hud_frame(frame_id: String, frame_size: Vector2, fallback_color: Color, node_name: String) -> Control:
+	var texture := ART_SETTINGS.original_texture(HUD_FRAME_ART % frame_id)
+	if texture == null:
+		var fallback := ColorRect.new()
+		fallback.name = node_name
+		fallback.size = frame_size
+		fallback.color = fallback_color
+		fallback.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		return fallback
+	var frame := NinePatchRect.new()
+	frame.name = node_name
+	frame.size = frame_size
+	frame.texture = texture
+	frame.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	var margin: int = int(HUD_FRAME_MARGINS.get(frame_id, 8))
+	frame.patch_margin_left = margin
+	frame.patch_margin_top = margin
+	frame.patch_margin_right = margin
+	frame.patch_margin_bottom = margin
+	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return frame
+
+func _build_hp_bar() -> void:
+	hp_bar = Control.new()
+	hp_bar.name = "HpBar"
+	hp_bar.position = Vector2(850, 42)
+	hp_bar.size = Vector2(320, 32)
+	hp_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(hp_bar)
+	var well := ColorRect.new()
+	well.name = "HpWell"
+	well.position = Vector2(8, 8)
+	well.size = Vector2(304, 16)
+	well.color = Color(0.025, 0.035, 0.065, 0.82)
+	well.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	hp_bar.add_child(well)
+	hp_fill = ColorRect.new()
+	hp_fill.name = "HpFill"
+	hp_fill.position = well.position
+	hp_fill.size = well.size
+	hp_fill.color = Color(0.28, 0.86, 0.42, 0.72)
+	hp_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	hp_bar.add_child(hp_fill)
+	hp_bar.add_child(_hud_frame("hp_bar", hp_bar.size, Color(0.08, 0.09, 0.14, 0.82), "HpBarFrame"))
+
 func _build_skill_bar() -> void:
 	skill_bar = Control.new()
 	skill_bar.name = "SkillBar"
@@ -215,18 +278,21 @@ func _build_skill_bar() -> void:
 	add_child(skill_bar)
 	for index in SKILL_SLOTS.size():
 		var slot: String = SKILL_SLOTS[index]
-		var panel := Panel.new()
+		var panel := Control.new()
+		panel.name = "SkillSlot%s" % slot.to_upper()
 		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.position = Vector2(index * (SKILL_SLOT_SIZE + SKILL_SLOT_GAP), 0.0)
 		panel.size = Vector2(SKILL_SLOT_SIZE, SKILL_SLOT_SIZE)
 		panel.clip_contents = true
+		skill_bar.add_child(panel)
+		var frame := _hud_frame("skill_slot", panel.size, SKILL_SLOT_COLOR, "SkillSlotFrame%s" % slot.to_upper())
+		panel.add_child(frame)
+		# Compatibility state used by the skill-bar regression probe and any callers that
+		# inspect readiness. The visible border is the NinePatchRect above.
 		var style := StyleBoxFlat.new()
 		style.bg_color = SKILL_SLOT_COLOR
-		style.set_corner_radius_all(6)
 		style.set_border_width_all(1)
 		style.border_color = Color(1, 1, 1, 0.25)
-		panel.add_theme_stylebox_override("panel", style)
-		skill_bar.add_child(panel)
 		# The icon (CODEX-ART-18, 40 px at 1:1), or the key letter in the fighter's colour.
 		var icon := TextureRect.new()
 		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -255,7 +321,7 @@ func _build_skill_bar() -> void:
 		badge.set_corner_radius_all(3)
 		key.add_theme_stylebox_override("normal", badge)
 		panel.add_child(key)
-		skill_slots[slot] = {"style": style, "icon": icon, "glyph": glyph, "key": key, "shade": shade, "time": time}
+		skill_slots[slot] = {"style": style, "frame": frame, "icon": icon, "glyph": glyph, "key": key, "shade": shade, "time": time}
 
 func _slot_label(text: String, position: Vector2, size: Vector2, font_size: int, alignment: HorizontalAlignment) -> Label:
 	var label := Label.new()
@@ -298,12 +364,15 @@ func update_skill_bar(fighter: Node, delta: float) -> void:
 		nodes.time.text = "%d" % ceili(cooldown.x) if cooldown.x > 0.0 else ""
 		# Without an icon the key letter fills the slot; the seconds take its place while waiting.
 		nodes.glyph.visible = nodes.icon.texture == null and cooldown.x <= 0.0
+		var frame: Control = nodes.frame
 		var style: StyleBoxFlat = nodes.style
 		if slot == "i" and cooldown.x <= 0.0:
 			var pulse := 0.65 + 0.35 * sin(skill_pulse * 6.0)
+			frame.modulate = Color(SKILL_READY_COLOR, pulse)
 			style.border_color = Color(SKILL_READY_COLOR, pulse)
 			style.set_border_width_all(2)
 		else:
+			frame.modulate = Color.WHITE
 			style.border_color = Color(1, 1, 1, 0.25)
 			style.set_border_width_all(1)
 
@@ -382,6 +451,12 @@ func set_status(alive: int, total: int, focus: Node) -> void:
 		soul_text += "  (next card %d)" % next_threshold if next_threshold > 0 else "  (all cards taken)"
 		lines.append("%s  HP %.0f/%.0f  KOs %d   %s" % [focus.display_name, focus.hp, focus.max_hp, focus.score, soul_text])
 	status_label.text = "\n".join(lines)
+	var hp_ratio := 0.0
+	if is_instance_valid(focus) and float(focus.max_hp) > 0.0:
+		hp_ratio = clampf(float(focus.hp) / float(focus.max_hp), 0.0, 1.0)
+	hp_fill.size.x = 304.0 * hp_ratio
+	hp_fill.color = Color(0.92, 0.24, 0.2, 0.76) if hp_ratio <= 0.3 else Color(0.95, 0.72, 0.18, 0.74) if hp_ratio <= 0.55 else Color(0.28, 0.86, 0.42, 0.72)
+	hp_bar.visible = is_instance_valid(focus)
 	_show_focus_portrait(focus)
 
 func _show_focus_portrait(focus: Node) -> void:
@@ -598,11 +673,8 @@ func _build_card_panel() -> void:
 	card_title.add_theme_font_size_override("font_size", 17)
 	card_panel.add_child(card_title)
 	for index in 3:
-		var back := ColorRect.new()
+		var back := _hud_frame("card_panel", Vector2(224, 96), CARD_COLOR, "CardPanelFrame%d" % (index + 1))
 		back.position = Vector2(index * 236, 30)
-		back.size = Vector2(224, 96)
-		back.color = CARD_COLOR
-		back.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		card_panel.add_child(back)
 		var icon := TextureRect.new()
 		icon.position = back.position + Vector2(8, 24)
@@ -650,6 +722,32 @@ func _build_overlay() -> void:
 	overlay_back.color = PANEL_COLOR
 	overlay_back.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(overlay_back)
+	overlay_background_art = TextureRect.new()
+	overlay_background_art.name = "TitleBackgroundArt"
+	overlay_background_art.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay_background_art.texture = ART_SETTINGS.original_texture(TITLE_BACKGROUND_ART)
+	overlay_background_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	overlay_background_art.stretch_mode = TextureRect.STRETCH_SCALE
+	overlay_background_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	overlay_background_art.modulate = Color(0.62, 0.62, 0.72, 0.92)
+	overlay_background_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay_background_art.visible = overlay_background_art.texture != null
+	overlay.add_child(overlay_background_art)
+	var art_scrim := ColorRect.new()
+	art_scrim.name = "TitleBackgroundScrim"
+	art_scrim.set_anchors_preset(Control.PRESET_FULL_RECT)
+	art_scrim.color = Color(0.01, 0.015, 0.04, 0.28 if overlay_background_art.texture != null else 0.0)
+	art_scrim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(art_scrim)
+	result_panel_frame = _hud_frame("result_panel", Vector2(960, 520), RESULTS_BACK_COLOR, "ResultPanelFrame")
+	result_panel_frame.position = Vector2(160, 180)
+	result_panel_frame.visible = false
+	overlay.add_child(result_panel_frame)
+	menu_frame_root = Control.new()
+	menu_frame_root.name = "MenuButtonFrames"
+	menu_frame_root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	menu_frame_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.add_child(menu_frame_root)
 	overlay_title = Label.new()
 	overlay_title.position = Vector2(0, 110)
 	overlay_title.size = Vector2(1280, 70)
@@ -720,6 +818,21 @@ func _show_portraits(characters: Array[Dictionary], body: String) -> void:
 		key.text = "[%d]" % (index + 1)
 		key.add_theme_font_size_override("font_size", 17)
 		portrait_strip.add_child(key)
+	_build_menu_frames(characters.size())
+
+func _build_menu_frames(character_count: int) -> void:
+	for child in menu_frame_root.get_children():
+		child.queue_free()
+	# The unified body label remains the text owner. These shallow frames sit behind its
+	# character choices and the B/F2 actions, improving scanning without changing inputs.
+	for index in character_count:
+		var frame := _hud_frame("menu_button", Vector2(360, 24), Color(0.08, 0.09, 0.14, 0.72), "MenuButtonFrame%d" % (index + 1))
+		frame.position = Vector2(460, 292 + index * 24)
+		menu_frame_root.add_child(frame)
+	for index in 2:
+		var action := _hud_frame("menu_button", Vector2(360, 24), Color(0.08, 0.09, 0.14, 0.72), "MenuActionFrame%d" % (index + 1))
+		action.position = Vector2(460, 340 + character_count * 24 + index * 24)
+		menu_frame_root.add_child(action)
 
 func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 	overlay_title.text = "SMASH NINE REALMS" if overlay_logo.texture == null else ""
@@ -743,6 +856,9 @@ func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 	_set_match_hud_visible(false)
 	overlay_body.text = "\n".join(lines)
 	overlay_credits.visible = true
+	result_panel_frame.visible = false
+	menu_frame_root.visible = true
+	overlay_background_art.visible = overlay_background_art.texture != null
 	overlay_back.color = PANEL_COLOR
 	overlay.visible = true
 
@@ -756,6 +872,9 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	# The table stands alone: no clock, status, minimap, portrait, bot panel or arrows behind it.
 	_set_match_hud_visible(false)
 	overlay_back.color = RESULTS_BACK_COLOR
+	result_panel_frame.visible = true
+	menu_frame_root.visible = false
+	overlay_background_art.visible = overlay_background_art.texture != null
 	hazard_label.visible = false
 	info_label.visible = false
 	warning_label.visible = false
@@ -843,7 +962,7 @@ func set_warning_banner(seconds: int, hazard_warning := "") -> void:
 func _set_match_hud_visible(visible_now: bool) -> void:
 	if not visible_now and clock_label.visible:
 		bot_panel_wanted = bot_panel.visible
-	for node in [clock_label, realm_label, hazard_label, status_label, minimap_root, focus_portrait, skill_bar, controls_label]:
+	for node in [clock_label, realm_label, hazard_label, status_label, hp_bar, minimap_root, focus_portrait, skill_bar, controls_label]:
 		node.visible = visible_now
 	# A fresh screen starts without an old message.
 	info_label.visible = false
