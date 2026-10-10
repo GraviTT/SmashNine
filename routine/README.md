@@ -15,6 +15,7 @@
 - 커밋: 작업마다
 - push: 커밋마다 `main` (사용자 10-06 "끝나면 백업 할것")
 - `gh-pages` 재배포(`tools/deploy_pages.ps1`)는 외부 공개라 사용자 몫
+- Sites 배포(`reports/codex-deploy/site.json`의 기존 사이트, 소유자 전용)도 사용자가 Codex로 한다. **보고 끝에 Codex에 그대로 붙여 넣을 배포 요청 메시지를 넣는다**(사용자 10-10 "앞으로는 Codex 배포 요청 메세지를 보고 끝에 넣을 것"): 배포할 `main` 커밋, 다음 버전 번호, 지난 배포(`game_source_commit_sha`) 뒤 바뀐 것 한 줄, 빌드 `tools/build_web.ps1`(`build/web/`, `.partN` 조각 그대로), `site.json`·`reports/codex-deploy/README.md`만 갱신, 커밋·push·다른 수정 금지. 배포 뒤 Codex 기록은 리드가 커밋한다.
 
 ## 실행 방식
 - 기본: Codex 사용 (codex-units 스킬)
