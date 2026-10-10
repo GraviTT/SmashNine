@@ -1,15 +1,20 @@
-# Frey move-only sprite sheet
+# Frey move-only sprite sheets (D32)
 
-`frey_moves_sheet.png` is the optional second atlas loaded beside `frey_sheet.png`.
-It keeps the 128 px runtime cell, right-facing character, nearest filtering, and 3-head Frey design.
+`frey_moves_sheet.png` is the composite atlas loaded beside `frey_sheet.png`.
+The D32 rebuild also keeps the character and effects as independent atlases so body scale never
+changes to make a slash arc fit inside a cell.
 
-## Atlas contract
+## Outputs and atlas contract
 
-- Canvas: 768×1024 RGBA PNG; 6 columns × 8 rows; 128×128 per cell
-- Used frames are left-aligned; every unused cell is transparent
-- All visible pixels have alpha 1; transparent pixels have alpha 0
-- Lowest visible pixel in every used cell is y=120
-- Runtime fallback: if this file is absent, each move uses its former `attack`-row slice
+- `frey_moves_body_sheet.png`: character/equipment only, 768x1024 RGBA PNG
+- `frey_moves_fx_sheet.png`: slash, dust and glint layer only, 768x1024 RGBA PNG
+- `frey_moves_sheet.png`: body + effect composite used by the game, 768x1024 RGBA PNG
+- `frey_moves_heads.json`: idle reference and one head rectangle per used frame
+- Grid: 6 columns x 8 rows, 128x128 per cell; used frames are left-aligned
+- Every used and unused cell has zero opaque pixels on its outer 1-pixel border
+- Ground frames use y=120 as the foot baseline; air frames are centred without scaling to fit
+- Palette is quantized to the canonical `frey_sheet.png` palette and alpha is hard
+- The runtime row names, order and frame counts are unchanged, so `Frey.gd` needs no table change
 
 | Row | Frames | FPS | Move |
 |---|---:|---:|---|
@@ -20,34 +25,55 @@ It keeps the 128 px runtime cell, right-facing character, nearest filtering, and
 | `rising_cleave` | 5 | 14 | L rising cleave |
 | `spike_followup` | 4 | 14 | landed L re-input spike |
 | `descent` | 6 | 14 | grounded and aerial I descent |
-| `tumble` | 4 | 14 | strong-launch hitstun (loops; optional hurt fallback) |
+| `tumble` | 4 | 14 | strong-launch hitstun loop |
 
-## Built-in ImageGen prompt
+## Head reference and scaling
 
-References on every generation: `frey_sheet.png` (pixel scale, silhouette, palette) and
-`frey_illustration.png` (face, winged helmet, armor, sword and blue-gold shield). The prompt asked
-for one transparent 6-column/7-row pixel contact with the ART-21 pose sequence: rising slash,
-downward slash, airborne horizontal slash, shield-led dash, rising cleave, downward spike and
-six-stage descent. Invariants: same woman and 3-head proportion, right-facing, hard pixel edges,
-same body size, common grounded baseline, no text/grid/watermark, no missing shield or extra weapon.
+The reference is idle frame row 0, column 0 of `frey_sheet.png` at `(62, 27, 28, 32)`.
+It includes hair, face and helmet but excludes the white helmet wings because their changing angle
+is not a stable scale unit. Every new frame records a 28x32 head box. The independent audit does
+not read the JSON: it searches scales 0.70 through 1.40 in 0.025 steps using exact canonical-palette
+anchors, mirrored candidates and quarter-rotated tumble candidates. All 35 new matches are 1.000.
 
-`frey_moves_source.png` is the retained built-in ImageGen result. The fixed-width slicer is
-superseded by `rebuild_safe_sheets.gd`: it finds each pose by its own connected component, attaches
-nearby effect components, preserves the dense body band at the canonical scale, and compacts only
-overflowing outer effect bands. It then hardens alpha, removes under-3-pixel crumbs, maps colors to
-the canonical Frey palette and aligns action frames to y=120. The tumble row is a nearest-neighbour
-quarter-turn sequence derived from the canonical hurt frame.
+## Rebuild pipeline
 
-Round-1 redraw source: `tests/art_preview/moves_23/frey_redraw_source.png` was generated with
-`frey_sheet.png`, `frey_illustration.png` and the first move source as references. The prompt asked
-for six compact side/three-quarter spike and descent frames with the face, sword and shield visible,
-no rear-view hair/cape mass, hard alpha, no touching/cropping. Adopted frames replace
-`spike_followup` 3–4 and `descent` 3–4.
+The retained ImageGen originals are `tests/art_preview/frey_redo_32/*_source.png`. Each row was
+generated as one horizontal body strip with no effects, then a separate effects-only strip. The
+builder finds pose components rather than slicing equal source widths, scales all bodies from the
+same head unit, quantizes to the base palette, overlays the canonical head reference, positions the
+separate effects, clears the strict border and writes all three atlases plus the JSON and previews.
 
-## Checks
+From `smash-nine-prototype/`:
 
-- `edge_audit.gd`: 20 edge-touching cells before → 0 after
-- `verify_moves.gd`: 35/35 used cells non-empty, 13 unused cells empty, hard alpha; action rows y=120
-- Mean RGB distance from generated source to the retained canonical palette: 15.78/255
-- 1×/4× review: `tests/art_preview/moves_23/frey_moves_contact_{1x,4x}.png`
+```powershell
+& $godot --headless --path . -s tests/art_preview/frey_redo_32/build_frey_redo.gd -- `
+  --character=frey `
+  --base=res://assets/art/frey/frey_sheet.png `
+  --old=res://tests/art_preview/frey_redo_32/before_sheet.png `
+  --source-dir=res://tests/art_preview/frey_redo_32 `
+  --asset-dir=res://assets/art/frey `
+  --preview-dir=res://tests/art_preview/frey_redo_32
 
+& $godot --headless --path . -s tests/art_preview/frey_redo_32/head_audit.gd
+```
+
+For a later fighter, supply that fighter's base atlas, old move atlas, row source directory and
+asset directory. The pilot script already accepts those paths and a character id; its row list,
+reference box, effect anchors and grounded flags must be configured for that fighter before use.
+
+## Generation rounds
+
+- One body round kept: `dash_strike`, `rising_cleave`, `spike_followup`, `descent`, `tumble`
+- Second body round kept: `attack_up`, `attack_down`, `attack_air_side` (tighter sword/limb layout)
+- One independent effects round kept for every row
+- No row reached the three-round limit
+
+## Review aids
+
+- Per-row old/new contacts at 1x and 3x: `tests/art_preview/frey_redo_32/*_before_after_{1x,3x}.png`
+- Body/effect/composite contacts: `spike_followup_layers_{1x,3x}.png`, `descent_layers_{1x,3x}.png`
+- Independent measurements: `head_audit.txt` and `*_head_audit.csv`
+- Head rectangles over the composite: `head_boxes_{1x,3x}.png`
+
+Measured consistency, border safety and file structure are automated checks. Pose readability,
+animation flow, effect strength and whether rotated tumble faces look natural remain human art calls.

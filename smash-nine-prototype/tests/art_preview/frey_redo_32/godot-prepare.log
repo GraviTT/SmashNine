@@ -1,0 +1,13 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/frey/frey_sheet.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/frey_redo_32/prepare_refs.gd:20)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/frey/frey_moves_sheet.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/frey_redo_32/prepare_refs.gd:21)
+prepare_refs: idle + 8 before strips written
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
