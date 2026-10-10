@@ -4,6 +4,16 @@ const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
 const TALISMAN_SCRIPT := preload("res://characters/yuki/YukiTalisman.gd")
 const SEAL_SCRIPT := preload("res://characters/yuki/YukiSeal.gd")
 const GRAND_WARD_SCRIPT := preload("res://characters/yuki/YukiGrandWard.gd")
+const MOVE_SHEET_ROWS := [
+	["talisman_side", 4, 19.0, false],
+	["talisman_up", 4, 16.7, false],
+	["ground_ward", 4, 15.4, false],
+	["talisman_air_side", 4, 22.2, false],
+	["talisman_air_down", 4, 14.8, false],
+	["seal_place", 5, 15.6, false],
+	["seal_activate", 5, 16.0, false],
+	["grand_ward", 6, 9.7, false],
+]
 
 var seals: Array[Node] = []
 var activation_id := 0
@@ -12,18 +22,21 @@ var activation_id := 0
 func configure_character_sprite() -> void:
 	_configure_original_sheet("yuki")
 
+func get_move_sheet_rows() -> Array:
+	return MOVE_SHEET_ROWS
+
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	match attack_type:
 		"up", "air_up":
-			_start_attack(0.14, 0.24, Callable(self, "_spawn_talisman").bind(Vector2(22, 30), 7, 225, Vector2(0.08 * facing, -1.0), 520.0, 0.52, "flare", Vector2(82, 74)))
+			_start_attack(0.14, 0.24, Callable(self, "_spawn_talisman").bind(Vector2(22, 30), 7, 225, Vector2(0.08 * facing, -1.0), 520.0, 0.52, "flare", Vector2(82, 74)), Vector2i(-1, -1), &"talisman_up")
 		"down":
-			_start_attack(0.14, 0.26, Callable(self, "_ground_ward"))
+			_start_attack(0.14, 0.26, Callable(self, "_ground_ward"), Vector2i(-1, -1), &"ground_ward")
 		"air_down":
-			_start_attack(0.16, 0.27, Callable(self, "_spawn_talisman").bind(Vector2(24, 28), 8, 295, Vector2(0.12 * facing, 1.0), 610.0, 1.0, "drop", Vector2(94, 50)))
+			_start_attack(0.16, 0.27, Callable(self, "_spawn_talisman").bind(Vector2(24, 28), 8, 295, Vector2(0.12 * facing, 1.0), 610.0, 1.0, "drop", Vector2(94, 50)), Vector2i(-1, -1), &"talisman_air_down")
 		"air_side":
-			_start_attack(0.09, 0.18, Callable(self, "_spawn_talisman").bind(Vector2(28, 14), 6, 175, direction, 720.0, 0.78, "straight", Vector2(72, 48)))
+			_start_attack(0.09, 0.18, Callable(self, "_spawn_talisman").bind(Vector2(28, 14), 6, 175, direction, 720.0, 0.78, "straight", Vector2(72, 48)), Vector2i(-1, -1), &"talisman_air_side")
 		_:
-			_start_attack(0.11, 0.21, Callable(self, "_spawn_talisman").bind(Vector2(30, 16), 6, 190, direction, 660.0, 0.95, "straight", Vector2(74, 50)))
+			_start_attack(0.11, 0.21, Callable(self, "_spawn_talisman").bind(Vector2(30, 16), 6, 190, direction, 660.0, 0.95, "straight", Vector2(74, 50)), Vector2i(-1, -1), &"talisman_side")
 
 func perform_skill_one() -> void:
 	_seal_start()
@@ -65,7 +78,7 @@ func _seal_start() -> void:
 	var direction := _to_cardinal_direction(_get_attack_direction())
 	if not is_on_floor():
 		velocity *= 0.38
-	_start_attack(0.18, 0.32, Callable(self, "_place_seal").bind(direction))
+	_start_attack(0.18, 0.32, Callable(self, "_place_seal").bind(direction), Vector2i(-1, -1), &"seal_place")
 
 func _place_seal(direction: Vector2) -> void:
 	_cleanup_seals()
@@ -89,9 +102,9 @@ func _place_seal(direction: Vector2) -> void:
 func _activate_start() -> void:
 	_cleanup_seals()
 	if seals.is_empty():
-		_start_attack(0.16, 0.3, Callable(self, "_emergency_ward"))
+		_start_attack(0.16, 0.3, Callable(self, "_emergency_ward"), Vector2i(-1, -1), &"seal_activate")
 	else:
-		_start_attack(0.24, 0.32, Callable(self, "_activate_seals"))
+		_start_attack(0.24, 0.32, Callable(self, "_activate_seals"), Vector2i(-1, -1), &"seal_activate")
 
 func _activate_seals() -> void:
 	_cleanup_seals()
@@ -107,7 +120,7 @@ func _emergency_ward() -> void:
 
 func _ultimate_start() -> void:
 	var direction := _to_cardinal_direction(_get_attack_direction())
-	_start_attack(0.52, 0.62, Callable(self, "_cast_grand_ward").bind(direction))
+	_start_attack(0.52, 0.62, Callable(self, "_cast_grand_ward").bind(direction), Vector2i(-1, -1), &"grand_ward")
 
 func _cast_grand_ward(direction: Vector2) -> void:
 	_cleanup_seals()
