@@ -100,4 +100,6 @@ Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`,
 
 Away routine (자리 비움 루틴): rules and run logs in `routine/README.md`.
 
+No `.csv` inside `smash-nine-prototype/`: Godot imports CSV as translations and `--import` crashes (2026-10-11, Codex audit tables). Keep tables under `reports/`, or give the file a `.import` with `importer="keep"`. Godot file logging is off in `project.godot` (log rotation crashed concurrent or sandboxed runs).
+
 Known sandbox noise: inside the Codex sandbox every Godot process prints `ERROR: Failed to read the root certificate store.` (os_windows.cpp). It does not happen outside the sandbox (lead runs: 0). Report it separately; every other error line still fails a run.
