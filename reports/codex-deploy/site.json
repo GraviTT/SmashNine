@@ -3,14 +3,14 @@
   "url": "https://smash-nine-prototype.tt9.chatgpt.site",
   "registered_site_origin": "https://smash-nine-prototype.tt9.chatgpt.site",
   "access": "owner_only",
-  "version_number": 3,
-  "version_id": "appgprj_6ac65f43555481918a37077e8c63c66c~appgver_5ae7ca1d56ec81918474cc2366ccf5c7",
-  "deployment_id": "appgdep_6ac9151aaacc81918a8e95e3a3420abf",
-  "sites_source_commit_sha": "085f71043384e97069a413313b60d077a0993879",
-  "game_source_commit_sha": "314f3f808dcd8aef537dc623f6d9269481a45f93",
+  "version_number": 4,
+  "version_id": "appgprj_6ac65f43555481918a37077e8c63c66c~appgver_25f75f34c3888191bad23bf2d5b50eab",
+  "deployment_id": "appgdep_6ac9ae5d88f8819190f541cd49f5b2da",
+  "sites_source_commit_sha": "e47eb7714c27cc6a84cef46a7ede2fbaf4039d5c",
+  "game_source_commit_sha": "f69d4956ac97c35be774e7fd84287e3de3adb2a1",
   "build_command": "powershell -ExecutionPolicy Bypass -File tools/build_web.ps1",
-  "deployed_at_utc": "2026-10-09T16:24:13.000752Z",
-  "verified_at_utc": "2026-10-09T16:24:32.3266553Z",
+  "deployed_at_utc": "2026-10-10T03:18:07.065381Z",
+  "verified_at_utc": "2026-10-10T03:18:22.0322948Z",
   "verified_routes": [
     {
       "route": "/",
@@ -23,8 +23,8 @@
   "build": {
     "output_directory": "build/web",
     "zip_path": "build/SmashNine-web.zip",
-    "zip_size_bytes": 16793220,
-    "zip_size_mib": 16.02,
+    "zip_size_bytes": 16738639,
+    "zip_size_mib": 15.96,
     "largest_file": "index.wasm.part0",
     "largest_file_size_bytes": 5242880,
     "largest_file_size_mib": 5,
@@ -33,17 +33,17 @@
     "index_wasm_part_count": 8,
     "index_pck_present": false,
     "index_pck_part_count": 2,
-    "index_pck_total_size_bytes": 6649416
+    "index_pck_total_size_bytes": 6595412
   },
   "deployment_archive": {
-    "path": "build/sites-deploy-v3.tar.gz",
-    "size_bytes": 16818261,
-    "size_mib": 16.04,
-    "storage_content_hash": "sha256:4fafd0de0cb9c2ae1f2b32bc9f4ef2160049ab77c69421d1cb2b0733a0479529",
+    "path": "build/sites-deploy-v4.tar.gz",
+    "size_bytes": 16765726,
+    "size_mib": 15.99,
+    "storage_content_hash": "sha256:93eb1cdd34ac4419ca1f14af802c9bc259d92ae81e44a434dc5d69c081cf48b8",
     "stored_file_count": 18
   },
   "browser_verification": {
     "performed": false,
-    "reason": "이번 요청은 빌드 및 기존 Sites 프로젝트의 새 버전 배포만 수행"
+    "reason": "이번 요청은 f69d495 빌드 및 기존 Sites 프로젝트의 4번째 버전 배포만 수행"
   }
 }
