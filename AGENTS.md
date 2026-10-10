@@ -92,6 +92,7 @@ A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with 
 | builder | `design/tasks/CODEX-ART-20.md` | `assets/art/effects/` (4 strips), `tests/art_preview/flash_art_20/`, `reports/codex-art-20/` | done — merged `d5e4635`; wired in `f35dbc6` |
 | builder | `design/tasks/CODEX-ART-19.md` | `reports/codex-art-19/`, `reports/bot-behavior/bot-behavior-tree.png` | done — merged `f0d830c`; labels fixed and re-rendered `78cd3e5` (re-render: `node reports/codex-art-19/render.js`) |
 | analyst | `design/tasks/CODEX-QA-13.md` | `tests/analysis/codex_qa_13/`, `reports/codex-qa-13/` | done — merged `f102677`; findings fixed (see run log 2026-10-08 work) |
+| builder × 3 (2026-10-10 evening, units also wired their art into the named functions — run exception, user: "Claude는 명령과 검수만") | `design/tasks/CODEX-ART-23.md` … `CODEX-ART-31.md`, prompt `CODEX-ART-23-25.prompt.md` | per card | done — ART-24 skill/realm effects `05c20a7`; ART-25 realm monsters + UI `47602b5`; ART-23 Frey/Luna/Brave move sheets + tumble `c793a91` (sent back once: frames sliced at fixed widths); ART-28 hit sparks + status icons `17c3b59`; ART-27 HUD frames + title bg `3901c06`; ART-29 Nova/Yuki/Rio move-row wiring `222d7fa`; ART-26 Nova/Yuki/Rio move sheets `672197b` (3 fix rounds: cuts, margins, stripes); ART-30 Rio live sheets + move-sheet margins `c88eccc`; ART-31 second monster per realm — see run log `routine/2026-10-10-work/` |
 
 Units never edit product source (`smash-nine-prototype/scripts/`, `characters/`, `scenes/`, `project.godot`). Findings go to the lead.
 
