@@ -1,0 +1,86 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/asgard_aegis_ram_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_sheet (res://tests/art_preview/monsters_ui_25/build_assets.gd:143)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:45)
+sheet asgard_aegis_ram source=(1536, 1024) cell=(256, 256) scale=0.347
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/niflheim_frost_owl_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_sheet (res://tests/art_preview/monsters_ui_25/build_assets.gd:143)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:45)
+sheet niflheim_frost_owl source=(1536, 1024) cell=(256, 256) scale=0.360
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/alfheim_moon_moth_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_sheet (res://tests/art_preview/monsters_ui_25/build_assets.gd:143)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:45)
+sheet alfheim_moon_moth source=(1537, 1023) cell=(256, 255) scale=0.380
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/svartalfheim_gear_beetle_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_sheet (res://tests/art_preview/monsters_ui_25/build_assets.gd:143)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:45)
+sheet svartalfheim_gear_beetle source=(1536, 1024) cell=(256, 256) scale=0.340
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/vanaheim_vine_hound_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_sheet (res://tests/art_preview/monsters_ui_25/build_assets.gd:143)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:45)
+sheet vanaheim_vine_hound source=(1536, 1024) cell=(256, 256) scale=0.339
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/jotunheim_rune_golem_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_sheet (res://tests/art_preview/monsters_ui_25/build_assets.gd:143)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:45)
+sheet jotunheim_rune_golem source=(1536, 1024) cell=(256, 256) scale=0.327
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/yggdrasil_root_oracle_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_sheet (res://tests/art_preview/monsters_ui_25/build_assets.gd:143)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:45)
+sheet yggdrasil_root_oracle source=(1536, 1024) cell=(256, 256) scale=0.343
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/niflheim_frost_bolt_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_projectile (res://tests/art_preview/monsters_ui_25/build_assets.gd:188)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:47)
+projectile niflheim_frost_owl_projectile source=(1254, 1254) target=(22, 17)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/alfheim_moon_seed_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_projectile (res://tests/art_preview/monsters_ui_25/build_assets.gd:188)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:47)
+projectile alfheim_moon_moth_projectile source=(1263, 1246) target=(22, 17)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/monsters/yggdrasil_soul_seed_source.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _build_projectile (res://tests/art_preview/monsters_ui_25/build_assets.gd:188)
+       [1] _initialize (res://tests/art_preview/monsters_ui_25/build_assets.gd:47)
+projectile yggdrasil_root_oracle_projectile source=(1254, 1254) target=(22, 15)
+icon realm_emblems/asgard source=(1254, 1254) target=(28, 28) alpha=352
+icon realm_emblems/midgard source=(1254, 1254) target=(28, 14) alpha=202
+icon realm_emblems/niflheim source=(1254, 1254) target=(23, 28) alpha=396
+icon realm_emblems/alfheim source=(1254, 1254) target=(28, 28) alpha=440
+icon realm_emblems/muspelheim source=(1254, 1254) target=(26, 28) alpha=404
+icon realm_emblems/svartalfheim source=(1254, 1254) target=(27, 28) alpha=440
+icon realm_emblems/vanaheim source=(1254, 1254) target=(27, 28) alpha=491
+icon realm_emblems/jotunheim source=(1254, 1254) target=(23, 28) alpha=404
+icon realm_emblems/yggdrasil_heart source=(1254, 1254) target=(24, 28) alpha=403
+icon status/super_armor source=(1254, 1254) target=(20, 18) alpha=237
+icon status/stun source=(1254, 1254) target=(17, 20) alpha=147
+icon status/luna_star_charge source=(1254, 1254) target=(19, 20) alpha=129
+icon status/frey_pursuit_mark source=(1254, 1254) target=(20, 13) alpha=107
+icon status/shield_break source=(1254, 1254) target=(19, 20) alpha=248
+icon status/low_hp source=(1254, 1254) target=(19, 20) alpha=209
+frame skill_slot source=(1254, 1254) target=(72, 72) margin=10 alpha=1407
+frame hp_bar source=(2170, 725) target=(320, 32) margin=8 alpha=2460
+frame card_panel source=(1536, 1024) target=(240, 112) margin=14 alpha=4685
+frame result_panel source=(1536, 1024) target=(960, 520) margin=18 alpha=4424
+frame menu_button source=(2170, 725) target=(360, 56) margin=10 alpha=2052
+title source=(1672, 941) target=(1920, 1080) scale=1.000
+ART25_BUILD_OK sheets=7 projectiles=3 emblems=9 status=6 frames=5 title=1

@@ -1,0 +1,52 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+ERROR: Realm 0 catalog monster is {  }, expected { "skin": "asgard_aegis_ram", "kind": "melee" }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/test_realm_monsters.gd:37)
+       [1] _check_catalog_and_spawns (res://tests/test_realm_monsters.gd:49)
+       [2] _run (res://tests/test_realm_monsters.gd:28)
+ERROR: Realm 2 catalog monster is {  }, expected { "skin": "niflheim_frost_owl", "kind": "ranged" }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/test_realm_monsters.gd:37)
+       [1] _check_catalog_and_spawns (res://tests/test_realm_monsters.gd:49)
+       [2] _run (res://tests/test_realm_monsters.gd:28)
+ERROR: Realm 3 catalog monster is {  }, expected { "skin": "alfheim_moon_moth", "kind": "ranged" }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/test_realm_monsters.gd:37)
+       [1] _check_catalog_and_spawns (res://tests/test_realm_monsters.gd:49)
+       [2] _run (res://tests/test_realm_monsters.gd:28)
+ERROR: Realm 5 catalog monster is {  }, expected { "skin": "svartalfheim_gear_beetle", "kind": "melee" }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/test_realm_monsters.gd:37)
+       [1] _check_catalog_and_spawns (res://tests/test_realm_monsters.gd:49)
+       [2] _run (res://tests/test_realm_monsters.gd:28)
+ERROR: Realm 6 catalog monster is {  }, expected { "skin": "vanaheim_vine_hound", "kind": "melee" }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/test_realm_monsters.gd:37)
+       [1] _check_catalog_and_spawns (res://tests/test_realm_monsters.gd:49)
+       [2] _run (res://tests/test_realm_monsters.gd:28)
+ERROR: Realm 7 catalog monster is {  }, expected { "skin": "jotunheim_rune_golem", "kind": "melee" }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/test_realm_monsters.gd:37)
+       [1] _check_catalog_and_spawns (res://tests/test_realm_monsters.gd:49)
+       [2] _run (res://tests/test_realm_monsters.gd:28)
+ERROR: Realm 8 catalog monster is {  }, expected { "skin": "yggdrasil_root_oracle", "kind": "ranged" }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/test_realm_monsters.gd:37)
+       [1] _check_catalog_and_spawns (res://tests/test_realm_monsters.gd:49)
+       [2] _run (res://tests/test_realm_monsters.gd:28)
+SCRIPT ERROR: Invalid call to function 'setup' in base 'CharacterBody2D (RealmMonster.gd)'. Expected 3 argument(s).
+   at: _check_missing_skin_fallback (res://tests/test_realm_monsters.gd:71)
+   GDScript backtrace (most recent call first):
+       [0] _check_missing_skin_fallback (res://tests/test_realm_monsters.gd:71)
+       [1] _run (res://tests/test_realm_monsters.gd:29)
+       [2] _check_catalog_and_spawns (res://tests/test_realm_monsters.gd:66)
