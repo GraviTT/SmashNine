@@ -97,6 +97,9 @@ const MAX_AIR_JUMPS := 3
 ## Hits inside an ultimate window freeze both fighters this much longer.
 const ULTIMATE_HITSTOP_SCALE := 2.2
 const HIT_SPARK_ART := "res://assets/art/effects/hit_spark.png"
+const CHARACTER_HIT_SPARK_ART := "res://assets/art/effects/hit/%s_hit.png"
+const STATUS_ICON_ART := "res://assets/art/ui/status/%s.png"
+const STATUS_ICON_Y := -121.0
 
 var player_id := 0
 var character_id := "frey"
@@ -212,6 +215,9 @@ var attack_serial := 0
 var attack_elapsed := 0.0
 var attack_startup := 0.0
 var hitstun_timer := 0.0
+## Presentation-only timer for explicit stun attacks and hazards. Ordinary brief hitstun does not
+## show the stun status icon.
+var status_stun_timer := 0.0
 var hitstop_timer := 0.0
 var current_attack_started_airborne := false
 var was_on_floor_last_frame := false
@@ -240,6 +246,9 @@ var last_attack: Node
 @onready var attack_scene := preload("res://scripts/Attack.gd")
 @onready var projectile_scene := preload("res://scripts/Projectile.gd")
 var guard_visual: Line2D
+var status_icon: Sprite2D
+var status_icon_kind := ""
+var status_icon_phase := 0.0
 
 func _ready() -> void:
 	add_to_group("players")
@@ -248,6 +257,7 @@ func _ready() -> void:
 	body.pivot_offset = body.size * 0.5
 	configure_character_sprite()
 	_create_guard_visual()
+	_create_status_icon()
 	was_on_floor_last_frame = is_on_floor()
 	_update_visuals()
 	_update_character_sprite(true)
@@ -336,6 +346,7 @@ func _physics_process(delta: float) -> void:
 	if hitstop_timer > 0.0:
 		hitstop_timer = maxf(hitstop_timer - delta, 0.0)
 		return
+	_update_status_icon(delta)
 	attack_lock_timer = maxf(attack_lock_timer - delta, 0.0)
 	if attack_lock_timer > 0.0:
 		attack_elapsed += delta
@@ -1203,7 +1214,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	_end_skill_dash()
 	character_on_hit()
 	_play_hit_feedback(final_damage, hit_direction, final_knockback)
-	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, final_knockback)
+	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, final_knockback, attacker)
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
@@ -1234,7 +1245,7 @@ func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, d
 	else:
 		_play_armor_flash()
 	hitstop_timer = VICTIM_HITSTOP * 0.5
-	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, 0.0)
+	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, 0.0, attacker)
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
@@ -1295,7 +1306,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 	action_locked_until_land = false
 	character_on_hit()
 	_play_hit_feedback(final_damage, hit_direction, effect_knockback)
-	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, effect_knockback)
+	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, effect_knockback, attacker)
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
@@ -1330,20 +1341,8 @@ func apply_yuki_seal_burst(attacker: Node, activation_id: int, damage: float, kn
 	return apply_hit(attacker, damage, knockback, direction)
 
 func _play_stun_effect(stun_duration: float) -> void:
-	var marker := Label.new()
-	marker.text = "***"
-	marker.position = global_position + Vector2(-22, -116)
-	marker.size = Vector2(44, 24)
-	marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	marker.add_theme_font_size_override("font_size", 18)
-	marker.modulate = Color(1.0, 0.9, 0.2)
-	marker.z_index = 7
-	get_parent().add_child(marker)
-	var tween := marker.create_tween()
-	tween.tween_property(marker, "position", marker.position + Vector2(0, -8), minf(stun_duration, 0.2))
-	tween.tween_interval(maxf(stun_duration - 0.4, 0.05))
-	tween.tween_property(marker, "modulate:a", 0.0, 0.2)
-	tween.tween_callback(marker.queue_free)
+	status_stun_timer = maxf(status_stun_timer, stun_duration)
+	_update_status_icon(0.0)
 
 func _get_guard_result(attacker: Node, attack_direction: Vector2) -> int:
 	if not is_guarding or not is_on_floor():
@@ -1690,12 +1689,24 @@ func _play_hit_feedback(damage: float, direction: Vector2, final_knockback: floa
 	number_tween.parallel().tween_property(number, "modulate:a", 0.0, 0.42)
 	number_tween.tween_callback(number.queue_free)
 
-func _spawn_hit_effect(hit_position: Vector2, damage: float, base_knockback: float) -> void:
+func _spawn_hit_effect(hit_position: Vector2, damage: float, base_knockback: float, attacker: Node = null) -> void:
 	var spark_size := clampf(18.0 + damage * 1.35 + base_knockback * 0.035, 24.0, 56.0) * GAME_SCALE.COMBAT
-	var spark_sheet := SHEET_ART.original_texture(HIT_SPARK_ART)
+	var source: Node = attacker if is_instance_valid(attacker) else self
+	var source_id := str(source.get("character_id")) if source.get("character_id") != null else character_id
+	# Brave Luna is a state of the Luna node, not a registry character id. Her existing attack
+	# effect name is the visual-only source of truth for choosing the Brave spark.
+	if source.has_method("attack_effect_name") and str(source.attack_effect_name()).begins_with("luna_brave"):
+		source_id = "luna_brave"
+	var spark_path := CHARACTER_HIT_SPARK_ART % source_id
+	var spark_sheet := SHEET_ART.original_texture(spark_path)
+	if spark_sheet == null:
+		spark_path = HIT_SPARK_ART
+		spark_sheet = SHEET_ART.original_texture(spark_path)
 	if spark_sheet != null:
 		# Original 4-frame burst (48 px cells), sized like the old spark.
 		var burst := AnimatedSprite2D.new()
+		burst.name = "HitSpark_%s" % source_id
+		burst.set_meta("hit_spark_path", spark_path)
 		var frames := SHEET_FRAMES.create_frames()
 		var cell := spark_sheet.get_height()
 		SHEET_FRAMES.add_strip(frames, &"burst", spark_sheet, Vector2i(cell, cell), 0, 4, 44.0, false)
@@ -1718,6 +1729,38 @@ func _spawn_hit_effect(hit_position: Vector2, damage: float, base_knockback: flo
 	tween.tween_property(spark, "scale", Vector2(1.65, 1.65), 0.09)
 	tween.parallel().tween_property(spark, "modulate:a", 0.0, 0.09)
 	tween.tween_callback(spark.queue_free)
+
+## A local helper above the nameplate. ART-25 icons are already 24 px, so they stay at 1x while
+## the 128 px fighter art uses its own scale. The lowest bob position ends one pixel above the
+## NameLabel at y=-105.
+func _create_status_icon() -> void:
+	status_icon = Sprite2D.new()
+	status_icon.name = "StatusIcon"
+	status_icon.position = Vector2(0, STATUS_ICON_Y)
+	status_icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	status_icon.z_index = 7
+	status_icon.visible = false
+	add_child(status_icon)
+
+func _update_status_icon(delta: float) -> void:
+	if not is_instance_valid(status_icon):
+		return
+	status_stun_timer = maxf(status_stun_timer - delta, 0.0)
+	status_icon_phase = fmod(status_icon_phase + delta * 5.0, TAU)
+	status_icon.position = Vector2(0, STATUS_ICON_Y + sin(status_icon_phase) * 2.0)
+	var kind := ""
+	if status_stun_timer > 0.0 and hitstun_timer > 0.0:
+		kind = "stun"
+	elif ultimate_armor_timer > 0.0:
+		kind = "super_armor"
+	if kind == "":
+		status_icon.visible = false
+		status_icon_kind = ""
+		return
+	if kind != status_icon_kind:
+		status_icon.texture = SHEET_ART.original_texture(STATUS_ICON_ART % kind)
+		status_icon_kind = kind
+	status_icon.visible = status_icon.texture != null
 
 func _spawn_hit_slash(hit_position: Vector2, base_knockback: float) -> void:
 	var slash_length := clampf(base_knockback * 0.18, 46.0, 92.0) * GAME_SCALE.COMBAT

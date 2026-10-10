@@ -1,5 +1,11 @@
 # Frey original sprite sheet
 
+## CODEX-ART-28 move-row 보정
+
+`frey_moves_sheet.png`의 `descent` 3–5번 프레임과 `spike_followup` 4번 프레임을 idle 체급에 맞춰 다시 그렸다. 얼굴과 검 진행 방향이 보이도록 하강 실루엣을 분리했고, 발/중심 기준은 기존과 같이 y=120을 따른다. 최종 768×1024 시트의 셀 크기는 128×128이며 edge audit는 0이다.
+
+ImageGen 1차/2차 원본과 전후 비교는 `tests/art_preview/fx_28/`에 보관한다. 최종 셀은 `build_assets.gd`가 Frey 기준 팔레트, hard alpha, 최근접 축소만 적용해 만든다.
+
 `frey_sheet.png` is the active original-art Frey atlas. The illustration
 `frey_illustration.png` is the face, costume, weapon, shield, palette, and proportion reference.
 

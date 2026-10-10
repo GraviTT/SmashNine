@@ -1,5 +1,11 @@
 # Smash Nine Realms effect art
 
+## 공격자별 피격 스파크 (CODEX-ART-28)
+
+`hit/<id>_hit.png`는 384×96 RGBA8 가로 스트립이며, 96×96 프레임 4개를 44 fps one-shot으로 재생한다. 순서는 접촉 섬광 → 최대 폭발 → 분리 광선 → 잔광이다. `frey`, `luna`, `luna_brave`, `nova`, `rio`, `yuki`가 각각 자기 공격 VFX의 색과 모티프를 사용한다. 해당 파일이 없거나 원본 아트 모드가 아니면 기존 `hit_spark.png` 또는 사각형 효과로 대체한다.
+
+원본은 같은 폴더의 `<id>_hit_source.png`이며, `tests/art_preview/fx_28/build_assets.gd`가 확대 없이 96px 그리드, 중앙 앵커, hard alpha로 축소한다. 비교 시트는 `tests/art_preview/fx_28/hit_sparks_contact_{1x,4x}.png`이다.
+
 Godot 4.7용 1x 픽셀 이펙트 세트다. 모든 PNG는 RGBA, 투명 배경, 최근접 픽셀 그리드이며 2026-10-08의 2배 전투 스케일에서 보이는 크기 자체로 다시 제작했다. 런타임에서 예전 저해상도 파일을 확대하지 않는다.
 
 ## 파일 계약
