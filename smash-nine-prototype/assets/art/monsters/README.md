@@ -36,3 +36,21 @@
 | Yggdrasil Heart | `yggdrasil_root_oracle` | ranged | `yggdrasil_root_oracle_projectile.png` |
 
 `*_source.png`는 내장 ImageGen 원본입니다. `tests/art_preview/monsters_ui_25/build_assets.gd`가 Godot `Image` API로 최근접 축소만 수행하고, 정확한 셀 크기·미사용 셀 투명화·발 기준 y=72를 적용해 최종 파일을 만듭니다.
+
+## ART-31 렐름별 두 번째 스킨
+
+각 렐름은 이제 근접/원거리 한 쌍을 가집니다. 신규 원거리형은 같은 이름의 `*_projectile.png`(24×24)를 사용합니다.
+
+| 렐름 | 신규 스킨 | 종류 |
+|---|---|---|
+| Asgard | `asgard_runic_raven` | ranged |
+| Niflheim | `niflheim_glacier_wolf` | melee |
+| Alfheim | `alfheim_moon_stag` | melee |
+| Svartalfheim | `svartalfheim_cog_drone` | ranged |
+| Vanaheim | `vanaheim_seed_sprite` | ranged |
+| Jotunheim | `jotunheim_storm_wisp` | ranged |
+| Yggdrasil Heart | `yggdrasil_root_guardian` | melee |
+| Midgard | `midgard_rooftop_slinger` | ranged |
+| Muspelheim | `muspelheim_magma_boar` | melee |
+
+`tests/art_preview/monsters_31/build_assets.gd`가 생성 원본을 최근접 축소해 576×384 시트로 만들고, 원거리 5종의 고유 모티프를 24×24 투사체로 분리합니다.
