@@ -25,6 +25,7 @@
 ## 도구 · 환경
 - Godot 창 모드 캡처는 잠깐 창이 뜬다. 한 번에 하나만.
 - 로컬 웹 확인은 브라우저 창 + `.claude/launch.json`의 `smashnine-web`(8060), 마칠 때 닫는다.
+- 모션 뷰어(사용자 10-10 "앞으로는 그걸로 간단히 확인"): 캐릭터·몬스터 시트가 바뀐 회차는 마무리 때 `node tools/motion_viewer/build.mjs` 후 같은 Artifact(https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU)에 다시 게시하고 보고에 주소를 넣는다(`tools/motion_viewer/README.md`).
 
 ## 품질 · 성능 기준
 - 규칙 변경은 같은 시드 소크 전후로 잰다 (`tests/analysis/run_sweep.ps1` + `sweep_summary.ps1`).

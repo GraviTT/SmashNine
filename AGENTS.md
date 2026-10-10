@@ -46,6 +46,8 @@ From `smash-nine-prototype/`:
 - Screenshots (windowed, not headless): `<godot> --path . -s tests/capture_screens.gd -- --out=../reports/screens`
 - Web build (from repo root): `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`; serve with `node tools/serve_web.js build/web 8060`; publish with `tools/deploy_pages.ps1` (lead only: it pushes `gh-pages`)
 
+- Motion viewer (every fighter/monster motion from the sheets, user's quick check): `node tools/motion_viewer/build.mjs`, then republish `tools/motion_viewer/dist/index.html` to https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU (`tools/motion_viewer/README.md`)
+
 A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with exit code 0.
 
 ## Code conventions

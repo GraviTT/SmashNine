@@ -4,8 +4,22 @@
     {
       "name": "smashnine-web",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["tools/serve_web.js", "build/web", "8060"],
+      "runtimeArgs": [
+        "tools/serve_web.js",
+        "build/web",
+        "8060"
+      ],
       "port": 8060
+    },
+    {
+      "name": "motion-viewer",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "tools/serve_web.js",
+        "tools/motion_viewer/dist",
+        "8071"
+      ],
+      "port": 8071
     }
   ]
 }
