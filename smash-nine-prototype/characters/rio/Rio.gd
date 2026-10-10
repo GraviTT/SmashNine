@@ -31,6 +31,16 @@ const GEM_COLORS: Array[Color] = [
 	Color(1.0, 0.35, 0.45), Color(1.0, 0.75, 0.3), Color(0.5, 1.0, 0.5),
 	Color(0.35, 0.85, 1.0), Color(0.6, 0.5, 1.0), Color(1.0, 0.5, 0.95)
 ]
+const MOVE_SHEET_ROWS := [
+	["mana_combo", 6, 18.0, false],
+	["rising_slash", 4, 20.0, false],
+	["low_sweep", 4, 20.0, false],
+	["air_slash", 4, 26.7, false],
+	["plunge", 5, 10.0, false],
+	["dimension_slash", 5, 19.2, false],
+	["rune_shield", 6, 12.0, false],
+	["infinity_overdrive", 6, 11.0, false],
+]
 
 var combo_step := 0
 var combo_timer := 0.0
@@ -47,28 +57,31 @@ var overdrive_circle: AnimatedSprite2D
 func configure_character_sprite() -> void:
 	_configure_original_sheet("rio")
 
+func get_move_sheet_rows() -> Array:
+	return MOVE_SHEET_ROWS
+
 func perform_basic_attack(attack_type: String, _direction: Vector2) -> void:
 	match attack_type:
 		"up", "air_up":
 			_reset_combo()
-			_start_attack(0.07, 0.2, Callable(self, "_rising_slash").bind(attack_type == "air_up"))
+			_start_attack(0.07, 0.2, Callable(self, "_rising_slash").bind(attack_type == "air_up"), Vector2i(-1, -1), &"rising_slash")
 		"down":
 			_reset_combo()
-			_start_attack(0.08, 0.2, Callable(self, "_low_sweep"))
+			_start_attack(0.08, 0.2, Callable(self, "_low_sweep"), Vector2i(-1, -1), &"low_sweep")
 		"air_down":
 			_reset_combo()
 			_plunge_start()
 		"air_side":
 			_reset_combo()
-			_start_attack(0.05, 0.15, Callable(self, "_air_slash"))
+			_start_attack(0.05, 0.15, Callable(self, "_air_slash"), Vector2i(-1, -1), &"air_slash")
 		_:
 			match _consume_combo_step():
 				0:
-					_start_attack(0.05, 0.12, Callable(self, "_mana_slash_one"))
+					_start_attack(0.05, 0.12, Callable(self, "_mana_slash_one"), Vector2i(-1, -1), &"mana_combo", Vector2i(0, 1))
 				1:
-					_start_attack(0.05, 0.13, Callable(self, "_mana_slash_two"))
+					_start_attack(0.05, 0.13, Callable(self, "_mana_slash_two"), Vector2i(-1, -1), &"mana_combo", Vector2i(2, 3))
 				_:
-					_start_attack(0.08, 0.22, Callable(self, "_mana_wave"))
+					_start_attack(0.08, 0.22, Callable(self, "_mana_wave"), Vector2i(-1, -1), &"mana_combo", Vector2i(4, 5))
 
 func perform_skill_one() -> void:
 	if not is_on_floor() and not air_blink_available:
@@ -187,7 +200,7 @@ func _air_slash() -> void:
 ## Air down: a diagonal plunge. Locked until landing, so a whiff is punishable.
 func _plunge_start() -> void:
 	attack_lock_timer = 0.5
-	_play_sprite_action(&"attack", 0.5)
+	_play_move_sprite_pose(&"plunge", -1, -1, 0.5)
 	action_locked_until_land = true
 	current_attack_started_airborne = true
 	velocity = Vector2(facing * 60.0, -80.0 * GAME_SCALE.JUMP_SPEED)
@@ -227,7 +240,7 @@ func _dimension_slash_start() -> void:
 	if not is_on_floor():
 		air_blink_available = false
 	attack_lock_timer = BLINK_HOLD + BLINK_RECOVERY
-	_play_sprite_action(&"attack", BLINK_HOLD + BLINK_RECOVERY)
+	_play_move_sprite_pose(&"dimension_slash", -1, -1, BLINK_HOLD + BLINK_RECOVERY)
 	current_attack_started_airborne = not is_on_floor()
 	_freeze_movement(BLINK_HOLD)
 	velocity = Vector2(velocity.x * 0.3, minf(velocity.y, 0.0) * 0.3)
@@ -274,7 +287,10 @@ func _rune_shield_start() -> void:
 	rune_absorbed_hits = 0
 	rune_absorbed_knockback = 0.0
 	attack_lock_timer = RUNE_DURATION
-	_play_sprite_action(&"shield", RUNE_DURATION)
+	if character_sprite.sprite_frames.has_animation(_get_sprite_animation_name(&"rune_shield")):
+		_play_move_sprite_pose(&"rune_shield", -1, -1, RUNE_DURATION)
+	else:
+		_play_sprite_action(&"shield", RUNE_DURATION)
 	_draw_skill_art("rio_l", Vector2(14.0 * facing, -36.0), Vector2(facing, 0.0), 1.3, true)
 	current_attack_started_airborne = false
 	_freeze_movement(RUNE_DURATION)
@@ -358,7 +374,7 @@ func _overdrive_start() -> void:
 	_reset_combo()
 	_clear_overdrive()
 	attack_lock_timer = 0.18
-	_play_sprite_action(&"attack", 0.18)
+	_play_move_sprite_pose(&"infinity_overdrive", -1, -1, 0.18)
 	_play_attack_windup()
 	overdrive_time = 0.0
 	for index in OVERDRIVE_SWORDS:

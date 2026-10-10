@@ -1,7 +1,6 @@
 extends SceneTree
-## CODEX-ART-23: optional move atlases add a distinct animation for every Frey move, while a
-## missing atlas preserves the old attack-row slice. On the old code this test fails because none
-## of the frey_<move> animations exist and every checked move reports frey_attack.
+## CODEX-ART-23/29: optional move atlases add distinct animations for each wired move, while a
+## missing atlas preserves the old common-sheet pose.
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -35,6 +34,7 @@ const LUNA_ROW_COUNTS := {
 
 var arena: Node2D
 var failed := false
+var generated_moves_sheet: ImageTexture
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -42,6 +42,9 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
+	var image := Image.create(768, 1024, false, Image.FORMAT_RGBA8)
+	image.fill(Color.WHITE)
+	generated_moves_sheet = ImageTexture.create_from_image(image)
 	var probe := _fighter(false)
 	for row in ROW_COUNTS:
 		var animation := StringName("frey_%s" % row)
@@ -76,13 +79,16 @@ func _run() -> void:
 	fallback.queue_free()
 	await process_frame
 	await _test_luna_rows_and_moves()
+	await _test_character_moves("nova")
+	await _test_character_moves("yuki")
+	await _test_character_moves("rio")
 
 	arena.queue_free()
 	await process_frame
 	if failed:
 		quit(1)
 		return
-	print("Move sheet tests passed (Frey, Luna, Brave Luna rows and missing-sheet fallback)")
+	print("Move sheet tests passed (Frey, Luna, Brave Luna, Nova, Yuki, Rio rows and missing-sheet fallback)")
 	quit(0)
 
 func _fighter(missing_moves: bool) -> Node:
@@ -166,6 +172,88 @@ func _expect_luna(label: String, row: String, brave: bool, play: Callable) -> vo
 		_fail("%s should play %s, got %s" % [label, expected, fighter.character_sprite.animation])
 	fighter.queue_free()
 	await process_frame
+
+func _test_character_moves(character_id: String) -> void:
+	var probe := _move_fighter(character_id, true)
+	var rows: Array = probe.get_move_sheet_rows()
+	for spec in rows:
+		var row := String(spec[0])
+		var animation := StringName("%s_%s" % [character_id, row])
+		if not probe.character_sprite.sprite_frames.has_animation(animation):
+			_fail("%s move sheet should add %s" % [character_id.capitalize(), animation])
+		elif probe.character_sprite.sprite_frames.get_frame_count(animation) != int(spec[1]):
+			_fail("%s should have %d frames" % [animation, int(spec[1])])
+	probe.queue_free()
+	await process_frame
+
+	for spec in rows:
+		var row := String(spec[0])
+		var fighter := _move_fighter(character_id, true)
+		_play_character_row(fighter, character_id, row)
+		var expected := StringName("%s_%s" % [character_id, row])
+		if fighter.character_sprite.animation != expected:
+			_fail("%s %s should play %s, got %s" % [character_id.capitalize(), row, expected, fighter.character_sprite.animation])
+		fighter.queue_free()
+		await process_frame
+
+	for spec in rows:
+		var row := String(spec[0])
+		var fallback := _move_fighter(character_id, false)
+		_play_character_row(fallback, character_id, row)
+		var expected_fallback := StringName("%s_attack" % character_id)
+		if character_id == "nova" and row == "vector_shift":
+			expected_fallback = &"nova_jump"
+		elif character_id == "rio" and row == "rune_shield":
+			expected_fallback = &"rio_shield"
+		if fallback.character_sprite.animation != expected_fallback:
+			_fail("%s %s without a move sheet should fall back to %s, got %s" % [character_id.capitalize(), row, expected_fallback, fallback.character_sprite.animation])
+		fallback.queue_free()
+		await process_frame
+
+func _move_fighter(character_id: String, with_moves: bool) -> Node:
+	var fighter: Node = PLAYER_FACTORY.create(character_id)
+	# Force setup to ignore any real sheet that may arrive from the parallel art unit.
+	fighter.moves_sheet_path_override = "res://tests/fixtures/missing_moves_sheet.png"
+	arena.add_child(fighter)
+	fighter.setup(CHARACTER_REGISTRY.get_characters()[character_id], 3, false)
+	fighter.set_physics_process(false)
+	fighter.is_dummy = true
+	if with_moves:
+		fighter._add_move_sheet_animations(fighter.character_sprite.sprite_frames, character_id, generated_moves_sheet, fighter.get_move_sheet_rows())
+	return fighter
+
+func _play_character_row(fighter: Node, character_id: String, row: String) -> void:
+	match character_id:
+		"nova":
+			match row:
+				"vector_side": fighter.perform_basic_attack("neutral", Vector2.RIGHT)
+				"vector_upper": fighter.perform_basic_attack("up", Vector2.UP)
+				"compression_stomp": fighter.perform_basic_attack("down", Vector2.DOWN)
+				"air_side": fighter.perform_basic_attack("air_side", Vector2.RIGHT)
+				"meteor_kick": fighter.perform_basic_attack("air_down", Vector2.DOWN)
+				"vector_shift": fighter.perform_skill_one()
+				"gravity_brake": fighter.perform_skill_two()
+				"slingshot_start": fighter.perform_ultimate()
+		"yuki":
+			match row:
+				"talisman_side": fighter.perform_basic_attack("neutral", Vector2.RIGHT)
+				"talisman_up": fighter.perform_basic_attack("up", Vector2.UP)
+				"ground_ward": fighter.perform_basic_attack("down", Vector2.DOWN)
+				"talisman_air_side": fighter.perform_basic_attack("air_side", Vector2.RIGHT)
+				"talisman_air_down": fighter.perform_basic_attack("air_down", Vector2.DOWN)
+				"seal_place": fighter.perform_skill_one()
+				"seal_activate": fighter.perform_skill_two()
+				"grand_ward": fighter.perform_ultimate()
+		"rio":
+			match row:
+				"mana_combo": fighter.perform_basic_attack("neutral", Vector2.RIGHT)
+				"rising_slash": fighter.perform_basic_attack("up", Vector2.UP)
+				"low_sweep": fighter.perform_basic_attack("down", Vector2.DOWN)
+				"air_slash": fighter.perform_basic_attack("air_side", Vector2.RIGHT)
+				"plunge": fighter.perform_basic_attack("air_down", Vector2.DOWN)
+				"dimension_slash": fighter.perform_skill_one()
+				"rune_shield": fighter.perform_skill_two()
+				"infinity_overdrive": fighter.perform_ultimate()
 
 func _fail(message: String) -> void:
 	push_error(message)

@@ -31,6 +31,16 @@ const ULTIMATE_NONE := 0
 const ULTIMATE_CORE := 1
 const ULTIMATE_ORBIT := 2
 const ULTIMATE_LAUNCH := 3
+const MOVE_SHEET_ROWS := [
+	["vector_side", 4, 23.5, false],
+	["vector_upper", 4, 22.0, false],
+	["compression_stomp", 4, 17.4, false],
+	["air_side", 4, 26.7, false],
+	["meteor_kick", 5, 25.0, false],
+	["vector_shift", 4, 18.2, false],
+	["gravity_brake", 5, 11.9, false],
+	["slingshot_start", 6, 14.0, false],
+]
 
 var vector_shift_active := false
 var vector_shift_timer := 0.0
@@ -66,23 +76,26 @@ var ultimate_preview_target: Line2D
 func configure_character_sprite() -> void:
 	_configure_original_sheet("nova")
 
+func get_move_sheet_rows() -> Array:
+	return MOVE_SHEET_ROWS
+
 func perform_basic_attack(attack_type: String, input_direction: Vector2) -> void:
 	var momentum := _get_momentum_ratio()
 	var impact_direction := _get_impact_direction(input_direction)
 	_cancel_vector_shift()
 	match attack_type:
 		"up":
-			_start_attack(0.07, 0.19, Callable(self, "_vector_uppercut").bind(momentum, false))
+			_start_attack(0.07, 0.19, Callable(self, "_vector_uppercut").bind(momentum, false), Vector2i(-1, -1), &"vector_upper")
 		"air_up":
-			_start_attack(0.06, 0.17, Callable(self, "_vector_uppercut").bind(momentum, true))
+			_start_attack(0.06, 0.17, Callable(self, "_vector_uppercut").bind(momentum, true), Vector2i(-1, -1), &"vector_upper")
 		"down":
-			_start_attack(0.1, 0.23, Callable(self, "_compression_stomp").bind(momentum))
+			_start_attack(0.1, 0.23, Callable(self, "_compression_stomp").bind(momentum), Vector2i(-1, -1), &"compression_stomp")
 		"air_down":
-			_start_attack(0.07, 0.2, Callable(self, "_meteor_kick_start").bind(momentum))
+			_start_attack(0.07, 0.2, Callable(self, "_meteor_kick_start").bind(momentum), Vector2i(-1, -1), &"meteor_kick")
 		"air_side":
-			_start_attack(0.05, 0.15, Callable(self, "_vector_side_strike").bind(momentum, true, impact_direction))
+			_start_attack(0.05, 0.15, Callable(self, "_vector_side_strike").bind(momentum, true, impact_direction), Vector2i(-1, -1), &"air_side")
 		_:
-			_start_attack(0.065, 0.17, Callable(self, "_vector_side_strike").bind(momentum, false, Vector2(facing, -0.04)))
+			_start_attack(0.065, 0.17, Callable(self, "_vector_side_strike").bind(momentum, false, Vector2(facing, -0.04)), Vector2i(-1, -1), &"vector_side")
 
 ## One vector shift per airtime, like the skill itself (Codex QA-14 round 6: bots asked for it
 ## 35,321 frames for 27 uses).
@@ -239,7 +252,10 @@ func _start_vector_shift() -> void:
 		facing = signi(int(vector_shift_direction.x))
 	attack_lock_timer = maxf(attack_lock_timer, 0.045)
 	current_attack_started_airborne = not is_on_floor()
-	_play_sprite_action(&"jump", VECTOR_SHIFT_DURATION)
+	if character_sprite.sprite_frames.has_animation(_get_sprite_animation_name(&"vector_shift")):
+		_play_move_sprite_pose(&"vector_shift", -1, -1, VECTOR_SHIFT_DURATION)
+	else:
+		_play_sprite_action(&"jump", VECTOR_SHIFT_DURATION)
 	_play_shift_flash(vector_shift_direction)
 
 func _cancel_vector_shift() -> void:
@@ -252,7 +268,7 @@ func _gravity_brake_start() -> void:
 	meteor_diving = false
 	brake_restore_consumed = false
 	attack_lock_timer = 0.42
-	_play_sprite_action(&"attack", 0.42)
+	_play_move_sprite_pose(&"gravity_brake", -1, -1, 0.42)
 	_freeze_movement(0.08)
 	velocity = Vector2.ZERO
 	_play_brake_charge(momentum)
@@ -303,7 +319,7 @@ func _gravity_slingshot_start() -> void:
 	ultimate_contact_requested = false
 	ultimate_saved_collision_mask = collision_mask
 	attack_lock_timer = maxf(attack_lock_timer, 0.16)
-	_play_sprite_action(&"attack", 0.16)
+	_play_move_sprite_pose(&"slingshot_start", -1, -1, 0.16)
 	_create_singularity_visual()
 
 func _begin_ultimate_orbit() -> void:
