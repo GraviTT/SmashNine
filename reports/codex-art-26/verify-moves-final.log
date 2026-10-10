@@ -1,0 +1,50 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+VERIFY nova_male frames=36 partial_alpha=0 scale_anchor_delta=0
+VERIFY nova_female frames=36 partial_alpha=0 scale_anchor_delta=0
+VERIFY yuki frames=36 partial_alpha=0 scale_anchor_delta=0
+VERIFY rio_male frames=40 partial_alpha=0 scale_anchor_delta=0
+VERIFY rio_female frames=40 partial_alpha=0 scale_anchor_delta=0
+ERROR: nova_male air row 3 anchor center=67.2 live=71.5
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: nova_male air row 4 anchor center=66.0 live=71.5
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: nova_male air row 5 anchor center=75.6 live=71.5
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: nova_female air row 3 anchor center=62.2 live=66.3
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: nova_female air row 4 anchor center=59.8 live=66.3
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: yuki air row 3 anchor center=67.3 live=71.8
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: yuki air row 4 anchor center=67.7 live=71.8
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: rio_male air row 4 anchor center=67.4 live=74.0
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: rio_female air row 3 anchor center=78.2 live=85.6
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+ERROR: rio_female air row 4 anchor center=75.9 live=85.6
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/moves_26/verify_moves.gd:70)
+MOVES_26_VERIFY_FAILED count=10
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)

@@ -32,17 +32,53 @@ const SOURCE_EDGES := {
 const KNOWN_CUT := {}
 
 var failures: Array[String] = []
+var moves_sheet_count := 0
 
 func _initialize() -> void:
 	for path in SHEETS:
 		_check_sheet(path)
+	_check_all_moves_sheets("res://assets/art")
 	if failures.is_empty():
-		print("Sprite frame tests passed (8 sheets, 184 frames)")
+		print("Sprite frame tests passed (8 main sheets, 184 frames, %d moves sheets edge-clean)" % moves_sheet_count)
 		quit(0)
 	else:
 		for failure in failures:
 			push_error(failure)
 		quit(1)
+
+
+## Move sheets may have character-specific row counts, but all use 128 px cells.  A frame is
+## considered to touch an edge when at least three opaque pixels lie on any one cell edge.
+func _check_all_moves_sheets(directory: String) -> void:
+	for file in DirAccess.get_files_at(directory):
+		if file.ends_with("_moves_sheet.png"):
+			_check_moves_sheet_edges(directory.path_join(file))
+	for child in DirAccess.get_directories_at(directory):
+		_check_all_moves_sheets(directory.path_join(child))
+
+
+func _check_moves_sheet_edges(path: String) -> void:
+	var sheet := Image.load_from_file(ProjectSettings.globalize_path(path))
+	moves_sheet_count += 1
+	if sheet == null or sheet.is_empty():
+		failures.append("%s: cannot load moves sheet" % path)
+		return
+	if sheet.get_width() % CELL != 0 or sheet.get_height() % CELL != 0:
+		failures.append("%s: dimensions are not multiples of %d" % [path, CELL])
+		return
+	for row in sheet.get_height() / CELL:
+		for column in sheet.get_width() / CELL:
+			var x0 := column * CELL
+			var y0 := row * CELL
+			var edge_counts := [0, 0, 0, 0]
+			for index in CELL:
+				if sheet.get_pixel(x0, y0 + index).a >= 0.5: edge_counts[0] += 1
+				if sheet.get_pixel(x0 + CELL - 1, y0 + index).a >= 0.5: edge_counts[1] += 1
+				if sheet.get_pixel(x0 + index, y0).a >= 0.5: edge_counts[2] += 1
+				if sheet.get_pixel(x0 + index, y0 + CELL - 1).a >= 0.5: edge_counts[3] += 1
+			for edge in edge_counts.size():
+				if edge_counts[edge] >= 3:
+					failures.append("%s r%dc%d: %d opaque pixels on cell edge %d" % [path.get_file(), row, column, edge_counts[edge], edge])
 
 func _check_sheet(path: String) -> void:
 	var sheet := Image.load_from_file(ProjectSettings.globalize_path(path))
