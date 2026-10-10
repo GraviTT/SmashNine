@@ -20,6 +20,16 @@ const ULTIMATE_AFTERSHOCK_DAMAGE := 10.0
 const PURSUIT_TIME := 1.0
 const PURSUIT_SPEED := 1.15
 const PURSUIT_MARK_RISE := 118.0
+const MOVE_SHEET_ROWS := [
+	["attack_up", 4, 14.0, false],
+	["attack_down", 4, 14.0, false],
+	["attack_air_side", 4, 14.0, false],
+	["dash_strike", 4, 14.0, false],
+	["rising_cleave", 5, 14.0, false],
+	["spike_followup", 4, 14.0, false],
+	["descent", 6, 14.0, false],
+	["tumble", 4, 14.0, true],
+]
 
 var combo_step := 0
 var combo_timer := 0.0
@@ -33,18 +43,21 @@ var pursuit_mark: Node2D
 func configure_character_sprite() -> void:
 	_configure_original_sheet("frey")
 
+func get_move_sheet_rows() -> Array:
+	return MOVE_SHEET_ROWS
+
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	_end_pursuit()
 	match attack_type:
 		"up", "air_up":
 			_reset_combo()
-			_start_attack(0.12, 0.23, Callable(self, "_up_slash"), Vector2i(1, 3))
+			_start_attack(0.12, 0.23, Callable(self, "_up_slash"), Vector2i(1, 3), &"attack_up")
 		"down", "air_down":
 			_reset_combo()
-			_start_attack(0.17, 0.29, Callable(self, "_down_cut"), Vector2i(2, 3))
+			_start_attack(0.17, 0.29, Callable(self, "_down_cut"), Vector2i(2, 3), &"attack_down")
 		"air_side":
 			_reset_combo()
-			_start_attack(0.08, 0.17, Callable(self, "_air_slash"), Vector2i(1, 2))
+			_start_attack(0.08, 0.17, Callable(self, "_air_slash"), Vector2i(1, 2), &"attack_air_side")
 		_:
 			# Each hit plays its own part of the attack row: a quick cut, a second cut, the wide
 			# finisher (they all replayed the whole row before).
@@ -243,7 +256,7 @@ func _dash_strike_start() -> void:
 	character_on_hit()
 	attack_lock_timer = DASH_HOLD_TIME + 0.34
 	# Wind-up frame held while she aims, then the thrust frame for the dash.
-	_play_sprite_pose(&"attack", 0, 0, DASH_HOLD_TIME)
+	_play_move_sprite_pose(&"dash_strike", 0, 0, DASH_HOLD_TIME)
 	current_attack_started_airborne = not is_on_floor()
 	_freeze_movement(DASH_HOLD_TIME)
 	var held_facing := facing
@@ -259,7 +272,7 @@ func _dash_strike_start() -> void:
 	else:
 		facing = held_facing
 	movement_freeze_timer = 0.0
-	_play_sprite_pose(&"attack", 3, 3, 0.34)
+	_play_move_sprite_pose(&"dash_strike", 3, 3, 0.34)
 	_dash_strike(dash_direction)
 
 ## A white glint before the third hit: the finisher is coming.
@@ -301,7 +314,7 @@ func _rising_cleave_start() -> void:
 	if horizontal != 0:
 		facing = horizontal
 	_end_pursuit()
-	_start_attack(0.22, 0.38, Callable(self, "_rising_cleave"), Vector2i(1, 3))
+	_start_attack(0.22, 0.38, Callable(self, "_rising_cleave"), Vector2i(1, 3), &"rising_cleave")
 
 func _rising_cleave() -> void:
 	velocity.y = minf(velocity.y, -560.0 * GAME_SCALE.JUMP_SPEED)
@@ -324,7 +337,7 @@ func _ultimate_start() -> void:
 	current_attack_started_airborne = false
 	if is_on_floor():
 		attack_lock_timer = 0.95
-		_play_sprite_action(&"attack", 0.95)
+		_play_move_sprite_pose(&"descent", -1, -1, 0.95)
 		_freeze_movement(0.22)
 		velocity = Vector2.ZERO
 		_play_ultimate_charge()
@@ -336,7 +349,7 @@ func _ultimate_start() -> void:
 		_ultimate_impact()
 	else:
 		attack_lock_timer = 1.45
-		_play_sprite_action(&"attack", 1.45)
+		_play_move_sprite_pose(&"descent", -1, -1, 1.45)
 		_ultimate_dive()
 
 func _ultimate_dive() -> void:
@@ -427,7 +440,7 @@ func _spike_start() -> void:
 	_reset_combo()
 	_end_pursuit()
 	attack_lock_timer = 0.22
-	_play_sprite_pose(&"attack", 2, 3, 0.22)
+	_play_move_sprite_pose(&"spike_followup", 2, 3, 0.22)
 	action_locked_until_land = true
 	current_attack_started_airborne = true
 	velocity.x += facing * 150.0

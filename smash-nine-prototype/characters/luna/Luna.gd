@@ -6,6 +6,25 @@ const VFX := preload("res://scripts/Vfx.gd")
 const HEART_LASER_SCRIPT := preload("res://characters/luna/LunaHeartLaser.gd")
 
 const BRAVE_SHEET_ART := "res://assets/art/luna/luna_brave_sheet.png"
+const MOVE_SHEET_ROWS := [
+	["star_up", 4, 14.0, false],
+	["star_down", 4, 14.0, false],
+	["star_comet", 4, 14.0, false],
+	["moon_ring", 5, 14.0, false],
+	["transform", 6, 14.0, false],
+	["tumble", 4, 14.0, true],
+]
+const BRAVE_MOVE_SHEET_ROWS := [
+	["brave_combo", 6, 16.0, false],
+	["brave_upper", 4, 16.0, false],
+	["brave_low", 4, 16.0, false],
+	["brave_air_side", 4, 16.0, false],
+	["brave_dive", 4, 16.0, false],
+	["comet_drive", 4, 16.0, false],
+	["luna_breaker", 6, 16.0, false],
+	["heart_laser", 6, 12.0, false],
+	["tumble", 4, 14.0, true],
+]
 const TRANSFORMATION_DURATION := 6.0
 const TRANSFORM_BURST_RADIUS := 120.0
 const TRANSFORM_BURST_DAMAGE := 14.0
@@ -57,11 +76,16 @@ func configure_character_sprite() -> void:
 	if _configure_original_sheet("luna"):
 		_add_brave_sheet()
 
+func get_move_sheet_rows() -> Array:
+	return MOVE_SHEET_ROWS
+
 ## Brave Luna's own sheet (CODEX-ART-06), cut like the normal one into luna_brave_*.
 func _add_brave_sheet() -> void:
 	if not ResourceLoader.exists(BRAVE_SHEET_ART):
 		return
 	has_brave_sheet = _add_sheet_animations(character_sprite.sprite_frames, "luna_brave", load(BRAVE_SHEET_ART) as Texture2D)
+	var moves := SHEET_ART.original_character_moves_sheet("luna", body_type, "luna_brave")
+	_add_move_sheet_animations(character_sprite.sprite_frames, "luna_brave", moves, BRAVE_MOVE_SHEET_ROWS)
 
 ## While transformed, every animation comes from the Brave sheet when there is one.
 func _get_sprite_animation_name(base_name: StringName) -> StringName:
@@ -86,9 +110,9 @@ func perform_skill_one() -> void:
 
 func perform_skill_two() -> void:
 	if transformed:
-		_start_attack(0.12, 0.3, Callable(self, "_brave_luna_breaker"))
+		_start_attack(0.12, 0.3, Callable(self, "_brave_luna_breaker"), Vector2i(-1, -1), &"luna_breaker")
 	else:
-		_start_attack(0.21, 0.4, Callable(self, "_moon_ring"))
+		_start_attack(0.21, 0.4, Callable(self, "_moon_ring"), Vector2i(-1, -1), &"moon_ring")
 
 func perform_ultimate() -> void:
 	_transformation_start()
@@ -217,13 +241,13 @@ func _perform_star_basic(attack_type: String, _direction: Vector2) -> void:
 		velocity.y *= 0.72
 	match attack_type:
 		"up":
-			_start_attack(0.12, 0.27, Callable(self, "_star_up_arc").bind(false))
+			_start_attack(0.12, 0.27, Callable(self, "_star_up_arc").bind(false), Vector2i(-1, -1), &"star_up")
 		"air_up":
-			_start_attack(0.1, 0.24, Callable(self, "_star_up_arc").bind(true))
+			_start_attack(0.1, 0.24, Callable(self, "_star_up_arc").bind(true), Vector2i(-1, -1), &"star_up")
 		"down":
-			_start_attack(0.15, 0.31, Callable(self, "_star_down_arc").bind(false))
+			_start_attack(0.15, 0.31, Callable(self, "_star_down_arc").bind(false), Vector2i(-1, -1), &"star_down")
 		"air_down":
-			_start_attack(0.13, 0.28, Callable(self, "_star_down_arc").bind(true))
+			_start_attack(0.13, 0.28, Callable(self, "_star_down_arc").bind(true), Vector2i(-1, -1), &"star_down")
 		"air_side":
 			_start_attack(0.09, 0.23, Callable(self, "_star_side_arc").bind(true))
 		_:
@@ -300,7 +324,7 @@ func _star_comet_start() -> void:
 	var direction := _get_attack_direction()
 	if not is_on_floor():
 		velocity *= 0.7
-	_start_attack(0.17, 0.34, Callable(self, "_spawn_star_comet").bind(direction))
+	_start_attack(0.17, 0.34, Callable(self, "_spawn_star_comet").bind(direction), Vector2i(-1, -1), &"star_comet")
 
 func _spawn_star_comet(direction: Vector2) -> void:
 	var comet := Area2D.new()
@@ -341,26 +365,26 @@ func _perform_brave_basic(attack_type: String) -> void:
 	match attack_type:
 		"up", "air_up":
 			_reset_brave_combo()
-			_start_attack(0.06, 0.14, Callable(self, "_brave_uppercut").bind(attack_type == "air_up"))
+			_start_attack(0.06, 0.14, Callable(self, "_brave_uppercut").bind(attack_type == "air_up"), Vector2i(-1, -1), &"brave_upper")
 		"down":
 			_reset_brave_combo()
-			_start_attack(0.06, 0.14, Callable(self, "_brave_low_sweep"))
+			_start_attack(0.06, 0.14, Callable(self, "_brave_low_sweep"), Vector2i(-1, -1), &"brave_low")
 		"air_down":
 			_reset_brave_combo()
-			_start_attack(0.07, 0.18, Callable(self, "_brave_dive_kick"))
+			_start_attack(0.07, 0.18, Callable(self, "_brave_dive_kick"), Vector2i(-1, -1), &"brave_dive")
 		"air_side":
 			_reset_brave_combo()
-			_start_attack(0.05, 0.12, Callable(self, "_brave_flying_kick"))
+			_start_attack(0.05, 0.12, Callable(self, "_brave_flying_kick"), Vector2i(-1, -1), &"brave_air_side")
 		_:
 			match _consume_brave_combo_step():
 				# The Brave attack row reads jab, star punch, body kick, spinning kick: each hit plays
 				# its own frames (they all replayed the whole row before).
 				0:
-					_start_attack(0.045, 0.1, Callable(self, "_brave_jab"), Vector2i(0, 1))
+					_start_attack(0.045, 0.1, Callable(self, "_brave_jab"), Vector2i(0, 1), &"brave_combo", Vector2i(0, 1))
 				1:
-					_start_attack(0.055, 0.11, Callable(self, "_brave_body_kick"), Vector2i(2, 2))
+					_start_attack(0.055, 0.11, Callable(self, "_brave_body_kick"), Vector2i(2, 2), &"brave_combo", Vector2i(2, 3))
 				_:
-					_start_attack(0.075, 0.18, Callable(self, "_brave_spin_kick"), Vector2i(3, 3))
+					_start_attack(0.075, 0.18, Callable(self, "_brave_spin_kick"), Vector2i(3, 3), &"brave_combo", Vector2i(3, 5))
 
 func _brave_jab() -> void:
 	velocity.x += facing * 90.0
@@ -407,7 +431,7 @@ func _brave_dive_kick() -> void:
 
 func _brave_comet_drive_start() -> void:
 	var direction := _get_attack_direction()
-	_start_attack(0.07, 0.16, Callable(self, "_brave_comet_drive").bind(direction), Vector2i(1, 1))
+	_start_attack(0.07, 0.16, Callable(self, "_brave_comet_drive").bind(direction), Vector2i(1, 1), &"comet_drive")
 
 func _brave_comet_drive(direction: Vector2) -> void:
 	if absf(direction.x) > 0.2:
@@ -454,7 +478,7 @@ func _reset_brave_combo() -> void:
 func _transformation_start() -> void:
 	_reset_brave_combo()
 	attack_lock_timer = 0.52
-	_play_sprite_action(&"attack", 0.52)
+	_play_move_sprite_pose(&"transform", -1, -1, 0.52)
 	current_attack_started_airborne = not is_on_floor()
 	_freeze_movement(0.26)
 	velocity = Vector2.ZERO
@@ -488,7 +512,7 @@ func _heart_laser_start() -> void:
 	transformation_timer = 0.0
 	_reset_brave_combo()
 	attack_lock_timer = 0.16 + heart_laser_duration
-	_play_sprite_action(&"attack", 0.16 + heart_laser_duration)
+	_play_move_sprite_pose(&"heart_laser", -1, -1, 0.16 + heart_laser_duration)
 	_freeze_movement(0.14)
 	velocity = Vector2.ZERO
 	_play_finale_charge()
