@@ -1,20 +1,22 @@
-# Frey move-only sprite sheets (D32)
+# Frey move-only sprite sheets (D32, ART-33)
 
-`frey_moves_sheet.png` is the composite atlas loaded beside `frey_sheet.png`.
-The D32 rebuild also keeps the character and effects as independent atlases so body scale never
-changes to make a slash arc fit inside a cell.
+`frey_moves_sheet.png` is the runtime atlas loaded beside `frey_sheet.png`. ART-33 replaces the
+ART-32 body atlas because ART-32 stamped the idle head over every generated drawing. Every ART-33
+body frame is one complete drawing; no head, face, limb, weapon, shield, or other body part is
+copied from another image.
 
 ## Outputs and atlas contract
 
-- `frey_moves_body_sheet.png`: character/equipment only, 768x1024 RGBA PNG
-- `frey_moves_fx_sheet.png`: slash, dust and glint layer only, 768x1024 RGBA PNG
-- `frey_moves_sheet.png`: body + effect composite used by the game, 768x1024 RGBA PNG
-- `frey_moves_heads.json`: idle reference and one head rectangle per used frame
+- `frey_moves_body_sheet.png`: character and equipment only, 768x1024 RGBA PNG
+- `frey_moves_fx_sheet.png`: retained independent slash, dust, and glint layer, 768x1024 RGBA PNG
+- `frey_moves_sheet.png`: body + FX composite used by the game, 768x1024 RGBA PNG
+- `frey_moves_heads.json`: independently reproducible measured head boxes for 35 used frames
 - Grid: 6 columns x 8 rows, 128x128 per cell; used frames are left-aligned
-- Every used and unused cell has zero opaque pixels on its outer 1-pixel border
-- Ground frames use y=120 as the foot baseline; air frames are centred without scaling to fit
-- Palette is quantized to the canonical `frey_sheet.png` palette and alpha is hard
-- The runtime row names, order and frame counts are unchanged, so `Frey.gd` needs no table change
+- Every cell has zero opaque pixels on its outer 1-pixel border
+- Ground frames use y=120 as the foot baseline
+- Palette is 192 colours from canonical `frey_sheet.png`, with face and eye measurement colours
+  reserved before frequency fill; alpha is hard
+- Runtime row names, order, and counts are unchanged; no `Frey.gd` table change is required
 
 | Row | Frames | FPS | Move |
 |---|---:|---:|---|
@@ -27,53 +29,53 @@ changes to make a slash arc fit inside a cell.
 | `descent` | 6 | 14 | grounded and aerial I descent |
 | `tumble` | 4 | 14 | strong-launch hitstun loop |
 
-## Head reference and scaling
+## Drawn-head measurement
 
-The reference is idle frame row 0, column 0 of `frey_sheet.png` at `(62, 27, 28, 32)`.
-It includes hair, face and helmet but excludes the white helmet wings because their changing angle
-is not a stable scale unit. Every new frame records a 28x32 head box. The independent audit does
-not read the JSON: it searches scales 0.70 through 1.40 in 0.025 steps using exact canonical-palette
-anchors, mirrored candidates and quarter-rotated tumble candidates. All 35 new matches are 1.000.
+The independent audit does not read `frey_moves_heads.json`. For each retained ART-32 source row it
+finds the blue eye nearest that pose's expected face area, then measures the surrounding skin-colour
+region from the source drawing. The finished frame's actual whole-drawing scale is measured again
+from its opaque bounds. Their product is normalized to 22.95 pixels (102 source pixels at the 0.225
+baseline). This measures the generated head already present in the drawing; it does not add pixels.
 
-## Rebuild pipeline
+The five synthetic idle scales 0.70, 0.85, 1.00, 1.20, and 1.40 read back within 0.19%. The audit
+also detects the two-head synthetic fixture and 32/35 ART-32 stamped frames. All 35 ART-33 frames
+measure 0.9827-1.0030, have at most two merged eye-colour clusters, and contain no idle-head stamp.
 
-The retained ImageGen originals are `tests/art_preview/frey_redo_32/*_source.png`. Each row was
-generated as one horizontal body strip with no effects, then a separate effects-only strip. The
-builder finds pose components rather than slicing equal source widths, scales all bodies from the
-same head unit, quantizes to the base palette, overlays the canonical head reference, positions the
-separate effects, clears the strict border and writes all three atlases plus the JSON and previews.
+## Body pixel operations
+
+These are the only operations applied to body art:
+
+1. Crop each complete connected pose from its retained row source.
+2. Compute one scale factor for the entire pose from its drawn-head measurement.
+3. Resize the entire pose once with nearest-neighbour sampling; no part is resized separately.
+4. Quantize opaque RGB pixels to the canonical 192-colour palette and harden alpha at 0.5.
+5. Place the entire pose in its 128x128 cell, align grounded feet to y=120, and clear the outer
+   1-pixel cell border. No other trim is performed.
+
+The exact crop, correction, scale, target size, and destination for every frame are recorded in
+`reports/codex-art-33/body_pixel_operations.txt`. FX are not used to scale the body. The sole
+semantic layer composition is `FX over body` after the body sheet is complete.
+
+## Source decision and ImageGen round
+
+All eight retained `tests/art_preview/frey_redo_32/*_body_source.png` strips were visually checked:
+each frame already contained one complete Frey drawing and no pasted or duplicate head before the
+ART-32 stamping step, so they were eligible for reuse under ART-33.
+
+One built-in ImageGen comparison round was produced for `descent`, using `frey_sheet.png`,
+`frey_illustration.png`, and the retained descent source as references. It requested a left idle
+anchor plus six poses. The candidate produced seven drawings but its left slot was another combat
+pose rather than the canonical idle anchor, so it was rejected and not copied into the project.
+
+## Rebuild and audit
 
 From `smash-nine-prototype/`:
 
 ```powershell
-& $godot --headless --path . -s tests/art_preview/frey_redo_32/build_frey_redo.gd -- `
-  --character=frey `
-  --base=res://assets/art/frey/frey_sheet.png `
-  --old=res://tests/art_preview/frey_redo_32/before_sheet.png `
-  --source-dir=res://tests/art_preview/frey_redo_32 `
-  --asset-dir=res://assets/art/frey `
-  --preview-dir=res://tests/art_preview/frey_redo_32
-
+& $godot --headless --path . -s tests/art_preview/frey_heads_33/build_frey_heads.gd
 & $godot --headless --path . -s tests/art_preview/frey_redo_32/head_audit.gd
 ```
 
-For a later fighter, supply that fighter's base atlas, old move atlas, row source directory and
-asset directory. The pilot script already accepts those paths and a character id; its row list,
-reference box, effect anchors and grounded flags must be configured for that fighter before use.
-
-## Generation rounds
-
-- One body round kept: `dash_strike`, `rising_cleave`, `spike_followup`, `descent`, `tumble`
-- Second body round kept: `attack_up`, `attack_down`, `attack_air_side` (tighter sword/limb layout)
-- One independent effects round kept for every row
-- No row reached the three-round limit
-
-## Review aids
-
-- Per-row old/new contacts at 1x and 3x: `tests/art_preview/frey_redo_32/*_before_after_{1x,3x}.png`
-- Body/effect/composite contacts: `spike_followup_layers_{1x,3x}.png`, `descent_layers_{1x,3x}.png`
-- Independent measurements: `head_audit.txt` and `*_head_audit.csv`
-- Head rectangles over the composite: `head_boxes_{1x,3x}.png`
-
-Measured consistency, border safety and file structure are automated checks. Pose readability,
-animation flow, effect strength and whether rotated tumble faces look natural remain human art calls.
+Review aids are under `tests/art_preview/frey_heads_33/`: eight per-row 3x before/after contacts,
+`head_boxes_after_3x.png`, the retained ART-32 failure fixture, and the audit text. Cyan boxes show
+the measured head area; the label below each after frame is `scale/eye-cluster-count`.

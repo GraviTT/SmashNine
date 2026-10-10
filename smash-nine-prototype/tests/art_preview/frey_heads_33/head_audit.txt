@@ -1,0 +1,53 @@
+CODEX-ART-33 drawn-head audit
+metric=(output whole-drawing scale from alpha bounds) * (source-drawn eye-anchored face-colour region) / 22.95; JSON is not read
+synthetic metric=output alpha-bounds scale / idle alpha-bounds scale; eyes=canonical Frey eye colours inside measured head box
+
+synthetic_scale expected measured error verdict
+0.70 0.7006 0.08% PASS
+0.85 0.8503 0.03% PASS
+1.00 1.0000 0.00% PASS
+1.20 1.1977 0.19% PASS
+1.40 1.4011 0.08% PASS
+
+synthetic_double_head faces=2 eyes=3 flagged=true
+art32_pasted flagged=32/35 best_stamp=1.0000 verdict=PASS
+
+row frame source_unit output_scale head_scale eyes stamp verdict
+attack_up 1 112.9602 0.202513 0.9968 1 0.0039 PASS
+attack_up 2 110.9279 0.206880 0.9999 1 0.0039 PASS
+attack_up 3 110.4717 0.207642 0.9995 1 0.0104 PASS
+attack_up 4 112.9602 0.203048 0.9994 1 0.0000 PASS
+attack_down 1 108.3051 0.212012 1.0005 0 0.0000 PASS
+attack_down 2 112.9602 0.203178 1.0000 0 0.0000 PASS
+attack_down 3 110.8873 0.206765 0.9990 1 0.0000 PASS
+attack_down 4 110.3630 0.208039 1.0004 0 0.0000 PASS
+attack_air_side 1 107.1634 0.213787 0.9983 1 0.0065 PASS
+attack_air_side 2 106.0754 0.216593 1.0011 1 0.0000 PASS
+attack_air_side 3 103.3054 0.222630 1.0021 1 0.0000 PASS
+attack_air_side 4 109.3069 0.209235 0.9966 1 0.0000 PASS
+dash_strike 1 112.4455 0.203321 0.9962 2 0.0013 PASS
+dash_strike 2 105.9245 0.216320 0.9984 0 0.0026 PASS
+dash_strike 3 111.4720 0.205017 0.9958 1 0.0026 PASS
+dash_strike 4 111.4899 0.206343 1.0024 2 0.0091 PASS
+rising_cleave 1 102.9660 0.221837 0.9953 1 0.0000 PASS
+rising_cleave 2 95.1210 0.240333 0.9961 1 0.0026 PASS
+rising_cleave 3 108.7750 0.210601 0.9982 1 0.0078 PASS
+rising_cleave 4 107.4058 0.212989 0.9968 1 0.0091 PASS
+rising_cleave 5 112.9602 0.201940 0.9940 1 0.0000 PASS
+spike_followup 1 108.9954 0.210101 0.9978 0 0.0026 PASS
+spike_followup 2 111.4092 0.204519 0.9928 1 0.0000 PASS
+spike_followup 3 111.9285 0.204698 0.9983 0 0.0026 PASS
+spike_followup 4 112.9602 0.203351 1.0009 0 0.0013 PASS
+descent 1 108.7750 0.210316 0.9968 1 0.0000 PASS
+descent 2 109.4989 0.209411 0.9991 1 0.0000 PASS
+descent 3 105.8820 0.217300 1.0025 0 0.0000 PASS
+descent 4 94.2391 0.239324 0.9827 1 0.0104 PASS
+descent 5 108.2405 0.212621 1.0028 0 0.0078 PASS
+descent 6 107.0000 0.215123 1.0030 1 0.0000 PASS
+tumble 1 109.8863 0.208988 1.0006 1 0.0091 PASS
+tumble 2 112.9602 0.203772 1.0030 1 0.0039 PASS
+tumble 3 106.0754 0.215905 0.9979 1 0.0039 PASS
+tumble 4 102.8591 0.223361 1.0011 2 0.0026 PASS
+after_frames_passed=35/35
+
+verdict=PASS failures=0

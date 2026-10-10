@@ -1,6 +1,7 @@
 {
 	"cell_size": 128,
 	"character": "frey",
+	"measurement": "source-drawn eye-anchored face-colour region multiplied by the one whole-frame scale; no pasted head pixels",
 	"reference": {
 		"box": {
 			"h": 32,
@@ -8,7 +9,6 @@
 			"x": 62,
 			"y": 27
 		},
-		"excludes": "white helmet wings",
 		"frame": {
 			"column": 0,
 			"row": 0
@@ -20,333 +20,473 @@
 	"rows": {
 		"attack_air_side": [
 			{
+				"eye_clusters": 1,
 				"frame": 1,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 69,
-					"y": 38
-				}
-			},
-			{
-				"frame": 2,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 67,
-					"y": 32
-				}
-			},
-			{
-				"frame": 3,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 67,
-					"y": 30
-				}
-			},
-			{
-				"frame": 4,
 				"head": {
 					"h": 32,
 					"w": 28,
 					"x": 68,
-					"y": 31
-				}
-			}
-		],
-		"attack_down": [
-			{
-				"frame": 1,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 67,
-					"y": 30
-				}
+					"y": 29
+				},
+				"scale": 1.0,
+				"source_head_unit": 107.1634,
+				"whole_frame_scale": 0.214159
 			},
 			{
+				"eye_clusters": 1,
 				"frame": 2,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 63,
-					"y": 29
-				}
+					"x": 58,
+					"y": 23
+				},
+				"scale": 1.0,
+				"source_head_unit": 106.0754,
+				"whole_frame_scale": 0.216355
 			},
 			{
+				"eye_clusters": 1,
 				"frame": 3,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 59,
-					"y": 41
-				}
+					"x": 67,
+					"y": 21
+				},
+				"scale": 1.0,
+				"source_head_unit": 103.3054,
+				"whole_frame_scale": 0.222157
 			},
 			{
+				"eye_clusters": 1,
 				"frame": 4,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 65,
-					"y": 31
-				}
+					"x": 66,
+					"y": 23
+				},
+				"scale": 1.0,
+				"source_head_unit": 109.3069,
+				"whole_frame_scale": 0.209959
 			}
 		],
-		"attack_up": [
+		"attack_down": [
 			{
+				"eye_clusters": 0,
 				"frame": 1,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 61,
-					"y": 44
-				}
+					"x": 64,
+					"y": 26
+				},
+				"scale": 1.0,
+				"source_head_unit": 108.3051,
+				"whole_frame_scale": 0.211901
 			},
 			{
+				"eye_clusters": 0,
 				"frame": 2,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 65,
-					"y": 44
-				}
+					"x": 58,
+					"y": 30
+				},
+				"scale": 1.0,
+				"source_head_unit": 112.9602,
+				"whole_frame_scale": 0.203169
 			},
 			{
+				"eye_clusters": 1,
 				"frame": 3,
 				"head": {
 					"h": 32,
 					"w": 28,
 					"x": 51,
-					"y": 36
-				}
+					"y": 43
+				},
+				"scale": 1.0,
+				"source_head_unit": 110.8873,
+				"whole_frame_scale": 0.206967
 			},
 			{
+				"eye_clusters": 0,
 				"frame": 4,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 61,
-					"y": 44
-				}
+					"x": 63,
+					"y": 28
+				},
+				"scale": 1.0,
+				"source_head_unit": 110.363,
+				"whole_frame_scale": 0.20795
 			}
 		],
-		"dash_strike": [
+		"attack_up": [
 			{
+				"eye_clusters": 1,
 				"frame": 1,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 67,
-					"y": 48
-				}
+					"x": 62,
+					"y": 41
+				},
+				"scale": 1.0,
+				"source_head_unit": 112.9602,
+				"whole_frame_scale": 0.203169
 			},
 			{
-				"frame": 2,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 68,
-					"y": 55
-				}
-			},
-			{
-				"frame": 3,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 68,
-					"y": 53
-				}
-			},
-			{
-				"frame": 4,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 59,
-					"y": 45
-				}
-			}
-		],
-		"descent": [
-			{
-				"frame": 1,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 69,
-					"y": 50
-				}
-			},
-			{
+				"eye_clusters": 1,
 				"frame": 2,
 				"head": {
 					"h": 32,
 					"w": 28,
 					"x": 64,
-					"y": 62
-				}
+					"y": 40
+				},
+				"scale": 1.0,
+				"source_head_unit": 110.9279,
+				"whole_frame_scale": 0.206891
 			},
 			{
+				"eye_clusters": 1,
 				"frame": 3,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 67,
-					"y": 32
-				}
+					"x": 50,
+					"y": 41
+				},
+				"scale": 1.0,
+				"source_head_unit": 110.4717,
+				"whole_frame_scale": 0.207745
 			},
 			{
+				"eye_clusters": 1,
 				"frame": 4,
 				"head": {
 					"h": 32,
 					"w": 28,
 					"x": 58,
-					"y": 29
-				}
+					"y": 42
+				},
+				"scale": 1.0,
+				"source_head_unit": 112.9602,
+				"whole_frame_scale": 0.203169
+			}
+		],
+		"dash_strike": [
+			{
+				"eye_clusters": 2,
+				"frame": 1,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 67,
+					"y": 45
+				},
+				"scale": 1.0,
+				"source_head_unit": 112.4455,
+				"whole_frame_scale": 0.204099
 			},
 			{
-				"frame": 5,
+				"eye_clusters": 0,
+				"frame": 2,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 61,
+					"y": 43
+				},
+				"scale": 1.0,
+				"source_head_unit": 105.9245,
+				"whole_frame_scale": 0.216664
+			},
+			{
+				"eye_clusters": 1,
+				"frame": 3,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 71,
+					"y": 50
+				},
+				"scale": 1.0,
+				"source_head_unit": 111.472,
+				"whole_frame_scale": 0.205881
+			},
+			{
+				"eye_clusters": 2,
+				"frame": 4,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 51,
+					"y": 45
+				},
+				"scale": 1.0,
+				"source_head_unit": 111.4899,
+				"whole_frame_scale": 0.205848
+			}
+		],
+		"descent": [
+			{
+				"eye_clusters": 1,
+				"frame": 1,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 58,
+					"y": 52
+				},
+				"scale": 1.0,
+				"source_head_unit": 108.775,
+				"whole_frame_scale": 0.210986
+			},
+			{
+				"eye_clusters": 1,
+				"frame": 2,
 				"head": {
 					"h": 32,
 					"w": 28,
 					"x": 64,
-					"y": 64
-				}
+					"y": 57
+				},
+				"scale": 1.0,
+				"source_head_unit": 109.4989,
+				"whole_frame_scale": 0.209591
 			},
 			{
+				"eye_clusters": 0,
+				"frame": 3,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 61,
+					"y": 27
+				},
+				"scale": 1.0,
+				"source_head_unit": 105.882,
+				"whole_frame_scale": 0.216751
+			},
+			{
+				"eye_clusters": 1,
+				"frame": 4,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 56,
+					"y": 23
+				},
+				"scale": 0.9868,
+				"source_head_unit": 94.2391,
+				"whole_frame_scale": 0.24031
+			},
+			{
+				"eye_clusters": 0,
+				"frame": 5,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 59,
+					"y": 60
+				},
+				"scale": 1.0,
+				"source_head_unit": 108.2405,
+				"whole_frame_scale": 0.212028
+			},
+			{
+				"eye_clusters": 1,
 				"frame": 6,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 59,
-					"y": 65
-				}
+					"x": 57,
+					"y": 58
+				},
+				"scale": 1.0,
+				"source_head_unit": 107.0,
+				"whole_frame_scale": 0.214486
 			}
 		],
 		"rising_cleave": [
 			{
+				"eye_clusters": 1,
 				"frame": 1,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 63,
-					"y": 62
-				}
-			},
-			{
-				"frame": 2,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 65,
-					"y": 48
-				}
-			},
-			{
-				"frame": 3,
 				"head": {
 					"h": 32,
 					"w": 28,
 					"x": 62,
-					"y": 37
-				}
+					"y": 55
+				},
+				"scale": 1.0,
+				"source_head_unit": 102.966,
+				"whole_frame_scale": 0.222889
 			},
 			{
-				"frame": 4,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 59,
-					"y": 27
-				}
-			},
-			{
-				"frame": 5,
-				"head": {
-					"h": 32,
-					"w": 28,
-					"x": 66,
-					"y": 31
-				}
-			}
-		],
-		"spike_followup": [
-			{
-				"frame": 1,
+				"eye_clusters": 1,
+				"frame": 2,
 				"head": {
 					"h": 32,
 					"w": 28,
 					"x": 64,
-					"y": 39
-				}
+					"y": 36
+				},
+				"scale": 1.0,
+				"source_head_unit": 95.121,
+				"whole_frame_scale": 0.241272
 			},
 			{
+				"eye_clusters": 1,
+				"frame": 3,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 56,
+					"y": 34
+				},
+				"scale": 1.0,
+				"source_head_unit": 108.775,
+				"whole_frame_scale": 0.210986
+			},
+			{
+				"eye_clusters": 1,
+				"frame": 4,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 53,
+					"y": 25
+				},
+				"scale": 1.0,
+				"source_head_unit": 107.4058,
+				"whole_frame_scale": 0.213676
+			},
+			{
+				"eye_clusters": 1,
+				"frame": 5,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 57,
+					"y": 19
+				},
+				"scale": 1.0,
+				"source_head_unit": 112.9602,
+				"whole_frame_scale": 0.203169
+			}
+		],
+		"spike_followup": [
+			{
+				"eye_clusters": 0,
+				"frame": 1,
+				"head": {
+					"h": 32,
+					"w": 28,
+					"x": 57,
+					"y": 23
+				},
+				"scale": 1.0,
+				"source_head_unit": 108.9954,
+				"whole_frame_scale": 0.210559
+			},
+			{
+				"eye_clusters": 1,
 				"frame": 2,
 				"head": {
 					"h": 32,
 					"w": 28,
 					"x": 63,
-					"y": 30
-				}
+					"y": 23
+				},
+				"scale": 1.0,
+				"source_head_unit": 111.4092,
+				"whole_frame_scale": 0.205997
 			},
 			{
+				"eye_clusters": 0,
 				"frame": 3,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 64,
-					"y": 31
-				}
+					"x": 55,
+					"y": 24
+				},
+				"scale": 1.0,
+				"source_head_unit": 111.9285,
+				"whole_frame_scale": 0.205042
 			},
 			{
+				"eye_clusters": 0,
 				"frame": 4,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 57,
-					"y": 28
-				}
+					"x": 60,
+					"y": 22
+				},
+				"scale": 1.0,
+				"source_head_unit": 112.9602,
+				"whole_frame_scale": 0.203169
 			}
 		],
 		"tumble": [
 			{
+				"eye_clusters": 1,
 				"frame": 1,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 72,
-					"y": 27
-				}
+					"x": 63,
+					"y": 23
+				},
+				"scale": 1.0,
+				"source_head_unit": 109.8863,
+				"whole_frame_scale": 0.208852
 			},
 			{
+				"eye_clusters": 1,
 				"frame": 2,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 31,
-					"y": 34
-				}
+					"x": 49,
+					"y": 26
+				},
+				"scale": 1.0,
+				"source_head_unit": 112.9602,
+				"whole_frame_scale": 0.203169
 			},
 			{
+				"eye_clusters": 1,
 				"frame": 3,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 46,
-					"y": 63
-				}
+					"x": 50,
+					"y": 72
+				},
+				"scale": 1.0,
+				"source_head_unit": 106.0754,
+				"whole_frame_scale": 0.216355
 			},
 			{
+				"eye_clusters": 2,
 				"frame": 4,
 				"head": {
 					"h": 32,
 					"w": 28,
-					"x": 73,
-					"y": 26
-				}
+					"x": 60,
+					"y": 34
+				},
+				"scale": 1.0,
+				"source_head_unit": 102.8591,
+				"whole_frame_scale": 0.223121
 			}
 		]
 	}
