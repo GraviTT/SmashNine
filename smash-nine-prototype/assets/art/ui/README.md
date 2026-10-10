@@ -18,3 +18,20 @@
 팔레트는 공통 남청 외곽에 카드 의미별 강조색을 더했다: Power=강철·주황, Vitality=진홍·초록, Swiftness=은색·청록, Anchor=강철·남보라, Sky Step=하늘색·흰색, Last Stand=강철·자홍. Godot 후처리에서 각 아이콘을 42×42 이내로 맞춰 3픽셀 이상의 투명 여백과 통일된 시각 무게를 확보했다.
 
 리드가 카드 UI를 연결할 때 `res://assets/art/ui/card_<id>.png`를 `SoulCards.gd`의 `id`와 동일한 이름으로 불러오면 된다.
+
+## ART-25 렐름 및 HUD 세트
+
+- `realm_emblems/`: 미니맵용 32×32 투명 엠블럼 9종.
+- `status/`: 슈퍼 아머, 기절, Luna 별 충전, Frey 추적 표식, 실드 파괴, 낮은 HP용 24×24 투명 아이콘 6종.
+- `title_bg.png`: 1920×1080 타이틀 배경. 생성된 1672×941 그림은 확대하지 않고 짙은 배경 캔버스 중앙에 원본 배율로 배치했습니다.
+- `frames/`: 중앙이 투명한 9-slice 프레임. 권장 패치 여백은 아래와 같습니다.
+
+| 프레임 | 정확한 크기 | 9-slice 여백 (L/T/R/B) |
+|---|---:|---:|
+| `skill_slot.png` | 72×72 | 10 px |
+| `hp_bar.png` | 320×32 | 8 px |
+| `card_panel.png` | 240×112 | 14 px |
+| `result_panel.png` | 960×520 | 18 px |
+| `menu_button.png` | 360×56 | 10 px |
+
+모든 `*_source.png`는 보관한 내장 ImageGen 원본입니다. 최종 PNG는 `tests/art_preview/monsters_ui_25/build_assets.gd`가 Godot `Image` API로 정확한 캔버스, 투명 중앙, 최근접 축소만 적용해 생성합니다.

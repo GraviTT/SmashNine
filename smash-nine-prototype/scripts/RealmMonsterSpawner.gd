@@ -3,12 +3,14 @@ extends Node
 ## and pays souls to whoever finishes a monster.
 
 const MONSTER_SCRIPT := preload("res://scripts/RealmMonster.gd")
+const REALM_CATALOG := preload("res://scripts/realms/RealmCatalog.gd")
 const MONSTERS_PER_REALM := 4
 const RESPAWN_DELAY := 20.0
 
 var spawn_points_provider: Callable
 var playable_realm_provider: Callable
 var monsters_by_realm: Dictionary = {}
+var realm_profiles: Array = REALM_CATALOG.build_maps()
 
 func configure(new_spawn_points_provider: Callable, new_playable_realm_provider: Callable) -> void:
 	spawn_points_provider = new_spawn_points_provider
@@ -33,14 +35,27 @@ func _spawn_missing_for_realm(realm_index: int) -> void:
 	points.shuffle()
 	while monsters.size() < MONSTERS_PER_REALM:
 		var type_id := "mossling" if monsters.size() % 2 == 0 else "ember_imp"
+		var kind := "melee" if type_id == "mossling" else "ranged"
+		var skin_id := _skin_for_realm_kind(realm_index, kind)
 		var point: Vector2 = points[monsters.size() % points.size()]
 		var monster := CharacterBody2D.new()
 		monster.set_script(MONSTER_SCRIPT)
-		monster.setup(type_id, realm_index, point)
+		monster.setup(type_id, realm_index, point, skin_id)
 		get_parent().add_child(monster)
 		monster.defeated.connect(_on_monster_defeated.bind(realm_index))
 		monsters.append(monster)
 	monsters_by_realm[realm_index] = monsters
+
+## A realm replaces only the matching generic behaviour. The alternating melee/ranged
+## population and every combat number remain unchanged.
+func _skin_for_realm_kind(realm_index: int, kind: String) -> String:
+	var generic := "mossling" if kind == "melee" else "ember_imp"
+	if realm_index < 0 or realm_index >= realm_profiles.size():
+		return generic
+	var monster: Dictionary = realm_profiles[realm_index].get("monster", {})
+	if str(monster.get("kind", "")) != kind:
+		return generic
+	return str(monster.get("skin", generic))
 
 func _clear_realm(realm_index: int) -> void:
 	for monster in monsters_by_realm.get(realm_index, []):

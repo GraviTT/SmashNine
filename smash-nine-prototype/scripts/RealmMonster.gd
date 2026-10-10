@@ -19,6 +19,7 @@ const ATTACK_SCRIPT := preload("res://scripts/Attack.gd")
 const PROJECTILE_SCRIPT := preload("res://scripts/Projectile.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const FRAMES := preload("res://characters/common/CharacterAnimation.gd")
+const MONSTER_ART_DIR := "res://assets/art/monsters"
 const FIREBALL_ART := "res://assets/art/monsters/ember_fireball.png"
 ## Original sheets: 6x4 cells, rows idle 4 / walk 6 / attack 4 / hurt 1, feet at 3/4 of the cell.
 ## The cell size is read from the sheet (width / 6): 96 px cells (CODEX-ART-11) draw at 1x, the
@@ -30,6 +31,10 @@ const FIREBALL_SCREEN_SIZE := 36.0
 const ATTACK_ANIMATION_TIME := 0.33
 
 var monster_type := "mossling"
+## Visual-only realm skin. `monster_type` continues to own every behaviour and stat.
+var skin_id := "mossling"
+var art_sheet_path := ""
+var projectile_art_path := ""
 var display_name := "Mossling"
 var realm_index := 0
 var max_hp := 45.0
@@ -63,8 +68,9 @@ var body_visual: ColorRect
 var name_label: Label
 var hp_fill: ColorRect
 
-func setup(type_id: String, new_realm_index: int, spawn_position: Vector2) -> void:
+func setup(type_id: String, new_realm_index: int, spawn_position: Vector2, new_skin_id := "") -> void:
 	monster_type = type_id
+	skin_id = type_id if new_skin_id == "" else new_skin_id
 	realm_index = new_realm_index
 	global_position = spawn_position
 	patrol_center = spawn_position
@@ -178,8 +184,13 @@ func _physics_process(delta: float) -> void:
 	_update_art(delta)
 
 func _build_art_sprite() -> AnimatedSprite2D:
-	var sheet := ART_SETTINGS.original_texture("res://assets/art/monsters/%s_sheet.png" % monster_type)
+	art_sheet_path = "%s/%s_sheet.png" % [MONSTER_ART_DIR, skin_id]
+	var sheet := ART_SETTINGS.original_texture(art_sheet_path)
+	if sheet == null and skin_id != monster_type:
+		art_sheet_path = "%s/%s_sheet.png" % [MONSTER_ART_DIR, monster_type]
+		sheet = ART_SETTINGS.original_texture(art_sheet_path)
 	if sheet == null:
+		art_sheet_path = ""
 		return null
 	var cell := sheet.get_width() / 6
 	var art_scale := ART_SCREEN_CELL / cell
@@ -311,9 +322,13 @@ func _spawn_projectile(direction: Vector2) -> void:
 	projectile.global_position = global_position + Vector2(32 * facing, -34)
 	projectile.configure(self, Vector2(24, 18) * GAME_SCALE.WORLD, attack_damage, PROJECTILE_KNOCKBACK, direction, Color(1.0, 0.42, 0.12, 0.82), 390.0 * GAME_SCALE.WORLD, 1.35)
 	projectile.art_scale_multiplier = GAME_SCALE.WORLD
-	var fireball := ART_SETTINGS.original_texture(FIREBALL_ART)
-	if fireball != null:
-		projectile.set_art(FIREBALL_ART, Color.WHITE, FIREBALL_SCREEN_SIZE / fireball.get_width())
+	projectile_art_path = "%s/%s_projectile.png" % [MONSTER_ART_DIR, skin_id]
+	var projectile_art := ART_SETTINGS.original_texture(projectile_art_path)
+	if projectile_art == null:
+		projectile_art_path = FIREBALL_ART
+		projectile_art = ART_SETTINGS.original_texture(projectile_art_path)
+	if projectile_art != null:
+		projectile.set_art(projectile_art_path, Color.WHITE, FIREBALL_SCREEN_SIZE / projectile_art.get_width())
 	attack_animation_timer = ATTACK_ANIMATION_TIME
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := "normal") -> bool:

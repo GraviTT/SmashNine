@@ -6,6 +6,8 @@ const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
+const REALM_EMBLEM_ART := "res://assets/art/ui/realm_emblems/%s.png"
+const CUTIN_BAND_ART := "res://assets/art/vfx/ult_cutin_band.png"
 const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug  F4 bots"
 ## Bottom right, all match (user 2026-10-08: "화면 오른쪽 아래에 조작키를 간단히 표시하고, 스킬
 ## 아이콘도 간단하게"): the focused fighter's four moves as icon slots with their keys, and the
@@ -68,7 +70,7 @@ var overlay_logo: TextureRect
 var portrait_strip: Control
 ## Ultimate cut-in: a coloured band with the caster's face, name and ultimate name.
 var cutin_root: Control
-var cutin_band: ColorRect
+var cutin_band: Control
 var cutin_face: TextureRect
 var cutin_name: Label
 var cutin_title: Label
@@ -432,13 +434,31 @@ func rebuild_minimap(layout: RefCounted, director: Node, current_index: int) -> 
 		box.color = _get_state_color(director.get_state(i), i == current_index)
 		box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		minimap_root.add_child(box)
+		var realm_name := str(layout.get_realm(i).name)
+		var emblem_texture := _realm_emblem_texture(realm_name)
+		if emblem_texture != null:
+			var emblem := TextureRect.new()
+			emblem.position = box.position + Vector2(2, 2)
+			emblem.size = Vector2(32, 32)
+			emblem.texture = emblem_texture
+			emblem.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			emblem.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			emblem.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			emblem.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			minimap_root.add_child(emblem)
 		var label := Label.new()
-		label.position = box.position + Vector2(3, 1)
-		label.size = cell - Vector2(6, 2)
-		label.add_theme_font_size_override("font_size", 10)
+		label.position = box.position + (Vector2(34, 1) if emblem_texture != null else Vector2(3, 1))
+		label.size = Vector2(32, 34) if emblem_texture != null else cell - Vector2(6, 2)
+		label.add_theme_font_size_override("font_size", 8 if emblem_texture != null else 10)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		minimap_root.add_child(label)
-		minimap_labels[i] = {"label": label, "name": _short_realm_name(str(layout.get_realm(i).name))}
+		minimap_labels[i] = {"label": label, "name": _short_realm_name(realm_name), "emblem": emblem_texture != null}
 	update_minimap_labels(director, {})
+
+func _realm_emblem_texture(realm_name: String) -> Texture2D:
+	var key := realm_name.to_lower().replace(" ", "_")
+	return ART_SETTINGS.original_texture(REALM_EMBLEM_ART % key)
 
 ## counts: realm_index -> living combatants there
 func update_minimap_labels(director: Node, counts: Dictionary) -> void:
@@ -452,7 +472,7 @@ func update_minimap_labels(director: Node, counts: Dictionary) -> void:
 		var detail := "! %ds" % seconds_left if state == "warning" else state.to_upper()
 		if state == "stable" or state == "warning":
 			detail += "  x%d" % int(counts.get(i, 0))
-		label.text = "%s\n%s" % [entry.name, detail]
+		label.text = detail if bool(entry.get("emblem", false)) else "%s\n%s" % [entry.name, detail]
 
 func _get_state_color(state: String, is_current: bool) -> Color:
 	if is_current:
@@ -504,7 +524,16 @@ func _build_cutin() -> void:
 	cutin_root.visible = false
 	add_child(cutin_root)
 	_pin(cutin_root, Vector2(0.0, 0.5))
-	cutin_band = ColorRect.new()
+	var band_texture := ART_SETTINGS.original_texture(CUTIN_BAND_ART)
+	if band_texture != null:
+		var textured_band := TextureRect.new()
+		textured_band.texture = band_texture
+		textured_band.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		textured_band.stretch_mode = TextureRect.STRETCH_SCALE
+		textured_band.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		cutin_band = textured_band
+	else:
+		cutin_band = ColorRect.new()
 	cutin_band.size = Vector2(560, 112)
 	cutin_band.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	cutin_root.add_child(cutin_band)
@@ -528,7 +557,11 @@ func show_ultimate_cutin(player: Node) -> void:
 		caster_y = (player as CanvasItem).get_global_transform_with_canvas().origin.y
 	cutin_root.position.y = CUTIN_HIGH_Y if caster_y > get_viewport().get_visible_rect().size.y * 0.5 else CUTIN_LOW_Y
 	_set_portrait(cutin_face, ART_SETTINGS.character_portrait(player.character_id, player.body_type))
-	cutin_band.color = Color(player.body_color.darkened(0.35), 0.86)
+	var band_color := Color(player.body_color.darkened(0.35), 0.86)
+	if cutin_band is ColorRect:
+		(cutin_band as ColorRect).color = band_color
+	else:
+		cutin_band.modulate = band_color
 	cutin_name.text = ("P1 " if player.is_human else "") + str(player.display_name)
 	cutin_title.text = str(player.ultimate_name).to_upper()
 	cutin_root.visible = true

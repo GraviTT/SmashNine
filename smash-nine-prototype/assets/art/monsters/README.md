@@ -20,3 +20,19 @@
 - 림은 각 96×96 셀 안에서만 계산해 이웃 프레임으로 번지지 않습니다.
 
 배경 합성 확대 미리보기는 `reports/codex-art-17/mossling_vanaheim_2x.png`, `ember_imp_muspelheim_2x.png`에서 확인할 수 있습니다. 후처리 코드는 `tests/art_preview/hazard_art_17/build_assets.gd`에 있습니다.
+
+## ART-25 렐름 전용 스킨
+
+신규 7종은 기존과 같은 576×384 시트와 96×96 셀 규격을 사용합니다. 외형만 바뀌며, 근접형은 mossling 행동을, 원거리형은 ember imp 행동을 그대로 사용합니다.
+
+| 렐름 | 스킨 | 종류 | 투사체 |
+|---|---|---|---|
+| Asgard | `asgard_aegis_ram` | melee | — |
+| Niflheim | `niflheim_frost_owl` | ranged | `niflheim_frost_owl_projectile.png` |
+| Alfheim | `alfheim_moon_moth` | ranged | `alfheim_moon_moth_projectile.png` |
+| Svartalfheim | `svartalfheim_gear_beetle` | melee | — |
+| Vanaheim | `vanaheim_vine_hound` | melee | — |
+| Jotunheim | `jotunheim_rune_golem` | melee | — |
+| Yggdrasil Heart | `yggdrasil_root_oracle` | ranged | `yggdrasil_root_oracle_projectile.png` |
+
+`*_source.png`는 내장 ImageGen 원본입니다. `tests/art_preview/monsters_ui_25/build_assets.gd`가 Godot `Image` API로 최근접 축소만 수행하고, 정확한 셀 크기·미사용 셀 투명화·발 기준 y=72를 적용해 최종 파일을 만듭니다.
