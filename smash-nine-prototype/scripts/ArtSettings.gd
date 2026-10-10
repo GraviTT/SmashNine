@@ -44,6 +44,21 @@ static func original_character_sheet(character_id: String, body := "") -> Textur
 			return load(path) as Texture2D
 	return null
 
+## Optional move-only sheet beside the main character atlas. `variant` is used by alternate
+## forms that live in the same character folder (Luna's luna_brave_moves_sheet.png).
+static func original_character_moves_sheet(character_id: String, body := "", variant := "") -> Texture2D:
+	var stem := character_id if variant == "" else variant
+	var paths: Array[String] = []
+	if body != "":
+		paths.append("res://assets/art/%s/%s_%s_moves_sheet.png" % [character_id, stem, body])
+	paths.append("res://assets/art/%s/%s_moves_sheet.png" % [character_id, stem])
+	for any_body in ["male", "female"]:
+		paths.append("res://assets/art/%s/%s_%s_moves_sheet.png" % [character_id, stem, any_body])
+	for path in paths:
+		if ResourceLoader.exists(path):
+			return load(path) as Texture2D
+	return null
+
 ## A sprite for right-facing effect art (projectiles) pointed along `direction`: art
 ## aimed left is mirrored instead of turned upside down. Scale 2 matches the fighters.
 ## Effect files redrawn at a larger size for today's scales (CODEX-ART-14/16) are drawn smaller

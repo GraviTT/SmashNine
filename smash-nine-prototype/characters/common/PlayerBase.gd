@@ -114,6 +114,9 @@ var ultimate_followup_started := false
 var body_type := ""
 var uses_original_sheet := false
 var original_sheet_cell := 64
+## Tests can point only the optional move atlas at a missing fixture without hiding the main sheet.
+## Empty means the normal ArtSettings lookup.
+var moves_sheet_path_override := ""
 var body_color := Color.WHITE
 var max_hp := 100.0
 var hp := 100.0
@@ -805,6 +808,11 @@ func character_on_hit_absorbed(_attacker: Node, _knockback: float, _direction: V
 func configure_character_sprite() -> void:
 	pass
 
+## Character scripts override this with rows [name, frame count, fps, loop]. An empty table keeps
+## the seven-row main sheet as the only atlas.
+func get_move_sheet_rows() -> Array:
+	return []
+
 ## Cuts the character's original sheet (ArtSettings, body_type variant first) into the
 ## shared animations. Returns false when there is none (the placeholder body shows).
 func _configure_original_sheet(id: String) -> bool:
@@ -814,9 +822,33 @@ func _configure_original_sheet(id: String) -> bool:
 	original_sheet_cell = int(sheet.get_width() / SHEET_COLUMNS)
 	var frames := SHEET_FRAMES.create_frames()
 	_add_sheet_animations(frames, id, sheet)
+	_configure_move_sheet(frames, id, get_move_sheet_rows())
 	character_sprite.sprite_frames = frames
 	character_sprite.play(StringName("%s_idle" % id))
 	uses_original_sheet = true
+	return true
+
+func _configure_move_sheet(frames: SpriteFrames, id: String, rows: Array) -> bool:
+	if rows.is_empty():
+		return false
+	var sheet: Texture2D
+	if moves_sheet_path_override != "":
+		if ResourceLoader.exists(moves_sheet_path_override):
+			sheet = load(moves_sheet_path_override) as Texture2D
+	else:
+		sheet = SHEET_ART.original_character_moves_sheet(id, body_type)
+	return _add_move_sheet_animations(frames, id, sheet, rows)
+
+## Adds move-specific rows from a second atlas. The row table belongs to the character, while the
+## common loader enforces the same cell size and six-column contract as the main atlas.
+func _add_move_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Texture2D, rows: Array) -> bool:
+	if sheet == null or sheet.get_width() != original_sheet_cell * SHEET_COLUMNS:
+		return false
+	if sheet.get_height() < original_sheet_cell * rows.size():
+		return false
+	for row in rows.size():
+		var spec: Array = rows[row]
+		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(original_sheet_cell, original_sheet_cell), SHEET_COLUMNS, row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
 	return true
 
 ## Adds <prefix>_idle ... <prefix>_hurt from a sheet with the same cell size as the main
@@ -906,12 +938,14 @@ func _dir_size(direction: Vector2, base_size: Vector2) -> Vector2:
 	return base_size
 
 ## pose: frames of the attack row this move plays (first, last), or (-1, -1) for the whole row.
-func _start_attack(startup: float, recovery: float, action: Callable, pose := Vector2i(-1, -1)) -> void:
+func _start_attack(startup: float, recovery: float, action: Callable, pose := Vector2i(-1, -1), move_row := &"", move_pose := Vector2i(-1, -1)) -> void:
 	attack_lock_timer = startup + recovery
 	attack_serial += 1
 	attack_elapsed = 0.0
 	attack_startup = startup
-	if pose.x >= 0:
+	if move_row != &"":
+		_play_move_sprite_pose(move_row, pose.x, pose.y, startup + recovery, move_pose.x, move_pose.y)
+	elif pose.x >= 0:
 		_play_sprite_pose(&"attack", pose.x, pose.y, startup + recovery)
 	else:
 		_play_sprite_action(&"attack", startup + recovery)
@@ -1159,7 +1193,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 		guard_recovery_waived = false
 		_play_guard_block_effect()
 	else:
-		_play_sprite_action(&"hurt", hitstun_timer)
+		_play_launch_hit_sprite(final_knockback, hitstun_timer)
 	hitstop_timer = VICTIM_HITSTOP * _hitstop_scale_from(attacker)
 	attack_buffer_timer = 0.0
 	jump_buffer_timer = 0.0
@@ -1253,7 +1287,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 		guard_recovery_waived = false
 		_play_guard_block_effect()
 	else:
-		_play_sprite_action(&"hurt", hitstun_timer)
+		_play_launch_hit_sprite(launch_velocity.length(), hitstun_timer)
 	hitstop_timer = VICTIM_HITSTOP * _hitstop_scale_from(attacker)
 	attack_buffer_timer = 0.0
 	jump_buffer_timer = 0.0
@@ -1755,6 +1789,15 @@ func _play_sprite_action(animation_name: StringName, duration: float) -> void:
 	sprite_action_timer = maxf(duration, 0.01)
 	character_sprite.play(_get_sprite_animation_name(animation_name))
 
+## Strong launches use the optional four-frame move-sheet tumble. Characters without that row
+## keep the hurt frame exactly as before; this changes presentation only, never hitstun or motion.
+func _play_launch_hit_sprite(launch_strength: float, duration: float) -> void:
+	var tumble := _get_sprite_animation_name(&"tumble")
+	if launch_strength >= 480.0 and _uses_character_sprite() and character_sprite.sprite_frames.has_animation(tumble):
+		_play_sprite_action(&"tumble", duration)
+	else:
+		_play_sprite_action(&"hurt", duration)
+
 ## Plays frames first..last of an action row across the duration and holds the last one, so
 ## moves that share one sheet row read differently: a quick cut, a wide finisher, a held thrust
 ## (2026-10-10: every Frey and Luna move played the same 4-frame attack row from frame 0).
@@ -1774,6 +1817,22 @@ func _play_sprite_pose(animation_name: StringName, first: int, last: int, durati
 	character_sprite.speed_scale = maxf(wanted / maxf(fps, 0.01), 0.01) if stop > start else 1.0
 	if stop == start:
 		character_sprite.pause()
+
+## Plays a move-only row across the action duration. If that optional row is absent, the exact
+## attack-row slice used before move sheets existed is preserved.
+func _play_move_sprite_pose(move_row: StringName, fallback_first: int, fallback_last: int, duration: float, move_first := -1, move_last := -1) -> void:
+	if not _uses_character_sprite():
+		return
+	var move_animation := _get_sprite_animation_name(move_row)
+	if character_sprite.sprite_frames.has_animation(move_animation):
+		var count := character_sprite.sprite_frames.get_frame_count(move_animation)
+		var first := move_first if move_first >= 0 else 0
+		var last := move_last if move_last >= 0 else count - 1
+		_play_sprite_pose(move_row, first, last, duration)
+	elif fallback_first >= 0:
+		_play_sprite_pose(&"attack", fallback_first, fallback_last, duration)
+	else:
+		_play_sprite_action(&"attack", duration)
 
 func _end_sprite_pose() -> void:
 	if sprite_pose_last < 0:
