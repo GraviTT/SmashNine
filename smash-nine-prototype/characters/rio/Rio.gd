@@ -317,9 +317,13 @@ func _show_rune(active: bool) -> void:
 			var angle := TAU * corner / 6.0 + PI / 6.0
 			rune_visual.add_point(Vector2(0, -34) + Vector2(cos(angle), sin(angle)) * 48.0)
 		add_child(rune_visual)
+		VFX.spawn(self, "rio_rune_guard", Vector2(0, -34), Vector2.ONE, true, 3, Color.WHITE, true)
+	var rune_art := get_node_or_null("Vfx_rio_rune_guard") as AnimatedSprite2D
 	if is_instance_valid(rune_visual):
-		rune_visual.visible = active
+		rune_visual.visible = active and rune_art == null
 		rune_visual.modulate = Color.WHITE
+	if rune_art != null:
+		rune_art.visible = active
 
 func _flash_rune() -> void:
 	if not is_instance_valid(rune_visual):
@@ -329,6 +333,9 @@ func _flash_rune() -> void:
 	tween.tween_property(rune_visual, "modulate", Color.WHITE, 0.12)
 
 func _play_rune_burst() -> void:
+	var burst_center := global_position + Vector2(40 * facing * GAME_SCALE.COMBAT, -36)
+	if VFX.spawn(get_parent(), "rio_rune_burst", burst_center, Vector2.ONE * (288.0 / 270.0), false, 4) != null:
+		return
 	var ring := Line2D.new()
 	ring.width = 4.0
 	ring.closed = true
@@ -373,9 +380,20 @@ func _overdrive_start() -> void:
 
 func _make_gem_sword(color: Color) -> Node2D:
 	var sword := Polygon2D.new()
-	sword.polygon = PackedVector2Array([Vector2(-12, 0), Vector2(0, -4), Vector2(18, 0), Vector2(0, 4)])
 	sword.color = color
 	sword.z_index = 3
+	var texture := preload("res://scripts/ArtSettings.gd").original_texture(GEM_SWORD_ART)
+	if texture != null:
+		var art := Sprite2D.new()
+		art.name = "ArtSprite"
+		art.texture = texture
+		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		art.modulate = color
+		# The orbit root is scaled by GameScale.COMBAT; the 96x32 authored sword is already 1:1.
+		art.scale = Vector2.ONE / GAME_SCALE.COMBAT
+		sword.add_child(art)
+	else:
+		sword.polygon = PackedVector2Array([Vector2(-12, 0), Vector2(0, -4), Vector2(18, 0), Vector2(0, 4)])
 	return sword
 
 func _update_overdrive_orbit(delta: float) -> void:
@@ -437,6 +455,11 @@ func _clear_overdrive() -> void:
 	overdrive_swords.clear()
 
 func _play_blink_trail(from: Vector2, to: Vector2) -> void:
+	var delta := to - from
+	var art := VFX.spawn(get_parent(), "rio_blink_trail", (from + to) * 0.5 + Vector2(0, -34), Vector2(delta.length() / 238.0, 1.0), false, 2)
+	if art != null:
+		art.rotation = delta.angle()
+		return
 	var trail := Line2D.new()
 	trail.width = 10.0
 	trail.default_color = Color(0.62, 0.55, 1.0, 0.55)

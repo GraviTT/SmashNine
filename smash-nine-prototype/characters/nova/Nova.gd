@@ -577,6 +577,10 @@ func _update_momentum_visual() -> void:
 	if momentum < 0.34 or momentum_trail_timer > 0.0:
 		return
 	momentum_trail_timer = lerpf(0.075, 0.035, momentum)
+	var art := VFX.spawn(get_parent(), "nova_momentum_trail", global_position + Vector2(0, -32), Vector2.ONE, false, 2, _momentum_color(momentum))
+	if art != null:
+		art.rotation = get_nova_impact_direction().angle()
+		return
 	var trail := Polygon2D.new()
 	trail.polygon = PackedVector2Array([Vector2(-24, 0), Vector2(0, -8), Vector2(24, 0), Vector2(0, 8)])
 	trail.color = _momentum_color(momentum)
@@ -590,6 +594,10 @@ func _update_momentum_visual() -> void:
 	tween.tween_callback(trail.queue_free)
 
 func _play_vector_flash(direction: Vector2, length: float, momentum: float) -> void:
+	var art := VFX.spawn(get_parent(), "nova_vector_streak", global_position + Vector2(0, -32) + direction * length * 0.5, Vector2(length / 180.0, lerpf(0.55, 1.0, momentum)), false, 5, _momentum_color(momentum))
+	if art != null:
+		art.rotation = direction.angle()
+		return
 	var line := Line2D.new()
 	line.points = PackedVector2Array([Vector2.ZERO, direction * length])
 	line.width = lerpf(5.0, 12.0, momentum)
@@ -603,6 +611,10 @@ func _play_vector_flash(direction: Vector2, length: float, momentum: float) -> v
 	tween.tween_callback(line.queue_free)
 
 func _play_shift_flash(direction: Vector2) -> void:
+	var art := VFX.spawn(get_parent(), "nova_shift_dash", global_position + Vector2(0, -32) - direction * 26.0, Vector2(52.0 / 88.0, 1.0), false, 4)
+	if art != null:
+		art.rotation = direction.angle()
+		return
 	var line := Line2D.new()
 	line.points = PackedVector2Array([-direction * 52.0, Vector2.ZERO])
 	line.width = 7.0
@@ -623,6 +635,8 @@ func _play_brake_charge(momentum: float) -> void:
 	tween.tween_property(body, "scale", Vector2.ONE, 0.08)
 
 func _play_shift_recharge_flash() -> void:
+	if VFX.spawn(get_parent(), "nova_shift_ready", global_position + Vector2(0, -32), Vector2.ONE * (102.0 / 116.0), false, 6) != null:
+		return
 	var ring := Line2D.new()
 	ring.points = _make_circle_points(34.0, 20)
 	ring.closed = true
@@ -638,6 +652,8 @@ func _play_shift_recharge_flash() -> void:
 
 func _play_impact_flash(world_position: Vector2, radius: float, color: Color) -> void:
 	radius *= GAME_SCALE.COMBAT
+	if VFX.spawn(get_parent(), "nova_impact_star", world_position, Vector2.ONE * (radius * 2.4 / 230.0), false, 7, Color(1, 1, 1, color.a)) != null:
+		return
 	var flash := Polygon2D.new()
 	flash.polygon = _make_star_points(radius, radius * 0.48)
 	flash.color = color
@@ -652,6 +668,10 @@ func _play_impact_flash(world_position: Vector2, radius: float, color: Color) ->
 	tween.tween_callback(flash.queue_free)
 
 func _play_launch_flash(direction: Vector2) -> void:
+	var art := VFX.spawn(get_parent(), "nova_launch_flash", global_position + Vector2(0, -32) + direction * 90.0, Vector2(180.0 / 238.0, 1.0), false, 6)
+	if art != null:
+		art.rotation = direction.angle()
+		return
 	var line := Line2D.new()
 	line.points = PackedVector2Array([Vector2.ZERO, direction * 180.0])
 	line.width = 18.0

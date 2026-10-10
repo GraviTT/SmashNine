@@ -9,6 +9,9 @@ const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const DIR := "res://assets/art/vfx/%s.png"
 const ATTACK_DIR := "res://assets/art/attack_vfx/%s.png"
 const EFFECTS_DIR := "res://assets/art/effects/%s.png"
+const SKILL_DIR := "res://assets/art/effects/skill/%s.png"
+const REALM_EFFECTS_DIR := "res://assets/art/effects/realm/%s.png"
+const REALM_CENTER_DIR := "res://assets/art/realm_center/%s.png"
 const HAZARDS_DIR := "res://assets/art/hazards/%s.png"
 ## name: [frames, fps, anchor in the frame, additive(, folder pattern when not DIR)]
 const SPECS := {
@@ -51,6 +54,31 @@ const SPECS := {
 	"landing_dust": [5, 41.667, Vector2(48, 31), false, EFFECTS_DIR],
 	"hit_streak": [4, 50.0, Vector2(80, 12), true, EFFECTS_DIR],
 	"yuki_seal_break": [5, 33.333, Vector2(48, 48), false, EFFECTS_DIR],
+	# CODEX-ART-24, skill effects that replace procedural shapes. Callers retain those shapes
+	# whenever this art is missing or F2 selects the prototype style.
+	"luna_star_bloom": [6, 37.5, Vector2(128, 128), true, SKILL_DIR],
+	"luna_moon_ring": [6, 25.0, Vector2(160, 160), true, SKILL_DIR],
+	"luna_brave_aura": [6, 10.0, Vector2(64, 64), true, SKILL_DIR],
+	"luna_comet_trail": [4, 40.0, Vector2(24, 24), true, SKILL_DIR],
+	"luna_comet_burst": [6, 42.857, Vector2(112, 112), true, SKILL_DIR],
+	"nova_gravity_burst": [6, 42.857, Vector2(256, 256), false, SKILL_DIR],
+	"nova_momentum_trail": [4, 40.0, Vector2(32, 16), true, SKILL_DIR],
+	"nova_vector_streak": [4, 33.333, Vector2(96, 24), true, SKILL_DIR],
+	"nova_shift_dash": [4, 18.182, Vector2(48, 20), true, SKILL_DIR],
+	"nova_shift_ready": [5, 35.714, Vector2(64, 64), true, SKILL_DIR],
+	"nova_impact_star": [6, 40.0, Vector2(256, 256), true, SKILL_DIR],
+	"nova_launch_flash": [5, 31.25, Vector2(128, 32), true, SKILL_DIR],
+	"rio_rune_guard": [6, 12.0, Vector2(64, 64), true, SKILL_DIR],
+	"rio_rune_burst": [6, 37.5, Vector2(160, 160), true, SKILL_DIR],
+	"rio_blink_trail": [5, 31.25, Vector2(128, 32), true, SKILL_DIR],
+	"yuki_grand_ward": [8, 12.0, Vector2(320, 320), false, SKILL_DIR],
+	"guard_bubble": [3, 1.0, Vector2(64, 64), false, SKILL_DIR],
+	"attack_afterimage": [4, 57.143, Vector2(80, 32), true, SKILL_DIR],
+	# Realm-state art and the animated shared portal (CODEX-ART-24).
+	"portal_anim": [6, 8.0, Vector2(48, 48), false, REALM_CENTER_DIR],
+	"seal_barrier": [6, 6.0, Vector2(128, 128), false, REALM_EFFECTS_DIR],
+	"collapse_cracks": [6, 5.0, Vector2(160, 64), false, REALM_EFFECTS_DIR],
+	"warning_edge": [6, 8.0, Vector2(160, 24), true, REALM_EFFECTS_DIR],
 }
 
 ## Frame widths the anchors and callers' scales were written for. A strip redrawn bigger
@@ -63,6 +91,13 @@ const AUTHORED_WIDTH := {
 	"frey_slash": 192, "frey_k": 224, "frey_l": 128, "yuki_slash": 192, "yuki_k": 128, "yuki_l": 192,
 	"luna_slash": 192, "luna_k": 160, "luna_l": 192, "luna_brave_slash": 224, "nova_slash": 160,
 	"nova_k": 224, "nova_l": 192, "rio_slash": 192, "rio_k": 256, "rio_l": 128,
+	"luna_star_bloom": 256, "luna_moon_ring": 320, "luna_brave_aura": 128,
+	"luna_comet_trail": 48, "luna_comet_burst": 224, "nova_gravity_burst": 512,
+	"nova_momentum_trail": 64, "nova_vector_streak": 192, "nova_shift_dash": 96,
+	"nova_shift_ready": 128, "nova_impact_star": 512, "nova_launch_flash": 256,
+	"rio_rune_guard": 128, "rio_rune_burst": 320, "rio_blink_trail": 256,
+	"yuki_grand_ward": 640, "guard_bubble": 128, "attack_afterimage": 160,
+	"portal_anim": 96, "seal_barrier": 256, "collapse_cracks": 320, "warning_edge": 320,
 }
 
 static var _cache: Dictionary = {}

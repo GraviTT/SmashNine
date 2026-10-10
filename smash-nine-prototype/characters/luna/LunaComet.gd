@@ -111,6 +111,9 @@ func _finish_detonation() -> void:
 func _spawn_trail() -> void:
 	if not is_instance_valid(get_parent()):
 		return
+	var vfx := preload("res://scripts/Vfx.gd")
+	if vfx.spawn(get_parent(), "luna_comet_trail", global_position, Vector2.ONE, false, 4) != null:
+		return
 	var trail := Polygon2D.new()
 	trail.polygon = _make_star_points(10.0 * GAME_SCALE.COMBAT, 4.5 * GAME_SCALE.COMBAT)
 	trail.color = Color(0.42, 0.95, 1.0, 0.42)
@@ -123,6 +126,9 @@ func _spawn_trail() -> void:
 	tween.tween_callback(trail.queue_free)
 
 func _spawn_bloom_flash() -> void:
+	var vfx := preload("res://scripts/Vfx.gd")
+	if vfx.spawn(get_parent(), "luna_comet_burst", global_position, Vector2.ONE, false, 6) != null:
+		return
 	var flash := Polygon2D.new()
 	flash.polygon = _make_star_points(42.0 * GAME_SCALE.COMBAT, 18.0 * GAME_SCALE.COMBAT)
 	flash.color = Color(1.0, 0.86, 0.34, 0.86)

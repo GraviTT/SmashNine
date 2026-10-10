@@ -35,6 +35,13 @@ func configure(new_source: Node, radius: float, new_damage: float, new_knockback
 	ring.default_color = Color(color.r, color.g, color.b, minf(color.a + 0.22, 1.0))
 	ring.antialiased = true
 	add_child(ring)
+	# The generated burst art occupies about 232 px inside a 512 px frame. It replaces both
+	# procedural circles in original-art mode; collision and lifetime remain unchanged.
+	var vfx := preload("res://scripts/Vfx.gd")
+	var art := vfx.spawn(self, "nova_gravity_burst", Vector2.ZERO, Vector2.ONE * (radius * 2.0 / 232.0), false, 1, Color(1, 1, 1, color.a), true)
+	if art != null:
+		visual.visible = false
+		ring.visible = false
 	visual.scale = Vector2(0.48, 0.48)
 	ring.scale = Vector2(0.48, 0.48)
 	var tween := create_tween()

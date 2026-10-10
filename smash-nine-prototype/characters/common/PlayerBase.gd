@@ -541,14 +541,34 @@ func _create_guard_visual() -> void:
 	guard_visual.antialiased = true
 	guard_visual.visible = false
 	add_child(guard_visual)
+	var guard_art := EFFECT_STRIPS.spawn(self, "guard_bubble", Vector2(0, -32), Vector2.ONE, false, 5, Color.WHITE, true)
+	if guard_art != null:
+		guard_art.pause()
+		guard_art.frame = 0
+		guard_art.visible = false
 
 func _update_guard_visual() -> void:
 	if not is_instance_valid(guard_visual):
 		return
-	guard_visual.visible = is_guarding
+	var guard_art := get_node_or_null("Vfx_guard_bubble") as AnimatedSprite2D
+	guard_visual.visible = is_guarding and guard_art == null
+	if guard_art != null:
+		guard_art.visible = is_guarding
 	if not is_guarding:
 		return
 	var reduction := _get_guard_reduction()
+	if guard_art != null:
+		guard_art.position = Vector2(0, -32)
+		guard_art.modulate = Color(1, 1, 1, 0.48 + reduction * 0.52)
+		guard_art.frame = 2 if guard_parry_timer > 0.0 else (1 if guard_visual.scale.x > 1.05 else 0)
+		if guard_direction == Vector2.RIGHT:
+			guard_art.rotation = 0.0
+		elif guard_direction == Vector2.LEFT:
+			guard_art.rotation = PI
+		elif guard_direction == Vector2.UP:
+			guard_art.rotation = -PI * 0.5
+		else:
+			guard_art.rotation = PI * 0.5
 	guard_visual.default_color = Color(0.35, 0.88, 1.0, 0.28 + reduction * 0.62)
 	guard_visual.width = 3.5 + reduction * 4.0
 	var start_angle := -70.0
