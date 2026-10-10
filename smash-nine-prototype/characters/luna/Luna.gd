@@ -578,6 +578,9 @@ func _create_transformation_aura() -> void:
 	transformation_aura.position = Vector2(0, -34)
 	transformation_aura.z_index = 3
 	add_child(transformation_aura)
+	var aura_art := VFX.spawn(transformation_aura, "luna_brave_aura", Vector2.ZERO, Vector2.ONE, true, 0, Color.WHITE, true)
+	if aura_art != null:
+		return
 	var outer := Line2D.new()
 	outer.points = _make_star_points(48.0, 28.0)
 	outer.closed = true
@@ -616,6 +619,13 @@ func _play_star_bloom(offset: Vector2, radius: float, color: Color, duration := 
 	# Blooms mark attacks: placed and sized like them (GameScale.COMBAT).
 	offset = GAME_SCALE.attack_point(offset)
 	radius *= GAME_SCALE.COMBAT
+	# Generated bloom art occupies about 204 px inside its 256 px frame. Match the old
+	# polygon's 1.25x terminal radius; keep the polygon below as the missing/F2 fallback.
+	var art_scale := radius * 2.5 / 204.0
+	var art := VFX.spawn(get_parent(), "luna_star_bloom", global_position + offset, Vector2.ONE * art_scale, false, 6, Color(1, 1, 1, color.a))
+	if art != null:
+		art.speed_scale = 0.16 / maxf(duration, 0.01)
+		return
 	var star := Polygon2D.new()
 	star.polygon = _make_star_points(radius, radius * 0.42)
 	star.color = color
@@ -631,6 +641,9 @@ func _play_star_bloom(offset: Vector2, radius: float, color: Color, duration := 
 
 func _play_moon_ring_flash(radius: float) -> void:
 	radius *= GAME_SCALE.COMBAT
+	# The painted ring's visible diameter is about 204 px; match the old 1.08x end scale.
+	if VFX.spawn(get_parent(), "luna_moon_ring", global_position + Vector2(0, -34), Vector2.ONE * (radius * 2.16 / 204.0), false, 5) != null:
+		return
 	var ring := Line2D.new()
 	ring.points = _make_circle_points(radius, 28)
 	ring.closed = true

@@ -214,6 +214,30 @@ func _create_state_overlay(parent: Node2D, realm_index: int, state: String) -> v
 	overlay.color = Color(0.95, 0.2, 0.08, 0.18) if state == "warning" else Color(0.0, 0.0, 0.0, 0.55)
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay_root.add_child(overlay)
+	# Animated markers sit above the tint. The tint and labels remain the complete fallback
+	# when art is missing or F2 selects the prototype style.
+	var vfx := preload("res://scripts/Vfx.gd")
+	if state == "locked" and vfx.available("seal_barrier"):
+		for tile_y in ceili(realm_size.y / 256.0):
+			for tile_x in ceili(realm_size.x / 256.0):
+				vfx.spawn(overlay_root, "seal_barrier", Vector2(tile_x * 256 + 128, tile_y * 256 + 128), Vector2.ONE, true, 1, Color(1, 1, 1, 0.24), true)
+	elif state == "collapsed" and vfx.available("collapse_cracks"):
+		for tile_y in ceili(realm_size.y / 220.0):
+			for tile_x in ceili(realm_size.x / 320.0):
+				vfx.spawn(overlay_root, "collapse_cracks", Vector2(tile_x * 320 + 160, tile_y * 220 + 110), Vector2.ONE, true, 1, Color(1, 1, 1, 0.48), true)
+	elif state == "warning" and vfx.available("warning_edge"):
+		for tile_x in ceili(realm_size.x / 320.0):
+			vfx.spawn(overlay_root, "warning_edge", Vector2(tile_x * 320 + 160, 24), Vector2.ONE, true, 1, Color.WHITE, true)
+			var bottom := vfx.spawn(overlay_root, "warning_edge", Vector2(tile_x * 320 + 160, realm_size.y - 24), Vector2.ONE, true, 1, Color.WHITE, true)
+			if bottom != null:
+				bottom.rotation = PI
+		for tile_y in ceili(realm_size.y / 320.0):
+			var left := vfx.spawn(overlay_root, "warning_edge", Vector2(24, tile_y * 320 + 160), Vector2.ONE, true, 1, Color.WHITE, true)
+			var right := vfx.spawn(overlay_root, "warning_edge", Vector2(realm_size.x - 24, tile_y * 320 + 160), Vector2.ONE, true, 1, Color.WHITE, true)
+			if left != null:
+				left.rotation = -PI * 0.5
+			if right != null:
+				right.rotation = PI * 0.5
 
 	# The warning countdown is a HUD banner; only closed realms get an in-world label.
 	if state == "warning":
@@ -234,7 +258,11 @@ func _create_portal_visual(parent: Node2D, center: Vector2, label_text: String, 
 	if painted == null and not layout.get_realm(source_index).get("art", {}).is_empty():
 		# Outer realms share the center realm's portal art.
 		painted = ART_SETTINGS.original_texture(SHARED_PORTAL_ART)
-	if painted != null:
+	var portal_tint := Color.WHITE.lerp(realm.accent, 0.35)
+	var animated := preload("res://scripts/Vfx.gd").spawn(parent, "portal_anim", center, Vector2.ONE, true, 0, portal_tint)
+	if animated != null:
+		animated.name = "PortalAnimated"
+	elif painted != null:
 		# Original art: the portal sprite tinted toward the destination realm's colour.
 		var sprite := TextureRect.new()
 		sprite.texture = painted
@@ -242,7 +270,7 @@ func _create_portal_visual(parent: Node2D, center: Vector2, label_text: String, 
 		sprite.position = center - REALM_LAYOUT.PORTAL_SIZE * 0.5
 		sprite.stretch_mode = TextureRect.STRETCH_SCALE
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		sprite.modulate = Color.WHITE.lerp(realm.accent, 0.35)
+		sprite.modulate = portal_tint
 		sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		parent.add_child(sprite)
 	else:

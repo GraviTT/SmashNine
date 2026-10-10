@@ -121,6 +121,12 @@ func _sample_motion_tangent(ratio: float) -> Vector2:
 func _spawn_trail_afterimage() -> void:
 	if not is_instance_valid(get_parent()):
 		return
+	var vfx := preload("res://scripts/Vfx.gd")
+	var tint := Color(visual.color.r, visual.color.g, visual.color.b, visual.color.a * 0.55)
+	var art := vfx.spawn(get_parent(), "attack_afterimage", global_position, Vector2(visual.size.x / 150.0, visual.size.y / 56.0), false, 1, tint)
+	if art != null:
+		art.rotation = visual.rotation
+		return
 	var trail := ColorRect.new()
 	trail.size = visual.size
 	trail.position = global_position - trail.size * 0.5
