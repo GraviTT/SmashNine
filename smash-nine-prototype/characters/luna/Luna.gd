@@ -89,9 +89,18 @@ func _add_brave_sheet() -> void:
 
 ## While transformed, every animation comes from the Brave sheet when there is one.
 func _get_sprite_animation_name(base_name: StringName) -> StringName:
-	if transformed and has_brave_sheet:
-		return StringName("luna_brave_%s" % base_name)
-	return super._get_sprite_animation_name(base_name)
+	var luna := super._get_sprite_animation_name(base_name)
+	if not has_brave_sheet:
+		return luna
+	var brave := StringName("luna_brave_%s" % base_name)
+	var wanted := brave if transformed else luna
+	var other := luna if transformed else brave
+	# A row only one form has (Luna's transform, Brave's heart laser) keeps playing when the
+	# form switches under it.
+	var frames: SpriteFrames = character_sprite.sprite_frames if is_instance_valid(character_sprite) else null
+	if frames != null and not frames.has_animation(wanted) and frames.has_animation(other):
+		return other
+	return wanted
 
 func get_character_movement_multiplier() -> float:
 	return TRANSFORMATION_MOVEMENT_MULTIPLIER if transformed else 1.0
