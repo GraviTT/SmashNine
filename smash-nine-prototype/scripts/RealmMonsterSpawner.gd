@@ -46,16 +46,14 @@ func _spawn_missing_for_realm(realm_index: int) -> void:
 		monsters.append(monster)
 	monsters_by_realm[realm_index] = monsters
 
-## A realm replaces only the matching generic behaviour. The alternating melee/ranged
+## Each realm selects art for both generic behaviours. The alternating melee/ranged
 ## population and every combat number remain unchanged.
 func _skin_for_realm_kind(realm_index: int, kind: String) -> String:
 	var generic := "mossling" if kind == "melee" else "ember_imp"
 	if realm_index < 0 or realm_index >= realm_profiles.size():
 		return generic
-	var monster: Dictionary = realm_profiles[realm_index].get("monster", {})
-	if str(monster.get("kind", "")) != kind:
-		return generic
-	return str(monster.get("skin", generic))
+	var monsters: Dictionary = realm_profiles[realm_index].get("monsters", {})
+	return str(monsters.get(kind, generic))
 
 func _clear_realm(realm_index: int) -> void:
 	for monster in monsters_by_realm.get(realm_index, []):

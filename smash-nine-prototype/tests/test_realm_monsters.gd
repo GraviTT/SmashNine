@@ -1,19 +1,21 @@
 extends SceneTree
-## CODEX-ART-25: every themed realm substitutes one generic behaviour with its own art skin.
-## The other behaviour remains generic, and a missing skin file falls back to generic art.
+## CODEX-ART-31: every realm supplies art for both unchanged generic behaviours.
+## A missing skin file still falls back to the corresponding generic art.
 
 const CATALOG := preload("res://scripts/realms/RealmCatalog.gd")
 const SPAWNER_SCRIPT := preload("res://scripts/RealmMonsterSpawner.gd")
 const MONSTER_SCRIPT := preload("res://scripts/RealmMonster.gd")
 
 const EXPECTED := {
-	0: {"skin": "asgard_aegis_ram", "kind": "melee"},
-	2: {"skin": "niflheim_frost_owl", "kind": "ranged"},
-	3: {"skin": "alfheim_moon_moth", "kind": "ranged"},
-	5: {"skin": "svartalfheim_gear_beetle", "kind": "melee"},
-	6: {"skin": "vanaheim_vine_hound", "kind": "melee"},
-	7: {"skin": "jotunheim_rune_golem", "kind": "melee"},
-	8: {"skin": "yggdrasil_root_oracle", "kind": "ranged"},
+	0: {"melee": "asgard_aegis_ram", "ranged": "asgard_runic_raven"},
+	1: {"melee": "mossling", "ranged": "midgard_rooftop_slinger"},
+	2: {"melee": "niflheim_glacier_wolf", "ranged": "niflheim_frost_owl"},
+	3: {"melee": "alfheim_moon_stag", "ranged": "alfheim_moon_moth"},
+	4: {"melee": "muspelheim_magma_boar", "ranged": "ember_imp"},
+	5: {"melee": "svartalfheim_gear_beetle", "ranged": "svartalfheim_cog_drone"},
+	6: {"melee": "vanaheim_vine_hound", "ranged": "vanaheim_seed_sprite"},
+	7: {"melee": "jotunheim_rune_golem", "ranged": "jotunheim_storm_wisp"},
+	8: {"melee": "yggdrasil_root_guardian", "ranged": "yggdrasil_root_oracle"},
 }
 
 var failed := false
@@ -30,7 +32,7 @@ func _run() -> void:
 	if failed:
 		quit(1)
 		return
-	print("Realm monster tests passed (7 skins, generic pair preservation, missing-file fallback)")
+	print("Realm monster tests passed (9 themed pairs, behaviour preservation, missing-file fallback)")
 	quit(0)
 
 func _fail(message: String) -> void:
@@ -45,23 +47,22 @@ func _check_catalog_and_spawns() -> void:
 	spawner.configure(func(_realm: int) -> Array: return [Vector2.ZERO], func() -> Array: return EXPECTED.keys())
 	for realm_index: int in EXPECTED:
 		var expected: Dictionary = EXPECTED[realm_index]
-		if maps[realm_index].get("monster", {}) != expected:
-			_fail("Realm %d catalog monster is %s, expected %s" % [realm_index, maps[realm_index].get("monster", {}), expected])
+		if maps[realm_index].get("monsters", {}) != expected:
+			_fail("Realm %d catalog monsters are %s, expected %s" % [realm_index, maps[realm_index].get("monsters", {}), expected])
 			continue
 		spawner._spawn_missing_for_realm(realm_index)
 		var monsters: Array = spawner.monsters_by_realm.get(realm_index, [])
-		var themed := 0
-		var generic_other := 0
+		var melee := 0
+		var ranged := 0
 		for monster: Node in monsters:
-			if monster.skin_id == expected.skin:
-				themed += 1
-				var expected_type := "mossling" if expected.kind == "melee" else "ember_imp"
-				if monster.monster_type != expected_type:
-					_fail("%s changed behaviour kind to %s" % [expected.skin, monster.monster_type])
-			elif monster.skin_id == monster.monster_type:
-				generic_other += 1
-		if themed != 2 or generic_other != 2:
-			_fail("Realm %d should spawn 2 themed + 2 generic-other monsters, got %d + %d" % [realm_index, themed, generic_other])
+			if monster.monster_type == "mossling" and monster.skin_id == expected.melee:
+				melee += 1
+			elif monster.monster_type == "ember_imp" and monster.skin_id == expected.ranged:
+				ranged += 1
+			else:
+				_fail("Realm %d mismatched behaviour/skin: %s / %s" % [realm_index, monster.monster_type, monster.skin_id])
+		if melee != 2 or ranged != 2:
+			_fail("Realm %d should spawn 2 melee + 2 ranged themed monsters, got %d + %d" % [realm_index, melee, ranged])
 	spawner.queue_free()
 	await process_frame
 
