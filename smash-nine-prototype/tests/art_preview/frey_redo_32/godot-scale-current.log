@@ -1,0 +1,24 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/frey/frey_sheet.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/frey_redo_32/scale_audit.gd:19)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/art/frey/frey_moves_sheet.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] _init (res://tests/art_preview/frey_redo_32/scale_audit.gd:20)
+method=one-pixel 8-neighbour erosion; scale=sqrt(eroded_opaque_area/idle_eroded_opaque_area)
+idle_core_pixels=4417
+row,frames,min,max,spread,per_frame
+attack_up,4,0.999,1.101,0.102,1:0.999 2:1.004 3:1.101 4:1.015
+attack_down,4,0.980,1.092,0.112,1:1.042 2:0.989 3:1.092 4:0.980
+attack_air_side,4,0.973,1.018,0.044,1:1.015 2:0.973 3:0.978 4:1.018
+dash_strike,4,0.997,1.096,0.099,1:0.997 2:1.028 3:1.054 4:1.096
+rising_cleave,5,0.974,1.085,0.111,1:1.025 2:1.084 3:1.085 4:0.974 5:1.026
+spike_followup,4,0.726,1.364,0.638,1:1.031 2:1.026 3:0.726 4:1.364
+descent,6,0.852,1.300,0.448,1:1.065 2:1.039 3:0.968 4:0.852 5:1.300 6:0.979
+tumble,4,0.905,0.905,0.000,1:0.905 2:0.905 3:0.905 4:0.905
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)

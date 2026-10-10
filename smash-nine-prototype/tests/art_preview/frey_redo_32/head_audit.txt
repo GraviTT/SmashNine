@@ -1,0 +1,19 @@
+method=idle head template exact-palette match; candidates=rarest shared opaque color anchors; scales=0.70..1.40 step 0.025; mirrored=yes; tumble=quarter-rotated
+reference_box=[P: (62, 27), S: (28, 32)] (white helmet wings excluded)
+attack_up before 1:0.775 2:1.025 3:0.775 4:1.050
+attack_up after  1:1.000 2:1.000 3:1.000 4:1.000
+attack_down before 1:0.700 2:1.050 3:0.775 4:0.900
+attack_down after  1:1.000 2:1.000 3:1.000 4:1.000
+attack_air_side before 1:0.775 2:0.700 3:0.725 4:1.150
+attack_air_side after  1:1.000 2:1.000 3:1.000 4:1.000
+dash_strike before 1:0.775 2:0.850 3:0.800 4:0.750
+dash_strike after  1:1.000 2:1.000 3:1.000 4:1.000
+rising_cleave before 1:0.750 2:1.275 3:0.725 4:0.725 5:0.775
+rising_cleave after  1:1.000 2:1.000 3:1.000 4:1.000 5:1.000
+spike_followup before 1:0.850 2:0.925 3:0.700 4:0.850
+spike_followup after  1:1.000 2:1.000 3:1.000 4:1.000
+descent before 1:0.775 2:0.775 3:0.825 4:0.775 5:0.700 6:0.825
+descent after  1:1.000 2:1.000 3:1.000 4:1.000 5:1.000 6:1.000
+tumble before 1:0.725 2:0.750 3:0.775 4:0.700
+tumble after  1:1.000 2:1.000 3:1.000 4:1.000
+verdict=PASS; after frames within +/-5%=35/35
