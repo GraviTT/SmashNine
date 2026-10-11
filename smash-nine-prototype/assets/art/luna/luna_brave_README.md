@@ -32,3 +32,13 @@ aligned to y=120. Three already-clean cells remain pixel-identical; unused cells
 The current four-frame attack row is still shared by every Brave basic and skill. The proposed
 minimum skill-specific rows are documented in `reports/codex-art-21/README.md`; no extra rows
 were drawn in this task.
+
+## CODEX-ART-34B walk redraw
+
+Only row 1 was redrawn as a six-frame contact/down/passing loop. Both orb gauntlets stay
+with the newly drawn whole body while the boots alternate clearly; no head, limb, or
+gauntlet was pasted. After lead review, every frame was rescaled as one whole drawing so
+the raw-pixel head box is exactly the idle frame's 63x34; this fixes the oversized 2, 4,
+and 6 frames. The build uses nearest-neighbour whole-frame x/y reduction, idle-palette
+families, binary alpha, detached-component cleanup, and feet at y=120. The existing
+six-frame, 10 fps Brave walk wiring is unchanged.
