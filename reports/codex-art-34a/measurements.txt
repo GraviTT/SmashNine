@@ -1,0 +1,21 @@
+CODEX-ART-34A walk-row measurements
+
+Feet band: cell y=100..120
+Stance span: cell y=112..120
+Metric: mean consecutive-frame silhouette difference, including frame 6 -> frame 1
+
+character   before_change  after_change  before_stance_width       after_stance_width        result
+frey        33.2%          50.4%         46/55/54/60/58/52        52/46/45/59/44/50         PASS
+rio_male    25.9%          77.5%         100/98/86/94/94/96       80/61/17/67/55/16         PASS
+rio_female  24.6%          50.8%         104/97/92/83/81/84       49/49/43/49/49/48         PASS
+yuki        49.2%          53.2%         28/41/9/57/48/24         49/35/28/55/34/35         PASS
+
+Head scale after, relative to the same sheet's idle head:
+frey        0.9906..1.0412  face candidates 1/frame  eye clusters 0/frame
+rio_male    0.9574..1.0458  face candidates 1/frame  eye clusters 0/frame
+rio_female  0.9545..1.0220  face candidates 1/frame  eye clusters 0..1/frame
+yuki        0.9575..0.9997  face candidates 1/frame  eye clusters 0..1/frame
+
+Every after head scale is within +/-5%.
+Every non-walk row was compared pixel-by-pixel before save and was identical.
+
