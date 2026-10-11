@@ -33,3 +33,14 @@ pixel-identical.
 
 The retained ImageGen sources, before/after contacts, measurements, and build scripts are in
 `reports/codex-art-21/` and `tests/art_preview/sprite_review_21/`.
+
+## CODEX-ART-34B walk redraw
+
+Only row 1 of `luna_sheet.png` was redrawn as a six-frame contact/down/passing walk
+loop. Her wand stays forward and clear of the alternating legs, while the hair and cape
+remain behind them. Every pose is a single whole-character drawing; the build performs
+nearest-neighbour whole-frame x/y reduction to the idle raw-pixel head box (67x36),
+idle-palette-family quantization, detached-component cleanup, hard-alpha cleanup, and
+y=120 grounding without pasted parts. All six heads are within 1 px of idle. The existing six-frame, 10 fps looping
+`luna_walk` wiring is unchanged. Reproduction sources and visual checks are in
+`tests/art_preview/walk_34/b/`.

@@ -48,3 +48,16 @@ prototype atlas has 14 columns. For either new sheet use 6 columns, row starts
 `ArtSettings.character_sheet("nova", ...)` path does not select a gender variant;
 the lead must choose `nova_male_sheet.png`, `nova_female_sheet.png`, or add explicit
 variant selection. The builder unit did not edit `characters/nova/Nova.gd`.
+
+## CODEX-ART-34B walk redraw
+
+The active male and female v2 sheets are 768×896 with 128 px cells. Only row 1 was
+redrawn as a six-frame contact/down/passing walk loop. Each generated pose was kept as
+one whole drawing, reduced only with nearest-neighbour whole-frame x/y scaling,
+palette-family quantized to its own idle frame, hardened to binary alpha, and grounded at
+cell y=120. No head or limb was pasted separately. The male source was regenerated after
+lead review so midnight hair/suit and cyan trim remain distinct. Raw-pixel head boxes are
+within 1 px of each sheet's idle box (male 46x43, female 51x41), and detached walk pixels
+were removed. The row remains the existing six-frame, 10 fps looping `nova_walk`
+animation; no runtime code changed. Source strips, before/after contacts, onion skins,
+and measurements are in `tests/art_preview/walk_34/b/`.
