@@ -8,6 +8,8 @@ extends SceneTree
 
 const CELL := 128
 const COUNTS := [4, 6, 1, 1, 4, 6, 1]
+## Characters redrawn with 6-frame motions (D33).
+const SHEET_COUNTS := {"frey_sheet.png": [6, 6, 1, 1, 6, 6, 1]}
 const MARGIN := 4
 const EDGE_FILL := 16
 const CUT_RUN := 9
@@ -44,7 +46,7 @@ func _initialize() -> void:
 	_check_all_monster_sheets("res://assets/art/monsters")
 	_check_all_head_files("res://assets/art")
 	if failures.is_empty():
-		print("Sprite frame tests passed (8 main sheets, 184 frames, %d moves sheets, %d monster sheets edge-clean, %d head files valid)" % [moves_sheet_count, monster_sheet_count, heads_file_count])
+		print("Sprite frame tests passed (8 main sheets, %d moves sheets, %d monster sheets edge-clean, %d head files valid)" % [moves_sheet_count, monster_sheet_count, heads_file_count])
 		quit(0)
 	else:
 		for failure in failures:
@@ -149,12 +151,13 @@ func _check_sheet(path: String) -> void:
 	var sheet := Image.load_from_file(ProjectSettings.globalize_path(path))
 	var file := path.get_file()
 	var allowed: Array = SOURCE_EDGES.get(file, []) + KNOWN_CUT.get(file, [])
-	for row in COUNTS.size():
+	var counts: Array = SHEET_COUNTS.get(file, COUNTS)
+	for row in counts.size():
 		for column in 6:
 			var frame := sheet.get_region(Rect2i(column * CELL, row * CELL, CELL, CELL))
 			var name := "%s r%dc%d" % [file, row, column]
 			var bounds := _bounds(frame)
-			if column >= COUNTS[row]:
+			if column >= counts[row]:
 				if bounds.size != Vector2i.ZERO:
 					failures.append("%s: unused cell is not empty" % name)
 				continue

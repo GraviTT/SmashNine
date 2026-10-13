@@ -89,3 +89,6 @@ Frey 행의 머리 크기는 앵커 대비 자동 측정값과 4배 육안 비�
 - 팔레트 매핑은 흐림·압축·가려짐·잘못 그린 해부를 복구하지 않는다.
 - 자동 외곽선은 실루엣을 확장하지 않으며 큰 끊김을 그려 넣지 않는다.
 - 4px 여백은 `metrics.json`에 보고한다. 1px 테두리 침범은 항상 실패하지만 4px 미달은 리드가 후보를 다시 생성할지 판단한다.
+
+## Putting accepted rows into the game
+`assemble.py --cell <128|192> --out <sheet.png> <strip>...` stacks accepted one-row strips into a 6-column sheet in the row-table order, pixel for pixel (Frey 2026-10-14: base sheet 128, move sheet 192, D34). Then mark each adopted candidate's JSON with `"adopted": "<date>"` so the motion viewer stops listing it.

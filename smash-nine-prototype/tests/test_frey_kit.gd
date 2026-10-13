@@ -112,8 +112,9 @@ func _test_chain_poses() -> void:
 	target.queue_free()
 	if true_combo_misses > 0:
 		_fail("Frey's J chain should be a true combo once the first hit lands: the next hits land inside the target's hitstun (%d did not)" % true_combo_misses)
-	if first_frames != [0, 1, 2]:
-		_fail("The three J hits should start on attack frames 0, 1 and 2 (got %s)" % [first_frames])
+	# Two frames per hit in the 6-frame chain row (D33): wind-up and cut at 1-2, 3-4, 5-6.
+	if first_frames != [0, 2, 4]:
+		_fail("The three J hits should start on chain frames 0, 2 and 4 (got %s)" % [first_frames])
 	frey.queue_free()
 	ground.queue_free()
 	await process_frame

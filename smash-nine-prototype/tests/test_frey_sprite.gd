@@ -5,6 +5,8 @@ const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const SHARED_LAYOUT := {"idle": 4, "walk": 6, "jump": 1, "fall": 1, "attack": 4, "shield": 6, "hurt": 1}
+## Frey redrawn with 6-frame motions (D33, 2026-10-14).
+const FREY_LAYOUT := {"idle": 6, "walk": 6, "jump": 1, "fall": 1, "attack": 6, "shield": 6, "hurt": 1}
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -23,7 +25,7 @@ func _check_characters() -> bool:
 	var main := MAIN_SCRIPT.new()
 	var characters := CHARACTER_REGISTRY.get_characters()
 	var expected_counts := {
-		"frey": SHARED_LAYOUT,
+		"frey": FREY_LAYOUT,
 		"yuki": SHARED_LAYOUT,
 		"luna": SHARED_LAYOUT,
 		"nova": SHARED_LAYOUT,

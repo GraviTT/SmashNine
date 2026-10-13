@@ -1,5 +1,7 @@
 # Frey original sprite sheet
 
+**2026-10-14: both Frey sheets were redrawn (D33–D35).** The current contract is in `frey_moves_README.md`: base rows idle 6, walk 6, jump 1, fall 1, attack 6, shield 6, hurt 1 at 128 px, and a 192-px move sheet with 9 rows. The sections below are history.
+
 ## CODEX-ART-28 move-row 보정
 
 `frey_moves_sheet.png`의 `descent` 3–5번 프레임과 `spike_followup` 4번 프레임을 idle 체급에 맞춰 다시 그렸다. 얼굴과 검 진행 방향이 보이도록 하강 실루엣을 분리했고, 발/중심 기준은 기존과 같이 y=120을 따른다. 최종 768×1024 시트의 셀 크기는 128×128이며 edge audit는 0이다.

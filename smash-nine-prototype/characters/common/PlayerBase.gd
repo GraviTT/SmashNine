@@ -824,6 +824,11 @@ func configure_character_sprite() -> void:
 func get_move_sheet_rows() -> Array:
 	return []
 
+## The main sheet's seven rows in this order; a character redrawn with 6-frame rows (D33) overrides
+## the frame counts and fps.
+func get_sheet_rows() -> Array:
+	return ORIGINAL_SHEET_ROWS
+
 ## Cuts the character's original sheet (ArtSettings, body_type variant first) into the
 ## shared animations. Returns false when there is none (the placeholder body shows).
 func _configure_original_sheet(id: String) -> bool:
@@ -874,8 +879,9 @@ func _add_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Texture2
 	var cell := int(sheet.get_width() / SHEET_COLUMNS)
 	if cell != original_sheet_cell:
 		return false
-	for row in ORIGINAL_SHEET_ROWS.size():
-		var spec: Array = ORIGINAL_SHEET_ROWS[row]
+	var rows := get_sheet_rows()
+	for row in rows.size():
+		var spec: Array = rows[row]
 		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
 	return true
 

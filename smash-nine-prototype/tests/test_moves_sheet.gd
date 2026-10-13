@@ -4,15 +4,17 @@ extends SceneTree
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
+## Frey redrawn at 6 frames per motion (D33); the J chain moved to the move sheet (D34).
 const ROW_COUNTS := {
-	"attack_up": 4,
-	"attack_down": 4,
-	"attack_air_side": 4,
-	"dash_strike": 4,
-	"rising_cleave": 5,
-	"spike_followup": 4,
+	"attack_up": 6,
+	"attack_down": 6,
+	"attack_air_side": 6,
+	"dash_strike": 6,
+	"rising_cleave": 6,
+	"spike_followup": 6,
 	"descent": 6,
-	"tumble": 4,
+	"tumble": 6,
+	"attack_chain": 6,
 }
 const LUNA_ROW_COUNTS := {
 	"luna_star_up": 4,
@@ -42,7 +44,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	var image := Image.create(768, 1024, false, Image.FORMAT_RGBA8)
+	var image := Image.create(768, 1280, false, Image.FORMAT_RGBA8)
 	image.fill(Color.WHITE)
 	generated_moves_sheet = ImageTexture.create_from_image(image)
 	var probe := _fighter(false)
@@ -59,6 +61,7 @@ func _run() -> void:
 	await _expect_move("up J", "attack_up", func(fighter): fighter.perform_basic_attack("up", Vector2.UP))
 	await _expect_move("down J", "attack_down", func(fighter): fighter.perform_basic_attack("down", Vector2.DOWN))
 	await _expect_move("air-side J", "attack_air_side", func(fighter): fighter.perform_basic_attack("air_side", Vector2.RIGHT))
+	await _expect_chain()
 	await _expect_move("dash strike", "dash_strike", func(fighter): fighter.perform_skill_one())
 	await _expect_move("rising cleave", "rising_cleave", func(fighter): fighter.perform_skill_two())
 	await _expect_move("spike follow-up", "spike_followup", func(fighter):
@@ -108,6 +111,16 @@ func _expect_move(label: String, row: String, play: Callable) -> void:
 	var expected := StringName("frey_%s" % row)
 	if fighter.character_sprite.animation != expected:
 		_fail("%s should play %s, got %s" % [label, expected, fighter.character_sprite.animation])
+	fighter.queue_free()
+	await process_frame
+
+## The neutral J chain plays its own two frames of attack_chain per hit: 1-2, 3-4, 5-6.
+func _expect_chain() -> void:
+	var fighter := _fighter(false)
+	for hit in 3:
+		fighter.perform_basic_attack("neutral", Vector2.RIGHT)
+		if fighter.character_sprite.animation != &"frey_attack_chain" or int(fighter.character_sprite.frame) != hit * 2:
+			_fail("J chain hit %d should start frey_attack_chain frame %d (got %s frame %d)" % [hit + 1, hit * 2, fighter.character_sprite.animation, fighter.character_sprite.frame])
 	fighter.queue_free()
 	await process_frame
 
@@ -261,7 +274,7 @@ func _play_character_row(fighter: Node, character_id: String, row: String) -> vo
 func _check_large_cell_sheet() -> void:
 	var fighter := _move_fighter("frey", false)
 	var frames: SpriteFrames = fighter.character_sprite.sprite_frames
-	var large := Image.create(192 * 6, 192 * 8, false, Image.FORMAT_RGBA8)
+	var large := Image.create(192 * 6, 192 * 10, false, Image.FORMAT_RGBA8)
 	large.fill(Color.WHITE)
 	if not fighter._add_move_sheet_animations(frames, "frey", ImageTexture.create_from_image(large), fighter.get_move_sheet_rows()):
 		_fail("a 192-px move sheet should load")

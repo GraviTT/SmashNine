@@ -78,10 +78,15 @@ function candidatesFor(stem, row) {
 		const metaPath = path.replace(/\.png$/i, ".json");
 		let meta = {};
 		try { if (existsSync(metaPath)) meta = JSON.parse(read(metaPath)); } catch (error) { console.warn(`invalid candidate metadata: ${metaPath}: ${error.message}`); }
+		// Adopted candidates are the game's art now (json "adopted": date); they leave the viewer.
+		if (meta.adopted) return [];
 		const rel = relative(bakeoffRoot, path).replaceAll("\\", "/");
 		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, frames: Number(meta.frames) || null, cell: Number(meta.cell) || null, feet: Number(meta.feet) || null, source: path }];
 	}).sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
 }
+
+// Cell size from the PNG header: six columns (128 base sheets, 192 move sheets since D34).
+const cellOf = (rel) => existsSync(join(art, rel)) ? readFileSync(join(art, rel)).readUInt32BE(16) / 6 : 128;
 
 const sheets = []; // [src relative to assets/art]
 const candidateCopies = [];
@@ -116,11 +121,15 @@ for (const c of CHARACTERS) {
 		if (bodies.length <= 1) bodies = [""];
 	}
 	const moveRows = rowTable(join(game, "characters", c.script), c.moveConst || "MOVE_SHEET_ROWS");
+	// A redrawn character has its own base table (Frey.SHEET_ROWS, D33); its J chain is a move row.
+	const ownBase = rowTable(join(game, "characters", c.script), "SHEET_ROWS");
 	const forms = [];
 	for (const body of bodies) {
 		const stem = body ? `${c.id}_${body}` : c.id;
-		const base = sheet(`${folder}/${stem}_sheet.png`, baseRows, BASE_LABELS, 128, 120, stem);
-		const moves = sheet(`${folder}/${stem}_moves_sheet.png`, moveRows, moveLabels(join(art, folder, `${stem}_moves_README.md`)), 128, 120, stem);
+		const basePath = `${folder}/${stem}_sheet.png`, movePath = `${folder}/${stem}_moves_sheet.png`;
+		const bc = cellOf(basePath), mc = cellOf(movePath);
+		const base = sheet(basePath, ownBase.length ? ownBase : baseRows, ownBase.length ? { ...BASE_LABELS, attack: "공격 (예비 줄)" } : BASE_LABELS, bc, bc / 2 + 56, stem);
+		const moves = sheet(movePath, moveRows, moveLabels(join(art, folder, `${stem}_moves_README.md`)), mc, mc / 2 + 56, stem);
 		forms.push({ body, base, moves });
 	}
 	characters.push({ id: c.id, name: c.name, forms });

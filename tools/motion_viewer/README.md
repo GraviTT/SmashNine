@@ -23,6 +23,6 @@ art/bakeoff/<캐릭터 id>/<시트 stem>-<행 이름>-v<번호>.png
 art/bakeoff/<캐릭터 id>/<시트 stem>-<행 이름>-v<번호>.json  # 선택
 ```
 
-예: `art/bakeoff/luna/luna-walk-v1.png`. PNG는 파이프라인이 만든 128px 셀 6열 가로 스트립이다. JSON은 `{"note":"설명", "fps":10, "frames":6, "cell":192, "feet":152}` 형식이다(`cell`·`feet`는 칸이 128이 아닐 때만, D34). `frames`·`fps`가 게임 행과 다르면(예: 4프레임 행의 6프레임 후보) 후보는 자기 값으로 재생되고, 프레임 띠와 넘기기는 프레임이 가장 많은 쪽을 따른다. 칸 크기가 다른 후보(128 기본 행 옆의 192 기술 후보)는 같은 화면 배율로 그리고, 발 기준선이 같은 높이에 오도록 맞춘다. 물러난 후보는 `art/bakeoff/<id>/retired/`로 옮기면 저장소에는 남고 뷰어에서는 빠진다. `stem`은 실제 시트 이름에서 `_sheet.png` 또는 `_moves_sheet.png`를 뺀 값(`frey`, `nova_male`, `luna_brave` 등), 행 이름은 게임 코드의 `idle`, `walk`, `spike_followup` 등과 정확히 같아야 한다.
+예: `art/bakeoff/luna/luna-walk-v1.png`. PNG는 파이프라인이 만든 128px 셀 6열 가로 스트립이다. JSON은 `{"note":"설명", "fps":10, "frames":6, "cell":192, "feet":152}` 형식이다(`cell`·`feet`는 칸이 128이 아닐 때만, D34). `frames`·`fps`가 게임 행과 다르면(예: 4프레임 행의 6프레임 후보) 후보는 자기 값으로 재생되고, 프레임 띠와 넘기기는 프레임이 가장 많은 쪽을 따른다. 칸 크기가 다른 후보(128 기본 행 옆의 192 기술 후보)는 같은 화면 배율로 그리고, 발 기준선이 같은 높이에 오도록 맞춘다. 게임에 들어간 후보는 JSON에 `"adopted": "날짜"`를 달아 두면 파일은 그 자리에 남고(기준 대기 동작 경로 유지) 뷰어 후보 목록에서는 빠진다. 물러난 후보는 `art/bakeoff/<id>/retired/`로 옮기면 저장소에는 남고 뷰어에서는 빠진다. `stem`은 실제 시트 이름에서 `_sheet.png` 또는 `_moves_sheet.png`를 뺀 값(`frey`, `nova_male`, `luna_brave` 등), 행 이름은 게임 코드의 `idle`, `walk`, `spike_followup` 등과 정확히 같아야 한다.
 
 `build.mjs`는 후보를 해당 행 manifest에 붙이고 `dist/bakeoff/`로 복사한다. 후보가 있는 타일에는 `후보 N` 배지가 보이며, 선택하면 현재 행과 후보들이 동기 재생된다. 좁은 화면에서는 비교 패널이 가로 스크롤된다.

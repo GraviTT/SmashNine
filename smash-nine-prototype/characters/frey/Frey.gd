@@ -20,15 +20,20 @@ const ULTIMATE_AFTERSHOCK_DAMAGE := 10.0
 const PURSUIT_TIME := 1.0
 const PURSUIT_SPEED := 1.15
 const PURSUIT_MARK_RISE := 118.0
+## Redrawn 2026-10-13/14 (D33-D35): every motion is 6 frames and keeps its old length
+## (fps x 6 / old frames). The base `attack` row is the J chain's 128-px fallback.
+const SHEET_ROWS := [["idle", 6, 10.5, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+## 192-px cells (D34): big poses keep the idle head size. The J chain lives here as attack_chain.
 const MOVE_SHEET_ROWS := [
-	["attack_up", 4, 14.0, false],
-	["attack_down", 4, 14.0, false],
-	["attack_air_side", 4, 14.0, false],
-	["dash_strike", 4, 14.0, false],
-	["rising_cleave", 5, 14.0, false],
-	["spike_followup", 4, 14.0, false],
+	["attack_up", 6, 21.0, false],
+	["attack_down", 6, 21.0, false],
+	["attack_air_side", 6, 21.0, false],
+	["dash_strike", 6, 21.0, false],
+	["rising_cleave", 6, 16.8, false],
+	["spike_followup", 6, 21.0, false],
 	["descent", 6, 14.0, false],
-	["tumble", 4, 14.0, true],
+	["tumble", 6, 21.0, true],
+	["attack_chain", 6, 21.0, false],
 ]
 
 var combo_step := 0
@@ -46,6 +51,9 @@ func configure_character_sprite() -> void:
 func get_move_sheet_rows() -> Array:
 	return MOVE_SHEET_ROWS
 
+func get_sheet_rows() -> Array:
+	return SHEET_ROWS
+
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	_end_pursuit()
 	match attack_type:
@@ -59,16 +67,16 @@ func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 			_reset_combo()
 			_start_attack(0.08, 0.17, Callable(self, "_air_slash"), Vector2i(1, 2), &"attack_air_side")
 		_:
-			# Each hit plays its own part of the attack row: a quick cut, a second cut, the wide
-			# finisher (they all replayed the whole row before).
+			# Each hit plays its own two frames of the chain row (wind-up, cut): a quick cut, a
+			# second cut, the wide finisher. The base attack row holds the same frames at 128 px.
 			match _consume_combo_step():
 				0:
-					_start_attack(0.07, 0.16, Callable(self, "_combo_slash_one"), Vector2i(0, 1))
+					_start_attack(0.07, 0.16, Callable(self, "_combo_slash_one"), Vector2i(0, 1), &"attack_chain", Vector2i(0, 1))
 				1:
-					_start_attack(0.08, 0.18, Callable(self, "_combo_slash_two"), Vector2i(1, 2))
+					_start_attack(0.08, 0.18, Callable(self, "_combo_slash_two"), Vector2i(2, 3), &"attack_chain", Vector2i(2, 3))
 				_:
 					_play_finisher_glint()
-					_start_attack(0.11, 0.26, Callable(self, "_combo_slash_three"), Vector2i(2, 3))
+					_start_attack(0.11, 0.26, Callable(self, "_combo_slash_three"), Vector2i(4, 5), &"attack_chain", Vector2i(4, 5))
 
 func perform_skill_one() -> void:
 	_dash_strike_start()
@@ -255,8 +263,9 @@ func _reset_combo() -> void:
 func _dash_strike_start() -> void:
 	character_on_hit()
 	attack_lock_timer = DASH_HOLD_TIME + 0.34
-	# Wind-up frame held while she aims, then the thrust frame for the dash.
-	_play_move_sprite_pose(&"dash_strike", 0, 0, DASH_HOLD_TIME)
+	# Aim frames (1-2) held while she aims, then the dash frames (3-6); the attack-row fallback
+	# keeps its old wind-up and thrust frames.
+	_play_move_sprite_pose(&"dash_strike", 0, 0, DASH_HOLD_TIME, 0, 1)
 	current_attack_started_airborne = not is_on_floor()
 	_freeze_movement(DASH_HOLD_TIME)
 	var held_facing := facing
@@ -272,7 +281,7 @@ func _dash_strike_start() -> void:
 	else:
 		facing = held_facing
 	movement_freeze_timer = 0.0
-	_play_move_sprite_pose(&"dash_strike", 3, 3, 0.34)
+	_play_move_sprite_pose(&"dash_strike", 3, 3, 0.34, 2, 5)
 	_dash_strike(dash_direction)
 
 ## A white glint before the third hit: the finisher is coming.
