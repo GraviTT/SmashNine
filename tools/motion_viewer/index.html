@@ -223,7 +223,9 @@ function drawCell(ctx, anim, frame, scale) {
 }
 
 const $ = (id) => document.getElementById(id);
-let stageT = 0, stageFrame = 0, tiles = [], stripButtons = [], stageViews = [];
+// stageLead: the stage view with the most frames; stepping and the frame strip follow it
+// (a 6-frame candidate next to a 4-frame game row).
+let stageT = 0, stageFrame = 0, tiles = [], stripButtons = [], stageViews = [], stageLead = null, stageKey = "";
 
 function segment(host, name, options, current, onPick) {
 	host.innerHTML = "";
@@ -315,8 +317,8 @@ function renderStage() {
 		{ label: "현재 게임", note: `${a.row.frames}프레임 · ${fmt(a.row.fps)}fps`, anim: a },
 		...(a.row.candidates || []).map((candidate) => ({
 			label: `후보 ${candidate.version}`,
-			note: [candidate.note, candidate.fps && `${fmt(candidate.fps)}fps`].filter(Boolean).join(" · "),
-			anim: { ...a, index: 0, sheet: { file: candidate.file, cell: a.sheet.cell, feet: a.sheet.feet } },
+			note: [candidate.note, candidate.frames && `${candidate.frames}프레임`, candidate.fps && `${fmt(candidate.fps)}fps`].filter(Boolean).join(" · "),
+			anim: { ...a, index: 0, row: { ...a.row, frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps }, sheet: { file: candidate.file, cell: a.sheet.cell, feet: a.sheet.feet } },
 		})),
 	];
 	for (const variant of variants) {
@@ -327,7 +329,9 @@ function renderStage() {
 		view.append(head, canvas); stageGrid.append(view);
 		stageViews.push({ canvas, ctx: canvas.getContext("2d"), anim: variant.anim });
 	}
-	for (let i = 0; i < a.row.frames; i++) {
+	const leadVariant = variants.reduce((m, v) => (v.anim.row.frames > m.anim.row.frames ? v : m));
+	stageLead = leadVariant.anim;
+	for (let i = 0; i < stageLead.row.frames; i++) {
 		const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", `프레임 ${i + 1}`);
 		const c = document.createElement("canvas"); c.width = a.sheet.cell; c.height = a.sheet.cell;
 		const tag = Object.assign(document.createElement("b"), { textContent: String(i + 1) });
@@ -344,6 +348,7 @@ function renderStage() {
 		["방식", a.row.loop ? "반복" : "한 번"],
 		["칸 · 발", `${a.sheet.cell}px · y ${a.sheet.feet}`],
 		["후보", `${(a.row.candidates || []).length}개`],
+		["프레임 띠", leadVariant.label],
 	];
 	$("facts").innerHTML = "";
 	for (const [k, v] of facts) {
@@ -356,7 +361,7 @@ function renderStage() {
 function paintStrip() {
 	const a = anims[state.anim]; if (!a) return;
 	for (const s of stripButtons) {
-		drawCell(s.ctx, a, s.i, 1);
+		drawCell(s.ctx, stageLead || a, s.i, 1);
 		s.el.setAttribute("aria-current", s.i === stageFrame);
 	}
 }
@@ -371,7 +376,7 @@ function drawStage() {
 	for (const view of stageViews) {
 		if (view.canvas.width !== size) { view.canvas.width = size; view.canvas.height = size; }
 		view.canvas.style.width = `${cell * state.zoom}px`;
-		drawCell(view.ctx, view.anim, stageFrame, scale);
+		drawCell(view.ctx, view.anim, frameAt(view.anim.row, stageT, state.repeat), scale);
 		view.ctx.save();
 		view.ctx.strokeStyle = guide; view.ctx.lineWidth = dpr;
 		if (state.cell) view.ctx.strokeRect(dpr / 2, dpr / 2, size - dpr, size - dpr);
@@ -379,13 +384,14 @@ function drawStage() {
 		if (state.feet) { view.ctx.setLineDash([6 * dpr, 4 * dpr]); const y = view.anim.sheet.feet * scale + scale / 2; view.ctx.beginPath(); view.ctx.moveTo(0, y); view.ctx.lineTo(size, y); view.ctx.stroke(); }
 		view.ctx.restore();
 	}
-	$("counter").textContent = `${stageFrame + 1} / ${a.row.frames}`;
+	$("counter").textContent = `${stageFrame + 1} / ${(stageLead || a).row.frames}`;
 }
 
 function setFrame(i) {
 	const a = anims[state.anim]; if (!a) return;
-	stageFrame = (i + a.row.frames) % a.row.frames;
-	stageT = (stageFrame + 0.001) / a.row.fps;
+	const lead = stageLead || a;
+	stageFrame = (i + lead.row.frames) % lead.row.frames;
+	stageT = (stageFrame + 0.001) / lead.row.fps;
 	drawStage(); paintStrip();
 }
 function setPlaying(on) {
@@ -401,7 +407,7 @@ function select(keepAnim, onlyAnim) {
 	} else {
 		tiles.forEach((t) => t.el.setAttribute("aria-pressed", anims.indexOf(t.anim) === state.anim));
 	}
-	stageT = 0; stageFrame = 0;
+	stageT = 0; stageFrame = 0; stageKey = "";
 	renderStage(); drawStage(); save();
 	for (const a of anims) { const img = image(a.sheet.file); if (!ready(img)) img.addEventListener("load", () => { drawStage(); paintStrip(); tiles.forEach((t) => (t.last = -1)); }, { once: true }); }
 	for (const view of stageViews) { const img = image(view.anim.sheet.file); if (!ready(img)) img.addEventListener("load", drawStage, { once: true }); }
@@ -442,8 +448,9 @@ function tick(now) {
 	const a = anims[state.anim];
 	if (a && state.playing) {
 		stageT += dt;
-		const f = frameAt(a.row, stageT, state.repeat);
-		if (f !== stageFrame) { stageFrame = f; drawStage(); paintStrip(); }
+		const f = frameAt((stageLead || a).row, stageT, state.repeat);
+		const key = stageViews.map((v) => frameAt(v.anim.row, stageT, state.repeat)).join(",");
+		if (f !== stageFrame || key !== stageKey) { stageFrame = f; stageKey = key; drawStage(); paintStrip(); }
 	}
 	for (const tile of tiles) {
 		if (!reduce) tile.t += dt;

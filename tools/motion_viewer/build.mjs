@@ -67,7 +67,8 @@ function allFiles(root) {
 	});
 }
 
-const candidateFiles = allFiles(bakeoffRoot).filter((path) => path.toLowerCase().endsWith(".png"));
+// Candidates moved to a "retired" folder stay in the repo but leave the viewer.
+const candidateFiles = allFiles(bakeoffRoot).filter((path) => path.toLowerCase().endsWith(".png") && !/[\\/]retired[\\/]/.test(path));
 function candidatesFor(stem, row) {
 	const prefix = `${stem}-${row}-v`;
 	return candidateFiles.flatMap((path) => {
@@ -78,7 +79,7 @@ function candidatesFor(stem, row) {
 		let meta = {};
 		try { if (existsSync(metaPath)) meta = JSON.parse(read(metaPath)); } catch (error) { console.warn(`invalid candidate metadata: ${metaPath}: ${error.message}`); }
 		const rel = relative(bakeoffRoot, path).replaceAll("\\", "/");
-		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, source: path }];
+		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, frames: Number(meta.frames) || null, source: path }];
 	}).sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
 }
 
