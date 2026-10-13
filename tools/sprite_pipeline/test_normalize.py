@@ -83,6 +83,14 @@ class NormalizeTests(unittest.TestCase):
 		self.assertEqual(metrics["summary"]["common_offset_x"], -2)
 		self.assertEqual(metrics["summary"]["bottom_range"], [120, 120])
 
+	def test_lift_all_keeps_every_frame_airborne(self) -> None:
+		_, metrics = self.run_tool("fixed:1", extra=["--ground-all", "--lift-all", "7"])
+		assert metrics is not None
+		self.assertEqual(metrics["summary"]["common_lift"], 7)
+		self.assertEqual(metrics["summary"]["bottom_range"], [113, 113])
+		self.assertEqual(metrics["summary"]["lift_range"], [7, 7])
+		self.assertTrue(metrics["summary"]["airborne_lift_preserved"])
+
 	def test_lanczos_sharpen_increases_synthetic_interior_detail(self) -> None:
 		large = Image.new("RGBA", (64, 64), (96, 96, 96, 255))
 		draw = ImageDraw.Draw(large)
@@ -96,6 +104,28 @@ class NormalizeTests(unittest.TestCase):
 		image = Image.new("RGBA", (9, 9), (0, 0, 0, 0))
 		ImageDraw.Draw(image).rectangle((2, 2, 6, 6), fill=(30, 190, 40, 255))
 		self.assertGreater(NORMALIZE.spill_pixel_count(image), 0)
+		cleaned = NORMALIZE.despill_green_edge(image, "auto")
+		self.assertEqual(NORMALIZE.spill_pixel_count(cleaned), 0)
+
+	def test_enclosed_chroma_pocket_is_removed_before_shrink(self) -> None:
+		image = Image.new("RGBA", (32, 32), (0, 255, 0, 255))
+		draw = ImageDraw.Draw(image)
+		draw.rectangle((4, 4, 27, 27), fill=(35, 45, 75, 255))
+		# This key-colour pocket is enclosed by opaque subject pixels and has no
+		# four-connected route to the outer green background.
+		draw.rectangle((13, 13, 18, 18), fill=(0, 255, 0, 255))
+		cleaned, report = NORMALIZE.clean_background(image, "#00ff00")
+		self.assertEqual(report["mode"], "color")
+		self.assertEqual(cleaned.getpixel((15, 15))[3], 0)
+		self.assertEqual(cleaned.getpixel((8, 8))[3], 255)
+		shrunk = cleaned.resize((8, 8), Image.Resampling.LANCZOS)
+		shrunk = NORMALIZE.despill_green_edge(shrunk, "auto")
+		self.assertEqual(NORMALIZE.spill_pixel_count(shrunk), 0)
+
+	def test_spill_metric_counts_visible_interior_pixels(self) -> None:
+		image = Image.new("RGBA", (9, 9), (40, 40, 80, 255))
+		image.putpixel((4, 4), (0, 75, 0, 255))
+		self.assertEqual(NORMALIZE.spill_pixel_count(image), 1)
 		cleaned = NORMALIZE.despill_green_edge(image, "auto")
 		self.assertEqual(NORMALIZE.spill_pixel_count(cleaned), 0)
 

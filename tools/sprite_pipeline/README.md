@@ -29,11 +29,13 @@ $py = 'C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/pyth
 & $py tools/sprite_pipeline/normalize.py ... --scale-by fixed:0.23
 ```
 
-새 디테일 보존 경로는 축소에 `--resample lanczos`(기본값), RGB에 반경 1·임계값 2인 `--sharpen 60`(기본값), 알파 경계 2px 안의 초록 번짐에 `--despill auto`, 색 보존에 `--palette none`(기본값)을 쓴다. `--sharpen 0`은 선명화를 끈다. ART-36 이전 경로도 `--resample box --sharpen 0 --despill off --palette tools/sprite_pipeline/palettes/<id>.json`으로 재현할 수 있다.
+새 디테일 보존 경로는 축소에 `--resample lanczos`(기본값), RGB에 반경 1·임계값 2인 `--sharpen 60`(기본값), 초록 번짐에 `--despill auto`, 색 보존에 `--palette none`(기본값)을 쓴다. 명시한 크로마 배경색에 가까운 픽셀은 원본 해상도에서 연결 여부와 무관하게 먼저 투명화하므로 머리카락·망토 사이의 닫힌 초록 포켓도 축소 전에 제거된다. 디스필은 알파 경계 2px를 먼저 정리하고, 축소 뒤 내부에 남은 녹색 우세 픽셀도 같은 기준으로 제한한다. 남은 초록 번짐 수는 경계뿐 아니라 모든 불투명 픽셀에서 센다. `--sharpen 0`은 선명화를 끈다. ART-36 이전 경로도 `--resample box --sharpen 0 --despill off --palette tools/sprite_pipeline/palettes/<id>.json`으로 재현할 수 있다.
 
 긴 무기 때문에 전체 행을 같은 방향으로 옮겨야 할 때만 `--offset-x <px>`를 쓴다. 이 값은 모든 프레임에 동일하게 적용되며 프레임별 이동은 하지 않는다.
 
 공격처럼 모든 프레임이 확실히 지상 동작인데 생성 원본의 셀별 바닥 위치가 조금 흔들렸다면 `--ground-all`로 모든 프레임의 발끝을 y=120에 둔다. 공중 높이를 보존해야 하는 점프·낙하·공중 기술에는 쓰지 않는다.
+
+행 전체가 공중 동작이면 `--lift-all <px>`로 모든 프레임에 같은 출력 픽셀 상승량을 더한다. 예를 들어 `--lift-all 8`은 원본의 프레임 사이 상대 높이 차이를 유지하면서 완성 행 전체를 y=120에서 8px 이상 띄운다.
 
 고립된 생성 잔여 픽셀은 최종 128px 프레임에서 4방향 연결 성분으로 검사해 제거할 수 있다. 다음 예시는 21px 미만의 분리 성분만 버리며, 제거한 성분의 프레임별 면적과 경계상자를 `metrics.json`의 `dropped_components`에 기록하고 콘솔에 총 성분 수/픽셀 수를 출력한다. 몸·무기처럼 이어진 큰 성분이 지워지지 않도록 비교판을 반드시 확인한다.
 

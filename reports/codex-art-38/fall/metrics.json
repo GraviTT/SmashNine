@@ -1,0 +1,138 @@
+{
+  "input": {
+    "sheet": "art/raw/frey-38/jump_fall_hurt/prepared.png",
+    "grid": [
+      3,
+      1
+    ],
+    "pick": [
+      1
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 1,
+    "output_columns": 6,
+    "common_scale": 0.205,
+    "scale_by": "fixed:0.205",
+    "common_offset_x": 0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      107,
+      107
+    ],
+    "body_width_range": [
+      96,
+      96
+    ],
+    "area_range": [
+      5592,
+      5592
+    ],
+    "area_spread_percent": 0.0,
+    "bottom_range": [
+      112,
+      112
+    ],
+    "lift_range": [
+      8,
+      8
+    ],
+    "contact_on_y120": false,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      5076,
+      5076
+    ],
+    "interior_detail_range": [
+      96.13,
+      96.13
+    ],
+    "interior_detail_mean": 96.13,
+    "remaining_spill_pixels": [
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 107.53,
+    "interior_detail_ratio": 0.894
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 107.53,
+        "colour_count": 1391,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 107.53,
+    "colour_count_range": [
+      1391,
+      1391
+    ]
+  },
+  "frames": [
+    {
+      "index": 1,
+      "source": "art/raw/frey-38/jump_fall_hurt/prepared.png#1,0",
+      "bbox": [
+        13,
+        6,
+        109,
+        113
+      ],
+      "body_height": 107,
+      "body_width": 96,
+      "area": 5592,
+      "bottom": 112,
+      "lift": 8,
+      "expected_lift": 8,
+      "interior_detail": 96.13,
+      "colour_count": 5076,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 13,
+        "top": 6,
+        "right": 19,
+        "bottom": 15,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9044
+    }
+  ],
+  "outputs": {
+    "candidate": "art/bakeoff/frey/frey-fall-v1.png",
+    "compare": "reports/codex-art-38/fall/compare.png"
+  }
+}
