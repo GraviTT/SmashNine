@@ -18,7 +18,12 @@
 
 ## Parts
 - **A (now):** Frey (`frey`, sheets `frey_sheet.png` / `frey_moves_sheet.png`): anchor `idle`, then `spike_followup` (4: reload in the air → wide forward sweep → downward strike active → locked follow-through), `descent` (6: charge → sword and shield gathered → vertical drop → landing squash → braced impact → recover), `tumble` (4, loops: spinning after a strong hit, body curled, face visible in at least 2 frames). Then, if time remains, Frey `walk` (6) and the ground J chain row `attack` (4).
-- **B:** filled in by the lead from `reports/codex-qa-18/README.md` (priority rows of other characters).
+- **B** (from `reports/codex-qa-18/README.md`, merged as `reports/codex-qa-18/` — read its per-row verdicts and the 12-row priority list; the poses below are its lines):
+  1. **Rio female** (`rio_female`, sheets `rio/rio_female_sheet.png` / `rio_female_moves_sheet.png`): anchor `idle`, then `walk` (6: right foot contact → weight down → left foot passing → left contact → down → right passing; idle-size head, body, sword and ponytail; ponytail and coat lag one frame — today the walk is ~47% smaller than idle), `air_slash` (4: airborne crouch → sword drawn back → horizontal active → recoil/recover; one body, one ponytail, one sword in every cell — today F4 splits into a small body and a detached piece), `plunge` (5: body turn → knee and sword ready → diagonal dive starts → full extension → landing lock with feet and sword visible; today F5 is cut fragments).
+  2. **Nova male** (`nova_male`): anchor `idle`, then `vector_side` (4: coil → step and launch → horizontal gravity punch → brake; fist never covers the face; no cyan afterimage).
+  3. **Nova female** (`nova_female`): anchor `idle`, then `vector_side` (same beats, her body, face and waist silhouette).
+  4. **Brave Luna** (`luna_brave`, sheets `luna/luna_brave_sheet.png` / `luna_brave_moves_sheet.png`): anchor `idle`, then `brave_combo` (6: guard → short jab → body-kick wind-up → body-height kick → wide spin kick → low guard back; two gauntlets, two boots; no star arcs).
+  5. If time remains: **Luna** `attack` (base sheet row, 4) and **Yuki** `talisman_side` (4), each with its anchor.
 
 ## Writable
-`art/bakeoff/<your characters>/**`, `reports/codex-art-36<a|b>/**`. No `smash-nine-prototype/` changes. Hard stop: A 75 minutes, B as in its start note. Report `reports/codex-art-36<a|b>/README.md` (Korean) + `commit.ps1` (message ending `Co-Authored-By: Codex <noreply@openai.com>`).
+`art/bakeoff/<your characters>/**`, `reports/codex-art-36<a|b>/**`. No `smash-nine-prototype/` changes. Hard stop: A 75 minutes, B 100 minutes (finish the character in progress or leave it out; deliver finished rows). Report `reports/codex-art-36<a|b>/README.md` (Korean) + `commit.ps1` (message ending `Co-Authored-By: Codex <noreply@openai.com>`).
