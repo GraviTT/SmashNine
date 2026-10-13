@@ -1,6 +1,6 @@
 # 근무 루틴 · 2026-10-13 · SmashNine — 전체 캐릭터 점검
 
-## 지금 상태 (14:20 갱신)
+## 지금 상태 (14:18 갱신)
 - 단계: 실행 · 마무리 시작 15:38 · 기준 마감 16:08 · 최대 마감 17:08
 - 지금: Codex A 3라운드(Frey attack-v2, Yuki), Codex B(Rio 여 → Nova 남·여 → Brave → Luna)
 - 완료: 방법 분석, 공통 정리 도구·뷰어 후보 비교, 전체 점검(476프레임), Frey 후보 6줄(대기·walk·rising_cleave·spike·descent·tumble) + attack-v1 — 뷰어에 올림
