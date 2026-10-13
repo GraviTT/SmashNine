@@ -1,0 +1,19 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete four-frame TALISMAN_SIDE row for Yuki, second whole-sheet attempt.
+
+Input images and roles: Image 1 is the newly accepted Yuki idle anchor sheet enlarged with nearest-neighbor scaling. It is the authoritative reference for identity, HEAD SIZE, BODY WIDTH, TOTAL CHARACTER HEIGHT, right-facing side-view / slight three-quarter camera, model scale, costume, palette and crisp pixel finish. Image 2 is the current game talisman_side row enlarged with nearest-neighbor scaling. Use it only for the sequence meaning; do not copy its drawing, detached paper, white streak, glow or effects.
+
+Primary correction: Draw Yuki at the SAME LARGE CELL OCCUPANCY as Image 1. From ponytail top to boot bottom, each newly drawn figure must fill about 70% of its square cell height, matching Image 1's raw pixel height. Do not make the action figures smaller. The rejected first attempt normalized to only 67px tall versus the 88px idle anchor; this entire second sheet must draw the character roughly 1.3 TIMES LARGER than that rejected attempt while retaining generous margins. Use one consistent scale for all four frames.
+
+Draw one cohesive 4-frame right-facing TALISMAN_SIDE animation at 19 fps:
+Frame 1, HAND SEAL: both boots planted, knees soft, torso upright; both connected hands form a compact onmyoji hand seal at upper chest height below the fully visible face; sleeves gather.
+Frame 2, DRAW ONE TALISMAN: near hand clearly draws and holds one small ivory paper talisman with a simple red mark near chest/waist; far hand guides; torso coils slightly away from screen-right; ponytail and sleeves lag.
+Frame 3, STRAIGHT THROW ACTIVE: grounded step right, torso turns forward, throwing arm extends fully STRAIGHT at chest height toward screen-right, fingers open at release; other arm counterbalances close to torso. Draw no flying/detached talisman, trail or glow because the game supplies the projectile.
+Frame 4, RECOVER TO IDLE: arm retracts, hands return to Image 1's guard, boots/root settle to anchor stance; sleeves and ponytail follow through one beat late.
+
+Subject invariants: same compact 2.5-head-tall female chibi Yuki as Image 1, never tall or front-facing. Same head size, body width and total character height in every frame as the idle anchor. Pale face, one visible red-magenta eye, very long black-violet hair flowing left, high ponytail, red-white braided cord, small muted-gold ornament, deep-plum/vermilion coat, large ivory sleeves with red trim/marks, black inner tunic and trousers, muted-gold fasteners/yin-yang clasp, red cords/tassels, short dark boots. Exactly one head, one face, two connected arms, two hands, two connected legs. Face never covered.
+
+Sheet layout: exactly FOUR equal square cells in ONE horizontal row, exactly FOUR isolated full-body sprites, landscape 2048 by 512 if supported. Same large scale and same root/floor line in all cells. Keep every ponytail tip, cord, sleeve, coat tail, hand and boot inside its own cell with margins. No independent frame resizing; no text, labels, borders or grid.
+Backdrop: solid flat chroma green #00FF00; no transparency, floor, shadow or scenery.
+Style: crisp console-quality pixel art for a 128px sprite, chunky intentional square clusters, selective 1px dark outline, limited palette, cel-shaded ramps, matching Image 1. No smooth/vector/3D/painterly rendering, blur, gradient or antialiasing.
+Final constraints: exactly 4 frames, one whole newly drawn Yuki per frame; hand seal -> held talisman -> straight empty-hand release -> idle recovery; anchor-size head/body/height; no flying paper, projectile glow, trail, streak, magic, effects, text, shadow, watermark, floating fragments, extra/missing/detached/pasted parts, duplicate face or crops.
