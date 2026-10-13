@@ -1,0 +1,268 @@
+{
+  "input": {
+    "sheet": "reports/codex-art-36b/nova_female-vector_side/prepared.png",
+    "frames": null,
+    "grid": [
+      4,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 4,
+    "output_columns": 6,
+    "common_scale": 0.16853933,
+    "scale_by": "fixed:0.16853933",
+    "min_component": 21,
+    "dropped_component_count": 2,
+    "dropped_component_pixels": 35,
+    "body_height_range": [
+      81,
+      85
+    ],
+    "body_width_range": [
+      60,
+      88
+    ],
+    "area_range": [
+      2835,
+      3295
+    ],
+    "area_spread_percent": 13.96,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      155,
+      166
+    ],
+    "palette_violations_before_map": 11834,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "reports/codex-art-36b/nova_female-vector_side/prepared.png#0,0",
+      "bbox": [
+        33,
+        40,
+        93,
+        121
+      ],
+      "body_height": 81,
+      "body_width": 60,
+      "area": 2835,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 161,
+      "palette_violations_before_map": 2754,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 33,
+        "top": 40,
+        "right": 35,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [
+        {
+          "pixels": 18,
+          "bbox": [
+            110,
+            113,
+            113,
+            121
+          ]
+        }
+      ],
+      "dropped_component_pixels": 18
+    },
+    {
+      "index": 1,
+      "source": "reports/codex-art-36b/nova_female-vector_side/prepared.png#1,0",
+      "bbox": [
+        24,
+        36,
+        105,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 81,
+      "area": 3121,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 162,
+      "palette_violations_before_map": 3037,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 36,
+        "right": 23,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [
+        {
+          "pixels": 17,
+          "bbox": [
+            112,
+            114,
+            115,
+            121
+          ]
+        }
+      ],
+      "dropped_component_pixels": 17
+    },
+    {
+      "index": 2,
+      "source": "reports/codex-art-36b/nova_female-vector_side/prepared.png#2,0",
+      "bbox": [
+        25,
+        36,
+        113,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 88,
+      "area": 3295,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 166,
+      "palette_violations_before_map": 3146,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 36,
+        "right": 15,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 3,
+      "source": "reports/codex-art-36b/nova_female-vector_side/prepared.png#3,0",
+      "bbox": [
+        30,
+        36,
+        94,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 64,
+      "area": 3014,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 155,
+      "palette_violations_before_map": 2897,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 30,
+        "top": 36,
+        "right": 34,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-36b/nova_female-vector_side-v2/nova_female-vector_side-v2.png",
+    "candidate": "art/bakeoff/nova/nova_female-vector_side-v2.png",
+    "frames": "reports/codex-art-36b/nova_female-vector_side-v2/frames",
+    "closeup": "reports/codex-art-36b/nova_female-vector_side-v2/closeup.png",
+    "compare": "reports/codex-art-36b/nova_female-vector_side-v2/compare.png"
+  }
+}
