@@ -65,15 +65,20 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .stage-head p { margin: 2px 0 0; color: var(--muted); font-size: 13.5px; }
 .counter { font-family: var(--font-display); font-size: 18px; white-space: nowrap; color: var(--accent); font-variant-numeric: tabular-nums; }
 
-.stage { display: grid; place-items: center; min-height: 200px; border-radius: 8px; padding: 12px; overflow: hidden; }
-.stage[data-bg="checker"], .tile .pic, .strip button {
+.stage { min-height: 200px; border-radius: 8px; padding: 12px; overflow-x: auto; }
+.stage-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(180px, 1fr); gap: 10px; min-width: min-content; }
+.stage-view { display: grid; place-items: center; align-content: start; gap: 7px; min-width: 180px; }
+.stage-view header { width: 100%; display: grid; gap: 1px; text-align: center; }
+.stage-view strong { font-family: var(--font-display); font-size: 11px; color: var(--accent); font-weight: 400; }
+.stage-view small { color: var(--muted); font-size: 11px; line-height: 1.25; min-height: 2.5em; overflow-wrap: anywhere; }
+.stage[data-bg="checker"] .stage-view, .tile .pic, .strip button {
 	background-color: var(--chk-a);
 	background-image: linear-gradient(45deg, var(--chk-b) 25%, transparent 25%, transparent 75%, var(--chk-b) 75%), linear-gradient(45deg, var(--chk-b) 25%, transparent 25%, transparent 75%, var(--chk-b) 75%);
 	background-size: 16px 16px; background-position: 0 0, 8px 8px;
 }
-.stage[data-bg="dark"] { background: var(--stage-dark); }
-.stage[data-bg="light"] { background: var(--stage-light); }
-.stage canvas { display: block; max-width: 100%; height: auto; image-rendering: pixelated; }
+.stage[data-bg="dark"] .stage-view { background: var(--stage-dark); }
+.stage[data-bg="light"] .stage-view { background: var(--stage-light); }
+.stage canvas { display: block; height: auto; image-rendering: pixelated; }
 
 .controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
 .transport { display: flex; gap: 4px; }
@@ -114,6 +119,7 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .tile .n { font-family: var(--font-mono); font-size: 12.5px; font-weight: 500; overflow-wrap: anywhere; }
 .tile .l { font-size: 11.5px; color: var(--muted); line-height: 1.35; overflow-wrap: anywhere; }
 .tile .f { font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
+.candidate-badge { justify-self: start; padding: 1px 6px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 10.5px; font-weight: 700; }
 .note { margin: 0; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 8px; color: var(--muted); font-size: 13px; }
 .keys { color: var(--muted); font-size: 12.5px; margin: 0; }
 kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--panel); }
@@ -135,7 +141,7 @@ kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--
 				<div><h2 id="animName">-</h2><p id="animLabel"></p></div>
 				<div class="counter" id="counter">0 / 0</div>
 			</div>
-			<div class="stage" id="stage" data-bg="checker"><canvas id="stageCanvas" width="384" height="384"></canvas></div>
+			<div class="stage" id="stage" data-bg="checker"><div class="stage-grid" id="stageGrid"></div></div>
 			<div class="controls">
 				<div class="transport">
 					<button class="btn" id="prevBtn" type="button" aria-label="이전 프레임">◀</button>
@@ -217,8 +223,7 @@ function drawCell(ctx, anim, frame, scale) {
 }
 
 const $ = (id) => document.getElementById(id);
-const stageCanvas = $("stageCanvas"), sctx = stageCanvas.getContext("2d");
-let stageT = 0, stageFrame = 0, tiles = [], stripButtons = [];
+let stageT = 0, stageFrame = 0, tiles = [], stripButtons = [], stageViews = [];
 
 function segment(host, name, options, current, onPick) {
 	host.innerHTML = "";
@@ -288,6 +293,7 @@ function renderGroups() {
 			const l = Object.assign(document.createElement("div"), { className: "l", textContent: a.row.label });
 			const f = Object.assign(document.createElement("div"), { className: "f", textContent: `${a.row.frames}프레임 · ${fmt(a.row.fps)}fps${a.row.loop ? " · 반복" : ""}` });
 			b.append(pic, n, l, f);
+			if (a.row.candidates && a.row.candidates.length) b.append(Object.assign(document.createElement("span"), { className: "candidate-badge", textContent: `후보 ${a.row.candidates.length}` }));
 			b.addEventListener("click", () => { state.anim = i; select(false, true); });
 			grid.append(b);
 			tiles.push({ el: b, ctx: c.getContext("2d"), anim: a, t: 0, last: -1 });
@@ -302,8 +308,25 @@ function renderStage() {
 	const form = curForm(), entry = entries[state.entry];
 	$("animName").textContent = a ? a.row.name : "-";
 	$("animLabel").textContent = a ? [a.row.label, `${entry.name}${form.label ? " · " + form.label : ""}`].filter(Boolean).join(" — ") : "";
-	const strip = $("strip"); strip.innerHTML = ""; stripButtons = [];
+	const strip = $("strip"); strip.innerHTML = ""; stripButtons = []; stageViews = [];
+	const stageGrid = $("stageGrid"); stageGrid.innerHTML = "";
 	if (!a) return;
+	const variants = [
+		{ label: "현재 게임", note: `${a.row.frames}프레임 · ${fmt(a.row.fps)}fps`, anim: a },
+		...(a.row.candidates || []).map((candidate) => ({
+			label: `후보 ${candidate.version}`,
+			note: [candidate.note, candidate.fps && `${fmt(candidate.fps)}fps`].filter(Boolean).join(" · "),
+			anim: { ...a, index: 0, sheet: { file: candidate.file, cell: a.sheet.cell, feet: a.sheet.feet } },
+		})),
+	];
+	for (const variant of variants) {
+		const view = document.createElement("section"); view.className = "stage-view";
+		const head = document.createElement("header");
+		head.append(Object.assign(document.createElement("strong"), { textContent: variant.label }), Object.assign(document.createElement("small"), { textContent: variant.note || " " }));
+		const canvas = document.createElement("canvas"); canvas.width = 384; canvas.height = 384;
+		view.append(head, canvas); stageGrid.append(view);
+		stageViews.push({ canvas, ctx: canvas.getContext("2d"), anim: variant.anim });
+	}
 	for (let i = 0; i < a.row.frames; i++) {
 		const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", `프레임 ${i + 1}`);
 		const c = document.createElement("canvas"); c.width = a.sheet.cell; c.height = a.sheet.cell;
@@ -320,6 +343,7 @@ function renderStage() {
 		["재생", `${fmt(a.row.fps)}fps · ${fmt(dur * 1000)}ms`],
 		["방식", a.row.loop ? "반복" : "한 번"],
 		["칸 · 발", `${a.sheet.cell}px · y ${a.sheet.feet}`],
+		["후보", `${(a.row.candidates || []).length}개`],
 	];
 	$("facts").innerHTML = "";
 	for (const [k, v] of facts) {
@@ -342,17 +366,19 @@ function drawStage() {
 	const dpr = Math.max(1, Math.round(window.devicePixelRatio || 1));
 	const cell = a ? a.sheet.cell : 128, scale = state.zoom * dpr;
 	const size = cell * scale;
-	if (stageCanvas.width !== size) { stageCanvas.width = size; stageCanvas.height = size; }
-	stageCanvas.style.width = `${cell * state.zoom}px`;
-	if (!a) { sctx.clearRect(0, 0, size, size); return; }
-	drawCell(sctx, a, stageFrame, scale);
+	if (!a) return;
 	const guide = getComputedStyle(document.documentElement).getPropertyValue("--guide").trim() || "#08889e";
-	sctx.save();
-	sctx.strokeStyle = guide; sctx.lineWidth = dpr;
-	if (state.cell) sctx.strokeRect(dpr / 2, dpr / 2, size - dpr, size - dpr);
-	if (state.margin) { sctx.setLineDash([2 * dpr, 3 * dpr]); const m = 4 * scale; sctx.strokeRect(m, m, size - 2 * m, size - 2 * m); }
-	if (state.feet) { sctx.setLineDash([6 * dpr, 4 * dpr]); const y = a.sheet.feet * scale + scale / 2; sctx.beginPath(); sctx.moveTo(0, y); sctx.lineTo(size, y); sctx.stroke(); }
-	sctx.restore();
+	for (const view of stageViews) {
+		if (view.canvas.width !== size) { view.canvas.width = size; view.canvas.height = size; }
+		view.canvas.style.width = `${cell * state.zoom}px`;
+		drawCell(view.ctx, view.anim, stageFrame, scale);
+		view.ctx.save();
+		view.ctx.strokeStyle = guide; view.ctx.lineWidth = dpr;
+		if (state.cell) view.ctx.strokeRect(dpr / 2, dpr / 2, size - dpr, size - dpr);
+		if (state.margin) { view.ctx.setLineDash([2 * dpr, 3 * dpr]); const m = 4 * scale; view.ctx.strokeRect(m, m, size - 2 * m, size - 2 * m); }
+		if (state.feet) { view.ctx.setLineDash([6 * dpr, 4 * dpr]); const y = view.anim.sheet.feet * scale + scale / 2; view.ctx.beginPath(); view.ctx.moveTo(0, y); view.ctx.lineTo(size, y); view.ctx.stroke(); }
+		view.ctx.restore();
+	}
 	$("counter").textContent = `${stageFrame + 1} / ${a.row.frames}`;
 }
 
@@ -378,6 +404,7 @@ function select(keepAnim, onlyAnim) {
 	stageT = 0; stageFrame = 0;
 	renderStage(); drawStage(); save();
 	for (const a of anims) { const img = image(a.sheet.file); if (!ready(img)) img.addEventListener("load", () => { drawStage(); paintStrip(); tiles.forEach((t) => (t.last = -1)); }, { once: true }); }
+	for (const view of stageViews) { const img = image(view.anim.sheet.file); if (!ready(img)) img.addEventListener("load", drawStage, { once: true }); }
 }
 
 segment($("speedOpts"), "speed", SPEEDS.map((s) => [s, `${s}×`]), state.speed, (v) => { state.speed = v; save(); });

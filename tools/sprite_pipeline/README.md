@@ -1,0 +1,56 @@
+# Smash Nine 스프라이트 정규화 파이프라인
+
+생성된 한 동작 전체에 **배율 하나만** 적용해 128×128 셀, 6열, 발 y=120 규격으로 정리한다. 프레임마다 크기를 바꾸거나 머리·팔다리를 붙이지 않는다. 한 프레임이 공통 배율에서 들어오지 않으면 실패하며, 해당 동작을 다시 생성하거나 동작 전체의 `fixed:` 값만 바꾼다.
+
+## 사용
+
+Codex 런타임 Python을 사용한다.
+
+```powershell
+$py = 'C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'
+
+# 현재 게임 시트에서 가장 많이 쓰인 192색 캐릭터 팔레트 작성
+& $py tools/sprite_pipeline/make_palette.py `
+  smash-nine-prototype/assets/art/frey/frey_sheet.png --id frey
+
+# 생성기의 녹색 편차와 녹색 격자선 정리(필요할 때)
+& $py tools/sprite_pipeline/prepare_raw.py raw.png prepared.png --grid 6x1
+
+# 한 동작 정규화. 출력은 항상 128px 셀 6열(768×128)이다.
+& $py tools/sprite_pipeline/normalize.py `
+  --sheet prepared.png --grid 6x1 --bg '#00ff00' `
+  --scale-by height:100 --palette tools/sprite_pipeline/palettes/frey.json `
+  --reference smash-nine-prototype/assets/art/frey/frey_sheet.png:1:6 `
+  --title 'FREY WALK' --out-dir reports/example --name frey-walk-v1 `
+  --candidate-out art/bakeoff/frey/frey-walk-v1.png
+
+# 서 있지 않은 기술은 캐릭터에 이미 정한 공통 배율을 재사용
+& $py tools/sprite_pipeline/normalize.py ... --scale-by fixed:0.23
+```
+
+입력은 `--sheet PNG --grid CxR` 또는 `--frames 폴더/글롭` 중 하나다. `--pick 0,1,2`로 사용할 칸을 고를 수 있다. `--bg`는 `alpha`, `auto`, `#00ff00`을 지원한다. `auto`는 기존 투명을 우선하고, 불투명 입력이면 테두리에서 연결된 주 배경색만 지운다. `--outline auto`는 기존 실루엣 내부에서 어두운 외곽선 사이의 1px 구멍만 잇는다.
+
+출력 폴더에는 다음이 생긴다.
+
+- `<name>.png`: 128×128 셀 6열, 실제 프레임은 왼쪽부터 배치
+- `frames/`: 프레임별 PNG
+- `closeup.png`: 모든 후보 프레임 2배 확대와 y=120 선
+- `compare.png`: 같은 시트의 대기 프레임 + 현재 행, 대기 프레임 + 후보 행을 2배로 비교
+- `metrics.json`: 프레임별 높이·너비·면적·바닥·공중 높이·색 수·팔레트 위반·알파·1px 테두리·4px 여백과 전체 범위
+
+`height:<px>`는 원본에서 가장 낮은 접촉 프레임들의 몸 높이 중앙값을 목표 높이로 맞춘다. `fixed:<factor>`는 그대로 적용한다. 출력된 `factor=` 값을 같은 캐릭터의 다른 동작에서 재사용할 수 있다.
+
+## 검사
+
+```powershell
+& $py -m unittest tools/sprite_pipeline/test_normalize.py -v
+```
+
+합성 검사는 연결 배경 제거, 한 공통 배율, 접촉 발 y=120, 공중 높이 보존, 팔레트 전용 색, 이진 알파, 6열 출력, 고정 배율, 경계 초과 실패를 확인한다.
+
+## 제한
+
+- 공중 높이는 모든 입력 칸이 같은 원본 좌표계를 공유한다는 전제에서 원본 최저점 차이로 계산한다. 프레임을 각각 타이트하게 자른 입력은 높이 정보를 보존하지 못한다.
+- 팔레트 매핑은 흐림·압축·가려짐·잘못 그린 해부를 복구하지 않는다.
+- 자동 외곽선은 실루엣을 확장하지 않으며 큰 끊김을 그려 넣지 않는다.
+- 4px 여백은 `metrics.json`에 보고한다. 1px 테두리 침범은 항상 실패하지만 4px 미달은 리드가 후보를 다시 생성할지 판단한다.
