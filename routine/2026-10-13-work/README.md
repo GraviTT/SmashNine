@@ -1,9 +1,9 @@
 # 근무 루틴 · 2026-10-13 · SmashNine — 전체 캐릭터 점검
 
-## 지금 상태 (13:15 갱신)
+## 지금 상태 (13:36 갱신)
 - 단계: 실행 · 마무리 시작 15:38 · 기준 마감 16:08 · 최대 마감 17:08
-- 지금: Codex 2개 1라운드 — A 공통 정리 도구 + 뷰어 후보 비교(`CODEX-ART-35`), B 전체 캐릭터 점검(`CODEX-QA-18`)
-- 완료: 스프라이트 제작 방법 분석 `reports/sprite-method-analysis-2026-10-13.md`
+- 지금: Codex 2개 2라운드 — A Frey 후보(기준 대기 → spike·descent·tumble → walk·attack), B 점검 우선순위 후보(Rio 여 → Nova 남·여 → Brave → Luna·Yuki)
+- 완료: 방법 분석, 공통 정리 도구 + 뷰어 후보 비교(ART-35), 전체 점검 476프레임(QA-18)
 - 막힌 것: 없음
 
 ## 사용자 지시 (원문)
@@ -49,6 +49,8 @@
 - 13:15 커밋 `aae3495` push(분석 문서, 카드 ART-35 · QA-18, 지시문 `CODEX-2026-10-13.prompt.md`). 클론: builder-art `codex/pipeline-35`, analyst `codex/inspect-18`(옛 클론의 추적 안 된 파일과 충돌해 강제 전환). 13:16 Codex A(ART-35, high, 75분)·B(QA-18, high, 70분) 실행.
 - 13:23 Codex A(ART-35) 끝(7분, CuSurvive 도구 이식): `tools/sprite_pipeline/`(normalize·prepare_raw·make_palette·시험 3, 8체형 팔레트), 뷰어 "지금 vs 후보"(같은 프레임 번호·배율·가이드로 나란히, 타일에 "후보 N"), 예시 후보 `art/bakeoff/luna/luna-walk-v1.png`. 리드 검수: `normalize.py`의 배율 코드 직접 확인 — 시트 전체에 배율 하나(`fixed:`/`height:`), 칸에 안 들어가면 줄이지 않고 "다시 생성" 오류로 멈춤, 머리 배율 없음. 로컬 브라우저에서 Luna walk 후보 비교 화면 확인(콘솔 오류 0). 병합 `5f83693`.
 - 13:25 Codex A 2차(ART-36 A, xhigh, 80분): Frey 기준 대기(새로 그려 배율 정하기) → spike_followup · descent · tumble 후보, 남으면 walk · attack. B 점검 결과를 기다리지 않고 사용자가 이미 지적한 줄부터.
+- 13:29 Codex B(QA-18) 끝(13분): 16장 119줄 476프레임, 1px 빈 테두리 476/476, 4px 여백 실패 1(Frey descent F4), Rio 기본 시트 반투명 픽셀(idle·jump·fall·hurt 줄의 원본 부드러운 가장자리). 줄마다 판정과 다시 그릴 12줄. 핵심: **ART-34 새 걷기가 대기보다 작아 대기→걷기에서 몸이 줄어듦**(Frey 높이 82~96 vs 대기 100, Rio 여 −47%) — 칸마다 머리에 맞춘 배율 때문(CuSurvive가 경고한 함정). Frey spike_followup은 "손질", tumble "좋음". 리드 검수: Rio 여 기술 시트 2배 접촉판 직접 대조 — air_slash F4(작은 몸 + 떨어진 머리카락 조각), plunge F5(조각), low_sweep 크기, dimension_slash F3 번진 실루엣, infinity_overdrive에 효과(보석검)가 그려져 있음 — 보고와 일치. 병합 `fcaaa7f`.
+- 13:34 A는 이미 Frey 기준 대기를 만든 상태라 다시 시작하지 않음(Frey 우선 줄 walk·rising_cleave·attack은 다음 A 라운드). 카드 B 파트 = 점검 우선순위(Rio 여 walk·air_slash·plunge → Nova 남·여 vector_side → Brave combo → Luna attack·Yuki talisman_side), 커밋 `33ef62e`. 13:35 Codex B(ART-36 B, xhigh, 105분) 실행.
 
 ## 결과
 
