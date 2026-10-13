@@ -28,6 +28,12 @@ $py = 'C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/pyth
 & $py tools/sprite_pipeline/normalize.py ... --scale-by fixed:0.23
 ```
 
+고립된 생성 잔여 픽셀은 최종 128px 프레임에서 4방향 연결 성분으로 검사해 제거할 수 있다. 다음 예시는 21px 미만의 분리 성분만 버리며, 제거한 성분의 프레임별 면적과 경계상자를 `metrics.json`의 `dropped_components`에 기록하고 콘솔에 총 성분 수/픽셀 수를 출력한다. 몸·무기처럼 이어진 큰 성분이 지워지지 않도록 비교판을 반드시 확인한다.
+
+```powershell
+& $py tools/sprite_pipeline/normalize.py ... --min-component 21
+```
+
 입력은 `--sheet PNG --grid CxR` 또는 `--frames 폴더/글롭` 중 하나다. `--pick 0,1,2`로 사용할 칸을 고를 수 있다. `--bg`는 `alpha`, `auto`, `#00ff00`을 지원한다. `auto`는 기존 투명을 우선하고, 불투명 입력이면 테두리에서 연결된 주 배경색만 지운다. `--outline auto`는 기존 실루엣 내부에서 어두운 외곽선 사이의 1px 구멍만 잇는다.
 
 출력 폴더에는 다음이 생긴다.

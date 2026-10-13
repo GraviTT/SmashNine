@@ -59,6 +59,9 @@
     "output_columns": 6,
     "common_scale": 0.18761726,
     "scale_by": "fixed:0.18761726",
+    "min_component": 21,
+    "dropped_component_count": 2,
+    "dropped_component_pixels": 21,
     "body_height_range": [
       88,
       101
@@ -68,10 +71,10 @@
       97
     ],
     "area_range": [
-      4015,
+      3995,
       4583
     ],
-    "area_spread_percent": 12.39,
+    "area_spread_percent": 12.83,
     "bottom_range": [
       112,
       120
@@ -86,7 +89,7 @@
       175,
       182
     ],
-    "palette_violations_before_map": 16941,
+    "palette_violations_before_map": 16939,
     "palette_violations": 0,
     "alpha_binary": true,
     "borders_clear": true,
@@ -109,7 +112,7 @@
       "lift": 1,
       "expected_lift": 1,
       "colour_count": 176,
-      "palette_violations_before_map": 4452,
+      "palette_violations_before_map": 4451,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -124,7 +127,9 @@
         "bottom": 8,
         "minimum": 8,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 1,
@@ -157,24 +162,26 @@
         "bottom": 15,
         "minimum": 12,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 2,
       "source": "reports/codex-art-36a/frey-spike_followup/prepared.png#2,0",
       "bbox": [
-        18,
+        29,
         26,
         112,
         120
       ],
       "body_height": 94,
-      "body_width": 94,
-      "area": 4015,
+      "body_width": 83,
+      "area": 3995,
       "bottom": 119,
       "lift": 1,
       "expected_lift": 1,
-      "colour_count": 178,
+      "colour_count": 177,
       "palette_violations_before_map": 3916,
       "palette_violations": 0,
       "alpha_values": [
@@ -184,13 +191,25 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 18,
+        "left": 29,
         "top": 26,
         "right": 16,
         "bottom": 8,
         "minimum": 8,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [
+        {
+          "pixels": 20,
+          "bbox": [
+            18,
+            74,
+            24,
+            79
+          ]
+        }
+      ],
+      "dropped_component_pixels": 20
     },
     {
       "index": 3,
@@ -203,12 +222,12 @@
       ],
       "body_height": 91,
       "body_width": 88,
-      "area": 4540,
+      "area": 4539,
       "bottom": 120,
       "lift": 0,
       "expected_lift": 0,
       "colour_count": 182,
-      "palette_violations_before_map": 4393,
+      "palette_violations_before_map": 4392,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -223,12 +242,24 @@
         "bottom": 7,
         "minimum": 7,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [
+        {
+          "pixels": 1,
+          "bbox": [
+            86,
+            70,
+            87,
+            71
+          ]
+        }
+      ],
+      "dropped_component_pixels": 1
     }
   ],
   "outputs": {
-    "sheet": "reports/codex-art-36a/frey-spike_followup/frey-spike_followup-v1.png",
-    "candidate": "art/bakeoff/frey/frey-spike_followup-v1.png",
+    "sheet": "reports/codex-art-36a/frey-spike_followup/frey-spike_followup-v2.png",
+    "candidate": "art/bakeoff/frey/frey-spike_followup-v2.png",
     "frames": "reports/codex-art-36a/frey-spike_followup/frames",
     "closeup": "reports/codex-art-36a/frey-spike_followup/closeup.png",
     "compare": "reports/codex-art-36a/frey-spike_followup/compare.png"

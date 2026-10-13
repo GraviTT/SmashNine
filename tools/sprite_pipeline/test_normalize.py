@@ -74,6 +74,24 @@ class NormalizeTests(unittest.TestCase):
 		result, _ = self.run_tool("fixed:3", expect=1)
 		self.assertIn("does not fit at common scale", result.stderr)
 
+	def test_min_component_drops_small_detached_specks_and_reports_them(self) -> None:
+		sheet = Image.new("RGBA", (200, 100), (0, 250, 5, 255))
+		sheet.alpha_composite(frame(12, 90), (0, 0)); sheet.alpha_composite(frame(12, 90), (100, 0))
+		draw = ImageDraw.Draw(sheet)
+		draw.rectangle((4, 4, 5, 5), fill=(18, 26, 58, 255))
+		draw.rectangle((104, 4, 106, 6), fill=(18, 26, 58, 255))
+		source = self.root / "specks.png"; sheet.save(source); out = self.root / "specks-out"
+		command = [sys.executable, str(SCRIPT), "--sheet", str(source), "--grid", "2x1", "--bg", "auto", "--scale-by", "fixed:1", "--palette", str(self.palette), "--outline", "off", "--min-component", "6", "--out-dir", str(out), "--name", "specks"]
+		result = subprocess.run(command, capture_output=True, text=True, check=False)
+		self.assertEqual(result.returncode, 0, result.stderr)
+		metrics = json.loads((out / "metrics.json").read_text(encoding="utf-8"))
+		self.assertEqual(metrics["summary"]["dropped_component_count"], 1)
+		self.assertEqual(metrics["summary"]["dropped_component_pixels"], 4)
+		bbox = metrics["frames"][0]["dropped_components"][0]["bbox"]
+		self.assertEqual([bbox[2] - bbox[0], bbox[3] - bbox[1]], [2, 2])
+		self.assertEqual(metrics["frames"][1]["dropped_components"], [])
+		self.assertIn("dropped=1 components/4 px", result.stdout)
+
 
 if __name__ == "__main__":
 	unittest.main()

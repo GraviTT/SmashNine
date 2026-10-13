@@ -119,7 +119,8 @@ def infer_background(image: Image.Image) -> tuple[int, int, int] | None:
 
 def remove_connected_background(image: Image.Image, target: tuple[int, int, int]) -> Image.Image:
 	rgba = np.asarray(image.convert("RGBA"), dtype=np.uint8).copy()
-	delta = rgba[..., :3].astype(np.int16) - np.asarray(target, dtype=np.int16)
+	# int32 keeps squared RGB deltas (up to 3 * 255^2) from overflowing.
+	delta = rgba[..., :3].astype(np.int32) - np.asarray(target, dtype=np.int32)
 	distance = np.sqrt(np.sum(delta * delta, axis=2))
 	candidate = distance <= BG_TOLERANCE
 	h, w = candidate.shape
@@ -219,6 +220,42 @@ def bridge_outline(image: Image.Image, palette: Sequence[tuple[int, int, int]]) 
 	outline = min(palette, key=lambda c: .2126 * c[0] + .7152 * c[1] + .0722 * c[2])
 	rgba[..., :3][bridge] = outline; rgba[..., 3][bridge] = 255
 	return Image.fromarray(rgba, "RGBA")
+
+
+def drop_small_components(image: Image.Image, minimum: int) -> tuple[Image.Image, list[dict[str, object]]]:
+	"""Drop 4-connected opaque components smaller than ``minimum`` output pixels."""
+	if minimum <= 0:
+		return image, []
+	rgba = np.asarray(image.convert("RGBA"), dtype=np.uint8).copy()
+	visible = rgba[..., 3] == 255
+	height, width = visible.shape
+	visited = np.zeros((height, width), dtype=bool)
+	dropped: list[dict[str, object]] = []
+	for y in range(height):
+		for x in range(width):
+			if not visible[y, x] or visited[y, x]:
+				continue
+			queue: deque[tuple[int, int]] = deque([(x, y)])
+			visited[y, x] = True
+			component: list[tuple[int, int]] = []
+			while queue:
+				cx, cy = queue.popleft()
+				component.append((cx, cy))
+				for nx, ny in ((cx - 1, cy), (cx + 1, cy), (cx, cy - 1), (cx, cy + 1)):
+					if 0 <= nx < width and 0 <= ny < height and visible[ny, nx] and not visited[ny, nx]:
+						visited[ny, nx] = True
+						queue.append((nx, ny))
+			if len(component) >= minimum:
+				continue
+			xs = [point[0] for point in component]
+			ys = [point[1] for point in component]
+			for cx, cy in component:
+				rgba[cy, cx] = 0
+			dropped.append({
+				"pixels": len(component),
+				"bbox": [min(xs), min(ys), max(xs) + 1, max(ys) + 1],
+			})
+	return Image.fromarray(rgba, "RGBA"), dropped
 
 
 def common_scale(frames: Sequence[Image.Image], rule: str, source_ground: int) -> tuple[float, dict[str, object]]:
@@ -344,10 +381,11 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 		cleaned, report = clean_background(frame, args.bg); prepared.append(cleaned); backgrounds.append(report)
 	bottoms = [alpha_bbox(frame)[3] - 1 for frame in prepared]; source_ground = max(bottoms)
 	scale, scale_detail = common_scale(prepared, args.scale_by, source_ground); palette = load_palette(args.palette)
-	results = []; lifts = []; violations = []
+	results = []; lifts = []; violations = []; dropped_components = []
 	for frame in prepared:
 		result, lift, before = normalize_frame(frame, scale, source_ground, palette, args.outline)
-		results.append(result); lifts.append(lift); violations.append(before)
+		result, dropped = drop_small_components(result, args.min_component)
+		results.append(result); lifts.append(lift); violations.append(before); dropped_components.append(dropped)
 	args.out_dir.mkdir(parents=True, exist_ok=True); frame_dir = args.out_dir / "frames"; frame_dir.mkdir(exist_ok=True)
 	sheet_path = args.out_dir / f"{args.name}.png"; save_sheet(results, sheet_path)
 	if args.candidate_out:
@@ -358,9 +396,9 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 	items = []
 	for i, frame in enumerate(results):
 		box = alpha_bbox(frame); colors = {p[:3] for p in frame.get_flattened_data() if p[3]}; alpha = sorted(set(frame.getchannel("A").get_flattened_data()))
-		items.append({"index": i, "source": labels[i], "bbox": list(box), "body_height": box[3] - box[1], "body_width": box[2] - box[0], "area": alpha_area(frame), "bottom": box[3] - 1, "lift": FEET_Y - (box[3] - 1), "expected_lift": lifts[i], "colour_count": len(colors), "palette_violations_before_map": violations[i], "palette_violations": palette_violation_count(frame, palette), "alpha_values": alpha, "alpha_binary": set(alpha) <= {0, 255}, "border_clear": box[0] > 0 and box[1] > 0 and box[2] < CELL and box[3] < CELL, "margin": margins(box)})
+		items.append({"index": i, "source": labels[i], "bbox": list(box), "body_height": box[3] - box[1], "body_width": box[2] - box[0], "area": alpha_area(frame), "bottom": box[3] - 1, "lift": FEET_Y - (box[3] - 1), "expected_lift": lifts[i], "colour_count": len(colors), "palette_violations_before_map": violations[i], "palette_violations": palette_violation_count(frame, palette), "alpha_values": alpha, "alpha_binary": set(alpha) <= {0, 255}, "border_clear": box[0] > 0 and box[1] > 0 and box[2] < CELL and box[3] < CELL, "margin": margins(box), "dropped_components": dropped_components[i], "dropped_component_pixels": sum(item["pixels"] for item in dropped_components[i])})
 	heights = [item["body_height"] for item in items]; widths = [item["body_width"] for item in items]; areas = [item["area"] for item in items]
-	summary = {"frame_count": len(items), "output_columns": COLUMNS, "common_scale": round(scale, 8), "scale_by": args.scale_by, "body_height_range": [min(heights), max(heights)], "body_width_range": [min(widths), max(widths)], "area_range": [min(areas), max(areas)], "area_spread_percent": spread(areas), "bottom_range": [min(item["bottom"] for item in items), max(item["bottom"] for item in items)], "lift_range": [min(lifts), max(lifts)], "contact_on_y120": all(item["bottom"] == FEET_Y for item in items if item["expected_lift"] == 0), "airborne_lift_preserved": all(item["lift"] == item["expected_lift"] for item in items), "colour_count_range": [min(item["colour_count"] for item in items), max(item["colour_count"] for item in items)], "palette_violations_before_map": sum(violations), "palette_violations": sum(item["palette_violations"] for item in items), "alpha_binary": all(item["alpha_binary"] for item in items), "borders_clear": all(item["border_clear"] for item in items), "all_have_4px_margin": all(item["margin"]["has_4px_margin"] for item in items)}
+	summary = {"frame_count": len(items), "output_columns": COLUMNS, "common_scale": round(scale, 8), "scale_by": args.scale_by, "min_component": args.min_component, "dropped_component_count": sum(len(group) for group in dropped_components), "dropped_component_pixels": sum(component["pixels"] for group in dropped_components for component in group), "body_height_range": [min(heights), max(heights)], "body_width_range": [min(widths), max(widths)], "area_range": [min(areas), max(areas)], "area_spread_percent": spread(areas), "bottom_range": [min(item["bottom"] for item in items), max(item["bottom"] for item in items)], "lift_range": [min(lifts), max(lifts)], "contact_on_y120": all(item["bottom"] == FEET_Y for item in items if item["expected_lift"] == 0), "airborne_lift_preserved": all(item["lift"] == item["expected_lift"] for item in items), "colour_count_range": [min(item["colour_count"] for item in items), max(item["colour_count"] for item in items)], "palette_violations_before_map": sum(violations), "palette_violations": sum(item["palette_violations"] for item in items), "alpha_binary": all(item["alpha_binary"] for item in items), "borders_clear": all(item["border_clear"] for item in items), "all_have_4px_margin": all(item["margin"]["has_4px_margin"] for item in items)}
 	metrics = {"input": {"sheet": args.sheet.as_posix() if args.sheet else None, "frames": args.frames, "grid": list(args.grid) if args.grid else None, "pick": parse_pick(args.pick), "backgrounds": backgrounds}, "normalization": {**scale_detail, "outline": args.outline, "cell": CELL, "feet_y": FEET_Y, "horizontal_anchor": "median torso row centre"}, "summary": summary, "frames": items, "outputs": {"sheet": sheet_path.as_posix(), "candidate": args.candidate_out.as_posix() if args.candidate_out else None, "frames": frame_dir.as_posix(), "closeup": (args.out_dir / "closeup.png").as_posix(), "compare": (args.out_dir / "compare.png").as_posix()}}
 	(args.out_dir / "metrics.json").write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
 	return metrics
@@ -372,6 +410,7 @@ def parser() -> argparse.ArgumentParser:
 	p.add_argument("--grid", type=parse_grid); p.add_argument("--pick"); p.add_argument("--bg", default="auto")
 	p.add_argument("--scale-by", default="height"); p.add_argument("--palette", type=Path, required=True)
 	p.add_argument("--outline", choices=("auto", "off"), default="off"); p.add_argument("--reference")
+	p.add_argument("--min-component", type=int, default=0, metavar="PX", help="drop detached 4-connected output components smaller than PX pixels")
 	p.add_argument("--title", default="SMASH NINE SPRITE NORMALIZATION"); p.add_argument("--out-dir", type=Path, required=True); p.add_argument("--name", required=True)
 	p.add_argument("--candidate-out", type=Path, help="optional art/bakeoff/<id>/<stem>-<row>-vN.png copy")
 	return p
@@ -381,8 +420,9 @@ def main(argv: Sequence[str] | None = None) -> int:
 	args = parser().parse_args(argv)
 	try:
 		if args.sheet and args.grid is None: raise ValueError("--sheet requires --grid")
+		if args.min_component < 0: raise ValueError("--min-component must be non-negative")
 		metrics = normalize(args); summary = metrics["summary"]
-		print(f"normalized {summary['frame_count']} frames; factor={summary['common_scale']}; height={summary['body_height_range']}; lift={summary['lift_range']}; border={summary['borders_clear']}; margin4={summary['all_have_4px_margin']}")
+		print(f"normalized {summary['frame_count']} frames; factor={summary['common_scale']}; height={summary['body_height_range']}; lift={summary['lift_range']}; border={summary['borders_clear']}; margin4={summary['all_have_4px_margin']}; dropped={summary['dropped_component_count']} components/{summary['dropped_component_pixels']} px")
 		return 0
 	except (OSError, ValueError, json.JSONDecodeError) as error:
 		print(f"Error: {error}", file=sys.stderr); return 1

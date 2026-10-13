@@ -71,59 +71,97 @@
   "summary": {
     "frame_count": 6,
     "output_columns": 6,
-    "common_scale": 0.18761726,
-    "scale_by": "fixed:0.18761726",
+    "common_scale": 0.235,
+    "scale_by": "fixed:0.235",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
     "body_height_range": [
-      53,
-      89
+      66,
+      112
     ],
     "body_width_range": [
-      48,
-      81
+      60,
+      102
     ],
     "area_range": [
-      2282,
-      2872
+      3556,
+      4514
     ],
-    "area_spread_percent": 20.54,
+    "area_spread_percent": 21.22,
     "bottom_range": [
-      112,
+      110,
       120
     ],
     "lift_range": [
       0,
-      8
+      10
     ],
     "contact_on_y120": true,
     "airborne_lift_preserved": true,
     "colour_count_range": [
-      173,
-      180
+      179,
+      183
     ],
-    "palette_violations_before_map": 15897,
+    "palette_violations_before_map": 24701,
     "palette_violations": 0,
     "alpha_binary": true,
     "borders_clear": true,
-    "all_have_4px_margin": true
+    "all_have_4px_margin": false
   },
   "frames": [
     {
       "index": 0,
       "source": "reports/codex-art-36a/frey-descent/prepared.png#0,0",
       "bbox": [
-        19,
-        59,
-        100,
+        7,
+        41,
+        109,
         121
       ],
-      "body_height": 62,
-      "body_width": 81,
-      "area": 2850,
+      "body_height": 80,
+      "body_width": 102,
+      "area": 4486,
       "bottom": 120,
       "lift": 0,
       "expected_lift": 0,
-      "colour_count": 180,
-      "palette_violations_before_map": 2823,
+      "colour_count": 182,
+      "palette_violations_before_map": 4400,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 7,
+        "top": 41,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "reports/codex-art-36a/frey-descent/prepared.png#1,0",
+      "bbox": [
+        19,
+        52,
+        108,
+        118
+      ],
+      "body_height": 66,
+      "body_width": 89,
+      "area": 3974,
+      "bottom": 117,
+      "lift": 3,
+      "expected_lift": 3,
+      "colour_count": 181,
+      "palette_violations_before_map": 3867,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -133,63 +171,32 @@
       "border_clear": true,
       "margin": {
         "left": 19,
-        "top": 59,
-        "right": 28,
-        "bottom": 7,
-        "minimum": 7,
+        "top": 52,
+        "right": 20,
+        "bottom": 10,
+        "minimum": 10,
         "has_4px_margin": true
-      }
-    },
-    {
-      "index": 1,
-      "source": "reports/codex-art-36a/frey-descent/prepared.png#1,0",
-      "bbox": [
-        28,
-        66,
-        99,
-        119
-      ],
-      "body_height": 53,
-      "body_width": 71,
-      "area": 2547,
-      "bottom": 118,
-      "lift": 2,
-      "expected_lift": 2,
-      "colour_count": 175,
-      "palette_violations_before_map": 2507,
-      "palette_violations": 0,
-      "alpha_values": [
-        0,
-        255
-      ],
-      "alpha_binary": true,
-      "border_clear": true,
-      "margin": {
-        "left": 28,
-        "top": 66,
-        "right": 29,
-        "bottom": 9,
-        "minimum": 9,
-        "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 2,
       "source": "reports/codex-art-36a/frey-descent/prepared.png#2,0",
       "bbox": [
-        31,
-        29,
-        96,
-        118
+        23,
+        5,
+        104,
+        117
       ],
-      "body_height": 89,
-      "body_width": 65,
-      "area": 2795,
-      "bottom": 117,
-      "lift": 3,
-      "expected_lift": 3,
-      "colour_count": 176,
-      "palette_violations_before_map": 2762,
+      "body_height": 112,
+      "body_width": 81,
+      "area": 4394,
+      "bottom": 116,
+      "lift": 4,
+      "expected_lift": 4,
+      "colour_count": 180,
+      "palette_violations_before_map": 4291,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -198,31 +205,33 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 31,
-        "top": 29,
-        "right": 32,
-        "bottom": 10,
-        "minimum": 10,
+        "left": 23,
+        "top": 5,
+        "right": 24,
+        "bottom": 11,
+        "minimum": 5,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 3,
       "source": "reports/codex-art-36a/frey-descent/prepared.png#0,1",
       "bbox": [
-        35,
-        25,
-        83,
-        114
+        27,
+        2,
+        87,
+        113
       ],
-      "body_height": 89,
-      "body_width": 48,
-      "area": 2282,
-      "bottom": 113,
-      "lift": 7,
-      "expected_lift": 7,
-      "colour_count": 174,
-      "palette_violations_before_map": 2255,
+      "body_height": 111,
+      "body_width": 60,
+      "area": 3556,
+      "bottom": 112,
+      "lift": 8,
+      "expected_lift": 8,
+      "colour_count": 179,
+      "palette_violations_before_map": 3473,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -231,31 +240,33 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 35,
-        "top": 25,
-        "right": 45,
-        "bottom": 14,
-        "minimum": 14,
-        "has_4px_margin": true
-      }
+        "left": 27,
+        "top": 2,
+        "right": 41,
+        "bottom": 15,
+        "minimum": 2,
+        "has_4px_margin": false
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 4,
       "source": "reports/codex-art-36a/frey-descent/prepared.png#1,1",
       "bbox": [
-        25,
-        47,
-        96,
-        115
+        15,
+        28,
+        104,
+        114
       ],
-      "body_height": 68,
-      "body_width": 71,
-      "area": 2775,
-      "bottom": 114,
-      "lift": 6,
-      "expected_lift": 6,
-      "colour_count": 173,
-      "palette_violations_before_map": 2721,
+      "body_height": 86,
+      "body_width": 89,
+      "area": 4383,
+      "bottom": 113,
+      "lift": 7,
+      "expected_lift": 7,
+      "colour_count": 181,
+      "palette_violations_before_map": 4273,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -264,31 +275,33 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 25,
-        "top": 47,
-        "right": 32,
-        "bottom": 13,
-        "minimum": 13,
+        "left": 15,
+        "top": 28,
+        "right": 24,
+        "bottom": 14,
+        "minimum": 14,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 5,
       "source": "reports/codex-art-36a/frey-descent/prepared.png#2,1",
       "bbox": [
-        26,
-        52,
-        99,
-        113
+        17,
+        35,
+        109,
+        111
       ],
-      "body_height": 61,
-      "body_width": 73,
-      "area": 2872,
-      "bottom": 112,
-      "lift": 8,
-      "expected_lift": 8,
-      "colour_count": 174,
-      "palette_violations_before_map": 2829,
+      "body_height": 76,
+      "body_width": 92,
+      "area": 4514,
+      "bottom": 110,
+      "lift": 10,
+      "expected_lift": 10,
+      "colour_count": 183,
+      "palette_violations_before_map": 4397,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -297,18 +310,20 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 26,
-        "top": 52,
-        "right": 29,
-        "bottom": 15,
-        "minimum": 15,
+        "left": 17,
+        "top": 35,
+        "right": 19,
+        "bottom": 17,
+        "minimum": 17,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     }
   ],
   "outputs": {
-    "sheet": "reports/codex-art-36a/frey-descent/frey-descent-v1.png",
-    "candidate": "art/bakeoff/frey/frey-descent-v1.png",
+    "sheet": "reports/codex-art-36a/frey-descent/frey-descent-v2.png",
+    "candidate": "art/bakeoff/frey/frey-descent-v2.png",
     "frames": "reports/codex-art-36a/frey-descent/frames",
     "closeup": "reports/codex-art-36a/frey-descent/closeup.png",
     "compare": "reports/codex-art-36a/frey-descent/compare.png"
