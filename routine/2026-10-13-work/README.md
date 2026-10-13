@@ -57,6 +57,8 @@
 - 14:22 Codex B(ART-36 B 1차) 끝(51분): Rio 여 idle·walk·plunge, Nova 남·여 idle·vector_side, Brave idle·brave_combo 후보 9개(41프레임). Rio air_slash는 두 번 생성 모두 칸에 안 들어가 제외. Brave는 공용 팔레트가 보라·청록을 잃어 지금 시트에서 뽑은 96색 팔레트를 씀. 리드 검수: B의 검수판이 축소돼 있어 직접 2배 비교판(지금 대기 + 후보)을 만들어 모든 칸 확인 — 기준 대기 4개(Rio 여·Nova 남·여·Brave)는 지금 대기와 크기·생김새 같음, Nova vector_side 둘 다 좋음(Nova 여는 발밑 점), **Rio walk·Brave combo는 머리가 기준의 약 85%, Rio plunge는 약 70%**로 작음, 얼굴은 모두 하나. 병합 `f58334a`(보고서 41MB — 원본 생성 그림, 다음엔 줄이게 함).
 - 14:24 Codex B 2라운드(xhigh, 57분): walk·plunge·combo 시트 배율 다시(머리를 기준에 맞춘 시트 배율 하나), Nova 여 점 제거, Rio air_slash 재시도, 남으면 Luna 기준 대기 + attack.
 - 14:33 Codex A 3라운드 끝(16분): Frey attack-v2, Yuki idle-v1·talisman_side-v1. 리드 검수(직접 2배 비교판): Yuki 기준 대기는 지금 대기와 같은 크기(기준으로 채택), talisman_side는 동작 좋으나 머리 약 85%, **Frey attack-v2는 생성 그림에서 칼끝이 옆 칸으로 넘어가 잘린 조각이 남고 몸도 작음**(정리 도구가 생성 단계의 칸 넘침을 못 잡음). 병합 `e584991`. 14:35 A 4라운드(45분): 도구에 생성 칸 넘침 검사, Frey attack-v3 다시 생성, Yuki talisman 배율 다시.
+- 14:44 Codex B 2라운드 끝(20분): Rio 여 walk-v2·air_slash-v2(조밀한 자세로 다시 생성, 칸에 들어감)·plunge-v2(다시 생성), Brave combo-v2, Nova 여 vector_side-v2(점 35px 제거), Luna idle-v1(기준)·attack-v1. 리드 검수(직접 2배 비교판, 기준 대기 옆): 크기를 다시 맞춘 줄 모두 기준과 머리 크기 같음, plunge-v2 F3~F5는 4배로 확대해 얼굴 하나씩 확인(숙인 머리가 겹쳐 보였던 것), Brave combo F3 오른쪽 여백 3px(1px 테두리 규칙은 통과). 병합 `66334f8`, 대체된 v1 4개 뺌.
+- 14:46 점검의 "다시 그림" 6줄(Frey walk·rising_cleave·descent, Rio 여 walk·air_slash·plunge)은 모두 후보가 나옴. 나머지 "손질" 판정 대부분은 이펙트가 캐릭터 그림에 박힌 것(효과 분리 필요) — 다음 회차 몫. B 3라운드(30분): Nova 남 jump·fall·shield를 이펙트 없이.
 
 ## 결과
 
