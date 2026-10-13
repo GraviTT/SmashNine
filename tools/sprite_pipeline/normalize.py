@@ -14,7 +14,7 @@ import sys
 from typing import Iterable, Sequence
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -198,7 +198,9 @@ def alpha_area(image: Image.Image) -> int:
 	return int(np.count_nonzero(np.asarray(image.getchannel("A"), dtype=np.uint8)))
 
 
-def load_palette(path: Path) -> list[tuple[int, int, int]]:
+def load_palette(path: Path | None) -> list[tuple[int, int, int]] | None:
+	if path is None:
+		return None
 	data = json.loads(path.read_text(encoding="utf-8"))
 	colors = [tuple(int(c) for c in item["rgb"]) for item in data["colors"]]
 	if not colors or any(len(color) != 3 for color in colors):
@@ -307,25 +309,128 @@ def torso_anchor_x(image: Image.Image) -> float:
 	return float(statistics.median(centers)) if centers else (box[0] + box[2] - 1) / 2
 
 
-def normalize_frame(source: Image.Image, scale: float, source_ground: int, palette: Sequence[tuple[int, int, int]], outline: str) -> tuple[Image.Image, int, int]:
+def apply_unsharp(image: Image.Image, percent: float) -> Image.Image:
+	if percent <= 0:
+		return image
+	rgb = image.convert("RGB").filter(ImageFilter.UnsharpMask(radius=1, percent=round(percent), threshold=2))
+	return Image.merge("RGBA", (*rgb.split(), image.getchannel("A")))
+
+
+def transparency_edge_band(visible: np.ndarray, radius: int = 2) -> np.ndarray:
+	near_transparency = ~visible
+	for _ in range(radius):
+		expanded = near_transparency.copy()
+		for dy in (-1, 0, 1):
+			for dx in (-1, 0, 1):
+				if dx == 0 and dy == 0:
+					continue
+				shifted = np.roll(np.roll(near_transparency, dy, axis=0), dx, axis=1)
+				if dy < 0:
+					shifted[dy:, :] = False
+				elif dy > 0:
+					shifted[:dy, :] = False
+				if dx < 0:
+					shifted[:, dx:] = False
+				elif dx > 0:
+					shifted[:, :dx] = False
+				expanded |= shifted
+		near_transparency = expanded
+	return visible & near_transparency
+
+
+def despill_green_edge(image: Image.Image, mode: str) -> Image.Image:
+	if mode == "off":
+		return image
+	rgba = np.asarray(image.convert("RGBA"), dtype=np.uint8).copy()
+	visible = rgba[..., 3] >= ALPHA_CUT
+	# Generators can leave fully enclosed chroma-key islands between hair locks.
+	# They are background rather than a coloured edge, so expose them as alpha
+	# before building the two-pixel edge band.
+	rgb16 = rgba[..., :3].astype(np.int16)
+	chroma_island = visible & (rgb16[..., 1] > 180) & (rgb16[..., 1] > rgb16[..., 0] + 80) & (rgb16[..., 1] > rgb16[..., 2] + 80)
+	rgba[..., 3][chroma_island] = 0
+	visible = rgba[..., 3] >= ALPHA_CUT
+	edge = transparency_edge_band(visible)
+	red = rgba[..., 0]
+	green = rgba[..., 1]
+	blue = rgba[..., 2]
+	green[edge] = np.minimum(green[edge], np.maximum(red[edge], blue[edge]))
+	return Image.fromarray(rgba, "RGBA")
+
+
+def spill_pixel_count(image: Image.Image) -> int:
+	rgba = np.asarray(image.convert("RGBA"), dtype=np.uint8)
+	visible = rgba[..., 3] >= ALPHA_CUT
+	edge = transparency_edge_band(visible)
+	rgb = rgba[..., :3].astype(np.int16)
+	return int(np.count_nonzero(edge & (rgb[..., 1] > np.maximum(rgb[..., 0], rgb[..., 2]) + 20)))
+
+
+def interior_detail(image: Image.Image) -> float:
+	rgba = np.asarray(image.convert("RGBA"), dtype=np.uint8)
+	visible = rgba[..., 3] >= ALPHA_CUT
+	if rgba.shape[0] < 3 or rgba.shape[1] < 3:
+		return 0.0
+	interior = visible[1:-1, 1:-1] & visible[:-2, 1:-1] & visible[2:, 1:-1] & visible[1:-1, :-2] & visible[1:-1, 2:]
+	if not np.any(interior):
+		return 0.0
+	rgb = rgba[..., :3].astype(np.float64)
+	# Keep this deliberately simple and reproducible: the project baseline defines
+	# luminance as the arithmetic mean of R, G and B.
+	luma = np.mean(rgb, axis=2)
+	laplacian = np.abs(
+		4 * luma[1:-1, 1:-1]
+		- luma[:-2, 1:-1]
+		- luma[2:, 1:-1]
+		- luma[1:-1, :-2]
+		- luma[1:-1, 2:]
+	)
+	return round(float(np.mean(laplacian[interior])), 2)
+
+
+def colour_count(image: Image.Image) -> int:
+	return len({pixel[:3] for pixel in image.get_flattened_data() if pixel[3]})
+
+
+def normalize_frame(
+	source: Image.Image,
+	scale: float,
+	source_ground: int,
+	palette: Sequence[tuple[int, int, int]] | None,
+	outline: str,
+	resample: str,
+	sharpen: float,
+	despill: str,
+	offset_x: int,
+	ground_all: bool,
+) -> tuple[Image.Image, int, int]:
 	box = alpha_bbox(source); bottom = box[3] - 1
 	subject = source.crop(box)
 	size = (max(1, round(subject.width * scale)), max(1, round(subject.height * scale)))
-	resample = Image.Resampling.BOX if scale < 1 else Image.Resampling.NEAREST
-	subject = subject.resize(size, resample)
+	resample_filter = Image.Resampling.BOX if resample == "box" else Image.Resampling.LANCZOS
+	subject = subject.resize(size, resample_filter if scale < 1 else Image.Resampling.NEAREST)
+	subject = apply_unsharp(subject, sharpen)
 	subject.putalpha(subject.getchannel("A").point(lambda value: 255 if value >= ALPHA_CUT else 0))
+	subject = despill_green_edge(subject, despill)
 	trim = subject.getbbox()
 	if trim is None: raise ValueError("a frame disappeared while resizing")
 	subject = subject.crop(trim)
-	lift = max(0, round((source_ground - bottom) * scale)); target_bottom = FEET_Y - lift
+	lift = 0 if ground_all else max(0, round((source_ground - bottom) * scale)); target_bottom = FEET_Y - lift
 	anchor = (torso_anchor_x(source) - box[0]) * scale
-	x = round(CELL / 2 - anchor); y = target_bottom - subject.height + 1
+	x = round(CELL / 2 - anchor) + offset_x; y = target_bottom - subject.height + 1
 	if x < 1 or y < 1 or x + subject.width > CELL - 1 or y + subject.height > CELL - 1:
 		raise ValueError(f"frame does not fit at common scale {scale:.8g}: placement x={x}, y={y}, size={subject.width}x{subject.height}; regenerate or choose one smaller fixed factor for the whole motion")
 	canvas = Image.new("RGBA", (CELL, CELL), (0, 0, 0, 0)); canvas.alpha_composite(subject, (x, y))
-	violations = palette_violation_count(canvas, palette)
-	canvas = map_palette(canvas, palette)
-	if outline == "auto": canvas = bridge_outline(canvas, palette)
+	# Run once more on the final 128px cell so the reported edge band and the
+	# corrected edge band are identical after trimming and placement.
+	canvas = despill_green_edge(canvas, despill)
+	violations = palette_violation_count(canvas, palette) if palette else 0
+	if palette:
+		canvas = map_palette(canvas, palette)
+	if outline == "auto":
+		if not palette:
+			raise ValueError("--outline auto requires a palette file")
+		canvas = bridge_outline(canvas, palette)
 	return canvas, lift, violations
 
 
@@ -348,6 +453,14 @@ def reference_frames(spec: str) -> tuple[Image.Image, list[Image.Image]]:
 	path, row, count = parse_reference(spec); sheet = Image.open(path).convert("RGBA")
 	idle = sheet.crop((0, 0, CELL, CELL))
 	return idle, [sheet.crop((i * CELL, row * CELL, (i + 1) * CELL, (row + 1) * CELL)) for i in range(count)]
+
+
+def frame_metrics(image: Image.Image) -> dict[str, object]:
+	return {
+		"interior_detail": interior_detail(image),
+		"colour_count": colour_count(image),
+		"remaining_spill_pixels": spill_pixel_count(image),
+	}
 
 
 def checker(size: tuple[int, int], square: int = 16) -> Image.Image:
@@ -376,13 +489,13 @@ def save_sheet(frames: Sequence[Image.Image], path: Path) -> None:
 	sheet.save(path, optimize=True)
 
 
-def write_visuals(frames: Sequence[Image.Image], out: Path, reference: str | None, title: str) -> None:
-	render_row(frames, "CANDIDATE 2X").save(out / "closeup.png", optimize=True)
+def write_visuals(frames: Sequence[Image.Image], out: Path, reference: str | None, title: str, scale: int = 2) -> None:
+	render_row(frames, f"CANDIDATE {scale}X", scale).save(out / "closeup.png", optimize=True)
 	if reference:
 		idle, current = reference_frames(reference)
-		rows = [render_row([idle, *current], "CURRENT + IDLE"), render_row([idle, *frames], "CANDIDATE + IDLE")]
+		rows = [render_row([idle, *current], "CURRENT + IDLE", scale), render_row([idle, *frames], "CANDIDATE + IDLE", scale)]
 	else:
-		rows = [render_row(frames, "CANDIDATE")]
+		rows = [render_row(frames, "CANDIDATE", scale)]
 	width = max(row.width for row in rows); head = 62; gap = 8
 	canvas = Image.new("RGB", (width, head + sum(row.height for row in rows) + gap * (len(rows) - 1)), (12, 17, 29)); draw = ImageDraw.Draw(canvas)
 	draw.text((16, 10), title, font=font(24, True), fill=(243, 247, 255)); draw.text((16, 39), "red = feet y120; first cell = current idle", font=font(14), fill=(166, 190, 228))
@@ -405,7 +518,7 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 	scale, scale_detail = common_scale(prepared, args.scale_by, source_ground); palette = load_palette(args.palette)
 	results = []; lifts = []; violations = []; dropped_components = []
 	for frame in prepared:
-		result, lift, before = normalize_frame(frame, scale, source_ground, palette, args.outline)
+		result, lift, before = normalize_frame(frame, scale, source_ground, palette, args.outline, args.resample, args.sharpen, args.despill, args.offset_x, args.ground_all)
 		result, dropped = drop_small_components(result, args.min_component)
 		results.append(result); lifts.append(lift); violations.append(before); dropped_components.append(dropped)
 	args.out_dir.mkdir(parents=True, exist_ok=True); frame_dir = args.out_dir / "frames"; frame_dir.mkdir(exist_ok=True)
@@ -414,14 +527,25 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 		args.candidate_out.parent.mkdir(parents=True, exist_ok=True)
 		save_sheet(results, args.candidate_out)
 	for i, frame in enumerate(results): frame.save(frame_dir / f"{args.name}-{i:02d}.png", optimize=True)
-	write_visuals(results, args.out_dir, args.reference, args.title)
+	write_visuals(results, args.out_dir, args.reference, args.title, args.compare_scale)
 	items = []
 	for i, frame in enumerate(results):
-		box = alpha_bbox(frame); colors = {p[:3] for p in frame.get_flattened_data() if p[3]}; alpha = sorted(set(frame.getchannel("A").get_flattened_data()))
-		items.append({"index": i, "source": labels[i], "bbox": list(box), "body_height": box[3] - box[1], "body_width": box[2] - box[0], "area": alpha_area(frame), "bottom": box[3] - 1, "lift": FEET_Y - (box[3] - 1), "expected_lift": lifts[i], "colour_count": len(colors), "palette_violations_before_map": violations[i], "palette_violations": palette_violation_count(frame, palette), "alpha_values": alpha, "alpha_binary": set(alpha) <= {0, 255}, "border_clear": box[0] > 0 and box[1] > 0 and box[2] < CELL and box[3] < CELL, "margin": margins(box), "dropped_components": dropped_components[i], "dropped_component_pixels": sum(item["pixels"] for item in dropped_components[i])})
+		box = alpha_bbox(frame); alpha = sorted(set(frame.getchannel("A").get_flattened_data()))
+		items.append({"index": i, "source": labels[i], "bbox": list(box), "body_height": box[3] - box[1], "body_width": box[2] - box[0], "area": alpha_area(frame), "bottom": box[3] - 1, "lift": FEET_Y - (box[3] - 1), "expected_lift": lifts[i], **frame_metrics(frame), "palette_violations_before_map": violations[i], "palette_violations": palette_violation_count(frame, palette) if palette else 0, "alpha_values": alpha, "alpha_binary": set(alpha) <= {0, 255}, "border_clear": box[0] > 0 and box[1] > 0 and box[2] < CELL and box[3] < CELL, "margin": margins(box), "dropped_components": dropped_components[i], "dropped_component_pixels": sum(item["pixels"] for item in dropped_components[i])})
 	heights = [item["body_height"] for item in items]; widths = [item["body_width"] for item in items]; areas = [item["area"] for item in items]
-	summary = {"frame_count": len(items), "output_columns": COLUMNS, "common_scale": round(scale, 8), "scale_by": args.scale_by, "min_component": args.min_component, "dropped_component_count": sum(len(group) for group in dropped_components), "dropped_component_pixels": sum(component["pixels"] for group in dropped_components for component in group), "body_height_range": [min(heights), max(heights)], "body_width_range": [min(widths), max(widths)], "area_range": [min(areas), max(areas)], "area_spread_percent": spread(areas), "bottom_range": [min(item["bottom"] for item in items), max(item["bottom"] for item in items)], "lift_range": [min(lifts), max(lifts)], "contact_on_y120": all(item["bottom"] == FEET_Y for item in items if item["expected_lift"] == 0), "airborne_lift_preserved": all(item["lift"] == item["expected_lift"] for item in items), "colour_count_range": [min(item["colour_count"] for item in items), max(item["colour_count"] for item in items)], "palette_violations_before_map": sum(violations), "palette_violations": sum(item["palette_violations"] for item in items), "alpha_binary": all(item["alpha_binary"] for item in items), "borders_clear": all(item["border_clear"] for item in items), "all_have_4px_margin": all(item["margin"]["has_4px_margin"] for item in items)}
-	metrics = {"input": {"sheet": args.sheet.as_posix() if args.sheet else None, "frames": args.frames, "grid": list(args.grid) if args.grid else None, "pick": parse_pick(args.pick), "backgrounds": backgrounds}, "normalization": {**scale_detail, "outline": args.outline, "cell": CELL, "feet_y": FEET_Y, "horizontal_anchor": "median torso row centre"}, "summary": summary, "frames": items, "outputs": {"sheet": sheet_path.as_posix(), "candidate": args.candidate_out.as_posix() if args.candidate_out else None, "frames": frame_dir.as_posix(), "closeup": (args.out_dir / "closeup.png").as_posix(), "compare": (args.out_dir / "compare.png").as_posix()}}
+	details = [float(item["interior_detail"]) for item in items]
+	summary = {"frame_count": len(items), "output_columns": COLUMNS, "common_scale": round(scale, 8), "scale_by": args.scale_by, "common_offset_x": args.offset_x, "ground_all": args.ground_all, "resample": args.resample, "sharpen_percent": args.sharpen, "despill": args.despill, "palette": args.palette.as_posix() if args.palette else "none", "min_component": args.min_component, "dropped_component_count": sum(len(group) for group in dropped_components), "dropped_component_pixels": sum(component["pixels"] for group in dropped_components for component in group), "body_height_range": [min(heights), max(heights)], "body_width_range": [min(widths), max(widths)], "area_range": [min(areas), max(areas)], "area_spread_percent": spread(areas), "bottom_range": [min(item["bottom"] for item in items), max(item["bottom"] for item in items)], "lift_range": [min(lifts), max(lifts)], "contact_on_y120": all(item["bottom"] == FEET_Y for item in items if item["expected_lift"] == 0), "airborne_lift_preserved": all(item["lift"] == item["expected_lift"] for item in items), "colour_count_range": [min(item["colour_count"] for item in items), max(item["colour_count"] for item in items)], "interior_detail_range": [min(details), max(details)], "interior_detail_mean": round(statistics.mean(details), 2), "remaining_spill_pixels": [item["remaining_spill_pixels"] for item in items], "palette_violations_before_map": sum(violations), "palette_violations": sum(item["palette_violations"] for item in items), "alpha_binary": all(item["alpha_binary"] for item in items), "borders_clear": all(item["border_clear"] for item in items), "all_have_4px_margin": all(item["margin"]["has_4px_margin"] for item in items)}
+	reference_report = None
+	if args.reference:
+		_, current = reference_frames(args.reference)
+		reference_items = [{"index": i, **frame_metrics(frame)} for i, frame in enumerate(current)]
+		reference_mean = round(statistics.mean(float(item["interior_detail"]) for item in reference_items), 2)
+		reference_report = {"frames": reference_items, "interior_detail_mean": reference_mean, "colour_count_range": [min(int(item["colour_count"]) for item in reference_items), max(int(item["colour_count"]) for item in reference_items)]}
+		summary["reference_interior_detail_mean"] = reference_mean
+		summary["interior_detail_ratio"] = round(summary["interior_detail_mean"] / reference_mean, 4) if reference_mean else None
+		for item in items:
+			item["interior_detail_ratio_to_reference_mean"] = round(float(item["interior_detail"]) / reference_mean, 4) if reference_mean else None
+	metrics = {"input": {"sheet": args.sheet.as_posix() if args.sheet else None, "frames": args.frames, "grid": list(args.grid) if args.grid else None, "pick": parse_pick(args.pick), "backgrounds": backgrounds}, "normalization": {**scale_detail, "outline": args.outline, "cell": CELL, "feet_y": FEET_Y, "horizontal_anchor": "median torso row centre"}, "summary": summary, "reference": reference_report, "frames": items, "outputs": {"sheet": sheet_path.as_posix(), "candidate": args.candidate_out.as_posix() if args.candidate_out else None, "frames": frame_dir.as_posix(), "closeup": (args.out_dir / "closeup.png").as_posix(), "compare": (args.out_dir / "compare.png").as_posix()}}
 	(args.out_dir / "metrics.json").write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
 	return metrics
 
@@ -430,10 +554,16 @@ def parser() -> argparse.ArgumentParser:
 	p = argparse.ArgumentParser(description=__doc__); source = p.add_mutually_exclusive_group(required=True)
 	source.add_argument("--sheet", type=Path); source.add_argument("--frames")
 	p.add_argument("--grid", type=parse_grid); p.add_argument("--pick"); p.add_argument("--bg", default="auto")
-	p.add_argument("--scale-by", default="height"); p.add_argument("--palette", type=Path, required=True)
+	p.add_argument("--scale-by", default="height"); p.add_argument("--palette", default="none", help="palette JSON path, or 'none' to preserve colours")
+	p.add_argument("--resample", choices=("box", "lanczos"), default="lanczos")
+	p.add_argument("--sharpen", type=float, default=60, metavar="PERCENT", help="RGB unsharp mask percent; radius 1, threshold 2; 0 disables")
+	p.add_argument("--despill", choices=("auto", "off"), default="off", help="remove green spill within 2 px of transparency")
+	p.add_argument("--offset-x", type=int, default=0, help="common horizontal shift applied to every frame after torso anchoring")
+	p.add_argument("--ground-all", action="store_true", help="place every frame on y=120 for an explicitly grounded motion")
 	p.add_argument("--outline", choices=("auto", "off"), default="off"); p.add_argument("--reference")
 	p.add_argument("--min-component", type=int, default=0, metavar="PX", help="drop detached 4-connected output components smaller than PX pixels")
 	p.add_argument("--title", default="SMASH NINE SPRITE NORMALIZATION"); p.add_argument("--out-dir", type=Path, required=True); p.add_argument("--name", required=True)
+	p.add_argument("--compare-scale", type=int, choices=(2, 3, 4), default=2, help="nearest-neighbour review board scale")
 	p.add_argument("--candidate-out", type=Path, help="optional art/bakeoff/<id>/<stem>-<row>-vN.png copy")
 	return p
 
@@ -441,10 +571,12 @@ def parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
 	args = parser().parse_args(argv)
 	try:
+		args.palette = None if str(args.palette).lower() == "none" else Path(args.palette)
 		if args.sheet and args.grid is None: raise ValueError("--sheet requires --grid")
 		if args.min_component < 0: raise ValueError("--min-component must be non-negative")
+		if args.sharpen < 0: raise ValueError("--sharpen must be non-negative")
 		metrics = normalize(args); summary = metrics["summary"]
-		print(f"normalized {summary['frame_count']} frames; factor={summary['common_scale']}; height={summary['body_height_range']}; lift={summary['lift_range']}; border={summary['borders_clear']}; margin4={summary['all_have_4px_margin']}; dropped={summary['dropped_component_count']} components/{summary['dropped_component_pixels']} px")
+		print(f"normalized {summary['frame_count']} frames; factor={summary['common_scale']}; height={summary['body_height_range']}; lift={summary['lift_range']}; detail={summary['interior_detail_range']}; colours={summary['colour_count_range']}; spill={summary['remaining_spill_pixels']}; border={summary['borders_clear']}; margin4={summary['all_have_4px_margin']}; dropped={summary['dropped_component_count']} components/{summary['dropped_component_pixels']} px")
 		return 0
 	except (OSError, ValueError, json.JSONDecodeError) as error:
 		print(f"Error: {error}", file=sys.stderr); return 1

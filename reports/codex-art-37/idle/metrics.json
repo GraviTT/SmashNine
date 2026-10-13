@@ -1,0 +1,410 @@
+{
+  "input": {
+    "sheet": "art/raw/frey-37/idle/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "median contact-frame body height",
+    "source_median_px": 413.5,
+    "target_px": 100.0,
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.24183797,
+    "scale_by": "height:100",
+    "common_offset_x": 0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      99,
+      101
+    ],
+    "body_width_range": [
+      90,
+      94
+    ],
+    "area_range": [
+      5158,
+      5556
+    ],
+    "area_spread_percent": 7.16,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4732,
+      5098
+    ],
+    "interior_detail_range": [
+      93.94,
+      97.57
+    ],
+    "interior_detail_mean": 96.24,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 102.91,
+    "interior_detail_ratio": 0.9352
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 102.05,
+        "colour_count": 1405,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 103.92,
+        "colour_count": 1422,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 103.33,
+        "colour_count": 4887,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 102.36,
+        "colour_count": 4966,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 102.91,
+    "colour_count_range": [
+      1405,
+      4966
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/frey-37/idle/raw.png#0,0",
+      "bbox": [
+        17,
+        22,
+        107,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 90,
+      "area": 5158,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.57,
+      "colour_count": 4732,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 22,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9481
+    },
+    {
+      "index": 1,
+      "source": "art/raw/frey-37/idle/raw.png#1,0",
+      "bbox": [
+        16,
+        21,
+        109,
+        121
+      ],
+      "body_height": 100,
+      "body_width": 93,
+      "area": 5428,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 94.83,
+      "colour_count": 4990,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 21,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9215
+    },
+    {
+      "index": 2,
+      "source": "art/raw/frey-37/idle/raw.png#2,0",
+      "bbox": [
+        16,
+        21,
+        109,
+        121
+      ],
+      "body_height": 100,
+      "body_width": 93,
+      "area": 5556,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 96.43,
+      "colour_count": 5098,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 21,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.937
+    },
+    {
+      "index": 3,
+      "source": "art/raw/frey-37/idle/raw.png#0,1",
+      "bbox": [
+        16,
+        22,
+        110,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 94,
+      "area": 5524,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 93.94,
+      "colour_count": 5092,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 22,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9128
+    },
+    {
+      "index": 4,
+      "source": "art/raw/frey-37/idle/raw.png#1,1",
+      "bbox": [
+        16,
+        21,
+        107,
+        121
+      ],
+      "body_height": 100,
+      "body_width": 91,
+      "area": 5314,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.47,
+      "colour_count": 4846,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 21,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9471
+    },
+    {
+      "index": 5,
+      "source": "art/raw/frey-37/idle/raw.png#2,1",
+      "bbox": [
+        17,
+        20,
+        108,
+        121
+      ],
+      "body_height": 101,
+      "body_width": 91,
+      "area": 5303,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.2,
+      "colour_count": 4850,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 20,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9445
+    }
+  ],
+  "outputs": {
+    "sheet": "art/raw/frey-37/idle/normalized/frey-idle-v2.png",
+    "candidate": "art/bakeoff/frey/frey-idle-v2.png",
+    "frames": "art/raw/frey-37/idle/normalized/frames",
+    "closeup": "art/raw/frey-37/idle/normalized/closeup.png",
+    "compare": "art/raw/frey-37/idle/normalized/compare.png"
+  }
+}

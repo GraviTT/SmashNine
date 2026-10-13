@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import importlib.util
 from pathlib import Path
 import subprocess
 import sys
@@ -11,6 +12,10 @@ from PIL import Image, ImageDraw
 
 
 SCRIPT = Path(__file__).with_name("normalize.py")
+SPEC = importlib.util.spec_from_file_location("sprite_normalize", SCRIPT)
+assert SPEC and SPEC.loader
+NORMALIZE = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(NORMALIZE)
 
 
 def frame(top: int, bottom: int, background=(0, 250, 5, 255)) -> Image.Image:
@@ -34,11 +39,12 @@ class NormalizeTests(unittest.TestCase):
 	def tearDown(self) -> None:
 		self.temp.cleanup()
 
-	def run_tool(self, scale="height:80", expect=0) -> tuple[subprocess.CompletedProcess[str], dict | None]:
+	def run_tool(self, scale="height:80", expect=0, extra: list[str] | None = None) -> tuple[subprocess.CompletedProcess[str], dict | None]:
 		sheet = Image.new("RGBA", (200, 100), (0, 0, 0, 0))
 		sheet.alpha_composite(frame(12, 90), (0, 0)); sheet.alpha_composite(frame(2, 80), (100, 0))
 		source = self.root / "green.png"; sheet.save(source); out = self.root / "out"
 		command = [sys.executable, str(SCRIPT), "--sheet", str(source), "--grid", "2x1", "--bg", "auto", "--scale-by", scale, "--palette", str(self.palette), "--outline", "off", "--out-dir", str(out), "--name", "synthetic"]
+		command.extend(extra or [])
 		result = subprocess.run(command, capture_output=True, text=True, check=False)
 		self.assertEqual(result.returncode, expect, result.stderr)
 		metrics = json.loads((out / "metrics.json").read_text(encoding="utf-8")) if expect == 0 else None
@@ -69,6 +75,48 @@ class NormalizeTests(unittest.TestCase):
 		_, metrics = self.run_tool("fixed:1")
 		assert metrics is not None
 		self.assertEqual(metrics["summary"]["common_scale"], 1)
+
+	def test_ground_all_and_common_offset_are_reported(self) -> None:
+		_, metrics = self.run_tool("fixed:1", extra=["--ground-all", "--offset-x", "-2"])
+		assert metrics is not None
+		self.assertTrue(metrics["summary"]["ground_all"])
+		self.assertEqual(metrics["summary"]["common_offset_x"], -2)
+		self.assertEqual(metrics["summary"]["bottom_range"], [120, 120])
+
+	def test_lanczos_sharpen_increases_synthetic_interior_detail(self) -> None:
+		large = Image.new("RGBA", (64, 64), (96, 96, 96, 255))
+		draw = ImageDraw.Draw(large)
+		for x in range(8, 56, 8):
+			draw.line((x, 4, x, 59), fill=(180, 180, 180, 255), width=2)
+		soft = large.resize((16, 16), Image.Resampling.LANCZOS)
+		sharp = NORMALIZE.apply_unsharp(soft, 60)
+		self.assertGreater(NORMALIZE.interior_detail(sharp), NORMALIZE.interior_detail(soft))
+
+	def test_despill_auto_removes_green_from_two_pixel_alpha_edge(self) -> None:
+		image = Image.new("RGBA", (9, 9), (0, 0, 0, 0))
+		ImageDraw.Draw(image).rectangle((2, 2, 6, 6), fill=(30, 190, 40, 255))
+		self.assertGreater(NORMALIZE.spill_pixel_count(image), 0)
+		cleaned = NORMALIZE.despill_green_edge(image, "auto")
+		self.assertEqual(NORMALIZE.spill_pixel_count(cleaned), 0)
+
+	def test_palette_none_preserves_source_colours(self) -> None:
+		_, metrics = self.run_tool("fixed:1", extra=["--palette", "none", "--resample", "box", "--sharpen", "0"])
+		assert metrics is not None
+		self.assertEqual(metrics["summary"]["palette"], "none")
+		self.assertEqual(metrics["summary"]["colour_count_range"], [3, 3])
+		self.assertEqual(metrics["summary"]["palette_violations"], 0)
+
+	def test_interior_detail_metric_distinguishes_flat_and_checker(self) -> None:
+		flat = Image.new("RGBA", (9, 9), (120, 120, 120, 255))
+		checker = Image.new("RGBA", (9, 9), (0, 0, 0, 255))
+		pixels = checker.load()
+		for y in range(9):
+			for x in range(9):
+				if (x + y) % 2:
+					pixels[x, y] = (255, 255, 255, 255)
+		self.assertEqual(NORMALIZE.interior_detail(flat), 0)
+		self.assertGreater(NORMALIZE.interior_detail(checker), 0)
+		self.assertEqual(NORMALIZE.colour_count(checker), 2)
 
 	def test_border_failure_never_shrinks_one_frame(self) -> None:
 		result, _ = self.run_tool("fixed:3", expect=1)
