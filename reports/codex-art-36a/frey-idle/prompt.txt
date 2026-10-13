@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete four-frame IDLE loop for Frey.
+
+Input images and roles: Image 1 is the current game idle frame enlarged 4x with nearest-neighbor scaling; it is the most important IDENTITY, PROPORTIONS, HEAD RATIO, right-facing side-view camera, palette and pixel-finish reference, but do not copy its pose or reuse frozen body parts. Image 2 is Frey's full-body illustration for identity, face, hair, costume layers, sword and shield construction only; do not copy its tall illustration proportions or pose.
+
+Primary request: Draw a NEW cohesive full-body four-frame idle animation of the SAME Frey, standing in place and facing RIGHT in the same side-view / very slight three-quarter game camera as Image 1, at 7 fps. Every frame must be a genuinely newly drawn whole pose, not a cutout or pasted-part puppet. This is a subtle armored breathing loop that joins cleanly back to frame 1.
+
+Frame 1: neutral planted ready stance, both boots on the common floor, knees softly bent, torso upright, round shield held forward at chest-to-waist height without covering the face, broad sword held diagonally down-forward; face fully visible.
+Frame 2: quiet inhale, torso and head only slightly higher, knees a little straighter, sword and shield nearly fixed; long hair, cape and skirt panels lag one beat behind.
+Frame 3: quiet exhale, torso slightly lower and knees softer, weight centered between both boots, shield and sword still readable and below the face; hair and cape pass through neutral.
+Frame 4: settle smoothly toward frame 1, planted feet unchanged, only a restrained opposite secondary-motion phase in hair, cape and skirt panels so frame 4 loops into frame 1.
+
+Subject invariants: compact approximately 3-head-tall chibi Valkyrie, never tall or slim. Same large head size and same body width in every frame. One visible face per frame, fair skin, large blue eye, small determined mouth, long thick golden-blonde hair streaming toward screen-left, side-swept fringe, silver winged circlet/helmet. Preserve silver plate chest armor, shoulder plates, bracers and greaves with gold trim; dark navy under-suit; brown gloves, belts and boots; deep navy scarf and cape with gold star marks; layered armored skirt panels. Preserve one intact broad silver sword with gold hilt in the rear/right hand and one intact round navy shield with gold rim and gold four-point star in the forward/left hand. Exactly one head, two connected arms, two hands and two connected legs in every frame. Hands and shield never cover the face.
+
+Sheet layout: exactly FOUR equal 512-by-512 square cells in ONE horizontal row, exactly FOUR isolated full-body sprites, landscape 2048 by 512 if supported. Read left to right as frames 1-4. Use generous margins. Every hair tip, wing ornament, cape tip, sword tip, shield and boot must remain inside its own cell. Same camera, same character scale, same head size, same root x position and same implied floor line in every cell. Do not resize any frame independently. No numbers, words, labels, borders, grid lines or cell backgrounds.
+
+Backdrop: completely solid flat chroma-key green #00FF00 across the entire sheet. No transparency, checkerboard, floor, shadow, contact shadow, scenery or atmospheric elements.
+
+Style/medium: crisp polished console-quality PIXEL ART designed to normalize into a 128-pixel game sprite. Intentional chunky square-pixel clusters, disciplined selective 1-pixel dark outline, limited controlled palette, clean cel-shaded ramps, readable silhouette. Match Image 1's pixel finish. No smooth illustration, vector look, 3D, painterly texture, blur, soft gradients, antialiasing or white matte fringe.
+
+Final hard constraints: one sheet only; exactly 4 frames; exactly one Frey in each frame; every frame newly drawn as one whole body; right-facing side view throughout; planted idle breathing loop; same head size and body width; one head, two arms, two hands, two legs; sword and shield intact; no duplicated face or body part; no pasted or stamped parts; no attack, slash arc, glow, spark, dust, magic, effect, text, watermark, labels, grid, borders, shadows or cropped parts.
