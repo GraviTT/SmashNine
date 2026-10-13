@@ -1,0 +1,429 @@
+{
+  "art39": {
+    "head_scale_before": 1.06,
+    "head_scale_after": 1.01,
+    "factor_before": 0.27624309,
+    "factor_after": 0.261,
+    "lift_scale": 1,
+    "regenerated": false,
+    "regeneration_accepted": false,
+    "status": "pass"
+  },
+  "input": {
+    "sheet": "art/raw/frey-38/shield/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.261,
+    "scale_by": "fixed:0.261",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      93,
+      94
+    ],
+    "body_width_range": [
+      92,
+      105
+    ],
+    "area_range": [
+      5103,
+      5441
+    ],
+    "area_spread_percent": 6.21,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4529,
+      4858
+    ],
+    "interior_detail_range": [
+      97.43,
+      106.73
+    ],
+    "interior_detail_mean": 103.66,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 93.01,
+    "interior_detail_ratio": 1.1145
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.78,
+        "colour_count": 414,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 91.92,
+        "colour_count": 396,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 96.02,
+        "colour_count": 414,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 92.49,
+        "colour_count": 405,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 93.06,
+        "colour_count": 402,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 90.79,
+        "colour_count": 412,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 93.01,
+    "colour_count_range": [
+      396,
+      414
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/frey-38/shield/raw.png#0,0",
+      "bbox": [
+        15,
+        27,
+        111,
+        121
+      ],
+      "body_height": 94,
+      "body_width": 96,
+      "area": 5260,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.92,
+      "colour_count": 4655,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 15,
+        "top": 27,
+        "right": 17,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1173
+    },
+    {
+      "index": 1,
+      "source": "art/raw/frey-38/shield/raw.png#1,0",
+      "bbox": [
+        15,
+        27,
+        108,
+        121
+      ],
+      "body_height": 94,
+      "body_width": 93,
+      "area": 5121,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 105.47,
+      "colour_count": 4554,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 15,
+        "top": 27,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.134
+    },
+    {
+      "index": 2,
+      "source": "art/raw/frey-38/shield/raw.png#2,0",
+      "bbox": [
+        12,
+        27,
+        104,
+        121
+      ],
+      "body_height": 94,
+      "body_width": 92,
+      "area": 5103,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 106.73,
+      "colour_count": 4529,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 12,
+        "top": 27,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1475
+    },
+    {
+      "index": 3,
+      "source": "art/raw/frey-38/shield/raw.png#0,1",
+      "bbox": [
+        14,
+        27,
+        107,
+        121
+      ],
+      "body_height": 94,
+      "body_width": 93,
+      "area": 5286,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.13,
+      "colour_count": 4668,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 14,
+        "top": 27,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1196
+    },
+    {
+      "index": 4,
+      "source": "art/raw/frey-38/shield/raw.png#1,1",
+      "bbox": [
+        7,
+        28,
+        112,
+        121
+      ],
+      "body_height": 93,
+      "body_width": 105,
+      "area": 5441,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.43,
+      "colour_count": 4858,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 7,
+        "top": 28,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0475
+    },
+    {
+      "index": 5,
+      "source": "art/raw/frey-38/shield/raw.png#2,1",
+      "bbox": [
+        12,
+        27,
+        107,
+        121
+      ],
+      "body_height": 94,
+      "body_width": 95,
+      "area": 5359,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.28,
+      "colour_count": 4752,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 12,
+        "top": 27,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1212
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-39/shield/frey-shield-v1.png",
+    "candidate": "art/bakeoff/frey/frey-shield-v1.png",
+    "frames": "reports/codex-art-39/shield/frames",
+    "closeup": "reports/codex-art-39/shield/closeup.png",
+    "compare": "reports/codex-art-39/shield/compare.png"
+  }
+}

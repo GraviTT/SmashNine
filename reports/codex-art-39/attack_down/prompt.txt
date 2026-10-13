@@ -1,0 +1,7 @@
+Use case: stylized-concept. Create one NEW six-frame grounded ATTACK_DOWN sprite sheet for Frey.
+
+Image 1 is the accepted idle-v2 anchor and controls identity, exact large head size, compact proportions, costume, equipment, detail and pixel finish. Image 2 supplies motion intent only. Match Image 1's head size in every frame and never shrink the fighter.
+
+Six right-facing frames at 21 fps: 1 compact sword raised diagonally behind the front shoulder, 2 lean forward, 3 active downward cut, 4 blade angled down-forward near the floor, 5 low hold, 6 recover. Keep the sword foreshortened and diagonal, not vertical or fully extended. Hair/cape close to the body; shield forward without hiding the face; connected limbs and intact gear.
+
+Exactly six equal 512x512 cells, 3x2, 1536x1024. Every whole pose including sword must fit inside a square about 1.2 times standing height on each side, centered on one floor with wide #00FF00 margins. Same scale in all cells. Crisp detailed pixel art exactly like Image 1. No effects, arc, sparks, dust, shadow, text, watermark, grid, border or crop.
