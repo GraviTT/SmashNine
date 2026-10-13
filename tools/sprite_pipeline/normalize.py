@@ -173,6 +173,27 @@ def alpha_bbox(image: Image.Image) -> tuple[int, int, int, int]:
 	return box
 
 
+def validate_source_cell_margin(frames: Sequence[Image.Image], labels: Sequence[str]) -> None:
+	"""Reject subjects already clipped by a generated source-cell boundary."""
+	for frame, label in zip(frames, labels):
+		box = alpha_bbox(frame)
+		touched = []
+		if box[0] == 0:
+			touched.append("left")
+		if box[1] == 0:
+			touched.append("top")
+		if box[2] == frame.width:
+			touched.append("right")
+		if box[3] == frame.height:
+			touched.append("bottom")
+		if touched:
+			raise ValueError(
+				f"source cell subject touches its {','.join(touched)} border in {label}; "
+				"the drawing may cross into another cell and would be cut. "
+				"Regenerate the whole motion with more margin"
+			)
+
+
 def alpha_area(image: Image.Image) -> int:
 	return int(np.count_nonzero(np.asarray(image.getchannel("A"), dtype=np.uint8)))
 
@@ -379,6 +400,7 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 	frames, labels = load_inputs(args); prepared = []; backgrounds = []
 	for frame in frames:
 		cleaned, report = clean_background(frame, args.bg); prepared.append(cleaned); backgrounds.append(report)
+	validate_source_cell_margin(prepared, labels)
 	bottoms = [alpha_bbox(frame)[3] - 1 for frame in prepared]; source_ground = max(bottoms)
 	scale, scale_detail = common_scale(prepared, args.scale_by, source_ground); palette = load_palette(args.palette)
 	results = []; lifts = []; violations = []; dropped_components = []

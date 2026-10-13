@@ -36,6 +36,8 @@ $py = 'C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/pyth
 
 입력은 `--sheet PNG --grid CxR` 또는 `--frames 폴더/글롭` 중 하나다. `--pick 0,1,2`로 사용할 칸을 고를 수 있다. `--bg`는 `alpha`, `auto`, `#00ff00`을 지원한다. `auto`는 기존 투명을 우선하고, 불투명 입력이면 테두리에서 연결된 주 배경색만 지운다. `--outline auto`는 기존 실루엣 내부에서 어두운 외곽선 사이의 1px 구멍만 잇는다.
 
+배경을 제거한 직후 원본 셀의 피사체가 위·아래·왼쪽·오른쪽 경계 중 하나라도 닿으면 즉시 실패한다. 이는 그림이 옆 셀로 넘어가 잘렸다는 신호이므로 배율로 숨기거나 조각을 지우지 말고, 동작 전체를 더 넓은 여백과 짧은 리치로 다시 생성한다. 오류에는 문제 셀과 닿은 변, 재생성 지침이 표시된다.
+
 출력 폴더에는 다음이 생긴다.
 
 - `<name>.png`: 128×128 셀 6열, 실제 프레임은 왼쪽부터 배치
@@ -52,7 +54,7 @@ $py = 'C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/pyth
 & $py -m unittest tools/sprite_pipeline/test_normalize.py -v
 ```
 
-합성 검사는 연결 배경 제거, 한 공통 배율, 접촉 발 y=120, 공중 높이 보존, 팔레트 전용 색, 이진 알파, 6열 출력, 고정 배율, 경계 초과 실패를 확인한다.
+합성 검사는 연결 배경 제거, 한 공통 배율, 접촉 발 y=120, 공중 높이 보존, 팔레트 전용 색, 이진 알파, 6열 출력, 고정 배율, 원본 셀 경계 접촉 시 재생성 안내와 출력 셀 경계 초과 실패를 확인한다.
 
 ## 제한
 

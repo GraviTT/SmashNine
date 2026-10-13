@@ -47,7 +47,7 @@ sections = [
             ("TUMBLE V2", "art/bakeoff/frey/frey-tumble-v2.png", 4),
             ("WALK V1", "art/bakeoff/frey/frey-walk-v1.png", 6),
             ("RISING CLEAVE V1", "art/bakeoff/frey/frey-rising_cleave-v1.png", 5),
-            ("ATTACK V2", "art/bakeoff/frey/frey-attack-v2.png", 4),
+            ("ATTACK V3", "art/bakeoff/frey/frey-attack-v3.png", 4),
         ],
     ),
     (
@@ -55,7 +55,7 @@ sections = [
         "art/bakeoff/yuki/yuki-idle-v1.png",
         [
             ("IDLE V1", "art/bakeoff/yuki/yuki-idle-v1.png", 4),
-            ("TALISMAN SIDE V1", "art/bakeoff/yuki/yuki-talisman_side-v1.png", 4),
+            ("TALISMAN SIDE V2", "art/bakeoff/yuki/yuki-talisman_side-v2.png", 4),
         ],
     ),
 ]
