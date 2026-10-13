@@ -54,6 +54,8 @@
 - 13:45 Codex A(ART-36 A 1차) 끝(20분): Frey 기준 대기(높이 100 기준 배율 0.1876) + spike_followup · descent · tumble 후보. 리드 검수(overview 2배): 기준 대기는 지금 대기와 생김새·크기 같음(채택해 기준으로), spike는 동작·크기 좋고 떨어진 점만 지우면 됨, descent · tumble은 몸 전체가 기준의 약 80% — **생성할 때마다 그린 크기가 달라 기준 배율을 그대로 쓰면 안 됨**. 시트마다 배율 하나를 얼굴이 가장 잘 보이는 칸의 머리를 기준 대기에 맞춰 정하게 함(칸마다 아님). 병합 `7c78d80`(보고서 22MB, 원본 생성 그림 포함 — 다시 정리할 때 필요). 파이프라인 예시였던 Luna walk 후보는 지금 걷기를 다시 정리한 사본이라 지움.
 - 13:47 Codex A 2라운드(xhigh, 90분): descent · tumble 시트 배율 다시, spike 점 제거(`--min-component` 추가), 새 후보 Frey walk · rising_cleave · attack. 13:47 뷰어 갱신(Frey 후보 4개).
 - 14:16 Codex A 2라운드 끝(29분): spike_followup-v2(`--min-component 21`로 점 제거, 도구에 옵션 추가·시험 4/4), descent-v2·tumble-v2(시트 배율 0.235 — 얼굴이 가장 잘 보이는 칸의 머리를 기준 대기에 맞춤), 새 walk-v1(`height:100`, 0.266)·rising_cleave-v1(0.27)·attack-v1(0.219). 리드 검수(overview 2배, 모든 칸): 모든 칸 얼굴 하나, 머리 크기 기준 대기와 같음, descent·tumble 크기 바로잡힘, walk는 대기 크기 그대로 다리 교대(대기→걷기 축소 없음), rising_cleave 상승감 있음, attack-v1은 J3가 넓은 베기가 아니라 높이 든 자세라 약함. 병합 `45399ab`. 대체된 v1 3개(spike·descent·tumble)는 후보에서 뺌. 14:17 A 3라운드(attack-v2 수평 J3 + Yuki 기준 대기·talisman_side, 65분). 뷰어 갱신(Frey 후보 7개).
+- 14:22 Codex B(ART-36 B 1차) 끝(51분): Rio 여 idle·walk·plunge, Nova 남·여 idle·vector_side, Brave idle·brave_combo 후보 9개(41프레임). Rio air_slash는 두 번 생성 모두 칸에 안 들어가 제외. Brave는 공용 팔레트가 보라·청록을 잃어 지금 시트에서 뽑은 96색 팔레트를 씀. 리드 검수: B의 검수판이 축소돼 있어 직접 2배 비교판(지금 대기 + 후보)을 만들어 모든 칸 확인 — 기준 대기 4개(Rio 여·Nova 남·여·Brave)는 지금 대기와 크기·생김새 같음, Nova vector_side 둘 다 좋음(Nova 여는 발밑 점), **Rio walk·Brave combo는 머리가 기준의 약 85%, Rio plunge는 약 70%**로 작음, 얼굴은 모두 하나. 병합 `f58334a`(보고서 41MB — 원본 생성 그림, 다음엔 줄이게 함).
+- 14:24 Codex B 2라운드(xhigh, 57분): walk·plunge·combo 시트 배율 다시(머리를 기준에 맞춘 시트 배율 하나), Nova 여 점 제거, Rio air_slash 재시도, 남으면 Luna 기준 대기 + attack.
 
 ## 결과
 
