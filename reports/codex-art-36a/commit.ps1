@@ -2,10 +2,8 @@ $ErrorActionPreference = 'Stop'
 
 git -c core.autocrlf=false add -- `
   'art/bakeoff/frey' `
-  'reports/codex-art-36a' `
-  'tools/sprite_pipeline/normalize.py' `
-  'tools/sprite_pipeline/README.md' `
-  'tools/sprite_pipeline/test_normalize.py'
+  'art/bakeoff/yuki' `
+  'reports/codex-art-36a'
 
-$message = "art: refine Frey redraw candidates and add priority rows`n`nCo-Authored-By: Codex <noreply@openai.com>"
+$message = "art: add Frey attack v2 and Yuki redraw candidates`n`nCo-Authored-By: Codex <noreply@openai.com>"
 git -c core.autocrlf=false commit -m $message
