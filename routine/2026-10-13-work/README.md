@@ -1,9 +1,8 @@
 # 근무 루틴 · 2026-10-13 · SmashNine — 전체 캐릭터 점검
 
-## 지금 상태 (14:18 갱신)
-- 단계: 실행 · 마무리 시작 15:38 · 기준 마감 16:08 · 최대 마감 17:08
-- 지금: Codex A 3라운드(Frey attack-v2, Yuki), Codex B(Rio 여 → Nova 남·여 → Brave → Luna)
-- 완료: 방법 분석, 공통 정리 도구·뷰어 후보 비교, 전체 점검(476프레임), Frey 후보 6줄(대기·walk·rising_cleave·spike·descent·tumble) + attack-v1 — 뷰어에 올림
+## 지금 상태 (14:59 갱신)
+- 단계: 끝 — 14:59 마무리 완료(기준 마감 16:08보다 일찍)
+- 완료: 방법 분석, 공통 정리 도구·뷰어 후보 비교, 전체 점검(476프레임), 후보 24개(뷰어 게시), 전체 검사 ALL PASSED — 게임 시트는 그대로
 - 막힌 것: 없음
 
 ## 사용자 지시 (원문)
@@ -59,6 +58,9 @@
 - 14:33 Codex A 3라운드 끝(16분): Frey attack-v2, Yuki idle-v1·talisman_side-v1. 리드 검수(직접 2배 비교판): Yuki 기준 대기는 지금 대기와 같은 크기(기준으로 채택), talisman_side는 동작 좋으나 머리 약 85%, **Frey attack-v2는 생성 그림에서 칼끝이 옆 칸으로 넘어가 잘린 조각이 남고 몸도 작음**(정리 도구가 생성 단계의 칸 넘침을 못 잡음). 병합 `e584991`. 14:35 A 4라운드(45분): 도구에 생성 칸 넘침 검사, Frey attack-v3 다시 생성, Yuki talisman 배율 다시.
 - 14:44 Codex B 2라운드 끝(20분): Rio 여 walk-v2·air_slash-v2(조밀한 자세로 다시 생성, 칸에 들어감)·plunge-v2(다시 생성), Brave combo-v2, Nova 여 vector_side-v2(점 35px 제거), Luna idle-v1(기준)·attack-v1. 리드 검수(직접 2배 비교판, 기준 대기 옆): 크기를 다시 맞춘 줄 모두 기준과 머리 크기 같음, plunge-v2 F3~F5는 4배로 확대해 얼굴 하나씩 확인(숙인 머리가 겹쳐 보였던 것), Brave combo F3 오른쪽 여백 3px(1px 테두리 규칙은 통과). 병합 `66334f8`, 대체된 v1 4개 뺌.
 - 14:45 점검의 "다시 그림" 6줄(Frey walk·rising_cleave·descent, Rio 여 walk·air_slash·plunge)은 모두 후보가 나옴. 나머지 "손질" 판정 대부분은 이펙트가 캐릭터 그림에 박힌 것(효과 분리 필요) — 다음 회차 몫. B 3라운드(30분): Nova 남 jump·fall·shield를 이펙트 없이.
+- 14:51 Codex A 4라운드 끝(16분): 도구에 생성 칸 넘침 검사(시험 5/5), Frey attack-v3(J3 가슴 높이 수평 베기, 칼 온전, 기준 크기), Yuki talisman_side-v2(옛 원본이 새 검사에서 칸 넘침으로 걸려 다시 생성, 기준 크기). 리드 검수(2배, 기준 대기 옆) 통과. 병합 `6b1a499`, 대체된 Frey attack v1·v2, Yuki talisman v1 뺌. 리드가 도구 시험 직접 실행 OK.
+- 14:54 Codex B 3라운드 끝(9분): Nova 남 jump·fall·shield(이펙트 없이). 리드 검수: shield는 기준 크기·팔 교차 방어 좋음, **jump·fall은 머리 약 80%**(배율 0.180 vs shield 0.218). 같은 생성 원본을 shield 배율 0.218로 리드가 직접 다시 정리(명령 한 번) → 머리 크기 기준과 같음(2배 확인), v2로 커밋. 병합 `116af96`. 함께 본 점: Nova 남 새 기준 대기는 지금 대기보다 흰 갑옷판이 적고 흰 점처럼 표현됨(생김새 차이 — 사용자 판단).
+- 14:55 뷰어 갱신: 후보 24개(Frey 7 · Rio 여 4 · Nova 남 5 · Nova 여 2 · Brave 2 · Luna 2 · Yuki 2). 14:56 작업 끝 → 마무리(예정 15:38보다 일찍). 14:59 마지막 전체 검사 ALL PASSED(가져오기 exit 0, soak 289초, 오류 0) · 정리 도구 시험 OK. 기록 커밋·push.
 
 ## 결과
 | 작업 | 만든 것 | 확인 · 커밋 |
@@ -66,7 +68,7 @@
 | 방법 분석 | `reports/sprite-method-analysis-2026-10-13.md` — CuSurvive의 "한 동작 = 한 생성 + 시트 전체에 같은 정리 + 뷰어 판정 뒤 게임" 방식과 SmashNine 실패 원인 대조, 적용 목록 | `aae3495` |
 | ART-35 정리 도구 | `tools/sprite_pipeline/`(normalize: 128칸·6열·발 y=120·공중 높이 보존·시트 배율 하나·팔레트·이진 알파·1px 테두리·4px 여백 보고·**칸에 안 들어가면 줄이지 않고 실패**·생성 칸 넘침 실패·`--min-component`; prepare_raw; make_palette 8체형; 시험 5/5) + 뷰어 "지금 vs 후보" | 리드가 배율 코드·실패 동작 확인, 로컬 브라우저 확인. `5f83693`, `6b1a499` |
 | QA-18 전체 점검 | 8체형 16장 119줄 476프레임, 줄마다 판정, 다시 그림 6줄 · 손질 대부분은 이펙트가 그림에 박힘, Rio 기본 시트 반투명 가장자리, ART-34 걷기의 대기→걷기 축소 | 리드가 Rio 여 기술 시트로 대조(일치). `fcaaa7f` |
-| ART-36 후보 | `art/bakeoff/` — 캐릭터마다 새 기준 대기(Frey · Rio 여 · Nova 남·여 · Brave · Luna · Yuki) + Frey walk · rising_cleave · spike_followup · descent · tumble · attack, Rio 여 walk · air_slash · plunge, Nova 남·여 vector_side, Brave combo, Luna attack, Yuki talisman_side, Nova 남 jump · fall · shield(이펙트 없이) | 리드가 모든 칸을 2배(필요하면 4배)로 직접 확인 — 얼굴 하나, 기준 대기와 같은 머리 크기, 칼·팔다리 온전. 크기가 작은 후보 7번, 칼 잘림 1번, 점 2번을 되돌려 고침. 게임 시트는 그대로 |
+| ART-36 후보 | `art/bakeoff/` — 캐릭터마다 새 기준 대기(Frey · Rio 여 · Nova 남·여 · Brave · Luna · Yuki) + Frey walk · rising_cleave · spike_followup · descent · tumble · attack, Rio 여 walk · air_slash · plunge, Nova 남·여 vector_side, Brave combo, Luna attack, Yuki talisman_side, Nova 남 jump · fall · shield(이펙트 없이; jump·fall은 리드가 shield 배율로 다시 정리) — 모두 24개 | 리드가 모든 칸을 2배(필요하면 4배)로 직접 확인 — 얼굴 하나, 기준 대기와 같은 머리 크기, 칼·팔다리 온전. 크기가 작은 후보 7번, 칼 잘림 1번, 점 2번을 되돌려 고침. 게임 시트는 그대로 |
 
 ## 이번 결정
 - **"루틴에 들어간다"를 시작 지시로** 받아 제안서는 기록에만 두고 시작(기본 규칙: 승인 없이 시작하라는 말이 승인).
@@ -86,5 +88,6 @@
 
 ## 돌아와서 할 일
 - **모션 뷰어에서 후보 고르기**: https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU — "후보 N" 배지가 붙은 줄을 누르면 지금 그림과 후보가 나란히 재생됨. 캐릭터마다 새 `idle`(기준 대기)도 후보. 채택할 줄을 알려 주시면 그 줄만 게임 시트에 넣음.
+- **볼 것**: Nova 남 새 기준 대기는 흰 갑옷판이 적게(흰 점처럼) 그려져 지금 Nova와 생김새가 조금 다름.
 - **정할 것**: ① "후보 → 뷰어 판정 → 게임" 순서를 프로젝트 규칙으로 할지, ② D32 ③을 "게임이 따로 그린다"로 확정할지(그러면 손질 줄의 박힌 이펙트를 다음 회차에 빼고 다시 그림), ③ Rio 기본 시트 반투명 가장자리.
 - **배포**: 보고 끝의 Codex 배포 요청문(이번 회차는 게임 시트 변경이 없지만, 지난 배포 뒤 게임이 많이 바뀌었음).
