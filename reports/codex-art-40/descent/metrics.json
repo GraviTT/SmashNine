@@ -1,0 +1,388 @@
+{
+  "art40": {"factor": 0.3375, "lift_scale": 1.0, "head_scale": 1.0, "source_raw": "art/raw/frey-39/descent/raw.png"},
+  "input": {
+    "sheet": "art/raw/frey-39/descent/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.3375,
+    "scale_by": "fixed:0.3375",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      75,
+      129
+    ],
+    "body_width_range": [
+      75,
+      103
+    ],
+    "area_range": [
+      4740,
+      5743
+    ],
+    "area_spread_percent": 17.46,
+    "bottom_range": [
+      125,
+      152
+    ],
+    "lift_range": [
+      0,
+      27
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4225,
+      5156
+    ],
+    "interior_detail_range": [
+      99.66,
+      108.12
+    ],
+    "interior_detail_mean": 103.86,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 97.69,
+    "interior_detail_ratio": 1.0632
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.69,
+        "colour_count": 4737,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.69,
+    "colour_count_range": [
+      4737,
+      4737
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/frey-39/descent/raw.png#0,0",
+      "bbox": [
+        45,
+        17,
+        143,
+        132
+      ],
+      "body_height": 115,
+      "body_width": 98,
+      "area": 5625,
+      "bottom": 131,
+      "lift": 21,
+      "expected_lift": 21,
+      "interior_detail": 100.35,
+      "colour_count": 5102,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 45,
+        "top": 17,
+        "right": 49,
+        "bottom": 60,
+        "minimum": 17,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0272
+    },
+    {
+      "index": 1,
+      "source": "art/raw/frey-39/descent/raw.png#1,0",
+      "bbox": [
+        48,
+        41,
+        140,
+        131
+      ],
+      "body_height": 90,
+      "body_width": 92,
+      "area": 4910,
+      "bottom": 130,
+      "lift": 22,
+      "expected_lift": 22,
+      "interior_detail": 108.12,
+      "colour_count": 4365,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 48,
+        "top": 41,
+        "right": 52,
+        "bottom": 61,
+        "minimum": 41,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1068
+    },
+    {
+      "index": 2,
+      "source": "art/raw/frey-39/descent/raw.png#2,0",
+      "bbox": [
+        54,
+        24,
+        129,
+        153
+      ],
+      "body_height": 129,
+      "body_width": 75,
+      "area": 4999,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.68,
+      "colour_count": 4496,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 24,
+        "right": 63,
+        "bottom": 39,
+        "minimum": 24,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0613
+    },
+    {
+      "index": 3,
+      "source": "art/raw/frey-39/descent/raw.png#0,1",
+      "bbox": [
+        39,
+        52,
+        142,
+        127
+      ],
+      "body_height": 75,
+      "body_width": 103,
+      "area": 4740,
+      "bottom": 126,
+      "lift": 26,
+      "expected_lift": 26,
+      "interior_detail": 106.53,
+      "colour_count": 4225,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 39,
+        "top": 52,
+        "right": 50,
+        "bottom": 65,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0905
+    },
+    {
+      "index": 4,
+      "source": "art/raw/frey-39/descent/raw.png#1,1",
+      "bbox": [
+        45,
+        41,
+        143,
+        126
+      ],
+      "body_height": 85,
+      "body_width": 98,
+      "area": 5287,
+      "bottom": 125,
+      "lift": 27,
+      "expected_lift": 27,
+      "interior_detail": 104.79,
+      "colour_count": 4704,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 45,
+        "top": 41,
+        "right": 49,
+        "bottom": 66,
+        "minimum": 41,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0727
+    },
+    {
+      "index": 5,
+      "source": "art/raw/frey-39/descent/raw.png#2,1",
+      "bbox": [
+        46,
+        26,
+        143,
+        126
+      ],
+      "body_height": 100,
+      "body_width": 97,
+      "area": 5743,
+      "bottom": 125,
+      "lift": 27,
+      "expected_lift": 27,
+      "interior_detail": 99.66,
+      "colour_count": 5156,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 46,
+        "top": 26,
+        "right": 49,
+        "bottom": 66,
+        "minimum": 26,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0202
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-40/descent/frey-descent-v3.png",
+    "candidate": "art/bakeoff/frey/frey-descent-v3.png",
+    "frames": "reports/codex-art-40/descent/frames",
+    "closeup": "reports/codex-art-40/descent/closeup.png",
+    "compare": "reports/codex-art-40/descent/compare.png"
+  }
+}

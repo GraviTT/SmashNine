@@ -1,0 +1,48 @@
+$paths = @(
+	'tools/sprite_pipeline/normalize.py',
+	'tools/sprite_pipeline/test_normalize.py',
+	'tools/sprite_pipeline/README.md',
+	'art/bakeoff/frey/frey-attack-v4.png',
+	'art/bakeoff/frey/frey-attack-v4.json',
+	'art/bakeoff/frey/frey-attack_up-v1.png',
+	'art/bakeoff/frey/frey-attack_up-v1.json',
+	'art/bakeoff/frey/frey-attack_down-v1.png',
+	'art/bakeoff/frey/frey-attack_down-v1.json',
+	'art/bakeoff/frey/frey-attack_air_side-v1.png',
+	'art/bakeoff/frey/frey-attack_air_side-v1.json',
+	'art/bakeoff/frey/frey-dash_strike-v1.png',
+	'art/bakeoff/frey/frey-dash_strike-v1.json',
+	'art/bakeoff/frey/frey-rising_cleave-v2.png',
+	'art/bakeoff/frey/frey-rising_cleave-v2.json',
+	'art/bakeoff/frey/frey-spike_followup-v3.png',
+	'art/bakeoff/frey/frey-spike_followup-v3.json',
+	'art/bakeoff/frey/frey-descent-v3.png',
+	'art/bakeoff/frey/frey-descent-v3.json',
+	'art/bakeoff/frey/frey-tumble-v3.png',
+	'art/bakeoff/frey/frey-tumble-v3.json',
+	'reports/codex-art-40/README.md',
+	'reports/codex-art-40/commit.ps1',
+	'reports/codex-art-40/attack_chain/compare.png',
+	'reports/codex-art-40/attack_chain/metrics.json',
+	'reports/codex-art-40/attack_up/compare.png',
+	'reports/codex-art-40/attack_up/metrics.json',
+	'reports/codex-art-40/attack_down/compare.png',
+	'reports/codex-art-40/attack_down/metrics.json',
+	'reports/codex-art-40/attack_air_side/compare.png',
+	'reports/codex-art-40/attack_air_side/metrics.json',
+	'reports/codex-art-40/dash_strike/compare.png',
+	'reports/codex-art-40/dash_strike/metrics.json',
+	'reports/codex-art-40/rising_cleave/compare.png',
+	'reports/codex-art-40/rising_cleave/metrics.json',
+	'reports/codex-art-40/spike_followup/compare.png',
+	'reports/codex-art-40/spike_followup/metrics.json',
+	'reports/codex-art-40/descent/compare.png',
+	'reports/codex-art-40/descent/metrics.json',
+	'reports/codex-art-40/tumble/compare.png',
+	'reports/codex-art-40/tumble/metrics.json'
+)
+
+git add -- $paths
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+git commit -m 'Build Frey 192px move-row candidates' -m 'Co-Authored-By: Codex <noreply@openai.com>'

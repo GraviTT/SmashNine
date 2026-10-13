@@ -1,0 +1,388 @@
+{
+  "art40": {"factor": 0.307, "lift_scale": 1.0, "head_scale": 0.98, "source_raw": "art/raw/frey-38/tumble/raw.png"},
+  "input": {
+    "sheet": "art/raw/frey-38/tumble/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.307,
+    "scale_by": "fixed:0.307",
+    "common_offset_x": 0,
+    "common_lift": 8,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      72,
+      99
+    ],
+    "body_width_range": [
+      74,
+      101
+    ],
+    "area_range": [
+      4767,
+      5290
+    ],
+    "area_spread_percent": 9.89,
+    "bottom_range": [
+      127,
+      144
+    ],
+    "lift_range": [
+      8,
+      25
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4255,
+      4781
+    ],
+    "interior_detail_range": [
+      91.9,
+      97.63
+    ],
+    "interior_detail_mean": 95.09,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 97.69,
+    "interior_detail_ratio": 0.9734
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.69,
+        "colour_count": 4737,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.69,
+    "colour_count_range": [
+      4737,
+      4737
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/frey-38/tumble/raw.png#0,0",
+      "bbox": [
+        50,
+        49,
+        141,
+        138
+      ],
+      "body_height": 89,
+      "body_width": 91,
+      "area": 5060,
+      "bottom": 137,
+      "lift": 15,
+      "expected_lift": 15,
+      "interior_detail": 96.12,
+      "colour_count": 4487,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 50,
+        "top": 49,
+        "right": 51,
+        "bottom": 54,
+        "minimum": 49,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9839
+    },
+    {
+      "index": 1,
+      "source": "art/raw/frey-38/tumble/raw.png#1,0",
+      "bbox": [
+        44,
+        58,
+        145,
+        130
+      ],
+      "body_height": 72,
+      "body_width": 101,
+      "area": 4896,
+      "bottom": 129,
+      "lift": 23,
+      "expected_lift": 23,
+      "interior_detail": 95.3,
+      "colour_count": 4409,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 44,
+        "top": 58,
+        "right": 47,
+        "bottom": 62,
+        "minimum": 44,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9755
+    },
+    {
+      "index": 2,
+      "source": "art/raw/frey-38/tumble/raw.png#2,0",
+      "bbox": [
+        55,
+        46,
+        137,
+        145
+      ],
+      "body_height": 99,
+      "body_width": 82,
+      "area": 5290,
+      "bottom": 144,
+      "lift": 8,
+      "expected_lift": 8,
+      "interior_detail": 92.47,
+      "colour_count": 4781,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 46,
+        "right": 55,
+        "bottom": 47,
+        "minimum": 46,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9466
+    },
+    {
+      "index": 3,
+      "source": "art/raw/frey-38/tumble/raw.png#0,1",
+      "bbox": [
+        59,
+        38,
+        133,
+        135
+      ],
+      "body_height": 97,
+      "body_width": 74,
+      "area": 4767,
+      "bottom": 134,
+      "lift": 18,
+      "expected_lift": 18,
+      "interior_detail": 97.14,
+      "colour_count": 4255,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 38,
+        "right": 59,
+        "bottom": 57,
+        "minimum": 38,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9944
+    },
+    {
+      "index": 4,
+      "source": "art/raw/frey-38/tumble/raw.png#1,1",
+      "bbox": [
+        50,
+        48,
+        145,
+        128
+      ],
+      "body_height": 80,
+      "body_width": 95,
+      "area": 4783,
+      "bottom": 127,
+      "lift": 25,
+      "expected_lift": 25,
+      "interior_detail": 91.9,
+      "colour_count": 4284,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 50,
+        "top": 48,
+        "right": 47,
+        "bottom": 64,
+        "minimum": 47,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9407
+    },
+    {
+      "index": 5,
+      "source": "art/raw/frey-38/tumble/raw.png#2,1",
+      "bbox": [
+        52,
+        41,
+        141,
+        130
+      ],
+      "body_height": 89,
+      "body_width": 89,
+      "area": 4932,
+      "bottom": 129,
+      "lift": 23,
+      "expected_lift": 23,
+      "interior_detail": 97.63,
+      "colour_count": 4430,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 52,
+        "top": 41,
+        "right": 51,
+        "bottom": 62,
+        "minimum": 41,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9994
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-40/tumble/frey-tumble-v3.png",
+    "candidate": "art/bakeoff/frey/frey-tumble-v3.png",
+    "frames": "reports/codex-art-40/tumble/frames",
+    "closeup": "reports/codex-art-40/tumble/closeup.png",
+    "compare": "reports/codex-art-40/tumble/compare.png"
+  }
+}
