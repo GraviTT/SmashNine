@@ -1,0 +1,222 @@
+{
+  "input": {
+    "sheet": "smash-nine-prototype/tests/art_preview/frey_heads_33/art32_pasted_body_sheet.png",
+    "frames": null,
+    "grid": [
+      6,
+      8
+    ],
+    "pick": [
+      30,
+      31,
+      32,
+      33
+    ],
+    "backgrounds": [
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 4,
+    "output_columns": 6,
+    "common_scale": 1.0,
+    "scale_by": "fixed:1",
+    "body_height_range": [
+      90,
+      108
+    ],
+    "body_width_range": [
+      83,
+      100
+    ],
+    "area_range": [
+      4301,
+      4966
+    ],
+    "area_spread_percent": 13.39,
+    "bottom_range": [
+      111,
+      120
+    ],
+    "lift_range": [
+      0,
+      9
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      190,
+      192
+    ],
+    "palette_violations_before_map": 1506,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "smash-nine-prototype/tests/art_preview/frey_heads_33/art32_pasted_body_sheet.png#0,5",
+      "bbox": [
+        20,
+        13,
+        109,
+        121
+      ],
+      "body_height": 108,
+      "body_width": 89,
+      "area": 4966,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 190,
+      "palette_violations_before_map": 376,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 13,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 1,
+      "source": "smash-nine-prototype/tests/art_preview/frey_heads_33/art32_pasted_body_sheet.png#1,5",
+      "bbox": [
+        20,
+        20,
+        115,
+        113
+      ],
+      "body_height": 93,
+      "body_width": 95,
+      "area": 4489,
+      "bottom": 112,
+      "lift": 8,
+      "expected_lift": 8,
+      "colour_count": 192,
+      "palette_violations_before_map": 376,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 20,
+        "right": 13,
+        "bottom": 15,
+        "minimum": 13,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 2,
+      "source": "smash-nine-prototype/tests/art_preview/frey_heads_33/art32_pasted_body_sheet.png#2,5",
+      "bbox": [
+        22,
+        22,
+        122,
+        112
+      ],
+      "body_height": 90,
+      "body_width": 100,
+      "area": 4446,
+      "bottom": 111,
+      "lift": 9,
+      "expected_lift": 9,
+      "colour_count": 192,
+      "palette_violations_before_map": 376,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 22,
+        "right": 6,
+        "bottom": 16,
+        "minimum": 6,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 3,
+      "source": "smash-nine-prototype/tests/art_preview/frey_heads_33/art32_pasted_body_sheet.png#3,5",
+      "bbox": [
+        22,
+        20,
+        105,
+        113
+      ],
+      "body_height": 93,
+      "body_width": 83,
+      "area": 4301,
+      "bottom": 112,
+      "lift": 8,
+      "expected_lift": 8,
+      "colour_count": 192,
+      "palette_violations_before_map": 378,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 20,
+        "right": 23,
+        "bottom": 15,
+        "minimum": 15,
+        "has_4px_margin": true
+      }
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-35/validation/frey-heads33/frey-heads33-v1.png",
+    "frames": "reports/codex-art-35/validation/frey-heads33/frames",
+    "closeup": "reports/codex-art-35/validation/frey-heads33/closeup.png",
+    "compare": "reports/codex-art-35/validation/frey-heads33/compare.png"
+  }
+}

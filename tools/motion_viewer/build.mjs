@@ -4,7 +4,7 @@
 // ART_ROWS), move labels from the *_moves_README.md tables, so the viewer slices sheets the way
 // the game does. Run from the repo root: node tools/motion_viewer/build.mjs
 import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readdirSync, rmSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, basename, relative } from "node:path";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
@@ -12,6 +12,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repo = join(here, "..", "..");
 const game = join(repo, "smash-nine-prototype");
 const art = join(game, "assets", "art");
+const bakeoffRoot = join(repo, "art", "bakeoff");
 const dist = join(here, "dist");
 
 const read = (p) => readFileSync(p, "utf8");
@@ -58,11 +59,39 @@ const BASE_LABELS = { idle: "대기", walk: "걷기", jump: "점프", fall: "낙
 const baseRows = rowTable(join(game, "characters/common/PlayerBase.gd"), "ORIGINAL_SHEET_ROWS");
 const monsterRows = rowTable(join(game, "scripts/RealmMonster.gd"), "ART_ROWS");
 
+function allFiles(root) {
+	if (!existsSync(root)) return [];
+	return readdirSync(root, { withFileTypes: true }).flatMap((entry) => {
+		const path = join(root, entry.name);
+		return entry.isDirectory() ? allFiles(path) : [path];
+	});
+}
+
+const candidateFiles = allFiles(bakeoffRoot).filter((path) => path.toLowerCase().endsWith(".png"));
+function candidatesFor(stem, row) {
+	const prefix = `${stem}-${row}-v`;
+	return candidateFiles.flatMap((path) => {
+		const file = basename(path);
+		if (!file.startsWith(prefix) || !/\.png$/i.test(file)) return [];
+		const version = file.slice(prefix.length, -4);
+		const metaPath = path.replace(/\.png$/i, ".json");
+		let meta = {};
+		try { if (existsSync(metaPath)) meta = JSON.parse(read(metaPath)); } catch (error) { console.warn(`invalid candidate metadata: ${metaPath}: ${error.message}`); }
+		const rel = relative(bakeoffRoot, path).replaceAll("\\", "/");
+		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, source: path }];
+	}).sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
+}
+
 const sheets = []; // [src relative to assets/art]
-function sheet(rel, rows, labels, cell, feet) {
+const candidateCopies = [];
+function sheet(rel, rows, labels, cell, feet, stem = null) {
 	if (!existsSync(join(art, rel))) return null;
 	sheets.push(rel);
-	return { file: `sheets/${rel}`, cell, feet, rows: rows.map((r) => ({ ...r, label: labels[r.name] || "" })) };
+	return { file: `sheets/${rel}`, cell, feet, rows: rows.map((r) => {
+		const candidates = stem ? candidatesFor(stem, r.name) : [];
+		candidateCopies.push(...candidates);
+		return { ...r, label: labels[r.name] || "", candidates: candidates.map(({ source, ...item }) => item) };
+	}) };
 }
 
 const CHARACTERS = [
@@ -89,8 +118,8 @@ for (const c of CHARACTERS) {
 	const forms = [];
 	for (const body of bodies) {
 		const stem = body ? `${c.id}_${body}` : c.id;
-		const base = sheet(`${folder}/${stem}_sheet.png`, baseRows, BASE_LABELS, 128, 120);
-		const moves = sheet(`${folder}/${stem}_moves_sheet.png`, moveRows, moveLabels(join(art, folder, `${stem}_moves_README.md`)), 128, 120);
+		const base = sheet(`${folder}/${stem}_sheet.png`, baseRows, BASE_LABELS, 128, 120, stem);
+		const moves = sheet(`${folder}/${stem}_moves_sheet.png`, moveRows, moveLabels(join(art, folder, `${stem}_moves_README.md`)), 128, 120, stem);
 		forms.push({ body, base, moves });
 	}
 	characters.push({ id: c.id, name: c.name, forms });
@@ -122,8 +151,14 @@ for (const rel of sheets) {
 	mkdirSync(dirname(to), { recursive: true });
 	copyFileSync(join(art, rel), to);
 }
+for (const candidate of new Map(candidateCopies.map((item) => [item.file, item])).values()) {
+	const to = join(dist, candidate.file);
+	mkdirSync(dirname(to), { recursive: true });
+	copyFileSync(candidate.source, to);
+}
 const html = read(join(here, "index.html")).replace("/*MANIFEST*/null", JSON.stringify(manifest));
 writeFileSync(join(dist, "index.html"), html);
-writeFileSync(join(dist, "files.json"), JSON.stringify(sheets.map((rel) => ({ path: `sheets/${rel}` }))));
+const published = [...sheets.map((rel) => `sheets/${rel}`), ...new Set(candidateCopies.map((item) => item.file))];
+writeFileSync(join(dist, "files.json"), JSON.stringify(published.map((path) => ({ path }))));
 const moveRowCount = characters.reduce((n, c) => n + c.forms.reduce((m, f) => m + (f.moves ? f.moves.rows.length : 0), 0), 0);
-console.log(`motion viewer: ${characters.length} fighters, ${monsters.length} monsters, ${sheets.length} sheets, ${moveRowCount} move rows -> ${dist}`);
+console.log(`motion viewer: ${characters.length} fighters, ${monsters.length} monsters, ${sheets.length} sheets, ${moveRowCount} move rows, ${new Set(candidateCopies.map((item) => item.file)).size} candidates -> ${dist}`);

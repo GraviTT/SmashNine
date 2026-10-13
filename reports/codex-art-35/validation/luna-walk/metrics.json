@@ -1,0 +1,306 @@
+{
+  "input": {
+    "sheet": "smash-nine-prototype/tests/art_preview/walk_34/b/luna_walk_source.png",
+    "frames": null,
+    "grid": [
+      7,
+      1
+    ],
+    "pick": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "backgrounds": [
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "median contact-frame body height",
+    "source_median_px": 289.5,
+    "target_px": 90.0,
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "auto",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.31088083,
+    "scale_by": "height:90",
+    "body_height_range": [
+      85,
+      91
+    ],
+    "body_width_range": [
+      86,
+      97
+    ],
+    "area_range": [
+      4232,
+      4438
+    ],
+    "area_spread_percent": 4.64,
+    "bottom_range": [
+      119,
+      120
+    ],
+    "lift_range": [
+      0,
+      1
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      188,
+      190
+    ],
+    "palette_violations_before_map": 25032,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "smash-nine-prototype/tests/art_preview/walk_34/b/luna_walk_source.png#1,0",
+      "bbox": [
+        26,
+        30,
+        115,
+        120
+      ],
+      "body_height": 90,
+      "body_width": 89,
+      "area": 4398,
+      "bottom": 119,
+      "lift": 1,
+      "expected_lift": 1,
+      "colour_count": 188,
+      "palette_violations_before_map": 4276,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 26,
+        "top": 30,
+        "right": 13,
+        "bottom": 8,
+        "minimum": 8,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 1,
+      "source": "smash-nine-prototype/tests/art_preview/walk_34/b/luna_walk_source.png#2,0",
+      "bbox": [
+        27,
+        35,
+        113,
+        120
+      ],
+      "body_height": 85,
+      "body_width": 86,
+      "area": 4273,
+      "bottom": 119,
+      "lift": 1,
+      "expected_lift": 1,
+      "colour_count": 188,
+      "palette_violations_before_map": 4152,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 27,
+        "top": 35,
+        "right": 15,
+        "bottom": 8,
+        "minimum": 8,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 2,
+      "source": "smash-nine-prototype/tests/art_preview/walk_34/b/luna_walk_source.png#3,0",
+      "bbox": [
+        20,
+        30,
+        116,
+        121
+      ],
+      "body_height": 91,
+      "body_width": 96,
+      "area": 4232,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 189,
+      "palette_violations_before_map": 4084,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 30,
+        "right": 12,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 3,
+      "source": "smash-nine-prototype/tests/art_preview/walk_34/b/luna_walk_source.png#4,0",
+      "bbox": [
+        26,
+        31,
+        114,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 88,
+      "area": 4438,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 190,
+      "palette_violations_before_map": 4292,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 26,
+        "top": 31,
+        "right": 14,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 4,
+      "source": "smash-nine-prototype/tests/art_preview/walk_34/b/luna_walk_source.png#5,0",
+      "bbox": [
+        16,
+        35,
+        113,
+        120
+      ],
+      "body_height": 85,
+      "body_width": 97,
+      "area": 4239,
+      "bottom": 119,
+      "lift": 1,
+      "expected_lift": 1,
+      "colour_count": 188,
+      "palette_violations_before_map": 4092,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 35,
+        "right": 15,
+        "bottom": 8,
+        "minimum": 8,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 5,
+      "source": "smash-nine-prototype/tests/art_preview/walk_34/b/luna_walk_source.png#6,0",
+      "bbox": [
+        20,
+        31,
+        114,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 94,
+      "area": 4276,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 190,
+      "palette_violations_before_map": 4136,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 31,
+        "right": 14,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-35/validation/luna-walk/luna-walk-v1.png",
+    "candidate": "art/bakeoff/luna/luna-walk-v1.png",
+    "frames": "reports/codex-art-35/validation/luna-walk/frames",
+    "closeup": "reports/codex-art-35/validation/luna-walk/closeup.png",
+    "compare": "reports/codex-art-35/validation/luna-walk/compare.png"
+  }
+}

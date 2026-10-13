@@ -1,0 +1,219 @@
+{
+  "input": {
+    "sheet": "smash-nine-prototype/tests/art_preview/frey_redo_32/spike_followup_body_source.png",
+    "frames": null,
+    "grid": [
+      4,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      },
+      {
+        "mode": "alpha",
+        "color": null
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "median contact-frame body height",
+    "source_median_px": 402.0,
+    "target_px": 90.0,
+    "contact_indices": [
+      2
+    ],
+    "outline": "auto",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 4,
+    "output_columns": 6,
+    "common_scale": 0.2238806,
+    "scale_by": "height:90",
+    "body_height_range": [
+      90,
+      108
+    ],
+    "body_width_range": [
+      82,
+      99
+    ],
+    "area_range": [
+      4267,
+      4937
+    ],
+    "area_spread_percent": 13.57,
+    "bottom_range": [
+      111,
+      120
+    ],
+    "lift_range": [
+      0,
+      9
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      186,
+      188
+    ],
+    "palette_violations_before_map": 17208,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "smash-nine-prototype/tests/art_preview/frey_redo_32/spike_followup_body_source.png#0,0",
+      "bbox": [
+        20,
+        4,
+        108,
+        112
+      ],
+      "body_height": 108,
+      "body_width": 88,
+      "area": 4937,
+      "bottom": 111,
+      "lift": 9,
+      "expected_lift": 9,
+      "colour_count": 186,
+      "palette_violations_before_map": 4728,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 4,
+        "right": 20,
+        "bottom": 16,
+        "minimum": 4,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 1,
+      "source": "smash-nine-prototype/tests/art_preview/frey_redo_32/spike_followup_body_source.png#1,0",
+      "bbox": [
+        20,
+        22,
+        114,
+        115
+      ],
+      "body_height": 93,
+      "body_width": 94,
+      "area": 4449,
+      "bottom": 114,
+      "lift": 6,
+      "expected_lift": 6,
+      "colour_count": 186,
+      "palette_violations_before_map": 4285,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 22,
+        "right": 14,
+        "bottom": 13,
+        "minimum": 13,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 2,
+      "source": "smash-nine-prototype/tests/art_preview/frey_redo_32/spike_followup_body_source.png#2,0",
+      "bbox": [
+        22,
+        31,
+        121,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 99,
+      "area": 4337,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 188,
+      "palette_violations_before_map": 4116,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 31,
+        "right": 7,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 3,
+      "source": "smash-nine-prototype/tests/art_preview/frey_redo_32/spike_followup_body_source.png#3,0",
+      "bbox": [
+        22,
+        23,
+        104,
+        115
+      ],
+      "body_height": 92,
+      "body_width": 82,
+      "area": 4267,
+      "bottom": 114,
+      "lift": 6,
+      "expected_lift": 6,
+      "colour_count": 187,
+      "palette_violations_before_map": 4079,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 23,
+        "right": 24,
+        "bottom": 13,
+        "minimum": 13,
+        "has_4px_margin": true
+      }
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-35/validation/frey-spike-source/frey-spike-source-v1.png",
+    "frames": "reports/codex-art-35/validation/frey-spike-source/frames",
+    "closeup": "reports/codex-art-35/validation/frey-spike-source/closeup.png",
+    "compare": "reports/codex-art-35/validation/frey-spike-source/compare.png"
+  }
+}
