@@ -51,6 +51,8 @@
 - 13:25 Codex A 2차(ART-36 A, xhigh, 80분): Frey 기준 대기(새로 그려 배율 정하기) → spike_followup · descent · tumble 후보, 남으면 walk · attack. B 점검 결과를 기다리지 않고 사용자가 이미 지적한 줄부터.
 - 13:29 Codex B(QA-18) 끝(13분): 16장 119줄 476프레임, 1px 빈 테두리 476/476, 4px 여백 실패 1(Frey descent F4), Rio 기본 시트 반투명 픽셀(idle·jump·fall·hurt 줄의 원본 부드러운 가장자리). 줄마다 판정과 다시 그릴 12줄. 핵심: **ART-34 새 걷기가 대기보다 작아 대기→걷기에서 몸이 줄어듦**(Frey 높이 82~96 vs 대기 100, Rio 여 −47%) — 칸마다 머리에 맞춘 배율 때문(CuSurvive가 경고한 함정). Frey spike_followup은 "손질", tumble "좋음". 리드 검수: Rio 여 기술 시트 2배 접촉판 직접 대조 — air_slash F4(작은 몸 + 떨어진 머리카락 조각), plunge F5(조각), low_sweep 크기, dimension_slash F3 번진 실루엣, infinity_overdrive에 효과(보석검)가 그려져 있음 — 보고와 일치. 병합 `fcaaa7f`.
 - 13:30 A는 이미 Frey 기준 대기를 만든 상태라 다시 시작하지 않음(Frey 우선 줄 walk·rising_cleave·attack은 다음 A 라운드). 카드 B 파트 = 점검 우선순위(Rio 여 walk·air_slash·plunge → Nova 남·여 vector_side → Brave combo → Luna attack·Yuki talisman_side), 커밋 `33ef62e`. 13:31 Codex B(ART-36 B, xhigh, 105분) 실행.
+- 13:45 Codex A(ART-36 A 1차) 끝(20분): Frey 기준 대기(높이 100 기준 배율 0.1876) + spike_followup · descent · tumble 후보. 리드 검수(overview 2배): 기준 대기는 지금 대기와 생김새·크기 같음(채택해 기준으로), spike는 동작·크기 좋고 떨어진 점만 지우면 됨, descent · tumble은 몸 전체가 기준의 약 80% — **생성할 때마다 그린 크기가 달라 기준 배율을 그대로 쓰면 안 됨**. 시트마다 배율 하나를 얼굴이 가장 잘 보이는 칸의 머리를 기준 대기에 맞춰 정하게 함(칸마다 아님). 병합 `7c78d80`(보고서 22MB, 원본 생성 그림 포함 — 다시 정리할 때 필요). 파이프라인 예시였던 Luna walk 후보는 지금 걷기를 다시 정리한 사본이라 지움.
+- 13:47 Codex A 2라운드(xhigh, 90분): descent · tumble 시트 배율 다시, spike 점 제거(`--min-component` 추가), 새 후보 Frey walk · rising_cleave · attack. 13:48 뷰어 갱신(Frey 후보 4개).
 
 ## 결과
 
