@@ -1,0 +1,15 @@
+Use case: stylized-concept
+Asset type: intermediate production pixel-art game sprite extraction sheet, one complete six-frame Nova male SHIELD/GUARD motion.
+Input images: Image 1 is the accepted Nova male idle anchor enlarged with nearest-neighbor scaling; it is the binding reference for identity, compact approximately 2.5-head proportions, head size, shoulder/body width, right-facing side view, palette, outfit layers, and crisp pixel finish. Do not copy its idle pose.
+Primary request: Draw exactly SIX newly drawn complete full-body guard poses of the same Nova male, arranged as a strict 3-column by 2-row sheet and read left-to-right on the top row, then left-to-right on the bottom row. Same raw sprite scale and same head size as Image 1. This is BODY ONLY: the game draws its own guard bubble.
+Frame 1: guard raise, knees bend slightly and both armored forearms rise toward the chest, fists below the face.
+Frame 2: brace, feet widen, torso lowers, forearms crossed firmly in front of chest, face still visible.
+Frame 3: absorb hit, compact backward recoil through shoulders and hips, crossed forearms take the impact, boots planted, face visible.
+Frame 4: hold, stable low guard with arms crossed and weight centered.
+Frame 5: hold variation, same stable guard with a subtle breathing shift, no scale change.
+Frame 6: release, arms uncross and lower below the face, posture rises and clearly returns toward idle.
+Subject invariants: same young male Nova; one head and one visible face in each cell; teal-blue eye; short upswept spiky midnight-indigo hair with small teal highlights; fitted midnight-indigo suit; pale silver chest, shoulder, forearm and shin plates; circular teal gravity-orbit chest emblem; oversized teal-and-silver gauntlets and boots; small gold hardware accents; no cape and no weapon. Same head size and body width in all six frames and like the anchor. One torso, two connected arms, two hands/fists, two connected legs, two feet. Arms may cross but fists never cover the face.
+Layout: exactly SIX equal square cells in a strict 3 columns x 2 rows grid, one isolated full-body sprite centered per cell with generous green margin. Same camera, same scale, same root x and same implied floor line in every cell. No per-cell resizing. Every hair tip, elbow, fist and boot stays inside each cell.
+Background: completely solid flat chroma green #00FF00. No transparency, checkerboard, floor, shadow, scenery, visible grid line, border, labels, numbers, or text.
+Style: crisp polished console pixel art for a 128-pixel game sprite, chunky intentional square-pixel clusters, selective 1-pixel dark outline at final scale, limited Nova palette, hard edges, readable silhouette. No smooth illustration, blur, gradient, anti-aliasing, soft alpha, or white fringe.
+Hard constraints: exactly 6 complete frames; one head per frame; no duplicated, missing, floating, or detached body parts; NO barrier, force field, bubble, shield disc, ring, cyan wall, energy, gravity orb, glow, spark, streak, trail, dust, aura, impact effect, text, watermark, grid, border, or shadow.
