@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, one complete four-frame IDLE motion.
+
+Input images and roles: Image 1 is the current Nova male idle frame enlarged 4x nearest-neighbour; use it as the most important reference for identity, compact 2.5-head proportions, head ratio, right-facing side view, sprite scale, silhouette, palette, and crisp pixel finish, but do not copy its pose. Image 2 is the full illustration; use it only for character identity, costume construction, and colours, not its pose or realistic adult proportions.
+
+Primary request: Draw a NEW cohesive full-body four-frame idle breathing guard of the same Nova male, standing in place and facing RIGHT in a strict readable side view. Every frame is a newly drawn complete pose. Preview speed is 7 fps.
+
+Frame 1: planted gravity-boxer guard, knees softly bent, both compact fists below the face, weight centered.
+Frame 2: quiet inhale, torso and head rise only slightly, fists nearly fixed, hair tips lag.
+Frame 3: quiet exhale, torso settles slightly lower, knees compress, shoulders relax without dropping guard.
+Frame 4: return toward Frame 1 with hair tips on the opposite secondary-motion phase so the loop joins cleanly.
+
+Subject invariants: same young male gravity superhero with compact approximately 2.5-head-tall chibi build; one head and one visible face; teal-blue eye; short upswept spiky midnight-indigo hair with a small electric-teal highlight; fitted midnight-indigo bodysuit; pale silver chest, shoulder, forearm and shin plates; circular teal gravity-orbit chest emblem; oversized teal-and-silver gauntlets and boots; small gold hardware accents. No cape and no weapon. Keep the same head size and body width in every frame. Keep one torso, two connected arms, two fists, two connected legs, and two feet. Fists never cover the face. Chibi arms remain compact.
+
+Sheet layout: exactly FOUR equal square cells in ONE horizontal row, read left to right, ideally 2048x512 with four invisible 512x512 cells. One isolated full-body sprite per cell, generous green margin, same camera, same scale, same root x, and same implied floor. Do not resize any frame independently. Every hair tip, fist, elbow, and boot stays inside its cell.
+
+Background: completely solid flat chroma green #00FF00. No transparency, checkerboard, floor, shadow, scenery, grid, border, labels, numbers, or text.
+
+Style/medium: crisp polished console pixel art for a 128-pixel game sprite, matching Image 1. Chunky intentional square-pixel clusters, selective 1-pixel dark outline at final scale, limited palette, hard edges, readable side-view silhouette. No smooth illustration, blur, gradients, anti-aliasing, soft alpha, or white fringe.
+
+Final hard constraints: one sheet only; exactly 4 complete frames; same right-facing side view; one head; one face; two connected arms and fists; two connected legs and feet; same head size and body width; no duplicate or detached parts; no cyan afterimage, gravity orb, glow, spark, trail, dust, aura, effect, text, watermark, grid, border, or shadow.
