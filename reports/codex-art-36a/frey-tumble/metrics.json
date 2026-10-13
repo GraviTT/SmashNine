@@ -55,36 +55,39 @@
   "summary": {
     "frame_count": 4,
     "output_columns": 6,
-    "common_scale": 0.18761726,
-    "scale_by": "fixed:0.18761726",
+    "common_scale": 0.235,
+    "scale_by": "fixed:0.235",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
     "body_height_range": [
-      55,
-      78
+      69,
+      98
     ],
     "body_width_range": [
-      68,
-      78
+      86,
+      98
     ],
     "area_range": [
-      2949,
-      3413
+      4652,
+      5358
     ],
-    "area_spread_percent": 13.6,
+    "area_spread_percent": 13.18,
     "bottom_range": [
-      109,
+      107,
       120
     ],
     "lift_range": [
       0,
-      11
+      13
     ],
     "contact_on_y120": true,
     "airborne_lift_preserved": true,
     "colour_count_range": [
-      170,
-      178
+      179,
+      183
     ],
-    "palette_violations_before_map": 12573,
+    "palette_violations_before_map": 19543,
     "palette_violations": 0,
     "alpha_binary": true,
     "borders_clear": true,
@@ -95,19 +98,19 @@
       "index": 0,
       "source": "reports/codex-art-36a/frey-tumble/prepared.png#0,0",
       "bbox": [
-        26,
-        45,
-        101,
-        113
+        16,
+        27,
+        110,
+        112
       ],
-      "body_height": 68,
-      "body_width": 75,
-      "area": 3413,
-      "bottom": 112,
-      "lift": 8,
-      "expected_lift": 8,
-      "colour_count": 174,
-      "palette_violations_before_map": 3303,
+      "body_height": 85,
+      "body_width": 94,
+      "area": 5358,
+      "bottom": 111,
+      "lift": 9,
+      "expected_lift": 9,
+      "colour_count": 181,
+      "palette_violations_before_map": 5139,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -116,31 +119,33 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 26,
-        "top": 45,
-        "right": 27,
-        "bottom": 15,
-        "minimum": 15,
+        "left": 16,
+        "top": 27,
+        "right": 18,
+        "bottom": 16,
+        "minimum": 16,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 1,
       "source": "reports/codex-art-36a/frey-tumble/prepared.png#1,0",
       "bbox": [
-        26,
-        55,
-        104,
-        110
+        17,
+        39,
+        115,
+        108
       ],
-      "body_height": 55,
-      "body_width": 78,
-      "area": 2949,
-      "bottom": 109,
-      "lift": 11,
-      "expected_lift": 11,
-      "colour_count": 170,
-      "palette_violations_before_map": 2893,
+      "body_height": 69,
+      "body_width": 98,
+      "area": 4652,
+      "bottom": 107,
+      "lift": 13,
+      "expected_lift": 13,
+      "colour_count": 179,
+      "palette_violations_before_map": 4485,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -149,31 +154,33 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 26,
-        "top": 55,
-        "right": 24,
-        "bottom": 18,
-        "minimum": 18,
+        "left": 17,
+        "top": 39,
+        "right": 13,
+        "bottom": 20,
+        "minimum": 13,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 2,
       "source": "reports/codex-art-36a/frey-tumble/prepared.png#2,0",
       "bbox": [
-        28,
-        43,
-        96,
+        19,
+        23,
+        105,
         121
       ],
-      "body_height": 78,
-      "body_width": 68,
-      "area": 3193,
+      "body_height": 98,
+      "body_width": 86,
+      "area": 5076,
       "bottom": 120,
       "lift": 0,
       "expected_lift": 0,
-      "colour_count": 171,
-      "palette_violations_before_map": 3101,
+      "colour_count": 182,
+      "palette_violations_before_map": 4890,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -182,31 +189,33 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 28,
-        "top": 43,
-        "right": 32,
+        "left": 19,
+        "top": 23,
+        "right": 23,
         "bottom": 7,
         "minimum": 7,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     },
     {
       "index": 3,
       "source": "reports/codex-art-36a/frey-tumble/prepared.png#3,0",
       "bbox": [
+        17,
         27,
-        45,
-        102,
-        111
+        111,
+        109
       ],
-      "body_height": 66,
-      "body_width": 75,
-      "area": 3365,
-      "bottom": 110,
-      "lift": 10,
-      "expected_lift": 10,
-      "colour_count": 178,
-      "palette_violations_before_map": 3276,
+      "body_height": 82,
+      "body_width": 94,
+      "area": 5243,
+      "bottom": 108,
+      "lift": 12,
+      "expected_lift": 12,
+      "colour_count": 183,
+      "palette_violations_before_map": 5029,
       "palette_violations": 0,
       "alpha_values": [
         0,
@@ -215,18 +224,20 @@
       "alpha_binary": true,
       "border_clear": true,
       "margin": {
-        "left": 27,
-        "top": 45,
-        "right": 26,
-        "bottom": 17,
+        "left": 17,
+        "top": 27,
+        "right": 17,
+        "bottom": 19,
         "minimum": 17,
         "has_4px_margin": true
-      }
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
     }
   ],
   "outputs": {
-    "sheet": "reports/codex-art-36a/frey-tumble/frey-tumble-v1.png",
-    "candidate": "art/bakeoff/frey/frey-tumble-v1.png",
+    "sheet": "reports/codex-art-36a/frey-tumble/frey-tumble-v2.png",
+    "candidate": "art/bakeoff/frey/frey-tumble-v2.png",
     "frames": "reports/codex-art-36a/frey-tumble/frames",
     "closeup": "reports/codex-art-36a/frey-tumble/closeup.png",
     "compare": "reports/codex-art-36a/frey-tumble/compare.png"

@@ -1,15 +1,11 @@
 $ErrorActionPreference = 'Stop'
 
 git -c core.autocrlf=false add -- `
-  'art/bakeoff/frey/frey-idle-v1.png' `
-  'art/bakeoff/frey/frey-idle-v1.json' `
-  'art/bakeoff/frey/frey-spike_followup-v1.png' `
-  'art/bakeoff/frey/frey-spike_followup-v1.json' `
-  'art/bakeoff/frey/frey-descent-v1.png' `
-  'art/bakeoff/frey/frey-descent-v1.json' `
-  'art/bakeoff/frey/frey-tumble-v1.png' `
-  'art/bakeoff/frey/frey-tumble-v1.json' `
-  'reports/codex-art-36a'
+  'art/bakeoff/frey' `
+  'reports/codex-art-36a' `
+  'tools/sprite_pipeline/normalize.py' `
+  'tools/sprite_pipeline/README.md' `
+  'tools/sprite_pipeline/test_normalize.py'
 
-$message = "art: add Frey one-sheet redraw candidates`n`nCo-Authored-By: Codex <noreply@openai.com>"
+$message = "art: refine Frey redraw candidates and add priority rows`n`nCo-Authored-By: Codex <noreply@openai.com>"
 git -c core.autocrlf=false commit -m $message
