@@ -74,6 +74,19 @@ class NormalizeTests(unittest.TestCase):
 		result, _ = self.run_tool("fixed:3", expect=1)
 		self.assertIn("does not fit at common scale", result.stderr)
 
+	def test_source_cell_border_contact_fails_and_requests_regeneration(self) -> None:
+		sheet = Image.new("RGBA", (200, 100), (0, 250, 5, 255))
+		sheet.alpha_composite(frame(12, 90), (0, 0)); sheet.alpha_composite(frame(12, 90), (100, 0))
+		ImageDraw.Draw(sheet).rectangle((96, 45, 100, 49), fill=(18, 26, 58, 255))
+		source = self.root / "crossed-cell.png"; sheet.save(source); out = self.root / "crossed-cell-out"
+		command = [sys.executable, str(SCRIPT), "--sheet", str(source), "--grid", "2x1", "--bg", "auto", "--scale-by", "fixed:1", "--palette", str(self.palette), "--outline", "off", "--out-dir", str(out), "--name", "crossed-cell"]
+		result = subprocess.run(command, capture_output=True, text=True, check=False)
+		self.assertEqual(result.returncode, 1)
+		self.assertIn("source cell subject touches its right border", result.stderr)
+		self.assertIn("would be cut", result.stderr)
+		self.assertIn("Regenerate the whole motion with more margin", result.stderr)
+		self.assertFalse(out.exists())
+
 	def test_min_component_drops_small_detached_specks_and_reports_them(self) -> None:
 		sheet = Image.new("RGBA", (200, 100), (0, 250, 5, 255))
 		sheet.alpha_composite(frame(12, 90), (0, 0)); sheet.alpha_composite(frame(12, 90), (100, 0))
