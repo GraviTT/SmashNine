@@ -51,12 +51,13 @@ def face_centre(a: np.ndarray) -> tuple[float, float] | None:
 
 def cells(path: Path, count: int | None = None) -> list[Image.Image]:
 	sheet = Image.open(path).convert("RGBA")
+	cell = sheet.height  # one-row strip: 128 for base rows, 192 for move rows (D34)
 	if count is None:
 		meta = path.with_suffix(".json")
 		if meta.exists(): count = int(json.loads(meta.read_text(encoding="utf-8")).get("frames") or 0) or None
 	if count is None:
-		count = sum(1 for i in range(sheet.width // CELL) if sheet.crop((i * CELL, 0, i * CELL + CELL, CELL)).getbbox())
-	return [sheet.crop((i * CELL, 0, i * CELL + CELL, CELL)) for i in range(count)]
+		count = sum(1 for i in range(sheet.width // cell) if sheet.crop((i * cell, 0, i * cell + cell, cell)).getbbox())
+	return [sheet.crop((i * cell, 0, i * cell + cell, cell)) for i in range(count)]
 
 
 def head_template(anchor: Image.Image) -> Image.Image:
@@ -69,7 +70,8 @@ def head_template(anchor: Image.Image) -> Image.Image:
 def head_scale(frame: Image.Image, template: Image.Image) -> tuple[float | None, float]:
 	f = np.asarray(frame).astype(float); centre = face_centre(f.astype(np.uint8))
 	if centre is None: return None, 0.0
-	padded = np.zeros((CELL + 2 * PAD, CELL + 2 * PAD, 4)); padded[PAD:PAD + CELL, PAD:PAD + CELL] = f
+	size = f.shape[0]
+	padded = np.zeros((size + 2 * PAD, size + 2 * PAD, 4)); padded[PAD:PAD + size, PAD:PAD + size] = f
 	best: tuple[float | None, float] = (None, -2.0)
 	for s in SCALES:
 		w, h = max(4, round(template.width * s)), max(4, round(template.height * s))
