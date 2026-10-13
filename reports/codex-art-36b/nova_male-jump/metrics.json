@@ -1,0 +1,118 @@
+{
+  "input": {
+    "sheet": "reports/codex-art-36b/nova_male-jump/prepared.png",
+    "frames": null,
+    "grid": [
+      2,
+      1
+    ],
+    "pick": [
+      0
+    ],
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 1,
+    "output_columns": 6,
+    "common_scale": 0.1795122,
+    "scale_by": "fixed:0.1795122",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      89,
+      89
+    ],
+    "body_width_range": [
+      48,
+      48
+    ],
+    "area_range": [
+      2392,
+      2392
+    ],
+    "area_spread_percent": 0.0,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      144,
+      144
+    ],
+    "palette_violations_before_map": 2312,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "reports/codex-art-36b/nova_male-jump/prepared.png#0,0",
+      "bbox": [
+        39,
+        32,
+        87,
+        121
+      ],
+      "body_height": 89,
+      "body_width": 48,
+      "area": 2392,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 144,
+      "palette_violations_before_map": 2312,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 39,
+        "top": 32,
+        "right": 41,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-36b/nova_male-jump/nova_male-jump-v1.png",
+    "candidate": "art/bakeoff/nova/nova_male-jump-v1.png",
+    "frames": "reports/codex-art-36b/nova_male-jump/frames",
+    "closeup": "reports/codex-art-36b/nova_male-jump/closeup.png",
+    "compare": "reports/codex-art-36b/nova_male-jump/compare.png"
+  }
+}
