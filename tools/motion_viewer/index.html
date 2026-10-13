@@ -70,7 +70,7 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .stage-view { display: grid; place-items: center; align-content: start; gap: 7px; min-width: 180px; }
 .stage-view header { width: 100%; display: grid; gap: 1px; text-align: center; }
 .stage-view strong { font-family: var(--font-display); font-size: 11px; color: var(--accent); font-weight: 400; }
-.stage-view small { color: var(--muted); font-size: 11px; line-height: 1.25; min-height: 2.5em; overflow-wrap: anywhere; }
+.stage-view small { color: var(--muted); font-size: 11px; line-height: 1.25; height: 2.5em; overflow: hidden; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .stage[data-bg="checker"] .stage-view, .tile .pic, .strip button {
 	background-color: var(--chk-a);
 	background-image: linear-gradient(45deg, var(--chk-b) 25%, transparent 25%, transparent 75%, var(--chk-b) 75%), linear-gradient(45deg, var(--chk-b) 25%, transparent 25%, transparent 75%, var(--chk-b) 75%);
@@ -318,13 +318,13 @@ function renderStage() {
 		...(a.row.candidates || []).map((candidate) => ({
 			label: `후보 ${candidate.version}`,
 			note: [candidate.note, candidate.frames && `${candidate.frames}프레임`, candidate.fps && `${fmt(candidate.fps)}fps`].filter(Boolean).join(" · "),
-			anim: { ...a, index: 0, row: { ...a.row, frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps }, sheet: { file: candidate.file, cell: a.sheet.cell, feet: a.sheet.feet } },
+			anim: { ...a, index: 0, row: { ...a.row, frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps }, sheet: { file: candidate.file, cell: candidate.cell || a.sheet.cell, feet: candidate.feet || a.sheet.feet } },
 		})),
 	];
 	for (const variant of variants) {
 		const view = document.createElement("section"); view.className = "stage-view";
 		const head = document.createElement("header");
-		head.append(Object.assign(document.createElement("strong"), { textContent: variant.label }), Object.assign(document.createElement("small"), { textContent: variant.note || " " }));
+		head.append(Object.assign(document.createElement("strong"), { textContent: variant.label }), Object.assign(document.createElement("small"), { textContent: variant.note || " ", title: variant.note || "" }));
 		const canvas = document.createElement("canvas"); canvas.width = 384; canvas.height = 384;
 		view.append(head, canvas); stageGrid.append(view);
 		stageViews.push({ canvas, ctx: canvas.getContext("2d"), anim: variant.anim });
@@ -333,7 +333,7 @@ function renderStage() {
 	stageLead = leadVariant.anim;
 	for (let i = 0; i < stageLead.row.frames; i++) {
 		const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", `프레임 ${i + 1}`);
-		const c = document.createElement("canvas"); c.width = a.sheet.cell; c.height = a.sheet.cell;
+		const c = document.createElement("canvas"); c.width = stageLead.sheet.cell; c.height = stageLead.sheet.cell;
 		const tag = Object.assign(document.createElement("b"), { textContent: String(i + 1) });
 		b.append(c, tag);
 		b.addEventListener("click", () => { setPlaying(false); setFrame(i); });
@@ -369,13 +369,16 @@ function paintStrip() {
 function drawStage() {
 	const a = anims[state.anim];
 	const dpr = Math.max(1, Math.round(window.devicePixelRatio || 1));
-	const cell = a ? a.sheet.cell : 128, scale = state.zoom * dpr;
-	const size = cell * scale;
+	const scale = state.zoom * dpr;
 	if (!a) return;
+	// Cells can differ (128 base rows, 192 move candidates, D34): same pixel scale, feet lines level.
+	const feetMax = Math.max(...stageViews.map((v) => v.anim.sheet.feet));
 	const guide = getComputedStyle(document.documentElement).getPropertyValue("--guide").trim() || "#08889e";
 	for (const view of stageViews) {
+		const cell = view.anim.sheet.cell, size = cell * scale;
 		if (view.canvas.width !== size) { view.canvas.width = size; view.canvas.height = size; }
 		view.canvas.style.width = `${cell * state.zoom}px`;
+		view.canvas.style.marginTop = `${(feetMax - view.anim.sheet.feet) * state.zoom}px`;
 		drawCell(view.ctx, view.anim, frameAt(view.anim.row, stageT, state.repeat), scale);
 		view.ctx.save();
 		view.ctx.strokeStyle = guide; view.ctx.lineWidth = dpr;

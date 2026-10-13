@@ -79,7 +79,7 @@ function candidatesFor(stem, row) {
 		let meta = {};
 		try { if (existsSync(metaPath)) meta = JSON.parse(read(metaPath)); } catch (error) { console.warn(`invalid candidate metadata: ${metaPath}: ${error.message}`); }
 		const rel = relative(bakeoffRoot, path).replaceAll("\\", "/");
-		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, frames: Number(meta.frames) || null, source: path }];
+		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, frames: Number(meta.frames) || null, cell: Number(meta.cell) || null, feet: Number(meta.feet) || null, source: path }];
 	}).sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
 }
 
