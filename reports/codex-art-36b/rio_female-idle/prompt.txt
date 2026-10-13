@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, one complete four-frame IDLE motion.
+
+Input images and roles: Image 1 is the current game idle frame enlarged 4x nearest-neighbour; use it as the most important reference for Rio female's identity, compact three-head proportions, head-to-body ratio, right-facing side view, sprite scale, silhouette, palette, and crisp pixel finish, but DO NOT copy its pose. Image 2 is the full illustration; use it only for character identity, costume construction, and colours, not its pose or realistic adult proportions.
+
+Primary request: Draw a NEW cohesive full-body four-frame idle breathing animation of the same Rio female, standing in place and facing RIGHT in a strict readable side view. Every frame must be one newly drawn complete pose, not a cutout or reused body part. Preview speed is 7 fps.
+
+Frame 1: planted alert sword guard, knees softly bent, sword held low and forward without hiding the face, weight centered.
+Frame 2: quiet inhale, torso and head rise only slightly, sword hand nearly fixed, ponytail and coat tails still trailing the prior pose.
+Frame 3: quiet exhale, torso settles slightly lower, knees compress, ponytail and coat tails pass through neutral one beat late.
+Frame 4: return toward Frame 1 with the secondary hair and coat motion on the opposite phase so the loop joins cleanly.
+
+Subject invariants: same young female magic-knight face and compact approximately three-head-tall chibi build in every frame; one head and one face; bright cyan-blue visible eye; very long deep navy-blue high ponytail tied by a cyan diamond clasp, with side fringe; dark navy academy battle dress with black fitted layers, silver armour trim, cyan inner coat tails, shoulder armour, black gloves, thigh-high dark boots with silver guards; one intact silver greatsword with cyan-blue glowing inlay. Keep the exact same head size and body width in every frame. Keep one coherent ponytail, one torso, two connected arms, two hands, two connected legs, and two feet. The sword must remain held by a hand and must never intersect or cover the face. Ponytail and coat tails lag body motion by one frame. Chibi arms stay compact; no adult-sized arm swing.
+
+Sheet layout: exactly FOUR equal square cells in ONE horizontal row, read left to right, ideally 2048x512 with four invisible 512x512 cells. One isolated full-body sprite per cell, generous green margin, same camera, same scale, same root x, and same implied floor line. Do not resize any frame individually. Every strand, coat tip, sword tip, hand, and boot must stay fully inside its cell.
+
+Background: completely solid flat chroma green #00FF00, deliberately removable later. No transparency, checkerboard, floor, shadow, scenery, grid, borders, labels, numbers, or text.
+
+Style/medium: crisp polished console pixel art for a 128-pixel game sprite, matching Image 1. Chunky intentional square-pixel clusters, selective 1-pixel dark outline at final sprite scale, limited palette, hard edges, readable side-view silhouette. No painterly rendering, smooth vector look, blur, gradients, anti-aliasing, soft alpha, or white fringe.
+
+Final hard constraints: one sheet only; exactly 4 complete frames; same right-facing side view; full body and sword in every frame; one head; one face; two arms; two hands; two legs; two feet; one ponytail; one sword; same head size and body width; no duplicated or detached body parts; no slash arcs, glows outside the sword, sparks, dust, aura, effects, text, watermark, grid, border, or shadow.

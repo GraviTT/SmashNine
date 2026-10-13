@@ -1,0 +1,239 @@
+{
+  "input": {
+    "sheet": "reports/codex-art-36b/nova_male-idle/prepared.png",
+    "frames": null,
+    "grid": [
+      4,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "median contact-frame body height",
+    "source_median_px": 512.5,
+    "target_px": 92.0,
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 4,
+    "output_columns": 6,
+    "common_scale": 0.1795122,
+    "scale_by": "height:92",
+    "body_height_range": [
+      90,
+      96
+    ],
+    "body_width_range": [
+      60,
+      61
+    ],
+    "area_range": [
+      3232,
+      3296
+    ],
+    "area_spread_percent": 1.94,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      158,
+      162
+    ],
+    "palette_violations_before_map": 12568,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "reports/codex-art-36b/nova_male-idle/prepared.png#0,0",
+      "bbox": [
+        33,
+        30,
+        94,
+        121
+      ],
+      "body_height": 91,
+      "body_width": 61,
+      "area": 3255,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 162,
+      "palette_violations_before_map": 3134,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 33,
+        "top": 30,
+        "right": 34,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 1,
+      "source": "reports/codex-art-36b/nova_male-idle/prepared.png#1,0",
+      "bbox": [
+        32,
+        25,
+        92,
+        121
+      ],
+      "body_height": 96,
+      "body_width": 60,
+      "area": 3272,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 158,
+      "palette_violations_before_map": 3153,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 32,
+        "top": 25,
+        "right": 36,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 2,
+      "source": "reports/codex-art-36b/nova_male-idle/prepared.png#2,0",
+      "bbox": [
+        32,
+        31,
+        93,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 61,
+      "area": 3232,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 160,
+      "palette_violations_before_map": 3110,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 32,
+        "top": 31,
+        "right": 35,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 3,
+      "source": "reports/codex-art-36b/nova_male-idle/prepared.png#3,0",
+      "bbox": [
+        33,
+        28,
+        94,
+        121
+      ],
+      "body_height": 93,
+      "body_width": 61,
+      "area": 3296,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 160,
+      "palette_violations_before_map": 3171,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 33,
+        "top": 28,
+        "right": 34,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-36b/nova_male-idle/nova_male-idle-v1.png",
+    "candidate": "art/bakeoff/nova/nova_male-idle-v1.png",
+    "frames": "reports/codex-art-36b/nova_male-idle/frames",
+    "closeup": "reports/codex-art-36b/nova_male-idle/closeup.png",
+    "compare": "reports/codex-art-36b/nova_male-idle/compare.png"
+  }
+}

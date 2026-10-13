@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, one complete four-frame IDLE motion.
+
+Input images and roles: Image 1 is the current Brave Luna idle frame enlarged 4x nearest-neighbour; use it as the most important reference for transformed fighter identity, compact 2.2-head proportions, low guard, starlight gauntlets and boots, head ratio, right-facing side view, sprite scale, palette, and pixel finish, but do not copy its pose. Image 2 is normal Luna's full illustration; use it only for face, magenta eyes, pink hair, large midnight-purple bow, gold star hair clip, dress layers, and colours. Do not include the wand and do not use the illustration's adult proportions.
+
+Primary request: Draw a NEW cohesive full-body four-frame idle breathing guard of the same Brave Luna, standing in place and facing RIGHT in a strict readable side view. Every frame is a newly drawn complete pose. Preview speed is 7 fps.
+
+Frame 1: planted low fighter guard, knees bent, two gauntleted fists below the face, weight centered.
+Frame 2: quiet inhale, torso and head rise only slightly, fists nearly fixed, long hair and skirt still lag.
+Frame 3: quiet exhale, torso settles slightly lower, knees compress, hair and skirt pass neutral one beat late.
+Frame 4: return toward Frame 1 with hair, bow and skirt on the opposite secondary-motion phase so the loop joins cleanly.
+
+Subject invariants: same cheerful young magical fighter with compact approximately 2.2-head-tall chibi build; one head and one visible face; magenta eyes; enormous flowing hot-pink hair; one large midnight-purple back bow; one gold star hair clip; purple, magenta and white layered magical-girl dress with gold star details; exactly two cyan-white starlight armoured gauntlets attached to two arms; exactly two purple/cyan armoured boots attached to two legs. No wand. Keep identical head size and body width in every frame. Fists never cover the face. Hair, bow and skirt lag body motion by one frame. Chibi arms stay compact.
+
+Sheet layout: exactly FOUR equal square cells in ONE horizontal row, read left to right, ideally 2048x512. One isolated full-body sprite per cell, generous green margins, same camera, same scale, same root x, same implied floor. Do not resize frames independently. All hair curls, bow tips, skirt, gauntlets and boots stay inside each cell.
+
+Background: completely solid flat chroma green #00FF00. No transparency, checkerboard, floor, shadow, scenery, grid, border, labels, numbers, or text.
+
+Style/medium: crisp polished console pixel art for a 128-pixel game sprite, matching Image 1. Chunky intentional square-pixel clusters, selective 1-pixel dark outline at final scale, limited Luna palette, hard edges, readable side-view silhouette. No smooth illustration, blur, gradient, anti-aliasing, soft alpha, or white fringe.
+
+Final hard constraints: one sheet only; exactly 4 complete frames; same right-facing side view; one head; one face; two connected arms and gauntlets; two connected legs and boots; same head size and body width; no duplicated or detached parts; no wand; no detached stars, star arc, glow outside the attached gauntlets, spark, trail, dust, aura, effect, text, watermark, grid, border, or shadow.

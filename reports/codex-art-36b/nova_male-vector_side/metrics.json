@@ -1,0 +1,237 @@
+{
+  "input": {
+    "sheet": "reports/codex-art-36b/nova_male-vector_side/prepared.png",
+    "frames": null,
+    "grid": [
+      4,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 4,
+    "output_columns": 6,
+    "common_scale": 0.1795122,
+    "scale_by": "fixed:0.1795122",
+    "body_height_range": [
+      81,
+      85
+    ],
+    "body_width_range": [
+      59,
+      92
+    ],
+    "area_range": [
+      2969,
+      3334
+    ],
+    "area_spread_percent": 10.95,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_y120": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      152,
+      163
+    ],
+    "palette_violations_before_map": 11961,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "reports/codex-art-36b/nova_male-vector_side/prepared.png#0,0",
+      "bbox": [
+        29,
+        40,
+        92,
+        121
+      ],
+      "body_height": 81,
+      "body_width": 63,
+      "area": 2969,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 163,
+      "palette_violations_before_map": 2848,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 29,
+        "top": 40,
+        "right": 36,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 1,
+      "source": "reports/codex-art-36b/nova_male-vector_side/prepared.png#1,0",
+      "bbox": [
+        25,
+        36,
+        108,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 83,
+      "area": 3208,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 152,
+      "palette_violations_before_map": 3046,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 36,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 2,
+      "source": "reports/codex-art-36b/nova_male-vector_side/prepared.png#2,0",
+      "bbox": [
+        24,
+        36,
+        116,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 92,
+      "area": 3334,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 158,
+      "palette_violations_before_map": 3143,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 36,
+        "right": 12,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "index": 3,
+      "source": "reports/codex-art-36b/nova_male-vector_side/prepared.png#3,0",
+      "bbox": [
+        33,
+        36,
+        92,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 59,
+      "area": 3073,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "colour_count": 160,
+      "palette_violations_before_map": 2924,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 33,
+        "top": 36,
+        "right": 36,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-36b/nova_male-vector_side/nova_male-vector_side-v1.png",
+    "candidate": "art/bakeoff/nova/nova_male-vector_side-v1.png",
+    "frames": "reports/codex-art-36b/nova_male-vector_side/frames",
+    "closeup": "reports/codex-art-36b/nova_male-vector_side/closeup.png",
+    "compare": "reports/codex-art-36b/nova_male-vector_side/compare.png"
+  }
+}

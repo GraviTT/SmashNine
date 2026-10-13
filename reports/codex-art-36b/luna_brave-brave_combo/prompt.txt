@@ -1,0 +1,23 @@
+Use case: stylized-concept
+
+Input image roles:
+- Image 1 is the newly accepted Brave Luna idle anchor generation. Preserve this exact character identity, head size, body width, right-facing side-view proportions, palette, and pixel finish; do not copy its idle pose. Match its large per-cell scale exactly: the complete character must be about 450 pixels tall inside every 512-pixel cell, with roughly 30 pixels above the bow and roughly 25 pixels below the grounded boot.
+- Image 2 is the current in-game brave_combo row. Use it only to understand the six combat beats; redraw the whole character in every frame and do not copy or move body parts.
+
+Primary request: draw one complete 6-frame Brave Luna `brave_combo` animation sheet at 16 fps.
+
+Frame poses, left to right, top row then bottom row:
+1. Guard: grounded low fighting guard, both gauntlets visible, weight centered.
+2. Short jab: front gauntlet makes a compact body-level jab; face remains uncovered.
+3. Body-kick wind-up: rear knee chambers tightly, torso leans back slightly, hair and skirt lag one frame.
+4. Body-height kick: chambered leg extends horizontally at body height, both boots identifiable, both gauntlets still present.
+5. Wide spin kick: readable full-body turning kick with one planted or tucked support leg; hair, cape ribbons, and skirt trail the rotation one frame.
+6. Low guard back: both feet return to the floor in a low guarded recovery that can join the idle stance.
+
+Subject invariants: one face with magenta eyes; long hot-pink hair and large dark-purple bow with pink inner panels; yellow star hair clip; dark-purple magical-girl bodice with white shoulder and skirt layers, gold trim, two oversized purple gauntlets with cyan-magenta crystal faces, two purple-and-gold boots. Same head size and body width in every frame. Chibi arms stay compact; fists never cover the face.
+
+Layout: six equal 512 x 512 cells arranged 3 columns by 2 rows on one 1536 x 1024 image. Right-facing strict side view. The character fills about 88% of cell height, matching Image 1; do not make a small character floating in a mostly empty cell. Same character scale and same floor line in every cell. Keep all hair, boots, and gauntlets safely inside each cell. Flat chroma green #00FF00 background only; no shadow, floor, grid, dividers, labels, or text.
+
+Style: crisp console pixel art intended for a 128-pixel game sprite, chunky deliberate pixel clusters, 1-pixel dark outline, limited palette, no blur, no gradients, no anti-aliasing.
+
+Final checklist: exactly 6 frames; exactly one whole Brave Luna per cell; one head and one face; two arms, two hands/gauntlets, two legs, two boots; costume intact; no duplicated or detached body parts; no star arcs, slash arcs, glow trails, sparks, dust, hit effects, floor, grid, or text.

@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, one complete four-frame VECTOR_SIDE motion.
+
+Input images and roles: Image 1 is the accepted new Nova male idle anchor RAW sheet; it is the binding reference for identity, compact 2.5-head proportions, raw character scale, head size, shoulder width, right-facing side view, palette, and pixel finish. Image 2 is the current game vector_side row; use it ONLY for the coil-to-launch-to-punch-to-brake action. Do not copy its cyan afterimages or effects.
+
+Primary request: Draw a NEW cohesive full-body four-frame horizontal gravity punch by the same Nova male, performed in place toward the RIGHT in a strict readable side view. Every frame is one newly drawn complete pose. Preview speed is 23.5 fps.
+
+Frame 1: low compact coil, knees bent, both fists below the face, shoulders loaded, rear heel ready.
+Frame 2: step and launch, front foot plants to the right, hips drive forward, lead fist begins extending while the rear fist guards below the chin.
+Frame 3: horizontal gravity punch active, torso and shoulder drive right, lead arm extends but elbow remains slightly bent, rear fist stays at ribs, head and face fully visible.
+Frame 4: brake, front knee bends and hips sink, lead fist retracts below the face, rear foot catches balance, ready to join idle.
+
+Subject invariants: exactly the same male Nova as Image 1; compact approximately 2.5-head-tall chibi build; same head size and shoulder/body width in all four frames; one head and one visible face; teal-blue eye; short upswept spiky midnight-indigo hair with small teal highlight; fitted midnight-indigo suit; pale silver chest, shoulder, forearm and shin plates; circular teal gravity-orbit chest emblem; oversized teal-and-silver gauntlets and boots; small gold hardware accents. No cape and no weapon. Preserve Image 1's raw pixel scale. Keep one torso, two connected arms, two fists, two connected legs, and two feet. The punching fist never covers the face. Chibi arms stay compact.
+
+Sheet layout: exactly FOUR equal cells in ONE horizontal row, read left to right, matching the raw anchor sheet's scale. One isolated full-body sprite per cell, generous green margin, same camera, same scale, same root x, same implied floor. Keep the total active silhouette compact enough to fit the final 128px cell at the anchor's fixed scale by bending the punch elbow slightly and keeping both feet under the body. Never resize a cell independently. All hair, fists, elbows and boots stay inside each cell.
+
+Background: completely solid flat chroma green #00FF00. No transparency, checkerboard, floor, shadow, scenery, grid, border, labels, numbers, or text.
+
+Style/medium: crisp polished console pixel art for a 128-pixel game sprite, matching Image 1. Chunky intentional square-pixel clusters, selective 1-pixel dark outline at final scale, limited Nova palette, hard edges, readable silhouette. No smooth illustration, blur, gradient, anti-aliasing, soft alpha, or white fringe.
+
+Final hard constraints: one sheet only; exactly 4 complete frames; same right-facing side view; one head; one face; two connected arms and fists; two connected legs and feet; same head size and body width; no duplicated, missing, floating, or detached parts; no cyan afterimage, gravity orb, glow, spark, streak, trail, dust, aura, effect, text, watermark, grid, border, or shadow.

@@ -1,0 +1,23 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, one complete six-frame WALK cycle.
+
+Input images and roles: Image 1 is the accepted new Rio female idle anchor sheet enlarged 4x nearest-neighbour; it is the binding reference for identity, compact three-head proportions, head size, body width, right-facing side view, palette, sword scale, and crisp pixel finish. Image 2 is the current game walk row; use it ONLY to understand that the move is a grounded rightward walk and do not copy its undersized body, drawing, or weak stride.
+
+Primary request: Draw a NEW cohesive full-body six-frame walk cycle of the same Rio female, walking in place toward the RIGHT in a strict readable side view. Every frame is one newly drawn complete pose. The cycle must show unmistakable alternating leg mechanics at 10 fps while keeping the compact guarded magic-knight personality.
+
+Frame 1, top-left: RIGHT foot contact forward, left leg extended behind in late push-off; weight begins accepting on the right foot.
+Frame 2: DOWN / compression over the bent right support leg, torso and head at the lowest point; left knee begins passing forward.
+Frame 3, top-right: LEFT foot passing beneath the body and moving forward while the right foot pushes behind from the toe; torso rises.
+Frame 4, bottom-left: LEFT foot contact forward, right leg extended behind in late push-off; clearly opposite Frame 1, not copied or flipped artwork.
+Frame 5: DOWN / compression over the bent left support leg, torso and head at the lowest point; right knee begins passing forward.
+Frame 6, bottom-right: RIGHT foot passing beneath the body and moving forward while the left foot pushes behind from the toe; joins smoothly back to Frame 1.
+
+Subject invariants: exactly the same young female magic-knight as Image 1, compact approximately three-head-tall chibi build, same head size and body width in every frame; one head, one face, bright cyan-blue visible eye; very long deep navy-blue high ponytail with cyan diamond clasp and side fringe; dark navy academy battle dress, black fitted layers, silver armour trim, cyan inner coat tails, shoulder armour, black gloves, thigh-high dark boots with silver guards; one intact silver greatsword with cyan-blue inlay. Keep sword, body, head, and ponytail at the idle anchor scale. Hold the sword low and forward in a stable compact guard so it does not hide the face. Chibi arms stay compact with only small balancing shifts, no adult-style arm swing. Ponytail and coat tails lag the hips by one frame. Boots must change angle for contact, compression, toe push, and passing; two legs alternate visibly.
+
+Sheet layout: landscape 3:2, exactly SIX equal square cells in a 3-column by 2-row grid, read left-to-right top then bottom, ideally 1536x1024 with six 512x512 invisible cells. One isolated full-body sprite per cell, generous green margins, same camera, same scale, same root x, same implied floor line. Do not resize any cell independently. All hair, coat, sword, hands, and boots remain inside each cell.
+
+Background: completely solid flat chroma green #00FF00. No transparency, checkerboard, floor, shadow, scenery, grid, borders, labels, numbers, or text.
+
+Style/medium: crisp polished console pixel art for a 128-pixel game sprite, matching Image 1. Chunky intentional square-pixel clusters, selective 1-pixel dark outline at final scale, limited Rio palette, hard edges, readable silhouette. No smooth illustration, blur, gradient, anti-aliasing, soft alpha, or white fringe.
+
+Final hard constraints: one sheet only; exactly 6 full-body frames; clear right/left foot alternation; same right-facing side view; same head size and body width; one head; one face; two connected arms and hands; two connected legs and feet; one coherent ponytail; one intact sword held by a hand; no duplicated, missing, floating, or detached body parts; no slash arcs, glows outside the sword, sparks, dust, aura, effects, text, watermark, grid, border, or shadow.
