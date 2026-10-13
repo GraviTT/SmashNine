@@ -1,9 +1,9 @@
 # 근무 루틴 · 2026-10-13 · SmashNine — 전체 캐릭터 점검
 
-## 지금 상태 (13:31 갱신)
+## 지금 상태 (14:20 갱신)
 - 단계: 실행 · 마무리 시작 15:38 · 기준 마감 16:08 · 최대 마감 17:08
-- 지금: Codex 2개 2라운드 — A Frey 후보(기준 대기 → spike·descent·tumble → walk·attack), B 점검 우선순위 후보(Rio 여 → Nova 남·여 → Brave → Luna·Yuki)
-- 완료: 방법 분석, 공통 정리 도구 + 뷰어 후보 비교(ART-35), 전체 점검 476프레임(QA-18)
+- 지금: Codex A 3라운드(Frey attack-v2, Yuki), Codex B(Rio 여 → Nova 남·여 → Brave → Luna)
+- 완료: 방법 분석, 공통 정리 도구·뷰어 후보 비교, 전체 점검(476프레임), Frey 후보 6줄(대기·walk·rising_cleave·spike·descent·tumble) + attack-v1 — 뷰어에 올림
 - 막힌 것: 없음
 
 ## 사용자 지시 (원문)
@@ -53,6 +53,7 @@
 - 13:30 A는 이미 Frey 기준 대기를 만든 상태라 다시 시작하지 않음(Frey 우선 줄 walk·rising_cleave·attack은 다음 A 라운드). 카드 B 파트 = 점검 우선순위(Rio 여 walk·air_slash·plunge → Nova 남·여 vector_side → Brave combo → Luna attack·Yuki talisman_side), 커밋 `33ef62e`. 13:31 Codex B(ART-36 B, xhigh, 105분) 실행.
 - 13:45 Codex A(ART-36 A 1차) 끝(20분): Frey 기준 대기(높이 100 기준 배율 0.1876) + spike_followup · descent · tumble 후보. 리드 검수(overview 2배): 기준 대기는 지금 대기와 생김새·크기 같음(채택해 기준으로), spike는 동작·크기 좋고 떨어진 점만 지우면 됨, descent · tumble은 몸 전체가 기준의 약 80% — **생성할 때마다 그린 크기가 달라 기준 배율을 그대로 쓰면 안 됨**. 시트마다 배율 하나를 얼굴이 가장 잘 보이는 칸의 머리를 기준 대기에 맞춰 정하게 함(칸마다 아님). 병합 `7c78d80`(보고서 22MB, 원본 생성 그림 포함 — 다시 정리할 때 필요). 파이프라인 예시였던 Luna walk 후보는 지금 걷기를 다시 정리한 사본이라 지움.
 - 13:47 Codex A 2라운드(xhigh, 90분): descent · tumble 시트 배율 다시, spike 점 제거(`--min-component` 추가), 새 후보 Frey walk · rising_cleave · attack. 13:47 뷰어 갱신(Frey 후보 4개).
+- 14:16 Codex A 2라운드 끝(29분): spike_followup-v2(`--min-component 21`로 점 제거, 도구에 옵션 추가·시험 4/4), descent-v2·tumble-v2(시트 배율 0.235 — 얼굴이 가장 잘 보이는 칸의 머리를 기준 대기에 맞춤), 새 walk-v1(`height:100`, 0.266)·rising_cleave-v1(0.27)·attack-v1(0.219). 리드 검수(overview 2배, 모든 칸): 모든 칸 얼굴 하나, 머리 크기 기준 대기와 같음, descent·tumble 크기 바로잡힘, walk는 대기 크기 그대로 다리 교대(대기→걷기 축소 없음), rising_cleave 상승감 있음, attack-v1은 J3가 넓은 베기가 아니라 높이 든 자세라 약함. 병합 `45399ab`. 대체된 v1 3개(spike·descent·tumble)는 후보에서 뺌. 14:17 A 3라운드(attack-v2 수평 J3 + Yuki 기준 대기·talisman_side, 65분). 뷰어 갱신(Frey 후보 7개).
 
 ## 결과
 
