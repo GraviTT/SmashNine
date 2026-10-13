@@ -1,0 +1,25 @@
+Built-in image tool, selected generation: attempt 2.
+
+Use case: stylized-concept.
+Asset type: corrected intermediate production pixel-art game sprite extraction sheet, ONE complete six-frame DESCENT attack for Frey.
+
+Input images and roles: Image 1 is the accepted idle anchor and controls Frey's identity, exact large head scale, compact 3-head-tall build, costume, sword, shield, detail and pixel finish. Image 2 is the old game row and controls only the force of the move: gather, rise, sword-first vertical dive, ground stab; ignore all its effects. Image 3 is the first new draft and supplies the desired six pose silhouettes, especially its excellent sword-first plunge and kneeling planted ending. Redraw it as a NEW clean sheet while correcting ONLY the shared vertical coordinate system described below; do not soften the slam.
+
+Exactly SIX right-facing frames, 3 columns by 2 rows, 512x512 per cell, 1536x1024:
+F1 ground charge: deep coiled crouch, shield forward, sword low behind.
+F2 airborne spring: clearly above the shared floor, knees tucked, both hands swing sword above head.
+F3 airborne turnover at apex: clearly high above floor, compact upright body, both hands at chest hilt, sword perfectly point-down below her.
+F4 airborne plunge: still clearly above floor, straight vertical body, sword perfectly vertical below both boots and leading the dive, hair/cape streaming upward.
+F5 ground slam: one knee and one boot on the shared floor, both hands force hilt down, sword point enters floor immediately in front; blade MUST end exactly at floor line with no buried portion visible.
+F6 planted hold: same low one-knee pose pressed slightly lower, sword still buried and blade ends at floor line, hair settling; never stand up.
+
+CRITICAL SHARED COORDINATES: In every 512px cell, the identical invisible floor line is y=455 measured from that cell's top. F1's boots touch y=455. F5 and F6 knee, boot, and sword tip all touch y=455. F2, F3, and F4 must be visibly airborne with their lowest pixel at least 55 pixels ABOVE y=455; their sword tips must not touch the floor line. Keep torso centred at x=256 in each cell. These shared coordinates are more important than decorative motion.
+
+Same character constraints: exactly one face/head, two connected arms/hands, two connected legs, one intact broad silver sword and one intact round navy shield in every frame. Both hands visibly control the hilt in F2-F6, shield remains strapped to forearm. Heavy violent downward strike, not a gentle landing.
+
+Backdrop: completely solid flat #00FF00. No transparency, floor drawing, scenery, shadow or contact shadow. No grid, border, label or text.
+Style: crisp detailed pixel art matching Image 1; separated golden hair strands, silver armour with gold trim and bright highlights, navy cape and shield with four-point star, helmet wing feathers, disciplined dark outline; not smooth illustration.
+
+No light pillar, burst, shockwave, dust, glow, sparks, speed lines, slash arc, magic, afterimage, extra wings, watermark, crop, duplicated parts, missing equipment. Frame 4 sword is vertical and airborne. Frames 5-6 finish kneeling with the sword stuck at the common floor and do not recover.
+
+Normalization: --cell 192 --feet-y 152 --scale-by fixed:0.347 --resample lanczos --sharpen 60 --despill auto --palette none --bg #00ff00 --lift-scale 0.
