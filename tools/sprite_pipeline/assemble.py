@@ -18,12 +18,21 @@ COLUMNS = 6
 
 
 def assemble(strips: list[Path], cell: int) -> Image.Image:
-	sheet = Image.new("RGBA", (COLUMNS * cell, len(strips) * cell), (0, 0, 0, 0))
-	for row, path in enumerate(strips):
+	images = []
+	for path in strips:
 		strip = Image.open(path).convert("RGBA")
-		if strip.height != cell or strip.width > COLUMNS * cell or strip.width % cell:
+		if strip.height != cell or strip.width % cell:
 			raise ValueError(f"{path}: {strip.width}x{strip.height} is not one row of {cell}-px cells")
-		sheet.paste(strip, (0, row * cell))
+		images.append(strip)
+	# A strip longer than six cells (a 12-frame row) continues on the next sheet row, as the game reads it.
+	spans = [-(-image.width // (COLUMNS * cell)) for image in images]
+	sheet = Image.new("RGBA", (COLUMNS * cell, sum(spans) * cell), (0, 0, 0, 0))
+	row = 0
+	for image, span in zip(images, spans):
+		for part in range(span):
+			chunk = image.crop((part * COLUMNS * cell, 0, min(image.width, (part + 1) * COLUMNS * cell), cell))
+			sheet.paste(chunk, (0, (row + part) * cell))
+		row += span
 	return sheet
 
 

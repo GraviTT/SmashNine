@@ -57,6 +57,7 @@ func _run() -> void:
 	probe.queue_free()
 	await process_frame
 	await _check_large_cell_sheet()
+	await _check_long_row()
 
 	await _expect_move("up J", "attack_up", func(fighter): fighter.perform_basic_attack("up", Vector2.UP))
 	await _expect_move("down J", "attack_down", func(fighter): fighter.perform_basic_attack("down", Vector2.DOWN))
@@ -283,6 +284,31 @@ func _check_large_cell_sheet() -> void:
 	var small := Image.create(100 * 6, 100 * 8, false, Image.FORMAT_RGBA8)
 	if fighter._add_move_sheet_animations(frames, "frey", ImageTexture.create_from_image(small), fighter.get_move_sheet_rows()):
 		_fail("a move sheet with cells smaller than the main sheet should be refused")
+	fighter.queue_free()
+	await process_frame
+
+## A row longer than six frames continues on the next sheet row, and the rows after it start below
+## it (Luna's 12-frame transformation, 2026-10-14).
+func _check_long_row() -> void:
+	var fighter := _move_fighter("frey", false)
+	var frames: SpriteFrames = fighter.character_sprite.sprite_frames
+	var rows := [["probe_a", 4, 10.0, false], ["probe_long", 12, 12.0, false], ["probe_b", 6, 10.0, false]]
+	var sheet := Image.create(192 * 6, 192 * 4, false, Image.FORMAT_RGBA8)
+	if not fighter._add_move_sheet_animations(frames, "frey", ImageTexture.create_from_image(sheet), rows):
+		_fail("a sheet with a 12-frame row (4 sheet rows) should load")
+	else:
+		var regions := {
+			"frey_probe_long:0": Vector2(0, 192), "frey_probe_long:6": Vector2(0, 384),
+			"frey_probe_long:11": Vector2(960, 384), "frey_probe_b:0": Vector2(0, 576),
+		}
+		for key in regions:
+			var parts: PackedStringArray = key.split(":")
+			var region: Rect2 = (frames.get_frame_texture(StringName(parts[0]), int(parts[1])) as AtlasTexture).region
+			if region.position != regions[key]:
+				_fail("%s should start at %s, got %s" % [key, regions[key], region.position])
+	var short := Image.create(192 * 6, 192 * 3, false, Image.FORMAT_RGBA8)
+	if fighter._add_move_sheet_animations(frames, "frey", ImageTexture.create_from_image(short), rows):
+		_fail("a sheet one row short of the table's span should be refused")
 	fighter.queue_free()
 	await process_frame
 

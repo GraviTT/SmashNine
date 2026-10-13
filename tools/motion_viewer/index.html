@@ -198,7 +198,7 @@ function animsOf(form) {
 	const list = [];
 	for (const [group, sheet] of [["base", form.base], ["moves", form.moves]]) {
 		if (!sheet) continue;
-		sheet.rows.forEach((row, index) => list.push({ group, sheet, row, index }));
+		sheet.rows.forEach((row, index) => list.push({ group, sheet, row, index: row.start ?? index }));
 	}
 	return list;
 }
@@ -218,7 +218,9 @@ function drawCell(ctx, anim, frame, scale) {
 	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 	if (!ready(img)) return false;
 	ctx.imageSmoothingEnabled = false;
-	ctx.drawImage(img, frame * c, anim.index * c, c, c, 0, 0, c * scale, c * scale);
+	// Game sheets wrap after six columns (a 12-frame row spans two rows); candidates are one long strip.
+	const cols = anim.sheet.strip ? Infinity : (M.columns || 6);
+	ctx.drawImage(img, (frame % cols) * c, (anim.index + Math.floor(frame / cols)) * c, c, c, 0, 0, c * scale, c * scale);
 	return true;
 }
 
@@ -318,7 +320,7 @@ function renderStage() {
 		...(a.row.candidates || []).map((candidate) => ({
 			label: `후보 ${candidate.version}`,
 			note: [candidate.note, candidate.frames && `${candidate.frames}프레임`, candidate.fps && `${fmt(candidate.fps)}fps`].filter(Boolean).join(" · "),
-			anim: { ...a, index: 0, row: { ...a.row, frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps }, sheet: { file: candidate.file, cell: candidate.cell || a.sheet.cell, feet: candidate.feet || a.sheet.feet } },
+			anim: { ...a, index: 0, row: { ...a.row, frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps }, sheet: { file: candidate.file, cell: candidate.cell || a.sheet.cell, feet: candidate.feet || a.sheet.feet, strip: true } },
 		})),
 	];
 	for (const variant of variants) {

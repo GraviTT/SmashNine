@@ -93,10 +93,13 @@ const candidateCopies = [];
 function sheet(rel, rows, labels, cell, feet, stem = null) {
 	if (!existsSync(join(art, rel))) return null;
 	sheets.push(rel);
+	// A row longer than six frames continues on the next sheet row (Luna's 12-frame transform).
+	let start = 0;
 	return { file: `sheets/${rel}`, cell, feet, rows: rows.map((r) => {
+		const at = start; start += Math.ceil(r.frames / 6);
 		const candidates = stem ? candidatesFor(stem, r.name) : [];
 		candidateCopies.push(...candidates);
-		return { ...r, label: labels[r.name] || "", candidates: candidates.map(({ source, ...item }) => item) };
+		return { ...r, start: at, label: labels[r.name] || "", candidates: candidates.map(({ source, ...item }) => item) };
 	}) };
 }
 

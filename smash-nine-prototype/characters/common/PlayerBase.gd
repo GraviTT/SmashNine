@@ -866,12 +866,21 @@ func _add_move_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Tex
 	var cell := int(sheet.get_width() / SHEET_COLUMNS)
 	if cell != original_sheet_cell and (cell < original_sheet_cell or original_sheet_cell != int(SHEET_SCREEN_CELL)):
 		return false
-	if sheet.get_height() < cell * rows.size():
+	if sheet.get_height() < cell * _sheet_row_span(rows):
 		return false
-	for row in rows.size():
-		var spec: Array = rows[row]
-		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
+	# A row longer than six frames continues on the next sheet row (Luna's 12-frame transform).
+	var start_row := 0
+	for spec in rows:
+		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, start_row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
+		start_row += ceili(float(spec[1]) / SHEET_COLUMNS)
 	return true
+
+## Sheet rows a row table fills: one per entry, two for a 7-12 frame entry.
+func _sheet_row_span(rows: Array) -> int:
+	var span := 0
+	for spec in rows:
+		span += ceili(float(spec[1]) / SHEET_COLUMNS)
+	return span
 
 ## Adds <prefix>_idle ... <prefix>_hurt from a sheet with the same cell size as the main
 ## one (a second sheet such as Brave Luna's). Returns false when the cell size differs.
