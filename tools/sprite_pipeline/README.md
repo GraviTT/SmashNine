@@ -37,10 +37,18 @@ $py = 'C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/pyth
 
 행 전체가 공중 동작이면 `--lift-all <px>`로 모든 프레임에 같은 출력 픽셀 상승량을 더한다. 예를 들어 `--lift-all 8`은 원본의 프레임 사이 상대 높이 차이를 유지하면서 완성 행 전체를 y=120에서 8px 이상 띄운다.
 
+큰 머리 배율에서 공중 동작의 호만 낮춰 셀 안에 맞춰야 하면 `--lift-scale <0..1>`로 계산된 모든 상승량을 같은 비율로 줄인다. 캐릭터의 공통 배율은 바꾸지 않는다.
+
 고립된 생성 잔여 픽셀은 최종 128px 프레임에서 4방향 연결 성분으로 검사해 제거할 수 있다. 다음 예시는 21px 미만의 분리 성분만 버리며, 제거한 성분의 프레임별 면적과 경계상자를 `metrics.json`의 `dropped_components`에 기록하고 콘솔에 총 성분 수/픽셀 수를 출력한다. 몸·무기처럼 이어진 큰 성분이 지워지지 않도록 비교판을 반드시 확인한다.
 
 ```powershell
 & $py tools/sprite_pipeline/normalize.py ... --min-component 21
+```
+
+Frey 행의 머리 크기는 앵커 대비 자동 측정값과 4배 육안 비교를 함께 확인한다.
+
+```powershell
+& $py tools/sprite_pipeline/head_scale.py --anchor art/bakeoff/frey/frey-idle-v2.png:0 --sheet art/bakeoff/frey/frey-dash_strike-v1.png --factor 0.245
 ```
 
 입력은 `--sheet PNG --grid CxR` 또는 `--frames 폴더/글롭` 중 하나다. `--pick 0,1,2`로 사용할 칸을 고를 수 있다. `--bg`는 `alpha`, `auto`, `#00ff00`을 지원한다. `auto`는 기존 투명을 우선하고, 불투명 입력이면 테두리에서 연결된 주 배경색만 지운다. `--outline auto`는 기존 실루엣 내부에서 어두운 외곽선 사이의 1px 구멍만 잇는다.

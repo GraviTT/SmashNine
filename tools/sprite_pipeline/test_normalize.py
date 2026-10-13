@@ -91,6 +91,17 @@ class NormalizeTests(unittest.TestCase):
 		self.assertEqual(metrics["summary"]["lift_range"], [7, 7])
 		self.assertTrue(metrics["summary"]["airborne_lift_preserved"])
 
+	def test_lift_scale_uniformly_reduces_airborne_lift(self) -> None:
+		_, metrics = self.run_tool("fixed:1", extra=["--lift-scale", "0.5"])
+		assert metrics is not None
+		self.assertEqual(metrics["summary"]["lift_scale"], 0.5)
+		self.assertEqual(metrics["summary"]["lift_range"], [0, 5])
+		self.assertEqual(metrics["frames"][1]["lift"], 5)
+
+	def test_lift_scale_rejects_values_outside_unit_interval(self) -> None:
+		result, _ = self.run_tool("fixed:1", expect=1, extra=["--lift-scale", "1.1"])
+		self.assertIn("--lift-scale must be between 0 and 1", result.stderr)
+
 	def test_lanczos_sharpen_increases_synthetic_interior_detail(self) -> None:
 		large = Image.new("RGBA", (64, 64), (96, 96, 96, 255))
 		draw = ImageDraw.Draw(large)
