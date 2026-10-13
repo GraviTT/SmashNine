@@ -117,30 +117,17 @@ def infer_background(image: Image.Image) -> tuple[int, int, int] | None:
 	return tuple(round(statistics.median(pixel[i] for pixel in near)) for i in range(3)) if near else base
 
 
-def remove_connected_background(image: Image.Image, target: tuple[int, int, int]) -> Image.Image:
+def remove_chroma_background(image: Image.Image, target: tuple[int, int, int]) -> Image.Image:
 	rgba = np.asarray(image.convert("RGBA"), dtype=np.uint8).copy()
 	# int32 keeps squared RGB deltas (up to 3 * 255^2) from overflowing.
 	delta = rgba[..., :3].astype(np.int32) - np.asarray(target, dtype=np.int32)
 	distance = np.sqrt(np.sum(delta * delta, axis=2))
 	candidate = distance <= BG_TOLERANCE
-	h, w = candidate.shape
-	connected = np.zeros((h, w), dtype=bool)
-	queue: deque[tuple[int, int]] = deque()
-	for x in range(w):
-		for y in (0, h - 1):
-			if candidate[y, x] and not connected[y, x]:
-				connected[y, x] = True; queue.append((x, y))
-	for y in range(h):
-		for x in (0, w - 1):
-			if candidate[y, x] and not connected[y, x]:
-				connected[y, x] = True; queue.append((x, y))
-	while queue:
-		x, y = queue.popleft()
-		for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
-			if 0 <= nx < w and 0 <= ny < h and candidate[ny, nx] and not connected[ny, nx]:
-				connected[ny, nx] = True; queue.append((nx, ny))
-	rgba[..., 3][connected] = 0
-	fringe = connected.copy()
+	# Chroma-key pockets can be fully enclosed by hair, cape or limbs. Remove
+	# every source-resolution pixel near the key colour before shrinking, not
+	# only the component connected to a cell border.
+	rgba[..., 3][candidate] = 0
+	fringe = candidate.copy()
 	for _ in range(2):
 		expanded = fringe.copy()
 		expanded[1:] |= fringe[:-1]; expanded[:-1] |= fringe[1:]
@@ -161,7 +148,7 @@ def clean_background(image: Image.Image, mode: str) -> tuple[Image.Image, dict[s
 	elif mode != "alpha":
 		background = parse_color(mode); resolved = "color"
 	if background is not None:
-		rgba = remove_connected_background(rgba, background)
+		rgba = remove_chroma_background(rgba, background)
 	rgba.putalpha(rgba.getchannel("A").point(lambda value: 255 if value >= ALPHA_CUT else 0))
 	return rgba, {"mode": resolved, "color": list(background) if background else None}
 
@@ -355,15 +342,20 @@ def despill_green_edge(image: Image.Image, mode: str) -> Image.Image:
 	green = rgba[..., 1]
 	blue = rgba[..., 2]
 	green[edge] = np.minimum(green[edge], np.maximum(red[edge], blue[edge]))
+	# The current Frey art has no intentional green. Lanczos can pull a chroma
+	# pocket's colour more than two output pixels into an enclosed dark gap, so
+	# constrain every remaining visible green-dominant pixel as well. This uses
+	# the same threshold as the all-visible spill audit.
+	spill = visible & (green.astype(np.int16) > np.maximum(red, blue).astype(np.int16) + 20)
+	green[spill] = np.maximum(red[spill], blue[spill])
 	return Image.fromarray(rgba, "RGBA")
 
 
 def spill_pixel_count(image: Image.Image) -> int:
 	rgba = np.asarray(image.convert("RGBA"), dtype=np.uint8)
 	visible = rgba[..., 3] >= ALPHA_CUT
-	edge = transparency_edge_band(visible)
 	rgb = rgba[..., :3].astype(np.int16)
-	return int(np.count_nonzero(edge & (rgb[..., 1] > np.maximum(rgb[..., 0], rgb[..., 2]) + 20)))
+	return int(np.count_nonzero(visible & (rgb[..., 1] > np.maximum(rgb[..., 0], rgb[..., 2]) + 20)))
 
 
 def interior_detail(image: Image.Image) -> float:
@@ -403,6 +395,7 @@ def normalize_frame(
 	despill: str,
 	offset_x: int,
 	ground_all: bool,
+	lift_all: int,
 ) -> tuple[Image.Image, int, int]:
 	box = alpha_bbox(source); bottom = box[3] - 1
 	subject = source.crop(box)
@@ -415,7 +408,8 @@ def normalize_frame(
 	trim = subject.getbbox()
 	if trim is None: raise ValueError("a frame disappeared while resizing")
 	subject = subject.crop(trim)
-	lift = 0 if ground_all else max(0, round((source_ground - bottom) * scale)); target_bottom = FEET_Y - lift
+	natural_lift = 0 if ground_all else max(0, round((source_ground - bottom) * scale))
+	lift = natural_lift + lift_all; target_bottom = FEET_Y - lift
 	anchor = (torso_anchor_x(source) - box[0]) * scale
 	x = round(CELL / 2 - anchor) + offset_x; y = target_bottom - subject.height + 1
 	if x < 1 or y < 1 or x + subject.width > CELL - 1 or y + subject.height > CELL - 1:
@@ -518,7 +512,7 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 	scale, scale_detail = common_scale(prepared, args.scale_by, source_ground); palette = load_palette(args.palette)
 	results = []; lifts = []; violations = []; dropped_components = []
 	for frame in prepared:
-		result, lift, before = normalize_frame(frame, scale, source_ground, palette, args.outline, args.resample, args.sharpen, args.despill, args.offset_x, args.ground_all)
+		result, lift, before = normalize_frame(frame, scale, source_ground, palette, args.outline, args.resample, args.sharpen, args.despill, args.offset_x, args.ground_all, args.lift_all)
 		result, dropped = drop_small_components(result, args.min_component)
 		results.append(result); lifts.append(lift); violations.append(before); dropped_components.append(dropped)
 	args.out_dir.mkdir(parents=True, exist_ok=True); frame_dir = args.out_dir / "frames"; frame_dir.mkdir(exist_ok=True)
@@ -534,7 +528,7 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 		items.append({"index": i, "source": labels[i], "bbox": list(box), "body_height": box[3] - box[1], "body_width": box[2] - box[0], "area": alpha_area(frame), "bottom": box[3] - 1, "lift": FEET_Y - (box[3] - 1), "expected_lift": lifts[i], **frame_metrics(frame), "palette_violations_before_map": violations[i], "palette_violations": palette_violation_count(frame, palette) if palette else 0, "alpha_values": alpha, "alpha_binary": set(alpha) <= {0, 255}, "border_clear": box[0] > 0 and box[1] > 0 and box[2] < CELL and box[3] < CELL, "margin": margins(box), "dropped_components": dropped_components[i], "dropped_component_pixels": sum(item["pixels"] for item in dropped_components[i])})
 	heights = [item["body_height"] for item in items]; widths = [item["body_width"] for item in items]; areas = [item["area"] for item in items]
 	details = [float(item["interior_detail"]) for item in items]
-	summary = {"frame_count": len(items), "output_columns": COLUMNS, "common_scale": round(scale, 8), "scale_by": args.scale_by, "common_offset_x": args.offset_x, "ground_all": args.ground_all, "resample": args.resample, "sharpen_percent": args.sharpen, "despill": args.despill, "palette": args.palette.as_posix() if args.palette else "none", "min_component": args.min_component, "dropped_component_count": sum(len(group) for group in dropped_components), "dropped_component_pixels": sum(component["pixels"] for group in dropped_components for component in group), "body_height_range": [min(heights), max(heights)], "body_width_range": [min(widths), max(widths)], "area_range": [min(areas), max(areas)], "area_spread_percent": spread(areas), "bottom_range": [min(item["bottom"] for item in items), max(item["bottom"] for item in items)], "lift_range": [min(lifts), max(lifts)], "contact_on_y120": all(item["bottom"] == FEET_Y for item in items if item["expected_lift"] == 0), "airborne_lift_preserved": all(item["lift"] == item["expected_lift"] for item in items), "colour_count_range": [min(item["colour_count"] for item in items), max(item["colour_count"] for item in items)], "interior_detail_range": [min(details), max(details)], "interior_detail_mean": round(statistics.mean(details), 2), "remaining_spill_pixels": [item["remaining_spill_pixels"] for item in items], "palette_violations_before_map": sum(violations), "palette_violations": sum(item["palette_violations"] for item in items), "alpha_binary": all(item["alpha_binary"] for item in items), "borders_clear": all(item["border_clear"] for item in items), "all_have_4px_margin": all(item["margin"]["has_4px_margin"] for item in items)}
+	summary = {"frame_count": len(items), "output_columns": COLUMNS, "common_scale": round(scale, 8), "scale_by": args.scale_by, "common_offset_x": args.offset_x, "common_lift": args.lift_all, "ground_all": args.ground_all, "resample": args.resample, "sharpen_percent": args.sharpen, "despill": args.despill, "palette": args.palette.as_posix() if args.palette else "none", "min_component": args.min_component, "dropped_component_count": sum(len(group) for group in dropped_components), "dropped_component_pixels": sum(component["pixels"] for group in dropped_components for component in group), "body_height_range": [min(heights), max(heights)], "body_width_range": [min(widths), max(widths)], "area_range": [min(areas), max(areas)], "area_spread_percent": spread(areas), "bottom_range": [min(item["bottom"] for item in items), max(item["bottom"] for item in items)], "lift_range": [min(lifts), max(lifts)], "contact_on_y120": all(item["bottom"] == FEET_Y for item in items if item["expected_lift"] == 0), "airborne_lift_preserved": all(item["lift"] == item["expected_lift"] for item in items), "colour_count_range": [min(item["colour_count"] for item in items), max(item["colour_count"] for item in items)], "interior_detail_range": [min(details), max(details)], "interior_detail_mean": round(statistics.mean(details), 2), "remaining_spill_pixels": [item["remaining_spill_pixels"] for item in items], "palette_violations_before_map": sum(violations), "palette_violations": sum(item["palette_violations"] for item in items), "alpha_binary": all(item["alpha_binary"] for item in items), "borders_clear": all(item["border_clear"] for item in items), "all_have_4px_margin": all(item["margin"]["has_4px_margin"] for item in items)}
 	reference_report = None
 	if args.reference:
 		_, current = reference_frames(args.reference)
@@ -560,6 +554,7 @@ def parser() -> argparse.ArgumentParser:
 	p.add_argument("--despill", choices=("auto", "off"), default="off", help="remove green spill within 2 px of transparency")
 	p.add_argument("--offset-x", type=int, default=0, help="common horizontal shift applied to every frame after torso anchoring")
 	p.add_argument("--ground-all", action="store_true", help="place every frame on y=120 for an explicitly grounded motion")
+	p.add_argument("--lift-all", type=int, default=0, metavar="PX", help="lift every frame by the same output-pixel amount; use for wholly airborne rows")
 	p.add_argument("--outline", choices=("auto", "off"), default="off"); p.add_argument("--reference")
 	p.add_argument("--min-component", type=int, default=0, metavar="PX", help="drop detached 4-connected output components smaller than PX pixels")
 	p.add_argument("--title", default="SMASH NINE SPRITE NORMALIZATION"); p.add_argument("--out-dir", type=Path, required=True); p.add_argument("--name", required=True)
@@ -574,6 +569,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 		args.palette = None if str(args.palette).lower() == "none" else Path(args.palette)
 		if args.sheet and args.grid is None: raise ValueError("--sheet requires --grid")
 		if args.min_component < 0: raise ValueError("--min-component must be non-negative")
+		if args.lift_all < 0: raise ValueError("--lift-all must be non-negative")
 		if args.sharpen < 0: raise ValueError("--sharpen must be non-negative")
 		metrics = normalize(args); summary = metrics["summary"]
 		print(f"normalized {summary['frame_count']} frames; factor={summary['common_scale']}; height={summary['body_height_range']}; lift={summary['lift_range']}; detail={summary['interior_detail_range']}; colours={summary['colour_count_range']}; spill={summary['remaining_spill_pixels']}; border={summary['borders_clear']}; margin4={summary['all_have_4px_margin']}; dropped={summary['dropped_component_count']} components/{summary['dropped_component_pixels']} px")
