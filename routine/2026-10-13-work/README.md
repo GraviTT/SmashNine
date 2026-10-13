@@ -48,7 +48,7 @@
 - 13:06 호출. 13:08 시작(시계). CuSurvive 지침과 정리 도구 README 읽음, 분석 문서 작성.
 - 13:15 커밋 `aae3495` push(분석 문서, 카드 ART-35 · QA-18, 지시문 `CODEX-2026-10-13.prompt.md`). 클론: builder-art `codex/pipeline-35`, analyst `codex/inspect-18`(옛 클론의 추적 안 된 파일과 충돌해 강제 전환). 13:16 Codex A(ART-35, high, 75분)·B(QA-18, high, 70분) 실행.
 - 13:23 Codex A(ART-35) 끝(7분, CuSurvive 도구 이식): `tools/sprite_pipeline/`(normalize·prepare_raw·make_palette·시험 3, 8체형 팔레트), 뷰어 "지금 vs 후보"(같은 프레임 번호·배율·가이드로 나란히, 타일에 "후보 N"), 예시 후보 `art/bakeoff/luna/luna-walk-v1.png`. 리드 검수: `normalize.py`의 배율 코드 직접 확인 — 시트 전체에 배율 하나(`fixed:`/`height:`), 칸에 안 들어가면 줄이지 않고 "다시 생성" 오류로 멈춤, 머리 배율 없음. 로컬 브라우저에서 Luna walk 후보 비교 화면 확인(콘솔 오류 0). 병합 `5f83693`.
-- 13:30 Codex A 2차(ART-36 A, xhigh, 80분): Frey 기준 대기(새로 그려 배율 정하기) → spike_followup · descent · tumble 후보, 남으면 walk · attack. B 점검 결과를 기다리지 않고 사용자가 이미 지적한 줄부터.
+- 13:25 Codex A 2차(ART-36 A, xhigh, 80분): Frey 기준 대기(새로 그려 배율 정하기) → spike_followup · descent · tumble 후보, 남으면 walk · attack. B 점검 결과를 기다리지 않고 사용자가 이미 지적한 줄부터.
 
 ## 결과
 
