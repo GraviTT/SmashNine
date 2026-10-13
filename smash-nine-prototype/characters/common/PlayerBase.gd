@@ -851,15 +851,21 @@ func _configure_move_sheet(frames: SpriteFrames, id: String, rows: Array) -> boo
 	return _add_move_sheet_animations(frames, id, sheet, rows)
 
 ## Adds move-specific rows from a second atlas. The row table belongs to the character, while the
-## common loader enforces the same cell size and six-column contract as the main atlas.
+## common loader enforces the six-column contract. Its cell may be larger than the main one when the
+## main sheet is drawn 1:1 (D34: 192 px, so big poses keep the idle head size). Frames are drawn
+## centred at the main sheet's pixel scale, so a larger cell keeps its feet line as far below its
+## centre as the main cell does (y=152 in 192 = y=120 in 128) and the feet stay put.
 func _add_move_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Texture2D, rows: Array) -> bool:
-	if sheet == null or sheet.get_width() != original_sheet_cell * SHEET_COLUMNS:
+	if sheet == null or sheet.get_width() % SHEET_COLUMNS != 0:
 		return false
-	if sheet.get_height() < original_sheet_cell * rows.size():
+	var cell := int(sheet.get_width() / SHEET_COLUMNS)
+	if cell != original_sheet_cell and (cell < original_sheet_cell or original_sheet_cell != int(SHEET_SCREEN_CELL)):
+		return false
+	if sheet.get_height() < cell * rows.size():
 		return false
 	for row in rows.size():
 		var spec: Array = rows[row]
-		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(original_sheet_cell, original_sheet_cell), SHEET_COLUMNS, row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
+		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
 	return true
 
 ## Adds <prefix>_idle ... <prefix>_hurt from a sheet with the same cell size as the main

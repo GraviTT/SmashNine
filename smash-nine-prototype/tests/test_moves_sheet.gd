@@ -54,6 +54,7 @@ func _run() -> void:
 			_fail("%s should have %d frames" % [animation, ROW_COUNTS[row]])
 	probe.queue_free()
 	await process_frame
+	await _check_large_cell_sheet()
 
 	await _expect_move("up J", "attack_up", func(fighter): fighter.perform_basic_attack("up", Vector2.UP))
 	await _expect_move("down J", "attack_down", func(fighter): fighter.perform_basic_attack("down", Vector2.DOWN))
@@ -254,6 +255,23 @@ func _play_character_row(fighter: Node, character_id: String, row: String) -> vo
 				"dimension_slash": fighter.perform_skill_one()
 				"rune_shield": fighter.perform_skill_two()
 				"infinity_overdrive": fighter.perform_ultimate()
+
+## D34: a move sheet may use 192-px cells so big poses keep the idle head size; its frames stay
+## 192 px (drawn 1:1, centred), and a cell smaller than the main sheet's is refused.
+func _check_large_cell_sheet() -> void:
+	var fighter := _move_fighter("frey", false)
+	var frames: SpriteFrames = fighter.character_sprite.sprite_frames
+	var large := Image.create(192 * 6, 192 * 8, false, Image.FORMAT_RGBA8)
+	large.fill(Color.WHITE)
+	if not fighter._add_move_sheet_animations(frames, "frey", ImageTexture.create_from_image(large), fighter.get_move_sheet_rows()):
+		_fail("a 192-px move sheet should load")
+	elif frames.get_frame_texture(&"frey_descent", 0).get_size() != Vector2(192, 192):
+		_fail("192-px move frames should stay 192 px, got %s" % frames.get_frame_texture(&"frey_descent", 0).get_size())
+	var small := Image.create(100 * 6, 100 * 8, false, Image.FORMAT_RGBA8)
+	if fighter._add_move_sheet_animations(frames, "frey", ImageTexture.create_from_image(small), fighter.get_move_sheet_rows()):
+		_fail("a move sheet with cells smaller than the main sheet should be refused")
+	fighter.queue_free()
+	await process_frame
 
 func _fail(message: String) -> void:
 	push_error(message)

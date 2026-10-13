@@ -64,7 +64,10 @@ func _check_all_moves_sheets(directory: String) -> void:
 
 func _check_moves_sheet_edges(path: String) -> void:
 	moves_sheet_count += 1
-	_check_zero_border_sheet(path, CELL, "moves")
+	# Six columns; the cell may be larger than the main one (D34: 192 px).
+	var sheet := Image.load_from_file(ProjectSettings.globalize_path(path))
+	var cell := CELL if sheet == null or sheet.is_empty() else sheet.get_width() / 6
+	_check_zero_border_sheet(path, cell, "moves")
 
 
 func _check_all_monster_sheets(directory: String) -> void:
