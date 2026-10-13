@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normalize one generated motion to Smash Nine's 128px sprite contract."""
+"""Normalize one generated motion to Smash Nine's square-cell sprite contract."""
 
 from __future__ import annotations
 
@@ -18,9 +18,9 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CELL = 128
+DEFAULT_CELL = 128
+REFERENCE_CELL = 128
 COLUMNS = 6
-FEET_Y = 120
 ALPHA_CUT = 128
 BG_TOLERANCE = 58.0
 DEFAULT_HEIGHT = 100.0
@@ -397,6 +397,8 @@ def normalize_frame(
 	ground_all: bool,
 	lift_all: int,
 	lift_scale: float,
+	cell: int,
+	feet_y: int,
 ) -> tuple[Image.Image, int, int]:
 	box = alpha_bbox(source); bottom = box[3] - 1
 	subject = source.crop(box)
@@ -410,13 +412,13 @@ def normalize_frame(
 	if trim is None: raise ValueError("a frame disappeared while resizing")
 	subject = subject.crop(trim)
 	natural_lift = 0 if ground_all else max(0, round((source_ground - bottom) * scale))
-	lift = round((natural_lift + lift_all) * lift_scale); target_bottom = FEET_Y - lift
+	lift = round((natural_lift + lift_all) * lift_scale); target_bottom = feet_y - lift
 	anchor = (torso_anchor_x(source) - box[0]) * scale
-	x = round(CELL / 2 - anchor) + offset_x; y = target_bottom - subject.height + 1
-	if x < 1 or y < 1 or x + subject.width > CELL - 1 or y + subject.height > CELL - 1:
+	x = round(cell / 2 - anchor) + offset_x; y = target_bottom - subject.height + 1
+	if x < 1 or y < 1 or x + subject.width > cell - 1 or y + subject.height > cell - 1:
 		raise ValueError(f"frame does not fit at common scale {scale:.8g}: placement x={x}, y={y}, size={subject.width}x{subject.height}; regenerate or choose one smaller fixed factor for the whole motion")
-	canvas = Image.new("RGBA", (CELL, CELL), (0, 0, 0, 0)); canvas.alpha_composite(subject, (x, y))
-	# Run once more on the final 128px cell so the reported edge band and the
+	canvas = Image.new("RGBA", (cell, cell), (0, 0, 0, 0)); canvas.alpha_composite(subject, (x, y))
+	# Run once more on the final cell so the reported edge band and the
 	# corrected edge band are identical after trimming and placement.
 	canvas = despill_green_edge(canvas, despill)
 	violations = palette_violation_count(canvas, palette) if palette else 0
@@ -429,8 +431,8 @@ def normalize_frame(
 	return canvas, lift, violations
 
 
-def margins(box: tuple[int, int, int, int]) -> dict[str, int | bool]:
-	values = {"left": box[0], "top": box[1], "right": CELL - box[2], "bottom": CELL - box[3]}
+def margins(box: tuple[int, int, int, int], cell: int) -> dict[str, int | bool]:
+	values = {"left": box[0], "top": box[1], "right": cell - box[2], "bottom": cell - box[3]}
 	values["minimum"] = min(int(value) for value in values.values())
 	values["has_4px_margin"] = bool(values["minimum"] >= 4)
 	return values
@@ -446,8 +448,8 @@ def parse_reference(spec: str) -> tuple[Path, int, int]:
 
 def reference_frames(spec: str) -> tuple[Image.Image, list[Image.Image]]:
 	path, row, count = parse_reference(spec); sheet = Image.open(path).convert("RGBA")
-	idle = sheet.crop((0, 0, CELL, CELL))
-	return idle, [sheet.crop((i * CELL, row * CELL, (i + 1) * CELL, (row + 1) * CELL)) for i in range(count)]
+	idle = sheet.crop((0, 0, REFERENCE_CELL, REFERENCE_CELL))
+	return idle, [sheet.crop((i * REFERENCE_CELL, row * REFERENCE_CELL, (i + 1) * REFERENCE_CELL, (row + 1) * REFERENCE_CELL)) for i in range(count)]
 
 
 def frame_metrics(image: Image.Image) -> dict[str, object]:
@@ -466,34 +468,58 @@ def checker(size: tuple[int, int], square: int = 16) -> Image.Image:
 	return image
 
 
-def render_row(frames: Sequence[Image.Image], label: str, scale: int = 2) -> Image.Image:
-	cell = CELL * scale; label_width = 190
+def render_row(frames: Sequence[Image.Image], label: str, feet_y: int, scale: int = 2) -> Image.Image:
+	cell = frames[0].height * scale; label_width = 190
 	row = checker((label_width + cell * len(frames), cell), 16); draw = ImageDraw.Draw(row)
 	draw.rectangle((0, 0, label_width - 1, cell - 1), fill=(15, 21, 34)); draw.text((12, 14), label, font=font(18, True), fill=(239, 244, 255))
 	for i, frame in enumerate(frames):
 		x = label_width + i * cell; tile = frame.resize((cell, cell), Image.Resampling.NEAREST)
 		row.paste(tile.convert("RGB"), (x, 0), tile.getchannel("A")); draw.rectangle((x, 0, x + cell - 1, cell - 1), outline=(76, 92, 125))
-		draw.line((x, FEET_Y * scale, x + cell - 1, FEET_Y * scale), fill=(240, 75, 84), width=scale)
+		draw.line((x, feet_y * scale, x + cell - 1, feet_y * scale), fill=(240, 75, 84), width=scale)
 		draw.text((x + 5, 4), f"F{i}", font=font(13, True), fill=(235, 240, 250))
 	return row
 
 
-def save_sheet(frames: Sequence[Image.Image], path: Path) -> None:
-	sheet = Image.new("RGBA", (CELL * COLUMNS, CELL), (0, 0, 0, 0))
-	for i, frame in enumerate(frames): sheet.alpha_composite(frame, (i * CELL, 0))
+def render_anchor_candidates(anchor: Image.Image, frames: Sequence[Image.Image], feet_y: int, scale: int) -> Image.Image:
+	"""Render a 128px anchor beside larger candidates at one pixel scale and feet line."""
+	label_width = 190
+	height = frames[0].height
+	widths = [anchor.width, *(frame.width for frame in frames)]
+	row = checker((label_width + sum(width * scale for width in widths), height * scale), 16)
+	draw = ImageDraw.Draw(row)
+	draw.rectangle((0, 0, label_width - 1, row.height - 1), fill=(15, 21, 34))
+	draw.text((12, 14), "ANCHOR | CANDIDATE", font=font(18, True), fill=(239, 244, 255))
+	x = label_width
+	for index, (frame, frame_feet) in enumerate([(anchor, 120), *((frame, feet_y) for frame in frames)]):
+		tile = frame.resize((frame.width * scale, frame.height * scale), Image.Resampling.NEAREST)
+		y = (feet_y - frame_feet) * scale
+		row.paste(tile.convert("RGB"), (x, y), tile.getchannel("A"))
+		draw.rectangle((x, y, x + tile.width - 1, y + tile.height - 1), outline=(76, 92, 125))
+		draw.line((x, feet_y * scale, x + tile.width - 1, feet_y * scale), fill=(240, 75, 84), width=scale)
+		draw.text((x + 5, y + 4), "ANCHOR" if index == 0 else f"F{index - 1}", font=font(13, True), fill=(235, 240, 250))
+		x += tile.width
+	return row
+
+
+def save_sheet(frames: Sequence[Image.Image], path: Path, cell: int) -> None:
+	sheet = Image.new("RGBA", (cell * COLUMNS, cell), (0, 0, 0, 0))
+	for i, frame in enumerate(frames): sheet.alpha_composite(frame, (i * cell, 0))
 	sheet.save(path, optimize=True)
 
 
-def write_visuals(frames: Sequence[Image.Image], out: Path, reference: str | None, title: str, scale: int = 2) -> None:
-	render_row(frames, f"CANDIDATE {scale}X", scale).save(out / "closeup.png", optimize=True)
+def write_visuals(frames: Sequence[Image.Image], out: Path, reference: str | None, title: str, feet_y: int, scale: int = 2) -> None:
+	render_row(frames, f"CANDIDATE {scale}X", feet_y, scale).save(out / "closeup.png", optimize=True)
 	if reference:
 		idle, current = reference_frames(reference)
-		rows = [render_row([idle, *current], "CURRENT + IDLE", scale), render_row([idle, *frames], "CANDIDATE + IDLE", scale)]
+		if frames[0].height == REFERENCE_CELL:
+			rows = [render_row([idle, *current], "CURRENT + IDLE", 120, scale), render_row([idle, *frames], "CANDIDATE + IDLE", feet_y, scale)]
+		else:
+			rows = [render_anchor_candidates(idle, frames, feet_y, scale)]
 	else:
-		rows = [render_row(frames, "CANDIDATE", scale)]
+		rows = [render_row(frames, "CANDIDATE", feet_y, scale)]
 	width = max(row.width for row in rows); head = 62; gap = 8
 	canvas = Image.new("RGB", (width, head + sum(row.height for row in rows) + gap * (len(rows) - 1)), (12, 17, 29)); draw = ImageDraw.Draw(canvas)
-	draw.text((16, 10), title, font=font(24, True), fill=(243, 247, 255)); draw.text((16, 39), "red = feet y120; first cell = current idle", font=font(14), fill=(166, 190, 228))
+	draw.text((16, 10), title, font=font(24, True), fill=(243, 247, 255)); draw.text((16, 39), f"red = feet y{feet_y}; 128px anchor and candidate use the same pixel scale", font=font(14), fill=(166, 190, 228))
 	y = head
 	for row in rows: canvas.paste(row, (0, y)); y += row.height + gap
 	canvas.save(out / "compare.png", optimize=True)
@@ -513,23 +539,25 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 	scale, scale_detail = common_scale(prepared, args.scale_by, source_ground); palette = load_palette(args.palette)
 	results = []; lifts = []; violations = []; dropped_components = []
 	for frame in prepared:
-		result, lift, before = normalize_frame(frame, scale, source_ground, palette, args.outline, args.resample, args.sharpen, args.despill, args.offset_x, args.ground_all, args.lift_all, args.lift_scale)
+		result, lift, before = normalize_frame(frame, scale, source_ground, palette, args.outline, args.resample, args.sharpen, args.despill, args.offset_x, args.ground_all, args.lift_all, args.lift_scale, args.cell, args.feet_y)
 		result, dropped = drop_small_components(result, args.min_component)
 		results.append(result); lifts.append(lift); violations.append(before); dropped_components.append(dropped)
 	args.out_dir.mkdir(parents=True, exist_ok=True); frame_dir = args.out_dir / "frames"; frame_dir.mkdir(exist_ok=True)
-	sheet_path = args.out_dir / f"{args.name}.png"; save_sheet(results, sheet_path)
+	sheet_path = args.out_dir / f"{args.name}.png"; save_sheet(results, sheet_path, args.cell)
 	if args.candidate_out:
 		args.candidate_out.parent.mkdir(parents=True, exist_ok=True)
-		save_sheet(results, args.candidate_out)
+		save_sheet(results, args.candidate_out, args.cell)
 	for i, frame in enumerate(results): frame.save(frame_dir / f"{args.name}-{i:02d}.png", optimize=True)
-	write_visuals(results, args.out_dir, args.reference, args.title, args.compare_scale)
+	write_visuals(results, args.out_dir, args.reference, args.title, args.feet_y, args.compare_scale)
 	items = []
 	for i, frame in enumerate(results):
 		box = alpha_bbox(frame); alpha = sorted(set(frame.getchannel("A").get_flattened_data()))
-		items.append({"index": i, "source": labels[i], "bbox": list(box), "body_height": box[3] - box[1], "body_width": box[2] - box[0], "area": alpha_area(frame), "bottom": box[3] - 1, "lift": FEET_Y - (box[3] - 1), "expected_lift": lifts[i], **frame_metrics(frame), "palette_violations_before_map": violations[i], "palette_violations": palette_violation_count(frame, palette) if palette else 0, "alpha_values": alpha, "alpha_binary": set(alpha) <= {0, 255}, "border_clear": box[0] > 0 and box[1] > 0 and box[2] < CELL and box[3] < CELL, "margin": margins(box), "dropped_components": dropped_components[i], "dropped_component_pixels": sum(item["pixels"] for item in dropped_components[i])})
+		items.append({"index": i, "source": labels[i], "bbox": list(box), "body_height": box[3] - box[1], "body_width": box[2] - box[0], "area": alpha_area(frame), "bottom": box[3] - 1, "lift": args.feet_y - (box[3] - 1), "expected_lift": lifts[i], **frame_metrics(frame), "palette_violations_before_map": violations[i], "palette_violations": palette_violation_count(frame, palette) if palette else 0, "alpha_values": alpha, "alpha_binary": set(alpha) <= {0, 255}, "border_clear": box[0] > 0 and box[1] > 0 and box[2] < args.cell and box[3] < args.cell, "margin": margins(box, args.cell), "dropped_components": dropped_components[i], "dropped_component_pixels": sum(item["pixels"] for item in dropped_components[i])})
 	heights = [item["body_height"] for item in items]; widths = [item["body_width"] for item in items]; areas = [item["area"] for item in items]
 	details = [float(item["interior_detail"]) for item in items]
-	summary = {"frame_count": len(items), "output_columns": COLUMNS, "common_scale": round(scale, 8), "scale_by": args.scale_by, "common_offset_x": args.offset_x, "common_lift": args.lift_all, "lift_scale": args.lift_scale, "ground_all": args.ground_all, "resample": args.resample, "sharpen_percent": args.sharpen, "despill": args.despill, "palette": args.palette.as_posix() if args.palette else "none", "min_component": args.min_component, "dropped_component_count": sum(len(group) for group in dropped_components), "dropped_component_pixels": sum(component["pixels"] for group in dropped_components for component in group), "body_height_range": [min(heights), max(heights)], "body_width_range": [min(widths), max(widths)], "area_range": [min(areas), max(areas)], "area_spread_percent": spread(areas), "bottom_range": [min(item["bottom"] for item in items), max(item["bottom"] for item in items)], "lift_range": [min(lifts), max(lifts)], "contact_on_y120": all(item["bottom"] == FEET_Y for item in items if item["expected_lift"] == 0), "airborne_lift_preserved": all(item["lift"] == item["expected_lift"] for item in items), "colour_count_range": [min(item["colour_count"] for item in items), max(item["colour_count"] for item in items)], "interior_detail_range": [min(details), max(details)], "interior_detail_mean": round(statistics.mean(details), 2), "remaining_spill_pixels": [item["remaining_spill_pixels"] for item in items], "palette_violations_before_map": sum(violations), "palette_violations": sum(item["palette_violations"] for item in items), "alpha_binary": all(item["alpha_binary"] for item in items), "borders_clear": all(item["border_clear"] for item in items), "all_have_4px_margin": all(item["margin"]["has_4px_margin"] for item in items)}
+	summary = {"frame_count": len(items), "output_columns": COLUMNS, "common_scale": round(scale, 8), "scale_by": args.scale_by, "common_offset_x": args.offset_x, "common_lift": args.lift_all, "lift_scale": args.lift_scale, "ground_all": args.ground_all, "resample": args.resample, "sharpen_percent": args.sharpen, "despill": args.despill, "palette": args.palette.as_posix() if args.palette else "none", "min_component": args.min_component, "dropped_component_count": sum(len(group) for group in dropped_components), "dropped_component_pixels": sum(component["pixels"] for group in dropped_components for component in group), "body_height_range": [min(heights), max(heights)], "body_width_range": [min(widths), max(widths)], "area_range": [min(areas), max(areas)], "area_spread_percent": spread(areas), "bottom_range": [min(item["bottom"] for item in items), max(item["bottom"] for item in items)], "lift_range": [min(lifts), max(lifts)], "contact_on_feet_y": all(item["bottom"] == args.feet_y for item in items if item["expected_lift"] == 0), "airborne_lift_preserved": all(item["lift"] == item["expected_lift"] for item in items), "colour_count_range": [min(item["colour_count"] for item in items), max(item["colour_count"] for item in items)], "interior_detail_range": [min(details), max(details)], "interior_detail_mean": round(statistics.mean(details), 2), "remaining_spill_pixels": [item["remaining_spill_pixels"] for item in items], "palette_violations_before_map": sum(violations), "palette_violations": sum(item["palette_violations"] for item in items), "alpha_binary": all(item["alpha_binary"] for item in items), "borders_clear": all(item["border_clear"] for item in items), "all_have_4px_margin": all(item["margin"]["has_4px_margin"] for item in items)}
+	# Backwards-compatible key retained for existing 128px consumers.
+	if args.feet_y == 120: summary["contact_on_y120"] = summary["contact_on_feet_y"]
 	reference_report = None
 	if args.reference:
 		_, current = reference_frames(args.reference)
@@ -540,7 +568,7 @@ def normalize(args: argparse.Namespace) -> dict[str, object]:
 		summary["interior_detail_ratio"] = round(summary["interior_detail_mean"] / reference_mean, 4) if reference_mean else None
 		for item in items:
 			item["interior_detail_ratio_to_reference_mean"] = round(float(item["interior_detail"]) / reference_mean, 4) if reference_mean else None
-	metrics = {"input": {"sheet": args.sheet.as_posix() if args.sheet else None, "frames": args.frames, "grid": list(args.grid) if args.grid else None, "pick": parse_pick(args.pick), "backgrounds": backgrounds}, "normalization": {**scale_detail, "outline": args.outline, "cell": CELL, "feet_y": FEET_Y, "horizontal_anchor": "median torso row centre"}, "summary": summary, "reference": reference_report, "frames": items, "outputs": {"sheet": sheet_path.as_posix(), "candidate": args.candidate_out.as_posix() if args.candidate_out else None, "frames": frame_dir.as_posix(), "closeup": (args.out_dir / "closeup.png").as_posix(), "compare": (args.out_dir / "compare.png").as_posix()}}
+	metrics = {"input": {"sheet": args.sheet.as_posix() if args.sheet else None, "frames": args.frames, "grid": list(args.grid) if args.grid else None, "pick": parse_pick(args.pick), "backgrounds": backgrounds}, "normalization": {**scale_detail, "outline": args.outline, "cell": args.cell, "feet_y": args.feet_y, "horizontal_anchor": "median torso row centre"}, "summary": summary, "reference": reference_report, "frames": items, "outputs": {"sheet": sheet_path.as_posix(), "candidate": args.candidate_out.as_posix() if args.candidate_out else None, "frames": frame_dir.as_posix(), "closeup": (args.out_dir / "closeup.png").as_posix(), "compare": (args.out_dir / "compare.png").as_posix()}}
 	(args.out_dir / "metrics.json").write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
 	return metrics
 
@@ -549,6 +577,8 @@ def parser() -> argparse.ArgumentParser:
 	p = argparse.ArgumentParser(description=__doc__); source = p.add_mutually_exclusive_group(required=True)
 	source.add_argument("--sheet", type=Path); source.add_argument("--frames")
 	p.add_argument("--grid", type=parse_grid); p.add_argument("--pick"); p.add_argument("--bg", default="auto")
+	p.add_argument("--cell", type=int, default=DEFAULT_CELL, metavar="PX", help="square output cell size (default: 128)")
+	p.add_argument("--feet-y", type=int, metavar="Y", help="feet line (default: cell/2 + 56)")
 	p.add_argument("--scale-by", default="height"); p.add_argument("--palette", default="none", help="palette JSON path, or 'none' to preserve colours")
 	p.add_argument("--resample", choices=("box", "lanczos"), default="lanczos")
 	p.add_argument("--sharpen", type=float, default=60, metavar="PERCENT", help="RGB unsharp mask percent; radius 1, threshold 2; 0 disables")
@@ -568,6 +598,9 @@ def parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
 	args = parser().parse_args(argv)
 	try:
+		if args.cell < 8: raise ValueError("--cell must be at least 8")
+		args.feet_y = args.cell // 2 + 56 if args.feet_y is None else args.feet_y
+		if not 1 <= args.feet_y < args.cell - 1: raise ValueError("--feet-y must leave a one-pixel border inside the cell")
 		args.palette = None if str(args.palette).lower() == "none" else Path(args.palette)
 		if args.sheet and args.grid is None: raise ValueError("--sheet requires --grid")
 		if args.min_component < 0: raise ValueError("--min-component must be non-negative")

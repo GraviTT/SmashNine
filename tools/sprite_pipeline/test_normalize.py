@@ -76,6 +76,37 @@ class NormalizeTests(unittest.TestCase):
 		assert metrics is not None
 		self.assertEqual(metrics["summary"]["common_scale"], 1)
 
+	def test_custom_cell_and_default_feet_line_control_output_and_metrics(self) -> None:
+		_, metrics = self.run_tool("fixed:1", extra=["--cell", "192"])
+		assert metrics is not None
+		self.assertEqual(metrics["normalization"]["cell"], 192)
+		self.assertEqual(metrics["normalization"]["feet_y"], 152)
+		self.assertTrue(metrics["summary"]["contact_on_feet_y"])
+		self.assertNotIn("contact_on_y120", metrics["summary"])
+		self.assertEqual(metrics["summary"]["bottom_range"], [142, 152])
+		with Image.open(self.root / "out/synthetic.png") as output:
+			self.assertEqual(output.size, (1152, 192))
+		# Torso anchoring follows the selected cell centre, not the old x=64.
+		centres = [(item["bbox"][0] + item["bbox"][2]) / 2 for item in metrics["frames"]]
+		self.assertTrue(all(abs(centre - 96) < 5 for centre in centres))
+
+	def test_explicit_feet_line_overrides_cell_default(self) -> None:
+		_, metrics = self.run_tool("fixed:1", extra=["--cell", "192", "--feet-y", "150", "--ground-all"])
+		assert metrics is not None
+		self.assertEqual(metrics["normalization"]["feet_y"], 150)
+		self.assertEqual(metrics["summary"]["bottom_range"], [150, 150])
+
+	def test_mixed_compare_keeps_pixel_scale_and_aligns_128_anchor_feet(self) -> None:
+		anchor = Image.new("RGBA", (128, 128), (0, 0, 0, 0))
+		candidate = Image.new("RGBA", (192, 192), (0, 0, 0, 0))
+		anchor.putpixel((64, 116), (20, 220, 80, 255))
+		candidate.putpixel((96, 148), (20, 220, 80, 255))
+		board = NORMALIZE.render_anchor_candidates(anchor, [candidate], feet_y=152, scale=4)
+		self.assertEqual(board.size, (190 + (128 + 192) * 4, 192 * 4))
+		# Both source pixels land four pixels above the common y=152 feet line.
+		self.assertEqual(board.getpixel((190 + 64 * 4, 148 * 4)), (20, 220, 80))
+		self.assertEqual(board.getpixel((190 + 128 * 4 + 96 * 4, 148 * 4)), (20, 220, 80))
+
 	def test_ground_all_and_common_offset_are_reported(self) -> None:
 		_, metrics = self.run_tool("fixed:1", extra=["--ground-all", "--offset-x", "-2"])
 		assert metrics is not None

@@ -1,0 +1,390 @@
+{
+  "art40": {"factor": 0.310976, "lift_scale": 1.0, "head_scale": 1.01, "source_raw": "art/raw/frey-38/attack_down/raw.png"},
+  "input": {
+    "sheet": "art/raw/frey-38/attack_down/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.310976,
+    "scale_by": "fixed:0.310976",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      93,
+      129
+    ],
+    "body_width_range": [
+      100,
+      130
+    ],
+    "area_range": [
+      6009,
+      6682
+    ],
+    "area_spread_percent": 10.07,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      5389,
+      5974
+    ],
+    "interior_detail_range": [
+      96.85,
+      99.93
+    ],
+    "interior_detail_mean": 98.51,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 97.69,
+    "interior_detail_ratio": 1.0084
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.69,
+        "colour_count": 4737,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.69,
+    "colour_count_range": [
+      4737,
+      4737
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/frey-38/attack_down/raw.png#0,0",
+      "bbox": [
+        42,
+        24,
+        145,
+        153
+      ],
+      "body_height": 129,
+      "body_width": 103,
+      "area": 6682,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.84,
+      "colour_count": 5974,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 42,
+        "top": 24,
+        "right": 47,
+        "bottom": 39,
+        "minimum": 24,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0015
+    },
+    {
+      "index": 1,
+      "source": "art/raw/frey-38/attack_down/raw.png#1,0",
+      "bbox": [
+        47,
+        47,
+        161,
+        153
+      ],
+      "body_height": 106,
+      "body_width": 114,
+      "area": 6133,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 99.93,
+      "colour_count": 5507,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 47,
+        "top": 47,
+        "right": 31,
+        "bottom": 39,
+        "minimum": 31,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0229
+    },
+    {
+      "index": 2,
+      "source": "art/raw/frey-38/attack_down/raw.png#2,0",
+      "bbox": [
+        45,
+        49,
+        152,
+        153
+      ],
+      "body_height": 104,
+      "body_width": 107,
+      "area": 6009,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 99.62,
+      "colour_count": 5389,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 45,
+        "top": 49,
+        "right": 40,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0198
+    },
+    {
+      "index": 3,
+      "source": "art/raw/frey-38/attack_down/raw.png#0,1",
+      "bbox": [
+        43,
+        56,
+        168,
+        153
+      ],
+      "body_height": 97,
+      "body_width": 125,
+      "area": 6104,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.0,
+      "colour_count": 5499,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 43,
+        "top": 56,
+        "right": 24,
+        "bottom": 39,
+        "minimum": 24,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9929
+    },
+    {
+      "index": 4,
+      "source": "art/raw/frey-38/attack_down/raw.png#1,1",
+      "bbox": [
+        43,
+        60,
+        173,
+        153
+      ],
+      "body_height": 93,
+      "body_width": 130,
+      "area": 6015,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 96.85,
+      "colour_count": 5407,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 43,
+        "top": 60,
+        "right": 19,
+        "bottom": 39,
+        "minimum": 19,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9914
+    },
+    {
+      "index": 5,
+      "source": "art/raw/frey-38/attack_down/raw.png#2,1",
+      "bbox": [
+        42,
+        47,
+        142,
+        153
+      ],
+      "body_height": 106,
+      "body_width": 100,
+      "area": 6055,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 99.83,
+      "colour_count": 5438,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 42,
+        "top": 47,
+        "right": 50,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0219
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-40/attack_down/frey-attack_down-v1.png",
+    "candidate": "art/bakeoff/frey/frey-attack_down-v1.png",
+    "frames": "reports/codex-art-40/attack_down/frames",
+    "closeup": "reports/codex-art-40/attack_down/closeup.png",
+    "compare": "reports/codex-art-40/attack_down/compare.png"
+  }
+}
