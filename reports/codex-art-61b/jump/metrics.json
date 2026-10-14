@@ -1,0 +1,155 @@
+{
+  "input": {
+    "sheet": "art/raw/rio-61b/jump_fall_hurt/prepared.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": [
+      0
+    ],
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 1,
+    "output_columns": 6,
+    "common_scale": 0.19,
+    "scale_by": "fixed:0.19",
+    "common_offset_x": 7,
+    "common_lift": 8,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      101,
+      101
+    ],
+    "body_width_range": [
+      109,
+      109
+    ],
+    "area_range": [
+      5324,
+      5324
+    ],
+    "area_spread_percent": 0.0,
+    "bottom_range": [
+      112,
+      112
+    ],
+    "lift_range": [
+      8,
+      8
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4746,
+      4746
+    ],
+    "interior_detail_range": [
+      100.44,
+      100.44
+    ],
+    "interior_detail_mean": 100.44,
+    "remaining_spill_pixels": [
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 97.64,
+    "interior_detail_ratio": 1.0287
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.64,
+        "colour_count": 4711,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.64,
+    "colour_count_range": [
+      4711,
+      4711
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/rio-61b/jump_fall_hurt/prepared.png#0,0",
+      "bbox": [
+        9,
+        12,
+        118,
+        113
+      ],
+      "body_height": 101,
+      "body_width": 109,
+      "area": 5324,
+      "bottom": 112,
+      "lift": 8,
+      "expected_lift": 8,
+      "interior_detail": 100.44,
+      "colour_count": 4746,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 9,
+        "top": 12,
+        "right": 10,
+        "bottom": 15,
+        "minimum": 9,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0287
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-61b/jump/rio_female-jump-v1.png",
+    "candidate": "art/bakeoff/rio/rio_female-jump-v1.png",
+    "frames": "reports/codex-art-61b/jump/frames",
+    "closeup": "reports/codex-art-61b/jump/closeup.png",
+    "compare": "reports/codex-art-61b/jump/compare.png"
+  }
+}
