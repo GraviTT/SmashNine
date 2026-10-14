@@ -1,57 +1,44 @@
-# CODEX-ART-44 · Luna phase 2B: Brave Luna rows
+# CODEX-ART-44 · Brave Luna: three design proposals (idle anchors) for the user to pick
 
-- Request: 사용자 2026-10-14 "Luna 진행. Brave까지." Method D35, rules D32–D34. **Candidates only**; nothing in `smash-nine-prototype/` changes.
-- Unit B: branch `codex/luna-44`, clone `SmashNine-units/builder-art/SmashNine`. Unit A (`CODEX-ART-43.md`, the normal-form rows and the transformation) runs at the same time in `builder-frey`. Keep to your files.
-- Anchor: `art/bakeoff/luna/luna_brave-idle-v2.png` (Image 1 for every row: size, look, detail). Its head equals the Luna anchor's. Image 2 = the current game row ×4 nearest (what the move is; ignore baked effects such as star arcs, glows and orbs of light).
-- Settings: `--resample lanczos --sharpen 60 --despill auto --palette none --bg #00ff00`. One factor per sheet, matched with `head_scale.py --anchor art/bakeoff/luna/luna-idle-v2.png:0` (the Luna anchor: same person), median 0.96–1.04.
-- Cells: base rows 128 (feet y=120); move rows `--cell 192` (feet y=152, D34). One generation per motion, a second only if the first fails. No effects: the game draws the star bursts, the comet light, the heart laser and the aura. The gauntlets are solid objects with no glow halo. Airborne frames are drawn lifted.
-- Every 4-frame motion becomes 6 with the same length (fps × 6 / 4); the 6-frame rows keep their fps.
+- Request: 사용자 2026-10-14 "Luna 진행. Brave까지. 추가로, Luna가 궁극기를 사용할 때 변신하는 특별 모션이 있으면 좋겠다." The lead asked how Brave Luna should look, because today she wears Luna's outfit and only the gauntlets differ, so the transformation changes little. The user chose **"시안 3개 보고 고르기"**.
+- Unit B: branch `codex/luna-44`, clone `SmashNine-units/builder-art/SmashNine`. Unit A (`CODEX-ART-43.md`: the new Luna anchor and the normal-form rows) runs at the same time in `builder-frey`. Never touch `luna-*` normal-form files.
+- **Candidates only**; nothing in `smash-nine-prototype/` changes. Method D35, rules D32–D34.
 
-## Rows (in this order)
-**Base sheet (128):**
-1. `walk` 6, loop @10: a bouncy brawler walk, fists up. The legs must clearly stride (contact, down, passing, then the other side); hair and ribbon lag one frame.
-2. `jump` / `fall` / `hurt`: one pose each, in one image.
-   - jump: rising, knees tucked, fists up
-   - fall: legs reaching down
-   - hurt: recoil, eyes squeezed
-3. `shield` 6 @12: gauntlets crossed in front of the face. Starts raising, braced, holds.
-4. `attack` 6 @16: the base row is only a fallback. Normalise the `brave_combo` raw (row 5) a second time at 128 with the largest single factor that fits, and say what head scale that gives.
+## Three proposals, each a 6-frame idle (loop, 10.5 fps)
+All three are the same girl as Luna:
+- the same face, magenta eyes, pink hair colour, the purple bow with the gold star
+- the palette family
+- chibi proportions, 2.2 heads tall (D25)
+- the same head size
 
-**Move sheet (192):**
+No wand: Brave Luna fights with her fists and feet ("별빛을 주먹과 발에 압축", `Luna.md`). Gauntlets and boots are **worn armour**: armoured gloves up to the forearm and armoured boots or greaves, each with a star emblem. They are not stars held in the hands; ART-42's `luna_brave-idle-v2` read as two held white stars, which is what to avoid.
 
-5. `brave_combo` 6 @16, J: three hits, two frames each (the game plays 1–2, 3–4, 5–6).
-   1. guard
-   2. straight jab
-   3. body-kick chamber
-   4. body-height kick
-   5. spin-kick wind-up
-   6. wide spin kick
-6. `brave_upper` 6 @24, up J: a star uppercut that lifts her (crouch, drive up, fist rising, airborne at the top, fist overhead, recover in the air).
-7. `brave_low` 6 @24, down J: a low leg sweep (drop low, sweep a leg along the floor, follow through, recover).
-8. `brave_air_side` 6 @24, air side J: a forward flying kick (chamber, extend, hold, recover), all airborne.
-9. `brave_dive` 6 @24, air down J: a diving kick downward until she lands (tuck, kick angled down, dive, dive, landing touch, recover).
-10. `comet_drive` 6 @24, K: a short dash with a compressed star punch (crouch, push off, lunging punch, extended, hold, recover). The game rotates nothing; it is drawn facing right.
-11. `luna_breaker` 6 @16, L: a big spinning finishing kick (wind-up, turn, back to the viewer, spinning heel kick extended, follow-through, recover).
-12. `heart_laser` 6 @12: the game holds the last frame while the laser lasts.
-    1. plant feet
-    2. hands drawn in
-    3. hands forming a heart shape at the chest
-    4. heart pushed forward, arms straight, braced
-    5. firing stance, braced
-    6. the same stance held
-13. `tumble` 6, loop @21: spinning after a strong hit, body curled, one full backward turn; the face is visible in at least 2 frames.
+1. **`v3`, ① today's outfit + armour:** Luna's dress kept as it is, plus purple-and-gold armoured star gauntlets to the forearm and armoured boots with star knee guards. Light, bouncy fighting stance, fists up.
+2. **`v4`, ② tied hair, short combat outfit:** the hair tied up into a high ponytail with the purple bow (the ponytail swings with the bounce). A short, sporty combat outfit in Luna's purples and white: sleeveless top, short skirt over shorts, a short scarf. Gauntlets and boots as ①. Fighting stance, fists up.
+3. **`v5`, ③ gold-and-white starlight armour:** Luna's outfit plus gold-and-white armour pieces: a star chest plate, one shoulder guard, white-gold gauntlets and greaves, a short cape. The star clip becomes a small gold tiara-like crest. Fighting stance, fists up.
 
-## Checks for every row
-- head scale 0.96–1.04 (rotated frames excepted; judge by eye)
-- border clear, 4 px margin, spill 0, detail ≥ 90
-- one face; two gauntlets, boots intact
-- 4× next to the anchor; the motion reads as the move
+Idle pose lines (the same for all three): a light, bouncy fighting stance with feet planted and a small bounce.
+1. guard
+2. knees dip
+3. lowest
+4. rising
+5. top, hair and ribbon lag
+6. between 5 and 1
+
+## How
+- One generation per proposal (512-px cells, 3×2). A second only if the first fails the checks.
+- Image 1 = the current `smash-nine-prototype/assets/art/luna/luna_sheet.png` idle frame 1 ×4 nearest (face, head ratio, detail).
+- Image 2 = the current `luna_brave_sheet.png` idle frame 1 ×4 (stance only).
+- Prompt structure and the detail style line as `reports/codex-art-37/idle/prompt.txt`. No effects: no glow halos, sparkles or auras; the gauntlets' stars are solid.
+- `normalize.py --cell 128 --resample lanczos --sharpen 60 --despill auto --palette none --bg #00ff00`. One factor per proposal, chosen so that `head_scale.py --anchor smash-nine-prototype/assets/art/luna/luna_sheet.png:0` reads 0.96–1.04 (the same head as the current Luna and as the new Luna anchor unit A is making).
+- Checks: head scale 0.96–1.04; border clear, 4 px margin; spill 0; detail ≥ 90; one face; two gauntlets; boots intact; look at every frame at 4×.
 
 ## Output
-- `art/bakeoff/luna/luna_brave-<row>-vN.png` (next free version) + `.json` (`note`, `fps`, `frames`, and `cell`/`feet` for 192 rows).
+- `art/bakeoff/luna/luna_brave-idle-v3.png`, `-v4.png`, `-v5.png` (768×128).
+- Each has a `.json` `{"note": "<시안 ①/②/③ 한 줄 설명, Korean>", "fps": 10.5, "frames": 6}`. The note is what the user reads in the viewer, so name the proposal first ("시안 ② 머리 묶음·짧은 전투복 …").
 - Raw generations go to `art/raw/luna-44/` (git-ignored).
-- `reports/codex-art-44/<row>/`: `prompt.txt`, `compare.png` (4×), `metrics.json`.
-- `reports/codex-art-44/README.md` (Korean) and `commit.ps1` (no `git add -f`, nothing under `art/raw/`).
+- `reports/codex-art-44/<v3|v4|v5>/`: `prompt.txt`, `compare.png` (4×, current Brave | proposal), `metrics.json`.
+- `reports/codex-art-44/README.md` (Korean): the three side by side, with what each changes. Plus `commit.ps1` (no `git add -f`, nothing under `art/raw/`).
 
 ## Writable
-`art/bakeoff/luna/luna_brave-*` (new files only; leave `retired/` alone), `art/raw/luna-44/**`, `reports/codex-art-44/**`. Hard stop 110 minutes; deliver finished rows and list the rest.
+`art/bakeoff/luna/luna_brave-idle-v3.*`, `-v4.*`, `-v5.*`, `art/raw/luna-44/**`, `reports/codex-art-44/**`. Hard stop 50 minutes.
