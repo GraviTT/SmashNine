@@ -11,6 +11,8 @@ const FREY_LAYOUT := {"idle": 6, "walk": 6, "jump": 1, "fall": 1, "attack": 6, "
 const LUNA_LAYOUT := FREY_LAYOUT
 ## Yuki redrawn the same way (2026-10-14).
 const YUKI_LAYOUT := FREY_LAYOUT
+## Nova redrawn the same way (2026-10-14, both bodies).
+const NOVA_LAYOUT := FREY_LAYOUT
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -32,7 +34,7 @@ func _check_characters() -> bool:
 		"frey": FREY_LAYOUT,
 		"yuki": YUKI_LAYOUT,
 		"luna": LUNA_LAYOUT,
-		"nova": SHARED_LAYOUT,
+		"nova": NOVA_LAYOUT,
 		"rio": SHARED_LAYOUT
 	}
 	for character_id in expected_counts:

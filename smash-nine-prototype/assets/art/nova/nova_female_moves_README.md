@@ -1,39 +1,31 @@
-# Nova female move sheet
+# Nova female sheets (redrawn 2026-10-14, D33–D37)
 
-`nova_female_moves_sheet.png` is the female-body counterpart to Nova's move atlas.
-It shares row order, move meanings, timing and pose beats with the male sheet.
+Both sheets were rebuilt from the accepted motion-viewer candidates (`art/bakeoff/nova/nova_female-*`, cards `design/tasks/CODEX-ART-51.md` and `CODEX-ART-52.md`) with `tools/sprite_pipeline/assemble.py`, pixel for pixel. The method is the Frey method (`reports/frey-rework-2026-10-14.md`).
 
-## Contract
+## `nova_female_sheet.png`: base sheet (128 px, feet y=120, rows `Nova.SHEET_ROWS`, shared by both bodies)
 
-- Canvas: 768×1024 RGBA PNG
-- Grid: 6 columns × 8 rows, 128×128 per cell
-- Facing right; used frames left-aligned; unused cells transparent
+| Row | Frames | FPS | Source |
+| --- | ---: | ---: | --- |
+| idle | 6 | 6.3 (D37) | `nova_female-idle-v2` (the anchor, 2.5 heads) |
+| walk | 6 | 10 | `nova_female-walk-v1` |
+| jump | 1 | 1 | `nova_female-jump-v1` |
+| fall | 1 | 1 | `nova_female-fall-v1` |
+| attack | 6 | 35.25 | `nova_female-attack-v1`: a fallback only |
+| shield | 6 | 12 | `nova_female-shield-v1` |
+| hurt | 1 | 1 | `nova_female-hurt-v1` |
 
-| Row | Animation | Frames | Timing / preview fps | Input and move |
-|---:|---|---:|---|---|
-| 0 | `vector_side` | 4 | 0.17s / 23.5fps | ground neutral/side J · Vector Strike |
-| 1 | `vector_upper` | 4 | 0.17–0.19s / 21–23.5fps | up J, air up J |
-| 2 | `compression_stomp` | 4 | 0.23s / 17.4fps | ground down J |
-| 3 | `air_side` | 4 | 0.15s / 26.7fps | air side J |
-| 4 | `meteor_kick` | 5 | 0.20s then landing hold / 25fps | air down J |
-| 5 | `vector_shift` | 4 | 0.22s / 18.2fps | K · Vector Shift |
-| 6 | `gravity_brake` | 5 | 0.42s / 11.9fps | L · Gravity Brake |
-| 7 | `slingshot_start` | 6 | duration-fit; last frame may hold | I first input · Event Horizon |
+## `nova_female_moves_sheet.png`: move sheet (192 px, feet y=152, D34)
 
-The pose sequence for each row is identical to `nova_male_moves_README.md`.
+| Row | Frames | FPS | Move | Source |
+| --- | ---: | ---: | --- | --- |
+| `vector_side` | 6 | 35.25 | neutral/side J: a dashing punch | `nova_female-vector_side-v3` |
+| `vector_upper` | 6 | 33 | up J: a rising uppercut | `nova_female-vector_upper-v1` |
+| `compression_stomp` | 6 | 26.1 | down J: a gravity stomp | `nova_female-compression_stomp-v1` |
+| `air_side` | 6 | 40 | aerial side J: a flying punch | `nova_female-air_side-v1` |
+| `meteor_kick` | 6 | 30 | aerial down J: the meteor kick | `nova_female-meteor_kick-v1` |
+| `vector_shift` | 6 | 27.3 | K: pure acceleration | `nova_female-vector_shift-v1` |
+| `gravity_brake` | 6 | 14.3 | L: a full stop and a burst | `nova_female-gravity_brake-v1` |
+| `slingshot_start` | 6 | 14 | ultimate, first press: conjuring the core | `nova_female-slingshot_start-v1` |
+| `tumble` | 6 | 21, loop | **new** strong-launch hitstun | `nova_female-tumble-v1` |
 
-## Source and prompt
-
-- Built-in ImageGen source: `nova_female_moves_source.png` (1374×1145).
-- References: `nova_female_sheet.png` and `nova_female_illustration.png`.
-- Prompt invariant: preserve the short upswept hair, feminine live body, same suit,
-  plates, emblems and palette; match the male row beats; hard alpha; no text/background.
-
-## Processing and checks
-
-Godot `Image` processing uses dynamic transparent gutters, nearest reduction only
-(scale 0.7143), hard alpha, sub-3px island cleanup and live-sheet anchors. The neutral
-scale anchor matches the live idle dark-body height (0px delta); partial alpha is zero.
-The `meteor_kick` flame silhouette and `slingshot_start` core spacing need human taste
-review at game speed.
-
+No effects are drawn into these frames. The game draws the trails, shockwaves, bursts and the gravity core.

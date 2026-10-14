@@ -1,42 +1,31 @@
-# Nova male move sheet
+# Nova male sheets (redrawn 2026-10-14, D33–D37)
 
-`nova_male_moves_sheet.png` is Nova's male-body per-move atlas. It supplements the
-live `nova_male_sheet.png`; it does not replace the seven common animation rows.
+Both sheets were rebuilt from the accepted motion-viewer candidates (`art/bakeoff/nova/nova_male-*`, cards `design/tasks/CODEX-ART-51.md` and `CODEX-ART-52.md`) with `tools/sprite_pipeline/assemble.py`, pixel for pixel. The method is the Frey method (`reports/frey-rework-2026-10-14.md`).
 
-## Contract
+## `nova_male_sheet.png`: base sheet (128 px, feet y=120, rows `Nova.SHEET_ROWS`, shared by both bodies)
 
-- Canvas: 768×1024 RGBA PNG
-- Grid: 6 columns × 8 rows, 128×128 per cell
-- Facing right; used frames are left-aligned and unused cells are transparent
-- Runtime scale: the same 1:1 authored size as the 128px live sheet
+| Row | Frames | FPS | Source |
+| --- | ---: | ---: | --- |
+| idle | 6 | 6.3 (D37) | `nova_male-idle-v2` (the anchor, 2.5 heads) |
+| walk | 6 | 10 | `nova_male-walk-v1` |
+| jump | 1 | 1 | `nova_male-jump-v1` |
+| fall | 1 | 1 | `nova_male-fall-v1` |
+| attack | 6 | 35.25 | `nova_male-attack-v1`: a fallback only |
+| shield | 6 | 12 | `nova_male-shield-v1` |
+| hurt | 1 | 1 | `nova_male-hurt-v1` |
 
-| Row | Animation | Frames | Timing / preview fps | Input and move | Pose sequence |
-|---:|---|---:|---|---|---|
-| 0 | `vector_side` | 4 | 0.17s / 23.5fps | ground neutral/side J · Vector Strike | coil → launch → gravity punch → brake |
-| 1 | `vector_upper` | 4 | 0.17–0.19s / 21–23.5fps | up J, air up J | crouch → rise → vertical active → air recover |
-| 2 | `compression_stomp` | 4 | 0.23s / 17.4fps | ground down J | brace → compress → ground impact → recover |
-| 3 | `air_side` | 4 | 0.15s / 26.7fps | air side J | tuck → align → flying punch → air brake |
-| 4 | `meteor_kick` | 5 | 0.20s then landing hold / 25fps | air down J | turn → chamber → dive → meteor kick → landing lock |
-| 5 | `vector_shift` | 4 | 0.22s / 18.2fps | K · Vector Shift | brace → streamline → streak → brake |
-| 6 | `gravity_brake` | 5 | 0.42s / 11.9fps | L · Gravity Brake | speed → stop → cross fists → burst → recover |
-| 7 | `slingshot_start` | 6 | duration-fit; last frame may hold | I first input · Event Horizon | plant → aim → gather → core → detach → orbit ready |
+## `nova_male_moves_sheet.png`: move sheet (192 px, feet y=152, D34)
 
-## Source and prompt
+| Row | Frames | FPS | Move | Source |
+| --- | ---: | ---: | --- | --- |
+| `vector_side` | 6 | 35.25 | neutral/side J: a dashing punch | `nova_male-vector_side-v1` |
+| `vector_upper` | 6 | 33 | up J: a rising uppercut | `nova_male-vector_upper-v1` |
+| `compression_stomp` | 6 | 26.1 | down J: a gravity stomp | `nova_male-compression_stomp-v1` |
+| `air_side` | 6 | 40 | aerial side J: a flying punch | `nova_male-air_side-v1` |
+| `meteor_kick` | 6 | 30 | aerial down J: the meteor kick | `nova_male-meteor_kick-v1` |
+| `vector_shift` | 6 | 27.3 | K: pure acceleration | `nova_male-vector_shift-v1` |
+| `gravity_brake` | 6 | 14.3 | L: a full stop and a burst | `nova_male-gravity_brake-v1` |
+| `slingshot_start` | 6 | 14 | ultimate, first press: conjuring the core | `nova_male-slingshot_start-v1` |
+| `tumble` | 6 | 21, loop | **new** strong-launch hitstun | `nova_male-tumble-v1` |
 
-- Built-in ImageGen source: `nova_male_moves_source.png` (1374×1145).
-- References on the generation call: `nova_male_sheet.png` for pixel scale/body and
-  `nova_male_illustration.png` for identity/costume.
-- Prompt invariant: exact same male Nova; eight ordered move rows; hard pixel edges;
-  midnight-indigo/silver/teal/gold palette; no weapon, cape, text, guides, or background.
-
-## Processing and checks
-
-`tests/art_preview/moves_26/build_moves.gd` finds transparent row gutters, slices the
-six columns, applies nearest-neighbour reduction only (scale 0.7302), hardens alpha,
-removes detached islands below 3px, aligns ground anchors to y=120 and air anchors to
-the live jump centre, then writes the sheet and contact boards.
-
-The neutral scale anchor differs from the live idle dark-body height by +1px. All
-partial-alpha pixels are removed. `vector_upper` has small detached gravity particles
-and is the weakest row for human review.
-
+No effects are drawn into these frames. The game draws the trails, shockwaves, bursts and the gravity core.

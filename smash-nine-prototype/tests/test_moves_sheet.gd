@@ -255,6 +255,8 @@ func _play_character_row(fighter: Node, character_id: String, row: String) -> vo
 				"vector_shift": fighter.perform_skill_one()
 				"gravity_brake": fighter.perform_skill_two()
 				"slingshot_start": fighter.perform_ultimate()
+				# New for Nova (2026-10-14): a strong launch plays her/his tumble row.
+				"tumble": fighter.apply_forced_launch_hit(null, 1.0, Vector2(620.0, -260.0), 0.25, 620.0, Vector2.RIGHT)
 		"yuki":
 			match row:
 				"talisman_side": fighter.perform_basic_attack("neutral", Vector2.RIGHT)

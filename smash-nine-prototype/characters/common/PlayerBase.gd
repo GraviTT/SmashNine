@@ -884,14 +884,18 @@ func _sheet_row_span(rows: Array) -> int:
 
 ## Adds <prefix>_idle ... <prefix>_hurt from a sheet with the same cell size as the main
 ## one (a second sheet such as Brave Luna's). Returns false when the cell size differs.
-func _add_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Texture2D) -> bool:
+## `rows` defaults to get_sheet_rows(); a row longer than six frames (an 8-frame walk) continues on
+## the next sheet row, and the rows after it start below it.
+func _add_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Texture2D, rows: Array = []) -> bool:
 	var cell := int(sheet.get_width() / SHEET_COLUMNS)
 	if cell != original_sheet_cell:
 		return false
-	var rows := get_sheet_rows()
-	for row in rows.size():
-		var spec: Array = rows[row]
-		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
+	if rows.is_empty():
+		rows = get_sheet_rows()
+	var start_row := 0
+	for spec in rows:
+		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, start_row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
+		start_row += ceili(float(spec[1]) / SHEET_COLUMNS)
 	return true
 
 ## Draw settings for the original sheet: feet on the collision origin at either version.

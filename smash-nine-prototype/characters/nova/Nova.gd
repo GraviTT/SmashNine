@@ -31,15 +31,20 @@ const ULTIMATE_NONE := 0
 const ULTIMATE_CORE := 1
 const ULTIMATE_ORBIT := 2
 const ULTIMATE_LAUNCH := 3
+## Redrawn 2026-10-14 for both bodies (D33-D37): every motion is 6 frames with its old length
+## (fps x 6 / old frames), the idle at 6.3 fps (D37). The base `attack` row is only a fallback.
+const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 35.25, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+## 192-px cells (D34). `tumble` is new for Nova: strong launches play it instead of the hurt frame.
 const MOVE_SHEET_ROWS := [
-	["vector_side", 4, 23.5, false],
-	["vector_upper", 4, 22.0, false],
-	["compression_stomp", 4, 17.4, false],
-	["air_side", 4, 26.7, false],
-	["meteor_kick", 5, 25.0, false],
-	["vector_shift", 4, 18.2, false],
-	["gravity_brake", 5, 11.9, false],
+	["vector_side", 6, 35.25, false],
+	["vector_upper", 6, 33.0, false],
+	["compression_stomp", 6, 26.1, false],
+	["air_side", 6, 40.0, false],
+	["meteor_kick", 6, 30.0, false],
+	["vector_shift", 6, 27.3, false],
+	["gravity_brake", 6, 14.3, false],
 	["slingshot_start", 6, 14.0, false],
+	["tumble", 6, 21.0, true],
 ]
 
 var vector_shift_active := false
@@ -78,6 +83,9 @@ func configure_character_sprite() -> void:
 
 func get_move_sheet_rows() -> Array:
 	return MOVE_SHEET_ROWS
+
+func get_sheet_rows() -> Array:
+	return SHEET_ROWS
 
 func perform_basic_attack(attack_type: String, input_direction: Vector2) -> void:
 	var momentum := _get_momentum_ratio()

@@ -1,5 +1,7 @@
 # Nova original character sheets
 
+**2026-10-14: both Nova bodies were redrawn (D33–D37).** The current contracts are in `nova_male_moves_README.md` and `nova_female_moves_README.md`. The sections below are history.
+
 `nova_male_sheet.png` and `nova_female_sheet.png` are two body variants of the same
 original cosmic-guard superhero design.
 
