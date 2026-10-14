@@ -1,0 +1,153 @@
+{
+  "input": {
+    "sheet": "art/raw/walk-64/frame-03-attempt2.png",
+    "frames": null,
+    "grid": [
+      1,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 1,
+    "output_columns": 6,
+    "common_scale": 0.102,
+    "scale_by": "fixed:0.102",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      97,
+      97
+    ],
+    "body_width_range": [
+      99,
+      99
+    ],
+    "area_range": [
+      4456,
+      4456
+    ],
+    "area_spread_percent": 0.0,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3981,
+      3981
+    ],
+    "interior_detail_range": [
+      105.9,
+      105.9
+    ],
+    "interior_detail_mean": 105.9,
+    "remaining_spill_pixels": [
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 97.64,
+    "interior_detail_ratio": 1.0846
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.64,
+        "colour_count": 4711,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.64,
+    "colour_count_range": [
+      4711,
+      4711
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/walk-64/frame-03-attempt2.png#0,0",
+      "bbox": [
+        23,
+        24,
+        122,
+        121
+      ],
+      "body_height": 97,
+      "body_width": 99,
+      "area": 4456,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 105.9,
+      "colour_count": 3981,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 24,
+        "right": 6,
+        "bottom": 7,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0846
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-64/frame-03-a2/frame-03.png",
+    "candidate": null,
+    "frames": "reports/codex-art-64/frame-03-a2/frames",
+    "closeup": "reports/codex-art-64/frame-03-a2/closeup.png",
+    "compare": "reports/codex-art-64/frame-03-a2/compare.png"
+  }
+}
