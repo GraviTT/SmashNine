@@ -1,0 +1,450 @@
+{
+  "input": {
+    "sheet": null,
+    "frames": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\builder-frey\\SmashNine\\art\\raw\\rio-61a\\air_slash\\extracted",
+    "grid": null,
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      1,
+      4
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.304348,
+    "scale_by": "fixed:0.304348000",
+    "common_offset_x": 0,
+    "common_lift": 16,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      85,
+      114
+    ],
+    "body_width_range": [
+      84,
+      130
+    ],
+    "area_range": [
+      3933,
+      4669
+    ],
+    "area_spread_percent": 15.76,
+    "bottom_range": [
+      122,
+      136
+    ],
+    "lift_range": [
+      16,
+      30
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3560,
+      4135
+    ],
+    "interior_detail_range": [
+      112.09,
+      127.94
+    ],
+    "interior_detail_mean": 117.99,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 110.24,
+    "interior_detail_ratio": 1.0703
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4258,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 111.49,
+        "colour_count": 4283,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 110.99,
+        "colour_count": 4261,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 109.74,
+        "colour_count": 4220,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 108.85,
+        "colour_count": 4124,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 108.69,
+        "colour_count": 4143,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 110.24,
+    "colour_count_range": [
+      4124,
+      4283
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/rio-61a/air_slash/extracted/f00.png",
+      "bbox": [
+        55,
+        31,
+        144,
+        128
+      ],
+      "body_height": 97,
+      "body_width": 89,
+      "area": 4446,
+      "bottom": 127,
+      "lift": 25,
+      "expected_lift": 25,
+      "interior_detail": 127.94,
+      "colour_count": 3946,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 31,
+        "right": 48,
+        "bottom": 64,
+        "minimum": 31,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1606
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/rio-61a/air_slash/extracted/f01.png",
+      "bbox": [
+        56,
+        23,
+        149,
+        137
+      ],
+      "body_height": 114,
+      "body_width": 93,
+      "area": 4646,
+      "bottom": 136,
+      "lift": 16,
+      "expected_lift": 16,
+      "interior_detail": 112.97,
+      "colour_count": 4118,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 23,
+        "right": 43,
+        "bottom": 55,
+        "minimum": 23,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0248
+    },
+    {
+      "index": 2,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/rio-61a/air_slash/extracted/f02.png",
+      "bbox": [
+        57,
+        38,
+        182,
+        123
+      ],
+      "body_height": 85,
+      "body_width": 125,
+      "area": 3933,
+      "bottom": 122,
+      "lift": 30,
+      "expected_lift": 30,
+      "interior_detail": 115.18,
+      "colour_count": 3560,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 57,
+        "top": 38,
+        "right": 10,
+        "bottom": 69,
+        "minimum": 10,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0448
+    },
+    {
+      "index": 3,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/rio-61a/air_slash/extracted/f03.png",
+      "bbox": [
+        52,
+        32,
+        182,
+        128
+      ],
+      "body_height": 96,
+      "body_width": 130,
+      "area": 4455,
+      "bottom": 127,
+      "lift": 25,
+      "expected_lift": 25,
+      "interior_detail": 112.09,
+      "colour_count": 3985,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 52,
+        "top": 32,
+        "right": 10,
+        "bottom": 64,
+        "minimum": 10,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0168
+    },
+    {
+      "index": 4,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/rio-61a/air_slash/extracted/f04.png",
+      "bbox": [
+        57,
+        24,
+        141,
+        136
+      ],
+      "body_height": 112,
+      "body_width": 84,
+      "area": 4202,
+      "bottom": 135,
+      "lift": 17,
+      "expected_lift": 17,
+      "interior_detail": 116.76,
+      "colour_count": 3726,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 57,
+        "top": 24,
+        "right": 51,
+        "bottom": 56,
+        "minimum": 24,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0591
+    },
+    {
+      "index": 5,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/rio-61a/air_slash/extracted/f05.png",
+      "bbox": [
+        53,
+        30,
+        144,
+        129
+      ],
+      "body_height": 99,
+      "body_width": 91,
+      "area": 4669,
+      "bottom": 128,
+      "lift": 24,
+      "expected_lift": 24,
+      "interior_detail": 123.02,
+      "colour_count": 4135,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 30,
+        "right": 48,
+        "bottom": 63,
+        "minimum": 30,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1159
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-61a/air_slash/rio_male-air_slash-v1.png",
+    "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/bakeoff/rio/rio_male-air_slash-v1.png",
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-61a/air_slash/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-61a/air_slash/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-61a/air_slash/compare.png"
+  },
+  "head_check": {
+    "method": "head_scale",
+    "result": {
+      "sheet": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\builder-frey\\SmashNine\\art\\bakeoff\\rio\\rio_male-air_slash-v1.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.663
+        },
+        {
+          "scale": 0.96,
+          "score": 0.727
+        },
+        {
+          "scale": 0.92,
+          "score": 0.682
+        },
+        {
+          "scale": 1.02,
+          "score": 0.656
+        },
+        {
+          "scale": 1.0,
+          "score": 0.629
+        },
+        {
+          "scale": 1.02,
+          "score": 0.708
+        }
+      ],
+      "median": 0.98,
+      "used": 6,
+      "head_matched_factor": 0.310559
+    }
+  }
+}
