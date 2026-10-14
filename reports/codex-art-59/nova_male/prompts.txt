@@ -1,0 +1,29 @@
+CODEX-ART-59 Nova male — built-in image tool prompts
+
+Common references
+- Image 1: art/raw/walk-59/nova_male/refs/idle_frame0_4x.png — authoritative look and detail.
+- Image 2: nova_male_pose_<NN>.png — pose only; its greys are not clothing.
+- Image 3: accepted_frame01_4x.png — accepted frame-1 costume, proportions, and pixel style.
+- Image 4 for frames 3 and 7: legacy_together_4x.png — same costume with the legs together.
+
+Common prompt
+Draw exactly one full-body right-facing Nova male in Image 2's pose. Change only the legs and the small guarded-arm swing. Keep spiky swept-back navy/royal-blue hair with cyan highlights, teal-blue eye, black/dark-navy bodysuit, white-and-silver circular chest armour with cyan core and gold trim, matching cobalt/cyan mechanical gauntlets, matching silver knee plates and cyan-armoured boots, and gold belt accents consistent with Images 1 and 3. No weapon or prop. The far limbs have identical costume, only darker and behind. Polished high-detail retro anime pixel-art source, solid exact #00FF00, one complete centered figure, no effects, text, shadow, crop, duplicate limb, transparency, redesign, watermark, or background texture.
+
+Frame clauses
+- F1 CONTACT: near leg forward/in front, far leg trailing/behind. Attempt 1 selected as the costume reference.
+- F2 DOWN: weight on forward near leg; far foot lifted behind. Attempt 1 selected.
+- F3 PASSING: near leg is the only standing leg; far boot lifted beside the ankle. Attempts 1–3 all placed the planted-foot centre at 68px after normalisation. Attempt 1 is the best visual match used in the failure report.
+- F4 UP: darker far leg reaches screen-right; near toe pushes behind. Attempt 1 selected.
+- F5 opposite CONTACT: darker far leg forward, bright near leg trailing. Attempt 1 selected; fixed factor 0.1148 keeps head scale 0.96 and bob within range.
+- F6 DOWN: weight on forward far leg; near foot lifted behind. Attempt 1 selected.
+- F7 PASSING: far leg is the only standing leg; near boot lifted beside the ankle. Attempt 1 selected.
+- F8 UP: far toe behind; near leg reaches forward. Attempt 1 selected.
+
+Passing retry correction
+Attempts 2 and 3 for F3 explicitly requested the planted boot under or 32–40 source pixels left of the torso centre. Both still normalised to a planted-foot centre of 68px, so the character was stopped at the three-generation limit.
+
+Execution
+- Built-in image tool, not CLI/API fallback.
+- Every used generation was copied to art/raw/walk-59/nova_male/generated/.
+- Normalisation: 128px, LANCZOS, sharpen 60, despill auto, palette none, #00FF00, ground-all.
+

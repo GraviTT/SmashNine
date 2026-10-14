@@ -1,0 +1,31 @@
+CODEX-ART-59 Nova female — built-in image tool prompts
+
+Common references
+- Image 1: art/raw/walk-59/nova_female/refs/idle_frame0_4x.png — authoritative look and detail.
+- Image 2: nova_female_pose_<NN>.png — pose only; its greys are not clothing.
+- Image 3: accepted_frame01_4x.png — accepted frame-1 costume, proportions, and pixel style.
+- Image 4 for frames 3 and 7: legacy_together_4x.png — same costume with the legs together.
+
+Common prompt
+Draw exactly one full-body right-facing Nova female in Image 2's pose. Change only the legs and the small guarded-arm swing. Keep long swept-back navy/violet-blue hair with cyan highlights and long side bang, teal-blue eye, slender black/dark-navy bodysuit, white-and-silver circular chest armour with cyan core and gold trim, matching cobalt/cyan mechanical gauntlets, matching silver knee plates and cyan-armoured boots, and gold belt accents consistent with Images 1 and 3. No weapon or prop. The far limbs have identical costume, only darker and behind. Polished high-detail retro anime pixel-art source, solid exact #00FF00, one complete centered figure, no effects, text, shadow, crop, duplicate limb, transparency, redesign, watermark, or background texture.
+
+Frame clauses and selections
+- F1 CONTACT: near leg forward/in front, far leg trailing/behind. Attempt 1 selected as the costume reference.
+- F2 DOWN: weight on forward near leg; far foot lifted behind. Attempt 1 selected.
+- F3 PASSING: near leg is the only standing leg; far boot lifted beside the ankle. Attempt 2 moved the planted centre from 69px to 66.5px and is used in the best report. The remaining F3→F4 move is 26.5px.
+- F4 UP: darker far leg reaches screen-right; near toe pushes behind. Attempt 1 selected.
+- F5 opposite CONTACT: darker far leg forward, bright near leg trailing. Attempt 1 selected.
+- F6 DOWN: weight on forward far leg; near foot lifted behind. Attempt 1 preserved scale but exposed a peach skin patch on the lifted leg. Attempts 2 and 3 removed it but produced head scales 1.10 and 1.12 at normal height; head-matched normalisation then required more than ±3px bob. Attempt 1 is used in the failure report.
+- F7 PASSING: far leg is the only standing leg; near boot lifted beside the ankle. Attempt 2 selected; head scale 1.00.
+- F8 UP: far toe behind; near leg reaches forward. Attempt 1 selected at fixed factor 0.117; head scale 0.96.
+
+Retry correction wording
+- F3: planted ankle/boot 32–40 source pixels left of torso centre; exactly one grounded foot.
+- F6: both legs fully covered by dark fabric and armour, absolutely no peach/orange/pink skin; keep Image 3 head size and body length.
+- F7: keep Image 3 head size, full body height and leg length; exactly one grounded foot.
+
+Execution
+- Built-in image tool, not CLI/API fallback.
+- Every used generation was copied to art/raw/walk-59/nova_female/generated/.
+- Normalisation: 128px, LANCZOS, sharpen 60, despill auto, palette none, #00FF00, ground-all.
+
