@@ -1,0 +1,28 @@
+CODEX-ART-59 unit A — Brave Luna built-in image tool prompts
+
+Common references
+- Image 1: art/raw/walk-59/luna_brave/refs/idle_frame0_4x.png — authoritative look and costume.
+- Image 2: art/raw/walk-59/luna_brave/poses/luna_brave_pose_XX.png — pose only; its greys are not clothing.
+- Image 3 for frame 1: art/raw/walk-59/luna_brave/refs/walk_frame0_4x.png.
+- Image 3 for frames 2-8: art/raw/walk-59/luna_brave/refs/accepted_frame01_4x.png — accepted frame 1, never a neighbour.
+- Image 4 for frames 3 and 7: art/raw/walk-59/luna_brave/refs/legacy_legs_together_4x.png.
+
+Common invariant prompt
+One complete right-facing Brave Luna on exact #00FF00. Image 2 is only a pose guide; its greys are not clothing. Change only the legs and the tiny far-arm counter-swing. Keep the head size, long vivid-pink side ponytail, huge dark-purple bow, yellow star ornament, short purple/magenta/white ruffled battle dress, bare thighs, matching knee-high purple boots with gold stars and laces, and purple fingerless gauntlets locked to Images 1 and 3. No weapon and no wand. Both fists stay raised in the boxing guard. The far leg has identical costume, only slightly darker and behind. Polished high-detail retro anime game sprite, one centred figure, clear margins, no effects/shadow/text/UI/duplicate/crop/transparency/watermark.
+
+Frame clauses
+- F1 gen1: CONTACT, near leg forward, far leg trails. Selected.
+- F2 gen1: DOWN, weight on forward near leg. Selected.
+- F3 gen1: PASSING, near leg stands and far boot lifts beside ankle. Rejected: planted centre 79.5.
+- F3 gen2: same, move standing boot about 40 source px left. Best: planted centre 76.0, target 69.0±6.
+- F3 gen3: final retry, standing boot under skirt centre. Rejected: planted centre 77.0.
+- F4 gen1: UP, far leg reaches forward, near toe pushes behind. Selected.
+- F5 gen1: opposite CONTACT, far leg forward. Selected.
+- F6 gen1: opposite DOWN, weight on far leg. Selected.
+- F7 gen1: PASSING, far leg stands and near boot lifts beside ankle. Selected; planted centre 70.0.
+- F8 gen1: UP into loop. Selected.
+
+Execution
+- Built-in image tool, not CLI/API fallback.
+- Every generated source was copied to art/raw/walk-59/luna_brave/generated/.
+- Normalisation used cell 128, LANCZOS, sharpen 60, despill auto, palette none, #00FF00 and --ground-all.
