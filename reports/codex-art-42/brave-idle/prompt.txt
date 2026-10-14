@@ -1,0 +1,23 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete six-frame BRAVE IDLE loop for Brave Luna.
+
+Input images and roles: Image 1 is the new Luna idle anchor enlarged 4x with nearest-neighbor scaling. It is authoritative for Luna's identity, compact proportions, exact head and face size, long pink hair, purple ribbon with gold star, detail density, palette, right-facing camera, and pixel finish. Image 2 is the current Brave Luna idle frame enlarged 4x; it is authoritative for the Brave outfit, star gauntlets, boots, and fighting stance only. Keep exactly the same person and head size as Image 1.
+
+Primary request: Draw a NEW cohesive full-body six-frame idle animation of Brave Luna, standing in place and facing RIGHT in the same side-view / very slight three-quarter game camera, at 10.5 fps. Every frame is a newly drawn whole pose. This is a light, bouncy fighting-guard loop with both feet planted and both solid star gauntlets raised.
+
+Frame 1 — guard: balanced fighting stance, knees softly bent, both gauntlets up, face fully visible, feet planted.
+Frame 2 — dip: knees bend slightly lower, torso settles, gauntlets remain guarding, hair begins to rise from inertia.
+Frame 3 — lowest: lowest small bounce, feet fixed, shoulders compact, gauntlets intact and clearly separate.
+Frame 4 — rising: knees extend slightly, torso rises, hair and ribbon lag behind.
+Frame 5 — top: highest point of the tiny bounce, hair and ribbon still floating from lag, feet remain planted.
+Frame 6 — loop bridge: halfway between frame 5 and frame 1 so the loop closes seamlessly.
+
+Subject invariants: SAME compact approximately 2.2-head-tall Luna as Image 1, never tall or slim. Exactly the same large head size, face size, body width, long thick hot-pink hair, large midnight-purple ribbon and solid gold five-point star ornament as Image 1 in every frame. Fair skin, large magenta eyes, small confident mouth, face never covered. Brave outfit from Image 2: fitted dark-purple magical fighting dress/body armour with hot-pink panels, warm-gold piping and solid star ornaments, white frilled accents, purple gloves and boots with gold details. Preserve TWO intact solid star gauntlets, one on each hand, cyan-white star faces inside warm-gold outlines; no handheld wand. The gauntlets are solid equipment with NO glow, halo or cloud around them. Exact palette identity: hot pink/violet, pale cyan-white, warm gold, dark-violet outline. Exactly one head, two connected arms, two hands with two gauntlets, and two connected legs per frame.
+
+Sheet layout: exactly SIX equal 512-by-512 square cells arranged as a 3 columns by 2 rows sheet, total 1536 by 1024. Read frames left-to-right across the top row, then left-to-right across the bottom row. Exactly one isolated full-body Brave Luna per cell. Same camera, character scale, head size, body width, root x and implied floor line in every cell. Both feet stay planted at the same positions. Generous green margins; all hair, ribbon, gauntlets and boots stay inside each cell. No numbers, words, labels, borders, grid lines or cell backgrounds.
+
+Backdrop: completely solid flat chroma-key green #00FF00 across the entire sheet. No transparency, checkerboard, floor, shadow, contact shadow, scenery or atmosphere.
+
+Style/medium: crisp pixel art rendered exactly like Image 1, with the same detail density and shading softness. Preserve individually separated pink hair strands with dark separation lines and highlights; gold piping and tiny solid star ornaments; white frills; bright rim highlights on gauntlets and costume trim; disciplined 1-pixel dark-violet outline weight. Pixel art for a 128-pixel game sprite, clean cel-shaded ramps and readable silhouette. No smooth illustration, vector look, 3D, painterly texture, blur, soft gradient, antialiasing or white matte fringe.
+
+Final hard constraints: one sheet only; exactly 6 frames and 6 characters total; right-facing side view; subtle planted bounce; same head size as Image 1; one face, one head, two arms, two hands, two legs, two intact star gauntlets and no wand in every frame; no duplicated parts; no pasted parts; no attack pose; no sparkles, glow halos, light trails, aura, dust or magic effects; no text, watermark, labels, grid, borders, shadows or cropped parts.
