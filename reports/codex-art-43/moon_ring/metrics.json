@@ -1,0 +1,446 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-43/luna-moon_ring-generation-02.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.226,
+    "scale_by": "fixed:0.226",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      81,
+      82
+    ],
+    "body_width_range": [
+      90,
+      95
+    ],
+    "area_range": [
+      4261,
+      4604
+    ],
+    "area_spread_percent": 7.45,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3975,
+      4267
+    ],
+    "interior_detail_range": [
+      94.63,
+      107.94
+    ],
+    "interior_detail_mean": 103.09,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 67.04,
+    "interior_detail_ratio": 1.5377
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 72.76,
+        "colour_count": 4271,
+        "remaining_spill_pixels": 2
+      },
+      {
+        "index": 1,
+        "interior_detail": 60.86,
+        "colour_count": 6136,
+        "remaining_spill_pixels": 13
+      },
+      {
+        "index": 2,
+        "interior_detail": 71.52,
+        "colour_count": 4988,
+        "remaining_spill_pixels": 11
+      },
+      {
+        "index": 3,
+        "interior_detail": 59.07,
+        "colour_count": 7117,
+        "remaining_spill_pixels": 1
+      },
+      {
+        "index": 4,
+        "interior_detail": 71.0,
+        "colour_count": 5082,
+        "remaining_spill_pixels": 3
+      }
+    ],
+    "interior_detail_mean": 67.04,
+    "colour_count_range": [
+      4271,
+      7117
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-43/luna-moon_ring-generation-02.png#0,0",
+      "bbox": [
+        53,
+        72,
+        145,
+        153
+      ],
+      "body_height": 81,
+      "body_width": 92,
+      "area": 4444,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 107.94,
+      "colour_count": 4131,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 72,
+        "right": 47,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.6101
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-43/luna-moon_ring-generation-02.png#1,0",
+      "bbox": [
+        53,
+        72,
+        144,
+        153
+      ],
+      "body_height": 81,
+      "body_width": 91,
+      "area": 4294,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 106.43,
+      "colour_count": 3994,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 72,
+        "right": 48,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.5876
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-43/luna-moon_ring-generation-02.png#2,0",
+      "bbox": [
+        48,
+        72,
+        138,
+        153
+      ],
+      "body_height": 81,
+      "body_width": 90,
+      "area": 4261,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 94.63,
+      "colour_count": 3986,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 48,
+        "top": 72,
+        "right": 54,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.4115
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-43/luna-moon_ring-generation-02.png#0,1",
+      "bbox": [
+        46,
+        71,
+        136,
+        153
+      ],
+      "body_height": 82,
+      "body_width": 90,
+      "area": 4287,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 102.37,
+      "colour_count": 3975,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 46,
+        "top": 71,
+        "right": 56,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.527
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-43/luna-moon_ring-generation-02.png#1,1",
+      "bbox": [
+        57,
+        71,
+        147,
+        153
+      ],
+      "body_height": 82,
+      "body_width": 90,
+      "area": 4281,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.04,
+      "colour_count": 3989,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 57,
+        "top": 71,
+        "right": 45,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.5519
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-43/luna-moon_ring-generation-02.png#2,1",
+      "bbox": [
+        54,
+        71,
+        149,
+        153
+      ],
+      "body_height": 82,
+      "body_width": 95,
+      "area": 4604,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.15,
+      "colour_count": 4267,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 71,
+        "right": 43,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.5386
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-43/moon_ring/luna-moon_ring-v1.png",
+    "candidate": "art/bakeoff/luna/luna-moon_ring-v1.png",
+    "frames": "reports/codex-art-43/moon_ring/frames",
+    "closeup": "reports/codex-art-43/moon_ring/closeup.png",
+    "compare": "reports/codex-art-43/moon_ring/compare.png"
+  },
+  "head_scale": {
+    "anchor": "art/bakeoff/luna/luna-idle-v3.png:0",
+    "median": 1.0,
+    "used_frames": 4,
+    "per_frame": [
+      {
+        "scale": 1.0,
+        "score": 0.861
+      },
+      {
+        "scale": 0.96,
+        "score": 0.701
+      },
+      {
+        "scale": 1.4,
+        "score": 0.415
+      },
+      {
+        "scale": 0.6,
+        "score": 0.52
+      },
+      {
+        "scale": 1.0,
+        "score": 0.686
+      },
+      {
+        "scale": 1.06,
+        "score": 0.918
+      }
+    ],
+    "head_matched_factor": 0.226,
+    "note": "회전 프레임은 자동 측정에서 제외하고 4배 비교판으로 판정"
+  }
+}

@@ -1,0 +1,18 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art sprite extraction sheet containing exactly THREE single-pose normal-form Luna frames: JUMP, FALL, HURT.
+
+Input images and roles: Image 1 is accepted luna-idle-v3 enlarged 4x and is authoritative for exact identity, large head and face size, compact 2.2-head-tall proportions, short legs, body width, outfit, wand, detail, palette, camera and pixel finish. Image 2 shows the current game jump, fall and hurt poses in that left-to-right order; it is authoritative only for which action each cell represents. Redraw all poses newly at Image 1 quality and proportions.
+
+Left cell — JUMP: rising pose, knees tucked clearly upward, body airborne, long hair and ribbon trailing downward from the upward acceleration, face visible, wand still held.
+Middle cell — FALL: descending pose, both legs reaching downward toward the ground, body airborne, long hair and ribbon streaming upward from the fall, face visible, wand held.
+Right cell — HURT: grounded recoil backward from a hit, eyes squeezed shut, torso knocked back, wand still firmly held, feet near the floor. No hit spark or effect.
+
+Subject invariants: exactly the SAME compact 2.2-head-tall Luna as Image 1, identical large head and face size, short legs, same body width and wand scale. Long thick hot-pink hair, midnight-purple bow with gold star, purple/pink/gold dress with layered white frills, purple boots, one intact cyan-white five-point star wand. Exactly one head and face, two connected arms/hands, two connected legs/boots and one intact wand in every pose. No missing or duplicated parts.
+
+Layout: exactly THREE equal 512-pixel-wide cells in one horizontal row, left-to-right JUMP, FALL, HURT. One isolated full-body Luna per cell, consistent character scale and camera, generous green margins, no overlap or cropping. Airborne poses are visibly lifted within their cells; hurt is grounded.
+
+Backdrop: solid flat chroma-key green #00FF00 throughout. No transparency, floor, shadows, scenery or atmosphere.
+
+Style: crisp high-detail pixel art exactly like Image 1, separated pink hair strands, gold piping, white frills, pixel highlights and dark-violet outlines. No simplification, blur, smooth illustration, vector, 3D, painterly texture, antialiasing or white fringe.
+
+Constraints: exactly 3 characters total, no labels, text, numbers, grid lines, borders or watermark. No sparkles, glow, trails, stars, hit sparks, aura, dust or magic effects. Right-facing game camera remains consistent; no cropped parts.

@@ -1,0 +1,19 @@
+Use case: stylized-concept.
+Asset type: one six-frame 192px move-row sprite animation for normal Luna: STAR_UP.
+
+Image 1 is accepted luna-idle-v3 enlarged 4x, authoritative for exact identity, large head/face scale, compact 2.2-head proportions, body width, costume, wand, detail, palette and pixel style. Image 2 is the current star_up row enlarged 4x, authoritative only for the motion: wand sweeps from in front of Luna upward over her head. Ignore/remove every baked arc, ring, star, glow and particle.
+
+Draw six newly drawn whole-body grounded frames facing RIGHT at 21 fps:
+1 low ready, wand in front near waist;
+2 upward swing begins, wand rising diagonally;
+3 active sweep beside the face;
+4 arm extending high;
+5 wand fully over the head, strong upward finish;
+6 follow-through/recover, wand lowering toward ready.
+Feet remain grounded and braced; torso leans naturally and hair/ribbon lag the upward acceleration. No spell effect.
+
+Keep exactly Image 1 Luna: same large head and face, compact torso, short legs, long hot-pink hair, purple bow with gold star, purple/pink/gold frilled dress, boots, one intact cyan-white five-point star wand. One face/head, two connected arms/hands, two connected legs/boots, one wand each frame.
+
+Exactly six equal 512x512 cells in a 3x2 sheet, 1536x1024. One Luna per cell, same scale/floor/camera, generous margins. Solid #00FF00 background. Crisp detailed pixel art with rich internal contrast, dark-violet outlines; no blur/antialiasing/smooth/vector/3D/painterly style.
+
+No magic arc, ring, bloom, extra stars, glow, sparkles, trail, aura, particles or dust; no text, grid, borders, labels, watermark, shadow, duplicated or cropped parts.

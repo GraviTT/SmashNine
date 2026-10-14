@@ -1,0 +1,268 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-43/luna-jump-fall-hurt-prepared-01.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.166667,
+    "scale_by": "fixed:0.166667",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      71,
+      99
+    ],
+    "body_width_range": [
+      88,
+      91
+    ],
+    "area_range": [
+      3925,
+      4560
+    ],
+    "area_spread_percent": 13.93,
+    "bottom_range": [
+      113,
+      120
+    ],
+    "lift_range": [
+      0,
+      7
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3710,
+      4309
+    ],
+    "interior_detail_range": [
+      94.22,
+      101.44
+    ],
+    "interior_detail_mean": 98.26,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 89.77,
+    "interior_detail_ratio": 1.0946
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 89.77,
+        "colour_count": 4112,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 89.77,
+    "colour_count_range": [
+      4112,
+      4112
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-43/luna-jump-fall-hurt-prepared-01.png#0,0",
+      "bbox": [
+        26,
+        29,
+        114,
+        114
+      ],
+      "body_height": 85,
+      "body_width": 88,
+      "area": 4002,
+      "bottom": 113,
+      "lift": 7,
+      "expected_lift": 7,
+      "interior_detail": 99.11,
+      "colour_count": 3796,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 26,
+        "top": 29,
+        "right": 14,
+        "bottom": 14,
+        "minimum": 14,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.104
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-43/luna-jump-fall-hurt-prepared-01.png#1,0",
+      "bbox": [
+        16,
+        20,
+        107,
+        119
+      ],
+      "body_height": 99,
+      "body_width": 91,
+      "area": 4560,
+      "bottom": 118,
+      "lift": 2,
+      "expected_lift": 2,
+      "interior_detail": 94.22,
+      "colour_count": 4309,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 20,
+        "right": 21,
+        "bottom": 9,
+        "minimum": 9,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0496
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-43/luna-jump-fall-hurt-prepared-01.png#2,0",
+      "bbox": [
+        21,
+        50,
+        110,
+        121
+      ],
+      "body_height": 71,
+      "body_width": 89,
+      "area": 3925,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.44,
+      "colour_count": 3710,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 21,
+        "top": 50,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.13
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-43/jump-fall-hurt/luna-jump-fall-hurt-v1.png",
+    "candidate": "art/raw/luna-43/luna-jump-fall-hurt-normalized-01.png",
+    "frames": "reports/codex-art-43/jump-fall-hurt/frames",
+    "closeup": "reports/codex-art-43/jump-fall-hurt/closeup.png",
+    "compare": "reports/codex-art-43/jump-fall-hurt/compare.png"
+  },
+  "head_scale": {
+    "anchor": "art/bakeoff/luna/luna-idle-v3.png:0",
+    "median": 1.04,
+    "used_frames": 2,
+    "per_frame": [
+      {
+        "scale": 1.06,
+        "score": 0.828
+      },
+      {
+        "scale": 1.1,
+        "score": 0.59
+      },
+      {
+        "scale": 1.02,
+        "score": 0.805
+      }
+    ],
+    "head_matched_factor": 0.160257,
+    "note": "자동 측정 중앙값과 4배 비교판을 함께 확인"
+  }
+}
