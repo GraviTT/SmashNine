@@ -1,0 +1,432 @@
+{
+  "input": {
+    "mode": "eight independent built-in image generations",
+    "look_reference": "art/bakeoff/luna/luna-idle-v3.png:0",
+    "costume_reference": "accepted frame 1 for frames 2-8",
+    "pose_reference": "reports/codex-art-57/luna/walk_reference_luna.png"
+  },
+  "measured": {
+    "output_size": [
+      1024,
+      128
+    ],
+    "frame_count": 8,
+    "fps": 13.3,
+    "normalization_factors": [
+      0.1,
+      0.104167,
+      0.104167,
+      0.104167,
+      0.1,
+      0.104167,
+      0.104167,
+      0.104167
+    ],
+    "head_scale": [
+      0.96,
+      1.0,
+      1.0,
+      1.02,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "head_scale_range": [
+      0.96,
+      1.02
+    ],
+    "head_scale_note": "Frame 6 uses a head-only diagnostic (1.00, score 0.91); exposed leg skin caused the full-frame false match.",
+    "body_height_range": [
+      80,
+      85
+    ],
+    "body_width_range": [
+      87,
+      91
+    ],
+    "area_range": [
+      3961,
+      4345
+    ],
+    "area_spread_percent": 9.15,
+    "interior_detail_range": [
+      112.64,
+      123.59
+    ],
+    "interior_detail_mean": 119.06,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "all_alpha_binary": true,
+    "all_borders_clear": true,
+    "all_have_4px_margin": true,
+    "bob": {
+      "face_box": [
+        70,
+        50,
+        87,
+        67
+      ],
+      "zone": [
+        94,
+        115
+      ],
+      "shape": [
+        0,
+        2,
+        -1,
+        -2
+      ],
+      "measured": [
+        0,
+        -1,
+        -4,
+        -3,
+        0,
+        -4,
+        -7,
+        -3
+      ],
+      "target": [
+        -3,
+        -1,
+        -4,
+        -5,
+        -3,
+        -1,
+        -4,
+        -5
+      ],
+      "shifts": [
+        -3,
+        0,
+        0,
+        -2,
+        -3,
+        3,
+        3,
+        -2
+      ],
+      "after": [
+        -3,
+        -1,
+        -4,
+        -5,
+        -3,
+        -1,
+        -4,
+        -5
+      ],
+      "match_error": [
+        0.0,
+        16.07,
+        19.5,
+        12.96,
+        20.42,
+        17.83,
+        19.61,
+        15.67
+      ],
+      "feet_rows_unchanged": true
+    }
+  },
+  "judged_at_4x": {
+    "costume_per_frame": [
+      {
+        "frame": 1,
+        "knee_high_purple_boots": true,
+        "no_stripes": true,
+        "dress_matches_idle": true,
+        "wand_front_star_top_right": true
+      },
+      {
+        "frame": 2,
+        "knee_high_purple_boots": true,
+        "no_stripes": true,
+        "dress_matches_idle": true,
+        "wand_front_star_top_right": true
+      },
+      {
+        "frame": 3,
+        "knee_high_purple_boots": true,
+        "no_stripes": true,
+        "dress_matches_idle": true,
+        "wand_front_star_top_right": true
+      },
+      {
+        "frame": 4,
+        "knee_high_purple_boots": true,
+        "no_stripes": true,
+        "dress_matches_idle": true,
+        "wand_front_star_top_right": true
+      },
+      {
+        "frame": 5,
+        "knee_high_purple_boots": true,
+        "no_stripes": true,
+        "dress_matches_idle": true,
+        "wand_front_star_top_right": true
+      },
+      {
+        "frame": 6,
+        "knee_high_purple_boots": true,
+        "no_stripes": true,
+        "dress_matches_idle": true,
+        "wand_front_star_top_right": true
+      },
+      {
+        "frame": 7,
+        "knee_high_purple_boots": true,
+        "no_stripes": true,
+        "dress_matches_idle": true,
+        "wand_front_star_top_right": true
+      },
+      {
+        "frame": 8,
+        "knee_high_purple_boots": true,
+        "no_stripes": true,
+        "dress_matches_idle": true,
+        "wand_front_star_top_right": true
+      }
+    ],
+    "pose_matches_mannequin": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "near_leg_in_front": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "frames_1_and_5_different_leading_leg": true,
+    "frame_3_swing_foot_lifted": true,
+    "frame_7_swing_foot_lifted": true,
+    "wand_within_about_15_degrees": true,
+    "bob_seam_mark_visible_in_legs": false,
+    "reads_as_two_alternating_steps_at_13_3_fps": true,
+    "jitter": false,
+    "costume_flicker": false,
+    "remaining_issue": "Hair tips, skirt folds, and boot highlights vary slightly between independently generated frames."
+  },
+  "frames": [
+    {
+      "interior_detail": 116.76,
+      "colour_count": 3643,
+      "remaining_spill_pixels": 0,
+      "index": 0,
+      "bbox": [
+        23,
+        39,
+        110,
+        121
+      ],
+      "body_width": 87,
+      "body_height": 82,
+      "area": 3961,
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 39,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "interior_detail": 122.21,
+      "colour_count": 3760,
+      "remaining_spill_pixels": 0,
+      "index": 1,
+      "bbox": [
+        21,
+        40,
+        111,
+        121
+      ],
+      "body_width": 90,
+      "body_height": 81,
+      "area": 4214,
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 21,
+        "top": 40,
+        "right": 17,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "interior_detail": 123.59,
+      "colour_count": 3866,
+      "remaining_spill_pixels": 0,
+      "index": 2,
+      "bbox": [
+        22,
+        37,
+        112,
+        121
+      ],
+      "body_width": 90,
+      "body_height": 84,
+      "area": 4284,
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 37,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "interior_detail": 122.12,
+      "colour_count": 3894,
+      "remaining_spill_pixels": 0,
+      "index": 3,
+      "bbox": [
+        22,
+        36,
+        111,
+        121
+      ],
+      "body_width": 89,
+      "body_height": 85,
+      "area": 4306,
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 36,
+        "right": 17,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "interior_detail": 112.64,
+      "colour_count": 3667,
+      "remaining_spill_pixels": 0,
+      "index": 4,
+      "bbox": [
+        23,
+        39,
+        110,
+        121
+      ],
+      "body_width": 87,
+      "body_height": 82,
+      "area": 4028,
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 39,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "interior_detail": 117.62,
+      "colour_count": 3773,
+      "remaining_spill_pixels": 0,
+      "index": 5,
+      "bbox": [
+        24,
+        41,
+        114,
+        121
+      ],
+      "body_width": 90,
+      "body_height": 80,
+      "area": 4171,
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 41,
+        "right": 14,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "interior_detail": 117.64,
+      "colour_count": 3880,
+      "remaining_spill_pixels": 0,
+      "index": 6,
+      "bbox": [
+        24,
+        38,
+        115,
+        121
+      ],
+      "body_width": 91,
+      "body_height": 83,
+      "area": 4270,
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 38,
+        "right": 13,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    },
+    {
+      "interior_detail": 119.92,
+      "colour_count": 3906,
+      "remaining_spill_pixels": 0,
+      "index": 7,
+      "bbox": [
+        22,
+        36,
+        112,
+        121
+      ],
+      "body_width": 90,
+      "body_height": 85,
+      "area": 4345,
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 36,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      }
+    }
+  ]
+}
