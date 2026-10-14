@@ -1,0 +1,49 @@
+{
+  "measured": {
+    "output_size": [1024, 128],
+    "frames": 8,
+    "fps": 13.3,
+    "frame_3": {
+      "generation_attempt": 3,
+      "factor": 0.11087,
+      "offset_x": -12,
+      "head_scale": 1.02,
+      "body_height": 97,
+      "detail": 98.48,
+      "planted_count": 1,
+      "planted_centre_x": 84.0,
+      "target_centre_x": 78.5,
+      "target_tolerance": 6.0,
+      "spill_pixels": 0,
+      "border_clear": true,
+      "margin_4px": true
+    },
+    "frame_7": {
+      "generation_attempt": 2,
+      "factor": 0.11087,
+      "offset_x": -9,
+      "head_scale": 1.02,
+      "body_height": 102,
+      "detail": 102.04,
+      "planted_count": 1,
+      "planted_centre_x": 80.0,
+      "target_centre_x": 78.75,
+      "target_tolerance": 6.0,
+      "spill_pixels": 0,
+      "border_clear": true,
+      "margin_4px": true
+    },
+    "bob_shifts": [1, 2, -2, -2, 1, 2, 2, -1],
+    "bob_max_abs_shift": 2,
+    "feet_rows_unchanged_by_bob": true
+  },
+  "judged_at_4x": {
+    "frame_3_true_passing": true,
+    "frame_7_true_passing": true,
+    "swing_toes_clear_ground": true,
+    "no_transition_over_25px": true,
+    "costume_matches_idle": true,
+    "remaining_issue": "새 프레임의 망토 끝과 검 각도가 인접 프레임과 미세하게 달라 약한 형태 flicker가 남는다. 3번 지지 발은 허용 범위 상단에서 0.5px 여유다."
+  },
+  "delivered": true
+}
