@@ -1,0 +1,194 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/jump-fall-hurt/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": [
+      2
+    ],
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 1,
+    "output_columns": 6,
+    "common_scale": 0.25128205,
+    "scale_by": "fixed:0.25128205",
+    "common_offset_x": -5,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      88,
+      88
+    ],
+    "body_width_range": [
+      117,
+      117
+    ],
+    "area_range": [
+      6082,
+      6082
+    ],
+    "area_spread_percent": 0.0,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      5407,
+      5407
+    ],
+    "interior_detail_range": [
+      97.69,
+      97.69
+    ],
+    "interior_detail_mean": 97.69,
+    "remaining_spill_pixels": [
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 89.41,
+    "interior_detail_ratio": 1.0926
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 89.84,
+        "colour_count": 1100,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 89.97,
+        "colour_count": 1091,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 89.45,
+        "colour_count": 1081,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 88.38,
+        "colour_count": 1088,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 89.41,
+    "colour_count_range": [
+      1081,
+      1100
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/jump-fall-hurt/raw.png#2,0",
+      "bbox": [
+        7,
+        33,
+        124,
+        121
+      ],
+      "body_height": 88,
+      "body_width": 117,
+      "area": 6082,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.69,
+      "colour_count": 5407,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 7,
+        "top": 33,
+        "right": 4,
+        "bottom": 7,
+        "minimum": 4,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0926
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-49/hurt/yuki-hurt-v1.png",
+    "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/bakeoff/yuki/yuki-hurt-v1.png",
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-49/hurt/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-49/hurt/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-49/hurt/compare.png"
+  },
+  "head_measurement": {
+    "probe_factor": 0.26210826,
+    "probe_target_height": 92,
+    "factor_method": "height_and_4x_crop",
+    "head_scale": {
+      "sheet": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\builder-frey\\SmashNine\\art\\raw\\yuki-49\\jump-fall-hurt\\probe-hurt\\yuki-hurt-v1.png",
+      "frames": [
+        {
+          "scale": 0.9,
+          "score": 0.44
+        }
+      ],
+      "median": null,
+      "used": 0
+    }
+  },
+  "fit_adjustment": {
+    "requested_factor": 0.2564102543478261,
+    "used_factor": 0.25128204926086956,
+    "reduced_to_fit": true
+  }
+}

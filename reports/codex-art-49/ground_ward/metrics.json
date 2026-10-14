@@ -1,0 +1,448 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/ground_ward/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.29434851,
+    "scale_by": "fixed:0.29434851",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      79,
+      101
+    ],
+    "body_width_range": [
+      96,
+      121
+    ],
+    "area_range": [
+      5545,
+      6421
+    ],
+    "area_spread_percent": 13.64,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4925,
+      5711
+    ],
+    "interior_detail_range": [
+      78.7,
+      86.24
+    ],
+    "interior_detail_mean": 82.72,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 89.41,
+    "interior_detail_ratio": 0.9252
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 89.84,
+        "colour_count": 1100,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 89.97,
+        "colour_count": 1091,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 89.45,
+        "colour_count": 1081,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 88.38,
+        "colour_count": 1088,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 89.41,
+    "colour_count_range": [
+      1081,
+      1100
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/ground_ward/raw.png#0,0",
+      "bbox": [
+        50,
+        52,
+        146,
+        153
+      ],
+      "body_height": 101,
+      "body_width": 96,
+      "area": 6240,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 86.24,
+      "colour_count": 5541,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 50,
+        "top": 52,
+        "right": 46,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9645
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/ground_ward/raw.png#1,0",
+      "bbox": [
+        47,
+        61,
+        151,
+        153
+      ],
+      "body_height": 92,
+      "body_width": 104,
+      "area": 6421,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 84.47,
+      "colour_count": 5680,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 47,
+        "top": 61,
+        "right": 41,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9447
+    },
+    {
+      "index": 2,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/ground_ward/raw.png#2,0",
+      "bbox": [
+        44,
+        69,
+        165,
+        153
+      ],
+      "body_height": 84,
+      "body_width": 121,
+      "area": 6391,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 81.88,
+      "colour_count": 5711,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 44,
+        "top": 69,
+        "right": 27,
+        "bottom": 39,
+        "minimum": 27,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9158
+    },
+    {
+      "index": 3,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/ground_ward/raw.png#0,1",
+      "bbox": [
+        46,
+        74,
+        160,
+        153
+      ],
+      "body_height": 79,
+      "body_width": 114,
+      "area": 5545,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 78.7,
+      "colour_count": 4925,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 46,
+        "top": 74,
+        "right": 32,
+        "bottom": 39,
+        "minimum": 32,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.8802
+    },
+    {
+      "index": 4,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/ground_ward/raw.png#1,1",
+      "bbox": [
+        47,
+        71,
+        156,
+        153
+      ],
+      "body_height": 82,
+      "body_width": 109,
+      "area": 5689,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 79.58,
+      "colour_count": 4983,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 47,
+        "top": 71,
+        "right": 36,
+        "bottom": 39,
+        "minimum": 36,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.8901
+    },
+    {
+      "index": 5,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/raw/yuki-49/ground_ward/raw.png#2,1",
+      "bbox": [
+        50,
+        52,
+        146,
+        153
+      ],
+      "body_height": 101,
+      "body_width": 96,
+      "area": 6243,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 85.45,
+      "colour_count": 5484,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 50,
+        "top": 52,
+        "right": 46,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9557
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-49/ground_ward/yuki-ground_ward-v1.png",
+    "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/art/bakeoff/yuki/yuki-ground_ward-v1.png",
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-49/ground_ward/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-49/ground_ward/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-frey/SmashNine/reports/codex-art-49/ground_ward/compare.png"
+  },
+  "head_measurement": {
+    "probe_factor": 0.32051282,
+    "probe_target_height": 100,
+    "factor_method": "height_and_4x_crop",
+    "head_scale": {
+      "sheet": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\builder-frey\\SmashNine\\art\\raw\\yuki-49\\ground_ward\\probe-ground_ward\\yuki-ground_ward-v1.png",
+      "frames": [
+        {
+          "scale": 0.6,
+          "score": 0.277
+        },
+        {
+          "scale": 0.6,
+          "score": 0.424
+        },
+        {
+          "scale": 1.16,
+          "score": 0.5
+        },
+        {
+          "scale": 0.62,
+          "score": 0.462
+        },
+        {
+          "scale": 0.92,
+          "score": 0.392
+        },
+        {
+          "scale": 0.6,
+          "score": 0.367
+        }
+      ],
+      "median": null,
+      "used": 0
+    }
+  },
+  "fit_adjustment": {
+    "requested_factor": 0.29434850816326524,
+    "used_factor": 0.29434850816326524,
+    "reduced_to_fit": false
+  }
+}
