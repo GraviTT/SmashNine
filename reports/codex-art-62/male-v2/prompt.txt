@@ -1,0 +1,17 @@
+Use case: stylized-concept
+Asset type: full-body character-select illustration for the 2D fighting game Smash Nine Realms.
+Input images: installed Frey and Nova male illustrations define the strict house style only; current Rio male illustration defines face and colors only; Rio male idle-v2 sprite strip is authoritative for the simpler costume, cape, sword, and silhouette.
+Primary request: Create Rio male variant 2 as a single clean full-body anime game character on a genuinely transparent background. Distinct mid-blink slash pose: torso turning through one decisive horizontal-diagonal sword cut, sword arm extended naturally, free arm balancing, cape swept back by the motion. Three-quarter view turned toward the viewer's right. Clearly different from a held guard pose.
+Subject/design: lean athletic adult male magic-sword assassin from a knight academy, spiky dark-blue hair, blue eyes, black fitted armor with restrained cyan trim lines and small cyan gems, dark cape attached at the shoulders with a blue inner lining, one straight sword with a bright blue blade and no glow halo. Match the sprite anchor design; keep the armor sleek and the cape attachment coherent.
+Style/medium: same game as the installed references—crisp dark line art, polished clean anime illustration, saturated but not neon, cel shading with restrained soft gradients.
+Composition/framing: portrait 2:3, centered, entire figure from every hair tip through both boot soles and the complete sword tip, about 88% of canvas height, 6.5–7.5 heads tall, generous clear margin around cape, hands, blade, and feet.
+Constraints: anatomically correct shoulders and arms; exactly two arms and two hands; five fingers on each hand; sword hand grips the hilt correctly with fingers wrapped around it and thumb outside; second hand is complete; sword is one continuous straight object from pommel through blade tip; cape attaches at both shoulders; both feet fully visible; clean antialiased alpha edges.
+Avoid: any background or ground, text, logo, watermark, glow halo, energy effect, mana wave, rune, particles, afterimage, speed lines, cropped anatomy, cropped blade, extra fingers, fused fingers, broken wrists, detached cape, multiple swords, oversized ornate armor, silver-white dominant armor.
+
+References: installed Frey/Nova male main art, current Rio male face art, Rio male idle-v2 anchor strip
+Tool: built-in ImageGen, transparent background
+
+--- Proportion correction pass (final raw) ---
+Use case: precise-object-edit
+Input image: art/raw/mainart-62/rio_male-v2-rejected-bighead.png
+Redraw the same Rio male mid-blink slash pose and design, changing only the heroic body proportion to a lean athletic adult about 7 heads tall: visibly smaller head, slightly longer torso and legs. Preserve all design, anatomy, pose, transparent background, complete swept cape, both hands, both feet, and the one continuous straight sword. Avoid 5–6-head proportions, background, glow, effects, cropping, extra/fused fingers, broken wrists, multiple swords, or detached cape.
