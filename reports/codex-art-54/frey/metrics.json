@@ -1,0 +1,444 @@
+{
+  "input": {
+    "selected_generation": 2,
+    "raw": "art/raw/walk-54/frey/frey-walk-generation-02.png",
+    "aligned_4x2": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png",
+    "grid": [
+      4,
+      2
+    ],
+    "note": "Built-in output was 1774x887 (exact 2:1) and was proportionally aligned to the requested 2048x1024 grid before normalization."
+  },
+  "summary": {
+    "frame_count": 8,
+    "output_columns": 8,
+    "common_scale": 0.242131,
+    "scale_by": "fixed:0.242131",
+    "common_offset_x": 0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "body_height_range": [
+      99,
+      101
+    ],
+    "body_width_range": [
+      91,
+      94
+    ],
+    "area_range": [
+      5174,
+      5390
+    ],
+    "area_spread_percent": 4.09,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "colour_count_range": [
+      4422,
+      4590
+    ],
+    "interior_detail_range": [
+      110.41,
+      113.43
+    ],
+    "interior_detail_mean": 112.27,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true
+  },
+  "head_scale": {
+    "sheet": "art\\bakeoff\\frey\\frey-walk-v3.png",
+    "frames": [
+      {
+        "scale": 1.0,
+        "score": 0.862
+      },
+      {
+        "scale": 1.0,
+        "score": 0.855
+      },
+      {
+        "scale": 1.0,
+        "score": 0.84
+      },
+      {
+        "scale": 1.02,
+        "score": 0.883
+      },
+      {
+        "scale": 0.96,
+        "score": 0.848
+      },
+      {
+        "scale": 0.96,
+        "score": 0.864
+      },
+      {
+        "scale": 1.02,
+        "score": 0.863
+      },
+      {
+        "scale": 0.96,
+        "score": 0.843
+      }
+    ],
+    "median": 1.0,
+    "used": 8,
+    "head_matched_factor": 0.242131
+  },
+  "visual_leg_check": {
+    "overall_pass": false,
+    "frame_1_and_5_show_different_forward_legs": false,
+    "frame_3_passing_leg_clearly_lifted_forward": false,
+    "frame_7_passing_leg_clearly_lifted_forward": false,
+    "forward_leg_by_frame": [
+      "near",
+      "near",
+      "near",
+      "near",
+      "near",
+      "near",
+      "far",
+      "near"
+    ],
+    "frame_notes": [
+      "near leg forward contact",
+      "near leg remains forward; far foot lifted behind",
+      "near leg remains forward; far foot is lifted behind rather than passing forward",
+      "near leg still reads forward",
+      "near leg forward again; does not reverse frame 1",
+      "near leg remains forward; far foot lifted behind",
+      "far foot is lifted forward, but the required near-leg passing identity is reversed",
+      "near leg reads forward again"
+    ],
+    "frame_pass": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "basis": "visual judgment at 4x; cyan circles in feet.png mark the judged near foot"
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png#0,0",
+      "bbox": [
+        16,
+        22,
+        107,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 91,
+      "area": 5220,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.42,
+      "colour_count": 4474,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 22,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png#1,0",
+      "bbox": [
+        17,
+        22,
+        108,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 91,
+      "area": 5299,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.43,
+      "colour_count": 4532,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 22,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 2,
+      "source": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png#2,0",
+      "bbox": [
+        15,
+        20,
+        109,
+        121
+      ],
+      "body_height": 101,
+      "body_width": 94,
+      "area": 5390,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 111.99,
+      "colour_count": 4590,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 15,
+        "top": 20,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 3,
+      "source": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png#3,0",
+      "bbox": [
+        16,
+        20,
+        108,
+        121
+      ],
+      "body_height": 101,
+      "body_width": 92,
+      "area": 5336,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.04,
+      "colour_count": 4552,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 20,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 4,
+      "source": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png#0,1",
+      "bbox": [
+        17,
+        22,
+        109,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 92,
+      "area": 5336,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.05,
+      "colour_count": 4523,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 22,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 5,
+      "source": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png#1,1",
+      "bbox": [
+        17,
+        22,
+        108,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 91,
+      "area": 5174,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.58,
+      "colour_count": 4422,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 22,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 6,
+      "source": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png#2,1",
+      "bbox": [
+        16,
+        21,
+        109,
+        121
+      ],
+      "body_height": 100,
+      "body_width": 93,
+      "area": 5241,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 110.41,
+      "colour_count": 4481,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 21,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 7,
+      "source": "art/raw/walk-54/frey/frey-walk-generation-02-aligned.png#3,1",
+      "bbox": [
+        17,
+        21,
+        109,
+        121
+      ],
+      "body_height": 100,
+      "body_width": 92,
+      "area": 5281,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 111.21,
+      "colour_count": 4510,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 21,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "candidate": "art/bakeoff/frey/frey-walk-v3.png",
+    "compare": "reports/codex-art-54/frey/compare.png",
+    "feet": "reports/codex-art-54/frey/feet.png"
+  }
+}
