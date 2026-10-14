@@ -1,0 +1,453 @@
+{
+  "input": {
+    "sheet": "art/raw/nova-52a/air_side/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.284091,
+    "scale_by": "fixed:0.284091",
+    "common_offset_x": 0,
+    "common_lift": 12,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      65,
+      75
+    ],
+    "body_width_range": [
+      64,
+      116
+    ],
+    "area_range": [
+      2729,
+      3336
+    ],
+    "area_spread_percent": 18.2,
+    "bottom_range": [
+      124,
+      140
+    ],
+    "lift_range": [
+      12,
+      28
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2323,
+      2842
+    ],
+    "interior_detail_range": [
+      95.3,
+      99.72
+    ],
+    "interior_detail_mean": 97.34,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 91.87,
+    "interior_detail_ratio": 1.0595
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.13,
+        "colour_count": 2768,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 91.44,
+        "colour_count": 2859,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 90.81,
+        "colour_count": 2855,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 92.35,
+        "colour_count": 2874,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 91.41,
+        "colour_count": 2725,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 92.07,
+        "colour_count": 2756,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 91.87,
+    "colour_count_range": [
+      2725,
+      2874
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/nova-52a/air_side/raw.png#0,0",
+      "bbox": [
+        67,
+        66,
+        131,
+        141
+      ],
+      "body_height": 75,
+      "body_width": 64,
+      "area": 2803,
+      "bottom": 140,
+      "lift": 12,
+      "expected_lift": 12,
+      "interior_detail": 99.35,
+      "colour_count": 2426,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 67,
+        "top": 66,
+        "right": 61,
+        "bottom": 51,
+        "minimum": 51,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0814
+    },
+    {
+      "index": 1,
+      "source": "art/raw/nova-52a/air_side/raw.png#1,0",
+      "bbox": [
+        35,
+        69,
+        135,
+        137
+      ],
+      "body_height": 68,
+      "body_width": 100,
+      "area": 3207,
+      "bottom": 136,
+      "lift": 16,
+      "expected_lift": 16,
+      "interior_detail": 98.05,
+      "colour_count": 2722,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 35,
+        "top": 69,
+        "right": 57,
+        "bottom": 55,
+        "minimum": 35,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0673
+    },
+    {
+      "index": 2,
+      "source": "art/raw/nova-52a/air_side/raw.png#2,0",
+      "bbox": [
+        28,
+        68,
+        140,
+        137
+      ],
+      "body_height": 69,
+      "body_width": 112,
+      "area": 3336,
+      "bottom": 136,
+      "lift": 16,
+      "expected_lift": 16,
+      "interior_detail": 96.24,
+      "colour_count": 2830,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 28,
+        "top": 68,
+        "right": 52,
+        "bottom": 55,
+        "minimum": 28,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0476
+    },
+    {
+      "index": 3,
+      "source": "art/raw/nova-52a/air_side/raw.png#0,1",
+      "bbox": [
+        26,
+        60,
+        141,
+        125
+      ],
+      "body_height": 65,
+      "body_width": 115,
+      "area": 3327,
+      "bottom": 124,
+      "lift": 28,
+      "expected_lift": 28,
+      "interior_detail": 95.36,
+      "colour_count": 2842,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 26,
+        "top": 60,
+        "right": 51,
+        "bottom": 67,
+        "minimum": 26,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.038
+    },
+    {
+      "index": 4,
+      "source": "art/raw/nova-52a/air_side/raw.png#1,1",
+      "bbox": [
+        25,
+        61,
+        141,
+        126
+      ],
+      "body_height": 65,
+      "body_width": 116,
+      "area": 3309,
+      "bottom": 125,
+      "lift": 27,
+      "expected_lift": 27,
+      "interior_detail": 95.3,
+      "colour_count": 2827,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 61,
+        "right": 51,
+        "bottom": 66,
+        "minimum": 25,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0373
+    },
+    {
+      "index": 5,
+      "source": "art/raw/nova-52a/air_side/raw.png#2,1",
+      "bbox": [
+        64,
+        58,
+        132,
+        130
+      ],
+      "body_height": 72,
+      "body_width": 68,
+      "area": 2729,
+      "bottom": 129,
+      "lift": 23,
+      "expected_lift": 23,
+      "interior_detail": 99.72,
+      "colour_count": 2323,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 64,
+        "top": 58,
+        "right": 60,
+        "bottom": 62,
+        "minimum": 58,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0854
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-52a/air_side/nova_male-air_side-v1.png",
+    "candidate": "art/bakeoff/nova/nova_male-air_side-v1.png",
+    "frames": "reports/codex-art-52a/air_side/frames",
+    "closeup": "reports/codex-art-52a/air_side/closeup.png",
+    "compare": "reports/codex-art-52a/air_side/compare.png"
+  },
+  "head_check": {
+    "method": "head_scale",
+    "result": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-air_side-v1.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.72
+        },
+        {
+          "scale": 1.0,
+          "score": 0.686
+        },
+        {
+          "scale": 1.02,
+          "score": 0.703
+        },
+        {
+          "scale": 1.02,
+          "score": 0.7
+        },
+        {
+          "scale": 0.96,
+          "score": 0.693
+        },
+        {
+          "scale": 0.96,
+          "score": 0.666
+        }
+      ],
+      "median": 1.01,
+      "used": 6,
+      "head_matched_factor": 0.281278
+    },
+    "note": "점수 0.6 이상 자동 측정 중앙값 사용"
+  }
+}

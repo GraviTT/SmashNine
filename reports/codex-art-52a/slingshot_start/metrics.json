@@ -1,0 +1,455 @@
+{
+  "input": {
+    "sheet": "art/raw/nova-52a/slingshot_start/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.260417,
+    "scale_by": "fixed:0.260417",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      89,
+      92
+    ],
+    "body_width_range": [
+      74,
+      96
+    ],
+    "area_range": [
+      3352,
+      3841
+    ],
+    "area_spread_percent": 12.73,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2649,
+      3002
+    ],
+    "interior_detail_range": [
+      113.32,
+      117.02
+    ],
+    "interior_detail_mean": 114.73,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 91.87,
+    "interior_detail_ratio": 1.2488
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.13,
+        "colour_count": 2768,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 91.44,
+        "colour_count": 2859,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 90.81,
+        "colour_count": 2855,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 92.35,
+        "colour_count": 2874,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 91.41,
+        "colour_count": 2725,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 92.07,
+        "colour_count": 2756,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 91.87,
+    "colour_count_range": [
+      2725,
+      2874
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/nova-52a/slingshot_start/raw.png#0,0",
+      "bbox": [
+        60,
+        61,
+        134,
+        153
+      ],
+      "body_height": 92,
+      "body_width": 74,
+      "area": 3559,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.39,
+      "colour_count": 2832,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 60,
+        "top": 61,
+        "right": 58,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2342
+    },
+    {
+      "index": 1,
+      "source": "art/raw/nova-52a/slingshot_start/raw.png#1,0",
+      "bbox": [
+        54,
+        63,
+        150,
+        153
+      ],
+      "body_height": 90,
+      "body_width": 96,
+      "area": 3660,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.32,
+      "colour_count": 2888,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 63,
+        "right": 42,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2335
+    },
+    {
+      "index": 2,
+      "source": "art/raw/nova-52a/slingshot_start/raw.png#2,0",
+      "bbox": [
+        55,
+        63,
+        151,
+        153
+      ],
+      "body_height": 90,
+      "body_width": 96,
+      "area": 3832,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 114.83,
+      "colour_count": 2994,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 63,
+        "right": 41,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2499
+    },
+    {
+      "index": 3,
+      "source": "art/raw/nova-52a/slingshot_start/raw.png#0,1",
+      "bbox": [
+        54,
+        64,
+        149,
+        153
+      ],
+      "body_height": 89,
+      "body_width": 95,
+      "area": 3814,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 115.21,
+      "colour_count": 2954,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 64,
+        "right": 43,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2541
+    },
+    {
+      "index": 4,
+      "source": "art/raw/nova-52a/slingshot_start/raw.png#1,1",
+      "bbox": [
+        54,
+        64,
+        150,
+        153
+      ],
+      "body_height": 89,
+      "body_width": 96,
+      "area": 3841,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 114.64,
+      "colour_count": 3002,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 64,
+        "right": 42,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2479
+    },
+    {
+      "index": 5,
+      "source": "art/raw/nova-52a/slingshot_start/raw.png#2,1",
+      "bbox": [
+        57,
+        63,
+        131,
+        153
+      ],
+      "body_height": 90,
+      "body_width": 74,
+      "area": 3352,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 117.02,
+      "colour_count": 2649,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 57,
+        "top": 63,
+        "right": 61,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2738
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-52a/slingshot_start/nova_male-slingshot_start-v1.png",
+    "candidate": "art/bakeoff/nova/nova_male-slingshot_start-v1.png",
+    "frames": "reports/codex-art-52a/slingshot_start/frames",
+    "closeup": "reports/codex-art-52a/slingshot_start/closeup.png",
+    "compare": "reports/codex-art-52a/slingshot_start/compare.png"
+  },
+  "head_check": {
+    "method": "head_scale",
+    "result": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-slingshot_start-v1.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.751
+        },
+        {
+          "scale": 1.0,
+          "score": 0.748
+        },
+        {
+          "scale": 0.96,
+          "score": 0.746
+        },
+        {
+          "scale": 0.96,
+          "score": 0.737
+        },
+        {
+          "scale": 1.0,
+          "score": 0.743
+        },
+        {
+          "scale": 0.96,
+          "score": 0.743
+        }
+      ],
+      "median": 0.98,
+      "used": 6,
+      "head_matched_factor": 0.265732
+    },
+    "note": "점수 0.6 이상 자동 측정 중앙값 사용"
+  }
+}

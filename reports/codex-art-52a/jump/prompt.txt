@@ -1,0 +1,16 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction strip containing exactly THREE single poses for Nova male: JUMP, FALL, HURT.
+
+Input images and roles: Image 1 is the ACCEPTED Nova male idle anchor and is authoritative for identity, compact 2.5-head chibi proportions, crown-to-chin head size, face scale, body width, limb thickness, costume layout, right-facing side-view camera, pixel-art detail, shading and outline weight. Image 2 shows the current game jump, fall and hurt poses enlarged 4x nearest-neighbor in that order and is only a motion cue; ignore anatomy, scale, effects and finish that differ from Image 1.
+
+Primary request: Draw three newly drawn complete full-body poses of the SAME Nova male, all facing RIGHT. Cell 1 JUMP: rising pose, both knees tucked naturally, both armored fists up, torso upright and energetic. Cell 2 FALL: airborne descent, legs reaching downward toward a future landing, torso controlled, fists ready, short spiky hair lifted upward by the fall. Cell 3 HURT: recoiling backward from a hit, eyes squeezed shut, shoulders and torso knocked back, feet still visible and body readable. Each is a separate single pose, not an animation sequence.
+
+Identity and anatomy invariants: exact compact 2.5-head ratio of Image 1, visibly large head and face, short torso and short legs, one face, teal eyes except closed in hurt, short spiky dark-blue hair, compact athletic male body, dark navy bodysuit, white-silver chest and shoulder plates, ONE small solid cyan geometric chest core, cyan armored gauntlets and boots, small gold accents. Preserve the same head size, face size, torso width, limb thickness, gauntlet scale, boot scale and armor layout in all three poses. Exactly one head, one face, two connected arms, two intact fists/gauntlets, two connected legs and two intact boots in every cell.
+
+Sheet layout: exactly THREE equal square cells in ONE horizontal row, read left-to-right as JUMP, FALL, HURT. Exactly one isolated full-body Nova male per cell. Same character scale and head size in every cell, generous solid-green margin around every hair tip, fist and boot. Keep jump and fall clearly airborne within their cells. No labels, numbers, grid lines or borders.
+
+Backdrop: completely solid flat #00FF00 chroma green. No transparency, checkerboard, floor, shadow, scenery or atmosphere.
+
+Style/medium: crisp high-detail pixel art matching Image 1, preserving hair locks, teal eyes, silver armor facets, navy fabric panels, gold accents, segmented gauntlets, boot plating and solid cyan chest-core geometry. Intended to reduce cleanly to a 128-pixel game sprite. Clean cel-shaded ramps, hard pixel edges and readable silhouette; no smooth illustration, vector, 3D, painterly texture, blur, soft gradients, antialiasing or white fringe.
+
+Final constraints: exactly 3 figures total; right-facing; airborne jump and fall; hurt recoils backward with squeezed eyes; no duplicated face or body part; no pasted parts. ABSOLUTELY NO effects: no glow, aura, rings, swirls, sparks, particles, afterimages, trails, shockwaves, floor glow or bloom. Chest core is a small solid cyan shape and does not emit light. No text, watermark, labels, grid, borders, shadows or cropping.

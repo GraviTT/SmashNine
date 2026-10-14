@@ -1,0 +1,16 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete six-frame WALK loop for Nova male.
+
+Input images and roles: Image 1 is the ACCEPTED Nova male idle anchor and is authoritative for exact identity, compact 2.5-head chibi proportions, crown-to-chin head size, face scale, body width, limb thickness, costume layout, right-facing side-view camera, pixel-art detail, shading and outline weight. Image 2 is the current game walk row enlarged 4x nearest-neighbor and is only a motion cue; ignore any anatomy, scale or finish that differs from Image 1.
+
+Primary request: Draw the SAME Nova male performing a confident hero walk to the RIGHT as a seamless six-frame loop at 10 fps. The legs must visibly alternate through the complete gait cycle: frame 1 left contact, frame 2 down, frame 3 left passing, frame 4 right contact, frame 5 down, frame 6 right passing. Arms counter-swing naturally with closed armored fists. His short spiky dark-blue hair trails the body motion by one frame. Every frame is a newly drawn complete full-body pose.
+
+Identity and anatomy invariants: exact compact 2.5-head ratio of Image 1, visibly large head and face, short torso and short legs, one visible face with teal eyes, short spiky dark-blue hair, compact athletic male body, dark navy bodysuit, white-silver chest and shoulder plates, ONE small solid cyan geometric chest core, cyan armored gauntlets and boots, small gold accents. Preserve the same head size, face size, torso width, limb thickness, gauntlet scale, boot scale and armor layout in all frames. Exactly one head, one face, two connected arms, two intact fists/gauntlets, two connected legs and two intact boots in every frame.
+
+Sheet layout: exactly SIX equal 512-by-512 square cells in a 3 columns by 2 rows sheet, read top row left-to-right then bottom row left-to-right. Exactly one isolated full-body Nova male per cell. Same character scale and head size in every cell, same implied floor line, generous green margin around every hair tip, fist and boot. No labels, numbers, grid lines or borders.
+
+Backdrop: completely solid flat #00FF00 chroma green. No transparency, checkerboard, floor, shadow, scenery or atmosphere.
+
+Style/medium: crisp high-detail pixel art matching Image 1, preserving separated hair locks, teal eyes, silver armor facets, navy fabric panels, gold accents, segmented gauntlets, boot plating and solid cyan chest-core geometry. Intended to reduce cleanly to a 128-pixel game sprite. Clean cel-shaded ramps, hard pixel edges and readable silhouette; no smooth illustration, vector, 3D, painterly texture, blur, soft gradients, antialiasing or white fringe.
+
+Final constraints: right-facing walk only; clear contact/down/passing phases for both legs; no foot sliding; hair lags one frame; no duplicated face or body part; no pasted parts; no attack pose. ABSOLUTELY NO effects: no glow, aura, rings, swirls, sparks, particles, afterimages, trails, shockwaves, floor glow or bloom. The chest core is a small solid cyan shape and does not emit light. No text, watermark, labels, grid, borders, shadows or cropping.
