@@ -1,0 +1,418 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-42/luna-idle-generated.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "median contact-frame body height",
+    "source_median_px": 366.0,
+    "target_px": 82.0,
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.22404372,
+    "scale_by": "height:82",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      81,
+      84
+    ],
+    "body_width_range": [
+      85,
+      89
+    ],
+    "area_range": [
+      4050,
+      4404
+    ],
+    "area_spread_percent": 8.04,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3921,
+      4233
+    ],
+    "interior_detail_range": [
+      92.21,
+      95.94
+    ],
+    "interior_detail_mean": 93.72,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 90.49,
+    "interior_detail_ratio": 1.0357,
+    "head_scale": {
+      "anchor": "smash-nine-prototype/assets/art/luna/luna_sheet.png:0",
+      "median": 0.92,
+      "used_frames": 5,
+      "frame_scales": [0.9, 0.92, 0.92, 0.92, 0.62, 0.92],
+      "frame_scores": [0.84, 0.82, 0.83, 0.83, 0.39, 0.82],
+      "note": "Frame 5 was rejected by the matcher as a low-score outlier; median is from five accepted frames."
+    }
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 86.3,
+        "colour_count": 4541,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 89.3,
+        "colour_count": 3969,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 96.91,
+        "colour_count": 3955,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 89.46,
+        "colour_count": 4520,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 90.49,
+    "colour_count_range": [
+      3955,
+      4541
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-42/luna-idle-generated.png#0,0",
+      "bbox": [
+        24,
+        40,
+        110,
+        121
+      ],
+      "body_height": 81,
+      "body_width": 86,
+      "area": 4050,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 95.94,
+      "colour_count": 3921,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 40,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0602
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-42/luna-idle-generated.png#1,0",
+      "bbox": [
+        23,
+        39,
+        110,
+        121
+      ],
+      "body_height": 82,
+      "body_width": 87,
+      "area": 4233,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 93.3,
+      "colour_count": 4079,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 39,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0311
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-42/luna-idle-generated.png#2,0",
+      "bbox": [
+        21,
+        39,
+        110,
+        121
+      ],
+      "body_height": 82,
+      "body_width": 89,
+      "area": 4404,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 92.21,
+      "colour_count": 4233,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 21,
+        "top": 39,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.019
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-42/luna-idle-generated.png#0,1",
+      "bbox": [
+        22,
+        37,
+        110,
+        121
+      ],
+      "body_height": 84,
+      "body_width": 88,
+      "area": 4373,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 92.99,
+      "colour_count": 4208,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 37,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0276
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-42/luna-idle-generated.png#1,1",
+      "bbox": [
+        24,
+        40,
+        109,
+        121
+      ],
+      "body_height": 81,
+      "body_width": 85,
+      "area": 4084,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 93.57,
+      "colour_count": 3925,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 40,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.034
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-42/luna-idle-generated.png#2,1",
+      "bbox": [
+        22,
+        38,
+        110,
+        121
+      ],
+      "body_height": 83,
+      "body_width": 88,
+      "area": 4302,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 94.29,
+      "colour_count": 4127,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 38,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.042
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-42/idle/luna-idle-v2.png",
+    "candidate": "art/bakeoff/luna/luna-idle-v2.png",
+    "frames": "reports/codex-art-42/idle/frames",
+    "closeup": "reports/codex-art-42/idle/closeup.png",
+    "compare": "reports/codex-art-42/idle/compare.png"
+  }
+}
