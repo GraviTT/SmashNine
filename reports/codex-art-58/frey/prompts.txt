@@ -1,0 +1,27 @@
+CODEX-ART-58 Frey — built-in image tool prompts
+
+References used for every generation (copied under art/raw/walk-58/frey/refs/)
+1. idle_frame0_4x.png — exact look, detail, proportions and idle costume
+2. frey_pose_03.png or frey_pose_07.png — grey passing-pose guide only
+3. accepted_frame01.png — accepted ART-57 frame 1, costume reference
+4. walk_v2_frame03.png — older legs-together frame with the same costume
+
+Common prompt
+Use case: stylized-concept
+Asset type: one source frame for an 8-frame 2D game walk cycle, later downscaled into a 128 px cell
+Draw exactly one full-body Frey facing right in Image 2's passing pose. Image 2 is pose only; its greys are never clothing or colours. Change only the legs and the tiny sword-arm swing. Preserve Images 1 and 3 for the head, face, hair, winged circlet, proportions, torso, silver-and-gold armour, blue cape with one yellow star, forward-down sword, round blue shield and steady shield arm.
+Both legs keep dark charcoal leggings, small silver knee and thigh plates, and plain brown leather ankle boots. The far leg is only slightly darker and partly behind the near leg. No shin greaves, tall armoured boots, red/orange boots, navy trousers, or asymmetric costume colours.
+Polished high-detail anime fantasy game sprite source art matching Images 1 and 3, clean dark outline, crisp shading. One complete centered figure with generous margin on solid exact #00FF00. Exactly one head, two legs, one sword and one shield; no text, ground shadow, effects, extra objects or crop.
+
+Frame 3, selected attempt 3
+The NEAR sword-side leg is the only standing leg. Draw it straight down from the hip, nearly vertical, with the ankle and flat brown boot under the left half of the belt buckle and directly below the body center—not below the shield, not to screen-right. The FAR shield-side leg swings behind it with a clearly bent knee. Its smaller darker brown boot is lifted beside the standing ankle, toe down. The lifted boot and standing boot overlap horizontally; the lifted boot does not project forward and does not touch the ground. The near standing leg is in front at the overlap.
+
+Frame 3 discarded attempts
+- Attempt 1: pose and costume passed by eye, but the planted-foot centre was 72.0 px; required range was 58–70 px.
+- Attempt 2: targeted the navel, but the planted-foot centre remained 72.0 px.
+
+Frame 7, selected attempt 1
+The FAR shield-side leg is the single standing leg, straight and nearly vertical. Its slightly darker brown boot is flat on the ground directly under the hips. The NEAR sword-side leg is the swinging leg, bent at the knee; its brighter brown boot is visibly lifted immediately beside the standing ankle, toe pointing down. The two boots are almost at the same horizontal x position. The lifted boot does not reach in front of the torso and does not touch the ground. Where the legs overlap, the near swinging leg is clearly in front; the far standing leg is slightly darker and partly behind it.
+
+Generation mode
+Built-in image tool, solid #00FF00 background. The selected generated sources and all discarded attempts are copied under art/raw/walk-58/frey/generated/ and are intentionally excluded from the commit script.
