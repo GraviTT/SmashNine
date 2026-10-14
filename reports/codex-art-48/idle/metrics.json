@@ -1,0 +1,427 @@
+{
+  "head_scale": {
+    "anchor": "smash-nine-prototype/assets/art/yuki/yuki_sheet.png:0",
+    "factor": 0.218021,
+    "median": 1.02,
+    "used_frames": 1,
+    "minimum_score": 0.6,
+    "low_confidence": true,
+    "frames": [
+      {"index": 0, "scale": 0.62, "score": 0.296},
+      {"index": 1, "scale": 0.7, "score": 0.492},
+      {"index": 2, "scale": 1.02, "score": 0.831},
+      {"index": 3, "scale": 0.6, "score": 0.299},
+      {"index": 4, "scale": 0.7, "score": 0.312},
+      {"index": 5, "scale": 0.7, "score": 0.482}
+    ]
+  },
+  "input": {
+    "sheet": "art/raw/yuki-48/idle/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.218021,
+    "scale_by": "fixed:0.218021",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      89,
+      91
+    ],
+    "body_width_range": [
+      77,
+      81
+    ],
+    "area_range": [
+      4502,
+      4708
+    ],
+    "area_spread_percent": 4.38,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4139,
+      4311
+    ],
+    "interior_detail_range": [
+      83.64,
+      85.73
+    ],
+    "interior_detail_mean": 84.54,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 89.41,
+    "interior_detail_ratio": 0.9455
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 89.84,
+        "colour_count": 1100,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 89.97,
+        "colour_count": 1091,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 89.45,
+        "colour_count": 1081,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 88.38,
+        "colour_count": 1088,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 89.41,
+    "colour_count_range": [
+      1081,
+      1100
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/yuki-48/idle/raw.png#0,0",
+      "bbox": [
+        25,
+        32,
+        102,
+        121
+      ],
+      "body_height": 89,
+      "body_width": 77,
+      "area": 4502,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 85.73,
+      "colour_count": 4139,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 32,
+        "right": 26,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9588
+    },
+    {
+      "index": 1,
+      "source": "art/raw/yuki-48/idle/raw.png#1,0",
+      "bbox": [
+        25,
+        31,
+        104,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 79,
+      "area": 4602,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 85.13,
+      "colour_count": 4213,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 31,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9521
+    },
+    {
+      "index": 2,
+      "source": "art/raw/yuki-48/idle/raw.png#2,0",
+      "bbox": [
+        23,
+        31,
+        104,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 81,
+      "area": 4672,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 84.25,
+      "colour_count": 4292,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 31,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9423
+    },
+    {
+      "index": 3,
+      "source": "art/raw/yuki-48/idle/raw.png#0,1",
+      "bbox": [
+        24,
+        30,
+        104,
+        121
+      ],
+      "body_height": 91,
+      "body_width": 80,
+      "area": 4708,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 83.64,
+      "colour_count": 4311,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 30,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9355
+    },
+    {
+      "index": 4,
+      "source": "art/raw/yuki-48/idle/raw.png#1,1",
+      "bbox": [
+        25,
+        31,
+        103,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 78,
+      "area": 4621,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 84.15,
+      "colour_count": 4218,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 31,
+        "right": 25,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9412
+    },
+    {
+      "index": 5,
+      "source": "art/raw/yuki-48/idle/raw.png#2,1",
+      "bbox": [
+        25,
+        31,
+        104,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 79,
+      "area": 4604,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 84.36,
+      "colour_count": 4217,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 31,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9435
+    }
+  ],
+  "outputs": {
+    "sheet": "art/raw/yuki-48/idle/normalized/yuki-idle-v2.png",
+    "candidate": "art/bakeoff/yuki/yuki-idle-v2.png",
+    "frames": "art/raw/yuki-48/idle/normalized/frames",
+    "closeup": "art/raw/yuki-48/idle/normalized/closeup.png",
+    "compare": "art/raw/yuki-48/idle/normalized/compare.png"
+  }
+}
