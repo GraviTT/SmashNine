@@ -1,0 +1,16 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete six-frame IDLE loop for Rio male.
+
+FINAL PROPORTION CORRECTION: two rejected drafts at the correct approximately 98-pixel final body height measured head scales 0.92 and 0.90 against Image 1. The model did not enlarge the head enough. In this new drawing, make the crown-to-chin head and face visibly 15 PERCENT LARGER than the most recent draft RELATIVE TO THE BODY, while keeping the same total figure height. Shorten the torso and legs enough to compensate. Match Image 1's exact compact 3-head chibi anatomy. Never make the whole figure taller; never use adult anatomy. Image 1 overrides Image 2 for proportions and sprite rendering.
+
+Input images: Image 1 is the current Rio male game idle frame enlarged 4x nearest-neighbor, authoritative for exact head size, face size, compact 3-head ratio, right-facing side-view/slight three-quarter camera, low-forward sword pose, costume scale, pixel finish, outline and detail. Image 2 is the full-body illustration for identity, short spiky dark-blue hair, bright blue eyes, armor, cape and sword design only; ignore its tall proportions and all glow.
+
+Draw the SAME Rio male as exactly SIX newly drawn complete full-body frames of a calm planted breathing idle at 6.3 fps, facing RIGHT, one straight sword in the near hand held low and forward-down.
+F1 neutral. F2 inhale, shoulders slightly up, hair/cape begin lift. F3 breath top, shoulders highest, hair/cape subtly lifted. F4 exhale begins while hair/cape remain lifted one lag frame. F5 lowest, knees softly bent, hair/cape settled. F6 halfway from F5 to F1 for a seamless loop. Both feet remain planted at identical positions.
+
+Identity invariants: one readable face; bright blue eyes; short spiky dark-blue hair; compact athletic 3-head male body; black armor with thin crisp cyan trim and small solid cyan gems; dark navy-black cape with vivid blue lining; black armored gloves and flat boots; exactly one straight sword with a solid bright-blue faceted blade. Preserve head size, face size, body width, limb thickness, armor, cape, sword size and sword hand across all frames. Exactly one head, two connected arms and hands, two connected legs and boots, one cape, one complete sword. No missing or duplicated anatomy.
+
+Sheet: exactly SIX equal 512x512 square cells arranged 3 columns x 2 rows, total 1536x1024 if supported, read top-left to bottom-right. One isolated figure per cell, same camera/scale/root/floor. Generous margins around hair, cape, sword tip, hands and boots. No grid, labels, borders or frame-specific resizing.
+Backdrop: perfectly flat solid #00FF00 chroma green, no transparency, checkerboard, ground, shadow, scenery or atmosphere.
+Style: crisp high-detail pixel art matching Image 1, intended to reduce to 128px; clean cel-shaded ramps, readable silhouette, dark-blue hair locks, armor facets, cyan lines and gems, cape lining, glove and boot plates, sword hilt and solid blade facets. No smooth illustration, vector, 3D, painterly texture, blur, gradients, antialiasing or fringe.
+Hard constraints: no attack pose; no glow around blade/gems/trim; no aura, rings, waves, sparks, particles, afterimages, trails, floor glow or bloom; no text, watermark, grid, borders, shadows or cropped parts.

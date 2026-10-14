@@ -1,0 +1,425 @@
+{
+  "input": {
+    "sheet": "art/raw/rio-60/rio_female/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "median contact-frame body height",
+    "source_median_px": 414.0,
+    "target_px": 96.0,
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.23188406,
+    "scale_by": "height:96",
+    "common_offset_x": -8,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      93,
+      98
+    ],
+    "body_width_range": [
+      99,
+      103
+    ],
+    "area_range": [
+      5023,
+      5170
+    ],
+    "area_spread_percent": 2.84,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4705,
+      4846
+    ],
+    "interior_detail_range": [
+      93.76,
+      97.64
+    ],
+    "interior_detail_mean": 95.55,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 78.54,
+    "interior_detail_ratio": 1.2166
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 80.65,
+        "colour_count": 5510,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 79.33,
+        "colour_count": 5472,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 77.39,
+        "colour_count": 5414,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 76.8,
+        "colour_count": 5559,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 78.54,
+    "colour_count_range": [
+      5414,
+      5559
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/rio-60/rio_female/raw.png#0,0",
+      "bbox": [
+        17,
+        25,
+        118,
+        121
+      ],
+      "body_height": 96,
+      "body_width": 101,
+      "area": 5023,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.64,
+      "colour_count": 4711,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 25,
+        "right": 10,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2432
+    },
+    {
+      "index": 1,
+      "source": "art/raw/rio-60/rio_female/raw.png#1,0",
+      "bbox": [
+        16,
+        25,
+        115,
+        121
+      ],
+      "body_height": 96,
+      "body_width": 99,
+      "area": 5034,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 96.71,
+      "colour_count": 4705,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 25,
+        "right": 13,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2313
+    },
+    {
+      "index": 2,
+      "source": "art/raw/rio-60/rio_female/raw.png#2,0",
+      "bbox": [
+        15,
+        23,
+        115,
+        121
+      ],
+      "body_height": 98,
+      "body_width": 100,
+      "area": 5069,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 95.55,
+      "colour_count": 4741,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 15,
+        "top": 23,
+        "right": 13,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2166
+    },
+    {
+      "index": 3,
+      "source": "art/raw/rio-60/rio_female/raw.png#0,1",
+      "bbox": [
+        13,
+        24,
+        115,
+        121
+      ],
+      "body_height": 97,
+      "body_width": 102,
+      "area": 5170,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 94.34,
+      "colour_count": 4846,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 13,
+        "top": 24,
+        "right": 13,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2012
+    },
+    {
+      "index": 4,
+      "source": "art/raw/rio-60/rio_female/raw.png#1,1",
+      "bbox": [
+        16,
+        28,
+        117,
+        121
+      ],
+      "body_height": 93,
+      "body_width": 101,
+      "area": 5056,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 95.31,
+      "colour_count": 4735,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 28,
+        "right": 11,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2135
+    },
+    {
+      "index": 5,
+      "source": "art/raw/rio-60/rio_female/raw.png#2,1",
+      "bbox": [
+        14,
+        25,
+        117,
+        121
+      ],
+      "body_height": 96,
+      "body_width": 103,
+      "area": 5167,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 93.76,
+      "colour_count": 4813,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 14,
+        "top": 25,
+        "right": 11,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1938
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-60/rio_female/rio_female-idle-v2.png",
+    "candidate": "art/bakeoff/rio/rio_female-idle-v2.png",
+    "frames": "reports/codex-art-60/rio_female/frames",
+    "closeup": "reports/codex-art-60/rio_female/closeup.png",
+    "compare": "reports/codex-art-60/rio_female/compare.png"
+  },
+  "head_scale": {
+    "sheet": "art\\bakeoff\\rio\\rio_female-idle-v2.png",
+    "frames": [
+      {"scale": 0.90, "score": 0.86},
+      {"scale": 0.90, "score": 0.84},
+      {"scale": 0.92, "score": 0.83},
+      {"scale": 0.92, "score": 0.87},
+      {"scale": 0.92, "score": 0.85},
+      {"scale": 0.92, "score": 0.85}
+    ],
+    "median": 0.92,
+    "used": 6,
+    "head_matched_factor": 0.252048,
+    "status": "fail: below required 0.96-1.04 after two permitted regenerations"
+  }
+}
