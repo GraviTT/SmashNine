@@ -1,0 +1,393 @@
+{
+  "input": {
+    "sheet": "art/raw/rio-61b/shield/prepared-attempt2.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.24,
+    "scale_by": "fixed:0.24",
+    "common_offset_x": -7,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      85,
+      99
+    ],
+    "body_width_range": [
+      86,
+      105
+    ],
+    "area_range": [
+      4379,
+      4543
+    ],
+    "area_spread_percent": 3.61,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3914,
+      4023
+    ],
+    "interior_detail_range": [
+      98.65,
+      102.19
+    ],
+    "interior_detail_mean": 100.61,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 97.64,
+    "interior_detail_ratio": 1.0304
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.64,
+        "colour_count": 4711,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.64,
+    "colour_count_range": [
+      4711,
+      4711
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/rio-61b/shield/prepared-attempt2.png#0,0",
+      "bbox": [
+        19,
+        22,
+        105,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 86,
+      "area": 4543,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 99.15,
+      "colour_count": 4023,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 19,
+        "top": 22,
+        "right": 23,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0155
+    },
+    {
+      "index": 1,
+      "source": "art/raw/rio-61b/shield/prepared-attempt2.png#1,0",
+      "bbox": [
+        19,
+        31,
+        121,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 102,
+      "area": 4451,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 102.19,
+      "colour_count": 3955,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 19,
+        "top": 31,
+        "right": 7,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0466
+    },
+    {
+      "index": 2,
+      "source": "art/raw/rio-61b/shield/prepared-attempt2.png#2,0",
+      "bbox": [
+        19,
+        31,
+        124,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 105,
+      "area": 4479,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 102.1,
+      "colour_count": 3997,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 19,
+        "top": 31,
+        "right": 4,
+        "bottom": 7,
+        "minimum": 4,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0457
+    },
+    {
+      "index": 3,
+      "source": "art/raw/rio-61b/shield/prepared-attempt2.png#0,1",
+      "bbox": [
+        18,
+        31,
+        122,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 104,
+      "area": 4483,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.56,
+      "colour_count": 4008,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 18,
+        "top": 31,
+        "right": 6,
+        "bottom": 7,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0299
+    },
+    {
+      "index": 4,
+      "source": "art/raw/rio-61b/shield/prepared-attempt2.png#1,1",
+      "bbox": [
+        17,
+        36,
+        120,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 103,
+      "area": 4379,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 98.65,
+      "colour_count": 3914,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 36,
+        "right": 8,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0103
+    },
+    {
+      "index": 5,
+      "source": "art/raw/rio-61b/shield/prepared-attempt2.png#2,1",
+      "bbox": [
+        18,
+        31,
+        120,
+        121
+      ],
+      "body_height": 90,
+      "body_width": 102,
+      "area": 4445,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.03,
+      "colour_count": 3962,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 18,
+        "top": 31,
+        "right": 8,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0347
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-61b/shield/rio_female-shield-v1.png",
+    "candidate": "art/bakeoff/rio/rio_female-shield-v1.png",
+    "frames": "reports/codex-art-61b/shield/frames",
+    "closeup": "reports/codex-art-61b/shield/closeup.png",
+    "compare": "reports/codex-art-61b/shield/compare.png"
+  }
+}

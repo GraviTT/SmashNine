@@ -1,0 +1,391 @@
+{
+  "input": {
+    "sheet": "art/raw/rio-61b/rising_slash/prepared.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.267,
+    "scale_by": "fixed:0.267",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      80,
+      123
+    ],
+    "body_width_range": [
+      88,
+      124
+    ],
+    "area_range": [
+      4714,
+      5899
+    ],
+    "area_spread_percent": 20.09,
+    "bottom_range": [
+      146,
+      152
+    ],
+    "lift_range": [
+      0,
+      6
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4263,
+      5273
+    ],
+    "interior_detail_range": [
+      88.33,
+      104.27
+    ],
+    "interior_detail_mean": 95.64,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 97.64,
+    "interior_detail_ratio": 0.9795
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.64,
+        "colour_count": 4711,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.64,
+    "colour_count_range": [
+      4711,
+      4711
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/rio-61b/rising_slash/prepared.png#0,0",
+      "bbox": [
+        53,
+        73,
+        167,
+        153
+      ],
+      "body_height": 80,
+      "body_width": 114,
+      "area": 4714,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 96.29,
+      "colour_count": 4263,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 73,
+        "right": 25,
+        "bottom": 39,
+        "minimum": 25,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9862
+    },
+    {
+      "index": 1,
+      "source": "art/raw/rio-61b/rising_slash/prepared.png#1,0",
+      "bbox": [
+        43,
+        33,
+        147,
+        147
+      ],
+      "body_height": 114,
+      "body_width": 104,
+      "area": 5178,
+      "bottom": 146,
+      "lift": 6,
+      "expected_lift": 6,
+      "interior_detail": 104.27,
+      "colour_count": 4627,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 43,
+        "top": 33,
+        "right": 45,
+        "bottom": 45,
+        "minimum": 33,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0679
+    },
+    {
+      "index": 2,
+      "source": "art/raw/rio-61b/rising_slash/prepared.png#2,0",
+      "bbox": [
+        18,
+        30,
+        106,
+        153
+      ],
+      "body_height": 123,
+      "body_width": 88,
+      "area": 5077,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.76,
+      "colour_count": 4583,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 18,
+        "top": 30,
+        "right": 86,
+        "bottom": 39,
+        "minimum": 18,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0422
+    },
+    {
+      "index": 3,
+      "source": "art/raw/rio-61b/rising_slash/prepared.png#0,1",
+      "bbox": [
+        45,
+        46,
+        169,
+        153
+      ],
+      "body_height": 107,
+      "body_width": 124,
+      "area": 5177,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 89.32,
+      "colour_count": 4656,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 45,
+        "top": 46,
+        "right": 23,
+        "bottom": 39,
+        "minimum": 23,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9148
+    },
+    {
+      "index": 4,
+      "source": "art/raw/rio-61b/rising_slash/prepared.png#1,1",
+      "bbox": [
+        36,
+        50,
+        127,
+        153
+      ],
+      "body_height": 103,
+      "body_width": 91,
+      "area": 4950,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 88.33,
+      "colour_count": 4476,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 36,
+        "top": 50,
+        "right": 65,
+        "bottom": 39,
+        "minimum": 36,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9046
+    },
+    {
+      "index": 5,
+      "source": "art/raw/rio-61b/rising_slash/prepared.png#2,1",
+      "bbox": [
+        23,
+        52,
+        146,
+        153
+      ],
+      "body_height": 101,
+      "body_width": 123,
+      "area": 5899,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 93.9,
+      "colour_count": 5273,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 52,
+        "right": 46,
+        "bottom": 39,
+        "minimum": 23,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9617
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-61b/rising_slash/rio_female-rising_slash-v1.png",
+    "candidate": "art/bakeoff/rio/rio_female-rising_slash-v1.png",
+    "frames": "reports/codex-art-61b/rising_slash/frames",
+    "closeup": "reports/codex-art-61b/rising_slash/closeup.png",
+    "compare": "reports/codex-art-61b/rising_slash/compare.png"
+  }
+}

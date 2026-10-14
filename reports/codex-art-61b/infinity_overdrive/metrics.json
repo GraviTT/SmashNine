@@ -1,0 +1,389 @@
+{
+  "input": {
+    "sheet": "art/raw/rio-61b/infinity_overdrive/prepared.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.279,
+    "scale_by": "fixed:0.279",
+    "common_offset_x": -3,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      95,
+      136
+    ],
+    "body_width_range": [
+      92,
+      112
+    ],
+    "area_range": [
+      4980,
+      5781
+    ],
+    "area_spread_percent": 13.86,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4467,
+      5095
+    ],
+    "interior_detail_range": [
+      96.49,
+      104.49
+    ],
+    "interior_detail_mean": 102.01,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 97.64,
+    "interior_detail_ratio": 1.0448
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.64,
+        "colour_count": 4711,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.64,
+    "colour_count_range": [
+      4711,
+      4711
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/rio-61b/infinity_overdrive/prepared.png#0,0",
+      "bbox": [
+        54,
+        58,
+        158,
+        153
+      ],
+      "body_height": 95,
+      "body_width": 104,
+      "area": 4980,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.98,
+      "colour_count": 4467,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 58,
+        "right": 34,
+        "bottom": 39,
+        "minimum": 34,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0649
+    },
+    {
+      "index": 1,
+      "source": "art/raw/rio-61b/infinity_overdrive/prepared.png#1,0",
+      "bbox": [
+        53,
+        30,
+        148,
+        153
+      ],
+      "body_height": 123,
+      "body_width": 95,
+      "area": 5052,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.62,
+      "colour_count": 4526,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 30,
+        "right": 44,
+        "bottom": 39,
+        "minimum": 30,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0305
+    },
+    {
+      "index": 2,
+      "source": "art/raw/rio-61b/infinity_overdrive/prepared.png#2,0",
+      "bbox": [
+        52,
+        17,
+        144,
+        153
+      ],
+      "body_height": 136,
+      "body_width": 92,
+      "area": 5038,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 96.49,
+      "colour_count": 4555,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 52,
+        "top": 17,
+        "right": 48,
+        "bottom": 39,
+        "minimum": 17,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9882
+    },
+    {
+      "index": 3,
+      "source": "art/raw/rio-61b/infinity_overdrive/prepared.png#0,1",
+      "bbox": [
+        43,
+        21,
+        151,
+        153
+      ],
+      "body_height": 132,
+      "body_width": 108,
+      "area": 5781,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 102.58,
+      "colour_count": 5095,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 43,
+        "top": 21,
+        "right": 41,
+        "bottom": 39,
+        "minimum": 21,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0506
+    },
+    {
+      "index": 4,
+      "source": "art/raw/rio-61b/infinity_overdrive/prepared.png#1,1",
+      "bbox": [
+        44,
+        21,
+        156,
+        153
+      ],
+      "body_height": 132,
+      "body_width": 112,
+      "area": 5780,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.49,
+      "colour_count": 5069,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 44,
+        "top": 21,
+        "right": 36,
+        "bottom": 39,
+        "minimum": 21,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0702
+    },
+    {
+      "index": 5,
+      "source": "art/raw/rio-61b/infinity_overdrive/prepared.png#2,1",
+      "bbox": [
+        53,
+        54,
+        163,
+        153
+      ],
+      "body_height": 99,
+      "body_width": 110,
+      "area": 5373,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.89,
+      "colour_count": 4775,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 54,
+        "right": 29,
+        "bottom": 39,
+        "minimum": 29,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.064
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-61b/infinity_overdrive/rio_female-infinity_overdrive-v1.png",
+    "candidate": "art/bakeoff/rio/rio_female-infinity_overdrive-v1.png",
+    "frames": "reports/codex-art-61b/infinity_overdrive/frames",
+    "closeup": "reports/codex-art-61b/infinity_overdrive/closeup.png",
+    "compare": "reports/codex-art-61b/infinity_overdrive/compare.png"
+  }
+}
