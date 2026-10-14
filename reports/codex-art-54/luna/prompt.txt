@@ -1,0 +1,22 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete eight-frame WALK loop for normal-form Luna.
+
+Image 1 is the accepted luna-idle-v3 anchor enlarged 4x and is authoritative for identity, very large head size, compact 2.2-head proportions, right-facing camera, costume, wand, detail density, shading softness and pixel finish. Image 2 is the current game walk row enlarged 4x and is motion/costume reference only; do not copy its ambiguous legs. Draw every frame anew. Keep Luna's head exactly at Image 1 scale relative to the body, with compact torso and very short legs; do not enlarge the whole character.
+
+Draw an eight-frame right-facing light, cheerful walk at 13.3 fps, read left-to-right across a 4x2 sheet:
+1 Contact, near leg forward: near heel down far in front, far leg stretched behind on its toe; body at middle height.
+2 Down: weight lands on the bent near leg, far foot lifted behind; body lowest.
+3 Passing: far leg swings forward under the body with bent knee and foot clearly off ground; near leg straight under hips.
+4 Up: near leg pushes off on its toe behind, far leg reaches forward; body highest.
+5 Contact, far leg forward: far heel down far in front, near leg stretched behind on its toe; mirror of frame 1.
+6 Down: weight lands on the bent far leg, near foot lifted behind; body lowest.
+7 Passing: near leg swings forward under the body with bent knee and foot clearly off ground; far leg straight under hips.
+8 Up: far leg pushes off on its toe behind, near leg reaches forward; body highest and loop-ready.
+
+The far leg must be visibly darker and partly behind the near leg so the alternating feet read at 1x. The free arm swings opposite the legs; the wand arm swings less and keeps one intact star wand forward. Hair, bow ribbon and skirt lag one frame behind the body bob. Head bob is subtle: Down 1-2 final pixels lower than Contact, Up 1-2 final pixels higher.
+
+Preserve Image 1 exactly: same very large head and one visible magenta-eyed face, thick long hot-pink hair, midnight-purple bow with gold star, compact purple/pink/gold magical-girl dress with layered white frills, purple boots, cyan-white five-point star wand, high-detail crisp pixel shading and dark-violet outline. One head, two connected arms/hands, two short connected legs/boots and one wand in every frame.
+
+Exactly eight equal 512x512 cells in a 4x2 2048x1024 sheet, one isolated Luna per cell, consistent scale/root/floor, solid flat #00FF00 background, generous margins, no boundary contact or per-frame resize. No labels, grid, borders, shadows, cropping, duplicated parts, running, attack poses, spell effects, sparkles, glow, trails, aura, dust, text or watermark. No smooth illustration, blur, 3D or painterly rendering. Keep rich internal pixel contrast and costume detail so the reduced 128px sprite remains crisp.
+
+SECOND AND FINAL ATTEMPT — correct the prior leg-check failure. Keep a persistent visual identity for each leg across all eight frames: the NEAR leg and boot are brighter purple/gold and fully visible; the FAR leg and boot are distinctly dark violet-shadowed and partly occluded. Frame 1 must have the bright near boot farthest RIGHT (forward) and the dark far boot farthest LEFT (back). Frame 5 must visibly reverse this: the dark far boot is farthest RIGHT (forward) and the bright near boot is farthest LEFT (back). Do not reuse the same contact silhouette for frames 1 and 5. In frame 3 the dark far boot must be airborne, bent, and visibly separated from the ground while moving to the RIGHT of the straight bright near leg. In frame 7 the bright near boot must be airborne, bent, and visibly separated from the ground while moving to the RIGHT of the straight dark far leg. Do not put both boots on the ground in frames 3 or 7. Preserve the required phase order exactly; do not shift the contact poses to frames 4 or 8.

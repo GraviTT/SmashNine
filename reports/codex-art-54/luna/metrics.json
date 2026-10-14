@@ -1,0 +1,444 @@
+{
+  "input": {
+    "selected_generation": 2,
+    "raw": "art/raw/walk-54/luna/luna-walk-generation-02.png",
+    "aligned_4x2": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png",
+    "grid": [
+      4,
+      2
+    ],
+    "note": "Built-in output was 1774x887 (exact 2:1) and was proportionally aligned to the requested 2048x1024 grid before normalization."
+  },
+  "summary": {
+    "frame_count": 8,
+    "output_columns": 8,
+    "common_scale": 0.241113,
+    "scale_by": "fixed:0.241113",
+    "common_offset_x": 0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "body_height_range": [
+      76,
+      81
+    ],
+    "body_width_range": [
+      85,
+      86
+    ],
+    "area_range": [
+      3915,
+      4126
+    ],
+    "area_spread_percent": 5.22,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "colour_count_range": [
+      3602,
+      3825
+    ],
+    "interior_detail_range": [
+      101.54,
+      106.36
+    ],
+    "interior_detail_mean": 103.58,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true
+  },
+  "head_scale": {
+    "sheet": "art\\bakeoff\\luna\\luna-walk-v2.png",
+    "frames": [
+      {
+        "scale": 0.6,
+        "score": 0.496
+      },
+      {
+        "scale": 1.0,
+        "score": 0.861
+      },
+      {
+        "scale": 1.0,
+        "score": 0.87
+      },
+      {
+        "scale": 1.0,
+        "score": 0.889
+      },
+      {
+        "scale": 1.0,
+        "score": 0.89
+      },
+      {
+        "scale": 1.0,
+        "score": 0.878
+      },
+      {
+        "scale": 1.0,
+        "score": 0.883
+      },
+      {
+        "scale": 0.6,
+        "score": 0.462
+      }
+    ],
+    "median": 1.0,
+    "used": 6,
+    "head_matched_factor": 0.241113
+  },
+  "visual_leg_check": {
+    "overall_pass": false,
+    "frame_1_and_5_show_different_forward_legs": false,
+    "frame_3_passing_leg_clearly_lifted_forward": false,
+    "frame_7_passing_leg_clearly_lifted_forward": true,
+    "forward_leg_by_frame": [
+      "near",
+      "near",
+      "near",
+      "near",
+      "near",
+      "near",
+      "near",
+      "near"
+    ],
+    "frame_notes": [
+      "near leg forward contact",
+      "near leg remains forward; far foot lifted behind",
+      "near leg remains forward; far foot is lifted behind rather than passing forward",
+      "near leg still reads forward",
+      "near leg forward again; does not reverse frame 1",
+      "near leg remains forward; far foot lifted behind",
+      "near foot is clearly lifted forward, matching the requested passing pose",
+      "near leg reads forward; far foot trails behind"
+    ],
+    "frame_pass": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "basis": "visual judgment at 4x; cyan circles in feet.png mark the judged near foot"
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png#0,0",
+      "bbox": [
+        25,
+        43,
+        111,
+        121
+      ],
+      "body_height": 78,
+      "body_width": 86,
+      "area": 4117,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.38,
+      "colour_count": 3786,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 43,
+        "right": 17,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png#1,0",
+      "bbox": [
+        23,
+        45,
+        108,
+        121
+      ],
+      "body_height": 76,
+      "body_width": 85,
+      "area": 3915,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 105.73,
+      "colour_count": 3602,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 45,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 2,
+      "source": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png#2,0",
+      "bbox": [
+        24,
+        43,
+        110,
+        121
+      ],
+      "body_height": 78,
+      "body_width": 86,
+      "area": 4033,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.19,
+      "colour_count": 3701,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 43,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 3,
+      "source": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png#3,0",
+      "bbox": [
+        26,
+        40,
+        112,
+        121
+      ],
+      "body_height": 81,
+      "body_width": 86,
+      "area": 4096,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.32,
+      "colour_count": 3774,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 26,
+        "top": 40,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 4,
+      "source": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png#0,1",
+      "bbox": [
+        24,
+        43,
+        110,
+        121
+      ],
+      "body_height": 78,
+      "body_width": 86,
+      "area": 4126,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 102.38,
+      "colour_count": 3825,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 43,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 5,
+      "source": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png#1,1",
+      "bbox": [
+        24,
+        45,
+        109,
+        121
+      ],
+      "body_height": 76,
+      "body_width": 85,
+      "area": 3915,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 106.36,
+      "colour_count": 3604,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 45,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 6,
+      "source": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png#2,1",
+      "bbox": [
+        24,
+        43,
+        110,
+        121
+      ],
+      "body_height": 78,
+      "body_width": 86,
+      "area": 4019,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.77,
+      "colour_count": 3703,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 43,
+        "right": 18,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 7,
+      "source": "art/raw/walk-54/luna/luna-walk-generation-02-aligned.png#3,1",
+      "bbox": [
+        26,
+        40,
+        112,
+        121
+      ],
+      "body_height": 81,
+      "body_width": 86,
+      "area": 4104,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.54,
+      "colour_count": 3805,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 26,
+        "top": 40,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "candidate": "art/bakeoff/luna/luna-walk-v2.png",
+    "compare": "reports/codex-art-54/luna/compare.png",
+    "feet": "reports/codex-art-54/luna/feet.png"
+  }
+}
