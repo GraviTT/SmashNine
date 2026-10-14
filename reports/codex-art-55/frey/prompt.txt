@@ -1,0 +1,25 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, one complete eight-frame walk loop for Frey.
+
+Image 1 is the accepted frey-idle-v2 anchor and is authoritative for identity, compact 3-head proportions, right-facing side view, costume, equipment, detail density, shading softness, and crisp pixel finish. Image 2 is a colour-coded eight-panel pose reference and is authoritative for every body pose and limb identity. Copy the mannequin pose in each corresponding panel exactly, reading left-to-right across the top row and then the bottom row.
+
+The orange mannequin limbs are Frey's near (viewer-side) leg and arm. The blue mannequin limbs are Frey's far leg and arm. Render Frey in her normal costume colours—never orange or blue skin, armour, or limbs. Keep the far leg and arm slightly darker and partly hidden behind the torso and near limbs. Frames 1–4 lead with the near leg; frames 5–8 lead with the far leg. Specifically: frame 1 near-leg heel contact; frame 2 weight down on near leg with far foot lifting; frame 3 far leg visibly lifted and swinging forward under the hips; frame 4 near leg pushes off behind while far leg reaches forward; frame 5 far-leg heel contact with near leg behind; frame 6 weight down on far leg with near foot lifting; frame 7 near leg visibly lifted and swinging forward under the hips; frame 8 far leg pushes off behind while near leg reaches forward. The two contact frames must visibly use different foreground legs.
+
+Arms swing opposite the legs. Her intact silver sword is in the near hand and swings only slightly. Her navy-and-gold star shield is on the far arm and stays steady in front, so the far-arm swing is small. Hair and cape lag the body by one frame.
+
+Preserve Image 1 exactly: one visible face and large blue eye, separated golden hair strands, winged silver circlet with white feathers, detailed silver-and-gold armour, navy star cape, one intact sword, one intact shield, two connected arms/hands and two connected legs/boots. Frey stays exactly about 3 heads tall and at one consistent scale/root/floor.
+
+Draw exactly eight newly drawn whole-body right-facing frames in eight equal 512×512 cells arranged 4×2. One isolated Frey per cell. Solid flat chroma green #00FF00 background only, generous green margins, no boundary contact. No labels, grid, borders, ground line, shadows, cropping, duplicated parts, running, attack poses, effects, dust, trails, aura, text, or watermark. Crisp high-detail pixel art exactly like Image 1, with rich internal contrast and costume detail that remains clear after reduction to 128px.
+
+---
+
+Final method used after the sheet remained ambiguous at frames 3 and 7: eight separate built-in generations, one per frame. For each call, Image 1 was the same accepted frey-idle-v2 anchor and Image 2 was the corresponding single 512px mannequin panel. The shared prompt preserved identity, 3-head proportions, normal costume colours, lighter near leg / darker far leg depth, intact near-hand sword, steady far-arm shield, #00FF00 background, generous margin, and no effects/text/grid. The frame-specific pose lines were:
+
+1. CONTACT: ORANGE near leg forward with heel planted; BLUE far leg behind on toe; near sword arm back, far shield arm steady.
+2. DOWN: lowest body; weight on bent ORANGE near leg; BLUE far foot lifting behind; near sword arm back, far shield arm steady.
+3. PASSING: BLUE far leg clearly lifted and swinging forward under hips; ORANGE near leg straight and planted; near sword arm slightly forward, far shield arm steady.
+4. UP: highest body; ORANGE near leg pushes off behind on toe; BLUE far leg reaches forward; near sword arm slightly forward, far shield arm steady.
+5. CONTACT: BLUE far leg forward with heel planted; ORANGE near leg behind on toe; near sword arm forward, far shield arm steady; opposite identity from frame 1.
+6. DOWN: lowest body; weight on bent BLUE far leg; ORANGE near foot lifting behind; near sword arm forward, far shield arm steady.
+7. PASSING: ORANGE near leg clearly lifted and swinging forward under hips; BLUE far leg straight and planted; near sword arm slightly back, far shield arm steady.
+8. UP: highest body; BLUE far leg pushes off behind on toe; ORANGE near leg reaches forward; near sword arm slightly back, far shield arm steady.

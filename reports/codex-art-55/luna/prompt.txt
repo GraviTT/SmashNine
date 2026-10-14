@@ -1,0 +1,25 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, one complete eight-frame walk loop for normal-form Luna.
+
+Image 1 is the accepted luna-idle-v3 anchor and is authoritative for identity, very large head, compact 2.2-head chibi proportions, right-facing side view, costume, wand, detail density, shading softness, and crisp pixel finish. Image 2 is a colour-coded eight-panel pose reference and is authoritative for every body pose and limb identity. Copy the mannequin pose in each corresponding panel exactly, reading left-to-right across the top row and then the bottom row.
+
+The orange mannequin limbs are Luna's near (viewer-side) leg and arm. The blue mannequin limbs are Luna's far leg and arm. Render Luna in her normal costume colours—never orange or blue skin, clothing, or limbs. Keep the far leg and arm slightly darker and partly hidden behind the torso and near limbs. Frames 1–4 lead with the near leg; frames 5–8 lead with the far leg. Specifically: frame 1 near-leg heel contact; frame 2 weight down on near leg with far foot lifting; frame 3 far leg visibly lifted and swinging forward under the hips; frame 4 near leg pushes off behind while far leg reaches forward; frame 5 far-leg heel contact with near leg behind; frame 6 weight down on far leg with near foot lifting; frame 7 near leg visibly lifted and swinging forward under the hips; frame 8 far leg pushes off behind while near leg reaches forward. The two contact frames must visibly use different foreground legs.
+
+Arms swing opposite the legs. Her intact cyan-white five-point star wand is in the near hand and swings less than the free far arm. Long hair, bow, ribbon, and layered skirt lag the body by one frame.
+
+Preserve Image 1 exactly: one visible magenta-eyed face, thick long hot-pink hair, midnight-purple bow with gold star, compact purple/pink/gold magical-girl dress with layered white frills, purple boots, one intact star wand, two connected arms/hands and two connected short legs/boots. Luna stays exactly about 2.2 heads tall: enlarge the head relative to the compact torso and very short legs, not the whole character. Keep one consistent scale/root/floor.
+
+Draw exactly eight newly drawn whole-body right-facing frames in eight equal 512×512 cells arranged 4×2. One isolated Luna per cell. Solid flat chroma green #00FF00 background only, generous green margins, no boundary contact. No labels, grid, borders, ground line, shadows, cropping, duplicated parts, running, attack poses, spell effects, sparkles, glow, trails, aura, dust, text, or watermark. Crisp high-detail pixel art exactly like Image 1, with rich internal contrast and costume detail that remains clear after reduction to 128px.
+
+---
+
+Final method used after the sheet failed the leg check: eight separate built-in generations, one per frame. For each call, Image 1 was the same accepted luna-idle-v3 anchor and Image 2 was the corresponding single 512px mannequin panel. The shared prompt preserved the identity, 2.2-head proportions, normal costume colours, near/far depth, intact near-hand wand, #00FF00 background, generous margin, and no effects/text/grid. The frame-specific pose lines were:
+
+1. CONTACT: ORANGE near leg forward with heel planted; BLUE far leg behind on toe; near wand arm back, far arm forward.
+2. DOWN: lowest body; weight on bent ORANGE near leg; BLUE far foot lifting behind; near wand arm back, far arm forward.
+3. PASSING: BLUE far leg clearly lifted and swinging forward under hips; ORANGE near leg straight and planted; near wand arm forward, far arm back.
+4. UP: highest body; ORANGE near leg pushes off behind on toe; BLUE far leg reaches forward; near wand arm forward, far arm back.
+5. CONTACT: BLUE far leg forward with heel planted; ORANGE near leg behind on toe; near wand arm forward, far arm back; opposite identity from frame 1.
+6. DOWN: lowest body; weight on bent BLUE far leg; ORANGE near foot lifting behind; near wand arm forward, far arm back.
+7. PASSING: ORANGE near leg clearly lifted and swinging forward under hips; BLUE far leg straight and planted; near wand arm back, far arm forward.
+8. UP: highest body; BLUE far leg pushes off behind on toe; ORANGE near leg reaches forward; near wand arm back, far arm forward.
