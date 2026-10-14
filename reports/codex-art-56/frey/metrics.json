@@ -1,0 +1,524 @@
+{
+  "status": "failed_acceptance",
+  "delivered_candidate": false,
+  "reason": "Frey frames 4 and 5 miss bob tolerance; Luna frame 6 misses bob tolerance. Card says deliver only a passing character.",
+  "input": {
+    "mode": "sequential anchor + pose + accepted-neighbour generations",
+    "raw": "art/raw/walk-56/frey/",
+    "starting_strip": "art/bakeoff/frey/frey-walk-v4.png"
+  },
+  "summary": {
+    "frame_count": 8,
+    "best_attempt_size": [
+      1024,
+      128
+    ],
+    "normalization_factors": [
+      0.159378,
+      0.155,
+      0.159776,
+      0.160573,
+      0.159378,
+      0.159378,
+      0.160972,
+      0.162566
+    ],
+    "factor_mode": "one factor per generation, matched to anchor head",
+    "head_scale_range": [
+      1.0,
+      1.02
+    ],
+    "body_height_range": [
+      106,
+      112
+    ],
+    "body_width_range": [
+      89,
+      93
+    ],
+    "area_range": [
+      5117,
+      5436
+    ],
+    "area_spread_percent": 6.05,
+    "interior_detail_range": [
+      121.31,
+      138.04
+    ],
+    "interior_detail_mean": 131.79,
+    "colour_count_range": [
+      4390,
+      4783
+    ],
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "alpha_binary": true,
+    "contact_on_y120": true
+  },
+  "bob": {
+    "landmark": "파란 홍채의 4방향 연결 성분 중심(피부 영역 안, 머리띠·망토의 파란색 제외)",
+    "target_relative_y": [
+      0,
+      2,
+      -1,
+      -2,
+      0,
+      2,
+      -1,
+      -2
+    ],
+    "tolerance_px": 1,
+    "absolute_face_centre_y": [
+      40,
+      43,
+      40,
+      40,
+      43,
+      43,
+      39,
+      38
+    ],
+    "measured_relative_y": [
+      0,
+      3,
+      0,
+      0,
+      3,
+      3,
+      -1,
+      -2
+    ],
+    "pass_by_frame": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true
+    ],
+    "overall_pass": false
+  },
+  "head_scale": [
+    {
+      "sheet": "art\\raw\\walk-56\\frey-final-01\\frey-final-01.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.765
+        }
+      ],
+      "median": 1.0,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\frey-final-02\\frey-final-02.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.739
+        }
+      ],
+      "median": 1.0,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\frey-final-03\\frey-final-03.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.743
+        }
+      ],
+      "median": 1.02,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\frey-final-04\\frey-final-04.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.74
+        }
+      ],
+      "median": 1.02,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\frey-final-05\\frey-final-05.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.728
+        }
+      ],
+      "median": 1.02,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\frey-final-06\\frey-final-06.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.729
+        }
+      ],
+      "median": 1.02,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\frey-final-07\\frey-final-07.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.716
+        }
+      ],
+      "median": 1.02,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\frey-final-08\\frey-final-08.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.723
+        }
+      ],
+      "median": 1.02,
+      "used": 1
+    }
+  ],
+  "visual_judgment_at_4x": {
+    "equipment_pass": true,
+    "equipment_note": "4배 육안: 검은 8칸 모두 전방-아래를 향하고 약 15도 안에서 유지되며 방패는 먼 팔 앞에 남는다.",
+    "leg_pass": true,
+    "leg_note": "4배 육안: 1/5번은 서로 다른 다리가 선행하고 3/7번 스윙 발이 지면에서 분리된다.",
+    "smooth_pass": false,
+    "smooth_note": "13.3fps 육안: 4번에서 충분히 올라가지 않고 5번에서 약 3px 내려가 한 번 크게 튄다."
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/frey/frame-01-source.png#0,0",
+      "bbox": [
+        16,
+        12,
+        107,
+        121
+      ],
+      "body_height": 109,
+      "body_width": 91,
+      "area": 5436,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 121.31,
+      "colour_count": 4783,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 12,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/frey/frame-02-gen1.png#0,0",
+      "bbox": [
+        17,
+        15,
+        106,
+        121
+      ],
+      "body_height": 106,
+      "body_width": 89,
+      "area": 5130,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 126.31,
+      "colour_count": 4496,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 15,
+        "right": 22,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/frey/frame-03-gen1.png#0,0",
+      "bbox": [
+        16,
+        12,
+        109,
+        121
+      ],
+      "body_height": 109,
+      "body_width": 93,
+      "area": 5348,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 131.28,
+      "colour_count": 4638,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 12,
+        "right": 19,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/frey/frame-04-gen1.png#0,0",
+      "bbox": [
+        16,
+        12,
+        108,
+        121
+      ],
+      "body_height": 109,
+      "body_width": 92,
+      "area": 5226,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 130.92,
+      "colour_count": 4546,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 12,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/frey/frame-05-gen2.png#0,0",
+      "bbox": [
+        16,
+        15,
+        107,
+        121
+      ],
+      "body_height": 106,
+      "body_width": 91,
+      "area": 5223,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 134.6,
+      "colour_count": 4523,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 15,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/frey/frame-06-gen1.png#0,0",
+      "bbox": [
+        16,
+        15,
+        107,
+        121
+      ],
+      "body_height": 106,
+      "body_width": 91,
+      "area": 5117,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 134.04,
+      "colour_count": 4390,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 15,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/frey/frame-07-gen2.png#0,0",
+      "bbox": [
+        16,
+        11,
+        107,
+        121
+      ],
+      "body_height": 110,
+      "body_width": 91,
+      "area": 5269,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 138.04,
+      "colour_count": 4492,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 11,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/frey/frame-08-gen2.png#0,0",
+      "bbox": [
+        15,
+        9,
+        108,
+        121
+      ],
+      "body_height": 112,
+      "body_width": 93,
+      "area": 5398,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 137.82,
+      "colour_count": 4543,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 15,
+        "top": 9,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    }
+  ],
+  "outputs": {
+    "best_attempt": "reports/codex-art-56/frey/best.png",
+    "bob": "reports/codex-art-56/frey/bob.png",
+    "feet": "reports/codex-art-56/frey/feet.png",
+    "gif": "reports/codex-art-56/frey/walk.gif",
+    "compare": "reports/codex-art-56/frey/compare.png"
+  }
+}

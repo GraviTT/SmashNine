@@ -1,0 +1,19 @@
+CODEX-ART-56 Frey prompt log (built-in image tool)
+
+Common three-image roles
+- Image 1: art/raw/walk-56/refs/frey_anchor.png (appearance/detail anchor)
+- Image 2: art/raw/walk-56/refs/frey_pose_NN.png (the requested walk pose)
+- Image 3: the last accepted/generated neighbouring frame
+
+Base prompt used for each frame
+"The same drawing as Image 3: identical body proportions, head size, armour, hair mass and equipment angle; change only the legs (and the opposite arm swing) to Image 2's pose. Frey's sword in the near hand points forward-down in every frame and the shield stays on the far arm in front. Strict right-facing high-detail pixel art, one full body on pure #00ff00, no shadow, text, grid or effects."
+
+Targeted retries
+- F2 gen2: natural knee/hip bend with eye lower; rejected as a deep crouch.
+- F2 gen3: extremely subtle 0.5% crouch; kept gen1 because its pose and final head-matched scale were closer.
+- F5 gen2: explicitly dark leg forward and white leg trailing; selected.
+- F5 gen3: exact eye height retry; rejected because leg identity collapsed.
+- F7 gen2: support leg extension and natural up bob; selected.
+- F8 gen2: subtle further rise from accepted F7; selected.
+
+Raw generations and every referenced copy are under art/raw/walk-56/ (git-ignored).
