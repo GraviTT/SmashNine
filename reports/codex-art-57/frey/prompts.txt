@@ -1,0 +1,30 @@
+CODEX-ART-57 Frey — built-in image tool prompts
+
+Common references for every final frame
+1. art/raw/walk-57/frey/refs/idle_frame0_4x.png — exact look, detail and idle costume
+2. art/raw/walk-57/frey/poses/frey_pose_<NN>.png — pose only; grey is never clothing
+3. art/raw/walk-57/frey/refs/accepted_frame01.png — accepted frame 1, reused for every later frame
+
+Common final prompt
+Use case: stylized-concept
+Asset type: one source frame for an 8-frame 2D game walk cycle, later downscaled into a 128 px cell
+Draw exactly one full-body Frey facing right in Image 2's pose. Change only the legs and the tiny sword-arm swing. Keep the head, face, hair, winged circlet, torso, silver-and-gold armour, blue cape with one yellow star, forward-down sword, round blue shield and steady shield arm consistent with Images 1 and 3.
+Image 2 is only a pose guide. Its greys are not clothing, armour, or colours.
+Both legs wear the identical costume from Images 1 and 3: dark charcoal leggings, small silver knee and thigh plates, plain brown leather ankle boots. No white/silver shin guards or greaves, no tall armoured boots, no red/orange boots, no navy trousers, no asymmetric costume colours. The far leg is only slightly darker and partly behind the near leg.
+Polished high-detail anime fantasy game sprite source art matching Images 1 and 3, clean dark outline, crisp shading. One complete centered figure with generous margin on solid exact #00FF00. Exactly one head, two legs, one sword and one shield; no text, ground shadow, effects, extra objects or crop.
+
+Final selected frame clauses
+F1 (attempt 2): CONTACT. Near leg forward and in front; far leg trails. Explicitly keep dark fabric from knee to ankle and use plain brown ankle boots.
+F2 (attempt 1): DOWN. Weight settles onto the forward near leg; far foot has just lifted behind.
+F3 (attempt 1): PASSING. Far leg swings forward, darker/behind, and is visibly lifted; near leg supports.
+F4 (attempt 3): UP. Far shield-side leg reaches screen-right while near toe pushes behind. Preserve frame 1's exact head-to-body ratio; do not enlarge the head or shorten torso/legs. Far forward leg is darker and behind at the hip.
+F5 (attempt 2): CONTACT. Far shield-side leg is forward at heel contact and visibly darker/behind; near sword-side leg trails brighter/in front. It must read as the opposite identity from F1.
+F6 (attempt 2): DOWN. Weight settles onto the forward far shield-side leg, darker/behind; near sword-side foot lifts behind, brighter/in front.
+F7 (attempt 1): PASSING. Near leg swings forward, brighter/in front, and is visibly lifted; far leg supports.
+F8 (attempt 1): UP. Far toe pushes behind while near leg reaches forward toward the next contact.
+
+Discarded retries
+F1 attempt 1: rejected because the white/silver shin greaves were too large.
+F4 attempt 1: rejected because the forward far leg was too bright to read as the opposite identity.
+F4 attempt 2: rejected because head scale measured 1.06 and whole-body correction caused visible size jitter.
+F5/F6 attempt 1: rejected because the forward far leg was too bright.
