@@ -1,0 +1,423 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-45/luna_brave-shield-v1-generated.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.254659,
+    "scale_by": "fixed:0.254659",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      84,
+      89
+    ],
+    "body_width_range": [
+      79,
+      82
+    ],
+    "area_range": [
+      3787,
+      4000
+    ],
+    "area_spread_percent": 5.33,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3587,
+      3785
+    ],
+    "interior_detail_range": [
+      104.95,
+      108.53
+    ],
+    "interior_detail_mean": 106.73,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 83.16,
+    "interior_detail_ratio": 1.2834
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 90.3,
+        "colour_count": 4175,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 79.52,
+        "colour_count": 5001,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 79.94,
+        "colour_count": 5054,
+        "remaining_spill_pixels": 1
+      },
+      {
+        "index": 3,
+        "interior_detail": 80.74,
+        "colour_count": 5010,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 78.72,
+        "colour_count": 5033,
+        "remaining_spill_pixels": 2
+      },
+      {
+        "index": 5,
+        "interior_detail": 89.74,
+        "colour_count": 4168,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 83.16,
+    "colour_count_range": [
+      4168,
+      5054
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-45/luna_brave-shield-v1-generated.png#0,0",
+      "bbox": [
+        22,
+        34,
+        104,
+        121
+      ],
+      "body_height": 87,
+      "body_width": 82,
+      "area": 3903,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 107.73,
+      "colour_count": 3690,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 34,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2955
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-45/luna_brave-shield-v1-generated.png#1,0",
+      "bbox": [
+        25,
+        34,
+        105,
+        121
+      ],
+      "body_height": 87,
+      "body_width": 80,
+      "area": 3793,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 108.53,
+      "colour_count": 3593,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 34,
+        "right": 23,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.3051
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-45/luna_brave-shield-v1-generated.png#2,0",
+      "bbox": [
+        26,
+        37,
+        105,
+        121
+      ],
+      "body_height": 84,
+      "body_width": 79,
+      "area": 3787,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 107.9,
+      "colour_count": 3587,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 26,
+        "top": 37,
+        "right": 23,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2975
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-45/luna_brave-shield-v1-generated.png#0,1",
+      "bbox": [
+        24,
+        33,
+        105,
+        121
+      ],
+      "body_height": 88,
+      "body_width": 81,
+      "area": 3949,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 105.44,
+      "colour_count": 3732,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 33,
+        "right": 23,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2679
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-45/luna_brave-shield-v1-generated.png#1,1",
+      "bbox": [
+        18,
+        32,
+        98,
+        121
+      ],
+      "body_height": 89,
+      "body_width": 80,
+      "area": 4000,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.95,
+      "colour_count": 3785,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 18,
+        "top": 32,
+        "right": 30,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.262
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-45/luna_brave-shield-v1-generated.png#2,1",
+      "bbox": [
+        24,
+        33,
+        106,
+        121
+      ],
+      "body_height": 88,
+      "body_width": 82,
+      "area": 3957,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 105.81,
+      "colour_count": 3723,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 33,
+        "right": 22,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2724
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-45/shield/luna_brave-shield-v1.png",
+    "candidate": "art/bakeoff/luna/luna_brave-shield-v1.png",
+    "frames": "reports/codex-art-45/shield/frames",
+    "closeup": "reports/codex-art-45/shield/closeup.png",
+    "compare": "reports/codex-art-45/shield/compare.png"
+  }
+}

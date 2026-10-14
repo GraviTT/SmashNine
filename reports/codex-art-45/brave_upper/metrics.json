@@ -1,0 +1,406 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-45/luna_brave-brave_upper-v1-generated.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.26527,
+    "scale_by": "fixed:0.26527",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      73,
+      104
+    ],
+    "body_width_range": [
+      77,
+      83
+    ],
+    "area_range": [
+      3830,
+      4323
+    ],
+    "area_spread_percent": 11.4,
+    "bottom_range": [
+      133,
+      152
+    ],
+    "lift_range": [
+      0,
+      19
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3571,
+      4045
+    ],
+    "interior_detail_range": [
+      106.78,
+      113.94
+    ],
+    "interior_detail_mean": 110.36,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 52.32,
+    "interior_detail_ratio": 2.1093
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 55.58,
+        "colour_count": 4421,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 48.91,
+        "colour_count": 6245,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 49.52,
+        "colour_count": 6296,
+        "remaining_spill_pixels": 1
+      },
+      {
+        "index": 3,
+        "interior_detail": 55.26,
+        "colour_count": 4425,
+        "remaining_spill_pixels": 4
+      }
+    ],
+    "interior_detail_mean": 52.32,
+    "colour_count_range": [
+      4421,
+      6296
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-45/luna_brave-brave_upper-v1-generated.png#0,0",
+      "bbox": [
+        58,
+        80,
+        137,
+        153
+      ],
+      "body_height": 73,
+      "body_width": 79,
+      "area": 3830,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 106.78,
+      "colour_count": 3571,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 80,
+        "right": 55,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.0409
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-45/luna_brave-brave_upper-v1-generated.png#1,0",
+      "bbox": [
+        53,
+        63,
+        135,
+        153
+      ],
+      "body_height": 90,
+      "body_width": 82,
+      "area": 4083,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 111.01,
+      "colour_count": 3823,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 63,
+        "right": 57,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1218
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-45/luna_brave-brave_upper-v1-generated.png#2,0",
+      "bbox": [
+        60,
+        50,
+        143,
+        143
+      ],
+      "body_height": 93,
+      "body_width": 83,
+      "area": 3936,
+      "bottom": 142,
+      "lift": 10,
+      "expected_lift": 10,
+      "interior_detail": 112.35,
+      "colour_count": 3669,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 60,
+        "top": 50,
+        "right": 49,
+        "bottom": 49,
+        "minimum": 49,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1474
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-45/luna_brave-brave_upper-v1-generated.png#0,1",
+      "bbox": [
+        59,
+        42,
+        136,
+        137
+      ],
+      "body_height": 95,
+      "body_width": 77,
+      "area": 3850,
+      "bottom": 136,
+      "lift": 16,
+      "expected_lift": 16,
+      "interior_detail": 113.94,
+      "colour_count": 3598,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 42,
+        "right": 56,
+        "bottom": 55,
+        "minimum": 42,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1778
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-45/luna_brave-brave_upper-v1-generated.png#1,1",
+      "bbox": [
+        54,
+        30,
+        137,
+        134
+      ],
+      "body_height": 104,
+      "body_width": 83,
+      "area": 4323,
+      "bottom": 133,
+      "lift": 19,
+      "expected_lift": 19,
+      "interior_detail": 107.36,
+      "colour_count": 4045,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 30,
+        "right": 55,
+        "bottom": 58,
+        "minimum": 30,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.052
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-45/luna_brave-brave_upper-v1-generated.png#2,1",
+      "bbox": [
+        59,
+        50,
+        140,
+        144
+      ],
+      "body_height": 94,
+      "body_width": 81,
+      "area": 4132,
+      "bottom": 143,
+      "lift": 9,
+      "expected_lift": 9,
+      "interior_detail": 110.75,
+      "colour_count": 3845,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 50,
+        "right": 52,
+        "bottom": 48,
+        "minimum": 48,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1168
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-45/brave_upper/luna_brave-brave_upper-v1.png",
+    "candidate": "art/bakeoff/luna/luna_brave-brave_upper-v1.png",
+    "frames": "reports/codex-art-45/brave_upper/frames",
+    "closeup": "reports/codex-art-45/brave_upper/closeup.png",
+    "compare": "reports/codex-art-45/brave_upper/compare.png"
+  }
+}

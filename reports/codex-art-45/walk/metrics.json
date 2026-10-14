@@ -1,0 +1,420 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-45/luna_brave-walk-v1-generated.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.244473,
+    "scale_by": "fixed:0.244473",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      85,
+      89
+    ],
+    "body_width_range": [
+      79,
+      87
+    ],
+    "area_range": [
+      3779,
+      4167
+    ],
+    "area_spread_percent": 9.31,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3563,
+      3901
+    ],
+    "interior_detail_range": [
+      103.46,
+      108.0
+    ],
+    "interior_detail_mean": 105.45,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 89.13,
+    "interior_detail_ratio": 1.1831
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 86.5,
+        "colour_count": 4248,
+        "remaining_spill_pixels": 2
+      },
+      {
+        "index": 1,
+        "interior_detail": 90.45,
+        "colour_count": 4412,
+        "remaining_spill_pixels": 4
+      },
+      {
+        "index": 2,
+        "interior_detail": 88.24,
+        "colour_count": 4155,
+        "remaining_spill_pixels": 1
+      },
+      {
+        "index": 3,
+        "interior_detail": 88.75,
+        "colour_count": 4170,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 91.15,
+        "colour_count": 4188,
+        "remaining_spill_pixels": 1
+      },
+      {
+        "index": 5,
+        "interior_detail": 89.71,
+        "colour_count": 4125,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 89.13,
+    "colour_count_range": [
+      4125,
+      4412
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-45/luna_brave-walk-v1-generated.png#0,0",
+      "bbox": [
+        23,
+        32,
+        107,
+        121
+      ],
+      "body_height": 89,
+      "body_width": 84,
+      "area": 4167,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.76,
+      "colour_count": 3901,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 32,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1754
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-45/luna_brave-walk-v1-generated.png#1,0",
+      "bbox": [
+        24,
+        35,
+        103,
+        121
+      ],
+      "body_height": 86,
+      "body_width": 79,
+      "area": 3930,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 106.65,
+      "colour_count": 3668,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 35,
+        "right": 25,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1966
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-45/luna_brave-walk-v1-generated.png#2,0",
+      "bbox": [
+        22,
+        35,
+        103,
+        121
+      ],
+      "body_height": 86,
+      "body_width": 81,
+      "area": 3779,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.46,
+      "colour_count": 3563,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 35,
+        "right": 25,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1608
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-45/luna_brave-walk-v1-generated.png#0,1",
+      "bbox": [
+        21,
+        35,
+        108,
+        121
+      ],
+      "body_height": 86,
+      "body_width": 87,
+      "area": 4087,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 105.6,
+      "colour_count": 3853,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 21,
+        "top": 35,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1848
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-45/luna_brave-walk-v1-generated.png#1,1",
+      "bbox": [
+        23,
+        36,
+        102,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 79,
+      "area": 3793,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 108.0,
+      "colour_count": 3570,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 36,
+        "right": 26,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2117
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-45/luna_brave-walk-v1-generated.png#2,1",
+      "bbox": [
+        22,
+        35,
+        104,
+        121
+      ],
+      "body_height": 86,
+      "body_width": 82,
+      "area": 3812,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.25,
+      "colour_count": 3616,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 35,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1696
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-45/walk/luna_brave-walk-v1.png",
+    "candidate": "art/bakeoff/luna/luna_brave-walk-v1.png",
+    "frames": "reports/codex-art-45/walk/frames",
+    "closeup": "reports/codex-art-45/walk/closeup.png",
+    "compare": "reports/codex-art-45/walk/compare.png"
+  }
+}

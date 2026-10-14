@@ -1,0 +1,12 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art sprite sheet, one six-frame Brave Luna LOW LEG SWEEP.
+
+Image 1 is the chosen v4 anchor and controls identity, head scale, ponytail/bow/star, magenta eyes, short scarf, purple-white short combat outfit, two solid purple-gold gauntlets, two star-knee boots, palette and detail. Image 2 is the old low attack row and controls only the low sweep concept; never copy its outfit, loose hair, cyan orbs or effect arc.
+
+Draw the SAME right-facing compact 2.2-head Brave Luna in six whole-body frames at 24 fps: 1 lower from guard; 2 drop into a deep low stance with one supporting leg folded; 3 begin sweeping the other armoured leg along the floor toward the right; 4 full low sweep with the kicking leg long and almost horizontal just above the floor; 5 follow-through as torso and ponytail continue around; 6 rise into compact recovery. Keep the face readable, supporting boot/body connection clear, both gauntlets and both boots intact. Ponytail and scarf lag rotation one frame. Pose only—no arc, star, glow, dust or trail.
+
+Exactly six 512x512 cells in a 3x2 1536x1024 sheet, top row then bottom row. Same camera/head size/root/floor line; one isolated sprite per cell; generous margins and no boundary crossing or independent resize. Solid #00FF00 background, no transparency, floor, shadow, scenery, text, grid, border or watermark.
+High-detail crisp pixel art matching Image 1 for LANCZOS reduction to 192px. Preserve hair strands, facial pixels, armour plates, gold trim, knuckles, boot construction, layered fabrics and dark pixel outlines; no smooth/vector/3D/painterly look, blur or antialiasing.
+Hard constraints: exactly 6 characters; same v4 outfit; one face/head, two connected arms/gauntlets, two connected legs/boots each; no orb hands, wand, long dress, detached parts, effects, crop or duplicated anatomy.
+
+SECOND-GENERATION CORRECTION: The first sheet failed only because frame 5's extended sweep boot touched/crossed the right edge of its conceptual cell. Preserve the exact six-pose progression, design and style. Change only spacing/reach: shorten and pull inward the extended sweep legs in frames 3-5 and keep every hair tip and boot at least about 48 source pixels inside every edge of its own 512x512 cell. No body part may cross a cell boundary.

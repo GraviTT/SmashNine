@@ -1,0 +1,11 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art sprite sheet, one six-frame Brave Luna UPPERCUT.
+
+Input roles: Image 1 is the chosen v4 anchor and is authoritative for identity, head scale, high pink ponytail, purple bow/gold star, magenta eyes, short scarf, sleeveless purple-white top, skirt over shorts, solid purple-gold forearm gauntlets, star-knee armoured boots, palette and crisp detail. Image 2 is the old current uppercut row; use only its crouch-to-rising motion, never its old clothes, loose hair, cyan orbs or effects.
+
+Draw the SAME right-facing compact 2.2-head Brave Luna in exactly six whole-body frames at 24 fps: 1 crouch deeply with punching fist loaded; 2 drive upward from the legs; 3 rising uppercut with fist passing the face; 4 airborne at the top of the strike; 5 fist fully overhead while airborne; 6 airborne recovery beginning to descend. Lift frames 3-6 visibly above the common implied floor. Ponytail and short scarf lag vertical movement by one frame. Keep both gauntlets and both boots intact. The move is conveyed only by pose—NO star, arc, glow, trail, dust or aura.
+
+Layout: exactly six equal 512x512 cells in a 3x2, 1536x1024 sheet, ordered left-to-right top then bottom. One isolated sprite per cell, same camera/head scale/body width, generous green margins, no crossing cell boundaries or independent resizing.
+Backdrop: solid #00FF00 only; no transparency, floor, shadow, scenery, text, grid, border or watermark.
+Style: high-detail crisp pixel art matching Image 1, for LANCZOS reduction to 192px cells; separated hair strands, facial pixels, armour plates/gold trim, gauntlet knuckles, layered fabric, dark pixel outlines; no smooth/vector/3D/painterly look, blur or antialiasing.
+Hard invariants: exactly 6 characters; one face/head, two connected arms with two worn gauntlets, two connected legs and two intact boots each; face visible; same v4 outfit; no orb hands, wand, long dress, detached parts, effects or crop.

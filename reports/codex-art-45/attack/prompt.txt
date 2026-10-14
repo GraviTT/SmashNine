@@ -1,0 +1,26 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete six-frame Brave Luna three-hit COMBO.
+
+Input images and roles: Image 1 is the chosen Brave Luna v4 idle anchor enlarged 4x, authoritative for identity, face, magenta eyes, high pink ponytail, purple bow and gold star, compact 2.2-head chibi scale, short scarf, sleeveless purple/white combat outfit, pleated skirt over shorts, fitted purple-and-gold forearm gauntlets, star-knee armoured boots, palette and pixel detail. Image 2 is the old current combo row enlarged 4x. Use it ONLY to understand the fast jab/body-kick/spin-kick progression. Never copy its old outfit, loose hair, cyan orb hands, star bursts or kick arc.
+
+Primary request: Draw a NEW right-facing six-frame grounded melee combo of the SAME Brave Luna at 16 fps. The game plays each pair as one hit. Every frame is a whole newly drawn pose:
+1. compact fighting guard, weight ready;
+2. straight right-facing jab, one arm fully extended at chest height and the other guarding;
+3. body-kick chamber, knee lifted forward, fists guarding;
+4. body-height forward kick fully extended, supporting boot planted;
+5. spin-kick wind-up, torso turning and rear leg coiling, ponytail and scarf still following the previous direction;
+6. wide right-facing spinning heel kick fully extended with a strong readable silhouette, no arc or effect.
+
+Motion: the ponytail, bow tails and short scarf lag the body by one frame, especially during the spin. The skirt reveals fitted shorts during kicks. Both physical gauntlets remain attached and both armoured boots remain intact. No attack effect is drawn.
+
+Invariants: exactly the v4 design and same large head size in every frame; one face, one head, two connected arms, two worn solid gauntlets with cuffs/plates/knuckles, two connected legs and two boots. Face visible; compact 2.2-head proportions; no orb hands, held stars, wand, long dress, glow, aura or magic.
+
+Layout: exactly SIX equal 512x512 cells arranged 3x2, total 1536x1024, ordered left-to-right top then bottom. One isolated full body per cell, same side-view/slight three-quarter camera, root scale and floor line. Wide kicks remain fully inside their own cells with generous margin. Do not resize frames independently. No numbers, text, labels, borders or grid.
+
+Backdrop: solid flat chroma-key green #00FF00 only; no transparency, floor, shadow, scenery or atmosphere.
+
+Style: crisp high-detail pixel art exactly like Image 1, intended for LANCZOS reduction into 192px move cells and a 128px fallback row. Preserve separate hair strands, facial pixels, armour highlights and gold trim, gauntlet knuckles, boot plates, layered fabrics and disciplined dark pixel outlines. No simplification, smooth/vector/3D/painterly rendering, blur, gradients, antialiasing or matte fringe.
+
+Hard constraints: exactly 6 frames/6 characters; poses in the stated order; right-facing; clear jab, chamber, body kick, wind-up and wide spin kick; no effects, star orbs, trails, duplicated parts, detached armour, pasted parts, text, watermark, shadow or crop.
+
+SECOND-GENERATION CORRECTION: The first generated sheet failed only because the final spinning-kick sprite's ponytail crossed leftward into the preceding cell, causing that preceding cell to touch its right border. Redraw/re-layout the SAME six poses and preserve the character design, pose order, pixel style and all constraints. Change only spacing/reach: keep every sprite, including the entire ponytail and extended kicking boot, at least about 48 source pixels inside all four edges of its own 512x512 conceptual cell. Slightly shorten the wide kick reach and pull the last sprite's root rightward if necessary. No body part may cross a conceptual cell boundary.

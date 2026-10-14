@@ -1,0 +1,16 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete six-frame SHIELD animation for Brave Luna.
+
+Input images and roles: Image 1 is the chosen Brave Luna v4 idle anchor enlarged 4x and is authoritative for Luna's face, magenta eyes, high pink ponytail, purple bow with gold star, compact 2.2-head chibi scale, short scarf, sleeveless purple/white combat top, pleated skirt over shorts, solid purple-and-gold forearm gauntlets, star-knee armoured boots, palette and pixel detail. Image 2 is the old game shield row enlarged 4x; use it only for the defensive timing and planted stance. Never copy the old outfit, loose hair, cyan orb hands or energy shield. The new frames contain NO barrier or magic effect.
+
+Primary request: Draw the SAME Brave Luna facing RIGHT in a grounded six-frame defensive animation at 12 fps. The defence is made only by her physical armour: both forearm gauntlets cross tightly in front of her face. Frame 1 starts raising both forearms from guard; frame 2 crosses them; frame 3 sinks into a braced stance; frame 4 holds the full cross; frame 5 absorbs pressure with a tiny body recoil while maintaining the cross; frame 6 settles into the same held guard for a clean hold/loop. Her face remains partly readable around the crossed arms. Both boots stay planted wide. Ponytail, bow tails and scarf lag body movement by one frame.
+
+Invariants: exactly the v4 design in every frame; same large head and body scale; one face, one head, two connected arms, two clearly separate fitted gauntlets with cuffs/plates/knuckles, two connected legs and two intact armoured boots. High ponytail, bow/star, short scarf, top, skirt+shorts and star knee guards remain unchanged. No glowing orbs, held stars, shield graphic, halo, aura or effects.
+
+Layout: exactly SIX equal 512x512 cells in a 3x2 arrangement, total 1536x1024; order left-to-right top then bottom. One isolated whole body per cell, same camera, root x, scale, head size and floor line. Generous margins; no cropping, frame-by-frame resizing, text, labels, borders or grid.
+
+Backdrop: solid flat chroma-key green #00FF00 only; no transparency, floor, shadow, scenery or atmosphere.
+
+Style: crisp high-detail pixel art exactly like Image 1, intended for LANCZOS reduction to 128px cells. Preserve hair strands, facial pixels, armour highlights, gold trim, gauntlet fingers/knuckles, layered fabrics and dark pixel outlines. No simplification, smooth/vector/3D/painterly rendering, blur, gradients, antialiasing or matte fringe.
+
+Hard constraints: exactly 6 frames and 6 characters total; right-facing; crossed physical gauntlets; planted defensive stance; face not fully hidden; no wand, star orb, barrier, magic effect, duplicated parts, detached armour, long dress, text, watermark, shadow or crop.

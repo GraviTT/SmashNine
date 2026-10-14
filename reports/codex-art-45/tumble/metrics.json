@@ -1,0 +1,405 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-45/luna_brave-tumble-v1-generated.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.250255,
+    "scale_by": "fixed:0.250255",
+    "common_offset_x": 0,
+    "common_lift": 12,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      69,
+      81
+    ],
+    "body_width_range": [
+      71,
+      81
+    ],
+    "area_range": [
+      3592,
+      3876
+    ],
+    "area_spread_percent": 7.33,
+    "bottom_range": [
+      125,
+      140
+    ],
+    "lift_range": [
+      12,
+      27
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3348,
+      3632
+    ],
+    "interior_detail_range": [
+      99.03,
+      111.27
+    ],
+    "interior_detail_mean": 104.86,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 86.38,
+    "interior_detail_ratio": 1.2139
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 86.38,
+        "colour_count": 4084,
+        "remaining_spill_pixels": 6
+      },
+      {
+        "index": 1,
+        "interior_detail": 86.38,
+        "colour_count": 4084,
+        "remaining_spill_pixels": 6
+      },
+      {
+        "index": 2,
+        "interior_detail": 86.38,
+        "colour_count": 4084,
+        "remaining_spill_pixels": 6
+      },
+      {
+        "index": 3,
+        "interior_detail": 86.38,
+        "colour_count": 4084,
+        "remaining_spill_pixels": 6
+      }
+    ],
+    "interior_detail_mean": 86.38,
+    "colour_count_range": [
+      4084,
+      4084
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-45/luna_brave-tumble-v1-generated.png#0,0",
+      "bbox": [
+        58,
+        59,
+        136,
+        134
+      ],
+      "body_height": 75,
+      "body_width": 78,
+      "area": 3646,
+      "bottom": 133,
+      "lift": 19,
+      "expected_lift": 19,
+      "interior_detail": 101.04,
+      "colour_count": 3419,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 59,
+        "right": 56,
+        "bottom": 58,
+        "minimum": 56,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1697
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-45/luna_brave-tumble-v1-generated.png#1,0",
+      "bbox": [
+        55,
+        65,
+        135,
+        134
+      ],
+      "body_height": 69,
+      "body_width": 80,
+      "area": 3600,
+      "bottom": 133,
+      "lift": 19,
+      "expected_lift": 19,
+      "interior_detail": 99.03,
+      "colour_count": 3369,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 65,
+        "right": 57,
+        "bottom": 58,
+        "minimum": 55,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1464
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-45/luna_brave-tumble-v1-generated.png#2,0",
+      "bbox": [
+        61,
+        60,
+        132,
+        141
+      ],
+      "body_height": 81,
+      "body_width": 71,
+      "area": 3622,
+      "bottom": 140,
+      "lift": 12,
+      "expected_lift": 12,
+      "interior_detail": 105.17,
+      "colour_count": 3396,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 61,
+        "top": 60,
+        "right": 60,
+        "bottom": 51,
+        "minimum": 51,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2175
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-45/luna_brave-tumble-v1-generated.png#0,1",
+      "bbox": [
+        56,
+        48,
+        137,
+        126
+      ],
+      "body_height": 78,
+      "body_width": 81,
+      "area": 3876,
+      "bottom": 125,
+      "lift": 27,
+      "expected_lift": 27,
+      "interior_detail": 103.38,
+      "colour_count": 3632,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 48,
+        "right": 55,
+        "bottom": 66,
+        "minimum": 48,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1968
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-45/luna_brave-tumble-v1-generated.png#1,1",
+      "bbox": [
+        56,
+        49,
+        132,
+        126
+      ],
+      "body_height": 77,
+      "body_width": 76,
+      "area": 3592,
+      "bottom": 125,
+      "lift": 27,
+      "expected_lift": 27,
+      "interior_detail": 109.29,
+      "colour_count": 3348,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 49,
+        "right": 60,
+        "bottom": 66,
+        "minimum": 49,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2652
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-45/luna_brave-tumble-v1-generated.png#2,1",
+      "bbox": [
+        56,
+        51,
+        135,
+        127
+      ],
+      "body_height": 76,
+      "body_width": 79,
+      "area": 3629,
+      "bottom": 126,
+      "lift": 26,
+      "expected_lift": 26,
+      "interior_detail": 111.27,
+      "colour_count": 3362,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 51,
+        "right": 57,
+        "bottom": 65,
+        "minimum": 51,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2881
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-45/tumble/luna_brave-tumble-v1.png",
+    "candidate": "art/bakeoff/luna/luna_brave-tumble-v1.png",
+    "frames": "reports/codex-art-45/tumble/frames",
+    "closeup": "reports/codex-art-45/tumble/closeup.png",
+    "compare": "reports/codex-art-45/tumble/compare.png"
+  }
+}
