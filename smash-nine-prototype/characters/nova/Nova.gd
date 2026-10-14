@@ -33,7 +33,7 @@ const ULTIMATE_ORBIT := 2
 const ULTIMATE_LAUNCH := 3
 ## Redrawn 2026-10-14 for both bodies (D33-D37): every motion is 6 frames with its old length
 ## (fps x 6 / old frames), the idle at 6.3 fps (D37). The base `attack` row is only a fallback.
-const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 35.25, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 35.25, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34). `tumble` is new for Nova: strong launches play it instead of the hurt frame.
 const MOVE_SHEET_ROWS := [
 	["vector_side", 6, 35.25, false],
