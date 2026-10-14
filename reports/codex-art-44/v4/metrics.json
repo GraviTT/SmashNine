@@ -1,0 +1,408 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-44/luna_brave-idle-v4-generated.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.205357,
+    "scale_by": "fixed:0.205357",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      77,
+      86
+    ],
+    "body_width_range": [
+      73,
+      78
+    ],
+    "area_range": [
+      3400,
+      3602
+    ],
+    "area_spread_percent": 5.61,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3269,
+      3461
+    ],
+    "interior_detail_range": [
+      103.64,
+      107.04
+    ],
+    "interior_detail_mean": 104.74,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 90.85,
+    "interior_detail_ratio": 1.1529
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 89.24,
+        "colour_count": 4583,
+        "remaining_spill_pixels": 4
+      },
+      {
+        "index": 1,
+        "interior_detail": 92.15,
+        "colour_count": 4349,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 90.95,
+        "colour_count": 4293,
+        "remaining_spill_pixels": 2
+      },
+      {
+        "index": 3,
+        "interior_detail": 91.05,
+        "colour_count": 4315,
+        "remaining_spill_pixels": 1
+      }
+    ],
+    "interior_detail_mean": 90.85,
+    "colour_count_range": [
+      4293,
+      4583
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-44/luna_brave-idle-v4-generated.png#0,0",
+      "bbox": [
+        25,
+        36,
+        99,
+        121
+      ],
+      "body_height": 85,
+      "body_width": 74,
+      "area": 3602,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 107.04,
+      "colour_count": 3461,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 36,
+        "right": 29,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1782
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-44/luna_brave-idle-v4-generated.png#1,0",
+      "bbox": [
+        26,
+        39,
+        99,
+        121
+      ],
+      "body_height": 82,
+      "body_width": 73,
+      "area": 3534,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.28,
+      "colour_count": 3384,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 26,
+        "top": 39,
+        "right": 29,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1478
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-44/luna_brave-idle-v4-generated.png#2,0",
+      "bbox": [
+        25,
+        44,
+        101,
+        121
+      ],
+      "body_height": 77,
+      "body_width": 76,
+      "area": 3400,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.6,
+      "colour_count": 3269,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 44,
+        "right": 27,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1513
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-44/luna_brave-idle-v4-generated.png#0,1",
+      "bbox": [
+        25,
+        38,
+        100,
+        121
+      ],
+      "body_height": 83,
+      "body_width": 75,
+      "area": 3559,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.99,
+      "colour_count": 3408,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 38,
+        "right": 28,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1556
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-44/luna_brave-idle-v4-generated.png#1,1",
+      "bbox": [
+        21,
+        35,
+        99,
+        121
+      ],
+      "body_height": 86,
+      "body_width": 78,
+      "area": 3571,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.91,
+      "colour_count": 3421,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 21,
+        "top": 35,
+        "right": 29,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1438
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-44/luna_brave-idle-v4-generated.png#2,1",
+      "bbox": [
+        25,
+        37,
+        100,
+        121
+      ],
+      "body_height": 84,
+      "body_width": 75,
+      "area": 3587,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.64,
+      "colour_count": 3406,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 37,
+        "right": 28,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1408
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-44/v4/luna_brave-idle-v4.png",
+    "candidate": "art/bakeoff/luna/luna_brave-idle-v4.png",
+    "frames": "reports/codex-art-44/v4/frames",
+    "closeup": "reports/codex-art-44/v4/closeup.png",
+    "compare": "reports/codex-art-44/v4/compare.png"
+  }
+}
