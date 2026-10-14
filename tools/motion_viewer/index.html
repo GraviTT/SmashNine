@@ -198,7 +198,13 @@ function animsOf(form) {
 	const list = [];
 	for (const [group, sheet] of [["base", form.base], ["moves", form.moves]]) {
 		if (!sheet) continue;
-		sheet.rows.forEach((row, index) => list.push({ group, sheet, row, index: row.start ?? index }));
+		sheet.rows.forEach((row, index) => {
+			// A new row has no game frames yet: it plays its first candidate strip.
+			if (row.newRow) {
+				const c = row.candidates[0];
+				list.push({ group, sheet: { file: c.file, cell: c.cell || sheet.cell, feet: c.feet || sheet.feet, strip: true }, row, index: 0, newRow: true });
+			} else list.push({ group, sheet, row, index: row.start ?? index });
+		});
 	}
 	return list;
 }
@@ -316,7 +322,7 @@ function renderStage() {
 	const stageGrid = $("stageGrid"); stageGrid.innerHTML = "";
 	if (!a) return;
 	const variants = [
-		{ label: "현재 게임", note: `${a.row.frames}프레임 · ${fmt(a.row.fps)}fps`, anim: a },
+		...(a.newRow ? [] : [{ label: "현재 게임", note: `${a.row.frames}프레임 · ${fmt(a.row.fps)}fps`, anim: a }]),
 		...(a.row.candidates || []).map((candidate) => ({
 			label: `후보 ${candidate.version}`,
 			note: [candidate.note, candidate.frames && `${candidate.frames}프레임`, candidate.fps && `${fmt(candidate.fps)}fps`].filter(Boolean).join(" · "),

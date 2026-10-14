@@ -88,6 +88,19 @@ function candidatesFor(stem, row) {
 // Cell size from the PNG header: six columns (128 base sheets, 192 move sheets since D34).
 const cellOf = (rel) => existsSync(join(art, rel)) ? readFileSync(join(art, rel)).readUInt32BE(16) / 6 : 128;
 
+// Row names that have candidates (<stem>-<row>-vN.png) but are not in the game's tables.
+function newRowNames(stem, known) {
+	const names = new Set();
+	for (const path of candidateFiles) {
+		const file = basename(path);
+		if (!file.startsWith(`${stem}-`)) continue;
+		const rest = file.slice(stem.length + 1, -4), at = rest.lastIndexOf("-v");
+		const row = at > 0 ? rest.slice(0, at) : "";
+		if (row && /^[a-z0-9_]+$/.test(row) && !known.has(row)) names.add(row);
+	}
+	return [...names].sort();
+}
+
 const sheets = []; // [src relative to assets/art]
 const candidateCopies = [];
 function sheet(rel, rows, labels, cell, feet, stem = null) {
@@ -133,6 +146,17 @@ for (const c of CHARACTERS) {
 		const bc = cellOf(basePath), mc = cellOf(movePath);
 		const base = sheet(basePath, ownBase.length ? ownBase : baseRows, ownBase.length ? { ...BASE_LABELS, attack: "공격 (예비 줄)" } : BASE_LABELS, bc, bc / 2 + 56, stem);
 		const moves = sheet(movePath, moveRows, moveLabels(join(art, folder, `${stem}_moves_README.md`)), mc, mc / 2 + 56, stem);
+		// Candidates for a move the game has no row for yet (e.g. Yuki's tumble) show as new rows.
+		if (moves) {
+			const known = new Set([...(base ? base.rows : []), ...moves.rows].map((r) => r.name));
+			for (const row of newRowNames(stem, known)) {
+				const candidates = candidatesFor(stem, row);
+				if (!candidates.length) continue;
+				candidateCopies.push(...candidates);
+				const first = candidates[0];
+				moves.rows.push({ name: row, frames: first.frames || 6, fps: first.fps || 12, loop: row === "tumble", start: null, newRow: true, label: "새 줄 — 게임에 아직 없음", candidates: candidates.map(({ source, ...item }) => item) });
+			}
+		}
 		forms.push({ body, base, moves });
 	}
 	characters.push({ id: c.id, name: c.name, forms });
