@@ -9,10 +9,8 @@ const BRAVE_SHEET_ART := "res://assets/art/luna/luna_brave_sheet.png"
 ## Redrawn 2026-10-14 (D33-D37, Brave design D36): every motion is 6 frames with its old length
 ## (fps x 6 / old frames), the idle at 6.3 fps (D37). The base `attack` row is only a fallback
 ## (side J plays star_side, Brave J plays brave_combo). The walk is 8 frames at 13.3 fps and fills
-## two sheet rows (user 2026-10-15).
+## two sheet rows (user 2026-10-15). Both forms share this base table.
 const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
-## Brave Luna keeps the 6-frame walk until hers is redrawn (the 8-frame walk spans two sheet rows).
-const BRAVE_SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34). `transform` is the special 12-frame transformation and fills two sheet rows.
 const MOVE_SHEET_ROWS := [
 	["star_up", 6, 21.0, false],
@@ -99,7 +97,7 @@ func get_sheet_rows() -> Array:
 func _add_brave_sheet() -> void:
 	if not ResourceLoader.exists(BRAVE_SHEET_ART):
 		return
-	has_brave_sheet = _add_sheet_animations(character_sprite.sprite_frames, "luna_brave", load(BRAVE_SHEET_ART) as Texture2D, BRAVE_SHEET_ROWS)
+	has_brave_sheet = _add_sheet_animations(character_sprite.sprite_frames, "luna_brave", load(BRAVE_SHEET_ART) as Texture2D)
 	var moves := SHEET_ART.original_character_moves_sheet("luna", body_type, "luna_brave")
 	_add_move_sheet_animations(character_sprite.sprite_frames, "luna_brave", moves, BRAVE_MOVE_SHEET_ROWS)
 

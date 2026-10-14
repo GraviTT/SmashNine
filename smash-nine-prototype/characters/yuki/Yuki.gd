@@ -7,7 +7,7 @@ const GRAND_WARD_SCRIPT := preload("res://characters/yuki/YukiGrandWard.gd")
 ## Redrawn 2026-10-14 (D33-D37): every motion is 6 frames with its old length (fps x 6 / old
 ## frames), the idle at 6.3 fps (D37). The base `attack` row is only a fallback: every J plays a
 ## talisman row from the move sheet.
-const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 28.5, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 28.5, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34). `tumble` is new for Yuki: strong launches play it instead of the hurt frame.
 const MOVE_SHEET_ROWS := [
 	["talisman_side", 6, 28.5, false],

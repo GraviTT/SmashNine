@@ -119,7 +119,7 @@ function sheet(rel, rows, labels, cell, feet, stem = null) {
 const CHARACTERS = [
 	{ id: "frey", name: "Frey", script: "frey/Frey.gd" },
 	{ id: "luna", name: "Luna", script: "luna/Luna.gd" },
-	{ id: "luna_brave", name: "Brave Luna", script: "luna/Luna.gd", baseConst: "BRAVE_SHEET_ROWS", moveConst: "BRAVE_MOVE_SHEET_ROWS", folder: "luna", bodies: [""] },
+	{ id: "luna_brave", name: "Brave Luna", script: "luna/Luna.gd", moveConst: "BRAVE_MOVE_SHEET_ROWS", folder: "luna", bodies: [""] },
 	{ id: "nova", name: "Nova", script: "nova/Nova.gd" },
 	{ id: "rio", name: "Rio", script: "rio/Rio.gd" },
 	{ id: "yuki", name: "Yuki", script: "yuki/Yuki.gd" },

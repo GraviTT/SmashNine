@@ -5,12 +5,12 @@ const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const SHARED_LAYOUT := {"idle": 4, "walk": 6, "jump": 1, "fall": 1, "attack": 4, "shield": 6, "hurt": 1}
-## Redrawn with 6-frame motions (D33, 2026-10-14): Yuki, Nova (both bodies), Brave Luna's base sheet.
+## Redrawn with 6-frame motions (D33, 2026-10-14) and still the 6-frame walk: Nova (both bodies).
 const REDRAWN_LAYOUT := {"idle": 6, "walk": 6, "jump": 1, "fall": 1, "attack": 6, "shield": 6, "hurt": 1}
-## Frey and Luna with the 8-frame walk (user 2026-10-15).
+## The 8-frame walk (user 2026-10-15): Frey, Luna and Brave Luna, Yuki.
 const FREY_LAYOUT := {"idle": 6, "walk": 8, "jump": 1, "fall": 1, "attack": 6, "shield": 6, "hurt": 1}
 const LUNA_LAYOUT := FREY_LAYOUT
-const YUKI_LAYOUT := REDRAWN_LAYOUT
+const YUKI_LAYOUT := FREY_LAYOUT
 const NOVA_LAYOUT := REDRAWN_LAYOUT
 
 func _initialize() -> void:
