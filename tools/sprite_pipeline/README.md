@@ -103,5 +103,10 @@ The generator cannot place a head to within a pixel (ART-56 missed by 3–4 px a
 - Check `bob.png` at 4×. Shifts of up to ±3 px left no visible mark on the ART-56 strips; regenerate a frame that would need more.
 - `--selftest` checks the head moves by exactly k and the feet stay.
 
+## Walk feet (`walk_feet.py`)
+`walk_feet.py --strip <walk.png> --onion onion.png --report feet.json` prints each frame's planted feet (centre x on the ground line) and draws an onion board: each frame in red over the next in cyan.
+- The eye pairs each foot with the nearest foot of the next frame. If both feet jump far in one frame, the pairing flips and the walk reads as feet dropping and lifting in place (ART-57's passing frames).
+- In a passing frame the standing foot sits about midway between its neighbours, and the lifted foot is beside it. No foot should move more than about 25 px between frames.
+
 ## Putting accepted rows into the game
 `assemble.py --cell <128|192> --out <sheet.png> <strip>...` stacks accepted one-row strips into a 6-column sheet in the row-table order, pixel for pixel (Frey 2026-10-14: base sheet 128, move sheet 192, D34). Then mark each adopted candidate's JSON with `"adopted": "<date>"` so the motion viewer stops listing it.
