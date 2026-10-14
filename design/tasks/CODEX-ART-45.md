@@ -1,11 +1,15 @@
-# CODEX-ART-45 · Brave Luna rows (after the user picks a design in ART-44)
-
-> Draft written 2026-10-14 before the design choice. The lead updates the anchor name and the design notes once the user picks.
+# CODEX-ART-45 · Brave Luna rows in the chosen design (② ponytail combat outfit)
 
 - Request: 사용자 2026-10-14 "Luna 진행. Brave까지." Method D35, rules D32–D34. **Candidates only**; nothing in `smash-nine-prototype/` changes.
-- Unit B: branch `codex/luna-45`, clone `SmashNine-units/builder-art/SmashNine`. Unit A (`CODEX-ART-43.md`, the normal-form rows and the transformation) runs at the same time in `builder-frey`. Keep to your files.
-- Anchor: `art/bakeoff/luna/luna_brave-idle-v2.png` (Image 1 for every row: size, look, detail). Its head equals the Luna anchor's. Image 2 = the current game row ×4 nearest (what the move is; ignore baked effects such as star arcs, glows and orbs of light).
-- Settings: `--resample lanczos --sharpen 60 --despill auto --palette none --bg #00ff00`. One factor per sheet, matched with `head_scale.py --anchor art/bakeoff/luna/luna-idle-v2.png:0` (the Luna anchor: same person), median 0.96–1.04.
+- Unit B: branch `codex/luna-45`, clone `SmashNine-units/builder-art/SmashNine`. Unit A (`CODEX-ART-43.md`: the new Luna anchor and the normal-form rows) runs at the same time in `builder-frey`. Keep to your files.
+- **Design (user's pick 2026-10-14 from ART-44): ② `luna_brave-idle-v4`.** It is the anchor and Image 1 for every row (size, look, detail):
+  - a high ponytail tied with the purple bow and the gold star
+  - a sleeveless top, a short skirt over shorts, a short scarf, in Luna's purples and white
+  - purple-and-gold armoured gauntlets to the forearm and armoured boots with star knee guards
+  - Luna's face and magenta eyes; 2.2 heads tall
+  
+  The ponytail and the scarf lag one frame in motion. Image 2 = the current game row ×4 nearest (what the move is only; it shows the old outfit, so never copy its clothes, hair or the orbs of light).
+- Settings: `--resample lanczos --sharpen 60 --despill auto --palette none --bg #00ff00`. One factor per sheet, matched with `head_scale.py --anchor art/bakeoff/luna/luna_brave-idle-v4.png:0` (the anchor; its head is 1.00 of the current Luna's), median 0.96–1.04.
 - Cells: base rows 128 (feet y=120); move rows `--cell 192` (feet y=152, D34). One generation per motion, a second only if the first fails. No effects: the game draws the star bursts, the comet light, the heart laser and the aura. The gauntlets are solid objects with no glow halo. Airborne frames are drawn lifted.
 - Every 4-frame motion becomes 6 with the same length (fps × 6 / 4); the 6-frame rows keep their fps.
 
