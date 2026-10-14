@@ -1,0 +1,24 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete six-frame IDLE loop for Nova female.
+
+CRITICAL PROPORTION CORRECTION AFTER A REJECTED FIRST GENERATION: at the correct approximately 90-pixel final body height, the previous generated draft's head measured only 0.92 of Image 1's anchor head. Do not repeat that anatomy. Make Nova female's head and face about 8 percent larger RELATIVE TO HER BODY while keeping the same total figure height: shorten the torso and legs to compensate, never make the whole character taller. Match Image 1's exact compact 2.5-head ratio: crown-to-chin is approximately 40 percent of total standing height. Image 1's head-to-body ratio overrides the tall illustration completely.
+
+Input images and roles: Image 1 is the current game idle frame enlarged 4x nearest-neighbor. It is authoritative for exact compact 2.5-head proportions, head ratio, face scale, body height, side-view camera, planted stance, slim waist, sprite rendering detail, shading, outline weight and pixel finish; create new complete poses rather than copying its exact pose. Image 2 is Nova female's full-body illustration for identity, longer dark-blue hair, teal eyes, armor design, colors and costume details only; ignore its tall proportions, pose, glowing energy and effects.
+
+Primary request: Draw a cohesive full-body six-frame idle animation of the SAME Nova female, standing in place and facing RIGHT in the same side-view / slight three-quarter camera as Image 1, for 6.3 fps. Light ready hero stance, both fists up, both feet planted. Restrained breathing loop, every frame a newly drawn complete pose, seamless from frame 6 back to frame 1.
+Frame 1 neutral: fists up, centered weight, softly bent knees, hair resting.
+Frame 2 inhale: chest and shoulders rise slightly, knees straighten a little, longer hair begins lifting, feet fixed.
+Frame 3 breath top: shoulders highest, dark-blue hair lifts subtly, feet fixed.
+Frame 4 exhale begins: shoulders settle while hair stays lifted for one-frame lag.
+Frame 5 lowest: torso settles, knees soften slightly, hair settles, feet fixed.
+Frame 6 loop bridge: halfway between frames 5 and 1.
+
+Identity and anatomy invariants: EXACT compact 2.5-head chibi proportions of Image 1, visibly large head and face, short torso and short legs. Never 2.7+ heads tall, never tall adult proportions, never a small head. One visible face, teal eyes, longer swept dark-blue hair than male Nova, compact athletic female body with a slimmer waist, dark navy bodysuit, white-silver chest and shoulder armor, ONE small solid cyan geometric chest core, cyan armored gauntlets and boots, small gold accents. Same head size, face size, slim torso width, limb thickness, gauntlet scale, boot scale and armor layout in every frame. Exactly one head, one face, two connected arms, two intact fists/gauntlets, two connected legs and two intact boots per frame.
+
+Sheet layout: exactly SIX equal 512-by-512 square cells in a 3 columns by 2 rows sheet, total 1536 by 1024 if supported. Read top row left-to-right then bottom row left-to-right. Exactly one isolated full-body Nova female per cell. Same character scale, head size, body width, root x and floor line in every cell. Both feet planted in the same positions. Generous green margin; all hair, armor, fists and boots inside each cell. No frame-specific resizing; no labels, numbers, grid or borders.
+
+Backdrop: completely solid flat #00FF00 chroma green. No transparency, checkerboard, floor, shadow, contact shadow, scenery or atmosphere.
+
+Style/medium: crisp high-detail pixel art matching Image 1, with equal or greater interior contrast and detail density. Preserve separated long dark-blue hair locks, teal eyes, silver armor facets, navy fabric panels, gold accents, segmented gauntlets, boot plating and solid cyan core geometry in every frame. Pixel art intended to reduce to a 128-pixel game sprite, clean cel-shaded ramps, readable silhouette. No smooth illustration, vector, 3D, painterly texture, blur, soft gradients, antialiasing or white fringe.
+
+Final constraints: exactly 6 frames and 6 figures; right-facing; subtle planted breathing loop; same head size/body width/feet positions; no duplicated face/body part, pasted parts or attack pose. ABSOLUTELY NO effects: no glow halo, aura, rings, swirls, sparks, particles, afterimages, trails, floor glow or bloom. Chest core is a small solid cyan shape, not emitting light. No text, watermark, labels, grid, borders, shadows or cropping.
