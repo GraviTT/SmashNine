@@ -1,0 +1,20 @@
+CODEX-ART-58 Luna — built-in image tool prompts
+
+Common references
+- Image 1: art/raw/walk-58/luna/reference/idle_frame0_4x.png — authoritative Luna look and detail.
+- Image 2: luna_pose_03.png or luna_pose_07.png — pose only; its greys are not clothing.
+- Image 3: accepted_frame_01_4x.png — ART-57 accepted walking costume, proportions, wand placement, and pixel style.
+- Image 4: legacy_walk_frame02_4x.png — the same costume with the legs close together.
+
+Frame 3, generation 1 (selected)
+Use case: stylized-concept. Asset type: single 512x512 source frame for a 2D pixel-art fighting-game walk animation. Draw Luna in walk frame 3, a true passing pose, matching Image 2 while preserving Images 1 and 3. The NEAR leg is the standing leg, straight and vertical, boot flat directly under the hips. The FAR leg is the swinging leg, knee bent; its boot is lifted beside the standing ankle, 24–48 source pixels above the ground (6–12 final pixels), toe down. The boots are almost at the same x. The lifted boot is not in front of the body and does not reach forward. The far leg is slightly darker and behind; the near leg is in front at overlap. Preserve Luna's head size, long pink hair, purple bow, yellow star ornament, purple-and-pink dress with white frills, and matching knee-high purple boots on both legs. No stockings, stripes, or ankle boots. Keep the wand raised in front in the near hand, within about 15 degrees, with its star at the upper right. Change only the legs and free arm to Image 2's pose. Polished high-detail retro pixel art, solid exact #00FF00, one complete right-facing figure, clear borders. No effects, shadow, text, UI, extra figure, crop, transparency, grey clothing, redesign, duplicate limb, or watermark.
+
+Frame 7, generation 1 (rejected)
+Same common prompt and invariants. The FAR leg is the standing leg, straight and vertical, boot flat under the hips. The NEAR leg is the swinging leg, bent at the knee; its boot is lifted beside the standing ankle, 24–48 source pixels above the ground, toe down. The far standing leg is slightly darker and behind; the near swinging leg is in front. Rejected after normalisation because the lifted toe entered the ground-detection band and produced two planted feet.
+
+Frame 7, generation 2 (selected)
+Same common prompt and invariants, with this targeted correction: there must be EXACTLY ONE boot touching the ground. The FAR leg is the single standing leg, straight and vertical, with its boot flat directly under the hips. The NEAR leg is sharply bent. Keep the entire near swinging boot visibly airborne beside the standing ankle, with a clear green gap of about 32–48 source pixels under its lowest toe. The airborne toe points down but does not touch or nearly touch the ground. The lifted boot does not reach forward. The far standing leg is slightly darker and behind; the near airborne leg is brighter and in front at overlap. Exactly one grounded foot and a clearly airborne second boot.
+
+Execution
+- Built-in image tool, not CLI/API fallback.
+- Selected built-in outputs were copied to art/raw/walk-58/luna/generated/ before processing.

@@ -1,0 +1,161 @@
+{
+  "measured": {
+    "output_size": [
+      1024,
+      128
+    ],
+    "frames": 8,
+    "fps": 13.3,
+    "generated_attempts": {
+      "frame_3": 1,
+      "frame_7": 2
+    },
+    "normalization_factor": {
+      "frame_3": 0.104167,
+      "frame_7": 0.104167
+    },
+    "head_scale": {
+      "frame_3": 1.0,
+      "frame_7": 0.96
+    },
+    "body_height": {
+      "frame_3": 83,
+      "frame_7": 85
+    },
+    "interior_detail": {
+      "frame_3": 120.56,
+      "frame_7": 115.94
+    },
+    "remaining_spill_pixels": {
+      "frame_3": 0,
+      "frame_7": 0
+    },
+    "border_clear": {
+      "frame_3": true,
+      "frame_7": true
+    },
+    "margin_4px": {
+      "frame_3": true,
+      "frame_7": true
+    },
+    "final_strip_checks": {
+      "interior_detail_range": [
+        112.64,
+        122.21
+      ],
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_alpha_binary": true,
+      "all_borders_clear": true,
+      "all_have_4px_margin": true
+    },
+    "planted_feet": {
+      "frame_3": {
+        "count": 1,
+        "centre": 73.0,
+        "target": 67,
+        "tolerance": 6
+      },
+      "frame_7": {
+        "count": 1,
+        "centre": 69.0,
+        "target": 68,
+        "tolerance": 6
+      }
+    },
+    "bob": {
+      "face_box": [
+        70,
+        50,
+        87,
+        67
+      ],
+      "zone": [
+        94,
+        115
+      ],
+      "shape": [
+        0,
+        2,
+        -1,
+        -2
+      ],
+      "measured": [
+        0,
+        -1,
+        -3,
+        -3,
+        0,
+        -4,
+        -5,
+        -3
+      ],
+      "target": [
+        -3,
+        -1,
+        -4,
+        -5,
+        -3,
+        -1,
+        -4,
+        -5
+      ],
+      "shifts": [
+        -3,
+        0,
+        -1,
+        -2,
+        -3,
+        3,
+        1,
+        -2
+      ],
+      "after": [
+        -3,
+        -1,
+        -4,
+        -5,
+        -3,
+        -1,
+        -4,
+        -5
+      ],
+      "match_error": [
+        0.0,
+        16.07,
+        13.74,
+        12.96,
+        20.42,
+        17.83,
+        17.29,
+        15.67
+      ],
+      "feet_rows_unchanged": true
+    }
+  },
+  "judged_at_4x": {
+    "passing_feet_beside_standing_ankle": {
+      "frame_3": true,
+      "frame_7": true
+    },
+    "no_corresponding_foot_moves_over_25px": true,
+    "swinging_leg_visibly_passes_standing_leg": {
+      "frame_3": true,
+      "frame_7": true
+    },
+    "knee_high_purple_boots_no_stripes": true,
+    "dress_matches_idle": true,
+    "wand_front_star_top_right": true,
+    "bob_seam_visible": false,
+    "reads_as_two_alternating_steps_at_13_3_fps": true,
+    "remaining_issue": "독립 생성한 3·7번은 머리카락 끝, 치마 주름, 부츠 하이라이트와 완드 각도가 인접 프레임과 조금 다르다."
+  }
+}
