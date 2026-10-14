@@ -1,0 +1,440 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-43/luna-star_down-generation-01.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.235,
+    "scale_by": "fixed:0.235",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      60,
+      80
+    ],
+    "body_width_range": [
+      89,
+      95
+    ],
+    "area_range": [
+      3827,
+      4406
+    ],
+    "area_spread_percent": 13.14,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3586,
+      4126
+    ],
+    "interior_detail_range": [
+      91.9,
+      94.06
+    ],
+    "interior_detail_mean": 92.93,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 71.41,
+    "interior_detail_ratio": 1.3014
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 70.38,
+        "colour_count": 4564,
+        "remaining_spill_pixels": 8
+      },
+      {
+        "index": 1,
+        "interior_detail": 74.24,
+        "colour_count": 4671,
+        "remaining_spill_pixels": 8
+      },
+      {
+        "index": 2,
+        "interior_detail": 66.11,
+        "colour_count": 5701,
+        "remaining_spill_pixels": 2
+      },
+      {
+        "index": 3,
+        "interior_detail": 74.89,
+        "colour_count": 4787,
+        "remaining_spill_pixels": 8
+      }
+    ],
+    "interior_detail_mean": 71.41,
+    "colour_count_range": [
+      4564,
+      5701
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-43/luna-star_down-generation-01.png#0,0",
+      "bbox": [
+        53,
+        73,
+        144,
+        153
+      ],
+      "body_height": 80,
+      "body_width": 91,
+      "area": 4301,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 93.95,
+      "colour_count": 4027,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 73,
+        "right": 48,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.3156
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-43/luna-star_down-generation-01.png#1,0",
+      "bbox": [
+        53,
+        74,
+        143,
+        153
+      ],
+      "body_height": 79,
+      "body_width": 90,
+      "area": 4219,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 92.66,
+      "colour_count": 3948,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 74,
+        "right": 49,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2976
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-43/luna-star_down-generation-01.png#2,0",
+      "bbox": [
+        58,
+        83,
+        147,
+        153
+      ],
+      "body_height": 70,
+      "body_width": 89,
+      "area": 3929,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 92.09,
+      "colour_count": 3706,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 83,
+        "right": 45,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2896
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-43/luna-star_down-generation-01.png#0,1",
+      "bbox": [
+        55,
+        93,
+        147,
+        153
+      ],
+      "body_height": 60,
+      "body_width": 92,
+      "area": 3830,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 91.9,
+      "colour_count": 3605,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 93,
+        "right": 45,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2869
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-43/luna-star_down-generation-01.png#1,1",
+      "bbox": [
+        57,
+        90,
+        150,
+        153
+      ],
+      "body_height": 63,
+      "body_width": 93,
+      "area": 3827,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 92.94,
+      "colour_count": 3586,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 57,
+        "top": 90,
+        "right": 42,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.3015
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-43/luna-star_down-generation-01.png#2,1",
+      "bbox": [
+        56,
+        75,
+        151,
+        153
+      ],
+      "body_height": 78,
+      "body_width": 95,
+      "area": 4406,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 94.06,
+      "colour_count": 4126,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 75,
+        "right": 41,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.3172
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-43/star_down/luna-star_down-v1.png",
+    "candidate": "art/bakeoff/luna/luna-star_down-v1.png",
+    "frames": "reports/codex-art-43/star_down/frames",
+    "closeup": "reports/codex-art-43/star_down/closeup.png",
+    "compare": "reports/codex-art-43/star_down/compare.png"
+  },
+  "head_scale": {
+    "anchor": "art/bakeoff/luna/luna-idle-v3.png:0",
+    "median": 1.01,
+    "used_frames": 6,
+    "per_frame": [
+      {
+        "scale": 1.02,
+        "score": 0.893
+      },
+      {
+        "scale": 1.02,
+        "score": 0.818
+      },
+      {
+        "scale": 1.02,
+        "score": 0.673
+      },
+      {
+        "scale": 0.96,
+        "score": 0.661
+      },
+      {
+        "scale": 0.96,
+        "score": 0.806
+      },
+      {
+        "scale": 1.0,
+        "score": 0.855
+      }
+    ],
+    "head_matched_factor": 0.232673,
+    "note": "자동 측정 중앙값과 4배 비교판을 함께 확인"
+  }
+}

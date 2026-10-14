@@ -1,0 +1,17 @@
+Use case: stylized-concept.
+Asset type: second and final production attempt at ONE complete six-frame WALK sprite loop for normal-form Luna.
+
+Image 1 is the accepted luna-idle-v3 anchor and is the absolute size model. Image 2 supplies only the walk phases. The prior attempt failed because Luna's head was about 12% too small. Correct that specific failure: draw her head and face approximately 14% larger relative to the body than a typical chibi walk drawing, exactly matching Image 1's large head, while keeping the total character height compact at the same apparent height as Image 1. She must be exactly about 2.2 heads tall, with a compact torso and very short legs. Do not enlarge the whole character to achieve this; enlarge the head relative to the body and shorten the legs.
+
+Draw exactly six newly drawn whole-body right-facing frames at 10 fps:
+1 right-foot contact (right forward, left back);
+2 down after right contact;
+3 left leg passing forward;
+4 left-foot contact (left forward, right back);
+5 down after left contact;
+6 right leg passing forward.
+The stride must alternate clearly. Hair and ribbon lag one frame. She walks lightly and cheerfully while holding one intact star wand forward.
+
+Preserve Image 1 exactly: same large head and face, one visible magenta-eyed face, thick long hot-pink hair, midnight-purple bow with gold star, compact purple/pink/gold magical-girl dress with layered white frills, purple boots, cyan-white five-point star wand, high-detail crisp pixel shading and dark-violet outline. One head, two connected arms/hands, two short connected legs/boots and one wand in every frame.
+
+Exactly six equal 512x512 cells in a 3x2 sheet, 1536x1024, read left-to-right top then bottom. One isolated Luna per cell at consistent scale and floor. Solid flat #00FF00 background, generous margins. No labels, grid, borders, shadows, cropping, duplicated parts, running, attack poses, spell effects, sparkles, glow, trails, aura, dust, text or watermark. No antialiasing, smooth illustration, blur, gradients, 3D or painterly rendering. Keep rich internal pixel contrast and costume detail so the reduced 128px sprite remains crisp.

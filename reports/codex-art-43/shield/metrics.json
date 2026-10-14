@@ -1,0 +1,453 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-43/luna-shield-generation-01.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.235007,
+    "scale_by": "fixed:0.235007",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      79,
+      80
+    ],
+    "body_width_range": [
+      80,
+      98
+    ],
+    "area_range": [
+      4010,
+      4441
+    ],
+    "area_spread_percent": 9.71,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3776,
+      4192
+    ],
+    "interior_detail_range": [
+      91.35,
+      99.89
+    ],
+    "interior_detail_mean": 95.41,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 81.28,
+    "interior_detail_ratio": 1.1738
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 87.57,
+        "colour_count": 4057,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 78.6,
+        "colour_count": 5226,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 81.86,
+        "colour_count": 5183,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 76.76,
+        "colour_count": 4935,
+        "remaining_spill_pixels": 4
+      },
+      {
+        "index": 4,
+        "interior_detail": 76.98,
+        "colour_count": 5023,
+        "remaining_spill_pixels": 6
+      },
+      {
+        "index": 5,
+        "interior_detail": 85.88,
+        "colour_count": 4361,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 81.28,
+    "colour_count_range": [
+      4057,
+      5226
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-43/luna-shield-generation-01.png#0,0",
+      "bbox": [
+        19,
+        42,
+        117,
+        121
+      ],
+      "body_height": 79,
+      "body_width": 98,
+      "area": 4441,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 95.36,
+      "colour_count": 4192,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 19,
+        "top": 42,
+        "right": 11,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1732
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-43/luna-shield-generation-01.png#1,0",
+      "bbox": [
+        27,
+        42,
+        107,
+        121
+      ],
+      "body_height": 79,
+      "body_width": 80,
+      "area": 4010,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 96.77,
+      "colour_count": 3776,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 27,
+        "top": 42,
+        "right": 21,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1906
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-43/luna-shield-generation-01.png#2,0",
+      "bbox": [
+        30,
+        42,
+        112,
+        121
+      ],
+      "body_height": 79,
+      "body_width": 82,
+      "area": 4054,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 99.89,
+      "colour_count": 3811,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 30,
+        "top": 42,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.229
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-43/luna-shield-generation-01.png#0,1",
+      "bbox": [
+        27,
+        41,
+        115,
+        121
+      ],
+      "body_height": 80,
+      "body_width": 88,
+      "area": 4325,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 93.37,
+      "colour_count": 4048,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 27,
+        "top": 41,
+        "right": 13,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1487
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-43/luna-shield-generation-01.png#1,1",
+      "bbox": [
+        28,
+        41,
+        115,
+        121
+      ],
+      "body_height": 80,
+      "body_width": 87,
+      "area": 4374,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 91.35,
+      "colour_count": 4125,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 28,
+        "top": 41,
+        "right": 13,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1239
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-43/luna-shield-generation-01.png#2,1",
+      "bbox": [
+        27,
+        41,
+        114,
+        121
+      ],
+      "body_height": 80,
+      "body_width": 87,
+      "area": 4304,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 95.73,
+      "colour_count": 4026,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 27,
+        "top": 41,
+        "right": 14,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1778
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-43/shield/luna-shield-v1.png",
+    "candidate": "art/bakeoff/luna/luna-shield-v1.png",
+    "frames": "reports/codex-art-43/shield/frames",
+    "closeup": "reports/codex-art-43/shield/closeup.png",
+    "compare": "reports/codex-art-43/shield/compare.png"
+  },
+  "head_scale": {
+    "anchor": "art/bakeoff/luna/luna-idle-v3.png:0",
+    "median": 1.02,
+    "used_frames": 6,
+    "per_frame": [
+      {
+        "scale": 1.02,
+        "score": 0.87
+      },
+      {
+        "scale": 1.02,
+        "score": 0.819
+      },
+      {
+        "scale": 1.02,
+        "score": 0.792
+      },
+      {
+        "scale": 1.02,
+        "score": 0.832
+      },
+      {
+        "scale": 1.06,
+        "score": 0.827
+      },
+      {
+        "scale": 1.02,
+        "score": 0.847
+      }
+    ],
+    "head_matched_factor": 0.230399,
+    "note": "자동 측정 중앙값과 4배 비교판을 함께 확인"
+  }
+}

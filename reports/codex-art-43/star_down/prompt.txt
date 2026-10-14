@@ -1,0 +1,19 @@
+Use case: stylized-concept.
+Asset type: one six-frame 192px move-row sprite animation for normal Luna: STAR_DOWN.
+
+Image 1 is accepted luna-idle-v3 enlarged 4x, authoritative for exact identity, head/face scale, compact 2.2-head proportions, costume, wand, detail and pixel style. Image 2 is the current star_down row enlarged 4x, authoritative only for the motion: wand sweeps forward and downward near the ground. Remove all baked flame, pillar, star burst, glow, sparkles and trails.
+
+Draw six newly drawn whole-body grounded frames facing RIGHT at 21 fps:
+1 ready with wand in front at chest/waist;
+2 sweep begins forward and down, knees bend;
+3 active low diagonal swing;
+4 deepest low reach, wand close to the ground ahead, torso crouched;
+5 low follow-through, weight forward;
+6 recover upward toward ready.
+Feet stay grounded and braced. Hair and ribbon follow the downward force one frame late. The wand remains intact and visible; no actual trail/effect.
+
+Same Luna as Image 1: identical large head and face, compact body and short legs, long hot-pink hair, purple bow/gold star, purple/pink/gold frilled dress, purple boots, one cyan-white five-point star wand. Exactly one face/head, two connected arms/hands, two connected legs/boots, one wand per frame.
+
+Exactly six 512x512 cells in a 3x2 sheet, 1536x1024, same scale/floor/camera, generous solid #00FF00 margins. Crisp high-detail pixel art, rich contrast, dark-violet outlines. No blur, antialiasing, smooth/vector/3D/painterly style.
+
+No ground flame, pillar, star burst, glow, sparkles, arc, trail, aura, particles, dust, text, labels, numbers, grid, borders, watermark, shadows, duplicated or cropped parts.
