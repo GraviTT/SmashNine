@@ -1,0 +1,411 @@
+{
+  "input": {
+    "sheet": "art/raw/nova-52b/meteor_kick/raw-v1.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.255745,
+    "scale_by": "fixed:0.255745",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      80,
+      117
+    ],
+    "body_width_range": [
+      55,
+      75
+    ],
+    "area_range": [
+      2764,
+      3387
+    ],
+    "area_spread_percent": 18.39,
+    "bottom_range": [
+      123,
+      152
+    ],
+    "lift_range": [
+      0,
+      29
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2340,
+      2868
+    ],
+    "interior_detail_range": [
+      85.26,
+      96.8
+    ],
+    "interior_detail_mean": 90.5,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 51.17,
+    "interior_detail_ratio": 1.7686
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 51.93,
+        "colour_count": 5140,
+        "remaining_spill_pixels": 61
+      },
+      {
+        "index": 1,
+        "interior_detail": 52.72,
+        "colour_count": 3641,
+        "remaining_spill_pixels": 27
+      },
+      {
+        "index": 2,
+        "interior_detail": 51.09,
+        "colour_count": 4735,
+        "remaining_spill_pixels": 41
+      },
+      {
+        "index": 3,
+        "interior_detail": 47.42,
+        "colour_count": 4672,
+        "remaining_spill_pixels": 37
+      },
+      {
+        "index": 4,
+        "interior_detail": 52.68,
+        "colour_count": 3955,
+        "remaining_spill_pixels": 17
+      }
+    ],
+    "interior_detail_mean": 51.17,
+    "colour_count_range": [
+      3641,
+      5140
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/nova-52b/meteor_kick/raw-v1.png#0,0",
+      "bbox": [
+        65,
+        44,
+        120,
+        124
+      ],
+      "body_height": 80,
+      "body_width": 55,
+      "area": 2764,
+      "bottom": 123,
+      "lift": 29,
+      "expected_lift": 29,
+      "interior_detail": 91.92,
+      "colour_count": 2340,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 65,
+        "top": 44,
+        "right": 72,
+        "bottom": 68,
+        "minimum": 44,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.7964
+    },
+    {
+      "index": 1,
+      "source": "art/raw/nova-52b/meteor_kick/raw-v1.png#1,0",
+      "bbox": [
+        66,
+        45,
+        141,
+        136
+      ],
+      "body_height": 91,
+      "body_width": 75,
+      "area": 3064,
+      "bottom": 135,
+      "lift": 17,
+      "expected_lift": 17,
+      "interior_detail": 95.53,
+      "colour_count": 2577,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 66,
+        "top": 45,
+        "right": 51,
+        "bottom": 56,
+        "minimum": 45,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.8669
+    },
+    {
+      "index": 2,
+      "source": "art/raw/nova-52b/meteor_kick/raw-v1.png#2,0",
+      "bbox": [
+        61,
+        36,
+        122,
+        153
+      ],
+      "body_height": 117,
+      "body_width": 61,
+      "area": 3387,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 85.89,
+      "colour_count": 2868,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 61,
+        "top": 36,
+        "right": 70,
+        "bottom": 39,
+        "minimum": 36,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.6785
+    },
+    {
+      "index": 3,
+      "source": "art/raw/nova-52b/meteor_kick/raw-v1.png#0,1",
+      "bbox": [
+        61,
+        31,
+        123,
+        143
+      ],
+      "body_height": 112,
+      "body_width": 62,
+      "area": 3322,
+      "bottom": 142,
+      "lift": 10,
+      "expected_lift": 10,
+      "interior_detail": 85.26,
+      "colour_count": 2854,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 61,
+        "top": 31,
+        "right": 69,
+        "bottom": 49,
+        "minimum": 31,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.6662
+    },
+    {
+      "index": 4,
+      "source": "art/raw/nova-52b/meteor_kick/raw-v1.png#1,1",
+      "bbox": [
+        65,
+        50,
+        125,
+        137
+      ],
+      "body_height": 87,
+      "body_width": 60,
+      "area": 3089,
+      "bottom": 136,
+      "lift": 16,
+      "expected_lift": 16,
+      "interior_detail": 87.63,
+      "colour_count": 2616,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 65,
+        "top": 50,
+        "right": 67,
+        "bottom": 55,
+        "minimum": 50,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.7125
+    },
+    {
+      "index": 5,
+      "source": "art/raw/nova-52b/meteor_kick/raw-v1.png#2,1",
+      "bbox": [
+        63,
+        54,
+        127,
+        137
+      ],
+      "body_height": 83,
+      "body_width": 64,
+      "area": 3196,
+      "bottom": 136,
+      "lift": 16,
+      "expected_lift": 16,
+      "interior_detail": 96.8,
+      "colour_count": 2667,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 63,
+        "top": 54,
+        "right": 65,
+        "bottom": 55,
+        "minimum": 54,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.8917
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-52b/meteor_kick/nova_female-meteor_kick-v1.png",
+    "candidate": "art/bakeoff/nova/nova_female-meteor_kick-v1.png",
+    "frames": "reports/codex-art-52b/meteor_kick/frames",
+    "closeup": "reports/codex-art-52b/meteor_kick/closeup.png",
+    "compare": "reports/codex-art-52b/meteor_kick/compare.png"
+  }
+}
