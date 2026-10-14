@@ -90,5 +90,18 @@ Frey 행의 머리 크기는 앵커 대비 자동 측정값과 4배 육안 비�
 - 자동 외곽선은 실루엣을 확장하지 않으며 큰 끊김을 그려 넣지 않는다.
 - 4px 여백은 `metrics.json`에 보고한다. 1px 테두리 침범은 항상 실패하지만 4px 미달은 리드가 후보를 다시 생성할지 판단한다.
 
+## Walk head bob (`walk_bob.py`)
+The generator cannot place a head to within a pixel (ART-56 missed by 3–4 px after three tries per frame), so a walk's bob is set after normalising:
+
+```powershell
+& $py tools/sprite_pipeline/walk_bob.py --strip in.png --face 73,31,90,50 --out out.png --report bob.json --board bob.png
+```
+
+- `--face` is a box around frame 1's eyes and face (cell pixels). Each frame's head offset is found by template matching against it.
+- A curve of the shape contact 0, down +2, passing −1, up −2 (`--shape`) is fitted per step with the baseline that needs the least change.
+- Each frame is raised by inserting horizontal seams, or lowered by removing them, inside the leg zone only (`--zone`, default from 30 % of the body height above the feet down to feet−5). The body above moves as one piece and the feet rows do not change.
+- Check `bob.png` at 4×. Shifts of up to ±3 px left no visible mark on the ART-56 strips; regenerate a frame that would need more.
+- `--selftest` checks the head moves by exactly k and the feet stay.
+
 ## Putting accepted rows into the game
 `assemble.py --cell <128|192> --out <sheet.png> <strip>...` stacks accepted one-row strips into a 6-column sheet in the row-table order, pixel for pixel (Frey 2026-10-14: base sheet 128, move sheet 192, D34). Then mark each adopted candidate's JSON with `"adopted": "<date>"` so the motion viewer stops listing it.
