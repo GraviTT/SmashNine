@@ -1,0 +1,524 @@
+{
+  "status": "failed_acceptance",
+  "delivered_candidate": false,
+  "reason": "Frey frames 4 and 5 miss bob tolerance; Luna frame 6 misses bob tolerance. Card says deliver only a passing character.",
+  "input": {
+    "mode": "sequential anchor + pose + accepted-neighbour generations",
+    "raw": "art/raw/walk-56/luna/",
+    "starting_strip": "art/bakeoff/luna/luna-walk-v3.png"
+  },
+  "summary": {
+    "frame_count": 8,
+    "best_attempt_size": [
+      1024,
+      128
+    ],
+    "normalization_factors": [
+      0.12529,
+      0.122534,
+      0.123035,
+      0.123092,
+      0.11877,
+      0.12028,
+      0.11877,
+      0.12103
+    ],
+    "factor_mode": "one factor per generation, matched to anchor head",
+    "head_scale_range": [
+      0.96,
+      1.0
+    ],
+    "body_height_range": [
+      77,
+      80
+    ],
+    "body_width_range": [
+      70,
+      73
+    ],
+    "area_range": [
+      3118,
+      3699
+    ],
+    "area_spread_percent": 17.08,
+    "interior_detail_range": [
+      101.54,
+      107.32
+    ],
+    "interior_detail_mean": 104.06,
+    "colour_count_range": [
+      2974,
+      3487
+    ],
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "alpha_binary": true,
+    "contact_on_y120": true
+  },
+  "bob": {
+    "landmark": "마젠타 눈의 짙은 위쪽 윤곽 연결 성분 중심(분홍 머리카락은 위치·명도 문턱으로 제외)",
+    "target_relative_y": [
+      0,
+      2,
+      -1,
+      -2,
+      0,
+      2,
+      -1,
+      -2
+    ],
+    "tolerance_px": 1,
+    "absolute_face_centre_y": [
+      66,
+      67,
+      65,
+      64,
+      65,
+      64,
+      65,
+      63
+    ],
+    "measured_relative_y": [
+      0,
+      1,
+      -1,
+      -2,
+      -1,
+      -2,
+      -1,
+      -3
+    ],
+    "pass_by_frame": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ],
+    "overall_pass": false
+  },
+  "head_scale": [
+    {
+      "sheet": "art\\raw\\walk-56\\luna-final-01\\luna-final-01.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.802
+        }
+      ],
+      "median": 1.0,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\luna-final-02\\luna-final-02.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.781
+        }
+      ],
+      "median": 0.96,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\luna-final-03\\luna-final-03.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.77
+        }
+      ],
+      "median": 0.96,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\luna-final-04\\luna-final-04.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.751
+        }
+      ],
+      "median": 1.0,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\luna-final-05\\luna-final-05.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.742
+        }
+      ],
+      "median": 0.96,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\luna-final-06\\luna-final-06.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.727
+        }
+      ],
+      "median": 1.0,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\luna-final-07\\luna-final-07.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.738
+        }
+      ],
+      "median": 0.96,
+      "used": 1
+    },
+    {
+      "sheet": "art\\raw\\walk-56\\luna-final-08\\luna-final-08.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.695
+        }
+      ],
+      "median": 1.0,
+      "used": 1
+    }
+  ],
+  "visual_judgment_at_4x": {
+    "equipment_pass": true,
+    "equipment_note": "4배 육안: 완드는 전 프레임 같은 가까운 손에 남고, 자유 팔은 1~4번 앞/5~8번 뒤로 교대한다.",
+    "leg_pass": true,
+    "leg_note": "4배 육안: 1/5번은 서로 다른 다리가 선행하고 3/7번 스윙 발이 지면에서 분리된다.",
+    "smooth_pass": false,
+    "smooth_note": "13.3fps 육안: 6번이 down 대신 위로 남아 5→6→7 구간에서 한 번 꺾인다."
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/luna/frame-01-source.png#0,0",
+      "bbox": [
+        29,
+        43,
+        102,
+        121
+      ],
+      "body_height": 78,
+      "body_width": 73,
+      "area": 3699,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.54,
+      "colour_count": 3487,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 29,
+        "top": 43,
+        "right": 26,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/luna/frame-02-gen1.png#0,0",
+      "bbox": [
+        30,
+        44,
+        102,
+        121
+      ],
+      "body_height": 77,
+      "body_width": 72,
+      "area": 3533,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.36,
+      "colour_count": 3366,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 30,
+        "top": 44,
+        "right": 26,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/luna/frame-03-gen1.png#0,0",
+      "bbox": [
+        30,
+        42,
+        102,
+        121
+      ],
+      "body_height": 79,
+      "body_width": 72,
+      "area": 3512,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.58,
+      "colour_count": 3354,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 30,
+        "top": 42,
+        "right": 26,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/luna/frame-04-gen2.png#0,0",
+      "bbox": [
+        30,
+        41,
+        102,
+        121
+      ],
+      "body_height": 80,
+      "body_width": 72,
+      "area": 3548,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.35,
+      "colour_count": 3411,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 30,
+        "top": 41,
+        "right": 26,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/luna/frame-05-gen3.png#0,0",
+      "bbox": [
+        33,
+        43,
+        103,
+        121
+      ],
+      "body_height": 78,
+      "body_width": 70,
+      "area": 3255,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.5,
+      "colour_count": 3131,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 33,
+        "top": 43,
+        "right": 25,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/luna/frame-06-gen3.png#0,0",
+      "bbox": [
+        33,
+        42,
+        104,
+        121
+      ],
+      "body_height": 79,
+      "body_width": 71,
+      "area": 3306,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.25,
+      "colour_count": 3162,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 33,
+        "top": 42,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/luna/frame-07-gen2.png#0,0",
+      "bbox": [
+        34,
+        43,
+        104,
+        121
+      ],
+      "body_height": 78,
+      "body_width": 70,
+      "area": 3118,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 107.32,
+      "colour_count": 2974,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 34,
+        "top": 43,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    },
+    {
+      "index": 0,
+      "source": "art/raw/walk-56/luna/frame-08-gen2.png#0,0",
+      "bbox": [
+        33,
+        41,
+        104,
+        121
+      ],
+      "body_height": 80,
+      "body_width": 71,
+      "area": 3245,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.56,
+      "colour_count": 3112,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 33,
+        "top": 41,
+        "right": 24,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": null
+    }
+  ],
+  "outputs": {
+    "best_attempt": "reports/codex-art-56/luna/best.png",
+    "bob": "reports/codex-art-56/luna/bob.png",
+    "feet": "reports/codex-art-56/luna/feet.png",
+    "gif": "reports/codex-art-56/luna/walk.gif",
+    "compare": "reports/codex-art-56/luna/compare.png"
+  }
+}

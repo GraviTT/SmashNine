@@ -1,0 +1,19 @@
+CODEX-ART-56 Luna prompt log (built-in image tool)
+
+Common three-image roles
+- Image 1: art/raw/walk-56/refs/luna_anchor.png (appearance/detail anchor)
+- Image 2: art/raw/walk-56/refs/luna_pose_NN.png (the requested walk pose)
+- Image 3: the last accepted/generated neighbouring frame
+
+Base prompt used for each frame
+"The same drawing as Image 3: identical 2.2-head proportions, head size, dress, hair mass, bow, stars and wand; change only the legs and free-arm swing to Image 2's pose. The wand remains in the same near hand. Strict right-facing high-detail pixel art, one full body on pure #00ff00, no shadow, text, grid or effects."
+
+Targeted retries
+- F4 gen1: rejected because it drew a ground line; gen2 removed it.
+- F5 gen2: rejected because the free fist remained forward.
+- F5 gen3: removed the forward fist and swept the empty arm behind; selected.
+- F6 gen2: bob correction with forward fist; superseded by gen3.
+- F6 gen3: kept the empty arm behind and tried a down bob; selected, but it still fails the measured bob.
+- F7 gen2/F8 gen2: kept wand hand and rear-swept empty arm from the accepted neighbour; selected.
+
+Raw generations and every referenced copy are under art/raw/walk-56/ (git-ignored).
