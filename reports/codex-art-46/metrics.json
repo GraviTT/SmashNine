@@ -1,0 +1,91 @@
+{
+  "candidate": "art/bakeoff/luna/luna-transform-v2.png",
+  "dimensions": [2304, 192],
+  "frames": 12,
+  "fps": 12,
+  "cell": 192,
+  "feet_y": 152,
+  "source": {
+    "half_1": "art/raw/luna-46/half-1-attempt-1.png",
+    "half_2": "art/raw/luna-46/half-2-attempt-1.png",
+    "half_2_layout_prepared": "art/raw/luna-46/half-2-prepared.png",
+    "half_2_layout_adjustment": "원본 4~6번 셀(전체 10~12프레임)을 60 source px 아래로 평행 이동해 생성기의 행 배치 오차만 보정; 크기와 픽셀 내용은 변경하지 않음"
+  },
+  "normalization": {
+    "resample": "lanczos",
+    "sharpen": 60,
+    "despill": "auto",
+    "palette": "none",
+    "background": "#00ff00",
+    "half_1_common_factor": 0.301471,
+    "half_2_common_factor": 0.269737,
+    "per_frame_scaling": false
+  },
+  "head_scale_measurement": {
+    "method": "tools/sprite_pipeline/head_scale.py plus factor calibration; final visual check kept separate",
+    "half_1": {
+      "anchor": "art/bakeoff/luna/luna-idle-v3.png:0",
+      "probe_factor": 0.205,
+      "probe_median": 0.68,
+      "probe_scores": [0.51, 0.51, 0.50, 0.53, 0.38, 0.34],
+      "high_confidence_frames_at_0_60": 0,
+      "chosen_factor": 0.301471,
+      "factor_calibrated_scale": 1.0,
+      "note": "눈 감음·후면 회전 때문에 최종 자동 템플릿 점수는 신뢰 임계값에 들지 않음"
+    },
+    "half_2": {
+      "anchor": "art/bakeoff/luna/luna_brave-idle-v4.png:0",
+      "probe_factor": 0.205,
+      "probe_median": 0.76,
+      "probe_scores": [0.75, 0.77, 0.34, 0.38, 0.75, 0.71],
+      "high_confidence_frames_at_0_60": 4,
+      "chosen_factor": 0.269737,
+      "factor_calibrated_scale": 1.0,
+      "final_reliable_direct_scale": 1.02,
+      "final_reliable_direct_frames": 1
+    }
+  },
+  "automatic_checks": {
+    "half_1": {
+      "body_height_range": [101, 144],
+      "body_width_range": [86, 96],
+      "lift_range": [0, 17],
+      "interior_detail_range": [99.91, 115.95],
+      "interior_detail_mean": 107.86,
+      "remaining_spill_pixels": [0, 0, 0, 0, 0, 0],
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "alpha_binary": true
+    },
+    "half_2": {
+      "body_height_range": [79, 102],
+      "body_width_range": [78, 97],
+      "lift_range": [0, 4],
+      "interior_detail_range": [102.14, 112.66],
+      "interior_detail_mean": 109.47,
+      "remaining_spill_pixels": [0, 0, 0, 0, 0, 0],
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "alpha_binary": true
+    },
+    "combined_minimum_interior_detail": 99.91,
+    "combined_spill_pixels": 0,
+    "combined_borders_clear": true,
+    "combined_all_have_4px_margin": true
+  },
+  "visual_judgement": {
+    "review_asset": "reports/codex-art-46/compare.png",
+    "review_scale": 4,
+    "motion_preview": "reports/codex-art-46/preview.gif",
+    "outfits_read_clearly": true,
+    "spin_direction_continuous": true,
+    "landing_and_hero_finish_read": true,
+    "effects_baked_in": false,
+    "known_issues": [
+      "4프레임은 요구한 3/4 후면보다 측면 얼굴이 조금 더 많이 보인다.",
+      "5프레임의 교차한 팔은 정후면 머리카락과 드레스에 많이 가려져 동작선이 약하다.",
+      "11~12프레임의 허리 쪽 주먹은 완전한 골반 지지보다 복부 앞에 가깝게 읽힌다.",
+      "일반형과 Brave형의 치마 계층이 비슷해 의상 차이는 포니테일·스카프·건틀릿에서 가장 강하게 읽힌다."
+    ]
+  }
+}
