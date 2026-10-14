@@ -82,11 +82,18 @@ func _check_character_sheets(main: Node) -> void:
 			var label := "%s (%s)" % [character_id, body]
 			if not player.uses_original_sheet or frames.get_frame_texture(StringName("%s_idle" % character_id), 0).atlas.resource_path != expected:
 				_fail("%s does not draw %s" % [label, expected])
-			elif frames.get_frame_count(StringName("%s_walk" % character_id)) != 6 or frames.get_frame_count(StringName("%s_shield" % character_id)) != 6:
+			elif frames.get_frame_count(StringName("%s_walk" % character_id)) != _row_frames(player, "walk") or frames.get_frame_count(StringName("%s_shield" % character_id)) != 6:
 				_fail("%s sheet is not cut in the shared layout" % label)
 			else:
 				_sheet_drawn_right(player, label)
 			player.queue_free()
+
+## The walk is 6 frames, or 8 where the character's own row table says so (Frey, Luna, 2026-10-15).
+func _row_frames(player: Node, row: String) -> int:
+	for spec in player.get_sheet_rows():
+		if spec[0] == row:
+			return int(spec[1])
+	return -1
 
 ## Brave Luna draws her own sheet while transformed, the normal one otherwise.
 func _check_brave_luna(main: Node) -> void:

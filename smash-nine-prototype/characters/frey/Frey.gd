@@ -22,8 +22,8 @@ const PURSUIT_SPEED := 1.15
 const PURSUIT_MARK_RISE := 118.0
 ## Redrawn 2026-10-13/14 (D33-D35): every motion is 6 frames and keeps its old length
 ## (fps x 6 / old frames), the idle at 6.3 fps (D37). The base `attack` row is the J chain's
-## 128-px fallback.
-const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+## 128-px fallback. The walk is 8 frames at 13.3 fps and fills two sheet rows (user 2026-10-15).
+const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34): big poses keep the idle head size. The J chain lives here as attack_chain.
 const MOVE_SHEET_ROWS := [
 	["attack_up", 6, 21.0, false],

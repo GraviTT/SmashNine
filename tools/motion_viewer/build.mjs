@@ -119,7 +119,7 @@ function sheet(rel, rows, labels, cell, feet, stem = null) {
 const CHARACTERS = [
 	{ id: "frey", name: "Frey", script: "frey/Frey.gd" },
 	{ id: "luna", name: "Luna", script: "luna/Luna.gd" },
-	{ id: "luna_brave", name: "Brave Luna", script: "luna/Luna.gd", moveConst: "BRAVE_MOVE_SHEET_ROWS", folder: "luna", bodies: [""] },
+	{ id: "luna_brave", name: "Brave Luna", script: "luna/Luna.gd", baseConst: "BRAVE_SHEET_ROWS", moveConst: "BRAVE_MOVE_SHEET_ROWS", folder: "luna", bodies: [""] },
 	{ id: "nova", name: "Nova", script: "nova/Nova.gd" },
 	{ id: "rio", name: "Rio", script: "rio/Rio.gd" },
 	{ id: "yuki", name: "Yuki", script: "yuki/Yuki.gd" },
@@ -138,7 +138,7 @@ for (const c of CHARACTERS) {
 	}
 	const moveRows = rowTable(join(game, "characters", c.script), c.moveConst || "MOVE_SHEET_ROWS");
 	// A redrawn character has its own base table (Frey.SHEET_ROWS, D33); its J chain is a move row.
-	const ownBase = rowTable(join(game, "characters", c.script), "SHEET_ROWS");
+	const ownBase = rowTable(join(game, "characters", c.script), c.baseConst || "SHEET_ROWS");
 	const forms = [];
 	for (const body of bodies) {
 		const stem = body ? `${c.id}_${body}` : c.id;

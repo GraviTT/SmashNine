@@ -5,14 +5,13 @@ const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const SHARED_LAYOUT := {"idle": 4, "walk": 6, "jump": 1, "fall": 1, "attack": 4, "shield": 6, "hurt": 1}
-## Frey redrawn with 6-frame motions (D33, 2026-10-14).
-const FREY_LAYOUT := {"idle": 6, "walk": 6, "jump": 1, "fall": 1, "attack": 6, "shield": 6, "hurt": 1}
-## Luna redrawn the same way (2026-10-14); Brave Luna's base sheet uses the same table.
+## Redrawn with 6-frame motions (D33, 2026-10-14): Yuki, Nova (both bodies), Brave Luna's base sheet.
+const REDRAWN_LAYOUT := {"idle": 6, "walk": 6, "jump": 1, "fall": 1, "attack": 6, "shield": 6, "hurt": 1}
+## Frey and Luna with the 8-frame walk (user 2026-10-15).
+const FREY_LAYOUT := {"idle": 6, "walk": 8, "jump": 1, "fall": 1, "attack": 6, "shield": 6, "hurt": 1}
 const LUNA_LAYOUT := FREY_LAYOUT
-## Yuki redrawn the same way (2026-10-14).
-const YUKI_LAYOUT := FREY_LAYOUT
-## Nova redrawn the same way (2026-10-14, both bodies).
-const NOVA_LAYOUT := FREY_LAYOUT
+const YUKI_LAYOUT := REDRAWN_LAYOUT
+const NOVA_LAYOUT := REDRAWN_LAYOUT
 
 func _initialize() -> void:
 	call_deferred("_run")
