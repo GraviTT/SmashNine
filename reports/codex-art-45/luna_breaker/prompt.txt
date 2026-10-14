@@ -1,0 +1,10 @@
+Use case: stylized-concept.
+Asset type: intermediate pixel-art sprite sheet, one six-frame Brave Luna LUNA BREAKER spinning finishing kick.
+
+Image 1 is the chosen v4 anchor and controls Luna's identity, large head scale, high pink ponytail with purple bow/gold star, face/magenta eyes, scarf, purple-white short outfit, two solid purple-gold gauntlets, two star-knee boots, palette/detail. Image 2 supplies only the old powerful spinning-kick motion; never copy old clothes, loose hair, orb hands or effect arcs.
+
+Draw the SAME compact 2.2-head Brave Luna in six whole-body grounded frames at 16 fps: 1 strong right-facing wind-up with hips and shoulders coiled; 2 turn begins, torso rotating away; 3 back faces the viewer clearly for the midpoint of the spin, ponytail and scarf still lagging; 4 explosive right-facing spinning heel kick fully extended at upper-body height with a wide readable silhouette; 5 follow-through as the kicking leg sweeps past and torso continues; 6 grounded recovery to guard. Frame 3 may hide most of the face because it is deliberately rear-facing; every other frame keeps one face readable. Both gauntlets and both boots stay attached. No kick arc, star, glow, trail, dust or effect.
+
+Exactly six 512x512 cells in 3x2 on 1536x1024, top then bottom. Same camera/head size/floor, one sprite per cell, generous margins for ponytail and extended heel, no boundary crossing or independent resizing. Solid #00FF00 only; no transparency, floor graphic, shadow, scenery, text, grid, border or watermark.
+High-detail crisp pixel art matching Image 1 for LANCZOS reduction to 192px; preserve hair strands, armour/gold trim, knuckles, boots, fitted shorts under skirt, fabric layers and dark pixel outlines; no smooth/vector/3D/painterly look, blur or antialiasing.
+Hard constraints: exactly 6 characters; stated view sequence including one back-view frame; same v4 design; one head, two connected arms/gauntlets and legs/boots each; no orb hands, wand, long dress, detached parts, effects, duplicated anatomy or crop.

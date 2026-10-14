@@ -1,0 +1,25 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction sheet, ONE complete six-frame WALK loop for Brave Luna.
+
+Input images and roles: Image 1 is the user-chosen Brave Luna v4 idle anchor enlarged 4x with nearest-neighbour scaling. It is authoritative for Luna's identity, exact face and magenta eyes, high pink ponytail, midnight-purple bow with attached gold four-point star, compact approximately 2.2-head-tall chibi proportions, head size, body width, short scarf, sleeveless purple/white combat top, short pleated skirt over fitted shorts, purple-and-gold forearm gauntlets, star-knee armoured boots, palette, crisp pixel detail and soft cel shading. Image 2 is the current game walk row enlarged 4x. Use Image 2 ONLY for the contact/down/passing walk rhythm and right-facing travel silhouette. Never copy its loose long hair, old dress, cyan-white orb gauntlets, glow or costume.
+
+Primary request: Draw a NEW cohesive full-body six-frame bouncy brawler WALK animation of the SAME chosen Brave Luna, facing RIGHT, fists up in guard, at 10 fps. Every frame is a newly drawn whole pose. The legs must visibly alternate and travel through a clean walk cycle, not shuffle in place. Keep both solid wearable gauntlets around visible fists and both armoured boots intact. The high ponytail, bow tails and short scarf lag the body's motion by one frame.
+
+Frame 1 — left-foot contact: left boot reaches forward to contact, right leg trails, torso leans very slightly forward, fists raised.
+Frame 2 — down: weight settles over the forward left boot, both knees flex, rear heel lifting.
+Frame 3 — passing: right leg passes under the body while the left boot supports; body rises slightly.
+Frame 4 — right-foot contact: right boot reaches forward to contact, left leg trails; opposite arm swing remains guarded.
+Frame 5 — down: weight settles over the forward right boot, both knees flex, rear heel lifting.
+Frame 6 — passing and loop bridge: left leg passes under the body, returning cleanly toward frame 1.
+
+Motion timing: ponytail and scarf do not mirror the torso instantly. Their tips preserve the previous frame's direction for one frame, then catch up. Keep the bounce small; this is a walk, not a run or attack.
+
+Subject invariants: unmistakably the same Brave Luna as Image 1 in all six frames. Same large head and face size, pink fringe and face-framing locks, magenta eyes, high ponytail, large midnight-purple bow and gold star. Same fitted sleeveless top, short pleated skirt over clearly visible shorts, short scarf, two purple-and-gold fitted forearm gauntlets with cuffs/plates/knuckles, and two purple-and-gold armoured boots with small solid star knee emblems. One visible face, exactly one head, two connected arms, two worn gauntlets enclosing fists, two connected legs and two intact boots in every frame. Face never covered. Gauntlets are solid armour, never light orbs.
+
+Sheet layout: exactly SIX equal 512-by-512 square cells arranged 3 columns by 2 rows, total 1536 by 1024. Read left-to-right across the top row, then left-to-right across the bottom row. Exactly one isolated full-body Luna per cell. Same side-view / very slight three-quarter game camera, character scale, head size, body width, root x and implied floor line in every cell. Give generous green margins; every ponytail tip, bow, scarf, fist, elbow, skirt hem and boot stays well inside its own cell. Do not resize any frame independently. No numbers, words, labels, borders, grid lines or cell backgrounds.
+
+Backdrop: completely solid flat chroma-key green #00FF00 across the entire sheet. No transparency, checkerboard, floor, shadow, contact shadow, scenery or atmosphere.
+
+Style/medium: crisp high-detail pixel art rendered exactly like Image 1, intended for sharp LANCZOS reduction into 128-pixel game cells. Preserve separated pink ponytail strands with dark lines, bright rim highlights on armour plates and gold trim, readable gauntlet fingers/knuckles, layered combat fabrics, crisp facial pixels and disciplined 1-pixel dark outline weight. Clean cel-shaded ramps and readable silhouettes. Do not simplify the costume between frames. No smooth illustration, vector look, 3D, painterly texture, blur, soft gradient, antialiasing or white matte fringe.
+
+Final hard constraints: one sheet only; exactly 6 frames and 6 characters total; every frame newly drawn as one whole body; right-facing throughout; clear alternating contact/down/passing walk cycle; fists up; same head size and body width; one face, one head, two arms, two fitted gauntlets, two legs and two armoured boots in every frame; no wand; no held stars, star orbs, oversized star-shaped hands or detached armour; no long dress; no duplicated face or body part; no pasted parts; no glow halo, aura, sparkles, trails, dust or magic effects; no text, watermark, labels, grid, borders, shadows or cropped parts.

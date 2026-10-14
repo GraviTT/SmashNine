@@ -1,0 +1,12 @@
+Use case: stylized-concept.
+Asset type: intermediate pixel-art sprite sheet, one six-frame Brave Luna DOWNWARD DIVING KICK.
+
+Image 1 is the chosen v4 anchor and controls identity, large head scale, high pink ponytail/bow/star, magenta eyes, scarf, purple-white short outfit, two solid purple-gold gauntlets, two star-knee boots, palette/detail. Image 2 supplies only the old dive direction and landing idea; never copy old clothes, loose hair, orb hands or effects.
+
+Draw the SAME right-facing compact 2.2-head Brave Luna in six whole-body frames at 24 fps: 1 airborne tuck high above the floor; 2 extend one armoured boot diagonally down-right; 3 commit to a steep diagonal dive with body aligned behind the boot; 4 continue the dive lower with the kicking boot still leading; 5 landing touch, leading boot contacts the floor and knee compresses; 6 grounded compact recovery. The first four frames show a clear descending height progression. Face and leading boot remain readable. Ponytail and scarf stream upward/back one frame behind descent. Keep both gauntlets and both boots intact. Pose only—no star, arc, glow, trail, dust or impact.
+
+Exactly six 512x512 cells in a 3x2 1536x1024 sheet, top then bottom. Shared coordinate system and implied floor: frames 1-4 visibly airborne at progressively lower heights, frames 5-6 on the floor. Same head size/camera; generous margins, no boundary crossing/independent resize. Solid #00FF00 only; no transparency, floor graphic, shadow, scenery, text, grid, border or watermark.
+High-detail crisp pixel art matching Image 1 for LANCZOS reduction to 192px; preserve hair strands, face, armour/gold trim, knuckles, boots, layered fabrics and dark pixel outlines; no smooth/vector/3D/painterly look, blur or antialiasing.
+Hard constraints: exactly 6 characters, same v4 design, one face/head and two connected arms/gauntlets and legs/boots each; right-facing; no orb hands, wand, long dress, detached parts, effects, duplicated anatomy or crop.
+
+SECOND-GENERATION CORRECTION: The first sheet failed only because frame 3's downward-leading boot touched the bottom edge of its top-right 512x512 cell. Preserve all six poses, design, style and descending sequence. Move/compact frames 1-4 upward within their own cells and keep every boot and ponytail tip at least about 48 source pixels inside all cell edges. Frames 5-6 remain landed in the bottom row. No body part may cross a cell boundary.

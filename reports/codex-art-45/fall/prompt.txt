@@ -1,0 +1,19 @@
+Use case: stylized-concept.
+Asset type: intermediate production pixel-art game sprite extraction image containing exactly THREE single-pose Brave Luna sprites: jump, fall and hurt.
+
+Input images and roles: Image 1 is the user-chosen Brave Luna v4 idle anchor enlarged 4x and is authoritative for identity, head size, 2.2-head-tall chibi proportions, high pink ponytail, purple bow with gold star, magenta eyes, sleeveless purple/white short combat outfit, short scarf, fitted purple-and-gold forearm gauntlets, star-knee armoured boots, palette and pixel detail. Image 2 shows the old current game jump, fall and hurt poses enlarged 4x, left-to-right. Use Image 2 ONLY for the three motion meanings. Never copy its loose hair, old dress, cyan-white orb gauntlets, glow or costume.
+
+Primary request: Draw exactly THREE newly drawn whole-body Brave Luna poses, facing RIGHT, ordered left-to-right:
+1. JUMP / rising: airborne and visibly rising, both knees tucked, both fists up in guard; ponytail and scarf trail downward/back one beat behind.
+2. FALL: airborne and descending, torso upright, both legs reaching downward for the ground, fists ready; ponytail and scarf lift upward/back from the fall.
+3. HURT: compact recoil from a hit, torso bent back/side, eyes squeezed shut, fists knocked away but both connected arms visible; feet may stagger while remaining a single readable body.
+
+Subject invariants: exactly the same chosen Brave Luna in all three poses. Preserve her face, magenta eyes except closed hurt eyes, large consistent head, pink fringe and high ponytail, large midnight-purple bow and attached gold star, short scarf, sleeveless fitted top, short pleated skirt over clearly visible shorts, two fitted purple-and-gold solid armour gauntlets, and two intact purple-and-gold armoured boots with small solid star knee emblems. One face, one head, two connected arms, two worn gauntlets, two connected legs and two boots per pose. Gauntlets are armour around fists, never light orbs. Ponytail and scarf respond naturally to vertical motion.
+
+Composition: one 1536x1024 landscape sheet divided conceptually into three equal vertical 512x1024 regions with no visible borders. Exactly one isolated full-body pose centered in each region, ordered jump, fall, hurt. Same camera, character scale, head size and body width. The two airborne poses are drawn visibly lifted with generous green space below their boots; the hurt pose remains fully inside its region. Every ponytail tip, bow, scarf, fist, elbow, skirt hem and boot has generous margin. No extra characters, labels, numbers, grid lines or borders.
+
+Backdrop: completely solid flat chroma-key green #00FF00. No transparency, checkerboard, floor, shadow, contact shadow, scenery or atmosphere.
+
+Style/medium: crisp high-detail pixel art exactly like Image 1, intended for sharp LANCZOS reduction into 128px game cells. Preserve separated hair strands, armour plate highlights and gold trim, gauntlet fingers/knuckles, layered combat fabrics, facial pixels and disciplined dark pixel outlines. Clean cel-shaded ramps. No simplification, smooth illustration, vector look, 3D, painterly texture, blur, soft gradient, antialiasing or white matte fringe.
+
+Hard constraints: exactly 3 poses and 3 characters total; right-facing; same head size; no wand; no held stars, glowing orbs, halo, aura, sparkles, trails, dust or magic effects; no long dress; no duplicated face or limb; no detached armour; no pasted parts; no text, watermark, labels, grid, borders, shadows or cropped parts.

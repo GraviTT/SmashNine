@@ -1,0 +1,419 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-45/luna_brave-heart_laser-v1-generated.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.250255,
+    "scale_by": "fixed:0.250255",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      83,
+      85
+    ],
+    "body_width_range": [
+      74,
+      93
+    ],
+    "area_range": [
+      3512,
+      3901
+    ],
+    "area_spread_percent": 9.97,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3291,
+      3670
+    ],
+    "interior_detail_range": [
+      111.08,
+      116.58
+    ],
+    "interior_detail_mean": 112.92,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 52.83,
+    "interior_detail_ratio": 2.1374
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 52.8,
+        "colour_count": 4975,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 52.42,
+        "colour_count": 5415,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 54.05,
+        "colour_count": 5231,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 44.34,
+        "colour_count": 5763,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 52.75,
+        "colour_count": 4119,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 60.6,
+        "colour_count": 5348,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 52.83,
+    "colour_count_range": [
+      4119,
+      5763
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-45/luna_brave-heart_laser-v1-generated.png#0,0",
+      "bbox": [
+        57,
+        68,
+        131,
+        153
+      ],
+      "body_height": 85,
+      "body_width": 74,
+      "area": 3580,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.31,
+      "colour_count": 3365,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 57,
+        "top": 68,
+        "right": 61,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1259
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-45/luna_brave-heart_laser-v1-generated.png#1,0",
+      "bbox": [
+        60,
+        68,
+        135,
+        153
+      ],
+      "body_height": 85,
+      "body_width": 75,
+      "area": 3554,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.27,
+      "colour_count": 3332,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 60,
+        "top": 68,
+        "right": 57,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1251
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-45/luna_brave-heart_laser-v1-generated.png#2,0",
+      "bbox": [
+        60,
+        68,
+        135,
+        153
+      ],
+      "body_height": 85,
+      "body_width": 75,
+      "area": 3512,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 116.58,
+      "colour_count": 3291,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 60,
+        "top": 68,
+        "right": 57,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.2067
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-45/luna_brave-heart_laser-v1-generated.png#0,1",
+      "bbox": [
+        52,
+        69,
+        138,
+        153
+      ],
+      "body_height": 84,
+      "body_width": 86,
+      "area": 3701,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 111.08,
+      "colour_count": 3494,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 52,
+        "top": 69,
+        "right": 54,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1026
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-45/luna_brave-heart_laser-v1-generated.png#1,1",
+      "bbox": [
+        49,
+        70,
+        141,
+        153
+      ],
+      "body_height": 83,
+      "body_width": 92,
+      "area": 3830,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.41,
+      "colour_count": 3603,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 49,
+        "top": 70,
+        "right": 51,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1278
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-45/luna_brave-heart_laser-v1-generated.png#2,1",
+      "bbox": [
+        49,
+        69,
+        142,
+        153
+      ],
+      "body_height": 84,
+      "body_width": 93,
+      "area": 3901,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.86,
+      "colour_count": 3670,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 49,
+        "top": 69,
+        "right": 50,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1363
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-45/heart_laser/luna_brave-heart_laser-v1.png",
+    "candidate": "art/bakeoff/luna/luna_brave-heart_laser-v1.png",
+    "frames": "reports/codex-art-45/heart_laser/frames",
+    "closeup": "reports/codex-art-45/heart_laser/closeup.png",
+    "compare": "reports/codex-art-45/heart_laser/compare.png"
+  }
+}

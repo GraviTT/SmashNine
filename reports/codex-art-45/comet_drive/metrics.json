@@ -1,0 +1,407 @@
+{
+  "input": {
+    "sheet": "art/raw/luna-45/luna_brave-comet_drive-v1-generated.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.26527,
+    "scale_by": "fixed:0.26527",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      71,
+      84
+    ],
+    "body_width_range": [
+      82,
+      114
+    ],
+    "area_range": [
+      3950,
+      4427
+    ],
+    "area_spread_percent": 10.77,
+    "bottom_range": [
+      143,
+      152
+    ],
+    "lift_range": [
+      0,
+      9
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3672,
+      4070
+    ],
+    "interior_detail_range": [
+      109.34,
+      116.16
+    ],
+    "interior_detail_mean": 112.29,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 51.23,
+    "interior_detail_ratio": 2.1919
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 53.31,
+        "colour_count": 5039,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 56.05,
+        "colour_count": 4479,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 42.23,
+        "colour_count": 6095,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 53.33,
+        "colour_count": 5055,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 51.23,
+    "colour_count_range": [
+      4479,
+      6095
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/luna-45/luna_brave-comet_drive-v1-generated.png#0,0",
+      "bbox": [
+        55,
+        82,
+        137,
+        153
+      ],
+      "body_height": 71,
+      "body_width": 82,
+      "area": 3950,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 111.29,
+      "colour_count": 3672,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 82,
+        "right": 55,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1724
+    },
+    {
+      "index": 1,
+      "source": "art/raw/luna-45/luna_brave-comet_drive-v1-generated.png#1,0",
+      "bbox": [
+        53,
+        72,
+        139,
+        153
+      ],
+      "body_height": 81,
+      "body_width": 86,
+      "area": 4206,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 116.16,
+      "colour_count": 3880,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 72,
+        "right": 53,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.2674
+    },
+    {
+      "index": 2,
+      "source": "art/raw/luna-45/luna_brave-comet_drive-v1-generated.png#2,0",
+      "bbox": [
+        46,
+        73,
+        146,
+        153
+      ],
+      "body_height": 80,
+      "body_width": 100,
+      "area": 4215,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 111.43,
+      "colour_count": 3912,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 46,
+        "top": 73,
+        "right": 46,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1751
+    },
+    {
+      "index": 3,
+      "source": "art/raw/luna-45/luna_brave-comet_drive-v1-generated.png#0,1",
+      "bbox": [
+        41,
+        64,
+        153,
+        144
+      ],
+      "body_height": 80,
+      "body_width": 112,
+      "area": 4425,
+      "bottom": 143,
+      "lift": 9,
+      "expected_lift": 9,
+      "interior_detail": 109.34,
+      "colour_count": 4070,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 41,
+        "top": 64,
+        "right": 39,
+        "bottom": 48,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1343
+    },
+    {
+      "index": 4,
+      "source": "art/raw/luna-45/luna_brave-comet_drive-v1-generated.png#1,1",
+      "bbox": [
+        38,
+        65,
+        152,
+        144
+      ],
+      "body_height": 79,
+      "body_width": 114,
+      "area": 4427,
+      "bottom": 143,
+      "lift": 9,
+      "expected_lift": 9,
+      "interior_detail": 111.55,
+      "colour_count": 4063,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 38,
+        "top": 65,
+        "right": 40,
+        "bottom": 48,
+        "minimum": 38,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.1774
+    },
+    {
+      "index": 5,
+      "source": "art/raw/luna-45/luna_brave-comet_drive-v1-generated.png#2,1",
+      "bbox": [
+        53,
+        61,
+        135,
+        145
+      ],
+      "body_height": 84,
+      "body_width": 82,
+      "area": 4121,
+      "bottom": 144,
+      "lift": 8,
+      "expected_lift": 8,
+      "interior_detail": 113.99,
+      "colour_count": 3805,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 61,
+        "right": 57,
+        "bottom": 47,
+        "minimum": 47,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 2.2251
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-45/comet_drive/luna_brave-comet_drive-v1.png",
+    "candidate": "art/bakeoff/luna/luna_brave-comet_drive-v1.png",
+    "frames": "reports/codex-art-45/comet_drive/frames",
+    "closeup": "reports/codex-art-45/comet_drive/closeup.png",
+    "compare": "reports/codex-art-45/comet_drive/compare.png"
+  }
+}
