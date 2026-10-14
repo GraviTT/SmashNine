@@ -1,0 +1,32 @@
+CODEX-ART-57 Luna — built-in image tool prompts
+
+Common references for every frame
+- Image 1: art/raw/walk-57/luna/reference/idle_frame0_4x.png — authoritative look and costume.
+- Image 2: art/raw/walk-57/luna/reference/poses/luna_pose_XX.png — pose only; its greys are not clothing.
+- Image 3 for frame 1: art/raw/walk-57/luna/reference/walk_frame0_4x.png — in-game walking costume and prop.
+- Image 3 for frames 2–8: art/raw/walk-57/luna/reference/accepted_frame_01_4x.png — accepted frame 1, never a neighbour frame.
+
+Common invariant prompt used for every generation
+Use case: stylized-concept. Asset type: one 512x512 production source frame for an 8-frame 2D fighting-game walk. Draw exactly one complete right-facing Luna. Change only the two legs and the far free arm to Image 2's pose. Keep identity, proportions, hairstyle, dress, boots, near wand arm, wand placement, and pixel-art rendering locked to Images 1 and 3. Both legs wear matching knee-high purple boots just below the knees; no stockings, striped stockings, ankle boots, bare calves, or asymmetric leg colours. The far leg has the identical costume, only slightly darker and partly behind the near leg. Preserve the purple-and-pink dress with white frills. Keep the wand in the near/front hand, raised in front, with the blue-white star at the top right; never behind or pointing down. Image 2's greys are not clothing. Polished high-detail anime pixel-art source, crisp dark-purple outline, saturated magenta/purple palette, matching the references. Solid #00FF00 backdrop, one centered full figure, all hair/wand/boots visible, clear margins. No effects, shadow, text, border, duplicate, crop, or transparency.
+
+Frame-specific prompt clauses
+F1 gen1 (selected): CONTACT. Near leg reaches forward and contacts the ground; far leg trails; near leg visibly in front. Far free arm follows Image 2. This frame had to pass the costume check before any later generation.
+F2 gen1 (selected): DOWN. Weight lowers onto the near/front leg after contact; far foot starts lifting behind; near leg remains in front.
+F3 gen1 (rejected): PASSING. Far leg swings forward visibly lifted off the ground and passes behind/under the body; near supporting leg stays in front. Rejected because the lifted foot remained behind.
+F3 gen2 (selected): Critical pose correction: the lifted FAR leg must have already swung FORWARD in the walking direction. Put its raised knee and purple boot on the RIGHT side of Luna's body, toe pointing right, clearly above the ground. Do not leave the lifted foot behind on the left. The NEAR/front-plane leg is the vertical grounded support leg under/slightly left of the body. Match Image 2's leg geometry precisely.
+F4 gen1 (selected): UP. Near leg pushes behind from the toe while the far leg reaches forward; near leg remains visually in front where they overlap.
+F5 gen1 (selected): Opposite CONTACT. The FAR leg reaches forward to the right and contacts the ground, while the NEAR leg trails backward to the left. This must visibly be the opposite step from frame 1. Near trailing leg remains the brighter front-plane limb; far forward leg is slightly darker and partly behind.
+F6 gen1 (selected): DOWN, second step. Far leg is the forward weight-bearing leg; near leg begins lifting behind; near limb remains front plane where overlapping.
+F7 gen1 (selected): PASSING. NEAR/front-plane leg swings forward visibly lifted off the ground; far leg supports on the ground. Avoid a grounded swinging foot.
+F8 gen1 (selected): UP. Far leg pushes backward from the toe while the near leg reaches forward, preparing the loop back to frame 1.
+
+Built-in generated sources copied into the project
+- art/raw/walk-57/luna/generated/frame-01-gen-1.png
+- art/raw/walk-57/luna/generated/frame-02-gen-1.png
+- art/raw/walk-57/luna/generated/frame-03-gen-1.png (rejected)
+- art/raw/walk-57/luna/generated/frame-03-gen-2.png (selected)
+- art/raw/walk-57/luna/generated/frame-04-gen-1.png
+- art/raw/walk-57/luna/generated/frame-05-gen-1.png
+- art/raw/walk-57/luna/generated/frame-06-gen-1.png
+- art/raw/walk-57/luna/generated/frame-07-gen-1.png
+- art/raw/walk-57/luna/generated/frame-08-gen-1.png
