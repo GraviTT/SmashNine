@@ -4,15 +4,21 @@ const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
 const TALISMAN_SCRIPT := preload("res://characters/yuki/YukiTalisman.gd")
 const SEAL_SCRIPT := preload("res://characters/yuki/YukiSeal.gd")
 const GRAND_WARD_SCRIPT := preload("res://characters/yuki/YukiGrandWard.gd")
+## Redrawn 2026-10-14 (D33-D37): every motion is 6 frames with its old length (fps x 6 / old
+## frames), the idle at 6.3 fps (D37). The base `attack` row is only a fallback: every J plays a
+## talisman row from the move sheet.
+const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 28.5, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+## 192-px cells (D34). `tumble` is new for Yuki: strong launches play it instead of the hurt frame.
 const MOVE_SHEET_ROWS := [
-	["talisman_side", 4, 19.0, false],
-	["talisman_up", 4, 16.7, false],
-	["ground_ward", 4, 15.4, false],
-	["talisman_air_side", 4, 22.2, false],
-	["talisman_air_down", 4, 14.8, false],
-	["seal_place", 5, 15.6, false],
-	["seal_activate", 5, 16.0, false],
+	["talisman_side", 6, 28.5, false],
+	["talisman_up", 6, 25.0, false],
+	["ground_ward", 6, 23.1, false],
+	["talisman_air_side", 6, 33.3, false],
+	["talisman_air_down", 6, 22.2, false],
+	["seal_place", 6, 18.7, false],
+	["seal_activate", 6, 19.2, false],
 	["grand_ward", 6, 9.7, false],
+	["tumble", 6, 21.0, true],
 ]
 
 var seals: Array[Node] = []
@@ -24,6 +30,9 @@ func configure_character_sprite() -> void:
 
 func get_move_sheet_rows() -> Array:
 	return MOVE_SHEET_ROWS
+
+func get_sheet_rows() -> Array:
+	return SHEET_ROWS
 
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	match attack_type:

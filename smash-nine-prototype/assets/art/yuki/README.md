@@ -1,5 +1,7 @@
 # Yuki original character sheet
 
+**2026-10-14: Yuki's sheets were redrawn (D33–D37).** The current contract is in `yuki_moves_README.md`. The sections below are history.
+
 `yuki_sheet.png` is the original-art candidate for Yuki, the female Eastern-myth
 onmyoji controller.
 

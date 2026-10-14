@@ -223,6 +223,9 @@ func _test_character_moves(character_id: String) -> void:
 			expected_fallback = &"nova_jump"
 		elif character_id == "rio" and row == "rune_shield":
 			expected_fallback = &"rio_shield"
+		elif row == "tumble":
+			# A strong launch without the tumble row keeps the hurt frame (_play_launch_hit_sprite).
+			expected_fallback = StringName("%s_hurt" % character_id)
 		if fallback.character_sprite.animation != expected_fallback:
 			_fail("%s %s without a move sheet should fall back to %s, got %s" % [character_id.capitalize(), row, expected_fallback, fallback.character_sprite.animation])
 		fallback.queue_free()
@@ -262,6 +265,8 @@ func _play_character_row(fighter: Node, character_id: String, row: String) -> vo
 				"seal_place": fighter.perform_skill_one()
 				"seal_activate": fighter.perform_skill_two()
 				"grand_ward": fighter.perform_ultimate()
+				# New for Yuki (2026-10-14): a strong launch plays her tumble row.
+				"tumble": fighter.apply_forced_launch_hit(null, 1.0, Vector2(620.0, -260.0), 0.25, 620.0, Vector2.RIGHT)
 		"rio":
 			match row:
 				"mana_combo": fighter.perform_basic_attack("neutral", Vector2.RIGHT)
