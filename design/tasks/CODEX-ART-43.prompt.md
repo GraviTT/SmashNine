@@ -1,12 +1,12 @@
-You are a Codex builder unit for SmashNine (Godot 4.7 2D fighter), unit A (normal-form rows and the special transformation). Your card: `design/tasks/CODEX-ART-43.md`. Read it first. Then read:
-- `reports/frey-rework-2026-10-14.md` and `reports/codex-art-42/README.md` (the anchors)
+You are a Codex builder unit for SmashNine (Godot 4.7 2D fighter), unit A (the new Luna anchor, then the normal-form rows). Your card: `design/tasks/CODEX-ART-43.md`. Read it first. Then read:
+- `reports/frey-rework-2026-10-14.md` and `reports/codex-art-42/README.md` (why its anchors were not kept)
 - the accepted prompt style in `reports/codex-art-42/*/prompt.txt`
 - `tools/sprite_pipeline/README.md`
 - `smash-nine-prototype/characters/luna/Luna.md`
 
 Rules:
 - Work only in this clone (branch `codex/luna-43`) and write only the paths in the card's "Writable" section. Nothing under `smash-nine-prototype/` changes.
-- unit B (CODEX-ART-44, Brave rows) in the builder-art clone is running at the same time. Do not touch its files. Keep heavy local work light; image generation is remote.
+- A Brave unit may start later in the builder-art clone; never touch `luna_brave-*` files. Keep heavy local work light; image generation is remote.
 - Python: `C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe` (numpy, Pillow). Do not install packages.
 - Generate with your built-in image tool; copy what you use into `art/raw/luna-43/`.
 - Before you call a row done, look at every frame at 4× next to the anchor and the current game row, and measure the head scale. Separate what you measured from what you judge by eye.

@@ -51,7 +51,10 @@ def face_centre(a: np.ndarray) -> tuple[float, float] | None:
 
 def cells(path: Path, count: int | None = None) -> list[Image.Image]:
 	sheet = Image.open(path).convert("RGBA")
-	cell = sheet.height  # one-row strip: 128 for base rows, 192 for move rows (D34)
+	# A candidate strip is one row of 6 or 12 cells (128 base, 192 moves, D34); a game sheet has six
+	# columns and several rows, and its first row is read.
+	strip = sheet.width % sheet.height == 0 and sheet.width // sheet.height >= 6
+	cell = sheet.height if strip else sheet.width // 6
 	if count is None:
 		meta = path.with_suffix(".json")
 		if meta.exists(): count = int(json.loads(meta.read_text(encoding="utf-8")).get("frames") or 0) or None
