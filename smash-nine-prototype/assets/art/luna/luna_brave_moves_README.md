@@ -1,43 +1,36 @@
-# Brave Luna move-only sprite sheet
+# Brave Luna sheets (redrawn 2026-10-14, design ② D36)
 
-`luna_brave_moves_sheet.png` is loaded beside `luna_brave_sheet.png` while Luna is transformed.
+Brave Luna was redrawn in the design the user picked from three proposals (`CODEX-ART-44`):
+- a high pink ponytail with the purple bow and gold star
+- a sleeveless top, a short skirt over shorts, a short scarf
+- purple-and-gold armoured gauntlets and star knee-guard boots
 
-## Atlas contract and rows
+She has the same face and head size as Luna (2.2 heads). Both sheets were stacked from the accepted candidates (`art/bakeoff/luna/luna_brave-*`, card `CODEX-ART-45.md`) with `tools/sprite_pipeline/assemble.py`.
 
-- Canvas: 768×1152 RGBA PNG; 6 columns × 9 rows; hard alpha; unused cells transparent
-- Lowest visible pixel in used cells: y=120; right-facing; nearest filtering
+## `luna_brave_sheet.png`: base sheet (128 px, feet y=120, rows `Luna.SHEET_ROWS`)
 
-| Row | Frames | FPS | Move |
-|---|---:|---:|---|
-| `brave_combo` | 6 | 16 | Brave J: guard/jab, kick wind-up/body kick, spin/recover |
-| `brave_upper` | 4 | 16 | Brave up/air-up J |
-| `brave_low` | 4 | 16 | Brave down J |
-| `brave_air_side` | 4 | 16 | Brave air-side J |
-| `brave_dive` | 4 | 16 | Brave air-down J |
-| `comet_drive` | 4 | 16 | Brave K |
-| `luna_breaker` | 6 | 16 | Brave L ground/air sequence |
-| `heart_laser` | 6 | 12 | transformed I re-input |
-| `tumble` | 4 | 14 | strong-launch hitstun (loops; optional hurt fallback) |
+| Row | Frames | FPS | Source |
+| --- | ---: | ---: | --- |
+| idle | 6 | 6.3 (D37) | `luna_brave-idle-v4` (the design anchor) |
+| walk | 6 | 10 | `luna_brave-walk-v1` |
+| jump | 1 | 1 | `luna_brave-jump-v1` |
+| fall | 1 | 1 | `luna_brave-fall-v2` (v1 grounded to clear the top edge) |
+| attack | 6 | 21 | `luna_brave-attack-v2`: the J chain at 128, a fallback only |
+| shield | 6 | 12 | `luna_brave-shield-v1` |
+| hurt | 1 | 1 | `luna_brave-hurt-v1` |
 
-## Built-in ImageGen prompt
+## `luna_brave_moves_sheet.png`: move sheet (192 px, feet y=152, D34)
 
-References on every generation: `luna_brave_sheet.png` for low stance, pixel scale, gauntlets and
-boots; `luna_illustration.png` for identity, hair, bow and costume. The transparent 6×8 prompt
-specified all eight ART-21 rows and explicitly required the jab, torso-height body kick and wide
-spin kick to read as separate silhouettes at 1×. It required no wand, consistent 2.2-head size,
-cyan-white starlight gauntlets, common baseline/body centre, and no text/grid/watermark.
+| Row | Frames | FPS | Move | Source |
+| --- | ---: | ---: | --- | --- |
+| `brave_combo` | 6 | 16 | Brave J: jab 1–2, body kick 3–4, spin kick 5–6 | `luna_brave-brave_combo-v1` |
+| `brave_upper` | 6 | 24 | Brave up/air-up J: star uppercut | `luna_brave-brave_upper-v1` |
+| `brave_low` | 6 | 24 | Brave down J: low sweep | `luna_brave-brave_low-v1` |
+| `brave_air_side` | 6 | 24 | Brave air-side J: flying kick | `luna_brave-brave_air_side-v1` |
+| `brave_dive` | 6 | 24 | Brave air-down J: dive kick | `luna_brave-brave_dive-v1` |
+| `comet_drive` | 6 | 24 | Brave K: short dash, compressed star punch | `luna_brave-comet_drive-v1` |
+| `luna_breaker` | 6 | 16 | Brave L: spinning finishing kick | `luna_brave-luna_breaker-v1` |
+| `heart_laser` | 6 | 12 | transformed I re-input: hands make a heart, then the firing stance (held) | `luna_brave-heart_laser-v1` |
+| `tumble` | 6 | 21, loop | strong-launch hitstun | `luna_brave-tumble-v1` |
 
-`luna_brave_moves_source.png` is retained. The connected-component pipeline is the same as normal
-Luna and never upscales the source. `tests/art_preview/moves_23/luna_brave_dive_redraw_source.png`
-was generated with the Brave sheet and Luna illustration as references; its four compact side-view
-dive-kick frames replace the unclear rear-facing dive row. The prompt fixed the face and kicking
-boot as the readable landmarks and forbade merged silhouettes or oversized effects. The tumble row
-is a nearest-neighbour quarter-turn sequence from the canonical Brave hurt frame.
-
-## Checks
-
-- `edge_audit.gd`: 12 edge-touching cells before → 0 after
-- `verify_moves.gd`: 42/42 used cells non-empty, 12 unused cells empty, hard alpha; action rows y=120
-- Sampled mean RGB distance to the canonical palette: 15.75/255 (max row/frame mean 17.62)
-- 1×/4× review: `tests/art_preview/moves_23/luna_brave_moves_contact_{1x,4x}.png`
-
+No effects are drawn into these frames. The game draws the star bursts, the comet light, the heart laser and the aura.

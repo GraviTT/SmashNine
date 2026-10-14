@@ -9,7 +9,7 @@ extends SceneTree
 const CELL := 128
 const COUNTS := [4, 6, 1, 1, 4, 6, 1]
 ## Characters redrawn with 6-frame motions (D33).
-const SHEET_COUNTS := {"frey_sheet.png": [6, 6, 1, 1, 6, 6, 1]}
+const SHEET_COUNTS := {"frey_sheet.png": [6, 6, 1, 1, 6, 6, 1], "luna_sheet.png": [6, 6, 1, 1, 6, 6, 1], "luna_brave_sheet.png": [6, 6, 1, 1, 6, 6, 1]}
 const MARGIN := 4
 const EDGE_FILL := 16
 const CUT_RUN := 9

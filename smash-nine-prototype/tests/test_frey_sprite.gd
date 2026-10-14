@@ -7,6 +7,8 @@ const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const SHARED_LAYOUT := {"idle": 4, "walk": 6, "jump": 1, "fall": 1, "attack": 4, "shield": 6, "hurt": 1}
 ## Frey redrawn with 6-frame motions (D33, 2026-10-14).
 const FREY_LAYOUT := {"idle": 6, "walk": 6, "jump": 1, "fall": 1, "attack": 6, "shield": 6, "hurt": 1}
+## Luna redrawn the same way (2026-10-14); Brave Luna's base sheet uses the same table.
+const LUNA_LAYOUT := FREY_LAYOUT
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -27,7 +29,7 @@ func _check_characters() -> bool:
 	var expected_counts := {
 		"frey": FREY_LAYOUT,
 		"yuki": SHARED_LAYOUT,
-		"luna": SHARED_LAYOUT,
+		"luna": LUNA_LAYOUT,
 		"nova": SHARED_LAYOUT,
 		"rio": SHARED_LAYOUT
 	}

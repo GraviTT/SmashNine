@@ -1,5 +1,7 @@
 # Luna original sprite sheet
 
+**2026-10-14: Luna's sheets were redrawn (D33–D37).** The current contract is in `luna_moves_README.md`. The sections below are history.
+
 `luna_sheet.png` is the active normal-form Luna atlas. `luna_illustration.png` is the face,
 costume, five-point star wand, palette, and proportion reference.
 

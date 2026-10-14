@@ -16,22 +16,24 @@ const ROW_COUNTS := {
 	"tumble": 6,
 	"attack_chain": 6,
 }
+## Luna and Brave Luna redrawn at 6 frames (2026-10-14, D33-D36); the special transformation is 12.
 const LUNA_ROW_COUNTS := {
-	"luna_star_up": 4,
-	"luna_star_down": 4,
-	"luna_star_comet": 4,
-	"luna_moon_ring": 5,
-	"luna_transform": 6,
-	"luna_tumble": 4,
+	"luna_star_up": 6,
+	"luna_star_down": 6,
+	"luna_star_comet": 6,
+	"luna_moon_ring": 6,
+	"luna_transform": 12,
+	"luna_tumble": 6,
+	"luna_star_side": 6,
 	"luna_brave_brave_combo": 6,
-	"luna_brave_brave_upper": 4,
-	"luna_brave_brave_low": 4,
-	"luna_brave_brave_air_side": 4,
-	"luna_brave_brave_dive": 4,
-	"luna_brave_comet_drive": 4,
+	"luna_brave_brave_upper": 6,
+	"luna_brave_brave_low": 6,
+	"luna_brave_brave_air_side": 6,
+	"luna_brave_brave_dive": 6,
+	"luna_brave_comet_drive": 6,
 	"luna_brave_luna_breaker": 6,
 	"luna_brave_heart_laser": 6,
-	"luna_brave_tumble": 4,
+	"luna_brave_tumble": 6,
 }
 
 var arena: Node2D
@@ -164,8 +166,9 @@ func _test_luna_rows_and_moves() -> void:
 	for hit in 3:
 		combo._perform_brave_basic("neutral")
 		starts.append(int(combo.character_sprite.frame))
-	if combo.character_sprite.animation != &"luna_brave_brave_combo" or starts != [0, 2, 3]:
-		_fail("Brave combo should use one row with jab/body/spin starts 0,2,3 (got %s, %s)" % [combo.character_sprite.animation, starts])
+	# Two frames per hit in the redrawn 6-frame row (2026-10-14): jab 1-2, body kick 3-4, spin kick 5-6.
+	if combo.character_sprite.animation != &"luna_brave_brave_combo" or starts != [0, 2, 4]:
+		_fail("Brave combo should use one row with jab/body/spin starts 0,2,4 (got %s, %s)" % [combo.character_sprite.animation, starts])
 	combo.queue_free()
 	await process_frame
 

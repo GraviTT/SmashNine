@@ -1,5 +1,7 @@
 # Brave Luna original sprite sheet
 
+**2026-10-14: Brave Luna was redrawn in design ② (D36).** The current contract is in `luna_brave_moves_README.md`. The sections below are history.
+
 `luna_brave_sheet.png` is the active transformed melee atlas loaded by `Luna.gd`. It keeps
 normal Luna's pink hair, bow, star ornament, and costume palette while replacing the wand-led
 silhouette with cyan-white starlight gauntlets and a low fighter stance.

@@ -25,6 +25,7 @@ func _run() -> void:
 	await _test_brave_chain_poses()
 	await _test_bot_laser_retry()
 	await _test_brave_k_into_jab()
+	await _test_special_transformation()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -124,6 +125,29 @@ func _test_echo_walk_in() -> void:
 		await process_frame
 	if misses > 0:
 		_fail("Walking in from 110 px, the side star echo should land its trail and its bloom (%d of 4 missed the bloom)" % misses)
+
+## The special transformation (user 2026-10-14): 12 frames over about 1 s. She becomes Brave Luna
+## (and bursts) on the landing frame, 2/3 s in, and the ultimate's super armour covers the motion.
+func _test_special_transformation() -> void:
+	var ground := _floor(Vector2(0, 0), 1400)
+	var luna := _fighter("luna", 1, Vector2(0, -2))
+	for frame in 4:
+		await physics_frame
+	luna.perform_ultimate()
+	var frames: SpriteFrames = luna.character_sprite.sprite_frames
+	if luna.character_sprite.animation != &"luna_transform" or frames.get_frame_count(&"luna_transform") != 12:
+		_fail("The ultimate should play the 12-frame luna_transform (got %s, %d frames)" % [luna.character_sprite.animation, frames.get_frame_count(&"luna_transform")])
+	if float(luna.ultimate_armor_timer) < 0.99:
+		_fail("Super armour should cover the 1 s transformation (got %.2f s)" % float(luna.ultimate_armor_timer))
+	await create_timer(0.5).timeout
+	if bool(luna.transformed):
+		_fail("Luna should still be mid-spin at 0.5 s, not Brave Luna yet")
+	await create_timer(0.3).timeout
+	if not bool(luna.transformed):
+		_fail("Luna should be Brave Luna by 0.8 s (the landing frame is at 0.67 s)")
+	luna.queue_free()
+	ground.queue_free()
+	await process_frame
 
 func _test_full_charge() -> void:
 	var luna := _fighter("luna", 1, Vector2(0, -400))
@@ -236,8 +260,9 @@ func _test_brave_chain_poses() -> void:
 	target.queue_free()
 	if true_combo_misses > 0:
 		_fail("Brave Luna's J chain should be a true combo once the first hit lands: the next hits land inside the target's hitstun (%d did not)" % true_combo_misses)
-	if first_frames != [0, 2, 3]:
-		_fail("Brave Luna's jab, body kick and spinning kick should start on frames 0, 2 and 3 (got %s)" % [first_frames])
+	# Two frames per hit in the redrawn 6-frame row (2026-10-14).
+	if first_frames != [0, 2, 4]:
+		_fail("Brave Luna's jab, body kick and spinning kick should start on frames 0, 2 and 4 (got %s)" % [first_frames])
 	luna.queue_free()
 	ground.queue_free()
 	await process_frame

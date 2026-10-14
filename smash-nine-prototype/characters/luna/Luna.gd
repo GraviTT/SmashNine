@@ -6,25 +6,35 @@ const VFX := preload("res://scripts/Vfx.gd")
 const HEART_LASER_SCRIPT := preload("res://characters/luna/LunaHeartLaser.gd")
 
 const BRAVE_SHEET_ART := "res://assets/art/luna/luna_brave_sheet.png"
+## Redrawn 2026-10-14 (D33-D37, Brave design D36): every motion is 6 frames with its old length
+## (fps x 6 / old frames), the idle at 6.3 fps (D37). Both forms share this base table; the base
+## `attack` row is only a fallback (side J plays star_side, Brave J plays brave_combo).
+const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 6, 10.0, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+## 192-px cells (D34). `transform` is the special 12-frame transformation and fills two sheet rows.
 const MOVE_SHEET_ROWS := [
-	["star_up", 4, 14.0, false],
-	["star_down", 4, 14.0, false],
-	["star_comet", 4, 14.0, false],
-	["moon_ring", 5, 14.0, false],
-	["transform", 6, 14.0, false],
-	["tumble", 4, 14.0, true],
+	["star_up", 6, 21.0, false],
+	["star_down", 6, 21.0, false],
+	["star_comet", 6, 21.0, false],
+	["moon_ring", 6, 16.8, false],
+	["transform", 12, 12.0, false],
+	["tumble", 6, 21.0, true],
+	["star_side", 6, 21.0, false],
 ]
 const BRAVE_MOVE_SHEET_ROWS := [
 	["brave_combo", 6, 16.0, false],
-	["brave_upper", 4, 16.0, false],
-	["brave_low", 4, 16.0, false],
-	["brave_air_side", 4, 16.0, false],
-	["brave_dive", 4, 16.0, false],
-	["comet_drive", 4, 16.0, false],
+	["brave_upper", 6, 24.0, false],
+	["brave_low", 6, 24.0, false],
+	["brave_air_side", 6, 24.0, false],
+	["brave_dive", 6, 24.0, false],
+	["comet_drive", 6, 24.0, false],
 	["luna_breaker", 6, 16.0, false],
 	["heart_laser", 6, 12.0, false],
-	["tumble", 4, 14.0, true],
+	["tumble", 6, 21.0, true],
 ]
+## The special transformation (user 2026-10-14): 12 frames over TRANSFORM_MOTION_TIME. She becomes
+## Brave Luna, with the burst, as she lands on frame 9; the ultimate's super armour covers the motion.
+const TRANSFORM_MOTION_TIME := 1.0
+const TRANSFORM_BURST_TIME := 8.0 / 12.0
 const TRANSFORMATION_DURATION := 6.0
 const TRANSFORM_BURST_RADIUS := 120.0
 const TRANSFORM_BURST_DAMAGE := 14.0
@@ -78,6 +88,9 @@ func configure_character_sprite() -> void:
 
 func get_move_sheet_rows() -> Array:
 	return MOVE_SHEET_ROWS
+
+func get_sheet_rows() -> Array:
+	return SHEET_ROWS
 
 ## Brave Luna's own sheet (CODEX-ART-06), cut like the normal one into luna_brave_*.
 func _add_brave_sheet() -> void:
@@ -258,9 +271,9 @@ func _perform_star_basic(attack_type: String, _direction: Vector2) -> void:
 		"air_down":
 			_start_attack(0.13, 0.28, Callable(self, "_star_down_arc").bind(true), Vector2i(-1, -1), &"star_down")
 		"air_side":
-			_start_attack(0.09, 0.23, Callable(self, "_star_side_arc").bind(true))
+			_start_attack(0.09, 0.23, Callable(self, "_star_side_arc").bind(true), Vector2i(-1, -1), &"star_side")
 		_:
-			_start_attack(0.1, 0.25, Callable(self, "_star_side_arc").bind(false))
+			_start_attack(0.1, 0.25, Callable(self, "_star_side_arc").bind(false), Vector2i(-1, -1), &"star_side")
 
 func _star_side_arc(airborne: bool) -> void:
 	_next_star_swing()
@@ -391,9 +404,9 @@ func _perform_brave_basic(attack_type: String) -> void:
 				0:
 					_start_attack(0.045, 0.1, Callable(self, "_brave_jab"), Vector2i(0, 1), &"brave_combo", Vector2i(0, 1))
 				1:
-					_start_attack(0.055, 0.11, Callable(self, "_brave_body_kick"), Vector2i(2, 2), &"brave_combo", Vector2i(2, 3))
+					_start_attack(0.055, 0.11, Callable(self, "_brave_body_kick"), Vector2i(2, 3), &"brave_combo", Vector2i(2, 3))
 				_:
-					_start_attack(0.075, 0.18, Callable(self, "_brave_spin_kick"), Vector2i(3, 3), &"brave_combo", Vector2i(3, 5))
+					_start_attack(0.075, 0.18, Callable(self, "_brave_spin_kick"), Vector2i(4, 5), &"brave_combo", Vector2i(4, 5))
 
 func _brave_jab() -> void:
 	velocity.x += facing * 90.0
@@ -486,13 +499,15 @@ func _reset_brave_combo() -> void:
 
 func _transformation_start() -> void:
 	_reset_brave_combo()
-	attack_lock_timer = 0.52
-	_play_move_sprite_pose(&"transform", -1, -1, 0.52)
+	attack_lock_timer = TRANSFORM_MOTION_TIME
+	# The 12 frames at the row's own 12 fps; the row stays on after the form switches (Luna-only row).
+	_play_sprite_action(&"transform", TRANSFORM_MOTION_TIME)
 	current_attack_started_airborne = not is_on_floor()
-	_freeze_movement(0.26)
+	_freeze_movement(TRANSFORM_BURST_TIME)
 	velocity = Vector2.ZERO
+	ultimate_armor_timer = maxf(ultimate_armor_timer, TRANSFORM_MOTION_TIME)
 	_play_transformation_charge()
-	if not await _wait_action(0.26):
+	if not await _wait_action(TRANSFORM_BURST_TIME):
 		return
 	movement_freeze_timer = 0.0
 	if is_defeated or hitstun_timer > 0.0:
