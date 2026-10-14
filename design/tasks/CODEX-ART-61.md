@@ -2,15 +2,15 @@
 
 - Request: 사용자 2026-10-15 "…이후 Rio의 스프라이트 리메이크 진행. 완성 될 때 까지 루틴으로. 단, … 성공한 사례만 따라갈것."
 - Method D35, exactly as Nova's rows (`design/tasks/CODEX-ART-52.md`, `reports/codex-art-52a/`, `reports/codex-art-52b/`). Rules D25, D32–D34; idle speed D37. The walk follows ART-59 (the 8-frame walk method). **Candidates only**; nothing in `smash-nine-prototype/` changes.
-- They run at the same time; each touches only its own body's files.
+- They run at the same time, beside the ART-59 walk unit in `builder-art`; each touches only its own body's files.
 
   | Unit | Body | Branch | Clone |
   | --- | --- | --- | --- |
   | A | `rio_male` | `codex/rio-61a` | `SmashNine-units/builder-frey/SmashNine` |
-  | B | `rio_female` | `codex/rio-61b` | `SmashNine-units/builder-art/SmashNine` |
+  | B | `rio_female` | `codex/rio-61b` | `SmashNine-units/builder-ui/SmashNine` |
 
 ## The anchor and the references
-- **Anchor (accepted by the lead): `art/bakeoff/rio/rio_<body>-idle-v2.png`.** It is Image 1 for every row: size, look, detail.
+- **Anchor (accepted by the lead): `art/bakeoff/rio/rio_<body>-idle-v2.png`.** The female anchor's head reads 0.92 of the old female head; the lead accepted it (height 93–98 px, the female/male head ratio 0.86 against 0.81 before). Match every female row to the new anchor, not the old sheet. It is Image 1 for every row: size, look, detail.
 - Image 2 = that body's current game row, 4× nearest. It shows only what the move is. Ignore its baked effects: blue trails, mana waves, runes, afterimages, glow.
 - **Detail target:** ≥ 90 % of the old idle: **male ≥ 79, female ≥ 73**.
 

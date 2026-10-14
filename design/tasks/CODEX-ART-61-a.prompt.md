@@ -6,7 +6,7 @@ You are Codex builder unit A for SmashNine (Godot 4.7 2D fighter): Rio remake ph
 
 Rules:
 - Work only in this clone (branch `codex/rio-61a`). Write only the paths in the card's "Writable" section for your body. Nothing under `smash-nine-prototype/` changes.
-- Unit B (Rio female) runs at the same time in another clone. You share no files.
+- Unit B (Rio female) and the ART-59 walk unit run at the same time in other clones. You share no files.
 - Follow the card's method exactly; do not try other methods.
 - Python: `C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe` (numpy, Pillow). Do not install packages. Set `PYTHONDONTWRITEBYTECODE=1`.
 - Generate with your built-in image tool; copy what you use into `art/raw/rio-61a/`.
