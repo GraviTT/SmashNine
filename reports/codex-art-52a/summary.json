@@ -1,0 +1,825 @@
+{
+  "walk": {
+    "file": "nova_male-walk-v1.png",
+    "factor": 0.26737968,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-walk-v1.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.78
+        },
+        {
+          "scale": 1.0,
+          "score": 0.761
+        },
+        {
+          "scale": 1.0,
+          "score": 0.732
+        },
+        {
+          "scale": 0.96,
+          "score": 0.726
+        },
+        {
+          "scale": 0.96,
+          "score": 0.723
+        },
+        {
+          "scale": 1.0,
+          "score": 0.735
+        }
+      ],
+      "median": 1.0,
+      "used": 6,
+      "head_matched_factor": 0.26738
+    },
+    "height": [
+      99,
+      100
+    ],
+    "detail": [
+      103.33,
+      106.35
+    ],
+    "lift": [
+      0,
+      0
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "jump": {
+    "file": "nova_male-jump-v1.png",
+    "factor": 0.192308,
+    "head_method": "4x_head_crop",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-jump-v1.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.733
+        }
+      ],
+      "median": 1.0,
+      "used": 1,
+      "head_matched_factor": 0.192308
+    },
+    "height": [
+      83,
+      83
+    ],
+    "detail": [
+      109.98,
+      109.98
+    ],
+    "lift": [
+      12,
+      12
+    ],
+    "spill": [
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "fall": {
+    "file": "nova_male-fall-v1.png",
+    "factor": 0.197917,
+    "head_method": "4x_head_crop",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-fall-v1.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.81
+        }
+      ],
+      "median": 1.02,
+      "used": 1,
+      "head_matched_factor": 0.194036
+    },
+    "height": [
+      101,
+      101
+    ],
+    "detail": [
+      106.67,
+      106.67
+    ],
+    "lift": [
+      12,
+      12
+    ],
+    "spill": [
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "hurt": {
+    "file": "nova_male-hurt-v1.png",
+    "factor": 0.192,
+    "head_method": "4x_head_crop",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-hurt-v1.png",
+      "frames": [
+        {
+          "scale": 0.66,
+          "score": 0.458
+        }
+      ],
+      "median": null,
+      "used": 0
+    },
+    "height": [
+      81,
+      81
+    ],
+    "detail": [
+      110.6,
+      110.6
+    ],
+    "lift": [
+      0,
+      0
+    ],
+    "spill": [
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "shield": {
+    "file": "nova_male-shield-v1.png",
+    "factor": 0.205744,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-shield-v1.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.749
+        },
+        {
+          "scale": 1.02,
+          "score": 0.634
+        },
+        {
+          "scale": 1.06,
+          "score": 0.5
+        },
+        {
+          "scale": 1.02,
+          "score": 0.517
+        },
+        {
+          "scale": 0.96,
+          "score": 0.519
+        },
+        {
+          "scale": 0.96,
+          "score": 0.696
+        }
+      ],
+      "median": 1.02,
+      "used": 3,
+      "head_matched_factor": 0.20171
+    },
+    "height": [
+      81,
+      86
+    ],
+    "detail": [
+      105.76,
+      109.57
+    ],
+    "lift": [
+      0,
+      0
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "attack": {
+    "file": "nova_male-attack-v1.png",
+    "factor": 0.260417,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-attack-v1.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.726
+        },
+        {
+          "scale": 1.02,
+          "score": 0.73
+        },
+        {
+          "scale": 1.02,
+          "score": 0.729
+        },
+        {
+          "scale": 1.02,
+          "score": 0.722
+        },
+        {
+          "scale": 1.0,
+          "score": 0.736
+        },
+        {
+          "scale": 1.0,
+          "score": 0.727
+        }
+      ],
+      "median": 1.02,
+      "used": 6,
+      "head_matched_factor": 0.255311
+    },
+    "height": [
+      73,
+      78
+    ],
+    "detail": [
+      99.22,
+      105.12
+    ],
+    "lift": [
+      0,
+      0
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 6
+  },
+  "vector_side": {
+    "file": "nova_male-vector_side-v1.png",
+    "factor": 0.260417,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-vector_side-v1.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.726
+        },
+        {
+          "scale": 1.02,
+          "score": 0.73
+        },
+        {
+          "scale": 1.02,
+          "score": 0.729
+        },
+        {
+          "scale": 1.02,
+          "score": 0.722
+        },
+        {
+          "scale": 1.0,
+          "score": 0.736
+        },
+        {
+          "scale": 1.0,
+          "score": 0.727
+        }
+      ],
+      "median": 1.02,
+      "used": 6,
+      "head_matched_factor": 0.255311
+    },
+    "height": [
+      73,
+      78
+    ],
+    "detail": [
+      99.22,
+      105.12
+    ],
+    "lift": [
+      0,
+      0
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "vector_upper": {
+    "file": "nova_male-vector_upper-v1.png",
+    "factor": 0.3125,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-vector_upper-v1.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.761
+        },
+        {
+          "scale": 1.0,
+          "score": 0.673
+        },
+        {
+          "scale": 0.96,
+          "score": 0.666
+        },
+        {
+          "scale": 0.86,
+          "score": 0.495
+        },
+        {
+          "scale": 0.92,
+          "score": 0.49
+        },
+        {
+          "scale": 0.92,
+          "score": 0.723
+        }
+      ],
+      "median": 0.96,
+      "used": 4,
+      "head_matched_factor": 0.325521
+    },
+    "height": [
+      73,
+      108
+    ],
+    "detail": [
+      104.77,
+      110.53
+    ],
+    "lift": [
+      0,
+      21
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "compression_stomp": {
+    "file": "nova_male-compression_stomp-v1.png",
+    "factor": 0.274725,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-compression_stomp-v1.png",
+      "frames": [
+        {
+          "scale": 1.06,
+          "score": 0.807
+        },
+        {
+          "scale": 0.9,
+          "score": 0.648
+        },
+        {
+          "scale": 1.0,
+          "score": 0.671
+        },
+        {
+          "scale": 1.02,
+          "score": 0.674
+        },
+        {
+          "scale": 1.02,
+          "score": 0.716
+        },
+        {
+          "scale": 1.02,
+          "score": 0.797
+        }
+      ],
+      "median": 1.02,
+      "used": 6,
+      "head_matched_factor": 0.269338
+    },
+    "height": [
+      74,
+      104
+    ],
+    "detail": [
+      102.87,
+      105.1
+    ],
+    "lift": [
+      0,
+      0
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "air_side": {
+    "file": "nova_male-air_side-v1.png",
+    "factor": 0.284091,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-air_side-v1.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.72
+        },
+        {
+          "scale": 1.0,
+          "score": 0.686
+        },
+        {
+          "scale": 1.02,
+          "score": 0.703
+        },
+        {
+          "scale": 1.02,
+          "score": 0.7
+        },
+        {
+          "scale": 0.96,
+          "score": 0.693
+        },
+        {
+          "scale": 0.96,
+          "score": 0.666
+        }
+      ],
+      "median": 1.01,
+      "used": 6,
+      "head_matched_factor": 0.281278
+    },
+    "height": [
+      65,
+      75
+    ],
+    "detail": [
+      95.3,
+      99.72
+    ],
+    "lift": [
+      12,
+      28
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "meteor_kick": {
+    "file": "nova_male-meteor_kick-v1.png",
+    "factor": 0.284091,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-meteor_kick-v1.png",
+      "frames": [
+        {
+          "scale": 1.06,
+          "score": 0.674
+        },
+        {
+          "scale": 1.06,
+          "score": 0.661
+        },
+        {
+          "scale": 0.96,
+          "score": 0.622
+        },
+        {
+          "scale": 1.02,
+          "score": 0.651
+        },
+        {
+          "scale": 1.02,
+          "score": 0.65
+        },
+        {
+          "scale": 1.1,
+          "score": 0.654
+        }
+      ],
+      "median": 1.04,
+      "used": 6,
+      "head_matched_factor": 0.273164
+    },
+    "height": [
+      76,
+      105
+    ],
+    "detail": [
+      97.23,
+      101.55
+    ],
+    "lift": [
+      0,
+      41
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "vector_shift": {
+    "file": "nova_male-vector_shift-v1.png",
+    "factor": 0.268817,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-vector_shift-v1.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.716
+        },
+        {
+          "scale": 1.0,
+          "score": 0.717
+        },
+        {
+          "scale": 1.0,
+          "score": 0.698
+        },
+        {
+          "scale": 1.0,
+          "score": 0.694
+        },
+        {
+          "scale": 1.06,
+          "score": 0.709
+        },
+        {
+          "scale": 1.0,
+          "score": 0.73
+        }
+      ],
+      "median": 1.0,
+      "used": 6,
+      "head_matched_factor": 0.268817
+    },
+    "height": [
+      63,
+      87
+    ],
+    "detail": [
+      96.66,
+      112.01
+    ],
+    "lift": [
+      0,
+      14
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "gravity_brake": {
+    "file": "nova_male-gravity_brake-v1.png",
+    "factor": 0.277778,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-gravity_brake-v1.png",
+      "frames": [
+        {
+          "scale": 1.06,
+          "score": 0.727
+        },
+        {
+          "scale": 1.02,
+          "score": 0.73
+        },
+        {
+          "scale": 1.02,
+          "score": 0.738
+        },
+        {
+          "scale": 1.02,
+          "score": 0.721
+        },
+        {
+          "scale": 1.02,
+          "score": 0.735
+        },
+        {
+          "scale": 1.0,
+          "score": 0.752
+        }
+      ],
+      "median": 1.02,
+      "used": 6,
+      "head_matched_factor": 0.272331
+    },
+    "height": [
+      84,
+      92
+    ],
+    "detail": [
+      100.47,
+      108.44
+    ],
+    "lift": [
+      0,
+      0
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "slingshot_start": {
+    "file": "nova_male-slingshot_start-v1.png",
+    "factor": 0.260417,
+    "head_method": "head_scale",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-slingshot_start-v1.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.751
+        },
+        {
+          "scale": 1.0,
+          "score": 0.748
+        },
+        {
+          "scale": 0.96,
+          "score": 0.746
+        },
+        {
+          "scale": 0.96,
+          "score": 0.737
+        },
+        {
+          "scale": 1.0,
+          "score": 0.743
+        },
+        {
+          "scale": 0.96,
+          "score": 0.743
+        }
+      ],
+      "median": 0.98,
+      "used": 6,
+      "head_matched_factor": 0.265732
+    },
+    "height": [
+      89,
+      92
+    ],
+    "detail": [
+      113.32,
+      117.02
+    ],
+    "lift": [
+      0,
+      0
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  },
+  "tumble": {
+    "file": "nova_male-tumble-v1.png",
+    "factor": 0.22,
+    "head_method": "4x_head_crop",
+    "head": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-tumble-v1.png",
+      "frames": [
+        {
+          "scale": 0.62,
+          "score": 0.472
+        },
+        {
+          "scale": 0.6,
+          "score": 0.498
+        },
+        {
+          "scale": 0.6,
+          "score": 0.444
+        },
+        {
+          "scale": 0.86,
+          "score": 0.403
+        },
+        {
+          "scale": 0.62,
+          "score": 0.489
+        },
+        {
+          "scale": 0.62,
+          "score": 0.464
+        }
+      ],
+      "median": null,
+      "used": 0
+    },
+    "height": [
+      53,
+      83
+    ],
+    "detail": [
+      97.13,
+      104.41
+    ],
+    "lift": [
+      12,
+      32
+    ],
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "border": true,
+    "margin4": true,
+    "offset_x": 0
+  }
+}

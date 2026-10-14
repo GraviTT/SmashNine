@@ -1,0 +1,453 @@
+{
+  "input": {
+    "sheet": "art/raw/nova-52a/tumble/raw.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.22,
+    "scale_by": "fixed:0.22",
+    "common_offset_x": 0,
+    "common_lift": 12,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      53,
+      83
+    ],
+    "body_width_range": [
+      48,
+      91
+    ],
+    "area_range": [
+      2863,
+      3038
+    ],
+    "area_spread_percent": 5.76,
+    "bottom_range": [
+      120,
+      140
+    ],
+    "lift_range": [
+      12,
+      32
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2457,
+      2652
+    ],
+    "interior_detail_range": [
+      97.13,
+      104.41
+    ],
+    "interior_detail_mean": 100.92,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 91.87,
+    "interior_detail_ratio": 1.0985
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.13,
+        "colour_count": 2768,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 91.44,
+        "colour_count": 2859,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 90.81,
+        "colour_count": 2855,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 92.35,
+        "colour_count": 2874,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 91.41,
+        "colour_count": 2725,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 92.07,
+        "colour_count": 2756,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 91.87,
+    "colour_count_range": [
+      2725,
+      2874
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/nova-52a/tumble/raw.png#0,0",
+      "bbox": [
+        55,
+        68,
+        144,
+        141
+      ],
+      "body_height": 73,
+      "body_width": 89,
+      "area": 3018,
+      "bottom": 140,
+      "lift": 12,
+      "expected_lift": 12,
+      "interior_detail": 102.7,
+      "colour_count": 2607,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 68,
+        "right": 48,
+        "bottom": 51,
+        "minimum": 48,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1179
+    },
+    {
+      "index": 1,
+      "source": "art/raw/nova-52a/tumble/raw.png#1,0",
+      "bbox": [
+        54,
+        70,
+        142,
+        123
+      ],
+      "body_height": 53,
+      "body_width": 88,
+      "area": 3021,
+      "bottom": 122,
+      "lift": 30,
+      "expected_lift": 30,
+      "interior_detail": 97.13,
+      "colour_count": 2652,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 70,
+        "right": 50,
+        "bottom": 69,
+        "minimum": 50,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0573
+    },
+    {
+      "index": 2,
+      "source": "art/raw/nova-52a/tumble/raw.png#2,0",
+      "bbox": [
+        71,
+        58,
+        119,
+        141
+      ],
+      "body_height": 83,
+      "body_width": 48,
+      "area": 2919,
+      "bottom": 140,
+      "lift": 12,
+      "expected_lift": 12,
+      "interior_detail": 100.99,
+      "colour_count": 2522,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 71,
+        "top": 58,
+        "right": 73,
+        "bottom": 51,
+        "minimum": 51,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0993
+    },
+    {
+      "index": 3,
+      "source": "art/raw/nova-52a/tumble/raw.png#0,1",
+      "bbox": [
+        50,
+        58,
+        129,
+        123
+      ],
+      "body_height": 65,
+      "body_width": 79,
+      "area": 2863,
+      "bottom": 122,
+      "lift": 30,
+      "expected_lift": 30,
+      "interior_detail": 97.38,
+      "colour_count": 2457,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 50,
+        "top": 58,
+        "right": 63,
+        "bottom": 69,
+        "minimum": 50,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.06
+    },
+    {
+      "index": 4,
+      "source": "art/raw/nova-52a/tumble/raw.png#1,1",
+      "bbox": [
+        53,
+        62,
+        140,
+        121
+      ],
+      "body_height": 59,
+      "body_width": 87,
+      "area": 2971,
+      "bottom": 120,
+      "lift": 32,
+      "expected_lift": 32,
+      "interior_detail": 104.41,
+      "colour_count": 2564,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 53,
+        "top": 62,
+        "right": 52,
+        "bottom": 71,
+        "minimum": 52,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1365
+    },
+    {
+      "index": 5,
+      "source": "art/raw/nova-52a/tumble/raw.png#2,1",
+      "bbox": [
+        56,
+        65,
+        147,
+        136
+      ],
+      "body_height": 71,
+      "body_width": 91,
+      "area": 3038,
+      "bottom": 135,
+      "lift": 17,
+      "expected_lift": 17,
+      "interior_detail": 102.93,
+      "colour_count": 2618,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 65,
+        "right": 45,
+        "bottom": 56,
+        "minimum": 45,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1204
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-52a/tumble/nova_male-tumble-v1.png",
+    "candidate": "art/bakeoff/nova/nova_male-tumble-v1.png",
+    "frames": "reports/codex-art-52a/tumble/frames",
+    "closeup": "reports/codex-art-52a/tumble/closeup.png",
+    "compare": "reports/codex-art-52a/tumble/compare.png"
+  },
+  "head_check": {
+    "method": "4x_head_crop",
+    "result": {
+      "sheet": "art\\bakeoff\\nova\\nova_male-tumble-v1.png",
+      "frames": [
+        {
+          "scale": 0.62,
+          "score": 0.472
+        },
+        {
+          "scale": 0.6,
+          "score": 0.498
+        },
+        {
+          "scale": 0.6,
+          "score": 0.444
+        },
+        {
+          "scale": 0.86,
+          "score": 0.403
+        },
+        {
+          "scale": 0.62,
+          "score": 0.489
+        },
+        {
+          "scale": 0.62,
+          "score": 0.464
+        }
+      ],
+      "median": null,
+      "used": 0
+    },
+    "note": "신뢰 프레임이 2개 미만이라 4배 머리 크롭을 사용"
+  }
+}
