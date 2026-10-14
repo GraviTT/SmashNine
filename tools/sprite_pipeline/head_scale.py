@@ -53,7 +53,7 @@ def cells(path: Path, count: int | None = None) -> list[Image.Image]:
 	sheet = Image.open(path).convert("RGBA")
 	# A candidate strip is one row of 6 or 12 cells (128 base, 192 moves, D34); a game sheet has six
 	# columns and several rows, and its first row is read.
-	strip = sheet.width % sheet.height == 0 and sheet.width // sheet.height >= 6
+	strip = sheet.width % sheet.height == 0 and (sheet.width // sheet.height >= 6 or sheet.width == sheet.height)
 	cell = sheet.height if strip else sheet.width // 6
 	if count is None:
 		meta = path.with_suffix(".json")
