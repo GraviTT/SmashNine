@@ -32,10 +32,12 @@ const BRAVE_MOVE_SHEET_ROWS := [
 	["heart_laser", 6, 12.0, false],
 	["tumble", 6, 21.0, true],
 ]
-## The special transformation (user 2026-10-14): 12 frames over TRANSFORM_MOTION_TIME. She becomes
+## The special transformation (user 2026-10-14): the 12-frame row at its own speed. She becomes
 ## Brave Luna, with the burst, as she lands on frame 9; the ultimate's super armour covers the motion.
-const TRANSFORM_MOTION_TIME := 1.0
-const TRANSFORM_BURST_TIME := 8.0 / 12.0
+## Drawn for 12 fps (1 s, burst at 0.67 s); the user adopted 7.8 fps in the motion viewer
+## (2026-10-15, MotionSpeeds), so the lock, the armour and the burst follow the row: 1.54 s, 1.03 s.
+const TRANSFORM_FRAMES := 12
+const TRANSFORM_BURST_FRAME := 8
 const TRANSFORMATION_DURATION := 6.0
 const TRANSFORM_BURST_RADIUS := 120.0
 const TRANSFORM_BURST_DAMAGE := 14.0
@@ -498,17 +500,29 @@ func _reset_brave_combo() -> void:
 	brave_combo_step = 0
 	brave_combo_timer = 0.0
 
+## Seconds that `frames` drawings of the transformation row take at the speed it plays (12 fps,
+## as drawn, when there is no such row).
+func transform_time(frames: int) -> float:
+	var fps := 12.0
+	if _uses_character_sprite():
+		var row := _get_sprite_animation_name(&"transform")
+		if character_sprite.sprite_frames.has_animation(row):
+			fps = character_sprite.sprite_frames.get_animation_speed(row)
+	return float(frames) / maxf(fps, 1.0)
+
 func _transformation_start() -> void:
 	_reset_brave_combo()
-	attack_lock_timer = TRANSFORM_MOTION_TIME
-	# The 12 frames at the row's own 12 fps; the row stays on after the form switches (Luna-only row).
-	_play_sprite_action(&"transform", TRANSFORM_MOTION_TIME)
+	var motion_time := transform_time(TRANSFORM_FRAMES)
+	var burst_time := transform_time(TRANSFORM_BURST_FRAME)
+	attack_lock_timer = motion_time
+	# The 12 frames at the row's own speed; the row stays on after the form switches (Luna-only row).
+	_play_sprite_action(&"transform", motion_time)
 	current_attack_started_airborne = not is_on_floor()
-	_freeze_movement(TRANSFORM_BURST_TIME)
+	_freeze_movement(burst_time)
 	velocity = Vector2.ZERO
-	ultimate_armor_timer = maxf(ultimate_armor_timer, TRANSFORM_MOTION_TIME)
+	ultimate_armor_timer = maxf(ultimate_armor_timer, motion_time)
 	_play_transformation_charge()
-	if not await _wait_action(TRANSFORM_BURST_TIME):
+	if not await _wait_action(burst_time):
 		return
 	movement_freeze_timer = 0.0
 	if is_defeated or hitstun_timer > 0.0:

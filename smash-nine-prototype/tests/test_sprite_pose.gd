@@ -4,7 +4,8 @@ extends SceneTree
 ## runs at normal speed again. Readable playback (user 2026-10-15, tempo proposal B): the strike
 ## drawing comes with the hit at the end of the start-up, every drawing from the strike on shows
 ## for at least three game frames, the follow-through finishes after the attack lock unless the
-## fighter moves, and hitstop freezes the drawing.
+## fighter moves, and hitstop freezes the drawing. The follow-through is never faster than the row's
+## own speed, the fps the user adopted for it in the motion viewer (2026-10-15, MotionSpeeds).
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -35,6 +36,7 @@ func _run() -> void:
 	await _test_readable_row()
 	await _test_moving_cuts_follow_through()
 	await _test_hitstop_freezes_drawing()
+	await _test_row_speed_floor()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -121,5 +123,27 @@ func _test_hitstop_freezes_drawing() -> void:
 		if int(sprite.frame) != held:
 			_fail("Hitstop should freeze the drawing (went %d -> %d)" % [held, sprite.frame])
 			break
+	frey.queue_free()
+	await process_frame
+
+## A row the user slowed to 8 fps: the strike still comes with the hit, and every drawing after it
+## shows for one frame of the row's speed (7.5 game frames) instead of D38's minimum of three.
+func _test_row_speed_floor() -> void:
+	var frey := _fighter()
+	await physics_frame
+	var sprite: AnimatedSprite2D = frey.character_sprite
+	var adopted := sprite.sprite_frames.get_animation_speed(&"frey_attack")
+	sprite.sprite_frames.set_animation_speed(&"frey_attack", 8.0)
+	frey._play_sprite_pose(&"attack", 0, 5, 0.17, 0.05)
+	var shown: Array[int] = []
+	for frame in 48:
+		await physics_frame
+		shown.append(int(sprite.frame) if int(frey.sprite_pose_last) >= 0 else -1)
+	sprite.sprite_frames.set_animation_speed(&"frey_attack", adopted)
+	if shown[2] != 2:
+		_fail("A slow row should still show the strike drawing when the hit comes out (frames %s)" % [shown])
+	for drawing in range(3, 6):
+		if shown.count(drawing) < 7:
+			_fail("At 8 fps drawing %d should show for 7-8 game frames (it showed %d: %s)" % [drawing, shown.count(drawing), shown])
 	frey.queue_free()
 	await process_frame

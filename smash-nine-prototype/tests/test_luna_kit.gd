@@ -126,8 +126,9 @@ func _test_echo_walk_in() -> void:
 	if misses > 0:
 		_fail("Walking in from 110 px, the side star echo should land its trail and its bloom (%d of 4 missed the bloom)" % misses)
 
-## The special transformation (user 2026-10-14): 12 frames over about 1 s. She becomes Brave Luna
-## (and bursts) on the landing frame, 2/3 s in, and the ultimate's super armour covers the motion.
+## The special transformation (user 2026-10-14): the 12-frame row at its own speed (drawn for 12 fps;
+## the user's adopted 7.8 fps since 2026-10-15, about 1.5 s). She becomes Brave Luna (and bursts) on
+## the landing frame 9, and the ultimate's super armour covers the motion.
 func _test_special_transformation() -> void:
 	var ground := _floor(Vector2(0, 0), 1400)
 	var luna := _fighter("luna", 1, Vector2(0, -2))
@@ -137,14 +138,19 @@ func _test_special_transformation() -> void:
 	var frames: SpriteFrames = luna.character_sprite.sprite_frames
 	if luna.character_sprite.animation != &"luna_transform" or frames.get_frame_count(&"luna_transform") != 12:
 		_fail("The ultimate should play the 12-frame luna_transform (got %s, %d frames)" % [luna.character_sprite.animation, frames.get_frame_count(&"luna_transform")])
-	if float(luna.ultimate_armor_timer) < 0.99:
-		_fail("Super armour should cover the 1 s transformation (got %.2f s)" % float(luna.ultimate_armor_timer))
-	await create_timer(0.5).timeout
+	var fps := frames.get_animation_speed(&"luna_transform")
+	var motion: float = luna.transform_time(12)
+	var burst: float = luna.transform_time(8)
+	if absf(motion - 12.0 / fps) > 0.001 or absf(burst - 8.0 / fps) > 0.001:
+		_fail("The transformation should take the row's 12 drawings at its %.2f fps, the burst its 8 (got %.2f s, %.2f s)" % [fps, motion, burst])
+	if float(luna.ultimate_armor_timer) < motion - 0.01:
+		_fail("Super armour should cover the %.2f s transformation (got %.2f s)" % [motion, float(luna.ultimate_armor_timer)])
+	await create_timer(burst - 0.15).timeout
 	if bool(luna.transformed):
-		_fail("Luna should still be mid-spin at 0.5 s, not Brave Luna yet")
+		_fail("Luna should still be mid-spin %.2f s in, not Brave Luna yet" % (burst - 0.15))
 	await create_timer(0.3).timeout
 	if not bool(luna.transformed):
-		_fail("Luna should be Brave Luna by 0.8 s (the landing frame is at 0.67 s)")
+		_fail("Luna should be Brave Luna by %.2f s (the landing frame is at %.2f s)" % [burst + 0.15, burst])
 	luna.queue_free()
 	ground.queue_free()
 	await process_frame

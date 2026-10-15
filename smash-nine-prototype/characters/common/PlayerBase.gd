@@ -84,6 +84,9 @@ const DAMAGE_FIXED := "fixed"
 const ENEMY_AI_SCRIPT := preload("res://scripts/EnemyAI.gd")
 const SHEET_ART := preload("res://scripts/ArtSettings.gd")
 const SHEET_FRAMES := preload("res://characters/common/CharacterAnimation.gd")
+## The fps the user adopted per row in the motion viewer (2026-10-15); rows without one keep the
+## table fps they were drawn for.
+const MOTION_SPEEDS := preload("res://characters/common/MotionSpeeds.gd")
 ## Original sheets: 6 columns x 7 rows, one row per animation. The cell size comes from the
 ## sheet width: v1 (CODEX-ART-02/03) 64 px cells drawn at 2x with feet at y=48, v2
 ## (CODEX-ART-08, per-character proportions) 128 px cells drawn at 1x with feet at y=120.
@@ -241,7 +244,8 @@ var sprite_pose_last := -1
 ## moving, jumping or guarding after the lock cuts the rest. The frames are set by this clock, not
 ## by the sprite's own playback, and the clock stops during hitstop, so a landed hit freezes on
 ## the strike. (Before: the whole row ran inside two thirds of the move, about 45 drawings a second
-## for a 0.17 s attack.)
+## for a 0.17 s attack.) The follow-through is also never faster than the row's own speed, the fps
+## the user adopted for it in the motion viewer (MotionSpeeds, 2026-10-15); the hit timing stays.
 const POSE_MIN_FRAME := 3.0 / 60.0
 ## Where the strike sits in a row of more than two drawings (6 frames: the third, index 2).
 const POSE_STRIKE_SHARE := 0.4
@@ -889,9 +893,13 @@ func _add_move_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Tex
 	# A row longer than six frames continues on the next sheet row (Luna's 12-frame transform).
 	var start_row := 0
 	for spec in rows:
-		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, start_row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
+		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, start_row * SHEET_COLUMNS, int(spec[1]), _row_fps(prefix, spec), bool(spec[3]))
 		start_row += ceili(float(spec[1]) / SHEET_COLUMNS)
 	return true
+
+## A row's playback speed: the user's adopted one (MotionSpeeds) or the table's.
+func _row_fps(prefix: String, spec: Array) -> float:
+	return MOTION_SPEEDS.fps(prefix, body_type, String(spec[0]), float(spec[2]))
 
 ## Sheet rows a row table fills: one per entry, two for a 7-12 frame entry.
 func _sheet_row_span(rows: Array) -> int:
@@ -912,7 +920,7 @@ func _add_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Texture2
 		rows = get_sheet_rows()
 	var start_row := 0
 	for spec in rows:
-		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, start_row * SHEET_COLUMNS, int(spec[1]), float(spec[2]), bool(spec[3]))
+		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, start_row * SHEET_COLUMNS, int(spec[1]), _row_fps(prefix, spec), bool(spec[3]))
 		start_row += ceili(float(spec[1]) / SHEET_COLUMNS)
 	return true
 
@@ -1902,14 +1910,21 @@ func _play_sprite_pose(animation_name: StringName, first: int, last: int, durati
 	sprite_pose_elapsed = 0.0
 	sprite_pose_lock = duration
 	sprite_pose_on_floor = is_on_floor()
-	sprite_pose_times = _sprite_pose_timeline(stop - start, duration, startup)
+	var drawing_time := _row_frame_time(anim)
+	sprite_pose_times = _sprite_pose_timeline(stop - start, duration, startup, drawing_time)
 	# The follow-through may outlast the lock (cut short by moving, jumping or guarding).
-	sprite_action_timer = maxf(duration, sprite_pose_times[sprite_pose_times.size() - 1] + POSE_MIN_FRAME)
+	sprite_action_timer = maxf(duration, sprite_pose_times[sprite_pose_times.size() - 1] + maxf(POSE_MIN_FRAME, drawing_time))
+
+## One drawing of a row at its own speed (the user's adopted fps, MotionSpeeds), in seconds.
+func _row_frame_time(animation_name: StringName) -> float:
+	var fps := character_sprite.sprite_frames.get_animation_speed(animation_name)
+	return 1.0 / fps if fps > 0.0 else 0.0
 
 ## Start time of each drawing from the first: the drawings up to the strike spread over the
-## start-up (the strike lands with the hit), then the follow-through at POSE_MIN_FRAME or slower.
+## start-up (the strike lands with the hit), then the follow-through at POSE_MIN_FRAME or slower,
+## and no faster than the row's own speed (drawing_time, one frame of its fps).
 ## A two-drawing pose switches to its second drawing when the hit comes out and holds it.
-func _sprite_pose_timeline(steps: int, duration: float, startup: float) -> PackedFloat32Array:
+func _sprite_pose_timeline(steps: int, duration: float, startup: float, drawing_time := 0.0) -> PackedFloat32Array:
 	var times := PackedFloat32Array([0.0])
 	if steps <= 0:
 		return times
@@ -1919,7 +1934,7 @@ func _sprite_pose_timeline(steps: int, duration: float, startup: float) -> Packe
 		times.append(lead * float(index) / float(strike))
 	var follow := steps - strike
 	if follow > 0:
-		var each := maxf(maxf(duration - lead, 0.0) / float(follow + 1), POSE_MIN_FRAME)
+		var each := maxf(maxf(duration - lead, 0.0) / float(follow + 1), maxf(POSE_MIN_FRAME, drawing_time))
 		for index in range(1, follow + 1):
 			times.append(lead + each * float(index))
 	return times
