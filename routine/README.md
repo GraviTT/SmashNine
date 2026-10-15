@@ -15,7 +15,8 @@
 - 커밋: 작업마다
 - push: 커밋마다 `main` (사용자 10-06 "끝나면 백업 할것")
 - `gh-pages` 재배포(`tools/deploy_pages.ps1`)는 외부 공개라 사용자 몫
-- Sites 배포(`reports/codex-deploy/site.json`의 기존 사이트, 소유자 전용)도 사용자가 Codex로 한다. **보고 끝에 Codex에 그대로 붙여 넣을 배포 요청 메시지를 넣는다**(사용자 10-10 "앞으로는 Codex 배포 요청 메세지를 보고 끝에 넣을 것"): 배포할 `main` 커밋, 다음 버전 번호, 지난 배포(`game_source_commit_sha`) 뒤 바뀐 것 한 줄, 빌드 `tools/build_web.ps1`(`build/web/`, `.partN` 조각 그대로), `site.json`·`reports/codex-deploy/README.md`만 갱신, 커밋·push·다른 수정 금지. 배포 뒤 Codex 기록은 리드가 커밋한다.
+- **점검은 로컬 웹 빌드로 한다**(사용자 10-15 "앞으로는 웹 빌드로 점검하고, Codex에 배포 요청을 하는 것은 게임의 일정 단계 완성 이후로 한다."). 사용자가 볼 변경(그림, 동작, 게임 규칙)이 있으면 마무리 때 `tools/build_web.ps1`로 `build/web/`을 다시 만들고, `smashnine-web`(8060)으로 띄워 확인한다. 보고에는 빌드 시각을 적는다.
+- Sites 배포(`reports/codex-deploy/site.json`의 기존 사이트, 소유자 전용)는 사용자가 Codex로 한다. **배포 요청문은 게임이 한 단계 완성됐을 때나 사용자가 요청할 때만 보고 끝에 넣는다**(10-15부터. 그 전 10-10 규칙은 "보고마다"였음). 요청문 형식: 배포할 `main` 커밋, 다음 버전 번호, 지난 배포(`game_source_commit_sha`) 뒤 바뀐 것 한 줄, 빌드 `tools/build_web.ps1`(`build/web/`, `.partN` 조각 그대로), `site.json`·`reports/codex-deploy/README.md`만 갱신, 커밋·push·다른 수정 금지. 배포 뒤 Codex 기록은 리드가 커밋한다.
 
 ## 실행 방식
 - 기본: Codex 사용 (codex-units 스킬)
@@ -24,7 +25,7 @@
 
 ## 도구 · 환경
 - Godot 창 모드 캡처는 잠깐 창이 뜬다. 한 번에 하나만.
-- 로컬 웹 확인은 브라우저 창 + `.claude/launch.json`의 `smashnine-web`(8060), 마칠 때 닫는다.
+- 로컬 웹 확인은 내장 브라우저 + `.claude/launch.json`의 `smashnine-web`(8060). 빌드 중(약 1분)에는 `build/web`을 다시 쓰므로 "not found"가 날 수 있다.
 - 모션 뷰어(사용자 10-10 "앞으로는 그걸로 간단히 확인"): 캐릭터·몬스터 시트가 바뀐 회차는 마무리 때 `node tools/motion_viewer/build.mjs` 후 같은 Artifact(https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU)에 다시 게시하고 보고에 주소를 넣는다(`tools/motion_viewer/README.md`).
 
 ## 품질 · 성능 기준
