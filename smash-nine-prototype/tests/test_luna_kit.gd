@@ -247,6 +247,12 @@ func _test_brave_chain_poses() -> void:
 	var target := _fighter("frey", 3, Vector2(45, -2))
 	for frame in 6:
 		await physics_frame
+	# The transformation's burst launches a target this close; the chain is tested on a standing one
+	# (2026-10-15: with the D39 start-ups the body kick passed under the rising target).
+	for frame in 120:
+		if target.hitstun_timer <= 0.0 and target.is_on_floor():
+			break
+		await physics_frame
 	var hits := []
 	target.damaged.connect(func(_v, _amount, _att, _src): hits.append(float(target.hitstun_timer)))
 	var first_frames: Array[int] = []

@@ -61,7 +61,9 @@ const STAR_ORBIT_RADIUS := 44.0
 ## still slips under the bloom.
 ## Star-charge art (Codex ART-22); the drawn star stays as the fallback while the file is missing.
 const STAR_CHARGE_ART := "res://assets/art/effects/passive/luna_star_charge.png"
-const ECHO_HOME_MIN := 75.0
+## 75 -> 72 on 2026-10-15: the D39 start-up (0.10 -> 0.112 s) lets her walk about 3 px farther
+## before the trail strikes, so the walk-in keeps its old 9 px margin over this edge.
+const ECHO_HOME_MIN := 72.0
 const ECHO_HOME_RISE := 48.0
 
 var transformed := false
@@ -135,7 +137,7 @@ func perform_skill_one() -> void:
 
 func perform_skill_two() -> void:
 	if transformed:
-		_start_attack(0.12, 0.3, Callable(self, "_brave_luna_breaker"), Vector2i(-1, -1), &"luna_breaker")
+		_start_attack(0.156, 0.3, Callable(self, "_brave_luna_breaker"), Vector2i(-1, -1), &"luna_breaker")
 	else:
 		_start_attack(0.21, 0.4, Callable(self, "_moon_ring"), Vector2i(-1, -1), &"moon_ring")
 
@@ -274,9 +276,9 @@ func _perform_star_basic(attack_type: String, _direction: Vector2) -> void:
 		"air_down":
 			_start_attack(0.13, 0.28, Callable(self, "_star_down_arc").bind(true), Vector2i(-1, -1), &"star_down")
 		"air_side":
-			_start_attack(0.09, 0.23, Callable(self, "_star_side_arc").bind(true), Vector2i(-1, -1), &"star_side")
+			_start_attack(0.112, 0.23, Callable(self, "_star_side_arc").bind(true), Vector2i(-1, -1), &"star_side")
 		_:
-			_start_attack(0.1, 0.25, Callable(self, "_star_side_arc").bind(false), Vector2i(-1, -1), &"star_side")
+			_start_attack(0.112, 0.25, Callable(self, "_star_side_arc").bind(false), Vector2i(-1, -1), &"star_side")
 
 func _star_side_arc(airborne: bool) -> void:
 	_next_star_swing()
@@ -390,26 +392,26 @@ func _perform_brave_basic(attack_type: String) -> void:
 	match attack_type:
 		"up", "air_up":
 			_reset_brave_combo()
-			_start_attack(0.06, 0.14, Callable(self, "_brave_uppercut").bind(attack_type == "air_up"), Vector2i(-1, -1), &"brave_upper")
+			_start_attack(0.098, 0.14, Callable(self, "_brave_uppercut").bind(attack_type == "air_up"), Vector2i(-1, -1), &"brave_upper")
 		"down":
 			_reset_brave_combo()
-			_start_attack(0.06, 0.14, Callable(self, "_brave_low_sweep"), Vector2i(-1, -1), &"brave_low")
+			_start_attack(0.111, 0.14, Callable(self, "_brave_low_sweep"), Vector2i(-1, -1), &"brave_low")
 		"air_down":
 			_reset_brave_combo()
-			_start_attack(0.07, 0.18, Callable(self, "_brave_dive_kick"), Vector2i(-1, -1), &"brave_dive")
+			_start_attack(0.111, 0.18, Callable(self, "_brave_dive_kick"), Vector2i(-1, -1), &"brave_dive")
 		"air_side":
 			_reset_brave_combo()
-			_start_attack(0.05, 0.12, Callable(self, "_brave_flying_kick"), Vector2i(-1, -1), &"brave_air_side")
+			_start_attack(0.104, 0.12, Callable(self, "_brave_flying_kick"), Vector2i(-1, -1), &"brave_air_side")
 		_:
 			match _consume_brave_combo_step():
 				# The Brave attack row reads jab, star punch, body kick, spinning kick: each hit plays
 				# its own frames (they all replayed the whole row before).
 				0:
-					_start_attack(0.045, 0.1, Callable(self, "_brave_jab"), Vector2i(0, 1), &"brave_combo", Vector2i(0, 1))
+					_start_attack(0.078, 0.1, Callable(self, "_brave_jab"), Vector2i(0, 1), &"brave_combo", Vector2i(0, 1))
 				1:
-					_start_attack(0.055, 0.11, Callable(self, "_brave_body_kick"), Vector2i(2, 3), &"brave_combo", Vector2i(2, 3))
+					_start_attack(0.078, 0.11, Callable(self, "_brave_body_kick"), Vector2i(2, 3), &"brave_combo", Vector2i(2, 3))
 				_:
-					_start_attack(0.075, 0.18, Callable(self, "_brave_spin_kick"), Vector2i(4, 5), &"brave_combo", Vector2i(4, 5))
+					_start_attack(0.078, 0.18, Callable(self, "_brave_spin_kick"), Vector2i(4, 5), &"brave_combo", Vector2i(4, 5))
 
 func _brave_jab() -> void:
 	velocity.x += facing * 90.0
@@ -456,7 +458,7 @@ func _brave_dive_kick() -> void:
 
 func _brave_comet_drive_start() -> void:
 	var direction := _get_attack_direction()
-	_start_attack(0.07, 0.16, Callable(self, "_brave_comet_drive").bind(direction), Vector2i(1, 1), &"comet_drive")
+	_start_attack(0.104, 0.16, Callable(self, "_brave_comet_drive").bind(direction), Vector2i(1, 1), &"comet_drive")
 
 func _brave_comet_drive(direction: Vector2) -> void:
 	if absf(direction.x) > 0.2:

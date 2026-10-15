@@ -11,6 +11,11 @@ const MOMENTUM_MAX_SPEED := 700.0 * GAME_SCALE.MOVE
 const VECTOR_SHIFT_DURATION := 0.22
 const VECTOR_SHIFT_ACCELERATION := 5400.0 * GAME_SCALE.MOVE
 const VECTOR_SHIFT_MAX_SPEED := 760.0 * GAME_SCALE.MOVE
+## Gravity brake start-up (frozen in place, then the burst): two drawings before the strike at the
+## female row's adopted 10.01 fps, the slower body (D39; was 0.08).
+const BRAKE_STARTUP := 0.2
+## Slingshot cast pose: its strike drawing at two drawings of the male row's adopted 9.1 fps (D39).
+const SLINGSHOT_POSE_STRIKE := 0.22
 const ULTIMATE_CORE_DISTANCE := 105.0
 const ULTIMATE_PULL_RADIUS := 230.0
 const ULTIMATE_PULL_STRENGTH := 240.0
@@ -93,17 +98,17 @@ func perform_basic_attack(attack_type: String, input_direction: Vector2) -> void
 	_cancel_vector_shift()
 	match attack_type:
 		"up":
-			_start_attack(0.07, 0.19, Callable(self, "_vector_uppercut").bind(momentum, false), Vector2i(-1, -1), &"vector_upper")
+			_start_attack(0.087, 0.19, Callable(self, "_vector_uppercut").bind(momentum, false), Vector2i(-1, -1), &"vector_upper")
 		"air_up":
-			_start_attack(0.06, 0.17, Callable(self, "_vector_uppercut").bind(momentum, true), Vector2i(-1, -1), &"vector_upper")
+			_start_attack(0.087, 0.17, Callable(self, "_vector_uppercut").bind(momentum, true), Vector2i(-1, -1), &"vector_upper")
 		"down":
-			_start_attack(0.1, 0.23, Callable(self, "_compression_stomp").bind(momentum), Vector2i(-1, -1), &"compression_stomp")
+			_start_attack(0.102, 0.23, Callable(self, "_compression_stomp").bind(momentum), Vector2i(-1, -1), &"compression_stomp")
 		"air_down":
-			_start_attack(0.07, 0.2, Callable(self, "_meteor_kick_start").bind(momentum), Vector2i(-1, -1), &"meteor_kick")
+			_start_attack(0.089, 0.2, Callable(self, "_meteor_kick_start").bind(momentum), Vector2i(-1, -1), &"meteor_kick")
 		"air_side":
-			_start_attack(0.05, 0.15, Callable(self, "_vector_side_strike").bind(momentum, true, impact_direction), Vector2i(-1, -1), &"air_side")
+			_start_attack(0.077, 0.15, Callable(self, "_vector_side_strike").bind(momentum, true, impact_direction), Vector2i(-1, -1), &"air_side")
 		_:
-			_start_attack(0.065, 0.17, Callable(self, "_vector_side_strike").bind(momentum, false, Vector2(facing, -0.04)), Vector2i(-1, -1), &"vector_side")
+			_start_attack(0.076, 0.17, Callable(self, "_vector_side_strike").bind(momentum, false, Vector2(facing, -0.04)), Vector2i(-1, -1), &"vector_side")
 
 ## One vector shift per airtime, like the skill itself (Codex QA-14 round 6: bots asked for it
 ## 35,321 frames for 27 uses).
@@ -275,12 +280,12 @@ func _gravity_brake_start() -> void:
 	_cancel_vector_shift()
 	meteor_diving = false
 	brake_restore_consumed = false
-	attack_lock_timer = 0.42
-	_play_move_sprite_pose(&"gravity_brake", -1, -1, 0.42)
-	_freeze_movement(0.08)
+	attack_lock_timer = BRAKE_STARTUP + 0.34
+	_play_move_sprite_pose(&"gravity_brake", -1, -1, BRAKE_STARTUP + 0.34, -1, -1, BRAKE_STARTUP)
+	_freeze_movement(BRAKE_STARTUP)
 	velocity = Vector2.ZERO
 	_play_brake_charge(momentum)
-	if not await _wait_action(0.08):
+	if not await _wait_action(BRAKE_STARTUP):
 		return
 	movement_freeze_timer = 0.0
 	if is_defeated or hitstun_timer > 0.0:
@@ -327,7 +332,9 @@ func _gravity_slingshot_start() -> void:
 	ultimate_contact_requested = false
 	ultimate_saved_collision_mask = collision_mask
 	attack_lock_timer = maxf(attack_lock_timer, 0.16)
-	_play_move_sprite_pose(&"slingshot_start", -1, -1, 0.16)
+	# The core appears at once; only the body's cast pose is longer, so its drawings play at the
+	# row's adopted speed (D39): the strike drawing at SLINGSHOT_POSE_STRIKE, as long a follow-through.
+	_play_move_sprite_pose(&"slingshot_start", -1, -1, SLINGSHOT_POSE_STRIKE + 0.107, -1, -1, SLINGSHOT_POSE_STRIKE)
 	_create_singularity_visual()
 
 func _begin_ultimate_orbit() -> void:

@@ -17,6 +17,10 @@ const RUNE_RETURN_DAMAGE_MAX := 15.0
 const RUNE_RETURN_KNOCKBACK_MAX := 820.0
 const OVERDRIVE_SWORDS := 6
 const OVERDRIVE_ORBIT_TIME := 0.55
+## Overdrive cast pose: its strike drawing at two drawings of the male row's adopted 7.15 fps (D39).
+const OVERDRIVE_POSE_STRIKE := 0.28
+## Plunge start-up before the dive: two drawings at the female row's adopted 8.4 fps (D39; was 0.08).
+const PLUNGE_STARTUP := 0.238
 const OVERDRIVE_FIRE_GAP := 0.07
 const OVERDRIVE_RADIUS := 58.0
 const OVERDRIVE_SPIN := 7.0
@@ -73,22 +77,22 @@ func perform_basic_attack(attack_type: String, _direction: Vector2) -> void:
 	match attack_type:
 		"up", "air_up":
 			_reset_combo()
-			_start_attack(0.07, 0.2, Callable(self, "_rising_slash").bind(attack_type == "air_up"), Vector2i(-1, -1), &"rising_slash")
+			_start_attack(0.103, 0.2, Callable(self, "_rising_slash").bind(attack_type == "air_up"), Vector2i(-1, -1), &"rising_slash")
 		"down":
 			_reset_combo()
-			_start_attack(0.08, 0.2, Callable(self, "_low_sweep"), Vector2i(-1, -1), &"low_sweep")
+			_start_attack(0.111, 0.2, Callable(self, "_low_sweep"), Vector2i(-1, -1), &"low_sweep")
 		"air_down":
 			_reset_combo()
 			_plunge_start()
 		"air_side":
 			_reset_combo()
-			_start_attack(0.05, 0.15, Callable(self, "_air_slash"), Vector2i(-1, -1), &"air_slash")
+			_start_attack(0.077, 0.15, Callable(self, "_air_slash"), Vector2i(-1, -1), &"air_slash")
 		_:
 			match _consume_combo_step():
 				0:
-					_start_attack(0.05, 0.12, Callable(self, "_mana_slash_one"), Vector2i(-1, -1), &"mana_combo", Vector2i(0, 1))
+					_start_attack(0.079, 0.12, Callable(self, "_mana_slash_one"), Vector2i(-1, -1), &"mana_combo", Vector2i(0, 1))
 				1:
-					_start_attack(0.05, 0.13, Callable(self, "_mana_slash_two"), Vector2i(-1, -1), &"mana_combo", Vector2i(2, 3))
+					_start_attack(0.079, 0.13, Callable(self, "_mana_slash_two"), Vector2i(-1, -1), &"mana_combo", Vector2i(2, 3))
 				_:
 					_start_attack(0.08, 0.22, Callable(self, "_mana_wave"), Vector2i(-1, -1), &"mana_combo", Vector2i(4, 5))
 
@@ -208,13 +212,13 @@ func _air_slash() -> void:
 
 ## Air down: a diagonal plunge. Locked until landing, so a whiff is punishable.
 func _plunge_start() -> void:
-	attack_lock_timer = 0.5
-	_play_move_sprite_pose(&"plunge", -1, -1, 0.5)
+	attack_lock_timer = PLUNGE_STARTUP + 0.42
+	_play_move_sprite_pose(&"plunge", -1, -1, PLUNGE_STARTUP + 0.42, -1, -1, PLUNGE_STARTUP)
 	action_locked_until_land = true
 	current_attack_started_airborne = true
 	velocity = Vector2(facing * 60.0, -80.0 * GAME_SCALE.JUMP_SPEED)
 	_play_attack_windup()
-	if not await _wait_action(0.08):
+	if not await _wait_action(PLUNGE_STARTUP):
 		return
 	if is_defeated or hitstun_timer > 0.0:
 		return
@@ -383,7 +387,9 @@ func _overdrive_start() -> void:
 	_reset_combo()
 	_clear_overdrive()
 	attack_lock_timer = 0.18
-	_play_move_sprite_pose(&"infinity_overdrive", -1, -1, 0.18)
+	# The swords appear and orbit at once; only the body's cast pose is longer, so its drawings play
+	# at the row's adopted speed (D39): the strike drawing at OVERDRIVE_POSE_STRIKE, as long a follow-through.
+	_play_move_sprite_pose(&"infinity_overdrive", -1, -1, OVERDRIVE_POSE_STRIKE + 0.121, -1, -1, OVERDRIVE_POSE_STRIKE)
 	_play_attack_windup()
 	overdrive_time = 0.0
 	for index in OVERDRIVE_SWORDS:

@@ -8,7 +8,7 @@
 - 공격 크기와 공격 지점은 대부분 `GameScale.COMBAT = 1.5`가 적용된다. 아래의 `42×34` 같은 표기는 코드에 적힌 기본 판정이며, 실제 화면 판정은 보통 각 축이 1.5배다.
 - 이동 기술의 거리는 `GameScale.WORLD = 1.5`, 달리기와 노바의 속도 기준은 `GameScale.MOVE = 1.2`, 점프 속도는 `GameScale.JUMP_SPEED = 1.3416`을 따른다.
 - 동작 프레임은 사람이 읽기 쉽게 1부터 센다. 예를 들어 코드의 `Vector2i(0, 1)`은 여기서 1~2프레임이다.
-- 동작 줄의 재생 속도는 사용자가 모션 뷰어에서 채택한 값이다(2026-10-15, `characters/common/MotionSpeeds.gd`, D39). 기술 줄은 D38 그림 시계로 재생되어 타격 그림이 판정 순간(선딜 끝)에 오고, 그 뒤 그림만 채택 속도보다 빨리 넘어가지 않는다. 그래서 채택 속도로 보이게 하려고 타격 전 그림을 늦추려면 선딜을 바꿔야 한다. 이는 밸런스 변경이고, 필요한 값은 `reports/motion-speeds-2026-10-15.md`에 있다.
+- 동작 줄의 재생 속도는 사용자가 모션 뷰어에서 채택한 값이다(2026-10-15, `characters/common/MotionSpeeds.gd`, D39). 기술 줄은 D38 그림 시계로 재생되어 타격 그림이 판정 순간(선딜 끝)에 오고, 그 뒤 그림만 채택 속도보다 빨리 넘어가지 않는다. 그래서 채택 속도로 보이게 하려고 타격 전 그림을 늦추려면 선딜을 바꿔야 한다. 이는 밸런스 변경이고, 필요한 값은 `reports/motion-speeds-2026-10-15.md`에 있고, 2026-10-15 스킬 세션에서 그 값대로 늘렸다(아래 "선딜" 절).
 - 이펙트 상태는 전용 파일이 있으면 **그림**, 코드 도형만 있으면 **도형**, 몸 동작 외 표시가 없으면 **없음**, 여러 캐릭터가 같은 파일을 쓰면 **공용**이다. 원본 아트 모드가 아니거나 파일이 없으면 대부분 `ColorRect`, `Line2D`, `Polygon2D` 도형으로 대체된다.
 - `assets/art/` 아래 경로는 표에서 짧게 쓸 수 있다. 예를 들어 `attack_vfx/frey_k.png`는 `assets/art/attack_vfx/frey_k.png`, `skill/luna_star_bloom.png`는 `assets/art/effects/skill/luna_star_bloom.png`다.
 - `Attack.gd` 판정과 `source.on_attack_landed`를 부르는 투사체가 적중하면 공격자별 `assets/art/effects/hit/<id>_hit.png`, 공용 `hit_streak.png`가 나온다. 공중 공격 착지에는 공용 `landing_dust.png`가 나올 수 있다. 맞은 쪽의 `apply_hit`도 공격자의 `hit/<id>_hit.png`를 몸 위치에 그리므로, 모든 적중(투사체 포함)에 공격자 색의 불꽃이 나온다. Rio의 일반 마력 검기는 `on_attack_landed`를 부르지 않아 `hit_streak`과 공격자 경직만 없다.
@@ -35,7 +35,7 @@
 | `공중 J` | 공중 옆 베기 | 낙하 속도를 줄이고 전방을 빠르게 벤다. | 피해 8, 40×32, 끝점 x=104, 넉백 260, 활성 0.095초; x속도 +120, y속도 ×0.82 | `attack_air_side` 2~3 | `frey_slash` | 그림 | 104 기본 px 궤적, 진행 방향, 0.095초 |
 | `K` | 방향 돌진 베기 | 0.13초 조준한 뒤 마지막 8방향 입력으로 돌진하며 찌른다. 지상·공중에서 같다. | 고정 0.13초 `[DASH_HOLD_TIME]`, 속도 `760×WORLD` `[DASH_SPEED]`, 이동 0.18초 `[DASH_TIME]`; 피해 16, 58×42, 끝점 172, 넉백 470, 활성 0.16초 | `dash_strike` 조준 1~2, 돌진 3~6 | `assets/art/attack_vfx/frey_k.png`; `_draw_skill_art("frey_k")` | 그림 | 실제 돌진 방향, 판정 끝 172, 속도·지속 시간, 주황금색 |
 | `L` | 상승 가르기 | 위로 솟으며 검을 올려 상대를 Frey보다 높이 띄운다. 적중하면 L 재입력 창이 열린다. | 피해 15, 58×58, 끝점 (62,-136), 넉백 510, 활성 0.16초; 강제 발사 (105,-760), 경직 0.32초; 재입력 0.18초 `[RISING_FOLLOWUP_WINDOW]` | `rising_cleave` 2~4 | `assets/art/attack_vfx/frey_l.png`; 재입력 신호 `frey_spike_ring.png` | 그림 | 위쪽 판정 136, 발사 방향, 재입력 창 0.18초 |
-| `L` 재입력 | 강스파이크 | 상승 가르기 적중 직후 후딜을 끊고 전방을 크게 쓸어 벤다. 착지까지 다른 행동이 잠긴다. | 피해 18, 76×48, 끝점 150, 넉백 700, 활성 0.14초; 선딜 0.055초 | `spike_followup` 3~4 | `frey_slash`; 창이 열린 동안 `frey_spike_ring.png` | 그림 | 0.18초 입력 창, 전방 150 판정, 큰 넉백과 붉은 금색 |
+| `L` 재입력 | 강스파이크 | 상승 가르기 적중 직후 후딜을 끊고 전방을 크게 쓸어 벤다. 착지까지 다른 행동이 잠긴다. | 피해 18, 76×48, 끝점 150, 넉백 700, 활성 0.14초; 선딜 0.127초 | `spike_followup` 3~4 | `frey_slash`; 창이 열린 동안 `frey_spike_ring.png` | 그림 | 0.18초 입력 창, 전방 150 판정, 큰 넉백과 붉은 금색 |
 | `I` 지상 | 발키리 강림 | 0.22초 힘을 모아 좌우 충격파를 내고, 0.28초 뒤 두 번째 여진으로 띄운다. | 첫 파 피해 26 `[ULTIMATE_WAVE_DAMAGE]`, 기본 도달 240 `[ULTIMATE_WAVE_REACH]`, 76×54, 넉백 420, 활성 0.24초, 기절 2초; 여진 지연 0.28초 `[ULTIMATE_AFTERSHOCK_DELAY]`, 피해 10 `[ULTIMATE_AFTERSHOCK_DAMAGE]`, 84×70, 강제 발사 (±260,-720) | `descent` 전체 | `vfx/frey_ult_charge.png`, `vfx/frey_ult_wave.png`; `_play_ultimate_charge`, `_ultimate_impact` | 그림 | 좌우 240 기본 도달과 1.5배 전투 배율, 첫 파/여진 간격, 지면 방향, 금빛 |
 | `공중 I` | 공중 발키리 강림 | 중력을 끊고 수직 급강하한 뒤 착지할 때 지상판과 같은 두 충격파를 낸다. | 급강하 속도 1050, 최대 1.2초; 착지 뒤 수치는 지상 I와 동일 | `descent` 전체 | 급강하 중 `frey_ult_charge`, 착지 `frey_ult_wave` | 그림 | 수직 방향, 착지점, 충격파 수치와 타이밍 |
 | 자동 | 발키리의 추격 | `L` 또는 위 J로 띄운 대상에 1초 표식을 붙인다. Frey가 공중에서 그쪽으로 움직이면 속도가 15% 빨라지고, 다음 공격·착지·피격 때 끝난다. | 1초 `[PURSUIT_TIME]`, 이동 ×1.15 `[PURSUIT_SPEED]`, 표식 높이 118 `[PURSUIT_MARK_RISE]` | 별도 몸 동작 없음 | `assets/art/effects/passive/frey_pursuit_mark.png`; `_make_pursuit_mark`, `_update_pursuit` | 그림 | 대상 머리 위 118px, 1초 알파 펄스, 금빛 날개 V |
@@ -49,7 +49,7 @@
 
 | 입력 | 기술 | 하는 일 | 주요 수치 | 몸 동작 | 이펙트와 그리기 | 상태 | 이펙트가 따라야 할 값 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `J` | 별빛 메아리·옆 | 작은 궤적이 먼저 지나가고 0.065초 뒤 별꽃이 핀다. 궤적이 75px 이상 앞의 상대를 맞히면 별꽃이 그 상대 위로 옮겨진다. | 궤적 피해 3.5, 38×30, 끝 92, 넉백 95, 0.1초; 별꽃 피해 7, 74×64, 넉백 305, 0.12초; 지연 0.065초 | `star_side` 전체 | `luna_slash`, `skill/luna_star_bloom.png`; `_star_side_arc`, `_play_star_bloom` | 그림 | 궤적 끝·적 추적 하한 75 `[ECHO_HOME_MIN]`, 별꽃 판정, 0.065초 지연 |
+| `J` | 별빛 메아리·옆 | 작은 궤적이 먼저 지나가고 0.065초 뒤 별꽃이 핀다. 궤적이 72px 이상 앞의 상대를 맞히면 별꽃이 그 상대 위로 옮겨진다. | 궤적 피해 3.5, 38×30, 끝 92, 넉백 95, 0.1초; 별꽃 피해 7, 74×64, 넉백 305, 0.12초; 지연 0.065초 | `star_side` 전체 | `luna_slash`, `skill/luna_star_bloom.png`; `_star_side_arc`, `_play_star_bloom` | 그림 | 궤적 끝·적 추적 하한 72 `[ECHO_HOME_MIN]`, 별꽃 판정, 0.065초 지연 |
 | `공중 J` | 공중 별빛 메아리·옆 | 낙하를 줄이고 앞으로 이동하며 궤적과 별꽃을 낸다. | 궤적은 지상과 같음; 별꽃 피해 6.5, 넉백 275; x속도 +65, y속도 ×0.55 | `star_side` 전체 | `luna_slash`, `luna_star_bloom` | 그림 | 공중 이동, 74×64 별꽃, 0.065초 |
 | `↑J` | 별빛 메아리·위 | 몸 앞에서 머리 위까지 그린 뒤 상단 별꽃을 만든다. | 궤적 피해 3.5, 36×38, 끝 y=-112, 넉백 90, 0.11초; 별꽃 피해 7, 68×74, 위치 y=-126, 넉백 325, 지연 0.07초 | `star_up` 전체 | `luna_slash`, `luna_star_bloom` | 그림 | 위쪽 판정·별꽃 중심과 0.07초 지연 |
 | `공중 ↑J` | 공중 별빛 메아리·위 | 짧게 떠오르며 위쪽 궤적과 별꽃을 낸다. | 공격은 `↑J`와 같음; 자신 y속도 최대 `-90×JUMP_SPEED`; 0.10/0.24초 | `star_up` 전체 | `luna_slash`, `luna_star_bloom` | 그림 | 공중 상승, 상단 68×74 판정 |
@@ -59,9 +59,9 @@
 | `L` | 달고리 | 몸 주위 좌우 반원을 돌아 적정 거리의 적을 바깥으로 밀어낸다. 중심 가까이는 빈다. | 기본 반경 90, 각 44×38 판정, 피해 12, 넉백 405, 활성 0.24초 | `moon_ring` 전체 | `attack_vfx/luna_l.png`, `skill/luna_moon_ring.png`; `_moon_ring`, `_play_moon_ring_flash` | 그림 | 반경 `90×COMBAT`, 좌우 두 반원, 0.24초, 청록·분홍 |
 | `I` | Brave Luna 변신 | 12프레임 변신 뒤 9번째 프레임 시점에 주변을 띄우고 6초간 Brave가 된다. | 변신 = 12그림 ÷ `transform` 줄 속도 `[TRANSFORM_FRAMES]`, 폭발 = 8그림 ÷ 줄 속도 `[TRANSFORM_BURST_FRAME]` (`transform_time`): 사용자 채택 7.8fps로 1.54초·1.03초(2026-10-15 전 12fps 1초·0.667초); 아머는 동작 내내, 제자리 고정은 폭발까지, 행동 잠금은 폭발 뒤 0.12초까지; 폭발 피해 14, 기본 판정 240×192 `[TRANSFORM_BURST_RADIUS]`, 넉백 460, 강제 발사 (0,-560); 지속 6초 `[TRANSFORMATION_DURATION]`, 이동 ×1.16 | `transform` 1~12 | `vfx/luna_ult_transform.png`, `luna_star_bloom`, 이후 `luna_brave_aura.png` | 그림 | 12프레임/줄 속도(지금 1.54초), 9번째 프레임 폭발, 240×192 판정, 6초 지속 |
 | 자동 | 별빛 충전 | 평상시 J의 궤적과 별꽃이 같은 적에게 모두 맞거나, K 폭발 또는 L이 맞으면 별 1개가 돈다. 5개면 궁 쿨다운 6초를 줄인다. | 최대 5 `[STAR_CHARGE_MAX]`, 쿨 감소 6초 `[STAR_CHARGE_COOLDOWN_CUT]`, 궤도 반경 44 `[STAR_ORBIT_RADIUS]` | 별도 몸 동작 없음 | `passive/luna_star_charge.png`; `_update_star_orbit` | 그림 | 0~5개, 반경 44, 금백·보라, 회전 속도 2.2rad/s |
-| Brave `J` 1타 | Radiant Rush 잽 | 짧은 잽으로 다음 타를 바로 연다. | 피해 5, 34×28, 끝 70, 넉백 150, 0.075초; 0.045/0.10초 | `brave_combo` 1~2 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 작은 24 반경 별빛, 0.075초 판정 |
-| Brave `J` 2타 | Radiant Rush 보디 킥 | 더 멀리 전진하는 킥으로 3타를 바로 연다. | 피해 6, 38×30, 끝 80, 넉백 205, 0.085초; 0.055/0.11초 | `brave_combo` 3~4 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 27 반경 별빛, 0.085초 |
-| Brave `J` 3타 | Radiant Rush 회전 킥 | 넓은 마무리 킥으로 강하게 날린다. | 피해 10, 48×38, 끝 88, 넉백 455, 0.12초; 0.075/0.18초 | `brave_combo` 5~6 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 35 반경 별빛, 큰 전진과 넉백 |
+| Brave `J` 1타 | Radiant Rush 잽 | 짧은 잽으로 다음 타를 바로 연다. | 피해 5, 34×28, 끝 70, 넉백 150, 0.075초; 0.078/0.10초 | `brave_combo` 1~2 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 작은 24 반경 별빛, 0.075초 판정 |
+| Brave `J` 2타 | Radiant Rush 보디 킥 | 더 멀리 전진하는 킥으로 3타를 바로 연다. | 피해 6, 38×30, 끝 80, 넉백 205, 0.085초; 0.078/0.11초 | `brave_combo` 3~4 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 27 반경 별빛, 0.085초 |
+| Brave `J` 3타 | Radiant Rush 회전 킥 | 넓은 마무리 킥으로 강하게 날린다. | 피해 10, 48×38, 끝 88, 넉백 455, 0.12초; 0.078/0.18초 | `brave_combo` 5~6 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 35 반경 별빛, 큰 전진과 넉백 |
 | Brave `↑J` | 별빛 어퍼컷 | 자신과 상대를 위로 띄운다. | 피해 10, 42×46, 끝 y=-108, 넉백 430, 강제 발사 (±72,-620), 경직 0.28초; 자신 y속도 `-430×JUMP_SPEED` | `brave_upper` 전체 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 위쪽 궤적, 강제 발사 방향 |
 | Brave `공중 ↑J` | 공중 별빛 어퍼컷 | 공중에서 조금 약한 상승으로 같은 어퍼컷을 쓴다. | 공격 수치는 지상과 같음; 자신 y속도 `-330×JUMP_SPEED` | `brave_upper` 전체 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 공중 상승 속도, 상단 판정 |
 | Brave `↓J` | 낮은 다리 후리기 | 낮게 전진해 상대를 옆·위로 민다. | 피해 8, 48×28, 끝 82, 넉백 315, 0.10초 | `brave_low` 전체 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 낮은 y=-8 판정, 28 반경 별빛 |
@@ -108,7 +108,7 @@
 | `↓J` | 중력 압축 발구르기 | 현재 위치 주변에 원형 중력 폭발을 낸다. | 운동량 0→1: 반경 48→72, 피해 7→11, 넉백 260→480; 활성 0.14초 | `compression_stomp` 전체 | `nova_gravity_burst.png`, `nova_impact_star.png`; `NovaGravityBurst.configure` | 그림 | 실제 반경 `×COMBAT`, 운동량 색과 0.14초 |
 | `공중 ↓J` | 메테오 킥 | 먼저 아래를 차며 급강하하고, 착지 때 현재 운동량에 따른 원형 충격파를 낸다. 착지까지 행동이 잠긴다. | 발차기 피해 6→9, 40×46, 넉백 270→430, 0.12초; 낙하 y속도 560→760, 추가 중력 2600; 착지 반경 68→98, 피해 9→14, 넉백 350→610 | `meteor_kick` 전체 | 발차기 `nova_slash`; 착지 `nova_gravity_burst`, `nova_impact_star`, 공용 `landing_dust` | 그림 | 낙하 방향, 착지 반경·운동량, 지면 위치 |
 | `K` | 벡터 시프트 | 입력한 8방향으로 0.22초 동안 개인 중력을 바꿔 가속한다. 공격 판정은 없고 공중에서는 착지 전 1회다. | 0.22초 `[VECTOR_SHIFT_DURATION]`, 가속 `5400×MOVE` `[VECTOR_SHIFT_ACCELERATION]`, 최대 속도 `760×MOVE` `[VECTOR_SHIFT_MAX_SPEED]` | `vector_shift` 전체 | `attack_vfx/nova_k.png`, `nova_shift_dash.png`; `_start_vector_shift`, `_play_shift_flash` | 그림 | 가속 방향·0.22초, 뒤쪽 52px 잔광 |
-| `L` | 중력 제동 | 속도를 0으로 만들고 운동량을 원형 폭발로 바꾼다. 운동량 0.6 이상으로 적중하면 공중 K 1회를 회복한다. | 고정 0.08초 후 발동; 반경 58→112, 피해 6→15, 넉백 210→640, 활성 0.14초; 전체 잠금 0.42초 | `gravity_brake` 전체 | `attack_vfx/nova_l.png`, `nova_gravity_burst.png`, `nova_impact_star.png`; 회복 `nova_shift_ready.png` | 그림 | 반경 `×COMBAT`, 운동량 색, 회복 기준 0.6 |
+| `L` | 중력 제동 | 속도를 0으로 만들고 운동량을 원형 폭발로 바꾼다. 운동량 0.6 이상으로 적중하면 공중 K 1회를 회복한다. | 고정 0.2초 후 발동; 반경 58→112, 피해 6→15, 넉백 210→640, 활성 0.14초; 전체 잠금 0.54초 | `gravity_brake` 전체 | `attack_vfx/nova_l.png`, `nova_gravity_burst.png`, `nova_impact_star.png`; 회복 `nova_shift_ready.png` | 그림 | 반경 `×COMBAT`, 운동량 색, 회복 기준 0.6 |
 | `I` 1회 | 사건의 지평선·핵 생성 | 입력 방향 105px 위치에 중력핵을 만들고 230 기본 px 안의 적을 끈다. Nova의 이동은 계속된다. | 핵 거리 105 `[ULTIMATE_CORE_DISTANCE]`, 흡입 반경 `230×COMBAT` `[ULTIMATE_PULL_RADIUS]`, 힘 240 `[ULTIMATE_PULL_STRENGTH]` | `slingshot_start` 전체 | `vfx/nova_ult_core.png`; 없으면 `Polygon2D` 핵과 `Line2D` 고리 | 그림 | 핵 고정 위치, 흡입 반경, 회전 방향 |
 | `I` 2회 | 사건의 지평선·공전 | 현재 위치에서 핵 주위를 공전한다. 가까운 공전일수록 빠르고 다음 돌진이 길다. 몸 주위 공격 판정과 예상 궤적이 생긴다. | 공전 반경 최소 52, 조정 상한 260; 공전 속도 1080→560; 몸 판정 반경 `36×COMBAT`, 피해 7→10, 넉백 230→350; 궤적 길이=`launch_speed×duration` | `slingshot_start` 뒤 몸 회전 | 핵 `nova_ult_core`; 예상선·도착원은 `_create_ultimate_launch_preview`의 `Line2D`, 몸 판정은 `Polygon2D` | 그림 | 실제 공전 반경, 접선 방향, 예상 종착점; 전용 핵 그림과 도형 선을 함께 사용 |
 | `I` 3회 | 사건의 지평선·투석 | 접선으로 돌진한다. 시작 때 핵이 붕괴하고, 적·지형 충돌 또는 최대 시간에 최종 중력 폭발을 낸다. | 돌진 속도 `860→1460×WORLD`, 지속 0.30→0.46초; 몸 반경 `42×COMBAT`, 피해 15→22, 넉백 480→700; 핵 붕괴 반경 `118×COMBAT`, 피해 18, 넉백 300; 최종 반경 124→170 `×COMBAT`, 피해 34→46, 넉백 700→940 | 몸이 돌진 방향으로 회전 | `nova_launch_flash.png`, `nova_ult_burst.png`, `nova_gravity_burst.png`, `nova_impact_star.png` | 그림 | 접선·돌진력, 핵 붕괴와 최종 폭발의 서로 다른 중심·반경 |
@@ -131,7 +131,7 @@
 | `공중 ↑J` | 공중 상승 베기 | 공중에서 더 크게 떠오르며 같은 띄우기를 쓴다. | 공격은 `↑J`와 같음; 자신 y속도 최대 `-300×JUMP_SPEED` | `rising_slash` 전체 | `rio_slash` | 그림 | 공중 상승량, 상단 판정 |
 | `↓J` | 낮은 베기 | 지면 가까이를 길게 쓸어 낮게 띄운다. | 피해 7, 52×26, 끝 100, 넉백 300, 방향 (앞,-0.35), 0.09초 | `low_sweep` 전체 | `rio_slash` | 그림 | 낮은 y=-8 궤적, 얕은 위 방향 |
 | `공중 J` | 공중 베기 | 낙하를 조금 줄이고 전방을 벤다. | 피해 7, 40×30, 끝 98, 넉백 250, 0.085초; x속도 +110, y속도 ×0.8 | `air_slash` 전체 | `rio_slash` | 그림 | 공중 전방 궤적·0.085초 |
-| `공중 ↓J` | 낙하 찌르기 | 짧게 준비한 뒤 대각선 아래로 돌진한다. 착지까지 행동이 잠긴다. | 선딜 0.08초; 돌진 속도 `820×WORLD`, 0.22초; 피해 10, 38×50, 경로 180, 넉백 380, 0.20초 | `plunge` 전체 | `rio_slash`; 착지 `landing_dust` | 그림 | 대각선 방향, 돌진 경로·지속, 착지 잠금 |
+| `공중 ↓J` | 낙하 찌르기 | 짧게 준비한 뒤 대각선 아래로 돌진한다. 착지까지 행동이 잠긴다. | 선딜 0.238초; 돌진 속도 `820×WORLD`, 0.22초; 피해 10, 38×50, 경로 180, 넉백 380, 0.20초 | `plunge` 전체 | `rio_slash`; 착지 `landing_dust` | 그림 | 대각선 방향, 돌진 경로·지속, 착지 잠금 |
 | `K` | 차원의 베기 | 마지막 8방향 입력으로 최대 200 기본 px 순간이동하고 실제 지나간 경로를 벤다. 지형 앞에서 멈추며 공중에서는 착지 전 1회다. | 준비 0.06초 `[BLINK_HOLD]`, 후딜 0.20초 `[BLINK_RECOVERY]`; 거리 `200×WORLD=300` 화면 px `[BLINK_DISTANCE]`; 피해 10, 56×44, 넉백 340, 0.08초 | `dimension_slash` 전체 | `attack_vfx/rio_k.png`, `skill/rio_blink_trail.png`; `_dimension_slash`, `_play_blink_trail` | 그림 | 실제 이동한 거리·방향, 잘린 경로, 최대 300 화면 px |
 | `L` | 룬 방패·반격 | 0.5초 동안 받은 피해를 절반으로 줄이고 넉백·경직을 없앤다. 끝에 흡수 횟수와 넉백에 따라 전방 충격파를 돌려준다. 아무것도 못 받으면 0.32초 빈틈이 생긴다. | 지속 0.5초 `[RUNE_DURATION]`, 피해 배율 0.5 `[RUNE_DAMAGE_SCALE]`, 쿨 3초 `[RUNE_COOLDOWN]`; 반격 피해 `min(6+3×횟수,15)`, 넉백 `min(320+흡수넉백×0.5,820)`, 판정 70×84, 끝 110, 0.12초 | `rune_shield` 전체; 반격은 기본 `attack` | `attack_vfx/rio_l.png`, `rio_rune_guard.png`, `rio_rune_burst.png`; `_show_rune`, `_play_rune_burst` | 그림 | 0.5초 육각 방패, 흡수 횟수, 반격 40 기본 반경·전방 방향 |
 | `I` | 무한 오버드라이브 | 보석 검 6자루가 0.55초 공전한 뒤 0.07초 간격으로 발사된다. 입력 방향, 같은 렐름의 가장 가까운 적, 바라보는 방향 순으로 조준한다. 피격되면 남은 검이 사라진다. | 6자루 `[OVERDRIVE_SWORDS]`, 공전 0.55초 `[OVERDRIVE_ORBIT_TIME]`, 간격 0.07초 `[OVERDRIVE_FIRE_GAP]`, 공전 반경 `58×COMBAT`; 앞 5자루 피해 11 `[OVERDRIVE_SWORD_DAMAGE]`·넉백 320, 마지막 피해 18 `[OVERDRIVE_LAST_DAMAGE]`·넉백 520; 판정 `28×28×COMBAT`, 속도 `980×COMBAT`, 수명 0.62초, 자동조준 `720×COMBAT` | `infinity_overdrive` 전체 | `rio_gem_sword.png`, `vfx/rio_ult_circle.png`, 적중 `vfx/rio_ult_impact.png`; `_make_gem_sword`, `_fire_gem_sword` | 그림 | 6색·6자루 순서, 공전 반경, 발사 간격, 마지막 검의 더 강한 밝기·충격 |
@@ -139,6 +139,32 @@
 | Guard | 공용 방어/패리 | 룬 방패 L과 별개인 공용 지상 방어다. | 공용 조작 절 참고 | `shield` 전체 | `guard_bubble.png`, `parry_flash.png` | 공용 | 방향, 패리 창, 감소율; 룬 방패와 시각적으로 구분 |
 
 특수 상태: 룬 방패는 공용 Guard/패리와 별도다. 흡수할 때 마지막 공격자 쪽으로 몸을 돌리고, 여러 번 맞을수록 반격이 커진다. 무한 오버드라이브의 여섯 검은 빨강·주황·초록·하늘·보라·분홍 순으로 돌며 마지막 검만 피해와 넉백이 더 크다.
+
+## 선딜 (2026-10-15, D39)
+
+모션 뷰어에서 채택한 속도대로 타격 전 그림이 보이도록 선딜을 늘렸다(사용자: "표의 필요 값대로 전부 늘려줘"). 필요한 값은 `타격 전 그림 수 ÷ 채택 fps`다. 6장 줄은 2장이고, 2장씩 끊는 콤보는 1장이다. 남·여 값이 다르면 더 느린 쪽을 따랐다. 후딜은 그대로이고, 그만큼 공격 전체가 길어졌다.
+
+| 캐릭터 | 기술 | 선딜 (전 → 후, 초) |
+| --- | --- | --- |
+| Frey | 공중 J | 0.08 → 0.106 |
+| Frey | 강스파이크 | 0.055 → 0.127 `[SPIKE_STARTUP]`, 잠금 0.22 → 0.292 |
+| Luna | J, 공중 J | 0.10, 0.09 → 0.112 |
+| Brave Luna | J 1·2·3타 | 0.045, 0.055, 0.075 → 0.078 |
+| Brave Luna | ↑J·공중 ↑J, ↓J, 공중 ↓J, 공중 J | 0.06 → 0.098, 0.06 → 0.111, 0.07 → 0.111, 0.05 → 0.104 |
+| Brave Luna | K Comet Drive, L Luna Breaker | 0.07 → 0.104, 0.12 → 0.156 |
+| Nova | J, 공중 J | 0.065 → 0.076, 0.05 → 0.077 |
+| Nova | ↑J, 공중 ↑J, ↓J, 공중 ↓J | 0.07, 0.06 → 0.087, 0.10 → 0.102, 0.07 → 0.089 |
+| Nova | L 중력 제동 | 제자리 고정 0.08 → 0.2 `[BRAKE_STARTUP]`, 잠금 0.42 → 0.54 |
+| Nova | I 핵 생성 | 판정 없음. 몸 동작만 0.16 → 0.327초(타격 그림 0.22초 `[SLINGSHOT_POSE_STRIKE]`), 잠금 0.16 그대로 |
+| Rio | J 1·2타, 공중 J | 0.05 → 0.079, 0.05 → 0.077 |
+| Rio | ↑J·공중 ↑J, ↓J | 0.07 → 0.103, 0.08 → 0.111 |
+| Rio | 공중 ↓J 낙하 찌르기 | 0.08 → 0.238 `[PLUNGE_STARTUP]`, 잠금 0.5 → 0.658 |
+| Rio | I 무한 오버드라이브 | 판정 없음. 몸 동작만 0.18 → 0.401초(타격 그림 0.28초 `[OVERDRIVE_POSE_STRIKE]`), 잠금·검 공전 0.55초 그대로 |
+
+- 표(`reports/motion-speeds-2026-10-15.md` 3-2절)에 없던 같은 경우도 맞췄다: Luna 공중 J, Brave J 2·3타, Nova 공중 ↑J·↓J, Rio J 2타.
+- 아직 맞추지 않은 것: 이동 기술 K. Nova 벡터 시프트(타격 그림 0.073초, 필요 0.113초)와 Rio 차원의 베기(0.086초, 필요 0.134초)는 사용자 판단을 기다린다.
+- Luna 별꽃이 상대를 따라가는 하한 `[ECHO_HOME_MIN]`을 75 → 72로 낮췄다. 선딜이 0.012초 길어져 Luna가 약 3px 더 걸어 들어가므로, 110px에서 걸어 들어가며 칠 때 예전 여유(약 9px)를 되돌린 것이다. 별꽃 그림의 크기·모양과는 상관없어 다시 그릴 것은 없다.
+- 이펙트는 판정 순간에 나오므로 따로 고칠 것이 없다. 위 하한 말고는 "이펙트가 따라야 할 값"이 바뀌지 않았다.
 
 ## 이펙트 스프라이트 작업 목록 (준비)
 

@@ -7,6 +7,8 @@ const DASH_HOLD_TIME := 0.13
 const DASH_SPEED := 760.0
 const DASH_TIME := 0.18
 const RISING_FOLLOWUP_WINDOW := 0.18
+## Spike start-up: two drawings before the strike at the row's adopted 15.75 fps (D39; was 0.055).
+const SPIKE_STARTUP := 0.127
 ## Valkyrie Descent (tuned 2026-10-08: 4.5 -> ~12 damage per cast after the match scale).
 const ULTIMATE_WAVE_DAMAGE := 26.0
 const ULTIMATE_WAVE_REACH := 240.0
@@ -66,7 +68,7 @@ func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 			_start_attack(0.17, 0.29, Callable(self, "_down_cut"), Vector2i(2, 3), &"attack_down")
 		"air_side":
 			_reset_combo()
-			_start_attack(0.08, 0.17, Callable(self, "_air_slash"), Vector2i(1, 2), &"attack_air_side")
+			_start_attack(0.106, 0.17, Callable(self, "_air_slash"), Vector2i(1, 2), &"attack_air_side")
 		_:
 			# Each hit plays its own two frames of the chain row (wind-up, cut): a quick cut, a
 			# second cut, the wide finisher. The base attack row holds the same frames at 128 px.
@@ -449,14 +451,14 @@ func _spike_start() -> void:
 	rising_followup_timer = 0.0
 	_reset_combo()
 	_end_pursuit()
-	attack_lock_timer = 0.22
-	_play_move_sprite_pose(&"spike_followup", 2, 3, 0.22)
+	attack_lock_timer = SPIKE_STARTUP + 0.165
+	_play_move_sprite_pose(&"spike_followup", 2, 3, SPIKE_STARTUP + 0.165, -1, -1, SPIKE_STARTUP)
 	action_locked_until_land = true
 	current_attack_started_airborne = true
 	velocity.x += facing * 150.0
 	velocity.y = minf(velocity.y, -110.0 * GAME_SCALE.JUMP_SPEED)
 	_play_attack_windup()
-	if not await _wait_action(0.055):
+	if not await _wait_action(SPIKE_STARTUP):
 		return
 	if is_defeated or hitstun_timer > 0.0:
 		return
