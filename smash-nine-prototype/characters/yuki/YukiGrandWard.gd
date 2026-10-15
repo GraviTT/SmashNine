@@ -66,17 +66,18 @@ func _ready() -> void:
 		core.modulate.a = 0.0
 		for talisman in talismans:
 			talisman.visible = false
-	# Dedicated 1:1 ward art replaces the remaining procedural ring and the old combined seal.
-	# Both stay intact as fallbacks when the file is absent or F2 selects prototype art.
-	var ward_art := VFX.spawn(self, "yuki_grand_ward", Vector2.ZERO, Vector2.ONE, true, 0, Color(1, 1, 1, SEAL_ACTIVE_ALPHA), true)
-	if ward_art != null:
-		ward_art.z_as_relative = false
-		ring.visible = false
-		core.modulate.a = 0.0
-		if seal != null:
-			seal.visible = false
-		for talisman in talismans:
-			talisman.visible = false
+	# The seal the user adopted (CODEX-ART-67, 2026-10-15) is the ward's look. The 1:1 ring art
+	# (skill/yuki_grand_ward.png, 2026-10-10) only stands in when the seal file is absent: drawn
+	# over the seal it hid it and left a faint circle ("Yuki의 필살기 스프라이트가 사라졌다", user
+	# 2026-10-15). With F2's prototype art both are absent and the procedural ring shows.
+	if seal == null:
+		var ward_art := VFX.spawn(self, "yuki_grand_ward", Vector2.ZERO, Vector2.ONE, true, 0, Color(1, 1, 1, SEAL_ACTIVE_ALPHA), true)
+		if ward_art != null:
+			ward_art.z_as_relative = false
+			ring.visible = false
+			core.modulate.a = 0.0
+			for talisman in talismans:
+				talisman.visible = false
 
 func configure(new_owner: Node, new_realm_index: int) -> void:
 	owner_node = new_owner

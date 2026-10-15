@@ -64,7 +64,8 @@ def main() -> int:
         if (old["form"], old["move"]) not in captured:
             kept.append(old)
     preserved_j_count = len(kept)
-    manifest = {"version": 2, "fps": fps, "clips": kept}
+    fresh: dict[tuple[str, str], dict] = {}
+    manifest = {"version": 2, "fps": fps, "clips": []}
     total_bytes = 0
     differing_pairs = 0
 
@@ -108,7 +109,7 @@ def main() -> int:
                         )
         # Only the around scenes must show an effect; a J move may draw none at 30 fps (Frey and Yuki ↓J).
         differing_pairs += int(differs or clip.get("group", "around") != "around")
-        manifest["clips"].append(
+        fresh[(form, move)] = (
             {
                 "group": clip.get("group", "around"),
                 "form": form,
@@ -127,6 +128,12 @@ def main() -> int:
             }
         )
 
+    # A recaptured clip keeps its place in the list (the viewer shows clips in this order); a new
+    # one goes to the end (2026-10-15: a scene recaptured alone had moved to the end of its group).
+    for old in previous.get("clips", []):
+        key = (old["form"], old["move"])
+        manifest["clips"].append(fresh.pop(key) if key in fresh else old)
+    manifest["clips"].extend(fresh.values())
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if differing_pairs != len(raw["clips"]):
         raise RuntimeError(

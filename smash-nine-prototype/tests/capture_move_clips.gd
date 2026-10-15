@@ -2,6 +2,7 @@ extends SceneTree
 ## Windowed capture of every J variant at the speed and timing used by the game.
 ## Usage (from smash-nine-prototype/):
 ## godot --path . --fixed-fps 60 -s tests/capture_move_clips.gd
+## Only some scenes: add `-- --only=yuki/ultimate,frey/air-j` (form/move); the encoder keeps the rest.
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -98,8 +99,16 @@ var clips_root := ""
 var capture_entries: Array[Dictionary] = []
 var suppress_fx := false
 var scenario_state: Dictionary = {}
+## Scenes to recapture ("form/move"); empty for all.
+var only := PackedStringArray()
+
+func _wanted(form_id: String, move_id: String) -> bool:
+	return only.is_empty() or only.has("%s/%s" % [form_id, move_id])
 
 func _initialize() -> void:
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--only="):
+			only = arg.trim_prefix("--only=").split(",", false)
 	clips_root = ProjectSettings.globalize_path("res://../art/clips")
 	DirAccess.make_dir_recursive_absolute(clips_root)
 	RenderingServer.set_default_clear_color(Color("101522"))
@@ -112,6 +121,8 @@ func _run() -> void:
 	# groups (2026-10-15: TOOL-02 had dropped the J loop, so adopted J effects were never recaptured).
 	for form in FORMS:
 		for move in MOVES:
+			if not _wanted(form.id, move.id):
+				continue
 			var j_pair: Dictionary = {}
 			for mode in ["fx", "nofx"]:
 				seed(SEED)
@@ -131,6 +142,8 @@ func _run() -> void:
 				"size": [CLIP_SIZE.x, CLIP_SIZE.y],
 			})
 	for scenario in AROUND_SCENARIOS:
+		if not _wanted(scenario.form, scenario.move):
+			continue
 		var pair: Dictionary = {}
 		for mode in ["fx", "nofx"]:
 			seed(SEED)

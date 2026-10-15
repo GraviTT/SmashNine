@@ -78,10 +78,14 @@ func _run_original_checks() -> void:
 		_fail("Rio gem sword did not use rio_gem_sword.png")
 	sword.free()
 
+	# Yuki's ultimate shows the adopted seal (CODEX-ART-67); the thin ring art used to hide it
+	# (user 2026-10-15: "Yuki의 필살기 스프라이트가 사라졌다").
 	var ward: Node = load("res://characters/yuki/YukiGrandWard.gd").new()
 	arena.add_child(ward)
 	ward.set_physics_process(false)
-	_expect_vfx(ward, "yuki_grand_ward")
+	_expect_vfx(ward, "yuki_ult_seal")
+	if ward.seal == null or not ward.seal.visible or _has_vfx(ward, "yuki_grand_ward"):
+		_fail("Yuki's grand ward should show its seal art, not the ring art over it")
 
 	luna.is_guarding = true
 	luna._update_guard_visual()
