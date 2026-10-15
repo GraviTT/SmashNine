@@ -279,6 +279,8 @@ func _play_character_row(fighter: Node, character_id: String, row: String) -> vo
 				"dimension_slash": fighter.perform_skill_one()
 				"rune_shield": fighter.perform_skill_two()
 				"infinity_overdrive": fighter.perform_ultimate()
+				# New for Rio (2026-10-15): a strong launch plays the tumble row.
+				"tumble": fighter.apply_forced_launch_hit(null, 1.0, Vector2(620.0, -260.0), 0.25, 620.0, Vector2.RIGHT)
 
 ## D34: a move sheet may use 192-px cells so big poses keep the idle head size; its frames stay
 ## 192 px (drawn 1:1, centred), and a cell smaller than the main sheet's is refused.

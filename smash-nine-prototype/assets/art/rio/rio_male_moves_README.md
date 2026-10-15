@@ -1,36 +1,29 @@
-# Rio male move sheet
+# Rio male sheets (redrawn 2026-10-15, D33–D37)
 
-`rio_male_moves_sheet.png` is Rio's male-body per-move atlas. All attack poses use the
-live idle body's scale rather than the shrunken scale of the older attack/shield rows.
+Both sheets were rebuilt from the candidates in `art/bakeoff/rio/rio_male-*` (cards `design/tasks/CODEX-ART-60.md`, `CODEX-ART-61.md`, `CODEX-ART-64.md`; night routine `routine/2026-10-15-night/`) with `tools/sprite_pipeline/assemble.py`, pixel for pixel. The method is the Frey method (`reports/frey-rework-2026-10-14.md`); the walk is the 8-frame walk (`reports/walk-8frame-2026-10-15.md`).
 
-## Contract
+## `rio_male_sheet.png`: base sheet (128 px, feet y=120, rows `Rio.SHEET_ROWS`, shared by both bodies)
 
-- Canvas: 768×1024 RGBA PNG
-- Grid: 6 columns × 8 rows, 128×128 per cell
-- Facing right; used frames left-aligned; unused cells transparent
+| Row | Frames | FPS | Source |
+| --- | ---: | ---: | --- |
+| idle | 6 | 6.3 (D37) | `rio_male-idle-v2` (the anchor, 3 heads) |
+| walk | 8 | 13.3, two sheet rows | `rio_male-walk-v1` |
+| jump | 1 | 1 | `rio_male-jump-v1` |
+| fall | 1 | 1 | `rio_male-fall-v1` |
+| attack | 6 | 21 | `rio_male-attack-v1`: a fallback only |
+| shield | 6 | 12 | `rio_male-shield-v1` |
+| hurt | 1 | 1 | `rio_male-hurt-v1` |
 
-| Row | Animation | Frames | Timing / preview fps | Input and move | Pose sequence |
-|---:|---|---:|---|---|---|
-| 0 | `mana_combo` | 6 | combo-fit / 18fps preview | ground J chain | guard → slash 1 → slash 2 wind-up → slash 2 → wave finisher → recover |
-| 1 | `rising_slash` | 4 | 0.20s / 20fps | up J, air up J | crouch → rise → overhead active → air recover |
-| 2 | `low_sweep` | 4 | 0.20s / 20fps | ground down J | lower → pivot → ground sweep → recover |
-| 3 | `air_slash` | 4 | 0.15s / 26.7fps | air side J | tuck → draw → horizontal active → recoil |
-| 4 | `plunge` | 5 | 0.50s / 10fps | air down J | turn → chamber → dive → extension → landing lock |
-| 5 | `dimension_slash` | 5 | 0.26s / 19.2fps | K · Dimension Slash | focus → draw → vanish cut → reappear → brake |
-| 6 | `rune_shield` | 6 | 0.50s / 12fps | L · Rune Shield | set → raise → rune → full shield → absorb → release |
-| 7 | `infinity_overdrive` | 6 | orbit-fit / 11fps preview | I · Infinity Overdrive start | focus → raise → one sword → six orbit → command → ready |
+## `rio_male_moves_sheet.png`: move sheet (192 px, feet y=152, D34)
 
-## Source and prompt
-
-- Built-in ImageGen source: `rio_male_moves_source.png` (1160×1355).
-- References: `rio_male_sheet.png` and `rio_male_illustration.png`.
-- Prompt invariant: same male Rio, academy coat, cyan diamond, silver/cyan sword and
-  cape tails; full idle body scale; eight ordered rows; hard alpha; no text/background.
-
-## Processing and checks
-
-Godot `Image` processing uses dynamic gutters and nearest reduction only (scale 0.6853).
-The neutral scale anchor is +1px from live idle dark-body height and partial alpha is
-zero. `dimension_slash` deliberately includes a body-absent streak frame; the transition
-and cell-edge clipping of its long trail need human judgement.
-
+| Row | Frames | FPS | Move | Source |
+| --- | ---: | ---: | --- | --- |
+| `mana_combo` | 6 | 18 | ground J chain: slash, backhand, finisher (the game plays 1–2, 3–4, 5–6) | `rio_male-mana_combo-v1` |
+| `rising_slash` | 6 | 30 | up J, air up J: a rising overhead cut | `rio_male-rising_slash-v1` |
+| `low_sweep` | 6 | 30 | ground down J: a low sweep | `rio_male-low_sweep-v1` |
+| `air_slash` | 6 | 40 | aerial side J: a horizontal cut | `rio_male-air_slash-v1` |
+| `plunge` | 6 | 12 | aerial down J: a diving plunge | `rio_male-plunge-v1` |
+| `dimension_slash` | 6 | 23 | K: the blink slash | `rio_male-dimension_slash-v1` |
+| `rune_shield` | 6 | 12 | L: the rune shield guard | `rio_male-rune_shield-v1` |
+| `infinity_overdrive` | 6 | 11 | ultimate start: sword raised, command | `rio_male-infinity_overdrive-v1` |
+| `tumble` | 6 | 21, loop | **new** strong-launch hitstun | `rio_male-tumble-v1` |

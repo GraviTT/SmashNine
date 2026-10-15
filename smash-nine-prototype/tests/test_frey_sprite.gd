@@ -4,9 +4,8 @@ const MAIN_SCRIPT := preload("res://scripts/Main.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
-const SHARED_LAYOUT := {"idle": 4, "walk": 6, "jump": 1, "fall": 1, "attack": 4, "shield": 6, "hurt": 1}
 ## Redrawn with 6-frame motions (D33, 2026-10-14) and the 8-frame walk (user 2026-10-15): Frey, Luna
-## and Brave Luna, Yuki, Nova (both bodies).
+## and Brave Luna, Yuki, Nova and Rio (both bodies each).
 const FREY_LAYOUT := {"idle": 6, "walk": 8, "jump": 1, "fall": 1, "attack": 6, "shield": 6, "hurt": 1}
 const LUNA_LAYOUT := FREY_LAYOUT
 const YUKI_LAYOUT := FREY_LAYOUT
@@ -33,7 +32,7 @@ func _check_characters() -> bool:
 		"yuki": YUKI_LAYOUT,
 		"luna": LUNA_LAYOUT,
 		"nova": NOVA_LAYOUT,
-		"rio": SHARED_LAYOUT
+		"rio": FREY_LAYOUT
 	}
 	for character_id in expected_counts:
 		var player := PLAYER_FACTORY.create(character_id)

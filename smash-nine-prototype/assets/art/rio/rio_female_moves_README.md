@@ -1,39 +1,29 @@
-# Rio female move sheet
+# Rio female sheets (redrawn 2026-10-15, D33–D37)
 
-`rio_female_moves_sheet.png` is the female-body counterpart to Rio's move atlas and
-shares the male row table and animation beats. It preserves the live idle body's scale.
+Both sheets were rebuilt from the candidates in `art/bakeoff/rio/rio_female-*` (cards `design/tasks/CODEX-ART-60.md`, `CODEX-ART-61.md`, `CODEX-ART-64.md`; night routine `routine/2026-10-15-night/`) with `tools/sprite_pipeline/assemble.py`, pixel for pixel. The method is the Frey method (`reports/frey-rework-2026-10-14.md`); the walk is the 8-frame walk (`reports/walk-8frame-2026-10-15.md`).
 
-## Contract
+## `rio_female_sheet.png`: base sheet (128 px, feet y=120, rows `Rio.SHEET_ROWS`, shared by both bodies)
 
-- Canvas: 768×1024 RGBA PNG
-- Grid: 6 columns × 8 rows, 128×128 per cell
-- Facing right; used frames left-aligned; unused cells transparent
+| Row | Frames | FPS | Source |
+| --- | ---: | ---: | --- |
+| idle | 6 | 6.3 (D37) | `rio_female-idle-v2` (the anchor, 3 heads) |
+| walk | 8 | 13.3, two sheet rows | `rio_female-walk-v3` |
+| jump | 1 | 1 | `rio_female-jump-v1` |
+| fall | 1 | 1 | `rio_female-fall-v1` |
+| attack | 6 | 21 | `rio_female-attack-v1`: a fallback only |
+| shield | 6 | 12 | `rio_female-shield-v1` |
+| hurt | 1 | 1 | `rio_female-hurt-v1` |
 
-| Row | Animation | Frames | Timing / preview fps | Input and move |
-|---:|---|---:|---|---|
-| 0 | `mana_combo` | 6 | combo-fit / 18fps preview | ground J chain |
-| 1 | `rising_slash` | 4 | 0.20s / 20fps | up J, air up J |
-| 2 | `low_sweep` | 4 | 0.20s / 20fps | ground down J |
-| 3 | `air_slash` | 4 | 0.15s / 26.7fps | air side J |
-| 4 | `plunge` | 5 | 0.50s / 10fps | air down J |
-| 5 | `dimension_slash` | 5 | 0.26s / 19.2fps | K · Dimension Slash |
-| 6 | `rune_shield` | 6 | 0.50s / 12fps | L · Rune Shield |
-| 7 | `infinity_overdrive` | 6 | orbit-fit / 11fps preview | I · Infinity Overdrive start |
+## `rio_female_moves_sheet.png`: move sheet (192 px, feet y=152, D34)
 
-The pose sequence for each row is identical to `rio_male_moves_README.md`.
-
-## Source and prompt
-
-- Built-in ImageGen source: `rio_female_moves_source.png` (1374×1145).
-- References: `rio_female_sheet.png` and `rio_female_illustration.png`.
-- Prompt invariant: preserve the long high ponytail, athletic feminine body, academy
-  outfit, cyan diamond, silver/cyan sword and cape tails; full idle scale; same male
-  beats; hard alpha; transparent; no text or guides.
-
-## Processing and checks
-
-Godot `Image` processing uses dynamic gutters and nearest reduction only (scale 0.7869).
-The neutral scale anchor is +1px from live idle dark-body height and partial alpha is
-zero. The long ponytail is intentionally a major silhouette feature. Human review should
-focus on its motion continuity and the dense six-sword ultimate row at 1x.
-
+| Row | Frames | FPS | Move | Source |
+| --- | ---: | ---: | --- | --- |
+| `mana_combo` | 6 | 18 | ground J chain: slash, backhand, finisher (the game plays 1–2, 3–4, 5–6) | `rio_female-mana_combo-v1` |
+| `rising_slash` | 6 | 30 | up J, air up J: a rising overhead cut | `rio_female-rising_slash-v1` |
+| `low_sweep` | 6 | 30 | ground down J: a low sweep | `rio_female-low_sweep-v1` |
+| `air_slash` | 6 | 40 | aerial side J: a horizontal cut | `rio_female-air_slash-v3` |
+| `plunge` | 6 | 12 | aerial down J: a diving plunge | `rio_female-plunge-v3` |
+| `dimension_slash` | 6 | 23 | K: the blink slash | `rio_female-dimension_slash-v1` |
+| `rune_shield` | 6 | 12 | L: the rune shield guard | `rio_female-rune_shield-v1` |
+| `infinity_overdrive` | 6 | 11 | ultimate start: sword raised, command | `rio_female-infinity_overdrive-v1` |
+| `tumble` | 6 | 21, loop | **new** strong-launch hitstun | `rio_female-tumble-v1` |

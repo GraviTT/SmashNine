@@ -31,15 +31,21 @@ const GEM_COLORS: Array[Color] = [
 	Color(1.0, 0.35, 0.45), Color(1.0, 0.75, 0.3), Color(0.5, 1.0, 0.5),
 	Color(0.35, 0.85, 1.0), Color(0.6, 0.5, 1.0), Color(1.0, 0.5, 0.95)
 ]
+## Redrawn 2026-10-15 for both bodies (D33-D37): every motion is 6 frames with its old length
+## (fps x 6 / old frames), the idle at 6.3 fps (D37), the walk 8 frames at 13.3 fps (two sheet rows).
+## The base `attack` row is only a fallback (J plays mana_combo).
+const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
+## 192-px cells (D34). `tumble` is new for Rio: strong launches play it instead of the hurt frame.
 const MOVE_SHEET_ROWS := [
 	["mana_combo", 6, 18.0, false],
-	["rising_slash", 4, 20.0, false],
-	["low_sweep", 4, 20.0, false],
-	["air_slash", 4, 26.7, false],
-	["plunge", 5, 10.0, false],
-	["dimension_slash", 5, 19.2, false],
+	["rising_slash", 6, 30.0, false],
+	["low_sweep", 6, 30.0, false],
+	["air_slash", 6, 40.0, false],
+	["plunge", 6, 12.0, false],
+	["dimension_slash", 6, 23.0, false],
 	["rune_shield", 6, 12.0, false],
 	["infinity_overdrive", 6, 11.0, false],
+	["tumble", 6, 21.0, true],
 ]
 
 var combo_step := 0
@@ -59,6 +65,9 @@ func configure_character_sprite() -> void:
 
 func get_move_sheet_rows() -> Array:
 	return MOVE_SHEET_ROWS
+
+func get_sheet_rows() -> Array:
+	return SHEET_ROWS
 
 func perform_basic_attack(attack_type: String, _direction: Vector2) -> void:
 	match attack_type:
