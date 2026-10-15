@@ -3,14 +3,14 @@
   "url": "https://smash-nine-prototype.tt9.chatgpt.site",
   "registered_site_origin": "https://smash-nine-prototype.tt9.chatgpt.site",
   "access": "owner_only",
-  "version_number": 4,
-  "version_id": "appgprj_6ac65f43555481918a37077e8c63c66c~appgver_25f75f34c3888191bad23bf2d5b50eab",
-  "deployment_id": "appgdep_6ac9ae5d88f8819190f541cd49f5b2da",
-  "sites_source_commit_sha": "e47eb7714c27cc6a84cef46a7ede2fbaf4039d5c",
-  "game_source_commit_sha": "f69d4956ac97c35be774e7fd84287e3de3adb2a1",
+  "version_number": 5,
+  "version_id": "appgprj_6ac65f43555481918a37077e8c63c66c~appgver_a4a4b56438708191a2f59346ddb4c531",
+  "deployment_id": "appgdep_6ad050e293dc81919d9bf4cd88611e55",
+  "sites_source_commit_sha": "5da8abbea01e368935f4fe7d35b575632584ce0d",
+  "game_source_commit_sha": "cde86ef5bec431fab5488e2f1015d3b986bb58de",
   "build_command": "powershell -ExecutionPolicy Bypass -File tools/build_web.ps1",
-  "deployed_at_utc": "2026-10-10T03:18:07.065381Z",
-  "verified_at_utc": "2026-10-10T03:18:22.0322948Z",
+  "deployed_at_utc": "2026-10-15T04:05:20.041991Z",
+  "verified_at_utc": "2026-10-15T04:05:37.2727405Z",
   "verified_routes": [
     {
       "route": "/",
@@ -22,28 +22,42 @@
   "status": "deployed_not_browser_verified",
   "build": {
     "output_directory": "build/web",
+    "file_count": 19,
     "zip_path": "build/SmashNine-web.zip",
-    "zip_size_bytes": 16738639,
-    "zip_size_mib": 15.96,
-    "largest_file": "index.wasm.part0",
+    "zip_size_bytes": 26706962,
+    "zip_size_mib": 25.47,
+    "largest_file": "index.pck.part0",
     "largest_file_size_bytes": 5242880,
     "largest_file_size_mib": 5,
     "largest_file_at_or_below_5_mib": true,
     "index_wasm_present": false,
     "index_wasm_part_count": 8,
+    "index_wasm_total_size_bytes": 39509339,
     "index_pck_present": false,
-    "index_pck_part_count": 2,
-    "index_pck_total_size_bytes": 6595412
+    "index_pck_part_count": 4,
+    "index_pck_total_size_bytes": 16592952
   },
   "deployment_archive": {
-    "path": "build/sites-deploy-v4.tar.gz",
-    "size_bytes": 16765726,
-    "size_mib": 15.99,
-    "storage_content_hash": "sha256:93eb1cdd34ac4419ca1f14af802c9bc259d92ae81e44a434dc5d69c081cf48b8",
-    "stored_file_count": 18
+    "path": "build/sites-deploy-v5.tar.gz",
+    "size_bytes": 26729038,
+    "size_mib": 25.49,
+    "storage_content_hash": "sha256:0821010b0dbfdae53d583d36e014bdcc198947dc05ef74b7d78ef558c733cdb4",
+    "stored_size_bytes": 56453120,
+    "stored_file_count": 20
+  },
+  "release_notes": {
+    "since_version": 4,
+    "source": "user_provided",
+    "items": [
+      "Frey, Luna, Brave Luna, Yuki, Nova 스프라이트 재작화(6프레임 동작, 192px 기술 시트)",
+      "Rio를 제외한 전 캐릭터 8프레임 걷기 적용",
+      "Luna 궁극기 변신 모션 추가",
+      "대기 동작 6.3fps 적용",
+      "Rio를 포함한 새 메인 아트 적용"
+    ]
   },
   "browser_verification": {
     "performed": false,
-    "reason": "이번 요청은 f69d495 빌드 및 기존 Sites 프로젝트의 4번째 버전 배포만 수행"
+    "reason": "이번 요청은 cde86ef 빌드 및 기존 Sites 프로젝트의 5번째 버전 배포만 수행"
   }
 }
