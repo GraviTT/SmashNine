@@ -3,16 +3,29 @@
 캐릭터 6명(Frey, Luna, Brave Luna, Nova 남·여, Rio 남·여, Yuki)과 몬스터 18종의 모든 동작을 게임 시트 그대로 재생하는 페이지.
 
 - 주소: https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU (소유자 전용 Artifact)
-- 기능: 캐릭터·체형 고르기, 기본 동작과 기술 동작 전체를 한 번에 재생, 큰 화면에서 재생·멈춤·프레임 넘기기(`Space`, `←` `→`, `↑` `↓`), 속도 0.25~2배, 배율 1~4배, 배경(체크·어둡게·밝게), 가이드(발 기준선 y=120, 칸 테두리, 여백 4px), 프레임 띠, 시트 파일·줄 번호·fps·길이. 후보가 있는 줄은 현재 그림과 모든 후보를 같은 프레임 번호·배율·가이드로 나란히 재생한다.
+- 기능: 캐릭터·체형 고르기, 기본 동작과 기술 동작 전체를 한 번에 재생, 큰 화면에서 재생·멈춤·프레임 넘기기(`Space`, `←` `→`, `↑` `↓`), 줄별 속도 0.5~1.5배 미리보기와 변경값 복사, 배율 1~4배, 배경(체크·어둡게·밝게), 가이드(발 기준선 y=120, 칸 테두리, 여백 4px), 프레임 띠, 시트 파일·줄 번호·fps·길이. 후보가 있는 줄은 현재 그림과 모든 후보를 같은 프레임 번호·배율·가이드로 나란히 재생한다. 캐릭터의 **게임 화면**에는 실제 기본 공격 클립과 이펙트 켬/끔 전환이 있다.
 - 줄 정의는 게임 코드에서 읽는다: `PlayerBase.ORIGINAL_SHEET_ROWS`, 각 캐릭터의 `MOVE_SHEET_ROWS`(Brave는 `BRAVE_MOVE_SHEET_ROWS`), `RealmMonster.ART_ROWS`. 기술 이름표는 `*_moves_README.md` 표의 Move 열.
 
 ## 그림이 바뀌었을 때
 
 1. 저장소 루트에서 `node tools/motion_viewer/build.mjs` → `tools/motion_viewer/dist/`(index.html + sheets/, git에 안 올림)
 2. 같은 Artifact에 다시 게시: `dist/index.html`을 위 주소로 publish, `root`는 `dist`, `files`는 `dist/files.json`의 목록. 주소는 그대로 유지된다.
-3. 로컬로 볼 때: `.claude/launch.json`의 `motion-viewer`(포트 8071, `node tools/serve_web.js tools/motion_viewer/dist 8071`).
+3. 로컬로 볼 때: `node tools/serve_web.js tools/motion_viewer/dist 8073`.
 
 새 캐릭터는 `build.mjs`의 `CHARACTERS` 목록에 한 줄을 더한다.
+
+## 실제 기본 공격 클립 갱신
+
+기술 수치·동작 시트·공격 이펙트가 바뀌면 저장소 루트가 아니라 `smash-nine-prototype/`에서 아래를 실행한다. 캡처는 창을 열며 한 번에 하나만 실행한다. 첫 명령은 새 클론에서 한 번이면 된다.
+
+```powershell
+$env:PYTHONDONTWRITEBYTECODE = '1'
+$godot = 'C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_win64_console.exe'
+& $godot --headless --path . --import
+& $godot --path . --fixed-fps 60 -s tests/capture_move_clips.gd
+```
+
+`capture_move_clips.gd`는 Frey, Luna, Brave Luna, Yuki, Nova 남성, Rio 남성의 지상 J(연계 전 타), 지상 ↑J/↓J, 공중 J/↑J/↓J를 30fps·960×540으로 각각 이펙트 켬/끔 캡처한다. 마지막에 Pillow로 손실 없는 애니메이션 WebP 72개와 `art/clips/manifest.json`을 만든다. 이어서 저장소 루트에서 `node tools/motion_viewer/build.mjs`를 다시 실행한다.
 
 ## 동작 겨루기 후보
 
