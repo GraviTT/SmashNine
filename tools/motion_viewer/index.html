@@ -284,7 +284,9 @@ function renderSpeedControl() {
 	const a = anims[state.anim]; if (!a) return;
 	const value = rowSpeed(a), effective = a.row.fps * value;
 	$("rowSpeed").value = String(value);
-	$("rowSpeedValue").textContent = `×${value.toFixed(2)} · ${fmt(a.row.fps)} → ${fmt(effective)} fps`;
+	// The row's fps is the game's speed: the adopted one once applied (MotionSpeeds.gd), else the drawn one.
+	const drawn = a.row.drawnFps ? ` · 그린 속도 ${fmt(a.row.drawnFps)}` : "";
+	$("rowSpeedValue").textContent = `×${value.toFixed(2)} · ${fmt(a.row.fps)} → ${fmt(effective)} fps${drawn}`;
 }
 
 // Adopted speeds are kept in the artifact's database (collection motion_speeds, one document per
@@ -293,13 +295,40 @@ function renderSpeedControl() {
 let speedDb = null;
 const adopted = new Map();
 const adoptId = (anim = anims[state.anim]) => rowKey(anim).replaceAll("/", "~");
+// A record the game already plays: its fps is the row's game speed now (applied by the lead).
+const applied = (anim, record) => Boolean(record) && Math.abs(Number(record.fps) - anim.row.fps) < 0.006;
+const vsDrawn = (anim, record) => Number(record.fps) / (anim.row.drawnFps || anim.row.fps);
+
+// The row a speed key (entry/form/group/row) names, in any character or body.
+function animForKey(key) {
+	const parts = key.split("/"), entry = entries.find((item) => item.id === parts[0]);
+	const form = entry && entry.forms.find((item) => (item.key || "default") === parts[1]);
+	const anim = form && animsOf(form).find((item) => item.group === parts[2] && item.row.name === parts[3]);
+	return anim ? { entry, form, anim } : null;
+}
+
+// A slider the user adopted and the game now plays: the row's speed already includes it, so the
+// slider goes back to x1 instead of slowing the row twice.
+function dropAppliedSliders() {
+	let dropped = false;
+	for (const [key, value] of Object.entries(state.rowSpeeds)) {
+		const record = adopted.get(key.replaceAll("/", "~")), found = animForKey(key);
+		if (found && applied(found.anim, record) && Math.abs(Number(value) - Number(record.factor)) < 0.001) {
+			delete state.rowSpeeds[key]; dropped = true;
+		}
+	}
+	if (!dropped) return;
+	stageT = 0; stageFrame = 0; stageKey = "";
+	for (const tile of tiles) { tile.t = 0; tile.last = -1; }
+	renderStage(); drawStage(); renderSpeedChanges(); save();
+}
 
 function renderAdoptState() {
 	const a = anims[state.anim], record = a && adopted.get(adoptId(a));
 	$("adoptSpeed").hidden = !speedDb || !a;
 	$("clearSpeed").hidden = !speedDb || !record;
 	$("adoptState").textContent = !speedDb || !a ? "" : record
-		? `채택됨 ×${Number(record.factor).toFixed(2)} · ${fmt(Number(record.fps))} fps · ${String(record.adopted_at || "").slice(5, 16).replace("T", " ")}`
+		? `${applied(a, record) ? "게임에 반영됨" : "채택됨 · 게임 반영 전"} · ${fmt(Number(record.fps))} fps (그린 속도의 ×${vsDrawn(a, record).toFixed(2)}) · ${String(record.adopted_at || "").slice(5, 16).replace("T", " ")}`
 		: "채택 기록 없음";
 }
 
@@ -311,7 +340,7 @@ async function connectSpeedDb() {
 	db.collection("motion_speeds").onSnapshot((snap) => {
 		adopted.clear();
 		for (const doc of snap.docs) if (doc.exists) adopted.set(doc.id, doc.data());
-		renderAdoptState(); renderGroups();
+		renderAdoptState(); renderGroups(); dropAppliedSliders();
 	}, () => { speedDb = null; renderAdoptState(); });
 	renderAdoptState();
 }
@@ -326,7 +355,8 @@ async function writeAdoption(remove) {
 		if (remove) await ref.delete();
 		else await ref.set({
 			character: entry.id, body: form.key || "", sheet: a.group, row: a.row.name, frames: a.row.frames,
-			table_fps: a.row.fps, factor, fps: Math.round(a.row.fps * factor * 100) / 100,
+			// table_fps: the speed the slider multiplied (the game's speed of the row); drawn_fps: as drawn.
+			table_fps: a.row.fps, drawn_fps: a.row.drawnFps || a.row.fps, factor, fps: Math.round(a.row.fps * factor * 100) / 100,
 			adopted_at: new Date().toISOString(), viewer_commit: M.commit || "",
 		});
 	} catch (error) {
@@ -340,10 +370,9 @@ function renderSpeedChanges() {
 	const lines = [];
 	for (const [key, value] of Object.entries(state.rowSpeeds).sort()) {
 		if (Math.abs(Number(value) - 1) < 0.001) continue;
-		const parts = key.split("/"), entry = entries.find((item) => item.id === parts[0]);
-		const form = entry && entry.forms.find((item) => (item.key || "default") === parts[1]);
-		const anim = form && animsOf(form).find((item) => item.group === parts[2] && item.row.name === parts[3]);
-		if (!anim) continue;
+		const found = animForKey(key);
+		if (!found) continue;
+		const { form, anim } = found, parts = key.split("/");
 		const who = `${parts[0]}${form.label ? ` ${form.label}` : ""}`;
 		lines.push(`${who} ${anim.row.name} ×${Number(value).toFixed(2)} (${fmt(anim.row.fps)} → ${fmt(anim.row.fps * Number(value))} fps)`);
 	}
@@ -420,7 +449,7 @@ function renderGroups() {
 			b.append(pic, n, l, f);
 			if (a.row.candidates && a.row.candidates.length) b.append(Object.assign(document.createElement("span"), { className: "candidate-badge", textContent: `후보 ${a.row.candidates.length}` }));
 			const record = adopted.get(adoptId(a));
-			if (record) b.append(Object.assign(document.createElement("span"), { className: "adopted-badge", textContent: `채택 ×${Number(record.factor).toFixed(2)}` }));
+			if (record) b.append(Object.assign(document.createElement("span"), { className: "adopted-badge", textContent: applied(a, record) ? `반영 ×${vsDrawn(a, record).toFixed(2)}` : `채택 ×${vsDrawn(a, record).toFixed(2)} · 반영 전` }));
 			b.addEventListener("click", () => { state.anim = i; select(false, true); });
 			grid.append(b);
 			tiles.push({ el: b, ctx: c.getContext("2d"), anim: a, t: 0, last: -1 });

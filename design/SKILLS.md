@@ -8,6 +8,7 @@
 - 공격 크기와 공격 지점은 대부분 `GameScale.COMBAT = 1.5`가 적용된다. 아래의 `42×34` 같은 표기는 코드에 적힌 기본 판정이며, 실제 화면 판정은 보통 각 축이 1.5배다.
 - 이동 기술의 거리는 `GameScale.WORLD = 1.5`, 달리기와 노바의 속도 기준은 `GameScale.MOVE = 1.2`, 점프 속도는 `GameScale.JUMP_SPEED = 1.3416`을 따른다.
 - 동작 프레임은 사람이 읽기 쉽게 1부터 센다. 예를 들어 코드의 `Vector2i(0, 1)`은 여기서 1~2프레임이다.
+- 동작 줄의 재생 속도는 사용자가 모션 뷰어에서 채택한 값이다(2026-10-15, `characters/common/MotionSpeeds.gd`, D39). 기술 줄은 D38 그림 시계로 재생되어 타격 그림이 판정 순간(선딜 끝)에 오고, 그 뒤 그림만 채택 속도보다 빨리 넘어가지 않는다. 그래서 채택 속도로 보이게 하려고 타격 전 그림을 늦추려면 선딜을 바꿔야 한다. 이는 밸런스 변경이고, 필요한 값은 `reports/motion-speeds-2026-10-15.md`에 있다.
 - 이펙트 상태는 전용 파일이 있으면 **그림**, 코드 도형만 있으면 **도형**, 몸 동작 외 표시가 없으면 **없음**, 여러 캐릭터가 같은 파일을 쓰면 **공용**이다. 원본 아트 모드가 아니거나 파일이 없으면 대부분 `ColorRect`, `Line2D`, `Polygon2D` 도형으로 대체된다.
 - `assets/art/` 아래 경로는 표에서 짧게 쓸 수 있다. 예를 들어 `attack_vfx/frey_k.png`는 `assets/art/attack_vfx/frey_k.png`, `skill/luna_star_bloom.png`는 `assets/art/effects/skill/luna_star_bloom.png`다.
 - `Attack.gd` 판정과 `source.on_attack_landed`를 부르는 투사체가 적중하면 공격자별 `assets/art/effects/hit/<id>_hit.png`, 공용 `hit_streak.png`가 나온다. 공중 공격 착지에는 공용 `landing_dust.png`가 나올 수 있다. 맞은 쪽의 `apply_hit`도 공격자의 `hit/<id>_hit.png`를 몸 위치에 그리므로, 모든 적중(투사체 포함)에 공격자 색의 불꽃이 나온다. Rio의 일반 마력 검기는 `on_attack_landed`를 부르지 않아 `hit_streak`과 공격자 경직만 없다.
@@ -56,7 +57,7 @@
 | `공중 ↓J` | 공중 별빛 메아리·아래 | 아래로 속도를 주고 발밑 앞쪽에 별꽃을 만든다. | 궤적 끝 (42,58), 나머지 공격 수치는 `↓J`와 같음; y속도 최소 `90×JUMP_SPEED` | `star_down` 전체 | `luna_slash`, `luna_star_bloom` | 그림 | 아래 방향과 낙하 위치, 별꽃 중심 |
 | `K` | 별 혜성 | 입력 방향으로 별을 보내고 적 또는 최대 거리에서 폭발시킨다. | 투사체 기본 크기 26×22, 속도 `620×COMBAT`, 최대 거리 `260×COMBAT`; 폭발 피해 12, 넉백 390, 판정 `96×82×COMBAT`, 0.13초 | `star_comet` 전체 | `luna_star.png`, `attack_vfx/luna_k.png`, `luna_comet_trail.png`, `luna_comet_burst.png`; `LunaComet` | 그림 | 비행 방향·최대 거리, 폭발 96×82, 꼬리 0.10초, 폭발 0.14초 |
 | `L` | 달고리 | 몸 주위 좌우 반원을 돌아 적정 거리의 적을 바깥으로 밀어낸다. 중심 가까이는 빈다. | 기본 반경 90, 각 44×38 판정, 피해 12, 넉백 405, 활성 0.24초 | `moon_ring` 전체 | `attack_vfx/luna_l.png`, `skill/luna_moon_ring.png`; `_moon_ring`, `_play_moon_ring_flash` | 그림 | 반경 `90×COMBAT`, 좌우 두 반원, 0.24초, 청록·분홍 |
-| `I` | Brave Luna 변신 | 12프레임 변신 뒤 9번째 프레임 시점에 주변을 띄우고 6초간 Brave가 된다. | 변신 1초 `[TRANSFORM_MOTION_TIME]`, 폭발 시점 0.667초 `[TRANSFORM_BURST_TIME]`; 폭발 피해 14, 기본 판정 240×192 `[TRANSFORM_BURST_RADIUS]`, 넉백 460, 강제 발사 (0,-560); 지속 6초 `[TRANSFORMATION_DURATION]`, 이동 ×1.16 | `transform` 1~12 | `vfx/luna_ult_transform.png`, `luna_star_bloom`, 이후 `luna_brave_aura.png` | 그림 | 12프레임/1초, 9번째 프레임 폭발, 240×192 판정, 6초 지속 |
+| `I` | Brave Luna 변신 | 12프레임 변신 뒤 9번째 프레임 시점에 주변을 띄우고 6초간 Brave가 된다. | 변신 = 12그림 ÷ `transform` 줄 속도 `[TRANSFORM_FRAMES]`, 폭발 = 8그림 ÷ 줄 속도 `[TRANSFORM_BURST_FRAME]` (`transform_time`): 사용자 채택 7.8fps로 1.54초·1.03초(2026-10-15 전 12fps 1초·0.667초); 아머는 동작 내내, 제자리 고정은 폭발까지, 행동 잠금은 폭발 뒤 0.12초까지; 폭발 피해 14, 기본 판정 240×192 `[TRANSFORM_BURST_RADIUS]`, 넉백 460, 강제 발사 (0,-560); 지속 6초 `[TRANSFORMATION_DURATION]`, 이동 ×1.16 | `transform` 1~12 | `vfx/luna_ult_transform.png`, `luna_star_bloom`, 이후 `luna_brave_aura.png` | 그림 | 12프레임/줄 속도(지금 1.54초), 9번째 프레임 폭발, 240×192 판정, 6초 지속 |
 | 자동 | 별빛 충전 | 평상시 J의 궤적과 별꽃이 같은 적에게 모두 맞거나, K 폭발 또는 L이 맞으면 별 1개가 돈다. 5개면 궁 쿨다운 6초를 줄인다. | 최대 5 `[STAR_CHARGE_MAX]`, 쿨 감소 6초 `[STAR_CHARGE_COOLDOWN_CUT]`, 궤도 반경 44 `[STAR_ORBIT_RADIUS]` | 별도 몸 동작 없음 | `passive/luna_star_charge.png`; `_update_star_orbit` | 그림 | 0~5개, 반경 44, 금백·보라, 회전 속도 2.2rad/s |
 | Brave `J` 1타 | Radiant Rush 잽 | 짧은 잽으로 다음 타를 바로 연다. | 피해 5, 34×28, 끝 70, 넉백 150, 0.075초; 0.045/0.10초 | `brave_combo` 1~2 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 작은 24 반경 별빛, 0.075초 판정 |
 | Brave `J` 2타 | Radiant Rush 보디 킥 | 더 멀리 전진하는 킥으로 3타를 바로 연다. | 피해 6, 38×30, 끝 80, 넉백 205, 0.085초; 0.055/0.11초 | `brave_combo` 3~4 | `luna_brave_slash`, `luna_star_bloom` | 그림 | 27 반경 별빛, 0.085초 |
@@ -164,6 +165,7 @@
 - 기술의 몸 동작 줄이나 프레임 범위를 바꾸면 이 문서도 같은 커밋에서 바꾼다.
 - 위 표의 “이펙트가 따라야 할 값”이 바뀌면 해당 효과를 작업 목록에 **다시 그림**으로 표시한다.
 - 밸런스 커밋에서는 이펙트 아트 파일을 함께 고치지 않는다. 수치와 계약만 먼저 갱신하고 아트는 별도 작업으로 진행한다.
+- 동작 줄 속도를 바꾸려면 모션 뷰어에서 다시 채택하고 `tools/motion_viewer/apply_speeds.py`로 `MotionSpeeds.gd`를 다시 만든다. 손으로 고치지 않는다. 줄 속도로 시간이 정해지는 기술(지금은 Luna 변신)은 판정 시각도 함께 바뀌므로 이 문서의 수치를 같은 커밋에서 갱신한다.
 
 ## 출처
 

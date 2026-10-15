@@ -56,8 +56,16 @@ art/bakeoff/<캐릭터 id>/<시트 stem>-<행 이름>-v<번호>.json  # 선택
   - 문서 id: `<캐릭터>~<체형|default>~<base|moves>~<줄>`
   - 필드: `character`, `body`, `sheet`, `row`, `frames`, `table_fps`, `factor`, `fps`, `adopted_at`, `viewer_commit`
   - 다시 채택하면 덮어쓰고, **기록 지움**은 문서를 지운다. 채택된 줄의 타일에는 `채택 ×0.80` 표시가 붙는다.
-- 리드가 반영할 때는 `ArtifactData`의 `list`(collection `motion_speeds`)로 읽는다.
-  - 동작 시간이 없는 줄(idle, walk, shield, tumble, 한 장 자세): 표 fps = `fps`
-  - 기술 줄: 게임이 기술 시간과 D38 그림 시계로 재생한다. 그래서 배율을 그 줄의 그림 시간 배율로 옮기고, 판정·잠금이 바뀌는 부분은 스킬 세션과 맞춘다.
+- 리드가 반영할 때 (D39, 2026-10-15 첫 반영 91줄):
+  1. `ArtifactData`의 `list`(collection `motion_speeds`)로 내려받는다. 문서 하나가 파일 하나로 받아진다.
+  2. `python tools/motion_viewer/apply_speeds.py <받은 폴더>`를 돌린다. 기록 사본 `art/motion_speeds.json`과 게임용 `smash-nine-prototype/characters/common/MotionSpeeds.gd`를 쓰고, 바뀐 줄을 출력한다.
+  3. 게임은 시트를 자를 때 줄마다 그 fps로 재생한다. 체형(남/여)과 형태(Luna/Brave Luna)마다 따로다.
+     - 기술 줄은 D38 그림 시계로 재생된다. 타격 그림은 판정 순간에 오고, 그 뒤 그림만 채택 속도보다 빨리 넘어가지 않는다.
+     - 줄 재생이 곧 기술 시간인 것(Luna 변신)은 시간도 줄을 따라간다.
+  4. 테스트(`test_motion_speeds` 포함), 웹 빌드, 클립 다시 찍기, 뷰어 다시 게시를 한다.
+- 뷰어의 줄 fps는 **게임 속도**(반영된 채택값)다. 그린 속도가 다르면 `그린 속도 13.3`처럼 옆에 나온다.
+  - 채택 기록의 fps가 게임 속도와 같으면 `반영 ×0.85`(그린 속도 대비)로 표시된다. 다르면 `채택 ×… · 반영 전`이다.
+  - 반영된 줄에 남아 있던 내 슬라이더(채택한 배율과 같은 값)는 ×1로 돌아간다. 두 번 곱해지지 않게 하려는 것이다.
+  - 다시 채택하면 `table_fps`는 그때의 게임 속도, `drawn_fps`는 그린 속도로 기록된다. 반영에는 `fps`(절대값)만 쓴다.
 - 다시 게시할 때는 `capabilities`를 생략해 `db` 선언을 유지한다. 로컬 미리보기에는 데이터베이스가 없어 채택 버튼이 숨는다.
 

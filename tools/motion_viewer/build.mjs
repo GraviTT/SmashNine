@@ -41,6 +41,22 @@ try {
 }
 const clipsFor = (form) => (clipManifest.clips || []).filter((clip) => clip.form === form);
 
+// Speeds the user adopted and the game plays (characters/common/MotionSpeeds.gd, written by
+// apply_speeds.py from the viewer's motion_speeds records): "<id>/<body|default>/<row>" -> fps.
+const motionSpeeds = new Map();
+{
+	const path = join(game, "characters", "common", "MotionSpeeds.gd");
+	if (existsSync(path)) for (const m of read(path).matchAll(/"([a-z0-9_]+\/[a-z]+\/[a-z0-9_]+)":\s*([\d.]+)/g)) motionSpeeds.set(m[1], +m[2]);
+}
+// A row the game plays at an adopted speed shows that speed; drawnFps keeps the table's.
+function applySpeeds(id, body, sheetData) {
+	if (!sheetData) return;
+	for (const row of sheetData.rows) {
+		const fps = motionSpeeds.get(`${id}/${body || "default"}/${row.name}`);
+		if (fps && Math.abs(fps - row.fps) > 0.001) { row.drawnFps = row.fps; row.fps = fps; }
+	}
+}
+
 // const NAME := [ ["row", frames, fps, loop], ... ]
 function rowTable(file, constName) {
 	const src = read(file);
@@ -181,6 +197,7 @@ for (const c of CHARACTERS) {
 				moves.rows.push({ name: row, frames: first.frames || 6, fps: first.fps || 12, loop: row === "tumble", start: null, newRow: true, label: "새 줄 — 게임에 아직 없음", candidates: candidates.map(({ source, ...item }) => item) });
 			}
 		}
+		applySpeeds(c.id, body, base); applySpeeds(c.id, body, moves);
 		forms.push({ body, base, moves, clips: clipsFor(c.id) });
 	}
 	characters.push({ id: c.id, name: c.name, forms });

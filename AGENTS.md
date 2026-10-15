@@ -16,6 +16,7 @@ Codex runs as units (tester, analyst, builder) in its own clones and writes only
      - update its row in the same commit
      - if a value in "이펙트가 따라야 할 값" changes, mark that effect `다시 그림` in the work list
      - do not edit effect art in a balance commit
+     - a row's playback speed is the user's pick in the motion viewer (`characters/common/MotionSpeeds.gd`, D39): change it by adopting again in the viewer and running `tools/motion_viewer/apply_speeds.py`, never by hand. A move's start-up still decides when its strike drawing shows (D38).
      
      The character `.md` docs disagree with the code in places (`reports/codex-doc-01/README.md`); the code wins.
 3. `smash-nine-prototype/FINAL_GAME_GOAL.md` — what the game must feel like
@@ -52,7 +53,7 @@ From `smash-nine-prototype/`:
 - Screenshots (windowed, not headless): `<godot> --path . -s tests/capture_screens.gd -- --out=../reports/screens`
 - Web build (from repo root): `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`; serve with `node tools/serve_web.js build/web 8060`; publish with `tools/deploy_pages.ps1` (lead only: it pushes `gh-pages`)
 
-- Motion viewer (every fighter/monster motion from the sheets, user's quick check): `node tools/motion_viewer/build.mjs`, then republish `tools/motion_viewer/dist/index.html` to https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU (`tools/motion_viewer/README.md`)
+- Motion viewer (every fighter/monster motion from the sheets, user's quick check): `node tools/motion_viewer/build.mjs`, then republish `tools/motion_viewer/dist/index.html` to https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU (`tools/motion_viewer/README.md`). Republish without `capabilities` so its `db` (the adopted speeds, collection `motion_speeds`) stays.
 
 A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with exit code 0.
 
