@@ -14,7 +14,7 @@
 
 새 캐릭터는 `build.mjs`의 `CHARACTERS` 목록에 한 줄을 더한다.
 
-## 실제 기본 공격 클립 갱신
+## 실제 게임 클립 갱신
 
 기술 수치·동작 시트·공격 이펙트가 바뀌면 저장소 루트가 아니라 `smash-nine-prototype/`에서 아래를 실행한다. 캡처는 창을 열며 한 번에 하나만 실행한다. 첫 명령은 새 클론에서 한 번이면 된다.
 
@@ -25,7 +25,9 @@ $godot = 'C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_wi
 & $godot --path . --fixed-fps 60 -s tests/capture_move_clips.gd
 ```
 
-`capture_move_clips.gd`는 Frey, Luna, Brave Luna, Yuki, Nova 남성, Rio 남성의 지상 J(연계 전 타), 지상 ↑J/↓J, 공중 J/↑J/↓J를 30fps·960×540으로 각각 이펙트 켬/끔 캡처한다. 마지막에 Pillow로 손실 없는 애니메이션 WebP 72개와 `art/clips/manifest.json`을 만든다. 이어서 저장소 루트에서 `node tools/motion_viewer/build.mjs`를 다시 실행한다.
+`capture_move_clips.gd`는 30fps·960×540 이펙트 켬/끔 클립을 만든다. TOOL-02부터는 이미 승인된 기본 공격 36쌍을 다시 인코딩하지 않고 그대로 보존하며, 캐릭터 주위 이펙트 19쌍(전 폼 Guard 6개 + 추격/스파이크/궁극기/오라/궤도/봉인/룬/상태 장면 13개)만 갱신한다. 마지막에 Pillow가 손실 없는 애니메이션 WebP 38개를 만들고 기존 `art/clips/manifest.json`에 `group: around`로 병합한다. 이어서 저장소 루트에서 `node tools/motion_viewer/build.mjs`를 다시 실행한다.
+
+뷰어의 **게임 화면**은 `기본 공격`과 `캐릭터 주위 이펙트`로 나뉜다. 두 묶음 모두 `끔 / 지금 / 새 후보` 모드를 함께 바꾸며, 각 주위 이펙트 설명에는 캡처 때 쓴 카메라 배율도 표시된다.
 
 **이펙트 후보 비교(`art/clips-new`):** 뷰어의 이펙트 보기는 `끔 / 지금 / 새 후보` 세 가지다. 새 후보 클립은 이렇게 만든다.
 1. `art/bakeoff/effects/<id>/*-vN.png`를 각 JSON의 `replaces` 경로에 잠시 덮어쓴다.

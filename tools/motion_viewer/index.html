@@ -131,6 +131,9 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .clip-group { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
 .clip-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .clip-head h3 { margin: 0; font-size: 16px; }
+.clip-subgroup { margin-top: 12px; }
+.clip-subgroup + .clip-subgroup { margin-top: 18px; }
+.clip-subgroup h4 { margin: 0; font-size: 13px; color: var(--muted); letter-spacing: 0.03em; }
 .fx-toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--muted); }
 .fx-toggle input { accent-color: var(--accent); }
 .clips { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px; margin-top: 10px; }
@@ -387,17 +390,28 @@ function renderClips() {
 		opts.append(radio, Object.assign(document.createElement("label"), { htmlFor: id, textContent: label }));
 	}
 	toggle.append(Object.assign(document.createElement("span"), { textContent: "이펙트" }), opts); head.append(toggle); section.append(head);
-	const grid = document.createElement("div"); grid.className = "clips";
 	const images = [];
-	for (const clip of clips) {
-		const figure = document.createElement("figure"); figure.className = "clip";
-		const img = new Image(); img.alt = clip.name; img.loading = "lazy";
-		const caption = document.createElement("figcaption");
-		caption.append(
-			Object.assign(document.createElement("strong"), { textContent: `${clip.input} · ${clip.name}` }),
-			Object.assign(document.createElement("span"), { textContent: `${clip.duration.toFixed(3)}초 · ${clip.frames}프레임 · ${(clip.rows || []).join(", ")}` }),
-		);
-		figure.append(img, caption); grid.append(figure); images.push({ img, clip });
+	const groups = [["j", "기본 공격"], ["around", "캐릭터 주위 이펙트"]];
+	for (const [groupKey, groupLabel] of groups) {
+		const groupClips = clips.filter((clip) => (clip.group || "j") === groupKey);
+		if (!groupClips.length) continue;
+		const block = document.createElement("div"); block.className = "clip-subgroup";
+		block.append(Object.assign(document.createElement("h4"), { textContent: groupLabel }));
+		const grid = document.createElement("div"); grid.className = "clips";
+		for (const clip of groupClips) {
+			const figure = document.createElement("figure"); figure.className = "clip";
+			const img = new Image(); img.alt = clip.name; img.loading = "lazy";
+			const caption = document.createElement("figcaption");
+			const details = [`${clip.duration.toFixed(3)}초`, `${clip.frames}프레임`];
+			if ((clip.rows || []).length) details.push(clip.rows.join(", "));
+			if (clip.zoom) details.push(`카메라 ${Number(clip.zoom).toFixed(2)}×`);
+			caption.append(
+				Object.assign(document.createElement("strong"), { textContent: `${clip.input} · ${clip.name}` }),
+				Object.assign(document.createElement("span"), { textContent: details.join(" · ") }),
+			);
+			figure.append(img, caption); grid.append(figure); images.push({ img, clip });
+		}
+		block.append(grid); section.append(block);
 	}
 	const syncSources = () => {
 		for (const { img, clip } of images) {
@@ -406,7 +420,7 @@ function renderClips() {
 			img.src = candidate ? `clips-new/${clip.newFx}` : `clips/${clip.files[state.fxMode === "nofx" ? "nofx" : "fx"]}`;
 		}
 	};
-	section.append(grid); host.append(section); syncSources();
+	host.append(section); syncSources();
 }
 const fmt = (n) => (Math.round(n * 10) / 10).toString();
 
