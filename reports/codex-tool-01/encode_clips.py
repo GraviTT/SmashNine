@@ -53,7 +53,17 @@ def main() -> int:
     clips_root = Path(sys.argv[1]).resolve()
     raw = json.loads((clips_root / "_capture.json").read_text(encoding="utf-8"))
     fps = int(raw["fps"])
-    manifest = {"version": 1, "fps": fps, "clips": []}
+    # TOOL-02 refreshes only the new around-the-character scenes. Preserve TOOL-01's accepted J
+    # files and metadata byte-for-byte, adding their explicit viewer group on the first merge.
+    manifest_path = clips_root / "manifest.json"
+    previous = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {"clips": []}
+    j_clips = []
+    for old in previous.get("clips", []):
+        if old.get("group", "j") != "around":
+            old["group"] = "j"
+            j_clips.append(old)
+    preserved_j_count = len(j_clips)
+    manifest = {"version": 2, "fps": fps, "clips": j_clips}
     total_bytes = 0
     differing_pairs = 0
 
@@ -78,16 +88,27 @@ def main() -> int:
 
         # A real effects pass should differ from the sprite-only pass on at least one frame.
         differs = False
+        changed_frames = 0
+        difference_box = None
         for fx_path, nofx_path in zip(pair_images["fx"], pair_images["nofx"]):
             with Image.open(fx_path).convert("RGBA") as fx, Image.open(nofx_path).convert("RGBA") as nofx:
                 # RGBA getbbox observes a zero alpha-difference channel and can miss RGB-only
                 # changes; compare the rendered colour channels explicitly.
-                if ImageChops.difference(fx.convert("RGB"), nofx.convert("RGB")).getbbox() is not None:
+                box = ImageChops.difference(fx.convert("RGB"), nofx.convert("RGB")).getbbox()
+                if box is not None:
                     differs = True
-                    break
+                    changed_frames += 1
+                    if difference_box is None:
+                        difference_box = box
+                    else:
+                        difference_box = (
+                            min(difference_box[0], box[0]), min(difference_box[1], box[1]),
+                            max(difference_box[2], box[2]), max(difference_box[3], box[3]),
+                        )
         differing_pairs += int(differs)
         manifest["clips"].append(
             {
+                "group": clip.get("group", "around"),
                 "form": form,
                 "move": move,
                 "name": clip["name"],
@@ -97,18 +118,24 @@ def main() -> int:
                 "files": pair_files,
                 "rows": clip["rows"],
                 "size": clip["size"],
+                "zoom": clip.get("zoom", 1.8),
                 "fx_diff": differs,
+                "fx_changed_frames": changed_frames,
+                "fx_difference_box": list(difference_box) if difference_box else None,
             }
         )
 
-    (clips_root / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    if differing_pairs == 0:
-        raise RuntimeError("FX suppression did not produce a visible difference in any clip")
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if differing_pairs != len(raw["clips"]):
+        raise RuntimeError(
+            f"FX suppression produced a visible difference in only {differing_pairs}/{len(raw['clips'])} around scenes"
+        )
     shutil.rmtree(clips_root / "_frames")
     (clips_root / "_capture.json").unlink()
     print(
-        f"encoded {len(manifest['clips'])} pairs / {len(manifest['clips']) * 2} files, "
-        f"{total_bytes / 1024 / 1024:.2f} MiB; fx differs in {differing_pairs}/{len(manifest['clips'])} pairs"
+        f"encoded {len(raw['clips'])} around pairs / {len(raw['clips']) * 2} files, "
+        f"{total_bytes / 1024 / 1024:.2f} MiB; fx differs in {differing_pairs}/{len(raw['clips'])} pairs; "
+        f"preserved {preserved_j_count} J pairs"
     )
     return 0
 
