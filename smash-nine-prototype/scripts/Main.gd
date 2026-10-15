@@ -5,6 +5,7 @@ extends Node2D
 
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const REALM_LAYOUT_SCRIPT := preload("res://scripts/realms/RealmLayout.gd")
 const REALM_WORLD_SCRIPT := preload("res://scripts/realms/RealmWorld.gd")
@@ -72,6 +73,8 @@ var _shake_rng := RandomNumberGenerator.new()
 var _body_rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
+	GAME_SPEED.load_saved()
+	GAME_SPEED.reset_engine()
 	if match_seed < 0:
 		randomize()
 		match_seed = randi()
@@ -89,6 +92,9 @@ func _ready() -> void:
 		_start_match("")
 	else:
 		hud.show_start_screen(_get_character_list(), human_body)
+
+func _exit_tree() -> void:
+	GAME_SPEED.reset_engine()
 
 func _create_director() -> void:
 	director = MATCH_DIRECTOR_SCRIPT.new()
@@ -161,6 +167,7 @@ func _get_character_list() -> Array[Dictionary]:
 
 func _start_match(human_character_id: String) -> void:
 	match_started = true
+	GAME_SPEED.apply_to_match()
 	hud.hide_overlay()
 	realm_monster_spawner.sync_playable_realms(director.get_playable_indices())
 	soul_crystal_spawner.sync_playable_realms(director.get_playable_indices())
@@ -205,6 +212,13 @@ func _handle_global_input() -> bool:
 		hud.toggle_debug()
 	if Input.is_action_just_pressed("toggle_bot_panel"):
 		hud.toggle_bot_panel()
+	if Input.is_action_just_pressed("game_speed"):
+		GAME_SPEED.cycle()
+		if not match_started:
+			hud.show_start_screen(_get_character_list(), human_body)
+		elif not match_over:
+			GAME_SPEED.apply_to_match()
+			_show_message(GAME_SPEED.label())
 	if not match_started:
 		var ids := CHARACTER_REGISTRY.get_character_ids()
 		for index in mini(CHOOSE_ACTIONS.size(), ids.size()):
@@ -229,6 +243,7 @@ func _handle_global_input() -> bool:
 
 func _on_match_finished(winner: Node, reason: String) -> void:
 	match_over = true
+	GAME_SPEED.reset_engine()
 	soul_growth.set_process(false)
 	hud.hide_card_offer()
 	_freeze_combat()
@@ -539,7 +554,10 @@ func _update_hud() -> void:
 	if bot_panel_timer <= 0.0:
 		bot_panel_timer = BOT_PANEL_REFRESH
 		hud.update_bot_panel(_bot_panel_rows())
-	hud.set_clock(director.get_phase_name(), director.match_elapsed, director.get_next_event_label(), director.get_next_event_in())
+	var phase_name: String = director.get_phase_name()
+	if GAME_SPEED.percent() != 100:
+		phase_name += "   %d%% speed" % GAME_SPEED.percent()
+	hud.set_clock(phase_name, director.match_elapsed, director.get_next_event_label(), director.get_next_event_in())
 	hud.set_status(director.get_alive_combatants().size(), players.size(), _get_focus_player())
 	hud.update_skill_bar(_get_focus_player(), get_process_delta_time())
 	hud.update_minimap_labels(director, _count_alive_by_realm())

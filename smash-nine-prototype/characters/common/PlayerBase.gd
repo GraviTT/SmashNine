@@ -234,6 +234,22 @@ var sprite_action := &""
 var sprite_action_timer := 0.0
 ## Last frame of a pose (_play_sprite_pose) to hold until the action ends; -1 for none.
 var sprite_pose_last := -1
+## Readable move animation (user 2026-10-15: "스프라이트의 각 모션이 잘 보이지도 않고"; proposal
+## reports/tempo-proposal-2026-10-15.md, option B). A move row reaches its strike frame when the
+## hit comes out (the end of the start-up), shows it for at least POSE_MIN_FRAME, then plays the
+## follow-through at no less than POSE_MIN_FRAME per drawing, even past the end of the attack lock;
+## moving, jumping or guarding after the lock cuts the rest. The frames are set by this clock, not
+## by the sprite's own playback, and the clock stops during hitstop, so a landed hit freezes on
+## the strike. (Before: the whole row ran inside two thirds of the move, about 45 drawings a second
+## for a 0.17 s attack.)
+const POSE_MIN_FRAME := 3.0 / 60.0
+## Where the strike sits in a row of more than two drawings (6 frames: the third, index 2).
+const POSE_STRIKE_SHARE := 0.4
+var sprite_pose_first := 0
+var sprite_pose_times := PackedFloat32Array()
+var sprite_pose_elapsed := 0.0
+var sprite_pose_lock := 0.0
+var sprite_pose_on_floor := true
 ## The attack area the last _spawn_* call created (characters tag it with set_meta to know later
 ## which move hit whom: Frey's launchers, Luna's precise star echoes).
 var last_attack: Node
@@ -363,6 +379,8 @@ func _physics_process(delta: float) -> void:
 	_update_drop_through(delta)
 	movement_freeze_timer = maxf(movement_freeze_timer - delta, 0.0)
 	sprite_action_timer = maxf(sprite_action_timer - delta, 0.0)
+	if sprite_pose_last >= 0 and sprite_action_timer > 0.0:
+		_advance_sprite_pose(delta)
 	if sprite_action_timer <= 0.0:
 		sprite_action = &""
 		_end_sprite_pose()
@@ -980,9 +998,9 @@ func _start_attack(startup: float, recovery: float, action: Callable, pose := Ve
 	attack_elapsed = 0.0
 	attack_startup = startup
 	if move_row != &"":
-		_play_move_sprite_pose(move_row, pose.x, pose.y, startup + recovery, move_pose.x, move_pose.y)
+		_play_move_sprite_pose(move_row, pose.x, pose.y, startup + recovery, move_pose.x, move_pose.y, startup)
 	elif pose.x >= 0:
-		_play_sprite_pose(&"attack", pose.x, pose.y, startup + recovery)
+		_play_sprite_pose(&"attack", pose.x, pose.y, startup + recovery, startup)
 	else:
 		_play_sprite_action(&"attack", startup + recovery)
 	var attack_facing := facing
@@ -1869,7 +1887,7 @@ func _play_launch_hit_sprite(launch_strength: float, duration: float) -> void:
 ## Plays frames first..last of an action row across the duration and holds the last one, so
 ## moves that share one sheet row read differently: a quick cut, a wide finisher, a held thrust
 ## (2026-10-10: every Frey and Luna move played the same 4-frame attack row from frame 0).
-func _play_sprite_pose(animation_name: StringName, first: int, last: int, duration: float) -> void:
+func _play_sprite_pose(animation_name: StringName, first: int, last: int, duration: float, startup := -1.0) -> void:
 	if not _uses_character_sprite():
 		return
 	_play_sprite_action(animation_name, duration)
@@ -1878,17 +1896,51 @@ func _play_sprite_pose(animation_name: StringName, first: int, last: int, durati
 	var start := clampi(first, 0, count - 1)
 	var stop := clampi(last, start, count - 1)
 	character_sprite.frame = start
+	character_sprite.pause()
 	sprite_pose_last = stop
-	var fps := character_sprite.sprite_frames.get_animation_speed(anim)
-	# Reach the last frame by about two thirds of the move, then hold it.
-	var wanted := float(stop - start) / maxf(duration * 0.66, 0.02)
-	character_sprite.speed_scale = maxf(wanted / maxf(fps, 0.01), 0.01) if stop > start else 1.0
-	if stop == start:
-		character_sprite.pause()
+	sprite_pose_first = start
+	sprite_pose_elapsed = 0.0
+	sprite_pose_lock = duration
+	sprite_pose_on_floor = is_on_floor()
+	sprite_pose_times = _sprite_pose_timeline(stop - start, duration, startup)
+	# The follow-through may outlast the lock (cut short by moving, jumping or guarding).
+	sprite_action_timer = maxf(duration, sprite_pose_times[sprite_pose_times.size() - 1] + POSE_MIN_FRAME)
+
+## Start time of each drawing from the first: the drawings up to the strike spread over the
+## start-up (the strike lands with the hit), then the follow-through at POSE_MIN_FRAME or slower.
+## A two-drawing pose switches to its second drawing when the hit comes out and holds it.
+func _sprite_pose_timeline(steps: int, duration: float, startup: float) -> PackedFloat32Array:
+	var times := PackedFloat32Array([0.0])
+	if steps <= 0:
+		return times
+	var lead := startup if startup > 0.0 else duration * 0.33
+	var strike := steps if steps <= 1 else clampi(roundi(float(steps) * POSE_STRIKE_SHARE), 1, steps)
+	for index in range(1, strike + 1):
+		times.append(lead * float(index) / float(strike))
+	var follow := steps - strike
+	if follow > 0:
+		var each := maxf(maxf(duration - lead, 0.0) / float(follow + 1), POSE_MIN_FRAME)
+		for index in range(1, follow + 1):
+			times.append(lead + each * float(index))
+	return times
+
+func _advance_sprite_pose(delta: float) -> void:
+	if not is_instance_valid(character_sprite):
+		return
+	sprite_pose_elapsed += delta
+	var index := 0
+	# A small tolerance so a drawing timed on a frame boundary is not a frame late.
+	while index + 1 < sprite_pose_times.size() and sprite_pose_elapsed + 0.0005 >= sprite_pose_times[index + 1]:
+		index += 1
+	if character_sprite.animation == _get_sprite_animation_name(sprite_action):
+		character_sprite.frame = sprite_pose_first + index
+	# Past the attack lock the follow-through yields to whatever the fighter does next.
+	if sprite_pose_elapsed >= sprite_pose_lock and attack_lock_timer <= 0.0 			and (is_guarding or absf(move_input) > 0.1 or is_on_floor() != sprite_pose_on_floor):
+		sprite_action_timer = 0.0
 
 ## Plays a move-only row across the action duration. If that optional row is absent, the exact
 ## attack-row slice used before move sheets existed is preserved.
-func _play_move_sprite_pose(move_row: StringName, fallback_first: int, fallback_last: int, duration: float, move_first := -1, move_last := -1) -> void:
+func _play_move_sprite_pose(move_row: StringName, fallback_first: int, fallback_last: int, duration: float, move_first := -1, move_last := -1, startup := -1.0) -> void:
 	if not _uses_character_sprite():
 		return
 	var move_animation := _get_sprite_animation_name(move_row)
@@ -1896,9 +1948,9 @@ func _play_move_sprite_pose(move_row: StringName, fallback_first: int, fallback_
 		var count := character_sprite.sprite_frames.get_frame_count(move_animation)
 		var first := move_first if move_first >= 0 else 0
 		var last := move_last if move_last >= 0 else count - 1
-		_play_sprite_pose(move_row, first, last, duration)
+		_play_sprite_pose(move_row, first, last, duration, startup)
 	elif fallback_first >= 0:
-		_play_sprite_pose(&"attack", fallback_first, fallback_last, duration)
+		_play_sprite_pose(&"attack", fallback_first, fallback_last, duration, startup)
 	else:
 		_play_sprite_action(&"attack", duration)
 
@@ -1924,9 +1976,8 @@ func _update_character_sprite(force := false) -> void:
 		target = &"walk"
 	var target_animation := _get_sprite_animation_name(target)
 	if sprite_pose_last >= 0 and character_sprite.animation == target_animation:
-		if character_sprite.frame >= sprite_pose_last and character_sprite.is_playing():
-			character_sprite.frame = sprite_pose_last
-			character_sprite.pause()
 		return
 	if force or character_sprite.animation != target_animation:
 		character_sprite.play(target_animation)
+	# The idle loop keeps the real-time speed the user chose (D37) when the game runs slower.
+	character_sprite.speed_scale = 1.0 / maxf(Engine.time_scale, 0.1) if target == &"idle" else 1.0

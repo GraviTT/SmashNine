@@ -3,6 +3,7 @@ extends CanvasLayer
 ## offer, announcement line, debug panel (F3), and the start / result screens.
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
@@ -851,6 +852,7 @@ func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
 	lines.append("")
 	lines.append("[B]  Watch a bots-only match")
 	lines.append("[F2]  Art: %s  (switch)" % ART_SETTINGS.label())
+	lines.append("[T]  Game speed: %d%%  (100 / 90 / 80 / 70, also during a match)" % GAME_SPEED.percent())
 	lines.append("")
 	lines.append(CONTROLS_HINT)
 	_set_match_hud_visible(false)

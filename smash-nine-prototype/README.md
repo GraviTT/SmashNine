@@ -21,6 +21,7 @@ Design decisions and their reasons: `../design/DECISIONS.md`. Milestones: `../de
 | 1 / 2 / 3 | pick a soul card when offered |
 | H | spawn/remove a training dummy |
 | F3 | debug panel |
+| T | game speed 100 / 90 / 80 / 70 % (start screen or during a match; kept for the next start) |
 | R | play again (result screen) |
 
 Start screen: 1–5 picks Frey, Yuki, Luna, Nova or Rio; V switches the body (male/female) for Nova and Rio; B watches a bots-only match; F2 switches realms, effects and UI between the original art (default) and the plain procedural look.
