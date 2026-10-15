@@ -53,17 +53,18 @@ def main() -> int:
     clips_root = Path(sys.argv[1]).resolve()
     raw = json.loads((clips_root / "_capture.json").read_text(encoding="utf-8"))
     fps = int(raw["fps"])
-    # TOOL-02 refreshes only the new around-the-character scenes. Preserve TOOL-01's accepted J
-    # files and metadata byte-for-byte, adding their explicit viewer group on the first merge.
+    # A run may refresh one group only: keep every earlier clip this capture did not redo, and
+    # replace the ones it did (by form/move), so nothing is listed twice (2026-10-15).
     manifest_path = clips_root / "manifest.json"
     previous = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {"clips": []}
-    j_clips = []
+    captured = {(clip["form"], clip["move"]) for clip in raw["clips"]}
+    kept = []
     for old in previous.get("clips", []):
-        if old.get("group", "j") != "around":
-            old["group"] = "j"
-            j_clips.append(old)
-    preserved_j_count = len(j_clips)
-    manifest = {"version": 2, "fps": fps, "clips": j_clips}
+        old.setdefault("group", "j")
+        if (old["form"], old["move"]) not in captured:
+            kept.append(old)
+    preserved_j_count = len(kept)
+    manifest = {"version": 2, "fps": fps, "clips": kept}
     total_bytes = 0
     differing_pairs = 0
 
@@ -105,7 +106,8 @@ def main() -> int:
                             min(difference_box[0], box[0]), min(difference_box[1], box[1]),
                             max(difference_box[2], box[2]), max(difference_box[3], box[3]),
                         )
-        differing_pairs += int(differs)
+        # Only the around scenes must show an effect; a J move may draw none at 30 fps (Frey and Yuki ↓J).
+        differing_pairs += int(differs or clip.get("group", "around") != "around")
         manifest["clips"].append(
             {
                 "group": clip.get("group", "around"),

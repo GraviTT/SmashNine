@@ -108,6 +108,28 @@ func _initialize() -> void:
 func _run() -> void:
 	_build_arena()
 	await process_frame
+	# Every basic attack (J) first, then the around-the-character scenes: one run refreshes both
+	# groups (2026-10-15: TOOL-02 had dropped the J loop, so adopted J effects were never recaptured).
+	for form in FORMS:
+		for move in MOVES:
+			var j_pair: Dictionary = {}
+			for mode in ["fx", "nofx"]:
+				seed(SEED)
+				j_pair[mode] = await _capture(form, move, mode)
+			if int(j_pair.fx) != int(j_pair.nofx):
+				push_error("clip pair frame mismatch: %s/%s" % [form.id, move.id])
+				quit(2)
+				return
+			capture_entries.append({
+				"group": "j",
+				"form": form.id,
+				"move": move.id,
+				"name": move.name,
+				"input": move.input,
+				"frames": j_pair.fx,
+				"rows": FORM_ROWS[form.id][move.id],
+				"size": [CLIP_SIZE.x, CLIP_SIZE.y],
+			})
 	for scenario in AROUND_SCENARIOS:
 		var pair: Dictionary = {}
 		for mode in ["fx", "nofx"]:
