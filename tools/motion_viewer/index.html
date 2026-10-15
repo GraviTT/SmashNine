@@ -99,6 +99,9 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .row-speed label { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 12px; }
 .row-speed output { color: var(--ink); font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .row-speed input { width: 100%; accent-color: var(--accent); }
+.adopt-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; min-height: 30px; }
+.adopt-line span { color: var(--muted); font-size: 12px; font-family: var(--font-mono); }
+.adopted-badge { justify-self: start; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); font-size: 10.5px; font-weight: 700; }
 .changes { display: grid; gap: 7px; }
 .changes-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .changes-head h3 { margin: 0; font-size: 13px; }
@@ -173,6 +176,11 @@ kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--
 				<div class="row-speed">
 					<label for="rowSpeed"><span>선택 줄 속도</span><output id="rowSpeedValue">×1.00</output></label>
 					<input id="rowSpeed" type="range" min="0.5" max="1.5" step="0.05" value="1" aria-label="선택 줄 재생 속도">
+					<div class="adopt-line">
+						<button class="btn primary" id="adoptSpeed" type="button" hidden>채택</button>
+						<button class="btn" id="clearSpeed" type="button" hidden>기록 지움</button>
+						<span id="adoptState" aria-live="polite"></span>
+					</div>
 				</div>
 				<div class="seg" role="radiogroup" aria-label="배율"><span>배율</span><div class="opts" id="zoomOpts"></div></div>
 				<div class="seg" role="radiogroup" aria-label="배경"><span>배경</span><div class="opts" id="bgOpts"></div></div>
@@ -279,6 +287,55 @@ function renderSpeedControl() {
 	$("rowSpeedValue").textContent = `×${value.toFixed(2)} · ${fmt(a.row.fps)} → ${fmt(effective)} fps`;
 }
 
+// Adopted speeds are kept in the artifact's database (collection motion_speeds, one document per
+// row), so Claude can read them back and apply them to the game (user 2026-10-15). Without the
+// database (a local preview), the adopt controls stay hidden.
+let speedDb = null;
+const adopted = new Map();
+const adoptId = (anim = anims[state.anim]) => rowKey(anim).replaceAll("/", "~");
+
+function renderAdoptState() {
+	const a = anims[state.anim], record = a && adopted.get(adoptId(a));
+	$("adoptSpeed").hidden = !speedDb || !a;
+	$("clearSpeed").hidden = !speedDb || !record;
+	$("adoptState").textContent = !speedDb || !a ? "" : record
+		? `채택됨 ×${Number(record.factor).toFixed(2)} · ${fmt(Number(record.fps))} fps · ${String(record.adopted_at || "").slice(5, 16).replace("T", " ")}`
+		: "채택 기록 없음";
+}
+
+async function connectSpeedDb() {
+	if (!window.claude || typeof window.claude.use !== "function") return;
+	const db = await window.claude.use("db");
+	if (!db) return;
+	speedDb = db;
+	db.collection("motion_speeds").onSnapshot((snap) => {
+		adopted.clear();
+		for (const doc of snap.docs) if (doc.exists) adopted.set(doc.id, doc.data());
+		renderAdoptState(); renderGroups();
+	}, () => { speedDb = null; renderAdoptState(); });
+	renderAdoptState();
+}
+
+async function writeAdoption(remove) {
+	const a = anims[state.anim]; if (!speedDb || !a) return;
+	const entry = entries[state.entry], form = curForm(), factor = rowSpeed(a);
+	const ref = speedDb.collection("motion_speeds").doc(adoptId(a));
+	const buttons = [$("adoptSpeed"), $("clearSpeed")];
+	buttons.forEach((b) => { b.disabled = true; });
+	try {
+		if (remove) await ref.delete();
+		else await ref.set({
+			character: entry.id, body: form.key || "", sheet: a.group, row: a.row.name, frames: a.row.frames,
+			table_fps: a.row.fps, factor, fps: Math.round(a.row.fps * factor * 100) / 100,
+			adopted_at: new Date().toISOString(), viewer_commit: M.commit || "",
+		});
+	} catch (error) {
+		$("adoptState").textContent = error && error.code === "invalid_argument" ? "기록할 권한이 없습니다." : "기록하지 못했습니다. 잠시 뒤 다시 눌러 주세요.";
+	} finally {
+		buttons.forEach((b) => { b.disabled = false; });
+	}
+}
+
 function renderSpeedChanges() {
 	const lines = [];
 	for (const [key, value] of Object.entries(state.rowSpeeds).sort()) {
@@ -362,6 +419,8 @@ function renderGroups() {
 			const f = Object.assign(document.createElement("div"), { className: "f", textContent: `${a.row.frames}프레임 · ${fmt(a.row.fps)}fps${a.row.loop ? " · 반복" : ""}` });
 			b.append(pic, n, l, f);
 			if (a.row.candidates && a.row.candidates.length) b.append(Object.assign(document.createElement("span"), { className: "candidate-badge", textContent: `후보 ${a.row.candidates.length}` }));
+			const record = adopted.get(adoptId(a));
+			if (record) b.append(Object.assign(document.createElement("span"), { className: "adopted-badge", textContent: `채택 ×${Number(record.factor).toFixed(2)}` }));
 			b.addEventListener("click", () => { state.anim = i; select(false, true); });
 			grid.append(b);
 			tiles.push({ el: b, ctx: c.getContext("2d"), anim: a, t: 0, last: -1 });
@@ -478,6 +537,7 @@ function renderStage() {
 	}
 	paintStrip();
 	renderSpeedControl();
+	renderAdoptState();
 }
 function paintStrip() {
 	const a = anims[state.anim]; if (!a) return;
@@ -556,6 +616,8 @@ $("rowSpeed").addEventListener("input", (event) => {
 	for (const tile of tiles) if (rowKey(tile.anim) === key) { tile.t = 0; tile.last = -1; }
 	renderStage(); drawStage(); renderSpeedChanges(); save();
 });
+$("adoptSpeed").addEventListener("click", () => writeAdoption(false));
+$("clearSpeed").addEventListener("click", () => writeAdoption(true));
 $("copySpeeds").addEventListener("click", async () => {
 	const box = $("speedChanges"); if (!box.value) return;
 	try { await navigator.clipboard.writeText(box.value); }
@@ -600,4 +662,5 @@ function tick(now) {
 	requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
+connectSpeedDb();
 </script>
