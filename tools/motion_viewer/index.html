@@ -95,6 +95,14 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .toggles { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--muted); }
 .toggles label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
 .toggles input { accent-color: var(--accent); }
+.row-speed { flex: 1 1 260px; display: grid; gap: 3px; min-width: min(260px, 100%); }
+.row-speed label { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 12px; }
+.row-speed output { color: var(--ink); font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.row-speed input { width: 100%; accent-color: var(--accent); }
+.changes { display: grid; gap: 7px; }
+.changes-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.changes-head h3 { margin: 0; font-size: 13px; }
+.changes textarea { width: 100%; min-height: 58px; resize: vertical; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); font: 12px/1.5 var(--font-mono); }
 
 .strip { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
 .strip button { flex: none; padding: 0; border: 2px solid transparent; border-radius: 6px; cursor: pointer; position: relative; }
@@ -120,6 +128,17 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .tile .l { font-size: 11.5px; color: var(--muted); line-height: 1.35; overflow-wrap: anywhere; }
 .tile .f { font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
 .candidate-badge { justify-self: start; padding: 1px 6px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 10.5px; font-weight: 700; }
+.clip-group { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+.clip-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.clip-head h3 { margin: 0; font-size: 16px; }
+.fx-toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--muted); }
+.fx-toggle input { accent-color: var(--accent); }
+.clips { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; margin-top: 10px; }
+.clip { overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.clip img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #101522; image-rendering: pixelated; }
+.clip figcaption { display: grid; gap: 2px; padding: 8px 10px 10px; }
+.clip strong { font-family: var(--font-mono); font-size: 12.5px; }
+.clip span { color: var(--muted); font-size: 11.5px; }
 .note { margin: 0; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 8px; color: var(--muted); font-size: 13px; }
 .keys { color: var(--muted); font-size: 12.5px; margin: 0; }
 kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--panel); }
@@ -148,7 +167,10 @@ kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--
 					<button class="btn primary" id="playBtn" type="button">멈춤</button>
 					<button class="btn" id="nextBtn" type="button" aria-label="다음 프레임">▶</button>
 				</div>
-				<div class="seg" role="radiogroup" aria-label="속도"><span>속도</span><div class="opts" id="speedOpts"></div></div>
+				<div class="row-speed">
+					<label for="rowSpeed"><span>선택 줄 속도</span><output id="rowSpeedValue">×1.00</output></label>
+					<input id="rowSpeed" type="range" min="0.5" max="1.5" step="0.05" value="1" aria-label="선택 줄 재생 속도">
+				</div>
 				<div class="seg" role="radiogroup" aria-label="배율"><span>배율</span><div class="opts" id="zoomOpts"></div></div>
 				<div class="seg" role="radiogroup" aria-label="배경"><span>배경</span><div class="opts" id="bgOpts"></div></div>
 			</div>
@@ -160,27 +182,31 @@ kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--
 			</div>
 			<div class="strip" id="strip" aria-label="프레임"></div>
 			<dl class="facts" id="facts"></dl>
+			<div class="changes">
+				<div class="changes-head"><h3>바뀐 속도</h3><button class="btn" id="copySpeeds" type="button">복사</button></div>
+				<textarea id="speedChanges" readonly placeholder="바꾼 줄이 없습니다."></textarea>
+			</div>
 			<p class="keys"><kbd>Space</kbd> 재생·멈춤 &nbsp; <kbd>←</kbd><kbd>→</kbd> 프레임 &nbsp; <kbd>↑</kbd><kbd>↓</kbd> 동작</p>
 		</section>
 
-		<section class="panel" aria-label="모든 동작"><div id="groups"></div></section>
+		<section class="panel" aria-label="모든 동작"><div id="groups"></div><div id="clips"></div></section>
 	</main>
 </div>
 
 <script>
 const M = /*MANIFEST*/null;
 const STORE = "smashnine-motion-viewer";
-const SPEEDS = [0.25, 0.5, 1, 2];
 const ZOOMS = [1, 2, 3, 4];
 const BGS = [["checker", "체크"], ["dark", "어둡게"], ["light", "밝게"]];
 const BODY = { male: "남성", female: "여성", "": "" };
 
-const entries = M.characters.map((c) => ({ id: c.id, name: c.name, forms: c.forms.map((f) => ({ label: BODY[f.body] || f.body, key: f.body, base: f.base, moves: f.moves })) }));
+const entries = M.characters.map((c) => ({ id: c.id, name: c.name, forms: c.forms.map((f) => ({ label: BODY[f.body] || f.body, key: f.body, base: f.base, moves: f.moves, clips: f.clips || [] })) }));
 entries.push({ id: "monsters", name: "Monsters", forms: M.monsters.map((m) => ({ label: `${m.realm} · ${m.name}`, key: m.id, base: m.base, moves: null })) });
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const state = { entry: 0, form: 0, anim: 0, playing: !reduce, speed: 1, zoom: 3, bg: "checker", feet: true, cell: false, margin: false, repeat: true };
+const state = { entry: 0, form: 0, anim: 0, playing: !reduce, zoom: 3, bg: "checker", feet: true, cell: false, margin: false, repeat: true, effects: true, rowSpeeds: {} };
 try { Object.assign(state, JSON.parse(localStorage.getItem(STORE) || "{}")); } catch {}
+if (!state.rowSpeeds || typeof state.rowSpeeds !== "object") state.rowSpeeds = {};
 const hashEntry = entries.findIndex((e) => e.id === location.hash.slice(1));
 if (hashEntry >= 0 && hashEntry !== state.entry) { state.entry = hashEntry; state.form = 0; state.anim = 0; }
 if (!entries[state.entry]) state.entry = 0;
@@ -212,12 +238,13 @@ const curForm = () => entries[state.entry].forms[state.form];
 let anims = [];
 
 // Frame index for an animation after t seconds; one-shot rows hold their last frame 0.5 s, then repeat when asked.
-function frameAt(row, t, repeat) {
+function frameAt(row, t, repeat, multiplier = 1) {
 	if (row.frames <= 1) return 0;
-	if (row.loop) return Math.floor(t * row.fps) % row.frames;
-	const span = row.frames / row.fps + 0.5;
+	const fps = row.fps * multiplier;
+	if (row.loop) return Math.floor(t * fps) % row.frames;
+	const span = row.frames / fps + 0.5;
 	const local = repeat ? t % span : t;
-	return Math.min(Math.floor(local * row.fps), row.frames - 1);
+	return Math.min(Math.floor(local * fps), row.frames - 1);
 }
 function drawCell(ctx, anim, frame, scale) {
 	const img = image(anim.sheet.file), c = anim.sheet.cell;
@@ -234,6 +261,34 @@ const $ = (id) => document.getElementById(id);
 // stageLead: the stage view with the most frames; stepping and the frame strip follow it
 // (a 6-frame candidate next to a 4-frame game row).
 let stageT = 0, stageFrame = 0, tiles = [], stripButtons = [], stageViews = [], stageLead = null, stageKey = "";
+
+function rowKey(anim = anims[state.anim]) {
+	if (!anim) return "";
+	const entry = entries[state.entry], form = curForm();
+	return `${entry.id}/${form.key || "default"}/${anim.group}/${anim.row.name}`;
+}
+const rowSpeed = (anim = anims[state.anim]) => Number(state.rowSpeeds[rowKey(anim)] || 1);
+
+function renderSpeedControl() {
+	const a = anims[state.anim]; if (!a) return;
+	const value = rowSpeed(a), effective = a.row.fps * value;
+	$("rowSpeed").value = String(value);
+	$("rowSpeedValue").textContent = `×${value.toFixed(2)} · ${fmt(a.row.fps)} → ${fmt(effective)} fps`;
+}
+
+function renderSpeedChanges() {
+	const lines = [];
+	for (const [key, value] of Object.entries(state.rowSpeeds).sort()) {
+		if (Math.abs(Number(value) - 1) < 0.001) continue;
+		const parts = key.split("/"), entry = entries.find((item) => item.id === parts[0]);
+		const form = entry && entry.forms.find((item) => (item.key || "default") === parts[1]);
+		const anim = form && animsOf(form).find((item) => item.group === parts[2] && item.row.name === parts[3]);
+		if (!anim) continue;
+		const who = `${parts[0]}${form.label ? ` ${form.label}` : ""}`;
+		lines.push(`${who} ${anim.row.name} ×${Number(value).toFixed(2)} (${fmt(anim.row.fps)} → ${fmt(anim.row.fps * Number(value))} fps)`);
+	}
+	$("speedChanges").value = lines.join("\n");
+}
 
 function segment(host, name, options, current, onPick) {
 	host.innerHTML = "";
@@ -311,6 +366,39 @@ function renderGroups() {
 		g.append(grid); host.append(g);
 	}
 }
+
+function renderClips() {
+	const host = $("clips"); host.innerHTML = "";
+	const clips = curForm().clips || [];
+	if (!clips.length || entries[state.entry].id === "monsters") return;
+	const section = document.createElement("section"); section.className = "clip-group";
+	const head = document.createElement("div"); head.className = "clip-head";
+	head.append(Object.assign(document.createElement("h3"), { textContent: "게임 화면" }));
+	const toggle = document.createElement("label"); toggle.className = "fx-toggle";
+	const checkbox = Object.assign(document.createElement("input"), { type: "checkbox", checked: state.effects });
+	toggle.append(checkbox, document.createTextNode("이펙트 켬/끔")); head.append(toggle); section.append(head);
+	const grid = document.createElement("div"); grid.className = "clips";
+	const images = [];
+	for (const clip of clips) {
+		const figure = document.createElement("figure"); figure.className = "clip";
+		const img = new Image(); img.alt = `${clip.name} ${state.effects ? "이펙트 켬" : "이펙트 끔"}`; img.loading = "lazy";
+		const caption = document.createElement("figcaption");
+		caption.append(
+			Object.assign(document.createElement("strong"), { textContent: `${clip.input} · ${clip.name}` }),
+			Object.assign(document.createElement("span"), { textContent: `${clip.duration.toFixed(3)}초 · ${clip.frames}프레임 · ${(clip.rows || []).join(", ")}` }),
+		);
+		figure.append(img, caption); grid.append(figure); images.push({ img, clip });
+	}
+	const syncSources = () => {
+		for (const { img, clip } of images) {
+			const mode = state.effects ? "fx" : "nofx";
+			img.alt = `${clip.name} 이펙트 ${state.effects ? "켬" : "끔"}`;
+			img.src = `clips/${clip.files[mode]}`;
+		}
+	};
+	checkbox.addEventListener("change", () => { state.effects = checkbox.checked; syncSources(); save(); });
+	section.append(grid); host.append(section); syncSources();
+}
 const fmt = (n) => (Math.round(n * 10) / 10).toString();
 
 function renderStage() {
@@ -353,6 +441,7 @@ function renderStage() {
 		["줄", `${a.index + 1}번째 (y ${a.index * a.sheet.cell})`],
 		["프레임", `${a.row.frames}칸`],
 		["재생", `${fmt(a.row.fps)}fps · ${fmt(dur * 1000)}ms`],
+		["미리보기", `×${rowSpeed(a).toFixed(2)} · ${fmt(a.row.fps * rowSpeed(a))}fps`],
 		["방식", a.row.loop ? "반복" : "한 번"],
 		["칸 · 발", `${a.sheet.cell}px · y ${a.sheet.feet}`],
 		["후보", `${(a.row.candidates || []).length}개`],
@@ -365,6 +454,7 @@ function renderStage() {
 		$("facts").append(d);
 	}
 	paintStrip();
+	renderSpeedControl();
 }
 function paintStrip() {
 	const a = anims[state.anim]; if (!a) return;
@@ -382,12 +472,13 @@ function drawStage() {
 	// Cells can differ (128 base rows, 192 move candidates, D34): same pixel scale, feet lines level.
 	const feetMax = Math.max(...stageViews.map((v) => v.anim.sheet.feet));
 	const guide = getComputedStyle(document.documentElement).getPropertyValue("--guide").trim() || "#08889e";
+	const speed = rowSpeed(a);
 	for (const view of stageViews) {
 		const cell = view.anim.sheet.cell, size = cell * scale;
 		if (view.canvas.width !== size) { view.canvas.width = size; view.canvas.height = size; }
 		view.canvas.style.width = `${cell * state.zoom}px`;
 		view.canvas.style.marginTop = `${(feetMax - view.anim.sheet.feet) * state.zoom}px`;
-		drawCell(view.ctx, view.anim, frameAt(view.anim.row, stageT, state.repeat), scale);
+		drawCell(view.ctx, view.anim, frameAt(view.anim.row, stageT, state.repeat, speed), scale);
 		view.ctx.save();
 		view.ctx.strokeStyle = guide; view.ctx.lineWidth = dpr;
 		if (state.cell) view.ctx.strokeRect(dpr / 2, dpr / 2, size - dpr, size - dpr);
@@ -402,7 +493,7 @@ function setFrame(i) {
 	const a = anims[state.anim]; if (!a) return;
 	const lead = stageLead || a;
 	stageFrame = (i + lead.row.frames) % lead.row.frames;
-	stageT = (stageFrame + 0.001) / lead.row.fps;
+	stageT = (stageFrame + 0.001) / (lead.row.fps * rowSpeed(a));
 	drawStage(); paintStrip();
 }
 function setPlaying(on) {
@@ -414,17 +505,16 @@ function select(keepAnim, onlyAnim) {
 		anims = animsOf(curForm());
 		if (!keepAnim || !anims[state.anim]) state.anim = 0;
 		if (keepAnim && anims[state.anim]) { /* same row index in the other body */ }
-		renderRoster(); renderForms(); renderGroups();
+		renderRoster(); renderForms(); renderGroups(); renderClips();
 	} else {
 		tiles.forEach((t) => t.el.setAttribute("aria-pressed", anims.indexOf(t.anim) === state.anim));
 	}
 	stageT = 0; stageFrame = 0; stageKey = "";
-	renderStage(); drawStage(); save();
+	renderStage(); drawStage(); renderSpeedChanges(); save();
 	for (const a of anims) { const img = image(a.sheet.file); if (!ready(img)) img.addEventListener("load", () => { drawStage(); paintStrip(); tiles.forEach((t) => (t.last = -1)); }, { once: true }); }
 	for (const view of stageViews) { const img = image(view.anim.sheet.file); if (!ready(img)) img.addEventListener("load", drawStage, { once: true }); }
 }
 
-segment($("speedOpts"), "speed", SPEEDS.map((s) => [s, `${s}×`]), state.speed, (v) => { state.speed = v; save(); });
 segment($("zoomOpts"), "zoom", ZOOMS.map((z) => [z, `${z}×`]), state.zoom, (v) => { state.zoom = v; drawStage(); save(); });
 segment($("bgOpts"), "bg", BGS, state.bg, (v) => { state.bg = v; $("stage").dataset.bg = v; save(); });
 $("stage").dataset.bg = state.bg;
@@ -435,6 +525,21 @@ for (const [id, key] of [["gFeet", "feet"], ["gCell", "cell"], ["gMargin", "marg
 $("playBtn").addEventListener("click", () => setPlaying(!state.playing));
 $("prevBtn").addEventListener("click", () => { setPlaying(false); setFrame(stageFrame - 1); });
 $("nextBtn").addEventListener("click", () => { setPlaying(false); setFrame(stageFrame + 1); });
+$("rowSpeed").addEventListener("input", (event) => {
+	const a = anims[state.anim]; if (!a) return;
+	const value = Number(event.target.value), key = rowKey(a);
+	if (Math.abs(value - 1) < 0.001) delete state.rowSpeeds[key]; else state.rowSpeeds[key] = value;
+	stageT = 0; stageFrame = 0; stageKey = "";
+	for (const tile of tiles) if (rowKey(tile.anim) === key) { tile.t = 0; tile.last = -1; }
+	renderStage(); drawStage(); renderSpeedChanges(); save();
+});
+$("copySpeeds").addEventListener("click", async () => {
+	const box = $("speedChanges"); if (!box.value) return;
+	try { await navigator.clipboard.writeText(box.value); }
+	catch { box.focus(); box.select(); document.execCommand("copy"); box.setSelectionRange(0, 0); }
+	$("copySpeeds").textContent = "복사됨";
+	setTimeout(() => { $("copySpeeds").textContent = "복사"; }, 900);
+});
 document.addEventListener("keydown", (e) => {
 	const t = e.target;
 	if (t instanceof HTMLInputElement) return;
@@ -455,17 +560,18 @@ select(true);
 
 let last = performance.now();
 function tick(now) {
-	const dt = Math.min(0.1, (now - last) / 1000) * state.speed; last = now;
+	const dt = Math.min(0.1, (now - last) / 1000); last = now;
 	const a = anims[state.anim];
 	if (a && state.playing) {
 		stageT += dt;
-		const f = frameAt((stageLead || a).row, stageT, state.repeat);
-		const key = stageViews.map((v) => frameAt(v.anim.row, stageT, state.repeat)).join(",");
+		const speed = rowSpeed(a);
+		const f = frameAt((stageLead || a).row, stageT, state.repeat, speed);
+		const key = stageViews.map((v) => frameAt(v.anim.row, stageT, state.repeat, speed)).join(",");
 		if (f !== stageFrame || key !== stageKey) { stageFrame = f; stageKey = key; drawStage(); paintStrip(); }
 	}
 	for (const tile of tiles) {
 		if (!reduce) tile.t += dt;
-		const f = frameAt(tile.anim.row, tile.t, true);
+		const f = frameAt(tile.anim.row, tile.t, true, rowSpeed(tile.anim));
 		if (f !== tile.last && drawCell(tile.ctx, tile.anim, f, 1)) tile.last = f;
 	}
 	requestAnimationFrame(tick);

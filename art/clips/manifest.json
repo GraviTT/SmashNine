@@ -1,0 +1,732 @@
+{
+  "version": 1,
+  "fps": 30,
+  "clips": [
+    {
+      "form": "frey",
+      "move": "ground-j",
+      "name": "지상 J",
+      "input": "J",
+      "duration": 1.0,
+      "frames": 30,
+      "files": {
+        "fx": "frey/ground-j-fx.webp",
+        "nofx": "frey/ground-j-nofx.webp"
+      },
+      "rows": [
+        "attack_chain 1-2",
+        "attack_chain 3-4",
+        "attack_chain 5-6"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "frey",
+      "move": "up-j",
+      "name": "지상 ↑J",
+      "input": "↑J",
+      "duration": 0.567,
+      "frames": 17,
+      "files": {
+        "fx": "frey/up-j-fx.webp",
+        "nofx": "frey/up-j-nofx.webp"
+      },
+      "rows": [
+        "attack_up 2-4"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "frey",
+      "move": "down-j",
+      "name": "지상 ↓J",
+      "input": "↓J",
+      "duration": 0.667,
+      "frames": 20,
+      "files": {
+        "fx": "frey/down-j-fx.webp",
+        "nofx": "frey/down-j-nofx.webp"
+      },
+      "rows": [
+        "attack_down 3-4"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": false
+    },
+    {
+      "form": "frey",
+      "move": "air-j",
+      "name": "공중 J",
+      "input": "공중 J",
+      "duration": 0.567,
+      "frames": 17,
+      "files": {
+        "fx": "frey/air-j-fx.webp",
+        "nofx": "frey/air-j-nofx.webp"
+      },
+      "rows": [
+        "attack_air_side 2-3"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "frey",
+      "move": "air-up-j",
+      "name": "공중 ↑J",
+      "input": "공중 ↑J",
+      "duration": 0.733,
+      "frames": 22,
+      "files": {
+        "fx": "frey/air-up-j-fx.webp",
+        "nofx": "frey/air-up-j-nofx.webp"
+      },
+      "rows": [
+        "attack_up 2-4"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "frey",
+      "move": "air-down-j",
+      "name": "공중 ↓J",
+      "input": "공중 ↓J",
+      "duration": 0.667,
+      "frames": 20,
+      "files": {
+        "fx": "frey/air-down-j-fx.webp",
+        "nofx": "frey/air-down-j-nofx.webp"
+      },
+      "rows": [
+        "attack_down 3-4"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna",
+      "move": "ground-j",
+      "name": "지상 J",
+      "input": "J",
+      "duration": 0.533,
+      "frames": 16,
+      "files": {
+        "fx": "luna/ground-j-fx.webp",
+        "nofx": "luna/ground-j-nofx.webp"
+      },
+      "rows": [
+        "star_side"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna",
+      "move": "up-j",
+      "name": "지상 ↑J",
+      "input": "↑J",
+      "duration": 0.567,
+      "frames": 17,
+      "files": {
+        "fx": "luna/up-j-fx.webp",
+        "nofx": "luna/up-j-nofx.webp"
+      },
+      "rows": [
+        "star_up"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna",
+      "move": "down-j",
+      "name": "지상 ↓J",
+      "input": "↓J",
+      "duration": 0.633,
+      "frames": 19,
+      "files": {
+        "fx": "luna/down-j-fx.webp",
+        "nofx": "luna/down-j-nofx.webp"
+      },
+      "rows": [
+        "star_down"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna",
+      "move": "air-j",
+      "name": "공중 J",
+      "input": "공중 J",
+      "duration": 0.6,
+      "frames": 18,
+      "files": {
+        "fx": "luna/air-j-fx.webp",
+        "nofx": "luna/air-j-nofx.webp"
+      },
+      "rows": [
+        "star_side"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna",
+      "move": "air-up-j",
+      "name": "공중 ↑J",
+      "input": "공중 ↑J",
+      "duration": 0.7,
+      "frames": 21,
+      "files": {
+        "fx": "luna/air-up-j-fx.webp",
+        "nofx": "luna/air-up-j-nofx.webp"
+      },
+      "rows": [
+        "star_up"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna",
+      "move": "air-down-j",
+      "name": "공중 ↓J",
+      "input": "공중 ↓J",
+      "duration": 0.633,
+      "frames": 19,
+      "files": {
+        "fx": "luna/air-down-j-fx.webp",
+        "nofx": "luna/air-down-j-nofx.webp"
+      },
+      "rows": [
+        "star_down"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna_brave",
+      "move": "ground-j",
+      "name": "지상 J",
+      "input": "J",
+      "duration": 0.8,
+      "frames": 24,
+      "files": {
+        "fx": "luna_brave/ground-j-fx.webp",
+        "nofx": "luna_brave/ground-j-nofx.webp"
+      },
+      "rows": [
+        "brave_combo 1-2",
+        "brave_combo 3-4",
+        "brave_combo 5-6"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna_brave",
+      "move": "up-j",
+      "name": "지상 ↑J",
+      "input": "↑J",
+      "duration": 0.433,
+      "frames": 13,
+      "files": {
+        "fx": "luna_brave/up-j-fx.webp",
+        "nofx": "luna_brave/up-j-nofx.webp"
+      },
+      "rows": [
+        "brave_upper"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna_brave",
+      "move": "down-j",
+      "name": "지상 ↓J",
+      "input": "↓J",
+      "duration": 0.9,
+      "frames": 27,
+      "files": {
+        "fx": "luna_brave/down-j-fx.webp",
+        "nofx": "luna_brave/down-j-nofx.webp"
+      },
+      "rows": [
+        "brave_low"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna_brave",
+      "move": "air-j",
+      "name": "공중 J",
+      "input": "공중 J",
+      "duration": 0.6,
+      "frames": 18,
+      "files": {
+        "fx": "luna_brave/air-j-fx.webp",
+        "nofx": "luna_brave/air-j-nofx.webp"
+      },
+      "rows": [
+        "brave_air_side"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna_brave",
+      "move": "air-up-j",
+      "name": "공중 ↑J",
+      "input": "공중 ↑J",
+      "duration": 0.867,
+      "frames": 26,
+      "files": {
+        "fx": "luna_brave/air-up-j-fx.webp",
+        "nofx": "luna_brave/air-up-j-nofx.webp"
+      },
+      "rows": [
+        "brave_upper"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "luna_brave",
+      "move": "air-down-j",
+      "name": "공중 ↓J",
+      "input": "공중 ↓J",
+      "duration": 0.467,
+      "frames": 14,
+      "files": {
+        "fx": "luna_brave/air-down-j-fx.webp",
+        "nofx": "luna_brave/air-down-j-nofx.webp"
+      },
+      "rows": [
+        "brave_dive"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "yuki",
+      "move": "ground-j",
+      "name": "지상 J",
+      "input": "J",
+      "duration": 0.5,
+      "frames": 15,
+      "files": {
+        "fx": "yuki/ground-j-fx.webp",
+        "nofx": "yuki/ground-j-nofx.webp"
+      },
+      "rows": [
+        "talisman_side"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "yuki",
+      "move": "up-j",
+      "name": "지상 ↑J",
+      "input": "↑J",
+      "duration": 0.6,
+      "frames": 18,
+      "files": {
+        "fx": "yuki/up-j-fx.webp",
+        "nofx": "yuki/up-j-nofx.webp"
+      },
+      "rows": [
+        "talisman_up"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "yuki",
+      "move": "down-j",
+      "name": "지상 ↓J",
+      "input": "↓J",
+      "duration": 0.633,
+      "frames": 19,
+      "files": {
+        "fx": "yuki/down-j-fx.webp",
+        "nofx": "yuki/down-j-nofx.webp"
+      },
+      "rows": [
+        "ground_ward"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": false
+    },
+    {
+      "form": "yuki",
+      "move": "air-j",
+      "name": "공중 J",
+      "input": "공중 J",
+      "duration": 0.567,
+      "frames": 17,
+      "files": {
+        "fx": "yuki/air-j-fx.webp",
+        "nofx": "yuki/air-j-nofx.webp"
+      },
+      "rows": [
+        "talisman_air_side"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "yuki",
+      "move": "air-up-j",
+      "name": "공중 ↑J",
+      "input": "공중 ↑J",
+      "duration": 0.6,
+      "frames": 18,
+      "files": {
+        "fx": "yuki/air-up-j-fx.webp",
+        "nofx": "yuki/air-up-j-nofx.webp"
+      },
+      "rows": [
+        "talisman_up"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "yuki",
+      "move": "air-down-j",
+      "name": "공중 ↓J",
+      "input": "공중 ↓J",
+      "duration": 0.633,
+      "frames": 19,
+      "files": {
+        "fx": "yuki/air-down-j-fx.webp",
+        "nofx": "yuki/air-down-j-nofx.webp"
+      },
+      "rows": [
+        "talisman_air_down"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "nova",
+      "move": "ground-j",
+      "name": "지상 J",
+      "input": "J",
+      "duration": 0.433,
+      "frames": 13,
+      "files": {
+        "fx": "nova/ground-j-fx.webp",
+        "nofx": "nova/ground-j-nofx.webp"
+      },
+      "rows": [
+        "vector_side"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "nova",
+      "move": "up-j",
+      "name": "지상 ↑J",
+      "input": "↑J",
+      "duration": 0.433,
+      "frames": 13,
+      "files": {
+        "fx": "nova/up-j-fx.webp",
+        "nofx": "nova/up-j-nofx.webp"
+      },
+      "rows": [
+        "vector_upper"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "nova",
+      "move": "down-j",
+      "name": "지상 ↓J",
+      "input": "↓J",
+      "duration": 0.9,
+      "frames": 27,
+      "files": {
+        "fx": "nova/down-j-fx.webp",
+        "nofx": "nova/down-j-nofx.webp"
+      },
+      "rows": [
+        "compression_stomp"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "nova",
+      "move": "air-j",
+      "name": "공중 J",
+      "input": "공중 J",
+      "duration": 0.567,
+      "frames": 17,
+      "files": {
+        "fx": "nova/air-j-fx.webp",
+        "nofx": "nova/air-j-nofx.webp"
+      },
+      "rows": [
+        "air_side"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "nova",
+      "move": "air-up-j",
+      "name": "공중 ↑J",
+      "input": "공중 ↑J",
+      "duration": 0.867,
+      "frames": 26,
+      "files": {
+        "fx": "nova/air-up-j-fx.webp",
+        "nofx": "nova/air-up-j-nofx.webp"
+      },
+      "rows": [
+        "vector_upper"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "nova",
+      "move": "air-down-j",
+      "name": "공중 ↓J",
+      "input": "공중 ↓J",
+      "duration": 0.5,
+      "frames": 15,
+      "files": {
+        "fx": "nova/air-down-j-fx.webp",
+        "nofx": "nova/air-down-j-nofx.webp"
+      },
+      "rows": [
+        "meteor_kick"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "rio",
+      "move": "ground-j",
+      "name": "지상 J",
+      "input": "J",
+      "duration": 0.9,
+      "frames": 27,
+      "files": {
+        "fx": "rio/ground-j-fx.webp",
+        "nofx": "rio/ground-j-nofx.webp"
+      },
+      "rows": [
+        "mana_combo 1-2",
+        "mana_combo 3-4",
+        "mana_combo 5-6"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "rio",
+      "move": "up-j",
+      "name": "지상 ↑J",
+      "input": "↑J",
+      "duration": 0.5,
+      "frames": 15,
+      "files": {
+        "fx": "rio/up-j-fx.webp",
+        "nofx": "rio/up-j-nofx.webp"
+      },
+      "rows": [
+        "rising_slash"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "rio",
+      "move": "down-j",
+      "name": "지상 ↓J",
+      "input": "↓J",
+      "duration": 1.167,
+      "frames": 35,
+      "files": {
+        "fx": "rio/down-j-fx.webp",
+        "nofx": "rio/down-j-nofx.webp"
+      },
+      "rows": [
+        "low_sweep"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "rio",
+      "move": "air-j",
+      "name": "공중 J",
+      "input": "공중 J",
+      "duration": 0.567,
+      "frames": 17,
+      "files": {
+        "fx": "rio/air-j-fx.webp",
+        "nofx": "rio/air-j-nofx.webp"
+      },
+      "rows": [
+        "air_slash"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "rio",
+      "move": "air-up-j",
+      "name": "공중 ↑J",
+      "input": "공중 ↑J",
+      "duration": 0.833,
+      "frames": 25,
+      "files": {
+        "fx": "rio/air-up-j-fx.webp",
+        "nofx": "rio/air-up-j-nofx.webp"
+      },
+      "rows": [
+        "rising_slash"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    },
+    {
+      "form": "rio",
+      "move": "air-down-j",
+      "name": "공중 ↓J",
+      "input": "공중 ↓J",
+      "duration": 1.5,
+      "frames": 45,
+      "files": {
+        "fx": "rio/air-down-j-fx.webp",
+        "nofx": "rio/air-down-j-nofx.webp"
+      },
+      "rows": [
+        "plunge"
+      ],
+      "size": [
+        960,
+        540
+      ],
+      "fx_diff": true
+    }
+  ]
+}

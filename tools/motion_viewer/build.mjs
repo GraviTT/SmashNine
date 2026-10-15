@@ -13,9 +13,19 @@ const repo = join(here, "..", "..");
 const game = join(repo, "smash-nine-prototype");
 const art = join(game, "assets", "art");
 const bakeoffRoot = join(repo, "art", "bakeoff");
+const clipsRoot = join(repo, "art", "clips");
 const dist = join(here, "dist");
 
 const read = (p) => readFileSync(p, "utf8");
+
+let clipManifest = { clips: [] };
+try {
+	const path = join(clipsRoot, "manifest.json");
+	if (existsSync(path)) clipManifest = JSON.parse(read(path));
+} catch (error) {
+	console.warn(`invalid clip manifest: ${error.message}`);
+}
+const clipsFor = (form) => (clipManifest.clips || []).filter((clip) => clip.form === form);
 
 // const NAME := [ ["row", frames, fps, loop], ... ]
 function rowTable(file, constName) {
@@ -157,7 +167,7 @@ for (const c of CHARACTERS) {
 				moves.rows.push({ name: row, frames: first.frames || 6, fps: first.fps || 12, loop: row === "tumble", start: null, newRow: true, label: "새 줄 — 게임에 아직 없음", candidates: candidates.map(({ source, ...item }) => item) });
 			}
 		}
-		forms.push({ body, base, moves });
+		forms.push({ body, base, moves, clips: clipsFor(c.id) });
 	}
 	characters.push({ id: c.id, name: c.name, forms });
 }
@@ -193,9 +203,19 @@ for (const candidate of new Map(candidateCopies.map((item) => [item.file, item])
 	mkdirSync(dirname(to), { recursive: true });
 	copyFileSync(candidate.source, to);
 }
+const clipCopies = [];
+for (const clip of clipManifest.clips || []) {
+	for (const rel of Object.values(clip.files || {})) {
+		const source = join(clipsRoot, rel), to = join(dist, "clips", rel);
+		if (!existsSync(source)) throw new Error(`clip missing: ${source}`);
+		mkdirSync(dirname(to), { recursive: true });
+		copyFileSync(source, to);
+		clipCopies.push(`clips/${rel.replaceAll("\\", "/")}`);
+	}
+}
 const html = read(join(here, "index.html")).replace("/*MANIFEST*/null", JSON.stringify(manifest));
 writeFileSync(join(dist, "index.html"), html);
-const published = [...sheets.map((rel) => `sheets/${rel}`), ...new Set(candidateCopies.map((item) => item.file))];
+const published = [...sheets.map((rel) => `sheets/${rel}`), ...new Set(candidateCopies.map((item) => item.file)), ...new Set(clipCopies)];
 writeFileSync(join(dist, "files.json"), JSON.stringify(published.map((path) => ({ path }))));
 const moveRowCount = characters.reduce((n, c) => n + c.forms.reduce((m, f) => m + (f.moves ? f.moves.rows.length : 0), 0), 0);
-console.log(`motion viewer: ${characters.length} fighters, ${monsters.length} monsters, ${sheets.length} sheets, ${moveRowCount} move rows, ${new Set(candidateCopies.map((item) => item.file)).size} candidates -> ${dist}`);
+console.log(`motion viewer: ${characters.length} fighters, ${monsters.length} monsters, ${sheets.length} sheets, ${moveRowCount} move rows, ${new Set(candidateCopies.map((item) => item.file)).size} candidates, ${clipCopies.length} clips -> ${dist}`);
