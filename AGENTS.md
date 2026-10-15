@@ -12,6 +12,12 @@ Codex runs as units (tester, analyst, builder) in its own clones and writes only
 2. `design/ROADMAP.md` — milestones and done-criteria
    - Current priority (2026-10-10, D30): finish the characters first; bot tuning is paused. The seven finishing criteria and the first Frey/Luna pass are D31.
    - `design/BOT_TUNING.md` — bot tuning handbook (Korean): the whole process so far, current state, how to measure, lessons, the queue to resume. Read it before touching `EnemyAI.gd` or changing a character's kit (section 6 lists what the bot must follow).
+   - `design/SKILLS.md` — every character's moves as the code plays them (Korean): numbers, sprite rows, the effect art each move draws, and the values its effect must follow. **When you change a skill** (the balance work runs in its own session):
+     - update its row in the same commit
+     - if a value in "이펙트가 따라야 할 값" changes, mark that effect `다시 그림` in the work list
+     - do not edit effect art in a balance commit
+     
+     The character `.md` docs disagree with the code in places (`reports/codex-doc-01/README.md`); the code wins.
 3. `smash-nine-prototype/FINAL_GAME_GOAL.md` — what the game must feel like
 4. `smash-nine/Concept1.png`, `smash-nine/Concept2.png` — concept art (realm map, timeline, growth, art tone)
 5. `smash-nine/GAME_DESIGN_DOCUMENT.md` — older GDD; lore and roster reference only
