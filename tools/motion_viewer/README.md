@@ -27,6 +27,13 @@ $godot = 'C:/Users/TH/Downloads/Godot_v4.7-stable_win64.exe/Godot_v4.7-stable_wi
 
 `capture_move_clips.gd`는 Frey, Luna, Brave Luna, Yuki, Nova 남성, Rio 남성의 지상 J(연계 전 타), 지상 ↑J/↓J, 공중 J/↑J/↓J를 30fps·960×540으로 각각 이펙트 켬/끔 캡처한다. 마지막에 Pillow로 손실 없는 애니메이션 WebP 72개와 `art/clips/manifest.json`을 만든다. 이어서 저장소 루트에서 `node tools/motion_viewer/build.mjs`를 다시 실행한다.
 
+**이펙트 후보 비교(`art/clips-new`):** 뷰어의 이펙트 보기는 `끔 / 지금 / 새 후보` 세 가지다. 새 후보 클립은 이렇게 만든다.
+1. `art/bakeoff/effects/<id>/*-vN.png`를 각 JSON의 `replaces` 경로에 잠시 덮어쓴다.
+2. `--headless --import` 뒤 위 캡처를 돌리고, 결과 `art/clips`를 `art/clips-new`로 옮긴다. 지금 클립은 미리 복사해 두었다가 되돌린다.
+3. 덮어쓴 이펙트는 `git checkout -- smash-nine-prototype/assets/art`로 되돌리고 다시 import한다.
+
+`build.mjs`는 `art/clips-new/manifest.json`이 있으면 같은 form/move의 fx 클립을 새 후보로 붙인다. 후보를 채택해 게임에 넣으면 `art/clips`를 다시 캡처하고 `art/clips-new`는 지운다.
+
 ## 동작 겨루기 후보
 
 후보는 Godot 프로젝트 밖에 둔다.
