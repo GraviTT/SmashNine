@@ -8,7 +8,9 @@ const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const FPS := 30
 const PHYSICS_FRAMES_PER_SHOT := 2
 const CLIP_SIZE := Vector2i(960, 540)
-const FLOOR_Y := 110.0
+## Just above the floor's top (y=0); a ground move waits until the fighter has landed. 110 was
+## below the floor, so every fighter fell out of the clip (2026-10-15).
+const FLOOR_Y := -40.0
 const AIR_Y := -170.0
 const FINAL_HOLD_FRAMES := 5 # 0.167 s, the requested idle +0.15 s.
 const MAX_CAPTURE_FRAMES := 120
@@ -139,7 +141,9 @@ func _build_arena() -> void:
 	arena.add_child(floor_body)
 	camera = Camera2D.new()
 	camera.name = "ClipCamera"
-	camera.position = Vector2(0, -160)
+	# Zoomed so the fighter reads at clip size, and biased forward where the J effects reach.
+	camera.position = Vector2(80, -140)
+	camera.zoom = Vector2(1.8, 1.8)
 	camera.enabled = true
 	arena.add_child(camera)
 
@@ -167,6 +171,12 @@ func _capture(form: Dictionary, move: Dictionary, mode: String) -> int:
 	else:
 		fighter.global_position = Vector2(0, FLOOR_Y)
 		fighter.velocity = Vector2.ZERO
+		for unused in 60:
+			if fighter.is_on_floor():
+				break
+			await physics_frame
+		if not fighter.is_on_floor():
+			push_error("fighter did not land: %s/%s" % [form.id, move.id])
 	await process_frame
 	_hide_hud()
 	var frame_dir := clips_root.path_join("_frames").path_join(form.id).path_join(move.id).path_join(mode)

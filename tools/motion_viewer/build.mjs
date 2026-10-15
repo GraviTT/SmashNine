@@ -25,6 +25,20 @@ try {
 } catch (error) {
 	console.warn(`invalid clip manifest: ${error.message}`);
 }
+// Clips captured with candidate effects installed (art/clips-new, same layout) become the viewer's
+// third effect mode, next to "off" and today's effects.
+const newClipsRoot = join(repo, "art", "clips-new");
+try {
+	const path = join(newClipsRoot, "manifest.json");
+	const fresh = existsSync(path) ? JSON.parse(read(path)).clips || [] : [];
+	const byMove = new Map(fresh.map((clip) => [`${clip.form}/${clip.move}`, clip]));
+	for (const clip of clipManifest.clips || []) {
+		const match = byMove.get(`${clip.form}/${clip.move}`);
+		if (match && match.files && match.files.fx) clip.newFx = match.files.fx;
+	}
+} catch (error) {
+	console.warn(`invalid candidate clip manifest: ${error.message}`);
+}
 const clipsFor = (form) => (clipManifest.clips || []).filter((clip) => clip.form === form);
 
 // const NAME := [ ["row", frames, fps, loop], ... ]
@@ -211,6 +225,13 @@ for (const clip of clipManifest.clips || []) {
 		mkdirSync(dirname(to), { recursive: true });
 		copyFileSync(source, to);
 		clipCopies.push(`clips/${rel.replaceAll("\\", "/")}`);
+	}
+	if (clip.newFx) {
+		const source = join(newClipsRoot, clip.newFx), to = join(dist, "clips-new", clip.newFx);
+		if (!existsSync(source)) throw new Error(`candidate clip missing: ${source}`);
+		mkdirSync(dirname(to), { recursive: true });
+		copyFileSync(source, to);
+		clipCopies.push(`clips-new/${clip.newFx.replaceAll("\\", "/")}`);
 	}
 }
 const html = read(join(here, "index.html")).replace("/*MANIFEST*/null", JSON.stringify(manifest));

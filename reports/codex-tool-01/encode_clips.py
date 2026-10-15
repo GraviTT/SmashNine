@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import time
 import json
 import shutil
 import sys
@@ -20,18 +21,27 @@ def encode(paths: list[Path], target: Path, durations: list[int]) -> None:
     # samples addressable without changing the readable game image.
     for index, frame in enumerate(frames):
         frame.putpixel((0, frame.height - 1), (16 + index % 2, 21, 34, 255))
-    frames[0].save(
-        target,
-        "WEBP",
-        save_all=True,
-        append_images=frames[1:],
-        duration=durations,
-        loop=0,
-        lossless=True,
-        quality=100,
-        # Method 3 keeps the output lossless while making a full 72-clip refresh practical.
-        method=3,
-    )
+    # A file written a moment ago can be held briefly by another process on Windows (antivirus,
+    # sync); opening it again fails with EINVAL. Retry a few times (2026-10-15).
+    for attempt in range(6):
+        try:
+            frames[0].save(
+                target,
+                "WEBP",
+                save_all=True,
+                append_images=frames[1:],
+                duration=durations,
+                loop=0,
+                lossless=True,
+                quality=100,
+                # Method 3 keeps the output lossless while making a full 72-clip refresh practical.
+                method=3,
+            )
+            break
+        except OSError:
+            if attempt == 5:
+                raise
+            time.sleep(0.5)
     for frame in frames:
         frame.close()
     with Image.open(target) as encoded:

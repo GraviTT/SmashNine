@@ -133,7 +133,7 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .clip-head h3 { margin: 0; font-size: 16px; }
 .fx-toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--muted); }
 .fx-toggle input { accent-color: var(--accent); }
-.clips { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; margin-top: 10px; }
+.clips { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px; margin-top: 10px; }
 .clip { overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
 .clip img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #101522; image-rendering: pixelated; }
 .clip figcaption { display: grid; gap: 2px; padding: 8px 10px 10px; }
@@ -204,7 +204,7 @@ const entries = M.characters.map((c) => ({ id: c.id, name: c.name, forms: c.form
 entries.push({ id: "monsters", name: "Monsters", forms: M.monsters.map((m) => ({ label: `${m.realm} · ${m.name}`, key: m.id, base: m.base, moves: null })) });
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const state = { entry: 0, form: 0, anim: 0, playing: !reduce, zoom: 3, bg: "checker", feet: true, cell: false, margin: false, repeat: true, effects: true, rowSpeeds: {} };
+const state = { entry: 0, form: 0, anim: 0, playing: !reduce, zoom: 3, bg: "checker", feet: true, cell: false, margin: false, repeat: true, fxMode: "fx", rowSpeeds: {} };
 try { Object.assign(state, JSON.parse(localStorage.getItem(STORE) || "{}")); } catch {}
 if (!state.rowSpeeds || typeof state.rowSpeeds !== "object") state.rowSpeeds = {};
 const hashEntry = entries.findIndex((e) => e.id === location.hash.slice(1));
@@ -374,14 +374,24 @@ function renderClips() {
 	const section = document.createElement("section"); section.className = "clip-group";
 	const head = document.createElement("div"); head.className = "clip-head";
 	head.append(Object.assign(document.createElement("h3"), { textContent: "게임 화면" }));
-	const toggle = document.createElement("label"); toggle.className = "fx-toggle";
-	const checkbox = Object.assign(document.createElement("input"), { type: "checkbox", checked: state.effects });
-	toggle.append(checkbox, document.createTextNode("이펙트 켬/끔")); head.append(toggle); section.append(head);
+	// Effects off / today's effects / candidate effects (clips captured with art/bakeoff/effects installed).
+	const modes = [["nofx", "끔"], ["fx", "지금"]];
+	if (clips.some((clip) => clip.newFx)) modes.push(["new", "새 후보"]);
+	if (!modes.some(([key]) => key === state.fxMode)) state.fxMode = "fx";
+	const toggle = document.createElement("div"); toggle.className = "seg";
+	const opts = document.createElement("div"); opts.className = "opts"; opts.setAttribute("role", "radiogroup"); opts.setAttribute("aria-label", "이펙트");
+	for (const [key, label] of modes) {
+		const id = `fx-${key}`;
+		const radio = Object.assign(document.createElement("input"), { type: "radio", name: "fx-mode", id, value: key, checked: key === state.fxMode });
+		radio.addEventListener("change", () => { state.fxMode = key; syncSources(); save(); });
+		opts.append(radio, Object.assign(document.createElement("label"), { htmlFor: id, textContent: label }));
+	}
+	toggle.append(Object.assign(document.createElement("span"), { textContent: "이펙트" }), opts); head.append(toggle); section.append(head);
 	const grid = document.createElement("div"); grid.className = "clips";
 	const images = [];
 	for (const clip of clips) {
 		const figure = document.createElement("figure"); figure.className = "clip";
-		const img = new Image(); img.alt = `${clip.name} ${state.effects ? "이펙트 켬" : "이펙트 끔"}`; img.loading = "lazy";
+		const img = new Image(); img.alt = clip.name; img.loading = "lazy";
 		const caption = document.createElement("figcaption");
 		caption.append(
 			Object.assign(document.createElement("strong"), { textContent: `${clip.input} · ${clip.name}` }),
@@ -391,12 +401,11 @@ function renderClips() {
 	}
 	const syncSources = () => {
 		for (const { img, clip } of images) {
-			const mode = state.effects ? "fx" : "nofx";
-			img.alt = `${clip.name} 이펙트 ${state.effects ? "켬" : "끔"}`;
-			img.src = `clips/${clip.files[mode]}`;
+			const candidate = state.fxMode === "new" && clip.newFx;
+			img.alt = `${clip.name} — 이펙트 ${candidate ? "새 후보" : state.fxMode === "nofx" ? "끔" : "지금"}`;
+			img.src = candidate ? `clips-new/${clip.newFx}` : `clips/${clip.files[state.fxMode === "nofx" ? "nofx" : "fx"]}`;
 		}
 	};
-	checkbox.addEventListener("change", () => { state.effects = checkbox.checked; syncSources(); save(); });
 	section.append(grid); host.append(section); syncSources();
 }
 const fmt = (n) => (Math.round(n * 10) / 10).toString();
