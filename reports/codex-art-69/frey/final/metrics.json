@@ -1,0 +1,417 @@
+{
+  "input": {
+    "sheet": "art/raw/defeat-69/frey/prepared.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.27907,
+    "scale_by": "fixed:0.27907",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      39,
+      91
+    ],
+    "body_width_range": [
+      75,
+      126
+    ],
+    "area_range": [
+      3292,
+      4416
+    ],
+    "area_spread_percent": 25.45,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2808,
+      3774
+    ],
+    "interior_detail_range": [
+      124.32,
+      141.43
+    ],
+    "interior_detail_mean": 135.09,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 96.31,
+    "interior_detail_ratio": 1.4027
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.69,
+        "colour_count": 4737,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 95.01,
+        "colour_count": 4990,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 96.36,
+        "colour_count": 5094,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 93.9,
+        "colour_count": 5091,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 97.74,
+        "colour_count": 4844,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 97.16,
+        "colour_count": 4849,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 96.31,
+    "colour_count_range": [
+      4737,
+      5094
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/defeat-69/frey/prepared.png#0,0",
+      "bbox": [
+        54,
+        64,
+        139,
+        153
+      ],
+      "body_height": 89,
+      "body_width": 85,
+      "area": 4414,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 132.72,
+      "colour_count": 3774,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 54,
+        "top": 64,
+        "right": 53,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.3781
+    },
+    {
+      "index": 1,
+      "source": "art/raw/defeat-69/frey/prepared.png#1,0",
+      "bbox": [
+        56,
+        62,
+        140,
+        153
+      ],
+      "body_height": 91,
+      "body_width": 84,
+      "area": 4416,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 133.8,
+      "colour_count": 3756,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 62,
+        "right": 52,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.3893
+    },
+    {
+      "index": 2,
+      "source": "art/raw/defeat-69/frey/prepared.png#2,0",
+      "bbox": [
+        56,
+        71,
+        131,
+        153
+      ],
+      "body_height": 82,
+      "body_width": 75,
+      "area": 3931,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 137.78,
+      "colour_count": 3342,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 71,
+        "right": 61,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.4306
+    },
+    {
+      "index": 3,
+      "source": "art/raw/defeat-69/frey/prepared.png#0,1",
+      "bbox": [
+        46,
+        85,
+        160,
+        153
+      ],
+      "body_height": 68,
+      "body_width": 114,
+      "area": 4351,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 124.32,
+      "colour_count": 3716,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 46,
+        "top": 85,
+        "right": 32,
+        "bottom": 39,
+        "minimum": 32,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2908
+    },
+    {
+      "index": 4,
+      "source": "art/raw/defeat-69/frey/prepared.png#1,1",
+      "bbox": [
+        42,
+        107,
+        159,
+        153
+      ],
+      "body_height": 46,
+      "body_width": 117,
+      "area": 3393,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 141.43,
+      "colour_count": 2829,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 42,
+        "top": 107,
+        "right": 33,
+        "bottom": 39,
+        "minimum": 33,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.4685
+    },
+    {
+      "index": 5,
+      "source": "art/raw/defeat-69/frey/prepared.png#2,1",
+      "bbox": [
+        42,
+        114,
+        168,
+        153
+      ],
+      "body_height": 39,
+      "body_width": 126,
+      "area": 3292,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 140.46,
+      "colour_count": 2808,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 42,
+        "top": 114,
+        "right": 24,
+        "bottom": 39,
+        "minimum": 24,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.4584
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-69/frey/final/frey-defeat-v1.png",
+    "candidate": "art/bakeoff/frey/frey-defeat-v1.png",
+    "frames": "reports/codex-art-69/frey/final/frames",
+    "closeup": "reports/codex-art-69/frey/final/closeup.png",
+    "compare": "reports/codex-art-69/frey/final/compare.png"
+  }
+}

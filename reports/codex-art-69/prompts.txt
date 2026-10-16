@@ -1,0 +1,41 @@
+Built-in ImageGen. 각 블록의 Image 1은 해당 폼의 채택된 idle strip이며 외형·얼굴/머리 비율·색·장비·디테일 기준이다. 모든 생성은 uniform #00FF00 배경, 3 columns × 2 rows, left-to-right then top-to-bottom, exactly six full-body poses, facing right, consistent scale and head size, generous margin으로 요청했다.
+
+공통 모션:
+1 hit recoil, head snapped back, upper body bent backward, feet grounded.
+2 stagger one step backward, arms loose.
+3 knees buckle.
+4 falling backward or sideways.
+5 hitting the ground with a small bounce.
+6 lying still on the ground, eyes closed; weapon beside the body or still held.
+
+공통 금지:
+no pasted idle head, duplicate limbs or equipment, effects, glow, trails, dust, blood, text, numbers, borders, panel dividers, shadows, scenery, watermark. Exactly one face, two hands and two feet; frames 5 and 6 rest on one common floor level.
+
+[Frey]
+Image 1: art/bakeoff/frey/frey-idle-v2.png. Preserve exact blonde winged-helmet knight costume, sword and round blue shield. Exactly one sword and one shield.
+
+[Luna]
+Image 1: art/bakeoff/luna/luna-idle-v3.png. Preserve long vivid pink hair and bow, pink-purple magical-girl dress and boots, star-tipped wand. Exactly one wand.
+
+[Brave Luna]
+Image 1: art/bakeoff/luna/luna_brave-idle-v4.png. Preserve high pink ponytail, purple ribbon and gold star, sleeveless combat top, skirt over shorts, short scarf, purple-gold forearm gauntlets, star knee armor and armored boots. No weapon.
+
+[Yuki]
+Image 1: art/bakeoff/yuki/yuki-idle-v2.png. Preserve very long dark violet-black hair with red ornaments and red-black-white shrine-exorcist outfit. No weapon or floating talismans.
+
+[Nova male]
+Image 1: art/bakeoff/nova/nova_male-idle-v2.png. Preserve swept navy hair, black/navy sci-fi bodysuit, silver armor plates, cyan circuitry, gauntlets and boots. No weapon or energy object.
+
+[Nova female]
+Image 1: art/bakeoff/nova/nova_female-idle-v2.png. Preserve long swept navy hair with cyan accent, black/navy sci-fi bodysuit, silver armor, cyan circuitry, gauntlets and boots. No weapon or energy object.
+
+[Rio male]
+Image 1: art/bakeoff/rio/rio_male-idle-v2.png. Preserve shaggy navy hair, navy-black swordsman armor, silver/cyan trim, split cape and solid bright-blue sword. Exactly one sword; no rune, mana wave or afterimage.
+
+[Rio female]
+Image 1: art/bakeoff/rio/rio_female-idle-v2.png. Preserve very long navy high ponytail, navy-black-teal academy swordswoman outfit, silver trim, cyan diamonds, leggings, boots, split cape and solid bright-blue sword. Exactly one sword; no rune, mana wave or afterimage.
+
+[Rio male second pass: frames 5–6 only]
+Built-in ImageGen. Image 1은 현재 6프레임 패배 스트립이며 4번 프레임을 낙하 방향·직전 자세 기준으로 사용했다. Image 2는 채택 대기 스트립이며 얼굴, 머리 비율, 남색-검정 검사 갑옷, 은색/청록 장식, 갈라진 망토, 밝은 파란 검의 의상 기준으로 사용했다.
+
+정확히 2열×1행으로 요청했다. 왼쪽은 머리가 왼쪽·발이 오른쪽인 채 등에 착지해 무릎이 올라가는 작은 바운스, 오른쪽은 같은 방향으로 눈을 감고 등에 누워 검을 몸 곁에 내려놓는 정지 자세다. 몸/망토 밑면이 공통 바닥선에 닿고 검만 바닥선을 정하지 않도록 했다. 엎드림, 머리 오른쪽, 180도 반전, 열린 눈, 중복 얼굴·팔다리·검, 룬·마나·이펙트·글자·경계선은 금지했다. 2차 생성물을 채택했으며 D35 경로(`fixed:0.255`, LANCZOS, sharpen 60, despill auto, palette none, min-component 21)로 정규화했다.
