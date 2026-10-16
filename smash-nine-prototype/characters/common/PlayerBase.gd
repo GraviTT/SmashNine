@@ -268,6 +268,13 @@ var sprite_pose_times := PackedFloat32Array()
 var sprite_pose_elapsed := 0.0
 var sprite_pose_lock := 0.0
 var sprite_pose_on_floor := true
+## Defeat motion (user 2026-10-17: "캐릭터들 패배 모션 추가"). A fighter knocked out on the ground
+## plays its `defeat` row, holds the last drawing DEFEAT_HOLD, then fades out over DEFEAT_FADE. With
+## no such row, in the air or off the map it vanishes at once, as before. Collisions are already
+## off, so the body is only a picture while it falls.
+const DEFEAT_HOLD := 0.6
+const DEFEAT_FADE := 0.4
+var defeat_tween: Tween
 ## The attack area the last _spawn_* call created (characters tag it with set_meta to know later
 ## which move hit whom: Frey's launchers, Luna's precise star echoes).
 var last_attack: Node
@@ -1548,8 +1555,9 @@ func _defeat(attacker: Node) -> void:
 	_reset_guard_state()
 	_end_skill_dash()
 	character_cleanup()
+	var grounded := is_on_floor()
 	is_defeated = true
-	visible = false
+	_show_defeat(grounded)
 	collision_layer = 0
 	collision_mask = 0
 	if is_instance_valid(attacker) and attacker != self and attacker.has_method("record_knockout"):
@@ -1559,7 +1567,33 @@ func _defeat(attacker: Node) -> void:
 		var timer := get_tree().create_timer(3.0)
 		timer.timeout.connect(_respawn_after_defeat)
 
+## Plays the defeat row where the fighter fell, or hides it at once (see DEFEAT_HOLD).
+func _show_defeat(grounded: bool) -> void:
+	var row := _get_sprite_animation_name(&"defeat") if _uses_character_sprite() else &""
+	if not grounded or row == &"" or not character_sprite.sprite_frames.has_animation(row):
+		visible = false
+		return
+	_end_sprite_pose()
+	sprite_action = &""
+	sprite_action_timer = 0.0
+	character_sprite.speed_scale = 1.0
+	character_sprite.play(row)
+	var frames := character_sprite.sprite_frames
+	var motion := float(frames.get_frame_count(row)) / maxf(frames.get_animation_speed(row), 1.0)
+	defeat_tween = create_tween()
+	defeat_tween.tween_interval(motion + DEFEAT_HOLD)
+	defeat_tween.tween_property(self, "modulate:a", 0.0, DEFEAT_FADE)
+	defeat_tween.tween_callback(_hide_after_defeat)
+
+func _hide_after_defeat() -> void:
+	if is_defeated:
+		visible = false
+	modulate.a = 1.0
+
 func _respawn_after_defeat() -> void:
+	if defeat_tween != null and defeat_tween.is_valid():
+		defeat_tween.kill()
+	modulate.a = 1.0
 	hp = max_hp
 	is_defeated = false
 	_apply_realm_active_state()
