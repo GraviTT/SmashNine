@@ -1,0 +1,458 @@
+{
+  "input": {
+    "sheet": "art/raw/defeat-69/rio_male/prepared-fix2-combined.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.255,
+    "scale_by": "fixed:0.255",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 21,
+    "dropped_component_count": 4,
+    "dropped_component_pixels": 5,
+    "body_height_range": [
+      44,
+      88
+    ],
+    "body_width_range": [
+      77,
+      178
+    ],
+    "area_range": [
+      3052,
+      5483
+    ],
+    "area_spread_percent": 44.34,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2685,
+      4658
+    ],
+    "interior_detail_range": [
+      141.07,
+      157.4
+    ],
+    "interior_detail_mean": 153.2,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 110.24,
+    "interior_detail_ratio": 1.3897
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4258,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 111.49,
+        "colour_count": 4283,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 110.99,
+        "colour_count": 4261,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 109.74,
+        "colour_count": 4220,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 108.85,
+        "colour_count": 4124,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 108.69,
+        "colour_count": 4143,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 110.24,
+    "colour_count_range": [
+      4124,
+      4283
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/defeat-69/rio_male/prepared-fix2-combined.png#0,0",
+      "bbox": [
+        58,
+        65,
+        146,
+        153
+      ],
+      "body_height": 88,
+      "body_width": 88,
+      "area": 3535,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 157.4,
+      "colour_count": 3094,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 65,
+        "right": 46,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [
+        {
+          "pixels": 1,
+          "bbox": [
+            88,
+            73,
+            89,
+            74
+          ]
+        }
+      ],
+      "dropped_component_pixels": 1,
+      "interior_detail_ratio_to_reference_mean": 1.4278
+    },
+    {
+      "index": 1,
+      "source": "art/raw/defeat-69/rio_male/prepared-fix2-combined.png#1,0",
+      "bbox": [
+        58,
+        66,
+        135,
+        153
+      ],
+      "body_height": 87,
+      "body_width": 77,
+      "area": 3342,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 154.82,
+      "colour_count": 2955,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 66,
+        "right": 57,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.4044
+    },
+    {
+      "index": 2,
+      "source": "art/raw/defeat-69/rio_male/prepared-fix2-combined.png#2,0",
+      "bbox": [
+        60,
+        79,
+        144,
+        153
+      ],
+      "body_height": 74,
+      "body_width": 84,
+      "area": 3052,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 156.46,
+      "colour_count": 2685,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 60,
+        "top": 79,
+        "right": 48,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [
+        {
+          "pixels": 1,
+          "bbox": [
+            118,
+            109,
+            119,
+            110
+          ]
+        }
+      ],
+      "dropped_component_pixels": 1,
+      "interior_detail_ratio_to_reference_mean": 1.4193
+    },
+    {
+      "index": 3,
+      "source": "art/raw/defeat-69/rio_male/prepared-fix2-combined.png#0,1",
+      "bbox": [
+        48,
+        82,
+        146,
+        153
+      ],
+      "body_height": 71,
+      "body_width": 98,
+      "area": 3518,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 152.95,
+      "colour_count": 3124,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 48,
+        "top": 82,
+        "right": 46,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.3874
+    },
+    {
+      "index": 4,
+      "source": "art/raw/defeat-69/rio_male/prepared-fix2-combined.png#1,1",
+      "bbox": [
+        25,
+        93,
+        175,
+        153
+      ],
+      "body_height": 60,
+      "body_width": 150,
+      "area": 5483,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 141.07,
+      "colour_count": 4658,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 93,
+        "right": 17,
+        "bottom": 39,
+        "minimum": 17,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2797
+    },
+    {
+      "index": 5,
+      "source": "art/raw/defeat-69/rio_male/prepared-fix2-combined.png#2,1",
+      "bbox": [
+        6,
+        109,
+        184,
+        153
+      ],
+      "body_height": 44,
+      "body_width": 178,
+      "area": 4786,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 156.49,
+      "colour_count": 4128,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 6,
+        "top": 109,
+        "right": 8,
+        "bottom": 39,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [
+        {
+          "pixels": 2,
+          "bbox": [
+            44,
+            113,
+            46,
+            114
+          ]
+        },
+        {
+          "pixels": 1,
+          "bbox": [
+            13,
+            118,
+            14,
+            119
+          ]
+        }
+      ],
+      "dropped_component_pixels": 3,
+      "interior_detail_ratio_to_reference_mean": 1.4195
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-69/rio_male/trial-combined/rio_male-defeat-v1.png",
+    "candidate": null,
+    "frames": "reports/codex-art-69/rio_male/trial-combined/frames",
+    "closeup": "reports/codex-art-69/rio_male/trial-combined/closeup.png",
+    "compare": "reports/codex-art-69/rio_male/trial-combined/compare.png"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "unit": "4x crop pixels",
+  "method": "각 폼의 앵커 1프레임과 defeat 1~3프레임을 4배 최근접 확대해 눈 중심 간 거리와 눈높이 얼굴 폭(머리카락 제외)을 직접 셌다. ratio는 두 비율의 평균이다.",
+  "forms": {
+    "frey": {
+      "anchor": {"eye_distance": 24, "face_width": 56},
+      "frames": [
+        {"eye_distance": 24, "face_width": 56, "ratio": 1.00},
+        {"eye_distance": 24, "face_width": 57, "ratio": 1.01},
+        {"eye_distance": 24, "face_width": 56, "ratio": 1.00}
+      ]
+    },
+    "luna": {
+      "anchor": {"eye_distance": 24, "face_width": 52},
+      "frames": [
+        {"eye_distance": 24, "face_width": 52, "ratio": 1.00},
+        {"eye_distance": 25, "face_width": 52, "ratio": 1.02},
+        {"eye_distance": 24, "face_width": 52, "ratio": 1.00}
+      ]
+    },
+    "luna_brave": {
+      "anchor": {"eye_distance": 28, "face_width": 60},
+      "frames": [
+        {"eye_distance": 28, "face_width": 61, "ratio": 1.01},
+        {"eye_distance": 28, "face_width": 60, "ratio": 1.00},
+        {"eye_distance": 27, "face_width": 59, "ratio": 0.97}
+      ]
+    },
+    "yuki": {
+      "anchor": {"eye_distance": 24, "face_width": 56},
+      "frames": [
+        {"eye_distance": 24, "face_width": 56, "ratio": 1.00},
+        {"eye_distance": 25, "face_width": 56, "ratio": 1.02},
+        {"eye_distance": 25, "face_width": 58, "ratio": 1.04}
+      ]
+    },
+    "nova_male": {
+      "anchor": {"eye_distance": 24, "face_width": 56},
+      "frames": [
+        {"eye_distance": 24, "face_width": 56, "ratio": 1.00},
+        {"eye_distance": 25, "face_width": 56, "ratio": 1.02},
+        {"eye_distance": 24, "face_width": 56, "ratio": 1.00}
+      ]
+    },
+    "nova_female": {
+      "anchor": {"eye_distance": 24, "face_width": 56},
+      "frames": [
+        {"eye_distance": 25, "face_width": 57, "ratio": 1.03},
+        {"eye_distance": 24, "face_width": 56, "ratio": 1.00},
+        {"eye_distance": 23, "face_width": 55, "ratio": 0.97}
+      ]
+    },
+    "rio_male": {
+      "anchor": {"eye_distance": 20, "face_width": 52},
+      "frames": [
+        {"eye_distance": 20, "face_width": 52, "ratio": 1.00},
+        {"eye_distance": 20, "face_width": 51, "ratio": 0.99},
+        {"eye_distance": 21, "face_width": 53, "ratio": 1.03}
+      ]
+    },
+    "rio_female": {
+      "anchor": {"eye_distance": 20, "face_width": 52},
+      "frames": [
+        {"eye_distance": 21, "face_width": 53, "ratio": 1.03},
+        {"eye_distance": 20, "face_width": 52, "ratio": 1.00},
+        {"eye_distance": 19, "face_width": 51, "ratio": 0.97}
+      ]
+    }
+  }
+}
