@@ -1,0 +1,3562 @@
+{
+  "count": 65,
+  "items": {
+    "frey_ult_charge": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/frey_ult_charge.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/frey_ult_charge.png",
+        "vfx_spec_line": 18,
+        "frames_spec": 6,
+        "fps": 24.0,
+        "anchor": "64, 124",
+        "additive": true,
+        "authored_width": 128,
+        "strip_size": [
+          1536,
+          256
+        ],
+        "real_frame_size": [
+          256.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global_position (feet origin)",
+        "size": "1.3*sqrt(COMBAT) uniform",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": "1; additive"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:368",
+          "code": "VFX.spawn(get_parent(), \"frey_ult_charge\", global_position, Vector2.ONE * 1.3 * sqrt(GAME_SCALE.COMBAT))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:412",
+          "code": "VFX.spawn(get_parent(), \"frey_ult_charge\", global_position, Vector2.ONE * 1.3 * sqrt(GAME_SCALE.COMBAT))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:420",
+          "code": "if VFX.available(\"frey_ult_charge\"):"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:18",
+          "code": "\"frey_ult_charge\": [6, 24.0, Vector2(64, 124), true],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:88",
+          "code": "\"frey_ult_charge\": 128, \"frey_ult_wave\": 256, \"yuki_ult_seal\": 256, \"yuki_ult_burst\": 256,"
+        }
+      ]
+    },
+    "frey_ult_wave": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/frey_ult_wave.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/frey_ult_wave.png",
+        "vfx_spec_line": 19,
+        "frames_spec": 8,
+        "fps": 30.0,
+        "anchor": "0, 96",
+        "additive": true,
+        "authored_width": 256,
+        "strip_size": [
+          4096,
+          192
+        ],
+        "real_frame_size": [
+          512.0,
+          192
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global +(18*facing,2), aftershock +(10*facing,2)",
+        "size": "(facing,1)*COMBAT; aftershock (0.85*facing,1.45)*COMBAT",
+        "rotation": "horizontal mirror by scale",
+        "layer": 4,
+        "alpha": "1; additive"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:384",
+          "code": "var wave_alpha := 0.16 if VFX.available(\"frey_ult_wave\") else 0.72"
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:393",
+          "code": "VFX.spawn(get_parent(), \"frey_ult_wave\", global_position + Vector2(18 * side, 2), Vector2(side, 1.0) * GAME_SCALE.COMBAT)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:408",
+          "code": "VFX.spawn(get_parent(), \"frey_ult_wave\", global_position + Vector2(10 * side, 2), Vector2(0.85 * side, 1.45) * GAME_SCALE.COMBAT, false, 4, Color(1.0, 1.0, 0.8))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:436",
+          "code": "if VFX.available(\"frey_ult_wave\"):"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:19",
+          "code": "\"frey_ult_wave\": [8, 30.0, Vector2(0, 96), true],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:88",
+          "code": "\"frey_ult_charge\": 128, \"frey_ult_wave\": 256, \"yuki_ult_seal\": 256, \"yuki_ult_burst\": 256,"
+        }
+      ]
+    },
+    "yuki_ult_seal": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/yuki_ult_seal.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/yuki_ult_seal.png",
+        "vfx_spec_line": 20,
+        "frames_spec": 8,
+        "fps": 12.0,
+        "anchor": "128, 128",
+        "additive": false,
+        "authored_width": 256,
+        "strip_size": [
+          4096,
+          512
+        ],
+        "real_frame_size": [
+          512.0,
+          512
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "ward local origin",
+        "size": "FIELD_RADIUS*2/256 uniform",
+        "rotation": "none",
+        "layer": 0,
+        "alpha": "SEAL_WARNING_ALPHA"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiGrandWard.gd:45",
+          "code": "seal = VFX.spawn(self, \"yuki_ult_seal\", Vector2.ZERO, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0), true, 0, Color(1, 1, 1, SEAL_WARNING_ALPHA), true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:20",
+          "code": "\"yuki_ult_seal\": [8, 12.0, Vector2(128, 128), false],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:88",
+          "code": "\"frey_ult_charge\": 128, \"frey_ult_wave\": 256, \"yuki_ult_seal\": 256, \"yuki_ult_burst\": 256,"
+        }
+      ]
+    },
+    "yuki_ult_burst": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/yuki_ult_burst.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/yuki_ult_burst.png",
+        "vfx_spec_line": 21,
+        "frames_spec": 6,
+        "fps": 30.0,
+        "anchor": "128, 128",
+        "additive": true,
+        "authored_width": 256,
+        "strip_size": [
+          3072,
+          512
+        ],
+        "real_frame_size": [
+          512.0,
+          512
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "ward global_position",
+        "size": "FIELD_RADIUS*2/256 uniform",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiGrandWard.gd:111",
+          "code": "VFX.spawn(get_parent(), \"yuki_ult_burst\", global_position, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiGrandWard.gd:163",
+          "code": "if VFX.available(\"yuki_ult_burst\"):"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:21",
+          "code": "\"yuki_ult_burst\": [6, 30.0, Vector2(128, 128), true],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:88",
+          "code": "\"frey_ult_charge\": 128, \"frey_ult_wave\": 256, \"yuki_ult_seal\": 256, \"yuki_ult_burst\": 256,"
+        }
+      ]
+    },
+    "luna_ult_transform": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/luna_ult_transform.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/luna_ult_transform.png",
+        "vfx_spec_line": 22,
+        "frames_spec": 8,
+        "fps": 24.0,
+        "anchor": "96, 96",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          3072,
+          384
+        ],
+        "real_frame_size": [
+          384.0,
+          384
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "local (0,-42)",
+        "size": "1.4*COMBAT uniform",
+        "rotation": "none",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:542",
+          "code": "VFX.spawn(self, \"luna_ult_transform\", Vector2(0, -42), Vector2.ONE * 1.4 * GAME_SCALE.COMBAT, false, 5, Color.WHITE, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:22",
+          "code": "\"luna_ult_transform\": [8, 24.0, Vector2(96, 96), true],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:89",
+          "code": "\"luna_ult_transform\": 192, \"luna_ult_laser\": 128, \"luna_ult_laser_head\": 96, \"nova_ult_core\": 128,"
+        }
+      ]
+    },
+    "luna_ult_laser": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/luna_ult_laser.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/luna_ult_laser.png",
+        "vfx_spec_line": 23,
+        "frames_spec": 4,
+        "fps": 24.0,
+        "anchor": "0, 48",
+        "additive": true,
+        "authored_width": 128,
+        "strip_size": [
+          1024,
+          192
+        ],
+        "real_frame_size": [
+          256.0,
+          192
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          94,
+          90,
+          82,
+          98
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "beam centre, tiled across beam_length",
+        "size": "beam_length x beam height",
+        "rotation": "beam direction",
+        "layer": "beam node",
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/LunaHeartLaser.gd:57",
+          "code": "beam_frames = VFX.frame_textures(\"luna_ult_laser\")"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/LunaHeartLaser.gd:90",
+          "code": "beam_art.texture = beam_frames[int(elapsed * VFX.fps(\"luna_ult_laser\")) % beam_frames.size()]"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:23",
+          "code": "\"luna_ult_laser\": [4, 24.0, Vector2(0, 48), true],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:89",
+          "code": "\"luna_ult_transform\": 192, \"luna_ult_laser\": 128, \"luna_ult_laser_head\": 96, \"nova_ult_core\": 128,"
+        }
+      ]
+    },
+    "luna_ult_laser_head": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/luna_ult_laser_head.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/luna_ult_laser_head.png",
+        "vfx_spec_line": 24,
+        "frames_spec": 4,
+        "fps": 24.0,
+        "anchor": "48, 48",
+        "additive": true,
+        "authored_width": 96,
+        "strip_size": [
+          768,
+          192
+        ],
+        "real_frame_size": [
+          192.0,
+          192
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "local (beam_length/2,0)",
+        "size": "1.3*COMBAT uniform",
+        "rotation": "beam direction via parent",
+        "layer": 1,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/LunaHeartLaser.gd:73",
+          "code": "VFX.spawn(self, \"luna_ult_laser_head\", Vector2(beam_length * 0.5, 0), Vector2.ONE * 1.3 * GAME_SCALE.COMBAT, true, 1, Color.WHITE, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:24",
+          "code": "\"luna_ult_laser_head\": [4, 24.0, Vector2(48, 48), true],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:89",
+          "code": "\"luna_ult_transform\": 192, \"luna_ult_laser\": 128, \"luna_ult_laser_head\": 96, \"nova_ult_core\": 128,"
+        }
+      ]
+    },
+    "nova_ult_core": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/nova_ult_core.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/nova_ult_core.png",
+        "vfx_spec_line": 25,
+        "frames_spec": 6,
+        "fps": 18.0,
+        "anchor": "64, 64",
+        "additive": false,
+        "authored_width": 128,
+        "strip_size": [
+          1536,
+          256
+        ],
+        "real_frame_size": [
+          256.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "singularity local origin",
+        "size": "1.1*COMBAT uniform",
+        "rotation": "none",
+        "layer": 0,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:556",
+          "code": "var core_art := VFX.spawn(singularity_visual, \"nova_ult_core\", Vector2.ZERO, Vector2.ONE * 1.1 * GAME_SCALE.COMBAT, true, 0, Color.WHITE, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:25",
+          "code": "\"nova_ult_core\": [6, 18.0, Vector2(64, 64), false],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:89",
+          "code": "\"luna_ult_transform\": 192, \"luna_ult_laser\": 128, \"luna_ult_laser_head\": 96, \"nova_ult_core\": 128,"
+        }
+      ]
+    },
+    "nova_ult_burst": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/nova_ult_burst.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/nova_ult_burst.png",
+        "vfx_spec_line": 26,
+        "frames_spec": 8,
+        "fps": 48.0,
+        "anchor": "128, 128",
+        "additive": false,
+        "authored_width": 256,
+        "strip_size": [
+          4096,
+          512
+        ],
+        "real_frame_size": [
+          512.0,
+          512
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "core point / global +(0,-30)",
+        "size": "radius*COMBAT*2.2/256 uniform",
+        "rotation": "none",
+        "layer": 6,
+        "alpha": "1; one call tinted"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:417",
+          "code": "VFX.spawn(get_parent(), \"nova_ult_burst\", core_point, Vector2.ONE * (ULTIMATE_COLLAPSE_RADIUS * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6, Color(0.82, 0.72, 1.0))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:454",
+          "code": "VFX.spawn(get_parent(), \"nova_ult_burst\", global_position + Vector2(0, -30), Vector2.ONE * (radius * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:26",
+          "code": "\"nova_ult_burst\": [8, 48.0, Vector2(128, 128), false],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:90",
+          "code": "\"nova_ult_burst\": 256, \"rio_ult_circle\": 192, \"rio_ult_impact\": 64,"
+        }
+      ]
+    },
+    "rio_ult_circle": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/rio_ult_circle.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/rio_ult_circle.png",
+        "vfx_spec_line": 27,
+        "frames_spec": 6,
+        "fps": 18.0,
+        "anchor": "96, 96",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          2304,
+          384
+        ],
+        "real_frame_size": [
+          384.0,
+          384
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "local (0,-36)",
+        "size": "0.85*COMBAT uniform",
+        "rotation": "none",
+        "layer": -1,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:401",
+          "code": "overdrive_circle = VFX.spawn(self, \"rio_ult_circle\", Vector2(0, -36), Vector2.ONE * 0.85 * GAME_SCALE.COMBAT, true, -1, Color.WHITE, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:27",
+          "code": "\"rio_ult_circle\": [6, 18.0, Vector2(96, 96), true],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:90",
+          "code": "\"nova_ult_burst\": 256, \"rio_ult_circle\": 192, \"rio_ult_impact\": 64,"
+        }
+      ]
+    },
+    "rio_ult_impact": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/vfx/rio_ult_impact.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/vfx/rio_ult_impact.png",
+        "vfx_spec_line": 28,
+        "frames_spec": 6,
+        "fps": 36.0,
+        "anchor": "32, 32",
+        "additive": true,
+        "authored_width": 64,
+        "strip_size": [
+          768,
+          128
+        ],
+        "real_frame_size": [
+          128.0,
+          128
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "projectile impact point",
+        "size": "projectile impact scale",
+        "rotation": "none",
+        "layer": "projectile effect layer",
+        "alpha": "projectile tint"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:455",
+          "code": "projectile.impact_vfx = \"rio_ult_impact\""
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:28",
+          "code": "\"rio_ult_impact\": [6, 36.0, Vector2(32, 32), true],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:90",
+          "code": "\"nova_ult_burst\": 256, \"rio_ult_circle\": 192, \"rio_ult_impact\": 64,"
+        }
+      ]
+    },
+    "frey_slash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/frey_slash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/frey_slash.png",
+        "vfx_spec_line": 29,
+        "frames_spec": 6,
+        "fps": 36.0,
+        "anchor": "0, 64",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          2304,
+          256
+        ],
+        "real_frame_size": [
+          384.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "profile": "slash",
+        "centre": "global_position + GameScale.BODY_CENTRE",
+        "size": "uniform reach / AUTHORED_WIDTH (clamped 0.5..3), then Vfx divides by source ratio",
+        "rotation": "aim.angle(); flip_v when aim.x < 0",
+        "layer": 5,
+        "alpha": 1.0,
+        "owner": "PlayerBase._draw_attack_art"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:29",
+          "code": "\"frey_slash\": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:91",
+          "code": "\"frey_slash\": 192, \"frey_k\": 224, \"frey_l\": 128, \"yuki_slash\": 192, \"yuki_k\": 128, \"yuki_l\": 192,"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1175",
+          "code": "_draw_attack_art: dynamic attack_effect_name() -> <character>_slash"
+        }
+      ]
+    },
+    "frey_k": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/frey_k.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/frey_k.png",
+        "vfx_spec_line": 30,
+        "frames_spec": 6,
+        "fps": 30.0,
+        "anchor": "0, 48",
+        "additive": true,
+        "authored_width": 224,
+        "strip_size": [
+          2688,
+          192
+        ],
+        "real_frame_size": [
+          448.0,
+          192
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "body centre",
+        "size": "(172*COMBAT+58)/224 uniform",
+        "rotation": "dash direction",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:317",
+          "code": "_draw_skill_art(\"frey_k\", global_position + GAME_SCALE.BODY_CENTRE, dash_direction, (172.0 * GAME_SCALE.COMBAT + 58.0) / 224.0)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:30",
+          "code": "\"frey_k\": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:91",
+          "code": "\"frey_slash\": 192, \"frey_k\": 224, \"frey_l\": 128, \"yuki_slash\": 192, \"yuki_k\": 128, \"yuki_l\": 192,"
+        }
+      ]
+    },
+    "frey_l": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/frey_l.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/frey_l.png",
+        "vfx_spec_line": 31,
+        "frames_spec": 6,
+        "fps": 30.0,
+        "anchor": "64, 188",
+        "additive": true,
+        "authored_width": 128,
+        "strip_size": [
+          1536,
+          384
+        ],
+        "real_frame_size": [
+          256.0,
+          384
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global +(44*COMBAT*facing,0)",
+        "size": "(136*COMBAT+58)/192 uniform",
+        "rotation": "flip_h by facing",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:343",
+          "code": "var cleave := EFFECT_STRIPS.spawn(get_parent(), \"frey_l\", global_position + Vector2(44.0 * GAME_SCALE.COMBAT * facing, 0), Vector2.ONE * (136.0 * GAME_SCALE.COMBAT + 58.0) / 192.0, false, 5)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:31",
+          "code": "\"frey_l\": [6, 30.0, Vector2(64, 188), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:91",
+          "code": "\"frey_slash\": 192, \"frey_k\": 224, \"frey_l\": 128, \"yuki_slash\": 192, \"yuki_k\": 128, \"yuki_l\": 192,"
+        }
+      ]
+    },
+    "yuki_slash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/yuki_slash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/yuki_slash.png",
+        "vfx_spec_line": 32,
+        "frames_spec": 6,
+        "fps": 30.0,
+        "anchor": "0, 64",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          2304,
+          256
+        ],
+        "real_frame_size": [
+          384.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "profile": "slash",
+        "centre": "global_position + GameScale.BODY_CENTRE",
+        "size": "uniform reach / AUTHORED_WIDTH (clamped 0.5..3), then Vfx divides by source ratio",
+        "rotation": "aim.angle(); flip_v when aim.x < 0",
+        "layer": 5,
+        "alpha": 1.0,
+        "owner": "PlayerBase._draw_attack_art"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:32",
+          "code": "\"yuki_slash\": [6, 30.0, Vector2(0, 64), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:91",
+          "code": "\"frey_slash\": 192, \"frey_k\": 224, \"frey_l\": 128, \"yuki_slash\": 192, \"yuki_k\": 128, \"yuki_l\": 192,"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1175",
+          "code": "_draw_attack_art: dynamic attack_effect_name() -> <character>_slash"
+        }
+      ]
+    },
+    "yuki_k": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/yuki_k.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/yuki_k.png",
+        "vfx_spec_line": 33,
+        "frames_spec": 6,
+        "fps": 18.0,
+        "anchor": "64, 64",
+        "additive": false,
+        "authored_width": 128,
+        "strip_size": [
+          1536,
+          256
+        ],
+        "real_frame_size": [
+          256.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "seal global +(0,-4)",
+        "size": "1.1 uniform",
+        "rotation": "none",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiSeal.gd:141",
+          "code": "VFX.spawn(get_parent(), \"yuki_k\", global_position + Vector2(0, -4), Vector2.ONE * 1.1, false, 5)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:33",
+          "code": "\"yuki_k\": [6, 18.0, Vector2(64, 64), false, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:91",
+          "code": "\"frey_slash\": 192, \"frey_k\": 224, \"frey_l\": 128, \"yuki_slash\": 192, \"yuki_k\": 128, \"yuki_l\": 192,"
+        }
+      ]
+    },
+    "yuki_l": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/yuki_l.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/yuki_l.png",
+        "vfx_spec_line": 34,
+        "frames_spec": 6,
+        "fps": 24.0,
+        "anchor": "96, 96",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          2304,
+          384
+        ],
+        "real_frame_size": [
+          384.0,
+          384
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "seal/talisman impact global",
+        "size": "burst diameter / 192",
+        "rotation": "none",
+        "layer": "5 or 6",
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiSeal.gd:144",
+          "code": "VFX.spawn(get_parent(), \"yuki_l\", global_position, Vector2.ONE * (BURST_RADIUS * 2.0 / 192.0), false, 6)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiSeal.gd:147",
+          "code": "if VFX.available(\"yuki_l\"):"
+        },
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiTalisman.gd:107",
+          "code": "if VFX.spawn(get_parent(), \"yuki_l\", global_position, Vector2.ONE * (maxf(burst_size.x, burst_size.y) / BURST_ART_WIDTH), false, 5) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:34",
+          "code": "\"yuki_l\": [6, 24.0, Vector2(96, 96), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:91",
+          "code": "\"frey_slash\": 192, \"frey_k\": 224, \"frey_l\": 128, \"yuki_slash\": 192, \"yuki_k\": 128, \"yuki_l\": 192,"
+        }
+      ]
+    },
+    "luna_slash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/luna_slash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/luna_slash.png",
+        "vfx_spec_line": 35,
+        "frames_spec": 6,
+        "fps": 30.0,
+        "anchor": "0, 64",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          2304,
+          256
+        ],
+        "real_frame_size": [
+          384.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "profile": "slash",
+        "centre": "global_position + GameScale.BODY_CENTRE",
+        "size": "uniform reach / AUTHORED_WIDTH (clamped 0.5..3), then Vfx divides by source ratio",
+        "rotation": "aim.angle(); flip_v when aim.x < 0",
+        "layer": 5,
+        "alpha": 1.0,
+        "owner": "PlayerBase._draw_attack_art"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:373",
+          "code": "return \"luna_brave_slash\" if transformed else \"luna_slash\""
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:35",
+          "code": "\"luna_slash\": [6, 30.0, Vector2(0, 64), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:92",
+          "code": "\"luna_slash\": 192, \"luna_k\": 160, \"luna_l\": 192, \"luna_brave_slash\": 224, \"nova_slash\": 160,"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1175",
+          "code": "_draw_attack_art: dynamic attack_effect_name() -> <character>_slash"
+        }
+      ]
+    },
+    "luna_k": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/luna_k.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/luna_k.png",
+        "vfx_spec_line": 36,
+        "frames_spec": 6,
+        "fps": 30.0,
+        "anchor": "0, 48",
+        "additive": true,
+        "authored_width": 160,
+        "strip_size": [
+          1920,
+          192
+        ],
+        "real_frame_size": [
+          320.0,
+          192
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "comet.global_position",
+        "size": "0.75*COMBAT uniform",
+        "rotation": "flight direction",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:370",
+          "code": "_draw_skill_art(\"luna_k\", comet.global_position, direction, GAME_SCALE.COMBAT * 0.75)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:36",
+          "code": "\"luna_k\": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:92",
+          "code": "\"luna_slash\": 192, \"luna_k\": 160, \"luna_l\": 192, \"luna_brave_slash\": 224, \"nova_slash\": 160,"
+        }
+      ]
+    },
+    "luna_l": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/luna_l.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/luna_l.png",
+        "vfx_spec_line": 37,
+        "frames_spec": 6,
+        "fps": 24.0,
+        "anchor": "96, 96",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          2304,
+          384
+        ],
+        "real_frame_size": [
+          384.0,
+          384
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "body centre",
+        "size": "(180+44)*COMBAT/192 uniform",
+        "rotation": "none",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:389",
+          "code": "_draw_skill_art(\"luna_l\", global_position + GAME_SCALE.BODY_CENTRE, Vector2.ZERO, (180.0 + 44.0) * GAME_SCALE.COMBAT / 192.0)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:37",
+          "code": "\"luna_l\": [6, 24.0, Vector2(96, 96), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:92",
+          "code": "\"luna_slash\": 192, \"luna_k\": 160, \"luna_l\": 192, \"luna_brave_slash\": 224, \"nova_slash\": 160,"
+        }
+      ]
+    },
+    "luna_brave_slash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/luna_brave_slash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/luna_brave_slash.png",
+        "vfx_spec_line": 38,
+        "frames_spec": 6,
+        "fps": 36.0,
+        "anchor": "0, 64",
+        "additive": true,
+        "authored_width": 224,
+        "strip_size": [
+          2688,
+          256
+        ],
+        "real_frame_size": [
+          448.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "profile": "slash",
+        "centre": "global_position + GameScale.BODY_CENTRE",
+        "size": "uniform reach / AUTHORED_WIDTH (clamped 0.5..3), then Vfx divides by source ratio",
+        "rotation": "aim.angle(); flip_v when aim.x < 0",
+        "layer": 5,
+        "alpha": 1.0,
+        "owner": "PlayerBase._draw_attack_art"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:373",
+          "code": "return \"luna_brave_slash\" if transformed else \"luna_slash\""
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:38",
+          "code": "\"luna_brave_slash\": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:92",
+          "code": "\"luna_slash\": 192, \"luna_k\": 160, \"luna_l\": 192, \"luna_brave_slash\": 224, \"nova_slash\": 160,"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1175",
+          "code": "_draw_attack_art: dynamic attack_effect_name() -> <character>_slash"
+        }
+      ]
+    },
+    "nova_slash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/nova_slash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/nova_slash.png",
+        "vfx_spec_line": 39,
+        "frames_spec": 6,
+        "fps": 36.0,
+        "anchor": "0, 64",
+        "additive": true,
+        "authored_width": 160,
+        "strip_size": [
+          1920,
+          256
+        ],
+        "real_frame_size": [
+          320.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "profile": "slash",
+        "centre": "global_position + GameScale.BODY_CENTRE",
+        "size": "uniform reach / AUTHORED_WIDTH (clamped 0.5..3), then Vfx divides by source ratio",
+        "rotation": "aim.angle(); flip_v when aim.x < 0",
+        "layer": 5,
+        "alpha": 1.0,
+        "owner": "PlayerBase._draw_attack_art"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:39",
+          "code": "\"nova_slash\": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:92",
+          "code": "\"luna_slash\": 192, \"luna_k\": 160, \"luna_l\": 192, \"luna_brave_slash\": 224, \"nova_slash\": 160,"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1175",
+          "code": "_draw_attack_art: dynamic attack_effect_name() -> <character>_slash"
+        }
+      ]
+    },
+    "nova_k": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/nova_k.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/nova_k.png",
+        "vfx_spec_line": 40,
+        "frames_spec": 6,
+        "fps": 30.0,
+        "anchor": "0, 48",
+        "additive": true,
+        "authored_width": 224,
+        "strip_size": [
+          2688,
+          192
+        ],
+        "real_frame_size": [
+          448.0,
+          192
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "body centre - direction*90",
+        "size": "1.2 uniform",
+        "rotation": "shift direction",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:261",
+          "code": "_draw_skill_art(\"nova_k\", global_position + GAME_SCALE.BODY_CENTRE - vector_shift_direction * 90.0, vector_shift_direction, 1.2)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:40",
+          "code": "\"nova_k\": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:93",
+          "code": "\"nova_k\": 224, \"nova_l\": 192, \"rio_slash\": 192, \"rio_k\": 256, \"rio_l\": 128,"
+        }
+      ]
+    },
+    "nova_l": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/nova_l.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/nova_l.png",
+        "vfx_spec_line": 41,
+        "frames_spec": 6,
+        "fps": 24.0,
+        "anchor": "96, 188",
+        "additive": false,
+        "authored_width": 192,
+        "strip_size": [
+          2304,
+          384
+        ],
+        "real_frame_size": [
+          384.0,
+          384
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global_position",
+        "size": "radius*COMBAT*2/192 uniform",
+        "rotation": "none",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:298",
+          "code": "_draw_skill_art(\"nova_l\", global_position, Vector2.ZERO, radius * GAME_SCALE.COMBAT * 2.0 / 192.0)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:41",
+          "code": "\"nova_l\": [6, 24.0, Vector2(96, 188), false, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:93",
+          "code": "\"nova_k\": 224, \"nova_l\": 192, \"rio_slash\": 192, \"rio_k\": 256, \"rio_l\": 128,"
+        }
+      ]
+    },
+    "rio_slash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/rio_slash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/rio_slash.png",
+        "vfx_spec_line": 42,
+        "frames_spec": 6,
+        "fps": 36.0,
+        "anchor": "0, 64",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          2304,
+          256
+        ],
+        "real_frame_size": [
+          384.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "profile": "slash",
+        "centre": "global_position + GameScale.BODY_CENTRE",
+        "size": "uniform reach / AUTHORED_WIDTH (clamped 0.5..3), then Vfx divides by source ratio",
+        "rotation": "aim.angle(); flip_v when aim.x < 0",
+        "layer": 5,
+        "alpha": 1.0,
+        "owner": "PlayerBase._draw_attack_art"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:42",
+          "code": "\"rio_slash\": [6, 36.0, Vector2(0, 64), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:93",
+          "code": "\"nova_k\": 224, \"nova_l\": 192, \"rio_slash\": 192, \"rio_k\": 256, \"rio_l\": 128,"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1175",
+          "code": "_draw_attack_art: dynamic attack_effect_name() -> <character>_slash"
+        }
+      ]
+    },
+    "rio_k": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/rio_k.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/rio_k.png",
+        "vfx_spec_line": 43,
+        "frames_spec": 6,
+        "fps": 30.0,
+        "anchor": "0, 48",
+        "additive": true,
+        "authored_width": 256,
+        "strip_size": [
+          3072,
+          192
+        ],
+        "real_frame_size": [
+          512.0,
+          192
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "start + body centre",
+        "size": "max(travel/256,0.5) uniform",
+        "rotation": "travel direction",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:291",
+          "code": "_draw_skill_art(\"rio_k\", start + GAME_SCALE.BODY_CENTRE, direction, maxf(travel.length() / 256.0, 0.5))"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:43",
+          "code": "\"rio_k\": [6, 30.0, Vector2(0, 48), true, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:93",
+          "code": "\"nova_k\": 224, \"nova_l\": 192, \"rio_slash\": 192, \"rio_k\": 256, \"rio_l\": 128,"
+        }
+      ]
+    },
+    "rio_l": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/attack_vfx/rio_l.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/attack_vfx/rio_l.png",
+        "vfx_spec_line": 44,
+        "frames_spec": 6,
+        "fps": 18.0,
+        "anchor": "0, 80",
+        "additive": false,
+        "authored_width": 128,
+        "strip_size": [
+          1536,
+          320
+        ],
+        "real_frame_size": [
+          256.0,
+          320
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 2.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "local (14*facing,-36)",
+        "size": "1.3 uniform",
+        "rotation": "facing",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:307",
+          "code": "_draw_skill_art(\"rio_l\", Vector2(14.0 * facing, -36.0), Vector2(facing, 0.0), 1.3, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:44",
+          "code": "\"rio_l\": [6, 18.0, Vector2(0, 80), false, ATTACK_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:93",
+          "code": "\"nova_k\": 224, \"nova_l\": 192, \"rio_slash\": 192, \"rio_k\": 256, \"rio_l\": 128,"
+        }
+      ]
+    },
+    "yuki_seal_idle": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/yuki_seal_idle.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/yuki_seal_idle.png",
+        "vfx_spec_line": 47,
+        "frames_spec": 4,
+        "fps": 4.0,
+        "anchor": "32, 63",
+        "additive": false,
+        "authored_width": null,
+        "strip_size": [
+          256,
+          64
+        ],
+        "real_frame_size": [
+          64.0,
+          64
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": null,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "seal local origin",
+        "size": "native 64 square",
+        "rotation": "none",
+        "layer": "seal child",
+        "alpha": "remaining-life fade"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiSeal.gd:49",
+          "code": "idle_art = VFX.spawn(self, \"yuki_seal_idle\", Vector2(0.0, IDLE_ART_DROP), Vector2.ONE, true, 3, Color.WHITE, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:47",
+          "code": "\"yuki_seal_idle\": [4, 4.0, Vector2(32, 63), false, EFFECTS_DIR],"
+        }
+      ]
+    },
+    "parry_flash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/parry_flash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/parry_flash.png",
+        "vfx_spec_line": 53,
+        "frames_spec": 6,
+        "fps": 40.0,
+        "anchor": "64, 64",
+        "additive": true,
+        "authored_width": null,
+        "strip_size": [
+          768,
+          128
+        ],
+        "real_frame_size": [
+          128.0,
+          128
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": null,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global_position + (0,-32)",
+        "size": "native 128 square",
+        "rotation": "none",
+        "layer": 5,
+        "alpha": "1; additive"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1445",
+          "code": "if EFFECT_STRIPS.spawn(get_parent(), \"parry_flash\", global_position + Vector2(0, -32), Vector2.ONE, false, 5) == null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:53",
+          "code": "\"parry_flash\": [6, 40.0, Vector2(64, 64), true, EFFECTS_DIR],"
+        }
+      ]
+    },
+    "landing_dust": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/landing_dust.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/landing_dust.png",
+        "vfx_spec_line": 54,
+        "frames_spec": 5,
+        "fps": 41.667,
+        "anchor": "48, 31",
+        "additive": false,
+        "authored_width": null,
+        "strip_size": [
+          480,
+          32
+        ],
+        "real_frame_size": [
+          96.0,
+          32
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": null,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global_position (feet)",
+        "size": "native 96x32",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1065",
+          "code": "if EFFECT_STRIPS.spawn(get_parent(), \"landing_dust\", global_position, Vector2.ONE, false, 4) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:54",
+          "code": "\"landing_dust\": [5, 41.667, Vector2(48, 31), false, EFFECTS_DIR],"
+        }
+      ]
+    },
+    "hit_streak": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/hit_streak.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/hit_streak.png",
+        "vfx_spec_line": 55,
+        "frames_spec": 4,
+        "fps": 50.0,
+        "anchor": "80, 12",
+        "additive": true,
+        "authored_width": null,
+        "strip_size": [
+          640,
+          24
+        ],
+        "real_frame_size": [
+          160.0,
+          24
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": null,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "hit_position",
+        "size": "x = slash_length/160, y = 1",
+        "rotation": "random",
+        "layer": 4,
+        "alpha": "1; additive"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1827",
+          "code": "var streak := EFFECT_STRIPS.spawn(get_parent(), \"hit_streak\", hit_position, Vector2(slash_length / 160.0, 1.0), false, 4)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:55",
+          "code": "\"hit_streak\": [4, 50.0, Vector2(80, 12), true, EFFECTS_DIR],"
+        }
+      ]
+    },
+    "yuki_seal_break": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/yuki_seal_break.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/yuki_seal_break.png",
+        "vfx_spec_line": 56,
+        "frames_spec": 5,
+        "fps": 33.333,
+        "anchor": "48, 48",
+        "additive": false,
+        "authored_width": null,
+        "strip_size": [
+          480,
+          96
+        ],
+        "real_frame_size": [
+          96.0,
+          96
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": null,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "seal global_position",
+        "size": "native 96 square",
+        "rotation": "none",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiSeal.gd:128",
+          "code": "if VFX.spawn(get_parent(), \"yuki_seal_break\", global_position, Vector2.ONE, false, 5) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:56",
+          "code": "\"yuki_seal_break\": [5, 33.333, Vector2(48, 48), false, EFFECTS_DIR],"
+        }
+      ]
+    },
+    "luna_star_bloom": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/luna_star_bloom.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/luna_star_bloom.png",
+        "vfx_spec_line": 59,
+        "frames_spec": 6,
+        "fps": 37.5,
+        "anchor": "128, 128",
+        "additive": true,
+        "authored_width": 256,
+        "strip_size": [
+          1536,
+          256
+        ],
+        "real_frame_size": [
+          256.0,
+          256
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global_position + attack offset",
+        "size": "art_scale derived from attack radius",
+        "rotation": "none",
+        "layer": 6,
+        "alpha": "caller colour alpha (normally 0.82)"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:690",
+          "code": "var art := VFX.spawn(get_parent(), \"luna_star_bloom\", global_position + offset, Vector2.ONE * art_scale, false, 6, Color(1, 1, 1, color.a))"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:59",
+          "code": "\"luna_star_bloom\": [6, 37.5, Vector2(128, 128), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:94",
+          "code": "\"luna_star_bloom\": 256, \"luna_moon_ring\": 320, \"luna_brave_aura\": 128,"
+        }
+      ]
+    },
+    "luna_moon_ring": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/luna_moon_ring.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/luna_moon_ring.png",
+        "vfx_spec_line": 60,
+        "frames_spec": 6,
+        "fps": 25.0,
+        "anchor": "160, 160",
+        "additive": true,
+        "authored_width": 320,
+        "strip_size": [
+          1920,
+          320
+        ],
+        "real_frame_size": [
+          320.0,
+          320
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global +(0,-34)",
+        "size": "radius*2.16/204 uniform",
+        "rotation": "none",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:710",
+          "code": "if VFX.spawn(get_parent(), \"luna_moon_ring\", global_position + Vector2(0, -34), Vector2.ONE * (radius * 2.16 / 204.0), false, 5) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:60",
+          "code": "\"luna_moon_ring\": [6, 25.0, Vector2(160, 160), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:94",
+          "code": "\"luna_star_bloom\": 256, \"luna_moon_ring\": 320, \"luna_brave_aura\": 128,"
+        }
+      ]
+    },
+    "luna_brave_aura": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/luna_brave_aura.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/luna_brave_aura.png",
+        "vfx_spec_line": 61,
+        "frames_spec": 6,
+        "fps": 10.0,
+        "anchor": "64, 64",
+        "additive": true,
+        "authored_width": 128,
+        "strip_size": [
+          768,
+          128
+        ],
+        "real_frame_size": [
+          128.0,
+          128
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "local transformation aura origin",
+        "size": "native 128 square",
+        "rotation": "none",
+        "layer": "aura parent",
+        "alpha": "parent fades in last second"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:646",
+          "code": "var aura_art := VFX.spawn(transformation_aura, \"luna_brave_aura\", Vector2.ZERO, Vector2.ONE, true, 0, Color.WHITE, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:61",
+          "code": "\"luna_brave_aura\": [6, 10.0, Vector2(64, 64), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:94",
+          "code": "\"luna_star_bloom\": 256, \"luna_moon_ring\": 320, \"luna_brave_aura\": 128,"
+        }
+      ]
+    },
+    "luna_comet_trail": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/luna_comet_trail.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/luna_comet_trail.png",
+        "vfx_spec_line": 62,
+        "frames_spec": 4,
+        "fps": 40.0,
+        "anchor": "24, 24",
+        "additive": true,
+        "authored_width": 48,
+        "strip_size": [
+          192,
+          48
+        ],
+        "real_frame_size": [
+          48.0,
+          48
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "comet global_position",
+        "size": "native 48 square",
+        "rotation": "flight direction",
+        "layer": 4,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/LunaComet.gd:115",
+          "code": "if vfx.spawn(get_parent(), \"luna_comet_trail\", global_position, Vector2.ONE, false, 4) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:62",
+          "code": "\"luna_comet_trail\": [4, 40.0, Vector2(24, 24), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:95",
+          "code": "\"luna_comet_trail\": 48, \"luna_comet_burst\": 224, \"nova_gravity_burst\": 512,"
+        }
+      ]
+    },
+    "luna_comet_burst": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/luna_comet_burst.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/luna_comet_burst.png",
+        "vfx_spec_line": 63,
+        "frames_spec": 6,
+        "fps": 42.857,
+        "anchor": "112, 112",
+        "additive": true,
+        "authored_width": 224,
+        "strip_size": [
+          1344,
+          224
+        ],
+        "real_frame_size": [
+          224.0,
+          224
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "comet global_position",
+        "size": "native 224 square",
+        "rotation": "none",
+        "layer": 6,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/LunaComet.gd:130",
+          "code": "if vfx.spawn(get_parent(), \"luna_comet_burst\", global_position, Vector2.ONE, false, 6) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:63",
+          "code": "\"luna_comet_burst\": [6, 42.857, Vector2(112, 112), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:95",
+          "code": "\"luna_comet_trail\": 48, \"luna_comet_burst\": 224, \"nova_gravity_burst\": 512,"
+        }
+      ]
+    },
+    "nova_gravity_burst": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/nova_gravity_burst.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/nova_gravity_burst.png",
+        "vfx_spec_line": 64,
+        "frames_spec": 6,
+        "fps": 42.857,
+        "anchor": "256, 256",
+        "additive": false,
+        "authored_width": 512,
+        "strip_size": [
+          3072,
+          512
+        ],
+        "real_frame_size": [
+          512.0,
+          512
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "burst local origin",
+        "size": "radius*2/232 uniform",
+        "rotation": "none",
+        "layer": 1,
+        "alpha": "caller alpha"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/NovaGravityBurst.gd:41",
+          "code": "var art := vfx.spawn(self, \"nova_gravity_burst\", Vector2.ZERO, Vector2.ONE * (radius * 2.0 / 232.0), false, 1, Color(1, 1, 1, color.a), true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:64",
+          "code": "\"nova_gravity_burst\": [6, 42.857, Vector2(256, 256), false, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:95",
+          "code": "\"luna_comet_trail\": 48, \"luna_comet_burst\": 224, \"nova_gravity_burst\": 512,"
+        }
+      ]
+    },
+    "nova_momentum_trail": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/nova_momentum_trail.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/nova_momentum_trail.png",
+        "vfx_spec_line": 65,
+        "frames_spec": 4,
+        "fps": 40.0,
+        "anchor": "32, 16",
+        "additive": true,
+        "authored_width": 64,
+        "strip_size": [
+          256,
+          32
+        ],
+        "real_frame_size": [
+          64.0,
+          32
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global +(0,-32)",
+        "size": "native 64x32",
+        "rotation": "velocity/impact direction",
+        "layer": 2,
+        "alpha": "momentum 0.5..0.78"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:611",
+          "code": "var art := VFX.spawn(get_parent(), \"nova_momentum_trail\", global_position + Vector2(0, -32), Vector2.ONE, false, 2, _momentum_color(momentum))"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:65",
+          "code": "\"nova_momentum_trail\": [4, 40.0, Vector2(32, 16), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:96",
+          "code": "\"nova_momentum_trail\": 64, \"nova_vector_streak\": 192, \"nova_shift_dash\": 96,"
+        }
+      ]
+    },
+    "nova_vector_streak": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/nova_vector_streak.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/nova_vector_streak.png",
+        "vfx_spec_line": 66,
+        "frames_spec": 4,
+        "fps": 33.333,
+        "anchor": "96, 24",
+        "additive": true,
+        "authored_width": 192,
+        "strip_size": [
+          768,
+          48
+        ],
+        "real_frame_size": [
+          192.0,
+          48
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global +(0,-32)+direction*length/2",
+        "size": "(length/180, 0.55..1)",
+        "rotation": "direction",
+        "layer": 5,
+        "alpha": "momentum 0.5..0.78"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:628",
+          "code": "var art := VFX.spawn(get_parent(), \"nova_vector_streak\", global_position + Vector2(0, -32) + direction * length * 0.5, Vector2(length / 180.0, lerpf(0.55, 1.0, momentum)), false, 5, _momentum_color(momentum))"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:66",
+          "code": "\"nova_vector_streak\": [4, 33.333, Vector2(96, 24), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:96",
+          "code": "\"nova_momentum_trail\": 64, \"nova_vector_streak\": 192, \"nova_shift_dash\": 96,"
+        }
+      ]
+    },
+    "nova_shift_dash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/nova_shift_dash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/nova_shift_dash.png",
+        "vfx_spec_line": 67,
+        "frames_spec": 4,
+        "fps": 18.182,
+        "anchor": "48, 20",
+        "additive": true,
+        "authored_width": 96,
+        "strip_size": [
+          384,
+          40
+        ],
+        "real_frame_size": [
+          96.0,
+          40
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global +(0,-32)-direction*26",
+        "size": "(52/88,1)",
+        "rotation": "direction",
+        "layer": 4,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:645",
+          "code": "var art := VFX.spawn(get_parent(), \"nova_shift_dash\", global_position + Vector2(0, -32) - direction * 26.0, Vector2(52.0 / 88.0, 1.0), false, 4)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:67",
+          "code": "\"nova_shift_dash\": [4, 18.182, Vector2(48, 20), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:96",
+          "code": "\"nova_momentum_trail\": 64, \"nova_vector_streak\": 192, \"nova_shift_dash\": 96,"
+        }
+      ]
+    },
+    "nova_shift_ready": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/nova_shift_ready.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/nova_shift_ready.png",
+        "vfx_spec_line": 68,
+        "frames_spec": 5,
+        "fps": 35.714,
+        "anchor": "64, 64",
+        "additive": true,
+        "authored_width": 128,
+        "strip_size": [
+          640,
+          128
+        ],
+        "real_frame_size": [
+          128.0,
+          128
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global +(0,-32)",
+        "size": "102/116 uniform",
+        "rotation": "none",
+        "layer": 6,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:669",
+          "code": "if VFX.spawn(get_parent(), \"nova_shift_ready\", global_position + Vector2(0, -32), Vector2.ONE * (102.0 / 116.0), false, 6) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:68",
+          "code": "\"nova_shift_ready\": [5, 35.714, Vector2(64, 64), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:97",
+          "code": "\"nova_shift_ready\": 128, \"nova_impact_star\": 512, \"nova_launch_flash\": 256,"
+        }
+      ]
+    },
+    "nova_impact_star": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/nova_impact_star.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/nova_impact_star.png",
+        "vfx_spec_line": 69,
+        "frames_spec": 6,
+        "fps": 40.0,
+        "anchor": "256, 256",
+        "additive": true,
+        "authored_width": 512,
+        "strip_size": [
+          3072,
+          512
+        ],
+        "real_frame_size": [
+          512.0,
+          512
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "impact world_position",
+        "size": "radius*2.4/230 uniform",
+        "rotation": "none",
+        "layer": 7,
+        "alpha": "caller alpha 0.72..0.78"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:686",
+          "code": "if VFX.spawn(get_parent(), \"nova_impact_star\", world_position, Vector2.ONE * (radius * 2.4 / 230.0), false, 7, Color(1, 1, 1, color.a)) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:69",
+          "code": "\"nova_impact_star\": [6, 40.0, Vector2(256, 256), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:97",
+          "code": "\"nova_shift_ready\": 128, \"nova_impact_star\": 512, \"nova_launch_flash\": 256,"
+        }
+      ]
+    },
+    "nova_launch_flash": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/nova_launch_flash.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/nova_launch_flash.png",
+        "vfx_spec_line": 70,
+        "frames_spec": 5,
+        "fps": 31.25,
+        "anchor": "128, 32",
+        "additive": true,
+        "authored_width": 256,
+        "strip_size": [
+          1280,
+          64
+        ],
+        "real_frame_size": [
+          256.0,
+          64
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "global +(0,-32)+direction*90",
+        "size": "(180/238,1)",
+        "rotation": "direction",
+        "layer": 6,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:702",
+          "code": "var art := VFX.spawn(get_parent(), \"nova_launch_flash\", global_position + Vector2(0, -32) + direction * 90.0, Vector2(180.0 / 238.0, 1.0), false, 6)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:70",
+          "code": "\"nova_launch_flash\": [5, 31.25, Vector2(128, 32), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:97",
+          "code": "\"nova_shift_ready\": 128, \"nova_impact_star\": 512, \"nova_launch_flash\": 256,"
+        }
+      ]
+    },
+    "rio_rune_guard": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/rio_rune_guard.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/rio_rune_guard.png",
+        "vfx_spec_line": 71,
+        "frames_spec": 6,
+        "fps": 12.0,
+        "anchor": "64, 64",
+        "additive": true,
+        "authored_width": 128,
+        "strip_size": [
+          768,
+          128
+        ],
+        "real_frame_size": [
+          128.0,
+          128
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "local (0,-34)",
+        "size": "native 128 square",
+        "rotation": "none",
+        "layer": 3,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:349",
+          "code": "VFX.spawn(self, \"rio_rune_guard\", Vector2(0, -34), Vector2.ONE, true, 3, Color.WHITE, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:71",
+          "code": "\"rio_rune_guard\": [6, 12.0, Vector2(64, 64), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:98",
+          "code": "\"rio_rune_guard\": 128, \"rio_rune_burst\": 320, \"rio_blink_trail\": 256,"
+        }
+      ]
+    },
+    "rio_rune_burst": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/rio_rune_burst.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/rio_rune_burst.png",
+        "vfx_spec_line": 72,
+        "frames_spec": 6,
+        "fps": 37.5,
+        "anchor": "160, 160",
+        "additive": true,
+        "authored_width": 320,
+        "strip_size": [
+          1920,
+          320
+        ],
+        "real_frame_size": [
+          320.0,
+          320
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "counter burst centre",
+        "size": "288/270 uniform",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:366",
+          "code": "if VFX.spawn(get_parent(), \"rio_rune_burst\", burst_center, Vector2.ONE * (288.0 / 270.0), false, 4) != null:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:72",
+          "code": "\"rio_rune_burst\": [6, 37.5, Vector2(160, 160), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:98",
+          "code": "\"rio_rune_guard\": 128, \"rio_rune_burst\": 320, \"rio_blink_trail\": 256,"
+        }
+      ]
+    },
+    "rio_blink_trail": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/rio_blink_trail.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/rio_blink_trail.png",
+        "vfx_spec_line": 73,
+        "frames_spec": 5,
+        "fps": 31.25,
+        "anchor": "128, 32",
+        "additive": true,
+        "authored_width": 256,
+        "strip_size": [
+          1280,
+          64
+        ],
+        "real_frame_size": [
+          256.0,
+          64
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "midpoint(from,to)+(0,-34)",
+        "size": "(travel/238,1)",
+        "rotation": "travel direction",
+        "layer": 2,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:490",
+          "code": "var art := VFX.spawn(get_parent(), \"rio_blink_trail\", (from + to) * 0.5 + Vector2(0, -34), Vector2(delta.length() / 238.0, 1.0), false, 2)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:73",
+          "code": "\"rio_blink_trail\": [5, 31.25, Vector2(128, 32), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:98",
+          "code": "\"rio_rune_guard\": 128, \"rio_rune_burst\": 320, \"rio_blink_trail\": 256,"
+        }
+      ]
+    },
+    "yuki_grand_ward": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/yuki_grand_ward.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/yuki_grand_ward.png",
+        "vfx_spec_line": 74,
+        "frames_spec": 8,
+        "fps": 12.0,
+        "anchor": "320, 320",
+        "additive": false,
+        "authored_width": 640,
+        "strip_size": [
+          5120,
+          640
+        ],
+        "real_frame_size": [
+          640.0,
+          640
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "ward local origin",
+        "size": "native 640 square",
+        "rotation": "none",
+        "layer": 0,
+        "alpha": "SEAL_ACTIVE_ALPHA"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiGrandWard.gd:74",
+          "code": "var ward_art := VFX.spawn(self, \"yuki_grand_ward\", Vector2.ZERO, Vector2.ONE, true, 0, Color(1, 1, 1, SEAL_ACTIVE_ALPHA), true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:74",
+          "code": "\"yuki_grand_ward\": [8, 12.0, Vector2(320, 320), false, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:99",
+          "code": "\"yuki_grand_ward\": 640, \"guard_bubble\": 128, \"attack_afterimage\": 160,"
+        }
+      ]
+    },
+    "guard_bubble": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/guard_bubble.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/guard_bubble.png",
+        "vfx_spec_line": 75,
+        "frames_spec": 3,
+        "fps": 1.0,
+        "anchor": "64, 64",
+        "additive": false,
+        "authored_width": 128,
+        "strip_size": [
+          384,
+          128
+        ],
+        "real_frame_size": [
+          128.0,
+          128
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "local (0,-58) + right*24, rotated to guard direction",
+        "size": "native 128 square",
+        "rotation": "direction angle",
+        "layer": 5,
+        "alpha": "0.48 + damage_reduction*0.52"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:587",
+          "code": "var guard_art := EFFECT_STRIPS.spawn(self, \"guard_bubble\", GUARD_ART_CENTRE + Vector2.RIGHT * GUARD_ART_FORWARD, Vector2.ONE, false, 5, Color.WHITE, true)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:75",
+          "code": "\"guard_bubble\": [3, 1.0, Vector2(64, 64), false, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:99",
+          "code": "\"yuki_grand_ward\": 640, \"guard_bubble\": 128, \"attack_afterimage\": 160,"
+        }
+      ]
+    },
+    "attack_afterimage": {
+      "kind": "Vfx strip",
+      "path": "smash-nine-prototype/assets/art/effects/skill/attack_afterimage.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/skill/attack_afterimage.png",
+        "vfx_spec_line": 76,
+        "frames_spec": 4,
+        "fps": 57.143,
+        "anchor": "80, 32",
+        "additive": true,
+        "authored_width": 160,
+        "strip_size": [
+          640,
+          64
+        ],
+        "real_frame_size": [
+          160.0,
+          64
+        ],
+        "frame_count_width_divisible": true,
+        "size_ratio": 1.0,
+        "edge_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "empty_frames": [],
+        "duplicate_frame_pairs": []
+      },
+      "placement": {
+        "centre": "Attack.global_position",
+        "size": "visual.size / (150,56)",
+        "rotation": "attack rotation",
+        "layer": 1,
+        "alpha": "tint alpha 0.55"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:76",
+          "code": "\"attack_afterimage\": [4, 57.143, Vector2(80, 32), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:99",
+          "code": "\"yuki_grand_ward\": 640, \"guard_bubble\": 128, \"attack_afterimage\": 160,"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:126",
+          "code": "var art := vfx.spawn(get_parent(), \"attack_afterimage\", global_position, Vector2(visual.size.x / 150.0, visual.size.y / 56.0), false, 1, tint)"
+        }
+      ]
+    },
+    "frey_pursuit_mark": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/passive/frey_pursuit_mark.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/passive/frey_pursuit_mark.png",
+        "size": [
+          64,
+          40
+        ],
+        "bbox": [
+          2,
+          2,
+          62,
+          37
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "centre": "target.global_position + (0,-118)",
+        "size": "native 64x40",
+        "rotation": "none",
+        "layer": 6,
+        "alpha": "0.55..1 pulse"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:158",
+          "code": "const PURSUIT_MARK_ART := \"res://assets/art/effects/passive/frey_pursuit_mark.png\""
+        }
+      ]
+    },
+    "frey_spike_ring": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/passive/frey_spike_ring.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/passive/frey_spike_ring.png",
+        "size": [
+          96,
+          96
+        ],
+        "bbox": [
+          3,
+          4,
+          93,
+          92
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "centre": "local (0,-40)",
+        "size": "native 96x96",
+        "rotation": "none",
+        "layer": 6,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:159",
+          "code": "const SPIKE_RING_ART := \"res://assets/art/effects/passive/frey_spike_ring.png\""
+        }
+      ]
+    },
+    "luna_star_charge": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/passive/luna_star_charge.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/passive/luna_star_charge.png",
+        "size": [
+          18,
+          18
+        ],
+        "bbox": [
+          2,
+          3,
+          16,
+          16
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "centre": "local orbit centred (0,-44), radius 44",
+        "size": "native 18x18 per star",
+        "rotation": "orbit rotation",
+        "layer": 5,
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:63",
+          "code": "const STAR_CHARGE_ART := \"res://assets/art/effects/passive/luna_star_charge.png\""
+        }
+      ]
+    },
+    "luna_star_projectile": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/luna_star.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/luna_star.png",
+        "size": [
+          96,
+          96
+        ],
+        "bbox": [
+          5,
+          25,
+          91,
+          71
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "centre": "projectile centre",
+        "size": "projectile art scale * COMBAT",
+        "rotation": "flight direction",
+        "layer": "projectile layer",
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:63",
+          "code": "const STAR_CHARGE_ART := \"res://assets/art/effects/passive/luna_star_charge.png\""
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:180",
+          "code": "if attack.has_meta(\"luna_star\"):"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:181",
+          "code": "_record_star_echo_hit(body, attack.get_meta(\"luna_star\") as Vector2i)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:293",
+          "code": "last_attack.set_meta(\"luna_star\", Vector2i(star_swing_id, 0))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:304",
+          "code": "last_attack.set_meta(\"luna_star\", Vector2i(star_swing_id, 0))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:319",
+          "code": "last_attack.set_meta(\"luna_star\", Vector2i(star_swing_id, 0))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:331",
+          "code": "last_attack.set_meta(\"luna_star\", Vector2i(swing_id, 1))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:690",
+          "code": "var art := VFX.spawn(get_parent(), \"luna_star_bloom\", global_position + offset, Vector2.ONE * art_scale, false, 6, Color(1, 1, 1, color.a))"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/LunaComet.gd:5",
+          "code": "const STAR_ART := \"res://assets/art/effects/luna_star.png\""
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:59",
+          "code": "\"luna_star_bloom\": [6, 37.5, Vector2(128, 128), true, SKILL_DIR],"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Vfx.gd:94",
+          "code": "\"luna_star_bloom\": 256, \"luna_moon_ring\": 320, \"luna_brave_aura\": 128,"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Projectile.gd:20",
+          "code": "const AUTHORED_ART_WIDTH := {\"rio_gem_sword.png\": 48.0, \"rio_mana_wave.png\": 24.0, \"yuki_talisman.png\": 32.0, \"luna_star.png\": 24.0}"
+        }
+      ]
+    },
+    "yuki_talisman": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/yuki_talisman.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/yuki_talisman.png",
+        "size": [
+          128,
+          64
+        ],
+        "bbox": [
+          17,
+          13,
+          111,
+          49
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "centre": "projectile centre",
+        "size": "projectile size/art scale * COMBAT",
+        "rotation": "flight direction",
+        "layer": "projectile layer",
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiTalisman.gd:4",
+          "code": "const TALISMAN_ART := \"res://assets/art/effects/yuki_talisman.png\""
+        },
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiTalisman.gd:32",
+          "code": "add_to_group(\"yuki_talismans\")"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Projectile.gd:20",
+          "code": "const AUTHORED_ART_WIDTH := {\"rio_gem_sword.png\": 48.0, \"rio_mana_wave.png\": 24.0, \"yuki_talisman.png\": 32.0, \"luna_star.png\": 24.0}"
+        }
+      ]
+    },
+    "rio_mana_wave": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/rio_mana_wave.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/rio_mana_wave.png",
+        "size": [
+          48,
+          112
+        ],
+        "bbox": [
+          7,
+          4,
+          41,
+          108
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "centre": "projectile centre",
+        "size": "projectile art scale",
+        "rotation": "flight direction",
+        "layer": "projectile layer",
+        "alpha": "1"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:31",
+          "code": "const MANA_WAVE_ART := \"res://assets/art/effects/rio_mana_wave.png\""
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Projectile.gd:20",
+          "code": "const AUTHORED_ART_WIDTH := {\"rio_gem_sword.png\": 48.0, \"rio_mana_wave.png\": 24.0, \"yuki_talisman.png\": 32.0, \"luna_star.png\": 24.0}"
+        }
+      ]
+    },
+    "rio_gem_sword": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/rio_gem_sword.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/rio_gem_sword.png",
+        "size": [
+          96,
+          32
+        ],
+        "bbox": [
+          4,
+          4,
+          91,
+          28
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "centre": "orbit/projectile centre",
+        "size": "native 96x32",
+        "rotation": "orbit or flight direction",
+        "layer": "orbit/projectile layer",
+        "alpha": "1; colour tint"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:32",
+          "code": "const GEM_SWORD_ART := \"res://assets/art/effects/rio_gem_sword.png\""
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Projectile.gd:20",
+          "code": "const AUTHORED_ART_WIDTH := {\"rio_gem_sword.png\": 48.0, \"rio_mana_wave.png\": 24.0, \"yuki_talisman.png\": 32.0, \"luna_star.png\": 24.0}"
+        }
+      ]
+    },
+    "hit_frey": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/hit/frey_hit.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/hit/frey_hit.png",
+        "size": [
+          384,
+          96
+        ],
+        "bbox": [
+          24,
+          5,
+          364,
+          91
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "profile": "hit",
+        "centre": "hit_position",
+        "size": "2 * clamp(18 + 1.35*damage + 0.035*knockback, 24..56) * COMBAT",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": 1.0,
+        "owner": "PlayerBase._spawn_hit_effect"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1750",
+          "code": "_spawn_hit_effect selects effects/hit/<source_id>_hit.png"
+        }
+      ]
+    },
+    "hit_luna": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/hit/luna_hit.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/hit/luna_hit.png",
+        "size": [
+          384,
+          96
+        ],
+        "bbox": [
+          28,
+          6,
+          368,
+          89
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "profile": "hit",
+        "centre": "hit_position",
+        "size": "2 * clamp(18 + 1.35*damage + 0.035*knockback, 24..56) * COMBAT",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": 1.0,
+        "owner": "PlayerBase._spawn_hit_effect"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1750",
+          "code": "_spawn_hit_effect selects effects/hit/<source_id>_hit.png"
+        }
+      ]
+    },
+    "hit_luna_brave": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/hit/luna_brave_hit.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/hit/luna_brave_hit.png",
+        "size": [
+          384,
+          96
+        ],
+        "bbox": [
+          24,
+          8,
+          366,
+          88
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "profile": "hit",
+        "centre": "hit_position",
+        "size": "2 * clamp(18 + 1.35*damage + 0.035*knockback, 24..56) * COMBAT",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": 1.0,
+        "owner": "PlayerBase._spawn_hit_effect"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1750",
+          "code": "_spawn_hit_effect selects effects/hit/<source_id>_hit.png"
+        }
+      ]
+    },
+    "hit_yuki": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/hit/yuki_hit.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/hit/yuki_hit.png",
+        "size": [
+          384,
+          96
+        ],
+        "bbox": [
+          26,
+          8,
+          364,
+          87
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "profile": "hit",
+        "centre": "hit_position",
+        "size": "2 * clamp(18 + 1.35*damage + 0.035*knockback, 24..56) * COMBAT",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": 1.0,
+        "owner": "PlayerBase._spawn_hit_effect"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1750",
+          "code": "_spawn_hit_effect selects effects/hit/<source_id>_hit.png"
+        }
+      ]
+    },
+    "hit_nova": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/hit/nova_hit.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/hit/nova_hit.png",
+        "size": [
+          384,
+          96
+        ],
+        "bbox": [
+          27,
+          6,
+          364,
+          90
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "profile": "hit",
+        "centre": "hit_position",
+        "size": "2 * clamp(18 + 1.35*damage + 0.035*knockback, 24..56) * COMBAT",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": 1.0,
+        "owner": "PlayerBase._spawn_hit_effect"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1750",
+          "code": "_spawn_hit_effect selects effects/hit/<source_id>_hit.png"
+        }
+      ]
+    },
+    "hit_rio": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/effects/hit/rio_hit.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/effects/hit/rio_hit.png",
+        "size": [
+          384,
+          96
+        ],
+        "bbox": [
+          24,
+          4,
+          365,
+          92
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "profile": "hit",
+        "centre": "hit_position",
+        "size": "2 * clamp(18 + 1.35*damage + 0.035*knockback, 24..56) * COMBAT",
+        "rotation": "none",
+        "layer": 4,
+        "alpha": 1.0,
+        "owner": "PlayerBase._spawn_hit_effect"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1750",
+          "code": "_spawn_hit_effect selects effects/hit/<source_id>_hit.png"
+        }
+      ]
+    },
+    "status_stun": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/ui/status/stun.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/ui/status/stun.png",
+        "size": [
+          24,
+          24
+        ],
+        "bbox": [
+          3,
+          2,
+          20,
+          22
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "profile": "status",
+        "centre": "local (0, -121 + sin(phase)*2)",
+        "size": "native 24x24",
+        "rotation": "none",
+        "layer": 7,
+        "alpha": 1.0,
+        "owner": "PlayerBase._update_status_icon"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:82",
+          "code": "## stages, Luna's heart laser): hits still deal their damage but cause no knockback, hitstun or"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:227",
+          "code": "var hitstun_timer := 0.0"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:228",
+          "code": "## Presentation-only timer for explicit stun attacks and hazards. Ordinary brief hitstun does not"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:229",
+          "code": "## show the stun status icon."
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:230",
+          "code": "var status_stun_timer := 0.0"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:403",
+          "code": "hitstun_timer = maxf(hitstun_timer - delta, 0.0)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:404",
+          "code": "if hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:466",
+          "code": "if hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:490",
+          "code": "if hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:841",
+          "code": "## A character defence that takes a hit without knockback or hitstun (Rio's rune shield):"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:961",
+          "code": "and hitstun_timer <= 0.0 \\"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1025",
+          "code": "if not await _wait_action(startup) or hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1140",
+          "code": "func _spawn_sweeping_stun_attack(size: Vector2, points: Array[Vector2], damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, stun_duration: float, damage_type := DAMAGE_NORMAL) -> void:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1154",
+          "code": "attack.configure_sweep_stun(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, stun_duration, damage_type)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1157",
+          "code": "func _spawn_sweeping_launch_attack(size: Vector2, points: Array[Vector2], damage: float, knockback: float, direction: Vector2, color: Color, lifetime: float, launch_velocity: Vector2, hitstun_duration: float, hit_tag := \"\", damage_type := DAMAGE_NORMAL) -> void:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1171",
+          "code": "attack.configure_sweep_launch(self, size * GAME_SCALE.COMBAT, GAME_SCALE.attack_points(points), damage, knockback, direction, color, lifetime, launch_velocity, hitstun_duration, hit_tag, damage_type)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1260",
+          "code": "hitstun_timer = _get_hitstun(final_knockback, was_grounded)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1262",
+          "code": "hitstun_timer *= 0.45"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1266",
+          "code": "_play_launch_hit_sprite(final_knockback, hitstun_timer)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1283",
+          "code": "## The absorbed part of a hit: damage is already applied; no knockback, hitstun or cancel."
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1289",
+          "code": "## The share of a hit that lands without knockback, hitstun or cancel, or -1 for a normal hit:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1322",
+          "code": "func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vector2, hitstun_duration: float, effect_knockback: float, direction: Vector2, damage_type := DAMAGE_NORMAL) -> bool:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1354",
+          "code": "hitstun_timer = clampf(hitstun_duration, HITSTUN_MIN, HITSTUN_MAX)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1356",
+          "code": "hitstun_timer *= 0.45"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1360",
+          "code": "_play_launch_hit_sprite(launch_velocity.length(), hitstun_timer)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1375",
+          "code": "func apply_stun_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, stun_duration: float, damage_type := DAMAGE_NORMAL) -> bool:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1381",
+          "code": "var final_stun := stun_duration * 0.3 if guard_result == GUARD_BLOCK else stun_duration"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1382",
+          "code": "hitstun_timer = maxf(hitstun_timer, final_stun)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1383",
+          "code": "_play_stun_effect(final_stun)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1402",
+          "code": "func _play_stun_effect(stun_duration: float) -> void:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1403",
+          "code": "status_stun_timer = maxf(status_stun_timer, stun_duration)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1425",
+          "code": "hitstun_timer = 0.0"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1485",
+          "code": "func _get_hitstun(final_knockback: float, was_grounded: bool) -> float:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1486",
+          "code": "var stun := final_knockback / 1750.0"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1488",
+          "code": "stun += AIR_HITSTUN_BONUS"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1490",
+          "code": "stun += STRONG_HITSTUN_BONUS"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1491",
+          "code": "return clampf(stun, HITSTUN_MIN, HITSTUN_MAX)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1627",
+          "code": "hitstun_timer = 0.0"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1724",
+          "code": "## hit of the chain arrives inside the target's hitstun (2026-10-10: Frey's and Brave Luna's"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1807",
+          "code": "status_stun_timer = maxf(status_stun_timer - delta, 0.0)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1811",
+          "code": "if status_stun_timer > 0.0 and hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1812",
+          "code": "kind = \"stun\""
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1895",
+          "code": "## keep the hurt frame exactly as before; this changes presentation only, never hitstun or motion."
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:97",
+          "code": "if rising_followup_timer <= 0.0 or hitstun_timer > 0.0 or is_guarding or action_locked_until_land:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:203",
+          "code": "# On hit, J2 can start at once (after the hitstop) and lands inside the target's hitstun."
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:213",
+          "code": "# On hit, J3 can start at once and lands inside the hitstun."
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:279",
+          "code": "if is_defeated or hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:359",
+          "code": "if is_defeated or hitstun_timer > 0.0 or not is_on_floor():"
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:388",
+          "code": "_spawn_sweeping_stun_attack(Vector2(76, 54), ["
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:396",
+          "code": "# Aftershock: a second, launching ring once the stun has landed."
+        },
+        {
+          "at": "smash-nine-prototype/characters/frey/Frey.gd:463",
+          "code": "if is_defeated or hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:325",
+          "code": "if is_defeated or hitstun_timer > 0.0 or transformed:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:419",
+          "code": "# On hit the body kick can start at once and lands inside the jab's hitstun."
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:426",
+          "code": "# On hit the spinning kick can start at once and lands inside the hitstun."
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:530",
+          "code": "if is_defeated or hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/luna/Luna.gd:564",
+          "code": "if is_defeated or hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/nova/Nova.gd:291",
+          "code": "if is_defeated or hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:223",
+          "code": "if is_defeated or hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/rio/Rio.gd:262",
+          "code": "if is_defeated or hitstun_timer > 0.0:"
+        },
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiGrandWard.gd:136",
+          "code": "if final_pulse and target.has_method(\"apply_stun_hit\"):"
+        },
+        {
+          "at": "smash-nine-prototype/characters/yuki/YukiGrandWard.gd:137",
+          "code": "landed = target.apply_stun_hit(owner_node, FINAL_PULSE_DAMAGE, 520.0, direction, 1.2)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:15",
+          "code": "var forced_hitstun_duration := 0.0"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:16",
+          "code": "var forced_stun_duration := 0.0"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:90",
+          "code": "func configure_sweep_launch(new_source: Node, size: Vector2, points: Array[Vector2], new_damage: float, new_knockback: float, new_direction: Vector2, color: Color, new_lifetime: float, launch_velocity: Vector2, hitstun_duration: float, new_hit_tag := \"\", new_damage_type := \"normal\") -> void:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:93",
+          "code": "forced_hitstun_duration = hitstun_duration"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:96",
+          "code": "func configure_sweep_stun(new_source: Node, size: Vector2, points: Array[Vector2], new_damage: float, new_knockback: float, new_direction: Vector2, color: Color, new_lifetime: float, stun_duration: float, new_damage_type := \"normal\") -> void:"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:98",
+          "code": "forced_stun_duration = stun_duration"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:158",
+          "code": "if forced_stun_duration > 0.0 and body.has_method(\"apply_stun_hit\"):"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:159",
+          "code": "hit_landed = body.apply_stun_hit(source, damage, knockback, direction, forced_stun_duration, damage_type)"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:160",
+          "code": "elif forced_hitstun_duration > 0.0 and body.has_method(\"apply_forced_launch_hit\"):"
+        },
+        {
+          "at": "smash-nine-prototype/scripts/Attack.gd:161",
+          "code": "hit_landed = body.apply_forced_launch_hit(source, damage, forced_launch_velocity, forced_hitstun_duration, knockback, direction, damage_type)"
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1804",
+          "code": "_update_status_icon selects ui/status/<kind>.png"
+        }
+      ]
+    },
+    "status_super_armor": {
+      "kind": "direct texture",
+      "path": "smash-nine-prototype/assets/art/ui/status/super_armor.png",
+      "measured": {
+        "path": "smash-nine-prototype/assets/art/ui/status/super_armor.png",
+        "size": [
+          24,
+          24
+        ],
+        "bbox": [
+          2,
+          3,
+          22,
+          21
+        ],
+        "edge_pixels": 0
+      },
+      "placement": {
+        "profile": "status",
+        "centre": "local (0, -121 + sin(phase)*2)",
+        "size": "native 24x24",
+        "rotation": "none",
+        "layer": 7,
+        "alpha": 1.0,
+        "owner": "PlayerBase._update_status_icon"
+      },
+      "draw_sites": [
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1814",
+          "code": "kind = \"super_armor\""
+        },
+        {
+          "at": "smash-nine-prototype/characters/common/PlayerBase.gd:1804",
+          "code": "_update_status_icon selects ui/status/<kind>.png"
+        }
+      ]
+    }
+  },
+  "common_spawn_contract": {
+    "at": "smash-nine-prototype/scripts/Vfx.gd:107-133",
+    "notes": "centered=false; offset=-anchor*source_ratio; scale=requested/source_ratio; z/tint from caller; additive from SPECS"
+  }
+}
