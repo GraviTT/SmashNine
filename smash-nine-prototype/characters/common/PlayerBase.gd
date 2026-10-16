@@ -65,6 +65,13 @@ const GUARD_KNOCKBACK_REDUCTION_SCALE := 0.65
 const GUARD_NONE := 0
 const GUARD_BLOCK := 1
 const GUARD_PARRY := 2
+## Where the guard arc sits (user 2026-10-16: "방어 스프라이트 위치가 이상한 것도 수정"). Fighters
+## are drawn 80-98 px tall since art v2, and the old (0, -32) put the 116-px crescent through the
+## middle of the body and 26 px into the floor. The crescent bulges about 40 px ahead of its frame
+## centre, so the frame goes GUARD_ART_FORWARD ahead of the body in the guard direction: the arc
+## wraps the front of the fighter, its top clears the head and its lower tip ends on the floor.
+const GUARD_ART_CENTRE := Vector2(0, -58)
+const GUARD_ART_FORWARD := 24.0
 const SOUL_THRESHOLDS: Array[int] = [25, 50, 75]
 ## Each soul pick also advances the character's own growth curve by this many former levels.
 const GROWTH_STEPS_PER_PICK := 3
@@ -577,7 +584,7 @@ func _create_guard_visual() -> void:
 	guard_visual.antialiased = true
 	guard_visual.visible = false
 	add_child(guard_visual)
-	var guard_art := EFFECT_STRIPS.spawn(self, "guard_bubble", Vector2(0, -32), Vector2.ONE, false, 5, Color.WHITE, true)
+	var guard_art := EFFECT_STRIPS.spawn(self, "guard_bubble", GUARD_ART_CENTRE + Vector2.RIGHT * GUARD_ART_FORWARD, Vector2.ONE, false, 5, Color.WHITE, true)
 	if guard_art != null:
 		guard_art.pause()
 		guard_art.frame = 0
@@ -594,7 +601,7 @@ func _update_guard_visual() -> void:
 		return
 	var reduction := _get_guard_reduction()
 	if guard_art != null:
-		guard_art.position = Vector2(0, -32)
+		guard_art.position = GUARD_ART_CENTRE + guard_direction * GUARD_ART_FORWARD
 		guard_art.modulate = Color(1, 1, 1, 0.48 + reduction * 0.52)
 		guard_art.frame = 2 if guard_parry_timer > 0.0 else (1 if guard_visual.scale.x > 1.05 else 0)
 		if guard_direction == Vector2.RIGHT:
@@ -616,10 +623,11 @@ func _update_guard_visual() -> void:
 		start_angle = 200.0
 	else:
 		start_angle = 20.0
+	# The plain arc (F2 prototype art) wraps the same centre as the art, clear of the body.
 	var arc_points := PackedVector2Array()
 	for index in 9:
 		var angle := deg_to_rad(start_angle + 140.0 * float(index) / 8.0)
-		arc_points.append(Vector2(cos(angle) * 36.0, -32.0 + sin(angle) * 42.0))
+		arc_points.append(GUARD_ART_CENTRE + Vector2(cos(angle) * 52.0, sin(angle) * 56.0))
 	guard_visual.points = arc_points
 
 func _get_guard_reduction() -> float:

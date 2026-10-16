@@ -92,6 +92,10 @@ func _run_original_checks() -> void:
 	var guard_art := luna.get_node_or_null("Vfx_guard_bubble") as CanvasItem
 	if guard_art == null or not guard_art.visible or luna.guard_visual.visible:
 		_fail("Guard did not show art and hide its Line2D")
+	# The arc wraps the front of the fighter, not the middle of the body, and stays out of the
+	# floor (user 2026-10-16: "방어 스프라이트 위치가 이상한 것"; the 128-px frame's lower edge).
+	elif guard_art.position.y + 64.0 * guard_art.scale.y > 6.0 or guard_art.position.x * float(luna.guard_direction.x) <= 0.0:
+		_fail("Guard art should sit ahead of the body and above the floor (at %s, guarding %s)" % [guard_art.position, luna.guard_direction])
 
 	var attack := _attack_node()
 	attack._spawn_trail_afterimage()
