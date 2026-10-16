@@ -108,7 +108,7 @@ func _physics_process(delta: float) -> void:
 		_pulse(false)
 	if active_timer >= ACTIVE_TIME:
 		_pulse(true)
-		VFX.spawn(get_parent(), "yuki_ult_burst", global_position, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0))
+		VFX.spawn(get_parent(), "yuki_ult_burst", global_position, Vector2.ONE * (FIELD_RADIUS * 2.0 / 256.0), false, 4, Color(1, 1, 1, VFX.ULTIMATE_FLASH_ALPHA))
 		_play_final_effect()
 		queue_free()
 

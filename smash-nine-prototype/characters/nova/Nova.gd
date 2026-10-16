@@ -209,11 +209,15 @@ func _vector_side_strike(momentum: float, airborne: bool, travel_direction: Vect
 	velocity += direction * lerpf(65.0, 165.0, momentum)
 	if airborne:
 		velocity.y *= 0.82
+	# The vector streak is this strike's own effect; the shared slash doubled it into one white
+	# blot (sprite audit 2026-10-16, CODEX-QA-19 B5).
+	attack_art_enabled = false
 	_spawn_sweeping_attack(size, [
 		Vector2(0, -32) + direction * 10.0,
 		Vector2(0, -32) + direction * travel * 0.55,
 		Vector2(0, -32) + direction * travel
 	], damage, knockback, direction, _momentum_color(momentum), lerpf(0.075, 0.12, momentum))
+	attack_art_enabled = true
 	_play_vector_flash(direction, travel, momentum)
 
 func _vector_uppercut(momentum: float, airborne: bool) -> void:
@@ -223,11 +227,14 @@ func _vector_uppercut(momentum: float, airborne: bool) -> void:
 	velocity.y = minf(velocity.y, rise_speed * GAME_SCALE.JUMP_SPEED)
 	velocity.x += facing * lerpf(35.0, 85.0, momentum)
 	var launch_velocity := Vector2(facing * lerpf(55.0, 105.0, momentum), lerpf(-470.0, -720.0, momentum))
+	# The impact star marks this launcher; no shared slash under it (CODEX-QA-19 B5).
+	attack_art_enabled = false
 	_spawn_sweeping_launch_attack(Vector2(lerpf(38.0, 48.0, momentum), lerpf(48.0, 62.0, momentum)), [
 		Vector2(10 * facing, -26),
 		Vector2(26 * facing, -70),
 		Vector2(38 * facing, lerpf(-108.0, -138.0, momentum))
 	], lerpf(7.0, 11.0, momentum), lerpf(300.0, 510.0, momentum), Vector2(0.12 * facing, -1), _momentum_color(momentum), 0.11, launch_velocity, lerpf(0.22, 0.32, momentum))
+	attack_art_enabled = true
 	_play_impact_flash(global_position + GAME_SCALE.attack_point(Vector2(36 * facing, -112)), lerpf(28.0, 42.0, momentum), _momentum_color(momentum))
 
 func _compression_stomp(momentum: float) -> void:
@@ -414,7 +421,7 @@ func _begin_ultimate_launch(tangent: Vector2) -> void:
 	var core_point := ultimate_center + Vector2(0, -32)
 	var collapse := _spawn_gravity_burst(ULTIMATE_COLLAPSE_RADIUS, ULTIMATE_COLLAPSE_DAMAGE, ULTIMATE_COLLAPSE_KNOCKBACK, ultimate_launch_power, Color(0.62, 0.42, 1.0, 0.6), "ultimate")
 	collapse.global_position = core_point
-	VFX.spawn(get_parent(), "nova_ult_burst", core_point, Vector2.ONE * (ULTIMATE_COLLAPSE_RADIUS * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6, Color(0.82, 0.72, 1.0))
+	VFX.spawn(get_parent(), "nova_ult_burst", core_point, Vector2.ONE * (ULTIMATE_COLLAPSE_RADIUS * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6, Color(0.82, 0.72, 1.0, VFX.ULTIMATE_FLASH_ALPHA))
 
 func _redirect_ultimate_launch_with_vector_shift() -> void:
 	if ultimate_phase != ULTIMATE_LAUNCH or not ultimate_launch_shift_available:
@@ -451,7 +458,7 @@ func _finish_ultimate_impact() -> void:
 	var radius := lerpf(124.0, 170.0, ultimate_launch_power)
 	_spawn_gravity_burst(radius, lerpf(34.0, 46.0, ultimate_launch_power), lerpf(700.0, 940.0, ultimate_launch_power), ultimate_launch_power, Color(0.48, 0.3, 0.92, 0.68), "ultimate")
 	_play_impact_flash(global_position + Vector2(0, -30), radius, Color(1.0, 0.62, 0.24, 0.88))
-	VFX.spawn(get_parent(), "nova_ult_burst", global_position + Vector2(0, -30), Vector2.ONE * (radius * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6)
+	VFX.spawn(get_parent(), "nova_ult_burst", global_position + Vector2(0, -30), Vector2.ONE * (radius * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6, Color(1, 1, 1, VFX.ULTIMATE_FLASH_ALPHA))
 	attack_lock_timer = maxf(attack_lock_timer, 0.48)
 
 ## Event Horizon: while the core stands, nearby opponents are dragged toward it, so the

@@ -72,6 +72,13 @@ const GUARD_PARRY := 2
 ## wraps the front of the fighter, its top clears the head and its lower tip ends on the floor.
 const GUARD_ART_CENTRE := Vector2(0, -58)
 const GUARD_ART_FORWARD := 24.0
+## Attack trails (sprite audit with Codex, 2026-10-16, CODEX-QA-19 B1 and B3). The reach scale
+## made a trail as thick as it is long, so a J trail stood twice as tall as the fighter and hid
+## the pose: the thickness now takes ATTACK_ART_THICKNESS of it, while the length still reaches
+## the end of the hit area. A move on the ground aimed at the floor shows its trail no steeper
+## than GROUND_TRAIL_MAX_DROP degrees, so the bright part stays above the floor.
+const ATTACK_ART_THICKNESS := 0.62
+const GROUND_TRAIL_MAX_DROP := 15.0
 const SOUL_THRESHOLDS: Array[int] = [25, 50, 75]
 ## Each soul pick also advances the character's own growth curve by this many former levels.
 const GROWTH_STEPS_PER_PICK := 3
@@ -1190,8 +1197,15 @@ func _draw_attack_art(attack: Node, hit_size: Vector2, points: Array[Vector2], d
 	var sprite := EFFECT_STRIPS.spawn(get_parent(), effect, global_position + GAME_SCALE.BODY_CENTRE, Vector2.ONE * art_scale, false, 5)
 	if sprite == null:
 		return
-	sprite.rotation = aim.angle()
-	sprite.flip_v = aim.x < 0.0
+	sprite.scale.y *= ATTACK_ART_THICKNESS
+	# On the ground a trail aimed at the floor is shown along it (the hit area keeps its aim).
+	var shown := aim
+	var max_drop := deg_to_rad(GROUND_TRAIL_MAX_DROP)
+	if is_on_floor() and aim.y > sin(max_drop):
+		var side := signf(aim.x) if absf(aim.x) > 0.01 else float(facing)
+		shown = Vector2(cos(max_drop) * side, sin(max_drop))
+	sprite.rotation = shown.angle()
+	sprite.flip_v = shown.x < 0.0
 
 ## Effect strip for this fighter's melee hits (scripts/Vfx.gd name), "" for none.
 func attack_effect_name() -> String:

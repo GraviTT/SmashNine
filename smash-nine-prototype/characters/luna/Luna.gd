@@ -539,7 +539,7 @@ func _enter_transformation() -> void:
 	attack_lock_timer = minf(attack_lock_timer, 0.12)
 	_create_transformation_aura()
 	_play_star_bloom(Vector2(0, -34), 62.0, Color(1.0, 0.86, 0.32, 0.92), 0.22)
-	VFX.spawn(self, "luna_ult_transform", Vector2(0, -42), Vector2.ONE * 1.4 * GAME_SCALE.COMBAT, false, 5, Color.WHITE, true)
+	VFX.spawn(self, "luna_ult_transform", Vector2(0, -42), Vector2.ONE * 1.4 * GAME_SCALE.COMBAT, false, 5, Color(1, 1, 1, VFX.ULTIMATE_FLASH_ALPHA), true)
 	# The transformation itself bursts: everyone close is thrown up (added 2026-10-08).
 	attack_art_enabled = false
 	_spawn_sweeping_launch_attack(Vector2(TRANSFORM_BURST_RADIUS * 2.0, TRANSFORM_BURST_RADIUS * 1.6), [Vector2(0, -40), Vector2(0, -42)], TRANSFORM_BURST_DAMAGE, 460, Vector2(0, -1), Color(1.0, 0.7, 0.9, 0.4), 0.16, Vector2(0, -560), 0.3)
@@ -687,7 +687,9 @@ func _play_star_bloom(offset: Vector2, radius: float, color: Color, duration := 
 	# Generated bloom art occupies about 204 px inside its 256 px frame. Match the old
 	# polygon's 1.25x terminal radius; keep the polygon below as the missing/F2 fallback.
 	var art_scale := radius * 2.5 / 204.0
-	var art := VFX.spawn(get_parent(), "luna_star_bloom", global_position + offset, Vector2.ONE * art_scale, false, 6, Color(1, 1, 1, color.a))
+	# Behind the fighters (z 0; sprites are at 1): the bloom keeps its size, the hit area's, but
+	# no longer merges with the trail into one flash over the target (CODEX-QA-19 B4).
+	var art := VFX.spawn(get_parent(), "luna_star_bloom", global_position + offset, Vector2.ONE * art_scale, false, 0, Color(1, 1, 1, color.a))
 	if art != null:
 		art.speed_scale = 0.16 / maxf(duration, 0.01)
 		return

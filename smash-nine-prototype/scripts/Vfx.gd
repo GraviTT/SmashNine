@@ -10,6 +10,10 @@ const DIR := "res://assets/art/vfx/%s.png"
 const ATTACK_DIR := "res://assets/art/attack_vfx/%s.png"
 const EFFECTS_DIR := "res://assets/art/effects/%s.png"
 const SKILL_DIR := "res://assets/art/effects/skill/%s.png"
+## Peak opacity of the screen-filling ultimate flashes (Luna's transformation, Nova's collapse,
+## Yuki's final burst). At full opacity they hid every fighter on screen for a moment, other
+## players too; size and timing stay (sprite audit 2026-10-16, CODEX-QA-19 B7).
+const ULTIMATE_FLASH_ALPHA := 0.7
 const REALM_EFFECTS_DIR := "res://assets/art/effects/realm/%s.png"
 const REALM_CENTER_DIR := "res://assets/art/realm_center/%s.png"
 const HAZARDS_DIR := "res://assets/art/hazards/%s.png"

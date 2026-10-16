@@ -327,11 +327,15 @@ func _rune_release() -> void:
 	var knockback := minf(320.0 + rune_absorbed_knockback * 0.5, RUNE_RETURN_KNOCKBACK_MAX)
 	attack_lock_timer = 0.16
 	_play_sprite_action(&"attack", 0.16)
+	# The rune burst is the counter's own effect: the shared slash on top of it buried Rio and
+	# the target in one flash (sprite audit 2026-10-16, CODEX-QA-19 B2).
+	attack_art_enabled = false
 	_spawn_sweeping_attack(Vector2(70, 84), [
 		Vector2(10 * facing, -36),
 		Vector2(60 * facing, -36),
 		Vector2(110 * facing, -36)
 	], damage, knockback, Vector2(facing, -0.25), RUNE_COLOR, 0.12)
+	attack_art_enabled = true
 	_play_rune_burst()
 
 func _show_rune(active: bool) -> void:
