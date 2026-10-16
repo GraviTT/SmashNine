@@ -1,0 +1,420 @@
+{
+  "input": {
+    "sheet": "art/raw/rio-68/attack_male/prepared-attempt1.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.288889,
+    "scale_by": "fixed:0.288889",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      99,
+      103
+    ],
+    "body_width_range": [
+      84,
+      97
+    ],
+    "area_range": [
+      4482,
+      4930
+    ],
+    "area_spread_percent": 9.09,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3682,
+      4039
+    ],
+    "interior_detail_range": [
+      130.11,
+      137.16
+    ],
+    "interior_detail_mean": 134.05,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 110.24,
+    "interior_detail_ratio": 1.216
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4258,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 111.49,
+        "colour_count": 4283,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 110.99,
+        "colour_count": 4261,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 109.74,
+        "colour_count": 4220,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 108.85,
+        "colour_count": 4124,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 108.69,
+        "colour_count": 4143,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 110.24,
+    "colour_count_range": [
+      4124,
+      4283
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/rio-68/attack_male/prepared-attempt1.png#0,0",
+      "bbox": [
+        19,
+        18,
+        116,
+        121
+      ],
+      "body_height": 103,
+      "body_width": 97,
+      "area": 4918,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 136.13,
+      "colour_count": 4019,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 19,
+        "top": 18,
+        "right": 12,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2349
+    },
+    {
+      "index": 1,
+      "source": "art/raw/rio-68/attack_male/prepared-attempt1.png#1,0",
+      "bbox": [
+        21,
+        20,
+        108,
+        121
+      ],
+      "body_height": 101,
+      "body_width": 87,
+      "area": 4544,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 130.11,
+      "colour_count": 3709,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 21,
+        "top": 20,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1802
+    },
+    {
+      "index": 2,
+      "source": "art/raw/rio-68/attack_male/prepared-attempt1.png#2,0",
+      "bbox": [
+        20,
+        22,
+        108,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 88,
+      "area": 4520,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 137.16,
+      "colour_count": 3682,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 22,
+        "right": 20,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2442
+    },
+    {
+      "index": 3,
+      "source": "art/raw/rio-68/attack_male/prepared-attempt1.png#0,1",
+      "bbox": [
+        24,
+        19,
+        112,
+        121
+      ],
+      "body_height": 102,
+      "body_width": 88,
+      "area": 4607,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 133.42,
+      "colour_count": 3748,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 19,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2103
+    },
+    {
+      "index": 4,
+      "source": "art/raw/rio-68/attack_male/prepared-attempt1.png#1,1",
+      "bbox": [
+        22,
+        20,
+        106,
+        121
+      ],
+      "body_height": 101,
+      "body_width": 84,
+      "area": 4482,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 132.26,
+      "colour_count": 3733,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 20,
+        "right": 22,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1997
+    },
+    {
+      "index": 5,
+      "source": "art/raw/rio-68/attack_male/prepared-attempt1.png#2,1",
+      "bbox": [
+        19,
+        18,
+        116,
+        121
+      ],
+      "body_height": 103,
+      "body_width": 97,
+      "area": 4930,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 135.2,
+      "colour_count": 4039,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 19,
+        "top": 18,
+        "right": 12,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2264
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-68/attack_male/final/rio_male-attack-v2.png",
+    "candidate": "reports/codex-art-68/attack_male/final/candidate.png",
+    "frames": "reports/codex-art-68/attack_male/final/frames",
+    "closeup": "reports/codex-art-68/attack_male/final/closeup.png",
+    "compare": "reports/codex-art-68/attack_male/final/compare.png"
+  }
+}

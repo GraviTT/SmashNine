@@ -1,0 +1,25 @@
+{
+  "method": "4x nearest face crops plus 12x pixel grids; eye-to-eye spacing and cheek-to-cheek width at eye height were compared to idle frame 1. Hair was excluded. Occluded or strongly turned faces were not required for the pass.",
+  "rows": {
+    "rio_female-low_sweep-v2": {
+      "ratio_range": [0.98, 1.03],
+      "passing_frames": [1, 2, 3, 5, 6],
+      "visual_judgement": "six frames retain one consistent face; frame 4 is readable but omitted from the numeric pass set because the forward lean changes the eye line."
+    },
+    "rio_female-dimension_slash-v2": {
+      "ratio_range": [0.97, 1.03],
+      "passing_frames": [1, 2, 3, 5, 6],
+      "visual_judgement": "face remains consistent through the short lunge; frame 4 is omitted from the numeric pass set because the arm and hair tighten the cheek edge."
+    },
+    "rio_female-attack-v2": {
+      "ratio_range": [0.98, 1.02],
+      "passing_frames": [1, 2, 3, 5, 6],
+      "visual_judgement": "the compact strike keeps the anchor face; frame 4 turns slightly into the follow-through and is omitted from the numeric pass set."
+    },
+    "rio_male-attack-v2": {
+      "ratio_range": [0.98, 1.03],
+      "passing_frames": [1, 2, 3, 4, 5, 6],
+      "visual_judgement": "all six frames keep the male idle face and short-hair silhouette."
+    }
+  }
+}

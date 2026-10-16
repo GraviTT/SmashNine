@@ -1,0 +1,419 @@
+{
+  "input": {
+    "sheet": "art/raw/rio-68/low_sweep/prepared-attempt1.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.24,
+    "scale_by": "fixed:0.240",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      54,
+      71
+    ],
+    "body_width_range": [
+      71,
+      104
+    ],
+    "area_range": [
+      2454,
+      2861
+    ],
+    "area_spread_percent": 14.23,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2289,
+      2660
+    ],
+    "interior_detail_range": [
+      110.78,
+      123.0
+    ],
+    "interior_detail_mean": 117.91,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 95.55,
+    "interior_detail_ratio": 1.234
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.64,
+        "colour_count": 4711,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 96.71,
+        "colour_count": 4705,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 95.55,
+        "colour_count": 4741,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 94.34,
+        "colour_count": 4846,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 95.31,
+        "colour_count": 4735,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 93.76,
+        "colour_count": 4813,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 95.55,
+    "colour_count_range": [
+      4705,
+      4846
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/rio-68/low_sweep/prepared-attempt1.png#0,0",
+      "bbox": [
+        65,
+        84,
+        140,
+        153
+      ],
+      "body_height": 69,
+      "body_width": 75,
+      "area": 2799,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 119.68,
+      "colour_count": 2599,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 65,
+        "top": 84,
+        "right": 52,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2525
+    },
+    {
+      "index": 1,
+      "source": "art/raw/rio-68/low_sweep/prepared-attempt1.png#1,0",
+      "bbox": [
+        66,
+        94,
+        138,
+        153
+      ],
+      "body_height": 59,
+      "body_width": 72,
+      "area": 2496,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 119.42,
+      "colour_count": 2318,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 66,
+        "top": 94,
+        "right": 54,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2498
+    },
+    {
+      "index": 2,
+      "source": "art/raw/rio-68/low_sweep/prepared-attempt1.png#2,0",
+      "bbox": [
+        61,
+        98,
+        164,
+        153
+      ],
+      "body_height": 55,
+      "body_width": 103,
+      "area": 2643,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 110.78,
+      "colour_count": 2435,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 61,
+        "top": 98,
+        "right": 28,
+        "bottom": 39,
+        "minimum": 28,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1594
+    },
+    {
+      "index": 3,
+      "source": "art/raw/rio-68/low_sweep/prepared-attempt1.png#0,1",
+      "bbox": [
+        60,
+        99,
+        164,
+        153
+      ],
+      "body_height": 54,
+      "body_width": 104,
+      "area": 2655,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 111.8,
+      "colour_count": 2470,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 60,
+        "top": 99,
+        "right": 28,
+        "bottom": 39,
+        "minimum": 28,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1701
+    },
+    {
+      "index": 4,
+      "source": "art/raw/rio-68/low_sweep/prepared-attempt1.png#1,1",
+      "bbox": [
+        67,
+        93,
+        138,
+        153
+      ],
+      "body_height": 60,
+      "body_width": 71,
+      "area": 2454,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 123.0,
+      "colour_count": 2289,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 67,
+        "top": 93,
+        "right": 54,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2873
+    },
+    {
+      "index": 5,
+      "source": "art/raw/rio-68/low_sweep/prepared-attempt1.png#2,1",
+      "bbox": [
+        65,
+        82,
+        143,
+        153
+      ],
+      "body_height": 71,
+      "body_width": 78,
+      "area": 2861,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 122.78,
+      "colour_count": 2660,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 65,
+        "top": 82,
+        "right": 49,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.285
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-68/low_sweep/attempt1/rio_female-low_sweep-v2.png",
+    "candidate": "reports/codex-art-68/low_sweep/attempt1/candidate.png",
+    "frames": "reports/codex-art-68/low_sweep/attempt1/frames",
+    "closeup": "reports/codex-art-68/low_sweep/attempt1/closeup.png",
+    "compare": "reports/codex-art-68/low_sweep/attempt1/compare.png"
+  }
+}
