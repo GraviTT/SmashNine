@@ -9,6 +9,13 @@
 - 이동 기술의 거리는 `GameScale.WORLD = 1.5`, 달리기와 노바의 속도 기준은 `GameScale.MOVE = 1.2`, 점프 속도는 `GameScale.JUMP_SPEED = 1.3416`을 따른다.
 - 동작 프레임은 사람이 읽기 쉽게 1부터 센다. 예를 들어 코드의 `Vector2i(0, 1)`은 여기서 1~2프레임이다.
 - 동작 줄의 재생 속도는 사용자가 모션 뷰어에서 채택한 값이다(2026-10-15, `characters/common/MotionSpeeds.gd`, D39). 기술 줄은 D38 그림 시계로 재생되어 타격 그림이 판정 순간(선딜 끝)에 오고, 그 뒤 그림만 채택 속도보다 빨리 넘어가지 않는다. 그래서 채택 속도로 보이게 하려고 타격 전 그림을 늦추려면 선딜을 바꿔야 한다. 이는 밸런스 변경이고, 필요한 값은 `reports/motion-speeds-2026-10-15.md`에 있고, 2026-10-15 스킬 세션에서 그 값대로 늘렸다(아래 "선딜" 절).
+- 이펙트를 그리는 공통 규칙(Codex와 함께 한 스프라이트 점검, 2026-10-16, D40):
+  - 공용 J 궤적(`<id>_slash`)의 두께는 길이의 0.62배다(`PlayerBase.ATTACK_ART_THICKNESS`). 길이는 판정 끝까지 간다.
+  - 땅에서 아래로 향한 궤적은 최대 15°로 눕혀 보인다(`GROUND_TRAIL_MAX_DROP`). 판정 방향은 그대로다.
+  - 전용 이펙트가 있는 공격은 공용 궤적을 그리지 않는다(`attack_art_enabled = false`): Rio 룬 반격, Nova 벡터 타격·어퍼컷.
+  - Luna·Brave의 별꽃은 캐릭터 뒤(z 0)에 그린다.
+  - 화면을 채우는 궁극기 섬광(Luna 변신, Nova 붕괴, Yuki 마지막 폭발)은 알파 0.7이다(`Vfx.ULTIMATE_FLASH_ALPHA`).
+  - 방어 호는 몸 앞, 중심 (24,-58)이다(`GUARD_ART_CENTRE`, `GUARD_ART_FORWARD`).
 - 이펙트 상태는 전용 파일이 있으면 **그림**, 코드 도형만 있으면 **도형**, 몸 동작 외 표시가 없으면 **없음**, 여러 캐릭터가 같은 파일을 쓰면 **공용**이다. 원본 아트 모드가 아니거나 파일이 없으면 대부분 `ColorRect`, `Line2D`, `Polygon2D` 도형으로 대체된다.
 - `assets/art/` 아래 경로는 표에서 짧게 쓸 수 있다. 예를 들어 `attack_vfx/frey_k.png`는 `assets/art/attack_vfx/frey_k.png`, `skill/luna_star_bloom.png`는 `assets/art/effects/skill/luna_star_bloom.png`다.
 - `Attack.gd` 판정과 `source.on_attack_landed`를 부르는 투사체가 적중하면 공격자별 `assets/art/effects/hit/<id>_hit.png`, 공용 `hit_streak.png`가 나온다. 공중 공격 착지에는 공용 `landing_dust.png`가 나올 수 있다. 맞은 쪽의 `apply_hit`도 공격자의 `hit/<id>_hit.png`를 몸 위치에 그리므로, 모든 적중(투사체 포함)에 공격자 색의 불꽃이 나온다. Rio의 일반 마력 검기는 `on_attack_landed`를 부르지 않아 `hit_streak`과 공격자 경직만 없다.
@@ -101,10 +108,10 @@
 
 | 입력 | 기술 | 하는 일 | 주요 수치 | 몸 동작 | 이펙트와 그리기 | 상태 | 이펙트가 따라야 할 값 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `J` | 벡터 타격·옆 | 현재 운동량에 따라 더 멀리 이동하는 전방 타격이다. | 운동량 0→1: 이동 76→138, 판정 38×30→54×42, 피해 7→11, 넉백 235→510, 활성 0.075→0.12초 | `vector_side` 전체 | `attack_vfx/nova_slash.png`, `nova_vector_streak.png`; `_play_vector_flash` | 그림 | 실제 운동 방향, 이동·판정·색의 연속 보간 |
-| `공중 J` | 공중 벡터 타격 | 현재 비행 방향으로 치며 K를 취소하고 속도를 공격으로 바꾼다. | 지상 옆 J와 같은 보간; y속도 ×0.82 | `air_side` 전체 | `nova_slash`, `nova_vector_streak` | 그림 | 입력보다 현재 속도 방향 우선, 운동량 색 |
-| `↑J` | 벡터 어퍼컷 | 위로 상승하며 상대를 강제로 띄운다. | 운동량 0→1: 피해 7→11, 판정 38×48→48×62, 넉백 300→510, 자신 y속도 -390→-570, 상대 발사 y=-470→-720, 경직 0.22→0.32초 | `vector_upper` 전체 | `nova_slash`, `nova_impact_star.png` | 그림 | 운동량에 따른 크기·밝기와 위쪽 발사 |
-| `공중 ↑J` | 공중 벡터 어퍼컷 | 공중에서 상승량을 88%로 줄여 같은 띄우기를 쓴다. | 공격은 `↑J`와 같음; 자신 상승 속도 ×0.88 | `vector_upper` 전체 | `nova_slash`, `nova_impact_star` | 그림 | 공중 상승량과 상단 판정 |
+| `J` | 벡터 타격·옆 | 현재 운동량에 따라 더 멀리 이동하는 전방 타격이다. | 운동량 0→1: 이동 76→138, 판정 38×30→54×42, 피해 7→11, 넉백 235→510, 활성 0.075→0.12초 | `vector_side` 전체 | `nova_vector_streak.png`; `_play_vector_flash` (공용 `nova_slash` 없음, D40) | 그림 | 실제 운동 방향, 이동·판정·색의 연속 보간 |
+| `공중 J` | 공중 벡터 타격 | 현재 비행 방향으로 치며 K를 취소하고 속도를 공격으로 바꾼다. | 지상 옆 J와 같은 보간; y속도 ×0.82 | `air_side` 전체 | `nova_vector_streak` (공용 `nova_slash` 없음) | 그림 | 입력보다 현재 속도 방향 우선, 운동량 색 |
+| `↑J` | 벡터 어퍼컷 | 위로 상승하며 상대를 강제로 띄운다. | 운동량 0→1: 피해 7→11, 판정 38×48→48×62, 넉백 300→510, 자신 y속도 -390→-570, 상대 발사 y=-470→-720, 경직 0.22→0.32초 | `vector_upper` 전체 | `nova_impact_star.png` (공용 `nova_slash` 없음, D40) | 그림 | 운동량에 따른 크기·밝기와 위쪽 발사 |
+| `공중 ↑J` | 공중 벡터 어퍼컷 | 공중에서 상승량을 88%로 줄여 같은 띄우기를 쓴다. | 공격은 `↑J`와 같음; 자신 상승 속도 ×0.88 | `vector_upper` 전체 | `nova_impact_star` (공용 `nova_slash` 없음) | 그림 | 공중 상승량과 상단 판정 |
 | `↓J` | 중력 압축 발구르기 | 현재 위치 주변에 원형 중력 폭발을 낸다. | 운동량 0→1: 반경 48→72, 피해 7→11, 넉백 260→480; 활성 0.14초 | `compression_stomp` 전체 | `nova_gravity_burst.png`, `nova_impact_star.png`; `NovaGravityBurst.configure` | 그림 | 실제 반경 `×COMBAT`, 운동량 색과 0.14초 |
 | `공중 ↓J` | 메테오 킥 | 먼저 아래를 차며 급강하하고, 착지 때 현재 운동량에 따른 원형 충격파를 낸다. 착지까지 행동이 잠긴다. | 발차기 피해 6→9, 40×46, 넉백 270→430, 0.12초; 낙하 y속도 560→760, 추가 중력 2600; 착지 반경 68→98, 피해 9→14, 넉백 350→610 | `meteor_kick` 전체 | 발차기 `nova_slash`; 착지 `nova_gravity_burst`, `nova_impact_star`, 공용 `landing_dust` | 그림 | 낙하 방향, 착지 반경·운동량, 지면 위치 |
 | `K` | 벡터 시프트 | 입력한 8방향으로 0.22초 동안 개인 중력을 바꿔 가속한다. 공격 판정은 없고 공중에서는 착지 전 1회다. | 0.22초 `[VECTOR_SHIFT_DURATION]`, 가속 `5400×MOVE` `[VECTOR_SHIFT_ACCELERATION]`, 최대 속도 `760×MOVE` `[VECTOR_SHIFT_MAX_SPEED]` | `vector_shift` 전체 | `attack_vfx/nova_k.png`, `nova_shift_dash.png`; `_start_vector_shift`, `_play_shift_flash` | 그림 | 가속 방향·0.22초, 뒤쪽 52px 잔광 |
@@ -133,7 +140,7 @@
 | `공중 J` | 공중 베기 | 낙하를 조금 줄이고 전방을 벤다. | 피해 7, 40×30, 끝 98, 넉백 250, 0.085초; x속도 +110, y속도 ×0.8 | `air_slash` 전체 | `rio_slash` | 그림 | 공중 전방 궤적·0.085초 |
 | `공중 ↓J` | 낙하 찌르기 | 짧게 준비한 뒤 대각선 아래로 돌진한다. 착지까지 행동이 잠긴다. | 선딜 0.238초; 돌진 속도 `820×WORLD`, 0.22초; 피해 10, 38×50, 경로 180, 넉백 380, 0.20초 | `plunge` 전체 | `rio_slash`; 착지 `landing_dust` | 그림 | 대각선 방향, 돌진 경로·지속, 착지 잠금 |
 | `K` | 차원의 베기 | 마지막 8방향 입력으로 최대 200 기본 px 순간이동하고 실제 지나간 경로를 벤다. 지형 앞에서 멈추며 공중에서는 착지 전 1회다. | 준비 0.06초 `[BLINK_HOLD]`, 후딜 0.20초 `[BLINK_RECOVERY]`; 거리 `200×WORLD=300` 화면 px `[BLINK_DISTANCE]`; 피해 10, 56×44, 넉백 340, 0.08초 | `dimension_slash` 전체 | `attack_vfx/rio_k.png`, `skill/rio_blink_trail.png`; `_dimension_slash`, `_play_blink_trail` | 그림 | 실제 이동한 거리·방향, 잘린 경로, 최대 300 화면 px |
-| `L` | 룬 방패·반격 | 0.5초 동안 받은 피해를 절반으로 줄이고 넉백·경직을 없앤다. 끝에 흡수 횟수와 넉백에 따라 전방 충격파를 돌려준다. 아무것도 못 받으면 0.32초 빈틈이 생긴다. | 지속 0.5초 `[RUNE_DURATION]`, 피해 배율 0.5 `[RUNE_DAMAGE_SCALE]`, 쿨 3초 `[RUNE_COOLDOWN]`; 반격 피해 `min(6+3×횟수,15)`, 넉백 `min(320+흡수넉백×0.5,820)`, 판정 70×84, 끝 110, 0.12초 | `rune_shield` 전체; 반격은 기본 `attack` | `attack_vfx/rio_l.png`, `rio_rune_guard.png`, `rio_rune_burst.png`; `_show_rune`, `_play_rune_burst` | 그림 | 0.5초 육각 방패, 흡수 횟수, 반격 40 기본 반경·전방 방향 |
+| `L` | 룬 방패·반격 | 0.5초 동안 받은 피해를 절반으로 줄이고 넉백·경직을 없앤다. 끝에 흡수 횟수와 넉백에 따라 전방 충격파를 돌려준다. 아무것도 못 받으면 0.32초 빈틈이 생긴다. | 지속 0.5초 `[RUNE_DURATION]`, 피해 배율 0.5 `[RUNE_DAMAGE_SCALE]`, 쿨 3초 `[RUNE_COOLDOWN]`; 반격 피해 `min(6+3×횟수,15)`, 넉백 `min(320+흡수넉백×0.5,820)`, 판정 70×84, 끝 110, 0.12초 | `rune_shield` 전체; 반격은 기본 `attack` | `attack_vfx/rio_l.png`, `rio_rune_guard.png`, `rio_rune_burst.png`; `_show_rune`, `_play_rune_burst` (반격에 공용 `rio_slash` 없음, D40) | 그림 | 0.5초 육각 방패, 흡수 횟수, 반격 40 기본 반경·전방 방향 |
 | `I` | 무한 오버드라이브 | 보석 검 6자루가 0.55초 공전한 뒤 0.07초 간격으로 발사된다. 입력 방향, 같은 렐름의 가장 가까운 적, 바라보는 방향 순으로 조준한다. 피격되면 남은 검이 사라진다. | 6자루 `[OVERDRIVE_SWORDS]`, 공전 0.55초 `[OVERDRIVE_ORBIT_TIME]`, 간격 0.07초 `[OVERDRIVE_FIRE_GAP]`, 공전 반경 `58×COMBAT`; 앞 5자루 피해 11 `[OVERDRIVE_SWORD_DAMAGE]`·넉백 320, 마지막 피해 18 `[OVERDRIVE_LAST_DAMAGE]`·넉백 520; 판정 `28×28×COMBAT`, 속도 `980×COMBAT`, 수명 0.62초, 자동조준 `720×COMBAT` | `infinity_overdrive` 전체 | `rio_gem_sword.png`, `vfx/rio_ult_circle.png`, 적중 `vfx/rio_ult_impact.png`; `_make_gem_sword`, `_fire_gem_sword` | 그림 | 6색·6자루 순서, 공전 반경, 발사 간격, 마지막 검의 더 강한 밝기·충격 |
 | 자동 | 공중 2회 추가 점프 | 지상을 떠난 뒤 점프를 두 번 더 쓸 수 있다. Sky Step 카드 포함 상한은 3회다. | 기본 공중 점프 2 (`RioData.air_jumps`), 공통 상한 3 `[MAX_AIR_JUMPS]`; 공중 점프 y속도=`jump_velocity×0.86` | `jump` | 별도 점프 이펙트 없음 | 없음 | 남은 점프 횟수, 공중 점프 순간과 위 방향 |
 | Guard | 공용 방어/패리 | 룬 방패 L과 별개인 공용 지상 방어다. | 공용 조작 절 참고 | `shield` 전체 | `guard_bubble.png`, `parry_flash.png` | 공용 | 방향, 패리 창, 감소율; 룬 방패와 시각적으로 구분 |
