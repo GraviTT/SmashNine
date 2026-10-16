@@ -1,0 +1,26 @@
+CODEX-ART-68 prompt log
+
+All generations use built-in ImageGen. Image 1 is the accepted idle anchor for identity, costume, face size, and detail. Image 2 is the existing row for motion only. Outputs are source grids on a flat #00FF00 background and are normalized later with the ART-61 pipeline.
+
+## rio_female low_sweep — attempt 1
+
+Redraw exactly six frames in a 3x2 source grid: lower, compact chamber, frame-3 active low sweep, active hold, compact recovery, ready. Keep the accepted idle's costume and face size. Crouch lower and keep the blade short and close so the row fits a 192px cell at head scale. One face, two hands, two boots, one sword; no effects, afterimages, trails, glow, runes, barriers, text, or watermark. Pure #00FF00 background.
+
+## rio_female dimension_slash — attempt 1
+
+Redraw exactly six frames in a 3x2 source grid: focus, compact draw with bent sword arm, frame-3 short blink thrust, compact hold, brake with blade close, ready. Keep the front knee bent and both legs near the body; extend the sword only on the strike frame. Keep the accepted idle's costume and face size. One face, two hands, two boots, one sword; no effects, teleport silhouettes, afterimages, trails, glow, runes, barriers, text, or watermark. Pure #00FF00 background.
+
+## rio_female attack — attempt 1
+
+Create a new compact six-frame basic sword attack in a 3x2 source grid: ready, close chamber, frame-3 strike, close follow-through, retract, ready. Full head scale, bent elbows, short steps, sword close to the torso, short arc below hair height. One face, two hands, two boots, one sword; no effects, trails, glow, runes, barriers, text, or watermark. Pure #00FF00 background.
+
+Visual rejection: frame 3 extended the blade too far horizontally for a 128px cell at face-matched scale. Preserved as attempt 1; regenerate the whole row more compactly.
+
+## rio_female attack — attempt 2
+
+Regenerate all six frames with an extremely narrow silhouette: no lunge, feet within shoulder-and-a-half width, hilt close to torso, blade crossing diagonally over the body and never extending beyond the boots. Frame 3 is a close-body downward diagonal strike. Full accepted-idle face size; exact costume; no effects or extra elements; pure #00FF00 background.
+
+## rio_male attack — attempt 1
+
+Create a new compact six-frame male basic sword attack in a 3x2 source grid: ready, close chamber, frame-3 close-body downward diagonal strike, compact follow-through, retract, ready. No lunge; narrow feet; hilt near torso; tip no farther than the boots; tight cape. Keep the accepted idle's face size and costume. One face, two hands, two boots, one sword; no effects or extra elements; pure #00FF00 background.
+
