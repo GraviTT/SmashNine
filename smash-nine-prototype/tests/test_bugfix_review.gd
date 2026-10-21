@@ -18,6 +18,7 @@ func _run() -> void:
 	root.add_child(arena)
 	await _test_launch_hit_ends_skill_dash()
 	await _test_card_offer_hides_when_p1_falls()
+	await _test_startup_wait_in_physics_ticks()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -93,5 +94,31 @@ func _test_card_offer_hides_when_p1_falls() -> void:
 	if main.hud.card_panel.visible:
 		_fail("P1's card panel should hide once P1 is eliminated (the offer is gone)")
 	main.queue_free()
+	await process_frame
+	passed += 1
+
+## Attack start-ups (_wait_action) ran on an idle-frame SceneTreeTimer while hitstun, the attack
+## lock and movement count physics ticks. At a low frame rate the wait came out several ticks long
+## or short, so moves fired off their timing and Luna's echo blooms missed (test_luna_kit failed at
+## --max-fps 20). The wait must last its seconds in physics ticks whatever the frame rate.
+func _test_startup_wait_in_physics_ticks() -> void:
+	var frey := _fighter("frey", 1, Vector2(0, -600))
+	frey.set_physics_process(false)
+	await physics_frame
+	var expected := roundi(0.5 * Engine.physics_ticks_per_second)
+	var worst := 0
+	# Measured before the fix (headless): 29-32 ticks at 20 fps, 30-36 at 7 fps.
+	for fps in [20, 7]:
+		Engine.max_fps = fps
+		await process_frame
+		for trial in 6:
+			await physics_frame
+			var start := Engine.get_physics_frames()
+			await frey._wait_action(0.5)
+			worst = maxi(worst, absi(int(Engine.get_physics_frames() - start) - expected))
+	Engine.max_fps = 0
+	if worst > 1:
+		_fail("A 0.5 s start-up wait should last %d physics ticks at any frame rate (off by %d)" % [expected, worst])
+	frey.queue_free()
 	await process_frame
 	passed += 1

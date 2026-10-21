@@ -395,7 +395,7 @@ func _ultimate_impact() -> void:
 	_play_ultimate_release()
 	# Aftershock: a second, launching ring once the stun has landed.
 	var epoch := action_epoch
-	await get_tree().create_timer(ULTIMATE_AFTERSHOCK_DELAY).timeout
+	await get_tree().create_timer(ULTIMATE_AFTERSHOCK_DELAY, true, true).timeout
 	if epoch != action_epoch or is_defeated:
 		return
 	attack_art_enabled = false

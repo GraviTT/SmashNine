@@ -571,7 +571,7 @@ func _heart_laser_start() -> void:
 	movement_freeze_timer = heart_laser_duration
 	_spawn_heart_laser(Vector2(facing, 0.0), heart_laser_duration)
 	_play_star_bloom(Vector2(34 * facing, -38), 74.0, Color(1.0, 0.82, 0.24, 0.94), 0.22)
-	await get_tree().create_timer(heart_laser_duration).timeout
+	await get_tree().create_timer(heart_laser_duration, true, true).timeout
 	if cast_id != heart_laser_cast_id:
 		return
 	_end_transformation(true)

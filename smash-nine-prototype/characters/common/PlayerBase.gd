@@ -1046,7 +1046,9 @@ func _start_attack(startup: float, recovery: float, action: Callable, pose := Ve
 ## swing never fires at the new position (CODEX-ANALYST-01).
 func _wait_action(seconds: float) -> bool:
 	var epoch := action_epoch
-	await get_tree().create_timer(seconds).timeout
+	# Counted in physics ticks like hitstun and the attack lock: an idle-frame timer fired late at a
+	# low frame rate (web), so start-ups ran long and Luna's echo blooms missed.
+	await get_tree().create_timer(seconds, true, true).timeout
 	return epoch == action_epoch and not is_defeated
 
 func cancel_pending_actions() -> void:
