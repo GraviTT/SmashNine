@@ -101,6 +101,7 @@ static func build_maps() -> Array:
 		"theme": "moon_bridge",
 		"identity": "Long sightlines",
 		"monsters": {"melee": "alfheim_moon_stag", "ranged": "alfheim_moon_moth"},
+		"hazard": {"type": "gates", "text": "Moon gates", "warn_text": "Moon gates are opening - step in to cross the realm", "interval": [9.0, 12.0], "warning": 1.2, "active": 6.0, "radius": 34.0, "spots": [Vector2(210, 420), Vector2(1070, 420), Vector2(640, 315), Vector2(410, 215), Vector2(870, 215), Vector2(330, 600), Vector2(950, 600)]},
 		"art": {"dir": "res://assets/art/realm_alfheim", "cap_main": 46, "cap_sub": 32, "dim": 0.38},
 		"background": Color(0.035, 0.035, 0.09),
 		"accent": Color(0.7, 0.82, 1.0),
@@ -146,6 +147,7 @@ static func build_maps() -> Array:
 		"theme": "skyline_spires",
 		"identity": "Vertical climbs",
 		"monsters": {"melee": "svartalfheim_gear_beetle", "ranged": "svartalfheim_cog_drone"},
+		"hazard": {"type": "belts", "text": "Forge conveyor belts", "warn_text": "The belts are reversing!", "interval": [9.0, 12.0], "warning": 1.2, "speed": 60.0, "platforms": [0, 3, 4]},
 		"art": {"dir": "res://assets/art/realm_svartalfheim", "cap_main": 44, "cap_sub": 32, "dim": 0.38},
 		"background": Color(0.05, 0.045, 0.035),
 		"accent": Color(0.95, 0.62, 0.25),
@@ -282,7 +284,7 @@ static func _scaled_stand_point(point: Vector2, authored: Array, scale: float) -
 
 static func _scaled_hazard(hazard: Dictionary, scale: float, authored: Array) -> Dictionary:
 	var scaled := hazard.duplicate(true)
-	for key in ["width", "height", "notice_range"]:
+	for key in ["width", "height", "notice_range", "speed", "radius"]:
 		if scaled.has(key):
 			scaled[key] = float(scaled[key]) * scale
 	if scaled.has("spots"):
