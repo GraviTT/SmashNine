@@ -77,6 +77,8 @@ var _realms: Dictionary = {}
 var _revealed: Dictionary = {}
 ## combatant -> seconds before a moon gate may carry them again
 var _gate_cooldown: Dictionary = {}
+## combatant -> true while standing in a gate after a crossing (they must step out first)
+var _gate_inside: Dictionary = {}
 
 func setup(new_layout: REALM_LAYOUT, new_state_of: Callable, match_seed: int) -> void:
 	layout = new_layout
@@ -470,18 +472,24 @@ func _carry_through_gates(realm_index: int, entry: Dictionary) -> void:
 		return
 	var radius := float(entry.hazard.get("radius", 48.0))
 	for combatant in _fighters_in(realm_index):
-		if float(_gate_cooldown.get(combatant, 0.0)) > 0.0:
-			continue
 		var body: Vector2 = combatant.global_position + Vector2(0.0, -32.0)
+		var touching := -1
 		for index in 2:
-			var gate: Vector2 = gates[index]
-			if body.distance_to(gate + Vector2(0.0, -GATE_HEIGHT * 0.45)) <= radius:
-				var exit: Vector2 = gates[1 - index]
-				combatant.global_position = exit + Vector2(0.0, -2.0)
-				_gate_cooldown[combatant] = GATE_COOLDOWN
-				_particles(Rect2(gate.x - 24.0, gate.y - GATE_HEIGHT, 48.0, GATE_HEIGHT), Color(0.85, 0.95, 1.0, 0.95), 18, 0.5, -140.0, true).finished.connect(_free_finished)
-				_particles(Rect2(exit.x - 24.0, exit.y - GATE_HEIGHT, 48.0, GATE_HEIGHT), Color(0.85, 0.95, 1.0, 0.95), 18, 0.5, -140.0, true).finished.connect(_free_finished)
-				break
+			if body.distance_to((gates[index] as Vector2) + Vector2(0.0, -GATE_HEIGHT * 0.45)) <= radius:
+				touching = index
+		# Someone who just came out of a gate has to step out of it before it takes them back.
+		if touching < 0:
+			_gate_inside.erase(combatant)
+			continue
+		if bool(_gate_inside.get(combatant, false)) or float(_gate_cooldown.get(combatant, 0.0)) > 0.0:
+			continue
+		var gate: Vector2 = gates[touching]
+		var exit: Vector2 = gates[1 - touching]
+		combatant.global_position = exit + Vector2(0.0, -2.0)
+		_gate_cooldown[combatant] = GATE_COOLDOWN
+		_gate_inside[combatant] = true
+		_particles(Rect2(gate.x - 24.0, gate.y - GATE_HEIGHT, 48.0, GATE_HEIGHT), Color(0.85, 0.95, 1.0, 0.95), 18, 0.5, -140.0, true).finished.connect(_free_finished)
+		_particles(Rect2(exit.x - 24.0, exit.y - GATE_HEIGHT, 48.0, GATE_HEIGHT), Color(0.85, 0.95, 1.0, 0.95), 18, 0.5, -140.0, true).finished.connect(_free_finished)
 
 func get_gates(realm_index: int) -> Array:
 	return _realms[realm_index].get("gates", []) if _realms.has(realm_index) else []
