@@ -4,6 +4,7 @@ extends SceneTree
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
+const MAIN_SCENE := "res://scenes/Main.tscn"
 
 var arena: Node2D
 var failed := false
@@ -16,6 +17,7 @@ func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
 	await _test_launch_hit_ends_skill_dash()
+	await _test_card_offer_hides_when_p1_falls()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -58,5 +60,38 @@ func _test_launch_hit_ends_skill_dash() -> void:
 		_fail("Launched Frey should rise, not keep diving (moved %.0f px down)" % (frey.global_position.y - start_y))
 	frey.queue_free()
 	foe.queue_free()
+	await process_frame
+	passed += 1
+
+## SoulGrowth drops an open offer when its player is eliminated without emitting offer_closed, so
+## P1's card panel ("press 1 / 2 / 3") stayed on screen, frozen, while P1 spectated the rest of the
+## match.
+func _test_card_offer_hides_when_p1_falls() -> void:
+	var main: Node = load(MAIN_SCENE).instantiate()
+	main.match_seed = 21
+	main.realm_hazards = false
+	root.add_child(main)
+	await process_frame
+	main._start_match("frey")
+	await process_frame
+	var human: Node = main._get_human_player()
+	if human == null:
+		_fail("Test setup: P1 should be in the match")
+		main.queue_free()
+		await process_frame
+		return
+	human.add_souls(human.SOUL_THRESHOLDS[0])
+	await process_frame
+	await process_frame
+	if not main.hud.card_panel.visible:
+		_fail("Test setup: P1's soul card offer should show")
+	human.apply_environment_damage(human.hp + 100.0)
+	for frame in 4:
+		await process_frame
+	if main.match_over:
+		_fail("Test setup: one elimination should not end an 8-fighter match")
+	if main.hud.card_panel.visible:
+		_fail("P1's card panel should hide once P1 is eliminated (the offer is gone)")
+	main.queue_free()
 	await process_frame
 	passed += 1
