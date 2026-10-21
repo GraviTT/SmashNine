@@ -1383,7 +1383,10 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 	attack_buffer_timer = 0.0
 	jump_buffer_timer = 0.0
 	movement_freeze_timer = 0.0
+	# A launch ends a running skill dash like any other hit (Frey's dive kept plunging after it).
+	skill_dash_timer = 0.0
 	action_locked_until_land = false
+	_end_skill_dash()
 	character_on_hit()
 	_play_hit_feedback(final_damage, hit_direction, effect_knockback)
 	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, effect_knockback, attacker)
