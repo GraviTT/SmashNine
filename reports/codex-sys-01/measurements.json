@@ -1,0 +1,100 @@
+{
+  "baseline_commit": "5dc0917",
+  "command": "Godot_v4.7-stable_win64_console.exe --headless --path smash-nine-prototype --fixed-fps 60 -s tests/soak_match.gd -- --seconds=480 --seed=<1001|1002|1003> --players=8",
+  "measurements": [
+    {
+      "seed": 1001,
+      "before": {
+        "monster_hits": 332,
+        "defeats_by_monster": 1,
+        "match_seconds": 260.3,
+        "pvp_hits": 493,
+        "ringouts": 16,
+        "winner": "Luna",
+        "match_over": true,
+        "nan_positions": 0,
+        "unexpected_engine_errors": 0
+      },
+      "after": {
+        "monster_hits": 125,
+        "defeats_by_monster": 0,
+        "match_seconds": 288.9,
+        "pvp_hits": 638,
+        "ringouts": 10,
+        "winner": "Nova",
+        "match_over": true,
+        "nan_positions": 0,
+        "unexpected_engine_errors": 0
+      }
+    },
+    {
+      "seed": 1002,
+      "before": {
+        "monster_hits": 332,
+        "defeats_by_monster": 2,
+        "match_seconds": 267.7,
+        "pvp_hits": 488,
+        "ringouts": 5,
+        "winner": "Luna",
+        "match_over": true,
+        "nan_positions": 0,
+        "unexpected_engine_errors": 0
+      },
+      "after": {
+        "monster_hits": 147,
+        "defeats_by_monster": 0,
+        "match_seconds": 291,
+        "pvp_hits": 602,
+        "ringouts": 10,
+        "winner": "Frey",
+        "match_over": true,
+        "nan_positions": 0,
+        "unexpected_engine_errors": 0
+      }
+    },
+    {
+      "seed": 1003,
+      "before": {
+        "monster_hits": 316,
+        "defeats_by_monster": 0,
+        "match_seconds": 288.2,
+        "pvp_hits": 588,
+        "ringouts": 5,
+        "winner": "Rio",
+        "match_over": true,
+        "nan_positions": 0,
+        "unexpected_engine_errors": 0
+      },
+      "after": {
+        "monster_hits": 117,
+        "defeats_by_monster": 1,
+        "match_seconds": 299.6,
+        "pvp_hits": 709,
+        "ringouts": 7,
+        "winner": "Nova",
+        "match_over": true,
+        "nan_positions": 0,
+        "unexpected_engine_errors": 0
+      }
+    }
+  ],
+  "totals": {
+    "before": {
+      "monster_hits": 980,
+      "defeats_by_monster": 3,
+      "pvp_hits": 1569,
+      "ringouts": 26,
+      "mean_match_seconds": 272.1,
+      "median_match_seconds": 267.7
+    },
+    "after": {
+      "monster_hits": 389,
+      "defeats_by_monster": 1,
+      "pvp_hits": 1949,
+      "ringouts": 27,
+      "mean_match_seconds": 293.2,
+      "median_match_seconds": 291
+    }
+  },
+  "limitation": "3 seeds only. Full ecology change includes altered spawn positions and RNG consumption; outcomes cannot isolate one archetype or elite causal effect. Original soak does not split elite and regular hits or indirect monster-caused ringouts."
+}
