@@ -10,6 +10,10 @@ extends Node2D
 ##   withers (anyone standing on it drops)
 ## - bushes: a fighter inside a bush is concealed (faded, bots only notice within
 ##   notice_range); attacking or getting hit reveals them for a moment
+## - belts (2026-10-22 night routine): forge conveyor belts on some platforms carry anyone
+##   standing on them sideways; after a warning they reverse
+## - gates (2026-10-22 night routine): after a shimmer two moon gates open on platforms far
+##   apart for a while; touching one carries a fighter to the other (1 s per-fighter cooldown)
 ## Timing uses a seeded RNG, so a match seed replays the same hazards.
 
 signal shake_requested(realm_index: int, strength: float, duration: float)
@@ -51,6 +55,15 @@ const VINE_COLOR := Color(0.3, 0.72, 0.32)
 const VINE_DARK_COLOR := Color(0.14, 0.38, 0.17)
 const WORLD_LAYER := 1
 const BUSH_COLORS: Array[Color] = [Color(0.16, 0.42, 0.18), Color(0.22, 0.55, 0.22), Color(0.3, 0.66, 0.28)]
+const BELT_COLOR := Color(0.16, 0.13, 0.1, 0.92)
+const BELT_EDGE_COLOR := Color(0.95, 0.62, 0.25, 0.9)
+const BELT_CHEVRON_COLOR := Color(1.0, 0.78, 0.35, 0.95)
+const BELT_CHEVRON_SPACING := 46.0
+const BELT_HEIGHT := 10.0
+const GATE_COLOR := Color(0.72, 0.85, 1.0, 0.9)
+const GATE_WARNING_COLOR := Color(0.72, 0.85, 1.0, 0.35)
+const GATE_HEIGHT := 92.0
+const GATE_COOLDOWN := 1.0
 
 var enabled := true
 var layout: REALM_LAYOUT
@@ -62,6 +75,8 @@ var _rng := RandomNumberGenerator.new()
 var _realms: Dictionary = {}
 ## combatant -> seconds left before an attacker or a hit fighter can hide again
 var _revealed: Dictionary = {}
+## combatant -> seconds before a moon gate may carry them again
+var _gate_cooldown: Dictionary = {}
 
 func setup(new_layout: REALM_LAYOUT, new_state_of: Callable, match_seed: int) -> void:
 	layout = new_layout
@@ -76,6 +91,11 @@ func setup(new_layout: REALM_LAYOUT, new_state_of: Callable, match_seed: int) ->
 		if str(hazard.type) == "bushes":
 			_realms[realm_index]["bushes"] = _bush_rects(realm_index, hazard)
 			_realms[realm_index]["visuals"] = _bush_visuals(_realms[realm_index].bushes)
+		if str(hazard.type) == "belts":
+			_realms[realm_index]["belts"] = _belt_rects(realm_index, hazard)
+			_realms[realm_index]["belt_dir"] = 1.0 if _rng.randf() < 0.5 else -1.0
+			_realms[realm_index]["belt_scroll"] = 0.0
+			_realms[realm_index]["belt_nodes"] = _belt_visuals(_realms[realm_index].belts)
 
 func register_combatant(combatant: Node) -> void:
 	if not combatants.has(combatant):
@@ -100,6 +120,9 @@ func trigger(realm_index: int) -> void:
 func advance(delta: float) -> void:
 	_update_traction()
 	_update_concealment(delta)
+	_update_belts(delta)
+	for combatant in _gate_cooldown.keys():
+		_gate_cooldown[combatant] = maxf(float(_gate_cooldown[combatant]) - delta, 0.0)
 	if not enabled:
 		return
 	for realm_index in _realms:
@@ -109,7 +132,7 @@ func advance(delta: float) -> void:
 				_end(realm_index)
 			continue
 		match str(entry.hazard.type):
-			"eruption", "quake", "beams", "vines":
+			"eruption", "quake", "beams", "vines", "belts", "gates":
 				_advance_timed(realm_index, entry, delta)
 
 func _update_traction() -> void:
@@ -210,6 +233,8 @@ func _advance_timed(realm_index: int, entry: Dictionary, delta: float) -> void:
 			entry.timer = float(entry.timer) - delta
 			if str(entry.hazard.type) == "eruption" or str(entry.hazard.type) == "beams":
 				_burn(realm_index, entry)
+			elif str(entry.hazard.type) == "gates":
+				_carry_through_gates(realm_index, entry)
 			if entry.timer <= 0.0:
 				_end(realm_index)
 
@@ -244,6 +269,20 @@ func _start_warning(realm_index: int) -> void:
 				var rect: Rect2 = column
 				entry.visuals.append(_rect_node(rect, BEAM_WARNING_COLOR))
 				entry.visuals.append(_art_node(Rect2(rect.position.x, rect.end.y - 12.0, rect.size.x, 16.0), VENT_GLYPH_ART, BEAM_GLYPH_COLOR, BEAM_GLYPH_TINT))
+		"belts":
+			# Arrows pointing the way the belts are about to run.
+			var next_dir := -float(entry.belt_dir)
+			for belt in entry.belts:
+				var rect: Rect2 = belt
+				var arrows := clampi(int(rect.size.x / 90.0), 1, 6)
+				for index in arrows:
+					var x := rect.position.x + rect.size.x * (float(index) + 0.5) / float(arrows)
+					entry.visuals.append(_chevron(Vector2(x, rect.position.y - 26.0), next_dir, 16.0, BELT_EDGE_COLOR))
+		"gates":
+			entry["gates"] = _pick_gates(realm_index, entry.hazard)
+			for gate in entry.gates:
+				entry.visuals.append(_gate_node(gate, GATE_WARNING_COLOR))
+				entry.visuals.append(_particles(Rect2(gate.x - 26.0, gate.y - GATE_HEIGHT, 52.0, GATE_HEIGHT), Color(0.8, 0.9, 1.0, 0.8), 14, 0.7, -60.0, false))
 		"vines":
 			var bridges: Array = entry.hazard.get("bridges", [])
 			var local: Rect2 = bridges[_rng.randi_range(0, bridges.size() - 1)]
@@ -276,6 +315,15 @@ func _start_active(realm_index: int) -> void:
 			entry.timer = float(entry.hazard.get("active", 9.0))
 			for column in entry.columns:
 				entry.visuals.append(_vine_bridge(column))
+		"belts":
+			entry.timer = 0.0
+			entry.belt_dir = -float(entry.belt_dir)
+			shake_requested.emit(realm_index, 2.0, 0.2)
+		"gates":
+			entry.timer = float(entry.hazard.get("active", 6.0))
+			for gate in entry.get("gates", []):
+				entry.visuals.append(_gate_node(gate, GATE_COLOR))
+				entry.visuals.append(_particles(Rect2(gate.x - 30.0, gate.y - GATE_HEIGHT, 60.0, GATE_HEIGHT), Color(0.85, 0.95, 1.0, 0.95), 26, 0.8, -90.0, false))
 		"quake":
 			entry.timer = 0.0
 			_quake(realm_index, entry.hazard)
@@ -294,6 +342,8 @@ func _end(realm_index: int) -> void:
 	_clear_visuals(entry)
 	entry.phase = "idle"
 	entry.columns = []
+	if entry.has("gates"):
+		entry.gates = []
 	entry.hit = []
 	entry.next_in = _next_interval(entry.hazard)
 
@@ -312,6 +362,164 @@ func _burn(realm_index: int, entry: Dictionary) -> void:
 				else:
 					combatant.apply_hit(null, float(entry.hazard.damage), float(entry.hazard.knockback), Vector2(0.0, -1.0), DAMAGE_FIXED)
 				break
+
+## Forge belts: platform tops chosen by index in the realm's platform list (authored order).
+func _belt_rects(realm_index: int, hazard: Dictionary) -> Array[Rect2]:
+	var rects: Array[Rect2] = []
+	var platforms := _platform_rects(realm_index)
+	for index in hazard.get("platforms", []):
+		if int(index) >= 0 and int(index) < platforms.size():
+			rects.append(platforms[int(index)])
+	return rects
+
+## A dark strip with scrolling chevrons along each belt; the chevrons are kept per belt so
+## _update_belts can move them.
+func _belt_visuals(rects: Array[Rect2]) -> Array[Node]:
+	var nodes: Array[Node] = []
+	for rect in rects:
+		var belt := Node2D.new()
+		belt.name = "ForgeBelt"
+		belt.position = Vector2(rect.position.x, rect.position.y - BELT_HEIGHT)
+		var strip := ColorRect.new()
+		strip.size = Vector2(rect.size.x, BELT_HEIGHT)
+		strip.color = BELT_COLOR
+		strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		belt.add_child(strip)
+		var edge := ColorRect.new()
+		edge.size = Vector2(rect.size.x, 2.0)
+		edge.color = BELT_EDGE_COLOR
+		edge.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		belt.add_child(edge)
+		var chevrons := Node2D.new()
+		chevrons.name = "Chevrons"
+		belt.add_child(chevrons)
+		for index in int(rect.size.x / BELT_CHEVRON_SPACING) + 1:
+			chevrons.add_child(_chevron_polygon(6.0, BELT_CHEVRON_COLOR))
+		add_child(belt)
+		nodes.append(belt)
+	return nodes
+
+## Belts carry grounded fighters standing on them and scroll their chevrons the same way.
+func _update_belts(delta: float) -> void:
+	for realm_index in _realms:
+		var entry: Dictionary = _realms[realm_index]
+		if not entry.has("belts"):
+			continue
+		var running := enabled and _is_playable(realm_index)
+		var direction := float(entry.belt_dir)
+		var speed := float(entry.hazard.get("speed", 90.0))
+		for node in entry.belt_nodes:
+			if is_instance_valid(node):
+				node.visible = running
+		if not running:
+			continue
+		entry.belt_scroll = fposmod(float(entry.belt_scroll) + direction * speed * delta, BELT_CHEVRON_SPACING)
+		for node in entry.belt_nodes:
+			if not is_instance_valid(node):
+				continue
+			var chevrons: Node2D = node.get_node("Chevrons")
+			var width: float = (node.get_child(0) as ColorRect).size.x
+			for index in chevrons.get_child_count():
+				var chevron: Node2D = chevrons.get_child(index)
+				var x := float(index) * BELT_CHEVRON_SPACING + float(entry.belt_scroll)
+				chevron.visible = x >= 4.0 and x <= width - 4.0
+				chevron.position = Vector2(x, BELT_HEIGHT * 0.5)
+				chevron.scale.x = direction
+		for combatant in _fighters_in(realm_index):
+			if not combatant.is_on_floor():
+				continue
+			var feet: Vector2 = combatant.global_position
+			for belt in entry.belts:
+				var rect: Rect2 = belt
+				if feet.x >= rect.position.x and feet.x <= rect.end.x and absf(feet.y - rect.position.y) <= 8.0:
+					combatant.global_position.x += direction * speed * delta
+					break
+
+func get_belt_direction(realm_index: int) -> float:
+	return float(_realms[realm_index].get("belt_dir", 0.0)) if _realms.has(realm_index) else 0.0
+
+func get_belts(realm_index: int) -> Array:
+	return _realms[realm_index].get("belts", []) if _realms.has(realm_index) else []
+
+## Two gate spots far apart (at least 420 px), from the hazard's stand points.
+func _pick_gates(realm_index: int, hazard: Dictionary) -> Array[Vector2]:
+	var origin: Vector2 = layout.get_origin(realm_index)
+	var spots: Array = hazard.get("spots", [])
+	var gates: Array[Vector2] = []
+	if spots.size() < 2:
+		return gates
+	var first: Vector2 = origin + (spots[_rng.randi_range(0, spots.size() - 1)] as Vector2)
+	var far: Array[Vector2] = []
+	for spot in spots:
+		var point: Vector2 = origin + (spot as Vector2)
+		if point.distance_to(first) >= 420.0:
+			far.append(point)
+	if far.is_empty():
+		for spot in spots:
+			var point: Vector2 = origin + (spot as Vector2)
+			if point != first:
+				far.append(point)
+	gates.append(first)
+	gates.append(far[_rng.randi_range(0, far.size() - 1)])
+	return gates
+
+## A fighter whose body touches an open gate steps out of the other one, keeping its speed.
+func _carry_through_gates(realm_index: int, entry: Dictionary) -> void:
+	var gates: Array = entry.get("gates", [])
+	if gates.size() < 2:
+		return
+	var radius := float(entry.hazard.get("radius", 48.0))
+	for combatant in _fighters_in(realm_index):
+		if float(_gate_cooldown.get(combatant, 0.0)) > 0.0:
+			continue
+		var body: Vector2 = combatant.global_position + Vector2(0.0, -32.0)
+		for index in 2:
+			var gate: Vector2 = gates[index]
+			if body.distance_to(gate + Vector2(0.0, -GATE_HEIGHT * 0.45)) <= radius:
+				var exit: Vector2 = gates[1 - index]
+				combatant.global_position = exit + Vector2(0.0, -2.0)
+				_gate_cooldown[combatant] = GATE_COOLDOWN
+				_particles(Rect2(gate.x - 24.0, gate.y - GATE_HEIGHT, 48.0, GATE_HEIGHT), Color(0.85, 0.95, 1.0, 0.95), 18, 0.5, -140.0, true).finished.connect(_free_finished)
+				_particles(Rect2(exit.x - 24.0, exit.y - GATE_HEIGHT, 48.0, GATE_HEIGHT), Color(0.85, 0.95, 1.0, 0.95), 18, 0.5, -140.0, true).finished.connect(_free_finished)
+				break
+
+func get_gates(realm_index: int) -> Array:
+	return _realms[realm_index].get("gates", []) if _realms.has(realm_index) else []
+
+## An upright moon gate: a pale oval ring standing on the platform at its foot point.
+func _gate_node(foot: Vector2, color: Color) -> Node2D:
+	var gate := Node2D.new()
+	gate.name = "MoonGate"
+	gate.position = foot
+	var ring := Line2D.new()
+	ring.width = 4.0
+	ring.default_color = color
+	ring.closed = true
+	var points := PackedVector2Array()
+	for step in 24:
+		var angle := TAU * float(step) / 24.0
+		points.append(Vector2(cos(angle) * 26.0, -GATE_HEIGHT * 0.5 + sin(angle) * GATE_HEIGHT * 0.5))
+	ring.points = points
+	gate.add_child(ring)
+	var glow := Polygon2D.new()
+	glow.polygon = points
+	glow.color = Color(color, color.a * 0.25)
+	gate.add_child(glow)
+	add_child(gate)
+	return gate
+
+func _chevron(position: Vector2, direction: float, size: float, color: Color) -> Node2D:
+	var chevron := _chevron_polygon(size, color)
+	chevron.position = position
+	chevron.scale.x = direction
+	add_child(chevron)
+	return chevron
+
+func _chevron_polygon(size: float, color: Color) -> Polygon2D:
+	var chevron := Polygon2D.new()
+	chevron.polygon = PackedVector2Array([Vector2(-size, -size), Vector2(0.0, 0.0), Vector2(-size, size), Vector2(-size * 0.45, 0.0)])
+	chevron.color = color
+	return chevron
 
 ## Everyone standing on the ground is stunned and popped up; airborne fighters are safe.
 func _quake(realm_index: int, hazard: Dictionary) -> void:
