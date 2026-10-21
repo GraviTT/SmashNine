@@ -21,6 +21,7 @@ func _run() -> void:
 	await _test_startup_wait_in_physics_ticks()
 	await _test_results_hide_hp_bar()
 	await _test_ringout_respawn_clears_attack_lock()
+	await _test_stale_attacker_gets_no_ko()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -164,5 +165,28 @@ func _test_ringout_respawn_clears_attack_lock() -> void:
 	if not frey._can_start_attack():
 		_fail("A fighter respawned after a ring-out should be free to act (attack lock %.2f, hitstun %.2f)" % [frey.attack_lock_timer, frey.hitstun_timer])
 	frey.queue_free()
+	await process_frame
+	passed += 1
+
+## A hit with no attacker (realm hazards: eruptions, beams, quakes) that knocked a fighter out gave the
+## KO to last_attacker however long ago that hit was. Ring-outs already gave it only within
+## LAST_ATTACKER_MEMORY; hit KOs now follow the same window.
+func _test_stale_attacker_gets_no_ko() -> void:
+	var victim := _fighter("luna", 1, Vector2(0, -600))
+	var old_foe := _fighter("rio", 2, Vector2(400, -600))
+	victim.set_physics_process(false)
+	old_foe.set_physics_process(false)
+	await physics_frame
+	victim.apply_hit(old_foe, 2.0, 100.0, Vector2.RIGHT)
+	victim.last_attacker_timer = 0.0
+	victim.invulnerable_timer = 0.0
+	victim.hp = 3.0
+	victim.apply_hit(null, 20.0, 300.0, Vector2.UP, victim.DAMAGE_FIXED)
+	if not victim.is_defeated:
+		_fail("Test setup: the hazard hit should knock the fighter out")
+	if int(old_foe.score) != 0:
+		_fail("A hit from long ago (outside LAST_ATTACKER_MEMORY) should not earn the KO (score %d)" % old_foe.score)
+	victim.queue_free()
+	old_foe.queue_free()
 	await process_frame
 	passed += 1

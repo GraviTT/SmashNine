@@ -1300,7 +1300,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
-		_defeat(last_attacker)
+		_defeat(_get_valid_last_attacker())
 	return true
 
 ## The absorbed part of a hit: damage is already applied; no knockback, hitstun or cancel.
@@ -1331,7 +1331,7 @@ func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, d
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
-		_defeat(last_attacker)
+		_defeat(_get_valid_last_attacker())
 	return true
 
 ## A hit taken in the ultimate's super armor: a short gold flash on the fighter.
@@ -1395,7 +1395,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
-		_defeat(last_attacker)
+		_defeat(_get_valid_last_attacker())
 	return true
 
 func apply_stun_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, stun_duration: float, damage_type := DAMAGE_NORMAL) -> bool:
