@@ -21,10 +21,29 @@ Design decisions and their reasons: `../design/DECISIONS.md`. Milestones: `../de
 | 1 / 2 / 3 | pick a soul card when offered |
 | H | spawn/remove a training dummy |
 | F3 | debug panel |
+| F4 | live bot panel (the start preference is also in Options) |
 | T | game speed 100 / 90 / 80 / 70 % (start screen or during a match; kept for the next start) |
-| R | play again (result screen) |
+| R | rematch with the same fighter and body (human results); reload title after watching bots |
 
 Start screen: 1–5 picks Frey, Yuki, Luna, Nova or Rio; V switches the body (male/female) for Nova and Rio; B watches a bots-only match; F2 switches realms, effects and UI between the original art (default) and the plain procedural look.
+
+Title menu: Play, Watch bots, Options and Controls. Use arrows / W-S and Enter / J,
+or hover and click with the mouse. Escape returns to the title from a menu.
+Character select shows portraits, main art and a short skill guide. Click a portrait
+to preview it; Enter / J on a portrait or the Start match button starts the selected
+fighter. Random chooses a preview, V changes the body, and 1–5 still starts at once
+from title or character select. Tab also moves between buttons.
+
+Options cycles speed through 100/90/80/70%, art style, 4/6/8 fighters (default 8),
+and the bot panel at match start. Choices survive rematches and menu returns in the
+current session; speed also keeps its existing saved preference. T works in menus,
+matches and results; F2 switches art before a match and returns to the current menu.
+
+Results show the winner, standings and three awards. Rematch replays the current
+mode, fighter and body; Character select and Title return to those screens. For
+legacy restart compatibility, the R shortcut after **watching bots** reloads the
+clean title; use the Rematch button (mouse or Enter / J) to replay watch mode directly.
+The Cards column shows the count and names; hover it to see any names shortened to fit.
 
 ## Match rules (M1)
 
@@ -44,6 +63,7 @@ Start screen: 1–5 picks Frey, Yuki, Luna, Nova or Rio; V switches the body (ma
 - `scripts/match/` — `MatchDirector` (rules and timeline), `SoulGrowth` + `SoulCards`
 - `scripts/realms/` — `RealmCatalog` (realm data), `RealmLayout` (geometry), `RealmWorld` (scene nodes)
 - `scripts/ui/MatchHud.gd` — HUD, card panel, start and result screens
+- `scripts/ui/FrontendMenu.gd` — title, character select, options, controls and results presentation
 - `scripts/EnemyAI.gd` — bots; `scripts/RealmMonster*.gd` — neutral monsters
 - `characters/` — `common/PlayerBase.gd` and one folder per fighter (see `characters/README.md`)
 - `tests/` — headless tests, bot soak, screenshot capture, `run_all.ps1`

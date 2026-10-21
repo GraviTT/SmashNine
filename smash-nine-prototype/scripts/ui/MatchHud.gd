@@ -5,6 +5,7 @@ extends CanvasLayer
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
+const FRONTEND := preload("res://scripts/ui/FrontendMenu.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
 const TITLE_BACKGROUND_ART := "res://assets/art/ui/title_bg.png"
@@ -111,6 +112,7 @@ var offscreen_markers: Array[Polygon2D] = []
 var flash_tween: Tween
 var overlay_body: Label
 var overlay_credits: Label
+var frontend: FRONTEND
 
 func _ready() -> void:
 	name = "UI"
@@ -786,6 +788,8 @@ func _build_overlay() -> void:
 	overlay_credits.text = ART_CREDITS
 	overlay.add_child(overlay_credits)
 	_pin(overlay_credits, BOTTOM_CENTER)
+	frontend = FRONTEND.new()
+	overlay.add_child(frontend)
 
 ## A column of fighter portraits left of the menu (original style only); characters drawn
 ## in two bodies show the body P1 picked with V.
@@ -836,82 +840,31 @@ func _build_menu_frames(character_count: int) -> void:
 		menu_frame_root.add_child(action)
 
 func show_start_screen(characters: Array[Dictionary], body := "male") -> void:
-	overlay_title.text = "SMASH NINE REALMS" if overlay_logo.texture == null else ""
-	overlay_logo.visible = overlay_logo.texture != null
-	_show_portraits(characters, body)
-	var lines: Array[String] = ["Nine realms are collapsing into the heart of Yggdrasil.", "Be the last one standing.", "", "Choose your fighter"]
-	for index in characters.size():
-		var data: Dictionary = characters[index]
-		lines.append("[%d]  %s  -  %s" % [index + 1, data.name, data.role])
-	var two_bodies: Array[String] = []
-	for data in characters:
-		if data.get("bodies", []).size() > 1:
-			two_bodies.append(str(data.name))
-	if not two_bodies.is_empty():
-		lines.append("[V]  Body for %s: %s  (switch)" % [", ".join(two_bodies), body.capitalize()])
-	lines.append("")
-	lines.append("[B]  Watch a bots-only match")
-	lines.append("[F2]  Art: %s  (switch)" % ART_SETTINGS.label())
-	lines.append("[T]  Game speed: %d%%  (100 / 90 / 80 / 70, also during a match)" % GAME_SPEED.percent())
-	lines.append("")
-	lines.append(CONTROLS_HINT)
+	# Keep the existing authored frame nodes for the HUD art contract.
+	_build_menu_frames(characters.size())
 	_set_match_hud_visible(false)
-	overlay_body.text = "\n".join(lines)
-	overlay_credits.visible = true
-	result_panel_frame.visible = false
-	menu_frame_root.visible = true
-	overlay_background_art.visible = overlay_background_art.texture != null
+	_hide_legacy_overlay_text()
+	frontend.body = body
+	frontend.show_title()
 	overlay_back.color = PANEL_COLOR
+	overlay_background_art.visible = overlay_background_art.texture != null
 	overlay.visible = true
+
+func _hide_legacy_overlay_text() -> void:
+	for node in [overlay_title, overlay_logo, overlay_body, overlay_credits, result_panel_frame, menu_frame_root]:
+		node.visible = false
+	if is_instance_valid(portrait_strip):
+		portrait_strip.visible = false
+	if is_instance_valid(results_grid):
+		results_grid.visible = false
 
 ## survival: combatant -> seconds survived (MatchDirector.get_survival_time).
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node, survival: Dictionary = {}) -> void:
-	overlay_logo.visible = false
-	if is_instance_valid(portrait_strip):
-		portrait_strip.visible = false
-	overlay_title.text = "%s WINS" % winner.display_name.to_upper() if is_instance_valid(winner) else "DRAW"
-	overlay_body.text = "Decided by %s" % reason
-	# The table stands alone: no clock, status, minimap, portrait, bot panel or arrows behind it.
 	_set_match_hud_visible(false)
+	_hide_legacy_overlay_text()
+	overlay_title.text = "%s WINS" % winner.display_name.to_upper() if is_instance_valid(winner) else "DRAW"
 	overlay_back.color = RESULTS_BACK_COLOR
-	result_panel_frame.visible = true
-	menu_frame_root.visible = false
-	overlay_background_art.visible = overlay_background_art.texture != null
-	hazard_label.visible = false
-	info_label.visible = false
-	warning_label.visible = false
-	if is_instance_valid(results_grid):
-		results_grid.queue_free()
-	results_grid = GridContainer.new()
-	results_grid.columns = 8
-	results_grid.position = Vector2(200, 250)
-	results_grid.add_theme_constant_override("h_separation", 34)
-	results_grid.add_theme_constant_override("v_separation", 4)
-	overlay.add_child(results_grid)
-	_pin(results_grid, TOP_CENTER)
-	for header in ["#", "", "Fighter", "Survived", "KOs", "Damage", "Souls", "Cards"]:
-		_add_result_cell(header, Color(1.0, 0.82, 0.4))
-	for index in standings.size():
-		var player: Node = standings[index]
-		if not is_instance_valid(player):
-			continue
-		var color := Color(1.0, 0.92, 0.55) if player == human else Color.WHITE
-		_add_result_cell(str(index + 1), color)
-		var face := _portrait_rect(Vector2.ZERO, Vector2(28, 28))
-		face.custom_minimum_size = Vector2(28, 28)
-		_set_portrait(face, ART_SETTINGS.character_portrait(player.character_id, player.body_type))
-		results_grid.add_child(face)
-		_add_result_cell(("P1 " if player == human else "") + player.display_name, color)
-		var seconds := int(survival.get(player, -1.0))
-		_add_result_cell("%d:%02d" % [seconds / 60, seconds % 60] if seconds >= 0 else "-", color)
-		_add_result_cell(str(player.score), color)
-		_add_result_cell("%.0f" % player.damage_dealt, color)
-		_add_result_cell(str(player.souls), color)
-		_add_result_cell(", ".join(_card_names(player.upgrades)), color)
-	_add_result_cell("", Color.WHITE)
-	_add_result_cell("", Color.WHITE)
-	_add_result_cell("[R] play again", Color(1.0, 0.82, 0.4))
-	overlay_credits.visible = false
+	frontend.show_results(winner, reason, standings, human, survival)
 	overlay.visible = true
 
 ## Display names for picked card ids (results showed "sky_step", "last_stand").

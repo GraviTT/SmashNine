@@ -36,6 +36,13 @@ const BODY_TYPES: Array[String] = ["male", "female"]
 ## The body P1 plays characters that come in two (Nova, Rio); V on the start screen.
 ## Static so it survives the scene reload of F2 and R.
 static var human_body := "male"
+## Session front-end choices survive scene reloads; exported test/soak settings still work.
+static var session_player_count := 8
+static var session_bot_panel := true
+static var last_character_id := "frey"
+static var last_match_was_bots := false
+static var next_screen := "title"
+var _frontend_transition := false
 
 ## Every slot is a bot and the camera spectates (soak tests, attract mode). Skips the start screen.
 @export var bots_only := false
@@ -92,6 +99,17 @@ func _ready() -> void:
 		_start_match("")
 	else:
 		hud.show_start_screen(_get_character_list(), human_body)
+		var destination := next_screen
+		next_screen = "title"
+		if destination == "select":
+			hud.frontend.show_select()
+		elif destination == "options":
+			hud.frontend.show_options()
+		elif destination == "controls":
+			hud.frontend.show_controls()
+		elif destination == "rematch":
+			bots_only = last_match_was_bots
+			_start_match("" if bots_only else last_character_id)
 
 func _exit_tree() -> void:
 	GAME_SPEED.reset_engine()
@@ -137,6 +155,15 @@ func _create_camera() -> void:
 func _create_hud() -> void:
 	hud = MATCH_HUD_SCRIPT.new()
 	add_child(hud)
+	if player_count == 8:
+		player_count = session_player_count
+	hud.bot_panel_wanted = session_bot_panel
+	hud.bot_panel.visible = session_bot_panel
+	hud.frontend.fighter_count = player_count
+	hud.frontend.bot_panel_at_start = session_bot_panel
+	hud.frontend.selected_id = last_character_id
+	hud.frontend.body = human_body
+	hud.frontend.action_requested.connect(_on_frontend_action)
 
 func _create_world() -> void:
 	world = REALM_WORLD_SCRIPT.new()
@@ -166,6 +193,10 @@ func _get_character_list() -> Array[Dictionary]:
 # --- Match flow ---
 
 func _start_match(human_character_id: String) -> void:
+	if match_started:
+		return
+	last_character_id = human_character_id if human_character_id != "" else last_character_id
+	last_match_was_bots = bots_only
 	match_started = true
 	GAME_SPEED.apply_to_match()
 	hud.hide_overlay()
@@ -173,6 +204,51 @@ func _start_match(human_character_id: String) -> void:
 	soul_crystal_spawner.sync_playable_realms(director.get_playable_indices())
 	_spawn_players(human_character_id)
 	_set_map(players[0].realm_index)
+	# Confirming the menu must not also attack/jump on the first match frame.
+	get_viewport().set_input_as_handled()
+
+func _on_frontend_action(action: String, _value: String) -> void:
+	if _frontend_transition:
+		return
+	match action:
+		"start":
+			bots_only = false
+			_start_match(hud.frontend.selected_id)
+		"watch":
+			bots_only = true
+			_start_match("")
+		"body":
+			human_body = BODY_TYPES[(BODY_TYPES.find(human_body) + 1) % BODY_TYPES.size()]
+			hud.frontend.refresh_body(human_body)
+		"speed":
+			GAME_SPEED.cycle()
+			hud.frontend.refresh_options()
+		"art":
+			ART_SETTINGS.toggle()
+			_reload_frontend("options")
+		"count":
+			var counts := [4, 6, 8]
+			player_count = counts[(counts.find(player_count) + 1) % counts.size()]
+			session_player_count = player_count
+			hud.frontend.fighter_count = player_count
+			hud.frontend.refresh_options()
+		"panel":
+			session_bot_panel = not session_bot_panel
+			hud.bot_panel_wanted = session_bot_panel
+			hud.frontend.bot_panel_at_start = session_bot_panel
+			hud.frontend.refresh_options()
+		"rematch": _reload_frontend("rematch")
+		"return_select": _reload_frontend("select")
+		"return_title": _reload_frontend("title")
+
+func _reload_frontend(destination: String) -> void:
+	if _frontend_transition:
+		return
+	_frontend_transition = true
+	next_screen = destination
+	last_character_id = hud.frontend.selected_id if not match_started else last_character_id
+	# Defer scene replacement until GUI/input callbacks have returned.
+	get_tree().call_deferred("reload_current_scene")
 
 func _process(delta: float) -> void:
 	# A restart frees this scene right away: stop before touching the viewport (CODEX-TESTER-01).
@@ -208,36 +284,45 @@ func _apply_phase_rules() -> void:
 
 ## Returns true when the scene is being reloaded and this frame must stop.
 func _handle_global_input() -> bool:
+	if _frontend_transition:
+		return true
 	if Input.is_action_just_pressed("toggle_debug"):
 		hud.toggle_debug()
 	if Input.is_action_just_pressed("toggle_bot_panel"):
 		hud.toggle_bot_panel()
+		session_bot_panel = hud.bot_panel.visible if match_started and not match_over else hud.bot_panel_wanted
+		hud.frontend.bot_panel_at_start = session_bot_panel
+		hud.frontend.refresh_options()
 	if Input.is_action_just_pressed("game_speed"):
 		GAME_SPEED.cycle()
 		if not match_started:
-			hud.show_start_screen(_get_character_list(), human_body)
+			hud.frontend.refresh_options()
 		elif not match_over:
 			GAME_SPEED.apply_to_match()
 			_show_message(GAME_SPEED.label())
 	if not match_started:
 		var ids := CHARACTER_REGISTRY.get_character_ids()
-		for index in mini(CHOOSE_ACTIONS.size(), ids.size()):
-			if Input.is_action_just_pressed(CHOOSE_ACTIONS[index]):
-				_start_match(ids[index])
-				return false
+		if hud.frontend.screen in ["title", "select"]:
+			for index in mini(CHOOSE_ACTIONS.size(), ids.size()):
+				if Input.is_action_just_pressed(CHOOSE_ACTIONS[index]):
+					hud.frontend.selected_id = ids[index]
+					_start_match(ids[index])
+					return false
 		if Input.is_action_just_pressed("toggle_body"):
 			human_body = BODY_TYPES[(BODY_TYPES.find(human_body) + 1) % BODY_TYPES.size()]
-			hud.show_start_screen(_get_character_list(), human_body)
+			hud.frontend.refresh_body(human_body)
 		if Input.is_action_just_pressed("toggle_art"):
 			ART_SETTINGS.toggle()
-			get_tree().reload_current_scene()
+			_reload_frontend(hud.frontend.screen)
 			return true
 		if Input.is_action_just_pressed("watch_bots"):
 			bots_only = true
 			_start_match("")
 		return false
 	if match_over and Input.is_action_just_pressed("restart"):
-		get_tree().reload_current_scene()
+		# Legacy bots-only R returns to a clean title (test_restart node baseline).
+		# Human R and the Rematch button replay the same fighter/body immediately.
+		_reload_frontend("title" if bots_only else "rematch")
 		return true
 	return false
 
