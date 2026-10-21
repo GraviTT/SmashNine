@@ -41,6 +41,7 @@
 ## 기록 (시간순)
 - 01:08 호출, 01:10 시계 시작(기준 3시간).
 - 01:12 카드 `CODEX-SYS-01`(몬스터)·`CODEX-SYS-02`(프런트) 커밋 `5dc0917`, 01:14 두 유닛 실행(105분).
+- 01:56 재개 확인: Codex B(SYS-02 화면) 끝남(결과 `SmashNine-units/builder-ui/SmashNine`, 병합 안 됨), Codex A(SYS-01 몬스터)는 마지막 소크 측정 중. 01:56 Claude 사용량 한도로 다시 중단.
 - 01:20 리드: 기믹 두 개 구현(벨트·달빛 문), test_hazards 통과 → 브랜치 `claude/realm-gimmicks-2026-10-22`. 01:20 Claude 사용량 한도로 리드 중단.
 
 ## 결과
