@@ -15,8 +15,9 @@ const PROJECTILE_KNOCKBACK := 110.0
 const WORLD_LAYER := 1
 const PLAYER_LAYER := 2
 const MONSTER_LAYER := 4
-const ATTACK_SCRIPT := preload("res://scripts/Attack.gd")
-const PROJECTILE_SCRIPT := preload("res://scripts/Projectile.gd")
+const ATTACK_SCRIPT := preload("res://scripts/monsters/MonsterAttack.gd")
+const PROJECTILE_SCRIPT := preload("res://scripts/monsters/MonsterProjectile.gd")
+const ARCHETYPES := preload("res://scripts/monsters/MonsterArchetypes.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const FRAMES := preload("res://characters/common/CharacterAnimation.gd")
 const MONSTER_ART_DIR := "res://assets/art/monsters"
@@ -31,7 +32,7 @@ const FIREBALL_SCREEN_SIZE := 36.0
 const ATTACK_ANIMATION_TIME := 0.33
 
 var monster_type := "mossling"
-## Visual-only realm skin. `monster_type` continues to own every behaviour and stat.
+## Keep monster_type for existing callers; skin_id selects the ecology behaviour.
 var skin_id := "mossling"
 var art_sheet_path := ""
 var projectile_art_path := ""
@@ -67,6 +68,33 @@ var is_realm_active := true
 var body_visual: ColorRect
 var name_label: Label
 var hp_fill: ColorRect
+var hp_back: ColorRect
+var archetype := "bite"
+var is_elite := false
+var windup_duration := 0.32
+var action_phase := "idle"
+var action_timer := 0.0
+var locked_target_position := Vector2.ZERO
+var action_origin := Vector2.ZERO
+var action_direction := Vector2.RIGHT
+var active_attack: Area2D
+var was_hit := false
+var defeat_elapsed := 0.0
+var spawn_slot := -1
+var hover_height := 105.0 * GAME_SCALE.WORLD
+var attack_serial := 0
+
+func make_elite() -> void:
+	if is_elite:
+		return
+	is_elite = true
+	max_hp *= 3.0
+	hp = max_hp
+	soul_reward *= 4
+	attack_damage *= 1.5
+	windup_duration *= 1.4
+	display_name = "Elite " + display_name
+	scale = Vector2.ONE * 1.35
 
 func setup(type_id: String, new_realm_index: int, spawn_position: Vector2, new_skin_id := "") -> void:
 	monster_type = type_id
@@ -96,6 +124,13 @@ func setup(type_id: String, new_realm_index: int, spawn_position: Vector2, new_s
 	move_speed *= GAME_SCALE.MOVE
 	attack_range *= GAME_SCALE.WORLD
 	patrol_radius *= GAME_SCALE.WORLD
+	archetype = ARCHETYPES.archetype_for(skin_id, monster_type)
+	var profile: Array = ARCHETYPES.PROFILES[archetype]
+	windup_duration = float(profile[0])
+	attack_range = float(profile[1]) * GAME_SCALE.WORLD
+	attack_cooldown = float(profile[2])
+	attack_damage = float(profile[3])
+	display_name = ARCHETYPES.title_for(skin_id if ARCHETYPES.SKINS.has(skin_id) else monster_type)
 
 func _ready() -> void:
 	add_to_group("realm_monsters")
@@ -141,13 +176,15 @@ func _build_body() -> void:
 		add_child(horn_right)
 
 	name_label = Label.new()
-	name_label.position = Vector2(-55, -92)
-	name_label.size = Vector2(110, 24)
+	name_label.position = Vector2(-120, -124 if is_elite else -92)
+	name_label.size = Vector2(240, 24)
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.add_theme_font_size_override("font_size", 12)
+	name_label.add_theme_color_override("font_outline_color", Color(0.03, 0.04, 0.07))
+	name_label.add_theme_constant_override("outline_size", 3)
 	add_child(name_label)
 
-	var hp_back := ColorRect.new()
+	hp_back = ColorRect.new()
 	hp_back.color = Color(0.08, 0.08, 0.08, 0.92)
 	hp_back.size = Vector2(48, 6)
 	hp_back.position = Vector2(-24, -68)
@@ -159,7 +196,14 @@ func _build_body() -> void:
 	_update_visuals()
 
 func _physics_process(delta: float) -> void:
-	if state == State.DEFEATED or not is_realm_active:
+	if state == State.DEFEATED:
+		defeat_elapsed += delta
+		modulate.a = maxf(1.0 - defeat_elapsed / 0.55, 0.0)
+		queue_redraw()
+		if defeat_elapsed >= 0.55:
+			queue_free()
+		return
+	if not is_realm_active:
 		return
 	# Knocked off the realm: counts as a kill for whoever it was fighting.
 	if global_position.y > patrol_center.y + FALL_OUT_DEPTH:
@@ -168,11 +212,12 @@ func _physics_process(delta: float) -> void:
 	attack_timer = maxf(attack_timer - delta, 0.0)
 	hitstun_timer = maxf(hitstun_timer - delta, 0.0)
 	control_slow_timer = maxf(control_slow_timer - delta, 0.0)
-	if not is_on_floor():
+	if not is_on_floor() and archetype != "swoop":
 		velocity.y = minf(velocity.y + GRAVITY * delta, 900.0 * GAME_SCALE.JUMP_SPEED)
 
 	if hitstun_timer > 0.0:
 		velocity.x = knockback_velocity.x
+		_cancel_action()
 	else:
 		_update_behavior(delta)
 		if control_slow_timer > 0.0:
@@ -182,6 +227,7 @@ func _physics_process(delta: float) -> void:
 	velocity -= knockback_velocity
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1050.0 * GAME_SCALE.KNOCKBACK * delta)
 	_update_art(delta)
+	queue_redraw()
 
 func _build_art_sprite() -> AnimatedSprite2D:
 	art_sheet_path = "%s/%s_sheet.png" % [MONSTER_ART_DIR, skin_id]
@@ -215,10 +261,18 @@ func _update_art(delta: float) -> void:
 		return
 	attack_animation_timer = maxf(attack_animation_timer - delta, 0.0)
 	art_sprite.flip_h = facing < 0
+	if hitstun_timer <= 0.0 and action_phase in ["windup", "arrival"]:
+		# Hold the anticipation drawing while the warning is counting down. Playing
+		# the whole attack row here would show a completed swing before any hit exists.
+		if art_sprite.animation != &"attack":
+			art_sprite.play(&"attack")
+		art_sprite.frame = 0
+		art_sprite.pause()
+		return
 	var animation := &"idle"
 	if hitstun_timer > 0.0:
 		animation = &"hurt"
-	elif attack_animation_timer > 0.0:
+	elif attack_animation_timer > 0.0 or action_phase != "idle":
 		animation = &"attack"
 	elif absf(velocity.x) > 15.0:
 		animation = &"walk"
@@ -226,8 +280,17 @@ func _update_art(delta: float) -> void:
 		art_sprite.play(animation)
 
 func _update_behavior(delta: float) -> void:
+	if action_phase != "idle":
+		if not _is_valid_target():
+			_cancel_action()
+			return_to_neutral()
+			return
+		_tick_action(delta)
+		return
 	if state == State.NEUTRAL:
 		_update_neutral_wander(delta)
+		if archetype == "swoop":
+			velocity.y = clampf((patrol_center.y - hover_height - global_position.y) * 2.0, -150.0, 150.0)
 		return
 	if not _is_valid_target():
 		return_to_neutral()
@@ -237,10 +300,152 @@ func _update_behavior(delta: float) -> void:
 		return_to_neutral()
 		return
 	facing = 1 if offset.x >= 0.0 else -1
-	if monster_type == "ember_imp":
-		_update_ranged_aggro(offset)
-	else:
-		_update_melee_aggro(offset)
+	if archetype == "swoop":
+		velocity.y = clampf((patrol_center.y - hover_height - global_position.y) * 2.0, -180.0, 180.0)
+	var vertical_range := 260.0 if archetype in ["swoop", "lob", "homing", "leap"] else 100.0
+	var grounded_ready := is_on_floor() if archetype in ["charge", "shell", "slam", "leap"] else true
+	if grounded_ready and absf(offset.x) <= attack_range and absf(offset.y) < vertical_range * GAME_SCALE.WORLD and attack_timer <= 0.0:
+		_begin_windup()
+		return
+	var direction := signf(offset.x)
+	if archetype in ["bolt", "lob", "homing"] and absf(offset.x) < 130.0 * GAME_SCALE.WORLD:
+		direction = -direction
+	velocity.x = direction * move_speed if archetype == "swoop" or _has_floor_ahead(direction) else 0.0
+
+func _begin_windup() -> void:
+	action_phase = "windup"
+	action_timer = windup_duration
+	locked_target_position = target.global_position
+	action_origin = global_position
+	action_direction = (locked_target_position - global_position).normalized()
+	facing = 1 if action_direction.x >= 0.0 else -1
+	velocity.x = 0.0
+	if archetype == "swoop":
+		velocity.y = 0.0
+	attack_animation_timer = 0.0
+	queue_redraw()
+
+func _tick_action(delta: float) -> void:
+	action_timer -= delta
+	if action_phase == "windup":
+		velocity.x = 0.0
+		if action_timer <= 0.0:
+			_execute_action()
+		return
+	if action_phase == "arrival":
+		if action_timer <= 0.0:
+			_spawn_body_attack(Vector2(120, 70), Vector2(0, -30), 0.16)
+			_finish_action()
+		return
+	if action_phase == "active":
+		if archetype in ["charge", "shell"]:
+			if not is_on_floor() or not _has_floor_ahead(facing) or is_on_wall():
+				_finish_action()
+				return
+			velocity.x = facing * move_speed * 2.5
+		elif archetype == "swoop":
+			velocity = action_direction * 430.0 * GAME_SCALE.MOVE
+		if action_timer <= 0.0 or (archetype == "leap" and is_on_floor() and velocity.y >= 0.0):
+			_finish_action()
+
+func _execute_action() -> void:
+	attack_serial += 1
+	action_phase = "active"
+	action_timer = 0.65
+	match archetype:
+		"bite":
+			_spawn_melee_attack()
+			_finish_action()
+		"charge", "shell":
+			velocity.x = facing * move_speed * 2.5 if _has_floor_ahead(facing) else 0.0
+			_spawn_body_attack(Vector2(58, 44), Vector2(20 * facing, -25), action_timer)
+		"leap":
+			var flight_time := 0.65
+			var landing_delta := locked_target_position - global_position
+			velocity = Vector2(clampf(landing_delta.x, -340.0, 340.0) / flight_time, clampf(landing_delta.y, -180.0, 180.0) / flight_time - GRAVITY * flight_time * 0.5)
+			_spawn_body_attack(Vector2(56, 48), Vector2(0, -25), action_timer)
+		"slam":
+			var shared_hits: Array[Node] = []
+			for side in [-1, 1]:
+				var wave := _spawn_ecology_projectile(Vector2(side, 0), "shockwave")
+				wave.hit_targets = shared_hits
+				wave.global_position = global_position + Vector2(side * 35, -18)
+			_finish_action()
+		"bolt", "homing":
+			_spawn_projectile(action_direction)
+			_finish_action()
+		"lob":
+			var shared_hits: Array[Node] = []
+			var fan := [-0.18, 0.0, 0.18] if skin_id == "vanaheim_seed_sprite" else [0.0]
+			for angle in fan:
+				var shot := _spawn_ecology_projectile(action_direction, "lob")
+				shot.hit_targets = shared_hits
+				shot.flight_velocity = shot.flight_velocity.rotated(float(angle))
+			_finish_action()
+		"swoop":
+			if skin_id == "svartalfheim_cog_drone":
+				_spawn_ecology_projectile(Vector2.DOWN, "bomb")
+				_finish_action()
+			else:
+				action_direction = (locked_target_position + Vector2(0, -24) - global_position).normalized()
+				_spawn_body_attack(Vector2(52, 48), Vector2(0, -24), action_timer)
+		"blink":
+			var destination := Vector2(locked_target_position.x - facing * 60.0, global_position.y)
+			destination.x = global_position.x + clampf(destination.x - global_position.x, -180.0 * GAME_SCALE.WORLD, 180.0 * GAME_SCALE.WORLD)
+			var floor_ray := PhysicsRayQueryParameters2D.create(destination + Vector2(0, -40), destination + Vector2(0, 100), WORLD_LAYER)
+			var floor_hit := get_world_2d().direct_space_state.intersect_ray(floor_ray)
+			if not floor_hit.is_empty():
+				global_position = floor_hit.position
+			velocity = Vector2.ZERO
+			action_phase = "arrival"
+			action_timer = 0.25
+	queue_redraw()
+
+func _finish_action() -> void:
+	_cancel_action(false)
+	attack_timer = attack_cooldown
+
+func _cancel_action(cancel_animation := true) -> void:
+	action_phase = "idle"
+	action_timer = 0.0
+	if cancel_animation:
+		attack_animation_timer = 0.0
+	velocity.x = 0.0
+	if is_instance_valid(active_attack):
+		active_attack.queue_free()
+	active_attack = null
+
+func _play_strike_animation() -> void:
+	attack_animation_timer = ATTACK_ANIMATION_TIME
+	if art_sprite != null:
+		art_sprite.play(&"attack")
+		art_sprite.frame = 0
+
+func _spawn_body_attack(size: Vector2, offset: Vector2, duration: float) -> void:
+	var attack := Area2D.new()
+	attack.set_script(ATTACK_SCRIPT)
+	attack.collision_layer = 0
+	attack.collision_mask = PLAYER_LAYER
+	var shape := CollisionShape2D.new()
+	shape.name = "CollisionShape2D"
+	attack.add_child(shape)
+	var visual := ColorRect.new()
+	visual.name = "Visual"
+	attack.add_child(visual)
+	get_parent().add_child(attack)
+	attack.global_position = global_position
+	attack.configure(self, size * GAME_SCALE.WORLD, offset, attack_damage, _attack_knockback(false), Vector2(facing, -0.12), Color(1.0, 0.7, 0.25, 0.3), duration)
+	attack.follow_source = duration > 0.2
+	attack.follow_offset = offset
+	attack.slow_duration = 0.45 if skin_id == "vanaheim_vine_hound" else 0.0
+	_play_strike_animation()
+	if attack.follow_source:
+		active_attack = attack
+
+func _attack_knockback(projectile: bool) -> float:
+	if is_elite:
+		return 280.0 if projectile else 320.0
+	return PROJECTILE_KNOCKBACK if projectile else MELEE_KNOCKBACK
 
 func _update_neutral_wander(delta: float) -> void:
 	wander_timer -= delta
@@ -254,36 +459,11 @@ func _update_neutral_wander(delta: float) -> void:
 	facing = int(wander_direction) if wander_direction != 0.0 else facing
 	velocity.x = move_toward(velocity.x, wander_direction * move_speed * 0.55, 850.0 * delta)
 
-func _update_melee_aggro(offset: Vector2) -> void:
-	if absf(offset.x) <= attack_range and absf(offset.y) < 90.0 * GAME_SCALE.WORLD:
-		velocity.x = move_toward(velocity.x, 0.0, 1000.0 * get_physics_process_delta_time())
-		if attack_timer <= 0.0:
-			attack_timer = attack_cooldown
-			_spawn_melee_attack()
-		return
-	var direction := signf(offset.x)
-	if _has_floor_ahead(direction):
-		velocity.x = direction * move_speed
-	else:
-		velocity.x = 0.0
-
-func _update_ranged_aggro(offset: Vector2) -> void:
-	var distance := absf(offset.x)
-	var direction := signf(offset.x)
-	if distance < 145.0 * GAME_SCALE.WORLD and _has_floor_ahead(-direction):
-		velocity.x = -direction * move_speed
-	elif distance > 260.0 * GAME_SCALE.WORLD and _has_floor_ahead(direction):
-		velocity.x = direction * move_speed * 0.7
-	else:
-		velocity.x = move_toward(velocity.x, 0.0, 900.0 * get_physics_process_delta_time())
-	if distance <= attack_range and absf(offset.y) < 150.0 * GAME_SCALE.WORLD and attack_timer <= 0.0:
-		attack_timer = attack_cooldown
-		_spawn_projectile(offset.normalized())
-
 func _has_floor_ahead(direction: float) -> bool:
 	if not is_on_floor():
 		return true
-	var from := global_position + Vector2(direction * 30.0, -8.0)
+	var lookahead := 55.0 if action_phase == "active" and archetype in ["charge", "shell"] else 30.0
+	var from := global_position + Vector2(direction * lookahead, -8.0)
 	var to := from + Vector2(0.0, 82.0)
 	var query := PhysicsRayQueryParameters2D.create(from, to, WORLD_LAYER)
 	query.exclude = [get_rid()]
@@ -302,14 +482,17 @@ func _spawn_melee_attack() -> void:
 	attack.add_child(visual)
 	get_parent().add_child(attack)
 	attack.global_position = global_position
-	attack.configure(self, Vector2(56, 42) * GAME_SCALE.WORLD, Vector2(42 * facing, -28) * GAME_SCALE.WORLD, attack_damage, MELEE_KNOCKBACK, Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
+	attack.configure(self, Vector2(56, 42) * GAME_SCALE.WORLD, Vector2(42 * facing, -28) * GAME_SCALE.WORLD, attack_damage, _attack_knockback(false), Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
 	# With the original art the bite shows in the attack animation; the rectangle stays hidden.
 	if art_sprite != null:
 		attack.art_drawn = true
 		attack.get_node("Visual").visible = false
-	attack_animation_timer = ATTACK_ANIMATION_TIME
+	_play_strike_animation()
 
 func _spawn_projectile(direction: Vector2) -> void:
+	_spawn_ecology_projectile(direction, "homing" if archetype == "homing" else "bolt")
+
+func _spawn_ecology_projectile(direction: Vector2, kind: String) -> Area2D:
 	var projectile := Area2D.new()
 	projectile.set_script(PROJECTILE_SCRIPT)
 	projectile.collision_layer = 0
@@ -322,16 +505,41 @@ func _spawn_projectile(direction: Vector2) -> void:
 	projectile.add_child(visual)
 	get_parent().add_child(projectile)
 	projectile.global_position = global_position + Vector2(32 * facing, -34)
-	projectile.configure(self, Vector2(24, 18) * GAME_SCALE.WORLD, attack_damage, PROJECTILE_KNOCKBACK, direction, Color(1.0, 0.42, 0.12, 0.82), 390.0 * GAME_SCALE.WORLD, 1.35)
+	var shot_speed := 180.0 if kind == "homing" else 390.0
+	var duration := 2.2 if kind in ["homing", "lob", "bomb"] else 1.35
+	if kind == "shockwave":
+		shot_speed = 340.0
+		duration = 0.42
+	projectile.configure(self, Vector2(30, 22) * GAME_SCALE.WORLD, attack_damage, _attack_knockback(true), direction, Color(1.0, 0.65, 0.2, 0.85), shot_speed * GAME_SCALE.WORLD, duration)
+	projectile.projectile_kind = kind
+	projectile.target = target
+	projectile.ground_check = kind == "shockwave"
+	projectile.slow_duration = 0.55 if skin_id == "niflheim_frost_owl" else 0.0
+	if kind in ["lob", "bomb"]:
+		var flight_time := 0.8
+		projectile.arc_gravity = 1050.0 * GAME_SCALE.GRAVITY
+		var destination := locked_target_position + Vector2(0, -24)
+		projectile.flight_velocity = (destination - projectile.global_position) / flight_time - Vector2(0, projectile.arc_gravity * flight_time * 0.5)
+		if kind == "bomb":
+			projectile.flight_velocity = Vector2(clampf(projectile.flight_velocity.x, -120.0, 120.0), 60.0)
 	projectile.art_scale_multiplier = GAME_SCALE.WORLD
 	projectile_art_path = "%s/%s_projectile.png" % [MONSTER_ART_DIR, skin_id]
 	var projectile_art := ART_SETTINGS.original_texture(projectile_art_path)
 	if projectile_art == null:
 		projectile_art_path = FIREBALL_ART
 		projectile_art = ART_SETTINGS.original_texture(projectile_art_path)
-	if projectile_art != null:
+	if kind == "shockwave":
+		# A low, ground-bound crest reads as a shockwave rather than a second fireball.
+		visual.visible = false
+		var crest := Line2D.new()
+		crest.points = PackedVector2Array([Vector2(-16, 12), Vector2(-8, -10), Vector2(0, -22), Vector2(8, -10), Vector2(16, 12)])
+		crest.width = 5.0
+		crest.default_color = Color(1.0, 0.8, 0.3)
+		projectile.add_child(crest)
+	elif projectile_art != null:
 		projectile.set_art(projectile_art_path, Color.WHITE, FIREBALL_SCREEN_SIZE / projectile_art.get_width())
-	attack_animation_timer = ATTACK_ANIMATION_TIME
+	_play_strike_animation()
+	return projectile
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := "normal") -> bool:
 	if state == State.DEFEATED:
@@ -341,6 +549,13 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 		var power_value = attacker.get("attack_power")
 		if power_value != null:
 			final_damage *= float(power_value) / 100.0
+	if archetype == "shell" and action_phase == "active":
+		var frontal := direction.x * facing < 0.0
+		if is_instance_valid(attacker) and attacker is Node2D:
+			frontal = (attacker.global_position.x - global_position.x) * facing > 0.0
+		if frontal:
+			final_damage *= 0.5
+	was_hit = true
 	hp = maxf(hp - final_damage, 0.0)
 	if is_instance_valid(attacker) and attacker.is_in_group("players"):
 		state = State.AGGRO
@@ -384,27 +599,43 @@ func apply_yuki_seal_burst(attacker: Node, activation_id: int, damage: float, kn
 	return apply_hit(attacker, damage, knockback, direction)
 
 func return_to_neutral() -> void:
+	_cancel_action()
 	state = State.NEUTRAL
 	target = null
-	patrol_center = global_position
+	# Flyers climb back to the same home after a dive or displacement. Moving their
+	# anchor on disengage would ratchet their altitude and let them patrol the void.
+	if archetype != "swoop":
+		patrol_center = global_position
 	wander_timer = 0.0
+	_update_visuals()
 
 func set_realm_active(active: bool) -> void:
+	if not active:
+		_cancel_action()
 	is_realm_active = active
-	visible = active and state != State.DEFEATED
-	set_physics_process(active and state != State.DEFEATED)
+	visible = active
+	set_physics_process(active or state == State.DEFEATED)
 	collision_layer = MONSTER_LAYER if active and state != State.DEFEATED else 0
 
 func _is_valid_target() -> bool:
 	return is_instance_valid(target) and not target.is_defeated and target.realm_index == realm_index and target.is_realm_active
 
 func _die(attacker: Node) -> void:
+	if state == State.DEFEATED:
+		return
 	state = State.DEFEATED
-	visible = false
+	_cancel_action()
+	hp = 0.0
 	collision_layer = 0
-	set_physics_process(false)
+	velocity = Vector2.ZERO
+	set_physics_process(true)
+	name_label.visible = false
+	hp_back.visible = false
+	if art_sprite != null:
+		art_sprite.play(&"hurt")
+		art_sprite.modulate = Color.WHITE
 	defeated.emit(self, attacker, soul_reward)
-	queue_free()
+	queue_redraw()
 
 func _flash_hit() -> void:
 	if art_sprite != null:
@@ -423,4 +654,27 @@ func _update_visuals() -> void:
 	var disposition := "Neutral" if state == State.NEUTRAL else "Hostile"
 	name_label.text = "%s · %s" % [display_name, disposition]
 	hp_fill.scale.x = clampf(hp / max_hp, 0.0, 1.0)
+	hp_back.visible = is_elite or was_hit
 	hp_fill.color = Color(0.3, 1.0, 0.4) if state == State.NEUTRAL else Color(1.0, 0.25, 0.16)
+
+func _draw() -> void:
+	if state == State.DEFEATED:
+		for i in 6:
+			var angle := TAU * i / 6.0
+			var point := Vector2(cos(angle) * 42.0 * defeat_elapsed, -sin(angle) * 20.0 * defeat_elapsed - 30.0 * defeat_elapsed)
+			draw_circle(point, 3.5, Color(0.45, 0.9, 1.0, 0.9))
+		return
+	if is_elite:
+		draw_arc(Vector2(0, -24), 46.0, 0, TAU, 40, Color(1.0, 0.75, 0.2, 0.6), 3.0)
+		draw_colored_polygon(PackedVector2Array([Vector2(-15, -78), Vector2(-19, -94), Vector2(-7, -86), Vector2(0, -100), Vector2(7, -86), Vector2(19, -94), Vector2(15, -78)]), Color(1.0, 0.78, 0.2))
+	if action_phase in ["windup", "arrival"]:
+		var progress := 1.0 - clampf(action_timer / windup_duration, 0.0, 1.0)
+		var tint := Color(1.0, 0.72, 0.18, 0.45 + 0.5 * progress)
+		draw_arc(Vector2(0, -25), 36.0 + 8.0 * progress, 0, TAU, 36, tint, 4.0)
+		var width := 150.0 if archetype == "slam" else 55.0
+		draw_line(Vector2(-width, -3), Vector2(width, -3), tint, 5.0)
+		if archetype in ["charge", "shell"]:
+			draw_line(Vector2(0, -8), Vector2(facing * 180, -8), tint, 3.0)
+		if archetype in ["leap", "swoop", "blink", "lob"]:
+			var mark := to_local(locked_target_position)
+			draw_arc(mark, 32.0, 0, TAU, 24, tint, 3.0)

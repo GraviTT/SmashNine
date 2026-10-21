@@ -1,0 +1,202 @@
+{
+  "summaries": [
+    {
+      "seed": 1001,
+      "seconds": 288.9,
+      "regular_hits": 113,
+      "elite_hits": 12,
+      "monster_eliminations": {
+        "elite": 0,
+        "regular": 0
+      },
+      "first_elite_time": 120.033,
+      "first_elite_phase": "Corner collapse warning",
+      "regular_refills_observed": 90,
+      "regular_refill_range": [
+        12.1,
+        17.933
+      ],
+      "elite_refills_observed": 2,
+      "elite_refill_range": [
+        76.65,
+        83.417
+      ],
+      "elite_spawns": 11,
+      "announcements": 11,
+      "peak_living_monsters": 38,
+      "peak_monster_projectiles": 4,
+      "monster_fallouts": 1,
+      "violations": 0,
+      "reproduces_required_soak": true
+    },
+    {
+      "seed": 1002,
+      "seconds": 291,
+      "regular_hits": 138,
+      "elite_hits": 9,
+      "monster_eliminations": {
+        "elite": 0,
+        "regular": 0
+      },
+      "first_elite_time": 120.033,
+      "first_elite_phase": "Corner collapse warning",
+      "regular_refills_observed": 84,
+      "regular_refill_range": [
+        12.117,
+        17.983
+      ],
+      "elite_refills_observed": 1,
+      "elite_refill_range": [
+        86.717,
+        86.717
+      ],
+      "elite_spawns": 10,
+      "announcements": 10,
+      "peak_living_monsters": 35,
+      "peak_monster_projectiles": 4,
+      "monster_fallouts": 1,
+      "violations": 0,
+      "reproduces_required_soak": true
+    },
+    {
+      "seed": 1003,
+      "seconds": 299.6,
+      "regular_hits": 102,
+      "elite_hits": 15,
+      "monster_eliminations": {
+        "elite": 1,
+        "regular": 0
+      },
+      "first_elite_time": 120.033,
+      "first_elite_phase": "Corner collapse warning",
+      "regular_refills_observed": 82,
+      "regular_refill_range": [
+        12.05,
+        17.867
+      ],
+      "elite_refills_observed": 4,
+      "elite_refill_range": [
+        72.017,
+        76.117
+      ],
+      "elite_spawns": 13,
+      "announcements": 13,
+      "peak_living_monsters": 37,
+      "peak_monster_projectiles": 3,
+      "monster_fallouts": 0,
+      "violations": 0,
+      "reproduces_required_soak": true
+    }
+  ],
+  "skins": {
+    "alfheim_moon_moth": {
+      "archetype": "blink",
+      "windups": 18,
+      "actions": 9,
+      "hits": 3
+    },
+    "alfheim_moon_stag": {
+      "archetype": "leap",
+      "windups": 53,
+      "actions": 36,
+      "hits": 27
+    },
+    "asgard_aegis_ram": {
+      "archetype": "charge",
+      "windups": 44,
+      "actions": 24,
+      "hits": 20
+    },
+    "asgard_runic_raven": {
+      "archetype": "swoop",
+      "windups": 33,
+      "actions": 25,
+      "hits": 17
+    },
+    "ember_imp": {
+      "archetype": "bolt",
+      "windups": 76,
+      "actions": 59,
+      "hits": 49
+    },
+    "jotunheim_rune_golem": {
+      "archetype": "slam",
+      "windups": 50,
+      "actions": 27,
+      "hits": 13
+    },
+    "jotunheim_storm_wisp": {
+      "archetype": "bolt",
+      "windups": 52,
+      "actions": 34,
+      "hits": 25
+    },
+    "midgard_rooftop_slinger": {
+      "archetype": "lob",
+      "windups": 71,
+      "actions": 52,
+      "hits": 32
+    },
+    "mossling": {
+      "archetype": "bite",
+      "windups": 68,
+      "actions": 50,
+      "hits": 40
+    },
+    "muspelheim_magma_boar": {
+      "archetype": "charge",
+      "windups": 127,
+      "actions": 56,
+      "hits": 43
+    },
+    "niflheim_frost_owl": {
+      "archetype": "bolt",
+      "windups": 36,
+      "actions": 28,
+      "hits": 20
+    },
+    "niflheim_glacier_wolf": {
+      "archetype": "leap",
+      "windups": 30,
+      "actions": 23,
+      "hits": 12
+    },
+    "svartalfheim_cog_drone": {
+      "archetype": "swoop",
+      "windups": 43,
+      "actions": 33,
+      "hits": 16
+    },
+    "svartalfheim_gear_beetle": {
+      "archetype": "shell",
+      "windups": 64,
+      "actions": 35,
+      "hits": 25
+    },
+    "vanaheim_seed_sprite": {
+      "archetype": "lob",
+      "windups": 13,
+      "actions": 10,
+      "hits": 9
+    },
+    "vanaheim_vine_hound": {
+      "archetype": "leap",
+      "windups": 48,
+      "actions": 30,
+      "hits": 18
+    },
+    "yggdrasil_root_guardian": {
+      "archetype": "slam",
+      "windups": 58,
+      "actions": 20,
+      "hits": 11
+    },
+    "yggdrasil_root_oracle": {
+      "archetype": "homing",
+      "windups": 22,
+      "actions": 11,
+      "hits": 9
+    }
+  },
+  "note": "Observation only: windups are counted when sampled. Missing natural actions are not evidence of a broken archetype; every skin is exercised in deterministic unit fixtures."
+}

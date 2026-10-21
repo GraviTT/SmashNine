@@ -136,7 +136,8 @@ func _create_realm_monster_spawner() -> void:
 	realm_monster_spawner.name = "RealmMonsterSpawner"
 	realm_monster_spawner.set_script(REALM_MONSTER_SPAWNER_SCRIPT)
 	add_child(realm_monster_spawner)
-	realm_monster_spawner.configure(Callable(layout, "get_spawn_points"), Callable(director, "get_playable_indices"))
+	realm_monster_spawner.configure(Callable(layout, "get_spawn_points"), Callable(director, "get_playable_indices"), Callable(director, "get_phase_name"), match_seed)
+	realm_monster_spawner.announcement.connect(_show_message)
 	soul_crystal_spawner = Node.new()
 	soul_crystal_spawner.name = "SoulCrystalSpawner"
 	soul_crystal_spawner.set_script(SOUL_CRYSTAL_SPAWNER_SCRIPT)

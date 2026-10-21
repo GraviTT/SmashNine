@@ -1,0 +1,151 @@
+{
+  "captured_utc": "2026-10-21T17:42:15.210Z",
+  "baseline_commit": "5dc0917",
+  "supplied_engine_sha256": "b2ca888d5115a6cedee564764a2ee494a625f2ec2edbabd010fe33c9a88a6bf8",
+  "portable_copy_matches": true,
+  "final_suite": "ALL PASSED",
+  "passed_test_scripts": 34,
+  "final_ecology_checks": 250,
+  "code": [
+    {
+      "path": "smash-nine-prototype/scripts/Main.gd",
+      "sha256": "e6893ec5e3cbac7840c9f5166376b32a4e9a66dbe3770afff53081e168ac9256"
+    },
+    {
+      "path": "smash-nine-prototype/scripts/RealmMonster.gd",
+      "sha256": "3c794c70b496272cd17c81147abc1d01c2bf315b7dcd43f5985570527cbd030c"
+    },
+    {
+      "path": "smash-nine-prototype/scripts/RealmMonsterSpawner.gd",
+      "sha256": "da6478f7a8927e6a851f238b3b20abf771e07f248868672cd4e0126cbb6579b2"
+    },
+    {
+      "path": "smash-nine-prototype/scripts/monsters/MonsterArchetypes.gd",
+      "sha256": "817543c322a50da937bdddd96924aad3f43f1056e862c68c627978ccc51f7fc5"
+    },
+    {
+      "path": "smash-nine-prototype/scripts/monsters/MonsterAttack.gd",
+      "sha256": "2d1f03934e79dc067e1b2cc12cf5da2e9d77fef344a91b853cf5d22c16454fc6"
+    },
+    {
+      "path": "smash-nine-prototype/scripts/monsters/MonsterProjectile.gd",
+      "sha256": "6136216fcc348dc061ea00265e2c186da2157e66bb9e4621d6644811f375d3f3"
+    },
+    {
+      "path": "smash-nine-prototype/tests/test_monster_ecology.gd",
+      "sha256": "16765509eb13571b05527ad218aabc81ae8f6fe5b2fbae5a7404820f7f3a6a75"
+    },
+    {
+      "path": "smash-nine-prototype/tests/run_all.ps1",
+      "sha256": "4adda0dcff33cd5157fc195c17895b158982cc0a2803310d4c5e141a57bbb3eb"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "before-1001.log",
+      "sha256": "87abdbd576055e8f97923c0366b8e0026ba4ee580e468af4c36e0b35dbc08f7a",
+      "modified_utc": "2026-10-21T16:22:03.707Z"
+    },
+    {
+      "path": "before-1002.log",
+      "sha256": "e0f8dff035d16ea3012fdc101a942f80ebad81b93ec8425018983deefd6c7b12",
+      "modified_utc": "2026-10-21T16:23:04.159Z"
+    },
+    {
+      "path": "before-1003.log",
+      "sha256": "4cc8c924b16926946135a95353f1968b52d6e077ce13c407cc97e5b1db8b7354",
+      "modified_utc": "2026-10-21T16:24:12.290Z"
+    },
+    {
+      "path": "after-1001.log",
+      "sha256": "d773e3a429463c4887be13177261f62f780b247109e4c9d7fdc38d777c8a0804",
+      "modified_utc": "2026-10-21T17:28:47.129Z"
+    },
+    {
+      "path": "after-1002.log",
+      "sha256": "3a0e0e61d374de32f560537401e88be43b7d0cd431330e17ffbfa86693a53d3e",
+      "modified_utc": "2026-10-21T17:29:48.482Z"
+    },
+    {
+      "path": "after-1003.log",
+      "sha256": "551040a798964d9de8a2dc1b06ad203e7f9a0315c0ee3fbe02df911efab7f6cb",
+      "modified_utc": "2026-10-21T17:30:48.335Z"
+    },
+    {
+      "path": "run-all-final.log",
+      "sha256": "c983a513948c1f23f2cdbe9a2273ccbb7d3a06789376a5ac19073bfd5c4b885b",
+      "modified_utc": "2026-10-21T17:27:45.702Z"
+    },
+    {
+      "path": "ecology.log",
+      "sha256": "914d2d8c10b3fa249166a31a3faa7870abd76af374e8e0e55710bfe4ed714ae2",
+      "modified_utc": "2026-10-21T17:24:02.600Z"
+    },
+    {
+      "path": "measurements.json",
+      "sha256": "c90cab3d8b4eaebc4455a45312d389b23353802dc0ea1cf001a93c71010dec7d",
+      "modified_utc": "2026-10-21T17:42:13.943Z"
+    },
+    {
+      "path": "integration-summary.json",
+      "sha256": "83e1f4c4a9db5835ce1f8fa68204ee6111ccb75333114017356b5839d2ddd9f5",
+      "modified_utc": "2026-10-21T17:42:14.048Z"
+    },
+    {
+      "path": "stress-summary.json",
+      "sha256": "4773dee59c1648759d2bf73e5c712b92ab675e7425a7bf9ac0280aa0feaf99bc",
+      "modified_utc": "2026-10-21T17:42:13.841Z"
+    },
+    {
+      "path": "probe-1001-p8.json",
+      "sha256": "0846eae4ecb74a82c38d808a6fa5244d6b183afa9bca0c9f7b56d202e9e7ff55",
+      "modified_utc": "2026-10-21T17:31:49.032Z"
+    },
+    {
+      "path": "probe-1002-p8.json",
+      "sha256": "7e2f8120ae18276fcc1a38f8cda293ba9cab68794c001749ab112f8d2941a841",
+      "modified_utc": "2026-10-21T17:32:50.513Z"
+    },
+    {
+      "path": "probe-1003-p8.json",
+      "sha256": "32eaa13cd1e6357bddb5c5549c5c71cba6cfd78278588157299e0d0771c2fec9",
+      "modified_utc": "2026-10-21T17:33:52.796Z"
+    },
+    {
+      "path": "probe-1001-p16.json",
+      "sha256": "1a7cd33718eaefee3e94856369a508251a5c11f8bf74a85c4d065d398007b586",
+      "modified_utc": "2026-10-21T17:35:15.089Z"
+    },
+    {
+      "path": "probe-1002-p16.json",
+      "sha256": "71546f3ef05cfe6ff17effb895f556b6b8d7dbba13f9def02ec3d3638d3bad90",
+      "modified_utc": "2026-10-21T17:37:13.724Z"
+    },
+    {
+      "path": "probe-1003-p16.json",
+      "sha256": "fe3d3b787ac25b5479ab3b211d3d08ed57d808b27f5948541e2cae91cdbe05b3",
+      "modified_utc": "2026-10-21T17:38:34.680Z"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "ecology-runtime.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "12bb5f5f07c7292317bf0564b9103e1da8728980e2f2812bef755d3077d4a953"
+    },
+    {
+      "path": "readability-runtime.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "6300dd0b6ddd6a0fb01b861ec464b8844fadac7c41a2e87e1a8a2e541190b9be"
+    },
+    {
+      "path": "jotunheim-runtime.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "530b43de2be27e2d28431713cf7cfd07bf52f4d354292c5e77386c7a8cc9ea3e"
+    }
+  ],
+  "verification_note": "Only the exact user-authorized certificate-store sandbox error is filtered by verify.ps1; product runner error detection is unchanged."
+}

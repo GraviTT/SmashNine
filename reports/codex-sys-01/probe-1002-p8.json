@@ -1,0 +1,365 @@
+{
+	"announcements": [
+		"An elite Aegis Ram rises in Asgard",
+		"An elite Rooftop Slinger rises in Midgard",
+		"An elite Glacier Wolf rises in Niflheim",
+		"An elite Moon Stag rises in Alfheim",
+		"An elite Magma Boar rises in Muspelheim",
+		"An elite Cog Drone rises in Svartalfheim",
+		"An elite Seed Sprite rises in Vanaheim",
+		"An elite Storm Wisp rises in Jotunheim",
+		"An elite Root Guardian rises in Yggdrasil Heart",
+		"An elite Moon Stag rises in Alfheim"
+	],
+	"by_skin": {
+		"alfheim_moon_moth": {
+			"actions": 1,
+			"archetype": "blink",
+			"defeats": 2,
+			"elite_spawns": 0,
+			"hits": 0,
+			"regular_spawns": 4,
+			"windups": 1
+		},
+		"alfheim_moon_stag": {
+			"actions": 21,
+			"archetype": "leap",
+			"defeats": 8,
+			"elite_spawns": 2,
+			"hits": 16,
+			"regular_spawns": 9,
+			"windups": 25
+		},
+		"asgard_aegis_ram": {
+			"actions": 10,
+			"archetype": "charge",
+			"defeats": 5,
+			"elite_spawns": 1,
+			"hits": 6,
+			"regular_spawns": 7,
+			"windups": 19
+		},
+		"asgard_runic_raven": {
+			"actions": 9,
+			"archetype": "swoop",
+			"defeats": 6,
+			"elite_spawns": 0,
+			"hits": 9,
+			"regular_spawns": 8,
+			"windups": 13
+		},
+		"ember_imp": {
+			"actions": 19,
+			"archetype": "bolt",
+			"defeats": 11,
+			"elite_spawns": 0,
+			"hits": 17,
+			"regular_spawns": 13,
+			"windups": 23
+		},
+		"jotunheim_rune_golem": {
+			"actions": 11,
+			"archetype": "slam",
+			"defeats": 6,
+			"elite_spawns": 0,
+			"hits": 6,
+			"regular_spawns": 8,
+			"windups": 23
+		},
+		"jotunheim_storm_wisp": {
+			"actions": 14,
+			"archetype": "bolt",
+			"defeats": 5,
+			"elite_spawns": 1,
+			"hits": 11,
+			"regular_spawns": 7,
+			"windups": 19
+		},
+		"midgard_rooftop_slinger": {
+			"actions": 20,
+			"archetype": "lob",
+			"defeats": 5,
+			"elite_spawns": 1,
+			"hits": 13,
+			"regular_spawns": 6,
+			"windups": 24
+		},
+		"mossling": {
+			"actions": 15,
+			"archetype": "bite",
+			"defeats": 4,
+			"elite_spawns": 0,
+			"hits": 8,
+			"regular_spawns": 6,
+			"windups": 20
+		},
+		"muspelheim_magma_boar": {
+			"actions": 11,
+			"archetype": "charge",
+			"defeats": 8,
+			"elite_spawns": 1,
+			"hits": 15,
+			"regular_spawns": 10,
+			"windups": 24
+		},
+		"niflheim_frost_owl": {
+			"actions": 11,
+			"archetype": "bolt",
+			"defeats": 5,
+			"elite_spawns": 0,
+			"hits": 8,
+			"regular_spawns": 7,
+			"windups": 15
+		},
+		"niflheim_glacier_wolf": {
+			"actions": 10,
+			"archetype": "leap",
+			"defeats": 5,
+			"elite_spawns": 1,
+			"hits": 3,
+			"regular_spawns": 7,
+			"windups": 12
+		},
+		"svartalfheim_cog_drone": {
+			"actions": 14,
+			"archetype": "swoop",
+			"defeats": 5,
+			"elite_spawns": 1,
+			"hits": 11,
+			"regular_spawns": 7,
+			"windups": 20
+		},
+		"svartalfheim_gear_beetle": {
+			"actions": 18,
+			"archetype": "shell",
+			"defeats": 8,
+			"elite_spawns": 0,
+			"hits": 14,
+			"regular_spawns": 10,
+			"windups": 40
+		},
+		"vanaheim_seed_sprite": {
+			"actions": 0,
+			"archetype": "lob",
+			"defeats": 0,
+			"elite_spawns": 1,
+			"hits": 0,
+			"regular_spawns": 2,
+			"windups": 0
+		},
+		"vanaheim_vine_hound": {
+			"actions": 0,
+			"archetype": "leap",
+			"defeats": 0,
+			"elite_spawns": 0,
+			"hits": 0,
+			"regular_spawns": 2,
+			"windups": 0
+		},
+		"yggdrasil_root_guardian": {
+			"actions": 8,
+			"archetype": "slam",
+			"defeats": 2,
+			"elite_spawns": 1,
+			"hits": 5,
+			"regular_spawns": 3,
+			"windups": 18
+		},
+		"yggdrasil_root_oracle": {
+			"actions": 5,
+			"archetype": "homing",
+			"defeats": 2,
+			"elite_spawns": 0,
+			"hits": 5,
+			"regular_spawns": 4,
+			"windups": 5
+		}
+	},
+	"elite_intervals": [
+		86.7166666667357
+	],
+	"elite_spawns": [
+		{
+			"hp": 156.0,
+			"phase": "Corner collapse warning",
+			"realm": 0,
+			"skin": "asgard_aegis_ram",
+			"souls": 24,
+			"time": 120.033333333328
+		},
+		{
+			"hp": 102.0,
+			"phase": "Corner collapse warning",
+			"realm": 1,
+			"skin": "midgard_rooftop_slinger",
+			"souls": 32,
+			"time": 120.033333333328
+		},
+		{
+			"hp": 156.0,
+			"phase": "Corner collapse warning",
+			"realm": 2,
+			"skin": "niflheim_glacier_wolf",
+			"souls": 24,
+			"time": 120.033333333328
+		},
+		{
+			"hp": 156.0,
+			"phase": "Corner collapse warning",
+			"realm": 3,
+			"skin": "alfheim_moon_stag",
+			"souls": 24,
+			"time": 120.033333333328
+		},
+		{
+			"hp": 156.0,
+			"phase": "Corner collapse warning",
+			"realm": 4,
+			"skin": "muspelheim_magma_boar",
+			"souls": 24,
+			"time": 120.033333333328
+		},
+		{
+			"hp": 102.0,
+			"phase": "Corner collapse warning",
+			"realm": 5,
+			"skin": "svartalfheim_cog_drone",
+			"souls": 32,
+			"time": 120.033333333328
+		},
+		{
+			"hp": 102.0,
+			"phase": "Corner collapse warning",
+			"realm": 6,
+			"skin": "vanaheim_seed_sprite",
+			"souls": 32,
+			"time": 120.033333333328
+		},
+		{
+			"hp": 102.0,
+			"phase": "Corner collapse warning",
+			"realm": 7,
+			"skin": "jotunheim_storm_wisp",
+			"souls": 32,
+			"time": 120.033333333328
+		},
+		{
+			"hp": 156.0,
+			"phase": "Convergence",
+			"realm": 8,
+			"skin": "yggdrasil_root_guardian",
+			"souls": 24,
+			"time": 210.000000000059
+		},
+		{
+			"hp": 156.0,
+			"phase": "Convergence",
+			"realm": 3,
+			"skin": "alfheim_moon_stag",
+			"souls": 24,
+			"time": 229.100000000074
+		}
+	],
+	"match_over": true,
+	"monster_eliminations": {
+		"elite": 0,
+		"regular": 0
+	},
+	"monster_fallouts": 1,
+	"monster_hits": {
+		"elite": 9,
+		"regular": 138
+	},
+	"peak_living_monsters": 35,
+	"peak_projectiles": 4,
+	"players": 8,
+	"refill_intervals": [
+		13.2333333333336,
+		12.7000000000004,
+		12.7000000000003,
+		16.5833333333335,
+		16.75,
+		14.05,
+		14.9333333333333,
+		16.8833333333333,
+		14.0999999999998,
+		14.2999999999993,
+		17.4833333333324,
+		12.6499999999993,
+		15.1999999999991,
+		17.2666666666657,
+		12.8166666666659,
+		15.9166666666658,
+		17.2166666666657,
+		14.2166666666659,
+		17.499999999999,
+		12.8999999999993,
+		17.6833333333323,
+		13.5666666666659,
+		13.2333333333326,
+		15.0499999999991,
+		16.7666666666657,
+		17.7666666666657,
+		17.1666666666657,
+		16.1333333333324,
+		16.2499999999991,
+		16.2333333333324,
+		14.4833333333325,
+		16.2833333333324,
+		14.6999999999992,
+		15.1333333333325,
+		13.4333333333326,
+		16.4333333333324,
+		13.3333333333326,
+		14.2166666666659,
+		17.9833333333323,
+		16.0499999999991,
+		13.2333333333326,
+		16.6499999999991,
+		15.7999999999991,
+		12.8833333333326,
+		15.7333333333324,
+		13.7499999999992,
+		13.7833333333326,
+		13.8999999999992,
+		12.5333333333326,
+		12.1499999999993,
+		13.7499999999992,
+		12.1166666666673,
+		12.6166666666705,
+		16.1500000000039,
+		17.0666666666713,
+		13.9333333333418,
+		16.3333333333438,
+		12.60000000001,
+		13.4000000000107,
+		12.9166666666769,
+		13.4500000000107,
+		17.5666666666806,
+		13.383333333344,
+		17.6333333333474,
+		12.3833333333432,
+		16.6666666666799,
+		16.2000000000129,
+		12.7333333333435,
+		16.3166666666797,
+		12.6166666666767,
+		16.1500000000129,
+		17.133333333347,
+		17.133333333347,
+		16.0833333333461,
+		17.183333333347,
+		14.8666666666785,
+		15.5000000000123,
+		15.9500000000127,
+		13.2500000000105,
+		17.3333333333471,
+		16.5500000000132,
+		16.3666666666797,
+		17.53333333334,
+		14.0666666666549
+	],
+	"seconds": 291.0,
+	"seed": 1002,
+	"violations": []
+}
