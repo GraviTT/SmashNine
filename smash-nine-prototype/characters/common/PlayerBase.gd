@@ -1621,6 +1621,11 @@ func _respawn() -> void:
 	skill_dash_timer = 0.0
 	body.rotation = 0.0
 	movement_freeze_timer = 0.0
+	# The swing or hit in progress at the ring-out is over (as in reset_for_map): its lock kept a
+	# respawned fighter from jumping or attacking, up to 1.45 s after Frey's air ultimate.
+	attack_lock_timer = 0.0
+	hitstun_timer = 0.0
+	hitstop_timer = 0.0
 	action_locked_until_land = false
 	current_knockback_decay = KNOCKBACK_DECAY
 	air_jumps_left = max_air_jumps

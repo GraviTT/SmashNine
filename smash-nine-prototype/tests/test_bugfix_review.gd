@@ -20,6 +20,7 @@ func _run() -> void:
 	await _test_card_offer_hides_when_p1_falls()
 	await _test_startup_wait_in_physics_ticks()
 	await _test_results_hide_hp_bar()
+	await _test_ringout_respawn_clears_attack_lock()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -143,5 +144,25 @@ func _test_results_hide_hp_bar() -> void:
 	if main.hud.hp_bar.visible:
 		_fail("The HP bar should stay hidden behind the result screen")
 	main.queue_free()
+	await process_frame
+	passed += 1
+
+## A ring-out respawn kept the attack lock and hitstun of whatever was going on when the fighter fell:
+## Frey diving off the stage with her air ultimate came back unable to jump or attack for the rest of
+## its 1.45 s lock (reset_for_map, the portal and collapse move, already cleared them).
+func _test_ringout_respawn_clears_attack_lock() -> void:
+	var frey := _fighter("frey", 1, Vector2(0, -600))
+	frey.spawn_points = [Vector2(0, -600)] as Array[Vector2]
+	await physics_frame
+	frey._ultimate_start()
+	if float(frey.attack_lock_timer) < 1.0:
+		_fail("Test setup: Frey's air ultimate should lock her attacks")
+	frey.hitstun_timer = 0.2
+	frey._ringout()
+	if frey.is_defeated:
+		_fail("Test setup: one ring-out should not defeat a full-HP fighter")
+	if not frey._can_start_attack():
+		_fail("A fighter respawned after a ring-out should be free to act (attack lock %.2f, hitstun %.2f)" % [frey.attack_lock_timer, frey.hitstun_timer])
+	frey.queue_free()
 	await process_frame
 	passed += 1
