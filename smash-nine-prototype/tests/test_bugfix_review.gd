@@ -19,6 +19,7 @@ func _run() -> void:
 	await _test_launch_hit_ends_skill_dash()
 	await _test_card_offer_hides_when_p1_falls()
 	await _test_startup_wait_in_physics_ticks()
+	await _test_results_hide_hp_bar()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -120,5 +121,27 @@ func _test_startup_wait_in_physics_ticks() -> void:
 	if worst > 1:
 		_fail("A 0.5 s start-up wait should last %d physics ticks at any frame rate (off by %d)" % [expected, worst])
 	frey.queue_free()
+	await process_frame
+	passed += 1
+
+## The result screen hides the match HUD, but Main keeps calling set_status every frame and it set
+## the HP bar visible again behind the results table.
+func _test_results_hide_hp_bar() -> void:
+	var main: Node = load(MAIN_SCENE).instantiate()
+	main.match_seed = 22
+	main.realm_hazards = false
+	root.add_child(main)
+	await process_frame
+	main._start_match("luna")
+	for frame in 3:
+		await process_frame
+	if not main.hud.hp_bar.visible:
+		_fail("Test setup: the HP bar should show during the match")
+	main.director._finish(main.players[0], "test")
+	for frame in 4:
+		await process_frame
+	if main.hud.hp_bar.visible:
+		_fail("The HP bar should stay hidden behind the result screen")
+	main.queue_free()
 	await process_frame
 	passed += 1

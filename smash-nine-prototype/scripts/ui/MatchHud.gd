@@ -457,7 +457,8 @@ func set_status(alive: int, total: int, focus: Node) -> void:
 		hp_ratio = clampf(float(focus.hp) / float(focus.max_hp), 0.0, 1.0)
 	hp_fill.size.x = 304.0 * hp_ratio
 	hp_fill.color = Color(0.92, 0.24, 0.2, 0.76) if hp_ratio <= 0.3 else Color(0.95, 0.72, 0.18, 0.74) if hp_ratio <= 0.55 else Color(0.28, 0.86, 0.42, 0.72)
-	hp_bar.visible = is_instance_valid(focus)
+	# Only while the match HUD shows: Main keeps calling this behind the result screen.
+	hp_bar.visible = is_instance_valid(focus) and clock_label.visible
 	_show_focus_portrait(focus)
 
 func _show_focus_portrait(focus: Node) -> void:
