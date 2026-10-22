@@ -20,6 +20,16 @@
         "8071"
       ],
       "port": 8071
+    },
+    {
+      "name": "sound-viewer",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "tools/serve_web.js",
+        "tools/sound_viewer/dist",
+        "8072"
+      ],
+      "port": 8072
     }
   ]
 }
