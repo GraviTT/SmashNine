@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "checks": [
+    "12 sound cards, 36 candidates, DB controls hidden without claude/db",
+    "All 36 embedded WAVs and copied WAVs exactly match delivered source files",
+    "Per-sound whole playback: A -> 180 ms gap -> B -> 180 ms gap -> C",
+    "New playback cancels previous audio; live volume updates; Stop clears audio and playing marker",
+    "Stop during A/B/C gap prevents later sounds from starting",
+    "Audio error ends sequence and exposes a Korean retry message",
+    "DB snapshot restores choice/note/badge; unrelated snapshots preserve unsaved note edits",
+    "Adopt writes exactly sound/style/note/adopted_at to sound_picks/<sound>, and allows replacement",
+    "Failed save remains retryable; DB subscription failure hides all adoption controls",
+    "Rejected claude.use('db') safely falls back to local listening mode",
+    "Phone-width CSS breakpoint present (structural check only, not rendered layout verification)"
+  ],
+  "method": "Node vm with DOM, Audio and Artifact DB test doubles; exact WAV byte comparisons",
+  "limitations": [
+    "No browser was connected; screen layout and real audio playback were not exercised",
+    "Hosted claude db API not exercised; follows motion viewer API pattern"
+  ]
+}
