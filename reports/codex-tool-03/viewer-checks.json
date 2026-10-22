@@ -1,0 +1,123 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-22T18:32:30.066Z",
+  "method": "Node vm, explicit DOM/Image/canvas/Artifact DB doubles; byte-for-byte source comparison; publish limit fixtures",
+  "counts": {
+    "checks": 19,
+    "candidates": 89,
+    "kinds": {
+      "fighter": 21,
+      "monster": 36,
+      "projectile": 8,
+      "face": 24
+    },
+    "rowVisits": 221,
+    "sidecars": 248,
+    "publishFiles": 249,
+    "publishBytes": 54739729,
+    "distFiles": 250,
+    "distBytes": 54751243
+  },
+  "checks": [
+    {
+      "name": "No database",
+      "result": "PASS",
+      "detail": "89 candidates independently matched to active source files; pick and memo controls disabled with Korean explanation; motion/image comparison still initializes"
+    },
+    {
+      "name": "Delivery integrity",
+      "result": "PASS",
+      "detail": "248 sidecars exist, are unique, and byte-match source assets; all 89 candidates are listed and unadopted"
+    },
+    {
+      "name": "Existing data regression",
+      "result": "PASS",
+      "detail": "All fighter forms, rows, speeds, candidate values and 55 clip pairs preserved; monster rows identical except 7 projectiles moved to their own section"
+    },
+    {
+      "name": "Rows and candidates",
+      "result": "PASS",
+      "detail": "221 row selections across all forms/monsters; all 57 row candidates have buttons and individual loop/fps/frame/cell values; longest-frame stepping wraps; detached controls released"
+    },
+    {
+      "name": "Projectile playback",
+      "result": "PASS",
+      "detail": "8 strips including 64x48 shockwave; 16 crops at metadata fps and 1x/3x; pause holds time; old image/Line2D comparison present"
+    },
+    {
+      "name": "Portraits",
+      "result": "PASS",
+      "detail": "8 forms/current faces and 24 expressions; 142x164 aspect-preserving CSS; click opens original, Close dismisses (mock DOM)"
+    },
+    {
+      "name": "Pick all kinds",
+      "result": "PASS",
+      "detail": "One DB acquisition, one subscription per collection; each fighter/monster/projectile/face click writes exactly one correctly keyed eight-field document; panel and pressed state update"
+    },
+    {
+      "name": "Memo and unpick",
+      "result": "PASS",
+      "detail": "Unrelated snapshots preserve drafts; memo save writes once and keeps picked state; toggle and panel cancellation remove item from picked list"
+    },
+    {
+      "name": "Reload restoration",
+      "result": "PASS",
+      "detail": "A fresh VM restores all selected/unselected records, notes, panel and button states from persisted mock DB"
+    },
+    {
+      "name": "Save failures and duplicate clicks",
+      "result": "PASS",
+      "detail": "Failed writes keep last saved selection and draft and allow retry; pending button blocks duplicate writes"
+    },
+    {
+      "name": "Speed adoption regression",
+      "result": "PASS",
+      "detail": "Row slider, copied changes, motion_speeds adoption fields and deletion still work independently of candidate picks"
+    },
+    {
+      "name": "Applied speed regression",
+      "result": "PASS",
+      "detail": "A speed already applied in the game resets matching local slider to 1x"
+    },
+    {
+      "name": "DB fallback and isolation",
+      "result": "PASS",
+      "detail": "Rejected/null DB and subscription failure remain usable; candidate DB failure does not disable speed DB"
+    },
+    {
+      "name": "Clip regression",
+      "result": "PASS",
+      "detail": "110 clip source switches; base attacks and around-character groups; fx/no-fx and available new-fx source paths preserved"
+    },
+    {
+      "name": "Candidate clip fallback fixture",
+      "result": "PASS",
+      "detail": "Synthetic clips-new manifest: new mode selects candidate source, clips without a new candidate retain current fx source (routing only; no fake asset delivered)"
+    },
+    {
+      "name": "Prior-publish picks",
+      "result": "PASS",
+      "detail": "An absent/adopted candidate's saved choice stays in the top panel and can be unpicked without a current preview"
+    },
+    {
+      "name": "Future versions fixture",
+      "result": "PASS",
+      "detail": "Synthetic v999 expression gets a distinct pick document and appears beside earlier versions; selecting one does not clear another"
+    },
+    {
+      "name": "Reduced motion",
+      "result": "PASS",
+      "detail": "Both motion stage and projectile playback initialize paused when reduced motion is requested"
+    },
+    {
+      "name": "Publish limits and missing files",
+      "result": "PASS",
+      "detail": "Missing/unsafe paths fail loudly; 251 sidecars split 250+1; size-limited batches include HTML overhead and retain sheet-first input order"
+    }
+  ],
+  "limitations": [
+    "Browser localhost navigation was denied by the approval gate; no real rendered screenshot or browser decoding check",
+    "Hosted claude.use('db') and Artifact upload were not exercised",
+    "Godot was not run; candidates were not applied to game assets"
+  ]
+}

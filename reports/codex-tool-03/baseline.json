@@ -1,0 +1,5365 @@
+{
+  "built": "2026-10-23 03:15",
+  "commit": "1048ec7",
+  "columns": 6,
+  "characters": [
+    {
+      "id": "frey",
+      "name": "Frey",
+      "forms": [
+        {
+          "body": "",
+          "base": {
+            "file": "sheets/frey/frey_sheet.png",
+            "cell": 128,
+            "feet": 120,
+            "rows": [
+              {
+                "name": "idle",
+                "frames": 6,
+                "fps": 6.3,
+                "loop": true,
+                "start": 0,
+                "label": "대기",
+                "candidates": []
+              },
+              {
+                "name": "walk",
+                "frames": 8,
+                "fps": 11.31,
+                "loop": true,
+                "start": 1,
+                "label": "걷기",
+                "candidates": [],
+                "drawnFps": 13.3
+              },
+              {
+                "name": "jump",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 3,
+                "label": "점프",
+                "candidates": []
+              },
+              {
+                "name": "fall",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 4,
+                "label": "낙하",
+                "candidates": [
+                  {
+                    "file": "bakeoff/frey/frey-fall-v2.png",
+                    "version": "v2",
+                    "note": "머리카락과 망토가 위로 후행하는 두 낙하 자세. 얼굴과 장비를 4배로 확인했다. 행 공통 배율 0.142. 얼굴 눈 사이 거리와 눈높이 얼굴 폭을 4배 표식으로 확인. ART-72 후보이며 게임 미연결.",
+                    "fps": 8,
+                    "frames": 2,
+                    "cell": null,
+                    "feet": null,
+                    "loop": true
+                  }
+                ]
+              },
+              {
+                "name": "attack",
+                "frames": 6,
+                "fps": 17.85,
+                "loop": false,
+                "start": 5,
+                "label": "공격 (예비 줄)",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "shield",
+                "frames": 6,
+                "fps": 9,
+                "loop": false,
+                "start": 6,
+                "label": "방어",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "hurt",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 7,
+                "label": "피격",
+                "candidates": [
+                  {
+                    "file": "bakeoff/frey/frey-hurt-v2.png",
+                    "version": "v2",
+                    "note": "타격 순간, 반동, 회복의 3장. 자동 머리 검사의 F2 점수는 낮지만 실제 얼굴 표식과 장비를 4배로 확인했다. 행 공통 배율 0.1545. 얼굴 눈 사이 거리와 눈높이 얼굴 폭을 4배 표식으로 확인. ART-72 후보이며 게임 미연결.",
+                    "fps": 12,
+                    "frames": 3,
+                    "cell": null,
+                    "feet": null,
+                    "loop": false
+                  }
+                ]
+              }
+            ]
+          },
+          "moves": {
+            "file": "sheets/frey/frey_moves_sheet.png",
+            "cell": 192,
+            "feet": 152,
+            "rows": [
+              {
+                "name": "attack_up",
+                "frames": 6,
+                "fps": 16.8,
+                "loop": false,
+                "start": 0,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "attack_down",
+                "frames": 6,
+                "fps": 17.85,
+                "loop": false,
+                "start": 1,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "attack_air_side",
+                "frames": 6,
+                "fps": 18.9,
+                "loop": false,
+                "start": 2,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "dash_strike",
+                "frames": 6,
+                "fps": 17.85,
+                "loop": false,
+                "start": 3,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "rising_cleave",
+                "frames": 6,
+                "fps": 15.12,
+                "loop": false,
+                "start": 4,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 16.8
+              },
+              {
+                "name": "spike_followup",
+                "frames": 6,
+                "fps": 15.75,
+                "loop": false,
+                "start": 5,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "descent",
+                "frames": 6,
+                "fps": 9.8,
+                "loop": false,
+                "start": 6,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 14
+              },
+              {
+                "name": "tumble",
+                "frames": 6,
+                "fps": 18.9,
+                "loop": true,
+                "start": 7,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "attack_chain",
+                "frames": 6,
+                "fps": 14.7,
+                "loop": false,
+                "start": 8,
+                "label": "",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "defeat",
+                "frames": 6,
+                "fps": 10,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/frey/frey-defeat-v1.png",
+                    "version": "v1",
+                    "note": "피격 반동에서 뒤로 쓰러져 바닥에 누운 채 멈추는 Frey 패배 모션 후보입니다.",
+                    "fps": 10,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ]
+              },
+              {
+                "name": "land",
+                "frames": 2,
+                "fps": 12,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/frey/frey-land-v1.png",
+                    "version": "v1",
+                    "note": "착지 웅크림에서 대기 자세 쪽으로 일어선다. 양발 접지와 장비를 확인했다. 행 공통 배율 0.14. 얼굴 눈 사이 거리와 눈높이 얼굴 폭을 4배 표식으로 확인. ART-72 후보이며 게임 미연결.",
+                    "fps": 12,
+                    "frames": 2,
+                    "cell": null,
+                    "feet": null,
+                    "loop": false
+                  }
+                ]
+              }
+            ]
+          },
+          "clips": [
+            {
+              "group": "j",
+              "form": "frey",
+              "move": "ground-j",
+              "name": "지상 J",
+              "input": "J",
+              "duration": 1.1,
+              "frames": 33,
+              "files": {
+                "fx": "frey/ground-j-fx.webp",
+                "nofx": "frey/ground-j-nofx.webp"
+              },
+              "rows": [
+                "attack_chain 1-2",
+                "attack_chain 3-4",
+                "attack_chain 5-6"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 15,
+              "fx_difference_box": [
+                360,
+                356,
+                679,
+                520
+              ]
+            },
+            {
+              "group": "j",
+              "form": "frey",
+              "move": "up-j",
+              "name": "지상 ↑J",
+              "input": "↑J",
+              "duration": 0.567,
+              "frames": 17,
+              "files": {
+                "fx": "frey/up-j-fx.webp",
+                "nofx": "frey/up-j-nofx.webp"
+              },
+              "rows": [
+                "attack_up 2-4"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                294,
+                210,
+                403,
+                444
+              ]
+            },
+            {
+              "group": "j",
+              "form": "frey",
+              "move": "down-j",
+              "name": "지상 ↓J",
+              "input": "↓J",
+              "duration": 0.667,
+              "frames": 20,
+              "files": {
+                "fx": "frey/down-j-fx.webp",
+                "nofx": "frey/down-j-nofx.webp"
+              },
+              "rows": [
+                "attack_down 3-4"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                344,
+                424,
+                592,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "frey",
+              "move": "air-j",
+              "name": "공중 J",
+              "input": "공중 J",
+              "duration": 0.567,
+              "frames": 17,
+              "files": {
+                "fx": "frey/air-j-fx.webp",
+                "nofx": "frey/air-j-nofx.webp"
+              },
+              "rows": [
+                "attack_air_side 2-3"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                360,
+                126,
+                648,
+                253
+              ]
+            },
+            {
+              "group": "j",
+              "form": "frey",
+              "move": "air-up-j",
+              "name": "공중 ↑J",
+              "input": "공중 ↑J",
+              "duration": 0.733,
+              "frames": 22,
+              "files": {
+                "fx": "frey/air-up-j-fx.webp",
+                "nofx": "frey/air-up-j-nofx.webp"
+              },
+              "rows": [
+                "attack_up 2-4"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                294,
+                0,
+                403,
+                184
+              ]
+            },
+            {
+              "group": "j",
+              "form": "frey",
+              "move": "air-down-j",
+              "name": "공중 ↓J",
+              "input": "공중 ↓J",
+              "duration": 0.667,
+              "frames": 20,
+              "files": {
+                "fx": "frey/air-down-j-fx.webp",
+                "nofx": "frey/air-down-j-nofx.webp"
+              },
+              "rows": [
+                "attack_down 3-4"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 8,
+              "fx_difference_box": [
+                260,
+                252,
+                440,
+                522
+              ]
+            },
+            {
+              "group": "around",
+              "form": "frey",
+              "move": "guard",
+              "name": "방어·패리",
+              "input": "Guard",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "frey/guard-fx.webp",
+                "nofx": "frey/guard-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 50,
+              "fx_difference_box": [
+                229,
+                293,
+                467,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "frey",
+              "move": "pursuit",
+              "name": "추격 표식",
+              "input": "↑J 적중",
+              "duration": 1.733,
+              "frames": 52,
+              "files": {
+                "fx": "frey/pursuit-fx.webp",
+                "nofx": "frey/pursuit-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 13,
+              "fx_difference_box": [
+                264,
+                210,
+                547,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "frey",
+              "move": "spike",
+              "name": "상승 가르기·강스파이크",
+              "input": "L · L",
+              "duration": 2.267,
+              "frames": 68,
+              "files": {
+                "fx": "frey/spike-fx.webp",
+                "nofx": "frey/spike-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 22,
+              "fx_difference_box": [
+                210,
+                72,
+                579,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "frey",
+              "move": "ultimate",
+              "name": "발키리 강림",
+              "input": "I",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "frey/ultimate-fx.webp",
+                "nofx": "frey/ultimate-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.45,
+              "fx_diff": true,
+              "fx_changed_frames": 24,
+              "fx_difference_box": [
+                0,
+                183,
+                940,
+                473
+              ]
+            },
+            {
+              "group": "around",
+              "form": "frey",
+              "move": "status",
+              "name": "기절·슈퍼아머",
+              "input": "상태",
+              "duration": 2.467,
+              "frames": 74,
+              "files": {
+                "fx": "frey/status-fx.webp",
+                "nofx": "frey/status-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 48,
+              "fx_difference_box": [
+                279,
+                283,
+                393,
+                516
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "forms": [
+        {
+          "body": "",
+          "base": {
+            "file": "sheets/luna/luna_sheet.png",
+            "cell": 128,
+            "feet": 120,
+            "rows": [
+              {
+                "name": "idle",
+                "frames": 6,
+                "fps": 6.3,
+                "loop": true,
+                "start": 0,
+                "label": "대기",
+                "candidates": []
+              },
+              {
+                "name": "walk",
+                "frames": 8,
+                "fps": 11.31,
+                "loop": true,
+                "start": 1,
+                "label": "걷기",
+                "candidates": [],
+                "drawnFps": 13.3
+              },
+              {
+                "name": "jump",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 3,
+                "label": "점프",
+                "candidates": [
+                  {
+                    "file": "bakeoff/luna/luna-jump-v3.png",
+                    "version": "v3",
+                    "note": "도약·상승·정점 3장. 얼굴과 지팡이를 확인했다. F2·3 무릎 자세 차이는 작다. 행 공통 배율 0.15. 얼굴 눈 사이 거리와 눈높이 얼굴 폭을 4배 표식으로 확인. ART-72 후보이며 게임 미연결.",
+                    "fps": 10,
+                    "frames": 3,
+                    "cell": null,
+                    "feet": null,
+                    "loop": false
+                  }
+                ]
+              },
+              {
+                "name": "fall",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 4,
+                "label": "낙하",
+                "candidates": [
+                  {
+                    "file": "bakeoff/luna/luna-fall-v3.png",
+                    "version": "v3",
+                    "note": "위로 들린 머리카락과 치맛자락의 낙하 반복. 자동 머리 중앙값 0.94와 달라 얼굴 측정을 우선했다. 행 공통 배율 0.1335. 얼굴 눈 사이 거리와 눈높이 얼굴 폭을 4배 표식으로 확인. ART-72 후보이며 게임 미연결.",
+                    "fps": 8,
+                    "frames": 2,
+                    "cell": null,
+                    "feet": null,
+                    "loop": true
+                  }
+                ]
+              },
+              {
+                "name": "attack",
+                "frames": 6,
+                "fps": 17.85,
+                "loop": false,
+                "start": 5,
+                "label": "공격 (예비 줄)",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "shield",
+                "frames": 6,
+                "fps": 9.6,
+                "loop": false,
+                "start": 6,
+                "label": "방어",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "hurt",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 7,
+                "label": "피격",
+                "candidates": [
+                  {
+                    "file": "bakeoff/luna/luna-hurt-v2.png",
+                    "version": "v2",
+                    "note": "타격 순간, 반동, 회복의 3장. 지팡이와 의상, 양발 접지를 확인했다. 행 공통 배율 0.1407. 얼굴 눈 사이 거리와 눈높이 얼굴 폭을 4배 표식으로 확인. ART-72 후보이며 게임 미연결.",
+                    "fps": 12,
+                    "frames": 3,
+                    "cell": null,
+                    "feet": null,
+                    "loop": false
+                  }
+                ]
+              }
+            ]
+          },
+          "moves": {
+            "file": "sheets/luna/luna_moves_sheet.png",
+            "cell": 192,
+            "feet": 152,
+            "rows": [
+              {
+                "name": "star_up",
+                "frames": 6,
+                "fps": 19.95,
+                "loop": false,
+                "start": 0,
+                "label": "normal up/air-up J",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "star_down",
+                "frames": 6,
+                "fps": 17.85,
+                "loop": false,
+                "start": 1,
+                "label": "normal down/air-down J",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "star_comet",
+                "frames": 6,
+                "fps": 16.8,
+                "loop": false,
+                "start": 2,
+                "label": "normal K Star Comet",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "moon_ring",
+                "frames": 6,
+                "fps": 13.44,
+                "loop": false,
+                "start": 3,
+                "label": "normal L Moon Ring (a spin in place)",
+                "candidates": [],
+                "drawnFps": 16.8
+              },
+              {
+                "name": "transform",
+                "frames": 12,
+                "fps": 7.8,
+                "loop": false,
+                "start": 4,
+                "label": "I: the special transformation into Brave Luna (② design, D36)",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "tumble",
+                "frames": 6,
+                "fps": 24.15,
+                "loop": true,
+                "start": 6,
+                "label": "strong-launch hitstun",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "star_side",
+                "frames": 6,
+                "fps": 17.85,
+                "loop": false,
+                "start": 7,
+                "label": "normal side/air-side J Star Echo",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "defeat",
+                "frames": 6,
+                "fps": 10,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/luna/luna-defeat-v1.png",
+                    "version": "v1",
+                    "note": "피격 반동에서 뒤로 쓰러져 지팡이와 함께 바닥에 누운 채 멈추는 Luna 패배 모션 후보입니다.",
+                    "fps": 10,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ]
+              },
+              {
+                "name": "land",
+                "frames": 2,
+                "fps": 12,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/luna/luna-land-v1.png",
+                    "version": "v1",
+                    "note": "착지 웅크림에서 대기 자세로 회복한다. 3차에서 얼굴 크기와 양발 접지, 지팡이를 확인했다. 행 공통 배율 0.13. 얼굴 눈 사이 거리와 눈높이 얼굴 폭을 4배 표식으로 확인. ART-72 후보이며 게임 미연결.",
+                    "fps": 12,
+                    "frames": 2,
+                    "cell": null,
+                    "feet": null,
+                    "loop": false
+                  }
+                ]
+              }
+            ]
+          },
+          "clips": [
+            {
+              "group": "j",
+              "form": "luna",
+              "move": "ground-j",
+              "name": "지상 J",
+              "input": "J",
+              "duration": 0.567,
+              "frames": 17,
+              "files": {
+                "fx": "luna/ground-j-fx.webp",
+                "nofx": "luna/ground-j-nofx.webp"
+              },
+              "rows": [
+                "star_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 9,
+              "fx_difference_box": [
+                347,
+                362,
+                732,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna",
+              "move": "up-j",
+              "name": "지상 ↑J",
+              "input": "↑J",
+              "duration": 0.6,
+              "frames": 18,
+              "files": {
+                "fx": "luna/up-j-fx.webp",
+                "nofx": "luna/up-j-nofx.webp"
+              },
+              "rows": [
+                "star_up"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 9,
+              "fx_difference_box": [
+                231,
+                103,
+                441,
+                455
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna",
+              "move": "down-j",
+              "name": "지상 ↓J",
+              "input": "↓J",
+              "duration": 0.667,
+              "frames": 20,
+              "files": {
+                "fx": "luna/down-j-fx.webp",
+                "nofx": "luna/down-j-nofx.webp"
+              },
+              "rows": [
+                "star_down"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 9,
+              "fx_difference_box": [
+                342,
+                426,
+                576,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna",
+              "move": "air-j",
+              "name": "공중 J",
+              "input": "공중 J",
+              "duration": 0.6,
+              "frames": 18,
+              "files": {
+                "fx": "luna/air-j-fx.webp",
+                "nofx": "luna/air-j-nofx.webp"
+              },
+              "rows": [
+                "star_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 9,
+              "fx_difference_box": [
+                347,
+                121,
+                732,
+                335
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna",
+              "move": "air-up-j",
+              "name": "공중 ↑J",
+              "input": "공중 ↑J",
+              "duration": 0.7,
+              "frames": 21,
+              "files": {
+                "fx": "luna/air-up-j-fx.webp",
+                "nofx": "luna/air-up-j-nofx.webp"
+              },
+              "rows": [
+                "star_up"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 9,
+              "fx_difference_box": [
+                250,
+                0,
+                415,
+                183
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna",
+              "move": "air-down-j",
+              "name": "공중 ↓J",
+              "input": "공중 ↓J",
+              "duration": 0.633,
+              "frames": 19,
+              "files": {
+                "fx": "luna/air-down-j-fx.webp",
+                "nofx": "luna/air-down-j-nofx.webp"
+              },
+              "rows": [
+                "star_down"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 9,
+              "fx_difference_box": [
+                282,
+                212,
+                560,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "luna",
+              "move": "guard",
+              "name": "방어·패리",
+              "input": "Guard",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "luna/guard-fx.webp",
+                "nofx": "luna/guard-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 50,
+              "fx_difference_box": [
+                228,
+                293,
+                467,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "luna",
+              "move": "star-charge",
+              "name": "별빛 충전 3개",
+              "input": "J ×3",
+              "duration": 3.133,
+              "frames": 94,
+              "files": {
+                "fx": "luna/star-charge-fx.webp",
+                "nofx": "luna/star-charge-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 83,
+              "fx_difference_box": [
+                232,
+                221,
+                600,
+                536
+              ]
+            },
+            {
+              "group": "around",
+              "form": "luna",
+              "move": "transform",
+              "name": "Brave Luna 변신",
+              "input": "I",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "luna/transform-fx.webp",
+                "nofx": "luna/transform-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.55,
+              "fx_diff": true,
+              "fx_changed_frames": 50,
+              "fx_difference_box": [
+                57,
+                122,
+                655,
+                540
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "luna_brave",
+      "name": "Brave Luna",
+      "forms": [
+        {
+          "body": "",
+          "base": {
+            "file": "sheets/luna/luna_brave_sheet.png",
+            "cell": 128,
+            "feet": 120,
+            "rows": [
+              {
+                "name": "idle",
+                "frames": 6,
+                "fps": 5.36,
+                "loop": true,
+                "start": 0,
+                "label": "대기",
+                "candidates": [],
+                "drawnFps": 6.3
+              },
+              {
+                "name": "walk",
+                "frames": 8,
+                "fps": 11.97,
+                "loop": true,
+                "start": 1,
+                "label": "걷기",
+                "candidates": [],
+                "drawnFps": 13.3
+              },
+              {
+                "name": "jump",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 3,
+                "label": "점프",
+                "candidates": []
+              },
+              {
+                "name": "fall",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 4,
+                "label": "낙하",
+                "candidates": []
+              },
+              {
+                "name": "attack",
+                "frames": 6,
+                "fps": 16.8,
+                "loop": false,
+                "start": 5,
+                "label": "공격 (예비 줄)",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "shield",
+                "frames": 6,
+                "fps": 10.8,
+                "loop": false,
+                "start": 6,
+                "label": "방어",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "hurt",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 7,
+                "label": "피격",
+                "candidates": []
+              }
+            ]
+          },
+          "moves": {
+            "file": "sheets/luna/luna_brave_moves_sheet.png",
+            "cell": 192,
+            "feet": 152,
+            "rows": [
+              {
+                "name": "brave_combo",
+                "frames": 6,
+                "fps": 12.8,
+                "loop": false,
+                "start": 0,
+                "label": "Brave J: jab 1–2, body kick 3–4, spin kick 5–6",
+                "candidates": [],
+                "drawnFps": 16
+              },
+              {
+                "name": "brave_upper",
+                "frames": 6,
+                "fps": 20.4,
+                "loop": false,
+                "start": 1,
+                "label": "Brave up/air-up J: star uppercut",
+                "candidates": [],
+                "drawnFps": 24
+              },
+              {
+                "name": "brave_low",
+                "frames": 6,
+                "fps": 18,
+                "loop": false,
+                "start": 2,
+                "label": "Brave down J: low sweep",
+                "candidates": [],
+                "drawnFps": 24
+              },
+              {
+                "name": "brave_air_side",
+                "frames": 6,
+                "fps": 19.2,
+                "loop": false,
+                "start": 3,
+                "label": "Brave air-side J: flying kick",
+                "candidates": [],
+                "drawnFps": 24
+              },
+              {
+                "name": "brave_dive",
+                "frames": 6,
+                "fps": 18,
+                "loop": false,
+                "start": 4,
+                "label": "Brave air-down J: dive kick",
+                "candidates": [],
+                "drawnFps": 24
+              },
+              {
+                "name": "comet_drive",
+                "frames": 6,
+                "fps": 19.2,
+                "loop": false,
+                "start": 5,
+                "label": "Brave K: short dash, compressed star punch",
+                "candidates": [],
+                "drawnFps": 24
+              },
+              {
+                "name": "luna_breaker",
+                "frames": 6,
+                "fps": 12.8,
+                "loop": false,
+                "start": 6,
+                "label": "Brave L: spinning finishing kick",
+                "candidates": [],
+                "drawnFps": 16
+              },
+              {
+                "name": "heart_laser",
+                "frames": 6,
+                "fps": 10.2,
+                "loop": false,
+                "start": 7,
+                "label": "transformed I re-input: hands make a heart, then the firing stance (held)",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "tumble",
+                "frames": 6,
+                "fps": 26.25,
+                "loop": true,
+                "start": 8,
+                "label": "strong-launch hitstun",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "defeat",
+                "frames": 6,
+                "fps": 10,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/luna/luna_brave-defeat-v1.png",
+                    "version": "v1",
+                    "note": "무릎이 꺾인 뒤 뒤로 쓰러져 바닥에 누운 채 멈추는 Brave Luna 패배 모션 후보입니다.",
+                    "fps": 10,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ]
+              },
+              {
+                "name": "land",
+                "frames": 2,
+                "fps": 12,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/luna/luna_brave-land-v1.png",
+                    "version": "v1",
+                    "note": "착지 웅크림에서 양주먹 가드로 회복한다. 장갑과 무릎 별 장식을 확인했다. 행 공통 배율 0.135. 얼굴 눈 사이 거리와 눈높이 얼굴 폭을 4배 표식으로 확인. ART-72 후보이며 게임 미연결.",
+                    "fps": 12,
+                    "frames": 2,
+                    "cell": null,
+                    "feet": null,
+                    "loop": false
+                  }
+                ]
+              }
+            ]
+          },
+          "clips": [
+            {
+              "group": "j",
+              "form": "luna_brave",
+              "move": "ground-j",
+              "name": "지상 J",
+              "input": "J",
+              "duration": 0.867,
+              "frames": 26,
+              "files": {
+                "fx": "luna_brave/ground-j-fx.webp",
+                "nofx": "luna_brave/ground-j-nofx.webp"
+              },
+              "rows": [
+                "brave_combo 1-2",
+                "brave_combo 3-4",
+                "brave_combo 5-6"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 15,
+              "fx_difference_box": [
+                340,
+                355,
+                686,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna_brave",
+              "move": "up-j",
+              "name": "지상 ↑J",
+              "input": "↑J",
+              "duration": 0.467,
+              "frames": 14,
+              "files": {
+                "fx": "luna_brave/up-j-fx.webp",
+                "nofx": "luna_brave/up-j-nofx.webp"
+              },
+              "rows": [
+                "brave_upper"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                298,
+                163,
+                549,
+                459
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna_brave",
+              "move": "down-j",
+              "name": "지상 ↓J",
+              "input": "↓J",
+              "duration": 0.533,
+              "frames": 16,
+              "files": {
+                "fx": "luna_brave/down-j-fx.webp",
+                "nofx": "luna_brave/down-j-nofx.webp"
+              },
+              "rows": [
+                "brave_low"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                341,
+                410,
+                642,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna_brave",
+              "move": "air-j",
+              "name": "공중 J",
+              "input": "공중 J",
+              "duration": 0.6,
+              "frames": 18,
+              "files": {
+                "fx": "luna_brave/air-j-fx.webp",
+                "nofx": "luna_brave/air-j-nofx.webp"
+              },
+              "rows": [
+                "brave_air_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                341,
+                110,
+                677,
+                299
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna_brave",
+              "move": "air-up-j",
+              "name": "공중 ↑J",
+              "input": "공중 ↑J",
+              "duration": 0.867,
+              "frames": 26,
+              "files": {
+                "fx": "luna_brave/air-up-j-fx.webp",
+                "nofx": "luna_brave/air-up-j-nofx.webp"
+              },
+              "rows": [
+                "brave_upper"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                298,
+                0,
+                541,
+                180
+              ]
+            },
+            {
+              "group": "j",
+              "form": "luna_brave",
+              "move": "air-down-j",
+              "name": "공중 ↓J",
+              "input": "공중 ↓J",
+              "duration": 0.5,
+              "frames": 15,
+              "files": {
+                "fx": "luna_brave/air-down-j-fx.webp",
+                "nofx": "luna_brave/air-down-j-nofx.webp"
+              },
+              "rows": [
+                "brave_dive"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 8,
+              "fx_difference_box": [
+                261,
+                200,
+                568,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "luna_brave",
+              "move": "guard",
+              "name": "방어·패리",
+              "input": "Guard",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "luna_brave/guard-fx.webp",
+                "nofx": "luna_brave/guard-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 50,
+              "fx_difference_box": [
+                228,
+                293,
+                467,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "luna_brave",
+              "move": "aura",
+              "name": "Brave 오라",
+              "input": "대기",
+              "duration": 1.5,
+              "frames": 45,
+              "files": {
+                "fx": "luna_brave/aura-fx.webp",
+                "nofx": "luna_brave/aura-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 45,
+              "fx_difference_box": [
+                226,
+                286,
+                442,
+                540
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nova",
+      "name": "Nova",
+      "forms": [
+        {
+          "body": "male",
+          "base": {
+            "file": "sheets/nova/nova_male_sheet.png",
+            "cell": 128,
+            "feet": 120,
+            "rows": [
+              {
+                "name": "idle",
+                "frames": 6,
+                "fps": 6.3,
+                "loop": true,
+                "start": 0,
+                "label": "대기",
+                "candidates": []
+              },
+              {
+                "name": "walk",
+                "frames": 8,
+                "fps": 10.64,
+                "loop": true,
+                "start": 1,
+                "label": "걷기",
+                "candidates": [],
+                "drawnFps": 13.3
+              },
+              {
+                "name": "jump",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 3,
+                "label": "점프",
+                "candidates": []
+              },
+              {
+                "name": "fall",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 4,
+                "label": "낙하",
+                "candidates": []
+              },
+              {
+                "name": "attack",
+                "frames": 6,
+                "fps": 26.44,
+                "loop": false,
+                "start": 5,
+                "label": "공격 (예비 줄)",
+                "candidates": [],
+                "drawnFps": 35.25
+              },
+              {
+                "name": "shield",
+                "frames": 6,
+                "fps": 10.2,
+                "loop": false,
+                "start": 6,
+                "label": "방어",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "hurt",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 7,
+                "label": "피격",
+                "candidates": []
+              }
+            ]
+          },
+          "moves": {
+            "file": "sheets/nova/nova_male_moves_sheet.png",
+            "cell": 192,
+            "feet": 152,
+            "rows": [
+              {
+                "name": "vector_side",
+                "frames": 6,
+                "fps": 26.44,
+                "loop": false,
+                "start": 0,
+                "label": "neutral/side J: a dashing punch",
+                "candidates": [],
+                "drawnFps": 35.25
+              },
+              {
+                "name": "vector_upper",
+                "frames": 6,
+                "fps": 23.1,
+                "loop": false,
+                "start": 1,
+                "label": "up J: a rising uppercut",
+                "candidates": [],
+                "drawnFps": 33
+              },
+              {
+                "name": "compression_stomp",
+                "frames": 6,
+                "fps": 19.58,
+                "loop": false,
+                "start": 2,
+                "label": "down J: a gravity stomp",
+                "candidates": [],
+                "drawnFps": 26.1
+              },
+              {
+                "name": "air_side",
+                "frames": 6,
+                "fps": 30,
+                "loop": false,
+                "start": 3,
+                "label": "aerial side J: a flying punch",
+                "candidates": [],
+                "drawnFps": 40
+              },
+              {
+                "name": "meteor_kick",
+                "frames": 6,
+                "fps": 22.5,
+                "loop": false,
+                "start": 4,
+                "label": "aerial down J: the meteor kick",
+                "candidates": [],
+                "drawnFps": 30
+              },
+              {
+                "name": "vector_shift",
+                "frames": 6,
+                "fps": 17.75,
+                "loop": false,
+                "start": 5,
+                "label": "K: pure acceleration",
+                "candidates": [],
+                "drawnFps": 27.3
+              },
+              {
+                "name": "gravity_brake",
+                "frames": 6,
+                "fps": 10.73,
+                "loop": false,
+                "start": 6,
+                "label": "L: a full stop and a burst",
+                "candidates": [],
+                "drawnFps": 14.3
+              },
+              {
+                "name": "slingshot_start",
+                "frames": 6,
+                "fps": 9.1,
+                "loop": false,
+                "start": 7,
+                "label": "ultimate, first press: conjuring the core",
+                "candidates": [],
+                "drawnFps": 14
+              },
+              {
+                "name": "tumble",
+                "frames": 6,
+                "fps": 17.85,
+                "loop": true,
+                "start": 8,
+                "label": "**new** strong-launch hitstun",
+                "candidates": [],
+                "drawnFps": 21
+              },
+              {
+                "name": "defeat",
+                "frames": 6,
+                "fps": 10,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/nova/nova_male-defeat-v1.png",
+                    "version": "v1",
+                    "note": "무릎이 꺾인 뒤 뒤로 넘어져 바닥에 누운 채 멈추는 Nova 남성 패배 모션 후보입니다.",
+                    "fps": 10,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ]
+              }
+            ]
+          },
+          "clips": [
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "ground-j",
+              "name": "지상 J",
+              "input": "J",
+              "duration": 0.5,
+              "frames": 15,
+              "files": {
+                "fx": "nova/ground-j-fx.webp",
+                "nofx": "nova/ground-j-nofx.webp"
+              },
+              "rows": [
+                "vector_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 6,
+              "fx_difference_box": [
+                311,
+                435,
+                473,
+                489
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "up-j",
+              "name": "지상 ↑J",
+              "input": "↑J",
+              "duration": 0.5,
+              "frames": 15,
+              "files": {
+                "fx": "nova/up-j-fx.webp",
+                "nofx": "nova/up-j-nofx.webp"
+              },
+              "rows": [
+                "vector_upper"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 6,
+              "fx_difference_box": [
+                311,
+                172,
+                508,
+                495
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "down-j",
+              "name": "지상 ↓J",
+              "input": "↓J",
+              "duration": 0.533,
+              "frames": 16,
+              "files": {
+                "fx": "nova/down-j-fx.webp",
+                "nofx": "nova/down-j-nofx.webp"
+              },
+              "rows": [
+                "compression_stomp"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 7,
+              "fx_difference_box": [
+                213,
+                355,
+                459,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "air-j",
+              "name": "공중 J",
+              "input": "공중 J",
+              "duration": 0.567,
+              "frames": 17,
+              "files": {
+                "fx": "nova/air-j-fx.webp",
+                "nofx": "nova/air-j-nofx.webp"
+              },
+              "rows": [
+                "air_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 11,
+              "fx_difference_box": [
+                311,
+                164,
+                473,
+                465
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "air-up-j",
+              "name": "공중 ↑J",
+              "input": "공중 ↑J",
+              "duration": 0.9,
+              "frames": 27,
+              "files": {
+                "fx": "nova/air-up-j-fx.webp",
+                "nofx": "nova/air-up-j-nofx.webp"
+              },
+              "rows": [
+                "vector_upper"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 11,
+              "fx_difference_box": [
+                311,
+                0,
+                504,
+                421
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "air-down-j",
+              "name": "공중 ↓J",
+              "input": "공중 ↓J",
+              "duration": 0.5,
+              "frames": 15,
+              "files": {
+                "fx": "nova/air-down-j-fx.webp",
+                "nofx": "nova/air-down-j-nofx.webp"
+              },
+              "rows": [
+                "meteor_kick"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 8,
+              "fx_difference_box": [
+                128,
+                154,
+                544,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "nova",
+              "move": "guard",
+              "name": "방어·패리",
+              "input": "Guard",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "nova/guard-fx.webp",
+                "nofx": "nova/guard-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 52,
+              "fx_difference_box": [
+                229,
+                293,
+                467,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "nova",
+              "move": "momentum",
+              "name": "관성·벡터 시프트",
+              "input": "달리기 · K",
+              "duration": 2.6,
+              "frames": 78,
+              "files": {
+                "fx": "nova/momentum-fx.webp",
+                "nofx": "nova/momentum-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.45,
+              "fx_diff": true,
+              "fx_changed_frames": 46,
+              "fx_difference_box": [
+                29,
+                295,
+                578,
+                443
+              ]
+            },
+            {
+              "group": "around",
+              "form": "nova",
+              "move": "ultimate",
+              "name": "중력 슬링샷",
+              "input": "I · I · I",
+              "duration": 2.533,
+              "frames": 76,
+              "files": {
+                "fx": "nova/ultimate-fx.webp",
+                "nofx": "nova/ultimate-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.25,
+              "fx_diff": true,
+              "fx_changed_frames": 60,
+              "fx_difference_box": [
+                0,
+                0,
+                960,
+                540
+              ]
+            }
+          ]
+        },
+        {
+          "body": "female",
+          "base": {
+            "file": "sheets/nova/nova_female_sheet.png",
+            "cell": 128,
+            "feet": 120,
+            "rows": [
+              {
+                "name": "idle",
+                "frames": 6,
+                "fps": 6.3,
+                "loop": true,
+                "start": 0,
+                "label": "대기",
+                "candidates": []
+              },
+              {
+                "name": "walk",
+                "frames": 8,
+                "fps": 10.64,
+                "loop": true,
+                "start": 1,
+                "label": "걷기",
+                "candidates": [],
+                "drawnFps": 13.3
+              },
+              {
+                "name": "jump",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 3,
+                "label": "점프",
+                "candidates": []
+              },
+              {
+                "name": "fall",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 4,
+                "label": "낙하",
+                "candidates": []
+              },
+              {
+                "name": "attack",
+                "frames": 6,
+                "fps": 24.67,
+                "loop": false,
+                "start": 5,
+                "label": "공격 (예비 줄)",
+                "candidates": [],
+                "drawnFps": 35.25
+              },
+              {
+                "name": "shield",
+                "frames": 6,
+                "fps": 9,
+                "loop": false,
+                "start": 6,
+                "label": "방어",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "hurt",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 7,
+                "label": "피격",
+                "candidates": [
+                  {
+                    "file": "bakeoff/nova/nova_female-hurt-v2.png",
+                    "version": "v2",
+                    "note": "피격 한 장을 그대로 8px 내림(새 그림 아님). v1은 만들 때 lift 8로 띄웠는데 다른 7폼의 피격은 모두 발이 바닥선(y=120)에 닿아 있어 맞춤 (스프라이트 점검 B9, 2026-10-16).",
+                    "fps": 1,
+                    "frames": 1,
+                    "cell": 128,
+                    "feet": 120,
+                    "loop": null
+                  }
+                ]
+              }
+            ]
+          },
+          "moves": {
+            "file": "sheets/nova/nova_female_moves_sheet.png",
+            "cell": 192,
+            "feet": 152,
+            "rows": [
+              {
+                "name": "vector_side",
+                "frames": 6,
+                "fps": 28.2,
+                "loop": false,
+                "start": 0,
+                "label": "neutral/side J: a dashing punch",
+                "candidates": [],
+                "drawnFps": 35.25
+              },
+              {
+                "name": "vector_upper",
+                "frames": 6,
+                "fps": 24.75,
+                "loop": false,
+                "start": 1,
+                "label": "up J: a rising uppercut",
+                "candidates": [],
+                "drawnFps": 33
+              },
+              {
+                "name": "compression_stomp",
+                "frames": 6,
+                "fps": 19.58,
+                "loop": false,
+                "start": 2,
+                "label": "down J: a gravity stomp",
+                "candidates": [],
+                "drawnFps": 26.1
+              },
+              {
+                "name": "air_side",
+                "frames": 6,
+                "fps": 26,
+                "loop": false,
+                "start": 3,
+                "label": "aerial side J: a flying punch",
+                "candidates": [],
+                "drawnFps": 40
+              },
+              {
+                "name": "meteor_kick",
+                "frames": 6,
+                "fps": 22.5,
+                "loop": false,
+                "start": 4,
+                "label": "aerial down J: the meteor kick",
+                "candidates": [],
+                "drawnFps": 30
+              },
+              {
+                "name": "vector_shift",
+                "frames": 6,
+                "fps": 17.75,
+                "loop": false,
+                "start": 5,
+                "label": "K: pure acceleration",
+                "candidates": [],
+                "drawnFps": 27.3
+              },
+              {
+                "name": "gravity_brake",
+                "frames": 6,
+                "fps": 10.01,
+                "loop": false,
+                "start": 6,
+                "label": "L: a full stop and a burst",
+                "candidates": [],
+                "drawnFps": 14.3
+              },
+              {
+                "name": "slingshot_start",
+                "frames": 6,
+                "fps": 10.5,
+                "loop": false,
+                "start": 7,
+                "label": "ultimate, first press: conjuring the core",
+                "candidates": [],
+                "drawnFps": 14
+              },
+              {
+                "name": "tumble",
+                "frames": 6,
+                "fps": 21,
+                "loop": true,
+                "start": 8,
+                "label": "**new** strong-launch hitstun",
+                "candidates": []
+              },
+              {
+                "name": "defeat",
+                "frames": 6,
+                "fps": 10,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/nova/nova_female-defeat-v1.png",
+                    "version": "v1",
+                    "note": "무릎이 꺾인 뒤 뒤로 넘어져 바닥에 누운 채 멈추는 Nova 여성 패배 모션 후보입니다.",
+                    "fps": 10,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ]
+              }
+            ]
+          },
+          "clips": [
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "ground-j",
+              "name": "지상 J",
+              "input": "J",
+              "duration": 0.5,
+              "frames": 15,
+              "files": {
+                "fx": "nova/ground-j-fx.webp",
+                "nofx": "nova/ground-j-nofx.webp"
+              },
+              "rows": [
+                "vector_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 6,
+              "fx_difference_box": [
+                311,
+                435,
+                473,
+                489
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "up-j",
+              "name": "지상 ↑J",
+              "input": "↑J",
+              "duration": 0.5,
+              "frames": 15,
+              "files": {
+                "fx": "nova/up-j-fx.webp",
+                "nofx": "nova/up-j-nofx.webp"
+              },
+              "rows": [
+                "vector_upper"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 6,
+              "fx_difference_box": [
+                311,
+                172,
+                508,
+                495
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "down-j",
+              "name": "지상 ↓J",
+              "input": "↓J",
+              "duration": 0.533,
+              "frames": 16,
+              "files": {
+                "fx": "nova/down-j-fx.webp",
+                "nofx": "nova/down-j-nofx.webp"
+              },
+              "rows": [
+                "compression_stomp"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 7,
+              "fx_difference_box": [
+                213,
+                355,
+                459,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "air-j",
+              "name": "공중 J",
+              "input": "공중 J",
+              "duration": 0.567,
+              "frames": 17,
+              "files": {
+                "fx": "nova/air-j-fx.webp",
+                "nofx": "nova/air-j-nofx.webp"
+              },
+              "rows": [
+                "air_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 11,
+              "fx_difference_box": [
+                311,
+                164,
+                473,
+                465
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "air-up-j",
+              "name": "공중 ↑J",
+              "input": "공중 ↑J",
+              "duration": 0.9,
+              "frames": 27,
+              "files": {
+                "fx": "nova/air-up-j-fx.webp",
+                "nofx": "nova/air-up-j-nofx.webp"
+              },
+              "rows": [
+                "vector_upper"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 11,
+              "fx_difference_box": [
+                311,
+                0,
+                504,
+                421
+              ]
+            },
+            {
+              "group": "j",
+              "form": "nova",
+              "move": "air-down-j",
+              "name": "공중 ↓J",
+              "input": "공중 ↓J",
+              "duration": 0.5,
+              "frames": 15,
+              "files": {
+                "fx": "nova/air-down-j-fx.webp",
+                "nofx": "nova/air-down-j-nofx.webp"
+              },
+              "rows": [
+                "meteor_kick"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 8,
+              "fx_difference_box": [
+                128,
+                154,
+                544,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "nova",
+              "move": "guard",
+              "name": "방어·패리",
+              "input": "Guard",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "nova/guard-fx.webp",
+                "nofx": "nova/guard-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 52,
+              "fx_difference_box": [
+                229,
+                293,
+                467,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "nova",
+              "move": "momentum",
+              "name": "관성·벡터 시프트",
+              "input": "달리기 · K",
+              "duration": 2.6,
+              "frames": 78,
+              "files": {
+                "fx": "nova/momentum-fx.webp",
+                "nofx": "nova/momentum-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.45,
+              "fx_diff": true,
+              "fx_changed_frames": 46,
+              "fx_difference_box": [
+                29,
+                295,
+                578,
+                443
+              ]
+            },
+            {
+              "group": "around",
+              "form": "nova",
+              "move": "ultimate",
+              "name": "중력 슬링샷",
+              "input": "I · I · I",
+              "duration": 2.533,
+              "frames": 76,
+              "files": {
+                "fx": "nova/ultimate-fx.webp",
+                "nofx": "nova/ultimate-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.25,
+              "fx_diff": true,
+              "fx_changed_frames": 60,
+              "fx_difference_box": [
+                0,
+                0,
+                960,
+                540
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rio",
+      "name": "Rio",
+      "forms": [
+        {
+          "body": "male",
+          "base": {
+            "file": "sheets/rio/rio_male_sheet.png",
+            "cell": 128,
+            "feet": 120,
+            "rows": [
+              {
+                "name": "idle",
+                "frames": 6,
+                "fps": 6.3,
+                "loop": true,
+                "start": 0,
+                "label": "대기",
+                "candidates": []
+              },
+              {
+                "name": "walk",
+                "frames": 8,
+                "fps": 9.31,
+                "loop": true,
+                "start": 1,
+                "label": "걷기",
+                "candidates": [],
+                "drawnFps": 13.3
+              },
+              {
+                "name": "jump",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 3,
+                "label": "점프",
+                "candidates": []
+              },
+              {
+                "name": "fall",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 4,
+                "label": "낙하",
+                "candidates": []
+              },
+              {
+                "name": "attack",
+                "frames": 6,
+                "fps": 14.7,
+                "loop": false,
+                "start": 5,
+                "label": "공격 (예비 줄)",
+                "candidates": [
+                  {
+                    "file": "bakeoff/rio/rio_male-attack-v2.png",
+                    "version": "v2",
+                    "note": "대기 자세와 같은 얼굴 크기로 새로 그린 남성 Rio의 밀착형 기본 검 공격 후보. 3번 프레임이 타격 자세다.",
+                    "fps": 21,
+                    "frames": 6,
+                    "cell": 128,
+                    "feet": 120,
+                    "loop": null
+                  }
+                ],
+                "drawnFps": 21
+              },
+              {
+                "name": "shield",
+                "frames": 6,
+                "fps": 9.6,
+                "loop": false,
+                "start": 6,
+                "label": "방어",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "hurt",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 7,
+                "label": "피격",
+                "candidates": []
+              }
+            ]
+          },
+          "moves": {
+            "file": "sheets/rio/rio_male_moves_sheet.png",
+            "cell": 192,
+            "feet": 152,
+            "rows": [
+              {
+                "name": "mana_combo",
+                "frames": 6,
+                "fps": 13.5,
+                "loop": false,
+                "start": 0,
+                "label": "ground J chain: slash, backhand, finisher (the game plays 1–2, 3–4, 5–6)",
+                "candidates": [],
+                "drawnFps": 18
+              },
+              {
+                "name": "rising_slash",
+                "frames": 6,
+                "fps": 19.5,
+                "loop": false,
+                "start": 1,
+                "label": "up J, air up J: a rising overhead cut",
+                "candidates": [],
+                "drawnFps": 30
+              },
+              {
+                "name": "low_sweep",
+                "frames": 6,
+                "fps": 19.5,
+                "loop": false,
+                "start": 2,
+                "label": "ground down J: a low sweep",
+                "candidates": [],
+                "drawnFps": 30
+              },
+              {
+                "name": "air_slash",
+                "frames": 6,
+                "fps": 26,
+                "loop": false,
+                "start": 3,
+                "label": "aerial side J: a horizontal cut",
+                "candidates": [],
+                "drawnFps": 40
+              },
+              {
+                "name": "plunge",
+                "frames": 6,
+                "fps": 9,
+                "loop": false,
+                "start": 4,
+                "label": "aerial down J: a diving plunge",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "dimension_slash",
+                "frames": 6,
+                "fps": 14.95,
+                "loop": false,
+                "start": 5,
+                "label": "K: the blink slash",
+                "candidates": [],
+                "drawnFps": 23
+              },
+              {
+                "name": "rune_shield",
+                "frames": 6,
+                "fps": 8.4,
+                "loop": false,
+                "start": 6,
+                "label": "L: the rune shield guard",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "infinity_overdrive",
+                "frames": 6,
+                "fps": 7.15,
+                "loop": false,
+                "start": 7,
+                "label": "ultimate start: sword raised, command",
+                "candidates": [],
+                "drawnFps": 11
+              },
+              {
+                "name": "tumble",
+                "frames": 6,
+                "fps": 21,
+                "loop": true,
+                "start": 8,
+                "label": "**new** strong-launch hitstun",
+                "candidates": []
+              },
+              {
+                "name": "defeat",
+                "frames": 6,
+                "fps": 10,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/rio/rio_male-defeat-v1.png",
+                    "version": "v1",
+                    "note": "4번 프레임의 뒤로 넘어지는 방향을 이어 5번은 머리를 왼쪽에 둔 채 등에 착지해 작게 튀고, 6번은 눈을 감고 머리를 왼쪽에 둔 채 바로 누워 검을 곁에 놓는 Rio 남성 패배 모션 후보입니다.",
+                    "fps": 10,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ]
+              }
+            ]
+          },
+          "clips": [
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "ground-j",
+              "name": "지상 J",
+              "input": "J",
+              "duration": 0.967,
+              "frames": 29,
+              "files": {
+                "fx": "rio/ground-j-fx.webp",
+                "nofx": "rio/ground-j-nofx.webp"
+              },
+              "rows": [
+                "mana_combo 1-2",
+                "mana_combo 3-4",
+                "mana_combo 5-6"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 17,
+              "fx_difference_box": [
+                344,
+                362,
+                822,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "up-j",
+              "name": "지상 ↑J",
+              "input": "↑J",
+              "duration": 0.533,
+              "frames": 16,
+              "files": {
+                "fx": "rio/up-j-fx.webp",
+                "nofx": "rio/up-j-nofx.webp"
+              },
+              "rows": [
+                "rising_slash"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                289,
+                202,
+                414,
+                456
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "down-j",
+              "name": "지상 ↓J",
+              "input": "↓J",
+              "duration": 0.533,
+              "frames": 16,
+              "files": {
+                "fx": "rio/down-j-fx.webp",
+                "nofx": "rio/down-j-nofx.webp"
+              },
+              "rows": [
+                "low_sweep"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                337,
+                316,
+                622,
+                512
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "air-j",
+              "name": "공중 J",
+              "input": "공중 J",
+              "duration": 0.567,
+              "frames": 17,
+              "files": {
+                "fx": "rio/air-j-fx.webp",
+                "nofx": "rio/air-j-nofx.webp"
+              },
+              "rows": [
+                "air_slash"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                345,
+                102,
+                634,
+                236
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "air-up-j",
+              "name": "공중 ↑J",
+              "input": "공중 ↑J",
+              "duration": 0.867,
+              "frames": 26,
+              "files": {
+                "fx": "rio/air-up-j-fx.webp",
+                "nofx": "rio/air-up-j-nofx.webp"
+              },
+              "rows": [
+                "rising_slash"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                289,
+                0,
+                403,
+                186
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "air-down-j",
+              "name": "공중 ↓J",
+              "input": "공중 ↓J",
+              "duration": 1.667,
+              "frames": 50,
+              "files": {
+                "fx": "rio/air-down-j-fx.webp",
+                "nofx": "rio/air-down-j-nofx.webp"
+              },
+              "rows": [
+                "plunge"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 7,
+              "fx_difference_box": [
+                248,
+                246,
+                524,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "rio",
+              "move": "guard",
+              "name": "방어·패리",
+              "input": "Guard",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "rio/guard-fx.webp",
+                "nofx": "rio/guard-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 50,
+              "fx_difference_box": [
+                228,
+                293,
+                467,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "rio",
+              "move": "rune",
+              "name": "룬 방패·반격",
+              "input": "L",
+              "duration": 1.733,
+              "frames": 52,
+              "files": {
+                "fx": "rio/rune-fx.webp",
+                "nofx": "rio/rune-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 29,
+              "fx_difference_box": [
+                185,
+                204,
+                703,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "rio",
+              "move": "ultimate",
+              "name": "인피니티 오버드라이브",
+              "input": "I",
+              "duration": 1.733,
+              "frames": 52,
+              "files": {
+                "fx": "rio/ultimate-fx.webp",
+                "nofx": "rio/ultimate-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.45,
+              "fx_diff": true,
+              "fx_changed_frames": 44,
+              "fx_difference_box": [
+                204,
+                232,
+                686,
+                540
+              ]
+            }
+          ]
+        },
+        {
+          "body": "female",
+          "base": {
+            "file": "sheets/rio/rio_female_sheet.png",
+            "cell": 128,
+            "feet": 120,
+            "rows": [
+              {
+                "name": "idle",
+                "frames": 6,
+                "fps": 6.3,
+                "loop": true,
+                "start": 0,
+                "label": "대기",
+                "candidates": []
+              },
+              {
+                "name": "walk",
+                "frames": 8,
+                "fps": 9.31,
+                "loop": true,
+                "start": 1,
+                "label": "걷기",
+                "candidates": [],
+                "drawnFps": 13.3
+              },
+              {
+                "name": "jump",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 3,
+                "label": "점프",
+                "candidates": []
+              },
+              {
+                "name": "fall",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 4,
+                "label": "낙하",
+                "candidates": []
+              },
+              {
+                "name": "attack",
+                "frames": 6,
+                "fps": 13.65,
+                "loop": false,
+                "start": 5,
+                "label": "공격 (예비 줄)",
+                "candidates": [
+                  {
+                    "file": "bakeoff/rio/rio_female-attack-v2.png",
+                    "version": "v2",
+                    "note": "마나 콤보를 축소하지 않고 새로 그린 여성 Rio의 밀착형 기본 검 공격 후보. 3번 프레임이 타격 자세다.",
+                    "fps": 21,
+                    "frames": 6,
+                    "cell": 128,
+                    "feet": 120,
+                    "loop": null
+                  }
+                ],
+                "drawnFps": 21
+              },
+              {
+                "name": "shield",
+                "frames": 6,
+                "fps": 9,
+                "loop": false,
+                "start": 6,
+                "label": "방어",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "hurt",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 7,
+                "label": "피격",
+                "candidates": []
+              }
+            ]
+          },
+          "moves": {
+            "file": "sheets/rio/rio_female_moves_sheet.png",
+            "cell": 192,
+            "feet": 152,
+            "rows": [
+              {
+                "name": "mana_combo",
+                "frames": 6,
+                "fps": 12.6,
+                "loop": false,
+                "start": 0,
+                "label": "ground J chain: slash, backhand, finisher (the game plays 1–2, 3–4, 5–6)",
+                "candidates": [],
+                "drawnFps": 18
+              },
+              {
+                "name": "rising_slash",
+                "frames": 6,
+                "fps": 21,
+                "loop": false,
+                "start": 1,
+                "label": "up J, air up J: a rising overhead cut",
+                "candidates": [],
+                "drawnFps": 30
+              },
+              {
+                "name": "low_sweep",
+                "frames": 6,
+                "fps": 18,
+                "loop": false,
+                "start": 2,
+                "label": "ground down J: a low sweep",
+                "candidates": [
+                  {
+                    "file": "bakeoff/rio/rio_female-low_sweep-v2.png",
+                    "version": "v2",
+                    "note": "대기 자세와 같은 얼굴 크기를 유지한 짧고 낮은 검 휩쓸기 후보. 3번 프레임이 타격 자세다.",
+                    "fps": 30,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ],
+                "drawnFps": 30
+              },
+              {
+                "name": "air_slash",
+                "frames": 6,
+                "fps": 26,
+                "loop": false,
+                "start": 3,
+                "label": "aerial side J: a horizontal cut",
+                "candidates": [],
+                "drawnFps": 40
+              },
+              {
+                "name": "plunge",
+                "frames": 6,
+                "fps": 8.4,
+                "loop": false,
+                "start": 4,
+                "label": "aerial down J: a diving plunge",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "dimension_slash",
+                "frames": 6,
+                "fps": 14.95,
+                "loop": false,
+                "start": 5,
+                "label": "K: the blink slash",
+                "candidates": [
+                  {
+                    "file": "bakeoff/rio/rio_female-dimension_slash-v2.png",
+                    "version": "v2",
+                    "note": "앞무릎을 굽히고 검을 타격 순간에만 뻗는 짧은 차원 베기 후보. 3번 프레임이 타격 자세다.",
+                    "fps": 23,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ],
+                "drawnFps": 23
+              },
+              {
+                "name": "rune_shield",
+                "frames": 6,
+                "fps": 7.8,
+                "loop": false,
+                "start": 6,
+                "label": "L: the rune shield guard",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "infinity_overdrive",
+                "frames": 6,
+                "fps": 8.25,
+                "loop": false,
+                "start": 7,
+                "label": "ultimate start: sword raised, command",
+                "candidates": [],
+                "drawnFps": 11
+              },
+              {
+                "name": "tumble",
+                "frames": 6,
+                "fps": 21,
+                "loop": true,
+                "start": 8,
+                "label": "**new** strong-launch hitstun",
+                "candidates": []
+              },
+              {
+                "name": "defeat",
+                "frames": 6,
+                "fps": 10,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/rio/rio_female-defeat-v1.png",
+                    "version": "v1",
+                    "note": "검을 든 채 뒤로 넘어져 옆으로 누운 자세로 멈추는 Rio 여성 패배 모션 후보입니다.",
+                    "fps": 10,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ]
+              }
+            ]
+          },
+          "clips": [
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "ground-j",
+              "name": "지상 J",
+              "input": "J",
+              "duration": 0.967,
+              "frames": 29,
+              "files": {
+                "fx": "rio/ground-j-fx.webp",
+                "nofx": "rio/ground-j-nofx.webp"
+              },
+              "rows": [
+                "mana_combo 1-2",
+                "mana_combo 3-4",
+                "mana_combo 5-6"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 17,
+              "fx_difference_box": [
+                344,
+                362,
+                822,
+                540
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "up-j",
+              "name": "지상 ↑J",
+              "input": "↑J",
+              "duration": 0.533,
+              "frames": 16,
+              "files": {
+                "fx": "rio/up-j-fx.webp",
+                "nofx": "rio/up-j-nofx.webp"
+              },
+              "rows": [
+                "rising_slash"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                289,
+                202,
+                414,
+                456
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "down-j",
+              "name": "지상 ↓J",
+              "input": "↓J",
+              "duration": 0.533,
+              "frames": 16,
+              "files": {
+                "fx": "rio/down-j-fx.webp",
+                "nofx": "rio/down-j-nofx.webp"
+              },
+              "rows": [
+                "low_sweep"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                337,
+                316,
+                622,
+                512
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "air-j",
+              "name": "공중 J",
+              "input": "공중 J",
+              "duration": 0.567,
+              "frames": 17,
+              "files": {
+                "fx": "rio/air-j-fx.webp",
+                "nofx": "rio/air-j-nofx.webp"
+              },
+              "rows": [
+                "air_slash"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                345,
+                102,
+                634,
+                236
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "air-up-j",
+              "name": "공중 ↑J",
+              "input": "공중 ↑J",
+              "duration": 0.867,
+              "frames": 26,
+              "files": {
+                "fx": "rio/air-up-j-fx.webp",
+                "nofx": "rio/air-up-j-nofx.webp"
+              },
+              "rows": [
+                "rising_slash"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                289,
+                0,
+                403,
+                186
+              ]
+            },
+            {
+              "group": "j",
+              "form": "rio",
+              "move": "air-down-j",
+              "name": "공중 ↓J",
+              "input": "공중 ↓J",
+              "duration": 1.667,
+              "frames": 50,
+              "files": {
+                "fx": "rio/air-down-j-fx.webp",
+                "nofx": "rio/air-down-j-nofx.webp"
+              },
+              "rows": [
+                "plunge"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 7,
+              "fx_difference_box": [
+                248,
+                246,
+                524,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "rio",
+              "move": "guard",
+              "name": "방어·패리",
+              "input": "Guard",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "rio/guard-fx.webp",
+                "nofx": "rio/guard-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 50,
+              "fx_difference_box": [
+                228,
+                293,
+                467,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "rio",
+              "move": "rune",
+              "name": "룬 방패·반격",
+              "input": "L",
+              "duration": 1.733,
+              "frames": 52,
+              "files": {
+                "fx": "rio/rune-fx.webp",
+                "nofx": "rio/rune-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 29,
+              "fx_difference_box": [
+                185,
+                204,
+                703,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "rio",
+              "move": "ultimate",
+              "name": "인피니티 오버드라이브",
+              "input": "I",
+              "duration": 1.733,
+              "frames": 52,
+              "files": {
+                "fx": "rio/ultimate-fx.webp",
+                "nofx": "rio/ultimate-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.45,
+              "fx_diff": true,
+              "fx_changed_frames": 44,
+              "fx_difference_box": [
+                204,
+                232,
+                686,
+                540
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yuki",
+      "name": "Yuki",
+      "forms": [
+        {
+          "body": "",
+          "base": {
+            "file": "sheets/yuki/yuki_sheet.png",
+            "cell": 128,
+            "feet": 120,
+            "rows": [
+              {
+                "name": "idle",
+                "frames": 6,
+                "fps": 6.3,
+                "loop": true,
+                "start": 0,
+                "label": "대기",
+                "candidates": []
+              },
+              {
+                "name": "walk",
+                "frames": 8,
+                "fps": 9.98,
+                "loop": true,
+                "start": 1,
+                "label": "걷기",
+                "candidates": [],
+                "drawnFps": 13.3
+              },
+              {
+                "name": "jump",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 3,
+                "label": "점프",
+                "candidates": []
+              },
+              {
+                "name": "fall",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 4,
+                "label": "낙하",
+                "candidates": []
+              },
+              {
+                "name": "attack",
+                "frames": 6,
+                "fps": 21.38,
+                "loop": false,
+                "start": 5,
+                "label": "공격 (예비 줄)",
+                "candidates": [],
+                "drawnFps": 28.5
+              },
+              {
+                "name": "shield",
+                "frames": 6,
+                "fps": 9.6,
+                "loop": false,
+                "start": 6,
+                "label": "방어",
+                "candidates": [],
+                "drawnFps": 12
+              },
+              {
+                "name": "hurt",
+                "frames": 1,
+                "fps": 1,
+                "loop": false,
+                "start": 7,
+                "label": "피격",
+                "candidates": []
+              }
+            ]
+          },
+          "moves": {
+            "file": "sheets/yuki/yuki_moves_sheet.png",
+            "cell": 192,
+            "feet": 152,
+            "rows": [
+              {
+                "name": "talisman_side",
+                "frames": 6,
+                "fps": 19.95,
+                "loop": false,
+                "start": 0,
+                "label": "neutral/side J: a quick straight throw",
+                "candidates": [],
+                "drawnFps": 28.5
+              },
+              {
+                "name": "talisman_up",
+                "frames": 6,
+                "fps": 17.5,
+                "loop": false,
+                "start": 1,
+                "label": "up/air-up J",
+                "candidates": [],
+                "drawnFps": 25
+              },
+              {
+                "name": "ground_ward",
+                "frames": 6,
+                "fps": 17.33,
+                "loop": false,
+                "start": 2,
+                "label": "down J: slaps a talisman on the ground",
+                "candidates": [],
+                "drawnFps": 23.1
+              },
+              {
+                "name": "talisman_air_side",
+                "frames": 6,
+                "fps": 23.31,
+                "loop": false,
+                "start": 3,
+                "label": "air-side J",
+                "candidates": [],
+                "drawnFps": 33.3
+              },
+              {
+                "name": "talisman_air_down",
+                "frames": 6,
+                "fps": 16.65,
+                "loop": false,
+                "start": 4,
+                "label": "air-down J",
+                "candidates": [],
+                "drawnFps": 22.2
+              },
+              {
+                "name": "seal_place",
+                "frames": 6,
+                "fps": 14.02,
+                "loop": false,
+                "start": 5,
+                "label": "K: places a binding seal",
+                "candidates": [],
+                "drawnFps": 18.7
+              },
+              {
+                "name": "seal_activate",
+                "frames": 6,
+                "fps": 12.48,
+                "loop": false,
+                "start": 6,
+                "label": "L: hand sign, palms out",
+                "candidates": [],
+                "drawnFps": 19.2
+              },
+              {
+                "name": "grand_ward",
+                "frames": 6,
+                "fps": 6.31,
+                "loop": false,
+                "start": 7,
+                "label": "I: the Four-Direction Grand Ward ritual",
+                "candidates": [],
+                "drawnFps": 9.7
+              },
+              {
+                "name": "tumble",
+                "frames": 6,
+                "fps": 21,
+                "loop": true,
+                "start": 8,
+                "label": "**new** strong-launch hitstun (before: the hurt frame)",
+                "candidates": []
+              },
+              {
+                "name": "defeat",
+                "frames": 6,
+                "fps": 10,
+                "loop": false,
+                "start": null,
+                "newRow": true,
+                "label": "새 줄 — 게임에 아직 없음",
+                "candidates": [
+                  {
+                    "file": "bakeoff/yuki/yuki-defeat-v1.png",
+                    "version": "v1",
+                    "note": "피격 반동에서 뒤로 넘어져 옆으로 누운 채 멈추는 Yuki 패배 모션 후보입니다.",
+                    "fps": 10,
+                    "frames": 6,
+                    "cell": 192,
+                    "feet": 152,
+                    "loop": null
+                  }
+                ]
+              }
+            ]
+          },
+          "clips": [
+            {
+              "group": "j",
+              "form": "yuki",
+              "move": "ground-j",
+              "name": "지상 J",
+              "input": "J",
+              "duration": 0.533,
+              "frames": 16,
+              "files": {
+                "fx": "yuki/ground-j-fx.webp",
+                "nofx": "yuki/ground-j-nofx.webp"
+              },
+              "rows": [
+                "talisman_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 11,
+              "fx_difference_box": [
+                393,
+                435,
+                960,
+                484
+              ]
+            },
+            {
+              "group": "j",
+              "form": "yuki",
+              "move": "up-j",
+              "name": "지상 ↑J",
+              "input": "↑J",
+              "duration": 0.6,
+              "frames": 18,
+              "files": {
+                "fx": "yuki/up-j-fx.webp",
+                "nofx": "yuki/up-j-nofx.webp"
+              },
+              "rows": [
+                "talisman_up"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 13,
+              "fx_difference_box": [
+                276,
+                43,
+                449,
+                392
+              ]
+            },
+            {
+              "group": "j",
+              "form": "yuki",
+              "move": "down-j",
+              "name": "지상 ↓J",
+              "input": "↓J",
+              "duration": 0.633,
+              "frames": 19,
+              "files": {
+                "fx": "yuki/down-j-fx.webp",
+                "nofx": "yuki/down-j-nofx.webp"
+              },
+              "rows": [
+                "ground_ward"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 7,
+              "fx_difference_box": [
+                340,
+                404,
+                597,
+                503
+              ]
+            },
+            {
+              "group": "j",
+              "form": "yuki",
+              "move": "air-j",
+              "name": "공중 J",
+              "input": "공중 J",
+              "duration": 0.567,
+              "frames": 17,
+              "files": {
+                "fx": "yuki/air-j-fx.webp",
+                "nofx": "yuki/air-j-nofx.webp"
+              },
+              "rows": [
+                "talisman_air_side"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 9,
+              "fx_difference_box": [
+                383,
+                155,
+                960,
+                204
+              ]
+            },
+            {
+              "group": "j",
+              "form": "yuki",
+              "move": "air-up-j",
+              "name": "공중 ↑J",
+              "input": "공중 ↑J",
+              "duration": 0.6,
+              "frames": 18,
+              "files": {
+                "fx": "yuki/air-up-j-fx.webp",
+                "nofx": "yuki/air-up-j-nofx.webp"
+              },
+              "rows": [
+                "talisman_up"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 5,
+              "fx_difference_box": [
+                320,
+                0,
+                375,
+                145
+              ]
+            },
+            {
+              "group": "j",
+              "form": "yuki",
+              "move": "air-down-j",
+              "name": "공중 ↓J",
+              "input": "공중 ↓J",
+              "duration": 0.633,
+              "frames": 19,
+              "files": {
+                "fx": "yuki/air-down-j-fx.webp",
+                "nofx": "yuki/air-down-j-nofx.webp"
+              },
+              "rows": [
+                "talisman_air_down"
+              ],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 9,
+              "fx_difference_box": [
+                260,
+                275,
+                412,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "yuki",
+              "move": "guard",
+              "name": "방어·패리",
+              "input": "Guard",
+              "duration": 1.933,
+              "frames": 58,
+              "files": {
+                "fx": "yuki/guard-fx.webp",
+                "nofx": "yuki/guard-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.8,
+              "fx_diff": true,
+              "fx_changed_frames": 50,
+              "fx_difference_box": [
+                228,
+                293,
+                467,
+                540
+              ]
+            },
+            {
+              "group": "around",
+              "form": "yuki",
+              "move": "seals",
+              "name": "봉인부 2개·파괴",
+              "input": "K · K",
+              "duration": 2.733,
+              "frames": 82,
+              "files": {
+                "fx": "yuki/seals-fx.webp",
+                "nofx": "yuki/seals-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.55,
+              "fx_diff": true,
+              "fx_changed_frames": 69,
+              "fx_difference_box": [
+                50,
+                327,
+                663,
+                529
+              ]
+            },
+            {
+              "group": "around",
+              "form": "yuki",
+              "move": "ultimate",
+              "name": "대결계",
+              "input": "I",
+              "duration": 4.2,
+              "frames": 126,
+              "files": {
+                "fx": "yuki/ultimate-fx.webp",
+                "nofx": "yuki/ultimate-nofx.webp"
+              },
+              "rows": [],
+              "size": [
+                960,
+                540
+              ],
+              "zoom": 1.05,
+              "fx_diff": true,
+              "fx_changed_frames": 118,
+              "fx_difference_box": [
+                296,
+                53,
+                960,
+                540
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "monsters": [
+    {
+      "id": "alfheim_moon_moth",
+      "realm": "Alfheim",
+      "name": "moon moth",
+      "base": {
+        "file": "sheets/monsters/alfheim_moon_moth_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_moth-idle-v1.png",
+                "version": "v1",
+                "note": "두 번째 생성안을 기준으로 고른 대기. 큰 구형 머리와 짧은 날개 비율을 유지.",
+                "fps": 6,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_moth-walk-v1.png",
+                "version": "v1",
+                "note": "날갯짓 이동 반복.",
+                "fps": 10,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "windup",
+            "frames": 4,
+            "fps": 5.714286,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "준비 — 마지막 자세 유지 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_moth-windup-v1.png",
+                "version": "v1",
+                "note": "새 준비 행. 0.7초 동안 네 장을 재생하고 마지막 자세 유지.",
+                "fps": 5.714286,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_moth-attack-v1.png",
+                "version": "v1",
+                "note": "몸 축소 → 작은 몸 → 몸이 된 반짝임 묶음 → 재형성. 알파 페이드 없이 그린 동작.",
+                "fps": 12,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_moth-hurt-v1.png",
+                "version": "v1",
+                "note": "충격 반동과 낮은 회복 자세 두 장.",
+                "fps": 8,
+                "frames": 2,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "defeat",
+            "frames": 4,
+            "fps": 8,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "쓰러짐 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_moth-defeat-v1.png",
+                "version": "v1",
+                "note": "새 쓰러짐 행. 네 번째 그림은 바닥에 누운 자세.",
+                "fps": 8,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "alfheim_moon_stag",
+      "realm": "Alfheim",
+      "name": "moon stag",
+      "base": {
+        "file": "sheets/monsters/alfheim_moon_stag_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_stag-idle-v1.png",
+                "version": "v1",
+                "note": "첫 생성안을 기준으로 고른 대기. 원본의 색·주요 특징을 유지.",
+                "fps": 6,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_stag-walk-v1.png",
+                "version": "v1",
+                "note": "여섯 장 보행 반복. 좌우 발 교대의 선명도는 비교판에서 확인 필요.",
+                "fps": 10,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "windup",
+            "frames": 4,
+            "fps": 7.272727,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "준비 — 마지막 자세 유지 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_stag-windup-v1.png",
+                "version": "v1",
+                "note": "새 준비 행. 0.55초 동안 네 장을 재생하고 마지막 자세 유지.",
+                "fps": 7.272727,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_stag-attack-v1.png",
+                "version": "v1",
+                "note": "웅크림 → 이륙 → 공중 정점 → 하강 → 앞발 착지 → 착지 압축.",
+                "fps": 12,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_stag-hurt-v1.png",
+                "version": "v1",
+                "note": "충격 반동과 낮은 회복 자세 두 장.",
+                "fps": 8,
+                "frames": 2,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "defeat",
+            "frames": 4,
+            "fps": 8,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "쓰러짐 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/alfheim_moon_stag-defeat-v1.png",
+                "version": "v1",
+                "note": "새 쓰러짐 행. 네 번째 그림은 바닥에 누운 자세.",
+                "fps": 8,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "asgard_aegis_ram",
+      "realm": "Asgard",
+      "name": "aegis ram",
+      "base": {
+        "file": "sheets/monsters/asgard_aegis_ram_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_aegis_ram-idle-v1.png",
+                "version": "v1",
+                "note": "첫 생성안을 기준으로 고른 대기. 원본의 색·주요 특징을 유지.",
+                "fps": 6,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_aegis_ram-walk-v1.png",
+                "version": "v1",
+                "note": "여섯 장 보행 반복. 좌우 발 교대의 선명도는 비교판에서 확인 필요.",
+                "fps": 10,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "windup",
+            "frames": 4,
+            "fps": 6.153846,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "준비 — 마지막 자세 유지 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_aegis_ram-windup-v1.png",
+                "version": "v1",
+                "note": "새 준비 행. 0.65초 동안 네 장을 재생하고 마지막 자세 유지.",
+                "fps": 6.153846,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_aegis_ram-attack-v1.png",
+                "version": "v1",
+                "note": "몸을 앞으로 낮춘 달리기 돌진 반복. 후반 세 장에 체공 구간이 있음.",
+                "fps": 12,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_aegis_ram-hurt-v1.png",
+                "version": "v1",
+                "note": "충격 반동과 낮은 회복 자세 두 장.",
+                "fps": 8,
+                "frames": 2,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "defeat",
+            "frames": 4,
+            "fps": 8,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "쓰러짐 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_aegis_ram-defeat-v1.png",
+                "version": "v1",
+                "note": "새 쓰러짐 행. 네 번째 그림은 바닥에 누운 자세.",
+                "fps": 8,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "asgard_runic_raven",
+      "realm": "Asgard",
+      "name": "runic raven",
+      "base": {
+        "file": "sheets/monsters/asgard_runic_raven_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_runic_raven-idle-v1.png",
+                "version": "v1",
+                "note": "첫 생성안을 기준으로 고른 대기. 원본의 색·주요 특징을 유지.",
+                "fps": 6,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_runic_raven-walk-v1.png",
+                "version": "v1",
+                "note": "날갯짓 이동 반복.",
+                "fps": 10,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "windup",
+            "frames": 4,
+            "fps": 6.153846,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "준비 — 마지막 자세 유지 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_runic_raven-windup-v1.png",
+                "version": "v1",
+                "note": "새 준비 행. 0.65초 동안 네 장을 재생하고 마지막 자세 유지.",
+                "fps": 6.153846,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_runic_raven-attack-v1.png",
+                "version": "v1",
+                "note": "날개를 뒤로 접고 오른쪽 아래로 향하는 급강하 반복.",
+                "fps": 12,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_runic_raven-hurt-v1.png",
+                "version": "v1",
+                "note": "충격 반동과 낮은 회복 자세 두 장.",
+                "fps": 8,
+                "frames": 2,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "defeat",
+            "frames": 4,
+            "fps": 8,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "쓰러짐 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/asgard_runic_raven-defeat-v1.png",
+                "version": "v1",
+                "note": "새 쓰러짐 행. 네 번째 그림은 바닥에 누운 자세.",
+                "fps": 8,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ember_imp",
+      "realm": "공용",
+      "name": "ember imp",
+      "base": {
+        "file": "sheets/monsters/ember_imp_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "projectile",
+            "frames": 4,
+            "fps": 12,
+            "loop": true,
+            "start": null,
+            "newRow": true,
+            "label": "projectile · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/ember_imp-projectile-v1.png",
+                "version": "v1",
+                "note": "오른쪽 밝은 불씨와 왼쪽으로 휘는 불꼬리. 꼬리만 흔들리는 반복 후보. 후보 전용이며 게임에는 연결하지 않음.",
+                "fps": 12,
+                "frames": 4,
+                "cell": 48,
+                "feet": null,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/ember_imp-idle-v1.png",
+                "version": "v1",
+                "note": "첫 생성안을 기준으로 고른 대기. 원본의 색·주요 특징을 유지.",
+                "fps": 6,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/ember_imp-walk-v1.png",
+                "version": "v1",
+                "note": "여섯 장 보행 반복. 좌우 발 교대의 선명도는 비교판에서 확인 필요.",
+                "fps": 10,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "windup",
+            "frames": 4,
+            "fps": 8.888889,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "준비 — 마지막 자세 유지 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/ember_imp-windup-v1.png",
+                "version": "v1",
+                "note": "새 준비 행. 0.45초 동안 네 장을 재생하고 마지막 자세 유지.",
+                "fps": 8.888889,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/ember_imp-attack-v1.png",
+                "version": "v1",
+                "note": "손을 뒤로 당겼다가 앞으로 내미는 직사 시전. 빛은 손에 붙어 있고 투사체는 없음.",
+                "fps": 12,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/ember_imp-hurt-v1.png",
+                "version": "v1",
+                "note": "충격 반동과 낮은 회복 자세 두 장.",
+                "fps": 8,
+                "frames": 2,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "defeat",
+            "frames": 4,
+            "fps": 8,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "쓰러짐 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/ember_imp-defeat-v1.png",
+                "version": "v1",
+                "note": "새 쓰러짐 행. 네 번째 그림은 바닥에 누운 자세.",
+                "fps": 8,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "jotunheim_rune_golem",
+      "realm": "Jotunheim",
+      "name": "rune golem",
+      "base": {
+        "file": "sheets/monsters/jotunheim_rune_golem_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "jotunheim_storm_wisp",
+      "realm": "Jotunheim",
+      "name": "storm wisp",
+      "base": {
+        "file": "sheets/monsters/jotunheim_storm_wisp_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "projectile",
+            "frames": 4,
+            "fps": 12,
+            "loop": true,
+            "start": null,
+            "newRow": true,
+            "label": "projectile · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/jotunheim_storm_wisp-projectile-v1.png",
+                "version": "v1",
+                "note": "오른쪽에 모인 청백색 핵과 두 갈래 전기 가지. 가지 모양이 변하는 반복 후보. 후보 전용이며 게임에는 연결하지 않음.",
+                "fps": 12,
+                "frames": 4,
+                "cell": 48,
+                "feet": null,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "midgard_rooftop_slinger",
+      "realm": "Midgard",
+      "name": "rooftop slinger",
+      "base": {
+        "file": "sheets/monsters/midgard_rooftop_slinger_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "projectile",
+            "frames": 4,
+            "fps": 10,
+            "loop": true,
+            "start": null,
+            "newRow": true,
+            "label": "projectile · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/midgard_rooftop_slinger-projectile-v1.png",
+                "version": "v1",
+                "note": "둥근 갈색 돌의 면과 밝은 광맥이 돌아가는 투석 후보. 후보 전용이며 게임에는 연결하지 않음.",
+                "fps": 10,
+                "frames": 4,
+                "cell": 48,
+                "feet": null,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "mossling",
+      "realm": "공용",
+      "name": "mossling",
+      "base": {
+        "file": "sheets/monsters/mossling_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/mossling-idle-v1.png",
+                "version": "v1",
+                "note": "첫 생성안을 기준으로 고른 대기. 원본의 색·주요 특징을 유지.",
+                "fps": 6,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/mossling-walk-v1.png",
+                "version": "v1",
+                "note": "여섯 장 보행 반복. 좌우 발 교대의 선명도는 비교판에서 확인 필요.",
+                "fps": 10,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "windup",
+            "frames": 4,
+            "fps": 12.5,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "준비 — 마지막 자세 유지 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/mossling-windup-v1.png",
+                "version": "v1",
+                "note": "새 준비 행. 0.32초 동안 네 장을 재생하고 마지막 자세 유지.",
+                "fps": 12.5,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/mossling-attack-v1.png",
+                "version": "v1",
+                "note": "앞으로 짧게 뻗으며 턱을 여닫는 물기. 전진 폭은 작음.",
+                "fps": 12,
+                "frames": 6,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/mossling-hurt-v1.png",
+                "version": "v1",
+                "note": "충격 반동과 낮은 회복 자세 두 장.",
+                "fps": 8,
+                "frames": 2,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          },
+          {
+            "name": "defeat",
+            "frames": 4,
+            "fps": 8,
+            "loop": false,
+            "start": null,
+            "newRow": true,
+            "label": "쓰러짐 · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/mossling-defeat-v1.png",
+                "version": "v1",
+                "note": "새 쓰러짐 행. 네 번째 그림은 바닥에 누운 자세.",
+                "fps": 8,
+                "frames": 4,
+                "cell": 96,
+                "feet": 72,
+                "loop": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "muspelheim_magma_boar",
+      "realm": "Muspelheim",
+      "name": "magma boar",
+      "base": {
+        "file": "sheets/monsters/muspelheim_magma_boar_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "niflheim_frost_owl",
+      "realm": "Niflheim",
+      "name": "frost owl",
+      "base": {
+        "file": "sheets/monsters/niflheim_frost_owl_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "projectile",
+            "frames": 4,
+            "fps": 12,
+            "loop": true,
+            "start": null,
+            "newRow": true,
+            "label": "projectile · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/niflheim_frost_owl-projectile-v1.png",
+                "version": "v1",
+                "note": "오른쪽으로 향한 청백색 얼음 촉과 뒤로 흩날리는 서리. 첫 칸 단독 표시 가능. 후보 전용이며 게임에는 연결하지 않음.",
+                "fps": 12,
+                "frames": 4,
+                "cell": 48,
+                "feet": null,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "niflheim_glacier_wolf",
+      "realm": "Niflheim",
+      "name": "glacier wolf",
+      "base": {
+        "file": "sheets/monsters/niflheim_glacier_wolf_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "svartalfheim_cog_drone",
+      "realm": "Svartalfheim",
+      "name": "cog drone",
+      "base": {
+        "file": "sheets/monsters/svartalfheim_cog_drone_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "projectile",
+            "frames": 4,
+            "fps": 12,
+            "loop": true,
+            "start": null,
+            "newRow": true,
+            "label": "projectile · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/svartalfheim_cog_drone-projectile-v1.png",
+                "version": "v1",
+                "note": "검은 철구와 황동 띠, 짧은 불붙은 도화선. 몸 중심을 기준으로 칸마다 90도 회전 보정. 후보 전용이며 게임에는 연결하지 않음.",
+                "fps": 12,
+                "frames": 4,
+                "cell": 48,
+                "feet": null,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "svartalfheim_gear_beetle",
+      "realm": "Svartalfheim",
+      "name": "gear beetle",
+      "base": {
+        "file": "sheets/monsters/svartalfheim_gear_beetle_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "vanaheim_seed_sprite",
+      "realm": "Vanaheim",
+      "name": "seed sprite",
+      "base": {
+        "file": "sheets/monsters/vanaheim_seed_sprite_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "projectile",
+            "frames": 4,
+            "fps": 10,
+            "loop": true,
+            "start": null,
+            "newRow": true,
+            "label": "projectile · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/vanaheim_seed_sprite-projectile-v1.png",
+                "version": "v1",
+                "note": "올리브색 껍질과 청록색 틈, 네 칸 모두 중앙에 보이는 밝은 생명핵. 껍질이 돌아가는 둥근 씨앗 후보. 후보 전용이며 게임에는 연결하지 않음.",
+                "fps": 10,
+                "frames": 4,
+                "cell": 48,
+                "feet": null,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "vanaheim_vine_hound",
+      "realm": "Vanaheim",
+      "name": "vine hound",
+      "base": {
+        "file": "sheets/monsters/vanaheim_vine_hound_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "yggdrasil_root_guardian",
+      "realm": "Yggdrasil",
+      "name": "root guardian",
+      "base": {
+        "file": "sheets/monsters/yggdrasil_root_guardian_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "yggdrasil_root_oracle",
+      "realm": "Yggdrasil",
+      "name": "root oracle",
+      "base": {
+        "file": "sheets/monsters/yggdrasil_root_oracle_sheet.png",
+        "cell": 96,
+        "feet": 72,
+        "rows": [
+          {
+            "name": "projectile",
+            "frames": 4,
+            "fps": 8,
+            "loop": true,
+            "start": null,
+            "newRow": true,
+            "label": "projectile · 새 줄 — 게임에 아직 없음",
+            "candidates": [
+              {
+                "file": "bakeoff/monsters/yggdrasil_root_oracle-projectile-v1.png",
+                "version": "v1",
+                "note": "보라색 껍질과 청록 뿌리띠 안에서 분홍빛 핵이 맥동하는 둥근 유도탄 후보. 후보 전용이며 게임에는 연결하지 않음.",
+                "fps": 8,
+                "frames": 4,
+                "cell": 48,
+                "feet": null,
+                "loop": true
+              }
+            ]
+          },
+          {
+            "name": "idle",
+            "frames": 4,
+            "fps": 6,
+            "loop": true,
+            "start": 0,
+            "label": "대기",
+            "candidates": []
+          },
+          {
+            "name": "walk",
+            "frames": 6,
+            "fps": 10,
+            "loop": true,
+            "start": 1,
+            "label": "이동",
+            "candidates": []
+          },
+          {
+            "name": "attack",
+            "frames": 4,
+            "fps": 12,
+            "loop": false,
+            "start": 2,
+            "label": "공격",
+            "candidates": []
+          },
+          {
+            "name": "hurt",
+            "frames": 1,
+            "fps": 1,
+            "loop": false,
+            "start": 3,
+            "label": "피격",
+            "candidates": []
+          }
+        ]
+      }
+    }
+  ]
+}
