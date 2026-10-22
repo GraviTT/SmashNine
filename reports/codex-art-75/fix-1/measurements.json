@@ -1,0 +1,18 @@
+{
+  "method": "최근접 4배 판에서 직접 표식. 머리는 상투를 포함한 머리카락 위 경계부터 턱 아래 외곽선 끝까지, 어깨는 양쪽 소매 부착부의 바깥 경계 사이 수평 폭(팔·부채·늘어진 소매 제외). 좌표와 크기는 원본 셀 px, 4배 판에서는 각각 4배. 육안 경계 판독 오차 약 ±1px.",
+  "anchor": {"head_top": [70, 32], "chin_bottom": [86, 72], "shoulder_left": [69, 79], "shoulder_right": [91, 78], "head_height": 40, "shoulder_width": 22, "silhouette_height": 89},
+  "before": [
+    {"frame": 1, "head_top": [77, 7], "chin_bottom": [81, 46], "shoulder_left": [64, 51], "shoulder_right": [89, 52], "head_height": 39, "shoulder_width": 25, "head_ratio": 0.975, "shoulder_ratio": 1.136364, "silhouette_height": 101},
+    {"frame": 2, "head_top": [75, 8], "chin_bottom": [80, 47], "shoulder_left": [63, 52], "shoulder_right": [88, 52], "head_height": 39, "shoulder_width": 25, "head_ratio": 0.975, "shoulder_ratio": 1.136364, "silhouette_height": 105}
+  ],
+  "old_relative_scale_intervals": {"head": [0.984615, 1.066667], "shoulder": [0.8448, 0.9152], "intersection": null},
+  "after": [
+    {"frame": 1, "head_top": [65, 27], "chin_bottom": [83, 66], "shoulder_left": [66, 71], "shoulder_right": [88, 72], "head_height": 39, "shoulder_width": 22, "head_ratio": 0.975, "shoulder_ratio": 1.0, "silhouette_height": 86},
+    {"frame": 2, "head_top": [65, 27], "chin_bottom": [83, 66], "shoulder_left": [66, 71], "shoulder_right": [88, 72], "head_height": 39, "shoulder_width": 22, "head_ratio": 0.975, "shoulder_ratio": 1.0, "silhouette_height": 86}
+  ],
+  "factor": 0.137,
+  "generation_count_this_pass": 1,
+  "source": "art/raw/motions-75/yuki-fall-fix-1-gen-1.png",
+  "face": {"eye_ratios": [0.991, 0.993], "width_ratios": [1.0, 1.0], "reviewed_frames": [1, 2], "corrections": "없음. 제안된 눈·얼굴 경계 표식을 4배 판에서 확인."},
+  "visual_review": {"costume_matches_idle": true, "hands_props_boots_intact": true, "one_face_each": true, "no_effects_text": true, "motion": "두 발이 떠 있고 머리카락·붉은 천 끝이 미세하게 달라지는 낙하 루프. 새 몸통·다리는 idle처럼 짧게 유지. 실제 8fps 재생 검수는 하지 않음."}
+}
