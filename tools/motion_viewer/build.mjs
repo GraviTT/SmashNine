@@ -121,7 +121,7 @@ function candidatesFor(stem, row) {
 		// Adopted candidates are the game's art now (json "adopted": date); they leave the viewer.
 		if (meta.adopted) return [];
 		const rel = relative(bakeoffRoot, path).replaceAll("\\", "/");
-		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, frames: Number(meta.frames) || null, cell: Number(meta.cell) || null, feet: Number(meta.feet) || null, source: path }];
+		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, frames: Number(meta.frames) || null, cell: Number(meta.cell) || null, feet: Number(meta.feet) || null, loop: typeof meta.loop === "boolean" ? meta.loop : null, source: path }];
 	}).sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
 }
 
@@ -208,11 +208,25 @@ for (const f of readdirSync(join(art, "monsters")).filter((f) => f.endsWith("_sh
 	const id = f.replace(/_sheet\.png$/, "");
 	const [realm, ...rest] = id.split("_");
 	const generic = id === "mossling" || id === "ember_imp";
+	const labels = { idle: "대기", walk: "이동", windup: "준비 — 마지막 자세 유지", attack: "공격", hurt: "피격", defeat: "쓰러짐" };
+	const base = sheet(`monsters/${f}`, monsterRows, labels, 96, 72, id);
+	const known = new Set(base.rows.map((r) => r.name));
+	const extraRows = newRowNames(id, known).sort((a, b) => ["windup", "defeat"].indexOf(a) - ["windup", "defeat"].indexOf(b));
+	for (const row of extraRows) {
+		const candidates = candidatesFor(id, row);
+		if (!candidates.length) continue;
+		candidateCopies.push(...candidates);
+		const first = candidates[0];
+		base.rows.push({ name: row, frames: first.frames || 4, fps: first.fps || 8, loop: first.loop ?? false, start: null, newRow: true, label: `${labels[row] || row} · 새 줄 — 게임에 아직 없음`, candidates: candidates.map(({ source, ...item }) => item) });
+	}
+	// Keep the game's physical row indices, but display anticipation before the action.
+	const displayOrder = ["idle", "walk", "windup", "attack", "hurt", "defeat"];
+	base.rows.sort((a, b) => displayOrder.indexOf(a.name) - displayOrder.indexOf(b.name));
 	monsters.push({
 		id,
 		realm: generic ? "공용" : realm[0].toUpperCase() + realm.slice(1),
 		name: (generic ? id : rest.join(" ")).replace(/_/g, " "),
-		base: sheet(`monsters/${f}`, monsterRows, { idle: "대기", walk: "걷기", attack: "공격", hurt: "피격" }, 96, 72),
+		base,
 	});
 }
 
@@ -251,7 +265,12 @@ for (const clip of clipManifest.clips || []) {
 		clipCopies.push(`clips-new/${clip.newFx.replaceAll("\\", "/")}`);
 	}
 }
-const html = read(join(here, "index.html")).replace("/*MANIFEST*/null", JSON.stringify(manifest));
+// Candidate attack loops may differ from the old game's once-only attack. This card
+// owns build.mjs only: extend the emitted viewer without modifying its source template.
+const variantTiming = "frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps";
+const template = read(join(here, "index.html"));
+if (!template.includes(variantTiming)) throw new Error("viewer candidate timing template changed; check loop override");
+const html = template.replace(variantTiming, `${variantTiming}, loop: candidate.loop ?? a.row.loop`).replace("/*MANIFEST*/null", JSON.stringify(manifest));
 writeFileSync(join(dist, "index.html"), html);
 const published = [...sheets.map((rel) => `sheets/${rel}`), ...new Set(candidateCopies.map((item) => item.file)), ...new Set(clipCopies)];
 writeFileSync(join(dist, "files.json"), JSON.stringify(published.map((path) => ({ path }))));
