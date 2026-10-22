@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "checks": [
+    "72 effect cards, 2 music cards, 222 candidates; DB controls hidden without claude/db",
+    "Every SFX is external only; copied WAVs exactly match sources; all IDs have event notes",
+    "Music is external only; every music sidecar byte matches the source and all files are listed once in files.json",
+    "Per-sound whole playback: A -> 180 ms gap -> B -> 180 ms gap -> C",
+    "New playback cancels previous audio; live volume updates; Stop clears audio and playing marker",
+    "Stop during A/B/C gap prevents later sounds from starting",
+    "Audio error ends sequence and exposes a Korean retry message",
+    "Music sidecar playback, default looping, live loop on/off, per-card isolation, candidate Stop, music/SFX mutual interruption and missing sidecar errors",
+    "DB snapshot restores choice/note/badge; unrelated snapshots preserve unsaved note edits",
+    "Adopt writes exactly sound/style/note/adopted_at to sound_picks/<sound>, and allows replacement",
+    "Music adoption uses exact music_title / music_battle document IDs in sound_picks; music snapshots restore style and memo",
+    "Failed save remains retryable; DB subscription failure hides all adoption controls",
+    "Rejected claude.use('db') safely falls back to local listening mode",
+    "Phone-width CSS breakpoint present (structural check only, not rendered layout verification)",
+    "Global A/B/C switch updates all 72 SFX panels; compare reveals all candidates without changing individual picks",
+    "Group filter, ID search, empty results, filtered selected-style playback and complete 72-effect same-style sequence",
+    "sound_picks/style exact two-field write, snapshot restore, unsaved style/note preservation, no per-sound writes, retry and DB-loss fallback",
+    "Publish parts exactly cover sidecars once; real and synthetic >250-file / >60MB boundaries include HTML overhead; oversized file rejects",
+    "Music discovery reads all AUD-02* reports, accepts additional tracks and prefers full AUD-02 over duplicated trial IDs"
+  ],
+  "method": "Node vm with DOM, Audio and Artifact DB test doubles; exact WAV byte comparisons",
+  "limitations": [
+    "Browser origin approval denied access to http://127.0.0.1:8077; actual screen layout and audio playback were not exercised",
+    "Hosted claude db API not exercised; follows motion viewer API pattern"
+  ]
+}

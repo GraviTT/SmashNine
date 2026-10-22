@@ -8,23 +8,27 @@
 <style>
 :root{font-family:Inter,"Segoe UI","Malgun Gothic",sans-serif;color:#e9eef8;background:#0b101b;font-synthesis:none;--muted:#9baac1;--line:#2a354a;--a:#83e2c3;--b:#bcadff;--c:#ffc38c}*{box-sizing:border-box}body{margin:0}button,input,textarea{font:inherit}button{cursor:pointer;border:1px solid #3b4962;border-radius:9px;padding:10px 14px;color:#e9eef8;background:#202d43;min-height:44px}button:hover{background:#2b3a55}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #83e2c3;outline-offset:3px}button:disabled{opacity:.5;cursor:wait}button[hidden],[hidden]{display:none!important}main{max-width:1120px;margin:auto;padding:48px 28px 80px}.eyebrow{font-size:12px;color:var(--a);letter-spacing:.16em;font-weight:700}h1{font-size:clamp(28px,5vw,44px);letter-spacing:-.04em;margin:12px 0}p{line-height:1.65;color:var(--muted)}.intro{max-width:700px}.stats{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.pill{font-size:12px;border:1px solid var(--line);border-radius:20px;padding:7px 12px;color:#b8c5d9}.toolbar{position:sticky;top:0;z-index:5;display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:16px 0;background:#0b101bf5;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:28px 0 12px}.volume{display:flex;align-items:center;gap:10px;font-size:13px;color:#b8c5d9}.volume input{width:100px;accent-color:var(--a)}#status{font-size:13px;color:var(--a);flex:1;min-width:180px}.db-note{font-size:12px;margin:12px 0 30px}.sound{background:#121b2b;border:1px solid var(--line);border-radius:16px;padding:22px;margin:18px 0}.sound-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}.heading{display:flex;gap:13px;align-items:center;min-width:0}.number{font-size:12px;font-variant-numeric:tabular-nums;color:#7890ad;border:1px solid var(--line);padding:6px;border-radius:6px}h2{font-size:19px;margin:0 0 5px;letter-spacing:-.025em}.id{font-family:Consolas,monospace;color:var(--muted);font-size:12px}.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.candidate{min-width:0;border:1px solid #303d54;border-radius:12px;padding:16px;position:relative;background:#172134}.candidate[data-style=a]{--accent:var(--a)}.candidate[data-style=b]{--accent:var(--b)}.candidate[data-style=c]{--accent:var(--c)}.candidate.playing{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.style-title{font-size:14px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:8px;margin-bottom:12px}.style-letter{display:inline-grid;place-items:center;border:1px solid var(--accent);border-radius:5px;width:23px;height:23px;font-size:12px}.candidate p{font-size:12px;margin:12px 0;min-height:40px}.candidate .play{width:100%;background:#23314a}.meta{font-size:11px;line-height:1.9;color:#a9b8ce;font-variant-numeric:tabular-nums}.pick-radio{display:flex;align-items:center;gap:8px;font-size:12px;margin-top:12px;min-height:32px;color:#c8d5e8;cursor:pointer}.pick-radio input{accent-color:var(--accent);width:16px;height:16px}.adopted-label{font-size:11px;color:var(--accent);margin-left:auto}.adoption{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:15px;padding-top:15px;border-top:1px solid var(--line)}.adoption label{font-size:12px;color:#a9b8ce;flex:1;min-width:180px}.adoption input{display:block;width:100%;background:#0d1523;border:1px solid var(--line);color:#e9eef8;padding:9px;border-radius:7px;margin-top:6px}.adoption button{border-color:#5d9d8c;background:#203e3b}.adopt-status{font-size:12px;color:var(--a);width:100%;min-height:16px}.footer{font-size:12px;margin-top:28px}a{color:var(--a)}@media(max-width:640px){main{padding:28px 16px 48px}.trio{grid-template-columns:1fr}.candidate p{min-height:0}.sound{padding:16px}.sound-head{align-items:flex-start}.sound-head button{font-size:12px;padding:10px;white-space:nowrap}h2{font-size:17px}.toolbar{gap:10px}.meta{font-size:12px}.number{display:none}.adoption button{width:100%}}@media(prefers-reduced-motion:no-preference){button,.candidate{transition:background .15s,border-color .15s}}
 </style>
-<style>.volume input[type=checkbox]{width:18px;height:18px}.loop-control{white-space:nowrap}</style>
+<style>.volume input[type=checkbox]{width:18px;height:18px}.loop-control{white-space:nowrap}
+.style-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:20px 0}.style-controls button[aria-pressed=true]{border-color:var(--a);background:#203e3b}.filters{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}.filters input,.filters select,#styleNote{background:#121b2b;color:#e9eef8;border:1px solid var(--line);border-radius:8px;padding:10px;max-width:100%}.filters input{flex:1;min-width:180px}.when{font-size:13px;margin:0 0 15px}.group-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:26px 0 10px}.group-head h3{font-size:23px;margin:0}.sound:not(.compare) .trio{grid-template-columns:1fr}.sound:not(.compare) .candidate p{min-height:0}.style-save{padding:14px;border:1px solid var(--line);border-radius:10px}.compare-label{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}.group-count{color:var(--muted);font-size:13px}details.music-area{margin-top:36px}summary{cursor:pointer;font-size:22px;min-height:44px}.style-save input{width:280px}.style-save button{margin:6px}.sound:not(.compare) .candidate{padding:12px 16px}.sound:not(.compare) .play{width:auto;min-width:160px}
+</style>
 </head>
 <body>
 <main>
 <header>
-<div class="eyebrow">SMASH NINE REALMS / SOUND STUDY 01 + MUSIC STUDY 02</div>
-<h1>첫 소리, 세 가지 질감.</h1>
+<div class="eyebrow">SMASH NINE REALMS / ORIGINAL AUDIO CANDIDATES</div>
+<h1>아홉 세계의 소리, 세 가지 질감.</h1>
 <p class="intro">짧고 선명한 칩튠, 둥근 16비트 울림, 묵직한 아케이드 레이어.<br>각 곡과 동작의 A · B · C를 들어 보고, 마음에 드는 소리를 골라 주세요.</p>
-<div class="stats"><span class="pill">12개 동작 · 36개 효과음</span><span class="pill">타이틀·전투 · 6개 음악</span><span class="pill">직접 합성한 오리지널 사운드</span></div>
+<div class="stats" id="stats"></div>
 </header>
+<div class="style-controls" id="styleControls" role="group" aria-label="전체 효과음 스타일"></div>
+<p>맨 위 A / B / C는 모든 효과음의 재생 스타일을 바꿉니다. 개별 채택 기록은 그대로 유지됩니다.</p>
+<div class="style-save" id="styleAdoption" hidden><label>전체 스타일 메모 <input id="styleNote" maxlength="300" aria-label="전체 스타일 메모"></label><button id="styleAdopt" type="button">현재 스타일 채택</button><span id="styleStatus" role="status"></span></div>
 <div class="toolbar"><button id="stop" type="button">■ 정지</button><label class="volume">재생 음량 <input id="volume" aria-label="재생 음량" type="range" min="0" max="100" value="65"><output id="volumeValue">65%</output></label><div id="status" role="status" aria-live="polite">재생할 소리를 선택하세요.</div></div>
 <p class="db-note" id="dbNote">로컬 청음 모드 · 채택 저장은 데이터베이스가 연결된 Artifact에서 사용할 수 있습니다.</p>
-<h2>음악</h2>
-<p>이그드라실의 6음 모티프가 타이틀에서 전투로 이어집니다. A · B · C의 편곡을 비교해 주세요.<br>반복을 끄면 현재 한 바퀴를 마친 뒤 멈춥니다.</p>
-<div id="music"></div>
 <h2>효과음</h2>
+<div class="filters"><label>그룹 <select id="groupFilter" aria-label="효과음 그룹"></select></label><input id="search" type="search" placeholder="이름·ID·재생 상황 검색" aria-label="효과음 검색"><label class="compare-label"><input id="compare" type="checkbox">A/B/C 나란히 비교</label></div>
 <div id="sounds"></div>
+<details class="music-area"><summary>음악 후보</summary><p>음악 보고서에서 읽어 온 모든 곡입니다. 반복을 끄면 현재 한 바퀴를 마친 뒤 멈춥니다. 전체 스타일 전환은 효과음에 적용됩니다.</p><div id="music"></div></details>
 <p class="footer">후보 비교판 · 아직 게임에 반영되지 않았습니다. 표기 음량은 파일 자체의 dBFS 값입니다.<br>RMS는 평균 에너지 기준이며, 실제 체감 음량과 타격감은 직접 청음해 판단해 주세요.</p>
 </main>
 <script>
@@ -38,6 +42,9 @@ const dirtyNotes = new Set();
 const saving = new Set();
 const cards = new Map();
 const musicLoops = new Map();
+const groups = new Map(), styleButtons = new Map();
+const GROUP_NAMES={Fighters:"선수",Skills:"기술·궁극기",Monsters:"몬스터",Realms:"렐름",Progress:"성장·진행","Menus/story":"메뉴·스토리"};
+let activeStyle="a", styleDraft=false, styleNoteDirty=false, styleSaving=false;
 let soundDb = null, playbackToken = 0, player = null, settlePlayback = null, playingCandidate = null;
 
 function node(tag, className, text) {
@@ -58,7 +65,7 @@ function stopPlayback(announce = true) {
 async function playOne(candidate, token) {
     if (token !== playbackToken) return false;
     const ui = cards.get(candidate.sound).candidates.get(candidate.style);
-    const audio = new Audio(candidate.data || candidate.file);
+    const audio = new Audio(candidate.file);
     player = audio;
     playingCandidate = candidate;
     audio.loop = candidate.track ? musicLoops.get(candidate.sound).checked : false;
@@ -92,7 +99,51 @@ async function playQueue(candidates) {
     say("재생 완료 · 다른 후보와 비교해 보세요.");
 }
 
+function setStyle(style, user=true) {
+    if (!["a","b","c"].includes(style)) return;
+    if (user) { styleDraft=true; stopPlayback(false); }
+    activeStyle=style;
+    for (const [key,button] of styleButtons) button.setAttribute("aria-pressed",String(key===style));
+    for (const sound of M.sounds) {
+        const ui=cards.get(sound.id);
+        for (const [key,panel] of ui.candidates) panel.hidden=!$("compare").checked && key!==style;
+        if ($("compare").checked) ui.card.classList.add("compare"); else ui.card.classList.remove("compare");
+    }
+    refreshStyle();
+}
+function playStyle(group) {
+    const list=M.sounds.filter(s=>(!group||s.group===group)&&!cards.get(s.id).card.hidden&&!groups.get(s.group).section.hidden)
+        .map(s=>s.candidates.find(c=>c.style===activeStyle));
+    return playQueue(list);
+}
+function filterSounds() {
+    const query=$("search").value.trim().toLowerCase(), filter=$("groupFilter").value;
+    for (const sound of M.sounds) cards.get(sound.id).card.hidden=Boolean(query&&!`${sound.id} ${sound.label} ${sound.when_ko}`.toLowerCase().includes(query));
+    let count=0;
+    for (const [group,ui] of groups) {
+        const n=M.sounds.filter(s=>s.group===group&&!cards.get(s.id).card.hidden).length;
+        ui.section.hidden=Boolean((filter&&filter!==group)||!n); ui.count.textContent=`${n}종`;
+        if (!ui.section.hidden) count+=n;
+    }
+    $("filterStatus").textContent=count?`${count}종 표시 중`:"검색 결과가 없습니다.";
+}
 function render() {
+    $("stats").append(node("span","pill",`${M.sounds.length}종 · ${M.sounds.length*3}개 효과음`),node("span","pill",`${M.music.length}곡 · ${M.music.length*3}개 음악`),node("span","pill","직접 합성한 오리지널 후보"));
+    for (const style of ["a","b","c"]) {
+        const button=node("button","",`${style.toUpperCase()} · ${STYLE_NAMES[style]}`); button.type="button";
+        button.addEventListener("click",()=>setStyle(style)); styleButtons.set(style,button); $("styleControls").append(button);
+    }
+    const listen=node("button","","▶ 표시한 효과음 이어듣기");listen.type="button";listen.addEventListener("click",()=>playStyle());$("styleControls").append(listen);
+    const allOption=node("option","","모든 그룹");allOption.value="";$("groupFilter").append(allOption);
+    for (const group of M.groups) {
+        const option=node("option","",GROUP_NAMES[group]);option.value=group;$("groupFilter").append(option);
+        const section=node("section","sound-group"),head=node("div","group-head"),count=node("span","group-count"),body=node("div");
+        head.append(node("h3","",GROUP_NAMES[group]),count);
+        const play=node("button","","▶ 이 그룹 이어듣기");play.type="button";play.addEventListener("click",()=>playStyle(group));head.append(play);
+        section.append(head,body);$("sounds").append(section);groups.set(group,{section,body,count});
+    }
+    const filterStatus=node("p","group-count");filterStatus.id="filterStatus";filterStatus.setAttribute("role","status");$("sounds").append(filterStatus);
+    $("groupFilter").value="Fighters";
     for (const [index, sound] of [...M.music, ...M.sounds].entries()) {
         const isMusic = sound.id.startsWith("music_");
         const card = node("section", "sound"); card.id = sound.id;
@@ -101,7 +152,7 @@ function render() {
         heading.append(node("span", "number", String(index + 1 - (isMusic?0:M.music.length)).padStart(2,"0")));
         const titles = node("div"); titles.append(node("h2", "", sound.label),node("div", "id", sound.id));
         heading.append(titles);
-        const all = node("button", "", "▶ 전체 재생"); all.type = "button";
+        const all = node("button", "", "▶ A → B → C 비교"); all.type = "button";
         all.setAttribute("aria-label", `${sound.label} A B C 전체 재생`);
         all.addEventListener("click", () => playQueue(sound.candidates));
         head.append(heading);
@@ -114,7 +165,7 @@ function render() {
             });
             musicLoops.set(sound.id,loop); loopLabel.append(loop); head.append(loopLabel);
         } else head.append(all);
-        card.append(head);
+        card.append(head,node("p","when",sound.when_ko));
         const trio = node("div", "trio"); trio.setAttribute("role","radiogroup"); trio.setAttribute("aria-label", `${sound.label} 스타일 선택`);
         const candidates = new Map(), radios = new Map();
         for (const c of sound.candidates) {
@@ -128,7 +179,7 @@ function render() {
                 const stop = node("button", "play", "■ 정지"); stop.type="button";
                 stop.setAttribute("aria-label", `${sound.label} ${c.style.toUpperCase()} 정지`);
                 stop.addEventListener("click", () => stopPlayback());
-                panel.append(stop,node("div","meta",`${c.bpm} BPM · D 도리안 · ${c.bars}마디 · ${c.channels===1?"모노":"스테레오"}`));
+                panel.append(stop,node("div","meta",`${c.bpm} BPM · ${c.mode||""} · ${c.bars}마디 · ${c.channels===1?"모노":"스테레오"}`));
             }
             const label = node("label", "pick-radio");
             const radio = node("input"); radio.type="radio"; radio.name=`pick-${sound.id}`; radio.value=c.style;
@@ -147,8 +198,30 @@ function render() {
         const status = node("div","adopt-status"); status.setAttribute("role","status");
         adoption.append(noteLabel,adopt,status); card.append(adoption);
         cards.set(sound.id,{card,candidates,radios,adoption,note,adopt,status});
-        $(isMusic?"music":"sounds").append(card);
+        (isMusic?$("music"):groups.get(sound.group).body).append(card);
     }
+    setStyle(activeStyle,false); filterSounds();
+}
+function refreshStyle() {
+    const saved=records.get("style");
+    $("styleAdoption").hidden=!soundDb;
+    $("styleAdopt").disabled=!soundDb||styleSaving;
+    $("styleAdopt").textContent=`${activeStyle.toUpperCase()} 전체 스타일 채택`;
+    $("styleStatus").textContent=saved?`${saved.style.toUpperCase()} 채택됨 · 게임 반영 전`:"전체 스타일 채택 기록 없음";
+}
+async function adoptStyle() {
+    if (!soundDb||styleSaving) return;
+    styleSaving=true;refreshStyle();
+    const style=activeStyle,note=$("styleNote").value.trim();
+    try {
+        const value={style,note};
+        await soundDb.collection("sound_picks").doc("style").set(value);
+        records.set("style",value);
+        if(activeStyle===style)styleDraft=false;
+        if($("styleNote").value.trim()===note)styleNoteDirty=false;
+        refreshStyle();
+    } catch { $("styleStatus").textContent="저장하지 못했습니다. 채택 버튼을 다시 눌러 주세요."; }
+    finally { styleSaving=false;$("styleAdopt").disabled=!soundDb; }
 }
 function refreshCard(id) {
     const ui=cards.get(id), saved=records.get(id), selected=drafts.get(id) || saved?.style;
@@ -169,16 +242,22 @@ async function connectDb() {
             for (const doc of snap.docs) {
                 if (!doc.exists) continue;
                 const value=doc.data();
+                if (doc.id==="style" && ["a","b","c"].includes(value.style)) records.set("style",value);
                 if (cards.has(doc.id) && value.sound === doc.id && ["a","b","c"].includes(value.style)) records.set(doc.id,value);
             }
             for (const [id,ui] of cards) {
                 if (!dirtyNotes.has(id) && document.activeElement !== ui.note) ui.note.value=records.get(id)?.note || "";
                 refreshCard(id);
             }
+            const savedStyle=records.get("style");
+            if(savedStyle&&!styleDraft)setStyle(savedStyle.style,false);
+            if(!styleNoteDirty&&document.activeElement!==$("styleNote"))$("styleNote").value=savedStyle?.note||"";
+            refreshStyle();
         }, () => disconnectDb());
         if (soundDb) {
             $("dbNote").textContent="채택 저장 연결됨 · 곡·동작마다 스타일을 선택한 뒤 채택하세요. 선택은 언제든 다시 바꿀 수 있습니다.";
             for (const id of cards.keys()) refreshCard(id);
+            refreshStyle();
         }
     } catch { disconnectDb(); }
 }
@@ -186,6 +265,7 @@ function disconnectDb() {
     soundDb=null;
     $("dbNote").textContent="로컬 청음 모드 · 채택 저장은 데이터베이스가 연결된 Artifact에서 사용할 수 있습니다.";
     for (const id of cards.keys()) refreshCard(id);
+    refreshStyle();
 }
 async function adoptSound(id) {
     const ui=cards.get(id), style=drafts.get(id) || records.get(id)?.style;
@@ -207,6 +287,11 @@ async function adoptSound(id) {
 }
 $("stop").addEventListener("click",()=>stopPlayback());
 $("volume").addEventListener("input",()=>{ const v=Number($("volume").value); $("volumeValue").textContent=`${v}%`; if(player) player.volume=v/100; });
+$("styleAdopt").addEventListener("click",()=>adoptStyle());
+$("styleNote").addEventListener("input",()=>{styleNoteDirty=true;});
+$("groupFilter").addEventListener("change",()=>{stopPlayback(false);filterSounds();});
+$("search").addEventListener("input",()=>{stopPlayback(false);filterSounds();});
+$("compare").addEventListener("change",()=>setStyle(activeStyle,false));
 window.addEventListener("pagehide",()=>stopPlayback(false));
 if (!M) say("빌드가 필요합니다: node tools/sound_viewer/build.mjs");
 else { render(); connectDb(); }
