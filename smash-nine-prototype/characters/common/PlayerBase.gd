@@ -1046,7 +1046,9 @@ func _start_attack(startup: float, recovery: float, action: Callable, pose := Ve
 ## swing never fires at the new position (CODEX-ANALYST-01).
 func _wait_action(seconds: float) -> bool:
 	var epoch := action_epoch
-	await get_tree().create_timer(seconds).timeout
+	# Counted in physics ticks like hitstun and the attack lock: an idle-frame timer fired late at a
+	# low frame rate (web), so start-ups ran long and Luna's echo blooms missed.
+	await get_tree().create_timer(seconds, true, true).timeout
 	return epoch == action_epoch and not is_defeated
 
 func cancel_pending_actions() -> void:
@@ -1298,7 +1300,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
-		_defeat(last_attacker)
+		_defeat(_get_valid_last_attacker())
 	return true
 
 ## The absorbed part of a hit: damage is already applied; no knockback, hitstun or cancel.
@@ -1329,7 +1331,7 @@ func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, d
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
-		_defeat(last_attacker)
+		_defeat(_get_valid_last_attacker())
 	return true
 
 ## A hit taken in the ultimate's super armor: a short gold flash on the fighter.
@@ -1383,14 +1385,17 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 	attack_buffer_timer = 0.0
 	jump_buffer_timer = 0.0
 	movement_freeze_timer = 0.0
+	# A launch ends a running skill dash like any other hit (Frey's dive kept plunging after it).
+	skill_dash_timer = 0.0
 	action_locked_until_land = false
+	_end_skill_dash()
 	character_on_hit()
 	_play_hit_feedback(final_damage, hit_direction, effect_knockback)
 	_spawn_hit_effect(global_position + Vector2(0, -34), final_damage, effect_knockback, attacker)
 	hp_changed.emit(self)
 	_update_visuals()
 	if hp <= 0.0:
-		_defeat(last_attacker)
+		_defeat(_get_valid_last_attacker())
 	return true
 
 func apply_stun_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, stun_duration: float, damage_type := DAMAGE_NORMAL) -> bool:
@@ -1616,6 +1621,11 @@ func _respawn() -> void:
 	skill_dash_timer = 0.0
 	body.rotation = 0.0
 	movement_freeze_timer = 0.0
+	# The swing or hit in progress at the ring-out is over (as in reset_for_map): its lock kept a
+	# respawned fighter from jumping or attacking, up to 1.45 s after Frey's air ultimate.
+	attack_lock_timer = 0.0
+	hitstun_timer = 0.0
+	hitstop_timer = 0.0
 	action_locked_until_land = false
 	current_knockback_decay = KNOCKBACK_DECAY
 	air_jumps_left = max_air_jumps

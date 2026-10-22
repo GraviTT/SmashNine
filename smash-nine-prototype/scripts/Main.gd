@@ -667,6 +667,9 @@ func _update_hud() -> void:
 	var offer: Dictionary = soul_growth.get_offer(human) if is_instance_valid(human) else {}
 	if not offer.is_empty() and not match_over:
 		hud.show_card_offer(offer.cards, offer.time_left)
+	else:
+		# An offer can also end without offer_closed (SoulGrowth drops it when P1 is eliminated).
+		hud.hide_card_offer()
 	if hud.debug_label.visible:
 		_update_debug_text()
 
