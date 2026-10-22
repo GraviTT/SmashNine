@@ -52,25 +52,15 @@ function Get-EngineErrors([string]$Text) {
 }
 
 if ($needsImport) {
-	# Godot loads the translation list before importing CSVs. A clean checkout
-	# therefore reports missing .translation resources before creating them. Only
-	# during bootstrap, hide this list, then restore the exact project bytes even
-	# when import fails. All other engine errors remain fatal.
-	$projectFile = Join-Path $project 'project.godot'
-	$projectBytes = [IO.File]::ReadAllBytes($projectFile)
-	$projectText = [Text.Encoding]::UTF8.GetString($projectBytes)
-	$bootstrapText = [regex]::Replace($projectText, '(?m)^locale/translations=.*$', 'locale/translations=PackedStringArray()')
-	try {
-		[IO.File]::WriteAllText($projectFile, $bootstrapText, (New-Object Text.UTF8Encoding($false)))
-		$result = Invoke-Godot @("--headless", "--path", $project, "--import")
-	} finally {
-		[IO.File]::WriteAllBytes($projectFile, $projectBytes)
-	}
-	$errors = Get-EngineErrors $result.Output
-	$certificateNoise += @($result.Output -split "`n" | Where-Object { $_.Trim() -eq "ERROR: Failed to read the root certificate store." }).Count
-	if ($result.Code -ne 0 -or $errors.Count -gt 0) {
-		Write-Output "FAIL translation import (exit $($result.Code))"
-		Write-Output $result.Output
+	# Godot loads the translation list before it imports the CSVs, so this first import
+	# reports the tables it is about to create as missing. That output is not a test
+	# result: check the generated tables instead (project.godot is never rewritten).
+	# Invoke-Godot reads stderr itself; a plain `& $godot ... *> $null` turns that stderr
+	# into a terminating NativeCommandError under $ErrorActionPreference = "Stop".
+	$null = Invoke-Godot @("--headless", "--path", $project, "--import")
+	$stillMissing = @(@("strings.en.translation", "strings.ko.translation", "story.en.translation", "story.ko.translation") | Where-Object { -not (Test-Path (Join-Path $project "assets/i18n/$_")) })
+	if ($stillMissing.Count -gt 0) {
+		Write-Output "FAIL translation import (missing: $($stillMissing -join ', '))"
 		exit 1
 	}
 	Write-Output "PASS translation import (strings + story)"
