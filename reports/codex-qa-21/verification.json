@@ -1,0 +1,600 @@
+{
+  "finalized_at": "2026-10-22T17:31:39.017Z",
+  "base_commit": "e9a71fb8836219407b57242fedf18a8c4ac3b832",
+  "tracked_diff_empty": true,
+  "product_changes": [],
+  "log_encoding": "UTF-8; CRLF normalized to LF without changing message content",
+  "unexpected_engine_error_lines": [],
+  "known_certificate_lines_in_final_logs": 66,
+  "original_suite": {
+    "passed_scripts": 51,
+    "all_passed": true,
+    "elapsed_wall_seconds": 950.59
+  },
+  "controlled_journeys": 14,
+  "menu_cycles": 14,
+  "monster_conditions": 36,
+  "dialogue": {
+    "J_presses": 980,
+    "failed": 0,
+    "finished_signals": 190,
+    "scenes": 190
+  },
+  "text_slots": {
+    "checked": 4618,
+    "flags": [],
+    "screens": 308
+  },
+  "findings_expected_exit_1": [
+    "gate_geometry.gd",
+    "gimmick_actors.gd",
+    "story_cutin.gd"
+  ],
+  "source_sha256": {
+    "smash-nine-prototype/export_presets.cfg": "eed4c9b3f1e8cdfa0f86a98926204af83861dc0d9dc960288b0f8a9cd7231a05",
+    "smash-nine-prototype/project.godot": "6e4297b405c383fb2687219652588080ea9272cef5bb4815348a5bfae40fd5d1",
+    "smash-nine-prototype/scripts/realms/RealmCatalog.gd": "561d8a645dc4c2fb5912feab2807d2efa1a2071a0c6bc0a80c42e118ffee6cba",
+    "smash-nine-prototype/scripts/realms/RealmHazards.gd": "a9b2e9085ab362509aae3e979bd3fdab525c4f06d71337af13f13f7a0cd38bd3",
+    "smash-nine-prototype/scripts/RealmMonsterSpawner.gd": "081dbdd63c0ce5818ebeff4de17c391176713c6c1b76775ff9d38156b7b0ccbd",
+    "smash-nine-prototype/scripts/ui/MatchHud.gd": "b1d0b75e16914198da66c4c5fecaab8cf1b4b96ca54fe187f13e32ecc5052aa8",
+    "smash-nine-prototype/scripts/story/StorySession.gd": "db1d51cd391e1ea6fe2d72f29aae6b2e6b0d12c9958068bfe376f198b7a13e64",
+    "smash-nine-prototype/scripts/Main.gd": "566489e3a81516f0cfea02ca6be0c9837cb7fe7119b2ff37cf3eb418a8cd967f"
+  },
+  "artifacts": [
+    {
+      "path": "reports/codex-qa-21/.gitignore",
+      "bytes": 33,
+      "sha256": "58576a1d70bba0c42648ca397d56620575c3b9ae4882257c272aee34551c7b7e"
+    },
+    {
+      "path": "reports/codex-qa-21/README.md",
+      "bytes": 19074,
+      "sha256": "c76d014d647dc8c49c2e49e259336890b0550af4e9fd640b23694f7f5160d243"
+    },
+    {
+      "path": "reports/codex-qa-21/commit-message.txt",
+      "bytes": 225,
+      "sha256": "8367fccaa6694cc3a4d1e9dce4bebd03341b78c95fe164ec2c9f47bbe3660d44"
+    },
+    {
+      "path": "reports/codex-qa-21/commit.ps1",
+      "bytes": 1716,
+      "sha256": "cb022af98aa23a61d0262c1f6619052b9d455f87486eefd65a9adf71fe6bf3ea"
+    },
+    {
+      "path": "reports/codex-qa-21/continuous-journeys.json",
+      "bytes": 2993,
+      "sha256": "bdcdd409280c73e3dbd4cd078734de10ffbcc5cb5d9ef831503f62c98fae7b3c"
+    },
+    {
+      "path": "reports/codex-qa-21/dialogue-keys.json",
+      "bytes": 78,
+      "sha256": "6266794ff83c6f624ba870469137333c03b80d600c2d412ab763ff1f4b904566"
+    },
+    {
+      "path": "reports/codex-qa-21/draw-gates.mjs",
+      "bytes": 2943,
+      "sha256": "a27741b2ea66f4fae617fb22dde173a8d2af390b1165c7c71542ed748a301358"
+    },
+    {
+      "path": "reports/codex-qa-21/finalize.mjs",
+      "bytes": 3872,
+      "sha256": "ac5722f257155440439f234a192eeacad8b007c92c5021d5c8eb3cc7ded973ed"
+    },
+    {
+      "path": "reports/codex-qa-21/gate-geometry.json",
+      "bytes": 2723,
+      "sha256": "2cb43a487a1748131feb767fa75522bee6627c0bf1e0ae5e1abe62b97beec17b"
+    },
+    {
+      "path": "reports/codex-qa-21/gate-measurements.svg",
+      "bytes": 5935,
+      "sha256": "05c2688b1318fb3778bfa32b56fa9b2c55877c7bd5fdb6280cedb03615d75b0d"
+    },
+    {
+      "path": "reports/codex-qa-21/gate-soak-2105.json",
+      "bytes": 2863,
+      "sha256": "96dc5915cf1796a8b94e84444f91d8e6446a6224c89aedf1df8a91ab2efba555"
+    },
+    {
+      "path": "reports/codex-qa-21/gate-soak-2106.json",
+      "bytes": 3885,
+      "sha256": "70bd0cc1fe58aa059f36da49b3379afce12e162d2f48201caf9d7a46cee66b39"
+    },
+    {
+      "path": "reports/codex-qa-21/gimmick-actors.json",
+      "bytes": 1615,
+      "sha256": "83fbf5e324f006ab58b5b3c5b7811710c5323349943c7c361e123e10fa7eeddd"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/dialogue_keys.log",
+      "bytes": 274,
+      "sha256": "a6b7444d78e9881ca7e189ca09e9c6d4d3c0adb5687d5182318d9af04eefed94"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/gate-soak-2105.log",
+      "bytes": 5550,
+      "sha256": "8701591f83c849ce3ebc01c87c49e355f95074c886af96a6ad8600715bfaff7b"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/gate-soak-2106.log",
+      "bytes": 7197,
+      "sha256": "f449bb7eeba7da31a79a843c4adf3c5b19a64d426d8a9014d9cb7611f655933c"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/gate_geometry.log",
+      "bytes": 2555,
+      "sha256": "181f179743a3357a43f7a4bb7bfefd392857f14516263973c614840ded9ad570"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/gimmick_actors.log",
+      "bytes": 1353,
+      "sha256": "8c5e2f4bd78ffd6ab06caaa7ba890f3ef840dd8d112d3c805f2ff7d2357b9191"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/import.log",
+      "bytes": 3603,
+      "sha256": "646bbf6d8e264fc4243ed8e980bb4e8183b146a74df201fe7aec15aecc7aba77"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/menu_cycles.log",
+      "bytes": 2679,
+      "sha256": "e033433d09fc729ae5e4f9052d74044e3cfe98e165acd2324e281e9b4bad4171"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/monster_matrix.log",
+      "bytes": 9915,
+      "sha256": "54409780a189b89ac5f5ae34d5c7b7fe1f173f2df2bae8a2aeb95b4f42a28281"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/story_cutin.log",
+      "bytes": 435,
+      "sha256": "c42614c61add9c79947771c9954a2f5c20a6054f1b7f07af88d07fafa9809238"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/story_edges.log",
+      "bytes": 697,
+      "sha256": "f83d3a5646d41454b3ee326006c79d42864c466447ec34f7b030f81ef2dc7ba5"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/story_journeys.log",
+      "bytes": 2717,
+      "sha256": "bf880a748e897ed111511b1316aa0fa210c6ba1e17416af4c494ba246fba6975"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/test_monster_ecology.log",
+      "bytes": 298,
+      "sha256": "5dbacfb5f763d8a9192b74bcd36edb28b73e30017a1712988dc3ae2b589ea55a"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/text_slots.log",
+      "bytes": 253,
+      "sha256": "b43b61ec2536aa19684f100bbd3169b3661233f7aabde77dd52e112cf040511a"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/web-export.log",
+      "bytes": 77728,
+      "sha256": "9c90664bad57c5ea245b49b7c207ea03d91299dde7e550a25e390bc319af54d5"
+    },
+    {
+      "path": "reports/codex-qa-21/logs/web-size.log",
+      "bytes": 5364,
+      "sha256": "6b419e63620c00d76f5096cf36b22c9994e9690120f24f9c35e4167bb2c577a4"
+    },
+    {
+      "path": "reports/codex-qa-21/menu-cycles.json",
+      "bytes": 3499,
+      "sha256": "553986d8038b57e4d7b8fa29445b3c7352469d4db425fdda757562e7bf4b87d4"
+    },
+    {
+      "path": "reports/codex-qa-21/monster-matrix.json",
+      "bytes": 12145,
+      "sha256": "56db6837071bf7c3bd9789b5af9ba049bf3866e538749a93947e6f9b6aa9d576"
+    },
+    {
+      "path": "reports/codex-qa-21/run-gate-soaks.ps1",
+      "bytes": 258,
+      "sha256": "b1c067712bfb010b86035dd086f7a924aa9ba0b4bd87c020325fd9e2f658121e"
+    },
+    {
+      "path": "reports/codex-qa-21/run-suite.ps1",
+      "bytes": 943,
+      "sha256": "c8ccea61031f088be2ee106dbbe27c2c5a00a8b530a5cd6f11e198195b62f1ac"
+    },
+    {
+      "path": "reports/codex-qa-21/run.ps1",
+      "bytes": 2848,
+      "sha256": "8e81a979cc1fe0d65197ceace4731abed84145f2832eef7816654ebefc4f68a7"
+    },
+    {
+      "path": "reports/codex-qa-21/story-cutin.json",
+      "bytes": 257,
+      "sha256": "f014009445d586d422c9b7ecbcd92b09524c11670f7885db5578f833df93de62"
+    },
+    {
+      "path": "reports/codex-qa-21/story-edges.json",
+      "bytes": 660,
+      "sha256": "ddfae49b99d6b6487eee96aac168206286f9886175ce45d0e7052fbcf3e4cdc2"
+    },
+    {
+      "path": "reports/codex-qa-21/suite-summary.log",
+      "bytes": 5371,
+      "sha256": "1f5d4a60874f21570a231627e4adf3c385314214577d9c00c08ac6b78c45891d"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/soak_match.log",
+      "bytes": 2574,
+      "sha256": "98a883ae09e9e4345941b29249f0ed32be028c0bc453208d48e575bfd75af6df"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_art.log",
+      "bytes": 263,
+      "sha256": "a8079173a47131aa427863c540b8f98a5a814eb7c90fdbc886f2154418407213"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_bot_brain.log",
+      "bytes": 218,
+      "sha256": "ed3b66d5b7e3c6b684b914b0751b4478f66fae0b36a083af7097eeb2c4c4c38a"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_bot_panel.log",
+      "bytes": 218,
+      "sha256": "291bc34e33c33073e9cd10f8d6b23dc8a4b374cfad1fbce4dfdc1d6c114d5dd4"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_bugfix_review.log",
+      "bytes": 234,
+      "sha256": "8e74847c86d305cbea9a23ff1e54af64179eec4ba306d09173b4eedfdc7fd0d0"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_character_architecture.log",
+      "bytes": 249,
+      "sha256": "b8fb2f77843ce026bd8a6dc0f79d5691a4022fab1223ac269712e953fa8190e5"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_defeat_motion.log",
+      "bytes": 222,
+      "sha256": "a9bf043490157b5d0335bdbf11b765bb8fcaeed552dfcd20220c348466695f20"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_effect_layout.log",
+      "bytes": 222,
+      "sha256": "d13696ed6a93e21b17fffc1a0837c8b5d6b7f866abe1269054490f03c4efa56e"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_fighter_motion.log",
+      "bytes": 236,
+      "sha256": "b851d75370ed715594484acfed386167e52e42129b5d8fd59385763de9c8cf63"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_flash_art.log",
+      "bytes": 218,
+      "sha256": "e770c0c275ebee536dd40184293b88c4e9fe27f535dd96c2dfb9826a27ab0ccb"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_font_coverage.log",
+      "bytes": 266,
+      "sha256": "3038c9814f8a66cc17ba8743eb0c6901f215f7d87e0d46ebf8d3ce3d9945b306"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_frey_kit.log",
+      "bytes": 217,
+      "sha256": "da670e919a0119962f8f860b39f0e4f61ac614c7100ed9cd6f39f4a350faf3e1"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_frey_sprite.log",
+      "bytes": 245,
+      "sha256": "626ae0d647341536f11375db18ebc74244f53c060ad53e161f4b71f2d6ef8338"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_frontend_flow.log",
+      "bytes": 333,
+      "sha256": "bf5f4527e7bac471e8a839d95ebb6dcab4b621f905334adb7c2c07a08302d539"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_game_speed.log",
+      "bytes": 219,
+      "sha256": "93f0acd30cb100cbde3b6dc40102c65205115234df295192c054491f3ff0112c"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_hazards.log",
+      "bytes": 219,
+      "sha256": "bbfef2146d1a9df828951ac2f8a89dbf4d933b147bd0fcf65aaaa56fa8ae7c38"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_hit_sparks.log",
+      "bytes": 242,
+      "sha256": "afd679ac8b535717b0e8360e26170457e882593bea2e8094a173151f3ac1afa1"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_hud_frames.log",
+      "bytes": 293,
+      "sha256": "1b2dc5d1e0cc244d93597527db92c0d9d2d9ff40f42421f58276097ab0d7e037"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_language.log",
+      "bytes": 331,
+      "sha256": "09e9fc7a3e72e3768713407f208a6ef4338757bc1ee6a0c2c53cb3fa6dd0c6b2"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_luna_kit.log",
+      "bytes": 217,
+      "sha256": "7592c0bbf0586ca7894190e6a207087457c116391b99852a399343ea378e1be2"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_luna_prototype.log",
+      "bytes": 245,
+      "sha256": "5e50ca62e1b8d81bffd3cfd2169d0861aedfe075ba102b8f9a5036fe3f4877a0"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_match_rules.log",
+      "bytes": 224,
+      "sha256": "4727d9323f503990ed92b06189114871e4c47f47a005f9fc3af97615b9fd717d"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_monster_ecology.log",
+      "bytes": 298,
+      "sha256": "bea1881173894e880c7a060c97dacbaf5bc514fc03731dbb92810f6c2be8a8ad"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_monster_motion.log",
+      "bytes": 236,
+      "sha256": "ae9dda9e7a0d0b57f011b8738cbe042679c53bb0f485f680e40b611698e180df"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_monster_options.log",
+      "bytes": 303,
+      "sha256": "c586dff2c1d52e07940045f3ba0fd656b66675c1dff8f108994d576452890ad1"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_motion_speeds.log",
+      "bytes": 231,
+      "sha256": "192c72bc2ac67cc3a9a9582a6cf15bd955b0f47ebe90017644de216418272506"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_moves_sheet.log",
+      "bytes": 293,
+      "sha256": "50553c7c61d9b52a159edf7be08f58ca109a906566b17f2f5abc90dedada9137"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_nova_prototype.log",
+      "bytes": 244,
+      "sha256": "6c16bfce6cd9f3b114aa14c182aa19b6877b63978013819ebd9abfab1b59afbc"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_offscreen_markers.log",
+      "bytes": 226,
+      "sha256": "28a08279507ffc416ec6aee781445391de1995159704bfa282eab67a61548e10"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_realm_gimmicks.log",
+      "bytes": 222,
+      "sha256": "ae0a8f3392d9ffa9de8b67281cbc405f3fdd8ce60f30f848a142191c3ebb4cc3"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_realm_monsters.log",
+      "bytes": 286,
+      "sha256": "2de4391e8515191a2c4cea16e9ed1364d78eb818061c1ff4dc9e464a7564de20"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_relocation_active.log",
+      "bytes": 219,
+      "sha256": "7b400ba525725f2d37ce414c489561eb9f417a22a3045eefdc26899e6b006ffc"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_restart.log",
+      "bytes": 255,
+      "sha256": "c1177b5f8339bb88787ae80d2b740ded9ebb0744a1561fd228b4bf85014c37ec"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_rio_prototype.log",
+      "bytes": 222,
+      "sha256": "c2f92b9e74f0c823bea4d3ccd3e8d5202ec62e7fea11b014c914f39fd702be21"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_skill_bar.log",
+      "bytes": 218,
+      "sha256": "162c6c41b5fe591d55d2588838825746c6677184f8b83cd8e6e4734937b7b0de"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_skill_fx_art.log",
+      "bytes": 221,
+      "sha256": "abc5b202966743126a3c66ce90ad301a03b9cb0526dfe13cd373d97cc3b351c0"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_soul_crystals.log",
+      "bytes": 221,
+      "sha256": "ac6f2e6f9c17eb53aaf1115ff6b7ed7e9279043b58139810a3c69cf2749ec791"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_sprite_frames.log",
+      "bytes": 303,
+      "sha256": "0157847416f6ad13e620a05b7a2a8a55dd58a103e449ab9c0d5155c40a765aaa"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_sprite_pose.log",
+      "bytes": 220,
+      "sha256": "bdd1536b43c16b05c577dd36d6e94683d8d9198f70bc727cf9c165d850605578"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_story_atomic_reload.log",
+      "bytes": 319,
+      "sha256": "e29a50af68065d502b2835f0a5f2d65afbaeaa7b62c7e073271c2f8a0dbb3dbf"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_story_data.log",
+      "bytes": 294,
+      "sha256": "cd23ddee00c439d9f0c82032ff158a8bb95c7e2c5bcddfe549381d960fbc7025"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_story_exit_reload.log",
+      "bytes": 299,
+      "sha256": "cac915553f738ca8b78a99e97ab43fb41cdc0992237ea3305be7ebe46bfbb4af"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_story_flow.log",
+      "bytes": 378,
+      "sha256": "a2c75973989ced0c0c52f21bda19d88350f8e2b951261d9bf53c69d543e2bb31"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_story_late_flow.log",
+      "bytes": 341,
+      "sha256": "ccf81bb31b4cac9af8f35c01fe1f21e3251658855d52ed7d310b61c494c51140"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_story_presentation.log",
+      "bytes": 332,
+      "sha256": "b255256ad91fd04d6f3d1a45b5e774a6219fda036474ae7253a3059b881502e5"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_story_rewards.log",
+      "bytes": 325,
+      "sha256": "c64e51a39b5c2251db357ad719ddec997a2aaa54869e178103ba14c092d4b208"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_story_text_fit.log",
+      "bytes": 306,
+      "sha256": "78b4cbfb4bed610a225866ed940d880e38bc47b6343125a7088217db6c2d111c"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_talisman_burst.log",
+      "bytes": 223,
+      "sha256": "3d59786d1b5afd23c2233b0255c7369c46b6e6b74d5147b962fc70c9251f2cac"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_ultimate_armor.log",
+      "bytes": 223,
+      "sha256": "36c2523fc3a8c8239cf370b90a7cab8d148e2b95619c55d1f88fb857de5398df"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_ultimates.log",
+      "bytes": 217,
+      "sha256": "d64259cb16e68ca81cb1615d35a779580b76377e88a3f892f8a40c5685e33d2c"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/test_victory_screens.log",
+      "bytes": 236,
+      "sha256": "889a9b903071f64fdffbb032725b4e670a5eb35e41c95f0588d026194f85e4c0"
+    },
+    {
+      "path": "reports/codex-qa-21/suite/visual_preview.log",
+      "bytes": 195,
+      "sha256": "4fd9fb3794164b8665537e8a0e2e5fc80a9b0f181a7b1795a17c07563c198dd3"
+    },
+    {
+      "path": "reports/codex-qa-21/text-slots.json",
+      "bytes": 52,
+      "sha256": "b682b9bba4e66eebb71ccc82ac5226679b975c69dee466ada994ef0823858285"
+    },
+    {
+      "path": "reports/codex-qa-21/web-size.json",
+      "bytes": 131945,
+      "sha256": "dd838bec127ca9aabdcdb0355a2b4cc90b625ba7004e3f8976df10c2ed033565"
+    },
+    {
+      "path": "reports/codex-qa-21/web-size.mjs",
+      "bytes": 4971,
+      "sha256": "c01bafedd5f3c565976e3e36a791e95d536432c4de7086f10c8732feef5a643f"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/dialogue_keys.gd",
+      "bytes": 1858,
+      "sha256": "afceeb2a22390be034af7999f781541525467acc5054123827e2051ff1e06818"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/dialogue_keys.gd.uid",
+      "bytes": 20,
+      "sha256": "b621fde3fadc5e6240c7a6fb67c9ee25e986a3fb08f74a98967b58f7d1ab3ea3"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/gate_geometry.gd",
+      "bytes": 2939,
+      "sha256": "e0fcbc2e00444ad5a5cbbadd004e0eff6051f87e8f389c626b6329e429b1d216"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/gate_geometry.gd.uid",
+      "bytes": 20,
+      "sha256": "f0d7b88a604ee48fa4d39ef9773a2ef3e8ee8c38a21089c64248165f005c860d"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/gate_soak.gd",
+      "bytes": 2155,
+      "sha256": "de2c46d31ea1fe198f39f6ed398c633332f7f1c23d792eb48746ad91dcc2b458"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/gate_soak.gd.uid",
+      "bytes": 20,
+      "sha256": "8d43ba9b60b227e501c13352a96c946081112beecc8667728dafb9ad591ce1ec"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/gimmick_actors.gd",
+      "bytes": 4518,
+      "sha256": "dfc015a583ba52c73ab38c5f17d2a5ef45062632d6dfb44b1faf08b2e008a960"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/gimmick_actors.gd.uid",
+      "bytes": 20,
+      "sha256": "803d4552d264b0ebe825a3bf343b6163b7d6f198bd388e6836a6bfafe6ac9114"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/menu_cycles.gd",
+      "bytes": 3308,
+      "sha256": "76d1366512e7d31f7082e33ebb6a0dda9e59a6bc739021d38da42bd22220c406"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/menu_cycles.gd.uid",
+      "bytes": 20,
+      "sha256": "56631be05232080e1b7daad4a1771ade206a60550495c908bbe10111c5d2701a"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/monster_matrix.gd",
+      "bytes": 3739,
+      "sha256": "1564735a9a7982e23de37afb9bc0ff2e9fbe00457ad36d110def9db4d9118ae0"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/monster_matrix.gd.uid",
+      "bytes": 20,
+      "sha256": "fb0d392ab196f755892a64c2ded4257986f64e6a9e170c85e1dddf07dfe99c59"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/story_cutin.gd",
+      "bytes": 1837,
+      "sha256": "80d128768fc2b57ebc7ec059922e7619e37a2b6dc3ffbfb2c1eb01b3508c1466"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/story_cutin.gd.uid",
+      "bytes": 19,
+      "sha256": "993c44a930dac5476c28b37816e0e33b6f560859147df598e52ed8e37ca1439f"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/story_edges.gd",
+      "bytes": 4496,
+      "sha256": "a3e47635e91ac1f6b108ded4c8745dd223539e247e618f9602de9e568c17b145"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/story_edges.gd.uid",
+      "bytes": 20,
+      "sha256": "2529765626b5aafc14a7cacfdf910edb7197a5cf45b972f17fb63cb91e294101"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/story_journeys.gd",
+      "bytes": 9619,
+      "sha256": "2f074e8243b70d9485e7f29b88367bba4ee8ec5a31b653c1d6636202d09e82b5"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/story_journeys.gd.uid",
+      "bytes": 20,
+      "sha256": "f8eb08db76c683877acbc973398c19ca99d32cf5f434bbca089c338ff972ff57"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/text_slots.gd",
+      "bytes": 3624,
+      "sha256": "62af9b3de0ec05c24a16a128e20ad01b2feca6e9bf777521bb2ba48479a23c94"
+    },
+    {
+      "path": "smash-nine-prototype/tests/analysis/codex_qa_21/text_slots.gd.uid",
+      "bytes": 20,
+      "sha256": "7b6a21f440000ac2d40e9f9a27b3f6eac5c33fa12d9013ab0e5f322d88915284"
+    }
+  ]
+}
