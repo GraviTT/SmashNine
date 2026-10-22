@@ -95,7 +95,7 @@ for (const path of scan(join(repo, "art/bakeoff"))) {
 	const name = path.replaceAll("\\", "/").split("/").at(-1);
 	if (!/-v\d+\.png$/.test(name)) continue;
 	const row = [...fighterStems, ...M.monsters.map(m => m.id)].some(stem => name.startsWith(`${stem}-`) && /^[a-z0-9_]+-v\d+\.png$/.test(name.slice(stem.length + 1)));
-	const face = fighterStems.some(stem => new RegExp(`^${stem}_face-(happy|angry|hurt)-v\\d+\\.png$`).test(name));
+	const face = fighterStems.some(stem => new RegExp(`^${stem}_face-(happy|angry|hurt|shadow)-v\\d+\\.png$`).test(name));
 	const wave = /^slam_shockwave-v\d+\.png$/.test(name);
 	if (!row && !face && !wave) continue;
 	const metadataPath = path.replace(/\.png$/, ".json"), metadata = existsSync(metadataPath) ? JSON.parse(readFileSync(metadataPath, "utf8")) : {};
@@ -129,7 +129,9 @@ const compareSheet = (actual, before) => {
 		for (const candidate of oldRow.candidates || []) {
 			const path = join(repo, "art", candidate.file), meta = path.replace(/\.png$/, ".json");
 			if (!existsSync(path) || existsSync(meta) && JSON.parse(readFileSync(meta, "utf8")).adopted) continue;
-			assert.deepEqual(clean(row.candidates.find(c => c.file === candidate.file)), candidate);
+			// Fix passes rewrite a candidate's note; everything the viewer plays from must stay.
+			const withoutNote = ({ note, ...rest }) => rest;
+			assert.deepEqual(withoutNote(clean(row.candidates.find(c => c.file === candidate.file))), withoutNote(candidate));
 		}
 	}
 };

@@ -1,33 +1,33 @@
 {
   "status": "PASS",
-  "checked_at": "2026-10-22T18:32:30.066Z",
+  "checked_at": "2026-10-22T20:32:24.216Z",
   "method": "Node vm, explicit DOM/Image/canvas/Artifact DB doubles; byte-for-byte source comparison; publish limit fixtures",
   "counts": {
     "checks": 19,
-    "candidates": 89,
+    "candidates": 201,
     "kinds": {
-      "fighter": 21,
-      "monster": 36,
+      "fighter": 53,
+      "monster": 108,
       "projectile": 8,
-      "face": 24
+      "face": 32
     },
-    "rowVisits": 221,
-    "sidecars": 248,
-    "publishFiles": 249,
-    "publishBytes": 54739729,
-    "distFiles": 250,
-    "distBytes": 54751243
+    "rowVisits": 258,
+    "sidecars": 360,
+    "publishFiles": 361,
+    "publishBytes": 59789271,
+    "distFiles": 364,
+    "distBytes": 59825113
   },
   "checks": [
     {
       "name": "No database",
       "result": "PASS",
-      "detail": "89 candidates independently matched to active source files; pick and memo controls disabled with Korean explanation; motion/image comparison still initializes"
+      "detail": "201 candidates independently matched to active source files; pick and memo controls disabled with Korean explanation; motion/image comparison still initializes"
     },
     {
       "name": "Delivery integrity",
       "result": "PASS",
-      "detail": "248 sidecars exist, are unique, and byte-match source assets; all 89 candidates are listed and unadopted"
+      "detail": "360 sidecars exist, are unique, and byte-match source assets; all 201 candidates are listed and unadopted"
     },
     {
       "name": "Existing data regression",
@@ -37,7 +37,7 @@
     {
       "name": "Rows and candidates",
       "result": "PASS",
-      "detail": "221 row selections across all forms/monsters; all 57 row candidates have buttons and individual loop/fps/frame/cell values; longest-frame stepping wraps; detached controls released"
+      "detail": "258 row selections across all forms/monsters; all 161 row candidates have buttons and individual loop/fps/frame/cell values; longest-frame stepping wraps; detached controls released"
     },
     {
       "name": "Projectile playback",
@@ -47,7 +47,7 @@
     {
       "name": "Portraits",
       "result": "PASS",
-      "detail": "8 forms/current faces and 24 expressions; 142x164 aspect-preserving CSS; click opens original, Close dismisses (mock DOM)"
+      "detail": "8 forms/current faces and 32 expressions; 142x164 aspect-preserving CSS; click opens original, Close dismisses (mock DOM)"
     },
     {
       "name": "Pick all kinds",

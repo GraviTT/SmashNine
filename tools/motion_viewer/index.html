@@ -319,7 +319,7 @@ function drawCell(ctx, anim, frame, scale) {
 
 const $ = (id) => document.getElementById(id);
 const KIND_NAMES = { fighter: "캐릭터", monster: "몬스터", projectile: "투사체", face: "초상화" };
-const EXPRESSIONS = { neutral: "무표정 · 현재 게임", happy: "기쁨", angry: "분노", hurt: "고통" };
+const EXPRESSIONS = { neutral: "무표정 · 현재 게임", happy: "기쁨", angry: "분노", hurt: "고통", shadow: "그림자 (9장 보스)" };
 const candidateCatalog = new Map(), pickRecords = new Map(), pickDrafts = new Map(), pickSaving = new Set(), pickErrors = new Map();
 const pickControls = new Map();
 let candidateDb = null;

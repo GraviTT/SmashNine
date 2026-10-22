@@ -286,7 +286,7 @@ for (const c of characters) for (const f of c.forms) {
 	const rel = `${folder}/${stem}_face.png`, current = `current/${rel}`;
 	if (!existsSync(join(art, rel))) throw new Error(`neutral portrait missing: ${rel}`);
 	extraCopies.push({ source: join(art, rel), file: current });
-	const candidates = ["happy", "angry", "hurt"].flatMap(expression => candidatesFor(`${stem}_face`, expression).map(candidate => {
+	const candidates = ["happy", "angry", "hurt", "shadow"].flatMap(expression => candidatesFor(`${stem}_face`, expression).map(candidate => {
 		candidateCopies.push(candidate);
 		const { source, ...item } = tagPick(candidate, "face", stem, expression);
 		return item;
