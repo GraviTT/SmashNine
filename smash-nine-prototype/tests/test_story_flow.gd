@@ -99,6 +99,7 @@ func _run() -> void:
 	await _capture("04-stage-start-ko")
 	await _tap(KEY_J)
 	_check(main.story_session.phase == "pre" and main.story_session.dialogue.visible, "J advances card to dialogue")
+	_check(not main.hud.minimap_root.visible and not main.hud.clock_label.visible, "Scenes play without the match HUD")
 	var start_point: Vector2 = main.story_session.hero.global_position
 	await _frames(8)
 	_check(main.story_session.hero.global_position == start_point and not main.director.running, "Dialogue freezes combat and timeline")
@@ -107,6 +108,7 @@ func _run() -> void:
 	await _capture("05-dialogue-ko")
 	await _advance_dialogue(main)
 	_check(main.story_session.phase == "combat" and main.director.running, "J finishes dialogue and unfreezes combat")
+	_check(main.hud.minimap_root.visible and main.hud.clock_label.visible, "The match HUD returns with the fight")
 	_check(main.story_session.enemies.size() == 2, "Stage 1 starts with two monsters")
 	await _frames(8)
 	await _capture("06-stage-one-ko")

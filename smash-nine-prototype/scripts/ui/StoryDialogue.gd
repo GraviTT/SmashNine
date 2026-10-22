@@ -33,6 +33,7 @@ func play(scene_lines: Array, hero: String, rival: String, hero_body: String) ->
 	cg_picture = _picture(null, Rect2(Vector2.ZERO, SIZE))
 	cg_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	cg_picture.visible = false
+	_cover_viewport()
 	_box_frame()
 	left_face = _picture(ART.character_portrait(hero_id, body), Rect2(54, 496, 142, 164))
 	right_face = _picture(null, Rect2(1084, 496, 142, 164))
@@ -75,6 +76,17 @@ func _show_line() -> void:
 	line_label.visible_characters = 0
 	_characters = 0.0
 	_last_tick = Time.get_ticks_usec()
+
+func _fit() -> void:
+	super._fit()
+	_cover_viewport()
+
+## The 1280x720 layout is letterboxed on other window shapes; a scene picture still fills the screen.
+func _cover_viewport() -> void:
+	if not is_instance_valid(cg_picture) or not is_inside_tree() or is_zero_approx(scale.x):
+		return
+	cg_picture.position = -position / scale.x
+	cg_picture.size = get_viewport().get_visible_rect().size / scale.x
 
 ## The plate sits on the box's top edge over the speaker's side (centred for the narrator).
 func _place_name_plate(narrator: bool, hero_speaks: bool) -> void:

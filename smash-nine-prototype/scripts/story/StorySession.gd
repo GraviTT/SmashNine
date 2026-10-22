@@ -176,11 +176,14 @@ func begin_dialogue() -> void:
 	if phase != "start":
 		return
 	main.hud.hide_overlay()
+	# Scenes play without the match HUD (minimap, status, skill bar); it returns with the fight.
+	main.hud._set_match_hud_visible(false)
 	phase = "pre"
 	dialogue.play(CATALOG.dialogue_for(data, main.story_hero, "pre"), main.story_hero, "" if CATALOG.is_home(data, main.story_hero) else str(data.rival), main.human_body)
 	main.hud.hide_card_offer()
 
 func _on_dialogue_finished() -> void:
+	main.hud._set_match_hud_visible(true)
 	if phase == "pre":
 		phase = "combat"
 		set_frozen(false)
@@ -204,6 +207,7 @@ func _objective_done() -> void:
 		if child is Area2D:
 			child.queue_free()
 	rival_bar.visible = false
+	main.hud._set_match_hud_visible(false)
 	dialogue.play(CATALOG.dialogue_for(data, main.story_hero, "post"), main.story_hero, "" if CATALOG.is_home(data, main.story_hero) else str(data.rival), main.human_body)
 	main.hud.hide_card_offer()
 
@@ -310,7 +314,7 @@ func _build_rival_bar() -> void:
 
 func update_hud() -> void:
 	main.hud.clock_label.text = tr("STAGE %d") % int(data.id) + "   |   " + objective_text()
-	main.hud.clock_label.visible = phase != "result" and not main.hud.overlay.visible
+	main.hud.clock_label.visible = phase in ["combat", "exit"] and not main.hud.overlay.visible
 	rival_bar.visible = is_instance_valid(rival) and rival.hp > 0.0 and accepts_gameplay() and not main.hud.overlay.visible
 	if rival_bar.visible:
 		rival_fill.size.x = 404.0 * clampf(rival.hp / rival.max_hp, 0.0, 1.0)
@@ -360,6 +364,7 @@ func _restore_art_screen(state: Dictionary) -> void:
 	match phase:
 		"pre", "post":
 			main.hud.hide_overlay()
+			main.hud._set_match_hud_visible(false)
 			dialogue.play(CATALOG.dialogue_for(data, main.story_hero, phase), main.story_hero, "" if CATALOG.is_home(data, main.story_hero) else str(data.rival), main.human_body)
 			dialogue.line_index = int(state.line)
 			dialogue._show_line()
