@@ -1,0 +1,138 @@
+[
+  {
+    "stem": "frey",
+    "row": "jump",
+    "attempt": 0,
+    "accepted": true,
+    "reused": true,
+    "face_verified": true,
+    "pose_ok": true,
+    "costume_ok": true,
+    "reviewed_frames": [
+      1,
+      2,
+      3
+    ],
+    "unreliable_frames": [],
+    "reason": "ART-72 최선 3차를 그대로 전달. 눈 비율 0.992–1.045(F1–3), 폭 1.000으로 ART-78 허용 범위 안이며 F2 1.045와 F3 1.042는 목표 상한 1.04 밖이다. 도약·상승·정점과 검·방패를 4배 판에서 재확인.",
+    "visual_review": "Selected best strip: every frame reviewed next to the anchor on exact nearest-neighbour 4x pages. Face proposals inspected separately; failed ratios retained, never rounded into a pass."
+  },
+  {
+    "stem": "luna_brave",
+    "row": "fall",
+    "attempt": 0,
+    "accepted": true,
+    "reused": true,
+    "face_verified": true,
+    "pose_ok": true,
+    "costume_ok": true,
+    "reviewed_frames": [
+      1,
+      2
+    ],
+    "unreliable_frames": [],
+    "reason": "ART-72 최선 3차를 그대로 전달. 눈 비율 0.955–0.985(F1–2), 폭 1.000으로 ART-78 허용 범위 안이며 F1 0.955는 목표 하한 0.96 밖이다. 낙하 자세·장갑·의상을 4배 판에서 재확인.",
+    "visual_review": "Selected best strip: every frame reviewed next to the anchor on exact nearest-neighbour 4x pages. Face proposals inspected separately; failed ratios retained, never rounded into a pass."
+  },
+  {
+    "stem": "frey",
+    "row": "victory",
+    "attempt": 2,
+    "accepted": false,
+    "reused": false,
+    "face_verified": false,
+    "pose_ok": true,
+    "costume_ok": true,
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unreliable_frames": [],
+    "reason": "검이 낮은 위치에서 수평·대각선·머리 위로 한 번만 올라가고 F4–6에 계속 높이 유지된다. 방패 전진·망토·미소를 확인. 얼굴 눈 0.989–1.100, 폭 0.914–1.057(F1–6)으로 허용 범위 밖. 1·3차는 원본 셀 경계 실패. 3회 상한으로 미전달.",
+    "visual_review": "Selected best strip: every frame reviewed next to the anchor on exact nearest-neighbour 4x pages. Face proposals inspected separately; failed ratios retained, never rounded into a pass."
+  },
+  {
+    "stem": "luna",
+    "row": "victory",
+    "attempt": 2,
+    "accepted": false,
+    "reused": false,
+    "face_verified": false,
+    "pose_ok": false,
+    "costume_ok": true,
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unreliable_frames": [
+      6
+    ],
+    "reason": "지팡이는 전 프레임 같은 손에 있고 F5 별 자세·F6 윙크로 끝난다. F5만 재생성해 교체한 2차가 최선. 눈 0.966–1.005, 폭 0.929–1.000(F1–5), F2 폭 0.929로 미전달. F6는 윙크로 눈 간격 측정에서 제외했으며 통과로 간주하지 않았다. 3회 상한.",
+    "visual_review": "Selected best strip: every frame reviewed next to the anchor on exact nearest-neighbour 4x pages. Face proposals inspected separately; failed ratios retained, never rounded into a pass."
+  },
+  {
+    "stem": "luna_brave",
+    "row": "victory",
+    "attempt": 3,
+    "accepted": false,
+    "reused": false,
+    "face_verified": false,
+    "pose_ok": true,
+    "costume_ok": true,
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unreliable_frames": [],
+    "reason": "F2–3 주먹을 머리 위로 크게 들어 올리고 F4부터 내려 F6 전투 자세와 미소로 끝난다. 눈 0.968–0.994(F1–6)는 허용 범위지만 F1 폭 1.071이 상한 1.06 밖이므로 미전달. 나머지 폭은 1.000. 3회 상한.",
+    "visual_review": "Selected best strip: every frame reviewed next to the anchor on exact nearest-neighbour 4x pages. Face proposals inspected separately; failed ratios retained, never rounded into a pass."
+  },
+  {
+    "stem": "luna_brave",
+    "row": "hurt",
+    "attempt": 3,
+    "accepted": false,
+    "reused": false,
+    "face_verified": false,
+    "pose_ok": true,
+    "costume_ok": true,
+    "reviewed_frames": [
+      1,
+      2,
+      3
+    ],
+    "unreliable_frames": [],
+    "reason": "F1 상체·머리가 뒤로 젖혀지고 F2 낮게 반동한 뒤 F3 가드로 복귀한다. 얼굴만 바뀌던 이전 행과 동작이 구분됨. 눈 1.001–1.064, 폭 0.929–1.071(F1–3)로 허용 범위 밖이라 미전달. F1 눈 1.064, F2 폭 0.929, F3 폭 1.071. 3회 상한.",
+    "visual_review": "Selected best strip: every frame reviewed next to the anchor on exact nearest-neighbour 4x pages. Face proposals inspected separately; failed ratios retained, never rounded into a pass."
+  },
+  {
+    "stem": "luna_brave",
+    "row": "jump",
+    "attempt": 2,
+    "accepted": false,
+    "reused": false,
+    "face_verified": false,
+    "pose_ok": true,
+    "costume_ok": true,
+    "reviewed_frames": [
+      1,
+      2,
+      3
+    ],
+    "unreliable_frames": [],
+    "reason": "도약·무릎 접은 상승·정점의 세 자세를 다시 그림. 최선 2차 눈 0.971–1.066(F1–3), 폭 1.000. F3 눈 1.066이 상한 1.06을 넘는다. F3만 재시도한 3차는 0.924로 작아져 2차를 보존하고 미전달. 3회 상한.",
+    "visual_review": "Selected best strip: every frame reviewed next to the anchor on exact nearest-neighbour 4x pages. Face proposals inspected separately; failed ratios retained, never rounded into a pass."
+  }
+]

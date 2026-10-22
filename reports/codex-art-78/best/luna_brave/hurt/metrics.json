@@ -1,0 +1,249 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-78/luna_brave-hurt-3.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.156,
+    "scale_by": "fixed:0.156",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      65,
+      78
+    ],
+    "body_width_range": [
+      70,
+      90
+    ],
+    "area_range": [
+      3091,
+      3389
+    ],
+    "area_spread_percent": 8.79,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2876,
+      3186
+    ],
+    "interior_detail_range": [
+      125.47,
+      130.64
+    ],
+    "interior_detail_mean": 127.47,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 107.04,
+    "interior_detail_ratio": 1.1909
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 107.04,
+        "colour_count": 3461,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 107.04,
+    "colour_count_range": [
+      3461,
+      3461
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-78/luna_brave-hurt-3.png#0,0",
+      "bbox": [
+        24,
+        43,
+        114,
+        121
+      ],
+      "body_height": 78,
+      "body_width": 90,
+      "area": 3389,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 126.3,
+      "colour_count": 3186,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 43,
+        "right": 14,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1799
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-78/luna_brave-hurt-3.png#1,0",
+      "bbox": [
+        28,
+        56,
+        101,
+        121
+      ],
+      "body_height": 65,
+      "body_width": 73,
+      "area": 3091,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 125.47,
+      "colour_count": 2876,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 28,
+        "top": 56,
+        "right": 27,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1722
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-78/luna_brave-hurt-3.png#2,0",
+      "bbox": [
+        29,
+        44,
+        99,
+        121
+      ],
+      "body_height": 77,
+      "body_width": 70,
+      "area": 3177,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 130.64,
+      "colour_count": 2962,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 29,
+        "top": 44,
+        "right": 29,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2205
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-78/luna_brave/hurt/attempt-3/luna_brave-hurt.png",
+    "candidate": null,
+    "frames": "reports/codex-art-78/luna_brave/hurt/attempt-3/frames",
+    "closeup": "reports/codex-art-78/luna_brave/hurt/attempt-3/closeup.png",
+    "compare": "reports/codex-art-78/luna_brave/hurt/attempt-3/compare.png"
+  }
+}
