@@ -1,0 +1,553 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/muspelheim_magma_boar-walk.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      1
+    ],
+    "outline": "off",
+    "cell": 96,
+    "feet_y": 72,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.19,
+    "scale_by": "fixed:0.19",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      47,
+      50
+    ],
+    "body_width_range": [
+      81,
+      84
+    ],
+    "area_range": [
+      2606,
+      2821
+    ],
+    "area_spread_percent": 7.62,
+    "bottom_range": [
+      72,
+      72
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2422,
+      2625
+    ],
+    "interior_detail_range": [
+      86.64,
+      88.33
+    ],
+    "interior_detail_mean": 87.51,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": false
+  },
+  "reference": null,
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/muspelheim_magma_boar-walk.png#0,0",
+      "bbox": [
+        3,
+        26,
+        85,
+        73
+      ],
+      "body_height": 47,
+      "body_width": 82,
+      "area": 2606,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 87.01,
+      "colour_count": 2422,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 3,
+        "top": 26,
+        "right": 11,
+        "bottom": 23,
+        "minimum": 3,
+        "has_4px_margin": false
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/muspelheim_magma_boar-walk.png#1,0",
+      "bbox": [
+        5,
+        24,
+        86,
+        73
+      ],
+      "body_height": 49,
+      "body_width": 81,
+      "area": 2615,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 88.33,
+      "colour_count": 2447,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 5,
+        "top": 24,
+        "right": 10,
+        "bottom": 23,
+        "minimum": 5,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 2,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/muspelheim_magma_boar-walk.png#2,0",
+      "bbox": [
+        3,
+        23,
+        87,
+        73
+      ],
+      "body_height": 50,
+      "body_width": 84,
+      "area": 2821,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 86.64,
+      "colour_count": 2625,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 3,
+        "top": 23,
+        "right": 9,
+        "bottom": 23,
+        "minimum": 3,
+        "has_4px_margin": false
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 3,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/muspelheim_magma_boar-walk.png#0,1",
+      "bbox": [
+        4,
+        23,
+        87,
+        73
+      ],
+      "body_height": 50,
+      "body_width": 83,
+      "area": 2820,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 87.47,
+      "colour_count": 2625,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 4,
+        "top": 23,
+        "right": 9,
+        "bottom": 23,
+        "minimum": 4,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 4,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/muspelheim_magma_boar-walk.png#1,1",
+      "bbox": [
+        5,
+        23,
+        87,
+        73
+      ],
+      "body_height": 50,
+      "body_width": 82,
+      "area": 2747,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 87.7,
+      "colour_count": 2558,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 5,
+        "top": 23,
+        "right": 9,
+        "bottom": 23,
+        "minimum": 5,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 5,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/muspelheim_magma_boar-walk.png#2,1",
+      "bbox": [
+        3,
+        23,
+        87,
+        73
+      ],
+      "body_height": 50,
+      "body_width": 84,
+      "area": 2769,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 87.93,
+      "colour_count": 2576,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 3,
+        "top": 23,
+        "right": 9,
+        "bottom": 23,
+        "minimum": 3,
+        "has_4px_margin": false
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/muspelheim_magma_boar/walk/muspelheim_magma_boar-walk-v1.png",
+    "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/bakeoff/monsters/muspelheim_magma_boar-walk-v1.png",
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/muspelheim_magma_boar/walk/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/muspelheim_magma_boar/walk/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/muspelheim_magma_boar/walk/compare.png"
+  },
+  "audit96": [
+    {
+      "index": 0,
+      "bbox": [
+        3,
+        26,
+        85,
+        73
+      ],
+      "margin": 3,
+      "detail": 87.01,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 1,
+      "bbox": [
+        5,
+        24,
+        86,
+        73
+      ],
+      "margin": 5,
+      "detail": 88.33,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 2,
+      "bbox": [
+        3,
+        23,
+        87,
+        73
+      ],
+      "margin": 3,
+      "detail": 86.64,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 3,
+      "bbox": [
+        4,
+        23,
+        87,
+        73
+      ],
+      "margin": 4,
+      "detail": 87.47,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 4,
+      "bbox": [
+        5,
+        23,
+        87,
+        73
+      ],
+      "margin": 5,
+      "detail": 87.7,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 5,
+      "bbox": [
+        3,
+        23,
+        87,
+        73
+      ],
+      "margin": 3,
+      "detail": 87.93,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    }
+  ],
+  "final_summary": {
+    "margin_min": 3,
+    "detail_min": 86.64,
+    "detail_max": 88.33,
+    "detail_mean": 87.51,
+    "detail_ratio_to_frey": 0.909,
+    "border_clear": true,
+    "alpha_binary": true,
+    "spill": 0,
+    "bottoms": [
+      72,
+      72,
+      72,
+      72,
+      72,
+      72
+    ]
+  },
+  "manual_size_ruler": {
+    "monster": "muspelheim_magma_boar",
+    "row": "walk",
+    "part": "가까운 뒤 넓적다리의 둥근 갑각판 가로폭",
+    "frames": [
+      0,
+      5
+    ],
+    "lengths_px": [
+      16.0,
+      15.0
+    ],
+    "anchor_mean_px": 15.0,
+    "ratios": [
+      1.067,
+      1.0
+    ],
+    "method": "4배 픽셀 격자를 보고 첫/마지막 프레임에서 같은 부위의 양 끝을 수동 지정. 투영된 길이이며 해부학적 크기나 전 프레임 자동 판정이 아님. 끝점 오차 약 ±1px, 길이 약 ±2px. 웅크린 몸 전체 높이로 배율을 정하지 않음."
+  },
+  "manual_leg_positions": {
+    "method": "4배 격자를 보며 앞다리/뿌리 다리의 보이는 발끝을 지정. N=밝은 가까운 다리, F=어두운 먼 다리의 추정이며 가림 때문에 오차 약 ±1px. 이 좌표가 곧 지지발 판정이라는 뜻은 아님. 자동 y72 접촉 run과 구분.",
+    "frames": [
+      [
+        [
+          63,
+          72
+        ],
+        [
+          47,
+          65
+        ]
+      ],
+      [
+        [
+          50,
+          70
+        ],
+        [
+          70,
+          72
+        ]
+      ],
+      [
+        [
+          48,
+          72
+        ],
+        [
+          69,
+          72
+        ]
+      ],
+      [
+        [
+          54,
+          72
+        ],
+        [
+          74,
+          72
+        ]
+      ],
+      [
+        [
+          51,
+          70
+        ],
+        [
+          71,
+          72
+        ]
+      ],
+      [
+        [
+          63,
+          72
+        ],
+        [
+          47,
+          65
+        ]
+      ]
+    ]
+  }
+}

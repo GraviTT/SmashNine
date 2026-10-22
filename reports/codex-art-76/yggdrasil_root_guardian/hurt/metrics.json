@@ -1,0 +1,245 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/yggdrasil_root_guardian-hurt.png",
+    "frames": null,
+    "grid": [
+      2,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1
+    ],
+    "outline": "off",
+    "cell": 96,
+    "feet_y": 72,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 2,
+    "output_columns": 6,
+    "common_scale": 0.1,
+    "scale_by": "fixed:0.1",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      55,
+      67
+    ],
+    "body_width_range": [
+      60,
+      62
+    ],
+    "area_range": [
+      2139,
+      2486
+    ],
+    "area_spread_percent": 13.96,
+    "bottom_range": [
+      72,
+      72
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2006,
+      2290
+    ],
+    "interior_detail_range": [
+      137.72,
+      142.36
+    ],
+    "interior_detail_mean": 140.04,
+    "remaining_spill_pixels": [
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "reference": null,
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/yggdrasil_root_guardian-hurt.png#0,0",
+      "bbox": [
+        20,
+        6,
+        82,
+        73
+      ],
+      "body_height": 67,
+      "body_width": 62,
+      "area": 2486,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 142.36,
+      "colour_count": 2290,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 6,
+        "right": 14,
+        "bottom": 23,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/yggdrasil_root_guardian-hurt.png#1,0",
+      "bbox": [
+        18,
+        18,
+        78,
+        73
+      ],
+      "body_height": 55,
+      "body_width": 60,
+      "area": 2139,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 137.72,
+      "colour_count": 2006,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 18,
+        "top": 18,
+        "right": 18,
+        "bottom": 23,
+        "minimum": 18,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/yggdrasil_root_guardian/hurt/yggdrasil_root_guardian-hurt-v1.png",
+    "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/bakeoff/monsters/yggdrasil_root_guardian-hurt-v1.png",
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/yggdrasil_root_guardian/hurt/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/yggdrasil_root_guardian/hurt/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/yggdrasil_root_guardian/hurt/compare.png"
+  },
+  "audit96": [
+    {
+      "index": 0,
+      "bbox": [
+        20,
+        6,
+        82,
+        73
+      ],
+      "margin": 6,
+      "detail": 142.36,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 1,
+      "bbox": [
+        18,
+        18,
+        78,
+        73
+      ],
+      "margin": 18,
+      "detail": 137.72,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    }
+  ],
+  "final_summary": {
+    "margin_min": 6,
+    "detail_min": 137.72,
+    "detail_max": 142.36,
+    "detail_mean": 140.04,
+    "detail_ratio_to_frey": 1.454,
+    "border_clear": true,
+    "alpha_binary": true,
+    "spill": 0,
+    "bottoms": [
+      72,
+      72
+    ]
+  },
+  "manual_size_ruler": {
+    "monster": "yggdrasil_root_guardian",
+    "row": "hurt",
+    "part": "가까운 뿌리 주먹의 투영 가로폭; 회전·가림의 영향을 받음",
+    "frames": [
+      0,
+      1
+    ],
+    "lengths_px": [
+      19.0,
+      20.0
+    ],
+    "anchor_mean_px": 21.5,
+    "ratios": [
+      0.884,
+      0.93
+    ],
+    "method": "4배 픽셀 격자를 보고 첫/마지막 프레임에서 같은 부위의 양 끝을 수동 지정. 투영된 길이이며 해부학적 크기나 전 프레임 자동 판정이 아님. 끝점 오차 약 ±1px, 길이 약 ±2px. 웅크린 몸 전체 높이로 배율을 정하지 않음."
+  }
+}

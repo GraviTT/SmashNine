@@ -1,0 +1,711 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/jotunheim_storm_wisp-walk.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 96,
+    "feet_y": 72,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.175,
+    "scale_by": "fixed:0.175",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      50,
+      55
+    ],
+    "body_width_range": [
+      62,
+      67
+    ],
+    "area_range": [
+      2163,
+      2276
+    ],
+    "area_spread_percent": 4.96,
+    "bottom_range": [
+      59,
+      72
+    ],
+    "lift_range": [
+      0,
+      13
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      1952,
+      2063
+    ],
+    "interior_detail_range": [
+      98.41,
+      101.63
+    ],
+    "interior_detail_mean": 99.76,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "reference": null,
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/jotunheim_storm_wisp-walk.png#0,0",
+      "bbox": [
+        17,
+        18,
+        79,
+        73
+      ],
+      "body_height": 55,
+      "body_width": 62,
+      "area": 2235,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 98.41,
+      "colour_count": 2006,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 18,
+        "right": 17,
+        "bottom": 23,
+        "minimum": 17,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/jotunheim_storm_wisp-walk.png#1,0",
+      "bbox": [
+        17,
+        18,
+        79,
+        71
+      ],
+      "body_height": 53,
+      "body_width": 62,
+      "area": 2163,
+      "bottom": 70,
+      "lift": 2,
+      "expected_lift": 2,
+      "interior_detail": 98.78,
+      "colour_count": 1958,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 18,
+        "right": 17,
+        "bottom": 25,
+        "minimum": 17,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 2,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/jotunheim_storm_wisp-walk.png#2,0",
+      "bbox": [
+        14,
+        18,
+        81,
+        72
+      ],
+      "body_height": 54,
+      "body_width": 67,
+      "area": 2276,
+      "bottom": 71,
+      "lift": 1,
+      "expected_lift": 1,
+      "interior_detail": 98.62,
+      "colour_count": 2063,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 14,
+        "top": 18,
+        "right": 15,
+        "bottom": 24,
+        "minimum": 14,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 3,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/jotunheim_storm_wisp-walk.png#0,1",
+      "bbox": [
+        15,
+        10,
+        81,
+        60
+      ],
+      "body_height": 50,
+      "body_width": 66,
+      "area": 2243,
+      "bottom": 59,
+      "lift": 13,
+      "expected_lift": 13,
+      "interior_detail": 101.63,
+      "colour_count": 2002,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 15,
+        "top": 10,
+        "right": 15,
+        "bottom": 36,
+        "minimum": 10,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 4,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/jotunheim_storm_wisp-walk.png#1,1",
+      "bbox": [
+        14,
+        9,
+        79,
+        61
+      ],
+      "body_height": 52,
+      "body_width": 65,
+      "area": 2186,
+      "bottom": 60,
+      "lift": 12,
+      "expected_lift": 12,
+      "interior_detail": 100.46,
+      "colour_count": 1952,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 14,
+        "top": 9,
+        "right": 17,
+        "bottom": 35,
+        "minimum": 9,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 5,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/jotunheim_storm_wisp-walk.png#2,1",
+      "bbox": [
+        17,
+        9,
+        80,
+        63
+      ],
+      "body_height": 54,
+      "body_width": 63,
+      "area": 2197,
+      "bottom": 62,
+      "lift": 10,
+      "expected_lift": 10,
+      "interior_detail": 100.68,
+      "colour_count": 1961,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 9,
+        "right": 16,
+        "bottom": 33,
+        "minimum": 9,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/jotunheim_storm_wisp/walk/jotunheim_storm_wisp-walk-v1.png",
+    "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/bakeoff/monsters/jotunheim_storm_wisp-walk-v1.png",
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/jotunheim_storm_wisp/walk/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/jotunheim_storm_wisp/walk/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/jotunheim_storm_wisp/walk/compare.png"
+  },
+  "audit96": [
+    {
+      "index": 0,
+      "bbox": [
+        16,
+        15,
+        78,
+        70
+      ],
+      "margin": 15,
+      "detail": 98.41,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 69
+    },
+    {
+      "index": 1,
+      "bbox": [
+        15,
+        15,
+        77,
+        68
+      ],
+      "margin": 15,
+      "detail": 98.78,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 67
+    },
+    {
+      "index": 2,
+      "bbox": [
+        11,
+        16,
+        78,
+        70
+      ],
+      "margin": 11,
+      "detail": 98.62,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 69
+    },
+    {
+      "index": 3,
+      "bbox": [
+        13,
+        18,
+        79,
+        68
+      ],
+      "margin": 13,
+      "detail": 101.63,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 67
+    },
+    {
+      "index": 4,
+      "bbox": [
+        13,
+        16,
+        78,
+        68
+      ],
+      "margin": 13,
+      "detail": 100.46,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 67
+    },
+    {
+      "index": 5,
+      "bbox": [
+        16,
+        16,
+        79,
+        70
+      ],
+      "margin": 16,
+      "detail": 100.68,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 69
+    }
+  ],
+  "body_alignment": {
+    "method": "whole-frame translation to stable body landmark; no rescaling",
+    "landmark": "cyan core",
+    "frames": [
+      {
+        "frame": 0,
+        "source_point": [
+          261.5,
+          284.5
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          -1,
+          0
+        ],
+        "body_centre_after": [
+          46.89,
+          43.61
+        ]
+      },
+      {
+        "frame": 1,
+        "source_point": [
+          264.5,
+          285.0
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          0,
+          0
+        ],
+        "body_centre_after": [
+          46.59,
+          43.7
+        ]
+      },
+      {
+        "frame": 2,
+        "source_point": [
+          272.5,
+          279.0
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          0,
+          -5
+        ],
+        "body_centre_after": [
+          47.31,
+          43.65
+        ]
+      },
+      {
+        "frame": 3,
+        "source_point": [
+          287.0,
+          223.0
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          0,
+          -5
+        ],
+        "body_centre_after": [
+          46.77,
+          44.42
+        ]
+      },
+      {
+        "frame": 4,
+        "source_point": [
+          282.0,
+          228.0
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          0,
+          0
+        ],
+        "body_centre_after": [
+          46.95,
+          43.65
+        ]
+      },
+      {
+        "frame": 5,
+        "source_point": [
+          248.5,
+          226.5
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          0,
+          0
+        ],
+        "body_centre_after": [
+          47.24,
+          43.56
+        ]
+      }
+    ]
+  },
+  "core_measurement": {
+    "method": "largest connected cyan/white component: G>140 B>190 and (B>1.15R G>1.25R or R>180 G>210 B>220); colour-area proxy, not full stone/body outline",
+    "frames": [
+      {
+        "bbox": [
+          207,
+          221,
+          317,
+          349
+        ],
+        "centre": [
+          261.5,
+          284.5
+        ],
+        "width": 110,
+        "height": 128,
+        "area": 7823
+      },
+      {
+        "bbox": [
+          212,
+          222,
+          318,
+          349
+        ],
+        "centre": [
+          264.5,
+          285.0
+        ],
+        "width": 106,
+        "height": 127,
+        "area": 7410
+      },
+      {
+        "bbox": [
+          218,
+          217,
+          328,
+          342
+        ],
+        "centre": [
+          272.5,
+          279.0
+        ],
+        "width": 110,
+        "height": 125,
+        "area": 7417
+      },
+      {
+        "bbox": [
+          235,
+          159,
+          340,
+          288
+        ],
+        "centre": [
+          287.0,
+          223.0
+        ],
+        "width": 105,
+        "height": 129,
+        "area": 7641
+      },
+      {
+        "bbox": [
+          226,
+          165,
+          339,
+          292
+        ],
+        "centre": [
+          282.0,
+          228.0
+        ],
+        "width": 113,
+        "height": 127,
+        "area": 8037
+      },
+      {
+        "bbox": [
+          193,
+          162,
+          305,
+          292
+        ],
+        "centre": [
+          248.5,
+          226.5
+        ],
+        "width": 112,
+        "height": 130,
+        "area": 7479
+      }
+    ],
+    "output_widths": [
+      19.25,
+      18.55,
+      19.25,
+      18.38,
+      19.77,
+      19.6
+    ]
+  },
+  "final_summary": {
+    "margin_min": 11,
+    "detail_min": 98.41,
+    "detail_max": 101.63,
+    "detail_mean": 99.76,
+    "detail_ratio_to_frey": 1.036,
+    "border_clear": true,
+    "alpha_binary": true,
+    "spill": 0,
+    "bottoms": [
+      69,
+      67,
+      69,
+      67,
+      67,
+      69
+    ]
+  },
+  "manual_size_ruler": {
+    "monster": "jotunheim_storm_wisp",
+    "row": "walk",
+    "part": "맨 위 타원형 돌의 보이는 장축",
+    "frames": [
+      0,
+      5
+    ],
+    "lengths_px": [
+      22.85,
+      22.85
+    ],
+    "anchor_mean_px": 23.26,
+    "ratios": [
+      0.982,
+      0.982
+    ],
+    "method": "4배 픽셀 격자를 보고 첫/마지막 프레임에서 같은 부위의 양 끝을 수동 지정. 투영된 길이이며 해부학적 크기나 전 프레임 자동 판정이 아님. 끝점 오차 약 ±1px, 길이 약 ±2px. 웅크린 몸 전체 높이로 배율을 정하지 않음."
+  }
+}

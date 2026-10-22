@@ -1,0 +1,245 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/niflheim_frost_owl-hurt.png",
+    "frames": null,
+    "grid": [
+      2,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1
+    ],
+    "outline": "off",
+    "cell": 96,
+    "feet_y": 72,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 2,
+    "output_columns": 6,
+    "common_scale": 0.11,
+    "scale_by": "fixed:0.11",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      51,
+      54
+    ],
+    "body_width_range": [
+      56,
+      61
+    ],
+    "area_range": [
+      2037,
+      2068
+    ],
+    "area_spread_percent": 1.5,
+    "bottom_range": [
+      72,
+      72
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      1864,
+      1871
+    ],
+    "interior_detail_range": [
+      125.39,
+      125.8
+    ],
+    "interior_detail_mean": 125.59,
+    "remaining_spill_pixels": [
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "reference": null,
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/niflheim_frost_owl-hurt.png#0,0",
+      "bbox": [
+        19,
+        19,
+        75,
+        73
+      ],
+      "body_height": 54,
+      "body_width": 56,
+      "area": 2037,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 125.8,
+      "colour_count": 1864,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 19,
+        "top": 19,
+        "right": 21,
+        "bottom": 23,
+        "minimum": 19,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/raw/monsters-76/niflheim_frost_owl-hurt.png#1,0",
+      "bbox": [
+        16,
+        22,
+        77,
+        73
+      ],
+      "body_height": 51,
+      "body_width": 61,
+      "area": 2068,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 125.39,
+      "colour_count": 1871,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 22,
+        "right": 19,
+        "bottom": 23,
+        "minimum": 16,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/niflheim_frost_owl/hurt/niflheim_frost_owl-hurt-v1.png",
+    "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/art/bakeoff/monsters/niflheim_frost_owl-hurt-v1.png",
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/niflheim_frost_owl/hurt/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/niflheim_frost_owl/hurt/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine/reports/codex-art-76/niflheim_frost_owl/hurt/compare.png"
+  },
+  "audit96": [
+    {
+      "index": 0,
+      "bbox": [
+        19,
+        19,
+        75,
+        73
+      ],
+      "margin": 19,
+      "detail": 125.8,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 1,
+      "bbox": [
+        16,
+        22,
+        77,
+        73
+      ],
+      "margin": 16,
+      "detail": 125.39,
+      "spill": 0,
+      "alpha_binary": true,
+      "bottom": 72
+    }
+  ],
+  "final_summary": {
+    "margin_min": 16,
+    "detail_min": 125.39,
+    "detail_max": 125.8,
+    "detail_mean": 125.59,
+    "detail_ratio_to_frey": 1.304,
+    "border_clear": true,
+    "alpha_binary": true,
+    "spill": 0,
+    "bottoms": [
+      72,
+      72
+    ]
+  },
+  "manual_size_ruler": {
+    "monster": "niflheim_frost_owl",
+    "row": "hurt",
+    "part": "깃 장식 제외, 뒤통수에서 얼굴 앞까지 두개부 축",
+    "frames": [
+      0,
+      1
+    ],
+    "lengths_px": [
+      31.0,
+      28.0
+    ],
+    "anchor_mean_px": 31.5,
+    "ratios": [
+      0.984,
+      0.889
+    ],
+    "method": "4배 픽셀 격자를 보고 첫/마지막 프레임에서 같은 부위의 양 끝을 수동 지정. 투영된 길이이며 해부학적 크기나 전 프레임 자동 판정이 아님. 끝점 오차 약 ±1px, 길이 약 ±2px. 웅크린 몸 전체 높이로 배율을 정하지 않음."
+  }
+}
