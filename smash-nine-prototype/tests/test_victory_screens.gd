@@ -1,0 +1,117 @@
+extends SceneTree
+const MENU := preload("res://scripts/ui/FrontendMenu.gd")
+const FACTORY := preload("res://scripts/PlayerFactory.gd")
+const REGISTRY := preload("res://characters/CharacterRegistry.gd")
+
+class EndingWithRows:
+	extends "res://scripts/ui/StoryScreens.gd"
+	var stand_in: SpriteFrames
+	func _ending_victory_source() -> Node:
+		var fighter := super._ending_victory_source()
+		if stand_in != null:
+			fighter.character_sprite.sprite_frames = stand_in
+		else:
+			for row in fighter.character_sprite.sprite_frames.get_animation_names():
+				if String(row).ends_with("_victory"):
+					fighter.character_sprite.sprite_frames.remove_animation(row)
+		return fighter
+
+var failed := false
+var checks := 0
+
+func _initialize() -> void:
+	call_deferred("_run")
+
+func _check(ok: bool, message: String) -> void:
+	checks += 1
+	if not ok:
+		failed = true
+		push_error(message)
+
+func _lend(fighter: Node) -> void:
+	var frames: SpriteFrames = fighter.character_sprite.sprite_frames
+	var row: StringName = fighter._get_sprite_animation_name(&"victory")
+	var original := frames.get_frame_texture(fighter._get_sprite_animation_name(&"hurt"), 0).get_image()
+	var strip := Image.create(1152, 192, false, Image.FORMAT_RGBA8)
+	for index in 6:
+		strip.blit_rect(original, Rect2i(0, 0, 128, 128), Vector2i(index * 192 + 32, 32))
+	_check(fighter._add_optional_motion_strip(frames, String(row).trim_suffix("_victory"), ImageTexture.create_from_image(strip), fighter.OPTIONAL_MOTION_ROWS[4]), "192px victory stand-in loads")
+
+func _illustrations(screen: Node, texture: Texture2D) -> int:
+	var count := 0
+	for child in screen.content.get_children():
+		if child is TextureRect and child.texture == texture:
+			count += 1
+	return count
+
+func _run() -> void:
+	var menu := Control.new()
+	menu.set_script(MENU)
+	root.add_child(menu)
+	var ending := EndingWithRows.new()
+	root.add_child(ending)
+	for id in REGISTRY.get_character_ids():
+		for body in REGISTRY.get_bodies(id):
+			var winner: Node = FACTORY.create(id, body)
+			root.add_child(winner)
+			winner.setup(REGISTRY.get_characters()[id], 1, false)
+			winner.set_physics_process(false)
+			for row in winner.character_sprite.sprite_frames.get_animation_names():
+				if String(row).ends_with("_victory"):
+					winner.character_sprite.sprite_frames.remove_animation(row)
+			var standings: Array[Node] = [winner]
+			menu.show_results(winner, "last_survivor", standings, winner, {})
+			_check(menu.content.get_node_or_null("VictoryMotion") == null, "missing victory keeps results still")
+			_check(_illustrations(menu, MENU.illustration(id, body)) == 1, "results keeps today's illustration for %s %s" % [id, body])
+			if id == "frey":
+				ending.hide()
+				await _shot("results-existing")
+			ending.selected_id = id
+			ending.body = body
+			ending.stand_in = null
+			var players_before := get_nodes_in_group("players").size()
+			ending.show_story_ending()
+			_check(ending.content.get_node_or_null("VictoryMotion") == null and _illustrations(ending, MENU.illustration(id, body)) == 1, "ending keeps today's illustration without a row")
+			_check(get_nodes_in_group("players").size() == players_before, "ending preview never enters player group")
+			_lend(winner)
+			winner._play_sprite_pose(&"attack", 0, 1, 0.4, 0.1)
+			var pose: StringName = winner.character_sprite.animation
+			menu.show_results(winner, "last_survivor", standings, winner, {})
+			var motion := menu.content.get_node_or_null("VictoryMotion") as AnimatedSprite2D
+			_check(motion != null and motion.is_playing(), "results plays winner victory")
+			_check(winner.character_sprite.animation == pose and winner.sprite_pose_last == 1, "results leaves live winner's D38 pose untouched")
+			_check(_illustrations(menu, MENU.illustration(id, body)) == 0, "new victory replaces illustration in same slot")
+			if id == "frey":
+				ending.hide()
+				await _shot("results-stand-in")
+			ending.stand_in = winner.character_sprite.sprite_frames
+			ending.show_story_ending()
+			_check(ending.content.get_node_or_null("VictoryMotion") != null, "ending plays hero victory with stand-in row")
+			if id == "frey":
+				menu.hide()
+				await _shot("ending-stand-in")
+			winner.free()
+	# Verify playback after the source fighter has been freed, including hold and screen cleanup.
+	await create_timer(0.84).timeout
+	for screen in [menu, ending]:
+		var motion := screen.content.get_node("VictoryMotion") as AnimatedSprite2D
+		_check(motion.frame == 5 and not motion.is_playing(), "screen victory holds final drawing after source removal")
+		var old_content: Control = screen.content
+		screen.show_title()
+		_check(old_content.is_queued_for_deletion() and screen.content.get_node_or_null("VictoryMotion") == null, "changing screen disposes victory preview")
+	var nobody: Array[Node] = []
+	menu.show_results(null, "draw", nobody, null, {})
+	_check(menu.content.get_node_or_null("VictoryMotion") == null, "draw has no winner motion")
+	menu.queue_free()
+	ending.queue_free()
+	await process_frame
+	print("Victory screens: %d checks, failed=%s" % [checks, failed])
+	quit(1 if failed else 0)
+
+func _shot(stem: String) -> void:
+	if not OS.get_cmdline_user_args().has("--capture") or DisplayServer.get_name() == "headless":
+		return
+	await RenderingServer.frame_post_draw
+	var path := ProjectSettings.globalize_path("res://../reports/codex-sys-06")
+	DirAccess.make_dir_recursive_absolute(path)
+	_check(root.get_texture().get_image().save_png(path.path_join(stem + ".png")) == OK, "capture " + stem)

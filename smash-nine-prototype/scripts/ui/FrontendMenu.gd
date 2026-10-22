@@ -8,6 +8,7 @@ const LANGUAGE := preload("res://scripts/Language.gd")
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
+const VICTORY_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const SIZE := Vector2(1280, 720)
 const GOLD := Color("f3cd7c")
 const DIM := Color("aebbd0")
@@ -325,7 +326,8 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	_clear("results")
 	_panel(Rect2(28, 26, 1224, 620))
 	if is_instance_valid(winner):
-		_picture(illustration(winner.character_id, winner.body_type), Rect2(38, 98, 310, 478))
+		if not _victory_picture(winner, Rect2(38, 98, 310, 478)):
+			_picture(illustration(winner.character_id, winner.body_type), Rect2(38, 98, 310, 478))
 		_label(tr("%s WINS") % tr(str(winner.display_name)).to_upper(), Rect2(54, 42, 1180, 60), 42, GOLD)
 	else:
 		_label("DRAW", Rect2(54, 42, 1180, 60), 42, GOLD)
@@ -398,6 +400,37 @@ func _cell(grid: GridContainer, text: String, color: Color, width := 20.0) -> La
 	cell.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	grid.add_child(cell)
 	return cell
+
+## A separate sprite keeps the winner's combat node and pose clock untouched.
+func _victory_picture(fighter: Node, bounds: Rect2) -> bool:
+	if not fighter._has_motion_row(&"victory"):
+		return false
+	var row: StringName = fighter._get_sprite_animation_name(&"victory")
+	var source: SpriteFrames = fighter.character_sprite.sprite_frames
+	var frames := SpriteFrames.new()
+	frames.add_animation(&"victory")
+	frames.set_animation_speed(&"victory", source.get_animation_speed(row))
+	frames.set_animation_loop(&"victory", false)
+	for index in source.get_frame_count(row):
+		frames.add_frame(&"victory", source.get_frame_texture(row, index), source.get_frame_duration(row, index))
+	var sprite := AnimatedSprite2D.new()
+	sprite.name = "VictoryMotion"
+	sprite.sprite_frames = frames
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	var cell := source.get_frame_texture(row, 0).get_size()
+	sprite.scale = Vector2.ONE * minf(bounds.size.x / cell.x, bounds.size.y / cell.y)
+	sprite.position = bounds.get_center()
+	content.add_child(sprite)
+	sprite.play(&"victory")
+	return true
+
+## Configure only the sprite, outside the tree: no player, physics or input enters the menu.
+func _ending_victory_source() -> Node:
+	var fighter: Node = VICTORY_FACTORY.create(selected_id, body)
+	fighter.character_id = selected_id
+	fighter.character_sprite = fighter.get_node("CharacterSprite")
+	fighter.configure_character_sprite()
+	return fighter
 
 func _activate(action: String, value: String) -> void:
 	match action:

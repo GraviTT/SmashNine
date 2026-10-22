@@ -200,7 +200,10 @@ func show_story_result(result: Dictionary) -> void:
 func show_story_ending() -> void:
 	_clear("story_ending")
 	_panel(Rect2(100, 62, 1080, 590), 0.98)
-	_picture(illustration(selected_id, body), Rect2(122, 118, 350, 500))
+	var hero := _ending_victory_source()
+	if not _victory_picture(hero, Rect2(122, 118, 350, 500)):
+		_picture(illustration(selected_id, body), Rect2(122, 118, 350, 500))
+	hero.free()
 	_label("STORY COMPLETE", Rect2(500, 102, 640, 66), 40, GOLD)
 	_label(tr(str(_roster[selected_id].name)), Rect2(500, 188, 620, 42), 28, _roster[selected_id].color)
 	var ids := STORY.ending_ids(selected_id)
