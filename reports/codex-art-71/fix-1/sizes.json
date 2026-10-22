@@ -1,0 +1,2249 @@
+{
+  "mossling": [
+    {
+      "monster": "mossling",
+      "row": "idle",
+      "frame": 1,
+      "part": "잎·아래턱을 뺀 윗얼굴 가로폭",
+      "before": {
+        "box": [
+          64,
+          47,
+          86,
+          62
+        ],
+        "size": 22,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          64,
+          47,
+          86,
+          62
+        ],
+        "size": 22,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.21527778,
+      "after_factor": 0.21527778,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "mossling",
+      "row": "walk",
+      "frame": 1,
+      "part": "잎·아래턱을 뺀 윗얼굴 가로폭",
+      "before": {
+        "box": [
+          66,
+          48,
+          90,
+          63
+        ],
+        "size": 24,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          64,
+          50,
+          86,
+          64
+        ],
+        "size": 22,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.21,
+      "after_factor": 0.1925,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            12,
+            21,
+            88,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            13,
+            21,
+            87,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            13,
+            20,
+            86,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            8,
+            21,
+            88,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "output_bbox": [
+            11,
+            22,
+            87,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "output_bbox": [
+            12,
+            21,
+            87,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 1.0909090909090908,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "mossling",
+      "row": "windup",
+      "frame": 1,
+      "part": "잎·아래턱을 뺀 윗얼굴 가로폭",
+      "before": {
+        "box": [
+          66,
+          51,
+          89,
+          66
+        ],
+        "size": 23,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          66,
+          51,
+          89,
+          66
+        ],
+        "size": 23,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.16,
+      "after_factor": 0.16,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0454545454545454,
+      "after_ratio": 1.0454545454545454,
+      "within_5_percent": true
+    },
+    {
+      "monster": "mossling",
+      "row": "attack",
+      "frame": 1,
+      "part": "잎·아래턱을 뺀 윗얼굴 가로폭",
+      "before": {
+        "box": [
+          65,
+          51,
+          88,
+          63
+        ],
+        "size": 23,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          65,
+          51,
+          88,
+          63
+        ],
+        "size": 23,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.215,
+      "after_factor": 0.215,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0454545454545454,
+      "after_ratio": 1.0454545454545454,
+      "within_5_percent": true
+    },
+    {
+      "monster": "mossling",
+      "row": "hurt",
+      "frame": 2,
+      "part": "잎·아래턱을 뺀 윗얼굴 가로폭",
+      "before": {
+        "box": [
+          63,
+          51,
+          85,
+          65
+        ],
+        "size": 22,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          63,
+          51,
+          85,
+          65
+        ],
+        "size": 22,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.125,
+      "after_factor": 0.125,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "mossling",
+      "row": "defeat",
+      "frame": 1,
+      "part": "잎·아래턱을 뺀 윗얼굴 가로폭",
+      "before": {
+        "box": [
+          63,
+          52,
+          85,
+          67
+        ],
+        "size": 22,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          63,
+          52,
+          85,
+          67
+        ],
+        "size": 22,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.165,
+      "after_factor": 0.165,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    }
+  ],
+  "ember_imp": [
+    {
+      "monster": "ember_imp",
+      "row": "idle",
+      "frame": 1,
+      "part": "뿔·뒤쪽 가시를 뺀 두개골 가로폭",
+      "before": {
+        "box": [
+          51,
+          27,
+          71,
+          44
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          51,
+          27,
+          71,
+          44
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.17,
+      "after_factor": 0.17,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "ember_imp",
+      "row": "walk",
+      "frame": 1,
+      "part": "뿔·뒤쪽 가시를 뺀 두개골 가로폭",
+      "before": {
+        "box": [
+          50,
+          27,
+          71,
+          43
+        ],
+        "size": 21,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          50,
+          27,
+          71,
+          43
+        ],
+        "size": 21,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.17,
+      "after_factor": 0.17,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.05,
+      "after_ratio": 1.05,
+      "within_5_percent": true
+    },
+    {
+      "monster": "ember_imp",
+      "row": "windup",
+      "frame": 1,
+      "part": "뿔·뒤쪽 가시를 뺀 두개골 가로폭",
+      "before": {
+        "box": [
+          54,
+          28,
+          74,
+          44
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          54,
+          28,
+          74,
+          44
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.145,
+      "after_factor": 0.145,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "ember_imp",
+      "row": "attack",
+      "frame": 1,
+      "part": "뿔·뒤쪽 가시를 뺀 두개골 가로폭",
+      "before": {
+        "box": [
+          54,
+          30,
+          74,
+          45
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          54,
+          30,
+          74,
+          45
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.185,
+      "after_factor": 0.185,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "ember_imp",
+      "row": "hurt",
+      "frame": 2,
+      "part": "뿔·뒤쪽 가시를 뺀 두개골 가로폭",
+      "before": {
+        "box": [
+          57,
+          35,
+          77,
+          51
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          57,
+          35,
+          77,
+          51
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.102,
+      "after_factor": 0.102,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "ember_imp",
+      "row": "defeat",
+      "frame": 1,
+      "part": "뿔·뒤쪽 가시를 뺀 두개골 가로폭",
+      "before": {
+        "box": [
+          62,
+          22,
+          85,
+          40
+        ],
+        "size": 23,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "box": [
+          61,
+          29,
+          81,
+          44
+        ],
+        "size": 20,
+        "kind": "manual_width",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.17,
+      "after_factor": 0.14782609,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            33,
+            14,
+            80,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            21,
+            23,
+            79,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            14,
+            43,
+            81,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            11,
+            44,
+            80,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 1.15,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    }
+  ],
+  "asgard_aegis_ram": [
+    {
+      "monster": "asgard_aegis_ram",
+      "row": "idle",
+      "frame": 1,
+      "part": "금색 주뿔 연결 영역 세로높이",
+      "before": {
+        "box": [
+          60,
+          27,
+          78,
+          45
+        ],
+        "size": 18,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 145
+      },
+      "after": {
+        "box": [
+          59,
+          32,
+          74,
+          48
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 120
+      },
+      "before_factor": 0.19,
+      "after_factor": 0.17,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            15,
+            28,
+            80,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            13,
+            28,
+            78,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            16,
+            25,
+            81,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            14,
+            29,
+            81,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "output_bbox": [
+            12,
+            34,
+            83,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "output_bbox": [
+            14,
+            29,
+            79,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_aegis_ram",
+      "row": "walk",
+      "frame": 1,
+      "part": "금색 주뿔 연결 영역 세로높이",
+      "before": {
+        "box": [
+          62,
+          26,
+          80,
+          42
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 125
+      },
+      "after": {
+        "box": [
+          62,
+          26,
+          80,
+          42
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 125
+      },
+      "before_factor": 0.22,
+      "after_factor": 0.22,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 0.8888888888888888,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_aegis_ram",
+      "row": "windup",
+      "frame": 1,
+      "part": "금색 주뿔 연결 영역 세로높이",
+      "before": {
+        "box": [
+          66,
+          30,
+          79,
+          46
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 113
+      },
+      "after": {
+        "box": [
+          66,
+          30,
+          79,
+          46
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 113
+      },
+      "before_factor": 0.17,
+      "after_factor": 0.17,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 0.8888888888888888,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_aegis_ram",
+      "row": "attack",
+      "frame": 1,
+      "part": "금색 주뿔 연결 영역 세로높이",
+      "before": {
+        "box": [
+          66,
+          33,
+          83,
+          49
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 118
+      },
+      "after": {
+        "box": [
+          66,
+          33,
+          83,
+          49
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 118
+      },
+      "before_factor": 0.21,
+      "after_factor": 0.21,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            10,
+            28,
+            91,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            11,
+            28,
+            88,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            14,
+            29,
+            87,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            4,
+            28,
+            90,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "output_bbox": [
+            11,
+            27,
+            91,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "output_bbox": [
+            13,
+            27,
+            88,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 0.8888888888888888,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_aegis_ram",
+      "row": "hurt",
+      "frame": 2,
+      "part": "금색 주뿔 연결 영역 세로높이",
+      "before": {
+        "box": [
+          57,
+          35,
+          73,
+          50
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 110
+      },
+      "after": {
+        "box": [
+          58,
+          32,
+          75,
+          48
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 122
+      },
+      "before_factor": 0.11,
+      "after_factor": 0.11733333,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            16,
+            19,
+            79,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            12,
+            29,
+            80,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 0.8333333333333334,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_aegis_ram",
+      "row": "defeat",
+      "frame": 1,
+      "part": "금색 주뿔 연결 영역 세로높이",
+      "before": {
+        "box": [
+          66,
+          28,
+          82,
+          44
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 110
+      },
+      "after": {
+        "box": [
+          66,
+          28,
+          82,
+          44
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 110
+      },
+      "before_factor": 0.17,
+      "after_factor": 0.17,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 0.8888888888888888,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    }
+  ],
+  "asgard_runic_raven": [
+    {
+      "monster": "asgard_runic_raven",
+      "row": "idle",
+      "frame": 1,
+      "part": "금색 어깨 원판 테두리 가로폭",
+      "before": {
+        "box": [
+          42,
+          42,
+          57,
+          58
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 84
+      },
+      "after": {
+        "box": [
+          42,
+          42,
+          57,
+          58
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 84
+      },
+      "before_factor": 0.175,
+      "after_factor": 0.175,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_runic_raven",
+      "row": "walk",
+      "frame": 1,
+      "part": "금색 어깨 원판 테두리 가로폭",
+      "before": {
+        "box": [
+          41,
+          42,
+          56,
+          58
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 62
+      },
+      "after": {
+        "box": [
+          41,
+          42,
+          56,
+          58
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 62
+      },
+      "before_factor": 0.19,
+      "after_factor": 0.19,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_runic_raven",
+      "row": "windup",
+      "frame": 1,
+      "part": "금색 어깨 원판 테두리 가로폭",
+      "before": {
+        "box": [
+          42,
+          43,
+          55,
+          58
+        ],
+        "size": 13,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 64
+      },
+      "after": {
+        "box": [
+          41,
+          42,
+          56,
+          58
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 78
+      },
+      "before_factor": 0.16,
+      "after_factor": 0.177,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            7,
+            9,
+            74,
+            72
+          ],
+          "translation_from_work": [
+            -86,
+            -81
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            10,
+            3,
+            71,
+            74
+          ],
+          "translation_from_work": [
+            -85,
+            -79
+          ],
+          "margin_adjustment": [
+            0,
+            4
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            4,
+            15,
+            76,
+            70
+          ],
+          "translation_from_work": [
+            -84,
+            -83
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            6,
+            22,
+            74,
+            67
+          ],
+          "translation_from_work": [
+            -84,
+            -86
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 0.8666666666666667,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_runic_raven",
+      "row": "attack",
+      "frame": 1,
+      "part": "금색 어깨 원판 테두리 가로폭",
+      "before": {
+        "box": [
+          40,
+          41,
+          56,
+          57
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 74
+      },
+      "after": {
+        "box": [
+          41,
+          41,
+          56,
+          57
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 67
+      },
+      "before_factor": 0.26,
+      "after_factor": 0.239,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            10,
+            24,
+            72,
+            69
+          ],
+          "translation_from_work": [
+            -82,
+            -84
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            11,
+            21,
+            73,
+            69
+          ],
+          "translation_from_work": [
+            -82,
+            -84
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            12,
+            25,
+            72,
+            69
+          ],
+          "translation_from_work": [
+            -81,
+            -84
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            10,
+            21,
+            72,
+            70
+          ],
+          "translation_from_work": [
+            -83,
+            -83
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "output_bbox": [
+            11,
+            19,
+            73,
+            70
+          ],
+          "translation_from_work": [
+            -84,
+            -83
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "output_bbox": [
+            12,
+            27,
+            72,
+            69
+          ],
+          "translation_from_work": [
+            -81,
+            -84
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 1.0666666666666667,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_runic_raven",
+      "row": "hurt",
+      "frame": 2,
+      "part": "금색 어깨 원판 테두리 가로폭",
+      "before": {
+        "box": [
+          42,
+          41,
+          58,
+          57
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 77
+      },
+      "after": {
+        "box": [
+          42,
+          41,
+          57,
+          57
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 68
+      },
+      "before_factor": 0.135,
+      "after_factor": 0.1265625,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            10,
+            30,
+            70,
+            80
+          ],
+          "translation_from_work": [
+            -90,
+            -73
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            15,
+            31,
+            74,
+            66
+          ],
+          "translation_from_work": [
+            -83,
+            -87
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 1.0666666666666667,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "asgard_runic_raven",
+      "row": "defeat",
+      "frame": 1,
+      "part": "금색 어깨 원판 테두리 가로폭",
+      "before": {
+        "box": [
+          52,
+          40,
+          67,
+          56
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 81
+      },
+      "after": {
+        "box": [
+          52,
+          40,
+          67,
+          56
+        ],
+        "size": 15,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 81
+      },
+      "before_factor": 0.16,
+      "after_factor": 0.16,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    }
+  ],
+  "alfheim_moon_stag": [
+    {
+      "monster": "alfheim_moon_stag",
+      "row": "idle",
+      "frame": 1,
+      "part": "몸통의 엉덩이–어깨 중심 거리(털끝·목 제외)",
+      "before": {
+        "points": [
+          [
+            31,
+            57
+          ],
+          [
+            51,
+            44
+          ]
+        ],
+        "size": 23.853720883753127,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "points": [
+          [
+            31.0,
+            57.0
+          ],
+          [
+            51.0,
+            44.0
+          ]
+        ],
+        "size": 23.853720883753127,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.16,
+      "after_factor": 0.16,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_stag",
+      "row": "walk",
+      "frame": 1,
+      "part": "몸통의 엉덩이–어깨 중심 거리(털끝·목 제외)",
+      "before": {
+        "points": [
+          [
+            35,
+            55
+          ],
+          [
+            57,
+            44
+          ]
+        ],
+        "size": 24.596747752497688,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "points": [
+          [
+            35.0,
+            55.0
+          ],
+          [
+            57.0,
+            44.0
+          ]
+        ],
+        "size": 24.596747752497688,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.18,
+      "after_factor": 0.18,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0311493067419364,
+      "after_ratio": 1.0311493067419364,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_stag",
+      "row": "windup",
+      "frame": 1,
+      "part": "몸통의 엉덩이–어깨 중심 거리(털끝·목 제외)",
+      "before": {
+        "points": [
+          [
+            34,
+            52
+          ],
+          [
+            57,
+            40
+          ]
+        ],
+        "size": 25.942243542145693,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "points": [
+          [
+            35.71,
+            53.69
+          ],
+          [
+            56.86,
+            42.66
+          ]
+        ],
+        "size": 23.85337292711452,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.16,
+      "after_factor": 0.1471,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            21,
+            16,
+            79,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            12,
+            29,
+            80,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            18,
+            27,
+            84,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            13,
+            30,
+            80,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 1.0875554245214243,
+      "after_ratio": 0.9999854128988805,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_stag",
+      "row": "attack",
+      "frame": 6,
+      "part": "몸통의 엉덩이–어깨 중심 거리(털끝·목 제외)",
+      "before": {
+        "points": [
+          [
+            29,
+            60
+          ],
+          [
+            52,
+            53
+          ]
+        ],
+        "size": 24.041630560342615,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "points": [
+          [
+            29.0,
+            60.0
+          ],
+          [
+            52.0,
+            53.0
+          ]
+        ],
+        "size": 24.041630560342615,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.18,
+      "after_factor": 0.18,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0078775834388787,
+      "after_ratio": 1.0078775834388787,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_stag",
+      "row": "hurt",
+      "frame": 1,
+      "part": "몸통의 엉덩이–어깨 중심 거리(털끝·목 제외)",
+      "before": {
+        "points": [
+          [
+            30,
+            61
+          ],
+          [
+            48,
+            44
+          ]
+        ],
+        "size": 24.758836806279895,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "points": [
+          [
+            30.0,
+            61.0
+          ],
+          [
+            48.0,
+            44.0
+          ]
+        ],
+        "size": 24.758836806279895,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.1,
+      "after_factor": 0.1,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0379444333627315,
+      "after_ratio": 1.0379444333627315,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_stag",
+      "row": "defeat",
+      "frame": 1,
+      "part": "몸통의 엉덩이–어깨 중심 거리(털끝·목 제외)",
+      "before": {
+        "points": [
+          [
+            32,
+            57
+          ],
+          [
+            54,
+            43
+          ]
+        ],
+        "size": 26.076809620810597,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "after": {
+        "points": [
+          [
+            32.98,
+            59.01
+          ],
+          [
+            53.1,
+            46.21
+          ]
+        ],
+        "size": 23.846475630583235,
+        "kind": "manual_axis_length",
+        "uncertainty_px": 1
+      },
+      "before_factor": 0.15,
+      "after_factor": 0.1372,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            22,
+            27,
+            78,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            19,
+            47,
+            81,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            16,
+            48,
+            83,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            12,
+            54,
+            86,
+            73
+          ],
+          "translation_from_work": [
+            -80,
+            -80
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "before_ratio": 1.0931967280027841,
+      "after_ratio": 0.9996962631865611,
+      "within_5_percent": true
+    }
+  ],
+  "alfheim_moon_moth": [
+    {
+      "monster": "alfheim_moon_moth",
+      "row": "idle",
+      "frame": 1,
+      "part": "밝은 구형 머리 연결 영역 √면적(등가 선형크기)",
+      "before": {
+        "box": [
+          54,
+          41,
+          71,
+          59
+        ],
+        "size": 15.0996688705415,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 228
+      },
+      "after": {
+        "box": [
+          54,
+          41,
+          71,
+          59
+        ],
+        "size": 15.0996688705415,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 228
+      },
+      "before_factor": 0.18,
+      "after_factor": 0.18,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0,
+      "after_ratio": 1.0,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_moth",
+      "row": "walk",
+      "frame": 1,
+      "part": "밝은 구형 머리 연결 영역 √면적(등가 선형크기)",
+      "before": {
+        "box": [
+          53,
+          42,
+          70,
+          58
+        ],
+        "size": 14.560219778561036,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 212
+      },
+      "after": {
+        "box": [
+          53,
+          42,
+          70,
+          58
+        ],
+        "size": 14.560219778561036,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 212
+      },
+      "before_factor": 0.188,
+      "after_factor": 0.188,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 0.964274111134126,
+      "after_ratio": 0.964274111134126,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_moth",
+      "row": "windup",
+      "frame": 1,
+      "part": "밝은 구형 머리 연결 영역 √면적(등가 선형크기)",
+      "before": {
+        "box": [
+          54,
+          42,
+          71,
+          59
+        ],
+        "size": 15.231546211727817,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 232
+      },
+      "after": {
+        "box": [
+          54,
+          42,
+          71,
+          59
+        ],
+        "size": 15.231546211727817,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 232
+      },
+      "before_factor": 0.17,
+      "after_factor": 0.17,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 1.0087337902782492,
+      "after_ratio": 1.0087337902782492,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_moth",
+      "row": "attack",
+      "frame": 1,
+      "part": "밝은 구형 머리 연결 영역 √면적(등가 선형크기)",
+      "before": {
+        "box": [
+          53,
+          42,
+          70,
+          58
+        ],
+        "size": 14.247806848775006,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 203
+      },
+      "after": {
+        "box": [
+          53,
+          42,
+          70,
+          59
+        ],
+        "size": 14.696938456699069,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 216
+      },
+      "before_factor": 0.181,
+      "after_factor": 0.184,
+      "changed": true,
+      "placement": [
+        {
+          "frame": 1,
+          "output_bbox": [
+            24,
+            25,
+            81,
+            70
+          ],
+          "translation_from_work": [
+            -79,
+            -83
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "output_bbox": [
+            37,
+            33,
+            74,
+            64
+          ],
+          "translation_from_work": [
+            -75,
+            -89
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "output_bbox": [
+            48,
+            39,
+            68,
+            59
+          ],
+          "translation_from_work": [
+            -71,
+            -94
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "output_bbox": [
+            52,
+            39,
+            71,
+            61
+          ],
+          "translation_from_work": [
+            -67,
+            -92
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "output_bbox": [
+            29,
+            29,
+            76,
+            66
+          ],
+          "translation_from_work": [
+            -78,
+            -87
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "output_bbox": [
+            24,
+            25,
+            82,
+            70
+          ],
+          "translation_from_work": [
+            -78,
+            -83
+          ],
+          "margin_adjustment": [
+            0,
+            0
+          ]
+        }
+      ],
+      "last_frame": {
+        "frame": 6,
+        "before": {
+          "box": [
+            54,
+            41,
+            71,
+            58
+          ],
+          "size": 14.594519519326424,
+          "kind": "connected_colour_pixels",
+          "uncertainty_px": 0,
+          "area": 213
+        },
+        "after": {
+          "box": [
+            54,
+            42,
+            71,
+            59
+          ],
+          "size": 14.832396974191326,
+          "kind": "connected_colour_pixels",
+          "uncertainty_px": 0,
+          "area": 220
+        },
+        "before_ratio": 0.9665456669582609,
+        "after_ratio": 0.9822994862575031,
+        "within_5_percent": true
+      },
+      "before_ratio": 0.9435840594207716,
+      "after_ratio": 0.9733285267845753,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_moth",
+      "row": "hurt",
+      "frame": 2,
+      "part": "밝은 구형 머리 연결 영역 √면적(등가 선형크기)",
+      "before": {
+        "box": [
+          54,
+          42,
+          70,
+          60
+        ],
+        "size": 14.798648586948742,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 219
+      },
+      "after": {
+        "box": [
+          54,
+          42,
+          70,
+          60
+        ],
+        "size": 14.798648586948742,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 219
+      },
+      "before_factor": 0.15,
+      "after_factor": 0.15,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 0.9800644447124248,
+      "after_ratio": 0.9800644447124248,
+      "within_5_percent": true
+    },
+    {
+      "monster": "alfheim_moon_moth",
+      "row": "defeat",
+      "frame": 1,
+      "part": "밝은 구형 머리 연결 영역 √면적(등가 선형크기)",
+      "before": {
+        "box": [
+          49,
+          44,
+          65,
+          61
+        ],
+        "size": 14.45683229480096,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 209
+      },
+      "after": {
+        "box": [
+          49,
+          44,
+          65,
+          61
+        ],
+        "size": 14.45683229480096,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 209
+      },
+      "before_factor": 0.19,
+      "after_factor": 0.19,
+      "changed": false,
+      "placement": [],
+      "before_ratio": 0.9574271077563381,
+      "after_ratio": 0.9574271077563381,
+      "within_5_percent": true
+    }
+  ]
+}
