@@ -1,0 +1,165 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      79,
+      64.5,
+      4,
+      5
+    ],
+    [
+      86,
+      64.5,
+      3,
+      4
+    ],
+    [
+      73,
+      65.5,
+      3,
+      4
+    ],
+    [
+      87,
+      65.5,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 79.332,
+      "y": 65.048,
+      "score": 1
+    },
+    {
+      "x": 86.808,
+      "y": 63.732,
+      "score": 1
+    },
+    {
+      "x": 73,
+      "y": 65.5,
+      "score": 1
+    },
+    {
+      "x": 87,
+      "y": 65.5,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.59094407830806,
+  "reference_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 78.925,
+          "y": 66.766,
+          "score": 0.818
+        },
+        {
+          "x": 86.009,
+          "y": 65.66,
+          "score": 0.678
+        },
+        {
+          "x": 73.0,
+          "y": 67.5,
+          "score": 0.96
+        },
+        {
+          "x": 88.0,
+          "y": 66.5,
+          "score": 0.698
+        }
+      ],
+      "eye_distance": 7.17,
+      "face_width": 15.0,
+      "eye_ratio": 0.945,
+      "face_width_ratio": 1.071,
+      "head_alignment": [
+        1.02,
+        56,
+        45,
+        0.887
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 77.761,
+          "y": 65.723,
+          "score": 0.886
+        },
+        {
+          "x": 85.16,
+          "y": 63.559,
+          "score": 0.699
+        },
+        {
+          "x": 72.0,
+          "y": 66.5,
+          "score": 0.97
+        },
+        {
+          "x": 87.0,
+          "y": 65.5,
+          "score": 0.573
+        }
+      ],
+      "eye_distance": 7.709,
+      "face_width": 15.0,
+      "eye_ratio": 1.016,
+      "face_width_ratio": 1.071,
+      "head_alignment": [
+        1.01,
+        56,
+        45,
+        0.695
+      ]
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 78.808,
+          "y": 66.819,
+          "score": 0.847
+        },
+        {
+          "x": 86.172,
+          "y": 65.279,
+          "score": 0.706
+        },
+        {
+          "x": 73.0,
+          "y": 67.5,
+          "score": 0.951
+        },
+        {
+          "x": 88.0,
+          "y": 66.5,
+          "score": 0.715
+        }
+      ],
+      "eye_distance": 7.523,
+      "face_width": 15.0,
+      "eye_ratio": 0.991,
+      "face_width_ratio": 1.071,
+      "head_alignment": [
+        1.0,
+        57,
+        46,
+        0.894
+      ]
+    }
+  ],
+  "excluded_frames": [
+    2
+  ],
+  "review_passed": false,
+  "review_note": "3회 생성 종료. F1 눈 비율 0.945와 F1·3 얼굴 폭 1.071이 기준 밖이다. F2 자동 머리 위치가 팔·다리 피부에 혼동되어 해당 얼굴 측정값은 제외했다."
+}

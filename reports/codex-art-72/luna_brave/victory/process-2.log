@@ -1,0 +1,7 @@
+Error: source cell subject touches its right border in art/raw/motions-72/luna_brave-victory-2.png#0,1; the drawing may cross into another cell and would be cut. Regenerate the whole motion with more margin
+Traceback (most recent call last):
+  File "C:\Users\TH\Documents\AI\GameProject\SmashNine-units\builder-frey\SmashNine\reports\codex-art-72\process.py", line 26, in <module>
+    subprocess.run(cmd,check=True)
+  File "C:\Users\TH\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Users\\TH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe', 'tools/sprite_pipeline/normalize.py', '--sheet', 'art/raw/motions-72/luna_brave-victory-2.png', '--grid', '3x2', '--bg', '#00ff00', '--cell', '192', '--scale-by', 'fixed:0.2', '--resample', 'lanczos', '--sharpen', '60', '--despill', 'auto', '--palette', 'none', '--reference', 'art/bakeoff/luna/luna_brave-idle-v4.png:0:1', '--compare-scale', '4', '--out-dir', 'reports\\codex-art-72\\luna_brave\\victory\\attempt-2', '--name', 'luna_brave-victory', '--title', 'luna_brave victory attempt 2', '--ground-all']' returned non-zero exit status 1.

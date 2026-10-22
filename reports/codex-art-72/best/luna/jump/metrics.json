@@ -1,0 +1,247 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-72/luna-jump-1.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.15,
+    "scale_by": "fixed:0.15",
+    "common_offset_x": 0,
+    "common_lift": 11,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      76,
+      78
+    ],
+    "body_width_range": [
+      84,
+      86
+    ],
+    "area_range": [
+      3693,
+      3778
+    ],
+    "area_spread_percent": 2.25,
+    "bottom_range": [
+      99,
+      109
+    ],
+    "lift_range": [
+      11,
+      21
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3435,
+      3525
+    ],
+    "interior_detail_range": [
+      109.73,
+      111.72
+    ],
+    "interior_detail_mean": 110.63,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 93.44,
+    "interior_detail_ratio": 1.184
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.44,
+        "colour_count": 4025,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 93.44,
+    "colour_count_range": [
+      4025,
+      4025
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-72/luna-jump-1.png#0,0",
+      "bbox": [
+        23,
+        34,
+        109,
+        110
+      ],
+      "body_height": 76,
+      "body_width": 86,
+      "area": 3778,
+      "bottom": 109,
+      "lift": 11,
+      "expected_lift": 11,
+      "interior_detail": 110.43,
+      "colour_count": 3525,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 34,
+        "right": 19,
+        "bottom": 18,
+        "minimum": 18,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1818
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-72/luna-jump-1.png#1,0",
+      "bbox": [
+        24,
+        24,
+        108,
+        100
+      ],
+      "body_height": 76,
+      "body_width": 84,
+      "area": 3693,
+      "bottom": 99,
+      "lift": 21,
+      "expected_lift": 21,
+      "interior_detail": 109.73,
+      "colour_count": 3435,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 24,
+        "right": 20,
+        "bottom": 28,
+        "minimum": 20,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1743
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-72/luna-jump-1.png#2,0",
+      "bbox": [
+        24,
+        24,
+        108,
+        102
+      ],
+      "body_height": 78,
+      "body_width": 84,
+      "area": 3710,
+      "bottom": 101,
+      "lift": 19,
+      "expected_lift": 19,
+      "interior_detail": 111.72,
+      "colour_count": 3450,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 24,
+        "right": 20,
+        "bottom": 26,
+        "minimum": 20,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1956
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-72/luna/jump/attempt-1/luna-jump.png",
+    "candidate": null,
+    "frames": "reports/codex-art-72/luna/jump/attempt-1/frames",
+    "closeup": "reports/codex-art-72/luna/jump/attempt-1/closeup.png",
+    "compare": "reports/codex-art-72/luna/jump/attempt-1/compare.png"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      82.5,
+      67,
+      4,
+      5
+    ],
+    [
+      90,
+      67,
+      3,
+      4
+    ],
+    [
+      77,
+      67,
+      3,
+      4
+    ],
+    [
+      91,
+      67,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 82.184,
+      "y": 67.594,
+      "score": 1
+    },
+    {
+      "x": 89.805,
+      "y": 66.359,
+      "score": 1
+    },
+    {
+      "x": 77,
+      "y": 67,
+      "score": 1
+    },
+    {
+      "x": 91,
+      "y": 67,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.720418771025322,
+  "reference_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 73.391,
+          "y": 50.614,
+          "score": 0.929
+        },
+        {
+          "x": 80.776,
+          "y": 49.571,
+          "score": 0.874
+        },
+        {
+          "x": 68.0,
+          "y": 50.0,
+          "score": 0.949
+        },
+        {
+          "x": 82.0,
+          "y": 50.0,
+          "score": 0.942
+        }
+      ],
+      "eye_distance": 7.458,
+      "face_width": 14.0,
+      "eye_ratio": 0.966,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        57,
+        32,
+        0.785
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 73.301,
+          "y": 50.692,
+          "score": 0.935
+        },
+        {
+          "x": 80.685,
+          "y": 49.519,
+          "score": 0.9
+        },
+        {
+          "x": 68.0,
+          "y": 50.0,
+          "score": 0.949
+        },
+        {
+          "x": 82.0,
+          "y": 50.0,
+          "score": 0.964
+        }
+      ],
+      "eye_distance": 7.477,
+      "face_width": 14.0,
+      "eye_ratio": 0.968,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.92,
+        57,
+        32,
+        0.769
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_passed": true,
+  "review_note": "위로 들린 머리카락과 치맛자락의 낙하 반복. 자동 머리 중앙값 0.94와 달라 얼굴 측정을 우선했다."
+}

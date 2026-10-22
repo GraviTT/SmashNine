@@ -1,0 +1,128 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      79,
+      51,
+      3,
+      4
+    ],
+    [
+      85,
+      51,
+      3,
+      4
+    ],
+    [
+      68,
+      53,
+      4,
+      4
+    ],
+    [
+      85.5,
+      53,
+      4,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 79.385,
+      "y": 51.434,
+      "score": 1
+    },
+    {
+      "x": 85.722,
+      "y": 51.054,
+      "score": 1
+    },
+    {
+      "x": 68,
+      "y": 53,
+      "score": 1
+    },
+    {
+      "x": 85.5,
+      "y": 53,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 6.348383179991568,
+  "reference_face_width": 17.5,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 73.33,
+          "y": 34.907,
+          "score": 0.892
+        },
+        {
+          "x": 79.579,
+          "y": 34.029,
+          "score": 0.866
+        },
+        {
+          "x": 62.0,
+          "y": 36.0,
+          "score": 0.87
+        },
+        {
+          "x": 79.5,
+          "y": 37.0,
+          "score": 0.893
+        }
+      ],
+      "eye_distance": 6.31,
+      "face_width": 17.5,
+      "eye_ratio": 0.994,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        54,
+        16,
+        0.852
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 74.345,
+          "y": 34.966,
+          "score": 0.899
+        },
+        {
+          "x": 80.725,
+          "y": 33.849,
+          "score": 0.867
+        },
+        {
+          "x": 63.0,
+          "y": 36.0,
+          "score": 0.847
+        },
+        {
+          "x": 80.5,
+          "y": 36.0,
+          "score": 0.886
+        }
+      ],
+      "eye_distance": 6.477,
+      "face_width": 17.5,
+      "eye_ratio": 1.02,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        55,
+        16,
+        0.859
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_passed": true,
+  "review_note": "머리카락과 망토가 위로 후행하는 두 낙하 자세. 얼굴과 장비를 4배로 확인했다."
+}
