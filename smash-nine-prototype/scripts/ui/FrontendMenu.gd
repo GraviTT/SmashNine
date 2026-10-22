@@ -4,6 +4,7 @@ extends Control
 signal action_requested(action: String, value: String)
 
 const ART := preload("res://scripts/ArtSettings.gd")
+const LANGUAGE := preload("res://scripts/Language.gd")
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
@@ -68,9 +69,13 @@ var speed_button: Button
 var art_button: Button
 var count_button: Button
 var panel_button: Button
+var language_button: Button
 var footer: Label
 var session_status: Label
 var _roster := REGISTRY.get_characters()
+
+func _init() -> void:
+	LANGUAGE.load_saved()
 
 func _ready() -> void:
 	name = "Frontend"
@@ -103,11 +108,12 @@ func _clear(next_screen: String) -> void:
 
 func _label(text: String, rect: Rect2, font_size := 20, color := Color.WHITE) -> Label:
 	var label := Label.new()
-	label.text = text
+	label.text = tr(text)
 	label.position = rect.position
 	label.size = rect.size
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", color)
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	content.add_child(label)
 	return label
@@ -138,7 +144,7 @@ func _panel(rect: Rect2, alpha := 0.94) -> void:
 
 func _button(text: String, rect: Rect2, action: String, value := "") -> Button:
 	var button := Button.new()
-	button.text = text
+	button.text = tr(text)
 	button.position = rect.position
 	button.size = rect.size
 	button.add_theme_font_size_override("font_size", 20)
@@ -206,7 +212,7 @@ func show_title() -> void:
 	tagline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	for entry in [["Play", "select"], ["Watch bots", "watch"], ["Options", "options"], ["Controls", "controls"]]:
 		_button(entry[0], Rect2(466, 306 + buttons.size() * 66, 348, 52), entry[1])
-	session_status = _label("", Rect2(440, 582, 400, 32), 14, DIM)
+	session_status = _label("", Rect2(424, 578, 432, 48), 14, DIM)
 	session_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	refresh_options()
 	_label("Working title  /  Prototype", Rect2(44, 28, 500, 26), 15, DIM)
@@ -237,7 +243,7 @@ func show_select() -> void:
 		selected_frame.add_theme_stylebox_override("panel", selected_style)
 		button.add_child(selected_frame)
 		_picture(ART.character_portrait(id, body), Rect2(x + 8, y + 6, 126, 94))
-		var caption := _label("%d  %s" % [index + 1, _roster[id].name], Rect2(x, y + 100, 142, 26), 18)
+		var caption := _label("%d  %s" % [index + 1, tr(str(_roster[id].name))], Rect2(x, y + 100, 142, 26), 18)
 		caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_button("Random", Rect2(206, 436, 142, 132), "random")
 	fighter_name = _label("", Rect2(766, 146, 450, 53), 40, GOLD)
@@ -258,14 +264,14 @@ func show_select() -> void:
 func _refresh_fighter() -> void:
 	var data: Dictionary = _roster[selected_id]
 	hero_art.texture = illustration(selected_id, body)
-	fighter_name.text = str(data.name).to_upper()
-	fighter_role.text = str(data.role)
+	fighter_name.text = tr(str(data.name)).to_upper()
+	fighter_role.text = tr(str(data.role))
 	var kit: Array = KITS[selected_id]
-	description.text = kit[0]
+	description.text = tr(kit[0])
 	for index in 5:
-		skill_labels[index].text = kit[index + 1]
+		skill_labels[index].text = tr(kit[index + 1])
 	var bodies := REGISTRY.get_bodies(selected_id)
-	body_button.text = "[V] Body: %s" % (body if bodies.size() > 1 else bodies[0]).capitalize()
+	body_button.text = tr("[V] Body: %s") % tr((body if bodies.size() > 1 else bodies[0]).capitalize())
 	body_button.disabled = bodies.size() < 2
 	for index in portrait_buttons.size():
 		portrait_buttons[index].get_node("SelectionOutline").visible = REGISTRY.get_character_ids()[index] == selected_id
@@ -280,26 +286,28 @@ static func illustration(id: String, selected_body: String) -> Texture2D:
 
 func show_options() -> void:
 	_clear("options")
-	_panel(Rect2(270, 94, 740, 538))
-	_label("OPTIONS", Rect2(314, 124, 650, 54), 38, GOLD)
-	_label("Your choices stay for this session.", Rect2(316, 188, 650, 28), 18, DIM)
-	speed_button = _button("", Rect2(316, 246, 648, 54), "speed")
-	art_button = _button("", Rect2(316, 318, 648, 54), "art")
-	count_button = _button("", Rect2(316, 390, 648, 54), "count")
-	panel_button = _button("", Rect2(316, 462, 648, 54), "panel")
-	_button("Back", Rect2(316, 556, 210, 48), "title")
+	_panel(Rect2(270, 66, 740, 580))
+	_label("OPTIONS", Rect2(314, 86, 650, 54), 38, GOLD)
+	_label("Your choices stay for this session.", Rect2(316, 146, 650, 28), 18, DIM)
+	speed_button = _button("", Rect2(316, 198, 648, 54), "speed")
+	art_button = _button("", Rect2(316, 264, 648, 54), "art")
+	count_button = _button("", Rect2(316, 330, 648, 54), "count")
+	panel_button = _button("", Rect2(316, 396, 648, 54), "panel")
+	language_button = _button("", Rect2(316, 462, 648, 54), "language")
+	_button("Back", Rect2(316, 570, 210, 48), "title")
 	refresh_options()
 	_finish("Arrows / W-S: navigate    Enter / J / click: change    T: speed    F2: art    Esc: back")
 
 func refresh_options() -> void:
 	if screen == "title" and is_instance_valid(session_status):
-		session_status.text = "Nova / Rio body: %s    |    Speed: %d%%" % [body.capitalize(), SPEED.percent()]
+		session_status.text = tr("Nova / Rio body: %s    |    Speed: %d%%") % [tr(body.capitalize()), SPEED.percent()] + "    |    " + tr("Language") + ": " + LANGUAGE.label()
 	if screen != "options":
 		return
-	speed_button.text = "[T]   Game speed                         %d%%" % SPEED.percent()
-	art_button.text = "[F2]   Art style                         %s" % ART.label()
-	count_button.text = "Fighters in the next match                         %d" % fighter_count
-	panel_button.text = "Live bot panel at match start                         %s" % ("On" if bot_panel_at_start else "Off")
+	speed_button.text = tr("[T]   Game speed                         %d%%") % SPEED.percent()
+	art_button.text = tr("[F2]   Art style                         %s") % tr(ART.label())
+	count_button.text = tr("Fighters in the next match                         %d") % fighter_count
+	panel_button.text = tr("Live bot panel at match start                         %s") % tr("On" if bot_panel_at_start else "Off")
+	language_button.text = tr("Language: %s") % LANGUAGE.label()
 
 func show_controls() -> void:
 	_clear("controls")
@@ -318,10 +326,10 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	_panel(Rect2(28, 26, 1224, 620))
 	if is_instance_valid(winner):
 		_picture(illustration(winner.character_id, winner.body_type), Rect2(38, 98, 310, 478))
-		_label(str(winner.display_name).to_upper() + " WINS", Rect2(54, 42, 1180, 60), 42, GOLD)
+		_label(tr("%s WINS") % tr(str(winner.display_name)).to_upper(), Rect2(54, 42, 1180, 60), 42, GOLD)
 	else:
 		_label("DRAW", Rect2(54, 42, 1180, 60), 42, GOLD)
-	_label("Decided by %s" % reason.replace("_", " "), Rect2(360, 106, 836, 26), 17, DIM)
+	_label(tr("Decided by %s") % tr(reason.replace("_", " ")), Rect2(360, 106, 836, 26), 17, DIM)
 	var grid := GridContainer.new()
 	grid.name = "Standings"
 	grid.columns = 8
@@ -344,18 +352,18 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		face.custom_minimum_size = Vector2(34, 34)
 		face.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		grid.add_child(face)
-		_cell(grid, ("P1 " if player == human else "") + str(player.display_name), color, 120)
+		_cell(grid, ("P1 " if player == human else "") + tr(str(player.display_name)), color, 120)
 		_cell(grid, str(player.score), color, 36)
 		_cell(grid, "%.0f" % player.damage_dealt, color, 70)
 		_cell(grid, str(player.souls), color, 54)
 		var card_names: Array[String] = []
 		for id in player.upgrades:
-			card_names.append(str(SOUL_CARDS.find(str(id)).get("title", id)))
+			card_names.append(tr(str(SOUL_CARDS.find(str(id)).get("title", id))))
 		var cards := _cell(grid, "%d  %s" % [player.upgrades.size(), ", ".join(card_names)] if not card_names.is_empty() else "0", color, 210)
 		cards.add_theme_font_size_override("font_size", 13)
 		cards.clip_text = true
 		cards.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		cards.tooltip_text = ", ".join(card_names) if not card_names.is_empty() else "No soul cards"
+		cards.tooltip_text = ", ".join(card_names) if not card_names.is_empty() else tr("No soul cards")
 		cards.mouse_filter = Control.MOUSE_FILTER_PASS
 		var seconds := maxi(0, int(survival.get(player, 0)))
 		_cell(grid, "%d:%02d" % [seconds / 60, seconds % 60], color, 76)
@@ -373,7 +381,7 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		_label(award_names[award], Rect2(x + 12, 544, 250, 24), 14, GOLD)
 		var detail := "No contenders"
 		if is_instance_valid(best):
-			detail = "%s  /  %s" % [best.display_name, ("%d:%02d" % [int(best_value) / 60, int(best_value) % 60]) if award == 2 else str(int(best_value))]
+			detail = "%s  /  %s" % [tr(str(best.display_name)), ("%d:%02d" % [int(best_value) / 60, int(best_value) % 60]) if award == 2 else str(int(best_value))]
 		_label(detail, Rect2(x + 12, 576, 250, 28), 18)
 	_button("[R] Rematch", Rect2(360, 660, 270, 44), "rematch")
 	_button("Character select", Rect2(650, 660, 280, 44), "return_select")
@@ -383,7 +391,7 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 
 func _cell(grid: GridContainer, text: String, color: Color, width := 20.0) -> Label:
 	var cell := Label.new()
-	cell.text = text
+	cell.text = tr(text)
 	cell.custom_minimum_size = Vector2(width, 34)
 	cell.add_theme_font_size_override("font_size", 18)
 	cell.add_theme_color_override("font_color", color)

@@ -379,7 +379,7 @@ func apply_upgrade(card: Dictionary) -> void:
 			upgrade_modifiers[key] = upgrade_modifiers[key] + effects[key]
 	_apply_growth_stats(true)
 	_update_visuals()
-	_play_float_text("%s!" % str(card.get("title", card.id)).to_upper(), Color(0.6, 0.9, 1.0))
+	_play_float_text("%s!" % tr(str(card.get("title", card.id))).to_upper(), Color(0.6, 0.9, 1.0))
 
 func _physics_process(delta: float) -> void:
 	if is_defeated or not is_realm_active:
@@ -1715,7 +1715,7 @@ func get_next_soul_threshold() -> int:
 
 func _play_float_text(text: String, color: Color) -> void:
 	var label := Label.new()
-	label.text = text
+	label.text = tr(text)
 	label.position = global_position + Vector2(-80, -132)
 	label.size = Vector2(160, 30)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

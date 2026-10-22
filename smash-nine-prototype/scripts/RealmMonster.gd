@@ -7,6 +7,7 @@ enum State { NEUTRAL, AGGRO, DEFEATED }
 ## Monsters belong to the realm: distances follow GameScale.WORLD, speeds MOVE, falls and
 ## knockback the fighters' scales (routine 2026-10-08).
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
+const LANGUAGE := preload("res://scripts/Language.gd")
 const GRAVITY := 1850.0 * GAME_SCALE.GRAVITY
 const FALL_OUT_DEPTH := 900.0 * GAME_SCALE.WORLD
 ## Monsters are soul sources, not the main threat: light pushes on one-screen realms (design D7).
@@ -83,6 +84,10 @@ var defeat_elapsed := 0.0
 var spawn_slot := -1
 var hover_height := 105.0 * GAME_SCALE.WORLD
 var attack_serial := 0
+
+func _init() -> void:
+	# Standalone headless probes also start in English, before Main exists.
+	LANGUAGE.load_saved()
 
 func make_elite() -> void:
 	if is_elite:
@@ -652,7 +657,8 @@ func _update_visuals() -> void:
 	if not is_instance_valid(name_label) or not is_instance_valid(hp_fill):
 		return
 	var disposition := "Neutral" if state == State.NEUTRAL else "Hostile"
-	name_label.text = "%s · %s" % [display_name, disposition]
+	var title := tr("Elite %s") % tr(display_name.trim_prefix("Elite ")) if is_elite else tr(display_name)
+	name_label.text = "%s · %s" % [title, tr(disposition)]
 	hp_fill.scale.x = clampf(hp / max_hp, 0.0, 1.0)
 	hp_back.visible = is_elite or was_hit
 	hp_fill.color = Color(0.3, 1.0, 0.4) if state == State.NEUTRAL else Color(1.0, 0.25, 0.16)

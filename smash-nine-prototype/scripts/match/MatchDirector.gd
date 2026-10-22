@@ -11,6 +11,7 @@ signal combatant_relocated(combatant: Node, realm_index: int)
 signal match_finished(winner: Node, reason: String)
 
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
+const LANGUAGE := preload("res://scripts/Language.gd")
 
 const STATE_STABLE := "stable"
 const STATE_WARNING := "warning"
@@ -85,6 +86,9 @@ var _batch_depth := 0
 var _survivor_check_queued := false
 var _eliminated_since_check: Array[Node] = []
 
+func _init() -> void:
+	LANGUAGE.load_saved()
+
 func setup(new_layout: REALM_LAYOUT) -> void:
 	layout = new_layout
 	central_index = REALM_LAYOUT.CENTRAL_REALM_INDEX
@@ -142,19 +146,19 @@ func _run_event(event: Dictionary) -> void:
 			warning_ends_at = match_elapsed + _seconds_until_next("collapse")
 			for realm_index in realms:
 				_set_state(int(realm_index), STATE_WARNING)
-			announcement.emit("Collapse warning: %s will fall in %ds. Reach a safe realm." % [_realm_names(realms), int(round(warning_ends_at - match_elapsed))])
+			announcement.emit(tr("Collapse warning: %s will fall in %ds. Reach a safe realm.") % [_realm_names(realms), int(round(warning_ends_at - match_elapsed))])
 		"collapse":
 			warning_realms.clear()
 			for realm_index in realms:
 				_set_state(int(realm_index), STATE_COLLAPSED)
 			_relocate_trapped_combatants(realms)
-			announcement.emit("%s collapsed." % _realm_names(realms))
+			announcement.emit(tr("%s collapsed.") % _realm_names(realms))
 		"open":
 			for realm_index in realms:
 				_set_state(int(realm_index), STATE_STABLE)
-			announcement.emit("%s has opened. Every path now leads to the center." % layout.get_realm(central_index).name)
+			announcement.emit(tr("%s has opened. Every path now leads to the center.") % tr(str(layout.get_realm(central_index).name)))
 		"sudden_death":
-			announcement.emit("Sudden death: the heart of Yggdrasil is closing in.")
+			announcement.emit(tr("Sudden death: the heart of Yggdrasil is closing in."))
 		"judgment":
 			_judge_survivors()
 	if event.has("phase"):
@@ -179,7 +183,7 @@ func _set_state(realm_index: int, state: String) -> void:
 func _realm_names(realms: Array) -> String:
 	var names: Array[String] = []
 	for realm_index in realms:
-		names.append(str(layout.get_realm(int(realm_index)).name))
+		names.append(tr(str(layout.get_realm(int(realm_index)).name)))
 	return ", ".join(names)
 
 # --- Collapse and hazards ---
@@ -320,7 +324,8 @@ func _finish(new_winner: Node, reason: String) -> void:
 	finish_reason = reason
 	_set_phase(PHASE_OVER)
 	var winner_name: String = new_winner.display_name if is_instance_valid(new_winner) else "Nobody"
-	announcement.emit("%s wins (%s)." % [winner_name, reason])
+	var result_text: String = tr("%s wins (%s).") % [tr(winner_name), tr(reason)] if is_instance_valid(new_winner) else tr("Nobody wins (%s).") % tr(reason)
+	announcement.emit(result_text)
 	match_finished.emit(new_winner, reason)
 
 ## Seconds a combatant stayed in the match: until elimination, or the whole match.

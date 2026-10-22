@@ -1,6 +1,7 @@
 extends Node
 ## Slot deadlines survive sync calls: realm refreshes cannot bypass refill pacing.
 signal announcement(text: String)
+const LANGUAGE := preload("res://scripts/Language.gd")
 const MONSTER_SCRIPT := preload("res://scripts/RealmMonster.gd")
 const REALM_CATALOG := preload("res://scripts/realms/RealmCatalog.gd")
 const MONSTERS_PER_REALM := 4
@@ -23,6 +24,9 @@ var ecology_rng := RandomNumberGenerator.new()
 var population_started := false
 var pending_announcements: Array[Dictionary] = []
 var announcement_timer := 0.0
+
+func _init() -> void:
+	LANGUAGE.load_saved()
 
 func configure(new_spawn_points_provider: Callable, new_playable_realm_provider: Callable, new_phase_provider := Callable(), match_seed := 0) -> void:
 	spawn_points_provider = new_spawn_points_provider
@@ -138,7 +142,7 @@ func _try_spawn_elite(realm_index: int) -> void:
 		return
 	elite_by_realm[realm_index] = elite
 	var realm_name := str(realm_profiles[realm_index].name)
-	var message := "An elite %s rises in %s" % [elite.display_name.trim_prefix("Elite "), realm_name]
+	var message := tr("An elite %s rises in %s") % [tr(elite.display_name.trim_prefix("Elite ")), tr(realm_name)]
 	if announcement_timer <= 0.0 and pending_announcements.is_empty():
 		announcement.emit(message)
 		announcement_timer = 2.8
