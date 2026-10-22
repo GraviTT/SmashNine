@@ -1,0 +1,247 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-77/rio_male-jump-2.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.254,
+    "scale_by": "fixed:0.254",
+    "common_offset_x": 0,
+    "common_lift": 11,
+    "lift_scale": 0.3,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      96,
+      109
+    ],
+    "body_width_range": [
+      80,
+      95
+    ],
+    "area_range": [
+      4146,
+      4786
+    ],
+    "area_spread_percent": 13.37,
+    "bottom_range": [
+      113,
+      117
+    ],
+    "lift_range": [
+      3,
+      7
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3548,
+      4031
+    ],
+    "interior_detail_range": [
+      125.42,
+      130.41
+    ],
+    "interior_detail_mean": 127.79,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 111.7,
+    "interior_detail_ratio": 1.144
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4258,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 111.7,
+    "colour_count_range": [
+      4258,
+      4258
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-77/rio_male-jump-2.png#0,0",
+      "bbox": [
+        17,
+        21,
+        107,
+        118
+      ],
+      "body_height": 97,
+      "body_width": 90,
+      "area": 4265,
+      "bottom": 117,
+      "lift": 3,
+      "expected_lift": 3,
+      "interior_detail": 130.41,
+      "colour_count": 3569,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 17,
+        "top": 21,
+        "right": 21,
+        "bottom": 10,
+        "minimum": 10,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1675
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-77/rio_male-jump-2.png#1,0",
+      "bbox": [
+        21,
+        18,
+        101,
+        114
+      ],
+      "body_height": 96,
+      "body_width": 80,
+      "area": 4146,
+      "bottom": 113,
+      "lift": 7,
+      "expected_lift": 7,
+      "interior_detail": 125.42,
+      "colour_count": 3548,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 21,
+        "top": 18,
+        "right": 27,
+        "bottom": 14,
+        "minimum": 14,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1228
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-77/rio_male-jump-2.png#2,0",
+      "bbox": [
+        12,
+        7,
+        107,
+        116
+      ],
+      "body_height": 109,
+      "body_width": 95,
+      "area": 4786,
+      "bottom": 115,
+      "lift": 5,
+      "expected_lift": 5,
+      "interior_detail": 127.53,
+      "colour_count": 4031,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 12,
+        "top": 7,
+        "right": 21,
+        "bottom": 12,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1417
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-77/rio_male/jump/attempt-2/rio_male-jump.png",
+    "candidate": null,
+    "frames": "reports/codex-art-77/rio_male/jump/attempt-2/frames",
+    "closeup": "reports/codex-art-77/rio_male/jump/attempt-2/closeup.png",
+    "compare": "reports/codex-art-77/rio_male/jump/attempt-2/compare.png"
+  }
+}

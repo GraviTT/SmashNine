@@ -1,0 +1,900 @@
+[
+  {
+    "stem": "rio_male",
+    "row": "jump",
+    "attempt": 2,
+    "frames": 3,
+    "fps": 10,
+    "factor": 0.254,
+    "offset_x": 0,
+    "lift_scale": 0.3,
+    "lift_range": [
+      3,
+      7
+    ],
+    "margin": 7,
+    "detail": [
+      125.42,
+      130.41
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_male\\jump\\attempt-2\\rio_male-jump.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.846
+        },
+        {
+          "scale": 0.96,
+          "score": 0.814
+        },
+        {
+          "scale": 0.96,
+          "score": 0.912
+        }
+      ],
+      "median": 0.96,
+      "used": 3
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        68,
+        83,
+        51
+      ],
+      "reference_face_width": 15,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            81,
+            96,
+            50
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            74,
+            89,
+            46
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 3,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            77,
+            92,
+            35
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "도약·무릎 접은 상승·다리 펼치는 정점이 구분됨. 공통 lift-scale 0.3으로 높이 호를 압축. 반대 눈 가림으로 눈 간 거리는 측정 불가, 얼굴 폭 F1–3 확인.",
+    "candidate": "art/bakeoff/rio/rio_male-jump-v2.png",
+    "sheet_sha256": "1397af7e1340de55afd19f1828be0a26e3d38ef0d5f40475bf84c40fb181607e"
+  },
+  {
+    "stem": "rio_male",
+    "row": "fall",
+    "attempt": 1,
+    "frames": 2,
+    "fps": 8,
+    "factor": 0.176,
+    "offset_x": 3,
+    "lift_scale": 0.3,
+    "lift_range": [
+      2,
+      4
+    ],
+    "margin": 6,
+    "detail": [
+      128.88,
+      135.07
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_male\\fall\\attempt-1\\rio_male-fall.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.839
+        },
+        {
+          "scale": 0.96,
+          "score": 0.802
+        }
+      ],
+      "median": 0.98,
+      "used": 2
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        68,
+        83,
+        51
+      ],
+      "reference_face_width": 15,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            74,
+            89,
+            44
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            75,
+            90,
+            42
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "위로 날리는 머리·망토와 아래로 뻗는 다리의 반복. 행 전체 x +3px, lift-scale 0.3. 반대 눈 가림으로 눈 간 거리는 측정 불가, 얼굴 폭 F1–2 확인.",
+    "candidate": "art/bakeoff/rio/rio_male-fall-v2.png",
+    "sheet_sha256": "58302e475d3066c99310c193b329ef79a7961ecc8611cf76d525c6d5ce0b076f"
+  },
+  {
+    "stem": "rio_male",
+    "row": "hurt",
+    "attempt": 1,
+    "frames": 3,
+    "fps": 12,
+    "factor": 0.17,
+    "offset_x": -6,
+    "lift_scale": 1.0,
+    "lift_range": [
+      0,
+      0
+    ],
+    "margin": 4,
+    "detail": [
+      135.92,
+      138.44
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_male\\hurt\\attempt-1\\rio_male-hurt.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.495
+        },
+        {
+          "scale": 0.9,
+          "score": 0.488
+        },
+        {
+          "scale": 1.02,
+          "score": 0.772
+        }
+      ],
+      "median": 1.02,
+      "used": 1
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        68,
+        83,
+        51
+      ],
+      "reference_face_width": 15,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": null,
+          "reason": "기울거나 가려진 얼굴. 수치 제외."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": null,
+          "reason": "기울거나 가려진 얼굴. 수치 제외."
+        },
+        {
+          "frame": 3,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            75,
+            90,
+            53
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "머리·몸통 뒤꺾임, 반동, 회복. 검이 길어 행 전체 x −6px. 얼굴 폭은 직립 F3만 측정; F1 기울기와 F2 감은 눈은 4배 육안 확인.",
+    "candidate": "art/bakeoff/rio/rio_male-hurt-v2.png",
+    "sheet_sha256": "6fc7b463b15bfebbfac73e24676b15796081ac3fcae2a27919769d86d3c9c5e5"
+  },
+  {
+    "stem": "rio_male",
+    "row": "land",
+    "attempt": 1,
+    "frames": 2,
+    "fps": 12,
+    "factor": 0.14,
+    "offset_x": -9,
+    "lift_scale": 1.0,
+    "lift_range": [
+      0,
+      0
+    ],
+    "margin": 4,
+    "detail": [
+      126.64,
+      131.47
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_male\\land\\attempt-1\\rio_male-land.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.799
+        },
+        {
+          "scale": 0.96,
+          "score": 0.883
+        }
+      ],
+      "median": 0.98,
+      "used": 2
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        68,
+        83,
+        51
+      ],
+      "reference_face_width": 15,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            77,
+            92,
+            67
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            64,
+            79,
+            57
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "착지 웅크림에서 일어나 대기로 복귀. 양발 접지. 검끝 여백을 위해 공통 x −9px. 반대 눈 가림으로 눈 간 거리 측정 불가, 얼굴 폭 F1–2 확인.",
+    "candidate": "art/bakeoff/rio/rio_male-land-v1.png",
+    "sheet_sha256": "941240658407ac9567ac494323fe9e524f4c50559186ab3b197fe8572020fa91"
+  },
+  {
+    "stem": "rio_male",
+    "row": "victory",
+    "attempt": 2,
+    "frames": 6,
+    "fps": 8,
+    "factor": 0.28,
+    "offset_x": 0,
+    "lift_scale": 1.0,
+    "lift_range": [
+      0,
+      0
+    ],
+    "margin": 35,
+    "detail": [
+      122.36,
+      130.81
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_male\\victory\\attempt-2\\rio_male-victory.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.9
+        },
+        {
+          "scale": 1.02,
+          "score": 0.798
+        },
+        {
+          "scale": 1.02,
+          "score": 0.857
+        },
+        {
+          "scale": 1.0,
+          "score": 0.799
+        },
+        {
+          "scale": 1.0,
+          "score": 0.833
+        },
+        {
+          "scale": 1.0,
+          "score": 0.733
+        }
+      ],
+      "median": 1.0,
+      "used": 6
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        68,
+        83,
+        51
+      ],
+      "reference_face_width": 15,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            105,
+            120,
+            76
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            103,
+            118,
+            76
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 3,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            98,
+            113,
+            77
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 4,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            99,
+            114,
+            74
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 5,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            97,
+            112,
+            73
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 6,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 15,
+          "points": [
+            95,
+            110,
+            73
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "오른손으로 몸 옆에서 검을 돌린 뒤 앞에 내려 꽂고 양손을 얹음. F4–6 검을 다시 올리지 않음. F6 미소와 정착한 망토가 최종 유지 자세. F2의 검은 원근 때문에 짧게 보이고 F3→4 회전 간격은 다소 큼. 얼굴 폭 F1–6 측정, 눈 간 거리 측정 불가.",
+    "candidate": "art/bakeoff/rio/rio_male-victory-v1.png",
+    "sheet_sha256": "fca920e570f8bdbdb2e9961edbf862ddb57376909e5954a9fa3790499a6fdbca"
+  },
+  {
+    "stem": "rio_female",
+    "row": "jump",
+    "attempt": 1,
+    "frames": 3,
+    "fps": 10,
+    "factor": 0.178,
+    "offset_x": 0,
+    "lift_scale": 0.3,
+    "lift_range": [
+      3,
+      7
+    ],
+    "margin": 10,
+    "detail": [
+      112.98,
+      117.22
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_female\\jump\\attempt-1\\rio_female-jump.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.784
+        },
+        {
+          "scale": 0.96,
+          "score": 0.761
+        },
+        {
+          "scale": 0.96,
+          "score": 0.767
+        }
+      ],
+      "median": 0.96,
+      "used": 3
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        78,
+        90,
+        53
+      ],
+      "reference_face_width": 12,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0417,
+          "width": 12.5,
+          "points": [
+            88,
+            100.5,
+            58
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": 0.9583,
+          "width": 11.5,
+          "points": [
+            82,
+            93.5,
+            53
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 3,
+          "eye_ratio": null,
+          "face_width_ratio": 0.9583,
+          "width": 11.5,
+          "points": [
+            81,
+            92.5,
+            43
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "도약·상승·정점에서 무릎과 포니테일 방향 변화. 공통 lift-scale 0.3. 얼굴 폭 F1 1.042, F2·3 0.958로 목표 밖이나 후보 허용 0.95–1.06 안. 눈 간 거리 측정 불가.",
+    "candidate": "art/bakeoff/rio/rio_female-jump-v2.png",
+    "sheet_sha256": "0481055414e18b5df867546c0d8604dc3de5e7fe40cc06ab02fd482a722fc2ca"
+  },
+  {
+    "stem": "rio_female",
+    "row": "fall",
+    "attempt": 1,
+    "frames": 2,
+    "fps": 8,
+    "factor": 0.166,
+    "offset_x": 0,
+    "lift_scale": 0.5,
+    "lift_range": [
+      4,
+      5
+    ],
+    "margin": 8,
+    "detail": [
+      109.14,
+      111.08
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_female\\fall\\attempt-1\\rio_female-fall.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.915
+        },
+        {
+          "scale": 1.0,
+          "score": 0.856
+        }
+      ],
+      "median": 1.0,
+      "used": 2
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        78,
+        90,
+        53
+      ],
+      "reference_face_width": 12,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0417,
+          "width": 12.5,
+          "points": [
+            82,
+            94.5,
+            50
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            83,
+            95,
+            50
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "다리를 아래로 뻗고 포니테일·망토가 위로 후행하는 반복. 공통 lift-scale 0.5. 얼굴 폭 F1 1.042, F2 1.000, F1은 목표 밖이나 후보 허용 범위 안. 눈 간 거리 측정 불가.",
+    "candidate": "art/bakeoff/rio/rio_female-fall-v2.png",
+    "sheet_sha256": "ebccd2088c326659849985680ce72f0d82267478584c7db8dbff5cba4e3fc00e"
+  },
+  {
+    "stem": "rio_female",
+    "row": "hurt",
+    "attempt": 3,
+    "frames": 3,
+    "fps": 12,
+    "factor": 0.1735,
+    "offset_x": -7,
+    "lift_scale": 1.0,
+    "lift_range": [
+      0,
+      0
+    ],
+    "margin": 4,
+    "detail": [
+      117.3,
+      120.52
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_female\\hurt\\attempt-3\\rio_female-hurt.png",
+      "frames": [
+        {
+          "scale": 0.86,
+          "score": 0.502
+        },
+        {
+          "scale": 0.9,
+          "score": 0.489
+        },
+        {
+          "scale": 0.96,
+          "score": 0.868
+        }
+      ],
+      "median": 0.96,
+      "used": 1
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        78,
+        90,
+        53
+      ],
+      "reference_face_width": 12,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": null,
+          "reason": "기울거나 가려진 얼굴. 수치 제외."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": null,
+          "reason": "기울거나 가려진 얼굴. 수치 제외."
+        },
+        {
+          "frame": 3,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            79,
+            91,
+            56
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "머리·몸통 후방 반동, 최대 반동, 회복. F1의 잘못된 보라 머리끝은 3회째 단일 프레임 생성으로 수정. F2·3 원본 픽셀은 그대로. 공통 x −7px. 얼굴 폭은 직립 F3만 측정; F1 기울기·F2 감은 눈은 4배 육안 확인. 눈 간 거리 측정 불가.",
+    "candidate": "art/bakeoff/rio/rio_female-hurt-v2.png",
+    "sheet_sha256": "16e78dcd257084cd8eab0f526564040dacf35189ed8ae7d63490aa50d9534f15"
+  },
+  {
+    "stem": "rio_female",
+    "row": "land",
+    "attempt": 1,
+    "frames": 2,
+    "fps": 12,
+    "factor": 0.15,
+    "offset_x": -7,
+    "lift_scale": 1.0,
+    "lift_range": [
+      0,
+      0
+    ],
+    "margin": 7,
+    "detail": [
+      108.59,
+      118.13
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_female\\land\\attempt-1\\rio_female-land.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.846
+        },
+        {
+          "scale": 1.0,
+          "score": 0.895
+        }
+      ],
+      "median": 1.0,
+      "used": 2
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        78,
+        90,
+        53
+      ],
+      "reference_face_width": 12,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            82,
+            94,
+            67
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            77,
+            89,
+            53
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "깊은 착지 웅크림에서 대기로 일어남. 양발 접지, 포니테일·망토가 정착. 공통 x −7px. 얼굴 폭 F1·2 측정. 눈 간 거리 측정 불가.",
+    "candidate": "art/bakeoff/rio/rio_female-land-v1.png",
+    "sheet_sha256": "845ede8090f3b682185fcaa307e78dd73dbe7312810b4b4272314147347bf88d"
+  },
+  {
+    "stem": "rio_female",
+    "row": "victory",
+    "attempt": 3,
+    "frames": 6,
+    "fps": 8,
+    "factor": 0.325,
+    "offset_x": 0,
+    "lift_scale": 1.0,
+    "lift_range": [
+      0,
+      0
+    ],
+    "margin": 38,
+    "detail": [
+      111.4,
+      114.86
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-77\\rio_female\\victory\\attempt-3\\rio_female-victory.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.854
+        },
+        {
+          "scale": 1.0,
+          "score": 0.848
+        },
+        {
+          "scale": 1.0,
+          "score": 0.849
+        },
+        {
+          "scale": 1.0,
+          "score": 0.853
+        },
+        {
+          "scale": 1.02,
+          "score": 0.823
+        },
+        {
+          "scale": 1.0,
+          "score": 0.788
+        }
+      ],
+      "median": 1.0,
+      "used": 6
+    },
+    "face": {
+      "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+      "anchor": [
+        78,
+        90,
+        53
+      ],
+      "reference_face_width": 12,
+      "frames": [
+        {
+          "frame": 1,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            115,
+            127,
+            83
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 2,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            114,
+            126,
+            83
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 3,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            114,
+            126,
+            83
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 4,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            118,
+            130,
+            82
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 5,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0,
+          "width": 12,
+          "points": [
+            117,
+            129,
+            83
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        },
+        {
+          "frame": 6,
+          "eye_ratio": null,
+          "face_width_ratio": 1.0833,
+          "width": 13,
+          "points": [
+            116,
+            129,
+            82
+          ],
+          "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+        }
+      ]
+    },
+    "accepted": false,
+    "reason": "미전달. 생성 3회 종료. 1차는 검 손 바뀜, 2차는 F3 검끝 원본 셀 침범. 최선 3차는 같은 앞쪽 손 유지·한 방향 돌리기·최종 들기 자세·여백을 통과했으나, 배율 0.325에서 얼굴 폭 F1–5 1.000, F6 1.083으로 후보 상한 1.06 초과. 자동 머리 중앙값 1.000보다 얼굴 측정을 우선. F3 검은 원근 때문에 짧게 보임. 눈 간 거리 측정 불가.",
+    "candidate": null,
+    "sheet_sha256": "a3c7da9ca3f92ec309d8ffb4ecfec783f4c56f5081d2c17eea681690de5a0024"
+  }
+]

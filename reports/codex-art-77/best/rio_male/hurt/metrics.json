@@ -1,0 +1,249 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-77/rio_male-hurt-1.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.17,
+    "scale_by": "fixed:0.17",
+    "common_offset_x": -6,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      94,
+      98
+    ],
+    "body_width_range": [
+      109,
+      113
+    ],
+    "area_range": [
+      4729,
+      5168
+    ],
+    "area_spread_percent": 8.49,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3954,
+      4345
+    ],
+    "interior_detail_range": [
+      135.92,
+      138.44
+    ],
+    "interior_detail_mean": 137.3,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 111.7,
+    "interior_detail_ratio": 1.2292
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4258,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 111.7,
+    "colour_count_range": [
+      4258,
+      4258
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-77/rio_male-hurt-1.png#0,0",
+      "bbox": [
+        4,
+        25,
+        117,
+        121
+      ],
+      "body_height": 96,
+      "body_width": 113,
+      "area": 5168,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 138.44,
+      "colour_count": 4345,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 4,
+        "top": 25,
+        "right": 11,
+        "bottom": 7,
+        "minimum": 4,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2394
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-77/rio_male-hurt-1.png#1,0",
+      "bbox": [
+        12,
+        27,
+        122,
+        121
+      ],
+      "body_height": 94,
+      "body_width": 110,
+      "area": 4926,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 135.92,
+      "colour_count": 4152,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 12,
+        "top": 27,
+        "right": 6,
+        "bottom": 7,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2168
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-77/rio_male-hurt-1.png#2,0",
+      "bbox": [
+        11,
+        23,
+        120,
+        121
+      ],
+      "body_height": 98,
+      "body_width": 109,
+      "area": 4729,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 137.53,
+      "colour_count": 3954,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 11,
+        "top": 23,
+        "right": 8,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2312
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-77/rio_male/hurt/attempt-1/rio_male-hurt.png",
+    "candidate": null,
+    "frames": "reports/codex-art-77/rio_male/hurt/attempt-1/frames",
+    "closeup": "reports/codex-art-77/rio_male/hurt/attempt-1/closeup.png",
+    "compare": "reports/codex-art-77/rio_male/hurt/attempt-1/compare.png"
+  }
+}
