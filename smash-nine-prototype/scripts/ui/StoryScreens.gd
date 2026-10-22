@@ -129,9 +129,14 @@ func _refresh_map_detail() -> void:
 	map_goal.text = tr("Defeat the home guardian") if STORY.is_home(data, selected_id) else tr(str(data.goal))
 	var unlocked := map_stage <= int(PROGRESS.get_run(selected_id).get("cleared", 0)) + 1
 	start_button.disabled = not data.ready or not unlocked
-	map_status.text = tr("Coming soon") if not data.ready else (tr("Locked") if not unlocked else (tr("Home guardian") if STORY.is_home(data, selected_id) else (tr(str(_roster[data.rival].name)) if data.rival != "" else tr("Two monster waves"))))
+	var objective_label := {5: "Soul crystal escape", 7: "Boss battle", 9: "Shadow showdown"}
+	map_status.text = tr("Coming soon") if not data.ready else (tr("Locked") if not unlocked else (tr("Home guardian") if STORY.is_home(data, selected_id) else (tr(str(_roster[data.rival].name)) if data.rival != "" else tr(str(objective_label.get(map_stage, "Two monster waves"))))))
 	map_face.texture = ART.character_portrait(str(data.rival), REGISTRY.get_bodies(str(data.rival))[0]) if data.rival != "" and not STORY.is_home(data, selected_id) else ART.original_texture("res://assets/art/monsters/%s_sheet.png" % data.home_elite)
-	if data.rival == "" or STORY.is_home(data, selected_id):
+	if map_stage == 9:
+		map_face.texture = ART.character_portrait(selected_id, body)
+		map_face.modulate = Color(0.42, 0.24, 0.62)
+	elif data.rival == "" or STORY.is_home(data, selected_id):
+		map_face.modulate = Color.WHITE
 		# Monster sheets have six columns; use their authored cell size.
 		if map_face.texture != null:
 			var atlas := AtlasTexture.new()
@@ -140,6 +145,8 @@ func _refresh_map_detail() -> void:
 			atlas.region = Rect2(0, 0, cell, cell)
 			map_face.texture = atlas
 		map_face.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	else:
+		map_face.modulate = Color.WHITE
 
 func show_stage_card(data: Dictionary) -> void:
 	_clear("story_start")
@@ -183,12 +190,25 @@ func show_story_result(result: Dictionary) -> void:
 	for id in result.cards:
 		card_names.append(tr(str(SOUL_CARDS.find(id).get("title", id))))
 	_label(tr("Cards: %s") % (", ".join(card_names) if not card_names.is_empty() else tr("No soul cards")), Rect2(500, 376, 600, 80), 22)
-	if result.clear and int(result.stage) == 4:
-		_label("The next stage is coming soon.", Rect2(500, 470, 600, 40), 21, GOLD)
+	if not result.clear and result.get("reason", "") == "time up":
+		_label("Time up", Rect2(500, 470, 600, 40), 21, GOLD)
 	_button("Next" if result.clear else "Retry", Rect2(500, 544, 190, 52), "story_next" if result.clear else "story_retry")
 	_button("Story map", Rect2(706, 544, 190, 52), "story_map")
 	_button("Title", Rect2(912, 544, 190, 52), "story_title")
 	_finish("R: retry    Enter / J: confirm    Esc: story map")
+
+func show_story_ending() -> void:
+	_clear("story_ending")
+	_panel(Rect2(100, 62, 1080, 590), 0.98)
+	_picture(illustration(selected_id, body), Rect2(122, 118, 350, 500))
+	_label("STORY COMPLETE", Rect2(500, 102, 640, 66), 40, GOLD)
+	_label(tr(str(_roster[selected_id].name)), Rect2(500, 188, 620, 42), 28, _roster[selected_id].color)
+	var ids := STORY.ending_ids(selected_id)
+	for index in ids.size():
+		_label(tr(ids[index]), Rect2(500, 254 + index * 84, 620, 80), 24)
+	_button("Story map", Rect2(500, 554, 294, 52), "story_map")
+	_button("Title", Rect2(816, 554, 294, 52), "story_title")
+	_finish("Enter / J: confirm    Esc: story map")
 
 func _activate(action: String, value: String) -> void:
 	if screen == "story_select" and action in ["start", "title"]:
@@ -218,7 +238,7 @@ func _input(event: InputEvent) -> void:
 	if code == KEY_F2:
 		action_requested.emit("story_art", "")
 	elif code == KEY_ESCAPE:
-		action_requested.emit({"story_select": "story_title", "story_map": "story_select", "story_pause": "story_resume", "story_result": "story_map", "story_start": "story_begin"}.get(screen, "story_title"), "")
+		action_requested.emit({"story_select": "story_title", "story_map": "story_select", "story_pause": "story_resume", "story_result": "story_map", "story_ending": "story_map", "story_start": "story_begin"}.get(screen, "story_title"), "")
 	elif code == KEY_R and screen == "story_result":
 		action_requested.emit("story_retry", "")
 	elif code >= KEY_1 and code <= KEY_5 and screen == "story_select":

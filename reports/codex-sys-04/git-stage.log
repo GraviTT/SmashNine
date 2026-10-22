@@ -1,0 +1,10 @@
+Command: powershell -ExecutionPolicy Bypass -File reports/codex-sys-04/commit.ps1
+Exit code: 1
+
+fatal: Unable to create 'C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-ui/SmashNine/.git/index.lock': Permission denied
+git add failed. The sandbox may not permit writing .git.
+At C:\Users\TH\Documents\AI\GameProject\SmashNine-units\builder-ui\SmashNine\reports\codex-sys-04\commit.ps1:32 char:28
++ ... DE -ne 0) { throw 'git add failed. The sandbox may not permit writing ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (git add failed....t writing .git.:String) [], RuntimeException
+    + FullyQualifiedErrorId : git add failed. The sandbox may not permit writing .git.

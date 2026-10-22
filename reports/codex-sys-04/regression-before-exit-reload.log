@@ -1,0 +1,17 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+ERROR: F2 must not restart living monsters after objective completion (stage 5)
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://tests/test_story_exit_reload.gd:16)
+       [1] _run (res://tests/test_story_exit_reload.gd:50)
+       [2] _frames (res://tests/test_story_exit_reload.gd:66)
+ERROR: F2 must not restart living monsters after objective completion (stage 7)
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://tests/test_story_exit_reload.gd:16)
+       [1] _run (res://tests/test_story_exit_reload.gd:50)
+       [2] _frames (res://tests/test_story_exit_reload.gd:66)

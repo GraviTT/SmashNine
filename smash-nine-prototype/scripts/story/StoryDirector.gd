@@ -7,6 +7,8 @@ var hero: Node
 var running := false
 var exit_open := false
 var exit_realm := -1
+var escape_started := false
+var band_started_at := -1.0
 
 func configure(data: Dictionary, level: String) -> void:
 	stage_data = data
@@ -25,6 +27,46 @@ func setup(new_layout: REALM_LAYOUT) -> void:
 func advance(delta: float) -> void:
 	if running and not match_over:
 		match_elapsed += delta
+		if not warning_realms.is_empty() and match_elapsed >= warning_ends_at:
+			_finish(null, "time up")
+		elif band_started_at >= 0.0:
+			_apply_sudden_death(delta)
+
+func begin_combat() -> void:
+	var seconds := float(stage_data.rules.escape_seconds)
+	if seconds > 0.0 and not escape_started:
+		escape_started = true
+		warning_ends_at = match_elapsed + seconds
+		warning_realms.assign([int(stage_data.realm)])
+		_set_state(int(stage_data.realm), STATE_WARNING)
+
+func stop_escape() -> void:
+	if warning_realms.is_empty():
+		return
+	warning_realms.clear()
+	_set_state(int(stage_data.realm), STATE_STABLE)
+
+func start_shadow_band() -> void:
+	if band_started_at < 0.0:
+		band_started_at = match_elapsed
+		_set_phase(PHASE_SUDDEN_DEATH)
+
+func get_sudden_death_band() -> Vector2:
+	var bounds: Rect2 = layout.get_bounds(central_index)
+	if band_started_at < 0.0:
+		return Vector2(-INF, INF)
+	var rule: Dictionary = stage_data.shadow_band
+	var progress := clampf((match_elapsed - band_started_at) / float(rule.seconds), 0.0, 1.0)
+	var half_width := bounds.size.x * 0.5 * lerpf(1.0, float(rule.fraction), progress)
+	return Vector2(bounds.get_center().x - half_width, bounds.get_center().x + half_width)
+
+## D43: bots cannot reason about the shrinking band, so only the hero takes its damage.
+func _apply_sudden_death(delta: float) -> void:
+	if not _is_alive(hero) or hero.realm_index != central_index:
+		return
+	var band := get_sudden_death_band()
+	if hero.global_position.x < band.x or hero.global_position.x > band.y:
+		hero.apply_environment_damage(float(stage_data.shadow_band.damage) * delta)
 
 func _on_combatant_defeated(combatant: Node, _attacker: Node) -> void:
 	if match_over or elimination_order.has(combatant):

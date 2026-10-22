@@ -72,6 +72,10 @@ var hp_fill: ColorRect
 var hp_back: ColorRect
 var archetype := "bite"
 var is_elite := false
+## Opt-in story options; neutral battle-royale monsters keep their existing behaviour.
+var hostile := false
+var is_boss := false
+var sight_range := 720.0 * GAME_SCALE.WORLD
 var windup_duration := 0.32
 var action_phase := "idle"
 var action_timer := 0.0
@@ -100,6 +104,19 @@ func make_elite() -> void:
 	windup_duration *= 1.4
 	display_name = "Elite " + display_name
 	scale = Vector2.ONE * 1.35
+
+## Story spawns bosses directly, without registering a respawn slot in the BR spawner.
+func make_boss() -> void:
+	if is_boss:
+		return
+	make_elite()
+	is_boss = true
+	max_hp *= 4.0
+	hp = max_hp
+	attack_damage *= 2.0
+	windup_duration *= 1.2
+	attack_range *= 2.0
+	scale = Vector2.ONE * 2.0
 
 func setup(type_id: String, new_realm_index: int, spawn_position: Vector2, new_skin_id := "") -> void:
 	monster_type = type_id
@@ -285,6 +302,8 @@ func _update_art(delta: float) -> void:
 		art_sprite.play(animation)
 
 func _update_behavior(delta: float) -> void:
+	if hostile and (state == State.NEUTRAL or not _is_valid_target()):
+		_acquire_visible_fighter()
 	if action_phase != "idle":
 		if not _is_valid_target():
 			_cancel_action()
@@ -427,6 +446,9 @@ func _play_strike_animation() -> void:
 		art_sprite.frame = 0
 
 func _spawn_body_attack(size: Vector2, offset: Vector2, duration: float) -> void:
+	var body_scale := 2.0 if is_boss else 1.0
+	size *= body_scale
+	offset *= body_scale
 	var attack := Area2D.new()
 	attack.set_script(ATTACK_SCRIPT)
 	attack.collision_layer = 0
@@ -448,9 +470,29 @@ func _spawn_body_attack(size: Vector2, offset: Vector2, duration: float) -> void
 		active_attack = attack
 
 func _attack_knockback(projectile: bool) -> float:
+	if is_boss:
+		return 420.0
 	if is_elite:
 		return 280.0 if projectile else 320.0
 	return PROJECTILE_KNOCKBACK if projectile else MELEE_KNOCKBACK
+
+func _acquire_visible_fighter() -> void:
+	var nearest: Node = null
+	var nearest_distance := INF
+	for fighter in get_tree().get_nodes_in_group("players"):
+		if fighter.is_defeated or fighter.realm_index != realm_index or not fighter.is_realm_active:
+			continue
+		var offset: Vector2 = fighter.global_position - global_position
+		if absf(offset.x) > sight_range or absf(offset.y) > 360.0 * GAME_SCALE.WORLD:
+			continue
+		var distance := offset.length_squared()
+		if distance < nearest_distance:
+			nearest = fighter
+			nearest_distance = distance
+	if nearest != null:
+		target = nearest
+		state = State.AGGRO
+		_update_visuals()
 
 func _update_neutral_wander(delta: float) -> void:
 	wander_timer -= delta
@@ -487,7 +529,8 @@ func _spawn_melee_attack() -> void:
 	attack.add_child(visual)
 	get_parent().add_child(attack)
 	attack.global_position = global_position
-	attack.configure(self, Vector2(56, 42) * GAME_SCALE.WORLD, Vector2(42 * facing, -28) * GAME_SCALE.WORLD, attack_damage, _attack_knockback(false), Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
+	var body_scale := 2.0 if is_boss else 1.0
+	attack.configure(self, Vector2(56, 42) * GAME_SCALE.WORLD * body_scale, Vector2(42 * facing, -28) * GAME_SCALE.WORLD * body_scale, attack_damage, _attack_knockback(false), Vector2(facing, -0.16), Color(0.7, 1.0, 0.36, 0.55), 0.16)
 	# With the original art the bite shows in the attack animation; the rectangle stays hidden.
 	if art_sprite != null:
 		attack.art_drawn = true
@@ -657,7 +700,7 @@ func _update_visuals() -> void:
 	if not is_instance_valid(name_label) or not is_instance_valid(hp_fill):
 		return
 	var disposition := "Neutral" if state == State.NEUTRAL else "Hostile"
-	var title := tr("Elite %s") % tr(display_name.trim_prefix("Elite ")) if is_elite else tr(display_name)
+	var title := tr("Boss %s") % tr(display_name.trim_prefix("Elite ")) if is_boss else (tr("Elite %s") % tr(display_name.trim_prefix("Elite ")) if is_elite else tr(display_name))
 	name_label.text = "%s · %s" % [title, tr(disposition)]
 	hp_fill.scale.x = clampf(hp / max_hp, 0.0, 1.0)
 	hp_back.visible = is_elite or was_hit

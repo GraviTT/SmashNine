@@ -340,7 +340,7 @@ func _handle_global_input() -> bool:
 		elif not match_over:
 			GAME_SPEED.apply_to_match()
 		_show_message(tr("Game speed %d%%") % GAME_SPEED.percent())
-	if is_instance_valid(story_session) and match_over and Input.is_action_just_pressed("restart"):
+	if is_instance_valid(story_session) and story_session.phase == "result" and match_over and Input.is_action_just_pressed("restart"):
 		_reload_frontend("story_stage")
 		return true
 	if not match_started:
@@ -362,7 +362,7 @@ func _handle_global_input() -> bool:
 			bots_only = true
 			_start_match("")
 		return false
-	if match_over and Input.is_action_just_pressed("restart"):
+	if match_over and not is_instance_valid(story_session) and Input.is_action_just_pressed("restart"):
 		# Legacy bots-only R returns to a clean title (test_restart node baseline).
 		# Human R and the Rematch button replay the same fighter/body immediately.
 		_reload_frontend("title" if bots_only else "rematch")
@@ -857,6 +857,9 @@ func _on_story_action(action: String) -> void:
 				story_session.resume_stage()
 		"story_retry": _reload_frontend("story_stage")
 		"story_next":
+			if story_stage == 9:
+				_reload_frontend("story_map")
+				return
 			story_stage = mini(story_stage + 1, 9)
 			_reload_frontend("story_stage" if STORY_CATALOG.stage(story_stage).ready else "story_map")
 		"story_title":
