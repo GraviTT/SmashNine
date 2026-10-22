@@ -1,0 +1,392 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-78/frey-victory-2.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.32,
+    "scale_by": "fixed:0.32",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      94,
+      130
+    ],
+    "body_width_range": [
+      84,
+      104
+    ],
+    "area_range": [
+      4522,
+      5307
+    ],
+    "area_spread_percent": 14.79,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4074,
+      4825
+    ],
+    "interior_detail_range": [
+      86.48,
+      103.52
+    ],
+    "interior_detail_mean": 95.52,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 97.69,
+    "interior_detail_ratio": 0.9778
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.69,
+        "colour_count": 4737,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.69,
+    "colour_count_range": [
+      4737,
+      4737
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-78/frey-victory-2.png#0,0",
+      "bbox": [
+        51,
+        59,
+        135,
+        153
+      ],
+      "body_height": 94,
+      "body_width": 84,
+      "area": 4522,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.52,
+      "colour_count": 4074,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 51,
+        "top": 59,
+        "right": 57,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0597
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-78/frey-victory-2.png#1,0",
+      "bbox": [
+        50,
+        59,
+        154,
+        153
+      ],
+      "body_height": 94,
+      "body_width": 104,
+      "area": 4665,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 98.93,
+      "colour_count": 4185,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 50,
+        "top": 59,
+        "right": 38,
+        "bottom": 39,
+        "minimum": 38,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0127
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-78/frey-victory-2.png#2,0",
+      "bbox": [
+        52,
+        56,
+        152,
+        153
+      ],
+      "body_height": 97,
+      "body_width": 100,
+      "area": 4939,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.33,
+      "colour_count": 4467,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 52,
+        "top": 56,
+        "right": 40,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9963
+    },
+    {
+      "index": 3,
+      "source": "art/raw/motions-78/frey-victory-2.png#0,1",
+      "bbox": [
+        47,
+        23,
+        133,
+        153
+      ],
+      "body_height": 130,
+      "body_width": 86,
+      "area": 4821,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 92.78,
+      "colour_count": 4368,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 47,
+        "top": 23,
+        "right": 59,
+        "bottom": 39,
+        "minimum": 23,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9497
+    },
+    {
+      "index": 4,
+      "source": "art/raw/motions-78/frey-victory-2.png#1,1",
+      "bbox": [
+        47,
+        24,
+        132,
+        153
+      ],
+      "body_height": 129,
+      "body_width": 85,
+      "area": 4778,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 94.09,
+      "colour_count": 4345,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 47,
+        "top": 24,
+        "right": 60,
+        "bottom": 39,
+        "minimum": 24,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.9631
+    },
+    {
+      "index": 5,
+      "source": "art/raw/motions-78/frey-victory-2.png#2,1",
+      "bbox": [
+        42,
+        24,
+        138,
+        153
+      ],
+      "body_height": 129,
+      "body_width": 96,
+      "area": 5307,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 86.48,
+      "colour_count": 4825,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 42,
+        "top": 24,
+        "right": 54,
+        "bottom": 39,
+        "minimum": 24,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 0.8852
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-78/frey/victory/attempt-2/frey-victory.png",
+    "candidate": null,
+    "frames": "reports/codex-art-78/frey/victory/attempt-2/frames",
+    "closeup": "reports/codex-art-78/frey/victory/attempt-2/closeup.png",
+    "compare": "reports/codex-art-78/frey/victory/attempt-2/compare.png"
+  }
+}
