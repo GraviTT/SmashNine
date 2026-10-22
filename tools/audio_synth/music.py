@@ -1,4 +1,4 @@
-"""AUD-02a: original, data-scored D-dorian music; numpy DSP + Pillow only.
+"""AUD-02a/AUD-02: original, data-scored D-dorian music; numpy DSP + Pillow only.
 
 Uses AUD-01a oscillators, filtered seeded noise, fonts and WAV conventions.
 All releases and room taps wrap onto the beginning: no fade-to-silence loop.
@@ -19,6 +19,10 @@ REPORT = ROOT / "reports/codex-aud-02a"
 SR = synth.SR
 MOTIF = "D5 A5 G5 E5 F5 D5"
 SPECS = {"title": (100, 16, "이그드라실의 아침"), "battle": (160, 24, "아홉 세계의 질주")}
+EXTRA_SPECS = {"select": (120, 16, "영웅들의 발걸음"), "story": (90, 16, "뿌리가 기억하는 약속"),
+               "results": (100, 12, "다시 만날 아홉 세계")}
+EXTRA_REPORT = ROOT / "reports/codex-aud-02"
+COLLECTIONS = {"aud02": (EXTRA_SPECS, EXTRA_REPORT), "aud02a": (SPECS, REPORT)}
 NOTES = {"a": "두 펄스의 맑은 룬 선율과 삼각파 베이스, 짧은 잡음 북의 칩튠",
          "b": "종 같은 FM 선율·탄력 있는 FM 베이스와 패드, 작은 방의 16비트 울림",
          "c": "또렷한 칩 선율에 부드러운 패드와 겹친 킥·스네어를 더한 추진력"}
@@ -69,6 +73,8 @@ def event(beat, note, duration, velocity=1.):
     return dict(beat=beat, note=note, duration=duration, velocity=velocity)
 
 def score(track, style):
+    if track in EXTRA_SPECS:
+        return extra_score(track, style)
     bpm, count, label = SPECS[track]
     melodies = P if track == "title" else BATTLE
     chords = TITLE_CHORDS if track == "title" else BATTLE_CHORDS
@@ -106,6 +112,121 @@ def score(track, style):
         bars.append(dict(bar=i + 1, chord=chords[i], lead=lead, bass=bass, harmony=harmony, drums=drums))
     return dict(track=track, style=style, label=label, bpm=bpm, meter="4/4", mode="D dorian (D E F G A B C)", motif=MOTIF, bars=bars)
 
+
+# AUD-02: written melodies, not generated variations of the old P/BATTLE score.
+# Select: a dotted/offbeat hook; story: the hook stretches across two bars,
+# then receives a lower answer. Results: two-bar salute then a gentler return.
+SELECT = [
+    "0:D5:0.4 0.5:A5:0.55 1.25:G5:0.55 2:E5:0.55 2.75:F5:0.4 3.5:D5:0.35",
+    "0:-:0.5 0.5:F5:0.7 1.5:A5:0.55 2.5:G5:0.55 3.5:E5:0.35",
+    "0:G5:0.65 1:B5:0.65 2:A5:0.45 2.75:G5:0.85",
+    "0:F5:0.6 1:E5:0.55 2:D5:1.5",
+    "0:-:0.5 0.5:A4:0.6 1.5:D5:0.6 2.5:F5:1.0",
+    "0:E5:0.65 1:G5:0.65 2.5:E5:1.0",
+    "0:B4:0.6 1:D5:0.6 2:G5:0.65 3:A5:0.6",
+    "0:G5:0.6 1:E5:0.6 2:F5:0.6 3:D5:0.65",
+    "0:D5:0.4 0.5:A5:0.55 1.25:G5:0.55 2:E5:0.55 2.75:F5:0.4 3.5:D5:0.35",
+    "0:-:0.5 0.5:E5:0.6 1.5:G5:0.6 2.5:A5:1.0",
+    "0:B5:0.65 1:A5:0.65 2:G5:0.65 3:E5:0.65",
+    "0:F5:0.8 1.5:E5:0.65 2.5:D5:1.0",
+    "0:A4:0.8 1.5:C5:0.8 3:F5:0.6",
+    "0:G5:0.8 1.5:B5:0.8 3:A5:0.6",
+    "0:A5:0.6 1:G5:0.6 2:E5:0.6 3:F5:0.6",
+    "0:F5:0.65 1:E5:0.65 2:D5:2.4",
+]
+STORY = [
+    "0:D5:1.7 2:A5:1.7",
+    "0:G5:0.8 1:E5:0.8 2:F5:0.8 3:D5:0.8",
+    "0:B4:1.6 2:D5:1.6",
+    "0:E5:1.3 1.5:C5:0.8 2.5:D5:1.1",
+    "0:A4:1.6 2:C5:1.6",
+    "0:E5:1.1 1.5:G5:1.8",
+    "0:F5:1.6 2:E5:1.6",
+    "0:D5:2.6 3:-:1",
+    "0:D5:1.7 2:A5:1.7",
+    "0:G5:0.8 1:E5:0.8 2:F5:0.8 3:D5:0.8",
+    "0:B4:1.6 2:G5:1.6",
+    "0:E5:1.3 1.5:D5:0.8 2.5:C5:1.1",
+    "0:A4:1.6 2:C5:1.6",
+    "0:B4:1.6 2:D5:1.6",
+    "0:E5:1.4 2:F5:1.2",
+    "0:E5:1.4 2:D5:3.7",
+]
+RESULTS = [
+    "0:D5:0.75 1:A5:0.75 2:G5:0.45 2.5:E5:0.45 3:F5:0.45 3.5:D5:0.4",
+    "0:F5:0.7 1:A5:0.7 2:B5:0.7 3:A5:0.75",
+    "0:G5:1.3 2:E5:1.2",
+    "0:F5:1.3 2:D5:1.5",
+    "0:A4:1.2 2:C5:1.2",
+    "0:E5:1.2 2:G5:1.2",
+    "0:B4:1.2 2:D5:1.2",
+    "0:F5:1.2 2:E5:1.2",
+    "0:D5:0.75 1:A5:0.75 2:G5:0.45 2.5:E5:0.45 3:F5:0.45 3.5:D5:0.4",
+    "0:C5:1.2 2:E5:1.2",
+    "0:B4:1.2 2:G5:1.2",
+    "0:F5:0.7 1:E5:0.7 2:D5:2.75",
+]
+EXTRA_CHORDS = {
+    "select": TITLE_CHORDS,
+    "story": ["Dm", "Dm", "G", "C", "F", "C", "G", "Dm", "Dm", "Dm", "G", "C", "F", "G", "Am", "Dm"],
+    "results": ["Dm", "Dm", "C", "Dm", "F", "C", "G", "Am", "Dm", "C", "G", "Dm"],
+}
+EXTRA_NOTES = {
+    "select": {"a": "엇박 펄스 훅·삼각파 베이스·작은 잡음 북: 가벼운 영웅 선택",
+               "b": "FM 훅·베이스와 짧은 패드 응답: 둥근 16비트 선택곡",
+               "c": "칩 훅·넓은 패드·절제한 겹친 드럼: 산뜻한 선택곡"},
+    "story": {"a": "고역을 줄인 펄스의 느린 모티프·삼각파·드문 잡음 북",
+              "b": "부드러운 FM 선율·긴 패드·낮은 북: 대사 아래의 여정",
+              "c": "낮춘 칩 선율·넓은 패드·작은 겹친 북: 신비와 다짐"},
+    "results": {"a": "두 마디 펄스 팡파르에서 여유로운 칩 선율로",
+                "b": "FM 팡파르 뒤 둥근 저음·따뜻한 패드로 쉬어가는 결과곡",
+                "c": "칩 팡파르·겹친 북 뒤 패드와 긴 음으로 마무리"},
+}
+
+
+def extra_score(track, style):
+    bpm, count, label = EXTRA_SPECS[track]
+    melodies = {"select": SELECT, "story": STORY, "results": RESULTS}[track]
+    bars = []
+    for i, melody in enumerate(melodies):
+        lead = [event(float(a), n, float(d)) for a, n, d in (token.split(":") for token in melody.split())]
+        if i == 0:
+            lead[0]["tie_from_end"] = True
+        if i == count - 1:
+            lead[-1]["tie_to_start"] = True
+            # Carry enough tonic energy into the next downbeat's bass attack.
+            lead[-1]["velocity"] = 1.1 if track == "story" else 1.4
+        fanfare = track == "results" and i < 2
+        if track == "results":
+            for e in lead:
+                e["velocity"] *= 1.12 if fanfare else .78
+        root, chord = CHORDS[EXTRA_CHORDS[track][i]]
+        fifth = {"D2": "A2", "C2": "G2", "G2": "D3", "A2": "E3", "F2": "C3"}[root]
+        if track == "select":
+            bass = [event(0, root, .8), event(1.5, fifth, .4, .8), event(2.5, root, .65), event(3.5, fifth, .4, .7)]
+            drums = [event(0, "kick", .2, .7), event(2.5, "kick", .2, .4), event(1, "snare", .2, .5), event(3, "snare", .2, .5)]
+            drums += [event(b, "hat", .05, .22) for b in [.5, 1.5, 2.5, 3.5]]
+            harmony = ([event(.75 + j, chord[j], .42, .6) for j in range(3)] if style == "a"
+                       else [event(.75, chord, 1.3, .6), event(2.75, chord, .8, .45)])
+        elif track == "story":
+            bass = [event(0, root, 2.6, .8), event(3, fifth, .85, .6)]
+            drums = [event(.5, "kick", .2, .32), event(2.5, "snare", .2, .25)]
+            if i % 2:
+                drums += [event(3.5, "hat", .05, .12)]
+            harmony = ([event(.5, chord[0], 1.15, .65), event(2.25, chord[1 if i % 2 else 2], 1.25, .6)] if style == "a"
+                       else [event(.25, chord, 3.25, .72)])
+        else:
+            bass = [event(0, root, 1.65, .9), event(2, fifth, 1.65, .75)]
+            drums = [event(.5, "kick", .2, .6 if fanfare else .35), event(2.5, "snare", .2, .65 if fanfare else .3)]
+            if fanfare:
+                drums += [event(1.5, "snare", .15, .3), event(3.25, "snare", .15, .3), event(3.75, "snare", .15, .4)]
+            else:
+                drums += [event(1.5, "hat", .05, .16)]
+            harmony = ([event(.25 + j * 1.25, chord[j], .8, .7) for j in range(3)] if style == "a"
+                       else [event(.25, chord, 3.25, .72)])
+        bars.append(dict(bar=i + 1, chord=EXTRA_CHORDS[track][i], lead=lead, bass=bass, harmony=harmony, drums=drums))
+    return dict(track=track, style=style, label=label, bpm=bpm, meter="4/4", mode="D dorian (D E F G A B C)", motif=MOTIF, bars=bars)
+
 def envelope(t, gate, attack, release, decay=0.):
     e = np.minimum(t / attack, 1.) * np.minimum(np.maximum((gate + release - t) / release, 0.), 1.)
     if decay:
@@ -118,7 +239,7 @@ def pulse(t, f, duty=.5, ceiling=7500):
     return sum(4 * np.sin(np.pi * h * duty) / (np.pi * h) * np.cos(h * p - np.pi * h * duty)
                for h in range(1, min(40, int(ceiling / f)) + 1))
 
-def pitched(note, seconds, part, style, phase_offset=0.):
+def pitched(note, seconds, part, style, phase_offset=0., soft=False):
     release = .085 if part == "lead" else (.19 if part == "harmony" else .07)
     if style != "a" and part == "harmony": release = .24
     t = synth.clock(seconds + release)
@@ -126,15 +247,15 @@ def pitched(note, seconds, part, style, phase_offset=0.):
     tone_t = t + phase_offset / f
     if part == "lead":
         if style == "b":
-            x = synth.fm(tone_t, f, f, ratio=2, index=1.45, decay=.10) + .12 * synth.osc(tone_t, f * 2)
+            x = synth.fm(tone_t, f, f, ratio=2, index=.7 if soft else 1.45, decay=.18 if soft else .10) + (.04 if soft else .12) * synth.osc(tone_t, f * 2)
         else:
-            x = pulse(tone_t, f, .5, 6000) * .64 + (.12 * synth.osc(tone_t, f) if style == "c" else 0)
-        return x * envelope(t, seconds, .005, release, .12)
+            x = pulse(tone_t, f, .5, 2400 if soft else 6000) * .64 + (.12 * synth.osc(tone_t, f) if style == "c" else 0)
+        return x * envelope(t, seconds, .025 if soft else .005, release, .12)
     if part == "bass":
         if style == "a": x = synth.osc(t, f, kind="triangle")
         else: x = synth.fm(t, f, f, ratio=1, index=.95, decay=.075) + .16 * synth.osc(t, f / 2)
         return x * envelope(t, seconds, .004, release, .14)
-    if style == "a": x = .65 * pulse(t, f, .25, 4500)
+    if style == "a": x = .65 * pulse(t, f, .25, 2200 if soft else 4500)
     else:
         x = .55 * synth.osc(t, f) + .20 * synth.osc(t, f * 1.002) + .13 * synth.osc(t, f * 2) + .05 * synth.osc(t, f * 3)
     return x * envelope(t, seconds, .018 if style == "a" else .065, release)
@@ -170,6 +291,10 @@ def render(track, style):
     channels = 1 if style == "a" else 2
     mix = np.zeros((length, channels), dtype=np.float64)
     gains = {"lead": .17 if track == "title" else .15, "bass": .20, "harmony": .072, "drums": .23 if track == "title" else .27}
+    if track in EXTRA_SPECS:
+        gains = {"select": dict(lead=.14, bass=.19, harmony=.07, drums=.20),
+                 "story": dict(lead=.085, bass=.12, harmony=.105, drums=.10),
+                 "results": dict(lead=.13, bass=.17, harmony=.095, drums=.18)}[track]
     for bar in s["bars"]:
         for part in ["lead", "bass", "harmony", "drums"]:
             for j, e in enumerate(bar[part]):
@@ -185,7 +310,7 @@ def render(track, style):
                         # Place the tied tonic near a smooth oscillator maximum at
                         # the bar line, avoiding a steep pulse edge at the loop.
                         offset = (.25 - hz(n) * (4 - e["beat"]) * beat) % 1 if e.get("tie_to_start") else 0.
-                        x = pitched(n, e["duration"] * beat, part, style, offset)
+                        x = pitched(n, e["duration"] * beat, part, style, offset, soft=track == "story")
                         pan = [-.4, .05, .4][k] if len(ns) > 1 else (-.12 if part == "harmony" else 0.)
                         add_wrap(mix, x * gains[part] * e["velocity"] / np.sqrt(len(ns)), start, pan)
     if style != "a":
@@ -218,7 +343,7 @@ def measure(path, s):
     f = np.fft.rfftfreq(len(mono), 1 / SR)
     power = abs(np.fft.rfft(mono)) ** 2
     r = dict(file=path.relative_to(ROOT).as_posix(), sound="music_" + s["track"], track=s["track"], style=s["style"],
-             label=s["label"], note=NOTES[s["style"]], bpm=s["bpm"], mode=s["mode"], bars=len(s["bars"]),
+             label=s["label"], note=EXTRA_NOTES.get(s["track"], NOTES)[s["style"]], bpm=s["bpm"], mode=s["mode"], bars=len(s["bars"]),
              sample_rate=SR, bits=16, channels=channels, length_s=len(x) / SR, bytes=path.stat().st_size,
              rms_dbfs=db(np.sqrt(np.mean(x ** 2))), peak_dbfs=db(np.max(abs(x))),
              clipped_samples=int(np.sum((pcm == 32767) | (pcm == -32768))), dc_dbfs=db(np.max(abs(x.mean(axis=0)))),
@@ -307,10 +432,11 @@ def score_text(s):
             lines.append(f"  {part:8s} " + "  ".join(values))
     return '\n'.join(lines) + '\n'
 
-def main(plots_only=False):
-    OUT.mkdir(exist_ok=True, parents=True); REPORT.mkdir(exist_ok=True, parents=True)
+def main(plots_only=False, collection="aud02"):
+    specs, report = COLLECTIONS[collection]
+    OUT.mkdir(exist_ok=True, parents=True); report.mkdir(exist_ok=True, parents=True)
     records = []
-    for track in SPECS:
+    for track in specs:
         for style in "abc":
             name = f"music_{track}-{style}"
             path = OUT / (name + ".wav")
@@ -320,18 +446,20 @@ def main(plots_only=False):
                 with wave.open(str(path), "wb") as w:
                     w.setparams((pcm.shape[1], 2, SR, 0, "NONE", "not compressed")); w.writeframes(pcm.tobytes())
             r, x = measure(path, s); records.append(r)
-            (REPORT / (name + "-score.txt")).write_text(score_text(s), encoding="utf-8")
-            (REPORT / (name + "-score.json")).write_text(json.dumps(s, ensure_ascii=False, indent=2) + '\n', encoding="utf-8")
-            picture(REPORT / (name + ".png"), r, x)
+            (report / (name + "-score.txt")).write_text(score_text(s), encoding="utf-8")
+            (report / (name + "-score.json")).write_text(json.dumps(s, ensure_ascii=False, indent=2) + '\n', encoding="utf-8")
+            picture(report / (name + ".png"), r, x)
             print(f"{name}: {r['length_s']:.2f}s RMS {r['rms_dbfs']:.2f} peak {r['peak_dbfs']:.2f}, seam={r['seam']}", flush=True)
-    (REPORT / "measurements.json").write_text(json.dumps(dict(motif=MOTIF, records=records), ensure_ascii=False, indent=2) + '\n', encoding="utf-8")
-    sheet = Image.new("RGB", (2100, 1020), "#0e1523")
+    (report / "measurements.json").write_text(json.dumps(dict(motif=MOTIF, records=records), ensure_ascii=False, indent=2) + '\n', encoding="utf-8")
+    sheet = Image.new("RGB", (2100, 510 * len(specs)), "#0e1523")
     for i, r in enumerate(records):
-        with Image.open(REPORT / (Path(r["file"]).stem + ".png")) as pic:
+        with Image.open(report / (Path(r["file"]).stem + ".png")) as pic:
             sheet.paste(pic.resize((700, 510), Image.Resampling.LANCZOS), ((i % 3) * 700, (i // 3) * 510))
-    sheet.save(REPORT / "overview.png")
+    sheet.save(report / "overview.png")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--plots-only", action="store_true", help="Read existing WAVs; refresh measurement/score/figure documents without rendering audio")
-    main(parser.parse_args().plots_only)
+    parser.add_argument("--collection", choices=COLLECTIONS, default="aud02", help="Default writes only new AUD-02 candidates; aud02a explicitly regenerates the legacy trial")
+    args = parser.parse_args()
+    main(args.plots_only, args.collection)
