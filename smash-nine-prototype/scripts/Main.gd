@@ -16,6 +16,10 @@ const SOUL_GROWTH_SCRIPT := preload("res://scripts/match/SoulGrowth.gd")
 const MATCH_HUD_SCRIPT := preload("res://scripts/ui/MatchHud.gd")
 const REALM_MONSTER_SPAWNER_SCRIPT := preload("res://scripts/RealmMonsterSpawner.gd")
 const SOUL_CRYSTAL_SPAWNER_SCRIPT := preload("res://scripts/SoulCrystalSpawner.gd")
+const STORY_CATALOG := preload("res://scripts/story/StoryCatalog.gd")
+const STORY_PROGRESS := preload("res://scripts/story/StoryProgress.gd")
+const STORY_DIRECTOR := preload("res://scripts/story/StoryDirector.gd")
+const STORY_SESSION := preload("res://scripts/story/StorySession.gd")
 const CENTRAL_REALM_INDEX := REALM_LAYOUT_SCRIPT.CENTRAL_REALM_INDEX
 const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
@@ -43,6 +47,13 @@ static var session_bot_panel := true
 static var last_character_id := "frey"
 static var last_match_was_bots := false
 static var next_screen := "title"
+static var session_mode := "battle_royale"
+static var story_hero := "frey"
+static var story_stage := 1
+static var story_difficulty := "normal"
+static var story_last_result: Dictionary = {}
+static var story_art_state: Dictionary = {}
+var story_session: STORY_SESSION
 var _frontend_transition := false
 
 ## Every slot is a bot and the camera spectates (soak tests, attract mode). Skips the start screen.
@@ -83,8 +94,12 @@ var _body_rng := RandomNumberGenerator.new()
 func _ready() -> void:
 	GAME_SPEED.load_saved()
 	LANGUAGE.load_saved()
+	if next_screen.begins_with("story_"):
+		STORY_PROGRESS.load_saved()
 	get_window().title = tr("Smash Nine Realms Prototype")
 	GAME_SPEED.reset_engine()
+	if next_screen == "story_stage" and not story_art_state.is_empty():
+		match_seed = int(story_art_state.seed)
 	if match_seed < 0:
 		randomize()
 		match_seed = randi()
@@ -104,7 +119,16 @@ func _ready() -> void:
 		hud.show_start_screen(_get_character_list(), human_body)
 		var destination := next_screen
 		next_screen = "title"
-		if destination == "select":
+		if destination == "story_select":
+			hud.frontend.selected_id = story_hero
+			hud.frontend.difficulty = story_difficulty
+			hud.frontend.show_story_select()
+		elif destination == "story_map":
+			hud.frontend.selected_id = story_hero
+			hud.frontend.show_story_map(story_stage)
+		elif destination == "story_stage":
+			_start_story()
+		elif destination == "select":
 			hud.frontend.show_select()
 		elif destination == "options":
 			hud.frontend.show_options()
@@ -118,7 +142,11 @@ func _exit_tree() -> void:
 	GAME_SPEED.reset_engine()
 
 func _create_director() -> void:
-	director = MATCH_DIRECTOR_SCRIPT.new()
+	if not bots_only and next_screen == "story_stage":
+		director = STORY_DIRECTOR.new()
+		director.configure(STORY_CATALOG.stage(story_stage), story_difficulty)
+	else:
+		director = MATCH_DIRECTOR_SCRIPT.new()
 	director.name = "MatchDirector"
 	add_child(director)
 	director.setup(layout)
@@ -200,6 +228,7 @@ func _start_match(human_character_id: String) -> void:
 	if match_started:
 		return
 	last_character_id = human_character_id if human_character_id != "" else last_character_id
+	session_mode = "battle_royale"
 	last_match_was_bots = bots_only
 	match_started = true
 	GAME_SPEED.apply_to_match()
@@ -213,6 +242,9 @@ func _start_match(human_character_id: String) -> void:
 
 func _on_frontend_action(action: String, _value: String) -> void:
 	if _frontend_transition:
+		return
+	if action == "story" or action.begins_with("story_"):
+		_on_story_action(action)
 		return
 	match action:
 		"start":
@@ -252,8 +284,9 @@ func _reload_frontend(destination: String) -> void:
 	if _frontend_transition:
 		return
 	_frontend_transition = true
+	get_tree().paused = false
 	next_screen = destination
-	last_character_id = hud.frontend.selected_id if not match_started else last_character_id
+	last_character_id = hud.frontend.selected_id if not match_started and not hud.frontend.screen.begins_with("story_") else last_character_id
 	# Defer scene replacement until GUI/input callbacks have returned.
 	get_tree().call_deferred("reload_current_scene")
 
@@ -263,7 +296,7 @@ func _process(delta: float) -> void:
 		return
 	if not match_started:
 		return
-	if not match_over:
+	if not match_over and (not is_instance_valid(story_session) or story_session.accepts_gameplay()):
 		director.advance(delta)
 		hazards.advance(delta)
 		_apply_phase_rules()
@@ -282,7 +315,7 @@ func _apply_phase_rules() -> void:
 	for combatant in players:
 		if is_instance_valid(combatant):
 			combatant.ringout_damage = ringout_damage
-			combatant.incoming_damage_scale = damage_scale
+			combatant.incoming_damage_scale = director.get_combat_damage_scale_for(combatant) if director.has_method("get_combat_damage_scale_for") else damage_scale
 			combatant.recovery_rate = recovery_rate
 			combatant.ai_aggression = aggression
 	var band: Vector2 = director.get_sudden_death_band()
@@ -307,6 +340,9 @@ func _handle_global_input() -> bool:
 		elif not match_over:
 			GAME_SPEED.apply_to_match()
 		_show_message(tr("Game speed %d%%") % GAME_SPEED.percent())
+	if is_instance_valid(story_session) and match_over and Input.is_action_just_pressed("restart"):
+		_reload_frontend("story_stage")
+		return true
 	if not match_started:
 		var ids := CHARACTER_REGISTRY.get_character_ids()
 		if hud.frontend.screen in ["title", "select"]:
@@ -322,7 +358,7 @@ func _handle_global_input() -> bool:
 			ART_SETTINGS.toggle()
 			_reload_frontend(hud.frontend.screen)
 			return true
-		if Input.is_action_just_pressed("watch_bots"):
+		if Input.is_action_just_pressed("watch_bots") and not hud.frontend.screen.begins_with("story_"):
 			bots_only = true
 			_start_match("")
 		return false
@@ -341,6 +377,9 @@ func _on_match_finished(winner: Node, reason: String) -> void:
 	_freeze_combat()
 	if is_instance_valid(winner):
 		spectate_target = winner
+	if is_instance_valid(story_session):
+		story_session.finish(is_instance_valid(winner))
+		return
 	var standings := director.get_standings()
 	var survival := {}
 	for combatant in standings:
@@ -364,8 +403,9 @@ func get_winner() -> Node:
 
 func _on_realm_state_changed(_realm_index: int, _state: String) -> void:
 	world.refresh_dynamic(Callable(director, "get_state"), Callable(director, "is_warning"))
-	realm_monster_spawner.sync_playable_realms(director.get_playable_indices())
-	soul_crystal_spawner.sync_playable_realms(director.get_playable_indices())
+	if not is_instance_valid(story_session):
+		realm_monster_spawner.sync_playable_realms(director.get_playable_indices())
+		soul_crystal_spawner.sync_playable_realms(director.get_playable_indices())
 	active_portals = _get_portals_for_realm(current_map_index)
 	hud.rebuild_minimap(layout, director, current_map_index)
 	_sync_combatant_visibility()
@@ -563,6 +603,8 @@ func _handle_portal_input() -> void:
 	for portal in _get_portals_for_realm(human.realm_index):
 		var rect: Rect2 = portal.rect
 		if rect.has_point(human.global_position):
+			if is_instance_valid(story_session) and story_session.use_portal(portal):
+				return
 			_move_through_portal(human, portal)
 			_set_map(portal.destination)
 			_show_message(tr("%s entered %s.") % [tr(str(human.display_name)), tr(str(layout.get_realm(portal.destination).name))])
@@ -670,6 +712,8 @@ func _update_hud() -> void:
 	else:
 		# An offer can also end without offer_closed (SoulGrowth drops it when P1 is eliminated).
 		hud.hide_card_offer()
+	if is_instance_valid(story_session):
+		story_session.update_hud()
 	if hud.debug_label.visible:
 		_update_debug_text()
 
@@ -761,3 +805,82 @@ func _on_player_defeated(player: Node, attacker: Node) -> void:
 
 func _on_combatant_respawned(_combatant: Node) -> void:
 	_sync_combatant_visibility()
+
+# --- Story mode (D43): mode/screen routing only; stage rules live in StoryDirector. ---
+
+func _start_story() -> void:
+	if not STORY_CATALOG.stage(story_stage).ready:
+		hud.frontend.show_story_map(story_stage)
+		return
+	session_mode = "story"
+	bots_only = false
+	match_started = true
+	hud.frontend.selected_id = story_hero
+	GAME_SPEED.apply_to_match()
+	realm_monster_spawner.set_physics_process(false)
+	soul_crystal_spawner.set_physics_process(false)
+	hazards.enabled = realm_hazards and bool(STORY_CATALOG.stage(story_stage).rules.hazards)
+	story_session = STORY_SESSION.new()
+	story_session.name = "StorySession"
+	add_child(story_session)
+	story_session.start(self, STORY_CATALOG.stage(story_stage), story_art_state)
+	story_art_state = {}
+	get_viewport().set_input_as_handled()
+
+func _on_story_action(action: String) -> void:
+	match action:
+		"story":
+			session_mode = "story"
+			_reload_frontend("story_select")
+		"story_select": _reload_frontend("story_select")
+		"story_new", "story_continue":
+			story_hero = hud.frontend.selected_id
+			if action == "story_new":
+				story_difficulty = hud.frontend.difficulty
+				STORY_PROGRESS.new_journey(story_hero, story_difficulty)
+			else:
+				if STORY_PROGRESS.get_run(story_hero).is_empty():
+					return
+				story_difficulty = str(STORY_PROGRESS.get_run(story_hero).difficulty)
+			story_stage = STORY_PROGRESS.continue_stage(story_hero)
+			_reload_frontend("story_map")
+		"story_map": _reload_frontend("story_map")
+		"story_start":
+			story_stage = hud.frontend.map_stage
+			if STORY_CATALOG.stage(story_stage).ready and story_stage <= int(STORY_PROGRESS.get_run(story_hero).get("cleared", 0)) + 1:
+				_reload_frontend("story_stage")
+		"story_begin":
+			if is_instance_valid(story_session):
+				story_session.begin_dialogue()
+		"story_resume":
+			if is_instance_valid(story_session):
+				story_session.resume_stage()
+		"story_retry": _reload_frontend("story_stage")
+		"story_next":
+			story_stage = mini(story_stage + 1, 9)
+			_reload_frontend("story_stage" if STORY_CATALOG.stage(story_stage).ready else "story_map")
+		"story_title":
+			session_mode = "battle_royale"
+			_reload_frontend("title")
+		"story_art":
+			ART_SETTINGS.toggle()
+			if is_instance_valid(story_session):
+				story_art_state = story_session.art_snapshot()
+				_reload_frontend("story_stage")
+			else:
+				story_hero = hud.frontend.selected_id
+				if hud.frontend.screen == "story_map":
+					story_stage = hud.frontend.map_stage
+				story_difficulty = hud.frontend.difficulty if hud.frontend.screen == "story_select" else story_difficulty
+				_reload_frontend(hud.frontend.screen)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_instance_valid(story_session) or not event is InputEventKey or not event.pressed or event.echo:
+		return
+	var code: int = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+	if code == KEY_ESCAPE and story_session.accepts_gameplay():
+		story_session.pause_stage()
+		get_viewport().set_input_as_handled()
+	elif code == KEY_F2:
+		_on_story_action("story_art")
+		get_viewport().set_input_as_handled()

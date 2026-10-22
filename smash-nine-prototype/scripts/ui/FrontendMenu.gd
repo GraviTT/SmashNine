@@ -201,7 +201,7 @@ func _finish(hint: String) -> void:
 
 func show_title() -> void:
 	_clear("title")
-	_panel(Rect2(414, 92, 452, 542), 0.87)
+	_panel(Rect2(414, 76, 452, 582), 0.87)
 	var logo := ART.original_texture("res://assets/art/ui/title_logo.png")
 	if logo != null:
 		_picture(logo, Rect2(450, 114, 380, 126), true)
@@ -210,9 +210,9 @@ func show_title() -> void:
 		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var tagline := _label("NINE REALMS. ONE SURVIVOR.", Rect2(440, 250, 400, 28), 18, DIM)
 	tagline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	for entry in [["Play", "select"], ["Watch bots", "watch"], ["Options", "options"], ["Controls", "controls"]]:
-		_button(entry[0], Rect2(466, 306 + buttons.size() * 66, 348, 52), entry[1])
-	session_status = _label("", Rect2(424, 578, 432, 48), 14, DIM)
+	for entry in [["Battle Royale", "select"], ["Story", "story"], ["Watch bots", "watch"], ["Options", "options"], ["Controls", "controls"]]:
+		_button(entry[0], Rect2(466, 294 + buttons.size() * 60, 348, 52), entry[1])
+	session_status = _label("", Rect2(424, 600, 432, 48), 14, DIM)
 	session_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	refresh_options()
 	_label("Working title  /  Prototype", Rect2(44, 28, 500, 26), 15, DIM)

@@ -159,6 +159,7 @@ func _run() -> void:
 	# Title keyboard navigation: Play -> Watch -> Options.
 	await _tap(KEY_DOWN)
 	await _tap(KEY_S)
+	await _tap(KEY_DOWN)
 	await _tap(KEY_ENTER)
 	_check(main.hud.frontend.screen == "options", "Arrow/W-S navigation must open Options")
 	await _capture("04-options")
@@ -185,7 +186,7 @@ func _run() -> void:
 	main = current_scene
 	await _tap(KEY_ESCAPE)
 	# Controls opens with a real mouse click.
-	await _click(main.hud.frontend.buttons[3])
+	await _click(main.hud.frontend.buttons[4])
 	_check(main.hud.frontend.screen == "controls", "Mouse Controls must open the key table")
 	await _capture("05-controls")
 	await _tap(KEY_ESCAPE)
