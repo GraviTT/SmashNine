@@ -1,4 +1,29 @@
-# 첫 효과음 합성 도구 · AUD-01a
+# 원본 오디오 합성 도구 · AUD-01 / AUD-01a / AUD-02*
+
+## 전체 효과음 후보 · AUD-01
+
+`sfx_all.py`는 카탈로그의 음악 이외 **72종 × 3스타일 = 216 WAV**를 완결한다. 신규 60종·180 WAV를 카드의 순서(선수 → 기술 → 몬스터 → 렐름 → 성장 → 메뉴)로 만든다. 기존 시험 12종·36 WAV는 읽기만 하고 AUD-01a SHA256과 비교한다. `synth.py`의 기존 함수와 시험 보고서는 바꾸지 않았다.
+
+```powershell
+$env:PYTHONDONTWRITEBYTECODE = '1'
+$audioPython = 'C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'
+& $audioPython tools/audio_synth/sfx_all.py
+& $audioPython tools/audio_synth/verify_sfx_all.py
+node tools/sound_viewer/build.mjs --out reports/codex-aud-01/preview
+node tools/sound_viewer/verify.mjs --out reports/codex-aud-01/preview
+```
+
+전체판을 만든 후에는 `verify_sfx_all.py`를 사용한다. 아래의 과거 `verify.py`는 시험 36파일만 존재하는 폴더를 가정한 역사적 검증기다. 전체판 검증기가 시험 36개까지 함께 PCM 재현·SHA256을 재검사한다. 시험 파일을 다시 만드는 `synth.py`는 이 작업에서 실행하지 않았다.
+
+- DSP는 numpy, WAV 입출력은 표준 라이브러리, 그림은 기존 Pillow를 사용한다. 설치·다운로드·샘플·녹음·외부 합성 모델은 없다. 시드는 ID·스타일의 SHA256에서 고정된다.
+- `SPECS`는 이름·길이·RMS 목표·음색 의도이며 `render_raw()`의 명시적 분기가 각 동작의 작은 악보다. A는 배음 제한 사각·삼각파와 계단 잡음, B는 감쇠 FM과 대역 잡음, C는 FM 몸통·추가 배음·저역·순간 잡음 층을 사용한다. 실제 하드웨어 에뮬레이터는 아니다.
+- 프레이는 강철·날개·밝은 종, 루나는 별 아르페지오, Brave는 별+타격 몸통, 유키는 종이 마찰+방울, 노바는 서보·에너지 펄스, 리오는 룬 공명+차원 마찰이다. 궁극기 7종(공용 포함)은 0.90~1.18초, 기술 13종(공용 포함)은 0.22~0.38초다. `victory`는 직접 작곡한 1.65초의 D-A-D-F-A-D 팡파르다. 이름은 재생 이벤트를 설명하며 피해·폭발 시각을 보증하지 않는다.
+- 새 `master()`는 기본적으로 선형 게인만으로 목표 RMS를 맞춘다. 피크 한도를 넘을 때만 부호를 보존하는 거듭제곱으로 crest factor를 줄인다. 적용 지수 `crest_shape_gamma`를 기록한다. 시작 0.7ms와 끝 최대 12ms sin² 페이드, 양 끝 샘플 0. PCM 정수 한도를 내림하여 신규 파일의 실제 샘플 피크가 **−1.00015 dBFS 이하**다.
+- 새 조용한 클래스: 수풀·UI 이동 −24, 대사 한 줄 −28, 대사 넘김 −23 dBFS. 기존 확인·취소 −14는 보존했다. 전체 RMS 범위는 −28~−13.5이며 같은 ID의 세 스타일은 같은 목표다. RMS는 체감 음량이나 LUFS가 아니다.
+- `reports/codex-aud-01/`에 전체 216행 수치, 독립 재검증, **ID당 A/B/C 파형+스펙트로그램 한 그림(72장)**과 그룹별 음량 개요를 남긴다. 파형 ±1, STFT Hann 1024/hop128, 로그 60~22,050Hz, 고정 −80~0dBFS 색상으로 비교한다.
+- `verify_sfx_all.py`는 카탈로그 완결성, 규격·목표 RMS·피크·클리핑·길이·시작·꼬리, PNG 읽기, 중복 음원 없음, **216개의 메모리 재합성과 PCM 바이트 일치**, 시험 36개의 원래 SHA256을 검사한다. 시험의 피크는 원래 정수 반올림으로 −0.999854dBFS이므로 0.0002dB 오차를 허용하고 별도로 보고한다. 신규에는 이 오차를 허용하지 않는다.
+
+모든 음색 표현은 합성 의도다. 직접 청음·게임 내 믹스·true peak·LUFS·브라우저 디코딩은 확인하지 않았다. 리드용 결과·청음 순서는 [AUD-01 보고서](../../reports/codex-aud-01/README.md), 페이지·재게시는 [sound_viewer README](../sound_viewer/README.md)를 따른다.
 
 ## 음악 후보 · AUD-02a
 
