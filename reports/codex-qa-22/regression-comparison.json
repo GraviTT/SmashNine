@@ -1,0 +1,331 @@
+{
+  "comparison": [
+    {
+      "key": "seconds_simulated",
+      "old_spread": 13.599999999999966,
+      "runs": [
+        {
+          "seed": 2105,
+          "before": 292.2,
+          "after": 330.1,
+          "delta": 37.900000000000034,
+          "exceeds_old_spread": true
+        },
+        {
+          "seed": 2106,
+          "before": 278.6,
+          "after": 288.9,
+          "delta": 10.299999999999955,
+          "exceeds_old_spread": false
+        }
+      ]
+    },
+    {
+      "key": "defeats",
+      "old_spread": 0,
+      "runs": [
+        {
+          "seed": 2105,
+          "before": 15,
+          "after": 15,
+          "delta": 0,
+          "exceeds_old_spread": false
+        },
+        {
+          "seed": 2106,
+          "before": 15,
+          "after": 15,
+          "delta": 0,
+          "exceeds_old_spread": false
+        }
+      ]
+    },
+    {
+      "key": "nan_positions",
+      "old_spread": 0,
+      "runs": [
+        {
+          "seed": 2105,
+          "before": 0,
+          "after": 0,
+          "delta": 0,
+          "exceeds_old_spread": false
+        },
+        {
+          "seed": 2106,
+          "before": 0,
+          "after": 0,
+          "delta": 0,
+          "exceeds_old_spread": false
+        }
+      ]
+    },
+    {
+      "key": "node_count",
+      "old_spread": 1,
+      "runs": [
+        {
+          "seed": 2105,
+          "before": 1799,
+          "after": 1822,
+          "delta": 23,
+          "exceeds_old_spread": true
+        },
+        {
+          "seed": 2106,
+          "before": 1800,
+          "after": 1821,
+          "delta": 21,
+          "exceeds_old_spread": true
+        }
+      ]
+    },
+    {
+      "key": "monster_hits",
+      "old_spread": 11,
+      "runs": [
+        {
+          "seed": 2105,
+          "before": 140,
+          "after": 141,
+          "delta": 1,
+          "exceeds_old_spread": false
+        },
+        {
+          "seed": 2106,
+          "before": 129,
+          "after": 147,
+          "delta": 18,
+          "exceeds_old_spread": true
+        }
+      ]
+    },
+    {
+      "key": "pvp_hits",
+      "old_spread": 24,
+      "runs": [
+        {
+          "seed": 2105,
+          "before": 1248,
+          "after": 1398,
+          "delta": 150,
+          "exceeds_old_spread": true
+        },
+        {
+          "seed": 2106,
+          "before": 1272,
+          "after": 1214,
+          "delta": -58,
+          "exceeds_old_spread": true
+        }
+      ]
+    },
+    {
+      "key": "ringouts",
+      "old_spread": 0,
+      "runs": [
+        {
+          "seed": 2105,
+          "before": 23,
+          "after": 19,
+          "delta": -4,
+          "exceeds_old_spread": true
+        },
+        {
+          "seed": 2106,
+          "before": 23,
+          "after": 19,
+          "delta": -4,
+          "exceeds_old_spread": true
+        }
+      ]
+    }
+  ],
+  "gateIntervals": [
+    {
+      "seed": 2105,
+      "events": 17,
+      "max_per_window": 2,
+      "minimum_revisit_seconds": 3.5500000000029956,
+      "revisits": [
+        {
+          "seed": 2105,
+          "player": 4,
+          "hero": "luna",
+          "window": 8,
+          "from_time": 141.183333333338,
+          "to_time": 144.733333333341,
+          "seconds": 3.5500000000029956,
+          "frame_gap": 213,
+          "previous_exit": "(1425.0, 3675.0)",
+          "next_entry": "(522.1052, 3622.47)",
+          "next_exit": "(1425.0, 3675.0)"
+        },
+        {
+          "seed": 2105,
+          "player": 6,
+          "hero": "nova",
+          "window": 10,
+          "from_time": 177.283333333367,
+          "to_time": 181.050000000036,
+          "seconds": 3.766666666668982,
+          "frame_gap": 226,
+          "previous_exit": "(615.0, 3106.5)",
+          "next_entry": "(654.6482, 3066.007)",
+          "next_exit": "(1305.0, 3106.5)"
+        }
+      ]
+    },
+    {
+      "seed": 2106,
+      "events": 25,
+      "max_per_window": 4,
+      "minimum_revisit_seconds": 0.9999999999990052,
+      "revisits": [
+        {
+          "seed": 2106,
+          "player": 1,
+          "hero": "yuki",
+          "window": 3,
+          "from_time": 49.2666666666652,
+          "to_time": 51.416666666665,
+          "seconds": 2.1499999999997996,
+          "frame_gap": 129,
+          "previous_exit": "(1605.0, 3412.0)",
+          "next_entry": "(1661.412, 3413.974)",
+          "next_exit": "(495.0, 3675.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 1,
+          "hero": "yuki",
+          "window": 3,
+          "from_time": 51.416666666665,
+          "to_time": 53.5333333333316,
+          "seconds": 2.116666666666596,
+          "frame_gap": 127,
+          "previous_exit": "(495.0, 3675.0)",
+          "next_entry": "(506.1925, 3613.328)",
+          "next_exit": "(1605.0, 3412.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 5,
+          "hero": "nova",
+          "window": 6,
+          "from_time": 102.366666666662,
+          "to_time": 104.149999999995,
+          "seconds": 1.7833333333330046,
+          "frame_gap": 107,
+          "previous_exit": "(960.0, 3255.5)",
+          "next_entry": "(1016.347, 3257.425)",
+          "next_exit": "(1425.0, 3675.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 2,
+          "hero": "luna",
+          "window": 6,
+          "from_time": 102.366666666662,
+          "to_time": 104.383333333329,
+          "seconds": 2.016666666667007,
+          "frame_gap": 121,
+          "previous_exit": "(960.0, 3255.5)",
+          "next_entry": "(906.4241, 3257.498)",
+          "next_exit": "(1425.0, 3675.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 2,
+          "hero": "luna",
+          "window": 6,
+          "from_time": 104.383333333329,
+          "to_time": 105.383333333329,
+          "seconds": 1,
+          "frame_gap": 60,
+          "previous_exit": "(1425.0, 3675.0)",
+          "next_entry": "(1428.933, 3676.922)",
+          "next_exit": "(960.0, 3255.5)"
+        },
+        {
+          "seed": 2106,
+          "player": 5,
+          "hero": "nova",
+          "window": 7,
+          "from_time": 124.883333333328,
+          "to_time": 125.883333333327,
+          "seconds": 0.9999999999990052,
+          "frame_gap": 60,
+          "previous_exit": "(960.0, 3255.5)",
+          "next_entry": "(950.868, 3257.425)",
+          "next_exit": "(495.0, 3675.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 8,
+          "hero": "frey",
+          "window": 9,
+          "from_time": 153.250000000014,
+          "to_time": 154.250000000015,
+          "seconds": 1.0000000000009948,
+          "frame_gap": 60,
+          "previous_exit": "(315.0, 3412.0)",
+          "next_entry": "(268.0965, 3413.925)",
+          "next_exit": "(1605.0, 3412.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 5,
+          "hero": "nova",
+          "window": 9,
+          "from_time": 153.250000000014,
+          "to_time": 154.800000000015,
+          "seconds": 1.5500000000009777,
+          "frame_gap": 93,
+          "previous_exit": "(315.0, 3412.0)",
+          "next_entry": "(264.2448, 3413.997)",
+          "next_exit": "(1605.0, 3412.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 8,
+          "hero": "frey",
+          "window": 9,
+          "from_time": 154.250000000015,
+          "to_time": 155.250000000016,
+          "seconds": 1.0000000000009948,
+          "frame_gap": 60,
+          "previous_exit": "(1605.0, 3412.0)",
+          "next_entry": "(1592.719, 3413.964)",
+          "next_exit": "(315.0, 3412.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 8,
+          "hero": "frey",
+          "window": 9,
+          "from_time": 155.250000000016,
+          "to_time": 157.466666666684,
+          "seconds": 2.2166666666680044,
+          "frame_gap": 133,
+          "previous_exit": "(315.0, 3412.0)",
+          "next_entry": "(365.6094, 3413.961)",
+          "next_exit": "(1605.0, 3412.0)"
+        },
+        {
+          "seed": 2106,
+          "player": 5,
+          "hero": "nova",
+          "window": 9,
+          "from_time": 154.800000000015,
+          "to_time": 158.450000000018,
+          "seconds": 3.6500000000030184,
+          "frame_gap": 219,
+          "previous_exit": "(1605.0, 3412.0)",
+          "next_entry": "(1554.233, 3413.925)",
+          "next_exit": "(315.0, 3412.0)"
+        }
+      ]
+    }
+  ]
+}
