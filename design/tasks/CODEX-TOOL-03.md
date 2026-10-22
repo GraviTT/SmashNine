@@ -26,7 +26,7 @@
 ## 3. Checks
 - `node tools/motion_viewer/build.mjs` builds; `dist/files.json` lists every new file; the build fails loudly if a listed file is missing.
 - A Node check like `tools/sound_viewer/verify.mjs` (mock DOM, mock `claude.use("db")`; its result is `reports/codex-aud-01a/viewer-checks.json`): pick, unpick, memo, the panel, reload restores the state, the page without a database, the speeds still adopt.
-- The dist size stays under 60 MB and 255 files (the Artifact limits); report both. If it would not fit, say what to leave out.
+- Artifact limits: one publish sends at most 255 files and 64 MB; one version holds at most 511 files and 256 MB, so the lead may publish in parts. Report the total size and file count. When `files.json` has more than 250 files or 60 MB, also write `files-1.json`, `files-2.json`, … each within those limits (sheets first).
 
 ## Output
 - the changes in `tools/motion_viewer/`
