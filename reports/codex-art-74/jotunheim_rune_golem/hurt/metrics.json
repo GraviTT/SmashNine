@@ -1,0 +1,261 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/art/raw/monsters-74/jotunheim_rune_golem-hurt.png",
+    "frames": null,
+    "grid": [
+      2,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1
+    ],
+    "outline": "off",
+    "cell": 96,
+    "feet_y": 72,
+    "horizontal_anchor": "median torso row centre",
+    "working_canvas": 128
+  },
+  "summary": {
+    "frame_count": 2,
+    "output_columns": 6,
+    "common_scale": 0.1275,
+    "scale_by": "fixed:0.1275",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      44,
+      64
+    ],
+    "body_width_range": [
+      82,
+      84
+    ],
+    "area_range": [
+      2391,
+      3120
+    ],
+    "area_spread_percent": 23.37,
+    "bottom_range": [
+      96,
+      96
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2140,
+      2781
+    ],
+    "interior_detail_range": [
+      97.11,
+      100.44
+    ],
+    "interior_detail_mean": 98.78,
+    "remaining_spill_pixels": [
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "reference": null,
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/art/raw/monsters-74/jotunheim_rune_golem-hurt.png#0,0",
+      "bbox": [
+        18,
+        33,
+        102,
+        97
+      ],
+      "body_height": 64,
+      "body_width": 84,
+      "area": 3120,
+      "bottom": 96,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.11,
+      "colour_count": 2781,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 18,
+        "top": 33,
+        "right": 26,
+        "bottom": 31,
+        "minimum": 18,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/art/raw/monsters-74/jotunheim_rune_golem-hurt.png#1,0",
+      "bbox": [
+        22,
+        53,
+        104,
+        97
+      ],
+      "body_height": 44,
+      "body_width": 82,
+      "area": 2391,
+      "bottom": 96,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.44,
+      "colour_count": 2140,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 53,
+        "right": 24,
+        "bottom": 31,
+        "minimum": 22,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/reports/codex-art-74/fix-1/work/jotunheim_rune_golem/hurt/jotunheim_rune_golem-hurt-v1.png",
+    "candidate": null,
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/reports/codex-art-74/fix-1/work/jotunheim_rune_golem/hurt/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/reports/codex-art-74/fix-1/work/jotunheim_rune_golem/hurt/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/reports/codex-art-74/fix-1/work/jotunheim_rune_golem/hurt/compare.png"
+  },
+  "review_rebuild": {
+    "source_raw_sha256": "7b3f909fa12d3e898c9c30ff6acb4d072908683823343faff60db22f27423765",
+    "old_factor": 0.12,
+    "new_factor": 0.1275,
+    "one_factor_per_row": true,
+    "whole_frame_placement": [
+      {
+        "frame": 1,
+        "translation_from_128": [
+          -15,
+          -24
+        ],
+        "margin_translation": [
+          1,
+          0
+        ]
+      },
+      {
+        "frame": 2,
+        "translation_from_128": [
+          -16,
+          -24
+        ],
+        "margin_translation": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "audit96": [
+    {
+      "index": 0,
+      "bbox": [
+        3,
+        9,
+        87,
+        73
+      ],
+      "margin": 3,
+      "detail": 97.11,
+      "spill": 0,
+      "legacy_green_dominance_count": 0,
+      "spill_method": "legacy green dominance heuristic",
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 1,
+      "bbox": [
+        6,
+        29,
+        88,
+        73
+      ],
+      "margin": 6,
+      "detail": 100.44,
+      "spill": 0,
+      "legacy_green_dominance_count": 0,
+      "spill_method": "legacy green dominance heuristic",
+      "alpha_binary": true,
+      "bottom": 72
+    }
+  ],
+  "final_summary": {
+    "margin_min": 3,
+    "detail_min": 97.11,
+    "detail_max": 100.44,
+    "detail_mean": 98.78,
+    "detail_ratio_to_frey": 1.026,
+    "border_clear": true,
+    "alpha_binary": true,
+    "spill": 0,
+    "bottoms": [
+      72,
+      72
+    ]
+  }
+}

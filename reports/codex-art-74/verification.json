@@ -1,0 +1,3429 @@
+{
+  "monsters": 6,
+  "rows": 36,
+  "frames": 168,
+  "frey_idle_detail_mean": 96.31,
+  "failures": [],
+  "results": [
+    {
+      "monster": "midgard_rooftop_slinger",
+      "row": "idle",
+      "note": "기준 대기: 호흡 또는 제자리 날갯짓",
+      "frames": 6,
+      "fps": 6,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.2,
+      "margin_min": 10,
+      "detail_min": 87.75,
+      "detail_max": 89.62,
+      "detail_mean": 88.61,
+      "detail_ratio_to_frey": 0.92,
+      "old_idle_detail_mean": 74.48,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            15,
+            12,
+            78,
+            73
+          ],
+          "margin": 12,
+          "detail": 88.56,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            16,
+            11,
+            79,
+            73
+          ],
+          "margin": 11,
+          "detail": 89.61,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            17,
+            10,
+            80,
+            73
+          ],
+          "margin": 10,
+          "detail": 89.62,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            15,
+            12,
+            80,
+            73
+          ],
+          "margin": 12,
+          "detail": 87.77,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            15,
+            15,
+            79,
+            73
+          ],
+          "margin": 15,
+          "detail": 87.75,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            15,
+            12,
+            78,
+            73
+          ],
+          "margin": 12,
+          "detail": 88.37,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "midgard_rooftop_slinger",
+      "row": "walk",
+      "note": "이동: 보행 또는 비행 날갯짓 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 6,
+      "fps": 10,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.1875,
+      "margin_min": 8,
+      "detail_min": 99.03,
+      "detail_max": 103.85,
+      "detail_mean": 101.59,
+      "detail_ratio_to_frey": 1.055,
+      "old_idle_detail_mean": 74.48,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            15,
+            9,
+            78,
+            73
+          ],
+          "margin": 9,
+          "detail": 103.85,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            17,
+            9,
+            78,
+            73
+          ],
+          "margin": 9,
+          "detail": 102.89,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            16,
+            9,
+            79,
+            73
+          ],
+          "margin": 9,
+          "detail": 100.94,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            16,
+            8,
+            79,
+            73
+          ],
+          "margin": 8,
+          "detail": 100.47,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            16,
+            8,
+            80,
+            73
+          ],
+          "margin": 8,
+          "detail": 99.03,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            17,
+            8,
+            79,
+            73
+          ],
+          "margin": 8,
+          "detail": 102.37,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "midgard_rooftop_slinger",
+      "row": "windup",
+      "note": "투척 준비: 짧게 접은 슬링을 머리 뒤로 올리고 몸을 비튼다. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 4,
+      "fps": 6.666667,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.169,
+      "windup_seconds": 0.6,
+      "hold_last": true,
+      "margin_min": 7,
+      "detail_min": 92.04,
+      "detail_max": 96.06,
+      "detail_mean": 93.58,
+      "detail_ratio_to_frey": 0.972,
+      "old_idle_detail_mean": 74.48,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            16,
+            10,
+            79,
+            73
+          ],
+          "margin": 10,
+          "detail": 92.04,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            13,
+            10,
+            81,
+            73
+          ],
+          "margin": 10,
+          "detail": 96.06,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            16,
+            7,
+            83,
+            73
+          ],
+          "margin": 7,
+          "detail": 93.18,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            14,
+            12,
+            83,
+            73
+          ],
+          "margin": 12,
+          "detail": 93.05,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "midgard_rooftop_slinger",
+      "row": "attack",
+      "note": "슬링 투척 1회: 앞으로 뻗기 → 팔 내림 → 회복. 돌은 그리지 않았다. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 6,
+      "fps": 12,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.233,
+      "margin_min": 3,
+      "detail_min": 88.2,
+      "detail_max": 94.75,
+      "detail_mean": 91.06,
+      "detail_ratio_to_frey": 0.945,
+      "old_idle_detail_mean": 74.48,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            8,
+            14,
+            76,
+            73
+          ],
+          "margin": 8,
+          "detail": 92.87,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            15,
+            14,
+            79,
+            73
+          ],
+          "margin": 14,
+          "detail": 88.66,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            3,
+            15,
+            86,
+            73
+          ],
+          "margin": 3,
+          "detail": 88.6,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            15,
+            13,
+            91,
+            73
+          ],
+          "margin": 5,
+          "detail": 93.25,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            14,
+            14,
+            81,
+            73
+          ],
+          "margin": 14,
+          "detail": 88.2,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            12,
+            11,
+            75,
+            73
+          ],
+          "margin": 11,
+          "detail": 94.75,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "midgard_rooftop_slinger",
+      "row": "hurt",
+      "note": "피격: 충격과 반동",
+      "frames": 2,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.105,
+      "margin_min": 12,
+      "detail_min": 90.33,
+      "detail_max": 95.97,
+      "detail_mean": 93.15,
+      "detail_ratio_to_frey": 0.967,
+      "old_idle_detail_mean": 74.48,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            16,
+            12,
+            76,
+            73
+          ],
+          "margin": 12,
+          "detail": 95.97,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            21,
+            14,
+            79,
+            73
+          ],
+          "margin": 14,
+          "detail": 90.33,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "midgard_rooftop_slinger",
+      "row": "defeat",
+      "note": "새 쓰러짐 행: 마지막에 바닥으로 쓰러짐 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.167,
+      "margin_min": 3,
+      "detail_min": 92.3,
+      "detail_max": 96.68,
+      "detail_mean": 94.48,
+      "detail_ratio_to_frey": 0.981,
+      "old_idle_detail_mean": 74.48,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            22,
+            7,
+            86,
+            73
+          ],
+          "margin": 7,
+          "detail": 92.3,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            19,
+            19,
+            79,
+            73
+          ],
+          "margin": 17,
+          "detail": 96.68,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            8,
+            33,
+            84,
+            73
+          ],
+          "margin": 8,
+          "detail": 94.39,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            3,
+            38,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 94.55,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_gear_beetle",
+      "row": "idle",
+      "note": "기준 대기: 호흡 또는 제자리 날갯짓",
+      "frames": 6,
+      "fps": 6,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.2,
+      "margin_min": 6,
+      "detail_min": 123.13,
+      "detail_max": 127.08,
+      "detail_mean": 124.97,
+      "detail_ratio_to_frey": 1.298,
+      "old_idle_detail_mean": 65.12,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            9,
+            23,
+            87,
+            73
+          ],
+          "margin": 9,
+          "detail": 123.13,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            8,
+            19,
+            87,
+            73
+          ],
+          "margin": 8,
+          "detail": 125.35,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            7,
+            15,
+            86,
+            73
+          ],
+          "margin": 7,
+          "detail": 123.88,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            6,
+            13,
+            87,
+            73
+          ],
+          "margin": 6,
+          "detail": 125.03,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            9,
+            26,
+            90,
+            73
+          ],
+          "margin": 6,
+          "detail": 127.08,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            7,
+            21,
+            88,
+            73
+          ],
+          "margin": 7,
+          "detail": 125.34,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_gear_beetle",
+      "row": "walk",
+      "note": "이동: 보행 또는 비행 날갯짓",
+      "frames": 6,
+      "fps": 10,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.2,
+      "margin_min": 5,
+      "detail_min": 115.97,
+      "detail_max": 118.51,
+      "detail_mean": 117.67,
+      "detail_ratio_to_frey": 1.222,
+      "old_idle_detail_mean": 65.12,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            7,
+            20,
+            87,
+            73
+          ],
+          "margin": 7,
+          "detail": 118.42,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            5,
+            20,
+            87,
+            73
+          ],
+          "margin": 5,
+          "detail": 118.51,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            6,
+            20,
+            87,
+            73
+          ],
+          "margin": 6,
+          "detail": 117.7,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            6,
+            20,
+            87,
+            73
+          ],
+          "margin": 6,
+          "detail": 117.62,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            6,
+            20,
+            87,
+            73
+          ],
+          "margin": 6,
+          "detail": 115.97,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            5,
+            20,
+            87,
+            73
+          ],
+          "margin": 5,
+          "detail": 117.79,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_gear_beetle",
+      "row": "windup",
+      "note": "등딱지 준비: 머리와 다리를 안으로 접는다.",
+      "frames": 4,
+      "fps": 6.153846,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.15,
+      "windup_seconds": 0.65,
+      "hold_last": true,
+      "margin_min": 7,
+      "detail_min": 111.74,
+      "detail_max": 124.4,
+      "detail_mean": 118.82,
+      "detail_ratio_to_frey": 1.234,
+      "old_idle_detail_mean": 65.12,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            9,
+            25,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 124.4,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            14,
+            25,
+            82,
+            73
+          ],
+          "margin": 14,
+          "detail": 119.37,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            13,
+            30,
+            83,
+            73
+          ],
+          "margin": 13,
+          "detail": 119.76,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            14,
+            31,
+            82,
+            73
+          ],
+          "margin": 14,
+          "detail": 111.74,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_gear_beetle",
+      "row": "attack",
+      "note": "닫힌 등딱지가 바닥에 닿는 미끄럼 돌진 반복. 먼지와 궤적 없음. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 6,
+      "fps": 12,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.198,
+      "margin_min": 5,
+      "detail_min": 98.74,
+      "detail_max": 101.4,
+      "detail_mean": 100.28,
+      "detail_ratio_to_frey": 1.041,
+      "old_idle_detail_mean": 65.12,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            10,
+            23,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 98.74,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            10,
+            25,
+            91,
+            73
+          ],
+          "margin": 5,
+          "detail": 100.38,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            10,
+            23,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 98.84,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            9,
+            23,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 101.4,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            10,
+            24,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 101.22,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            10,
+            25,
+            90,
+            73
+          ],
+          "margin": 6,
+          "detail": 101.11,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_gear_beetle",
+      "row": "hurt",
+      "note": "피격: 충격과 반동",
+      "frames": 2,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.12,
+      "margin_min": 7,
+      "detail_min": 110.53,
+      "detail_max": 113.03,
+      "detail_mean": 111.78,
+      "detail_ratio_to_frey": 1.161,
+      "old_idle_detail_mean": 65.12,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            8,
+            18,
+            85,
+            73
+          ],
+          "margin": 8,
+          "detail": 113.03,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            7,
+            26,
+            87,
+            73
+          ],
+          "margin": 7,
+          "detail": 110.53,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_gear_beetle",
+      "row": "defeat",
+      "note": "새 쓰러짐 행: 마지막에 바닥으로 쓰러짐 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.153,
+      "margin_min": 9,
+      "detail_min": 123.65,
+      "detail_max": 128.26,
+      "detail_mean": 126.39,
+      "detail_ratio_to_frey": 1.312,
+      "old_idle_detail_mean": 65.12,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            9,
+            26,
+            84,
+            73
+          ],
+          "margin": 9,
+          "detail": 128.26,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            17,
+            28,
+            83,
+            73
+          ],
+          "margin": 13,
+          "detail": 123.65,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            17,
+            30,
+            85,
+            73
+          ],
+          "margin": 11,
+          "detail": 126.79,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            17,
+            30,
+            85,
+            73
+          ],
+          "margin": 11,
+          "detail": 126.87,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_cog_drone",
+      "row": "idle",
+      "note": "기준 대기: 호흡 또는 제자리 날갯짓",
+      "frames": 6,
+      "fps": 6,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.2,
+      "margin_min": 5,
+      "detail_min": 95.84,
+      "detail_max": 99.14,
+      "detail_mean": 97.53,
+      "detail_ratio_to_frey": 1.013,
+      "old_idle_detail_mean": 64.79,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            6,
+            10,
+            84,
+            74
+          ],
+          "margin": 6,
+          "detail": 97.89,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 73
+        },
+        {
+          "index": 1,
+          "bbox": [
+            6,
+            9,
+            84,
+            72
+          ],
+          "margin": 6,
+          "detail": 95.84,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 71
+        },
+        {
+          "index": 2,
+          "bbox": [
+            7,
+            8,
+            84,
+            71
+          ],
+          "margin": 7,
+          "detail": 99.14,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 70
+        },
+        {
+          "index": 3,
+          "bbox": [
+            6,
+            9,
+            84,
+            73
+          ],
+          "margin": 6,
+          "detail": 97.64,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            5,
+            11,
+            84,
+            75
+          ],
+          "margin": 5,
+          "detail": 96.43,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 74
+        },
+        {
+          "index": 5,
+          "bbox": [
+            7,
+            10,
+            84,
+            73
+          ],
+          "margin": 7,
+          "detail": 98.21,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_cog_drone",
+      "row": "walk",
+      "note": "수평 이동: 기체를 수평으로 유지하는 호버 비행. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 6,
+      "fps": 10,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.23257,
+      "margin_min": 6,
+      "detail_min": 106.48,
+      "detail_max": 107.98,
+      "detail_mean": 107.24,
+      "detail_ratio_to_frey": 1.113,
+      "old_idle_detail_mean": 64.79,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            7,
+            11,
+            84,
+            72
+          ],
+          "margin": 7,
+          "detail": 107.81,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 71
+        },
+        {
+          "index": 1,
+          "bbox": [
+            7,
+            10,
+            84,
+            71
+          ],
+          "margin": 7,
+          "detail": 106.56,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 70
+        },
+        {
+          "index": 2,
+          "bbox": [
+            6,
+            8,
+            84,
+            69
+          ],
+          "margin": 6,
+          "detail": 106.48,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 68
+        },
+        {
+          "index": 3,
+          "bbox": [
+            7,
+            11,
+            84,
+            72
+          ],
+          "margin": 7,
+          "detail": 107.22,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 71
+        },
+        {
+          "index": 4,
+          "bbox": [
+            7,
+            13,
+            85,
+            74
+          ],
+          "margin": 7,
+          "detail": 107.98,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 73
+        },
+        {
+          "index": 5,
+          "bbox": [
+            7,
+            11,
+            84,
+            72
+          ],
+          "margin": 7,
+          "detail": 107.39,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 71
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_cog_drone",
+      "row": "windup",
+      "note": "폭탄 투하 준비: 기체가 조금 올라가고 아래 해치가 열린다. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 4,
+      "fps": 6.153846,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.19044,
+      "windup_seconds": 0.65,
+      "hold_last": true,
+      "margin_min": 4,
+      "detail_min": 97.67,
+      "detail_max": 104.56,
+      "detail_mean": 101.83,
+      "detail_ratio_to_frey": 1.057,
+      "old_idle_detail_mean": 64.79,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            5,
+            11,
+            85,
+            73
+          ],
+          "margin": 5,
+          "detail": 103.79,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            5,
+            9,
+            85,
+            71
+          ],
+          "margin": 5,
+          "detail": 104.56,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 70
+        },
+        {
+          "index": 2,
+          "bbox": [
+            5,
+            5,
+            85,
+            75
+          ],
+          "margin": 5,
+          "detail": 101.31,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 74
+        },
+        {
+          "index": 3,
+          "bbox": [
+            4,
+            5,
+            85,
+            75
+          ],
+          "margin": 4,
+          "detail": 97.67,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 74
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_cog_drone",
+      "row": "attack",
+      "note": "빈 해치 개방 → 위쪽 반동 → 해치 폐쇄 반복. 폭탄·급강하 없음. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 6,
+      "fps": 12,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.23545,
+      "margin_min": 4,
+      "detail_min": 104.68,
+      "detail_max": 108.41,
+      "detail_mean": 106.26,
+      "detail_ratio_to_frey": 1.103,
+      "old_idle_detail_mean": 64.79,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            5,
+            10,
+            85,
+            73
+          ],
+          "margin": 5,
+          "detail": 104.68,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            5,
+            10,
+            85,
+            73
+          ],
+          "margin": 5,
+          "detail": 107.9,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            5,
+            7,
+            85,
+            70
+          ],
+          "margin": 5,
+          "detail": 108.41,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 69
+        },
+        {
+          "index": 3,
+          "bbox": [
+            4,
+            8,
+            84,
+            70
+          ],
+          "margin": 4,
+          "detail": 105.89,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 69
+        },
+        {
+          "index": 4,
+          "bbox": [
+            5,
+            10,
+            85,
+            72
+          ],
+          "margin": 5,
+          "detail": 105.44,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 71
+        },
+        {
+          "index": 5,
+          "bbox": [
+            4,
+            10,
+            85,
+            72
+          ],
+          "margin": 4,
+          "detail": 105.24,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 71
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_cog_drone",
+      "row": "hurt",
+      "note": "피격: 충격과 반동 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 2,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.13726,
+      "margin_min": 5,
+      "detail_min": 93.21,
+      "detail_max": 95.19,
+      "detail_mean": 94.2,
+      "detail_ratio_to_frey": 0.978,
+      "old_idle_detail_mean": 64.79,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            7,
+            10,
+            86,
+            71
+          ],
+          "margin": 7,
+          "detail": 95.19,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 70
+        },
+        {
+          "index": 1,
+          "bbox": [
+            5,
+            12,
+            86,
+            75
+          ],
+          "margin": 5,
+          "detail": 93.21,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 74
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "svartalfheim_cog_drone",
+      "row": "defeat",
+      "note": "새 쓰러짐 행: 마지막에 바닥으로 쓰러짐 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.17412,
+      "margin_min": 3,
+      "detail_min": 90.81,
+      "detail_max": 105.07,
+      "detail_mean": 99.42,
+      "detail_ratio_to_frey": 1.032,
+      "old_idle_detail_mean": 64.79,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            10,
+            6,
+            87,
+            66
+          ],
+          "margin": 6,
+          "detail": 105.07,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 65
+        },
+        {
+          "index": 1,
+          "bbox": [
+            17,
+            15,
+            86,
+            73
+          ],
+          "margin": 10,
+          "detail": 104.84,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            14,
+            24,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 96.96,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            14,
+            24,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 90.81,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_vine_hound",
+      "row": "idle",
+      "note": "기준 대기: 호흡 또는 제자리 날갯짓 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축. 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·갈색 몸통).",
+      "frames": 6,
+      "fps": 6,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.19,
+      "margin_min": 6,
+      "detail_min": 93.1,
+      "detail_max": 95.5,
+      "detail_mean": 94.17,
+      "detail_ratio_to_frey": 0.978,
+      "old_idle_detail_mean": 48.66,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            7,
+            22,
+            87,
+            73
+          ],
+          "margin": 7,
+          "detail": 94.19,
+          "spill": 0,
+          "legacy_green_dominance_count": 905,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            7,
+            22,
+            87,
+            73
+          ],
+          "margin": 7,
+          "detail": 95.5,
+          "spill": 0,
+          "legacy_green_dominance_count": 882,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            6,
+            22,
+            87,
+            73
+          ],
+          "margin": 6,
+          "detail": 93.1,
+          "spill": 0,
+          "legacy_green_dominance_count": 886,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            8,
+            23,
+            87,
+            73
+          ],
+          "margin": 8,
+          "detail": 93.58,
+          "spill": 0,
+          "legacy_green_dominance_count": 907,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            7,
+            23,
+            87,
+            73
+          ],
+          "margin": 7,
+          "detail": 94.77,
+          "spill": 0,
+          "legacy_green_dominance_count": 880,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            7,
+            22,
+            88,
+            73
+          ],
+          "margin": 7,
+          "detail": 93.91,
+          "spill": 0,
+          "legacy_green_dominance_count": 911,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_vine_hound",
+      "row": "walk",
+      "note": "이동: 보행 또는 비행 날갯짓 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축. 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·갈색 몸통).",
+      "frames": 6,
+      "fps": 10,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.19,
+      "margin_min": 5,
+      "detail_min": 113.44,
+      "detail_max": 118.9,
+      "detail_mean": 115.7,
+      "detail_ratio_to_frey": 1.201,
+      "old_idle_detail_mean": 48.66,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            6,
+            22,
+            88,
+            73
+          ],
+          "margin": 6,
+          "detail": 115.94,
+          "spill": 0,
+          "legacy_green_dominance_count": 767,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            6,
+            22,
+            88,
+            73
+          ],
+          "margin": 6,
+          "detail": 114.15,
+          "spill": 0,
+          "legacy_green_dominance_count": 743,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            6,
+            21,
+            89,
+            73
+          ],
+          "margin": 6,
+          "detail": 116.56,
+          "spill": 0,
+          "legacy_green_dominance_count": 745,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            5,
+            21,
+            89,
+            73
+          ],
+          "margin": 5,
+          "detail": 118.9,
+          "spill": 0,
+          "legacy_green_dominance_count": 786,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            6,
+            23,
+            89,
+            73
+          ],
+          "margin": 6,
+          "detail": 113.44,
+          "spill": 0,
+          "legacy_green_dominance_count": 733,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            5,
+            22,
+            89,
+            73
+          ],
+          "margin": 5,
+          "detail": 115.22,
+          "spill": 0,
+          "legacy_green_dominance_count": 788,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_vine_hound",
+      "row": "windup",
+      "note": "도약 준비: 몸을 낮추고 다리를 접고 덩굴을 당긴다. 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·갈색 몸통).",
+      "frames": 4,
+      "fps": 7.272727,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.15,
+      "windup_seconds": 0.55,
+      "hold_last": true,
+      "margin_min": 4,
+      "detail_min": 95.01,
+      "detail_max": 97.58,
+      "detail_mean": 96.8,
+      "detail_ratio_to_frey": 1.005,
+      "old_idle_detail_mean": 48.66,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            8,
+            25,
+            91,
+            73
+          ],
+          "margin": 5,
+          "detail": 97.58,
+          "spill": 0,
+          "legacy_green_dominance_count": 696,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            6,
+            32,
+            88,
+            73
+          ],
+          "margin": 6,
+          "detail": 95.01,
+          "spill": 0,
+          "legacy_green_dominance_count": 653,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            4,
+            30,
+            88,
+            73
+          ],
+          "margin": 4,
+          "detail": 97.05,
+          "spill": 0,
+          "legacy_green_dominance_count": 635,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            4,
+            32,
+            89,
+            73
+          ],
+          "margin": 4,
+          "detail": 97.54,
+          "spill": 0,
+          "legacy_green_dominance_count": 584,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_vine_hound",
+      "row": "attack",
+      "note": "도약 1회: 이륙 → 공중 두 장 → 착지와 회복. 지상·공중 높이 구분. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축. 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·갈색 몸통).",
+      "frames": 6,
+      "fps": 12,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.205,
+      "margin_min": 4,
+      "detail_min": 113.7,
+      "detail_max": 118.93,
+      "detail_mean": 115.9,
+      "detail_ratio_to_frey": 1.203,
+      "old_idle_detail_mean": 48.66,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            10,
+            28,
+            85,
+            73
+          ],
+          "margin": 10,
+          "detail": 114.7,
+          "spill": 0,
+          "legacy_green_dominance_count": 684,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            4,
+            24,
+            88,
+            73
+          ],
+          "margin": 4,
+          "detail": 118.41,
+          "spill": 0,
+          "legacy_green_dominance_count": 748,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            4,
+            7,
+            92,
+            54
+          ],
+          "margin": 4,
+          "detail": 113.7,
+          "spill": 0,
+          "legacy_green_dominance_count": 754,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 53
+        },
+        {
+          "index": 3,
+          "bbox": [
+            7,
+            9,
+            88,
+            61
+          ],
+          "margin": 7,
+          "detail": 114.08,
+          "spill": 0,
+          "legacy_green_dominance_count": 698,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 60
+        },
+        {
+          "index": 4,
+          "bbox": [
+            7,
+            26,
+            88,
+            73
+          ],
+          "margin": 7,
+          "detail": 115.6,
+          "spill": 0,
+          "legacy_green_dominance_count": 711,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            7,
+            24,
+            88,
+            73
+          ],
+          "margin": 7,
+          "detail": 118.93,
+          "spill": 0,
+          "legacy_green_dominance_count": 707,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_vine_hound",
+      "row": "hurt",
+      "note": "피격: 충격과 반동 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·갈색 몸통).",
+      "frames": 2,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.12,
+      "margin_min": 4,
+      "detail_min": 100.36,
+      "detail_max": 103.55,
+      "detail_mean": 101.95,
+      "detail_ratio_to_frey": 1.059,
+      "old_idle_detail_mean": 48.66,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            6,
+            12,
+            89,
+            73
+          ],
+          "margin": 6,
+          "detail": 100.36,
+          "spill": 0,
+          "legacy_green_dominance_count": 953,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            4,
+            30,
+            88,
+            73
+          ],
+          "margin": 4,
+          "detail": 103.55,
+          "spill": 0,
+          "legacy_green_dominance_count": 825,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_vine_hound",
+      "row": "defeat",
+      "note": "새 쓰러짐 행: 마지막에 바닥으로 쓰러짐 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축. 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·갈색 몸통).",
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.164,
+      "margin_min": 3,
+      "detail_min": 96.73,
+      "detail_max": 101.27,
+      "detail_mean": 98.66,
+      "detail_ratio_to_frey": 1.024,
+      "old_idle_detail_mean": 48.66,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            7,
+            28,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 101.27,
+          "spill": 0,
+          "legacy_green_dominance_count": 726,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            9,
+            38,
+            87,
+            73
+          ],
+          "margin": 9,
+          "detail": 96.73,
+          "spill": 0,
+          "legacy_green_dominance_count": 596,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            5,
+            40,
+            89,
+            73
+          ],
+          "margin": 5,
+          "detail": 97.21,
+          "spill": 0,
+          "legacy_green_dominance_count": 583,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            3,
+            46,
+            90,
+            73
+          ],
+          "margin": 3,
+          "detail": 99.44,
+          "spill": 0,
+          "legacy_green_dominance_count": 514,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_seed_sprite",
+      "row": "idle",
+      "note": "기준 대기: 호흡 또는 제자리 날갯짓 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·흰 꽃 보존).",
+      "frames": 6,
+      "fps": 6,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.19,
+      "margin_min": 6,
+      "detail_min": 91.47,
+      "detail_max": 94.15,
+      "detail_mean": 93.15,
+      "detail_ratio_to_frey": 0.967,
+      "old_idle_detail_mean": 71.98,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            11,
+            20,
+            86,
+            73
+          ],
+          "margin": 10,
+          "detail": 92.9,
+          "spill": 0,
+          "legacy_green_dominance_count": 948,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            8,
+            18,
+            86,
+            73
+          ],
+          "margin": 8,
+          "detail": 94.15,
+          "spill": 0,
+          "legacy_green_dominance_count": 981,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            13,
+            17,
+            90,
+            73
+          ],
+          "margin": 6,
+          "detail": 91.47,
+          "spill": 0,
+          "legacy_green_dominance_count": 1014,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            10,
+            21,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 92.89,
+          "spill": 0,
+          "legacy_green_dominance_count": 1041,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            8,
+            27,
+            87,
+            73
+          ],
+          "margin": 8,
+          "detail": 93.41,
+          "spill": 0,
+          "legacy_green_dominance_count": 977,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            10,
+            20,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 94.09,
+          "spill": 0,
+          "legacy_green_dominance_count": 999,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_seed_sprite",
+      "row": "walk",
+      "note": "이동: 보행 또는 비행 날갯짓 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·흰 꽃 보존).",
+      "frames": 6,
+      "fps": 10,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.19,
+      "margin_min": 7,
+      "detail_min": 94.92,
+      "detail_max": 97.57,
+      "detail_mean": 96.31,
+      "detail_ratio_to_frey": 1.0,
+      "old_idle_detail_mean": 71.98,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            8,
+            15,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 95.3,
+          "spill": 0,
+          "legacy_green_dominance_count": 1224,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            8,
+            14,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 96.61,
+          "spill": 0,
+          "legacy_green_dominance_count": 1216,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            8,
+            14,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 96.81,
+          "spill": 0,
+          "legacy_green_dominance_count": 1203,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            8,
+            15,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 96.64,
+          "spill": 0,
+          "legacy_green_dominance_count": 1203,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            8,
+            14,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 94.92,
+          "spill": 0,
+          "legacy_green_dominance_count": 1184,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            8,
+            14,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 97.57,
+          "spill": 0,
+          "legacy_green_dominance_count": 1199,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_seed_sprite",
+      "row": "windup",
+      "note": "씨앗 방출 준비: 잎과 꼬투리를 몸 쪽으로 모으고 부풀린다. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축. 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·흰 꽃 보존).",
+      "frames": 4,
+      "fps": 6.666667,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.16,
+      "windup_seconds": 0.6,
+      "hold_last": true,
+      "margin_min": 10,
+      "detail_min": 102.4,
+      "detail_max": 112.83,
+      "detail_mean": 105.55,
+      "detail_ratio_to_frey": 1.096,
+      "old_idle_detail_mean": 71.98,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            13,
+            23,
+            84,
+            73
+          ],
+          "margin": 12,
+          "detail": 112.83,
+          "spill": 0,
+          "legacy_green_dominance_count": 999,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            18,
+            29,
+            78,
+            73
+          ],
+          "margin": 18,
+          "detail": 102.4,
+          "spill": 0,
+          "legacy_green_dominance_count": 970,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            17,
+            24,
+            79,
+            73
+          ],
+          "margin": 17,
+          "detail": 103.11,
+          "spill": 0,
+          "legacy_green_dominance_count": 1137,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            11,
+            27,
+            86,
+            73
+          ],
+          "margin": 10,
+          "detail": 103.86,
+          "spill": 0,
+          "legacy_green_dominance_count": 1239,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_seed_sprite",
+      "row": "attack",
+      "note": "꼬투리 잎을 열며 앞으로 내밀고 반동 뒤 회복. 씨앗 투사체 없음. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축. 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·흰 꽃 보존).",
+      "frames": 6,
+      "fps": 12,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.1935,
+      "margin_min": 3,
+      "detail_min": 97.03,
+      "detail_max": 106.9,
+      "detail_mean": 99.59,
+      "detail_ratio_to_frey": 1.034,
+      "old_idle_detail_mean": 71.98,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            9,
+            18,
+            80,
+            73
+          ],
+          "margin": 9,
+          "detail": 98.27,
+          "spill": 0,
+          "legacy_green_dominance_count": 956,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            4,
+            17,
+            84,
+            75
+          ],
+          "margin": 4,
+          "detail": 99.7,
+          "spill": 0,
+          "legacy_green_dominance_count": 1075,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 74
+        },
+        {
+          "index": 2,
+          "bbox": [
+            3,
+            16,
+            93,
+            75
+          ],
+          "margin": 3,
+          "detail": 106.9,
+          "spill": 0,
+          "legacy_green_dominance_count": 1222,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 74
+        },
+        {
+          "index": 3,
+          "bbox": [
+            6,
+            7,
+            87,
+            73
+          ],
+          "margin": 6,
+          "detail": 97.38,
+          "spill": 0,
+          "legacy_green_dominance_count": 1169,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            5,
+            18,
+            83,
+            73
+          ],
+          "margin": 5,
+          "detail": 97.03,
+          "spill": 0,
+          "legacy_green_dominance_count": 991,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            7,
+            19,
+            81,
+            73
+          ],
+          "margin": 7,
+          "detail": 98.23,
+          "spill": 0,
+          "legacy_green_dominance_count": 979,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_seed_sprite",
+      "row": "hurt",
+      "note": "피격: 충격과 반동 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·흰 꽃 보존).",
+      "frames": 2,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.115,
+      "margin_min": 6,
+      "detail_min": 104.29,
+      "detail_max": 106.73,
+      "detail_mean": 105.51,
+      "detail_ratio_to_frey": 1.096,
+      "old_idle_detail_mean": 71.98,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            10,
+            12,
+            90,
+            73
+          ],
+          "margin": 6,
+          "detail": 104.29,
+          "spill": 0,
+          "legacy_green_dominance_count": 1240,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            9,
+            28,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 106.73,
+          "spill": 0,
+          "legacy_green_dominance_count": 1113,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "vanaheim_seed_sprite",
+      "row": "defeat",
+      "note": "새 쓰러짐 행: 마지막에 바닥으로 쓰러짐 현재 시트에서 추출한 공통 팔레트 매핑 적용(녹색 잎·녹색 눈·흰 꽃 보존).",
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.145,
+      "margin_min": 3,
+      "detail_min": 100.56,
+      "detail_max": 104.25,
+      "detail_mean": 103.01,
+      "detail_ratio_to_frey": 1.07,
+      "old_idle_detail_mean": 71.98,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            13,
+            21,
+            84,
+            73
+          ],
+          "margin": 12,
+          "detail": 103.1,
+          "spill": 0,
+          "legacy_green_dominance_count": 1072,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            21,
+            27,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 104.13,
+          "spill": 0,
+          "legacy_green_dominance_count": 963,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            20,
+            33,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 100.56,
+          "spill": 0,
+          "legacy_green_dominance_count": 885,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            23,
+            38,
+            92,
+            73
+          ],
+          "margin": 4,
+          "detail": 104.25,
+          "spill": 0,
+          "legacy_green_dominance_count": 777,
+          "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "jotunheim_rune_golem",
+      "row": "idle",
+      "note": "기준 대기: 호흡 또는 제자리 날갯짓 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 6,
+      "fps": 6,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.18,
+      "margin_min": 6,
+      "detail_min": 83.97,
+      "detail_max": 91.01,
+      "detail_mean": 86.97,
+      "detail_ratio_to_frey": 0.903,
+      "old_idle_detail_mean": 50.03,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            9,
+            25,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 86.43,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            7,
+            24,
+            88,
+            73
+          ],
+          "margin": 7,
+          "detail": 83.97,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            7,
+            23,
+            87,
+            73
+          ],
+          "margin": 7,
+          "detail": 85.29,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            8,
+            26,
+            88,
+            73
+          ],
+          "margin": 8,
+          "detail": 88.31,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            6,
+            31,
+            87,
+            73
+          ],
+          "margin": 6,
+          "detail": 91.01,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            8,
+            25,
+            87,
+            73
+          ],
+          "margin": 8,
+          "detail": 86.81,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "jotunheim_rune_golem",
+      "row": "walk",
+      "note": "이동: 보행 또는 비행 날갯짓 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 6,
+      "fps": 10,
+      "loop": true,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.188,
+      "margin_min": 3,
+      "detail_min": 92.72,
+      "detail_max": 96.61,
+      "detail_mean": 94.09,
+      "detail_ratio_to_frey": 0.977,
+      "old_idle_detail_mean": 50.03,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            7,
+            27,
+            92,
+            73
+          ],
+          "margin": 4,
+          "detail": 92.79,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            15,
+            25,
+            79,
+            73
+          ],
+          "margin": 15,
+          "detail": 93.65,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            3,
+            27,
+            91,
+            73
+          ],
+          "margin": 3,
+          "detail": 96.61,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            4,
+            27,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 93.48,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            12,
+            27,
+            82,
+            73
+          ],
+          "margin": 12,
+          "detail": 95.27,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            3,
+            26,
+            92,
+            73
+          ],
+          "margin": 3,
+          "detail": 92.72,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "jotunheim_rune_golem",
+      "row": "windup",
+      "note": "내려찍기 준비: 두 번째 프레임부터 양 주먹이 머리 위. 룬은 몸 표면에만 표시. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 4,
+      "fps": 4.444444,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.163,
+      "windup_seconds": 0.9,
+      "hold_last": true,
+      "margin_min": 7,
+      "detail_min": 93.76,
+      "detail_max": 100.7,
+      "detail_mean": 97.17,
+      "detail_ratio_to_frey": 1.009,
+      "old_idle_detail_mean": 50.03,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            7,
+            26,
+            89,
+            73
+          ],
+          "margin": 7,
+          "detail": 93.76,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            8,
+            9,
+            80,
+            73
+          ],
+          "margin": 8,
+          "detail": 95.04,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            8,
+            10,
+            81,
+            73
+          ],
+          "margin": 8,
+          "detail": 99.19,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            9,
+            10,
+            81,
+            73
+          ],
+          "margin": 9,
+          "detail": 100.7,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "jotunheim_rune_golem",
+      "row": "attack",
+      "note": "양 주먹 내려찍기 1회: 바닥 접촉 → 낮은 충격 자세 → 회복. 충격파·먼지 없음. 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 6,
+      "fps": 12,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.186,
+      "margin_min": 3,
+      "detail_min": 106.58,
+      "detail_max": 111.46,
+      "detail_mean": 108.77,
+      "detail_ratio_to_frey": 1.129,
+      "old_idle_detail_mean": 50.03,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            5,
+            7,
+            86,
+            73
+          ],
+          "margin": 5,
+          "detail": 108.41,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            3,
+            15,
+            89,
+            73
+          ],
+          "margin": 3,
+          "detail": 108.26,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            11,
+            29,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 109.29,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            11,
+            28,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 106.58,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 4,
+          "bbox": [
+            4,
+            15,
+            84,
+            73
+          ],
+          "margin": 4,
+          "detail": 111.46,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 5,
+          "bbox": [
+            10,
+            27,
+            87,
+            73
+          ],
+          "margin": 9,
+          "detail": 108.59,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "jotunheim_rune_golem",
+      "row": "hurt",
+      "note": "피격: 충격과 반동 행별 크기 재검수: 원본에서 공통 배율 하나로 재구축.",
+      "frames": 2,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.1275,
+      "margin_min": 3,
+      "detail_min": 97.11,
+      "detail_max": 100.44,
+      "detail_mean": 98.78,
+      "detail_ratio_to_frey": 1.026,
+      "old_idle_detail_mean": 50.03,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            3,
+            9,
+            87,
+            73
+          ],
+          "margin": 3,
+          "detail": 97.11,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            6,
+            29,
+            88,
+            73
+          ],
+          "margin": 6,
+          "detail": 100.44,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    },
+    {
+      "monster": "jotunheim_rune_golem",
+      "row": "defeat",
+      "note": "새 쓰러짐 행: 마지막에 바닥으로 쓰러짐",
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "cell": 96,
+      "feet": 72,
+      "factor": 0.16,
+      "margin_min": 3,
+      "detail_min": 99.84,
+      "detail_max": 105.4,
+      "detail_mean": 102.67,
+      "detail_ratio_to_frey": 1.066,
+      "old_idle_detail_mean": 50.03,
+      "frames_audit": [
+        {
+          "index": 0,
+          "bbox": [
+            7,
+            21,
+            91,
+            73
+          ],
+          "margin": 5,
+          "detail": 99.84,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 1,
+          "bbox": [
+            7,
+            27,
+            92,
+            73
+          ],
+          "margin": 4,
+          "detail": 105.25,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 2,
+          "bbox": [
+            8,
+            28,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 100.21,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        },
+        {
+          "index": 3,
+          "bbox": [
+            3,
+            38,
+            93,
+            73
+          ],
+          "margin": 3,
+          "detail": 105.4,
+          "spill": 0,
+          "legacy_green_dominance_count": 0,
+          "spill_method": "legacy green dominance heuristic",
+          "alpha_binary": true,
+          "bottom": 72
+        }
+      ],
+      "delivered": true
+    }
+  ]
+}
