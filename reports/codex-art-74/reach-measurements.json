@@ -1,0 +1,65 @@
+[
+  {
+    "monster": "midgard_rooftop_slinger",
+    "feature": "슬링 손의 중심",
+    "frames": [
+      "idle1",
+      "attack3"
+    ],
+    "points": [
+      [
+        67,
+        53
+      ],
+      [
+        78,
+        48
+      ]
+    ],
+    "before_forward_px": 10,
+    "forward_px": 11,
+    "method": "수정 전 수동 지정 부위를 원본 공통배율과 전체 이동으로 추적, 가장 가까운 불투명 픽셀로 보정(최대3px). 정지 프레임 비교이며 실제 게임 이동량 아님"
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "feature": "앞발 끝",
+    "frames": [
+      "idle1",
+      "attack3"
+    ],
+    "points": [
+      [
+        74,
+        71
+      ],
+      [
+        89,
+        51
+      ]
+    ],
+    "before_forward_px": 13,
+    "forward_px": 15,
+    "method": "수정 전 수동 지정 부위를 원본 공통배율과 전체 이동으로 추적, 가장 가까운 불투명 픽셀로 보정(최대3px). 정지 프레임 비교이며 실제 게임 이동량 아님"
+  },
+  {
+    "monster": "vanaheim_seed_sprite",
+    "feature": "꽃 가지를 잡은 손/가지 접점",
+    "frames": [
+      "idle1",
+      "attack3"
+    ],
+    "points": [
+      [
+        69,
+        55
+      ],
+      [
+        74,
+        47
+      ]
+    ],
+    "before_forward_px": 6,
+    "forward_px": 5,
+    "method": "수정 전 수동 지정 부위를 원본 공통배율과 전체 이동으로 추적, 가장 가까운 불투명 픽셀로 보정(최대3px). 정지 프레임 비교이며 실제 게임 이동량 아님"
+  }
+]

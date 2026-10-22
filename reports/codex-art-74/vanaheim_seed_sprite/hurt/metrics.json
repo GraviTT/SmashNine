@@ -1,0 +1,346 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/art/raw/monsters-74/vanaheim_seed_sprite-hurt.png",
+    "frames": null,
+    "grid": [
+      2,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1
+    ],
+    "outline": "off",
+    "cell": 96,
+    "feet_y": 72,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 2,
+    "output_columns": 6,
+    "common_scale": 0.115,
+    "scale_by": "fixed:0.115",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      45,
+      61
+    ],
+    "body_width_range": [
+      79,
+      80
+    ],
+    "area_range": [
+      2288,
+      2740
+    ],
+    "area_spread_percent": 16.5,
+    "bottom_range": [
+      72,
+      72
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      1899,
+      2270
+    ],
+    "interior_detail_range": [
+      100.74,
+      103.9
+    ],
+    "interior_detail_mean": 102.32,
+    "remaining_spill_pixels": [
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true
+  },
+  "reference": null,
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/art/raw/monsters-74/vanaheim_seed_sprite-hurt.png#0,0",
+      "bbox": [
+        10,
+        12,
+        90,
+        73
+      ],
+      "body_height": 61,
+      "body_width": 80,
+      "area": 2740,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.74,
+      "colour_count": 2270,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 10,
+        "top": 12,
+        "right": 6,
+        "bottom": 23,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/art/raw/monsters-74/vanaheim_seed_sprite-hurt.png#1,0",
+      "bbox": [
+        9,
+        28,
+        88,
+        73
+      ],
+      "body_height": 45,
+      "body_width": 79,
+      "area": 2288,
+      "bottom": 72,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 103.9,
+      "colour_count": 1899,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 9,
+        "top": 28,
+        "right": 8,
+        "bottom": 23,
+        "minimum": 8,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/reports/codex-art-74/vanaheim_seed_sprite/hurt/vanaheim_seed_sprite-hurt-v1.png",
+    "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/art/bakeoff/monsters/vanaheim_seed_sprite-hurt-v1.png",
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/reports/codex-art-74/vanaheim_seed_sprite/hurt/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/reports/codex-art-74/vanaheim_seed_sprite/hurt/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine/reports/codex-art-74/vanaheim_seed_sprite/hurt/compare.png"
+  },
+  "audit96": [
+    {
+      "index": 0,
+      "bbox": [
+        10,
+        12,
+        90,
+        73
+      ],
+      "margin": 6,
+      "detail": 104.29,
+      "spill": 0,
+      "legacy_green_dominance_count": 1240,
+      "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+      "alpha_binary": true,
+      "bottom": 72
+    },
+    {
+      "index": 1,
+      "bbox": [
+        9,
+        28,
+        88,
+        73
+      ],
+      "margin": 8,
+      "detail": 106.73,
+      "spill": 0,
+      "legacy_green_dominance_count": 1113,
+      "spill_method": "pre-remap chroma audit + unchanged alpha + no pure key green; green material is intentional",
+      "alpha_binary": true,
+      "bottom": 72
+    }
+  ],
+  "final_summary": {
+    "margin_min": 6,
+    "detail_min": 104.29,
+    "detail_max": 106.73,
+    "detail_mean": 105.51,
+    "detail_ratio_to_frey": 1.096,
+    "border_clear": true,
+    "alpha_binary": true,
+    "spill": 0,
+    "bottoms": [
+      72,
+      72
+    ]
+  },
+  "palette_review": {
+    "method": "same RGB->RGB reference-derived interpolated LUT in all six rows",
+    "reference": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\builder-art\\SmashNine\\smash-nine-prototype\\assets\\art\\monsters\\vanaheim_seed_sprite_sheet.png",
+    "alpha_unchanged": true,
+    "colour_input": "reports/codex-art-74/fix-1/colour-input/vanaheim_seed_sprite-hurt.png",
+    "input_spill": [
+      0,
+      0
+    ],
+    "ramps": {
+      "leaf": [
+        [
+          53,
+          80,
+          40
+        ],
+        [
+          80,
+          132,
+          38
+        ],
+        [
+          111,
+          162,
+          33
+        ],
+        [
+          149,
+          188,
+          32
+        ],
+        [
+          206,
+          234,
+          108
+        ]
+      ],
+      "bark": [
+        [
+          62,
+          52,
+          42
+        ],
+        [
+          85,
+          69,
+          47
+        ],
+        [
+          107,
+          84,
+          50
+        ],
+        [
+          136,
+          105,
+          51
+        ],
+        [
+          231,
+          187,
+          110
+        ]
+      ],
+      "glow": [
+        [
+          62,
+          155,
+          60
+        ],
+        [
+          32,
+          167,
+          86
+        ],
+        [
+          41,
+          185,
+          94
+        ],
+        [
+          88,
+          222,
+          134
+        ],
+        [
+          198,
+          252,
+          194
+        ]
+      ]
+    },
+    "source_value_knots": {
+      "leaf": [
+        0.14901960784313725,
+        0.32941176470588235,
+        0.5843137254901961,
+        0.8901960784313725,
+        1.0
+      ],
+      "bark": [
+        0.20392156862745098,
+        0.40784313725490196,
+        0.6274509803921569,
+        0.8235294117647058,
+        1.0
+      ],
+      "glow": [
+        0.611764705882353,
+        0.6901960784313725,
+        0.8117647058823529,
+        0.9372549019607843,
+        1.0
+      ]
+    }
+  }
+}
