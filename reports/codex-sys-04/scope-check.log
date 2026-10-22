@@ -1,0 +1,32 @@
+Branch: codex/sys-04
+Base: ae4468e09f2f30500b24245608c1f67a217985f7
+core.autocrlf: false
+PASS: tracked changes only in the task card writable paths.
+PASS: LF sources and git diff --check.
+PASS: index remains unstaged (the denied git add changed no index entries).
+PASS: no tracked change to characters, EnemyAI, realms, MatchDirector, spawners, art, story.csv, project.godot or design.
+PASS: final validation source hashes (20) and full-gate log hash match the current files.
+PASS: README links (40) exist; all 11 original captures are valid 1280x720 PNGs.
+Changed tracked files (14):
+smash-nine-prototype/assets/i18n/strings.csv
+smash-nine-prototype/scripts/Main.gd
+smash-nine-prototype/scripts/RealmMonster.gd
+smash-nine-prototype/scripts/Vfx.gd
+smash-nine-prototype/scripts/story/StoryCatalog.gd
+smash-nine-prototype/scripts/story/StoryDirector.gd
+smash-nine-prototype/scripts/story/StorySession.gd
+smash-nine-prototype/scripts/ui/StoryDialogue.gd
+smash-nine-prototype/scripts/ui/StoryScreens.gd
+smash-nine-prototype/tests/run_all.ps1
+smash-nine-prototype/tests/test_language.gd
+smash-nine-prototype/tests/test_story_data.gd
+smash-nine-prototype/tests/test_story_flow.gd
+smash-nine-prototype/tests/test_story_presentation.gd
+New tests:
+smash-nine-prototype/tests/test_monster_options.gd
+smash-nine-prototype/tests/test_story_late_flow.gd
+smash-nine-prototype/tests/test_story_rewards.gd
+smash-nine-prototype/tests/test_story_exit_reload.gd
+smash-nine-prototype/tests/test_story_text_fit.gd
+smash-nine-prototype/tests/test_story_atomic_reload.gd
+Existing unrelated untracked files are neither deleted nor staged.

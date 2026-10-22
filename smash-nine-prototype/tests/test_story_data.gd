@@ -47,7 +47,7 @@ func _run() -> void:
 		var data: Dictionary = stages[index]
 		_check(int(data.id) == index + 1 and int(data.realm) == realm_order[index], "Plan's stage/realm order")
 		_check(str(data.rival) == rival_order[index], "Plan's rival order")
-		_check(bool(data.ready) == (index < 4), "Only stages 1-4 ready")
+		_check(bool(data.ready), "All nine stages ready")
 		_check(not data.waves.is_empty(), "Every stage has objective wave data")
 		_check(str(data.home_elite) == str(layout.get_realm(data.realm).monsters.melee), "Realm-specific home guardian")
 		_check(table.has(data.title) and table.has(data.goal), "Stage title/goal IDs")
@@ -63,12 +63,26 @@ func _run() -> void:
 				for line: Array in data.dialogue[scene]:
 					var id := STORY.resolve_id(str(line[1]), hero, str(data.rival))
 					_check(table.has(id), "Expanded dialogue ID: " + id)
-					_check(line[0] in ["hero", "rival", "narrator"] or REGISTRY.get_character_ids().has(line[0]), "Supported speaker")
+					_check(line[0] in ["hero", "rival", "narrator", "shadow"] or REGISTRY.get_character_ids().has(line[0]), "Supported speaker")
+			if int(data.id) == 9:
+				_check(STORY.dialogue_for(data, hero, "mid").size() == 4, "Shadow mid-scene has four lines")
+				for id in STORY.ending_ids(hero):
+					_check(table.has(id), "Ending line exists: " + id)
+				var shadows := STORY.waves_for(data, hero)
+				_check(shadows.size() == 2 and shadows[0].size() == 4 and shadows[1][0].id == hero, "Four rival shadows then own shadow")
 			if STORY.is_home(data, hero):
 				var wave: Array = STORY.waves_for(data, hero)[0]
 				_check(wave.size() == 3 and wave[0].get("elite", false), "Home is elite + two normals")
 		for id in data.rival_mods.cards:
 			_check(not CARDS.find(id).is_empty(), "Valid rival upgrade: " + str(id))
+	# The difficulty step must be able to tune the existing catalog values; resolved
+	# hero-dependent waves must not replace them with a second set of hardcoded numbers.
+	var tuned_shadows := STORY.stage(9)
+	tuned_shadows.waves[0][0].hp = 0.45
+	tuned_shadows.waves[1][0].hp = 1.25
+	tuned_shadows.waves[1][0].cards = 2
+	var resolved_shadows := STORY.waves_for(tuned_shadows, "frey")
+	_check(is_equal_approx(float(resolved_shadows[0][0].hp), 0.45) and is_equal_approx(float(resolved_shadows[1][0].hp), 1.25) and int(resolved_shadows[1][0].cards) == 2, "Resolved shadow waves honor catalog HP/card tuning")
 	for locale in ["en", "ko"]:
 		TranslationServer.set_locale(locale)
 		for id: String in table:
@@ -92,6 +106,14 @@ func _run() -> void:
 	DirAccess.remove_absolute(temp_path)
 	PROGRESS.new_journey("frey", "normal")
 	_check(PROGRESS.get_run("luna").cleared == 2 and PROGRESS.get_run("frey").cleared == 0, "Per-fighter progress isolation")
+	for number in range(1, 10):
+		PROGRESS.complete_stage("frey", number, 90, ["power", "power", "sky_step"])
+	_check(PROGRESS.get_run("frey").done and PROGRESS.continue_stage("frey") == 9, "All-nine completion marks done and keeps stage 9 replayable")
+	_check(PROGRESS.save(temp_path) == OK, "Completed story temporary save")
+	PROGRESS.runs.clear()
+	PROGRESS.load_saved(temp_path)
+	_check(PROGRESS.get_run("frey").done and PROGRESS.get_run("frey").cleared == 9 and PROGRESS.get_run("luna").cleared == 2, "Done flag survives real ConfigFile round-trip without mixing heroes")
+	DirAccess.remove_absolute(temp_path)
 	_check(FileAccess.file_exists(PROGRESS.SAVE_PATH) == existed, "Real story file not created/removed")
 	_check((FileAccess.get_modified_time(PROGRESS.SAVE_PATH) if FileAccess.file_exists(PROGRESS.SAVE_PATH) else 0) == mtime, "Real story mtime untouched")
 	var director := DIRECTOR.new()

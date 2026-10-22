@@ -5,6 +5,8 @@ extends SceneTree
 const DIALOGUE := preload("res://scripts/ui/StoryDialogue.gd")
 const STORY := preload("res://scripts/story/StoryCatalog.gd")
 const ART := preload("res://scripts/ArtSettings.gd")
+const MAIN := preload("res://scripts/Main.gd")
+const PROGRESS := preload("res://scripts/story/StoryProgress.gd")
 var failed := false
 
 func _initialize() -> void:
@@ -54,6 +56,40 @@ func _run() -> void:
 	_check(is_equal_approx(dialogue.name_plate.position.x, 212.0), "Hero plate sits over the hero's side")
 	_check(dialogue.speaker_label.text == tr("Frey") and dialogue.name_plate.size.x >= 160.0, "Plate fits the speaker's name")
 	dialogue.queue_free()
+	await process_frame
+	# Main refreshes realm warnings every frame. A hazard warning already running
+	# when the objective ends must not reappear over the post scene's hidden HUD.
+	for number in [2, 7]:
+		MAIN.story_hero = "nova"
+		MAIN.story_stage = number
+		MAIN.story_difficulty = "normal"
+		MAIN.story_art_state = {}
+		MAIN.next_screen = "story_stage"
+		PROGRESS.new_journey("nova", "normal")
+		change_scene_to_file("res://scenes/Main.tscn")
+		await _frames(6)
+		var main: Node = current_scene
+		main.story_session.begin_dialogue()
+		main.story_session.dialogue._activate("dialogue_skip", "")
+		main.hazards.trigger(int(STORY.stage(number).realm))
+		var enemy: Node = main.story_session.rival
+		if enemy.has_method("apply_environment_damage"):
+			enemy.apply_environment_damage(enemy.hp, main.story_session.hero)
+		else:
+			enemy.apply_hit(main.story_session.hero, 100000.0, 0.0, Vector2.RIGHT, "fixed")
+		await _frames(3)
+		_check(main.story_session.phase == "post" and main.story_session.dialogue.visible, "Hazard-warning fixture enters post scene")
+		_check(main.hazards.get_phase(int(STORY.stage(number).realm)) == "warning", "The underlying realm warning remains frozen during the scene")
+		main._update_hud()
+		_check(not main.hud.warning_label.visible and not main.hud.clock_label.visible and not main.hud.minimap_root.visible and not main.hud.hp_bar.visible and not main.story_session.rival_bar.visible, "Every match HUD element, including a timed warning, stays hidden during stage %d scene" % number)
+		main._on_story_action("story_title")
+		await _frames(6)
+	PROGRESS.runs.clear()
 	if not failed:
-		print("Story presentation tests passed (scene pictures on the marked lines, 9-slice box and name plate)")
+		print("Story presentation tests passed (marked pictures, 9-slice frame/name plate, all match HUD including timed warnings hidden during scenes)")
 	quit(1 if failed else 0)
+
+func _frames(count: int) -> void:
+	for frame in count:
+		await physics_frame
+		await process_frame

@@ -1,0 +1,97 @@
+{
+  "recorded_utc": "2026-10-22T11:16:33.064Z",
+  "all_passed": true,
+  "headless_tests": 48,
+  "final_gate_log_sha256": "5ed050294141ad5a90c5bb6011d63ff71b89ec2b4f8b20545d2449a8e68ac3a5",
+  "source_sha256": {
+    "smash-nine-prototype/scripts/story/StoryCatalog.gd": "7ce6ab35dc3056e9b998d4556bb30b2a2fc1431df6bf231d74e975ec94f75db7",
+    "smash-nine-prototype/scripts/story/StoryDirector.gd": "b835fc3b498727916ba18fed46429153e24ad5a1d38ef30089b0ca418ac902e1",
+    "smash-nine-prototype/scripts/story/StorySession.gd": "db1d51cd391e1ea6fe2d72f29aae6b2e6b0d12c9958068bfe376f198b7a13e64",
+    "smash-nine-prototype/scripts/ui/StoryDialogue.gd": "f30497ea7b90319b609a572528df81fa53cce19a3cde84f5ed4a0d654282ca2c",
+    "smash-nine-prototype/scripts/ui/StoryScreens.gd": "8891e4c6f2f52ab16adfcd5dd86cc627f45565edce74df2890e8b03a52c8d537",
+    "smash-nine-prototype/scripts/Main.gd": "566489e3a81516f0cfea02ca6be0c9837cb7fe7119b2ff37cf3eb418a8cd967f",
+    "smash-nine-prototype/scripts/RealmMonster.gd": "f5cfed802e832419a88647bb6f7417f9ba062ad1ea5ed95efa3a1c1aed34d9ea",
+    "smash-nine-prototype/scripts/Vfx.gd": "a6a6bb9f55e291449534828fe7ad53871131c10674169b563439944a7f42b118",
+    "smash-nine-prototype/assets/i18n/strings.csv": "7defed377d792c0f51e8f34337fa155b6c929c9ec1803b8367249c7a62d927e5",
+    "smash-nine-prototype/tests/test_story_data.gd": "34e1782fdc3e5dbd510992b245eec811c0ecbea1b6ba88b1fe55e91ffa190596",
+    "smash-nine-prototype/tests/test_story_flow.gd": "47b954ae225f19e4930a6653fe37a48347ae9b0d6f44619de2349ff56a5b3e1d",
+    "smash-nine-prototype/tests/test_story_late_flow.gd": "4fd82b49c066bf5bb504c6953b58041b356a6b76e41d52f9d1142137af0502f2",
+    "smash-nine-prototype/tests/test_story_rewards.gd": "7b0138fcecbfb6898f29f307a11b8e1bc94835d6ad05f68d63a82742f927e5e9",
+    "smash-nine-prototype/tests/test_story_exit_reload.gd": "0842a72baded8f274c35092ea3b1e0afe1b119fc6880137d6a8b9dca7ad745f1",
+    "smash-nine-prototype/tests/test_story_presentation.gd": "3027b3d424e1bce5b0af677abca269eb6f96d8cd236e8ff94f3f6740aed20958",
+    "smash-nine-prototype/tests/test_story_text_fit.gd": "e583519eeb8a4c089cefd005cc318a381a84b524a7801eb2724cb0c628c86aa8",
+    "smash-nine-prototype/tests/test_story_atomic_reload.gd": "480b8da6fcc1bc092667d2dd0e430345aa2ed2ed0316ef0b058bccdde2aa98f0",
+    "smash-nine-prototype/tests/test_monster_options.gd": "3b6b4e448fe5691308a92a2a4526bdaafb4af33d32ee1a373b1f0d5a82b18e79",
+    "smash-nine-prototype/tests/test_language.gd": "5bbc9ad017eb246ac8b06382d4060e69ae58a86118b6119877960329877dd3ae",
+    "smash-nine-prototype/tests/run_all.ps1": "1f3ded32737e59f1a5f0812707de37111b1cd7984e3c16e39e7505d4bb6ceb54"
+  },
+  "unexpected_engine_errors_in_final_raw_logs": 0,
+  "known_certificate_lines_in_raw_logs": 49,
+  "battle_royale_soak": {
+    "seed": 1001,
+    "seconds": 331.7,
+    "winner": "Nova",
+    "match_over": true,
+    "nan_positions": 0
+  },
+  "continuous_journeys": {
+    "checks": 1051,
+    "completed": 14,
+    "bodies": 7,
+    "difficulties": [
+      "normal",
+      "easy"
+    ],
+    "final_souls": [
+      288
+    ]
+  },
+  "extended_f2_journeys": {
+    "checks": 4859,
+    "completed": 14,
+    "final_souls": [
+      288
+    ]
+  },
+  "protected_physical_escape_routes": [
+    {
+      "hero": "frey",
+      "seconds": 14.616666666667
+    },
+    {
+      "hero": "luna",
+      "seconds": 11.7833333333335
+    },
+    {
+      "hero": "yuki",
+      "seconds": 13.4333333333336
+    },
+    {
+      "hero": "nova",
+      "seconds": 12.3166666666669
+    },
+    {
+      "hero": "rio",
+      "seconds": 13.1500000000002
+    }
+  ],
+  "real_bot_combat_runs": 20,
+  "real_bot_combat_note": "Unchanged bot brain on both sides; not human difficulty. Hero-only band is unknown to the hero bot too.",
+  "korean_captures": 11,
+  "contact_sheet": "contact-sheet.png",
+  "git_commit": "not_created_index_permission_denied",
+  "commit_handoff": "commit.ps1",
+  "commit_message": "commit-message.txt",
+  "intermittent_existing_test": {
+    "name": "test_luna_kit",
+    "observation": "One full run missed a moving echo bloom in 1 of 4 trials; unchanged isolated retest passed. Not ignored as certificate noise.",
+    "failed_full_log": "diagnostics/final-gate-luna-intermittent.log",
+    "engine_log": "diagnostics/luna-intermittent-engine.log",
+    "isolated_retest": "test_luna_kit.log"
+  },
+  "limitations": [
+    "Progression probes force enemy defeats; escape route heroes are protected.",
+    "Human difficulty tuning and real-user save-file manual checks were not performed.",
+    "No web build, merge or publishing."
+  ]
+}

@@ -93,6 +93,12 @@ func _run() -> void:
 	_check_menu_fit(menu)
 	menu.show_story_result({"clear": true, "stage": 4, "seconds": 91, "damage": 42, "cards": ["sky_step", "last_stand"]})
 	_check_menu_fit(menu)
+	for id in REGISTRY.get_character_ids():
+		menu.selected_id = id
+		menu.show_story_ending()
+		_check_menu_fit(menu)
+		_check(_has_text(menu, tr("STORY COMPLETE")), "Ending title uses the imported translation")
+	menu.selected_id = "frey"
 	menu.show_controls()
 	_check(_has_text(menu, "조작법"), "Controls heading must translate")
 	_check_menu_fit(menu)

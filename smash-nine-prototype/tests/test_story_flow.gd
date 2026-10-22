@@ -79,7 +79,7 @@ func _run() -> void:
 	_check(not main.hud.frontend.start_button.disabled, "Stage 1 unlocked")
 	main.hud.frontend.stage_buttons[4].grab_focus()
 	await _frames(2)
-	_check(main.hud.frontend.start_button.disabled, "Stage 5 is coming soon and cannot start")
+	_check(main.hud.frontend.start_button.disabled, "Stage 5 stays locked until earlier stages clear")
 	main.hud.frontend.stage_buttons[0].grab_focus()
 	await _tap(KEY_F2)
 	await _frames(6)
@@ -270,7 +270,7 @@ func _run() -> void:
 			if number == 4:
 				await _click(main.hud.frontend.buttons[0])
 				await _frames(6)
-				_check(current_scene.hud.frontend.screen == "story_map" and current_scene.hud.frontend.map_stage == 5 and current_scene.hud.frontend.start_button.disabled, "Stage 4 Next leads to coming-soon stage 5 map")
+				_check(current_scene.hud.frontend.screen == "story_start" and current_scene.story_stage == 5, "Stage 4 Next starts ready stage 5")
 				if id == "frey":
 					await _capture("13-coming-soon-ko")
 	main = current_scene
