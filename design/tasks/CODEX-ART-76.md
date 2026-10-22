@@ -2,7 +2,7 @@
 
 - Request: 사용자 2026-10-22 "추천대로 시작해줘" — plan `reports/codex-quality-plan-2026-10-22.md`, track 2.
 - Batch 1 (CODEX-ART-71, merged `455d49e`) made six monsters. **Read `reports/codex-art-71/README.md` first** and reuse its method, its scripts (`reports/codex-art-71/process.py`, `verify.py`) and its board layout.
-- Unit: Builder (images). Clone `C:/Users/TH/Documents/AI/GameProject/SmashNine-units/auditor/SmashNine`, branch `codex/art-76` (from the latest main).
+- Unit: Builder (images). Clone `C:/Users/TH/Documents/AI/GameProject/SmashNine-units/tester/SmashNine`, branch `codex/art-76` (from the latest main).
 - Running at the same time:
   - ART-74 (monsters batch 2) in builder-art
   - ART-75 (character motions) in builder-frey

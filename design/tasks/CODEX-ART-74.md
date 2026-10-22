@@ -4,7 +4,7 @@
 - Batch 1 (CODEX-ART-71, merged `455d49e`) made six monsters. **Read `reports/codex-art-71/README.md` first** and reuse its method, its scripts (`reports/codex-art-71/process.py`, `verify.py`) and its board layout.
 - Unit: Builder (images). Clone `C:/Users/TH/Documents/AI/GameProject/SmashNine-units/builder-art/SmashNine`, branch `codex/art-74` (from the latest main).
 - Running at the same time:
-  - ART-76 (monsters batch 3) in the auditor clone
+  - ART-76 (monsters batch 3) in the tester clone
   - ART-75 (character motions) in builder-frey
   - QA-21 (bug hunt, the only unit running Godot) in analyst
   - You share no files.
