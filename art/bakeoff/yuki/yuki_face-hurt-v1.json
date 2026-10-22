@@ -1,0 +1,36 @@
+{
+  "note": "현재 무표정 초상화를 내장 이미지 도구로 편집한 뒤, 얼굴 윤곽·앞머리로 정수 정렬하고 눈·눈썹·입(필요한 볼 포함)만 Pillow 마스크로 합성한 스토리 대화용 후보. 마스크 밖 RGBA와 전체 알파는 무표정 원본과 완전히 같다. 게임 연결은 하지 않았다.",
+  "expression": "hurt",
+  "edited_from": "smash-nine-prototype/assets/art/yuki/yuki_face.png",
+  "source_raw": "art/raw/faces-73/yuki-hurt-try2.png",
+  "selected_try": 2,
+  "tries": 2,
+  "review_status": "candidate",
+  "delivered": true,
+  "candidate_only": true,
+  "size_normalization": "Pillow LANCZOS 256x256 RGBA before integer alignment; no feature drawing",
+  "composite": {
+    "mask_bbox": [
+      95,
+      88,
+      149,
+      137
+    ],
+    "feather": 4,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "measurements": {
+    "outside_mask_changed_pixels": 0,
+    "alpha_changed_pixels": 0,
+    "seam_band_pixels": 796,
+    "seam_edit_neutral_rgb_mae": 18.5779,
+    "seam_composite_neutral_rgb_mae": 10.5997,
+    "seam_edit_neutral_rgb_p95": 98.5,
+    "mask_pixels": 1564,
+    "changed_pixels": 1496
+  },
+  "redone_this_pass": true
+}
