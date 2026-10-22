@@ -1,0 +1,35 @@
+{
+  "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+  "anchor": [
+    68,
+    83,
+    51
+  ],
+  "reference_face_width": 15,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "width": 15,
+      "points": [
+        77,
+        92,
+        67
+      ],
+      "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "width": 15,
+      "points": [
+        64,
+        79,
+        57
+      ],
+      "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-77/rio_male-fall-1.png",
+    "frames": null,
+    "grid": [
+      2,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      1
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 2,
+    "output_columns": 6,
+    "common_scale": 0.176,
+    "scale_by": "fixed:0.176",
+    "common_offset_x": 3,
+    "common_lift": 8,
+    "lift_scale": 0.3,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      108,
+      109
+    ],
+    "body_width_range": [
+      100,
+      111
+    ],
+    "area_range": [
+      4881,
+      5334
+    ],
+    "area_spread_percent": 8.49,
+    "bottom_range": [
+      116,
+      118
+    ],
+    "lift_range": [
+      2,
+      4
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4033,
+      4425
+    ],
+    "interior_detail_range": [
+      128.88,
+      135.07
+    ],
+    "interior_detail_mean": 131.97,
+    "remaining_spill_pixels": [
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 111.7,
+    "interior_detail_ratio": 1.1815
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4258,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 111.7,
+    "colour_count_range": [
+      4258,
+      4258
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-77/rio_male-fall-1.png#0,0",
+      "bbox": [
+        14,
+        9,
+        114,
+        117
+      ],
+      "body_height": 108,
+      "body_width": 100,
+      "area": 4881,
+      "bottom": 116,
+      "lift": 4,
+      "expected_lift": 4,
+      "interior_detail": 135.07,
+      "colour_count": 4033,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 14,
+        "top": 9,
+        "right": 14,
+        "bottom": 11,
+        "minimum": 9,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2092
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-77/rio_male-fall-1.png#1,0",
+      "bbox": [
+        6,
+        10,
+        117,
+        119
+      ],
+      "body_height": 109,
+      "body_width": 111,
+      "area": 5334,
+      "bottom": 118,
+      "lift": 2,
+      "expected_lift": 2,
+      "interior_detail": 128.88,
+      "colour_count": 4425,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 6,
+        "top": 10,
+        "right": 11,
+        "bottom": 9,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1538
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-77/rio_male/fall/attempt-1/rio_male-fall.png",
+    "candidate": null,
+    "frames": "reports/codex-art-77/rio_male/fall/attempt-1/frames",
+    "closeup": "reports/codex-art-77/rio_male/fall/attempt-1/closeup.png",
+    "compare": "reports/codex-art-77/rio_male/fall/attempt-1/compare.png"
+  }
+}

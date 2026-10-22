@@ -1,0 +1,201 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-77/rio_female-land-1.png",
+    "frames": null,
+    "grid": [
+      2,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 2,
+    "output_columns": 6,
+    "common_scale": 0.15,
+    "scale_by": "fixed:0.15",
+    "common_offset_x": -7,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      83,
+      96
+    ],
+    "body_width_range": [
+      91,
+      102
+    ],
+    "area_range": [
+      4746,
+      4821
+    ],
+    "area_spread_percent": 1.56,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4136,
+      4202
+    ],
+    "interior_detail_range": [
+      108.59,
+      118.13
+    ],
+    "interior_detail_mean": 113.36,
+    "remaining_spill_pixels": [
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 97.64,
+    "interior_detail_ratio": 1.161
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.64,
+        "colour_count": 4711,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 97.64,
+    "colour_count_range": [
+      4711,
+      4711
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-77/rio_female-land-1.png#0,0",
+      "bbox": [
+        12,
+        38,
+        114,
+        121
+      ],
+      "body_height": 83,
+      "body_width": 102,
+      "area": 4821,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 108.59,
+      "colour_count": 4202,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 12,
+        "top": 38,
+        "right": 14,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1121
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-77/rio_female-land-1.png#1,0",
+      "bbox": [
+        21,
+        25,
+        112,
+        121
+      ],
+      "body_height": 96,
+      "body_width": 91,
+      "area": 4746,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 118.13,
+      "colour_count": 4136,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 21,
+        "top": 25,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2099
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-77/rio_female/land/attempt-1/rio_female-land.png",
+    "candidate": null,
+    "frames": "reports/codex-art-77/rio_female/land/attempt-1/frames",
+    "closeup": "reports/codex-art-77/rio_female/land/attempt-1/closeup.png",
+    "compare": "reports/codex-art-77/rio_female/land/attempt-1/compare.png"
+  }
+}
