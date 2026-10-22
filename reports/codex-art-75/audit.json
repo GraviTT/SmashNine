@@ -1,0 +1,4019 @@
+{
+  "passed": true,
+  "published_rows": 12,
+  "published_frames": 34,
+  "reviewed_rows": 15,
+  "reviewed_final_frames": 48,
+  "generations": 30,
+  "checks": [
+    {
+      "check": "branch codex/art-75",
+      "passed": true
+    },
+    {
+      "check": "no tracked game/tool changes",
+      "passed": true
+    },
+    {
+      "check": "15 rows",
+      "passed": true
+    },
+    {
+      "check": "card form/row order",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump order",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump source frames",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump 4x board",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump card timing",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump binary alpha",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump visible F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump margin F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump visible F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump margin F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump visible F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump margin F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump feet/air F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump spill/detail",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "yuki/jump valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall order",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall source frames",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall 4x board",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall card timing",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall held row not published",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt order",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt source frames",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt 4x board",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt card timing",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt binary alpha",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt visible F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt margin F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt visible F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt margin F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt visible F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt margin F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt feet/air F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt spill/detail",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt tilt limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "yuki/land order",
+      "passed": true
+    },
+    {
+      "check": "yuki/land pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "yuki/land source frames",
+      "passed": true
+    },
+    {
+      "check": "yuki/land 4x board",
+      "passed": true
+    },
+    {
+      "check": "yuki/land one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "yuki/land card timing",
+      "passed": true
+    },
+    {
+      "check": "yuki/land all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "yuki/land tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "yuki/land exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/land six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "yuki/land metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "yuki/land unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "yuki/land binary alpha",
+      "passed": true
+    },
+    {
+      "check": "yuki/land visible F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/land margin F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/land feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/land visible F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/land margin F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/land feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/land empty padding F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/land empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "yuki/land empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "yuki/land empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "yuki/land spill/detail",
+      "passed": true
+    },
+    {
+      "check": "yuki/land manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "yuki/land valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory order",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory source frames",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory 4x board",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory card timing",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory exact 4x page F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory exact 4x page F4",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory exact 4x page F5",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory exact 4x page F6",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory held row not published",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump order",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump visible F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump margin F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump feet/air F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_male/jump eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall order",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall empty padding F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_male/fall eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt order",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt visible F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt margin F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt feet/air F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt tilt limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land order",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land empty padding F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_male/land eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory order",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory exact 4x page F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory exact 4x page F4",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory exact 4x page F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory exact 4x page F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory visible F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory margin F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory feet/air F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory visible F4",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory margin F4",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory feet/air F4",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory visible F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory margin F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory feet/air F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory visible F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory margin F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory feet/air F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory contour correction traceable",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump order",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump visible F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump margin F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump feet/air F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall order",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall empty padding F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_female/fall eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt order",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt visible F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt margin F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt feet/air F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt tilt limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land order",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land six-column dimensions",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land metadata timing/scale/cell",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land unmodified normaliser output",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land binary alpha",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land visible F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land margin F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land feet/air F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land visible F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land margin F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land feet/air F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land empty padding F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land empty padding F4",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land empty padding F5",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land empty padding F6",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land spill/detail",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land manual review recorded",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land valid upright face range",
+      "passed": true
+    },
+    {
+      "check": "nova_female/land eye limitation in candidate",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory order",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory pipeline settings",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory source frames",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory 4x board",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory one shared row factor",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory card timing",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory all selected final frames reviewed",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory tilted-face exclusions explicit",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory hidden far eye not measured",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory exact 4x page F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory exact 4x page F2",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory exact 4x page F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory exact 4x page F4",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory exact 4x page F5",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory exact 4x page F6",
+      "passed": true
+    },
+    {
+      "check": "nova_female/victory held row not published",
+      "passed": true
+    },
+    {
+      "check": "nova_female-fall-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-fall-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-hurt-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-hurt-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-hurt-2-f2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-hurt-2-f2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-hurt-3-f2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-hurt-3-f2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-jump-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-jump-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-jump-2-f2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-jump-2-f2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-jump-3-f2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-jump-3-f2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-land-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-land-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-victory-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-victory-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-victory-2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-victory-2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-victory-3 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female-victory-3 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-fall-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-fall-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-hurt-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-hurt-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-hurt-2-f2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-hurt-2-f2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-jump-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-jump-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-land-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-land-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-victory-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-victory-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-victory-2-f4 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-victory-2-f4 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-victory-3-f4 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male-victory-3-f4 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-fall-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-fall-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-fall-2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-fall-2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-fall-3-f1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-fall-3-f1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-hurt-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-hurt-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-hurt-2-f1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-hurt-2-f1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-hurt-3-f2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-hurt-3-f2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-jump-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-jump-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-land-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-land-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-victory-1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-victory-1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-victory-2 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-victory-2 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-victory-3-f1 raw preserved",
+      "passed": true
+    },
+    {
+      "check": "yuki-victory-3-f1 prompt preserved",
+      "passed": true
+    },
+    {
+      "check": "30 generations; at most three per row",
+      "passed": true
+    },
+    {
+      "check": "yuki reference preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_male reference preserved",
+      "passed": true
+    },
+    {
+      "check": "nova_female reference preserved",
+      "passed": true
+    },
+    {
+      "check": "eleven single-frame replacement assemblies",
+      "passed": true
+    },
+    {
+      "check": "yuki/fall A3 unchanged F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt A2 unchanged F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt A2 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt A3 unchanged F1",
+      "passed": true
+    },
+    {
+      "check": "yuki/hurt A3 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory A3 unchanged F2",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory A3 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory A3 unchanged F4",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory A3 unchanged F5",
+      "passed": true
+    },
+    {
+      "check": "yuki/victory A3 unchanged F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt A2 unchanged F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/hurt A2 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A2 unchanged F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A2 unchanged F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A2 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A2 unchanged F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A2 unchanged F6",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A3 unchanged F1",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A3 unchanged F2",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A3 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A3 unchanged F5",
+      "passed": true
+    },
+    {
+      "check": "nova_male/victory A3 unchanged F6",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump A2 unchanged F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump A2 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump A3 unchanged F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/jump A3 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt A2 unchanged F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt A2 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt A3 unchanged F1",
+      "passed": true
+    },
+    {
+      "check": "nova_female/hurt A3 unchanged F3",
+      "passed": true
+    },
+    {
+      "check": "two failed source grids recorded",
+      "passed": true
+    },
+    {
+      "check": "Python syntax face_check.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax factor_probe.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax finalize.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax manual_pair.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax package_report.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax process.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax retry_frame.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax review_pages.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax verify.py",
+      "passed": true
+    },
+    {
+      "check": "no report bytecode cache",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_female-fall-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_female-fall-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_female-fall-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_female-fall-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_female-hurt-v3.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_female-hurt-v3.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_female-hurt-v3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_female-hurt-v3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_female-jump-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_female-jump-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_female-jump-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_female-jump-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_female-land-v1.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_female-land-v1.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_female-land-v1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_female-land-v1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-fall-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-fall-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-fall-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-fall-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-hurt-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-hurt-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-hurt-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-hurt-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-jump-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-jump-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-jump-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-jump-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-land-v1.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-land-v1.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-land-v1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-land-v1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-victory-v1.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-victory-v1.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/nova/nova_male-victory-v1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/nova/nova_male-victory-v1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/yuki/yuki-hurt-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/yuki/yuki-hurt-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/yuki/yuki-hurt-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/yuki/yuki-hurt-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/yuki/yuki-jump-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/yuki/yuki-jump-v2.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/yuki/yuki-jump-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/yuki/yuki-jump-v2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/yuki/yuki-land-v1.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/yuki/yuki-land-v1.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope art/bakeoff/yuki/yuki-land-v1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists art/bakeoff/yuki/yuki-land-v1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/README.md",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/README.md",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/audit.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/fall/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/fall/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/fall/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/fall/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/fall/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/fall/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/fall/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/fall/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/fall/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/fall/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/fall/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/fall/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/fall/nova_female-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/fall/nova_female-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/hurt/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/hurt/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/hurt/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/hurt/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/hurt/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/hurt/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/hurt/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/hurt/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/hurt/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/hurt/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/hurt/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/hurt/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/hurt/nova_female-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/hurt/nova_female-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/jump/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/jump/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/jump/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/jump/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/jump/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/jump/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/jump/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/jump/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/jump/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/jump/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/jump/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/jump/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/jump/nova_female-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/jump/nova_female-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/land/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/land/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/land/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/land/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/land/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/land/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/land/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/land/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/land/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/land/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/land/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/land/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/land/nova_female-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/land/nova_female-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/victory/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/victory/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/victory/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/victory/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/victory/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/victory/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/victory/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/victory/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/victory/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/victory/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/victory/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/victory/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_female/victory/nova_female-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_female/victory/nova_female-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/fall/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/fall/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/fall/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/fall/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/fall/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/fall/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/fall/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/fall/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/fall/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/fall/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/fall/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/fall/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/fall/nova_male-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/fall/nova_male-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/hurt/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/hurt/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/hurt/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/hurt/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/hurt/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/hurt/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/hurt/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/hurt/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/hurt/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/hurt/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/hurt/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/hurt/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/hurt/nova_male-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/hurt/nova_male-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/jump/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/jump/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/jump/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/jump/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/jump/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/jump/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/jump/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/jump/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/jump/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/jump/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/jump/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/jump/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/jump/nova_male-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/jump/nova_male-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/land/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/land/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/land/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/land/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/land/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/land/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/land/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/land/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/land/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/land/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/land/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/land/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/land/nova_male-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/land/nova_male-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/victory/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/victory/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/victory/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/victory/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/victory/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/victory/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/victory/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/victory/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/victory/manual-pair-f4.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/victory/manual-pair-f4.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/victory/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/victory/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/victory/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/victory/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/nova_male/victory/nova_male-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/nova_male/victory/nova_male-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/fall/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/fall/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/fall/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/fall/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/fall/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/fall/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/fall/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/fall/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/fall/manual-pair-f1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/fall/manual-pair-f1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/fall/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/fall/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/fall/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/fall/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/fall/yuki-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/fall/yuki-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/hurt/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/hurt/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/hurt/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/hurt/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/hurt/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/hurt/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/hurt/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/hurt/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/hurt/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/hurt/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/hurt/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/hurt/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/hurt/yuki-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/hurt/yuki-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/jump/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/jump/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/jump/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/jump/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/jump/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/jump/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/jump/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/jump/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/jump/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/jump/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/jump/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/jump/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/jump/yuki-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/jump/yuki-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/land/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/land/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/land/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/land/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/land/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/land/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/land/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/land/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/land/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/land/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/land/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/land/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/land/yuki-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/land/yuki-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/victory/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/victory/face-measured-4x.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/victory/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/victory/face-measured.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/victory/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/victory/face-proposed.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/victory/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/victory/head-scale.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/victory/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/victory/manual-review.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/victory/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/victory/metrics.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/best/yuki/victory/yuki-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/best/yuki/victory/yuki-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/commit.ps1",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/commit.ps1",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/composition-ledger.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/composition-ledger.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/face_check.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/face_check.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/factor_probe.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/factor_probe.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/files-to-stage.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/files-to-stage.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/finalize.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/finalize.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/generation-ledger.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/generation-ledger.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/manual_pair.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/manual_pair.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-fall-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-fall-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-hurt-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-hurt-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-hurt-2-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-hurt-2-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-hurt-2-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-hurt-2-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-hurt-3-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-hurt-3-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-hurt-3-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-hurt-3-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-jump-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-jump-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-jump-2-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-jump-2-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-jump-2-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-jump-2-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-jump-3-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-jump-3-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-jump-3-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-jump-3-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-land-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-land-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-victory-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-victory-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-victory-2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-victory-2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-victory-3.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-victory-3.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_female-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_female-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-fall-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-fall-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-hurt-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-hurt-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-hurt-2-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-hurt-2-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-jump-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-jump-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-land-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-land-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-victory-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-victory-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-victory-2-f4.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-victory-2-f4.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-victory-3-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-victory-3-composition.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-victory-3-f4.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-victory-3-f4.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-victory-factor-probes.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-victory-factor-probes.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/nova_male-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/nova_male-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/package_report.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/package_report.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/process.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/process.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/prompts.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/prompts.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-fall-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-fall-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-hurt-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-hurt-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-hurt-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-hurt-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-jump-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-jump-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-jump-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-jump-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-land-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-land-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-victory-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-victory-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-victory-2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-victory-2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-victory-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-victory-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-victory-4.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-victory-4.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-victory-5.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-victory-5.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_female-victory-6.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_female-victory-6.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-fall-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-fall-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-hurt-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-hurt-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-hurt-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-hurt-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-jump-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-jump-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-jump-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-jump-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-land-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-land-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-victory-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-victory-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-victory-2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-victory-2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-victory-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-victory-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-victory-4.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-victory-4.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-victory-5.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-victory-5.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/nova_male-victory-6.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/nova_male-victory-6.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-fall-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-fall-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-hurt-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-hurt-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-hurt-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-hurt-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-jump-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-jump-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-jump-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-jump-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-land-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-land-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-victory-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-victory-1.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-victory-2.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-victory-2.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-victory-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-victory-3.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-victory-4.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-victory-4.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-victory-5.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-victory-5.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/qa4x/yuki-victory-6.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/qa4x/yuki-victory-6.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/retry_frame.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/retry_frame.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/review_pages.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/review_pages.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/selection.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/selection.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/source-failures.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/source-failures.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/summary.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/summary.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/verify.py",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/verify.py",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/work-log.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/work-log.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-fall-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-fall-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-fall-2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-fall-2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-fall-3-f1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-fall-3-f1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-fall-factor-probes.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-fall-factor-probes.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-fall.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-hurt-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-hurt-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-hurt-2-f1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-hurt-2-f1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-hurt-3-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-hurt-3-f2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-hurt.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-jump-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-jump-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-jump.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-land-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-land-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-land.png",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-victory-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-victory-1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-victory-2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-victory-2.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-victory-3-f1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-victory-3-f1.txt",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-victory-factor-probes.json",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-victory-factor-probes.json",
+      "passed": true
+    },
+    {
+      "check": "stage scope reports/codex-art-75/yuki-victory.png",
+      "passed": true
+    },
+    {
+      "check": "stage file exists reports/codex-art-75/yuki-victory.png",
+      "passed": true
+    },
+    {
+      "check": "commit script has no force-add",
+      "passed": true
+    },
+    {
+      "check": "commit exact manifest paths",
+      "passed": true
+    },
+    {
+      "check": "explicit stage list; unrelated index guarded",
+      "passed": true
+    },
+    {
+      "check": "commit message co-author trailer",
+      "passed": true
+    },
+    {
+      "check": "commit.ps1 syntax only; not executed",
+      "passed": true
+    },
+    {
+      "check": "within 150-minute hard stop",
+      "passed": true
+    }
+  ],
+  "game_tool_folder_diff": "",
+  "commit_script_executed": false,
+  "godot_run": false,
+  "verified_utc": "2026-10-22T19:13:42.926798+00:00",
+  "face_scope": "Upright visible frames only; tilted hurt F1/F2 visual-only; Nova anchor eye distance unavailable."
+}

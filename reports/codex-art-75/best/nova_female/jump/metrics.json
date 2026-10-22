@@ -1,0 +1,248 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-75/nova_female-jump-2.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.1615,
+    "scale_by": "fixed:0.1615",
+    "common_offset_x": 0,
+    "common_lift": 11,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      84,
+      101
+    ],
+    "body_width_range": [
+      58,
+      82
+    ],
+    "area_range": [
+      2914,
+      3318
+    ],
+    "area_spread_percent": 12.18,
+    "bottom_range": [
+      96,
+      109
+    ],
+    "lift_range": [
+      11,
+      24
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2397,
+      2749
+    ],
+    "interior_detail_range": [
+      101.0,
+      109.04
+    ],
+    "interior_detail_mean": 104.95,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 95.3,
+    "interior_detail_ratio": 1.1013
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 95.3,
+        "colour_count": 2708,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 95.3,
+    "colour_count_range": [
+      2708,
+      2708
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-75/nova_female-jump-2.png#0,0",
+      "bbox": [
+        32,
+        16,
+        90,
+        110
+      ],
+      "body_height": 94,
+      "body_width": 58,
+      "area": 3058,
+      "bottom": 109,
+      "lift": 11,
+      "expected_lift": 11,
+      "interior_detail": 101.0,
+      "colour_count": 2569,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 32,
+        "top": 16,
+        "right": 38,
+        "bottom": 18,
+        "minimum": 16,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0598
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-75/nova_female-jump-2.png#1,0",
+      "bbox": [
+        36,
+        13,
+        95,
+        97
+      ],
+      "body_height": 84,
+      "body_width": 59,
+      "area": 2914,
+      "bottom": 96,
+      "lift": 24,
+      "expected_lift": 24,
+      "interior_detail": 109.04,
+      "colour_count": 2397,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 36,
+        "top": 13,
+        "right": 33,
+        "bottom": 31,
+        "minimum": 13,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1442
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-75/nova_female-jump-2.png#2,0",
+      "bbox": [
+        24,
+        9,
+        106,
+        110
+      ],
+      "body_height": 101,
+      "body_width": 82,
+      "area": 3318,
+      "bottom": 109,
+      "lift": 11,
+      "expected_lift": 11,
+      "interior_detail": 104.8,
+      "colour_count": 2749,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 24,
+        "top": 9,
+        "right": 22,
+        "bottom": 18,
+        "minimum": 9,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0997
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-75/nova_female/jump/attempt-2/nova_female-jump.png",
+    "candidate": null,
+    "frames": "reports/codex-art-75/nova_female/jump/attempt-2/frames",
+    "closeup": "reports/codex-art-75/nova_female/jump/attempt-2/closeup.png",
+    "compare": "reports/codex-art-75/nova_female/jump/attempt-2/compare.png"
+  }
+}

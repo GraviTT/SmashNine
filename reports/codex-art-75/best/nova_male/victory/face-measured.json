@@ -1,0 +1,227 @@
+{
+  "method": "ART-72의 4배 최근접 얼굴 표식. 제안 표식과 직접 검수한 유효 표식을 분리. 얼굴이 바로 선 프레임만 수치 판정하며 기울어진 피격은 육안 비교.",
+  "reference_face_width": 14.5,
+  "reference_eye_distance": null,
+  "eye_limitation": "Nova 앵커의 반대쪽 눈은 앞머리에 가려져 눈 사이 거리를 정의할 수 없음.",
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 101.685,
+          "y": 87.831,
+          "score": 0.954
+        },
+        {
+          "x": 109.147,
+          "y": 87.131,
+          "score": 0.885
+        },
+        {
+          "x": 94.5,
+          "y": 90.0,
+          "score": 0.91
+        },
+        {
+          "x": 109.0,
+          "y": 90.0,
+          "score": 0.928
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        85,
+        67,
+        0.93
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 100.489,
+          "y": 87.887,
+          "score": 0.954
+        },
+        {
+          "x": 108.025,
+          "y": 87.2,
+          "score": 0.976
+        },
+        {
+          "x": 93.5,
+          "y": 90.0,
+          "score": 0.892
+        },
+        {
+          "x": 108.0,
+          "y": 90.0,
+          "score": 0.923
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        84,
+        67,
+        0.91
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 100.384,
+          "y": 87.902,
+          "score": 0.926
+        },
+        {
+          "x": 108.025,
+          "y": 87.2,
+          "score": 0.974
+        },
+        {
+          "x": 93.5,
+          "y": 91.0,
+          "score": 0.933
+        },
+        {
+          "x": 108.0,
+          "y": 90.0,
+          "score": 0.908
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        84,
+        67,
+        0.894
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    },
+    {
+      "frame": 4,
+      "landmarks": [
+        {
+          "x": 99.454,
+          "y": 86.922,
+          "score": 0.912
+        },
+        {
+          "x": 106.914,
+          "y": 85.819,
+          "score": 0.891
+        },
+        {
+          "x": 92.5,
+          "y": 89,
+          "score": null
+        },
+        {
+          "x": 106.5,
+          "y": 89,
+          "score": null
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.0,
+      "eye_ratio": null,
+      "face_width_ratio": 0.966,
+      "head_alignment": [
+        0.96,
+        83,
+        67,
+        0.856
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye.",
+      "proposed_face_width_ratio": 0.931,
+      "manual_correction": "Automatic right landmark was on nose-side at y88. Manual same eye-lower-edge cheek contour at y89; inspected coordinate grid and pixel boundary."
+    },
+    {
+      "frame": 5,
+      "landmarks": [
+        {
+          "x": 99.56,
+          "y": 85.885,
+          "score": 0.883
+        },
+        {
+          "x": 107.169,
+          "y": 86.015,
+          "score": 0.98
+        },
+        {
+          "x": 92.5,
+          "y": 88.0,
+          "score": 0.863
+        },
+        {
+          "x": 107.0,
+          "y": 89.0,
+          "score": 0.929
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        83,
+        66,
+        0.865
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    },
+    {
+      "frame": 6,
+      "landmarks": [
+        {
+          "x": 98.608,
+          "y": 85.989,
+          "score": 0.882
+        },
+        {
+          "x": 106.114,
+          "y": 86.069,
+          "score": 0.987
+        },
+        {
+          "x": 91.5,
+          "y": 89.0,
+          "score": 0.898
+        },
+        {
+          "x": 106.0,
+          "y": 89.0,
+          "score": 0.905
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        82,
+        66,
+        0.878
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    }
+  ],
+  "excluded_frames": []
+}

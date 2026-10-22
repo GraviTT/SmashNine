@@ -1,0 +1,81 @@
+{
+  "method": "ART-72의 4배 최근접 얼굴 표식. 제안 표식과 직접 검수한 유효 표식을 분리. 얼굴이 바로 선 프레임만 수치 판정하며 기울어진 피격은 육안 비교.",
+  "reference_face_width": 14.5,
+  "reference_eye_distance": null,
+  "eye_limitation": "Nova 앵커의 반대쪽 눈은 앞머리에 가려져 눈 사이 거리를 정의할 수 없음.",
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 75.669,
+          "y": 71.937,
+          "score": 0.943
+        },
+        {
+          "x": 83.983,
+          "y": 71.143,
+          "score": 0.981
+        },
+        {
+          "x": 68.5,
+          "y": 74.0,
+          "score": 0.925
+        },
+        {
+          "x": 83.0,
+          "y": 74.0,
+          "score": 0.929
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.06,
+        58,
+        50,
+        0.82
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 72.701,
+          "y": 54.96,
+          "score": 0.932
+        },
+        {
+          "x": 80.13,
+          "y": 54.611,
+          "score": 0.922
+        },
+        {
+          "x": 65.5,
+          "y": 57.0,
+          "score": 0.908
+        },
+        {
+          "x": 80.0,
+          "y": 57.0,
+          "score": 0.912
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        56,
+        34,
+        0.915
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    }
+  ],
+  "excluded_frames": []
+}

@@ -1,0 +1,389 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-75/nova_male-victory-3.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.184,
+    "scale_by": "fixed:0.184",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      94,
+      96
+    ],
+    "body_width_range": [
+      60,
+      67
+    ],
+    "area_range": [
+      3061,
+      3465
+    ],
+    "area_spread_percent": 11.66,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2588,
+      2893
+    ],
+    "interior_detail_range": [
+      100.49,
+      106.85
+    ],
+    "interior_detail_mean": 102.12,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 93.13,
+    "interior_detail_ratio": 1.0965
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.13,
+        "colour_count": 2768,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 93.13,
+    "colour_count_range": [
+      2768,
+      2768
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-75/nova_male-victory-3.png#0,0",
+      "bbox": [
+        66,
+        58,
+        126,
+        153
+      ],
+      "body_height": 95,
+      "body_width": 60,
+      "area": 3351,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 102.43,
+      "colour_count": 2820,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 66,
+        "top": 58,
+        "right": 66,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0999
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-75/nova_male-victory-3.png#1,0",
+      "bbox": [
+        65,
+        58,
+        126,
+        153
+      ],
+      "body_height": 95,
+      "body_width": 61,
+      "area": 3374,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.33,
+      "colour_count": 2811,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 65,
+        "top": 58,
+        "right": 66,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.088
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-75/nova_male-victory-3.png#2,0",
+      "bbox": [
+        64,
+        58,
+        126,
+        153
+      ],
+      "body_height": 95,
+      "body_width": 62,
+      "area": 3383,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.49,
+      "colour_count": 2845,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 64,
+        "top": 58,
+        "right": 66,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.079
+    },
+    {
+      "index": 3,
+      "source": "art/raw/motions-75/nova_male-victory-3.png#0,1",
+      "bbox": [
+        63,
+        59,
+        124,
+        153
+      ],
+      "body_height": 94,
+      "body_width": 61,
+      "area": 3061,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 106.85,
+      "colour_count": 2588,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 63,
+        "top": 59,
+        "right": 68,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1473
+    },
+    {
+      "index": 4,
+      "source": "art/raw/motions-75/nova_male-victory-3.png#1,1",
+      "bbox": [
+        63,
+        57,
+        127,
+        153
+      ],
+      "body_height": 96,
+      "body_width": 64,
+      "area": 3277,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.64,
+      "colour_count": 2763,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 63,
+        "top": 57,
+        "right": 65,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0806
+    },
+    {
+      "index": 5,
+      "source": "art/raw/motions-75/nova_male-victory-3.png#2,1",
+      "bbox": [
+        62,
+        57,
+        129,
+        153
+      ],
+      "body_height": 96,
+      "body_width": 67,
+      "area": 3465,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.97,
+      "colour_count": 2893,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 62,
+        "top": 57,
+        "right": 63,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0842
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-75/nova_male/victory/attempt-3/nova_male-victory.png",
+    "candidate": null,
+    "frames": "reports/codex-art-75/nova_male/victory/attempt-3/frames",
+    "closeup": "reports/codex-art-75/nova_male/victory/attempt-3/closeup.png",
+    "compare": "reports/codex-art-75/nova_male/victory/attempt-3/compare.png"
+  }
+}

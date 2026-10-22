@@ -1,0 +1,248 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-75/nova_male-jump-1.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.1625,
+    "scale_by": "fixed:0.1625",
+    "common_offset_x": 0,
+    "common_lift": 11,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      80,
+      100
+    ],
+    "body_width_range": [
+      47,
+      68
+    ],
+    "area_range": [
+      2611,
+      3247
+    ],
+    "area_spread_percent": 19.59,
+    "bottom_range": [
+      89,
+      109
+    ],
+    "lift_range": [
+      11,
+      31
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2178,
+      2700
+    ],
+    "interior_detail_range": [
+      105.09,
+      112.1
+    ],
+    "interior_detail_mean": 108.42,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 93.13,
+    "interior_detail_ratio": 1.1642
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.13,
+        "colour_count": 2768,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 93.13,
+    "colour_count_range": [
+      2768,
+      2768
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-75/nova_male-jump-1.png#0,0",
+      "bbox": [
+        38,
+        14,
+        90,
+        110
+      ],
+      "body_height": 96,
+      "body_width": 52,
+      "area": 2965,
+      "bottom": 109,
+      "lift": 11,
+      "expected_lift": 11,
+      "interior_detail": 108.06,
+      "colour_count": 2485,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 38,
+        "top": 14,
+        "right": 38,
+        "bottom": 18,
+        "minimum": 14,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1603
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-75/nova_male-jump-1.png#1,0",
+      "bbox": [
+        41,
+        10,
+        88,
+        90
+      ],
+      "body_height": 80,
+      "body_width": 47,
+      "area": 2611,
+      "bottom": 89,
+      "lift": 31,
+      "expected_lift": 31,
+      "interior_detail": 112.1,
+      "colour_count": 2178,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 41,
+        "top": 10,
+        "right": 40,
+        "bottom": 38,
+        "minimum": 10,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2037
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-75/nova_male-jump-1.png#2,0",
+      "bbox": [
+        30,
+        9,
+        98,
+        109
+      ],
+      "body_height": 100,
+      "body_width": 68,
+      "area": 3247,
+      "bottom": 108,
+      "lift": 12,
+      "expected_lift": 12,
+      "interior_detail": 105.09,
+      "colour_count": 2700,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 30,
+        "top": 9,
+        "right": 30,
+        "bottom": 19,
+        "minimum": 9,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1284
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-75/nova_male/jump/attempt-1/nova_male-jump.png",
+    "candidate": null,
+    "frames": "reports/codex-art-75/nova_male/jump/attempt-1/frames",
+    "closeup": "reports/codex-art-75/nova_male/jump/attempt-1/closeup.png",
+    "compare": "reports/codex-art-75/nova_male/jump/attempt-1/compare.png"
+  }
+}
