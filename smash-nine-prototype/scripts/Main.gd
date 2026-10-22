@@ -6,6 +6,7 @@ extends Node2D
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
+const LANGUAGE := preload("res://scripts/Language.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const REALM_LAYOUT_SCRIPT := preload("res://scripts/realms/RealmLayout.gd")
 const REALM_WORLD_SCRIPT := preload("res://scripts/realms/RealmWorld.gd")
@@ -81,6 +82,7 @@ var _body_rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	GAME_SPEED.load_saved()
+	LANGUAGE.load_saved()
 	GAME_SPEED.reset_engine()
 	if match_seed < 0:
 		randomize()
