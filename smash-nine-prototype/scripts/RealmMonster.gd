@@ -27,6 +27,7 @@ const FIREBALL_ART := "res://assets/art/monsters/ember_fireball.png"
 ## The cell size is read from the sheet (width / 6): 96 px cells (CODEX-ART-11) draw at 1x, the
 ## older 64 px cells (CODEX-ART-05) at 1.5x, so a monster is 96 screen px either way.
 const ART_ROWS := [["idle", 4, 6.0, true], ["walk", 6, 10.0, true], ["attack", 4, 12.0, false], ["hurt", 1, 1.0, false]]
+const ART_ROWS_SIX := [["idle", 6, 6.0, true], ["walk", 6, 10.0, true], ["windup", 4, 8.0, false], ["attack", 6, 12.0, false], ["hurt", 2, 8.0, false], ["defeat", 4, 8.0, false]]
 const ART_SCREEN_CELL := 96.0
 ## Fireball art: 36 px at 1x, or the older 24 px at 1.5x.
 const FIREBALL_SCREEN_SIZE := 36.0
@@ -64,6 +65,9 @@ var hitstun_timer := 0.0
 var knockback_velocity := Vector2.ZERO
 var art_sprite: AnimatedSprite2D
 var attack_animation_timer := 0.0
+var six_row_art := false
+var motion_attack_timer := 0.0
+var motion_hurt_timer := 0.0
 var is_realm_active := true
 
 var body_visual: ColorRect
@@ -220,9 +224,11 @@ func _build_body() -> void:
 func _physics_process(delta: float) -> void:
 	if state == State.DEFEATED:
 		defeat_elapsed += delta
-		modulate.a = maxf(1.0 - defeat_elapsed / 0.55, 0.0)
+		var motion_time := 4.0 / 8.0 if six_row_art else 0.0
+		var fade_time := 0.3 if six_row_art else 0.55
+		modulate.a = clampf(1.0 - (defeat_elapsed - motion_time) / fade_time, 0.0, 1.0)
 		queue_redraw()
-		if defeat_elapsed >= 0.55:
+		if defeat_elapsed >= motion_time + fade_time:
 			queue_free()
 		return
 	if not is_realm_active:
@@ -262,27 +268,37 @@ func _build_art_sprite() -> AnimatedSprite2D:
 		return null
 	var cell := sheet.get_width() / 6
 	var art_scale := ART_SCREEN_CELL / cell
-	var frames := FRAMES.create_frames()
-	for row in ART_ROWS.size():
-		var spec: Array = ART_ROWS[row]
-		FRAMES.add_grid(frames, StringName(spec[0]), sheet, Vector2i(cell, cell), 6, row * 6, int(spec[1]), float(spec[2]), bool(spec[3]))
+	var frames := _frames_for_sheet(sheet)
 	var sprite := AnimatedSprite2D.new()
 	sprite.name = "ArtSprite"
 	sprite.sprite_frames = frames
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.scale = Vector2(art_scale, art_scale)
-	# Most sheets use feet y=72. The larger ART-27 Jotunheim redraw uses y=80 so its
-	# silhouette can match mossling without clipping; compensate the visual pivot only.
-	var feet_from_center := 32.0 if art_sheet_path.ends_with("/jotunheim_rune_golem_sheet.png") else cell * 0.25
+	# Only the legacy ART-27 golem has feet y=80; all new six-row walkers use y=72.
+	var feet_from_center := 32.0 if not six_row_art and art_sheet_path.ends_with("/jotunheim_rune_golem_sheet.png") else cell * 0.25
 	sprite.position = Vector2(0, -feet_from_center * art_scale)
 	sprite.play(&"idle")
 	return sprite
+
+func _frames_for_sheet(sheet: Texture2D) -> SpriteFrames:
+	var cell := sheet.get_width() / 6
+	six_row_art = sheet.get_height() == 6 * cell
+	var rows: Array = ART_ROWS_SIX if six_row_art else ART_ROWS
+	var frames := FRAMES.create_frames()
+	for row in rows.size():
+		var spec: Array = rows[row]
+		var loops := archetype in ["charge", "swoop"] if six_row_art and spec[0] == "attack" else bool(spec[3])
+		FRAMES.add_grid(frames, StringName(spec[0]), sheet, Vector2i(cell, cell), 6, row * 6, int(spec[1]), float(spec[2]), loops)
+	return frames
 
 func _update_art(delta: float) -> void:
 	if art_sprite == null:
 		return
 	attack_animation_timer = maxf(attack_animation_timer - delta, 0.0)
 	art_sprite.flip_h = facing < 0
+	if six_row_art:
+		_update_six_row_art(delta)
+		return
 	if hitstun_timer <= 0.0 and action_phase in ["windup", "arrival"]:
 		# Hold the anticipation drawing while the warning is counting down. Playing
 		# the whole attack row here would show a completed swing before any hit exists.
@@ -299,6 +315,26 @@ func _update_art(delta: float) -> void:
 	elif absf(velocity.x) > 15.0:
 		animation = &"walk"
 	if art_sprite.animation != animation:
+		art_sprite.play(animation)
+
+func _update_six_row_art(delta: float) -> void:
+	motion_attack_timer = maxf(motion_attack_timer - delta, 0.0)
+	motion_hurt_timer = maxf(motion_hurt_timer - delta, 0.0)
+	var animation := &"idle"
+	if motion_hurt_timer > 0.0:
+		animation = &"hurt"
+	elif action_phase == "windup":
+		art_sprite.animation = &"windup"
+		art_sprite.pause()
+		var progress := 1.0 - clampf(action_timer / maxf(windup_duration, 0.001), 0.0, 1.0)
+		art_sprite.frame = mini(int(progress * 4.0), 3)
+		return
+	elif motion_attack_timer > 0.0 or action_phase in ["active", "arrival"]:
+		animation = &"attack"
+	elif absf(velocity.x) > 15.0:
+		animation = &"walk"
+	if art_sprite.animation != animation:
+		art_sprite.speed_scale = 1.0
 		art_sprite.play(animation)
 
 func _update_behavior(delta: float) -> void:
@@ -376,6 +412,8 @@ func _execute_action() -> void:
 	attack_serial += 1
 	action_phase = "active"
 	action_timer = 0.65
+	if six_row_art:
+		_play_strike_animation()
 	match archetype:
 		"bite":
 			_spawn_melee_attack()
@@ -434,6 +472,7 @@ func _cancel_action(cancel_animation := true) -> void:
 	action_timer = 0.0
 	if cancel_animation:
 		attack_animation_timer = 0.0
+		motion_attack_timer = 0.0
 	velocity.x = 0.0
 	if is_instance_valid(active_attack):
 		active_attack.queue_free()
@@ -441,6 +480,8 @@ func _cancel_action(cancel_animation := true) -> void:
 
 func _play_strike_animation() -> void:
 	attack_animation_timer = ATTACK_ANIMATION_TIME
+	if six_row_art:
+		motion_attack_timer = 6.0 / 12.0
 	if art_sprite != null:
 		art_sprite.play(&"attack")
 		art_sprite.frame = 0
@@ -615,6 +656,10 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 		hit_direction = Vector2.RIGHT
 	knockback_velocity += hit_direction * base_knockback * 0.55 * GAME_SCALE.KNOCKBACK
 	hitstun_timer = clampf(base_knockback / 1800.0, 0.08, 0.24)
+	if six_row_art and art_sprite != null:
+		motion_hurt_timer = 2.0 / 8.0
+		art_sprite.play(&"hurt")
+		art_sprite.set_frame_and_progress(0, 0.0)
 	_flash_hit()
 	_update_visuals()
 	if hp <= 0.0:
@@ -680,7 +725,8 @@ func _die(attacker: Node) -> void:
 	name_label.visible = false
 	hp_back.visible = false
 	if art_sprite != null:
-		art_sprite.play(&"hurt")
+		art_sprite.speed_scale = 1.0
+		art_sprite.play(&"defeat" if six_row_art else &"hurt")
 		art_sprite.modulate = Color.WHITE
 	defeated.emit(self, attacker, soul_reward)
 	queue_redraw()

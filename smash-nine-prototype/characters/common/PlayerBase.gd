@@ -109,6 +109,8 @@ const SHEET_COLUMNS := 6
 const SHEET_FEET_Y := {64: 48, 128: 120}
 ## On-screen size of one cell: both versions fill 128 px.
 const SHEET_SCREEN_CELL := 128.0
+## Optional ART-72 strips beside the main sheet; no strip means the existing row stays.
+const OPTIONAL_MOTION_ROWS := [["jump", 3, 10.0, false], ["fall", 2, 8.0, true], ["hurt", 3, 12.0, false], ["land", 2, 12.0, false], ["victory", 6, 8.0, false]]
 ## Air jumps a character can ever hold (base + Sky Step cards).
 const MAX_AIR_JUMPS := 3
 ## Hits inside an ultimate window freeze both fighters this much longer.
@@ -249,6 +251,9 @@ var max_air_jumps := 1
 var air_jumps_left := 1
 var sprite_action := &""
 var sprite_action_timer := 0.0
+var landing_motion_timer := 0.0
+var victory_motion := false
+var hurt_motion_duration := 0.0
 ## Last frame of a pose (_play_sprite_pose) to hold until the action ends; -1 for none.
 var sprite_pose_last := -1
 ## Readable move animation (user 2026-10-15: "스프라이트의 각 모션이 잘 보이지도 않고"; proposal
@@ -388,6 +393,7 @@ func _physics_process(delta: float) -> void:
 		hitstop_timer = maxf(hitstop_timer - delta, 0.0)
 		return
 	_update_status_icon(delta)
+	landing_motion_timer = maxf(landing_motion_timer - delta, 0.0)
 	attack_lock_timer = maxf(attack_lock_timer - delta, 0.0)
 	if attack_lock_timer > 0.0:
 		attack_elapsed += delta
@@ -747,10 +753,12 @@ func _apply_movement(delta: float) -> void:
 
 		if attack_lock_timer <= 0.0 and jump_buffer_timer > 0.0 and coyote_timer > 0.0:
 			velocity.y = jump_velocity * (0.78 if control_jump_slow_timer > 0.0 else 1.0)
+			_restart_jump_motion()
 			jump_buffer_timer = 0.0
 			coyote_timer = 0.0
 		elif attack_lock_timer <= 0.0 and jump_buffer_timer > 0.0 and air_jumps_left > 0:
 			velocity.y = jump_velocity * 0.86 * (0.78 if control_jump_slow_timer > 0.0 else 1.0)
+			_restart_jump_motion()
 			air_jumps_left -= 1
 			jump_buffer_timer = 0.0
 
@@ -944,6 +952,33 @@ func _add_sheet_animations(frames: SpriteFrames, prefix: String, sheet: Texture2
 	for spec in rows:
 		SHEET_FRAMES.add_grid(frames, StringName("%s_%s" % [prefix, spec[0]]), sheet, Vector2i(cell, cell), SHEET_COLUMNS, start_row * SHEET_COLUMNS, int(spec[1]), _row_fps(prefix, spec), bool(spec[3]))
 		start_row += ceili(float(spec[1]) / SHEET_COLUMNS)
+	_add_optional_motion_rows(frames, prefix)
+	return true
+
+## Adopted strips: <prefix>[_<body>]_<row>.png, one horizontal row of square cells.
+## In particular luna_brave_* stays in the luna folder. No candidate art is read here.
+func _add_optional_motion_rows(frames: SpriteFrames, prefix: String) -> void:
+	for spec in OPTIONAL_MOTION_ROWS:
+		var stems: Array[String] = [prefix]
+		if body_type != "":
+			stems.push_front("%s_%s" % [prefix, body_type])
+		for stem in stems:
+			var path := "res://assets/art/%s/%s_%s.png" % [prefix.get_slice("_", 0), stem, spec[0]]
+			if ResourceLoader.exists(path):
+				if _add_optional_motion_strip(frames, prefix, load(path) as Texture2D, spec):
+					break
+
+func _add_optional_motion_strip(frames: SpriteFrames, prefix: String, strip: Texture2D, spec: Array) -> bool:
+	if strip == null:
+		return false
+	var cell := strip.get_height()
+	var expected_cell := 192 if spec[0] == "victory" else 128
+	if cell != expected_cell or strip.get_width() != cell * int(spec[1]) or original_sheet_cell != 128:
+		return false
+	var row := StringName("%s_%s" % [prefix, spec[0]])
+	if frames.has_animation(row):
+		frames.remove_animation(row)
+	SHEET_FRAMES.add_strip(frames, row, strip, Vector2i(cell, cell), 0, int(spec[1]), _row_fps(prefix, spec), bool(spec[3]))
 	return true
 
 ## Draw settings for the original sheet: feet on the collision origin at either version.
@@ -1064,6 +1099,10 @@ func _handle_landing_state() -> void:
 	if is_guarding and not is_on_floor():
 		_stop_guard(true)
 	var landed := is_on_floor() and not was_on_floor_last_frame
+	if landed and _has_motion_row(&"land") and sprite_action_timer <= 0.0 and attack_lock_timer <= 0.0 and not is_guarding and absf(move_input) <= 0.01 and absf(velocity.x) <= 20.0:
+		landing_motion_timer = 2.0 / 12.0
+		character_sprite.play(_get_sprite_animation_name(&"land"))
+		character_sprite.set_frame_and_progress(0, 0.0)
 	if landed and action_locked_until_land:
 		action_locked_until_land = false
 		attack_lock_timer = 0.0
@@ -1406,6 +1445,9 @@ func apply_stun_hit(attacker: Node, damage: float, base_knockback: float, direct
 		return true
 	var final_stun := stun_duration * 0.3 if guard_result == GUARD_BLOCK else stun_duration
 	hitstun_timer = maxf(hitstun_timer, final_stun)
+	if sprite_action == &"hurt" and _has_motion_row(&"hurt", true):
+		sprite_action_timer = hitstun_timer
+		hurt_motion_duration = hitstun_timer
 	_play_stun_effect(final_stun)
 	return true
 
@@ -1945,9 +1987,19 @@ func _play_sprite_action(animation_name: StringName, duration: float) -> void:
 	if not _uses_character_sprite():
 		return
 	_end_sprite_pose()
+	victory_motion = false
+	landing_motion_timer = 0.0
 	sprite_action = animation_name
 	sprite_action_timer = maxf(duration, 0.01)
 	character_sprite.play(_get_sprite_animation_name(animation_name))
+	if animation_name == &"hurt" and _has_motion_row(&"hurt", true):
+		hurt_motion_duration = maxf(duration, 0.01)
+		character_sprite.sprite_frames.set_animation_loop(character_sprite.animation, false)
+		character_sprite.set_frame_and_progress(0, 0.0)
+		_set_hurt_motion_speed()
+		# The hit's hitstop is assigned after this call. Start when the physics update
+		# resumes, so the drawings span hitstun rather than running through hitstop.
+		character_sprite.pause()
 
 ## Strong launches use the optional four-frame move-sheet tumble. Characters without that row
 ## keep the hurt frame exactly as before; this changes presentation only, never hitstun or motion.
@@ -2046,8 +2098,12 @@ func _update_character_sprite(force := false) -> void:
 	if not _uses_character_sprite():
 		return
 	character_sprite.flip_h = facing < 0
+	if not is_on_floor() or is_guarding or absf(move_input) > 0.01 or absf(velocity.x) > 20.0 or sprite_action_timer > 0.0:
+		landing_motion_timer = 0.0
 	var target := &"idle"
-	if sprite_action_timer > 0.0 and sprite_action != &"":
+	if victory_motion:
+		target = &"victory"
+	elif sprite_action_timer > 0.0 and sprite_action != &"":
 		target = sprite_action
 	elif is_guarding:
 		target = &"shield"
@@ -2055,10 +2111,53 @@ func _update_character_sprite(force := false) -> void:
 		target = &"jump" if velocity.y < 0.0 else &"fall"
 	elif absf(velocity.x) > 20.0 or absf(move_input) > 0.1:
 		target = &"walk"
+	elif landing_motion_timer > 0.0:
+		target = &"land"
 	var target_animation := _get_sprite_animation_name(target)
 	if sprite_pose_last >= 0 and character_sprite.animation == target_animation:
 		return
-	if force or character_sprite.animation != target_animation:
+	# Bar/style refreshes must not restart a completed optional one-shot. The old
+	# single-drawing rows and D38 attack rows retain their existing force path.
+	var same_motion := target in [&"jump", &"fall", &"hurt", &"land", &"victory"] and _has_motion_row(target, true) and character_sprite.animation == target_animation
+	if (force and not same_motion) or character_sprite.animation != target_animation:
 		character_sprite.play(target_animation)
+		if target in [&"jump", &"fall"] and _has_motion_row(target, true):
+			character_sprite.sprite_frames.set_animation_loop(target_animation, target == &"fall")
+			character_sprite.set_frame_and_progress(0, 0.0)
 	# The idle loop keeps the real-time speed the user chose (D37) when the game runs slower.
 	character_sprite.speed_scale = 1.0 / maxf(Engine.time_scale, 0.1) if target == &"idle" else 1.0
+	if target == &"hurt" and _has_motion_row(&"hurt", true):
+		_set_hurt_motion_speed()
+		if hitstop_timer > 0.0:
+			character_sprite.pause()
+		elif not character_sprite.is_playing() and character_sprite.frame < character_sprite.sprite_frames.get_frame_count(target_animation) - 1:
+			character_sprite.play(target_animation)
+
+func _set_hurt_motion_speed() -> void:
+	var frames := character_sprite.sprite_frames
+	var row := character_sprite.animation
+	character_sprite.speed_scale = frames.get_frame_count(row) / (maxf(hurt_motion_duration, 0.01) * frames.get_animation_speed(row))
+
+func _has_motion_row(row: StringName, multiple := false) -> bool:
+	if not _uses_character_sprite():
+		return false
+	var animation := _get_sprite_animation_name(row)
+	var frames := character_sprite.sprite_frames
+	return frames.has_animation(animation) and frames.get_frame_count(animation) > (1 if multiple else 0)
+
+func _restart_jump_motion() -> void:
+	if _has_motion_row(&"jump", true) and sprite_action_timer <= 0.0 and not is_guarding:
+		character_sprite.play(_get_sprite_animation_name(&"jump"))
+		character_sprite.set_frame_and_progress(0, 0.0)
+
+## Presentation only: callers own match freeze and input. Missing art keeps idle.
+func play_victory() -> void:
+	victory_motion = _has_motion_row(&"victory")
+	if not _uses_character_sprite():
+		return
+	var row := _get_sprite_animation_name(&"victory" if victory_motion else &"idle")
+	if victory_motion:
+		character_sprite.sprite_frames.set_animation_loop(row, false)
+	character_sprite.speed_scale = 1.0
+	character_sprite.play(row)
+	character_sprite.set_frame_and_progress(0, 0.0)
