@@ -1,0 +1,247 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-75/yuki-jump-1.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.16,
+    "scale_by": "fixed:0.16",
+    "common_offset_x": 0,
+    "common_lift": 11,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      81,
+      97
+    ],
+    "body_width_range": [
+      79,
+      96
+    ],
+    "area_range": [
+      4134,
+      5144
+    ],
+    "area_spread_percent": 19.63,
+    "bottom_range": [
+      96,
+      109
+    ],
+    "lift_range": [
+      11,
+      24
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3652,
+      4559
+    ],
+    "interior_detail_range": [
+      102.34,
+      110.6
+    ],
+    "interior_detail_mean": 105.55,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 85.73,
+    "interior_detail_ratio": 1.2312
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 85.73,
+        "colour_count": 4139,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 85.73,
+    "colour_count_range": [
+      4139,
+      4139
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-75/yuki-jump-1.png#0,0",
+      "bbox": [
+        20,
+        19,
+        107,
+        110
+      ],
+      "body_height": 91,
+      "body_width": 87,
+      "area": 4637,
+      "bottom": 109,
+      "lift": 11,
+      "expected_lift": 11,
+      "interior_detail": 103.7,
+      "colour_count": 4087,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 20,
+        "top": 19,
+        "right": 21,
+        "bottom": 18,
+        "minimum": 18,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2096
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-75/yuki-jump-1.png#1,0",
+      "bbox": [
+        25,
+        16,
+        104,
+        97
+      ],
+      "body_height": 81,
+      "body_width": 79,
+      "area": 4134,
+      "bottom": 96,
+      "lift": 24,
+      "expected_lift": 24,
+      "interior_detail": 110.6,
+      "colour_count": 3652,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 16,
+        "right": 24,
+        "bottom": 31,
+        "minimum": 16,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2901
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-75/yuki-jump-1.png#2,0",
+      "bbox": [
+        13,
+        11,
+        109,
+        108
+      ],
+      "body_height": 97,
+      "body_width": 96,
+      "area": 5144,
+      "bottom": 107,
+      "lift": 13,
+      "expected_lift": 13,
+      "interior_detail": 102.34,
+      "colour_count": 4559,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 13,
+        "top": 11,
+        "right": 19,
+        "bottom": 20,
+        "minimum": 11,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1937
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-75/yuki/jump/attempt-1/yuki-jump.png",
+    "candidate": null,
+    "frames": "reports/codex-art-75/yuki/jump/attempt-1/frames",
+    "closeup": "reports/codex-art-75/yuki/jump/attempt-1/closeup.png",
+    "compare": "reports/codex-art-75/yuki/jump/attempt-1/compare.png"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "method": "ART-72의 4배 최근접 얼굴 표식. 제안 표식과 직접 검수한 유효 표식을 분리. 얼굴이 바로 선 프레임만 수치 판정하며 기울어진 피격은 육안 비교.",
+  "reference_face_width": 12.0,
+  "reference_eye_distance": 7.313029536382316,
+  "eye_limitation": null,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 85.261,
+          "y": 49.665,
+          "score": 0.748
+        },
+        {
+          "x": 92.535,
+          "y": 49.41,
+          "score": 0.747
+        },
+        {
+          "x": 81.5,
+          "y": 53.0,
+          "score": 0.851
+        },
+        {
+          "x": 93.5,
+          "y": 52.0,
+          "score": 0.94
+        }
+      ],
+      "eye_distance": 7.278,
+      "face_width": 12.0,
+      "eye_ratio": 0.995,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        69,
+        32,
+        0.788
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 80.287,
+          "y": 46.701,
+          "score": 0.686
+        },
+        {
+          "x": 87.625,
+          "y": 47.403,
+          "score": 0.728
+        },
+        {
+          "x": 76.5,
+          "y": 50.0,
+          "score": 0.91
+        },
+        {
+          "x": 88.5,
+          "y": 50.0,
+          "score": 0.979
+        }
+      ],
+      "eye_distance": 7.372,
+      "face_width": 12.0,
+      "eye_ratio": 1.008,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        65,
+        30,
+        0.727
+      ]
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 79.436,
+          "y": 41.691,
+          "score": 0.709
+        },
+        {
+          "x": 86.714,
+          "y": 41.759,
+          "score": 0.652
+        },
+        {
+          "x": 75.5,
+          "y": 44.0,
+          "score": 0.737
+        },
+        {
+          "x": 87.5,
+          "y": 44.0,
+          "score": 0.949
+        }
+      ],
+      "eye_distance": 7.278,
+      "face_width": 12.0,
+      "eye_ratio": 0.995,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        64,
+        24,
+        0.771
+      ]
+    }
+  ],
+  "excluded_frames": []
+}

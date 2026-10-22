@@ -1,0 +1,20 @@
+[
+  {
+    "stem": "nova_female",
+    "row": "victory",
+    "attempt": 1,
+    "expected_failure": true,
+    "message": "Error: source cell subject touches its bottom border in art/raw/motions-75/nova_female-victory-1.png#0,0; the drawing may cross into another cell and would be cut. Regenerate the whole motion with more margin",
+    "generation_raw": "art/raw/motions-75/nova_female-victory-1.png",
+    "interpretation": "하단 행 F4의 올린 주먹이 상단 행 셀 경계를 침범한다. 잘라 숨기지 않고 해당 시도를 실패로 보존."
+  },
+  {
+    "stem": "nova_female",
+    "row": "victory",
+    "attempt": 3,
+    "expected_failure": true,
+    "message": "Error: source cell subject touches its bottom border in art/raw/motions-75/nova_female-victory-3.png#0,0; the drawing may cross into another cell and would be cut. Regenerate the whole motion with more margin",
+    "generation_raw": "art/raw/motions-75/nova_female-victory-3.png",
+    "interpretation": "하단 행 F4의 올린 주먹이 상단 행 셀 경계를 침범한다. 잘라 숨기지 않고 해당 시도를 실패로 보존."
+  }
+]

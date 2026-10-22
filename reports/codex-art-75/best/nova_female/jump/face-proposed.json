@@ -1,0 +1,163 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      72.5,
+      59,
+      3,
+      4
+    ],
+    [
+      79.5,
+      58.5,
+      2,
+      3
+    ],
+    [
+      65.5,
+      62,
+      3,
+      4
+    ],
+    [
+      80,
+      62,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 72.636,
+      "y": 59.394,
+      "score": 1
+    },
+    {
+      "x": 79.931,
+      "y": 58.751,
+      "score": 1
+    },
+    {
+      "x": 65.5,
+      "y": 62,
+      "score": 1
+    },
+    {
+      "x": 80,
+      "y": 62,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.323283006958015,
+  "reference_face_width": 14.5,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 69.425,
+          "y": 43.041,
+          "score": 0.894
+        },
+        {
+          "x": 76.81,
+          "y": 42.073,
+          "score": 0.908
+        },
+        {
+          "x": 62.5,
+          "y": 46.0,
+          "score": 0.881
+        },
+        {
+          "x": 77.0,
+          "y": 45.0,
+          "score": 0.892
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        53,
+        23,
+        0.908
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 74.729,
+          "y": 39.839,
+          "score": 0.958
+        },
+        {
+          "x": 81.039,
+          "y": 39.132,
+          "score": 0.897
+        },
+        {
+          "x": 67.5,
+          "y": 43.0,
+          "score": 0.884
+        },
+        {
+          "x": 82.0,
+          "y": 42.0,
+          "score": 0.909
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        58,
+        20,
+        0.901
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 69.831,
+          "y": 36.417,
+          "score": 0.93
+        },
+        {
+          "x": 76.912,
+          "y": 35.521,
+          "score": 0.951
+        },
+        {
+          "x": 62.5,
+          "y": 39.0,
+          "score": 0.977
+        },
+        {
+          "x": 77.0,
+          "y": 39.0,
+          "score": 0.926
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        53,
+        16,
+        0.926
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    }
+  ]
+}

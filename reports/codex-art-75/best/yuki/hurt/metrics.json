@@ -1,0 +1,249 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-75/yuki-hurt-1.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.143,
+    "scale_by": "fixed:0.143",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      84,
+      88
+    ],
+    "body_width_range": [
+      82,
+      90
+    ],
+    "area_range": [
+      4544,
+      4902
+    ],
+    "area_spread_percent": 7.3,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4133,
+      4354
+    ],
+    "interior_detail_range": [
+      100.22,
+      104.36
+    ],
+    "interior_detail_mean": 102.97,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 85.73,
+    "interior_detail_ratio": 1.2011
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 85.73,
+        "colour_count": 4139,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 85.73,
+    "colour_count_range": [
+      4139,
+      4139
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-75/yuki-hurt-1.png#0,0",
+      "bbox": [
+        22,
+        33,
+        112,
+        121
+      ],
+      "body_height": 88,
+      "body_width": 90,
+      "area": 4902,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.33,
+      "colour_count": 4354,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 22,
+        "top": 33,
+        "right": 16,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.217
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-75/yuki-hurt-1.png#1,0",
+      "bbox": [
+        16,
+        37,
+        105,
+        121
+      ],
+      "body_height": 84,
+      "body_width": 89,
+      "area": 4544,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.22,
+      "colour_count": 4133,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 16,
+        "top": 37,
+        "right": 23,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.169
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-75/yuki-hurt-1.png#2,0",
+      "bbox": [
+        23,
+        33,
+        105,
+        121
+      ],
+      "body_height": 88,
+      "body_width": 82,
+      "area": 4705,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.36,
+      "colour_count": 4209,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 23,
+        "top": 33,
+        "right": 23,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2173
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-75/yuki/hurt/attempt-1/yuki-hurt.png",
+    "candidate": null,
+    "frames": "reports/codex-art-75/yuki/hurt/attempt-1/frames",
+    "closeup": "reports/codex-art-75/yuki/hurt/attempt-1/closeup.png",
+    "compare": "reports/codex-art-75/yuki/hurt/attempt-1/compare.png"
+  }
+}

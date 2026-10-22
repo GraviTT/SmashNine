@@ -1,0 +1,125 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      83.5,
+      63,
+      3,
+      4
+    ],
+    [
+      90.5,
+      62.5,
+      3,
+      4
+    ],
+    [
+      79.5,
+      66,
+      3,
+      4
+    ],
+    [
+      91.5,
+      66,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 83.407,
+      "y": 63.842,
+      "score": 1
+    },
+    {
+      "x": 90.683,
+      "y": 63.107,
+      "score": 1
+    },
+    {
+      "x": 79.5,
+      "y": 66,
+      "score": 1
+    },
+    {
+      "x": 91.5,
+      "y": 66,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.313029536382316,
+  "reference_face_width": 12.0,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 87.45,
+          "y": 76.663,
+          "score": 0.882
+        },
+        {
+          "x": 94.698,
+          "y": 76.001,
+          "score": 0.735
+        },
+        {
+          "x": 83.5,
+          "y": 79.0,
+          "score": 0.947
+        },
+        {
+          "x": 95.5,
+          "y": 79.0,
+          "score": 0.944
+        }
+      ],
+      "eye_distance": 7.278,
+      "face_width": 12.0,
+      "eye_ratio": 0.995,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        71,
+        59,
+        0.833
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 83.302,
+          "y": 59.693,
+          "score": 0.765
+        },
+        {
+          "x": 90.644,
+          "y": 59.129,
+          "score": 0.915
+        },
+        {
+          "x": 79.5,
+          "y": 62.0,
+          "score": 0.891
+        },
+        {
+          "x": 91.5,
+          "y": 62.0,
+          "score": 0.88
+        }
+      ],
+      "eye_distance": 7.364,
+      "face_width": 12.0,
+      "eye_ratio": 1.007,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        67,
+        42,
+        0.898
+      ]
+    }
+  ]
+}

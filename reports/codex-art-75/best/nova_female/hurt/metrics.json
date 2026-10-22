@@ -1,0 +1,249 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-75/nova_female-hurt-2.png",
+    "frames": null,
+    "grid": [
+      3,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 3,
+    "output_columns": 6,
+    "common_scale": 0.153,
+    "scale_by": "fixed:0.153",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      83,
+      94
+    ],
+    "body_width_range": [
+      67,
+      97
+    ],
+    "area_range": [
+      3333,
+      3449
+    ],
+    "area_spread_percent": 3.36,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2841,
+      3024
+    ],
+    "interior_detail_range": [
+      100.33,
+      106.87
+    ],
+    "interior_detail_mean": 104.36,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 95.3,
+    "interior_detail_ratio": 1.0951
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 95.3,
+        "colour_count": 2708,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 95.3,
+    "colour_count_range": [
+      2708,
+      2708
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-75/nova_female-hurt-2.png#0,0",
+      "bbox": [
+        7,
+        28,
+        99,
+        121
+      ],
+      "body_height": 93,
+      "body_width": 92,
+      "area": 3449,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.33,
+      "colour_count": 3024,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 7,
+        "top": 28,
+        "right": 29,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0528
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-75/nova_female-hurt-2.png#1,0",
+      "bbox": [
+        14,
+        38,
+        111,
+        121
+      ],
+      "body_height": 83,
+      "body_width": 97,
+      "area": 3351,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 105.87,
+      "colour_count": 2841,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 14,
+        "top": 38,
+        "right": 17,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1109
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-75/nova_female-hurt-2.png#2,0",
+      "bbox": [
+        30,
+        27,
+        97,
+        121
+      ],
+      "body_height": 94,
+      "body_width": 67,
+      "area": 3333,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 106.87,
+      "colour_count": 2909,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 30,
+        "top": 27,
+        "right": 31,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1214
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-75/nova_female/hurt/attempt-2/nova_female-hurt.png",
+    "candidate": null,
+    "frames": "reports/codex-art-75/nova_female/hurt/attempt-2/frames",
+    "closeup": "reports/codex-art-75/nova_female/hurt/attempt-2/closeup.png",
+    "compare": "reports/codex-art-75/nova_female/hurt/attempt-2/compare.png"
+  }
+}

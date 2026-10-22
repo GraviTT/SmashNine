@@ -1,0 +1,54 @@
+{
+  "method": "ART-72의 4배 최근접 얼굴 표식. 제안 표식과 직접 검수한 유효 표식을 분리. 얼굴이 바로 선 프레임만 수치 판정하며 기울어진 피격은 육안 비교.",
+  "reference_face_width": 14.5,
+  "reference_eye_distance": null,
+  "eye_limitation": "Nova 앵커의 반대쪽 눈은 앞머리에 가려져 눈 사이 거리를 정의할 수 없음.",
+  "frames": [
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 68.866,
+          "y": 53.72,
+          "score": 0.789
+        },
+        {
+          "x": 76.085,
+          "y": 52.558,
+          "score": 0.959
+        },
+        {
+          "x": 62.5,
+          "y": 57.0,
+          "score": 0.944
+        },
+        {
+          "x": 77.0,
+          "y": 56.0,
+          "score": 0.94
+        }
+      ],
+      "eye_distance": null,
+      "face_width": 14.5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        53,
+        34,
+        0.768
+      ],
+      "eye_excluded": "Anchor far eye is occluded by bangs; patch there is not an eye."
+    }
+  ],
+  "excluded_frames": [
+    {
+      "frame": 1,
+      "reason": "피격으로 얼굴이 뒤로 기울고 시선이 위로 향한다. 바로 선 얼굴과의 눈/가로 폭 정합은 유효하지 않아 수치 판정에서 제외. 머리·얼굴·의상은 정확한 4배 판에서 육안 비교."
+    },
+    {
+      "frame": 2,
+      "reason": "피격으로 얼굴이 뒤로 기울고 시선이 위로 향한다. 바로 선 얼굴과의 눈/가로 폭 정합은 유효하지 않아 수치 판정에서 제외. 머리·얼굴·의상은 정확한 4배 판에서 육안 비교."
+    }
+  ]
+}
