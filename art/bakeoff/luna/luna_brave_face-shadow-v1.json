@@ -1,0 +1,42 @@
+{
+  "note": "현재 중립 얼굴을 내장 이미지 도구로 직접 편집한 그림자 보스 후보. 생성 RGB를 256px로 축소·정수 정렬한 뒤 원본 알파에 맞췄다. 투명 경계의 빈 RGB만 주변 생성 픽셀로 연장했다. 그림자 색·눈·표정은 코드로 그리지 않았다. 후보 전용이며 게임에 연결하지 않았다.",
+  "expression": "shadow",
+  "edited_from": "smash-nine-prototype/assets/art/luna/luna_brave_face.png",
+  "source_raw": "art/raw/faces-80/luna_brave-try1.png",
+  "selected_try": 1,
+  "tries": 1,
+  "eye_colour": "라벤더 보라색",
+  "review_status": "candidate",
+  "delivered": true,
+  "candidate_only": true,
+  "offset": [
+    0,
+    -1
+  ],
+  "normalization": "LANCZOS 256x256, integer translation, generated-edge RGB padding, original alpha",
+  "measurements": {
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "alpha_changed_pixels": 0,
+    "outside_neutral_alpha_nonzero": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "alpha_padding_pixels": 779,
+    "alpha_padding_radius": 3,
+    "alignment": {
+      "offset": [
+        0,
+        -1
+      ],
+      "score": 0.2619836102339533,
+      "roi_gradient_correlation": 0.7878499792076827,
+      "alpha_mae": 0.04983358944163602
+    },
+    "alignment_roi_pixels": 67,
+    "original_sha256": "dd77e6c9ced8c5ee6daa7badef1f15ef1dd0c7c85c0155cac7434cf72337ac95",
+    "copied_neutral_sha256": "dd77e6c9ced8c5ee6daa7badef1f15ef1dd0c7c85c0155cac7434cf72337ac95",
+    "candidate_sha256": "2c79b63160e6572b59f90a8683817564e562ee742c526615afcef25c664d8287"
+  }
+}
