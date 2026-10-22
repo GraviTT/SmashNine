@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const dir = path.dirname(fileURLToPath(import.meta.url));
+const { rows } = JSON.parse(fs.readFileSync(path.join(dir, 'gate-geometry.json'), 'utf8'));
+const y = world => 100 + (world - 3000) * 0.66;
+const coord = s => s.match(/-?[\d.]+/g).map(Number);
+const pieces = [`<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="810" viewBox="0 0 1240 810"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#f0a64a"/></marker></defs><rect width="1240" height="810" fill="#101927"/><g font-family="Malgun Gothic,Noto Sans KR,sans-serif" fill="#e6edf5"><text x="36" y="40" font-size="25" font-weight="bold">달빛 문 출구 · 실제 출현과 120프레임 후 착지</text><text x="36" y="74" font-size="15" fill="#aebbd0">Frey / 경기 시드 2104 / 60 FPS / 실제 Godot 물리 측정의 도식화 (실행 화면 아님)</text>`];
+for (const world of [3100, 3300, 3500, 3677]) pieces.push(`<path d="M70 ${y(world)} H1195" stroke="#324052" stroke-dasharray="3 7"/><text x="9" y="${y(world)+5}" font-size="13" fill="#91a4bc">${world}</text>`);
+pieces.push(`<path d="M70 ${y(3677)} H1195" stroke="#5fa3e8" stroke-width="9"/><text x="83" y="${y(3677)+29}" font-size="14" fill="#9fc8f6">주 바닥 y=3677</text>`);
+rows.forEach((r, i) => {
+  const x = 125 + i * 163;
+  const [gx, gy] = coord(r.destination);
+  const [, fy] = coord(r.final_position);
+  const top = r.nearest_platform_top_y;
+  if (top < 3600) pieces.push(`<path d="M${x-52} ${y(top)} H${x+52}" stroke="#5fa3e8" stroke-width="10"/>`);
+  pieces.push(`<text x="${x}" y="${y(top)-16}" text-anchor="middle" font-size="13" fill="#9fc8f6">윗면 ${top}</text>`);
+  if (r.max_drop_120_frames > 0) pieces.push(`<path d="M${x} ${y(gy)+11} V${y(fy)-12}" stroke="#f0a64a" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#arrow)"/>`);
+  pieces.push(`<circle cx="${x}" cy="${y(gy)}" r="8" fill="#f0a64a"/><text x="${x}" y="${y(gy)-15}" text-anchor="middle" font-size="13" fill="#ffd39b">출구 ${gy}</text><circle cx="${x}" cy="${y(fy)}" r="5" fill="#69d6ac"/><text x="${x}" y="665" text-anchor="middle" font-size="15">x=${gx}</text><text x="${x}" y="694" text-anchor="middle" font-size="15" fill="#ffd39b">${r.max_drop_120_frames > 0 ? '↓ '+r.max_drop_120_frames.toFixed(1)+'px' : '내부 21px'}</text>`);
+});
+pieces.push(`<text x="36" y="748" font-size="16">파랑: 실제 발판 윗면　 주황: 문 출구 발 기준점　 초록: 120프레임 뒤 발 위치</text><text x="36" y="780" font-size="15" fill="#aebbd0">상층 5곳은 주 바닥으로 낙하. 나머지 2곳은 바닥 내부에서 충돌 보정. 링아웃·영구 끼임 0건.</text></g></svg>`);
+fs.writeFileSync(path.join(dir, 'gate-measurements.svg'), pieces.join('\n')+'\n');
+console.log('Created gate-measurements.svg from 7 measured rows.');

@@ -1,0 +1,87 @@
+{
+	"failed_expected_monster_use": true,
+	"rows": [
+		{
+			"bot_distance_to_exit": 2.0,
+			"bot_still_at_exit": 2.0,
+			"case_name": "moon_gate",
+			"gates": [
+				"(960.0, 3415.0)",
+				"(1425.0, 3700.0)"
+			],
+			"human_distance_to_exit": 2.0,
+			"human_still_at_exit": 2.0,
+			"monster_distance_to_exit": 545.389770507813,
+			"registered": [
+				true,
+				true,
+				false
+			],
+			"seed": 2104
+		},
+		{
+			"case_name": "forge_belt",
+			"delta_x_human_bot_monster": [
+				45.0,
+				45.0,
+				0.0
+			],
+			"direction": 1.0,
+			"on_floor": [
+				true,
+				true,
+				true
+			],
+			"seconds": 0.5,
+			"seed": 2104
+		},
+		{
+			"case_name": "gate_floor_samples",
+			"points": 200,
+			"seeds": "0..99",
+			"spot_checks": [
+				{
+					"feet_minus_surface": 23.0,
+					"hit": "(1425.0, 3677.0)",
+					"point": "(1425.0, 3700.0)"
+				},
+				{
+					"feet_minus_surface": 23.0,
+					"hit": "(495.0, 3677.0)",
+					"point": "(495.0, 3700.0)"
+				},
+				{
+					"feet_minus_surface": 23.0,
+					"hit": "(1425.0, 3677.0)",
+					"point": "(1425.0, 3700.0)"
+				},
+				{
+					"feet_minus_surface": 999.0,
+					"hit": "(inf, inf)",
+					"point": "(315.0, 3520.0)"
+				},
+				{
+					"feet_minus_surface": 999.0,
+					"hit": "(inf, inf)",
+					"point": "(960.0, 3415.0)"
+				},
+				{
+					"feet_minus_surface": 23.0,
+					"hit": "(1425.0, 3677.0)",
+					"point": "(1425.0, 3700.0)"
+				},
+				{
+					"feet_minus_surface": 23.0,
+					"hit": "(495.0, 3677.0)",
+					"point": "(495.0, 3700.0)"
+				},
+				{
+					"feet_minus_surface": 999.0,
+					"hit": "(inf, inf)",
+					"point": "(1305.0, 3315.0)"
+				}
+			],
+			"unsafe": 141
+		}
+	]
+}
