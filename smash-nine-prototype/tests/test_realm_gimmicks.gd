@@ -25,6 +25,7 @@ func _run() -> void:
 	await _test_belts_carry_and_reverse()
 	await _test_belts_stop_when_unplayable()
 	await _test_gates_carry_once()
+	_test_spots_stand_on_platform_tops()
 	arena.queue_free()
 	await process_frame
 	if failed:
@@ -153,3 +154,21 @@ func _test_gates_carry_once() -> void:
 	fighter.queue_free()
 	hazards.queue_free()
 	await process_frame
+
+## Moon gate exits and bush bottoms are stand points: each lies on the top of a platform of its
+## realm. Gate spots once held platform centres, so a fighter leaving an upper gate came out
+## inside the platform and fell to the floor below (CODEX-QA-21 G1).
+func _test_spots_stand_on_platform_tops() -> void:
+	for i in layout.realm_count():
+		var realm: Dictionary = layout.get_realm(i)
+		var hazard: Dictionary = realm.get("hazard", {})
+		if not str(hazard.get("type", "")) in ["gates", "bushes"]:
+			continue
+		for spot: Vector2 in hazard.get("spots", []):
+			var on_top := false
+			for platform_data: Dictionary in realm.platforms:
+				var top: float = platform_data.center.y - platform_data.size.y * 0.5
+				if absf(spot.x - platform_data.center.x) <= platform_data.size.x * 0.5 and absf(spot.y - top) <= 1.0:
+					on_top = true
+			if not on_top:
+				_fail("%s %s spot %s should lie on a platform top" % [realm.name, hazard.type, spot])

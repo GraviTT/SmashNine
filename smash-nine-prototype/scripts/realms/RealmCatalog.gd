@@ -101,7 +101,7 @@ static func build_maps() -> Array:
 		"theme": "moon_bridge",
 		"identity": "Long sightlines",
 		"monsters": {"melee": "alfheim_moon_stag", "ranged": "alfheim_moon_moth"},
-		"hazard": {"type": "gates", "text": "Moon gates", "warn_text": "Moon gates are opening - step in to cross the realm", "interval": [9.0, 12.0], "warning": 1.2, "active": 6.0, "radius": 34.0, "spots": [Vector2(210, 420), Vector2(1070, 420), Vector2(640, 315), Vector2(410, 215), Vector2(870, 215), Vector2(330, 600), Vector2(950, 600)]},
+		"hazard": {"type": "gates", "text": "Moon gates", "warn_text": "Moon gates are opening - step in to cross the realm", "interval": [9.0, 12.0], "warning": 1.2, "active": 6.0, "radius": 34.0, "spots": [Vector2(210, 404), Vector2(1070, 404), Vector2(640, 300), Vector2(410, 201), Vector2(870, 201), Vector2(330, 577), Vector2(950, 577)]},
 		"art": {"dir": "res://assets/art/realm_alfheim", "cap_main": 46, "cap_sub": 32, "dim": 0.38},
 		"background": Color(0.035, 0.035, 0.09),
 		"accent": Color(0.7, 0.82, 1.0),
