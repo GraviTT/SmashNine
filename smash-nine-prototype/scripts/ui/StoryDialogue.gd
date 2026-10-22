@@ -2,6 +2,14 @@ extends "res://scripts/ui/FrontendMenu.gd"
 ## Bottom dialogue presentation. Real-time typing is independent of Engine.time_scale.
 signal finished
 const STORY := preload("res://scripts/story/StoryCatalog.gd")
+## ART-70 presentation art: a 9-slice box frame and name plate, and full-screen scene pictures
+## (a line's optional third field {"cg": name} shows assets/art/story/cg_<name>.png behind the box).
+const FRAME_ART := "res://assets/art/story/dialogue_frame.png"
+const FRAME_MARGIN := 24
+const PLATE_ART := "res://assets/art/story/name_plate.png"
+const PLATE_MARGIN := 12
+const CG_ART := "res://assets/art/story/cg_%s.png"
+const BOX := Rect2(36, 472, 1208, 230)
 var lines: Array = []
 var line_index := 0
 var hero_id := "frey"
@@ -10,6 +18,8 @@ var line_label: Label
 var speaker_label: Label
 var left_face: TextureRect
 var right_face: TextureRect
+var cg_picture: TextureRect
+var name_plate: Control
 var _characters := 0.0
 var _last_tick := 0
 
@@ -20,11 +30,15 @@ func play(scene_lines: Array, hero: String, rival: String, hero_body: String) ->
 	lines = scene_lines
 	line_index = 0
 	_clear("story_dialogue")
-	_panel(Rect2(36, 472, 1208, 230), 0.98)
+	cg_picture = _picture(null, Rect2(Vector2.ZERO, SIZE))
+	cg_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	cg_picture.visible = false
+	_box_frame()
 	left_face = _picture(ART.character_portrait(hero_id, body), Rect2(54, 496, 142, 164))
 	right_face = _picture(null, Rect2(1084, 496, 142, 164))
-	speaker_label = _label("", Rect2(220, 488, 840, 34), 24, GOLD)
-	line_label = _label("", Rect2(220, 532, 840, 104), 24)
+	name_plate = _nine_patch(PLATE_ART, Rect2(212, 452, 200, 40), PLATE_MARGIN)
+	speaker_label = _label("", Rect2(220, 455, 840, 34), 22, GOLD)
+	line_label = _label("", Rect2(220, 512, 840, 120), 24)
 	_button("Next", Rect2(936, 648, 130, 42), "dialogue_next")
 	_button("Skip", Rect2(1080, 648, 146, 42), "dialogue_skip")
 	_label("J / Enter: next    Esc: skip", Rect2(220, 662, 700, 24), 15, DIM)
@@ -50,13 +64,63 @@ func _show_line() -> void:
 	right_face.modulate = Color.WHITE if not hero_speaks else Color(0.35, 0.35, 0.45)
 	speaker_label.text = tr("Narrator") if narrator else tr(str(_roster[id].name))
 	speaker_label.add_theme_color_override("font_color", DIM if narrator else _roster[id].color)
-	speaker_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER if narrator else (HORIZONTAL_ALIGNMENT_LEFT if hero_speaks else HORIZONTAL_ALIGNMENT_RIGHT)
+	_place_name_plate(narrator, hero_speaks)
 	line_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER if narrator else HORIZONTAL_ALIGNMENT_LEFT
+	var extra: Dictionary = line[2] if line.size() > 2 and line[2] is Dictionary else {}
+	var cg: Texture2D = ART.original_texture(CG_ART % str(extra.cg)) if extra.has("cg") else null
+	cg_picture.texture = cg
+	cg_picture.visible = cg != null
 	var text := tr(STORY.resolve_id(str(line[1]), hero_id, rival_id))
 	line_label.text = text % tr(str(_roster[hero_id].name)) if text.contains("%s") else text
 	line_label.visible_characters = 0
 	_characters = 0.0
 	_last_tick = Time.get_ticks_usec()
+
+## The plate sits on the box's top edge over the speaker's side (centred for the narrator).
+func _place_name_plate(narrator: bool, hero_speaks: bool) -> void:
+	var font: Font = speaker_label.get_theme_font("font")
+	var width := clampf(font.get_string_size(speaker_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, 22).x + 56.0, 160.0, 420.0)
+	var x := SIZE.x * 0.5 - width * 0.5 if narrator else (212.0 if hero_speaks else 1068.0 - width)
+	name_plate.position = Vector2(x, 452)
+	name_plate.size = Vector2(width, 40)
+	speaker_label.position = Vector2(x, 455)
+	speaker_label.size = Vector2(width, 34)
+	speaker_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+
+## A dark backing under the ART-70 frame; the plain panel when that art is off (F2) or missing.
+func _box_frame() -> void:
+	if ART.original_texture(FRAME_ART) == null:
+		_panel(BOX, 0.98)
+		return
+	var backing := ColorRect.new()
+	backing.position = BOX.position + Vector2(6, 6)
+	backing.size = BOX.size - Vector2(12, 12)
+	backing.color = Color(INK, 0.95)
+	backing.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(backing)
+	_nine_patch(FRAME_ART, BOX, FRAME_MARGIN)
+
+func _nine_patch(path: String, rect: Rect2, margin: int) -> Control:
+	var texture := ART.original_texture(path)
+	var node: Control
+	if texture == null:
+		var plain := ColorRect.new()
+		plain.color = Color(INK, 0.95)
+		node = plain
+	else:
+		var patch := NinePatchRect.new()
+		patch.texture = texture
+		patch.patch_margin_left = margin
+		patch.patch_margin_top = margin
+		patch.patch_margin_right = margin
+		patch.patch_margin_bottom = margin
+		patch.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		node = patch
+	node.position = rect.position
+	node.size = rect.size
+	node.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(node)
+	return node
 
 func _process(_delta: float) -> void:
 	if not visible or not is_instance_valid(line_label):

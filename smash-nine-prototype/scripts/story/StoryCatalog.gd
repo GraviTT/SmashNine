@@ -59,6 +59,17 @@ static func _dialogue(number: int) -> Dictionary:
 			lines.post = [["rival", prefix + ".post.1"], ["rival", prefix + ".post.2"], ["hero", "story.voice.{hero}.victory"]]
 			lines.home_pre = [["hero", prefix + ".home.pre.1"], ["hero", prefix + ".home.pre.2"]]
 			lines.home_post = [["hero", prefix + ".home.post.1"], ["hero", prefix + ".home.post.2"]]
+	# Scene pictures (ART-70, StoryDialogue) behind the prologue, the opened root seal and the calm heart.
+	match number:
+		1:
+			for index in 3:
+				lines.pre[index].append({"cg": "prologue"})
+		8:
+			for line: Array in lines.post + lines.home_post:
+				line.append({"cg": "root"})
+		9:
+			for line: Array in lines.post:
+				line.append({"cg": "epilogue"})
 	return lines
 
 static func stage(number: int) -> Dictionary:
