@@ -1,0 +1,36 @@
+{
+  "note": "현재 무표정 초상화를 내장 이미지 도구로 편집한 뒤, 얼굴 윤곽·앞머리로 정수 정렬하고 눈·눈썹·입(필요한 볼 포함)만 Pillow 마스크로 합성한 스토리 대화용 후보. 마스크 밖 RGBA와 전체 알파는 무표정 원본과 완전히 같다. 게임 연결은 하지 않았다.",
+  "expression": "happy",
+  "edited_from": "smash-nine-prototype/assets/art/luna/luna_face.png",
+  "source_raw": "art/raw/faces-73/luna-happy-try1.png",
+  "selected_try": 1,
+  "tries": 1,
+  "review_status": "candidate",
+  "delivered": true,
+  "candidate_only": true,
+  "size_normalization": "Pillow LANCZOS 256x256 RGBA before integer alignment; no feature drawing",
+  "composite": {
+    "mask_bbox": [
+      111,
+      78,
+      163,
+      128
+    ],
+    "feather": 4,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "measurements": {
+    "outside_mask_changed_pixels": 0,
+    "alpha_changed_pixels": 0,
+    "seam_band_pixels": 746,
+    "seam_edit_neutral_rgb_mae": 10.0693,
+    "seam_composite_neutral_rgb_mae": 5.5331,
+    "seam_edit_neutral_rgb_p95": 54.75,
+    "mask_pixels": 1756,
+    "changed_pixels": 1691
+  },
+  "redone_this_pass": false
+}

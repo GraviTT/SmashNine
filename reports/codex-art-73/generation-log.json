@@ -1,0 +1,381 @@
+[
+  {
+    "form": "frey",
+    "expression": "happy",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/frey_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/frey-happy-try1.png",
+    "selected_for_review": false,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Frey dialogue portrait, not a style reference. Produce ONE square 256x256 RGBA portrait, same exact image and framing with only the facial expression changed to HAPPY: a warm visible small open smile and softly smiling bright blue eyes, relaxed eyebrows. Preserve the exact original pixels outside eyes, eyebrows and mouth as faithfully as possible: same blonde strands and silhouette, winged silver helmet, head position and profile angle, nose and jaw, ears, blue scarf, armor, shield, palette, outline weight and lighting. No head tilt, no reframing, no redesign, no zoom, no new accessories, no text. The face occupies approximately x=86..151 y=94..143 of the 256px source. All edits confined to this skin region. Real transparent background, same alpha silhouette. This is an expression edit of this existing person.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "frey",
+    "expression": "happy",
+    "attempt": 2,
+    "edit_targets": [
+      "art/raw/faces-73/sources/frey_face-size1254.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/frey-happy-try2.png",
+    "selected_for_review": true,
+    "prompt": "Use case: precise-object-edit, identity-preserve. This is an EDIT, not a recreation. Target is the attached Frey neutral portrait at 1254x1254 (a plain size-normalized copy of the original game face). Output at exactly the SAME 1254x1254 canvas. Keep the original slightly soft low-resolution texture, all existing pixels, all transparency, framing, hair, helmet, armor, scarf, shield, silhouette, original colors, original lighting and head angle unchanged. DO NOT enhance, sharpen, redraw, clean up, repaint, regenerate details or alter anything outside eyes/eyebrows/mouth. Make the smallest local edit possible: ONLY turn her mouth into a warm small open HAPPY smile and soften her brows/blue eyes into a smile. Preserve nose, jaw, skin shading and face identity. No zoom or tilt, no text, no background. Copy the existing background alpha exactly. The only permitted image changes are eyes/brows/mouth in the existing face.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "frey",
+    "expression": "happy",
+    "attempt": 3,
+    "edit_targets": [
+      "art/raw/faces-73/sources/frey_face-size1254.png"
+    ],
+    "supporting_mask": "art/raw/faces-73/sources/frey-face-check-mask.png",
+    "raw_output": "art/raw/faces-73/frey-happy-try3.png",
+    "selected_for_review": false,
+    "prompt": "Use case: precise-object-edit, identity-preserve. Input 1 is the exact Frey neutral portrait EDIT TARGET at 1254x1254, input 2 is a location mask (support only, NOT output art): WHITE is the face region allowed to change, BLACK must stay exactly unchanged. Inpaint only the eye/eyebrow and mouth features within the white area: give her a warm small open HAPPY smile, relaxed brows and softly smiling blue eyes. Preserve all other pixels from input 1, including its original slightly soft texture, alpha transparency and silhouette, hair strands, helmet, scarf, armor, shield, original skin shading, nose, jaw, colors, lighting, head angle, exact framing. Do not redraw or sharpen the rest, do not zoom/tilt. Copy the alpha unchanged. Output one 1254x1254 RGBA portrait on the same real transparent background. Never draw the mask, no text.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "frey",
+    "expression": "angry",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/frey_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/frey-angry-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Frey dialogue portrait, not a style reference. Produce ONE square 256x256 RGBA portrait, same exact image and framing with only the facial expression changed to ANGRY: brows sharply lowered toward the nose, narrowed blue eyes in an intense furious glare, mouth open in an angry shout showing upper teeth. Clearly anger, never a smile. Preserve the exact original pixels outside eyes, eyebrows and mouth as faithfully as possible: same blonde strands and silhouette, winged silver helmet, head position and profile angle, nose and jaw, ears, blue scarf, armor, shield, palette, outline weight and lighting. No head tilt, no reframing, no redesign, no zoom, no new accessories, no text. The face occupies approximately x=86..151 y=94..143 of the 256px source. All edits confined to this skin region. Real transparent background, same alpha silhouette. This is an expression edit of this existing person.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "frey",
+    "expression": "hurt",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/frey_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/frey-hurt-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Frey dialogue portrait, not a style reference. Produce ONE square 256x256 RGBA portrait, same exact image and framing with only the facial expression changed to HURT: a pained wince, narrowed blue eyes, eyebrows raised toward the middle in distress, a small downturned partly open mouth with clenched teeth. Clearly hurting, weary and sad, never smiling or furious. No blood, no bruise, no scratch needed. Preserve the exact original pixels outside eyes, eyebrows and mouth as faithfully as possible: same blonde strands and silhouette, winged silver helmet, head position and profile angle, nose and jaw, ears, blue scarf, armor, shield, palette, outline weight and lighting. No head tilt, no reframing, no redesign, no zoom, no new accessories, no text. The face occupies approximately x=86..151 y=94..143 of the 256px source. All edits confined to this skin region. Real transparent background, same alpha silhouette. This is an expression edit of this existing person.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "luna",
+    "expression": "happy",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/luna_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/luna-happy-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: current Luna neutral dialogue portrait, not a style reference. Create ONE expression edit of this exact image. Expression HAPPY: broad warm smile, eyes gently closed in upward smiling arcs, eyebrows relaxed and joyful. This must be clearly happier than the original slightly open-mouth neutral. Keep the original canvas and exact framing, head angle and position, all pink hair strands and silhouette, purple and pink bow with gold star, ears, nose and jaw, costume, hands, wand, gold star jewelry, palette, outline weight and lighting unchanged. Change ONLY eyes, eyebrows and mouth within the existing face. No head tilt, no crop, no reframing, no redesign, no extra objects, no text. Square 256x256 RGBA with real transparent background and the original alpha silhouette. A facial expression edit only.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "luna",
+    "expression": "angry",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/luna_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/luna-angry-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: current Luna neutral dialogue portrait, not a style reference. Create ONE expression edit of this exact image. Expression ANGRY: sharply lowered knitted eyebrows, narrowed intense pink eyes in a determined furious glare, mouth open in an angry shout with upper teeth. Clearly angry, no smiling or blushing. Keep the original canvas and exact framing, head angle and position, all pink hair strands and silhouette, purple and pink bow with gold star, ears, nose and jaw, costume, hands, wand, gold star jewelry, palette, outline weight and lighting unchanged. Change ONLY eyes, eyebrows and mouth within the existing face. No head tilt, no crop, no reframing, no redesign, no extra objects, no text. Square 256x256 RGBA with real transparent background and the original alpha silhouette. A facial expression edit only.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "luna",
+    "expression": "hurt",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/luna_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/luna-hurt-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: current Luna neutral dialogue portrait, not a style reference. Create ONE expression edit of this exact image. Expression HURT: a pained sad wince, pink eyes half closed, eyebrows tilted upward toward the middle in distress, mouth small and downturned, partly open with clenched teeth. Clearly in pain and weary, not smiling or furious. No blood or tears necessary. Keep the original canvas and exact framing, head angle and position, all pink hair strands and silhouette, purple and pink bow with gold star, ears, nose and jaw, costume, hands, wand, gold star jewelry, palette, outline weight and lighting unchanged. Change ONLY eyes, eyebrows and mouth within the existing face. No head tilt, no crop, no reframing, no redesign, no extra objects, no text. Square 256x256 RGBA with real transparent background and the original alpha silhouette. A facial expression edit only.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "luna_brave",
+    "expression": "happy",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/luna_brave_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/luna_brave-happy-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: the attached current Brave Luna dialogue portrait, not a style reference. Create ONE expression edit of this exact person. Expression HAPPY: a joyful warm smile, both eyes closed in upward smiling arcs and relaxed eyebrows; clearly happier than her original neutral slightly open mouth. Keep exact canvas and framing, head position and angle, all pink hair and high ponytail silhouette, purple bow and gold star, ears, nose and jaw, purple gold armored gloves, arms, stars, white purple costume, palette, line weight and lighting. Change ONLY eyes, eyebrows and mouth inside her existing face. No head tilt, no reframing, no costume or pose changes, no extra symbols, no text. One square 256x256 RGBA portrait, real transparent background and original alpha silhouette.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "luna_brave",
+    "expression": "angry",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/luna_brave_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/luna_brave-angry-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: the attached current Brave Luna dialogue portrait, not a style reference. Create ONE expression edit of this exact person. Expression ANGRY: sharply lowered knitted eyebrows, narrowed fierce pink eyes and mouth open in a furious battle shout with upper teeth. Clearly anger, never smiling. Keep exact canvas and framing, head position and angle, all pink hair and high ponytail silhouette, purple bow and gold star, ears, nose and jaw, purple gold armored gloves, arms, stars, white purple costume, palette, line weight and lighting. Change ONLY eyes, eyebrows and mouth inside her existing face. No head tilt, no reframing, no costume or pose changes, no extra symbols, no text. One square 256x256 RGBA portrait, real transparent background and original alpha silhouette.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "luna_brave",
+    "expression": "hurt",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/luna_brave_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/luna_brave-hurt-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: the attached current Brave Luna dialogue portrait, not a style reference. Create ONE expression edit of this exact person. Expression HURT: a weary pained wince, pink eyes half closed, inner eyebrows raised in distress, a small downturned partly open mouth with clenched teeth. Clearly in pain and sad, not smiling or furious; no blood or bruises. Keep exact canvas and framing, head position and angle, all pink hair and high ponytail silhouette, purple bow and gold star, ears, nose and jaw, purple gold armored gloves, arms, stars, white purple costume, palette, line weight and lighting. Change ONLY eyes, eyebrows and mouth inside her existing face. No head tilt, no reframing, no costume or pose changes, no extra symbols, no text. One square 256x256 RGBA portrait, real transparent background and original alpha silhouette.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "yuki",
+    "expression": "happy",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/yuki_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/yuki-happy-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Yuki dialogue portrait. Edit this exact image, not a new rendition. Expression HAPPY: warm gentle open smile and eyes closed in upward smiling arcs, relaxed eyebrows. Change only her eyes, brows and mouth. Preserve exact canvas, framing, profile angle, head position, dark hair strands and silhouette, hair bun, red white beads and skull charm, ribbons, earrings, nose and jaw, red black white costume, arm, hand holding the talisman, other hand with fan, all accessories, palette, shading, outline weight and lighting. No head tilt, no crop, no pose changes, no new symbols, no text. One square 256x256 RGBA image, genuinely transparent background and original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "yuki",
+    "expression": "angry",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/yuki_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/yuki-angry-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Yuki dialogue portrait. Edit this exact image, not a new rendition. Expression ANGRY: sharply lowered knitted eyebrows, narrowed intense red eyes in a furious determined glare and mouth open in an angry shout showing upper teeth. Clearly anger, never smiling. Change only her eyes, brows and mouth. Preserve exact canvas, framing, profile angle, head position, dark hair strands and silhouette, hair bun, red white beads and skull charm, ribbons, earrings, nose and jaw, red black white costume, arm, hand holding the talisman, other hand with fan, all accessories, palette, shading, outline weight and lighting. No head tilt, no crop, no pose changes, no new symbols, no text. One square 256x256 RGBA image, genuinely transparent background and original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "yuki",
+    "expression": "hurt",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/yuki_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/yuki-hurt-try1.png",
+    "selected_for_review": false,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Yuki dialogue portrait. Edit this exact image, not a new rendition. Expression HURT: a pained weary wince, half closed red eyes with narrowed lids, eyebrows raised at the inner ends in distress, a small downturned partly open mouth with clenched teeth. Clearly hurting and sad, not smiling or furious. No blood, no large tears. Change only her eyes, brows and mouth. Preserve exact canvas, framing, profile angle, head position, dark hair strands and silhouette, hair bun, red white beads and skull charm, ribbons, earrings, nose and jaw, red black white costume, arm, hand holding the talisman, other hand with fan, all accessories, palette, shading, outline weight and lighting. No head tilt, no crop, no pose changes, no new symbols, no text. One square 256x256 RGBA image, genuinely transparent background and original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "nova_male",
+    "expression": "happy",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/nova_male_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/nova_male-happy-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Nova male dialogue portrait. Edit this EXACT man and image. Expression HAPPY: a warm confident open smile with gently relaxed brows and softly smiling bright cyan eyes. Change only eyes, eyebrows and mouth. Preserve exact original canvas and framing, head position and profile angle, spiky navy hair silhouette and cyan edge light, ears, nose, jaw, silver black armor, circular cyan cores, shoulder plates, arm pose, gold fittings, palette, line weight, shading and lighting. No head tilt, no crop, no reframing, no redesign or extra objects, no text. One square 256x256 RGBA image, genuinely transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "nova_male",
+    "expression": "angry",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/nova_male_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/nova_male-angry-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Nova male dialogue portrait. Edit this EXACT man and image. Expression ANGRY: sharply lowered knitted eyebrows, narrowed intense cyan eyes, mouth open in a furious shout showing upper teeth. Clearly anger, never a smile or cocky grin. Change only eyes, eyebrows and mouth. Preserve exact original canvas and framing, head position and profile angle, spiky navy hair silhouette and cyan edge light, ears, nose, jaw, silver black armor, circular cyan cores, shoulder plates, arm pose, gold fittings, palette, line weight, shading and lighting. No head tilt, no crop, no reframing, no redesign or extra objects, no text. One square 256x256 RGBA image, genuinely transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "nova_male",
+    "expression": "hurt",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/nova_male_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/nova_male-hurt-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Nova male dialogue portrait. Edit this EXACT man and image. Expression HURT: a pained weary wince, half closed cyan eyes with narrowed lids, eyebrows raised at the inner ends in distress, small downturned partly open mouth with clenched teeth. Clearly hurting and sad, not smiling or furious. No blood or large tears. Change only eyes, eyebrows and mouth. Preserve exact original canvas and framing, head position and profile angle, spiky navy hair silhouette and cyan edge light, ears, nose, jaw, silver black armor, circular cyan cores, shoulder plates, arm pose, gold fittings, palette, line weight, shading and lighting. No head tilt, no crop, no reframing, no redesign or extra objects, no text. One square 256x256 RGBA image, genuinely transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "nova_female",
+    "expression": "happy",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/nova_female_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/nova_female-happy-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Nova female dialogue portrait. Edit this EXACT woman and image. Expression HAPPY: a warm confident open smile, gently relaxed brows and softly smiling bright cyan eyes. Change only eyes, eyebrows and mouth. Preserve exact original canvas and framing, head position and profile angle, swept navy hair strands and silhouette and cyan edge light, ears, nose, jaw, silver black armor, circular cyan cores, shoulder plates, raised clenched fist, gold fittings, palette, line weight, shading and lighting. No head tilt, no crop, no reframing, no redesign or extra objects, no text. One square 256x256 RGBA image, genuinely transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "nova_female",
+    "expression": "angry",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/nova_female_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/nova_female-angry-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Nova female dialogue portrait. Edit this EXACT woman and image. Expression ANGRY: sharply lowered knitted eyebrows, narrowed intense cyan eyes, mouth open in a furious shout showing upper teeth. Clearly anger, never smiling or grinning. Change only eyes, eyebrows and mouth. Preserve exact original canvas and framing, head position and profile angle, swept navy hair strands and silhouette and cyan edge light, ears, nose, jaw, silver black armor, circular cyan cores, shoulder plates, raised clenched fist, gold fittings, palette, line weight, shading and lighting. No head tilt, no crop, no reframing, no redesign or extra objects, no text. One square 256x256 RGBA image, genuinely transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "nova_female",
+    "expression": "hurt",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/nova_female_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/nova_female-hurt-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Nova female dialogue portrait. Edit this EXACT woman and image. Expression HURT: a pained weary wince, half closed cyan eyes with narrowed lids, eyebrows raised at the inner ends in distress, a small downturned partly open mouth with clenched teeth. Clearly hurting and sad, not smiling or furious. No blood or large tears. Change only eyes, eyebrows and mouth. Preserve exact original canvas and framing, head position and profile angle, swept navy hair strands and silhouette and cyan edge light, ears, nose, jaw, silver black armor, circular cyan cores, shoulder plates, raised clenched fist, gold fittings, palette, line weight, shading and lighting. No head tilt, no crop, no reframing, no redesign or extra objects, no text. One square 256x256 RGBA image, genuinely transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "rio_male",
+    "expression": "happy",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/rio_male_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/rio_male-happy-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Rio male dialogue portrait. Edit this exact man and existing image. Expression HAPPY: a warm confident open smile, relaxed eyebrows, softly smiling bright blue eyes. Change ONLY eyes, eyebrows and mouth. Preserve exact canvas and framing, head position and downward profile angle, spiky navy hair silhouette, ears, nose, jaw, black silver coat and armor, shoulder star, blue collar and cape, cyan diamond gems, outstretched arms and pose, original palette, line weight, texture, shading and lighting. No head tilt, no zoom or crop, no redesign, no extra symbols, no text. One square 256x256 RGBA image, genuine transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "rio_male",
+    "expression": "angry",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/rio_male_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/rio_male-angry-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Rio male dialogue portrait. Edit this exact man and existing image. Expression ANGRY: sharply lowered knitted eyebrows, narrowed intense blue eyes, mouth open in a furious shout showing upper teeth. Clearly anger, never a grin or smile. Change ONLY eyes, eyebrows and mouth. Preserve exact canvas and framing, head position and downward profile angle, spiky navy hair silhouette, ears, nose, jaw, black silver coat and armor, shoulder star, blue collar and cape, cyan diamond gems, outstretched arms and pose, original palette, line weight, texture, shading and lighting. No head tilt, no zoom or crop, no redesign, no extra symbols, no text. One square 256x256 RGBA image, genuine transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "rio_male",
+    "expression": "hurt",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/rio_male_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/rio_male-hurt-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Rio male dialogue portrait. Edit this exact man and existing image. Expression HURT: a pained weary wince, half closed blue eyes with narrowed lids, eyebrows raised at their inner ends in distress, a small downturned partly open mouth with clenched teeth. Clearly hurting and sad, not smiling or furious. No blood or large tears. Change ONLY eyes, eyebrows and mouth. Preserve exact canvas and framing, head position and downward profile angle, spiky navy hair silhouette, ears, nose, jaw, black silver coat and armor, shoulder star, blue collar and cape, cyan diamond gems, outstretched arms and pose, original palette, line weight, texture, shading and lighting. No head tilt, no zoom or crop, no redesign, no extra symbols, no text. One square 256x256 RGBA image, genuine transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "rio_female",
+    "expression": "happy",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/rio_female_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/rio_female-happy-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Rio female dialogue portrait. Edit this exact woman and existing image. Expression HAPPY: a warm visible small open smile with relaxed brows; gently OPEN her bright BLUE eyes in a soft smiling look. The original has closed eyes, so happy should be clearly distinct. Change ONLY eyes, eyebrows and mouth. Preserve exact canvas and framing, head position and downward profile angle, navy high ponytail and all strands/silhouette, turquoise gold hair tie, ears, nose, jaw, black silver coat and armor, shoulder star, blue collar and cape, cyan diamond gems, outstretched arms, pose, original palette, line weight, texture, shading and lighting. No head tilt, no zoom or crop, no redesign, no new objects or text. One square 256x256 RGBA image, genuine transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "rio_female",
+    "expression": "angry",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/rio_female_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/rio_female-angry-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Rio female dialogue portrait. Edit this exact woman and existing image. Expression ANGRY: OPEN her BLUE eyes in a narrowed fierce glare with sharply lowered knitted eyebrows; mouth open in a furious shout showing upper teeth. Clearly angry, not smiling. The original has closed eyes, so the expression must be clearly distinct. Change ONLY eyes, eyebrows and mouth. Preserve exact canvas and framing, head position and downward profile angle, navy high ponytail and all strands/silhouette, turquoise gold hair tie, ears, nose, jaw, black silver coat and armor, shoulder star, blue collar and cape, cyan diamond gems, outstretched arms, pose, original palette, line weight, texture, shading and lighting. No head tilt, no zoom or crop, no redesign, no new objects or text. One square 256x256 RGBA image, genuine transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "rio_female",
+    "expression": "hurt",
+    "attempt": 1,
+    "edit_targets": [
+      "art/raw/faces-73/sources/rio_female_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/rio_female-hurt-try1.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: attached current Rio female dialogue portrait. Edit this exact woman and existing image. Expression HURT: a pained weary wince with BLUE eyes half open and narrowed, inner eyebrows raised in distress, small downturned partly open mouth with clenched teeth. The original has closed neutral eyes, so make pain clearly distinct using distressed brows and a visible teeth-baring grimace. Not angry, not smiling, no blood or large tears. Change ONLY eyes, eyebrows and mouth. Preserve exact canvas and framing, head position and downward profile angle, navy high ponytail and all strands/silhouette, turquoise gold hair tie, ears, nose, jaw, black silver coat and armor, shoulder star, blue collar and cape, cyan diamond gems, outstretched arms, pose, original palette, line weight, texture, shading and lighting. No head tilt, no zoom or crop, no redesign, no new objects or text. One square 256x256 RGBA image, genuine transparent background with original alpha silhouette. Only the facial expression changes.",
+    "tool": "built-in image_gen",
+    "transparent_background": true
+  },
+  {
+    "form": "yuki",
+    "expression": "hurt",
+    "attempt": 2,
+    "edit_targets": [
+      "smash-nine-prototype/assets/art/yuki/yuki_face.png"
+    ],
+    "supporting_mask": null,
+    "raw_output": "art/raw/faces-73/yuki-hurt-try2.png",
+    "selected_for_review": true,
+    "prompt": "Use case: identity-preserve. EDIT TARGET: the attached existing Yuki neutral dialogue portrait, a 256x256 RGBA game image. Make exactly ONE local facial expression edit: HURT, unmistakably in pain even when the full portrait is displayed at 142x164. Raise and pull together the inner eyebrows, half shut or tightly narrow both red eyes in a pained wince, mouth small and visibly tight or partly open with clenched teeth, and ONE small clearly visible blue-white sweat drop on the exposed cheek near the temple. She is hurting, not angry, not smiling. CRITICAL: keep head AND FACE in exactly their existing position and angle. Keep the nose, jaw, eye locations, face size and fringe boundary absolutely aligned with the original. No face movement or head tilt. Change only brows, eyelids/eyes, mouth and the small sweat drop on exposed skin. Keep hair strands, silhouette, costume, talisman, hands, all accessories, palette, original soft shading, outline weight, lighting, exact framing, and original transparent background unchanged. Do not sharpen or enhance the portrait. No text, no background, no pose change. Output the same square portrait with true transparency.",
+    "tool": "built-in image_gen",
+    "transparent_background": true,
+    "reason": "ART-73 fix-1: strengthen pain expression at dialogue size"
+  }
+]
