@@ -1,0 +1,101 @@
+[
+  {
+    "monster": "mossling",
+    "row": "walk",
+    "frames": 6,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "mossling-walk-after-all-4x.png",
+    "judgment": "6장 확인. 잎·새싹·얼굴·뿌리 발 잘림 없음. 발 교대는 여전히 약하고, F3은 앞발이 앞으로 모여 보임."
+  },
+  {
+    "monster": "ember_imp",
+    "row": "defeat",
+    "frames": 4,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "ember_imp-defeat-after-all-4x.png",
+    "judgment": "4장 확인. 뿔·꼬리와 쓰러지는 실루엣 보존. 마지막 접지 y72. 넓은 붉은 면과 어린 용 같은 얼굴은 남음."
+  },
+  {
+    "monster": "asgard_aegis_ram",
+    "row": "idle",
+    "frames": 6,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "asgard_aegis_ram-idle-after-all-4x.png",
+    "judgment": "6장 확인. 뿔·등 가시·룬 보존. 주뿔 기준은 맞지만 몸통의 길이·털 비율까지 다른 행과 동일해진 것은 아님."
+  },
+  {
+    "monster": "asgard_aegis_ram",
+    "row": "attack",
+    "frames": 6,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "asgard_aegis_ram-attack-after-all-4x.png",
+    "judgment": "6장 확인. 후반 3장의 가장 낮은 발을 y72로 내림. 달리기 중 들린 나머지 발은 유지. 실제 반복의 자연스러움은 재생 미확인."
+  },
+  {
+    "monster": "asgard_aegis_ram",
+    "row": "hurt",
+    "frames": 2,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "asgard_aegis_ram-hurt-after-all-4x.png",
+    "judgment": "2장 확인. 반동과 회복 자세 유지, 뿔 잘림 없음. F1은 몸을 세워 같은 높이로 보이지 않는 자세임."
+  },
+  {
+    "monster": "asgard_runic_raven",
+    "row": "windup",
+    "frames": 4,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "asgard_runic_raven-windup-after-all-4x.png",
+    "judgment": "4장 확인. 날개 끝과 어깨 원판 보존. F2는 커진 날개 위쪽 여백을 확보하려 프레임 전체를 4px 내림. 중심 높이 편차는 남음."
+  },
+  {
+    "monster": "asgard_runic_raven",
+    "row": "attack",
+    "frames": 6,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "asgard_runic_raven-attack-after-all-4x.png",
+    "judgment": "6장 확인. 급강하 실루엣과 부리·발 보존. 마지막에서 첫 장으로 이어지는 재생은 미확인."
+  },
+  {
+    "monster": "asgard_runic_raven",
+    "row": "hurt",
+    "frames": 2,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "asgard_runic_raven-hurt-after-all-4x.png",
+    "judgment": "2장 확인. 아래로 편 날개와 어깨 원판 보존. F1의 날개 끝이 발보다 낮은 것은 원래 자세임."
+  },
+  {
+    "monster": "alfheim_moon_stag",
+    "row": "windup",
+    "frames": 4,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "alfheim_moon_stag-windup-after-all-4x.png",
+    "judgment": "4장 확인. 뿔·귀·달무늬와 준비 자세 보존. 몸통 축 길이를 기준으로 줄였으며 머리·목 비율 차이는 남음."
+  },
+  {
+    "monster": "alfheim_moon_stag",
+    "row": "defeat",
+    "frames": 4,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "alfheim_moon_stag-defeat-after-all-4x.png",
+    "judgment": "4장 확인. 뿔·발 잘림 없이 접지 y72. 쓰러지며 목이 접히는 원본 자세와 체형 변화는 유지."
+  },
+  {
+    "monster": "alfheim_moon_moth",
+    "row": "attack",
+    "frames": 6,
+    "scale": 4,
+    "method": "nearest-neighbour 4x PNG, every changed frame visually inspected by Codex",
+    "board": "alfheim_moon_moth-attack-after-all-4x.png",
+    "judgment": "6장 확인. 정상 크기 → 축소 → 반짝임 → 재형성 유지. 크기 검사는 F1·F6만 사용. 촉수 끝 보석의 약한 가독성은 남음."
+  }
+]
