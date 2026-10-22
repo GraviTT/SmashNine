@@ -1,0 +1,17 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+[soak] t= 30s phase=Exploration playable=8 alive=8/8 nodes=1578 defeats=0 Yuki@6 Luna@6 Luna@1 Nova@1 Nova@8 Rio@8 Rio@2 Frey@5
+[soak] t= 60s phase=Exploration playable=8 alive=8/8 nodes=1574 defeats=0 Yuki@6 Luna@6 Luna@1 Nova@1 Nova@8 Rio@8 Rio@5 Frey@5
+[soak] t= 90s phase=Exploration playable=8 alive=8/8 nodes=1600 defeats=0 Yuki@6 Luna@6 Luna@2 Nova@2 Nova@8 Rio@5 Rio@8 Frey@8
+[soak] t=120s phase=Corner collapse warning playable=8 alive=8/8 nodes=1711 defeats=0 Yuki@6 Luna@6 Luna@2 Nova@2 Nova@7 Rio@7 Rio@8 Frey@8
+[soak] t=150s phase=Convergence playable=4 alive=7/8 nodes=1602 defeats=1 Yuki@4 Luna@4 Luna@2 Nova@2 Nova@7 Rio@7 Rio@7 Frey@7
+[soak] t=180s phase=Convergence playable=4 alive=6/8 nodes=1607 defeats=2 Yuki@4 Luna@4 Luna@2 Nova@2 Nova@7 Rio@7 Rio@7 Frey@7
+[soak] t=210s phase=Convergence playable=5 alive=6/8 nodes=1707 defeats=2 Yuki@4 Luna@4 Luna@2 Nova@2 Nova@7 Rio@7 Rio@7 Frey@7
+[soak] t=240s phase=Central brawl playable=1 alive=4/8 nodes=1552 defeats=4 Yuki@9 Luna@9 Luna@9 Nova@9 Nova@9 Rio@7 Rio@7 Frey@9
+[soak] t=270s phase=Central brawl playable=1 alive=2/8 nodes=1538 defeats=6 Yuki@9 Luna@9 Luna@9 Nova@9 Nova@9 Rio@7 Rio@7 Frey@9
+[soak] t=300s phase=Central brawl playable=1 alive=2/8 nodes=1549 defeats=6 Yuki@9 Luna@9 Luna@9 Nova@9 Nova@9 Rio@7 Rio@7 Frey@9
+[soak] t=311s phase=Match over playable=1 alive=1/8 nodes=1639 defeats=7 Yuki@9 Luna@9 Luna@9 Nova@9 Nova@9 Rio@7 Rio@7 Frey@9
+SOAK_RESULT {"defeats":7,"defeats_by_cause":{"player":7},"defeats_by_player":{"Frey":1,"Luna":1,"Nova":2,"Rio":2,"Yuki":1},"eliminations":["Rio t=144 by player ringouts=0 dmg_dealt=164","Rio t=153 by player ringouts=1 dmg_dealt=192","Frey t=222 by player ringouts=0 dmg_dealt=187","Nova t=231 by player ringouts=1 dmg_dealt=215","Yuki t=254 by player ringouts=2 dmg_dealt=124","Nova t=259 by player ringouts=2 dmg_dealt=327","Luna t=311 by player ringouts=1 dmg_dealt=269"],"first_pvp_hit":3.5,"hazard_hits":5,"match_over":true,"monster_hits":94,"nan_positions":0,"node_count":1639,"playable_realms":1,"players":8,"pvp_hits":759,"ringouts":9,"seconds_simulated":311.2,"seed":2106,"shared_realm_ratio":0.94,"souls":["Yuki:60/2","Luna:212/3","Luna:183/3","Nova:107/3","Nova:251/3","Rio:130/3","Rio:90/3","Frey:163/3"],"winner":"Luna"}
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+

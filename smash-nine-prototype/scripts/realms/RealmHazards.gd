@@ -14,7 +14,7 @@ extends Node2D
 ## - belts (2026-10-22 night routine): forge conveyor belts on some platforms carry anyone
 ##   standing on them sideways; after a warning they reverse
 ## - gates (2026-10-22 night routine): after a shimmer two moon gates open on platforms far
-##   apart for a while; touching one carries a fighter to the other (1 s per-fighter cooldown)
+##   apart for a while; touching one carries a fighter to the other (2.5 s per-fighter cooldown)
 ## Timing uses a seeded RNG, so a match seed replays the same hazards.
 
 signal shake_requested(realm_index: int, strength: float, duration: float)
@@ -66,7 +66,7 @@ const BELT_HEIGHT := 10.0
 const GATE_COLOR := Color(0.72, 0.85, 1.0, 0.9)
 const GATE_WARNING_COLOR := Color(0.72, 0.85, 1.0, 0.35)
 const GATE_HEIGHT := 92.0
-const GATE_COOLDOWN := 1.0
+const GATE_COOLDOWN := 2.5
 
 var enabled := true
 var layout: REALM_LAYOUT

@@ -1,0 +1,12 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+ERROR: Re-entering within 2.5 seconds must not carry the fighter
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/test_realm_gimmicks.gd:38)
+       [1] _test_gates_carry_once (res://tests/test_realm_gimmicks.gd:150)
+       [2] _run (res://tests/test_realm_gimmicks.gd:27)
+       [3] _test_belts_stop_when_unplayable (res://tests/test_realm_gimmicks.gd:119)
+

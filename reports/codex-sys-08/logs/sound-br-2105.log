@@ -1,0 +1,15 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+[soak] t= 30s phase=Exploration playable=8 alive=8/8 nodes=1599 defeats=0 Frey@6 Yuki@6 Yuki@8 Luna@8 Luna@1 Nova@1 Nova@3 Rio@3
+[soak] t= 60s phase=Exploration playable=8 alive=8/8 nodes=1653 defeats=0 Frey@6 Yuki@6 Yuki@8 Luna@8 Luna@1 Nova@1 Nova@3 Rio@3
+[soak] t= 90s phase=Exploration playable=8 alive=8/8 nodes=1577 defeats=0 Frey@6 Yuki@6 Yuki@8 Luna@8 Luna@4 Nova@2 Nova@3 Rio@3
+[soak] t=120s phase=Corner collapse warning playable=8 alive=8/8 nodes=1726 defeats=0 Frey@6 Yuki@6 Yuki@8 Luna@7 Luna@6 Nova@3 Nova@5 Rio@5
+[soak] t=150s phase=Convergence playable=4 alive=5/8 nodes=1613 defeats=3 Frey@7 Yuki@6 Yuki@7 Luna@7 Luna@7 Nova@5 Nova@5 Rio@5
+[soak] t=180s phase=Convergence playable=4 alive=5/8 nodes=1630 defeats=3 Frey@7 Yuki@6 Yuki@7 Luna@7 Luna@7 Nova@5 Nova@5 Rio@5
+[soak] t=210s phase=Convergence playable=5 alive=2/8 nodes=1654 defeats=6 Frey@7 Yuki@6 Yuki@7 Luna@7 Luna@7 Nova@5 Nova@5 Rio@5
+[soak] t=240s phase=Central brawl playable=1 alive=1/8 nodes=1640 defeats=7 Frey@7 Yuki@6 Yuki@7 Luna@7 Luna@9 Nova@5 Nova@9 Rio@5
+[soak] t=240s phase=Central brawl playable=1 alive=1/8 nodes=1640 defeats=7 Frey@7 Yuki@6 Yuki@7 Luna@7 Luna@9 Nova@5 Nova@9 Rio@5
+SOAK_RESULT {"defeats":7,"defeats_by_cause":{"environment":1,"player":6},"defeats_by_player":{"Frey":1,"Luna":2,"Nova":1,"Rio":1,"Yuki":2},"eliminations":["Yuki t=124 by player ringouts=2 dmg_dealt=51","Rio t=136 by player ringouts=1 dmg_dealt=101","Yuki t=145 by player ringouts=2 dmg_dealt=63","Luna t=182 by player ringouts=3 dmg_dealt=180","Nova t=201 by player ringouts=3 dmg_dealt=207","Frey t=201 by player ringouts=0 dmg_dealt=193","Luna t=240 by environment ringouts=1 dmg_dealt=252"],"first_pvp_hit":3.6,"hazard_hits":11,"match_over":true,"monster_hits":118,"nan_positions":0,"node_count":1640,"playable_realms":1,"players":8,"pvp_hits":535,"ringouts":14,"seconds_simulated":240.0,"seed":2105,"shared_realm_ratio":0.89,"souls":["Frey:140/3","Yuki:16/0","Yuki:48/1","Luna:130/3","Luna:226/3","Nova:173/3","Nova:189/3","Rio:106/3"],"winner":"Nova"}
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+

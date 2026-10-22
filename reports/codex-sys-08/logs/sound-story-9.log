@@ -1,0 +1,14 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+QA21_STORY {"case_name":"hook_story_text_pre","frame":16,"ok":true,"stage":9}
+QA21_STORY {"case_name":"hook_story_advance_pre","frame":16,"ok":true,"stage":9}
+QA21_STORY {"case_name":"hook_story_text_post","frame":16,"ok":true,"stage":9}
+QA21_STORY {"case_name":"hook_story_advance_post","frame":16,"ok":true,"stage":9}
+QA21_STORY {"case_name":"hook_story_text_mid","frame":16,"ok":true,"stage":9}
+QA21_STORY {"case_name":"hook_story_advance_mid","frame":16,"ok":true,"stage":9}
+QA21_STORY {"actual":["victory","music_results"],"case_name":"ordered_result_hooks","expected":["victory","music_results"],"frame":16,"ok":true,"stage":9}
+QA21_STORY {"case_name":"result_music","frame":16,"music":"music_results","ok":true,"stage":9}
+QA22_STORY_SOUND {"driver":"QA21 protected progression fixture","hook_failures":0,"match_over":true,"phase":"ending","post_reached":true,"screen":"story_ending","seconds_simulated":0.0,"seed":2101,"stage":9}
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+
