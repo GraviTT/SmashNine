@@ -1,0 +1,163 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      82.5,
+      67,
+      4,
+      5
+    ],
+    [
+      90,
+      67,
+      3,
+      4
+    ],
+    [
+      77,
+      67,
+      3,
+      4
+    ],
+    [
+      91,
+      67,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 82.184,
+      "y": 67.594,
+      "score": 1
+    },
+    {
+      "x": 89.805,
+      "y": 66.359,
+      "score": 1
+    },
+    {
+      "x": 77,
+      "y": 67,
+      "score": 1
+    },
+    {
+      "x": 91,
+      "y": 67,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.720418771025322,
+  "reference_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 79.408,
+          "y": 69.349,
+          "score": 0.928
+        },
+        {
+          "x": 86.935,
+          "y": 67.383,
+          "score": 0.755
+        },
+        {
+          "x": 74.0,
+          "y": 68.0,
+          "score": 0.848
+        },
+        {
+          "x": 88.0,
+          "y": 68.0,
+          "score": 0.838
+        }
+      ],
+      "eye_distance": 7.78,
+      "face_width": 14.0,
+      "eye_ratio": 1.008,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        63,
+        50,
+        0.856
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 78.498,
+          "y": 74.567,
+          "score": 0.925
+        },
+        {
+          "x": 85.798,
+          "y": 72.948,
+          "score": 0.757
+        },
+        {
+          "x": 73.0,
+          "y": 74.0,
+          "score": 0.855
+        },
+        {
+          "x": 87.0,
+          "y": 74.0,
+          "score": 0.847
+        }
+      ],
+      "eye_distance": 7.477,
+      "face_width": 14.0,
+      "eye_ratio": 0.969,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        62,
+        55,
+        0.88
+      ]
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 79.331,
+          "y": 69.586,
+          "score": 0.937
+        },
+        {
+          "x": 86.841,
+          "y": 67.341,
+          "score": 0.862
+        },
+        {
+          "x": 74.0,
+          "y": 68.0,
+          "score": 0.858
+        },
+        {
+          "x": 88.0,
+          "y": 68.0,
+          "score": 0.915
+        }
+      ],
+      "eye_distance": 7.838,
+      "face_width": 14.0,
+      "eye_ratio": 1.015,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        63,
+        50,
+        0.834
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_passed": true,
+  "review_note": "타격 순간, 반동, 회복의 3장. 지팡이와 의상, 양발 접지를 확인했다."
+}

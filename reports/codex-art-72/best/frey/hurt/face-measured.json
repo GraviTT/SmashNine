@@ -1,0 +1,163 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      79,
+      51,
+      3,
+      4
+    ],
+    [
+      85,
+      51,
+      3,
+      4
+    ],
+    [
+      68,
+      53,
+      4,
+      4
+    ],
+    [
+      85.5,
+      53,
+      4,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 79.385,
+      "y": 51.434,
+      "score": 1
+    },
+    {
+      "x": 85.722,
+      "y": 51.054,
+      "score": 1
+    },
+    {
+      "x": 68,
+      "y": 53,
+      "score": 1
+    },
+    {
+      "x": 85.5,
+      "y": 53,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 6.348383179991568,
+  "reference_face_width": 17.5,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 77.445,
+          "y": 52.268,
+          "score": 0.955
+        },
+        {
+          "x": 83.842,
+          "y": 51.92,
+          "score": 0.953
+        },
+        {
+          "x": 66.0,
+          "y": 54.0,
+          "score": 0.939
+        },
+        {
+          "x": 83.5,
+          "y": 53.0,
+          "score": 0.856
+        }
+      ],
+      "eye_distance": 6.406,
+      "face_width": 17.5,
+      "eye_ratio": 1.009,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        57,
+        33,
+        0.936
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 68.99,
+          "y": 54.966,
+          "score": 0.814
+        },
+        {
+          "x": 74.947,
+          "y": 53.156,
+          "score": 0.757
+        },
+        {
+          "x": 58.0,
+          "y": 58.5,
+          "score": 0.641
+        },
+        {
+          "x": 75.5,
+          "y": 55.5,
+          "score": 0.791
+        }
+      ],
+      "eye_distance": 6.226,
+      "face_width": 17.5,
+      "eye_ratio": 0.981,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        48,
+        36,
+        0.499
+      ]
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 79.004,
+          "y": 52.363,
+          "score": 0.952
+        },
+        {
+          "x": 85.505,
+          "y": 51.823,
+          "score": 0.912
+        },
+        {
+          "x": 68.0,
+          "y": 54.0,
+          "score": 0.954
+        },
+        {
+          "x": 85.5,
+          "y": 54.0,
+          "score": 0.934
+        }
+      ],
+      "eye_distance": 6.523,
+      "face_width": 17.5,
+      "eye_ratio": 1.028,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        59,
+        33,
+        0.942
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_passed": true,
+  "review_note": "타격 순간, 반동, 회복의 3장. 자동 머리 검사의 F2 점수는 낮지만 실제 얼굴 표식과 장비를 4배로 확인했다."
+}

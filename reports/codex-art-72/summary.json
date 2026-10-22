@@ -1,0 +1,3253 @@
+[
+  {
+    "stem": "frey",
+    "row": "jump",
+    "attempt": 3,
+    "frames": 3,
+    "fps": 10,
+    "factor": 0.17,
+    "margin": 4,
+    "detail": [
+      107.14,
+      108.57
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\frey\\jump\\attempt-3\\frey-jump.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.847
+        },
+        {
+          "scale": 0.92,
+          "score": 0.835
+        },
+        {
+          "scale": 0.96,
+          "score": 0.866
+        }
+      ],
+      "median": 0.96,
+      "used": 3
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          51,
+          3,
+          4
+        ],
+        [
+          85,
+          51,
+          3,
+          4
+        ],
+        [
+          68,
+          53,
+          4,
+          4
+        ],
+        [
+          85.5,
+          53,
+          4,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.385,
+          "y": 51.434,
+          "score": 1
+        },
+        {
+          "x": 85.722,
+          "y": 51.054,
+          "score": 1
+        },
+        {
+          "x": 68,
+          "y": 53,
+          "score": 1
+        },
+        {
+          "x": 85.5,
+          "y": 53,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 6.348383179991568,
+      "reference_face_width": 17.5,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 86.462,
+              "y": 45.046,
+              "score": 0.857
+            },
+            {
+              "x": 92.755,
+              "y": 44.904,
+              "score": 0.964
+            },
+            {
+              "x": 75.0,
+              "y": 46.0,
+              "score": 0.789
+            },
+            {
+              "x": 92.5,
+              "y": 46.0,
+              "score": 0.96
+            }
+          ],
+          "eye_distance": 6.295,
+          "face_width": 17.5,
+          "eye_ratio": 0.992,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            67,
+            26,
+            0.852
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 76.986,
+              "y": 43.636,
+              "score": 0.941
+            },
+            {
+              "x": 83.588,
+              "y": 42.97,
+              "score": 0.928
+            },
+            {
+              "x": 66.0,
+              "y": 45.0,
+              "score": 0.839
+            },
+            {
+              "x": 83.5,
+              "y": 45.0,
+              "score": 0.776
+            }
+          ],
+          "eye_distance": 6.636,
+          "face_width": 17.5,
+          "eye_ratio": 1.045,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.92,
+            58,
+            25,
+            0.837
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 82.096,
+              "y": 39.831,
+              "score": 0.94
+            },
+            {
+              "x": 88.675,
+              "y": 39.128,
+              "score": 0.952
+            },
+            {
+              "x": 71.0,
+              "y": 41.0,
+              "score": 0.892
+            },
+            {
+              "x": 88.5,
+              "y": 41.0,
+              "score": 0.883
+            }
+          ],
+          "eye_distance": 6.616,
+          "face_width": 17.5,
+          "eye_ratio": 1.042,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            63,
+            21,
+            0.869
+          ]
+        }
+      ]
+    },
+    "accepted": false,
+    "reason": "3회 생성 종료. 최선 3차도 F2 눈 비율 1.045, F3 1.042로 상한 1.04를 넘는다. 도약 자세와 장비는 확인했으나 미전달.",
+    "sheet_sha256": "6126de1ea0d3a78f95d09c0d757687a7403a95b36ed2195a0569a85201f2eaaa",
+    "candidate": null,
+    "face_valid_frames": [
+      1,
+      2,
+      3
+    ],
+    "face_eye_range": [
+      0.992,
+      1.045
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "frey",
+    "row": "fall",
+    "attempt": 1,
+    "frames": 2,
+    "fps": 8,
+    "factor": 0.142,
+    "margin": 6,
+    "detail": [
+      111.92,
+      112.43
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\frey\\fall\\attempt-1\\frey-fall.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.85
+        },
+        {
+          "scale": 0.96,
+          "score": 0.856
+        }
+      ],
+      "median": 0.96,
+      "used": 2
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          51,
+          3,
+          4
+        ],
+        [
+          85,
+          51,
+          3,
+          4
+        ],
+        [
+          68,
+          53,
+          4,
+          4
+        ],
+        [
+          85.5,
+          53,
+          4,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.385,
+          "y": 51.434,
+          "score": 1
+        },
+        {
+          "x": 85.722,
+          "y": 51.054,
+          "score": 1
+        },
+        {
+          "x": 68,
+          "y": 53,
+          "score": 1
+        },
+        {
+          "x": 85.5,
+          "y": 53,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 6.348383179991568,
+      "reference_face_width": 17.5,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 73.33,
+              "y": 34.907,
+              "score": 0.892
+            },
+            {
+              "x": 79.579,
+              "y": 34.029,
+              "score": 0.866
+            },
+            {
+              "x": 62.0,
+              "y": 36.0,
+              "score": 0.87
+            },
+            {
+              "x": 79.5,
+              "y": 37.0,
+              "score": 0.893
+            }
+          ],
+          "eye_distance": 6.31,
+          "face_width": 17.5,
+          "eye_ratio": 0.994,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            54,
+            16,
+            0.852
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 74.345,
+              "y": 34.966,
+              "score": 0.899
+            },
+            {
+              "x": 80.725,
+              "y": 33.849,
+              "score": 0.867
+            },
+            {
+              "x": 63.0,
+              "y": 36.0,
+              "score": 0.847
+            },
+            {
+              "x": 80.5,
+              "y": 36.0,
+              "score": 0.886
+            }
+          ],
+          "eye_distance": 6.477,
+          "face_width": 17.5,
+          "eye_ratio": 1.02,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            55,
+            16,
+            0.859
+          ]
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "머리카락과 망토가 위로 후행하는 두 낙하 자세. 얼굴과 장비를 4배로 확인했다.",
+    "sheet_sha256": "63a3e83145fa629fa0a057f0155066939581cf1c9e173ef872c4970ef5286ecd",
+    "candidate": "art/bakeoff/frey/frey-fall-v2.png",
+    "face_valid_frames": [
+      1,
+      2
+    ],
+    "face_eye_range": [
+      0.994,
+      1.02
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "frey",
+    "row": "hurt",
+    "attempt": 3,
+    "frames": 3,
+    "fps": 12,
+    "factor": 0.1545,
+    "margin": 7,
+    "detail": [
+      113.32,
+      115.81
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\frey\\hurt\\attempt-3\\frey-hurt.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.936
+        },
+        {
+          "scale": 1.0,
+          "score": 0.499
+        },
+        {
+          "scale": 1.0,
+          "score": 0.942
+        }
+      ],
+      "median": 1.0,
+      "used": 2
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          51,
+          3,
+          4
+        ],
+        [
+          85,
+          51,
+          3,
+          4
+        ],
+        [
+          68,
+          53,
+          4,
+          4
+        ],
+        [
+          85.5,
+          53,
+          4,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.385,
+          "y": 51.434,
+          "score": 1
+        },
+        {
+          "x": 85.722,
+          "y": 51.054,
+          "score": 1
+        },
+        {
+          "x": 68,
+          "y": 53,
+          "score": 1
+        },
+        {
+          "x": 85.5,
+          "y": 53,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 6.348383179991568,
+      "reference_face_width": 17.5,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 77.445,
+              "y": 52.268,
+              "score": 0.955
+            },
+            {
+              "x": 83.842,
+              "y": 51.92,
+              "score": 0.953
+            },
+            {
+              "x": 66.0,
+              "y": 54.0,
+              "score": 0.939
+            },
+            {
+              "x": 83.5,
+              "y": 53.0,
+              "score": 0.856
+            }
+          ],
+          "eye_distance": 6.406,
+          "face_width": 17.5,
+          "eye_ratio": 1.009,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            57,
+            33,
+            0.936
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 68.99,
+              "y": 54.966,
+              "score": 0.814
+            },
+            {
+              "x": 74.947,
+              "y": 53.156,
+              "score": 0.757
+            },
+            {
+              "x": 58.0,
+              "y": 58.5,
+              "score": 0.641
+            },
+            {
+              "x": 75.5,
+              "y": 55.5,
+              "score": 0.791
+            }
+          ],
+          "eye_distance": 6.226,
+          "face_width": 17.5,
+          "eye_ratio": 0.981,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            48,
+            36,
+            0.499
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 79.004,
+              "y": 52.363,
+              "score": 0.952
+            },
+            {
+              "x": 85.505,
+              "y": 51.823,
+              "score": 0.912
+            },
+            {
+              "x": 68.0,
+              "y": 54.0,
+              "score": 0.954
+            },
+            {
+              "x": 85.5,
+              "y": 54.0,
+              "score": 0.934
+            }
+          ],
+          "eye_distance": 6.523,
+          "face_width": 17.5,
+          "eye_ratio": 1.028,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            59,
+            33,
+            0.942
+          ]
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "타격 순간, 반동, 회복의 3장. 자동 머리 검사의 F2 점수는 낮지만 실제 얼굴 표식과 장비를 4배로 확인했다.",
+    "sheet_sha256": "bd54eec1edfd1977da52cb82a16a6d1524b3e47e1933358c3cb37b9f0e18a114",
+    "candidate": "art/bakeoff/frey/frey-hurt-v2.png",
+    "face_valid_frames": [
+      1,
+      2,
+      3
+    ],
+    "face_eye_range": [
+      0.981,
+      1.028
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "frey",
+    "row": "land",
+    "attempt": 1,
+    "frames": 2,
+    "fps": 12,
+    "factor": 0.14,
+    "margin": 7,
+    "detail": [
+      111.22,
+      111.56
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\frey\\land\\attempt-1\\frey-land.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.852
+        },
+        {
+          "scale": 1.02,
+          "score": 0.882
+        }
+      ],
+      "median": 1.01,
+      "used": 2
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          51,
+          3,
+          4
+        ],
+        [
+          85,
+          51,
+          3,
+          4
+        ],
+        [
+          68,
+          53,
+          4,
+          4
+        ],
+        [
+          85.5,
+          53,
+          4,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.385,
+          "y": 51.434,
+          "score": 1
+        },
+        {
+          "x": 85.722,
+          "y": 51.054,
+          "score": 1
+        },
+        {
+          "x": 68,
+          "y": 53,
+          "score": 1
+        },
+        {
+          "x": 85.5,
+          "y": 53,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 6.348383179991568,
+      "reference_face_width": 17.5,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 88.251,
+              "y": 62.451,
+              "score": 0.97
+            },
+            {
+              "x": 94.649,
+              "y": 61.787,
+              "score": 0.95
+            },
+            {
+              "x": 77.0,
+              "y": 64.0,
+              "score": 0.929
+            },
+            {
+              "x": 94.5,
+              "y": 64.0,
+              "score": 0.925
+            }
+          ],
+          "eye_distance": 6.432,
+          "face_width": 17.5,
+          "eye_ratio": 1.013,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            68,
+            43,
+            0.852
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 80.014,
+              "y": 45.72,
+              "score": 0.921
+            },
+            {
+              "x": 86.533,
+              "y": 44.738,
+              "score": 0.887
+            },
+            {
+              "x": 69.0,
+              "y": 47.0,
+              "score": 0.884
+            },
+            {
+              "x": 86.5,
+              "y": 47.0,
+              "score": 0.845
+            }
+          ],
+          "eye_distance": 6.593,
+          "face_width": 17.5,
+          "eye_ratio": 1.038,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.02,
+            59,
+            25,
+            0.884
+          ]
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "착지 웅크림에서 대기 자세 쪽으로 일어선다. 양발 접지와 장비를 확인했다.",
+    "sheet_sha256": "e708e067c2e910d7ec1cfe3e4541a0c77f1f8dd098fa09455f5d8a37cf1db2d2",
+    "candidate": "art/bakeoff/frey/frey-land-v1.png",
+    "face_valid_frames": [
+      1,
+      2
+    ],
+    "face_eye_range": [
+      1.013,
+      1.038
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "frey",
+    "row": "victory",
+    "attempt": 2,
+    "frames": 6,
+    "fps": 8,
+    "factor": 0.238,
+    "margin": 30,
+    "detail": [
+      100.29,
+      110.23
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\frey\\victory\\attempt-2\\frey-victory.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.882
+        },
+        {
+          "scale": 0.96,
+          "score": 0.776
+        },
+        {
+          "scale": 0.96,
+          "score": 0.68
+        },
+        {
+          "scale": 1.0,
+          "score": 0.537
+        },
+        {
+          "scale": 0.96,
+          "score": 0.677
+        },
+        {
+          "scale": 0.92,
+          "score": 0.654
+        }
+      ],
+      "median": 0.96,
+      "used": 5
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          51,
+          3,
+          4
+        ],
+        [
+          85,
+          51,
+          3,
+          4
+        ],
+        [
+          68,
+          53,
+          4,
+          4
+        ],
+        [
+          85.5,
+          53,
+          4,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.385,
+          "y": 51.434,
+          "score": 1
+        },
+        {
+          "x": 85.722,
+          "y": 51.054,
+          "score": 1
+        },
+        {
+          "x": 68,
+          "y": 53,
+          "score": 1
+        },
+        {
+          "x": 85.5,
+          "y": 53,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 6.348383179991568,
+      "reference_face_width": 17.5,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 110.865,
+              "y": 83.091,
+              "score": 0.826
+            },
+            {
+              "x": 117.631,
+              "y": 82.789,
+              "score": 0.926
+            },
+            {
+              "x": 100.0,
+              "y": 85.0,
+              "score": 0.826
+            },
+            {
+              "x": 117.5,
+              "y": 85.0,
+              "score": 0.915
+            }
+          ],
+          "eye_distance": 6.773,
+          "face_width": 17.5,
+          "eye_ratio": 1.067,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            91,
+            64,
+            0.882
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 105.446,
+              "y": 83.344,
+              "score": 0.958
+            },
+            {
+              "x": 111.718,
+              "y": 82.789,
+              "score": 0.951
+            },
+            {
+              "x": 94.0,
+              "y": 85.0,
+              "score": 0.887
+            },
+            {
+              "x": 111.5,
+              "y": 84.0,
+              "score": 0.802
+            }
+          ],
+          "eye_distance": 6.297,
+          "face_width": 17.5,
+          "eye_ratio": 0.992,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            86,
+            65,
+            0.78
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 110.771,
+              "y": 83.972,
+              "score": 0.821
+            },
+            {
+              "x": 116.778,
+              "y": 83.832,
+              "score": 0.892
+            },
+            {
+              "x": 100.0,
+              "y": 86.0,
+              "score": 0.91
+            },
+            {
+              "x": 117.5,
+              "y": 86.0,
+              "score": 0.859
+            }
+          ],
+          "eye_distance": 6.009,
+          "face_width": 17.5,
+          "eye_ratio": 0.946,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            91,
+            66,
+            0.68
+          ]
+        },
+        {
+          "frame": 4,
+          "landmarks": [
+            {
+              "x": 109.546,
+              "y": 83.275,
+              "score": 0.957
+            },
+            {
+              "x": 115.723,
+              "y": 82.728,
+              "score": 0.892
+            },
+            {
+              "x": 98.0,
+              "y": 85.0,
+              "score": 0.772
+            },
+            {
+              "x": 116.5,
+              "y": 86.0,
+              "score": 0.729
+            }
+          ],
+          "eye_distance": 6.201,
+          "face_width": 18.5,
+          "eye_ratio": 0.977,
+          "face_width_ratio": 1.057,
+          "head_alignment": [
+            0.96,
+            90,
+            65,
+            0.526
+          ]
+        },
+        {
+          "frame": 5,
+          "landmarks": [
+            {
+              "x": 107.02,
+              "y": 83.241,
+              "score": 0.872
+            },
+            {
+              "x": 113.658,
+              "y": 82.59,
+              "score": 0.901
+            },
+            {
+              "x": 96.0,
+              "y": 85.0,
+              "score": 0.782
+            },
+            {
+              "x": 113.5,
+              "y": 84.0,
+              "score": 0.708
+            }
+          ],
+          "eye_distance": 6.67,
+          "face_width": 17.5,
+          "eye_ratio": 1.051,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            87,
+            65,
+            0.677
+          ]
+        },
+        {
+          "frame": 6,
+          "landmarks": [
+            {
+              "x": 105.852,
+              "y": 82.527,
+              "score": 0.815
+            },
+            {
+              "x": 111.813,
+              "y": 81.852,
+              "score": 0.857
+            },
+            {
+              "x": 95.0,
+              "y": 85.0,
+              "score": 0.887
+            },
+            {
+              "x": 111.5,
+              "y": 83.0,
+              "score": 0.676
+            }
+          ],
+          "eye_distance": 5.999,
+          "face_width": 16.5,
+          "eye_ratio": 0.945,
+          "face_width_ratio": 0.943,
+          "head_alignment": [
+            0.92,
+            86,
+            65,
+            0.652
+          ]
+        }
+      ]
+    },
+    "accepted": false,
+    "reason": "3회 생성 종료. 1·3차는 원본 셀 경계 침범. 최선 2차는 얼굴 눈·폭 비율이 기준 밖이다. F4에서 올린 검을 F5에서 내렸다가 F6에서 다시 드는 흐름도 남았다.",
+    "sheet_sha256": "876a74f923b40c00238bf5483489164abeb147b2494be6bfdce0b4356eecdfef",
+    "candidate": null,
+    "face_valid_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "face_eye_range": [
+      0.945,
+      1.067
+    ],
+    "face_width_range": [
+      0.943,
+      1.057
+    ]
+  },
+  {
+    "stem": "luna",
+    "row": "jump",
+    "attempt": 1,
+    "frames": 3,
+    "fps": 10,
+    "factor": 0.15,
+    "margin": 18,
+    "detail": [
+      109.73,
+      111.72
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna\\jump\\attempt-1\\luna-jump.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.913
+        },
+        {
+          "scale": 1.0,
+          "score": 0.886
+        },
+        {
+          "scale": 1.0,
+          "score": 0.889
+        }
+      ],
+      "median": 1.0,
+      "used": 3
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          82.5,
+          67,
+          4,
+          5
+        ],
+        [
+          90,
+          67,
+          3,
+          4
+        ],
+        [
+          77,
+          67,
+          3,
+          4
+        ],
+        [
+          91,
+          67,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 82.184,
+          "y": 67.594,
+          "score": 1
+        },
+        {
+          "x": 89.805,
+          "y": 66.359,
+          "score": 1
+        },
+        {
+          "x": 77,
+          "y": 67,
+          "score": 1
+        },
+        {
+          "x": 91,
+          "y": 67,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.720418771025322,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 79.899,
+              "y": 60.539,
+              "score": 0.956
+            },
+            {
+              "x": 87.679,
+              "y": 59.171,
+              "score": 0.818
+            },
+            {
+              "x": 75.0,
+              "y": 60.0,
+              "score": 0.952
+            },
+            {
+              "x": 89.0,
+              "y": 60.0,
+              "score": 0.864
+            }
+          ],
+          "eye_distance": 7.899,
+          "face_width": 14.0,
+          "eye_ratio": 1.023,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            63,
+            41,
+            0.913
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 79.155,
+              "y": 50.588,
+              "score": 0.956
+            },
+            {
+              "x": 86.602,
+              "y": 49.181,
+              "score": 0.764
+            },
+            {
+              "x": 74.0,
+              "y": 51.0,
+              "score": 0.909
+            },
+            {
+              "x": 88.0,
+              "y": 50.0,
+              "score": 0.856
+            }
+          ],
+          "eye_distance": 7.579,
+          "face_width": 14.0,
+          "eye_ratio": 0.982,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            62,
+            31,
+            0.886
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 79.038,
+              "y": 50.692,
+              "score": 0.956
+            },
+            {
+              "x": 86.671,
+              "y": 49.208,
+              "score": 0.775
+            },
+            {
+              "x": 74.0,
+              "y": 50.0,
+              "score": 0.935
+            },
+            {
+              "x": 88.0,
+              "y": 50.0,
+              "score": 0.88
+            }
+          ],
+          "eye_distance": 7.776,
+          "face_width": 14.0,
+          "eye_ratio": 1.007,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            62,
+            31,
+            0.889
+          ]
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "도약·상승·정점 3장. 얼굴과 지팡이를 확인했다. F2·3 무릎 자세 차이는 작다.",
+    "sheet_sha256": "bb8f4e94f229e72a09dcb50c656f890ee780363ecd86ce8c516fcfdea98d8c39",
+    "candidate": "art/bakeoff/luna/luna-jump-v3.png",
+    "face_valid_frames": [
+      1,
+      2,
+      3
+    ],
+    "face_eye_range": [
+      0.982,
+      1.023
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "luna",
+    "row": "fall",
+    "attempt": 1,
+    "frames": 2,
+    "fps": 8,
+    "factor": 0.1335,
+    "margin": 12,
+    "detail": [
+      111.31,
+      111.36
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna\\fall\\attempt-1\\luna-fall.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.776
+        },
+        {
+          "scale": 0.92,
+          "score": 0.776
+        }
+      ],
+      "median": 0.94,
+      "used": 2
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          82.5,
+          67,
+          4,
+          5
+        ],
+        [
+          90,
+          67,
+          3,
+          4
+        ],
+        [
+          77,
+          67,
+          3,
+          4
+        ],
+        [
+          91,
+          67,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 82.184,
+          "y": 67.594,
+          "score": 1
+        },
+        {
+          "x": 89.805,
+          "y": 66.359,
+          "score": 1
+        },
+        {
+          "x": 77,
+          "y": 67,
+          "score": 1
+        },
+        {
+          "x": 91,
+          "y": 67,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.720418771025322,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 73.391,
+              "y": 50.614,
+              "score": 0.929
+            },
+            {
+              "x": 80.776,
+              "y": 49.571,
+              "score": 0.874
+            },
+            {
+              "x": 68.0,
+              "y": 50.0,
+              "score": 0.949
+            },
+            {
+              "x": 82.0,
+              "y": 50.0,
+              "score": 0.942
+            }
+          ],
+          "eye_distance": 7.458,
+          "face_width": 14.0,
+          "eye_ratio": 0.966,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            57,
+            32,
+            0.785
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 73.301,
+              "y": 50.692,
+              "score": 0.935
+            },
+            {
+              "x": 80.685,
+              "y": 49.519,
+              "score": 0.9
+            },
+            {
+              "x": 68.0,
+              "y": 50.0,
+              "score": 0.949
+            },
+            {
+              "x": 82.0,
+              "y": 50.0,
+              "score": 0.964
+            }
+          ],
+          "eye_distance": 7.477,
+          "face_width": 14.0,
+          "eye_ratio": 0.968,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.92,
+            57,
+            32,
+            0.769
+          ]
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "위로 들린 머리카락과 치맛자락의 낙하 반복. 자동 머리 중앙값 0.94와 달라 얼굴 측정을 우선했다.",
+    "sheet_sha256": "90ac2a25903b66bd3495811dbc199c2df69c8034f842f57ea884d50d2dd7fb48",
+    "candidate": "art/bakeoff/luna/luna-fall-v3.png",
+    "face_valid_frames": [
+      1,
+      2
+    ],
+    "face_eye_range": [
+      0.966,
+      0.968
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "luna",
+    "row": "hurt",
+    "attempt": 2,
+    "frames": 3,
+    "fps": 12,
+    "factor": 0.1407,
+    "margin": 7,
+    "detail": [
+      118.03,
+      118.58
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna\\hurt\\attempt-2\\luna-hurt.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.851
+        },
+        {
+          "scale": 0.96,
+          "score": 0.877
+        },
+        {
+          "scale": 0.96,
+          "score": 0.828
+        }
+      ],
+      "median": 0.96,
+      "used": 3
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          82.5,
+          67,
+          4,
+          5
+        ],
+        [
+          90,
+          67,
+          3,
+          4
+        ],
+        [
+          77,
+          67,
+          3,
+          4
+        ],
+        [
+          91,
+          67,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 82.184,
+          "y": 67.594,
+          "score": 1
+        },
+        {
+          "x": 89.805,
+          "y": 66.359,
+          "score": 1
+        },
+        {
+          "x": 77,
+          "y": 67,
+          "score": 1
+        },
+        {
+          "x": 91,
+          "y": 67,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.720418771025322,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 79.408,
+              "y": 69.349,
+              "score": 0.928
+            },
+            {
+              "x": 86.935,
+              "y": 67.383,
+              "score": 0.755
+            },
+            {
+              "x": 74.0,
+              "y": 68.0,
+              "score": 0.848
+            },
+            {
+              "x": 88.0,
+              "y": 68.0,
+              "score": 0.838
+            }
+          ],
+          "eye_distance": 7.78,
+          "face_width": 14.0,
+          "eye_ratio": 1.008,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            63,
+            50,
+            0.856
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 78.498,
+              "y": 74.567,
+              "score": 0.925
+            },
+            {
+              "x": 85.798,
+              "y": 72.948,
+              "score": 0.757
+            },
+            {
+              "x": 73.0,
+              "y": 74.0,
+              "score": 0.855
+            },
+            {
+              "x": 87.0,
+              "y": 74.0,
+              "score": 0.847
+            }
+          ],
+          "eye_distance": 7.477,
+          "face_width": 14.0,
+          "eye_ratio": 0.969,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            62,
+            55,
+            0.88
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 79.331,
+              "y": 69.586,
+              "score": 0.937
+            },
+            {
+              "x": 86.841,
+              "y": 67.341,
+              "score": 0.862
+            },
+            {
+              "x": 74.0,
+              "y": 68.0,
+              "score": 0.858
+            },
+            {
+              "x": 88.0,
+              "y": 68.0,
+              "score": 0.915
+            }
+          ],
+          "eye_distance": 7.838,
+          "face_width": 14.0,
+          "eye_ratio": 1.015,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            63,
+            50,
+            0.834
+          ]
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "타격 순간, 반동, 회복의 3장. 지팡이와 의상, 양발 접지를 확인했다.",
+    "sheet_sha256": "9a24884a0e7dedc46a5d18de0b1edf7c0807b0fd67eb69a7737ae4ba2e6de2b4",
+    "candidate": "art/bakeoff/luna/luna-hurt-v2.png",
+    "face_valid_frames": [
+      1,
+      2,
+      3
+    ],
+    "face_eye_range": [
+      0.969,
+      1.015
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "luna",
+    "row": "land",
+    "attempt": 3,
+    "frames": 2,
+    "fps": 12,
+    "factor": 0.13,
+    "margin": 7,
+    "detail": [
+      106.95,
+      108.09
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna\\land\\attempt-3\\luna-land.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.938
+        },
+        {
+          "scale": 1.0,
+          "score": 0.942
+        }
+      ],
+      "median": 1.0,
+      "used": 2
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          82.5,
+          67,
+          4,
+          5
+        ],
+        [
+          90,
+          67,
+          3,
+          4
+        ],
+        [
+          77,
+          67,
+          3,
+          4
+        ],
+        [
+          91,
+          67,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 82.184,
+          "y": 67.594,
+          "score": 1
+        },
+        {
+          "x": 89.805,
+          "y": 66.359,
+          "score": 1
+        },
+        {
+          "x": 77,
+          "y": 67,
+          "score": 1
+        },
+        {
+          "x": 91,
+          "y": 67,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.720418771025322,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 81.034,
+              "y": 76.404,
+              "score": 0.926
+            },
+            {
+              "x": 88.629,
+              "y": 75.398,
+              "score": 0.908
+            },
+            {
+              "x": 76.0,
+              "y": 76.0,
+              "score": 0.98
+            },
+            {
+              "x": 90.0,
+              "y": 76.0,
+              "score": 0.955
+            }
+          ],
+          "eye_distance": 7.661,
+          "face_width": 14.0,
+          "eye_ratio": 0.992,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            64,
+            57,
+            0.938
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 80.952,
+              "y": 60.679,
+              "score": 0.942
+            },
+            {
+              "x": 88.686,
+              "y": 59.387,
+              "score": 0.963
+            },
+            {
+              "x": 76.0,
+              "y": 60.0,
+              "score": 0.96
+            },
+            {
+              "x": 90.0,
+              "y": 60.0,
+              "score": 0.977
+            }
+          ],
+          "eye_distance": 7.841,
+          "face_width": 14.0,
+          "eye_ratio": 1.016,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            64,
+            41,
+            0.942
+          ]
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "착지 웅크림에서 대기 자세로 회복한다. 3차에서 얼굴 크기와 양발 접지, 지팡이를 확인했다.",
+    "sheet_sha256": "9677d802bcd0d9e8162f62aec747291e567fd8fc5bb5003a304f871f2d0f4d84",
+    "candidate": "art/bakeoff/luna/luna-land-v1.png",
+    "face_valid_frames": [
+      1,
+      2
+    ],
+    "face_eye_range": [
+      0.992,
+      1.016
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "luna",
+    "row": "victory",
+    "attempt": 3,
+    "frames": 6,
+    "fps": 8,
+    "factor": 0.2065,
+    "margin": 39,
+    "detail": [
+      109.6,
+      114.21
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna\\victory\\attempt-3\\luna-victory.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.887
+        },
+        {
+          "scale": 0.96,
+          "score": 0.851
+        },
+        {
+          "scale": 0.96,
+          "score": 0.874
+        },
+        {
+          "scale": 0.96,
+          "score": 0.866
+        },
+        {
+          "scale": 1.0,
+          "score": 0.824
+        },
+        {
+          "scale": 1.02,
+          "score": 0.778
+        }
+      ],
+      "median": 0.96,
+      "used": 6
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          82.5,
+          67,
+          4,
+          5
+        ],
+        [
+          90,
+          67,
+          3,
+          4
+        ],
+        [
+          77,
+          67,
+          3,
+          4
+        ],
+        [
+          91,
+          67,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 82.184,
+          "y": 67.594,
+          "score": 1
+        },
+        {
+          "x": 89.805,
+          "y": 66.359,
+          "score": 1
+        },
+        {
+          "x": 77,
+          "y": 67,
+          "score": 1
+        },
+        {
+          "x": 91,
+          "y": 67,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.720418771025322,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 112.696,
+              "y": 98.276,
+              "score": 0.878
+            },
+            {
+              "x": 120.581,
+              "y": 96.539,
+              "score": 0.872
+            },
+            {
+              "x": 107.5,
+              "y": 98.0,
+              "score": 0.806
+            },
+            {
+              "x": 122.0,
+              "y": 97.0,
+              "score": 0.941
+            }
+          ],
+          "eye_distance": 8.074,
+          "face_width": 14.5,
+          "eye_ratio": 1.046,
+          "face_width_ratio": 1.036,
+          "head_alignment": [
+            0.96,
+            96,
+            79,
+            0.886
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 114.436,
+              "y": 97.732,
+              "score": 0.918
+            },
+            {
+              "x": 121.87,
+              "y": 97.469,
+              "score": 0.888
+            },
+            {
+              "x": 109.0,
+              "y": 98.0,
+              "score": 0.904
+            },
+            {
+              "x": 123.0,
+              "y": 98.0,
+              "score": 0.946
+            }
+          ],
+          "eye_distance": 7.439,
+          "face_width": 14.0,
+          "eye_ratio": 0.964,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            98,
+            79,
+            0.831
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 114.374,
+              "y": 97.755,
+              "score": 0.901
+            },
+            {
+              "x": 122.541,
+              "y": 96.452,
+              "score": 0.837
+            },
+            {
+              "x": 109.0,
+              "y": 98.0,
+              "score": 0.852
+            },
+            {
+              "x": 124.0,
+              "y": 97.0,
+              "score": 0.924
+            }
+          ],
+          "eye_distance": 8.27,
+          "face_width": 15.0,
+          "eye_ratio": 1.071,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            0.96,
+            98,
+            79,
+            0.871
+          ]
+        },
+        {
+          "frame": 4,
+          "landmarks": [
+            {
+              "x": 114.713,
+              "y": 97.478,
+              "score": 0.91
+            },
+            {
+              "x": 122.639,
+              "y": 95.505,
+              "score": 0.88
+            },
+            {
+              "x": 109.0,
+              "y": 97.0,
+              "score": 0.853
+            },
+            {
+              "x": 124.0,
+              "y": 96.0,
+              "score": 0.949
+            }
+          ],
+          "eye_distance": 8.168,
+          "face_width": 15.0,
+          "eye_ratio": 1.058,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            0.96,
+            98,
+            78,
+            0.865
+          ]
+        },
+        {
+          "frame": 5,
+          "landmarks": [
+            {
+              "x": 115.264,
+              "y": 97.475,
+              "score": 0.925
+            },
+            {
+              "x": 122.899,
+              "y": 96.375,
+              "score": 0.9
+            },
+            {
+              "x": 110.0,
+              "y": 97.0,
+              "score": 0.936
+            },
+            {
+              "x": 124.0,
+              "y": 97.0,
+              "score": 0.946
+            }
+          ],
+          "eye_distance": 7.714,
+          "face_width": 14.0,
+          "eye_ratio": 0.999,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            98,
+            78,
+            0.824
+          ]
+        },
+        {
+          "frame": 6,
+          "landmarks": [
+            {
+              "x": 115.218,
+              "y": 97.458,
+              "score": 0.929
+            },
+            {
+              "x": 124.972,
+              "y": 97.861,
+              "score": 0.679
+            },
+            {
+              "x": 110.0,
+              "y": 97.0,
+              "score": 0.939
+            },
+            {
+              "x": 125.5,
+              "y": 98.0,
+              "score": 0.698
+            }
+          ],
+          "eye_distance": 9.762,
+          "face_width": 15.5,
+          "eye_ratio": 1.264,
+          "face_width_ratio": 1.107,
+          "head_alignment": [
+            1.02,
+            98,
+            77,
+            0.774
+          ]
+        }
+      ]
+    },
+    "accepted": false,
+    "reason": "3회 생성 종료. F1·3·4 눈 비율과 F3·4 얼굴 폭이 기준 밖이다. F6 윙크는 두 눈 거리 측정에서 제외했다. 지팡이 돌리기의 손 전환도 매끄럽지 않다.",
+    "sheet_sha256": "a019cdae349db9aec91e5c8e1fa50ac70754536f5ff07e94663298326bb04e04",
+    "candidate": null,
+    "face_valid_frames": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "face_eye_range": [
+      0.964,
+      1.071
+    ],
+    "face_width_range": [
+      1.0,
+      1.071
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "jump",
+    "attempt": 2,
+    "frames": 3,
+    "fps": 10,
+    "factor": 0.165,
+    "margin": 15,
+    "detail": [
+      122.28,
+      126.55
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna_brave\\jump\\attempt-2\\luna_brave-jump.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.911
+        },
+        {
+          "scale": 1.0,
+          "score": 0.894
+        },
+        {
+          "scale": 0.96,
+          "score": 0.941
+        }
+      ],
+      "median": 1.0,
+      "used": 3
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          64.5,
+          4,
+          5
+        ],
+        [
+          86,
+          64.5,
+          3,
+          4
+        ],
+        [
+          73,
+          65.5,
+          3,
+          4
+        ],
+        [
+          87,
+          65.5,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.332,
+          "y": 65.048,
+          "score": 1
+        },
+        {
+          "x": 86.808,
+          "y": 63.732,
+          "score": 1
+        },
+        {
+          "x": 73,
+          "y": 65.5,
+          "score": 1
+        },
+        {
+          "x": 87,
+          "y": 65.5,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.59094407830806,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 80.334,
+              "y": 42.823,
+              "score": 0.931
+            },
+            {
+              "x": 87.642,
+              "y": 41.777,
+              "score": 0.867
+            },
+            {
+              "x": 74.0,
+              "y": 43.5,
+              "score": 0.96
+            },
+            {
+              "x": 88.0,
+              "y": 43.5,
+              "score": 0.898
+            }
+          ],
+          "eye_distance": 7.382,
+          "face_width": 14.0,
+          "eye_ratio": 0.973,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            58,
+            22,
+            0.911
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 82.314,
+              "y": 42.901,
+              "score": 0.955
+            },
+            {
+              "x": 89.73,
+              "y": 41.794,
+              "score": 0.887
+            },
+            {
+              "x": 76.0,
+              "y": 43.5,
+              "score": 0.961
+            },
+            {
+              "x": 90.0,
+              "y": 43.5,
+              "score": 0.919
+            }
+          ],
+          "eye_distance": 7.498,
+          "face_width": 14.0,
+          "eye_ratio": 0.988,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            60,
+            22,
+            0.894
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 78.354,
+              "y": 42.967,
+              "score": 0.898
+            },
+            {
+              "x": 85.602,
+              "y": 42.176,
+              "score": 0.784
+            },
+            {
+              "x": 72.0,
+              "y": 43.5,
+              "score": 0.909
+            },
+            {
+              "x": 87.0,
+              "y": 43.5,
+              "score": 0.784
+            }
+          ],
+          "eye_distance": 7.291,
+          "face_width": 15.0,
+          "eye_ratio": 0.96,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            0.96,
+            57,
+            23,
+            0.939
+          ]
+        }
+      ]
+    },
+    "accepted": false,
+    "reason": "3회 생성 종료. 최선 2차의 F1·2 얼굴 비율은 맞지만 F3 얼굴 폭 1.071이 상한을 넘는다.",
+    "sheet_sha256": "3bc5a3212c5ed816944ecec58d915b3e9bca5eb7eeb2f4683b6b33f156a22c82",
+    "candidate": null,
+    "face_valid_frames": [
+      1,
+      2,
+      3
+    ],
+    "face_eye_range": [
+      0.96,
+      0.988
+    ],
+    "face_width_range": [
+      1.0,
+      1.071
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "fall",
+    "attempt": 3,
+    "frames": 2,
+    "fps": 8,
+    "factor": 0.13525,
+    "margin": 15,
+    "detail": [
+      124.4,
+      131.99
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna_brave\\fall\\attempt-3\\luna_brave-fall.png",
+      "frames": [
+        {
+          "scale": 0.92,
+          "score": 0.9
+        },
+        {
+          "scale": 0.96,
+          "score": 0.909
+        }
+      ],
+      "median": 0.94,
+      "used": 2
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          64.5,
+          4,
+          5
+        ],
+        [
+          86,
+          64.5,
+          3,
+          4
+        ],
+        [
+          73,
+          65.5,
+          3,
+          4
+        ],
+        [
+          87,
+          65.5,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.332,
+          "y": 65.048,
+          "score": 1
+        },
+        {
+          "x": 86.808,
+          "y": 63.732,
+          "score": 1
+        },
+        {
+          "x": 73,
+          "y": 65.5,
+          "score": 1
+        },
+        {
+          "x": 87,
+          "y": 65.5,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.59094407830806,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 71.648,
+              "y": 50.904,
+              "score": 0.866
+            },
+            {
+              "x": 78.676,
+              "y": 49.135,
+              "score": 0.753
+            },
+            {
+              "x": 66.0,
+              "y": 51.5,
+              "score": 0.943
+            },
+            {
+              "x": 80.0,
+              "y": 50.5,
+              "score": 0.79
+            }
+          ],
+          "eye_distance": 7.247,
+          "face_width": 14.0,
+          "eye_ratio": 0.955,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.92,
+            51,
+            31,
+            0.898
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 75.374,
+              "y": 50.848,
+              "score": 0.933
+            },
+            {
+              "x": 82.68,
+              "y": 49.243,
+              "score": 0.798
+            },
+            {
+              "x": 70.0,
+              "y": 51.5,
+              "score": 0.885
+            },
+            {
+              "x": 84.0,
+              "y": 50.5,
+              "score": 0.775
+            }
+          ],
+          "eye_distance": 7.48,
+          "face_width": 14.0,
+          "eye_ratio": 0.985,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            54,
+            30,
+            0.907
+          ]
+        }
+      ]
+    },
+    "accepted": false,
+    "reason": "3회 생성 종료. 최선 3차 공통 배율 0.13525에서 F1 눈 비율 0.955로 하한 0.96에 못 미친다. 장갑과 의상, 낙하 자세는 확인했다.",
+    "sheet_sha256": "1c8e41e71e14f66aed4996f6dfbb88d871396df31d519c54c58dba042c17b7bd",
+    "candidate": null,
+    "face_valid_frames": [
+      1,
+      2
+    ],
+    "face_eye_range": [
+      0.955,
+      0.985
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "hurt",
+    "attempt": 3,
+    "frames": 3,
+    "fps": 12,
+    "factor": 0.14,
+    "margin": 7,
+    "detail": [
+      123.4,
+      127.34
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna_brave\\hurt\\attempt-3\\luna_brave-hurt.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.888
+        },
+        {
+          "scale": 0.7,
+          "score": 0.521
+        },
+        {
+          "scale": 1.0,
+          "score": 0.894
+        }
+      ],
+      "median": 1.01,
+      "used": 2
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          64.5,
+          4,
+          5
+        ],
+        [
+          86,
+          64.5,
+          3,
+          4
+        ],
+        [
+          73,
+          65.5,
+          3,
+          4
+        ],
+        [
+          87,
+          65.5,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.332,
+          "y": 65.048,
+          "score": 1
+        },
+        {
+          "x": 86.808,
+          "y": 63.732,
+          "score": 1
+        },
+        {
+          "x": 73,
+          "y": 65.5,
+          "score": 1
+        },
+        {
+          "x": 87,
+          "y": 65.5,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.59094407830806,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 78.925,
+              "y": 66.766,
+              "score": 0.818
+            },
+            {
+              "x": 86.009,
+              "y": 65.66,
+              "score": 0.678
+            },
+            {
+              "x": 73.0,
+              "y": 67.5,
+              "score": 0.96
+            },
+            {
+              "x": 88.0,
+              "y": 66.5,
+              "score": 0.698
+            }
+          ],
+          "eye_distance": 7.17,
+          "face_width": 15.0,
+          "eye_ratio": 0.945,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            1.02,
+            56,
+            45,
+            0.887
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 77.761,
+              "y": 65.723,
+              "score": 0.886
+            },
+            {
+              "x": 85.16,
+              "y": 63.559,
+              "score": 0.699
+            },
+            {
+              "x": 72.0,
+              "y": 66.5,
+              "score": 0.97
+            },
+            {
+              "x": 87.0,
+              "y": 65.5,
+              "score": 0.573
+            }
+          ],
+          "eye_distance": 7.709,
+          "face_width": 15.0,
+          "eye_ratio": 1.016,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            1.01,
+            56,
+            45,
+            0.695
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 78.808,
+              "y": 66.819,
+              "score": 0.847
+            },
+            {
+              "x": 86.172,
+              "y": 65.279,
+              "score": 0.706
+            },
+            {
+              "x": 73.0,
+              "y": 67.5,
+              "score": 0.951
+            },
+            {
+              "x": 88.0,
+              "y": 66.5,
+              "score": 0.715
+            }
+          ],
+          "eye_distance": 7.523,
+          "face_width": 15.0,
+          "eye_ratio": 0.991,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            1.0,
+            57,
+            46,
+            0.894
+          ]
+        }
+      ]
+    },
+    "accepted": false,
+    "reason": "3회 생성 종료. F1 눈 비율 0.945와 F1·3 얼굴 폭 1.071이 기준 밖이다. F2 자동 머리 위치가 팔·다리 피부에 혼동되어 해당 얼굴 측정값은 제외했다.",
+    "sheet_sha256": "d1d1b8200c981393fd0c971790155eeec16acdbecfc9e05f61fee7157ad6778d",
+    "candidate": null,
+    "face_valid_frames": [
+      1,
+      3
+    ],
+    "face_eye_range": [
+      0.945,
+      0.991
+    ],
+    "face_width_range": [
+      1.071,
+      1.071
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "land",
+    "attempt": 1,
+    "frames": 2,
+    "fps": 12,
+    "factor": 0.135,
+    "margin": 7,
+    "detail": [
+      126.2,
+      127.2
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna_brave\\land\\attempt-1\\luna_brave-land.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.765
+        },
+        {
+          "scale": 0.96,
+          "score": 0.935
+        }
+      ],
+      "median": 0.98,
+      "used": 2
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          64.5,
+          4,
+          5
+        ],
+        [
+          86,
+          64.5,
+          3,
+          4
+        ],
+        [
+          73,
+          65.5,
+          3,
+          4
+        ],
+        [
+          87,
+          65.5,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.332,
+          "y": 65.048,
+          "score": 1
+        },
+        {
+          "x": 86.808,
+          "y": 63.732,
+          "score": 1
+        },
+        {
+          "x": 73,
+          "y": 65.5,
+          "score": 1
+        },
+        {
+          "x": 87,
+          "y": 65.5,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.59094407830806,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 79.512,
+              "y": 76.939,
+              "score": 0.893
+            },
+            {
+              "x": 86.734,
+              "y": 75.394,
+              "score": 0.907
+            },
+            {
+              "x": 73.0,
+              "y": 76.5,
+              "score": 0.918
+            },
+            {
+              "x": 87.0,
+              "y": 77.5,
+              "score": 0.841
+            }
+          ],
+          "eye_distance": 7.385,
+          "face_width": 14.0,
+          "eye_ratio": 0.973,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            1.0,
+            58,
+            55,
+            0.765
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 77.297,
+              "y": 60.113,
+              "score": 0.902
+            },
+            {
+              "x": 84.75,
+              "y": 58.614,
+              "score": 0.868
+            },
+            {
+              "x": 71.0,
+              "y": 60.5,
+              "score": 0.903
+            },
+            {
+              "x": 85.0,
+              "y": 60.5,
+              "score": 0.773
+            }
+          ],
+          "eye_distance": 7.602,
+          "face_width": 14.0,
+          "eye_ratio": 1.001,
+          "face_width_ratio": 1.0,
+          "head_alignment": [
+            0.96,
+            56,
+            40,
+            0.932
+          ]
+        }
+      ]
+    },
+    "accepted": true,
+    "reason": "착지 웅크림에서 양주먹 가드로 회복한다. 장갑과 무릎 별 장식을 확인했다.",
+    "sheet_sha256": "bbb8b0d8311dd53713978e5669269568a34e83816523323d0fa5d96871dc76d4",
+    "candidate": "art/bakeoff/luna/luna_brave-land-v1.png",
+    "face_valid_frames": [
+      1,
+      2
+    ],
+    "face_eye_range": [
+      0.973,
+      1.001
+    ],
+    "face_width_range": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "victory",
+    "attempt": 3,
+    "frames": 6,
+    "fps": 8,
+    "factor": 0.198,
+    "margin": 39,
+    "detail": [
+      119.67,
+      128.16
+    ],
+    "head": {
+      "sheet": "reports\\codex-art-72\\luna_brave\\victory\\attempt-3\\luna_brave-victory.png",
+      "frames": [
+        {
+          "scale": 0.96,
+          "score": 0.912
+        },
+        {
+          "scale": 1.0,
+          "score": 0.897
+        },
+        {
+          "scale": 0.62,
+          "score": 0.372
+        },
+        {
+          "scale": 1.02,
+          "score": 0.741
+        },
+        {
+          "scale": 1.0,
+          "score": 0.881
+        },
+        {
+          "scale": 1.0,
+          "score": 0.919
+        }
+      ],
+      "median": 1.0,
+      "used": 5
+    },
+    "face": {
+      "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+      "anchor": [
+        [
+          79,
+          64.5,
+          4,
+          5
+        ],
+        [
+          86,
+          64.5,
+          3,
+          4
+        ],
+        [
+          73,
+          65.5,
+          3,
+          4
+        ],
+        [
+          87,
+          65.5,
+          3,
+          4
+        ]
+      ],
+      "anchor_landmarks": [
+        {
+          "x": 79.332,
+          "y": 65.048,
+          "score": 1
+        },
+        {
+          "x": 86.808,
+          "y": 63.732,
+          "score": 1
+        },
+        {
+          "x": 73,
+          "y": 65.5,
+          "score": 1
+        },
+        {
+          "x": 87,
+          "y": 65.5,
+          "score": 1
+        }
+      ],
+      "reference_eye_distance": 7.59094407830806,
+      "reference_face_width": 14,
+      "frames": [
+        {
+          "frame": 1,
+          "landmarks": [
+            {
+              "x": 109.395,
+              "y": 97.876,
+              "score": 0.923
+            },
+            {
+              "x": 116.5,
+              "y": 96.783,
+              "score": 0.71
+            },
+            {
+              "x": 103.0,
+              "y": 97.5,
+              "score": 0.912
+            },
+            {
+              "x": 118.0,
+              "y": 97.5,
+              "score": 0.642
+            }
+          ],
+          "eye_distance": 7.189,
+          "face_width": 15.0,
+          "eye_ratio": 0.947,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            0.96,
+            88,
+            77,
+            0.913
+          ]
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            {
+              "x": 109.759,
+              "y": 97.91,
+              "score": 0.839
+            },
+            {
+              "x": 117.105,
+              "y": 96.83,
+              "score": 0.674
+            },
+            {
+              "x": 104.0,
+              "y": 98.5,
+              "score": 0.955
+            },
+            {
+              "x": 119.0,
+              "y": 97.5,
+              "score": 0.771
+            }
+          ],
+          "eye_distance": 7.425,
+          "face_width": 15.0,
+          "eye_ratio": 0.978,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            1.0,
+            88,
+            77,
+            0.897
+          ]
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            {
+              "x": 81.238,
+              "y": 92.648,
+              "score": 0.783
+            },
+            {
+              "x": 90.266,
+              "y": 90.597,
+              "score": 0.385
+            },
+            {
+              "x": 76.0,
+              "y": 94.0,
+              "score": 0.631
+            },
+            {
+              "x": 89.0,
+              "y": 92.0,
+              "score": 0.429
+            }
+          ],
+          "eye_distance": 9.258,
+          "face_width": 13.0,
+          "eye_ratio": 1.22,
+          "face_width_ratio": 0.929,
+          "head_alignment": [
+            1.0,
+            60,
+            71,
+            0.362
+          ]
+        },
+        {
+          "frame": 4,
+          "landmarks": [
+            {
+              "x": 108.52,
+              "y": 96.97,
+              "score": 0.949
+            },
+            {
+              "x": 115.5,
+              "y": 96.531,
+              "score": 0.641
+            },
+            {
+              "x": 102.0,
+              "y": 97.5,
+              "score": 0.908
+            },
+            {
+              "x": 118.0,
+              "y": 96.5,
+              "score": 0.739
+            }
+          ],
+          "eye_distance": 6.994,
+          "face_width": 16.0,
+          "eye_ratio": 0.921,
+          "face_width_ratio": 1.143,
+          "head_alignment": [
+            1.02,
+            86,
+            75,
+            0.746
+          ]
+        },
+        {
+          "frame": 5,
+          "landmarks": [
+            {
+              "x": 109.689,
+              "y": 98.007,
+              "score": 0.841
+            },
+            {
+              "x": 117.021,
+              "y": 96.945,
+              "score": 0.654
+            },
+            {
+              "x": 104.0,
+              "y": 98.5,
+              "score": 0.966
+            },
+            {
+              "x": 119.0,
+              "y": 98.5,
+              "score": 0.752
+            }
+          ],
+          "eye_distance": 7.409,
+          "face_width": 15.0,
+          "eye_ratio": 0.976,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            1.0,
+            88,
+            77,
+            0.881
+          ]
+        },
+        {
+          "frame": 6,
+          "landmarks": [
+            {
+              "x": 109.493,
+              "y": 97.975,
+              "score": 0.928
+            },
+            {
+              "x": 117.142,
+              "y": 96.366,
+              "score": 0.662
+            },
+            {
+              "x": 104.0,
+              "y": 98.5,
+              "score": 0.96
+            },
+            {
+              "x": 119.0,
+              "y": 97.5,
+              "score": 0.715
+            }
+          ],
+          "eye_distance": 7.816,
+          "face_width": 15.0,
+          "eye_ratio": 1.03,
+          "face_width_ratio": 1.071,
+          "head_alignment": [
+            1.0,
+            88,
+            77,
+            0.919
+          ]
+        }
+      ]
+    },
+    "accepted": false,
+    "reason": "3회 생성 종료. 2차는 원본 셀 경계 실패. 최선 3차도 F1·2·5·6 얼굴 폭 1.071로 기준 밖이다. F3·4는 들어 올린 팔 때문에 자동 표식이 빗나가 얼굴 측정에서 제외했다.",
+    "sheet_sha256": "cda1664a0f663f315703c5f944b5d48035cf960e96f3b3daf4081afe5bee5420",
+    "candidate": null,
+    "face_valid_frames": [
+      1,
+      2,
+      5,
+      6
+    ],
+    "face_eye_range": [
+      0.947,
+      1.03
+    ],
+    "face_width_range": [
+      1.071,
+      1.071
+    ]
+  }
+]

@@ -1,0 +1,128 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      82.5,
+      67,
+      4,
+      5
+    ],
+    [
+      90,
+      67,
+      3,
+      4
+    ],
+    [
+      77,
+      67,
+      3,
+      4
+    ],
+    [
+      91,
+      67,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 82.184,
+      "y": 67.594,
+      "score": 1
+    },
+    {
+      "x": 89.805,
+      "y": 66.359,
+      "score": 1
+    },
+    {
+      "x": 77,
+      "y": 67,
+      "score": 1
+    },
+    {
+      "x": 91,
+      "y": 67,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.720418771025322,
+  "reference_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 81.034,
+          "y": 76.404,
+          "score": 0.926
+        },
+        {
+          "x": 88.629,
+          "y": 75.398,
+          "score": 0.908
+        },
+        {
+          "x": 76.0,
+          "y": 76.0,
+          "score": 0.98
+        },
+        {
+          "x": 90.0,
+          "y": 76.0,
+          "score": 0.955
+        }
+      ],
+      "eye_distance": 7.661,
+      "face_width": 14.0,
+      "eye_ratio": 0.992,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        64,
+        57,
+        0.938
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 80.952,
+          "y": 60.679,
+          "score": 0.942
+        },
+        {
+          "x": 88.686,
+          "y": 59.387,
+          "score": 0.963
+        },
+        {
+          "x": 76.0,
+          "y": 60.0,
+          "score": 0.96
+        },
+        {
+          "x": 90.0,
+          "y": 60.0,
+          "score": 0.977
+        }
+      ],
+      "eye_distance": 7.841,
+      "face_width": 14.0,
+      "eye_ratio": 1.016,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        64,
+        41,
+        0.942
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_passed": true,
+  "review_note": "착지 웅크림에서 대기 자세로 회복한다. 3차에서 얼굴 크기와 양발 접지, 지팡이를 확인했다."
+}
