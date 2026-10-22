@@ -937,3 +937,11 @@ func _set_match_hud_visible(visible_now: bool) -> void:
 	if not visible_now:
 		warning_label.visible = false
 		card_panel.visible = false
+		# An ultimate cut-in or flash still playing ends with the match view: it stayed 0.85 s
+		# over the story dialogue after a fight (QA-21 S1).
+		if cutin_tween != null and cutin_tween.is_valid():
+			cutin_tween.kill()
+		if flash_tween != null and flash_tween.is_valid():
+			flash_tween.kill()
+		cutin_root.visible = false
+		flash_rect.color.a = 0.0
