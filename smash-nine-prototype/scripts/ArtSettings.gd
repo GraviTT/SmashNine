@@ -85,9 +85,18 @@ static func aimed_sprite(texture: Texture2D, direction: Vector2, art_scale := 2.
 ## Character portrait for menus and the HUD: the face cut from the main illustration
 ## (<id>[_<body>]_face.png, CODEX-ART-08), then the pixel portrait (<id>[_<body>]_portrait.png),
 ## else the first idle frame of the character's sheet.
-static func character_portrait(character_id: String, body := "") -> Texture2D:
+static func character_portrait(character_id: String, body := "", expression := "") -> Texture2D:
 	for kind in ["face", "portrait"]:
 		var found := _first_existing(character_id, body, kind)
+		if kind == "face" and expression != "":
+			# Follow the neutral face's resolved stem, so a missing female expression
+			# cannot accidentally select a male expression (or the reverse).
+			var path := found.resource_path.get_basename() + "_" + expression + ".png" if found != null else ""
+			var expressive: Texture2D = load(path) as Texture2D if path != "" and ResourceLoader.exists(path) else null
+			if found == null:
+				expressive = _first_existing(character_id, body, "face_" + expression)
+			if expressive != null:
+				return expressive
 		if found != null:
 			return found
 	var sheet := original_character_sheet(character_id, body)

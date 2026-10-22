@@ -56,15 +56,31 @@ static func _dialogue(number: int) -> Dictionary:
 			lines.post = [["narrator", prefix + ".post.1"]]
 		9:
 			lines.pre = [["narrator", prefix + ".pre.1"], ["narrator", prefix + ".pre.2"]]
-			lines.mid = [["narrator", prefix + ".mid.1"], ["shadow", "story.shadow.{hero}.1"], ["hero", "story.voice.{hero}.echo"], ["shadow", "story.shadow.{hero}.2"]]
+			lines.mid = [["narrator", prefix + ".mid.1"], ["shadow", "story.shadow.{hero}.1"], ["hero", "story.voice.{hero}.echo", {"cg": "", "face": "angry"}], ["shadow", "story.shadow.{hero}.2"]]
 			lines.post = [["narrator", prefix + ".post.1"], ["narrator", prefix + ".post.2"]]
 		_:
-			lines.pre = [["rival", prefix + ".pre.1"], ["hero", "story.voice.{hero}.challenge"], ["rival", prefix + ".pre.2"]]
+			lines.pre = [["rival", prefix + ".pre.1"], ["hero", "story.voice.{hero}.challenge", {"cg": "", "face": "angry"}], ["rival", prefix + ".pre.2"]]
 			if number in [6, 8]:
-				lines.pre = [["rival", prefix + ".pre.1"], ["rival", prefix + ".pre.2"], ["hero", "story.voice.{hero}.challenge"]]
+				lines.pre = [["rival", prefix + ".pre.1"], ["rival", prefix + ".pre.2"], ["hero", "story.voice.{hero}.challenge", {"cg": "", "face": "angry"}]]
 			lines.post = [["rival", prefix + ".post.1"], ["rival", prefix + ".post.2"], ["hero", "story.voice.{hero}.victory"]]
 			lines.home_pre = [["hero", prefix + ".home.pre.1"], ["hero", prefix + ".home.pre.2"]]
 			lines.home_post = [["hero", prefix + ".home.post.1"], ["hero", prefix + ".home.post.2"]]
+	# Sparse face tags; all other lines keep the neutral face. Empty cg keeps the
+	# existing third-field scene-picture metadata contract.
+	match number:
+		2:
+			lines.pre[0].append({"cg": "", "face": "angry"})
+			lines.pre[2].append({"cg": "", "face": "angry"})
+			lines.home_pre[1].append({"cg": "", "face": "angry"})
+		3:
+			lines.pre[2].append({"cg": "", "face": "happy"})
+			lines.home_pre[1].append({"cg": "", "face": "angry"})
+			lines.home_post[1].append({"cg": "", "face": "hurt"})
+		4:
+			lines.pre[0].append({"cg": "", "face": "happy"})
+			lines.home_pre[1].append({"cg": "", "face": "angry"})
+		8:
+			lines.home_pre[1].append({"cg": "", "face": "hurt"})
 	# Scene pictures (ART-70, StoryDialogue) behind the prologue, the opened root seal and the calm heart.
 	match number:
 		1:
