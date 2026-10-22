@@ -52,6 +52,8 @@ func _show_line() -> void:
 		return
 	AUDIO.sound(self, "story_text")
 	var line: Array = lines[line_index]
+	var extra: Dictionary = line[2] if line.size() > 2 and line[2] is Dictionary else {}
+	var expression := str(extra.get("face", ""))
 	var speaker := str(line[0])
 	var shadow_speaks := speaker == "shadow"
 	var shadow_scene := lines.any(func(entry: Array) -> bool: return str(entry[0]) == "shadow")
@@ -60,18 +62,21 @@ func _show_line() -> void:
 	var hero_speaks := not shadow_speaks and (speaker == "hero" or id == hero_id)
 	left_face.visible = not narrator
 	right_face.visible = not narrator and (rival_id != "" or shadow_scene)
+	left_face.texture = ART.character_portrait(hero_id, body, expression if hero_speaks else "")
 	left_face.modulate = Color.WHITE if hero_speaks else Color(0.35, 0.35, 0.45)
 	var other_id := hero_id if shadow_scene else (id if not hero_speaks and not narrator else rival_id)
+	var right_tint := Color(0.42, 0.24, 0.62) if shadow_scene else Color.WHITE
 	if other_id != "" and _roster.has(other_id):
 		right_face.visible = not narrator
-		right_face.texture = ART.character_portrait(other_id, body if shadow_scene else REGISTRY.get_bodies(other_id)[0])
-	var right_tint := Color(0.42, 0.24, 0.62) if shadow_scene else Color.WHITE
+		var other_body: String = body if shadow_scene else REGISTRY.get_bodies(other_id)[0]
+		right_face.texture = ART.character_portrait(other_id, other_body, "shadow" if shadow_scene else (expression if not hero_speaks else ""))
+		if shadow_scene and right_face.texture != null and right_face.texture.resource_path.ends_with("_face_shadow.png"):
+			right_tint = Color.WHITE
 	right_face.modulate = right_tint if not hero_speaks else right_tint * Color(0.35, 0.35, 0.45)
 	speaker_label.text = tr("Narrator") if narrator else (tr("Shadow %s") % tr(str(_roster[id].name)) if shadow_speaks else tr(str(_roster[id].name)))
 	speaker_label.add_theme_color_override("font_color", DIM if narrator else (Color("b98af0") if shadow_speaks else _roster[id].color))
 	_place_name_plate(narrator, hero_speaks)
 	line_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER if narrator else HORIZONTAL_ALIGNMENT_LEFT
-	var extra: Dictionary = line[2] if line.size() > 2 and line[2] is Dictionary else {}
 	var cg: Texture2D = ART.original_texture(CG_ART % str(extra.cg)) if extra.has("cg") else null
 	cg_picture.texture = cg
 	cg_picture.visible = cg != null
