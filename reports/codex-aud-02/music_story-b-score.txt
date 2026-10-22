@@ -1,0 +1,87 @@
+story / B / 뿌리가 기억하는 약속
+90 BPM | 4/4 | D dorian (D E F G A B C) | 16 bars
+Shared six-note hook: D5 A5 G5 E5 F5 D5
+Notation: beat (0-based quarter notes):note:duration-in-beats@velocity; '-' is a rest.
+Drum durations describe score articulation; synthesis one-shot release lengths are fixed in music.py.
+Harmony: A monophonic pulse 2 arpeggio; B/C short chord pad. Rendered releases may cross bar/loop.
+
+BAR 01 | Dm
+  lead     0:D5:1.7@1~FROM-END  2:A5:1.7@1
+  bass     0:D2:2.6@0.8  3:A2:0.85@0.6
+  harmony  0.25:D4+F4+A4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25
+BAR 02 | Dm
+  lead     0:G5:0.8@1  1:E5:0.8@1  2:F5:0.8@1  3:D5:0.8@1
+  bass     0:D2:2.6@0.8  3:A2:0.85@0.6
+  harmony  0.25:D4+F4+A4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25  3.5:hat:0.05@0.12
+BAR 03 | G
+  lead     0:B4:1.6@1  2:D5:1.6@1
+  bass     0:G2:2.6@0.8  3:D3:0.85@0.6
+  harmony  0.25:B3+D4+G4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25
+BAR 04 | C
+  lead     0:E5:1.3@1  1.5:C5:0.8@1  2.5:D5:1.1@1
+  bass     0:C2:2.6@0.8  3:G2:0.85@0.6
+  harmony  0.25:C4+E4+G4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25  3.5:hat:0.05@0.12
+BAR 05 | F
+  lead     0:A4:1.6@1  2:C5:1.6@1
+  bass     0:F2:2.6@0.8  3:C3:0.85@0.6
+  harmony  0.25:A3+C4+F4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25
+BAR 06 | C
+  lead     0:E5:1.1@1  1.5:G5:1.8@1
+  bass     0:C2:2.6@0.8  3:G2:0.85@0.6
+  harmony  0.25:C4+E4+G4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25  3.5:hat:0.05@0.12
+BAR 07 | G
+  lead     0:F5:1.6@1  2:E5:1.6@1
+  bass     0:G2:2.6@0.8  3:D3:0.85@0.6
+  harmony  0.25:B3+D4+G4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25
+BAR 08 | Dm
+  lead     0:D5:2.6@1  3:-:1@1
+  bass     0:D2:2.6@0.8  3:A2:0.85@0.6
+  harmony  0.25:D4+F4+A4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25  3.5:hat:0.05@0.12
+BAR 09 | Dm
+  lead     0:D5:1.7@1  2:A5:1.7@1
+  bass     0:D2:2.6@0.8  3:A2:0.85@0.6
+  harmony  0.25:D4+F4+A4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25
+BAR 10 | Dm
+  lead     0:G5:0.8@1  1:E5:0.8@1  2:F5:0.8@1  3:D5:0.8@1
+  bass     0:D2:2.6@0.8  3:A2:0.85@0.6
+  harmony  0.25:D4+F4+A4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25  3.5:hat:0.05@0.12
+BAR 11 | G
+  lead     0:B4:1.6@1  2:G5:1.6@1
+  bass     0:G2:2.6@0.8  3:D3:0.85@0.6
+  harmony  0.25:B3+D4+G4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25
+BAR 12 | C
+  lead     0:E5:1.3@1  1.5:D5:0.8@1  2.5:C5:1.1@1
+  bass     0:C2:2.6@0.8  3:G2:0.85@0.6
+  harmony  0.25:C4+E4+G4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25  3.5:hat:0.05@0.12
+BAR 13 | F
+  lead     0:A4:1.6@1  2:C5:1.6@1
+  bass     0:F2:2.6@0.8  3:C3:0.85@0.6
+  harmony  0.25:A3+C4+F4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25
+BAR 14 | G
+  lead     0:B4:1.6@1  2:D5:1.6@1
+  bass     0:G2:2.6@0.8  3:D3:0.85@0.6
+  harmony  0.25:B3+D4+G4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25  3.5:hat:0.05@0.12
+BAR 15 | Am
+  lead     0:E5:1.4@1  2:F5:1.2@1
+  bass     0:A2:2.6@0.8  3:E3:0.85@0.6
+  harmony  0.25:A3+C4+E4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25
+BAR 16 | Dm
+  lead     0:E5:1.4@1  2:D5:3.7@1.1~TO-START
+  bass     0:D2:2.6@0.8  3:A2:0.85@0.6
+  harmony  0.25:D4+F4+A4:3.25@0.72
+  drums    0.5:kick:0.2@0.32  2.5:snare:0.2@0.25  3.5:hat:0.05@0.12
