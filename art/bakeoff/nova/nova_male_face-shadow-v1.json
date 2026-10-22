@@ -1,0 +1,42 @@
+{
+  "note": "현재 중립 얼굴을 내장 이미지 도구로 직접 편집한 그림자 보스 후보. 생성 RGB를 256px로 축소·정수 정렬한 뒤 원본 알파에 맞췄다. 투명 경계의 빈 RGB만 주변 생성 픽셀로 연장했다. 그림자 색·눈·표정은 코드로 그리지 않았다. 후보 전용이며 게임에 연결하지 않았다.",
+  "expression": "shadow",
+  "edited_from": "smash-nine-prototype/assets/art/nova/nova_male_face.png",
+  "source_raw": "art/raw/faces-80/nova_male-try2.png",
+  "selected_try": 2,
+  "tries": 2,
+  "eye_colour": "라일락 보라색",
+  "review_status": "candidate",
+  "delivered": true,
+  "candidate_only": true,
+  "offset": [
+    -1,
+    0
+  ],
+  "normalization": "LANCZOS 256x256, integer translation, generated-edge RGB padding, original alpha",
+  "measurements": {
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "alpha_changed_pixels": 0,
+    "outside_neutral_alpha_nonzero": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "alpha_padding_pixels": 455,
+    "alpha_padding_radius": 2,
+    "alignment": {
+      "offset": [
+        -1,
+        0
+      ],
+      "score": 0.12758260362686336,
+      "roi_gradient_correlation": 0.8864168865500668,
+      "alpha_mae": 0.013999490176930144
+    },
+    "alignment_roi_pixels": 149,
+    "original_sha256": "cb8a6935ac93042d31c3d6b82299957ab3a1bd6dddcbdd3e2c919190bbb406f7",
+    "copied_neutral_sha256": "cb8a6935ac93042d31c3d6b82299957ab3a1bd6dddcbdd3e2c919190bbb406f7",
+    "candidate_sha256": "b84d9359103b291a956f8b1ae8ce6bdcf05024c42cef08a1af134f22bff3aa20"
+  }
+}
