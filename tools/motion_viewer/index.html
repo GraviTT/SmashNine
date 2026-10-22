@@ -149,6 +149,40 @@ h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
 .keys { color: var(--muted); font-size: 12.5px; margin: 0; }
 kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--panel); }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+.pick-controls { display: grid; gap: 6px; width: 100%; padding: 8px; border-top: 1px solid var(--line); text-align: left; }
+.pick-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.pick-controls input { width: 100%; min-width: 0; padding: 5px 7px; border: 1px solid var(--line); border-radius: 5px; background: var(--panel); }
+.pick-controls label, .pick-status { font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
+.pick-controls .btn { font-family: var(--font-body); font-size: 13px; }
+button:disabled { opacity: .5; cursor: default; }
+.pick-toggle[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.picks-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
+.picks-head h2, .review-section h2 { margin: 0; font-size: 20px; }
+.picks-table-wrap { overflow-x: auto; }
+.picks-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+.picks-table th, .picks-table td { padding: 7px 9px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+.picks-table .memo { min-width: 140px; max-width: 320px; white-space: pre-wrap; }
+.review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 14px; }
+.review-card { border: 1px solid var(--line); border-radius: 8px; background: var(--bg); padding: 12px; min-width: 0; }
+.review-card h3 { font-size: 15px; margin: 0 0 6px; }
+.review-card p { color: var(--muted); font-size: 12px; margin: 4px 0 10px; }
+.projectile-scales { display: grid; gap: 10px; overflow-x: auto; }
+.projectile-pair { display: flex; gap: 12px; align-items: end; }
+.projectile-pair figure { display: grid; gap: 4px; justify-items: center; margin: 0; }
+.projectile-pair canvas { image-rendering: pixelated; background: var(--chk-b); border-radius: 4px; }
+.projectile-pair figcaption { font-size: 11px; color: var(--muted); }
+.portrait-forms { display: grid; gap: 18px; }
+.portrait-form h3 { margin: 0 0 8px; font-size: 16px; }
+.portrait-row { display: flex; gap: 12px; overflow-x: auto; align-items: start; padding-bottom: 8px; }
+.portrait-card { flex: 0 0 160px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); padding: 8px; }
+.portrait-card h4 { margin: 0 0 6px; font-size: 13px; }
+.portrait-open { display: block; padding: 0; width: 142px; height: 164px; border: 0; cursor: zoom-in; background: var(--chk-b); }
+.portrait-open img { display: block; width: 142px; height: 164px; object-fit: contain; }
+.portrait-card .pick-controls { padding: 8px 0 0; margin-top: 8px; }
+dialog { max-width: 95vw; max-height: 95vh; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--ink); }
+dialog::backdrop { background: #000a; }
+dialog img { display: block; max-width: 85vw; max-height: 75vh; object-fit: contain; margin: 10px auto; }
+dialog p { margin: 4px 0; }
 </style>
 
 <div class="wrap">
@@ -156,6 +190,11 @@ kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--
 		<div class="brand"><span class="logo">SMASHNINE</span><h1>모션 뷰어</h1></div>
 		<p class="meta" id="meta"></p>
 	</header>
+	<section class="panel" aria-label="고른 후보" id="picksPanel">
+		<div class="picks-head"><h2>고른 것 <span id="picksCount">0</span></h2><a href="#projectiles">몬스터 투사체</a><a href="#portraits">대화 초상화</a></div>
+		<p class="note" id="pickDbNote" role="status">로컬 미리보기 · 고르기와 메모 저장은 DB가 연결된 Artifact에서 사용할 수 있습니다.</p>
+		<div class="picks-table-wrap" id="pickedList" aria-live="polite"></div>
+	</section>
 
 	<nav class="roster" id="roster" aria-label="캐릭터"></nav>
 	<div class="forms" id="forms" aria-label="체형 또는 몬스터"></div>
@@ -202,7 +241,17 @@ kbd { font-family: var(--font-mono); font-size: 11.5px; border: 1px solid var(--
 
 		<section class="panel" aria-label="모든 동작"><div id="groups"></div><div id="clips"></div></section>
 	</main>
+	<section class="panel review-section" id="projectiles" aria-label="몬스터 투사체">
+		<div class="picks-head"><h2>몬스터 투사체</h2><button class="btn" id="projectilePlay" type="button">멈춤</button></div>
+		<p class="note">원본 픽셀 크기 1× / 3× 비교 · 후보 JSON의 fps로 재생합니다. 게임 표시 배율은 별도입니다. 공용 충격파의 기존 도형은 코드 좌표로 재현했습니다.</p>
+		<div class="review-grid" id="projectileGrid"></div>
+	</section>
+	<section class="panel review-section" id="portraits" aria-label="대화 초상화">
+		<h2>대화 초상화</h2><p class="note">142×164 대화 영역에 비율을 유지해 표시합니다. 그림을 누르면 원본 크기로 볼 수 있습니다.</p>
+		<div class="portrait-forms" id="portraitForms"></div>
+	</section>
 </div>
+<dialog id="faceDialog" aria-label="초상화 원본"><button class="btn" id="closeFace" type="button">닫기</button><p id="faceTitle"></p><img id="fullFace" alt=""></dialog>
 
 <script>
 const M = /*MANIFEST*/null;
@@ -269,6 +318,172 @@ function drawCell(ctx, anim, frame, scale) {
 }
 
 const $ = (id) => document.getElementById(id);
+const KIND_NAMES = { fighter: "캐릭터", monster: "몬스터", projectile: "투사체", face: "초상화" };
+const EXPRESSIONS = { neutral: "무표정 · 현재 게임", happy: "기쁨", angry: "분노", hurt: "고통" };
+const candidateCatalog = new Map(), pickRecords = new Map(), pickDrafts = new Map(), pickSaving = new Set(), pickErrors = new Map();
+const pickControls = new Map();
+let candidateDb = null;
+const PICK_CONNECTED_NOTE = "선택 저장 연결됨 · 고르기는 언제든 취소할 수 있습니다. 메모를 바꾼 뒤에는 메모 저장을 누르세요. 게임 반영은 리드가 진행합니다.";
+const pickId = pick => [pick.kind, pick.id, pick.row, pick.version].join("~");
+function registerCandidate(candidate, name) {
+	if (candidate.pick) candidateCatalog.set(pickId(candidate.pick), { ...candidate.pick, name });
+}
+for (const c of M.characters) for (const f of c.forms) for (const s of [f.base, f.moves].filter(Boolean))
+	for (const r of s.rows) for (const candidate of r.candidates || []) registerCandidate(candidate, `${c.name}${f.body ? ` ${BODY[f.body] || f.body}` : ""}`);
+for (const m of M.monsters) for (const r of m.base.rows) for (const candidate of r.candidates || []) registerCandidate(candidate, `${m.realm} · ${m.name}`);
+for (const p of M.projectiles || []) registerCandidate(p, p.name);
+for (const form of M.portraits || []) for (const candidate of form.candidates) registerCandidate(candidate, form.name);
+function el(tag, className, text) {
+	const item = document.createElement(tag);
+	if (className) item.className = className;
+	if (text !== undefined) item.textContent = text;
+	return item;
+}
+function createPickControls(candidate) {
+	const key = pickId(candidate.pick), info = candidateCatalog.get(key);
+	const root = el("div", "pick-controls"), actions = el("div", "pick-actions");
+	const toggle = el("button", "btn pick-toggle", "고르기"); toggle.type = "button";
+	toggle.setAttribute("aria-label", `${info.name} ${info.row} ${info.version} 고르기`);
+	const label = el("label", "", "메모 (선택 사항)");
+	const note = el("input"); note.type = "text"; note.maxLength = 300; note.placeholder = "짧은 메모"; label.append(note);
+	note.setAttribute("aria-label", `${info.name} ${info.row} ${info.version} 메모`);
+	note.addEventListener("input", () => pickDrafts.set(key, note.value));
+	const saveNote = el("button", "btn", "메모 저장"); saveNote.type = "button";
+	const status = el("div", "pick-status"); status.setAttribute("role", "status");
+	toggle.addEventListener("click", () => writePick(key, !pickRecords.get(key)?.picked));
+	saveNote.addEventListener("click", () => writePick(key, Boolean(pickRecords.get(key)?.picked)));
+	actions.append(toggle, saveNote); root.append(actions, label, status);
+	const ui = { root, toggle, note, saveNote, status };
+	if (!pickControls.has(key)) pickControls.set(key, new Set());
+	pickControls.get(key).add(ui); refreshPickControl(key, ui);
+	return root;
+}
+function refreshPickControl(key, ui) {
+	const record = pickRecords.get(key), busy = pickSaving.has(key);
+	ui.toggle.disabled = ui.saveNote.disabled = ui.note.disabled = !candidateDb || busy;
+	ui.toggle.textContent = record?.picked ? "고름 ✓ · 취소" : "고르기";
+	ui.toggle.setAttribute("aria-pressed", Boolean(record?.picked));
+	if (document.activeElement !== ui.note) ui.note.value = pickDrafts.get(key) ?? record?.note ?? "";
+	ui.status.textContent = pickErrors.get(key) || (busy ? "저장 중…" : !candidateDb ? "DB 연결 필요" : record?.picked ? "고른 후보 · 게임 반영 전" : "고르지 않음");
+}
+function refreshPicks() {
+	for (const [key, controls] of pickControls) for (const ui of controls) {
+		if (!ui.root.isConnected) controls.delete(ui); else refreshPickControl(key, ui);
+	}
+	const host = $("pickedList"); host.innerHTML = "";
+	const picked = [...pickRecords].filter(([, record]) => record.picked).sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }));
+	$("picksCount").textContent = String(picked.length);
+	if (!picked.length) { host.append(el("p", "meta", "아직 고른 후보가 없습니다.")); return; }
+	const table = el("table", "picks-table"), head = el("thead"), headings = el("tr");
+	for (const text of ["종류", "이름", "동작 / 표정", "버전", "메모", "선택"]) headings.append(el("th", "", text));
+	head.append(headings); table.append(head);
+	const body = el("tbody");
+	for (const [key, record] of picked) {
+		const info = candidateCatalog.get(key), row = el("tr");
+		for (const text of [KIND_NAMES[record.kind], info?.name || `${record.id} · 현재 후보 목록에 없음`, record.kind === "face" ? EXPRESSIONS[record.row] || record.row : record.row, record.version]) row.append(el("td", "", text));
+		row.append(el("td", "memo", record.note || ""));
+		const action = el("td"), remove = el("button", "btn", "취소"); remove.type = "button";
+		remove.disabled = !candidateDb || pickSaving.has(key); remove.setAttribute("aria-label", `${record.id} ${record.row} ${record.version} 선택 취소`);
+		remove.addEventListener("click", () => writePick(key, false)); action.append(remove); row.append(action); body.append(row);
+	}
+	table.append(body); host.append(table);
+}
+async function writePick(key, picked) {
+	if (!candidateDb || pickSaving.has(key)) return;
+	const info = candidateCatalog.get(key) || pickRecords.get(key); if (!info) return;
+	const note = String(pickDrafts.get(key) ?? pickRecords.get(key)?.note ?? "").trim().slice(0, 300);
+	const value = { kind: info.kind, id: info.id, row: info.row, version: info.version, file: info.file, picked, note, picked_at: new Date().toISOString() };
+	pickSaving.add(key); pickErrors.delete(key); refreshPicks();
+	try {
+		await candidateDb.collection("candidate_picks").doc(key).set(value);
+		pickRecords.set(key, value);
+		if (String(pickDrafts.get(key) ?? note).trim() === note) pickDrafts.delete(key);
+		if (candidateDb) $("pickDbNote").textContent = PICK_CONNECTED_NOTE;
+	} catch {
+		pickErrors.set(key, "저장하지 못했습니다. 잠시 뒤 다시 눌러 주세요.");
+		$("pickDbNote").textContent = "저장하지 못했습니다. 연결을 확인하고 다시 눌러 주세요.";
+	} finally { pickSaving.delete(key); refreshPicks(); }
+}
+function disconnectPicks() {
+	candidateDb = null;
+	$("pickDbNote").textContent = "DB 연결 없음 · 후보 재생과 비교는 계속 사용할 수 있습니다. 고르기와 메모 저장은 연결된 Artifact에서 가능합니다.";
+	refreshPicks();
+}
+function connectPicks(db) {
+	candidateDb = db;
+	db.collection("candidate_picks").onSnapshot(snap => {
+		pickRecords.clear();
+		for (const doc of snap.docs) {
+			if (!doc.exists) continue;
+			const record = doc.data();
+			if (record && Object.hasOwn(KIND_NAMES, record.kind) && pickId(record) === doc.id && typeof record.picked === "boolean" && typeof record.file === "string") pickRecords.set(doc.id, record);
+		}
+		refreshPicks();
+	}, disconnectPicks);
+	if (candidateDb) $("pickDbNote").textContent = PICK_CONNECTED_NOTE;
+	refreshPicks();
+}
+
+let projectilePlaying = !reduce, projectileT = 0;
+const projectileViews = [];
+function renderProjectiles() {
+	const host = $("projectileGrid");
+	for (const p of M.projectiles || []) {
+		const card = el("article", "review-card"); card.append(el("h3", "", `${p.name} · ${p.version}`), el("p", "", `${p.frames}프레임 · ${p.fps}fps · ${p.note}`));
+		const scales = el("div", "projectile-scales");
+		const [width, height] = Array.isArray(p.cell) ? p.cell : [p.cell, p.cell];
+		for (const scale of [1, 3]) {
+			const pair = el("div", "projectile-pair");
+			for (const current of [true, false]) {
+				const figure = el("figure"), canvas = el("canvas");
+				const img = current && p.current ? image(p.current) : null;
+				const paint = () => {
+					const w = current && img ? img.naturalWidth : width, h = current && img ? img.naturalHeight : height;
+					canvas.width = w * scale; canvas.height = h * scale;
+					const ctx = canvas.getContext("2d"); ctx.imageSmoothingEnabled = false;
+					if (current && img) ctx.drawImage(img, 0, 0, w * scale, h * scale);
+					else if (current) {
+						ctx.strokeStyle = "#ffcc4d"; ctx.lineWidth = 5 * scale; ctx.beginPath();
+						[[-16,12],[-8,-10],[0,-22],[8,-10],[16,12]].forEach(([x,y],i) => ctx[i ? "lineTo" : "moveTo"]((x+32)*scale,(y+24)*scale)); ctx.stroke();
+					} else projectileViews.push({ ctx, candidate: p, width, height, scale, last: -1 });
+				};
+				if (img && !ready(img)) img.addEventListener("load", paint, { once: true }); else paint();
+				figure.append(canvas, el("figcaption", "", `${current ? p.current ? "현재 게임" : "현재 도형 (재현)" : `후보 ${p.version}`} · ${scale}×`)); pair.append(figure);
+			}
+			scales.append(pair);
+		}
+		card.append(scales, createPickControls(p)); host.append(card);
+	}
+	if (!host.children.length) host.append(el("p", "note", "현재 투사체 후보가 없습니다."));
+	$("projectilePlay").textContent = projectilePlaying ? "멈춤" : "재생";
+}
+function drawProjectiles() {
+	for (const view of projectileViews) {
+		const p = view.candidate, frame = frameAt({ ...p, loop: p.loop ?? true }, projectileT, true);
+		if (frame === view.last) continue;
+		const img = image(p.file); if (!ready(img)) continue;
+		view.ctx.clearRect(0, 0, view.width * view.scale, view.height * view.scale);
+		view.ctx.drawImage(img, frame * view.width, 0, view.width, view.height, 0, 0, view.width * view.scale, view.height * view.scale); view.last = frame;
+	}
+}
+function renderPortraits() {
+	for (const form of M.portraits || []) {
+		const section = el("section", "portrait-form"); section.append(el("h3", "", form.name));
+		const row = el("div", "portrait-row");
+		for (const item of [{ file: form.current, expression: "neutral" }, ...form.candidates]) {
+			const expression = item.pick?.row || item.expression, label = `${EXPRESSIONS[expression] || expression}${item.version ? ` · ${item.version}` : ""}`;
+			const card = el("article", "portrait-card"); card.append(el("h4", "", label));
+			const open = el("button", "portrait-open"); open.type = "button"; open.setAttribute("aria-label", `${form.name} ${label} 원본 보기`);
+			const img = new Image(); img.src = item.file; img.alt = `${form.name} ${label}`; img.loading = "lazy";
+			open.append(img); open.addEventListener("click", () => {
+				$("fullFace").src = item.file; $("fullFace").alt = img.alt; $("faceTitle").textContent = `${img.alt} · 원본 크기`;
+				$("faceDialog").showModal();
+			});
+			card.append(open); if (item.pick) card.append(createPickControls(item)); row.append(card);
+		}
+		section.append(row); $("portraitForms").append(section);
+	}
+}
 // stageLead: the stage view with the most frames; stepping and the frame strip follow it
 // (a 6-frame candidate next to a 4-frame game row).
 let stageT = 0, stageFrame = 0, tiles = [], stripButtons = [], stageViews = [], stageLead = null, stageKey = "";
@@ -334,15 +549,18 @@ function renderAdoptState() {
 
 async function connectSpeedDb() {
 	if (!window.claude || typeof window.claude.use !== "function") return;
-	const db = await window.claude.use("db");
-	if (!db) return;
-	speedDb = db;
-	db.collection("motion_speeds").onSnapshot((snap) => {
-		adopted.clear();
-		for (const doc of snap.docs) if (doc.exists) adopted.set(doc.id, doc.data());
-		renderAdoptState(); renderGroups(); dropAppliedSliders();
-	}, () => { speedDb = null; renderAdoptState(); });
-	renderAdoptState();
+	try {
+		const db = await window.claude.use("db");
+		if (!db) return;
+		try { connectPicks(db); } catch { disconnectPicks(); }
+		speedDb = db;
+		db.collection("motion_speeds").onSnapshot((snap) => {
+			adopted.clear();
+			for (const doc of snap.docs) if (doc.exists) adopted.set(doc.id, doc.data());
+			renderAdoptState(); renderGroups(); dropAppliedSliders();
+		}, () => { speedDb = null; renderAdoptState(); });
+		renderAdoptState();
+	} catch { speedDb = null; renderAdoptState(); if (!candidateDb) disconnectPicks(); }
 }
 
 async function writeAdoption(remove) {
@@ -524,8 +742,9 @@ function renderStage() {
 		...(a.newRow ? [] : [{ label: "현재 게임", note: `${a.row.frames}프레임 · ${fmt(a.row.fps)}fps`, anim: a }]),
 		...(a.row.candidates || []).map((candidate) => ({
 			label: `후보 ${candidate.version}`,
+			candidate,
 			note: [candidate.note, candidate.frames && `${candidate.frames}프레임`, candidate.fps && `${fmt(candidate.fps)}fps`].filter(Boolean).join(" · "),
-			anim: { ...a, index: 0, row: { ...a.row, frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps }, sheet: { file: candidate.file, cell: candidate.cell || a.sheet.cell, feet: candidate.feet || a.sheet.feet, strip: true } },
+			anim: { ...a, index: 0, row: { ...a.row, frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps, loop: candidate.loop ?? a.row.loop }, sheet: { file: candidate.file, cell: candidate.cell || a.sheet.cell, feet: candidate.feet || a.sheet.feet, strip: true } },
 		})),
 	];
 	for (const variant of variants) {
@@ -533,7 +752,9 @@ function renderStage() {
 		const head = document.createElement("header");
 		head.append(Object.assign(document.createElement("strong"), { textContent: variant.label }), Object.assign(document.createElement("small"), { textContent: variant.note || " ", title: variant.note || "" }));
 		const canvas = document.createElement("canvas"); canvas.width = 384; canvas.height = 384;
-		view.append(head, canvas); stageGrid.append(view);
+		view.append(head, canvas);
+		if (variant.candidate?.pick) view.append(createPickControls(variant.candidate));
+		stageGrid.append(view);
 		stageViews.push({ canvas, ctx: canvas.getContext("2d"), anim: variant.anim });
 	}
 	const leadVariant = variants.reduce((m, v) => (v.anim.row.frames > m.anim.row.frames ? v : m));
@@ -567,6 +788,7 @@ function renderStage() {
 	paintStrip();
 	renderSpeedControl();
 	renderAdoptState();
+	refreshPicks();
 }
 function paintStrip() {
 	const a = anims[state.anim]; if (!a) return;
@@ -656,7 +878,7 @@ $("copySpeeds").addEventListener("click", async () => {
 });
 document.addEventListener("keydown", (e) => {
 	const t = e.target;
-	if (t instanceof HTMLInputElement) return;
+	if ($("faceDialog").open || t instanceof HTMLInputElement || t.tagName === "TEXTAREA" || t.isContentEditable) return;
 	if (e.key === " " && !(t instanceof HTMLButtonElement)) { e.preventDefault(); setPlaying(!state.playing); }
 	else if (e.key === "ArrowLeft") { e.preventDefault(); setPlaying(false); setFrame(stageFrame - 1); }
 	else if (e.key === "ArrowRight") { e.preventDefault(); setPlaying(false); setFrame(stageFrame + 1); }
@@ -671,10 +893,16 @@ const meta = [M.commit && `커밋 ${M.commit}`, `${M.built} 빌드`, `캐릭터 
 $("meta").textContent = meta;
 setPlaying(state.playing);
 select(true);
+renderProjectiles(); renderPortraits(); refreshPicks(); drawProjectiles();
+$("projectilePlay").addEventListener("click", () => { projectilePlaying = !projectilePlaying; $("projectilePlay").textContent = projectilePlaying ? "멈춤" : "재생"; });
+$("closeFace").addEventListener("click", () => $("faceDialog").close());
+$("faceDialog").addEventListener("click", event => { if (event.target === $("faceDialog")) $("faceDialog").close(); });
 
 let last = performance.now();
 function tick(now) {
 	const dt = Math.min(0.1, (now - last) / 1000); last = now;
+	if (projectilePlaying) projectileT += dt;
+	drawProjectiles();
 	const a = anims[state.anim];
 	if (a && state.playing) {
 		stageT += dt;

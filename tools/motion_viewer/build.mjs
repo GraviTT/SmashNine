@@ -4,9 +4,10 @@
 // ART_ROWS), move labels from the *_moves_README.md tables, so the viewer slices sheets the way
 // the game does. Run from the repo root: node tools/motion_viewer/build.mjs
 import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readdirSync, rmSync } from "node:fs";
-import { join, dirname, basename, relative } from "node:path";
+import { join, dirname, basename, relative, resolve } from "node:path";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { writePublishFiles } from "./publish-files.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = join(here, "..", "..");
@@ -14,7 +15,8 @@ const game = join(repo, "smash-nine-prototype");
 const art = join(game, "assets", "art");
 const bakeoffRoot = join(repo, "art", "bakeoff");
 const clipsRoot = join(repo, "art", "clips");
-const dist = join(here, "dist");
+const dist = resolve(here, "dist");
+if (dist !== resolve(repo, "tools/motion_viewer/dist")) throw new Error(`unexpected build output directory: ${dist}`);
 
 const read = (p) => readFileSync(p, "utf8");
 
@@ -109,19 +111,26 @@ function allFiles(root) {
 
 // Candidates moved to a "retired" folder stay in the repo but leave the viewer.
 const candidateFiles = allFiles(bakeoffRoot).filter((path) => path.toLowerCase().endsWith(".png") && !/[\\/]retired[\\/]/.test(path));
+function candidateFrom(path, version) {
+	const metaPath = path.replace(/\.png$/i, ".json");
+	let meta = {};
+	try { if (existsSync(metaPath)) meta = JSON.parse(read(metaPath)); }
+	catch (error) { throw new Error(`invalid candidate metadata: ${metaPath}: ${error.message}`); }
+	if (meta.adopted) return null;
+	const rel = relative(bakeoffRoot, path).replaceAll("\\", "/");
+	return { file: `bakeoff/${rel}`, version, note: String(meta.note || ""), fps: Number(meta.fps) || null,
+		frames: Number(meta.frames) || null, cell: meta.cell || null, feet: Number(meta.feet) || null,
+		loop: typeof meta.loop === "boolean" ? meta.loop : null, source: path };
+}
 function candidatesFor(stem, row) {
 	const prefix = `${stem}-${row}-v`;
 	return candidateFiles.flatMap((path) => {
 		const file = basename(path);
 		if (!file.startsWith(prefix) || !/\.png$/i.test(file)) return [];
 		const version = file.slice(prefix.length, -4);
-		const metaPath = path.replace(/\.png$/i, ".json");
-		let meta = {};
-		try { if (existsSync(metaPath)) meta = JSON.parse(read(metaPath)); } catch (error) { console.warn(`invalid candidate metadata: ${metaPath}: ${error.message}`); }
-		// Adopted candidates are the game's art now (json "adopted": date); they leave the viewer.
-		if (meta.adopted) return [];
-		const rel = relative(bakeoffRoot, path).replaceAll("\\", "/");
-		return [{ file: `bakeoff/${rel}`, version: `v${version}`, note: String(meta.note || ""), fps: Number(meta.fps) || null, frames: Number(meta.frames) || null, cell: Number(meta.cell) || null, feet: Number(meta.feet) || null, loop: typeof meta.loop === "boolean" ? meta.loop : null, source: path }];
+		if (!/^\d+$/.test(version)) return [];
+		const candidate = candidateFrom(path, `v${version}`);
+		return candidate ? [candidate] : [];
 	}).sort((a, b) => a.version.localeCompare(b.version, undefined, { numeric: true }));
 }
 
@@ -136,7 +145,7 @@ function newRowNames(stem, known) {
 		if (!file.startsWith(`${stem}-`)) continue;
 		const rest = file.slice(stem.length + 1, -4), at = rest.lastIndexOf("-v");
 		const row = at > 0 ? rest.slice(0, at) : "";
-		if (row && /^[a-z0-9_]+$/.test(row) && !known.has(row)) names.add(row);
+		if (row && row !== "projectile" && /^[a-z0-9_]+$/.test(row) && /^\d+$/.test(rest.slice(at + 2)) && !known.has(row)) names.add(row);
 	}
 	return [...names].sort();
 }
@@ -235,7 +244,56 @@ try { commit = execSync("git rev-parse --short HEAD", { cwd: repo }).toString().
 const now = new Date();
 const pad = (n) => String(n).padStart(2, "0");
 const built = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
-const manifest = { built, commit, columns: 6, characters, monsters };
+// Pick IDs use the form's sheet stem (nova_male / nova_female stay independent).
+const tagPick = (candidate, kind, id, row) => {
+	candidate.pick = { kind, id, row, version: candidate.version, file: `art/${candidate.file}` };
+	return candidate;
+};
+for (const c of characters) for (const f of c.forms) for (const s of [f.base, f.moves].filter(Boolean))
+	for (const r of s.rows) for (const candidate of r.candidates) tagPick(candidate, "fighter", f.body ? `${c.id}_${f.body}` : c.id, r.name);
+for (const m of monsters) for (const r of m.base.rows) for (const candidate of r.candidates) tagPick(candidate, "monster", m.id, r.name);
+
+const extraCopies = [];
+const PROJECTILE_NAMES = { ember_imp: "불덩이", niflheim_frost_owl: "얼음 파편", jotunheim_storm_wisp: "번개",
+	midgard_rooftop_slinger: "투석", vanaheim_seed_sprite: "씨앗", svartalfheim_cog_drone: "폭탄", yggdrasil_root_oracle: "유도 구체", slam_shockwave: "공용 지면 충격파" };
+const projectiles = [];
+for (const path of candidateFiles) {
+	if (relative(bakeoffRoot, path).replaceAll("\\", "/").split("/")[0] !== "monsters") continue;
+	const match = basename(path).match(/^(?:(.+)-projectile|(slam_shockwave))-v(\d+)\.png$/);
+	if (!match) continue;
+	const id = match[1] || match[2], candidate = candidateFrom(path, `v${match[3]}`);
+	if (!candidate) continue;
+	if (!candidate.frames || !candidate.fps || !candidate.cell) throw new Error(`projectile timing/cell missing: ${path}`);
+	const cell = Array.isArray(candidate.cell) ? candidate.cell : [candidate.cell, candidate.cell];
+	if (!Number.isInteger(candidate.frames) || candidate.frames < 1 || !Number.isFinite(candidate.fps) || candidate.fps <= 0 || cell.length !== 2 || cell.some(n => !Number.isInteger(n) || n < 1)) throw new Error(`invalid projectile metadata: ${path}`);
+	const data = readFileSync(path);
+	if (data.readUInt32BE(16) !== cell[0] * candidate.frames || data.readUInt32BE(20) !== cell[1]) throw new Error(`invalid projectile strip: ${path}`);
+	candidateCopies.push(candidate);
+	const { source, ...item } = tagPick(candidate, "projectile", id, id === "slam_shockwave" ? "shockwave" : "projectile");
+	let current = null;
+	if (id !== "slam_shockwave") {
+		const rel = `monsters/${id === "ember_imp" ? "ember_fireball" : `${id}_projectile`}.png`;
+		if (!existsSync(join(art, rel))) throw new Error(`current projectile missing: ${rel}`);
+		current = `current/${rel}`; extraCopies.push({ source: join(art, rel), file: current });
+	}
+	projectiles.push({ id, name: PROJECTILE_NAMES[id] || id, current, ...item });
+}
+projectiles.sort((a, b) => a.id.localeCompare(b.id) || a.version.localeCompare(b.version, undefined, { numeric: true }));
+
+const portraits = [];
+for (const c of characters) for (const f of c.forms) {
+	const stem = f.body ? `${c.id}_${f.body}` : c.id, folder = c.id === "luna_brave" ? "luna" : c.id;
+	const rel = `${folder}/${stem}_face.png`, current = `current/${rel}`;
+	if (!existsSync(join(art, rel))) throw new Error(`neutral portrait missing: ${rel}`);
+	extraCopies.push({ source: join(art, rel), file: current });
+	const candidates = ["happy", "angry", "hurt"].flatMap(expression => candidatesFor(`${stem}_face`, expression).map(candidate => {
+		candidateCopies.push(candidate);
+		const { source, ...item } = tagPick(candidate, "face", stem, expression);
+		return item;
+	}));
+	portraits.push({ id: stem, name: `${c.name}${f.body ? f.body === "male" ? " 남성" : " 여성" : ""}`, current, candidates });
+}
+const manifest = { built, commit, columns: 6, characters, monsters, projectiles, portraits };
 
 rmSync(dist, { recursive: true, force: true });
 for (const rel of sheets) {
@@ -247,6 +305,9 @@ for (const candidate of new Map(candidateCopies.map((item) => [item.file, item])
 	const to = join(dist, candidate.file);
 	mkdirSync(dirname(to), { recursive: true });
 	copyFileSync(candidate.source, to);
+}
+for (const item of extraCopies) {
+	const to = join(dist, item.file); mkdirSync(dirname(to), { recursive: true }); copyFileSync(item.source, to);
 }
 const clipCopies = [];
 for (const clip of clipManifest.clips || []) {
@@ -265,14 +326,12 @@ for (const clip of clipManifest.clips || []) {
 		clipCopies.push(`clips-new/${clip.newFx.replaceAll("\\", "/")}`);
 	}
 }
-// Candidate attack loops may differ from the old game's once-only attack. This card
-// owns build.mjs only: extend the emitted viewer without modifying its source template.
-const variantTiming = "frames: candidate.frames || a.row.frames, fps: candidate.fps || a.row.fps";
 const template = read(join(here, "index.html"));
-if (!template.includes(variantTiming)) throw new Error("viewer candidate timing template changed; check loop override");
-const html = template.replace(variantTiming, `${variantTiming}, loop: candidate.loop ?? a.row.loop`).replace("/*MANIFEST*/null", JSON.stringify(manifest));
+if (!template.includes("/*MANIFEST*/null")) throw new Error("viewer manifest placeholder missing");
+const html = template.replace("/*MANIFEST*/null", JSON.stringify(manifest).replaceAll("<", "\\u003c"));
 writeFileSync(join(dist, "index.html"), html);
-const published = [...sheets.map((rel) => `sheets/${rel}`), ...new Set(candidateCopies.map((item) => item.file)), ...new Set(clipCopies)];
-writeFileSync(join(dist, "files.json"), JSON.stringify(published.map((path) => ({ path }))));
+const published = [...sheets.map((rel) => `sheets/${rel}`), ...candidateCopies.map(item => item.file), ...extraCopies.map(item => item.file), ...clipCopies];
+const publish = writePublishFiles(dist, published);
+console.log(`publish: ${publish.publishFiles} files including HTML, ${publish.publishBytes} bytes, ${publish.batches} batches; version fits: ${publish.versionFits}`);
 const moveRowCount = characters.reduce((n, c) => n + c.forms.reduce((m, f) => m + (f.moves ? f.moves.rows.length : 0), 0), 0);
 console.log(`motion viewer: ${characters.length} fighters, ${monsters.length} monsters, ${sheets.length} sheets, ${moveRowCount} move rows, ${new Set(candidateCopies.map((item) => item.file)).size} candidates, ${clipCopies.length} clips -> ${dist}`);

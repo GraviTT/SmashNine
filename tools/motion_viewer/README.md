@@ -69,3 +69,54 @@ art/bakeoff/<캐릭터 id>/<시트 stem>-<행 이름>-v<번호>.json  # 선택
   - 다시 채택하면 `table_fps`는 그때의 게임 속도, `drawn_fps`는 그린 속도로 기록된다. 반영에는 `fps`(절대값)만 쓴다.
 - 다시 게시할 때는 `capabilities`를 생략해 `db` 선언을 유지한다. 로컬 미리보기에는 데이터베이스가 없어 채택 버튼이 숨는다.
 
+## 후보 고르기 · TOOL-03
+
+캐릭터·몬스터 동작의 비교 무대, **몬스터 투사체**, **대화 초상화**의 모든 미채택 후보에는 **고르기 / 고름 ✓ · 취소**와 300자 이내 메모가 있다. 메모를 먼저 쓰고 고르면 함께 저장하며, 이미 고른 후보의 메모만 바꿀 때는 **메모 저장**을 누른다. 입력 중에는 쓰지 않고 버튼 한 번에 문서 하나만 쓴다. 후보별 선택은 독립적이므로 같은 동작의 여러 버전을 함께 고를 수 있다.
+
+- 맨 위 **고른 것**은 종류·폼 이름·동작/표정·버전·저장된 메모를 모아 보여준다. 여기서도 취소할 수 있다. 재접속하면 DB 구독으로 복원한다.
+- JSON에 `adopted`가 있는 후보와 `retired/` 안의 후보는 미리보기에 나오지 않는다. 이전 게시에서 고른 기록은 목록에 남으며 `현재 후보 목록에 없음` 표시와 취소 버튼을 제공한다.
+- DB 없이도 기존 동작·클립·새 이미지 비교가 가능하다. 후보 고르기·메모 컨트롤은 비활성화되고 한국어 안내가 나온다. 속도 채택은 기존처럼 DB가 없으면 숨는다.
+- 저장은 후보 선택 기록이다. 게임 파일 적용과 속도 채택(`motion_speeds`)은 각각 별도다. 이 도구는 게임 그림이나 GDScript를 쓰지 않는다.
+
+### 저장 형식과 리드가 읽는 방법
+
+기존 Artifact의 `window.claude.use("db")`를 한 번 호출하고, **`candidate_picks` 컬렉션 전체를 한 번 구독**한다. 기존 `motion_speeds` 구독도 유지한다.
+
+문서 id는 `<kind>~<id>~<row>~<version>`이다. `kind`는 `fighter`, `monster`, `projectile`, `face`; `id`는 시트 stem(예: `nova_male`, `nova_female`, `luna_brave`, `mossling`)이다. 표정의 `row`는 `happy` / `angry` / `hurt`, 투사체는 `projectile`, 공용 충격파는 `shockwave`다. `version`은 `v1` 등의 문자열이다.
+
+```json
+{
+  "kind": "monster",
+  "id": "mossling",
+  "row": "idle",
+  "version": "v1",
+  "file": "art/bakeoff/monsters/mossling-idle-v1.png",
+  "picked": true,
+  "note": "형식 예시이며 실제 선택 기록이 아님",
+  "picked_at": "2026-10-23T03:00:00.000Z"
+}
+```
+
+리드는 같은 모션 Artifact에서 **`ArtifactData list candidate_picks`**를 사용한다. `picked === true`만 현재 선택으로 읽고, `file`의 실제 후보 및 JSON을 확인한 뒤 별도로 게임에 반영한다. 취소는 문서를 삭제하지 않고 `picked: false`로 덮어쓴다. 메모 저장·취소에도 `picked_at`은 마지막 저장 시각(ISO UTC)으로 갱신된다. 조회 결과만으로 반영 완료로 간주하지 않는다.
+
+### 투사체와 초상화
+
+- `art/bakeoff/monsters/<id>-projectile-vN.png`와 `slam_shockwave-vN.png`를 자동 수집한다. JSON의 `frames`·`fps`·`cell`·`loop`를 사용하고, `cell`은 숫자 또는 `[가로, 세로]`다. 기존 단일 PNG와 후보를 각각 원본 크기 1×·3×로 비교한다. 충격파의 기존 표현은 PNG가 없는 Line2D이므로 게임 코드 좌표를 캔버스로 재현하고 명시한다. **원본 픽셀 배율이며 실제 게임 표시 배율을 모사한 것은 아니다.**
+- `art/bakeoff/<폴더>/<stem>_face-{happy,angry,hurt}-vN.png`를 자동 수집한다. 8개 폼별 현재 무표정과 후보를 142×164 영역에 `object-fit: contain`으로 나란히 배치한다. 클릭하면 원본 크기 대화상자, 닫기 또는 Esc로 돌아온다.
+- 새 번호의 동작·투사체·표정 파일은 다음 빌드에 포함된다. 후보 JSON과 이미지가 잘못됐거나 게시 목록 파일이 없으면 빌드가 실패한다. 동작 JSON은 기존처럼 생략할 수 있다. 투사체에는 프레임·fps·셀 메타데이터가 필요하다.
+
+### 빌드·검증·재게시
+
+```powershell
+node tools/motion_viewer/build.mjs
+node tools/motion_viewer/verify.mjs
+```
+
+`verify.mjs`는 패키지 없이 Node 표준 라이브러리의 모의 DOM·Image·캔버스·DB로 실행한다. 결과는 **`reports/codex-tool-03/viewer-checks.json`**에 쓴다. 기존 AUD 보고서는 덮어쓰지 않는다. `reports/codex-tool-03/baseline.json`은 변경 전 빌드 데이터로, 기존 행·후보·속도·클립 보존 비교에 사용한다. 게임의 행 정의나 클립이 의도적으로 바뀌면 이 기준 데이터도 해당 변경에 맞춰 검토해야 한다. 추가 후보 개수는 고정하지 않는다.
+
+같은 Artifact https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU 에 **`root=tools/motion_viewer/dist`, HTML=`dist/index.html`, files=`dist/files.json`**으로 재게시한다. **`capabilities`는 생략**해 기존 `db`, `motion_speeds`, 새 `candidate_picks` 기록을 유지한다. 소리 Artifact와 구분한다.
+
+`files.json`은 HTML을 제외한 모든 sidecar 목록이다. 시트 → 후보 → 현재 비교 그림 → 클립 순이다. 250개 또는 HTML 포함 60,000,000바이트를 초과하면 **`files-1.json`, `files-2.json`, …**도 생성한다. 각 목록은 250개 이하이며 동일 HTML의 용량까지 포함해 60MB 이하로 나눈다. 리드는 번호순으로 **같은 버전**에 나눠 올려야 한다. 새 버전마다 기존 파일을 유지/합치는 게시 도구 동작은 실제 게시 때 확인한다. 카드의 한 요청 255파일/64MB, 한 버전 511파일/256MB 기준으로 전체 버전 적합 여부도 빌드가 출력한다. 전체 버전 한도를 넘으면 배치 분할만으로 해결되지 않는다.
+
+이번 클론 검증은 Node 모의 동작과 파일 바이트 비교다. 실제 브라우저 열기는 자동 승인 검토가 localhost 접근 권한을 거부해 수행하지 못했다. 게시 후 리드가 화면 배치·이미지 재생·실제 DB 저장 및 새로고침 복원을 확인해야 한다.
+
