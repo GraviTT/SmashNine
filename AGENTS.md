@@ -55,6 +55,7 @@ From `smash-nine-prototype/`:
 - Web build (from repo root): `powershell -ExecutionPolicy Bypass -File tools/build_web.ps1`; serve with `node tools/serve_web.js build/web 8060`; publish with `tools/deploy_pages.ps1` (lead only: it pushes `gh-pages`)
 
 - Motion viewer (every fighter/monster motion from the sheets, user's quick check): `node tools/motion_viewer/build.mjs`, then republish `tools/motion_viewer/dist/index.html` to https://claude.ai/artifact/188Ryqb526Ue58MDf4BnbU (`tools/motion_viewer/README.md`). Republish without `capabilities` so its `db` (the adopted speeds, collection `motion_speeds`) stays.
+- Sound viewer (synthesized sound candidates, user listens and adopts; picks in the artifact db collection `sound_picks`): `node tools/sound_viewer/build.mjs`, then republish `tools/sound_viewer/dist/index.html` to https://claude.ai/artifact/BWneucCv1GHme5JX7fmUuW without `capabilities` (`tools/sound_viewer/README.md`). The lead cannot hear: it checks the measurements and waveform/spectrogram pictures, the user judges the sound.
 
 A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with exit code 0.
 
