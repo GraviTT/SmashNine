@@ -25,9 +25,7 @@ static func stages() -> Array[Dictionary]:
 			waves = [[{"kind": "boss", "skin": skins.melee, "scale": 2.0, "elite_hp": 4.0}, {"kind": "ranged", "skin": skins.ranged}]]
 		else:
 			waves = [[{"kind": "shadows", "hp": 0.6}], [{"kind": "hero_shadow", "hp": 1.5, "cards": 3}]]
-		var dialogue := {"pre": [["narrator", prefix + ".pre.1"], ["hero", "story.voice.{hero}.challenge"]], "post": [["hero", "story.voice.{hero}.victory"], ["narrator", prefix + ".post.1"]], "home_pre": [["hero", prefix + ".home_pre.1"]], "home_post": [["hero", prefix + ".home_post.1"]]}
-		if rival != "":
-			dialogue.pre.append(["rival", "story.voice.{rival}.challenge"])
+		var dialogue := _dialogue(number)
 		result.append({
 			"id": number, "realm": realm, "exit": EXITS[index],
 			"title": prefix + ".title", "goal": prefix + ".goal", "tips": [prefix + ".tip.1", prefix + ".tip.2"],
@@ -37,6 +35,31 @@ static func stages() -> Array[Dictionary]:
 			"souls_reward": 15 if rival != "" else 0, "dialogue": dialogue, "ready": number <= 4
 		})
 	return result
+
+## The script of design/STORY.md: [speaker, story.csv ID] per line. Rival stages open with the
+## rival (Nova and Yuki size the hero up before the hero answers); a hero meeting their own home
+## realm gets the home lines instead. Stage 9's shadow lines come with the shadow stage (SYS-04).
+static func _dialogue(number: int) -> Dictionary:
+	var prefix := "story.s%02d" % number
+	var lines := {"home_pre": [], "home_post": []}
+	match number:
+		1:
+			lines.pre = [["narrator", prefix + ".pre.1"], ["narrator", prefix + ".pre.2"], ["narrator", prefix + ".pre.3"], ["hero", "story.voice.{hero}.arrive"], ["narrator", prefix + ".pre.4"]]
+			lines.post = [["narrator", prefix + ".post.1"], ["narrator", prefix + ".post.2"]]
+		5, 7:
+			lines.pre = [["narrator", prefix + ".pre.1"], ["narrator", prefix + ".pre.2"]]
+			lines.post = [["narrator", prefix + ".post.1"]]
+		9:
+			lines.pre = [["narrator", prefix + ".pre.1"], ["narrator", prefix + ".pre.2"]]
+			lines.post = [["narrator", prefix + ".post.1"], ["narrator", prefix + ".post.2"]]
+		_:
+			lines.pre = [["rival", prefix + ".pre.1"], ["hero", "story.voice.{hero}.challenge"], ["rival", prefix + ".pre.2"]]
+			if number in [6, 8]:
+				lines.pre = [["rival", prefix + ".pre.1"], ["rival", prefix + ".pre.2"], ["hero", "story.voice.{hero}.challenge"]]
+			lines.post = [["rival", prefix + ".post.1"], ["rival", prefix + ".post.2"], ["hero", "story.voice.{hero}.victory"]]
+			lines.home_pre = [["hero", prefix + ".home.pre.1"], ["hero", prefix + ".home.pre.2"]]
+			lines.home_post = [["hero", prefix + ".home.post.1"], ["hero", prefix + ".home.post.2"]]
+	return lines
 
 static func stage(number: int) -> Dictionary:
 	return stages()[clampi(number, 1, 9) - 1]
