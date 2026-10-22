@@ -1,8 +1,10 @@
 extends Node2D
+
 ## Match scene root: start screen, spawning, camera, input routing and wiring of
 ## the realm layout, world, match director, soul growth and HUD.
 ## Bots call get_ai_* / move_ai_through_portal / get_realm_state on their parent.
 
+const AUDIO := preload("res://scripts/audio/AudioManager.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
@@ -92,6 +94,7 @@ var _shake_rng := RandomNumberGenerator.new()
 var _body_rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
+	AUDIO.install(self).watch(self)
 	GAME_SPEED.load_saved()
 	LANGUAGE.load_saved()
 	if next_screen.begins_with("story_"):
@@ -228,6 +231,8 @@ func _start_match(human_character_id: String) -> void:
 	if match_started:
 		return
 	last_character_id = human_character_id if human_character_id != "" else last_character_id
+	AUDIO.sound(self, "match_start")
+	AUDIO.music(self, "music_battle")
 	session_mode = "battle_royale"
 	last_match_was_bots = bots_only
 	match_started = true
@@ -612,6 +617,7 @@ func _handle_portal_input() -> void:
 
 func _move_through_portal(combatant: Node, portal: Dictionary) -> void:
 	var destination: int = portal.destination
+	AUDIO.sound(combatant, "portal")
 	layout.assign_combatant(combatant, destination)
 	combatant.reset_for_map(portal.entry_position, layout.get_spawn_points(destination))
 	_sync_combatant_visibility()
@@ -812,6 +818,8 @@ func _start_story() -> void:
 	if not STORY_CATALOG.stage(story_stage).ready:
 		hud.frontend.show_story_map(story_stage)
 		return
+	AUDIO.sound(self, "match_start")
+	AUDIO.music(self, "music_story")
 	session_mode = "story"
 	bots_only = false
 	match_started = true

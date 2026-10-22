@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const AUDIO := preload("res://scripts/audio/AudioManager.gd")
+
 signal defeated(monster: Node, attacker: Node, soul_reward: int)
 
 enum State { NEUTRAL, AGGRO, DEFEATED }
@@ -373,6 +375,7 @@ func _update_behavior(delta: float) -> void:
 	velocity.x = direction * move_speed if archetype == "swoop" or _has_floor_ahead(direction) else 0.0
 
 func _begin_windup() -> void:
+	AUDIO.sound(self, "monster_windup")
 	action_phase = "windup"
 	action_timer = windup_duration
 	locked_target_position = target.global_position
@@ -409,6 +412,7 @@ func _tick_action(delta: float) -> void:
 			_finish_action()
 
 func _execute_action() -> void:
+	AUDIO.sound(self, "monster_" + archetype)
 	attack_serial += 1
 	action_phase = "active"
 	action_timer = 0.65
@@ -644,6 +648,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 			frontal = (attacker.global_position.x - global_position.x) * facing > 0.0
 		if frontal:
 			final_damage *= 0.5
+	AUDIO.sound(self, "monster_hurt")
 	was_hit = true
 	hp = maxf(hp - final_damage, 0.0)
 	if is_instance_valid(attacker) and attacker.is_in_group("players"):
@@ -716,6 +721,7 @@ func _is_valid_target() -> bool:
 func _die(attacker: Node) -> void:
 	if state == State.DEFEATED:
 		return
+	AUDIO.sound(self, "monster_defeat")
 	state = State.DEFEATED
 	_cancel_action()
 	hp = 0.0

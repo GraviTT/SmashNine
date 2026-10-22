@@ -1,7 +1,9 @@
 extends CanvasLayer
+
 ## In-match overlay: phase clock, survivors, souls, 3x3 realm minimap, soul card
 ## offer, announcement line, debug panel (F3), and the start / result screens.
 
+const AUDIO := preload("res://scripts/audio/AudioManager.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
 const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
@@ -702,6 +704,7 @@ func _build_card_panel() -> void:
 		card_labels.append(label)
 
 func show_card_offer(cards: Array, seconds_left: float) -> void:
+	AUDIO.card_offer(self, card_panel.visible)
 	card_panel.visible = true
 	card_title.text = tr("Soul card  -  press 1 / 2 / 3   (%.0fs)") % ceilf(seconds_left)
 	for index in card_labels.size():
@@ -914,6 +917,7 @@ func tick_info(delta: float) -> void:
 ## seconds < 0 hides the banner.
 ## Collapse countdown (seconds >= 0) wins over a realm hazard warning; both empty hides it.
 func set_warning_banner(seconds: int, hazard_warning := "") -> void:
+	AUDIO.collapse(self, seconds, warning_label)
 	warning_label.visible = seconds >= 0 or hazard_warning != ""
 	if seconds >= 0:
 		warning_label.text = tr("COLLAPSE WARNING  %d\nfind a portal to a safe realm") % seconds
