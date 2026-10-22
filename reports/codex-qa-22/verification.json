@@ -1,0 +1,670 @@
+{
+  "commit": "86bb7eb3bc8740e59c6a5791624124dc4c09e01d",
+  "branch": "codex/qa-22",
+  "started_utc": "2026-10-22T19:15:36Z",
+  "verified_utc": "2026-10-22T19:43:51.011Z",
+  "elapsed_minutes": 28.248783333333332,
+  "check_count": 39564,
+  "failed": [],
+  "summary": {
+    "audio_runs": 6,
+    "no_realm": 0,
+    "actual_audio_plays": 0,
+    "actual_voice_peak": 0,
+    "engine_errors": 0,
+    "audio_warnings": 0,
+    "certificate_noise": 67,
+    "logs": 67,
+    "suite_exit": 0
+  },
+  "logAudit": [
+    {
+      "file": "logs/gate-soak-2105.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 10936
+    },
+    {
+      "file": "logs/gate-soak-2106.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 13913
+    },
+    {
+      "file": "logs/gate_geometry.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 2533
+    },
+    {
+      "file": "logs/gimmick_actors.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 1360
+    },
+    {
+      "file": "logs/import.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [
+        "WARNING: Detected another project.godot at res://tests/art_preview/story_70/import_check. The folder will be ignored."
+      ],
+      "audioWarnings": [],
+      "bytes": 3603
+    },
+    {
+      "file": "logs/music-screens.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 195
+    },
+    {
+      "file": "logs/sound-br-1001.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 2586
+    },
+    {
+      "file": "logs/sound-br-2105.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 2229
+    },
+    {
+      "file": "logs/sound-br-2106.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 2467
+    },
+    {
+      "file": "logs/sound-story-1.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 386
+    },
+    {
+      "file": "logs/sound-story-5.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 385
+    },
+    {
+      "file": "logs/sound-story-9.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 385
+    },
+    {
+      "file": "logs/story_cutin.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 433
+    },
+    {
+      "file": "suite/soak_match.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 2574
+    },
+    {
+      "file": "suite/test_art.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 263
+    },
+    {
+      "file": "suite/test_audio.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 3055
+    },
+    {
+      "file": "suite/test_bot_brain.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 218
+    },
+    {
+      "file": "suite/test_bot_panel.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 218
+    },
+    {
+      "file": "suite/test_bugfix_review.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 234
+    },
+    {
+      "file": "suite/test_character_architecture.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 249
+    },
+    {
+      "file": "suite/test_defeat_motion.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 222
+    },
+    {
+      "file": "suite/test_effect_layout.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 222
+    },
+    {
+      "file": "suite/test_fighter_motion.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 236
+    },
+    {
+      "file": "suite/test_flash_art.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 218
+    },
+    {
+      "file": "suite/test_font_coverage.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 266
+    },
+    {
+      "file": "suite/test_frey_kit.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 217
+    },
+    {
+      "file": "suite/test_frey_sprite.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 245
+    },
+    {
+      "file": "suite/test_frontend_flow.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 333
+    },
+    {
+      "file": "suite/test_game_speed.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 219
+    },
+    {
+      "file": "suite/test_hazards.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 219
+    },
+    {
+      "file": "suite/test_hit_sparks.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 242
+    },
+    {
+      "file": "suite/test_hud_frames.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 293
+    },
+    {
+      "file": "suite/test_language.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 331
+    },
+    {
+      "file": "suite/test_luna_kit.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 217
+    },
+    {
+      "file": "suite/test_luna_prototype.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 245
+    },
+    {
+      "file": "suite/test_match_rules.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 224
+    },
+    {
+      "file": "suite/test_monster_ecology.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 298
+    },
+    {
+      "file": "suite/test_monster_motion.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 236
+    },
+    {
+      "file": "suite/test_monster_options.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 303
+    },
+    {
+      "file": "suite/test_motion_speeds.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 231
+    },
+    {
+      "file": "suite/test_moves_sheet.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 293
+    },
+    {
+      "file": "suite/test_nova_prototype.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 244
+    },
+    {
+      "file": "suite/test_offscreen_markers.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 226
+    },
+    {
+      "file": "suite/test_projectile_art.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 235
+    },
+    {
+      "file": "suite/test_realm_gimmicks.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 222
+    },
+    {
+      "file": "suite/test_realm_monsters.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 286
+    },
+    {
+      "file": "suite/test_relocation_active.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 219
+    },
+    {
+      "file": "suite/test_restart.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 255
+    },
+    {
+      "file": "suite/test_rio_prototype.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 222
+    },
+    {
+      "file": "suite/test_skill_bar.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 218
+    },
+    {
+      "file": "suite/test_skill_fx_art.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 221
+    },
+    {
+      "file": "suite/test_soul_crystals.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 221
+    },
+    {
+      "file": "suite/test_sprite_frames.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 303
+    },
+    {
+      "file": "suite/test_sprite_pose.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 220
+    },
+    {
+      "file": "suite/test_story_atomic_reload.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 319
+    },
+    {
+      "file": "suite/test_story_data.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 294
+    },
+    {
+      "file": "suite/test_story_exit_reload.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 299
+    },
+    {
+      "file": "suite/test_story_flow.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 378
+    },
+    {
+      "file": "suite/test_story_late_flow.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 341
+    },
+    {
+      "file": "suite/test_story_presentation.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 332
+    },
+    {
+      "file": "suite/test_story_rewards.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 325
+    },
+    {
+      "file": "suite/test_story_text_fit.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 306
+    },
+    {
+      "file": "suite/test_talisman_burst.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 223
+    },
+    {
+      "file": "suite/test_ultimates.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 217
+    },
+    {
+      "file": "suite/test_ultimate_armor.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 223
+    },
+    {
+      "file": "suite/test_victory_screens.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 236
+    },
+    {
+      "file": "suite/visual_preview.log",
+      "certificate": 1,
+      "errors": [],
+      "warnings": [],
+      "audioWarnings": [],
+      "bytes": 195
+    }
+  ],
+  "products": {
+    "smash-nine-prototype/project.godot": "6e4297b405c383fb2687219652588080ea9272cef5bb4815348a5bfae40fd5d1",
+    "smash-nine-prototype/scripts/Main.gd": "c03f2f66cd8fc7ef7de3bf7ca2a2301fbf821be9adc98b1f984276ac40e01cc6",
+    "smash-nine-prototype/scripts/realms/RealmCatalog.gd": "8cdb5b0923cfb5a5800fd8c90c4343f349cddff6a8b28aec4d1d0517a5f5e466",
+    "smash-nine-prototype/scripts/realms/RealmHazards.gd": "aca7b417be8d02150ec65333af8b1899dce96c5535ea22e2f5549815f852145d",
+    "smash-nine-prototype/scripts/ui/MatchHud.gd": "6d81890e7125e364164a874c9a9b51d6a1a90e4538fdacb1598c71dd64ee53f0",
+    "smash-nine-prototype/scripts/audio/AudioManager.gd": "9d451f901be7d1130a978fdf42d983872601a74d772f44c85ec433215b755b4e",
+    "smash-nine-prototype/characters/common/PlayerBase.gd": "9e10c90e40fc8989b3d583cc2cd87874b5043d45d841f2b478e872c542785833"
+  },
+  "artifacts": {
+    "analyze.mjs": "7419523fe46c9d388d1cd92aacc4ce3a867fd64b0845f4c0e198224ff42053b1",
+    "build-report.mjs": "5e7ed16b92ab2ac9d7e3271e789c1ce967c5b2b89e911a4ae83f6298e8b54511",
+    "commit-message.txt": "48f299117fd9ae7b45ad1e94491eacc04e9b38c009870de173d489d3b7e2a2e6",
+    "commit.ps1": "5cb82d28d88299cd9adb21768d2b7b7514994b284441d32a198c934247d891a3",
+    "compare.mjs": "25c9ea19cc4995edb7323a19dd6c45521385360c8d054c82633fe6737408320b",
+    "gate-geometry.json": "63b24c9d94d4deb2cb9ce8811b5ef2478f1a7d95ea8972a8e605c82dfca2409b",
+    "gate-soak-2105.json": "66084f816e947f34dfb470ae8ed1e5b171ca7889936533cea22d81d0a92b1bb1",
+    "gate-soak-2106.json": "065cf202c1343ef68c43b84bb33fbe9727635103a91444b66e681d041cc3717e",
+    "gimmick-actors.json": "1958abc70efbfea8aa09aef3b2aa5cd7bdabbcf8fc6ccded66c361f84b44f18e",
+    "logs/gate-soak-2105.log": "591cc86d0a7c18bc6394ed94018bf49ece57d56c3e50a350e3dca3c349be2df6",
+    "logs/gate-soak-2106.log": "bacbfd33e9646080565012afa34a8d706cf85d798175c7918e0df654f7a6468a",
+    "logs/gate_geometry.log": "4a4db5437ed96d6ca4537e3a1d3f5c743601388c79477065a8acbdde55b0b366",
+    "logs/gimmick_actors.log": "935c438c651e84879471041cf440f3117c3c7be7caf27e15a3fa8e29c9089b4e",
+    "logs/import.log": "0efa892c149beaa5391159ee52d07c802f7202f47086acfc045feb37a08be376",
+    "logs/music-screens.log": "de32af3368a1c5eef302cefd60ceb7e8a5356053ea29b0c55a831e1393be1183",
+    "logs/sound-br-1001.log": "d1e88c9b9243d2ca746fa85a6966b6670ad150321f12347a0ea84cf9b1afa91f",
+    "logs/sound-br-2105.log": "9f91d3b58527c9ae6b0d53eb26eb1d38c72422a438fbf128244491a87d48916a",
+    "logs/sound-br-2106.log": "2e295b2f6602c283c07d37ac9921b034bf6b228e0432533bd30b369a05a307f7",
+    "logs/sound-story-1.log": "e57f437e88fd67c475ca1f1e2ffa287424016a21540f00ae5573b55bcf3ead8a",
+    "logs/sound-story-5.log": "82a8feb4d0949ace82198de645c280969edf10c819866fd97fc75c4d585e7b6f",
+    "logs/sound-story-9.log": "12c89dc464fdb1f95d1d2641123589d7b4aacd27cc2089a36ff828a6c96c6b6f",
+    "logs/story_cutin.log": "3f7f31cbee1e488eba80c65733c46b21be85feba8b9b40a893b73e1bafb35666",
+    "music-screens.json": "890f932036ea2c03dca5f4b5a82f0d39dbcbcfe456342d6f5e099baf46699914",
+    "never-fired.md": "a9ee35e284f8c103876a2362176e1a5327e70214111fc870da5cd8efa7e2179b",
+    "README.md": "dd13629c2a49a8f936717633146ad8335a0e96e4c2f7b3e67834126f0d72a029",
+    "regression-comparison.json": "3addf14a3d06ade452d259a149e715a68353fb7c408b75426a71d47d8844af3c",
+    "regression.ps1": "214d3eee2460dc21544f0ef9498281b43074629e7ce8349a81e1bc58bfd964bb",
+    "render-chart.ps1": "55c153f341107bc1b4d715b12bc2c380eb50ebbf6645eb24031339d89225684e",
+    "retest.ps1": "578b79a6fa9cec47f467e4419bd28c7beb0c5e8ad4ab0445723d0e814dafb45a",
+    "run-sound.ps1": "30b2a5419311edeeeef1f80eaa57b0e04922238d76416d20124d85d11ac10405",
+    "run.ps1": "02d1f6c7f38a50fec70c5b6e81bedb7202fad7f6316248185035c71ba955474f",
+    "sound-br-1001-events.json.gz": "f40490bb86df5f7400c78b4165c6c4991d344d7662868250f3a7d5c5731da2b0",
+    "sound-br-2105-events.json.gz": "e4d9e882de6fd0937d0bda9b878c0510d062e5075fad049474a5f98bf61c836f",
+    "sound-br-2106-events.json.gz": "1e783c2671f88087b2b8e71a3755973a9cadec6863e43cd5672ad0221c7aa9ff",
+    "sound-requests.png": "0f6f19da46eb37aec73e91eb8f94544f56d034330594f50bbd3c6e72522c1f80",
+    "sound-requests.svg": "07f1da17de9643c2fb9cc69e5347564a6f2c85a3876b494571598dce1ea001c2",
+    "sound-story-1-events.json.gz": "188a0f49f037bb40d5254e3114b23b3ccfadcbc1f91d7fcd539fdb086e4484af",
+    "sound-story-5-events.json.gz": "85ae087d54dfac5f69fc28bb6ee7b218f20e3b8986522b970455d5faee25b067",
+    "sound-story-9-events.json.gz": "c79beaf180964c64c87291dc0789863b36d6fc163d9da136a96d3ee7b8f1bc97",
+    "sound-summary.json": "bebcdb6b9c90f36389b2a9b7e3875e1f0988e67b4b13d34a41976a29a4b4a513",
+    "sound-tables.md": "e5c381a6790ed141ceb97fb929207f8aad53c6e2f449aa1de67861065a34416a",
+    "story-cutin.json": "9d37c851d63a48e41ea078cf33cf01ee7481656bce774d2841890b70a6860f29",
+    "suite/soak_match.log": "dc0f9c7053a5e7404629463535f417fb6f47689bce8a2cf18b28b766c4884211",
+    "suite/test_art.log": "a8079173a47131aa427863c540b8f98a5a814eb7c90fdbc886f2154418407213",
+    "suite/test_audio.log": "96352c23cd49bfcc582c7e2ad2ddde02e46cbb3f1aea9077ee64b74cc549aabf",
+    "suite/test_bot_brain.log": "ed3b66d5b7e3c6b684b914b0751b4478f66fae0b36a083af7097eeb2c4c4c38a",
+    "suite/test_bot_panel.log": "291bc34e33c33073e9cd10f8d6b23dc8a4b374cfad1fbce4dfdc1d6c114d5dd4",
+    "suite/test_bugfix_review.log": "8e74847c86d305cbea9a23ff1e54af64179eec4ba306d09173b4eedfdc7fd0d0",
+    "suite/test_character_architecture.log": "b8fb2f77843ce026bd8a6dc0f79d5691a4022fab1223ac269712e953fa8190e5",
+    "suite/test_defeat_motion.log": "a9bf043490157b5d0335bdbf11b765bb8fcaeed552dfcd20220c348466695f20",
+    "suite/test_effect_layout.log": "d13696ed6a93e21b17fffc1a0837c8b5d6b7f866abe1269054490f03c4efa56e",
+    "suite/test_fighter_motion.log": "b851d75370ed715594484acfed386167e52e42129b5d8fd59385763de9c8cf63",
+    "suite/test_flash_art.log": "e770c0c275ebee536dd40184293b88c4e9fe27f535dd96c2dfb9826a27ab0ccb",
+    "suite/test_font_coverage.log": "74e238d75d86210fd7723e6c6b2686f59b232e4d8129079f2f2419eb7e04e000",
+    "suite/test_frey_kit.log": "da670e919a0119962f8f860b39f0e4f61ac614c7100ed9cd6f39f4a350faf3e1",
+    "suite/test_frey_sprite.log": "626ae0d647341536f11375db18ebc74244f53c060ad53e161f4b71f2d6ef8338",
+    "suite/test_frontend_flow.log": "96a60e212f257041a17a4160f980f8e98159d55300d815239843b3d0ae9e0a16",
+    "suite/test_game_speed.log": "93f0acd30cb100cbde3b6dc40102c65205115234df295192c054491f3ff0112c",
+    "suite/test_hazards.log": "bbfef2146d1a9df828951ac2f8a89dbf4d933b147bd0fcf65aaaa56fa8ae7c38",
+    "suite/test_hit_sparks.log": "afd679ac8b535717b0e8360e26170457e882593bea2e8094a173151f3ac1afa1",
+    "suite/test_hud_frames.log": "1b2dc5d1e0cc244d93597527db92c0d9d2d9ff40f42421f58276097ab0d7e037",
+    "suite/test_language.log": "fe6636d4a315c47bb8e0df81128d62a8ae9a426b6f780020fb23bb492447cf78",
+    "suite/test_luna_kit.log": "7592c0bbf0586ca7894190e6a207087457c116391b99852a399343ea378e1be2",
+    "suite/test_luna_prototype.log": "5e50ca62e1b8d81bffd3cfd2169d0861aedfe075ba102b8f9a5036fe3f4877a0",
+    "suite/test_match_rules.log": "4727d9323f503990ed92b06189114871e4c47f47a005f9fc3af97615b9fd717d",
+    "suite/test_monster_ecology.log": "bea1881173894e880c7a060c97dacbaf5bc514fc03731dbb92810f6c2be8a8ad",
+    "suite/test_monster_motion.log": "ae9dda9e7a0d0b57f011b8738cbe042679c53bb0f485f680e40b611698e180df",
+    "suite/test_monster_options.log": "c586dff2c1d52e07940045f3ba0fd656b66675c1dff8f108994d576452890ad1",
+    "suite/test_motion_speeds.log": "192c72bc2ac67cc3a9a9582a6cf15bd955b0f47ebe90017644de216418272506",
+    "suite/test_moves_sheet.log": "50553c7c61d9b52a159edf7be08f58ca109a906566b17f2f5abc90dedada9137",
+    "suite/test_nova_prototype.log": "6c16bfce6cd9f3b114aa14c182aa19b6877b63978013819ebd9abfab1b59afbc",
+    "suite/test_offscreen_markers.log": "28a08279507ffc416ec6aee781445391de1995159704bfa282eab67a61548e10",
+    "suite/test_projectile_art.log": "866bd28e4c01c46425e74ecf9111d8d01f2b463cb5ded767a98829ffe008d56f",
+    "suite/test_realm_gimmicks.log": "ae0a8f3392d9ffa9de8b67281cbc405f3fdd8ce60f30f848a142191c3ebb4cc3",
+    "suite/test_realm_monsters.log": "2de4391e8515191a2c4cea16e9ed1364d78eb818061c1ff4dc9e464a7564de20",
+    "suite/test_relocation_active.log": "7b400ba525725f2d37ce414c489561eb9f417a22a3045eefdc26899e6b006ffc",
+    "suite/test_restart.log": "eddc10a5a2b1a6a302883c765bff8f0e67d71f409058e3b376a0d8e64b6fc9ea",
+    "suite/test_rio_prototype.log": "c2f92b9e74f0c823bea4d3ccd3e8d5202ec62e7fea11b014c914f39fd702be21",
+    "suite/test_skill_bar.log": "162c6c41b5fe591d55d2588838825746c6677184f8b83cd8e6e4734937b7b0de",
+    "suite/test_skill_fx_art.log": "abc5b202966743126a3c66ce90ad301a03b9cb0526dfe13cd373d97cc3b351c0",
+    "suite/test_soul_crystals.log": "ac6f2e6f9c17eb53aaf1115ff6b7ed7e9279043b58139810a3c69cf2749ec791",
+    "suite/test_sprite_frames.log": "0157847416f6ad13e620a05b7a2a8a55dd58a103e449ab9c0d5155c40a765aaa",
+    "suite/test_sprite_pose.log": "bdd1536b43c16b05c577dd36d6e94683d8d9198f70bc727cf9c165d850605578",
+    "suite/test_story_atomic_reload.log": "e29a50af68065d502b2835f0a5f2d65afbaeaa7b62c7e073271c2f8a0dbb3dbf",
+    "suite/test_story_data.log": "cd23ddee00c439d9f0c82032ff158a8bb95c7e2c5bcddfe549381d960fbc7025",
+    "suite/test_story_exit_reload.log": "cac915553f738ca8b78a99e97ab43fb41cdc0992237ea3305be7ebe46bfbb4af",
+    "suite/test_story_flow.log": "a6fd744b23393ac57310e01589da9fbbd9efad47ff9c298006e97383e572cc58",
+    "suite/test_story_late_flow.log": "ccf81bb31b4cac9af8f35c01fe1f21e3251658855d52ed7d310b61c494c51140",
+    "suite/test_story_presentation.log": "b255256ad91fd04d6f3d1a45b5e774a6219fda036474ae7253a3059b881502e5",
+    "suite/test_story_rewards.log": "c64e51a39b5c2251db357ad719ddec997a2aaa54869e178103ba14c092d4b208",
+    "suite/test_story_text_fit.log": "78b4cbfb4bed610a225866ed940d880e38bc47b6343125a7088217db6c2d111c",
+    "suite/test_talisman_burst.log": "3d59786d1b5afd23c2233b0255c7369c46b6e6b74d5147b962fc70c9251f2cac",
+    "suite/test_ultimates.log": "d64259cb16e68ca81cb1615d35a779580b76377e88a3f892f8a40c5685e33d2c",
+    "suite/test_ultimate_armor.log": "36c2523fc3a8c8239cf370b90a7cab8d148e2b95619c55d1f88fb857de5398df",
+    "suite/test_victory_screens.log": "889a9b903071f64fdffbb032725b4e670a5eb35e41c95f0588d026194f85e4c0",
+    "suite/visual_preview.log": "4fd9fb3794164b8665537e8a0e2e5fc80a9b0f181a7b1795a17c07563c198dd3",
+    "suite-meta.json": "544695a8e95893ba86b6eb865a85dbbce29c4ae380643f49df39ade277001e28",
+    "suite-summary.log": "add9878f6bb3d81e0575da3524037d3d3a2a42117875755b9058f086cce126ab",
+    "verify.mjs": "e880d91d4a5621f3e005995edd8b37fd15e6dde201df7307f1e6efe6570173ba"
+  }
+}

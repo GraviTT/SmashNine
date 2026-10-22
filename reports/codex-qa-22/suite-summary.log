@@ -1,0 +1,109 @@
+PASS test_character_architecture  Character architecture combat regression tests passed
+
+PASS test_frey_sprite  All character scene and sprite smoke tests passed
+
+PASS test_luna_prototype  Luna normal and Brave form prototype tests passed
+
+PASS test_nova_prototype  Nova momentum and gravity prototype tests passed
+
+PASS test_rio_prototype  Rio prototype tests passed
+
+PASS test_ultimates  Ultimate tests passed
+
+PASS test_match_rules  Match rule tests passed (13)
+
+PASS test_hazards  Hazard tests passed (9)
+
+PASS test_realm_gimmicks  Realm gimmick tests passed
+
+PASS test_soul_crystals  Soul crystal tests passed
+
+PASS test_art  Art tests passed (original and prototype, every character and body)
+
+PASS test_sprite_frames  Sprite frame tests passed (8 main sheets, 8 moves sheets, 18 monster sheets edge-clean, 0 head files valid)
+
+PASS test_offscreen_markers  Off-screen marker tests passed
+
+PASS test_relocation_active  Relocation tests passed
+
+PASS test_bot_panel  Bot panel tests passed
+
+PASS test_skill_bar  Skill bar tests passed
+
+PASS test_bot_brain  Bot brain tests passed
+
+PASS test_talisman_burst  Talisman burst tests passed
+
+PASS test_flash_art  Flash art tests passed
+
+PASS test_ultimate_armor  Ultimate armor tests passed
+
+PASS test_sprite_pose  Sprite pose tests passed
+
+PASS test_motion_speeds  Motion speed tests passed (91 rows)
+
+PASS test_game_speed  Game speed tests passed
+
+PASS test_frey_kit  Frey kit tests passed
+
+PASS test_luna_kit  Luna kit tests passed
+
+PASS test_skill_fx_art  Skill FX art tests passed
+
+PASS test_effect_layout  Effect layout tests passed
+
+PASS test_defeat_motion  Defeat motion tests passed
+
+PASS test_realm_monsters  Realm monster tests passed (9 themed pairs, behaviour preservation, missing-file fallback)
+
+PASS test_monster_ecology  Monster ecology tests passed (250 checks; 18 skins / 10 archetypes, windups, elite, pacing, lifecycle)
+
+PASS test_monster_options  Monster option tests passed (16 checks; default neutral, hostile acquisition/collision, boss profile/death)
+
+PASS test_moves_sheet  Move sheet tests passed (Frey, Luna, Brave Luna, Nova, Yuki, Rio rows and missing-sheet fallback)
+
+PASS test_hit_sparks  Hit spark and fighter status icon tests passed
+
+PASS test_hud_frames  HUD frame tests passed (skill 4, HP 1, cards 3, result 1, menu 2; title art + ColorRect fallback)
+
+PASS test_frontend_flow  Frontend flow tests passed (keyboard + mouse, 5 shortcuts, bodies, options, 3 result routes, 2 node/orphan cycles; nodes 1262, orphans 0)
+
+PASS test_language  Language tests passed (382 keys, 92 tr literals; Korean/English reload, all fighters, HUD/hazard/cards/results, no saved-choice writes)
+
+PASS test_font_coverage  Font coverage tests passed (31933 characters of the translation table)
+
+PASS test_story_data  Story data tests passed (1672 assertions, 9 stages, 138 bilingual IDs, save isolation, Easy rules)
+
+PASS test_story_flow  Story flow tests passed (259 assertions; title/select/map/dialogue/card/Q/result/pause/retry/Continue/replay, 5 heroes x 4 stages, home variants, nodes 1262, orphans 0, no real save)
+
+PASS test_story_late_flow  Late story flow tests passed (194 checks; 2 heroes stages 5-9, home variants, time-up/crystals/boss/reinforcements/mid/band/ending, no real save)
+
+PASS test_story_presentation  Story presentation tests passed (marked pictures, 9-slice frame/name plate, all match HUD including timed warnings hidden during scenes)
+
+PASS test_restart  Restart tests passed (10 restarts, start screen nodes 1262)
+
+PASS test_bugfix_review  Bug review regression tests passed (6)
+
+PASS visual_preview  
+PASS test_story_rewards  Story reward tests passed (24 checks; stage 8 offer/root/F2/checkpoint, Easy shadow growth/heal cap, lethal hero-only band/retry)
+
+PASS test_story_exit_reload  Story exit reload tests passed (8 checks; crystals and boss exits keep live monsters stopped across F2)
+
+PASS test_story_text_fit  Story text fit tests passed (520 bilingual dialogue/ending lines; maximum dialogue 58/120 px, ending 58/80 px)
+
+PASS test_story_atomic_reload  Story atomic reload tests passed (13 checks; final crystal, hero death in stages 1/9, boss death before deferred callbacks)
+
+PASS test_fighter_motion  Fighter motion: 132 checks, failed=false
+
+PASS test_monster_motion  Monster motion: 293 checks, failed=false
+
+PASS test_victory_screens  Victory screens: 68 checks, failed=false
+
+PASS test_audio  Audio tests passed (552 checks; 71/71 event ids requested, 4 fallback-only + 2 story hooks reserved)
+
+PASS test_projectile_art  Projectile art tests: 59 checks, PASSED
+
+PASS soak run 1 seed 1001  SOAK_RESULT {"defeats":7,"defeats_by_cause":{"player":7},"defeats_by_player":{"Frey":1,"Luna":2,"Nova":1,"Rio":2,"Yuki":1},"eliminations":["Yuki t=195 by player ringouts=2 dmg_dealt=88","Frey t=216 by player ringouts=2 dmg_dealt=138","Luna t=247 by player ringouts=2 dmg_dealt=187","Rio t=253 by player ringouts=1 dmg_dealt=274","Rio t=261 by player ringouts=2 dmg_dealt=193","Nova t=284 by player ringouts=1 dmg_dealt=355","Luna t=332 by player ringouts=0 dmg_dealt=215"],"first_pvp_hit":8.3,"hazard_hits":11,"match_over":true,"monster_hits":111,"nan_positions":0,"node_count":1648,"playable_realms":1,"players":8,"pvp_hits":709,"ringouts":13,"seconds_simulated":331.7,"shared_realm_ratio":0.94,"souls":["Yuki:89/3","Luna:171/3","Luna:105/3","Nova:186/3","Nova:257/3","Rio:154/3","Rio:210/3","Frey:143/3"],"winner":"Nova"}
+
+NOTE: ignored 53 known sandbox certificate-store errors; every other engine error still fails.
+ALL PASSED
