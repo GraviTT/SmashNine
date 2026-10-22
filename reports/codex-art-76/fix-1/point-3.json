@@ -1,0 +1,60 @@
+{
+  "muspelheim_magma_boar": {
+    "part": "앞 엄니의 가장 오른쪽 불투명 외곽",
+    "before": [
+      [
+        85,
+        64
+      ],
+      [
+        87,
+        59
+      ]
+    ],
+    "after": [
+      [
+        84,
+        64
+      ],
+      [
+        92,
+        59
+      ]
+    ],
+    "reported_before_dx": 3,
+    "remeasured_before_dx": 2,
+    "measured_after_dx": 8,
+    "uncertainty_px": 2,
+    "method": "4배 격자에서 windup F4와 attack F3의 같은 공격 부위 외곽을 재지정. 가로 차이. 두 지점 모두 불투명 픽셀인지 검증. 실제 게임 이동량/판정 사거리 아님.",
+    "reported_start_alpha": 255
+  },
+  "niflheim_glacier_wolf": {
+    "part": "앞으로 뻗는 앞발의 끝 불투명 외곽",
+    "before": [
+      [
+        68,
+        72
+      ],
+      [
+        88,
+        50
+      ]
+    ],
+    "after": [
+      [
+        68,
+        72
+      ],
+      [
+        92,
+        50
+      ]
+    ],
+    "reported_before_dx": 5,
+    "remeasured_before_dx": 20,
+    "measured_after_dx": 24,
+    "uncertainty_px": 2,
+    "method": "4배 격자에서 windup F4와 attack F3의 같은 공격 부위 외곽을 재지정. 가로 차이. 두 지점 모두 불투명 픽셀인지 검증. 실제 게임 이동량/판정 사거리 아님.",
+    "reported_start_alpha": 0
+  }
+}
