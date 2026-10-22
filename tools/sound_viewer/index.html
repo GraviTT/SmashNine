@@ -8,17 +8,22 @@
 <style>
 :root{font-family:Inter,"Segoe UI","Malgun Gothic",sans-serif;color:#e9eef8;background:#0b101b;font-synthesis:none;--muted:#9baac1;--line:#2a354a;--a:#83e2c3;--b:#bcadff;--c:#ffc38c}*{box-sizing:border-box}body{margin:0}button,input,textarea{font:inherit}button{cursor:pointer;border:1px solid #3b4962;border-radius:9px;padding:10px 14px;color:#e9eef8;background:#202d43;min-height:44px}button:hover{background:#2b3a55}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #83e2c3;outline-offset:3px}button:disabled{opacity:.5;cursor:wait}button[hidden],[hidden]{display:none!important}main{max-width:1120px;margin:auto;padding:48px 28px 80px}.eyebrow{font-size:12px;color:var(--a);letter-spacing:.16em;font-weight:700}h1{font-size:clamp(28px,5vw,44px);letter-spacing:-.04em;margin:12px 0}p{line-height:1.65;color:var(--muted)}.intro{max-width:700px}.stats{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.pill{font-size:12px;border:1px solid var(--line);border-radius:20px;padding:7px 12px;color:#b8c5d9}.toolbar{position:sticky;top:0;z-index:5;display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:16px 0;background:#0b101bf5;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:28px 0 12px}.volume{display:flex;align-items:center;gap:10px;font-size:13px;color:#b8c5d9}.volume input{width:100px;accent-color:var(--a)}#status{font-size:13px;color:var(--a);flex:1;min-width:180px}.db-note{font-size:12px;margin:12px 0 30px}.sound{background:#121b2b;border:1px solid var(--line);border-radius:16px;padding:22px;margin:18px 0}.sound-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}.heading{display:flex;gap:13px;align-items:center;min-width:0}.number{font-size:12px;font-variant-numeric:tabular-nums;color:#7890ad;border:1px solid var(--line);padding:6px;border-radius:6px}h2{font-size:19px;margin:0 0 5px;letter-spacing:-.025em}.id{font-family:Consolas,monospace;color:var(--muted);font-size:12px}.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.candidate{min-width:0;border:1px solid #303d54;border-radius:12px;padding:16px;position:relative;background:#172134}.candidate[data-style=a]{--accent:var(--a)}.candidate[data-style=b]{--accent:var(--b)}.candidate[data-style=c]{--accent:var(--c)}.candidate.playing{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.style-title{font-size:14px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:8px;margin-bottom:12px}.style-letter{display:inline-grid;place-items:center;border:1px solid var(--accent);border-radius:5px;width:23px;height:23px;font-size:12px}.candidate p{font-size:12px;margin:12px 0;min-height:40px}.candidate .play{width:100%;background:#23314a}.meta{font-size:11px;line-height:1.9;color:#a9b8ce;font-variant-numeric:tabular-nums}.pick-radio{display:flex;align-items:center;gap:8px;font-size:12px;margin-top:12px;min-height:32px;color:#c8d5e8;cursor:pointer}.pick-radio input{accent-color:var(--accent);width:16px;height:16px}.adopted-label{font-size:11px;color:var(--accent);margin-left:auto}.adoption{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:15px;padding-top:15px;border-top:1px solid var(--line)}.adoption label{font-size:12px;color:#a9b8ce;flex:1;min-width:180px}.adoption input{display:block;width:100%;background:#0d1523;border:1px solid var(--line);color:#e9eef8;padding:9px;border-radius:7px;margin-top:6px}.adoption button{border-color:#5d9d8c;background:#203e3b}.adopt-status{font-size:12px;color:var(--a);width:100%;min-height:16px}.footer{font-size:12px;margin-top:28px}a{color:var(--a)}@media(max-width:640px){main{padding:28px 16px 48px}.trio{grid-template-columns:1fr}.candidate p{min-height:0}.sound{padding:16px}.sound-head{align-items:flex-start}.sound-head button{font-size:12px;padding:10px;white-space:nowrap}h2{font-size:17px}.toolbar{gap:10px}.meta{font-size:12px}.number{display:none}.adoption button{width:100%}}@media(prefers-reduced-motion:no-preference){button,.candidate{transition:background .15s,border-color .15s}}
 </style>
+<style>.volume input[type=checkbox]{width:18px;height:18px}.loop-control{white-space:nowrap}</style>
 </head>
 <body>
 <main>
 <header>
-<div class="eyebrow">SMASH NINE REALMS / SOUND STUDY 01</div>
+<div class="eyebrow">SMASH NINE REALMS / SOUND STUDY 01 + MUSIC STUDY 02</div>
 <h1>첫 소리, 세 가지 질감.</h1>
-<p class="intro">짧고 선명한 칩튠, 둥근 16비트 울림, 묵직한 아케이드 레이어.<br>같은 동작의 A · B · C를 들어 보고, 마음에 드는 소리를 골라 주세요.</p>
-<div class="stats"><span class="pill">12개 동작 · 36개 후보</span><span class="pill">직접 합성한 오리지널 사운드</span><span class="pill">효과별 음량을 맞춘 비교</span></div>
+<p class="intro">짧고 선명한 칩튠, 둥근 16비트 울림, 묵직한 아케이드 레이어.<br>각 곡과 동작의 A · B · C를 들어 보고, 마음에 드는 소리를 골라 주세요.</p>
+<div class="stats"><span class="pill">12개 동작 · 36개 효과음</span><span class="pill">타이틀·전투 · 6개 음악</span><span class="pill">직접 합성한 오리지널 사운드</span></div>
 </header>
 <div class="toolbar"><button id="stop" type="button">■ 정지</button><label class="volume">재생 음량 <input id="volume" aria-label="재생 음량" type="range" min="0" max="100" value="65"><output id="volumeValue">65%</output></label><div id="status" role="status" aria-live="polite">재생할 소리를 선택하세요.</div></div>
 <p class="db-note" id="dbNote">로컬 청음 모드 · 채택 저장은 데이터베이스가 연결된 Artifact에서 사용할 수 있습니다.</p>
+<h2>음악</h2>
+<p>이그드라실의 6음 모티프가 타이틀에서 전투로 이어집니다. A · B · C의 편곡을 비교해 주세요.<br>반복을 끄면 현재 한 바퀴를 마친 뒤 멈춥니다.</p>
+<div id="music"></div>
+<h2>효과음</h2>
 <div id="sounds"></div>
 <p class="footer">후보 비교판 · 아직 게임에 반영되지 않았습니다. 표기 음량은 파일 자체의 dBFS 값입니다.<br>RMS는 평균 에너지 기준이며, 실제 체감 음량과 타격감은 직접 청음해 판단해 주세요.</p>
 </main>
@@ -32,7 +37,8 @@ const drafts = new Map();
 const dirtyNotes = new Set();
 const saving = new Set();
 const cards = new Map();
-let soundDb = null, playbackToken = 0, player = null, settlePlayback = null;
+const musicLoops = new Map();
+let soundDb = null, playbackToken = 0, player = null, settlePlayback = null, playingCandidate = null;
 
 function node(tag, className, text) {
     const el = document.createElement(tag);
@@ -45,6 +51,7 @@ function stopPlayback(announce = true) {
     playbackToken++;
     if (player) { player.pause(); player.removeAttribute("src"); player.load(); player = null; }
     if (settlePlayback) { settlePlayback(false); settlePlayback = null; }
+    playingCandidate = null;
     document.querySelectorAll(".candidate.playing").forEach(el => el.classList.remove("playing"));
     if (announce) say("재생을 멈췄습니다.");
 }
@@ -53,6 +60,8 @@ async function playOne(candidate, token) {
     const ui = cards.get(candidate.sound).candidates.get(candidate.style);
     const audio = new Audio(candidate.data || candidate.file);
     player = audio;
+    playingCandidate = candidate;
+    audio.loop = candidate.track ? musicLoops.get(candidate.sound).checked : false;
     audio.volume = Number($("volume").value) / 100;
     ui.classList.add("playing");
     say(`${candidate.label} · ${candidate.style.toUpperCase()} ${STYLE_NAMES[candidate.style]} 재생 중`);
@@ -61,7 +70,7 @@ async function playOne(candidate, token) {
         const finish = ok => {
             if (done) return; done = true;
             ui.classList.remove("playing");
-            if (player === audio) player = null;
+            if (player === audio) { player = null; playingCandidate = null; }
             if (settlePlayback === finish) settlePlayback = null;
             audio.onended = audio.onerror = null;
             resolve(ok);
@@ -84,17 +93,28 @@ async function playQueue(candidates) {
 }
 
 function render() {
-    for (const [index, sound] of M.sounds.entries()) {
+    for (const [index, sound] of [...M.music, ...M.sounds].entries()) {
+        const isMusic = sound.id.startsWith("music_");
         const card = node("section", "sound"); card.id = sound.id;
         const head = node("div", "sound-head");
         const heading = node("div", "heading");
-        heading.append(node("span", "number", String(index + 1).padStart(2,"0")));
+        heading.append(node("span", "number", String(index + 1 - (isMusic?0:M.music.length)).padStart(2,"0")));
         const titles = node("div"); titles.append(node("h2", "", sound.label),node("div", "id", sound.id));
         heading.append(titles);
         const all = node("button", "", "▶ 전체 재생"); all.type = "button";
         all.setAttribute("aria-label", `${sound.label} A B C 전체 재생`);
         all.addEventListener("click", () => playQueue(sound.candidates));
-        head.append(heading, all); card.append(head);
+        head.append(heading);
+        if (isMusic) {
+            const loopLabel = node("label", "volume loop-control", "반복 재생 ");
+            const loop = node("input"); loop.type="checkbox"; loop.checked=true;
+            loop.setAttribute("aria-label", `${sound.label} 반복 재생`);
+            loop.addEventListener("change", () => {
+                if (player && playingCandidate?.sound === sound.id) player.loop=loop.checked;
+            });
+            musicLoops.set(sound.id,loop); loopLabel.append(loop); head.append(loopLabel);
+        } else head.append(all);
+        card.append(head);
         const trio = node("div", "trio"); trio.setAttribute("role","radiogroup"); trio.setAttribute("aria-label", `${sound.label} 스타일 선택`);
         const candidates = new Map(), radios = new Map();
         for (const c of sound.candidates) {
@@ -104,6 +124,12 @@ function render() {
             const play = node("button", "play", "▶ 재생"); play.type="button"; play.setAttribute("aria-label",`${sound.label} ${c.style.toUpperCase()} ${STYLE_NAMES[c.style]} 재생`);
             play.addEventListener("click", () => playQueue([c]));
             panel.append(title,play,node("p","",c.note),node("div","meta",`${c.length_s.toFixed(2)}초 · Peak ${c.peak_dbfs.toFixed(1)} · RMS ${c.rms_dbfs.toFixed(1)} dBFS`));
+            if (isMusic) {
+                const stop = node("button", "play", "■ 정지"); stop.type="button";
+                stop.setAttribute("aria-label", `${sound.label} ${c.style.toUpperCase()} 정지`);
+                stop.addEventListener("click", () => stopPlayback());
+                panel.append(stop,node("div","meta",`${c.bpm} BPM · D 도리안 · ${c.bars}마디 · ${c.channels===1?"모노":"스테레오"}`));
+            }
             const label = node("label", "pick-radio");
             const radio = node("input"); radio.type="radio"; radio.name=`pick-${sound.id}`; radio.value=c.style;
             radio.setAttribute("aria-label",`${sound.label} ${c.style.toUpperCase()} ${STYLE_NAMES[c.style]} 선택`);
@@ -114,14 +140,14 @@ function render() {
         card.append(trio);
         const adoption = node("div","adoption"); adoption.hidden=true;
         const noteLabel = node("label","","선택 메모 (선택 사항)");
-        const note = node("input"); note.type="text"; note.maxLength=300; note.placeholder="예: 강한 타격은 C가 가장 묵직해요"; noteLabel.append(note);
+        const note = node("input"); note.type="text"; note.maxLength=300; note.placeholder=isMusic?"예: 타이틀은 B의 울림이 좋아요":"예: 강한 타격은 C가 가장 묵직해요"; noteLabel.append(note);
         note.addEventListener("input",()=>dirtyNotes.add(sound.id));
         const adopt = node("button","","선택한 소리 채택"); adopt.type="button"; adopt.disabled=true;
         adopt.addEventListener("click", () => adoptSound(sound.id));
         const status = node("div","adopt-status"); status.setAttribute("role","status");
         adoption.append(noteLabel,adopt,status); card.append(adoption);
         cards.set(sound.id,{card,candidates,radios,adoption,note,adopt,status});
-        $("sounds").append(card);
+        $(isMusic?"music":"sounds").append(card);
     }
 }
 function refreshCard(id) {
@@ -151,7 +177,7 @@ async function connectDb() {
             }
         }, () => disconnectDb());
         if (soundDb) {
-            $("dbNote").textContent="채택 저장 연결됨 · 동작마다 스타일을 선택한 뒤 채택하세요. 선택은 언제든 다시 바꿀 수 있습니다.";
+            $("dbNote").textContent="채택 저장 연결됨 · 곡·동작마다 스타일을 선택한 뒤 채택하세요. 선택은 언제든 다시 바꿀 수 있습니다.";
             for (const id of cards.keys()) refreshCard(id);
         }
     } catch { disconnectDb(); }

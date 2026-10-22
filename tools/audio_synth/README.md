@@ -1,5 +1,29 @@
 # 첫 효과음 합성 도구 · AUD-01a
 
+## 음악 후보 · AUD-02a
+
+`music.py`가 기존 `synth.py`의 연속 위상 발진기·대역 제한 잡음·폰트를 재사용한다. 패키지 설치·샘플·다운로드 없이 numpy/Pillow/표준 라이브러리만 쓴다. 기존 효과음 합성 결과는 바꾸지 않는다.
+
+```powershell
+$env:PYTHONDONTWRITEBYTECODE = '1'
+$python = 'C:/Users/TH/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'
+& $python tools/audio_synth/music.py
+& $python tools/audio_synth/verify_music.py
+node tools/sound_viewer/build.mjs
+node tools/sound_viewer/verify.mjs
+```
+
+- 먼저 마디별 악보 데이터(`score()`, `P`, `BATTLE`, 코드표)를 만들고 렌더한다. 각 파트는 시작 박·음·길이·강도로 기록된다. 공통 모티프는 **D5 A5 G5 E5 F5 D5**, D 도리안이다.
+- 타이틀: 100 BPM, 4/4, 16마디, 38.4초. 전투: 160 BPM, 4/4, 24마디, 36초. 같은 곡의 세 스타일은 선율·베이스·리듬 악보가 같고 화성 파트는 A의 단음 아르페지오 / B·C의 짧은 코드 패드로 다르다.
+- A: 펄스 선율 + 25% 펄스 화성 + 삼각파 베이스 + 계단 잡음 드럼, 모노. NES 계열 음색이며 회로·채널 제한을 정밀 재현하는 에뮬레이터는 아니다.
+- B: FM 선율·베이스, 사인 배음 패드, 합성 킥·스네어, 23–89ms의 짧은 방 잔향, 스테레오.
+- C: 펄스 선율, 부드러운 배음 패드, FM 베이스, 저음·잡음층을 겹친 킥·스네어, 스테레오.
+- 음악은 **효과음용 `master()` 페이드를 쓰지 않는다.** 음의 릴리스와 방 잔향을 원형 버퍼에 합산하고, 마지막 D를 시작 D에 붙임줄로 연결한다. DC 제거와 일정한 게인만 적용해 전체 RMS −18 dBFS로 맞춘다. 압축·리미터·클리핑·끝 페이드가 없다.
+- `reports/codex-aud-02a/`에 여섯 악보 TXT/JSON, 파형·스펙트로그램·±10ms 경계 확대 PNG, `measurements.json`을 쓴다. `verify_music.py`는 디스크 PCM의 규격·음량·마디 길이·10ms 경계·모티프를 확인하고 여섯 파일을 메모리에서 다시 합성해 바이트 단위 비교한다.
+- LUFS는 측정하지 않는다. 카드에서 허용한 **RMS 대체 기준**을 사용한다. 샘플 피크이며 true peak는 미측정이다. 수치·그림 검사는 직접 청음이나 게임 내 효과음 믹스의 승인을 대신하지 않는다.
+
+아래는 기존 효과음 전용 설명이다. 효과음 `verify.py`는 `music_*`를 제외해 음악 후보와 함께 둘 수 있다.
+
 12개 동작 × A/B/C 3스타일, 총 36개 **후보**를 만든다. 게임 파일은 읽거나 쓰지 않는다. 모든 소리는 수식·고정 시드 잡음에서 직접 합성했으며, 샘플·음원 다운로드·외부 오디오 패키지는 사용하지 않았다.
 
 ## 실행

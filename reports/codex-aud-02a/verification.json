@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "wav_count": 6,
+  "details": [
+    {
+      "file": "music_title-a.wav",
+      "deterministic_pcm": true,
+      "motif_bars": [
+        1,
+        9
+      ],
+      "peak_dbfs": -4.591104449577576,
+      "rms_dbfs": -18.00000067228533,
+      "join_step_fs": 0.002899169921875,
+      "join_side_delta_db": 5.731923622377149,
+      "join_vs_context_db": 0.7327131973289709
+    },
+    {
+      "file": "music_title-b.wav",
+      "deterministic_pcm": true,
+      "motif_bars": [
+        1,
+        9
+      ],
+      "peak_dbfs": -5.438812446658855,
+      "rms_dbfs": -18.00000041760383,
+      "join_step_fs": 0.00042724609375,
+      "join_side_delta_db": 4.7781417005369375,
+      "join_vs_context_db": 0.1470256433034558
+    },
+    {
+      "file": "music_title-c.wav",
+      "deterministic_pcm": true,
+      "motif_bars": [
+        1,
+        9
+      ],
+      "peak_dbfs": -5.081361953479434,
+      "rms_dbfs": -17.999999604839534,
+      "join_step_fs": 0.003997802734375,
+      "join_side_delta_db": 5.435621302350659,
+      "join_vs_context_db": 0.6012988504263584
+    },
+    {
+      "file": "music_battle-a.wav",
+      "deterministic_pcm": true,
+      "motif_bars": [
+        1,
+        9,
+        17
+      ],
+      "peak_dbfs": -3.545050031068721,
+      "rms_dbfs": -18.000000247545128,
+      "join_step_fs": 0.002349853515625,
+      "join_side_delta_db": 4.7631797763239225,
+      "join_vs_context_db": 1.4091279088715138
+    },
+    {
+      "file": "music_battle-b.wav",
+      "deterministic_pcm": true,
+      "motif_bars": [
+        1,
+        9,
+        17
+      ],
+      "peak_dbfs": -3.7732724952264545,
+      "rms_dbfs": -18.00000010644133,
+      "join_step_fs": 0.001861572265625,
+      "join_side_delta_db": 3.442595112172805,
+      "join_vs_context_db": 0.0006899604267892814
+    },
+    {
+      "file": "music_battle-c.wav",
+      "deterministic_pcm": true,
+      "motif_bars": [
+        1,
+        9,
+        17
+      ],
+      "peak_dbfs": -3.182361498965927,
+      "rms_dbfs": -17.99999980551603,
+      "join_step_fs": 0.00146484375,
+      "join_side_delta_db": 4.820723087687856,
+      "join_vs_context_db": 0.9766528722487757
+    }
+  ],
+  "checks": [
+    "44.1kHz PCM16, mono A / stereo B,C",
+    "32-48s, bar-aligned length, tempo ranges",
+    "RMS -18dBFS and peak <= -1dBFS, no clipping",
+    "Each WAV <=8 decimal MB",
+    "6 independent boundary/10ms energy/context seam checks",
+    "6 SHA256 and byte-identical deterministic PCM replays",
+    "Text and JSON scores match the rendering data",
+    "D dorian only, common six-note motif occurs at least twice per track",
+    "Same lead/bass/drum score across all styles",
+    "All six analysis figures present"
+  ],
+  "limitations": [
+    "RMS fallback used; integrated LUFS and oversampled true peak not measured",
+    "Numerical seam and spectral evidence do not replace human listening",
+    "Godot, in-game SFX masking and hosted Artifact DB not exercised"
+  ]
+}

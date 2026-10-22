@@ -18,7 +18,7 @@ def level(value):
 def main():
     manifest = json.loads((REPORT / "measurements.json").read_text(encoding="utf-8"))
     expected = {f"{sound}-{style}.wav" for sound, *_ in synth.SOUNDS for style in "abc"}
-    actual = {p.name for p in (ROOT / "art/audio_bakeoff").glob("*.wav")}
+    actual = {p.name for p in (ROOT / "art/audio_bakeoff").glob("*.wav") if not p.name.startswith("music_")}
     assert actual == expected, (actual - expected, expected - actual)
     details = []
     for m in manifest["records"]:
