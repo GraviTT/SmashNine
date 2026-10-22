@@ -3,6 +3,7 @@ extends CanvasLayer
 ## offer, announcement line, debug panel (F3), and the start / result screens.
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const LANGUAGE := preload("res://scripts/Language.gd")
 const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const FRONTEND := preload("res://scripts/ui/FrontendMenu.gd")
@@ -114,6 +115,9 @@ var overlay_body: Label
 var overlay_credits: Label
 var frontend: FRONTEND
 
+func _init() -> void:
+	LANGUAGE.load_saved()
+
 func _ready() -> void:
 	name = "UI"
 	clock_label = _label(Vector2(390, 12), Vector2(500, 30), 20, HORIZONTAL_ALIGNMENT_CENTER)
@@ -131,9 +135,11 @@ func _ready() -> void:
 	# a long title ran into "Frey HP ..." on the right).
 	realm_label = _label(Vector2(400, 40), Vector2(380, 24), 16, HORIZONTAL_ALIGNMENT_CENTER)
 	realm_label.clip_text = true
+	clock_label.add_theme_font_size_override("font_size", 17)
 	hazard_label = _label(Vector2(400, 62), Vector2(380, 20), 13, HORIZONTAL_ALIGNMENT_CENTER)
 	warning_label = _label(Vector2(240, 96), Vector2(800, 90), 30, HORIZONTAL_ALIGNMENT_CENTER)
 	warning_label.add_theme_color_override("font_color", Color(1.0, 0.42, 0.22))
+	warning_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	warning_label.visible = false
 	# Messages only; it stops short of the skill bar on the right.
 	info_label = _label(Vector2(24, 664), Vector2(820, 48), 15, HORIZONTAL_ALIGNMENT_LEFT)
@@ -141,7 +147,7 @@ func _ready() -> void:
 	# Sized to its text on a faint backing, so platforms behind it do not cut through the words.
 	var controls_width := controls_label_width()
 	controls_label = _label(Vector2(1280.0 - SKILL_BAR_MARGIN - controls_width, 720.0 - SKILL_BAR_MARGIN - 18.0), Vector2(controls_width, 18), 12, HORIZONTAL_ALIGNMENT_CENTER)
-	controls_label.text = CONTROLS_SHORT
+	controls_label.text = tr(CONTROLS_SHORT)
 	var backing := StyleBoxFlat.new()
 	backing.bg_color = Color(0.02, 0.03, 0.06, 0.55)
 	backing.set_corner_radius_all(4)
@@ -222,7 +228,7 @@ func toggle_bot_panel() -> void:
 	bot_panel.visible = not bot_panel.visible
 
 func controls_label_width() -> float:
-	return ThemeDB.fallback_font.get_string_size(CONTROLS_SHORT, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 14.0
+	return ThemeDB.fallback_font.get_string_size(tr(CONTROLS_SHORT), HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 14.0
 
 ## Loads an authored 9-slice in original-art mode. The returned ColorRect preserves the
 ## exact previous block-colour presentation for F2 prototype mode and missing files.
@@ -443,16 +449,16 @@ func update_bot_panel(rows: Array) -> void:
 func set_clock(phase: String, elapsed: float, next_label: String, next_in: float) -> void:
 	var text := "%s   %s" % [phase, _format_time(elapsed)]
 	if next_label != "":
-		text += "   |   %s in %s" % [next_label, _format_time(next_in)]
+		text += tr("   |   %s in %s") % [tr(next_label), _format_time(next_in)]
 	clock_label.text = text
 
 func set_status(alive: int, total: int, focus: Node) -> void:
-	var lines: Array[String] = ["Alive %d / %d" % [alive, total]]
+	var lines: Array[String] = [tr("Alive %d / %d") % [alive, total]]
 	if is_instance_valid(focus):
 		var next_threshold: int = focus.get_next_soul_threshold()
-		var soul_text := "Souls %d" % focus.souls
-		soul_text += "  (next card %d)" % next_threshold if next_threshold > 0 else "  (all cards taken)"
-		lines.append("%s  HP %.0f/%.0f  KOs %d   %s" % [focus.display_name, focus.hp, focus.max_hp, focus.score, soul_text])
+		var soul_text := tr("Souls %d") % focus.souls
+		soul_text += tr("  (next card %d)") % next_threshold if next_threshold > 0 else tr("  (all cards taken)")
+		lines.append(tr("%s  HP %.0f/%.0f  KOs %d   %s") % [tr(str(focus.display_name)), focus.hp, focus.max_hp, focus.score, soul_text])
 	status_label.text = "\n".join(lines)
 	var hp_ratio := 0.0
 	if is_instance_valid(focus) and float(focus.max_hp) > 0.0:
@@ -497,7 +503,7 @@ func _format_time(seconds: float) -> String:
 const SHORT_REALM_NAMES := {"Svartalfheim": "Svartalf", "Yggdrasil Heart": "Yggdrasil", "Muspelheim": "Muspel"}
 
 func _short_realm_name(full: String) -> String:
-	return str(SHORT_REALM_NAMES.get(full, full.left(9)))
+	return tr(str(SHORT_REALM_NAMES.get(full, full.left(9))))
 
 func rebuild_minimap(layout: RefCounted, director: Node, current_index: int) -> void:
 	for child in minimap_root.get_children():
@@ -547,7 +553,7 @@ func update_minimap_labels(director: Node, counts: Dictionary) -> void:
 		if not is_instance_valid(label):
 			continue
 		var state: String = director.get_state(i)
-		var detail := "! %ds" % seconds_left if state == "warning" else state.to_upper()
+		var detail := tr("! %ds") % seconds_left if state == "warning" else tr(state.to_upper())
 		if state == "stable" or state == "warning":
 			detail += "  x%d" % int(counts.get(i, 0))
 		label.text = detail if bool(entry.get("emblem", false)) else "%s\n%s" % [entry.name, detail]
@@ -640,8 +646,8 @@ func show_ultimate_cutin(player: Node) -> void:
 		(cutin_band as ColorRect).color = band_color
 	else:
 		cutin_band.modulate = band_color
-	cutin_name.text = ("P1 " if player.is_human else "") + str(player.display_name)
-	cutin_title.text = str(player.ultimate_name).to_upper()
+	cutin_name.text = ("P1 " if player.is_human else "") + tr(str(player.display_name))
+	cutin_title.text = tr(str(player.ultimate_name)).to_upper()
 	cutin_root.visible = true
 	cutin_root.modulate.a = 1.0
 	if cutin_tween != null and cutin_tween.is_valid():
@@ -696,12 +702,12 @@ func _build_card_panel() -> void:
 
 func show_card_offer(cards: Array, seconds_left: float) -> void:
 	card_panel.visible = true
-	card_title.text = "Soul card  -  press 1 / 2 / 3   (%.0fs)" % ceilf(seconds_left)
+	card_title.text = tr("Soul card  -  press 1 / 2 / 3   (%.0fs)") % ceilf(seconds_left)
 	for index in card_labels.size():
 		var label := card_labels[index]
 		if index < cards.size():
 			var card: Dictionary = cards[index]
-			label.text = "[%d] %s\n%s\n(%s)" % [index + 1, card.title, card.text, card.kind]
+			label.text = "[%d] %s\n%s\n(%s)" % [index + 1, tr(str(card.title)), tr(str(card.text)), tr(str(card.kind))]
 			# Original card icon (assets/art/ui/card_<id>.png); none in the prototype style.
 			card_icons[index].texture = ART_SETTINGS.original_texture("res://assets/art/ui/card_%s.png" % card.id)
 		else:
@@ -785,7 +791,7 @@ func _build_overlay() -> void:
 	overlay_credits.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	overlay_credits.add_theme_font_size_override("font_size", 12)
 	overlay_credits.modulate = TEXT_DIM
-	overlay_credits.text = ART_CREDITS
+	overlay_credits.text = tr(ART_CREDITS)
 	overlay.add_child(overlay_credits)
 	_pin(overlay_credits, BOTTOM_CENTER)
 	frontend = FRONTEND.new()
@@ -862,7 +868,7 @@ func _hide_legacy_overlay_text() -> void:
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node, survival: Dictionary = {}) -> void:
 	_set_match_hud_visible(false)
 	_hide_legacy_overlay_text()
-	overlay_title.text = "%s WINS" % winner.display_name.to_upper() if is_instance_valid(winner) else "DRAW"
+	overlay_title.text = tr("%s WINS") % tr(str(winner.display_name)).to_upper() if is_instance_valid(winner) else tr("DRAW")
 	overlay_back.color = RESULTS_BACK_COLOR
 	frontend.show_results(winner, reason, standings, human, survival)
 	overlay.visible = true
@@ -872,7 +878,7 @@ func _card_names(ids: Array) -> Array[String]:
 	var names: Array[String] = []
 	for id in ids:
 		var card: Dictionary = SOUL_CARDS.find(str(id))
-		names.append(str(card.get("title", str(id).replace("_", " ").capitalize())))
+		names.append(tr(str(card.get("title", str(id).replace("_", " ").capitalize()))))
 	return names
 
 func _add_result_cell(text: String, color: Color) -> void:
@@ -909,9 +915,9 @@ func tick_info(delta: float) -> void:
 func set_warning_banner(seconds: int, hazard_warning := "") -> void:
 	warning_label.visible = seconds >= 0 or hazard_warning != ""
 	if seconds >= 0:
-		warning_label.text = "COLLAPSE WARNING  %d\nfind a portal to a safe realm" % seconds
+		warning_label.text = tr("COLLAPSE WARNING  %d\nfind a portal to a safe realm") % seconds
 	elif hazard_warning != "":
-		warning_label.text = hazard_warning.to_upper()
+		warning_label.text = tr(hazard_warning).to_upper()
 
 ## The in-match HUD hides behind the start screen so it does not show through it.
 func _set_match_hud_visible(visible_now: bool) -> void:

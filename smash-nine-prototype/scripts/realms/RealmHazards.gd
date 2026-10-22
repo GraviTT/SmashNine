@@ -19,6 +19,7 @@ extends Node2D
 signal shake_requested(realm_index: int, strength: float, duration: float)
 
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
+const LANGUAGE := preload("res://scripts/Language.gd")
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const PILLAR_COLOR := Color(1.0, 0.36, 0.08, 0.72)
 const PILLAR_WARNING_COLOR := Color(1.0, 0.55, 0.12, 0.16)
@@ -80,6 +81,9 @@ var _gate_cooldown: Dictionary = {}
 ## combatant -> true while standing in a gate after a crossing (they must step out first)
 var _gate_inside: Dictionary = {}
 
+func _init() -> void:
+	LANGUAGE.load_saved()
+
 func setup(new_layout: REALM_LAYOUT, new_state_of: Callable, match_seed: int) -> void:
 	layout = new_layout
 	state_of = new_state_of
@@ -106,7 +110,7 @@ func register_combatant(combatant: Node) -> void:
 func get_hazard_text(realm_index: int) -> String:
 	if not _realms.has(realm_index):
 		return ""
-	return str(_realms[realm_index].hazard.get("text", ""))
+	return tr(str(_realms[realm_index].hazard.get("text", "")))
 
 func get_phase(realm_index: int) -> String:
 	return str(_realms[realm_index].phase) if _realms.has(realm_index) else ""
@@ -738,7 +742,7 @@ func _clear_visuals(entry: Dictionary) -> void:
 func get_warning_text(realm_index: int) -> String:
 	if not enabled or not _realms.has(realm_index) or str(_realms[realm_index].phase) != "warning":
 		return ""
-	return str(_realms[realm_index].hazard.get("warn_text", ""))
+	return tr(str(_realms[realm_index].hazard.get("warn_text", "")))
 
 ## What bots may know about a realm's hazard right now (the same cues a player sees):
 ## {"type", "phase", "time_left", "columns"}; empty when nothing is happening.

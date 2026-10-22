@@ -83,6 +83,7 @@ var _body_rng := RandomNumberGenerator.new()
 func _ready() -> void:
 	GAME_SPEED.load_saved()
 	LANGUAGE.load_saved()
+	get_window().title = tr("Smash Nine Realms Prototype")
 	GAME_SPEED.reset_engine()
 	if match_seed < 0:
 		randomize()
@@ -229,6 +230,9 @@ func _on_frontend_action(action: String, _value: String) -> void:
 		"art":
 			ART_SETTINGS.toggle()
 			_reload_frontend("options")
+		"language":
+			LANGUAGE.cycle()
+			_reload_frontend("options")
 		"count":
 			var counts := [4, 6, 8]
 			player_count = counts[(counts.find(player_count) + 1) % counts.size()]
@@ -302,7 +306,7 @@ func _handle_global_input() -> bool:
 			hud.frontend.refresh_options()
 		elif not match_over:
 			GAME_SPEED.apply_to_match()
-			_show_message(GAME_SPEED.label())
+		_show_message(tr("Game speed %d%%") % GAME_SPEED.percent())
 	if not match_started:
 		var ids := CHARACTER_REGISTRY.get_character_ids()
 		if hud.frontend.screen in ["title", "select"]:
@@ -371,7 +375,7 @@ func _on_combatant_relocated(combatant: Node, realm_index: int) -> void:
 	# on in the realm they land in (otherwise a fighter caught at 4:00 froze for good).
 	combatant.set_realm_active(director.is_playable(realm_index))
 	if combatant == _get_human_player():
-		_show_message("Caught in the collapse! Thrown into %s." % layout.get_realm(realm_index).name)
+		_show_message(tr("Caught in the collapse! Thrown into %s.") % tr(str(layout.get_realm(realm_index).name)))
 
 # --- Camera and realm view ---
 
@@ -543,7 +547,7 @@ func _handle_card_input() -> void:
 func _on_soul_offer_closed(player: Node, card: Dictionary, auto_picked: bool) -> void:
 	if player == _get_human_player():
 		hud.hide_card_offer()
-		_show_message("Soul card: %s%s." % [card.title, " (auto-picked)" if auto_picked else ""])
+		_show_message(tr("Soul card: %s%s.") % [tr(str(card.title)), tr(" (auto-picked)") if auto_picked else ""])
 
 # --- Portals ---
 
@@ -561,7 +565,7 @@ func _handle_portal_input() -> void:
 		if rect.has_point(human.global_position):
 			_move_through_portal(human, portal)
 			_set_map(portal.destination)
-			_show_message("%s entered %s." % [human.display_name, layout.get_realm(portal.destination).name])
+			_show_message(tr("%s entered %s.") % [tr(str(human.display_name)), tr(str(layout.get_realm(portal.destination).name))])
 			return
 
 func _move_through_portal(combatant: Node, portal: Dictionary) -> void:
@@ -642,9 +646,9 @@ func _update_hud() -> void:
 	if bot_panel_timer <= 0.0:
 		bot_panel_timer = BOT_PANEL_REFRESH
 		hud.update_bot_panel(_bot_panel_rows())
-	var phase_name: String = director.get_phase_name()
+	var phase_name: String = tr(director.get_phase_name())
 	if GAME_SPEED.percent() != 100:
-		phase_name += "   %d%% speed" % GAME_SPEED.percent()
+		phase_name += tr("   %d%% speed") % GAME_SPEED.percent()
 	hud.set_clock(phase_name, director.match_elapsed, director.get_next_event_label(), director.get_next_event_in())
 	hud.set_status(director.get_alive_combatants().size(), players.size(), _get_focus_player())
 	hud.update_skill_bar(_get_focus_player(), get_process_delta_time())
@@ -653,10 +657,10 @@ func _update_hud() -> void:
 	for display in world.countdown_displays:
 		var label: Label = display.label
 		if is_instance_valid(label):
-			label.text = "%ds" % seconds_left
+			label.text = tr("%ds") % seconds_left
 	var realm: Dictionary = layout.get_realm(current_map_index)
 	var hazard_text: String = hazards.get_hazard_text(current_map_index) if hazards.enabled else ""
-	hud.set_realm_title("%s  -  %s" % [realm.name, realm.subtitle], realm.accent, hazard_text)
+	hud.set_realm_title("%s  -  %s" % [tr(str(realm.name)), tr(str(realm.subtitle))], realm.accent, hazard_text)
 	hud.tick_info(get_process_delta_time())
 	hud.set_warning_banner(seconds_left if director.is_warning(current_map_index) and not match_over else -1, hazards.get_warning_text(current_map_index) if not match_over else "")
 	var human := _get_human_player()
@@ -731,7 +735,7 @@ func _toggle_dummy() -> void:
 	if is_instance_valid(dummy):
 		dummy.queue_free()
 		dummy = null
-		_show_message("Training dummy removed.")
+		_show_message(tr("Training dummy removed."))
 		return
 	dummy = PLAYER_FACTORY.create()
 	add_child(dummy)
@@ -740,16 +744,17 @@ func _toggle_dummy() -> void:
 	layout.assign_combatant(dummy, current_map_index)
 	dummy.respawned.connect(_on_combatant_respawned)
 	_sync_combatant_visibility()
-	_show_message("Training dummy spawned. Press H again to remove it.")
+	_show_message(tr("Training dummy spawned. Press H again to remove it."))
 
 func _show_message(text: String) -> void:
 	hud.show_message(text)
 
 func _on_player_defeated(player: Node, attacker: Node) -> void:
-	var cause := "the realm"
+	var cause := tr("the realm")
 	if is_instance_valid(attacker):
-		cause = attacker.display_name
-	_show_message("%s was eliminated by %s. %d left." % [player.display_name, cause, director.get_alive_combatants().size()])
+		var source_name := str(attacker.display_name)
+		cause = tr("Elite %s") % tr(source_name.trim_prefix("Elite ")) if source_name.begins_with("Elite ") else tr(source_name)
+	_show_message(tr("%s was eliminated by %s. %d left.") % [tr(str(player.display_name)), cause, director.get_alive_combatants().size()])
 
 func _on_combatant_respawned(_combatant: Node) -> void:
 	_sync_combatant_visibility()

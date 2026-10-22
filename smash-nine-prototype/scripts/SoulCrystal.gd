@@ -8,6 +8,7 @@ extends CharacterBody2D
 signal broken(crystal: Node, attacker: Node)
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
+const LANGUAGE := preload("res://scripts/Language.gd")
 const SHEET_PATH := "res://assets/art/objects/soul_crystal.png"
 const SHATTER_PATH := "res://assets/art/objects/soul_crystal_shatter.png"
 const MONSTER_LAYER := 4
@@ -31,6 +32,9 @@ var max_hp := float(HITS_TO_BREAK)
 var is_broken := false
 var visual: Node2D
 var float_time := 0.0
+
+func _init() -> void:
+	LANGUAGE.load_saved()
 
 func setup(new_realm_index: int, spawn_position: Vector2) -> void:
 	realm_index = new_realm_index
@@ -172,7 +176,7 @@ func _play_shatter() -> void:
 	tween.parallel().tween_property(effect, "modulate:a", 0.0, 0.35)
 	tween.tween_callback(effect.queue_free)
 	var label := Label.new()
-	label.text = "+%d SOULS" % SOUL_REWARD
+	label.text = tr("+%d SOULS") % SOUL_REWARD
 	label.add_theme_font_size_override("font_size", 14)
 	label.modulate = Color(0.85, 0.7, 1.0)
 	label.position = global_position + Vector2(-40, -90)
