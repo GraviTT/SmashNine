@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="530" viewBox="0 0 1160 530">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#f3cd7c"/></marker></defs>
+<style>text{font-family:'Malgun Gothic',sans-serif;fill:#e7edf8;font-size:18px}.title{font-size:27px;font-weight:bold}.small{font-size:15px}.box{fill:#20334c;stroke:#7faad9;stroke-width:2}.gate{fill:#403a27;stroke:#f3cd7c;stroke-width:2}.flow{stroke:#f3cd7c;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
+<rect width="1160" height="530" rx="16" fill="#101827"/>
+<text x="30" y="45" class="title">SYS-05 · 관찰 렐름만 들리는 사운드 경로</text>
+<rect x="30" y="85" width="260" height="125" rx="10" class="box"/>
+<text x="48" y="118">전투 · 기술 · 몬스터 · 기믹</text>
+<text x="48" y="150" class="small">source.realm_index</text>
+<text x="48" y="178" class="small">기믹은 options.realm을 명시</text>
+<path d="M290 147H335" class="flow"/>
+<rect x="345" y="85" width="370" height="125" rx="10" class="gate"/>
+<text x="363" y="118">world 요청의 렐름 = 관찰 렐름?</text>
+<text x="363" y="150" class="small">Main.current_map_index를 callable로 읽음</text>
+<text x="363" y="178" class="small">다르면 차단 · 누락은 허용 + no_realm 집계</text>
+<path d="M715 147H770" class="flow"/>
+<rect x="780" y="85" width="350" height="125" rx="10" class="box"/>
+<text x="798" y="118">AudioManager · 파일 / 폴백 / 무음</text>
+<text x="798" y="150" class="small">SFX 24 voice · ID 간격 40ms</text>
+<text x="798" y="178" class="small">Music 루프 · 0.5초 교차 전환</text>
+<rect x="30" y="260" width="330" height="105" rx="10" class="box"/>
+<text x="48" y="296">메뉴 · 음악 · 진행 · 붕괴 경고</text>
+<text x="48" y="328" class="small">전역 요청: 관찰 렐름 필터를 건너뜀</text>
+<path d="M360 312H955V217" class="flow"/>
+<rect x="30" y="405" width="330" height="80" rx="10" class="box"/>
+<text x="48" y="436">카드 선택 · 소울 획득</text>
+<text x="48" y="463" class="small">기존 is_human=true일 때만 재생</text>
+<path d="M360 445H485V320" class="flow"/>
+<rect x="575" y="395" width="555" height="90" rx="10" class="box"/>
+<text x="593" y="427">입력으로 바뀐 포커스 → ui_move</text>
+<text x="593" y="455" class="small">화면 초기 포커스 · 정지 커서 · 중복 hover는 무음</text>
+<text x="30" y="516" class="small">실제 코드 구조도입니다. 현재 게임 음원은 0개이며, 검증은 요청 probe와 메모리 합성 톤으로 수행합니다.</text>
+</svg>

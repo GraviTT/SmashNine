@@ -1,10 +1,13 @@
 extends Control
+
 ## Front-end presentation only. Main owns starting/reloading matches and session choices.
 
 signal action_requested(action: String, value: String)
 
+const AUDIO := preload("res://scripts/audio/AudioManager.gd")
 const ART := preload("res://scripts/ArtSettings.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
+const AUDIO_SETTINGS := preload("res://scripts/audio/AudioSettings.gd")
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
@@ -60,6 +63,8 @@ var content: Control
 var buttons: Array[Button] = []
 var portrait_buttons: Array[Button] = []
 var focus_index := 0
+var _audio_mouse_frame := -1
+var _audio_hover_serial := 0
 var hero_art: TextureRect
 var fighter_name: Label
 var fighter_role: Label
@@ -71,6 +76,7 @@ var art_button: Button
 var count_button: Button
 var panel_button: Button
 var language_button: Button
+var audio_buttons: Dictionary = {}
 var footer: Label
 var session_status: Label
 var _roster := REGISTRY.get_characters()
@@ -92,6 +98,8 @@ func _fit() -> void:
 	size = SIZE
 
 func _clear(next_screen: String) -> void:
+	_audio_mouse_frame = -1
+	_audio_hover_serial += 1
 	screen = next_screen
 	buttons.clear()
 	portrait_buttons.clear()
@@ -184,6 +192,8 @@ func _button(text: String, rect: Rect2, action: String, value := "") -> Button:
 	button.pressed.connect(func() -> void: _activate(action, value))
 	button.mouse_entered.connect(func() -> void:
 		if button.is_inside_tree():
+			_audio_hover_serial += 1
+			_mouse_navigation_sound.call_deferred(weakref(button), not button.has_focus(), Engine.get_process_frames(), _audio_hover_serial)
 			button.grab_focus()
 			focus_index = buttons.find(button))
 	button.focus_entered.connect(func() -> void:
@@ -193,6 +203,18 @@ func _button(text: String, rect: Rect2, action: String, value := "") -> Button:
 			_refresh_fighter())
 	return button
 
+## Only user navigation calls this; _finish's initial grab_focus stays silent.
+func _focus_from_navigation(button: Control) -> void:
+	if not button.has_focus():
+		AUDIO.sound(self, "ui_move")
+	button.grab_focus()
+
+## Godot may emit mouse_entered before _input. Check its input frame after dispatch.
+func _mouse_navigation_sound(button_ref: WeakRef, changed: bool, event_frame: int, hover_serial: int) -> void:
+	var button: Control = button_ref.get_ref()
+	if changed and button != null and button.has_focus() and _audio_hover_serial == hover_serial and _audio_mouse_frame == event_frame:
+		AUDIO.sound(self, "ui_move")
+
 func _finish(hint: String) -> void:
 	footer = _label(hint, Rect2(44, 672, 1192, 26), 15, DIM)
 	footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -201,6 +223,7 @@ func _finish(hint: String) -> void:
 		buttons[initial].grab_focus()
 
 func show_title() -> void:
+	AUDIO.music(self, "music_title")
 	_clear("title")
 	_panel(Rect2(414, 76, 452, 582), 0.87)
 	var logo := ART.original_texture("res://assets/art/ui/title_logo.png")
@@ -220,6 +243,7 @@ func show_title() -> void:
 	_finish("Arrows / W-S: navigate    Enter / J: confirm    1-5: quick start    V: body    B: watch    T: speed    F2: art")
 
 func show_select() -> void:
+	AUDIO.music(self, "music_select")
 	_clear("select")
 	_label("CHOOSE YOUR FIGHTER", Rect2(44, 26, 900, 50), 34, GOLD)
 	_label("Five worlds. Five ways to survive.", Rect2(46, 79, 800, 26), 17, DIM)
@@ -287,15 +311,19 @@ static func illustration(id: String, selected_body: String) -> Texture2D:
 
 func show_options() -> void:
 	_clear("options")
-	_panel(Rect2(270, 66, 740, 580))
+	_panel(Rect2(180, 66, 920, 580))
 	_label("OPTIONS", Rect2(314, 86, 650, 54), 38, GOLD)
 	_label("Your choices stay for this session.", Rect2(316, 146, 650, 28), 18, DIM)
-	speed_button = _button("", Rect2(316, 198, 648, 54), "speed")
-	art_button = _button("", Rect2(316, 264, 648, 54), "art")
-	count_button = _button("", Rect2(316, 330, 648, 54), "count")
-	panel_button = _button("", Rect2(316, 396, 648, 54), "panel")
-	language_button = _button("", Rect2(316, 462, 648, 54), "language")
-	_button("Back", Rect2(316, 570, 210, 48), "title")
+	speed_button = _button("", Rect2(206, 198, 424, 54), "speed")
+	art_button = _button("", Rect2(206, 264, 424, 54), "art")
+	count_button = _button("", Rect2(206, 330, 424, 54), "count")
+	panel_button = _button("", Rect2(206, 396, 424, 54), "panel")
+	language_button = _button("", Rect2(206, 462, 424, 54), "language")
+	audio_buttons.clear()
+	for index in 4:
+		var key: String = ["master", "music", "effects", "mute"][index]
+		audio_buttons[key] = _button("", Rect2(650, 198 + index * 66, 424, 54), "audio_" + key)
+	_button("Back", Rect2(206, 570, 210, 48), "title")
 	refresh_options()
 	_finish("Arrows / W-S: navigate    Enter / J / click: change    T: speed    F2: art    Esc: back")
 
@@ -304,11 +332,15 @@ func refresh_options() -> void:
 		session_status.text = tr("Nova / Rio body: %s    |    Speed: %d%%") % [tr(body.capitalize()), SPEED.percent()] + "    |    " + tr("Language") + ": " + LANGUAGE.label()
 	if screen != "options":
 		return
-	speed_button.text = tr("[T]   Game speed                         %d%%") % SPEED.percent()
-	art_button.text = tr("[F2]   Art style                         %s") % tr(ART.label())
-	count_button.text = tr("Fighters in the next match                         %d") % fighter_count
-	panel_button.text = tr("Live bot panel at match start                         %s") % tr("On" if bot_panel_at_start else "Off")
+	speed_button.text = tr("[T] Game speed: %d%%") % SPEED.percent()
+	art_button.text = tr("[F2] Art style: %s") % tr(ART.label())
+	count_button.text = tr("Fighters: %d") % fighter_count
+	panel_button.text = tr("Bot panel: %s") % tr("On" if bot_panel_at_start else "Off")
 	language_button.text = tr("Language: %s") % LANGUAGE.label()
+	audio_buttons.master.text = tr("Master volume: %d%%") % int(AUDIO_SETTINGS.values.master)
+	audio_buttons.music.text = tr("Music volume: %d%%") % int(AUDIO_SETTINGS.values.music)
+	audio_buttons.effects.text = tr("Effects volume: %d%%") % int(AUDIO_SETTINGS.values.effects)
+	audio_buttons.mute.text = tr("Mute: %s") % tr("On" if AUDIO_SETTINGS.values.mute else "Off")
 
 func show_controls() -> void:
 	_clear("controls")
@@ -323,6 +355,7 @@ func show_controls() -> void:
 	_finish("Esc: back    Enter / J / click: return to title")
 
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node, survival: Dictionary) -> void:
+	AUDIO.results(self, winner)
 	_clear("results")
 	_panel(Rect2(28, 26, 1224, 620))
 	if is_instance_valid(winner):
@@ -433,6 +466,7 @@ func _ending_victory_source() -> Node:
 	return fighter
 
 func _activate(action: String, value: String) -> void:
+	AUDIO.sound(self, "ui_cancel" if action in ["title", "return_title", "return_select"] else "ui_select")
 	match action:
 		"select": show_select()
 		"title": show_title()
@@ -441,6 +475,9 @@ func _activate(action: String, value: String) -> void:
 		"pick":
 			selected_id = value
 			_refresh_fighter()
+		"audio_master", "audio_music", "audio_effects", "audio_mute":
+			AUDIO_SETTINGS.cycle(action.trim_prefix("audio_"))
+			refresh_options()
 		"random":
 			var ids := REGISTRY.get_character_ids()
 			selected_id = ids.pick_random()
@@ -456,6 +493,7 @@ func refresh_body(next_body: String) -> void:
 
 ## Handle navigation before focused buttons consume Enter. Main polls legacy shortcuts.
 func _input(event: InputEvent) -> void:
+	_audio_mouse_frame = Engine.get_process_frames() if event is InputEventMouseMotion and not event.relative.is_zero_approx() else -1
 	if not visible or not is_visible_in_tree() or not event is InputEventKey:
 		return
 	var key := event as InputEventKey
@@ -463,6 +501,7 @@ func _input(event: InputEvent) -> void:
 		return
 	var code := key.physical_keycode if key.physical_keycode != 0 else key.keycode
 	if code == KEY_ESCAPE:
+		AUDIO.sound(self, "ui_cancel")
 		if screen == "results":
 			action_requested.emit("return_title", "")
 		else:
@@ -471,6 +510,7 @@ func _input(event: InputEvent) -> void:
 	elif code in [KEY_ENTER, KEY_KP_ENTER, KEY_J]:
 		get_viewport().set_input_as_handled()
 		if screen == "select" and focus_index < portrait_buttons.size():
+			AUDIO.sound(self, "ui_select")
 			action_requested.emit("start", "")
 		elif not buttons.is_empty() and focus_index >= 0:
 			buttons[focus_index].pressed.emit()
@@ -485,7 +525,7 @@ func _input(event: InputEvent) -> void:
 				direction = SIDE_LEFT
 			var neighbor := buttons[focus_index].find_valid_focus_neighbor(direction)
 			if neighbor != null:
-				neighbor.grab_focus()
+				_focus_from_navigation(neighbor)
 		else:
 			var step := -1 if code in [KEY_UP, KEY_W, KEY_LEFT, KEY_A] else 1
 			_move_focus(step)
@@ -499,4 +539,4 @@ func _move_focus(step: int) -> void:
 		if not buttons[focus_index].disabled:
 			break
 		focus_index = posmod(focus_index + step, buttons.size())
-	buttons[focus_index].grab_focus()
+	_focus_from_navigation(buttons[focus_index])

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const AUDIO := preload("res://scripts/audio/AudioManager.gd")
+
 signal hp_changed(player: Node)
 ## Every HP loss with its cause: source is "hit" (attacker is who hit) or "environment"
 ## (ring-out, collapse, sudden death; attacker is only the KO credit, if any).
@@ -371,6 +373,7 @@ func _apply_growth_stats(restore_gained_hp: bool) -> void:
 ## Applies one soul card: {"id": String, "effects": {modifier_name: value}}.
 ## *_multiplier and *_scale effects multiply; bonus_* effects add.
 func apply_upgrade(card: Dictionary) -> void:
+	AUDIO.sound(self, "card_pick", {"enabled": is_human})
 	upgrades.append(str(card.id))
 	soul_picks += 1
 	var effects: Dictionary = card.get("effects", {})
@@ -463,6 +466,7 @@ func _update_recovery(delta: float) -> void:
 func set_concealed(value: bool) -> void:
 	if concealed == value:
 		return
+	AUDIO.sound(self, "bush_rustle")
 	concealed = value
 	modulate.a = _visible_alpha()
 
@@ -778,18 +782,23 @@ func basic_attack() -> void:
 	var attack_dir := _get_attack_direction()
 	var attack_type := _get_basic_attack_type(attack_dir)
 	perform_basic_attack(attack_type, attack_dir)
+	AUDIO.basic(self, attack_type)
 
 func skill_one() -> void:
 	if try_skill_one_followup():
 		return
 	if not _can_start_attack():
 		return
+	AUDIO.begin_action(self)
 	perform_skill_one()
+	AUDIO.end_action(self, "1")
 
 func skill_two() -> void:
 	if not _can_start_attack():
 		return
+	AUDIO.begin_action(self)
 	perform_skill_two()
+	AUDIO.end_action(self, "2")
 
 func ultimate() -> void:
 	# Follow-up presses (Nova's slingshot stages, Luna's heart laser) are part of the same ultimate.
@@ -797,12 +806,14 @@ func ultimate() -> void:
 	if try_ultimate_followup():
 		if ultimate_followup_started:
 			ultimate_armor_timer = ULTIMATE_ARMOR_TIME
+			AUDIO.ultimate_started(self, true)
 		return
 	if not _can_start_attack() or not is_ultimate_ready():
 		return
 	ultimate_cooldown_timer = ULTIMATE_COOLDOWN
 	ultimate_window_timer = ultimate_window
 	ultimate_armor_timer = ULTIMATE_ARMOR_TIME
+	AUDIO.ultimate_started(self)
 	perform_ultimate()
 	ultimate_cast.emit(self)
 
@@ -1099,6 +1110,7 @@ func _handle_landing_state() -> void:
 	if is_guarding and not is_on_floor():
 		_stop_guard(true)
 	var landed := is_on_floor() and not was_on_floor_last_frame
+	AUDIO.landing(self, landed)
 	if landed and _has_motion_row(&"land") and sprite_action_timer <= 0.0 and attack_lock_timer <= 0.0 and not is_guarding and absf(move_input) <= 0.01 and absf(velocity.x) <= 20.0:
 		landing_motion_timer = 2.0 / 12.0
 		character_sprite.play(_get_sprite_animation_name(&"land"))
@@ -1309,6 +1321,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	var danger := 1.0 + (1.0 - hp / max_hp) * LOW_HP_KNOCKBACK_BONUS
 	var final_knockback := base_knockback * danger * KNOCKBACK_SCALE / weight
 	final_knockback *= 1.0 - guard_reduction * GUARD_KNOCKBACK_REDUCTION_SCALE
+	AUDIO.hit(self, final_damage, final_knockback, guard_result == GUARD_BLOCK, false)
 	var was_grounded := is_on_floor()
 	var hit_direction := _get_hit_direction(direction, was_grounded)
 	if guard_result == GUARD_BLOCK and was_grounded:
@@ -1361,6 +1374,7 @@ func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, d
 	last_hit_absorbed = absorption >= 0.0
 	if not last_hit_absorbed:
 		return false
+	AUDIO.hit(self, final_damage, 0.0, false, true)
 	if character_hit_absorption() >= 0.0:
 		character_on_hit_absorbed(attacker, knockback, direction)
 	else:
@@ -1407,6 +1421,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 		hit_direction = launch_velocity.normalized()
 	var launch_scale := 1.0 - guard_reduction * GUARD_KNOCKBACK_REDUCTION_SCALE
 	var applied_launch := launch_velocity * launch_scale
+	AUDIO.hit(self, final_damage, applied_launch.length(), guard_result == GUARD_BLOCK, false, true)
 	if guard_result == GUARD_BLOCK:
 		applied_launch.y = 0.0
 		velocity.y = 0.0
@@ -1486,6 +1501,7 @@ func _get_guard_result(attacker: Node, attack_direction: Vector2) -> int:
 	return GUARD_PARRY if guard_parry_timer > 0.0 else GUARD_BLOCK
 
 func _perform_parry(attacker: Node) -> void:
+	AUDIO.sound(self, "parry")
 	guard_parry_timer = GUARD_PARRY_WINDOW
 	guard_recovery_timer = 0.0
 	guard_recovery_waived = true
@@ -1571,6 +1587,7 @@ func _ringout() -> void:
 func apply_environment_damage(amount: float, attacker: Node = null) -> void:
 	if is_defeated or amount <= 0.0:
 		return
+	AUDIO.sound(self, "hurt")
 	hp = maxf(hp - amount, 0.0)
 	damaged.emit(self, amount, attacker if is_instance_valid(attacker) else null, "environment")
 	_play_float_text("-%d" % int(round(amount)), Color(1.0, 0.45, 0.35))
@@ -1595,6 +1612,7 @@ func _credit_damage(attacker: Node, amount: float) -> void:
 		attacker.record_damage_dealt(amount)
 
 func _defeat(attacker: Node) -> void:
+	AUDIO.sound(self, "ko")
 	cancel_pending_actions()
 	_clear_drop_through_exception()
 	ultimate_window_timer = 0.0
@@ -1647,6 +1665,7 @@ func _respawn_after_defeat() -> void:
 	_respawn()
 
 func _respawn() -> void:
+	AUDIO.sound(self, "respawn")
 	cancel_pending_actions()
 	_clear_drop_through_exception()
 	ultimate_window_timer = 0.0
@@ -1753,6 +1772,7 @@ func add_souls(amount: int) -> void:
 		return
 	var before := souls
 	souls += amount
+	AUDIO.sound(self, "soul_pickup", {"enabled": is_human})
 	souls_changed.emit(self)
 	for index in SOUL_THRESHOLDS.size():
 		if before < SOUL_THRESHOLDS[index] and souls >= SOUL_THRESHOLDS[index]:
@@ -2006,6 +2026,7 @@ func _play_sprite_action(animation_name: StringName, duration: float) -> void:
 func _play_launch_hit_sprite(launch_strength: float, duration: float) -> void:
 	var tumble := _get_sprite_animation_name(&"tumble")
 	if launch_strength >= 480.0 and _uses_character_sprite() and character_sprite.sprite_frames.has_animation(tumble):
+		AUDIO.sound(self, "tumble")
 		_play_sprite_action(&"tumble", duration)
 	else:
 		_play_sprite_action(&"hurt", duration)
@@ -2146,6 +2167,7 @@ func _has_motion_row(row: StringName, multiple := false) -> bool:
 	return frames.has_animation(animation) and frames.get_frame_count(animation) > (1 if multiple else 0)
 
 func _restart_jump_motion() -> void:
+	AUDIO.sound(self, "jump")
 	if _has_motion_row(&"jump", true) and sprite_action_timer <= 0.0 and not is_guarding:
 		character_sprite.play(_get_sprite_animation_name(&"jump"))
 		character_sprite.set_frame_and_progress(0, 0.0)

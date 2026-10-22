@@ -1,6 +1,8 @@
 extends Node
+
 ## Slot deadlines survive sync calls: realm refreshes cannot bypass refill pacing.
 signal announcement(text: String)
+const AUDIO := preload("res://scripts/audio/AudioManager.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
 const MONSTER_SCRIPT := preload("res://scripts/RealmMonster.gd")
 const REALM_CATALOG := preload("res://scripts/realms/RealmCatalog.gd")
@@ -141,6 +143,7 @@ func _try_spawn_elite(realm_index: int) -> void:
 	if elite == null:
 		return
 	elite_by_realm[realm_index] = elite
+	AUDIO.sound(elite, "elite_appear")
 	var realm_name := str(realm_profiles[realm_index].name)
 	var message := tr("An elite %s rises in %s") % [tr(elite.display_name.trim_prefix("Elite ")), tr(realm_name)]
 	if announcement_timer <= 0.0 and pending_announcements.is_empty():

@@ -1,4 +1,5 @@
 extends Node2D
+
 ## Realm gimmicks (design/ROADMAP.md M2), driven by each realm's "hazard" entry in
 ## RealmCatalog. Only playable realms run their hazard.
 ## - ice: lower floor traction for everyone standing in the realm (slides, longer knockback)
@@ -18,6 +19,7 @@ extends Node2D
 
 signal shake_requested(realm_index: int, strength: float, duration: float)
 
+const AUDIO := preload("res://scripts/audio/AudioManager.gd")
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
@@ -248,6 +250,7 @@ func _start_warning(realm_index: int) -> void:
 	var entry: Dictionary = _realms[realm_index]
 	_clear_visuals(entry)
 	entry.phase = "warning"
+	AUDIO.sound(self, "hazard_warning", {"realm": realm_index})
 	entry.timer = float(entry.hazard.get("warning", 1.0))
 	entry.hit = []
 	match str(entry.hazard.type):
@@ -301,6 +304,7 @@ func _start_active(realm_index: int) -> void:
 	var entry: Dictionary = _realms[realm_index]
 	_clear_visuals(entry)
 	entry.phase = "active"
+	AUDIO.hazard(self, str(entry.hazard.type), {"realm": realm_index})
 	match str(entry.hazard.type):
 		"eruption":
 			entry.timer = float(entry.hazard.get("active", 0.6))
@@ -490,6 +494,7 @@ func _carry_through_gates(realm_index: int, entry: Dictionary) -> void:
 		var gate: Vector2 = gates[touching]
 		var exit: Vector2 = gates[1 - touching]
 		combatant.global_position = exit + Vector2(0.0, -2.0)
+		AUDIO.sound(self, "gate_travel", {"realm": realm_index})
 		_gate_cooldown[combatant] = GATE_COOLDOWN
 		_gate_inside[combatant] = true
 		_particles(Rect2(gate.x - 24.0, gate.y - GATE_HEIGHT, 48.0, GATE_HEIGHT), Color(0.85, 0.95, 1.0, 0.95), 18, 0.5, -140.0, true).finished.connect(_free_finished)
