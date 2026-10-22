@@ -1,0 +1,201 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-75/yuki-fall-fix-1-gen-1.png",
+    "frames": null,
+    "grid": [
+      2,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 2,
+    "output_columns": 6,
+    "common_scale": 0.137,
+    "scale_by": "fixed:0.137",
+    "common_offset_x": 0,
+    "common_lift": 8,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      86,
+      86
+    ],
+    "body_width_range": [
+      75,
+      75
+    ],
+    "area_range": [
+      4177,
+      4206
+    ],
+    "area_spread_percent": 0.69,
+    "bottom_range": [
+      112,
+      112
+    ],
+    "lift_range": [
+      8,
+      8
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3676,
+      3732
+    ],
+    "interior_detail_range": [
+      108.41,
+      109.84
+    ],
+    "interior_detail_mean": 109.12,
+    "remaining_spill_pixels": [
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 85.73,
+    "interior_detail_ratio": 1.2728
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 85.73,
+        "colour_count": 4139,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 85.73,
+    "colour_count_range": [
+      4139,
+      4139
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-75/yuki-fall-fix-1-gen-1.png#0,0",
+      "bbox": [
+        25,
+        27,
+        100,
+        113
+      ],
+      "body_height": 86,
+      "body_width": 75,
+      "area": 4177,
+      "bottom": 112,
+      "lift": 8,
+      "expected_lift": 8,
+      "interior_detail": 108.41,
+      "colour_count": 3676,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 27,
+        "right": 28,
+        "bottom": 15,
+        "minimum": 15,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2646
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-75/yuki-fall-fix-1-gen-1.png#1,0",
+      "bbox": [
+        25,
+        27,
+        100,
+        113
+      ],
+      "body_height": 86,
+      "body_width": 75,
+      "area": 4206,
+      "bottom": 112,
+      "lift": 8,
+      "expected_lift": 8,
+      "interior_detail": 109.84,
+      "colour_count": 3732,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 25,
+        "top": 27,
+        "right": 28,
+        "bottom": 15,
+        "minimum": 15,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2812
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-75/fix-1/final/yuki-fall.png",
+    "candidate": null,
+    "frames": "reports/codex-art-75/fix-1/final/frames",
+    "closeup": "reports/codex-art-75/fix-1/final/closeup.png",
+    "compare": "reports/codex-art-75/fix-1/final/compare.png"
+  }
+}
