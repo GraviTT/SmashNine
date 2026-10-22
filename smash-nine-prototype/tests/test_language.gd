@@ -48,7 +48,7 @@ func _run() -> void:
 	await _frames(6)
 	var main: Node = current_scene
 	var menu: Control = main.hud.frontend
-	_check(_has_text(menu, "Play"), "English title must retain Play")
+	_check(_has_text(menu, "Battle Royale"), "English title must retain Play")
 	_check(menu.session_status.text.contains("Language: English"), "Title footer must show current language")
 	await _capture("01-title-en")
 	menu.show_options()
@@ -65,7 +65,7 @@ func _run() -> void:
 	_check_menu_fit(menu)
 	await _capture("04-options-ko")
 	menu.show_title()
-	_check(_has_text(menu, "시작하기") and not _has_text(menu, "Play"), "Korean title must change button text")
+	_check(_has_text(menu, "배틀로얄") and not _has_text(menu, "Battle Royale"), "Korean title must change button text")
 	_check(menu.session_status.text.contains("한국어"), "Korean footer must show selected language")
 	_check_menu_fit(menu)
 	await _capture("02-title-ko")
@@ -82,6 +82,17 @@ func _run() -> void:
 	menu._refresh_fighter()
 	_check(menu.fighter_name.text == "프레이", "Korean character selection must show Frey in Korean")
 	await _capture("03-select-ko")
+	# New story screens use the same Korean fit checks as the existing menus.
+	menu.show_story_select()
+	_check_menu_fit(menu)
+	menu.show_story_map(1)
+	_check_menu_fit(menu)
+	menu.show_stage_card(preload("res://scripts/story/StoryCatalog.gd").stage(2))
+	_check_menu_fit(menu)
+	menu.show_story_pause()
+	_check_menu_fit(menu)
+	menu.show_story_result({"clear": true, "stage": 4, "seconds": 91, "damage": 42, "cards": ["sky_step", "last_stand"]})
+	_check_menu_fit(menu)
 	menu.show_controls()
 	_check(_has_text(menu, "조작법"), "Controls heading must translate")
 	_check_menu_fit(menu)
@@ -160,7 +171,7 @@ func _run() -> void:
 	_check(menu.language_button.text == "Language: English", "Switching back must restore exact English option text")
 	_check(root.title == "Smash Nine Realms Prototype", "Switching back must restore the exact English window title")
 	menu.show_title()
-	_check(_has_text(menu, "Play"), "Switching back must restore English title")
+	_check(_has_text(menu, "Battle Royale"), "Switching back must restore English title")
 	menu.show_select()
 	_check(menu.fighter_name.text == "FREY", "Switching back must restore exact uppercase English name")
 	main._on_frontend_action("start", "")
@@ -252,13 +263,13 @@ func _check_data_keys() -> void:
 	for card: Dictionary in CARDS.CARDS:
 		for field in ["title", "text", "kind"]:
 			_check(keys.has(str(card[field])), "Card string missing: " + str(card[field]))
-	for text in ["Play", "Watch bots", "Options", "Controls", "Fighter", "KOs", "Damage", "Souls", "Cards", "Survived", "MOST DAMAGE", "MOST KOs", "LONGEST SURVIVAL", "Male", "Female", "Original art", "Prototype art", "On", "Off", "last survivor", "double KO", "no survivors", "final judgment", "Exploration", "Corner collapse warning", "Convergence", "Central brawl", "Sudden death", "Match over"]:
+	for text in ["Battle Royale", "Story", "Watch bots", "Options", "Controls", "Fighter", "KOs", "Damage", "Souls", "Cards", "Survived", "MOST DAMAGE", "MOST KOs", "LONGEST SURVIVAL", "Male", "Female", "Original art", "Prototype art", "On", "Off", "last survivor", "double KO", "no survivors", "final judgment", "Exploration", "Corner collapse warning", "Convergence", "Central brawl", "Sudden death", "Match over"]:
 		_check(keys.has(text), "Dynamic menu/phase string missing: " + text)
 
 func _check_menu_literals() -> void:
 	var regex := RegEx.new()
 	regex.compile('\\b_(?:label|button|finish)\\(\\s*"((?:[^"\\\\]|\\\\.)*)"')
-	var source := FileAccess.get_file_as_string("res://scripts/ui/FrontendMenu.gd")
+	var source := FileAccess.get_file_as_string("res://scripts/ui/FrontendMenu.gd") + FileAccess.get_file_as_string("res://scripts/ui/StoryScreens.gd") + FileAccess.get_file_as_string("res://scripts/ui/StoryDialogue.gd")
 	for result in regex.search_all(source):
 		var key := result.get_string(1).c_unescape()
 		if not key.is_empty() and not key.begins_with("%"):

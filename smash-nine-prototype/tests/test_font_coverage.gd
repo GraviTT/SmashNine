@@ -12,7 +12,7 @@ func _initialize() -> void:
 		push_error("The UI font %s should load" % UI_FONT)
 		quit(1)
 		return
-	var text := FileAccess.get_file_as_string(TABLE)
+	var text := FileAccess.get_file_as_string(TABLE) + FileAccess.get_file_as_string("res://assets/i18n/story.csv")
 	var missing := {}
 	var checked := 0
 	for index in text.length():

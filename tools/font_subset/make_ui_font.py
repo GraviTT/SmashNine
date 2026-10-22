@@ -52,7 +52,7 @@ def wanted_codepoints() -> set[int]:
 		except UnicodeEncodeError:
 			pass
 	# Everything the game actually writes.
-	sources = [PROJECT / "assets" / "i18n" / "strings.csv"]
+	sources = [PROJECT / "assets" / "i18n" / name for name in ("strings.csv", "story.csv")]
 	for folder in ("scripts", "characters"):
 		sources.extend((PROJECT / folder).rglob("*.gd"))
 	for path in sources:

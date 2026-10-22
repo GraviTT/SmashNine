@@ -19,11 +19,10 @@ if (-not (Test-Path $godot)) {
 $project = Split-Path -Parent $PSScriptRoot
 # The translation tables (assets/i18n/*.translation) come from an import and are not tracked;
 # a fresh checkout has none, so import once before the tests read them.
-if (-not (Test-Path (Join-Path $project "assets/i18n/strings.en.translation"))) {
-	& $godot --headless --path $project --import *> $null
-}
-$tests = @("test_character_architecture", "test_frey_sprite", "test_luna_prototype", "test_nova_prototype", "test_rio_prototype", "test_ultimates", "test_match_rules", "test_hazards", "test_realm_gimmicks", "test_soul_crystals", "test_art", "test_sprite_frames", "test_offscreen_markers", "test_relocation_active", "test_bot_panel", "test_skill_bar", "test_bot_brain", "test_talisman_burst", "test_flash_art", "test_ultimate_armor", "test_sprite_pose", "test_motion_speeds", "test_game_speed", "test_frey_kit", "test_luna_kit", "test_skill_fx_art", "test_effect_layout", "test_defeat_motion", "test_realm_monsters", "test_monster_ecology", "test_moves_sheet", "test_hit_sparks", "test_hud_frames", "test_frontend_flow", "test_language", "test_font_coverage", "test_restart", "test_bugfix_review", "visual_preview")
+$needsImport = @(@("strings.en.translation", "strings.ko.translation", "story.en.translation", "story.ko.translation") | Where-Object { -not (Test-Path (Join-Path $project "assets/i18n/$_")) }).Count -gt 0
+$tests = @("test_character_architecture", "test_frey_sprite", "test_luna_prototype", "test_nova_prototype", "test_rio_prototype", "test_ultimates", "test_match_rules", "test_hazards", "test_realm_gimmicks", "test_soul_crystals", "test_art", "test_sprite_frames", "test_offscreen_markers", "test_relocation_active", "test_bot_panel", "test_skill_bar", "test_bot_brain", "test_talisman_burst", "test_flash_art", "test_ultimate_armor", "test_sprite_pose", "test_motion_speeds", "test_game_speed", "test_frey_kit", "test_luna_kit", "test_skill_fx_art", "test_effect_layout", "test_defeat_motion", "test_realm_monsters", "test_monster_ecology", "test_moves_sheet", "test_hit_sparks", "test_hud_frames", "test_frontend_flow", "test_language", "test_font_coverage", "test_story_data", "test_story_flow", "test_restart", "test_bugfix_review", "visual_preview")
 $failed = @()
+$certificateNoise = 0
 
 function Invoke-Godot([string[]]$GodotArgs) {
 	$psi = New-Object System.Diagnostics.ProcessStartInfo
@@ -37,23 +36,57 @@ function Invoke-Godot([string[]]$GodotArgs) {
 	$stdoutTask = $process.StandardOutput.ReadToEndAsync()
 	$stderr = $process.StandardError.ReadToEnd()
 	$process.WaitForExit()
-	return @{ Code = $process.ExitCode; Output = ($stdoutTask.Result + "`n" + $stderr) }
+	$output = $stdoutTask.Result + "`n" + $stderr
+	if ($env:GODOT_TEST_LOG_DIR) {
+		New-Item -ItemType Directory -Force -Path $env:GODOT_TEST_LOG_DIR | Out-Null
+		$stem = ($GodotArgs | Where-Object { $_ -match '\.gd$' } | Select-Object -First 1)
+		$stem = [IO.Path]::GetFileNameWithoutExtension($stem)
+		if (-not $stem) { $stem = "import" }
+		[IO.File]::WriteAllText((Join-Path $env:GODOT_TEST_LOG_DIR "$stem.log"), $output)
+	}
+	return @{ Code = $process.ExitCode; Output = $output }
 }
 
 function Get-EngineErrors([string]$Text) {
-	return @($Text -split "`n" | Where-Object { $_ -match '^\s*(SCRIPT ERROR|ERROR|Parse Error)' })
+	return @($Text -split "`n" | Where-Object { $_ -match '^\s*(SCRIPT ERROR|ERROR|Parse Error)' -and $_.Trim() -ne 'ERROR: Failed to read the root certificate store.' })
+}
+
+if ($needsImport) {
+	# Godot loads the translation list before importing CSVs. A clean checkout
+	# therefore reports missing .translation resources before creating them. Only
+	# during bootstrap, hide this list, then restore the exact project bytes even
+	# when import fails. All other engine errors remain fatal.
+	$projectFile = Join-Path $project 'project.godot'
+	$projectBytes = [IO.File]::ReadAllBytes($projectFile)
+	$projectText = [Text.Encoding]::UTF8.GetString($projectBytes)
+	$bootstrapText = [regex]::Replace($projectText, '(?m)^locale/translations=.*$', 'locale/translations=PackedStringArray()')
+	try {
+		[IO.File]::WriteAllText($projectFile, $bootstrapText, (New-Object Text.UTF8Encoding($false)))
+		$result = Invoke-Godot @("--headless", "--path", $project, "--import")
+	} finally {
+		[IO.File]::WriteAllBytes($projectFile, $projectBytes)
+	}
+	$errors = Get-EngineErrors $result.Output
+	$certificateNoise += @($result.Output -split "`n" | Where-Object { $_.Trim() -eq "ERROR: Failed to read the root certificate store." }).Count
+	if ($result.Code -ne 0 -or $errors.Count -gt 0) {
+		Write-Output "FAIL translation import (exit $($result.Code))"
+		Write-Output $result.Output
+		exit 1
+	}
+	Write-Output "PASS translation import (strings + story)"
 }
 
 foreach ($test in $tests) {
 	if (-not (Test-Path (Join-Path $project "tests\$test.gd"))) { continue }
 	$result = Invoke-Godot @("--headless", "--path", ".", "-s", "tests/$test.gd")
 	$errors = Get-EngineErrors $result.Output
+	$certificateNoise += @($result.Output -split "`n" | Where-Object { $_.Trim() -eq "ERROR: Failed to read the root certificate store." }).Count
 	if ($result.Code -ne 0 -or $errors.Count -gt 0) {
 		$failed += $test
 		Write-Output "FAIL $test (exit $($result.Code))"
 		$result.Output -split "`n" | Select-Object -Last 25 | ForEach-Object { Write-Output "    $_" }
 	} else {
-		$last = ($result.Output -split "`n" | Where-Object { $_.Trim() -ne "" -and $_ -notmatch '^Godot Engine' } | Select-Object -Last 1)
+		$last = ($result.Output -split "`n" | Where-Object { $_.Trim() -ne "" -and $_ -notmatch '^Godot Engine|^\s*at: get_system_ca_certificates' -and $_.Trim() -ne 'ERROR: Failed to read the root certificate store.' } | Select-Object -Last 1)
 		Write-Output "PASS $test  $last"
 	}
 }
@@ -79,5 +112,6 @@ if ($failed.Count -gt 0) {
 	Write-Output "FAILED: $($failed -join ', ')"
 	exit 1
 }
+if ($certificateNoise -gt 0) { Write-Output "NOTE: ignored $certificateNoise known sandbox certificate-store errors; every other engine error still fails." }
 Write-Output "ALL PASSED"
 exit 0
