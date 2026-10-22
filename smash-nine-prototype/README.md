@@ -38,6 +38,7 @@ Options cycles speed through 100/90/80/70%, art style, 4/6/8 fighters (default 8
 and the bot panel at match start. Choices survive rematches and menu returns in the
 current session; speed also keeps its existing saved preference. T works in menus,
 matches and results; F2 switches art before a match and returns to the current menu.
+Language: English or 한국어 (Options → Language; kept for the next start). The UI font is Noto Sans KR (assets/fonts/, SIL OFL 1.1), so Korean also shows in the web build.
 
 Results show the winner, standings and three awards. Rematch replays the current
 mode, fighter and body; Character select and Title return to those screens. For
