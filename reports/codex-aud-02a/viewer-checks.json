@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "checks": [
+    "12 effect cards, 2 music cards, 42 candidates; DB controls hidden without claude/db",
+    "All embedded effect WAVs and copied WAVs exactly match delivered source files",
+    "Music is external only; every music sidecar byte matches the source and all files are listed once in files.json",
+    "Per-sound whole playback: A -> 180 ms gap -> B -> 180 ms gap -> C",
+    "New playback cancels previous audio; live volume updates; Stop clears audio and playing marker",
+    "Stop during A/B/C gap prevents later sounds from starting",
+    "Audio error ends sequence and exposes a Korean retry message",
+    "Music sidecar playback, default looping, live loop on/off, per-card isolation, candidate Stop, music/SFX mutual interruption and missing sidecar errors",
+    "DB snapshot restores choice/note/badge; unrelated snapshots preserve unsaved note edits",
+    "Adopt writes exactly sound/style/note/adopted_at to sound_picks/<sound>, and allows replacement",
+    "Music adoption uses exact music_title / music_battle document IDs in sound_picks; music snapshots restore style and memo",
+    "Failed save remains retryable; DB subscription failure hides all adoption controls",
+    "Rejected claude.use('db') safely falls back to local listening mode",
+    "Phone-width CSS breakpoint present (structural check only, not rendered layout verification)"
+  ],
+  "method": "Node vm with DOM, Audio and Artifact DB test doubles; exact WAV byte comparisons",
+  "limitations": [
+    "No browser was connected; screen layout and real audio playback were not exercised",
+    "Hosted claude db API not exercised; follows motion viewer API pattern"
+  ]
+}
