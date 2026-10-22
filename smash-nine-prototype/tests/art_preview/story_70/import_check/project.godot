@@ -1,0 +1,12 @@
+; Isolated PNG import fixture. Does not load the product project or scripts.
+config_version=5
+
+[application]
+config/name="ART-70 PNG import fixture"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+
+[debug]
+file_logging/enable_file_logging=false
