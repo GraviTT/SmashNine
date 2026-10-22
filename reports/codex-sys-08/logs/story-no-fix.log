@@ -1,0 +1,13 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+QA21_STORY {"case_name":"hook_story_text_pre","frame":53,"ok":false,"stage":1}
+QA21_STORY {"case_name":"hook_story_advance_pre","frame":53,"ok":false,"stage":1}
+QA21_STORY {"case_name":"hook_story_text_post","frame":53,"ok":false,"stage":1}
+QA21_STORY {"case_name":"hook_story_advance_post","frame":53,"ok":false,"stage":1}
+QA21_STORY {"actual":[],"case_name":"ordered_result_hooks","expected":["portal","results","victory","music_results"],"frame":53,"ok":false,"stage":1}
+QA21_STORY {"case_name":"result_music","frame":53,"music":"music_story","ok":false,"stage":1}
+QA21_STORY {"case_name":"portal_source","frame":53,"ok":false,"stage":1}
+QA22_STORY_SOUND {"driver":"QA21 protected progression fixture","hook_failures":7,"match_over":true,"phase":"result","post_reached":true,"screen":"story_result","seconds_simulated":0.353215111111111,"seed":2101,"stage":1}
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+

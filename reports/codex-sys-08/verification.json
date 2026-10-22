@@ -1,0 +1,415 @@
+{
+  "head": "b9fd8125aa5ff87bb30d113c178d5e024e4c5f97",
+  "branch": "codex/sys-08",
+  "tracked_changed": [
+    "design/AUDIO.md",
+    "smash-nine-prototype/scripts/audio/AudioCatalog.gd",
+    "smash-nine-prototype/scripts/audio/AudioManager.gd",
+    "smash-nine-prototype/scripts/realms/RealmHazards.gd",
+    "smash-nine-prototype/scripts/story/StorySession.gd",
+    "smash-nine-prototype/scripts/ui/StoryDialogue.gd",
+    "smash-nine-prototype/scripts/ui/StoryScreens.gd",
+    "smash-nine-prototype/tests/test_audio.gd",
+    "smash-nine-prototype/tests/test_realm_gimmicks.gd"
+  ],
+  "manifest_files": 118,
+  "story_checks": [
+    {
+      "path": "smash-nine-prototype/scripts/story/StorySession.gd",
+      "added_sound_hook_lines": 1,
+      "other_changes": 0
+    },
+    {
+      "path": "smash-nine-prototype/scripts/ui/StoryDialogue.gd",
+      "added_sound_hook_lines": 2,
+      "other_changes": 0
+    },
+    {
+      "path": "smash-nine-prototype/scripts/ui/StoryScreens.gd",
+      "added_sound_hook_lines": 2,
+      "other_changes": 0
+    }
+  ],
+  "gate_only_cooldown": true,
+  "catalog_only_gaps": true,
+  "no_audio_assets_added": true,
+  "source_hashes": {
+    "design/AUDIO.md": "fc115594f4c14581dead452c4a550f090849ae7692c448f407d4d4d33d969a71",
+    "smash-nine-prototype/scripts/audio/AudioCatalog.gd": "ffa832e0920509bc64eecd8f73dd6a18cdfb8898b85ae199dd8963c68a85ac31",
+    "smash-nine-prototype/scripts/audio/AudioManager.gd": "a8b4d8f580610cc538461fc0f99d5114305981974129442963b3473e94086c0c",
+    "smash-nine-prototype/scripts/realms/RealmHazards.gd": "232f31a15e46394faeade317a860100f39dc1e530be8d23140c6cd774b6e6d27",
+    "smash-nine-prototype/scripts/story/StorySession.gd": "32274d88ba01ebc132dfafde5dda0c538e9a0d34ba1285a6a6df3b4f74145145",
+    "smash-nine-prototype/scripts/ui/StoryDialogue.gd": "be98afb67ed1e3832ec4327ddde41424bfcf1312050e6d21cd7fefe1db91bc5b",
+    "smash-nine-prototype/scripts/ui/StoryScreens.gd": "045aa1893d19bbd92b60bb2b8e39ae5317be8be11438182e4779f5bf343208c8",
+    "smash-nine-prototype/tests/test_audio.gd": "3d92f918500f6669c9178378f1b4d255c54358d3eddcfa45423969a89fbfd4c1",
+    "smash-nine-prototype/tests/test_realm_gimmicks.gd": "574cd0a24e487620a7449ade04a47fce176affee3e35fa4441c657517ea89529"
+  },
+  "suite": {
+    "finished_utc": "2026-10-22T20:16:54.1899886Z",
+    "command": "powershell -ExecutionPolicy Bypass -File tests/run_all.ps1",
+    "full_suite_invocations": 1,
+    "wall_seconds": 471.706573,
+    "exit": 0
+  },
+  "final_logs": [
+    {
+      "path": "reports/codex-sys-08/logs/audio-all-fixed.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/audio-focused.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/gate-after.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/gate-valid-2105.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/gate-valid-2106.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/import.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/rate-replay.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/sound-br-1001.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/sound-br-2105.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/sound-br-2106.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/sound-story-1.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/sound-story-5.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/logs/sound-story-9.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/soak_match.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_art.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_audio.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_bot_brain.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_bot_panel.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_bugfix_review.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_character_architecture.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_defeat_motion.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_effect_layout.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_fighter_motion.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_flash_art.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_font_coverage.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_frey_kit.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_frey_sprite.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_frontend_flow.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_game_speed.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_hazards.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_hit_sparks.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_hud_frames.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_language.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_luna_kit.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_luna_prototype.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_match_rules.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_monster_ecology.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_monster_motion.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_monster_options.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_motion_speeds.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_moves_sheet.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_nova_prototype.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_offscreen_markers.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_projectile_art.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_realm_gimmicks.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_realm_monsters.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_relocation_active.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_restart.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_rio_prototype.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_skill_bar.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_skill_fx_art.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_soul_crystals.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_sprite_frames.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_sprite_pose.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_story_atomic_reload.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_story_data.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_story_exit_reload.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_story_flow.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_story_late_flow.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_story_presentation.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_story_rewards.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_story_text_fit.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_talisman_burst.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_ultimate_armor.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_ultimates.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/test_victory_screens.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    },
+    {
+      "path": "reports/codex-sys-08/suite/visual_preview.log",
+      "certificate_noise": 1,
+      "other_engine_errors": 0
+    }
+  ],
+  "certificate_noise": 67,
+  "other_final_engine_errors": 0,
+  "negative_controls": [
+    {
+      "name": "gate-no-fix",
+      "expected_nonzero": true,
+      "exit": 1
+    },
+    {
+      "name": "audio-no-fix",
+      "expected_nonzero": true,
+      "exit": 1
+    },
+    {
+      "name": "story-no-fix",
+      "expected_nonzero": true,
+      "exit": 1
+    }
+  ],
+  "excluded_initial_logs": [
+    "logs/audio-all.log (initial timing fixture failure)",
+    "logs/gate-soak-2105.log and gate-soak-2106.log (seed=-1, excluded)"
+  ],
+  "note": "Verification reads git only. commit.ps1 is prepared and has not been run."
+}

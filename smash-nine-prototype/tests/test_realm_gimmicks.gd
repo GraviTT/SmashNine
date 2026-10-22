@@ -139,18 +139,31 @@ func _test_gates_carry_once() -> void:
 	hazards.advance(STEP)
 	if (fighter.global_position as Vector2).distance_to(gates[1]) > 6.0:
 		_fail("Touching a moon gate should carry the fighter to the other gate (at %s, exit %s)" % [fighter.global_position, gates[1]])
-	# Standing in the exit gate past the cooldown does not send them back.
+	# Re-enter after stepping out at 1.5 s: the old 1.0 s cooldown carried back here.
 	for frame in 90:
 		hazards.advance(STEP)
-	if (fighter.global_position as Vector2).distance_to(gates[1]) > 6.0:
-		_fail("A fighter standing in the exit gate should stay until they step out")
-	# Out, then in again: carried back.
 	fighter.global_position = (gates[1] as Vector2) + Vector2(200, 0)
 	hazards.advance(STEP)
 	fighter.global_position = gates[1]
 	hazards.advance(STEP)
+	if (fighter.global_position as Vector2).distance_to(gates[1]) > 6.0:
+		_fail("Re-entering within 2.5 seconds must not carry the fighter")
+	# The fighter has stepped out; re-entry becomes eligible at 2.5 seconds.
+	for frame in 59:
+		hazards.advance(STEP)
 	if (fighter.global_position as Vector2).distance_to(gates[0]) > 6.0:
-		_fail("After stepping out, entering the gate again should carry the fighter back")
+		_fail("After 2.5 seconds and stepping out, re-entry must carry the fighter")
+	# No step out after this transport: expiry alone must never carry back.
+	for frame in 160:
+		hazards.advance(STEP)
+	if (fighter.global_position as Vector2).distance_to(gates[0]) > 6.0:
+		_fail("A fighter standing in the exit gate must stay even after 2.5 seconds")
+	fighter.global_position = (gates[0] as Vector2) + Vector2(200, 0)
+	hazards.advance(STEP)
+	fighter.global_position = gates[0]
+	hazards.advance(STEP)
+	if (fighter.global_position as Vector2).distance_to(gates[1]) > 6.0:
+		_fail("After cooldown and a fresh step out, the gate must carry again")
 	fighter.queue_free()
 	hazards.queue_free()
 	await process_frame

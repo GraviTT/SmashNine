@@ -17,8 +17,6 @@ var probe_resolution_attempts: Dictionary = {}
 var probe_world: Dictionary = {}
 var world_filter_checks := 0
 var unreachable := {
-	"story_text": "대사 표시는 StoryDialogue 소유; 허용 경로에 이벤트 없음",
-	"story_advance": "대사 진행은 StoryDialogue 소유; 허용 경로에 이벤트 없음",
 	"swing": "폴백 전용(직접 이벤트 없음)",
 	"skill_cast": "폴백 전용(직접 이벤트 없음)",
 	"ult_start": "폴백 전용(직접 이벤트 없음)",
@@ -52,7 +50,14 @@ func _run() -> void:
 	root.size = Vector2i(1280, 720)
 	manager = AUDIO.install(root)
 	manager.probe_enabled = true
+	if OS.get_cmdline_user_args().has("--sys08-audio-only"):
+		await _test_id_gaps()
+		await _test_landing_audio()
+		print("SYS08 focused audio %s (%d checks)" % ["FAILED" if failed else "passed", checks])
+		quit(1 if failed else 0)
+		return
 	await _probe_hooks()
+	await _probe_story_dialogue()
 	probe_counts = manager.requests.duplicate()
 	probe_resolution_attempts = manager.resolution_attempts.duplicate()
 	probe_world = manager.world_probe.duplicate()
@@ -66,16 +71,18 @@ func _run() -> void:
 	await _test_world_filtering()
 	await _test_navigation_audio()
 	await _test_voices()
+	await _test_id_gaps()
+	await _test_landing_audio()
 	await _test_music()
 	await _test_settings_and_options()
 	_test_contract()
 	print("AUDIO_PROBE " + JSON.stringify({"requests": probe_counts, "resolution_attempts": probe_resolution_attempts, "world": probe_world, "world_filter_checks": world_filter_checks, "unrequested": unreachable, "checks": checks}))
 	if OS.get_cmdline_user_args().has("--report"):
-		var file := FileAccess.open("res://../reports/codex-sys-05/probe.json", FileAccess.WRITE)
+		var file := FileAccess.open("res://../reports/codex-sys-08/probe.json", FileAccess.WRITE)
 		file.store_string(JSON.stringify({"requests": probe_counts, "resolution_attempts": probe_resolution_attempts, "world": probe_world, "world_filter_checks": world_filter_checks, "unrequested": unreachable, "checks": checks, "passed": not failed}, "\t") + "\n")
 	manager.queue_free()
 	await process_frame
-	print("Audio tests %s (%d checks; %d/%d event ids requested, 4 fallback-only + 2 story hooks reserved)" % ["FAILED" if failed else "passed", checks, probe_counts.size(), CATALOG.SOUNDS.size() - unreachable.size()])
+	print("Audio tests %s (%d checks; %d/%d event ids requested, 4 fallback-only)" % ["FAILED" if failed else "passed", checks, probe_counts.size(), CATALOG.SOUNDS.size() - unreachable.size()])
 	quit(1 if failed else 0)
 
 func _probe_hooks() -> void:
@@ -110,15 +117,16 @@ func _probe_hooks() -> void:
 	floor_body.add_child(shape)
 	main.add_child(floor_body)
 	floor_body.global_position = Vector2(0, 320)
-	fighter.global_position = Vector2(0, 298)
+	fighter.global_position = Vector2(0, 150)
 	fighter.collision_mask = 1
 	fighter.is_human = false
 	fighter.velocity = Vector2(0, 300)
 	fighter.knockback_velocity = Vector2.ZERO
-	for step in 5:
+	for step in 40:
 		await physics_frame
 		fighter.velocity = Vector2(0, 300)
 		fighter.move_and_slide()
+		fighter._handle_landing_state()
 	fighter.was_on_floor_last_frame = false
 	fighter._handle_landing_state()
 	_check(fighter.is_on_floor(), "Landing/guard fixture must be grounded")
@@ -255,7 +263,7 @@ func _probe_hooks() -> void:
 	main.director._finish(fighter, "audio probe")
 	await _frames(2)
 	_check(main.match_over and main.hud.frontend.screen == "results", "Silent scripted match must reach results")
-	# New story session uses only the allowed Main hook; dialogue-specific ids stay reserved.
+	# A real story session also initializes without audio assets.
 	main.next_screen = "story_stage"
 	main.story_stage = 1
 	reload_current_scene()
@@ -410,6 +418,121 @@ func _test_navigation_audio() -> void:
 	menu.queue_free()
 	await process_frame
 
+func _probe_story_dialogue() -> void:
+	var dialogue: Control = preload("res://scripts/ui/StoryDialogue.gd").new()
+	root.add_child(dialogue)
+	var text_before: int = manager.requests.get("story_text", 0)
+	var advance_before: int = manager.requests.get("story_advance", 0)
+	dialogue.play([["narrator", "First line"], ["hero", "Second line"]], "frey", "", "female")
+	_check(int(manager.requests.get("story_text", 0)) == text_before + 1, "Showing one dialogue line must request story_text once")
+	dialogue._activate("dialogue_next", "")
+	_check(int(manager.requests.get("story_advance", 0)) == advance_before + 1 and int(manager.requests.get("story_text", 0)) == text_before + 1, "Revealing typed text must request advance without a new line sound")
+	dialogue._activate("dialogue_next", "")
+	_check(int(manager.requests.get("story_advance", 0)) == advance_before + 2 and int(manager.requests.get("story_text", 0)) == text_before + 2, "Advancing to the next line must request both hooks once")
+	dialogue._activate("dialogue_skip", "")
+	_check(int(manager.requests.get("story_advance", 0)) == advance_before + 3 and int(manager.requests.get("story_text", 0)) == text_before + 2, "Skip must request advance, without sounding a nonexistent line")
+	dialogue.queue_free()
+	await process_frame
+	var menu: Control = preload("res://scripts/ui/StoryScreens.gd").new()
+	root.add_child(menu)
+	var results_before: int = manager.requests.get("results", 0)
+	var victory_before: int = manager.requests.get("victory", 0)
+	var music_before: int = manager.requests.get("music_results", 0)
+	menu.show_story_result({"clear": false, "stage": 1, "seconds": 10, "damage": 25, "cards": []})
+	_check(int(manager.requests.get("results", 0)) == results_before + 1 and int(manager.requests.get("victory", 0)) == victory_before, "Failed stage must request results without victory")
+	_check(int(manager.requests.get("music_results", 0)) == music_before + 1 and manager.current_music == "music_results", "Failed stage must switch to result music")
+	menu.show_story_result({"clear": true, "stage": 1, "seconds": 10, "damage": 25, "cards": []})
+	_check(int(manager.requests.get("results", 0)) == results_before + 2 and int(manager.requests.get("victory", 0)) == victory_before + 1, "Cleared stage must request results and victory once")
+	menu.queue_free()
+	await process_frame
+
+func _test_id_gaps() -> void:
+	var expected := {"land": 150, "hurt": 70, "hit_light": 50, "hit_heavy": 60, "swing_light": 60, "swing_heavy": 60, "tumble": 120, "monster_hurt": 70, "jump": 40}
+	for id: String in expected:
+		_stop_voices()
+		manager.register_stream(id, _tone())
+		var gap: int = expected[id] * 1000
+		_check(manager.gap_usec(id) == gap, "Catalog gap differs for " + id)
+		_check(manager.play(id) != null, "First request must play: " + id)
+		# Anchor to the real monotonic clock just before each production play call.
+		manager.last_started[id] = Time.get_ticks_usec() - gap + 20000
+		_check(manager.play(id) == null, "Request before its per-id gap must be rejected: " + id)
+		manager.last_started[id] = Time.get_ticks_usec() - gap
+		_check(manager.play(id) != null, "Request at its per-id gap must play: " + id)
+		var now := 1000000
+		manager.last_started[id] = now
+		_check(not manager.gap_allows(id, id, now + gap - 1) and manager.gap_allows(id, id, now + gap), "Gap boundary must hold to one microsecond: " + id)
+	_stop_voices()
+	# Separate ids must not throttle one another when neither uses a fallback.
+	_check(manager.play("land") != null and manager.play("hurt") != null, "Distinct sound ids must retain independent gaps")
+	_stop_voices()
+	manager.cache.hit_heavy = null
+	_check(manager.play("hit_heavy") != null, "Missing heavy sound must resolve to light")
+	var now := 1000000
+	manager.last_started = {"hit_light": now}
+	_check(not manager.gap_allows("hit_heavy", "hit_light", now + 49999), "Fallback's own gap must still hold")
+	manager.last_started = {"hit_heavy": now}
+	_check(not manager.gap_allows("hit_heavy", "hit_light", now + 59999), "Requested id's longer gap must still hold through fallback")
+	_stop_voices()
+
+func _test_landing_audio() -> void:
+	var arena := Node2D.new()
+	root.add_child(arena)
+	var floor_body := StaticBody2D.new()
+	var shape := CollisionShape2D.new()
+	var box := RectangleShape2D.new()
+	box.size = Vector2(1600, 40)
+	shape.shape = box
+	floor_body.add_child(shape)
+	floor_body.position = Vector2(0, 320)
+	arena.add_child(floor_body)
+	var actors: Array[Node] = []
+	for index in 2:
+		var actor: Node = FACTORY.create("frey")
+		arena.add_child(actor)
+		actor.setup(REGISTRY.get_characters().frey, 80 + index, false)
+		actor.set_physics_process(false)
+		actor.collision_mask = 1
+		actor.global_position = Vector2(index * 300, 298)
+		actors.append(actor)
+		for frame in 4:
+			await physics_frame
+			actor.velocity = Vector2(0, 100)
+			actor.move_and_slide()
+			actor._handle_landing_state()
+	manager.watched_realm = Callable()
+	manager.register_stream("land", _tone())
+	_stop_voices()
+	var before: int = manager.requests.get("land", 0)
+	# A tiny physical hop and landing, below the 0.12 s audible threshold.
+	actors[0].velocity.y = -40.0
+	var short_frames := 0
+	for frame in 20:
+		await physics_frame
+		actors[0]._apply_movement(1.0 / 60.0)
+		actors[0]._handle_landing_state()
+		if not actors[0].is_on_floor(): short_frames += 1
+	_check(short_frames > 0 and short_frames < 7, "Short-hop fixture must actually leave the floor for less than 0.12 s")
+	_check(int(manager.requests.get("land", 0)) == before and manager.active_count("land") == 0, "A short hop must not request or play land")
+	# A real jump uses the fighter's existing jump/gravity/movement implementation.
+	actors[0].jump_buffer_timer = 0.1
+	var air_frames := 0
+	for frame in 90:
+		await physics_frame
+		actors[0]._apply_movement(1.0 / 60.0)
+		actors[0]._handle_landing_state()
+		# Grounded fighter B is updated every tick while A is in the air.
+		actors[1]._apply_movement(1.0 / 60.0)
+		actors[1]._handle_landing_state()
+		if not actors[0].is_on_floor(): air_frames += 1
+	_check(actors[0].is_on_floor() and air_frames >= 8, "Real jump fixture must land after at least 0.12 s in the air")
+	_check(int(manager.requests.get("land", 0)) == before + 1 and manager.active_count("land") == 1, "A real jump must request and play one land, independently of grounded fighter B")
+	var key: int = actors[0].get_instance_id()
+	arena.queue_free()
+	await process_frame
+	_check(not manager._landing_states.has(key), "Freed fighters must not retain landing audio state")
+	_stop_voices()
+
 func _reset_action(actor: Node) -> void:
 	actor.cancel_pending_actions()
 	actor.attack_lock_timer = 0.0
@@ -454,11 +577,11 @@ func _test_voices() -> void:
 	_check(voice != null and voice.playing and voice.bus == "SFX", "Registered tone must play on SFX")
 	_check(voice.pitch_scale >= 0.96 and voice.pitch_scale <= 1.04, "Hit pitch variation must stay within 4%")
 	_check(manager.play("hit_light") == null, "Immediate repeat must be suppressed")
-	await _real_wait(50)
-	_check(manager.play("hit_light") != null, "Repeat after 40ms must play")
-	await _real_wait(50)
+	await _real_wait(70)
+	_check(manager.play("hit_light") != null, "Repeat after the 50ms gap must play")
+	await _real_wait(70)
 	_check(manager.play("hit_light") != null, "Third hit fits the cap")
-	await _real_wait(50)
+	await _real_wait(70)
 	_check(manager.play("hit_light") == null and manager.active_count("hit_light") == 3, "Fourth hit must respect the per-id voice cap")
 	_stop_voices()
 	_check(manager.play("hit_launch") != null and manager.resolutions.get("hit_launch") == "hit_light", "hit_launch -> hit_heavy -> hit_light must resolve")
@@ -467,9 +590,9 @@ func _test_voices() -> void:
 	_check(manager.play("swing_heavy") != null and manager.resolutions.get("swing_heavy") == "swing", "Trial swing name must remain the fallback")
 	_check(manager.play("swing_light") == null, "Shared fallback must share its minimum gap")
 	for id in ["swing_light", "swing_heavy"]:
-		await _real_wait(50)
+		await _real_wait(70)
 		_check(manager.play(id) != null, "Shared fallback must accept up to three voices")
-	await _real_wait(50)
+	await _real_wait(70)
 	_check(manager.play("swing_light") == null and manager.active_count("swing", true) == 3, "Aliases must also share the resolved voice cap")
 	_stop_voices()
 	manager.unlocked = false
@@ -531,7 +654,7 @@ func _test_music() -> void:
 func _test_settings_and_options() -> void:
 	var saved_before := FileAccess.get_file_as_bytes(SETTINGS.SAVE_PATH) if FileAccess.file_exists(SETTINGS.SAVE_PATH) else PackedByteArray()
 	var existed := FileAccess.file_exists(SETTINGS.SAVE_PATH)
-	var temporary := "res://../reports/codex-sys-05/audio-test.cfg"
+	var temporary := "res://../reports/codex-sys-08/audio-test.cfg"
 	SETTINGS.values = {"master": 30, "music": 40, "effects": 50, "mute": true}
 	_check(SETTINGS.save_to(temporary) == OK, "Explicit temporary config must save")
 	SETTINGS.values = SETTINGS.DEFAULTS.duplicate()

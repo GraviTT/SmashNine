@@ -407,6 +407,7 @@ func use_portal(portal: Dictionary) -> bool:
 	if not main.soul_growth.get_offer(hero).is_empty():
 		main._show_message(tr("Choose a soul card first."))
 		return true
+	preload("res://scripts/audio/AudioManager.gd").sound(hero, "portal")
 	main.director.use_exit()
 	return true
 

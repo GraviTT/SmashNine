@@ -5,6 +5,7 @@ const CATALOG := preload("res://scripts/audio/AudioCatalog.gd")
 const SETTINGS := preload("res://scripts/audio/AudioSettings.gd")
 const POOL_SIZE := 24
 const MIN_GAP_USEC := 40000
+const MIN_LAND_AIR_SECONDS := 0.12
 const FADE_SECONDS := 0.5
 var voices: Array[AudioStreamPlayer] = []
 var music_players: Array[AudioStreamPlayer] = []
@@ -26,6 +27,7 @@ var music_tween: Tween
 var pitch_rng := RandomNumberGenerator.new()
 var _snapshots: Dictionary = {}
 var _missing_reported: Dictionary = {}
+var _landing_states: Dictionary = {}
 
 static func install(source: Node) -> Node:
 	var tree := source.get_tree()
@@ -139,6 +141,13 @@ func active_count(id: String, resolved := false) -> int:
 			count += 1
 	return count
 
+func gap_usec(id: String) -> int:
+	return int(CATALOG.SOUNDS.get(id, {}).get("gap_ms", MIN_GAP_USEC / 1000)) * 1000
+
+## Both the requested id and its resolved fallback keep their own catalog gap.
+func gap_allows(id: String, resolved: String, now: int) -> bool:
+	return now - int(last_started.get(id, -gap_usec(id))) >= gap_usec(id) and now - int(last_started.get(resolved, -gap_usec(resolved))) >= gap_usec(resolved)
+
 func play(id: String, options: Dictionary = {}) -> AudioStreamPlayer:
 	_record(id)
 	if not CATALOG.SOUNDS.has(id) or not unlocked or not bool(options.get("enabled", true)):
@@ -149,7 +158,7 @@ func play(id: String, options: Dictionary = {}) -> AudioStreamPlayer:
 	if resolved == "":
 		return null
 	var now := Time.get_ticks_usec()
-	if now - int(last_started.get(id, -MIN_GAP_USEC)) < MIN_GAP_USEC or now - int(last_started.get(resolved, -MIN_GAP_USEC)) < MIN_GAP_USEC:
+	if not gap_allows(id, resolved, now):
 		return null
 	if active_count(id) >= int(CATALOG.SOUNDS[id].voices) or active_count(resolved, true) >= int(CATALOG.SOUNDS[resolved].voices):
 		return null
@@ -254,8 +263,23 @@ static func hit(source: Node, damage: float, strength: float, blocked: bool, abs
 	sound(source, "hurt")
 
 static func landing(source: Node, landed: bool) -> void:
-	if landed:
+	var manager := find(source)
+	if manager == null:
+		return
+	var key := source.get_instance_id()
+	if not manager._landing_states.has(key):
+		manager._landing_states[key] = 0.0
+		source.tree_exiting.connect(manager._forget_landing.bind(key), CONNECT_ONE_SHOT)
+	var air_seconds: float = manager._landing_states[key]
+	if not source.is_on_floor():
+		manager._landing_states[key] = air_seconds + source.get_physics_process_delta_time()
+		return
+	manager._landing_states[key] = 0.0
+	if landed and air_seconds + 0.000001 >= MIN_LAND_AIR_SECONDS:
 		sound(source, "land")
+
+func _forget_landing(key: int) -> void:
+	_landing_states.erase(key)
 
 static func card_offer(source: Node, already_visible: bool) -> void:
 	if not already_visible:
@@ -278,4 +302,18 @@ static func results(source: Node, winner: Node) -> void:
 	sound(source, "results")
 	if is_instance_valid(winner):
 		sound(source, "victory")
+	music(source, "music_results")
+
+static func story_advance(source: Node, action: String) -> void:
+	if action in ["dialogue_next", "dialogue_skip"]:
+		sound(source, "story_advance")
+
+static func story_result(source: Node, clear: bool) -> void:
+	sound(source, "results")
+	if clear:
+		sound(source, "victory")
+	music(source, "music_results")
+
+static func story_ending(source: Node) -> void:
+	sound(source, "victory")
 	music(source, "music_results")

@@ -177,6 +177,7 @@ func show_story_pause() -> void:
 	_finish("Esc: resume    Enter / J: confirm")
 
 func show_story_result(result: Dictionary) -> void:
+	AUDIO.story_result(self, bool(result.clear))
 	stage_result = result
 	_clear("story_result")
 	_panel(Rect2(140, 78, 1000, 548), 0.98)
@@ -198,6 +199,7 @@ func show_story_result(result: Dictionary) -> void:
 	_finish("R: retry    Enter / J: confirm    Esc: story map")
 
 func show_story_ending() -> void:
+	AUDIO.story_ending(self)
 	_clear("story_ending")
 	_panel(Rect2(100, 62, 1080, 590), 0.98)
 	var hero := _ending_victory_source()

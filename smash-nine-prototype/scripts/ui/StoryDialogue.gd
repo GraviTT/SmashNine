@@ -50,6 +50,7 @@ func _show_line() -> void:
 		visible = false
 		finished.emit()
 		return
+	AUDIO.sound(self, "story_text")
 	var line: Array = lines[line_index]
 	var speaker := str(line[0])
 	var shadow_speaks := speaker == "shadow"
@@ -154,6 +155,7 @@ func advance_line() -> void:
 		_show_line()
 
 func _activate(action: String, value: String) -> void:
+	AUDIO.story_advance(self, action)
 	if action == "dialogue_next":
 		advance_line()
 	elif action == "dialogue_skip":
