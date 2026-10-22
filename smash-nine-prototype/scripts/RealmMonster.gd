@@ -616,23 +616,52 @@ func _spawn_ecology_projectile(direction: Vector2, kind: String) -> Area2D:
 		if kind == "bomb":
 			projectile.flight_velocity = Vector2(clampf(projectile.flight_velocity.x, -120.0, 120.0), 60.0)
 	projectile.art_scale_multiplier = GAME_SCALE.WORLD
+	_apply_projectile_art(projectile, kind)
+	_play_strike_animation()
+	return projectile
+
+## Only visuals are selected here. Combat setup and movement stay in their owners.
+func _apply_projectile_art(projectile: Area2D, kind: String) -> void:
+	if kind == "shockwave":
+		_apply_shockwave_art(projectile)
+		return
 	projectile_art_path = "%s/%s_projectile.png" % [MONSTER_ART_DIR, skin_id]
 	var projectile_art := ART_SETTINGS.original_texture(projectile_art_path)
 	if projectile_art == null:
 		projectile_art_path = FIREBALL_ART
 		projectile_art = ART_SETTINGS.original_texture(projectile_art_path)
-	if kind == "shockwave":
-		# A low, ground-bound crest reads as a shockwave rather than a second fireball.
-		visual.visible = false
-		var crest := Line2D.new()
-		crest.points = PackedVector2Array([Vector2(-16, 12), Vector2(-8, -10), Vector2(0, -22), Vector2(8, -10), Vector2(16, 12)])
-		crest.width = 5.0
-		crest.default_color = Color(1.0, 0.8, 0.3)
-		projectile.add_child(crest)
-	elif projectile_art != null:
-		projectile.set_art(projectile_art_path, Color.WHITE, FIREBALL_SCREEN_SIZE / projectile_art.get_width())
-	_play_strike_animation()
-	return projectile
+	if projectile_art == null:
+		return
+	var width := projectile_art.get_width()
+	var height := projectile_art.get_height()
+	var aimed := kind == "bolt"
+	if width >= height * 2 and width % height == 0:
+		projectile.set_art_strip(projectile_art, width / height, 12.0, aimed, FIREBALL_SCREEN_SIZE / height)
+	else:
+		projectile.set_art(projectile_art_path, Color.WHITE, FIREBALL_SCREEN_SIZE / width)
+		projectile.track_art_direction(aimed)
+
+func _apply_shockwave_art(projectile: Area2D) -> void:
+	var texture := _shockwave_texture()
+	# ART-79 contract: four rectangular 64x48 frames, floor at y=44.
+	if texture != null and texture.get_size() == Vector2(256, 48):
+		if projectile.set_art_strip(texture, 4, 12.0, false, FIREBALL_SCREEN_SIZE / 64.0):
+			var sprite: AnimatedSprite2D = projectile.get_node("ArtSprite")
+			# The wave hitbox origin is 18 px above ground; only the drawing moves.
+			sprite.position.y = 18.0 - (44.0 - 24.0) * sprite.scale.y
+			return
+	# A low, ground-bound crest reads as a shockwave rather than a second fireball.
+	projectile.get_node("Visual").visible = false
+	var crest := Line2D.new()
+	crest.points = PackedVector2Array([Vector2(-16, 12), Vector2(-8, -10), Vector2(0, -22), Vector2(8, -10), Vector2(16, 12)])
+	crest.width = 5.0
+	crest.default_color = Color(1.0, 0.8, 0.3)
+	projectile.add_child(crest)
+
+## Separate lookup lets procedural fixtures represent an absent optional resource,
+## even after the real shockwave has been adopted into the game's assets.
+func _shockwave_texture() -> Texture2D:
+	return ART_SETTINGS.original_texture("%s/slam_shockwave.png" % MONSTER_ART_DIR)
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := "normal") -> bool:
 	if state == State.DEFEATED:

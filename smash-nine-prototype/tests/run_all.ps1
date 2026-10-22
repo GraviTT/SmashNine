@@ -24,6 +24,7 @@ $tests = @("test_character_architecture", "test_frey_sprite", "test_luna_prototy
 $tests += @("test_story_rewards", "test_story_exit_reload", "test_story_text_fit", "test_story_atomic_reload")
 $tests += @("test_fighter_motion", "test_monster_motion", "test_victory_screens")
 $tests += @("test_audio")
+$tests += @("test_projectile_art")
 $failed = @()
 $certificateNoise = 0
 

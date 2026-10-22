@@ -54,3 +54,21 @@
 | Muspelheim | `muspelheim_magma_boar` | melee |
 
 `tests/art_preview/monsters_31/build_assets.gd`가 생성 원본을 최근접 축소해 576×384 시트로 만들고, 원거리 5종의 고유 모티프를 24×24 투사체로 분리합니다.
+
+## SYS-07 투사체·충격파 채택 규약
+
+사용자가 모션 뷰어에서 고른 뒤 리드가 아래 PNG만 복사합니다. 이 연결 작업에서는 후보를 복사하지 않았습니다. 일반 경로의 기준은 프로젝트 루트(`smash-nine-prototype/`)이며 후보는 저장소 루트에 있습니다.
+
+| 후보 | 복사할 게임 경로 |
+|---|---|
+| `art/bakeoff/monsters/<id>-projectile-v1.png` (192×48, 4프레임) | `assets/art/monsters/<id>_projectile.png` (기존 정지 그림 교체) |
+| `art/bakeoff/monsters/ember_imp-projectile-v1.png` | `assets/art/monsters/ember_fireball.png` (Ember 예외 경로) |
+| `art/bakeoff/monsters/slam_shockwave-v1.png` (256×48, 4프레임, 바닥 y=44) | `assets/art/monsters/slam_shockwave.png` (새 파일) |
+
+일반 `<id>`는 `niflheim_frost_owl`, `jotunheim_storm_wisp`, `midgard_rooftop_slinger`, `vanaheim_seed_sprite`, `svartalfheim_cog_drone`, `yggdrasil_root_oracle`입니다. 복사 후 Godot 임포트만 하면 됩니다. JSON은 게임에 필요하지 않습니다.
+
+- 일반 몬스터 그림은 폭이 높이의 정수 배(2배 이상)일 때 정사각형 프레임 스트립으로 인식하고 **12fps 반복**합니다. 정사각형·그 외 비율은 기존 정지 그림 경로를 사용합니다. ART-79의 후보별 제안 fps와 달리 이 연결은 SYS-07의 공통 12fps를 따릅니다.
+- 각 프레임의 화면 폭은 기존처럼 `36 × WORLD`, 현재 **54px**입니다. 일반 48×48 프레임의 배율은 1.125입니다. 투명 여백까지 포함한 셀 크기이며 실제 유색 영역 크기는 다릅니다.
+- `bolt`만 비행 방향을 따라 회전합니다. `lob`·`bomb`·`homing`은 회전하지 않고 수평 방향에 따라 좌우 반전합니다. 기존 정지 그림에도 같은 종류별 방향 규칙이 적용됩니다.
+- 충격파는 64×48 프레임 4장을 12fps로 반복합니다. 셀 표시 크기는 54×40.5px이며 y=44 바닥선을 몬스터 지면에 맞춥니다. 왼쪽 파동은 수평 반전합니다. 파일이 없거나 규격이 맞지 않으면 기존 `Line2D` 마루를 유지합니다. Prototype 스타일도 기존 마루를 사용합니다.
+- 캐릭터 투사체의 `set_art()`와 전투 판정·속도·피해·수명·AI는 그대로입니다.
