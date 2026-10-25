@@ -1,0 +1,138 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      79,
+      51,
+      3,
+      4
+    ],
+    [
+      85,
+      51,
+      3,
+      4
+    ],
+    [
+      68,
+      53,
+      4,
+      4
+    ],
+    [
+      85.5,
+      53,
+      4,
+      4
+    ]
+  ],
+  "rows": {
+    "jump": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 86.462,
+            "y": 45.046,
+            "score": 0.857
+          },
+          {
+            "x": 92.755,
+            "y": 44.904,
+            "score": 0.964
+          },
+          {
+            "x": 75.0,
+            "y": 46.0,
+            "score": 0.789
+          },
+          {
+            "x": 92.5,
+            "y": 46.0,
+            "score": 0.96
+          }
+        ],
+        "eye_distance": 6.295,
+        "face_width": 17.5,
+        "eye_ratio": 0.992,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.96,
+          67,
+          26,
+          0.852
+        ]
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 76.618,
+            "y": 43.544,
+            "score": 0.803
+          },
+          {
+            "x": 82.944,
+            "y": 43.011,
+            "score": 0.883
+          },
+          {
+            "x": 66.0,
+            "y": 45.0,
+            "score": 0.887
+          },
+          {
+            "x": 82.5,
+            "y": 45.0,
+            "score": 0.886
+          }
+        ],
+        "eye_distance": 6.348,
+        "face_width": 16.5,
+        "eye_ratio": 1.0,
+        "face_width_ratio": 0.943,
+        "head_alignment": [
+          0.92,
+          58,
+          25,
+          0.867
+        ]
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 82.079,
+            "y": 39.858,
+            "score": 0.907
+          },
+          {
+            "x": 88.698,
+            "y": 39.132,
+            "score": 0.954
+          },
+          {
+            "x": 71.0,
+            "y": 41.0,
+            "score": 0.869
+          },
+          {
+            "x": 88.5,
+            "y": 41.0,
+            "score": 0.877
+          }
+        ],
+        "eye_distance": 6.659,
+        "face_width": 17.5,
+        "eye_ratio": 1.049,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.96,
+          63,
+          21,
+          0.862
+        ]
+      }
+    ]
+  }
+}
