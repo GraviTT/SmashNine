@@ -1,0 +1,302 @@
+{
+  "timestamp_local": "2026-10-25T18:00:05",
+  "sources": {
+    "cg_prologue.png": {
+      "sha256": "a0b9509d0c930c2cda3cd46fe258c5aacfe944821e576d10c16072fec345b3d8",
+      "bytes": 3098029
+    },
+    "cg_root.png": {
+      "sha256": "1e9e89e76c9e18a993406d3afcfd577f27553cd82dbfed57f14b13d75c512c67",
+      "bytes": 2533385
+    },
+    "cg_epilogue.png": {
+      "sha256": "7c08c7b7f8c1bfe654a28fa5cfc3659c4fff047b5229f60d631ffd377471ef18",
+      "bytes": 2947816
+    },
+    "dialogue_frame.png": {
+      "sha256": "35763dd7dc9fc61a57da0f6a6436d929aef4809920bf82961e8065d13acf59a1",
+      "bytes": 1982
+    },
+    "name_plate.png": {
+      "sha256": "b34af763bc6c1f3d4ed0b8274c70dd353eec2e3da736d86714bbdb166379202d",
+      "bytes": 481
+    },
+    "shadow_aura.png": {
+      "sha256": "5905e29190cd3a1229d96d304580dddf89ad8ad557cc5f558446c91f0487e8d1",
+      "bytes": 21413
+    }
+  },
+  "brightness_definition": "Rec.709 luma of stored sRGB samples: 0.2126R+0.7152G+0.0722B (0..255), not linear luminance",
+  "saturation_definition": "mean HSV S=(maxRGB-minRGB)/maxRGB, 0 for black, percent",
+  "scenes": {
+    "cg_prologue.png": {
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "whole": {
+        "mean_brightness_Yprime_0_255": 74.088,
+        "mean_HSV_saturation_percent": 65.248,
+        "mean_HSV_value_0_255": 133.8861
+      },
+      "bottom_quarter": {
+        "mean_brightness_Yprime_0_255": 46.625,
+        "mean_HSV_saturation_percent": 67.8207,
+        "mean_HSV_value_0_255": 97.1742
+      },
+      "white_text_contrast": {
+        "backing_hex": "#101827",
+        "backing_alpha": 0.95,
+        "text_hex": "#ffffff",
+        "font_px": 24,
+        "min_ratio": 15.6496,
+        "mean_ratio": 17.551,
+        "p05_ratio": 16.6268,
+        "median_ratio": 17.712,
+        "sample_glyph_core_min_ratio": 15.6767,
+        "sample_glyph_core_mean_ratio": 17.5835,
+        "method": "sRGB source-over model, then linear-sRGB relative luminance; UI 1280x720 bottom quarter; not a Godot render; antialiased glyph fringe excluded"
+      }
+    },
+    "cg_root.png": {
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "whole": {
+        "mean_brightness_Yprime_0_255": 58.8398,
+        "mean_HSV_saturation_percent": 79.7607,
+        "mean_HSV_value_0_255": 96.2967
+      },
+      "bottom_quarter": {
+        "mean_brightness_Yprime_0_255": 24.5275,
+        "mean_HSV_saturation_percent": 85.7857,
+        "mean_HSV_value_0_255": 49.9779
+      },
+      "white_text_contrast": {
+        "backing_hex": "#101827",
+        "backing_alpha": 0.95,
+        "text_hex": "#ffffff",
+        "font_px": 24,
+        "min_ratio": 15.6496,
+        "mean_ratio": 17.7491,
+        "p05_ratio": 17.4488,
+        "median_ratio": 17.8102,
+        "sample_glyph_core_min_ratio": 16.8148,
+        "sample_glyph_core_mean_ratio": 17.7657,
+        "method": "sRGB source-over model, then linear-sRGB relative luminance; UI 1280x720 bottom quarter; not a Godot render; antialiased glyph fringe excluded"
+      }
+    },
+    "cg_epilogue.png": {
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "whole": {
+        "mean_brightness_Yprime_0_255": 113.9765,
+        "mean_HSV_saturation_percent": 50.8425,
+        "mean_HSV_value_0_255": 169.9545
+      },
+      "bottom_quarter": {
+        "mean_brightness_Yprime_0_255": 127.0662,
+        "mean_HSV_saturation_percent": 43.2995,
+        "mean_HSV_value_0_255": 187.9471
+      },
+      "white_text_contrast": {
+        "backing_hex": "#101827",
+        "backing_alpha": 0.95,
+        "text_hex": "#ffffff",
+        "font_px": 24,
+        "min_ratio": 15.6496,
+        "mean_ratio": 16.8431,
+        "p05_ratio": 15.9943,
+        "median_ratio": 16.9384,
+        "sample_glyph_core_min_ratio": 15.6496,
+        "sample_glyph_core_mean_ratio": 16.859,
+        "method": "sRGB source-over model, then linear-sRGB relative luminance; UI 1280x720 bottom quarter; not a Godot render; antialiased glyph fringe excluded"
+      }
+    }
+  },
+  "ui": {
+    "dialogue_frame.png": {
+      "size": [
+        480,
+        120
+      ],
+      "mode": "RGBA",
+      "margin_px": 24,
+      "centre_alpha_unique": [
+        0
+      ],
+      "centre_fully_transparent": true,
+      "opaque_pixels_outside_margins": 0,
+      "nonzero_alpha_pixels_outside_margins": 0,
+      "centre_rgba_unique_count": 1,
+      "horizontal_top_repeatable": true,
+      "horizontal_bottom_repeatable": true,
+      "vertical_left_repeatable": true,
+      "vertical_right_repeatable": true
+    },
+    "name_plate.png": {
+      "size": [
+        192,
+        36
+      ],
+      "mode": "RGBA",
+      "margin_px": 12,
+      "centre_alpha_unique": [
+        235
+      ],
+      "centre_fully_transparent": false,
+      "opaque_pixels_outside_margins": 0,
+      "nonzero_alpha_pixels_outside_margins": 2016,
+      "centre_rgba_unique_count": 1,
+      "horizontal_top_repeatable": true,
+      "horizontal_bottom_repeatable": true,
+      "vertical_left_repeatable": false,
+      "vertical_right_repeatable": false
+    }
+  },
+  "aura": {
+    "size": [
+      768,
+      176
+    ],
+    "mode": "RGBA",
+    "cell_size": [
+      128,
+      176
+    ],
+    "cells": [
+      {
+        "frame": 1,
+        "alpha_bbox_xyxy_exclusive": [
+          18,
+          30,
+          110,
+          160
+        ],
+        "empty_LTRB_px": [
+          18,
+          30,
+          18,
+          16
+        ],
+        "at_least_4px_empty_each_side": true,
+        "bottom_exclusive_y": 160,
+        "pixels_at_or_below_y160": 0,
+        "row_159_nonzero_pixels": 1
+      },
+      {
+        "frame": 2,
+        "alpha_bbox_xyxy_exclusive": [
+          20,
+          21,
+          108,
+          157
+        ],
+        "empty_LTRB_px": [
+          20,
+          21,
+          20,
+          19
+        ],
+        "at_least_4px_empty_each_side": true,
+        "bottom_exclusive_y": 157,
+        "pixels_at_or_below_y160": 0,
+        "row_159_nonzero_pixels": 0
+      },
+      {
+        "frame": 3,
+        "alpha_bbox_xyxy_exclusive": [
+          16,
+          10,
+          112,
+          159
+        ],
+        "empty_LTRB_px": [
+          16,
+          10,
+          16,
+          17
+        ],
+        "at_least_4px_empty_each_side": true,
+        "bottom_exclusive_y": 159,
+        "pixels_at_or_below_y160": 0,
+        "row_159_nonzero_pixels": 0
+      },
+      {
+        "frame": 4,
+        "alpha_bbox_xyxy_exclusive": [
+          19,
+          25,
+          110,
+          159
+        ],
+        "empty_LTRB_px": [
+          19,
+          25,
+          18,
+          17
+        ],
+        "at_least_4px_empty_each_side": true,
+        "bottom_exclusive_y": 159,
+        "pixels_at_or_below_y160": 0,
+        "row_159_nonzero_pixels": 0
+      },
+      {
+        "frame": 5,
+        "alpha_bbox_xyxy_exclusive": [
+          20,
+          26,
+          109,
+          155
+        ],
+        "empty_LTRB_px": [
+          20,
+          26,
+          19,
+          21
+        ],
+        "at_least_4px_empty_each_side": true,
+        "bottom_exclusive_y": 155,
+        "pixels_at_or_below_y160": 0,
+        "row_159_nonzero_pixels": 0
+      },
+      {
+        "frame": 6,
+        "alpha_bbox_xyxy_exclusive": [
+          19,
+          29,
+          109,
+          158
+        ],
+        "empty_LTRB_px": [
+          19,
+          29,
+          19,
+          18
+        ],
+        "at_least_4px_empty_each_side": true,
+        "bottom_exclusive_y": 158,
+        "pixels_at_or_below_y160": 0,
+        "row_159_nonzero_pixels": 0
+      }
+    ],
+    "transition_premultiplied_RGBA_MAE_0_255": [
+      13.760752,
+      17.80058,
+      15.171618,
+      13.631394,
+      12.305276,
+      13.270016
+    ],
+    "seam_6_to_1": 13.270016,
+    "ordinary_transition_median": 13.760752,
+    "seam_over_ordinary_median": 0.964338,
+    "feet_line_note": "PNG has no pivot metadata; bottom-exclusive bbox y ranges 155..160, with no visible pixels at/below y160. This is consistent with the documented lower-envelope baseline, but runtime placement is not verified."
+  }
+}
