@@ -1,0 +1,111 @@
+{
+  "name": "cg_heart-v2",
+  "note": "경기장 왼쪽에서 오른쪽 위 심장을 보는 비대칭 사선 구도. 보라 불꽃 5개와 뿌리가 대각선 흐름을 이루며 v1보다 공간 깊이가 강조된다.",
+  "for_lines": [
+    "story.s09.pre.1",
+    "story.s09.pre.2"
+  ],
+  "size": [
+    1600,
+    900
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "candidate_status": "review_candidate",
+  "recommended_by_unit": false,
+  "adopted": false,
+  "parent_variant": null,
+  "raw": "art/raw/story/cg_heart-v2_raw.png",
+  "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-3f072bda-c050-4b4a-9def-37ed1e05257e.png",
+  "raw_sha256": "47ba1935e1c8b5f385cb85bafe62159e6781f4a0d5769e1e36e0d3395491e34e",
+  "candidate_sha256": "4d516d371e224632fbd756de2f6b20c7ef0969289f1e764fdc9cda7844ea7017",
+  "reference_images_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_center/bg_far.png"
+  ],
+  "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+  "processing": {
+    "tool": "Python + Pillow",
+    "pillow_version": "12.3.0",
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+    "cropped_size": [
+      1664,
+      936
+    ],
+    "resize": {
+      "from": [
+        1664,
+        936
+      ],
+      "to": [
+        1600,
+        900
+      ],
+      "filter": "LANCZOS",
+      "scale": 0.9615384615384616
+    },
+    "upscaled": false,
+    "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+  },
+  "measurements": {
+    "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+    "top_three_quarters_box": [
+      0,
+      0,
+      1600,
+      675
+    ],
+    "bottom_quarter_box": [
+      0,
+      675,
+      1600,
+      900
+    ],
+    "top_mean_luma": 55.0899,
+    "bottom_mean_luma": 16.2126,
+    "bottom_to_top_ratio": 0.294293,
+    "bottom_pixels_luma_at_least_128_percent": 0.0825,
+    "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+    "nearest_palette_mean_delta_e76": 16.7048,
+    "nearest_palette_p90_delta_e76": 29.6581,
+    "palette_swatches": [
+      {
+        "hex": "#3b1d5e",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 7.49306
+      },
+      {
+        "hex": "#1a0f2e",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 18.34986
+      },
+      {
+        "hex": "#9b5cff",
+        "minimum_delta_e76": 0.6155,
+        "pixels_within_delta_e76_10_percent": 0.42097
+      },
+      {
+        "hex": "#ff4fd8",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 0.34667
+      },
+      {
+        "hex": "#ffd6f5",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 0.49986
+      }
+    ]
+  }
+}
