@@ -1,0 +1,78 @@
+{
+  "method": "ART-72 계열 4배 대응점 제안 + 4배 직접 검토. E는 눈 간격, W는 눈 아래 노출 얼굴 폭. 제외값은 통과값으로 대체하지 않음. 소수점은 정확도 보증이 아님.",
+  "anchor_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": 0.961,
+      "face_width_ratio": 1.071,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.961,
+      "raw_proposed_width_ratio": 1.071,
+      "landmarks": [
+        {
+          "x": 72.56,
+          "y": 57.01,
+          "score": 0.872
+        },
+        {
+          "x": 79.745,
+          "y": 55.765,
+          "score": 0.791
+        },
+        {
+          "x": 66.0,
+          "y": 57.0,
+          "score": 0.864
+        },
+        {
+          "x": 81.0,
+          "y": 56.5,
+          "score": 0.8
+        }
+      ],
+      "within_range": false
+    },
+    {
+      "frame": 2,
+      "eye_ratio": 0.984,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.984,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 74.485,
+          "y": 58.802,
+          "score": 0.852
+        },
+        {
+          "x": 81.686,
+          "y": 56.817,
+          "score": 0.705
+        },
+        {
+          "x": 69.0,
+          "y": 59.5,
+          "score": 0.901
+        },
+        {
+          "x": 83.0,
+          "y": 58.5,
+          "score": 0.83
+        }
+      ],
+      "within_range": true
+    }
+  ],
+  "eye_range": [
+    0.961,
+    0.984
+  ],
+  "width_range": [
+    1.0,
+    1.071
+  ],
+  "face_pass": false,
+  "judgment": "포니테일·스카프·다리 간격이 두 프레임에서 다르게 흔들림. 눈 0.961 / 0.984는 충족하나 F1 얼굴 폭 1.071로 실패. 공통 lift-scale 0.3."
+}

@@ -1,0 +1,290 @@
+[
+  {
+    "stem": "frey",
+    "row": "victory",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Generate a complete six-frame victory sprite animation for Frey, not a single-frame edit. Image 1 is the authoritative idle anchor for exact face, eye spacing, costume, proportions and detailed pixel-art style. Image 2 is the current full motion and pose reference. Output one 1536x1024 image, EXACT 3 columns by 2 rows of 512px square cells in reading order, solid pure #00ff00 background, no grid lines or text. Every character entirely within its cell with at least 45px clear margin. Draw the SAME face/head scale, eye spacing and exposed face width in all six frames, closely matching Image 1; no progressively growing face. Same 3/4 right-facing head angle throughout, both eyes open and visible, confident small smile. Preserve all silver/black/gold armor, winged circlet, long golden hair, blue gold-trim shield and blue cape. One sword in the same near hand, shield in the same far hand. Smooth single upward sword lift: F1 blade down-forward; F2 blade horizontal waist level; F3 blade diagonally up at 45 degrees; F4 raised vertically overhead; F5 holds it high, cape follows; F6 holds high, shield presented forward, cape settles. Never lower sword after F4. Both boots grounded at common local baseline. No effects, glow, trails, extra weapon, additional face, watermark or writing. Entire row redrawn consistently as a coherent sequence.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-71dbbd63-2edd-4801-ac4f-2e7bf81b404b.png",
+    "raw": "art/raw/motions-89/frey-victory-1.png",
+    "references": [
+      "art/raw/motions-89/frey-victory-anchor-4x.png",
+      "art/raw/motions-89/frey-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "frey",
+    "row": "victory",
+    "generation": 2,
+    "prompt": "Use case: identity-preserve. Generate a complete six-frame victory sprite animation for Frey, not a single-frame edit. Image 1 is the authoritative idle anchor for exact face, eye spacing, costume, proportions and detailed pixel-art style. Image 2 is the current full motion and pose reference. Output one 1536x1024 image, EXACT 3 columns by 2 rows of 512px square cells in reading order, solid pure #00ff00 background, no grid lines or text. Every character entirely within its cell with at least 45px clear margin. Draw the SAME face/head scale, eye spacing and exposed face width in all six frames, closely matching Image 1; no progressively growing face. Same 3/4 right-facing head angle throughout, both eyes open and visible, confident small smile. Preserve all silver/black/gold armor, winged circlet, long golden hair, blue gold-trim shield and blue cape. One sword in the same near hand, shield in the same far hand. Smooth single upward sword lift: F1 blade down-forward; F2 blade horizontal waist level; F3 blade diagonally up at 45 degrees; F4 raised vertically overhead; F5 holds it high, cape follows; F6 holds high, shield presented forward, cape settles. Never lower sword after F4. Both boots grounded at common local baseline. No effects, glow, trails, extra weapon, additional face, watermark or writing. Entire row redrawn consistently as a coherent sequence.\nCRITICAL MARGIN REVISION: make all six figures about 20% smaller within their cells than Image 2. Leave a very large green gap between the rows. Each 512px cell contains its ENTIRE sword and body inside x=75..435,y=75..445. In bottom row even vertical sword tip must start at global y>=587, never at the 512 divider. Uniform character body and FACE SIZE across all cells; reserve the overhead sword space also in top row. Do not crop any extremity. Keep same pose choreography.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-c19e26aa-e0f9-449c-be1a-0cb4da66378a.png",
+    "raw": "art/raw/motions-89/frey-victory-2.png",
+    "references": [
+      "art/raw/motions-89/frey-victory-anchor-4x.png",
+      "art/raw/motions-89/frey-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "frey",
+    "row": "victory",
+    "generation": 3,
+    "prompt": "Use case: identity-preserve. Generate a complete six-frame victory sprite animation for Frey, not a single-frame edit. Image 1 is the authoritative idle anchor for exact face, eye spacing, costume, proportions and detailed pixel-art style. Image 2 is the current full motion and pose reference. Output one 1536x1024 image, EXACT 3 columns by 2 rows of 512px square cells in reading order, solid pure #00ff00 background, no grid lines or text. Every character entirely within its cell with at least 45px clear margin. Draw the SAME face/head scale, eye spacing and exposed face width in all six frames, closely matching Image 1; no progressively growing face. Same 3/4 right-facing head angle throughout, eyes in precisely the anchor's side-facing perspective, confident small smile. Preserve all silver/black/gold armor, winged circlet, long golden hair, blue gold-trim shield and blue cape. One sword in the same near hand, shield in the same far hand. Smooth single upward sword lift: F1 blade down-forward; F2 blade horizontal waist level; F3 blade diagonally up at 45 degrees; F4 raised vertically overhead; F5 holds it high, cape follows; F6 holds high, shield presented forward, cape settles. Never lower sword after F4. Both boots grounded at common local baseline. No effects, glow, trails, extra weapon, additional face, watermark or writing. Entire row redrawn consistently as a coherent sequence.\nCRITICAL MARGIN REVISION: make all six figures about 20% smaller within their cells than Image 2. Leave a very large green gap between the rows. Each 512px cell contains its ENTIRE sword and body inside x=75..435,y=75..445. In bottom row even vertical sword tip must start at global y>=587, never at the 512 divider. Uniform character body and FACE SIZE across all cells; reserve the overhead sword space also in top row. Do not crop any extremity. Keep same pose choreography.\nFACE CORRECTION: Image 1's narrow sideways face is mandatory, not the wider more frontal expression of Image 2. Keep nose facing right; near blue eye and far eye closely spaced as in Image 1, far eye just a slim dark sliver at the nose edge. Maintain the same cheek width including visible ear. Reproduce Image 1's face proportions in every frame with no head rotation, no wider two-eye front view. Last three frames must have SAME cheeks and facial proportions as first three. Do not change costume or motion.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-7f475d2d-b488-47d2-aee5-375caccc071c.png",
+    "raw": "art/raw/motions-89/frey-victory-3.png",
+    "references": [
+      "art/raw/motions-89/frey-victory-anchor-4x.png",
+      "art/raw/motions-89/frey-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "frey",
+    "row": "jump",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Create an entire three-frame JUMP sprite row of Frey, following Image 1 (idle anchor) exactly for her facial proportions, narrow right-facing 3/4 eye spacing, one face, winged circlet, long blonde hair, navy cape with gold star, silver black gold armor, boots, near-hand silver sword and far-hand blue gold shield. Image 2 is the current jump animation pose guide. Output 1536x512, exactly 3 equal square cells, solid #00ff00 green, no lines, no text, no effects. All three characters have IDENTICAL face, head and body scale; same head angle and eye shapes as Image 1, not frontal. Leave at least 50px green clearance around every weapon and hair, fit whole figures in cells. Choreography: F1 TAKEOFF spring, trailing leg extends down and forward knee begins rising, sword down-forward; F2 RISING, BOTH knees distinctly tucked toward body, sword held behind pointing down-left, cape and hair trail downward; F3 APEX, legs beginning to unfold with one lower boot reaching down and other knee still bent, sword restored diagonally down-forward, cape floats almost horizontal. Strong silhouette differences between takeoff / tightly curled rising / opening apex. Same sword and shield hands in all frames. No glow, no duplicate equipment or cropped parts. Smooth coherent detailed pixel-art frames matching anchor.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-f9f13eea-2ac8-4bf3-bb84-882c493f926c.png",
+    "raw": "art/raw/motions-89/frey-jump-1.png",
+    "references": [
+      "art/raw/motions-89/frey-jump-anchor-4x.png",
+      "art/raw/motions-89/frey-jump-current-4x.png"
+    ]
+  },
+  {
+    "stem": "frey",
+    "row": "jump",
+    "generation": 2,
+    "prompt": "Use case: identity-preserve. Create an entire three-frame JUMP sprite row of Frey, following Image 1 (idle anchor) exactly for her facial proportions, narrow right-facing 3/4 eye spacing, one face, winged circlet, long blonde hair, navy cape with gold star, silver black gold armor, boots, near-hand silver sword and far-hand blue gold shield. Image 2 is the current jump animation pose guide. Output 1536x512, exactly 3 equal square cells, solid #00ff00 green, no lines, no text, no effects. All three characters have IDENTICAL face, head and body scale; same head angle and eye shapes as Image 1, not frontal. Leave at least 50px green clearance around every weapon and hair, fit whole figures in cells. Choreography: F1 TAKEOFF spring, trailing leg extends down and forward knee begins rising, sword down-forward; F2 RISING, BOTH knees distinctly tucked toward body, sword held behind pointing down-left, cape and hair trail downward; F3 APEX, legs beginning to unfold with one lower boot reaching down and other knee still bent, sword restored diagonally down-forward, cape floats almost horizontal. Strong silhouette differences between takeoff / tightly curled rising / opening apex. Same sword and shield hands in all frames. No glow, no duplicate equipment or cropped parts. Smooth coherent detailed pixel-art frames matching anchor.\nConsistency refinement: do NOT narrow the cheek or ear-to-nose width in frame 1. All three must use exactly the same head orientation and face proportions from Image 1, with matching exposed face width and close eye spacing. Frame 1 face must not be narrower than frames 2 and 3. Compact the cape enough to leave generous horizontal margins at full anchor scale; sword lengths unchanged. Keep the three clearly distinct leg and sword poses.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-9501eef8-fe5c-497a-bd22-71f769977fe8.png",
+    "raw": "art/raw/motions-89/frey-jump-2.png",
+    "references": [
+      "art/raw/motions-89/frey-jump-anchor-4x.png",
+      "art/raw/motions-89/frey-jump-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "hurt",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Regenerate the WHOLE Brave Luna hurt animation as exactly three detailed pixel-art sprite frames, in one 1536x512 image, three equal square cells left to right on pure #00ff00 green. Image 1 is the authoritative IDLE for exact character design, face size/proportions, 2.2-head chibi body, pink high ponytail, purple ribbon and gold star, purple sleeveless battle outfit, skirt over shorts, short scarf, purple-and-gold armored forearm gauntlets, boots with star knee armor. Image 2 is current hurt row only as motion reference. Same body/head/face size and costume in all frames. Right-facing 3/4 view, keep the same face width and eye proportions as Image 1. Clear actual hit reaction: F1 sudden hit from screen right, head snaps backward/up, upper torso leans away left, knees bend while boots stay planted; F2 deepest torso recoil, lower hips, arms brace near chest, ponytail and scarf swing forward from inertia; F3 recovers upright into guarded stance, ponytail follows behind. Head and torso must visibly move, not only expression. F1 can wince naturally but must have one intact face. No weapons, wand, glowing stars, impact flash, effects, text or grid. Uniform body scale; every complete figure within its cell with generous 55px green margins and feet on same local baseline. All three frames redrawn together as a coherent sequence.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-0775a065-bdfe-4371-aedd-98fb0ead1e85.png",
+    "raw": "art/raw/motions-89/luna_brave-hurt-1.png",
+    "references": [
+      "art/raw/motions-89/luna_brave-hurt-anchor-4x.png",
+      "art/raw/motions-89/luna_brave-hurt-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "hurt",
+    "generation": 2,
+    "prompt": "Use case: identity-preserve. Regenerate the WHOLE Brave Luna hurt animation as exactly three detailed pixel-art sprite frames, in one 1536x512 image, three equal square cells left to right on pure #00ff00 green. Image 1 is the authoritative IDLE for exact character design, face size/proportions, 2.2-head chibi body, pink high ponytail, purple ribbon and gold star, purple sleeveless battle outfit, skirt over shorts, short scarf, purple-and-gold armored forearm gauntlets, boots with star knee armor. Image 2 is current hurt row only as motion reference. Same body/head/face size and costume in all frames. Right-facing 3/4 view, keep the same face width and eye proportions as Image 1. Clear actual hit reaction: F1 sudden hit from screen right, head snaps backward/up, upper torso leans away left, knees bend while boots stay planted; F2 deepest torso recoil, lower hips, arms brace near chest, ponytail and scarf swing forward from inertia; F3 recovers upright into guarded stance, ponytail follows behind. Head and torso must visibly move, not only expression. F1 can wince naturally but must have one intact face. No weapons, wand, glowing stars, impact flash, effects, text or grid. Uniform body scale; every complete figure within its cell with generous 55px green margins and feet on same local baseline. All three frames redrawn together as a coherent sequence.\nRevision: match Image 1's small narrow face more exactly: do not widen the cheeks or enlarge the near eye. In recovery frame 3 the head angle, eye spacing, cheek boundary, ear and nose should closely reproduce Image 1, not the rounder face of Image 2. Maintain that same head size in all 3 frames even when tilted. For recoil, a natural wince with squeezed eyes is appropriate; make head and upper torso lean clearly back in F1. Hair stays fully inside the cell and does not extend to its edge. Boot star placement and gloves exactly as the idle anchor.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-56c63088-3eea-4cd3-b0f0-7454637b78cc.png",
+    "raw": "art/raw/motions-89/luna_brave-hurt-2.png",
+    "references": [
+      "art/raw/motions-89/luna_brave-hurt-anchor-4x.png",
+      "art/raw/motions-89/luna_brave-hurt-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "jump",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Create the entire Brave Luna JUMP motion, exactly 3 equal square cells in one 1536x512 sprite sheet, solid pure #00ff00 green background. Image 1 is the definitive idle design and face proportions. Image 2 is the current best jump motion pose guide. EXACT same facial size, head angle, magenta eye spacing and exposed cheek width in all frames, matching Image 1; no rounder/larger apex face. Same pink high ponytail, purple ribbon with gold star, purple sleeveless battle costume, skirt and shorts, scarf, armored purple gold gauntlets, knee armor and star boots. Detailed crisp pixel art. Entire figures fully contained with >=55px margin from every cell edge, same character scale, no grid, no labels. F1 take-off spring: one rear leg extends down-left, leading knee lifts, fists in guard; F2 rising compact tuck: BOTH knees brought close to chest, boots gathered below, ponytail and scarf trail down-left; F3 apex: open out from tuck, lower legs extend down apart, arms ease outward, ponytail floats up-left. Distinct silhouettes and smooth progression, all airborne. Same head orientation as anchor throughout. No wand, weapons, effects, glow or trails. All three frames generated together.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-567ae3d5-1a2c-4c49-9610-049360e1d2c8.png",
+    "raw": "art/raw/motions-89/luna_brave-jump-1.png",
+    "references": [
+      "art/raw/motions-89/luna_brave-jump-anchor-4x.png",
+      "art/raw/motions-89/luna_brave-jump-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "jump",
+    "generation": 2,
+    "prompt": "Use case: identity-preserve. Create the entire Brave Luna JUMP motion, exactly 3 equal square cells in one 1536x512 sprite sheet, solid pure #00ff00 green background. Image 1 is the definitive idle design and face proportions. Image 2 is the current best jump motion pose guide. EXACT same facial size, head angle, magenta eye spacing and exposed cheek width in all frames, matching Image 1; no rounder/larger apex face. Same pink high ponytail, purple ribbon with gold star, purple sleeveless battle costume, skirt and shorts, scarf, armored purple gold gauntlets, knee armor and star boots. Detailed crisp pixel art. Entire figures fully contained with >=55px margin from every cell edge, same character scale, no grid, no labels. F1 take-off spring: one rear leg extends down-left, leading knee lifts, fists in guard; F2 rising compact tuck: BOTH knees brought close to chest, boots gathered below, ponytail and scarf trail down-left; F3 apex: open out from tuck, lower legs extend down apart, arms ease outward, ponytail floats up-left. Distinct silhouettes and smooth progression, all airborne. Same head orientation as anchor throughout. No wand, weapons, effects, glow or trails. All three frames generated together.\nRefinement: uniform face geometry is the top priority. Frame 1 cheek must NOT become wider than frame 2 or 3. Maintain the same near-eye-to-far-eye spacing and the exact right-facing head angle in every pose. The far eye must be in its consistent small place beside the nose, not drift under the bangs. Use Image 1 face design as the fixed guide while drawing all three complete bodies. F1 rear leg extends, F2 both knees tucked, F3 both legs opening downwards.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-2b1e7a34-271f-49a4-949f-4469eb9ac59e.png",
+    "raw": "art/raw/motions-89/luna_brave-jump-2.png",
+    "references": [
+      "art/raw/motions-89/luna_brave-jump-anchor-4x.png",
+      "art/raw/motions-89/luna_brave-jump-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "jump",
+    "generation": 3,
+    "prompt": "Use case: identity-preserve. Create the entire Brave Luna JUMP motion, exactly 3 equal square cells in one 1536x512 sprite sheet, solid pure #00ff00 green background. Image 1 is the definitive idle design and face proportions. Image 2 is the current best jump motion pose guide. EXACT same facial size, head angle, magenta eye spacing and exposed cheek width in all frames, matching Image 1; no rounder/larger apex face. Same pink high ponytail, purple ribbon with gold star, purple sleeveless battle costume, skirt and shorts, scarf, armored purple gold gauntlets, knee armor and star boots. Detailed crisp pixel art. Entire figures fully contained with >=55px margin from every cell edge, same character scale, no grid, no labels. F1 take-off spring: one rear leg extends down-left, leading knee lifts, fists in guard; F2 rising compact tuck: BOTH knees brought close to chest, boots gathered below, ponytail and scarf trail down-left; F3 apex: open out from tuck, lower legs extend down apart, arms ease outward, ponytail floats up-left. Distinct silhouettes and smooth progression, all airborne. Same head orientation as anchor throughout. No wand, weapons, effects, glow or trails. All three frames generated together.\nFinal consistency instruction: look closely at the eye geometry in Image 1. Do not squeeze the eyes closer together or enlarge the near eye. The narrow dark far eye remains at the same relative position to the near magenta eye, with the same space between them as Image 1. Keep identical cheek width through all three poses. Preserve the calm focused expression and the original finely shaded style; avoid simplified cartoon facial geometry. Three distinct full-body poses, same face direction throughout.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-7a071549-c038-4a2c-ba73-d326e964655f.png",
+    "raw": "art/raw/motions-89/luna_brave-jump-3.png",
+    "references": [
+      "art/raw/motions-89/luna_brave-jump-anchor-4x.png",
+      "art/raw/motions-89/luna_brave-jump-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "fall",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Generate the WHOLE two-frame FALL loop for Brave Luna. Image 1 is the exact idle character design and face-size anchor, Image 2 is the current fall motion reference. One 1024x512 image, exactly 2 equal 512 square cells left to right, pure #00ff00 background. Same detailed pixel art and exact costume, high pink ponytail, purple bow and gold star, scarf, sleeveless purple gold battle dress over shorts, armored gauntlets, purple boots and star armor as Image 1. Same three-quarter right-facing face, eye spacing and exposed face width in both frames; no face widening. F1 falling with legs dangling, knees softly bent, ponytail fanning upward-left, scarf pointed up-left; F2 same falling body/face size but ponytail bends in a clearly different flowing S curve, the hair tips kick upward, scarf swings more horizontal and skirt hem flutters, boots separate a little. Make the two flutter silhouettes visibly different while coherent as a looping fall. Entire bodies, boots and hair within each cell with generous 55px green clearance. No ground, no text, no grid, no effects, no particles, no extra stars. Generate both whole frames together, not a frame patch.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-9a627f86-cb79-4f60-a2de-0a618d924d60.png",
+    "raw": "art/raw/motions-89/luna_brave-fall-1.png",
+    "references": [
+      "art/raw/motions-89/luna_brave-fall-anchor-4x.png",
+      "art/raw/motions-89/luna_brave-fall-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "fall",
+    "generation": 2,
+    "prompt": "Use case: identity-preserve. Generate the WHOLE two-frame FALL loop for Brave Luna. Image 1 is the exact idle character design and face-size anchor, Image 2 is the current fall motion reference. One 1024x512 image, exactly 2 equal 512 square cells left to right, pure #00ff00 background. Same detailed pixel art and exact costume, high pink ponytail, purple bow and gold star, scarf, sleeveless purple gold battle dress over shorts, armored gauntlets, purple boots and star armor as Image 1. Same three-quarter right-facing face, eye spacing and exposed face width in both frames; no face widening. F1 falling with legs dangling, knees softly bent, ponytail fanning upward-left, scarf pointed up-left; F2 same falling body/face size but ponytail bends in a clearly different flowing S curve, the hair tips kick upward, scarf swings more horizontal and skirt hem flutters, boots separate a little. Make the two flutter silhouettes visibly different while coherent as a looping fall. Entire bodies, boots and hair within each cell with generous 55px green clearance. No ground, no text, no grid, no effects, no particles, no extra stars. Generate both whole frames together, not a frame patch.\nRefinement: keep the hair flutter COMPACT. The ponytail tips rise only a little higher than the bow, not a huge vertical plume, so the full falling silhouette fits a 128px game cell at the idle face scale. First frame ponytail arcs up-left; second curls left and tips upward differently. Maintain the original IDLE eye spacing; do not squeeze the far eye toward the near eye. Exact same face orientation and eye geometry in BOTH frames. Body and face occupy the same scale as the current best row, hair variation modest but clear.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-709165b6-b60e-46cd-824d-bb5cc0eb7793.png",
+    "raw": "art/raw/motions-89/luna_brave-fall-2.png",
+    "references": [
+      "art/raw/motions-89/luna_brave-fall-anchor-4x.png",
+      "art/raw/motions-89/luna_brave-fall-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna_brave",
+    "row": "fall",
+    "generation": 3,
+    "prompt": "Use case: identity-preserve. Generate the WHOLE two-frame FALL loop for Brave Luna. Image 1 is the exact idle character design and face-size anchor, Image 2 is the current fall motion reference. One 1024x512 image, exactly 2 equal 512 square cells left to right, pure #00ff00 background. Same detailed pixel art and exact costume, high pink ponytail, purple bow and gold star, scarf, sleeveless purple gold battle dress over shorts, armored gauntlets, purple boots and star armor as Image 1. Same three-quarter right-facing face, eye spacing and exposed face width in both frames; no face widening. F1 falling with legs dangling, knees softly bent, ponytail fanning upward-left, scarf pointed up-left; F2 same falling body/face size but ponytail bends in a clearly different flowing S curve, the hair tips kick upward, scarf swings more horizontal and skirt hem flutters, boots separate a little. Make the two flutter silhouettes visibly different while coherent as a looping fall. Entire bodies, boots and hair within each cell with generous 55px green clearance. No ground, no text, no grid, no effects, no particles, no extra stars. Generate both whole frames together, not a frame patch.\nRefinement: keep the hair flutter COMPACT. The ponytail tips rise only a little higher than the bow, not a huge vertical plume, so the full falling silhouette fits a 128px game cell at the idle face scale. First frame ponytail arcs up-left; second curls left and tips upward differently. Maintain the original IDLE eye spacing; do not squeeze the far eye toward the near eye. Exact same face orientation and eye geometry in BOTH frames. Body and face occupy the same scale as the current best row, hair variation modest but clear.\nFinal face consistency: both frames have exactly the same small cheek width as Image 1. Especially do NOT widen the second frame's face. Keep the distance between near magenta eye and far narrow eye equal in the two frames. Keep the eye angle level and identical to idle. Only ponytail, scarf, skirt hem and lower legs flutter between the frames; face remains facing the same direction. Do not simplify the eyes.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-90e2fe94-52b1-44b8-87be-ba8dfa281d6b.png",
+    "raw": "art/raw/motions-89/luna_brave-fall-3.png",
+    "references": [
+      "art/raw/motions-89/luna_brave-fall-anchor-4x.png",
+      "art/raw/motions-89/luna_brave-fall-current-4x.png"
+    ]
+  },
+  {
+    "stem": "yuki",
+    "row": "victory",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Regenerate the WHOLE six-frame Yuki victory animation. Image 1 is authoritative for exact idle design, facial proportions, head and body scale, fine detailed pixel-art rendering. Image 2 is current motion guide. Output one 1536x1024 image, EXACT 3 columns x 2 rows, six equal 512px square cells in reading order, pure #00ff00 background, no cell borders/text. Each full figure remains inside its cell with at least 65px clearance; identical scale and right-facing 3/4 head angle in all six. Same long black-purple high ponytail, red-white hair ornaments, gold bell, pale face, red eyes, black red gold clothing, white detached sleeves bearing red markings, red hanging cloth, black gold boots. Keep same exposed face width and eye spacing as Image 1 in every frame, no larger last face. Choreography: F1 poised holding talisman in far hand and closed red-gold fan in near hand; F2 flick the talisman with a small outward wrist turn; F3 talisman wrist settles while near hand raises the closed fan toward chin; F4 fan opens halfway below chin; F5 fan fully opens at chin; F6 holds the fan at chin, small confident smile, hair and hanging cloth settle. Fan stays BELOW eyes so face remains readable; talisman never switches hands, fan never switches hands. Both boots on one common baseline. No magic, glow, trails, particle, extra props, duplicate body parts. Generate all six complete frames together, one coherent motion.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-929ae02b-4f65-4654-bc6b-62143d96e285.png",
+    "raw": "art/raw/motions-89/yuki-victory-1.png",
+    "references": [
+      "art/raw/motions-89/yuki-victory-anchor-4x.png",
+      "art/raw/motions-89/yuki-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna",
+    "row": "victory",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Regenerate Luna's entire six-frame VICTORY wand twirl. Image 1 is the exact idle design/face anchor; Image 2 is current best row with a bad jump between F3 and F4 that must be fixed. One 1536x1024 image, EXACT 3 columns x 2 rows, 512px square cells reading order, pure #00ff00 background. Full bodies and whole wand within every cell with >=65px green clearance, equal body/head scale, same 3/4 right-facing face angle and exact eye spacing/face width as idle. Detailed pixel art matching anchor, pink flowing hair with purple bow and gold star, purple gold short magical dress with pale ruffle, cape, gloves and boots. SAME wand hand in ALL frames: the hand holding the wand in Image 1, on viewer's right. Never pass it to the other hand. Draw exactly one smooth CLOCKWISE wand revolution: F1 wand tip UP, F2 tip RIGHT, F3 tip DOWN, F4 tip LEFT across waist BELOW face (this is the crucial in-between), F5 tip UP again as arms spread into a star-like victory pose, F6 holds that star pose with a cheerful WINK. Star wand is a blue-white solid star with gold rim on a short brown handle. F3 to F4 must advance only a quarter-turn, not jump directly from down to up. The non-wand hand gradually opens outward. Face/head remains same size and angle, only final wink changes expression. Boots stay on common baseline. No magic effects, sparkles, trails, extra stars, text, grid or duplicated hands. Generate all six complete frames together.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-9634dd85-e0e9-4fa4-bf27-441275ca8c22.png",
+    "raw": "art/raw/motions-89/luna-victory-1.png",
+    "references": [
+      "art/raw/motions-89/luna-victory-anchor-4x.png",
+      "art/raw/motions-89/luna-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "luna",
+    "row": "victory",
+    "generation": 2,
+    "prompt": "Use case: identity-preserve. Regenerate Luna's entire six-frame VICTORY wand twirl. Image 1 is the exact idle design/face anchor; Image 2 is current best row with a bad jump between F3 and F4 that must be fixed. One 1536x1024 image, EXACT 3 columns x 2 rows, 512px square cells reading order, pure #00ff00 background. Full bodies and whole wand within every cell with >=65px green clearance, equal body/head scale, same 3/4 right-facing face angle and exact eye spacing/face width as idle. Detailed pixel art matching anchor, pink flowing hair with purple bow and gold star, purple gold short magical dress with pale ruffle, cape, gloves and boots. SAME wand hand in ALL frames: the hand holding the wand in Image 1, on viewer's right. Never pass it to the other hand. Draw exactly one smooth CLOCKWISE wand revolution: F1 wand tip UP, F2 tip RIGHT, F3 tip DOWN, F4 tip LEFT across waist BELOW face (this is the crucial in-between), F5 tip UP again as arms spread into a star-like victory pose, F6 holds that star pose with a cheerful WINK. Star wand is a blue-white solid star with gold rim on a short brown handle. F3 to F4 must advance only a quarter-turn, not jump directly from down to up. The non-wand hand gradually opens outward. Face/head remains same size and angle, only final wink changes expression. Boots stay on common baseline. No magic effects, sparkles, trails, extra stars, text, grid or duplicated hands. Generate all six complete frames together.\nCRITICAL HAND CONTINUITY: The hand must NOT swap sides in F3 or F4. In ALL of F1,F2,F3,F4 the WAND GRIP stays on the viewer's RIGHT of Luna's torso, held by the SAME arm that is on the right in Image 1. The empty hand stays on the viewer's LEFT hip in frames 1-4, NEVER opens on the right. Spin ONLY the wrist of the right-side arm: F1 tip above right grip; F2 tip right of right grip; F3 tip BELOW THAT SAME RIGHT-SIDE GRIP; F4 tip left of SAME RIGHT-SIDE GRIP, with that forearm crossing in front of belly while its elbow remains at the right shoulder. F5-6 this same arm raises diagonally up-right. Keep the hands anatomically connected and easy to trace. Do not put the wand in the viewer-left hand at any time. This constraint is more important than copying the old motion.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-e1c8b708-b686-471b-be8e-4a5240650191.png",
+    "raw": "art/raw/motions-89/luna-victory-2.png",
+    "references": [
+      "art/raw/motions-89/luna-victory-anchor-4x.png",
+      "art/raw/motions-89/luna-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "nova_female",
+    "row": "victory",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Regenerate the entire NOVA FEMALE six-frame victory sprite row. Image 1 is the definitive female idle design and facial proportions. Image 2 is current row, whose first two punches incorrectly use the same arm. FIX THIS. Output one 1536x1024 image, exactly 3 columns x 2 rows of 512 square cells, pure #00ff00 background, 65px clearance for every extremity. Detailed pixel art, identical scale and face size/cheek width through six frames. Same swept navy-blue hair with cyan streak, slim feminine chibi face, white silver chest and shoulder armor, cyan chest core, dark navy suit, yellow belt, cyan blue gauntlets and boots. One sequence: F1 jab with FAR arm extended right, NEAR fist drawn back at left ribs; F2 jab with the OTHER/NEAR arm crossing visibly over the chest extended to screen right, FAR fist now retracted at right ribs, torso turns to show near shoulder driving forward; F3 both fists back in guard; F4 near fist pumps upward overhead; F5 holds overhead fist proudly; F6 holds overhead fist and WINKS. F1 and F2 must visibly use opposite shoulders/elbows; do not repeat the same stretched arm. Keep head facing right at same 3/4 angle as idle, eye and cheek proportions constant. Final wink only changes expression. Ground boots on common baseline. No effects, glow, lines, text, extra arms, weapons, magic. Entire six-frame row drawn together.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-11628c92-99c8-472b-8c32-3949a431a541.png",
+    "raw": "art/raw/motions-89/nova_female-victory-1.png",
+    "references": [
+      "art/raw/motions-89/nova_female-victory-anchor-4x.png",
+      "art/raw/motions-89/nova_female-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "nova_female",
+    "row": "victory",
+    "generation": 2,
+    "prompt": "Use case: identity-preserve. Regenerate the entire NOVA FEMALE six-frame victory sprite row. Image 1 is the definitive female idle design and facial proportions. Image 2 is current row, whose first two punches incorrectly use the same arm. FIX THIS. Output one 1536x1024 image, exactly 3 columns x 2 rows of 512 square cells, pure #00ff00 background, 65px clearance for every extremity. Detailed pixel art, identical scale and face size/cheek width through six frames. Same swept navy-blue hair with cyan streak, slim feminine chibi face, white silver chest and shoulder armor, cyan chest core, dark navy suit, yellow belt, cyan blue gauntlets and boots. One sequence: F1 jab with FAR arm extended right, NEAR fist drawn back at left ribs; F2 jab with the OTHER/NEAR arm crossing visibly over the chest extended to screen right, FAR fist now retracted at right ribs, torso turns to show near shoulder driving forward; F3 both fists back in guard; F4 near fist pumps upward overhead; F5 holds overhead fist proudly; F6 holds overhead fist and WINKS. F1 and F2 must visibly use opposite shoulders/elbows; do not repeat the same stretched arm. Keep head facing right at same 3/4 angle as idle, eye and cheek proportions constant. Final wink only changes expression. Ground boots on common baseline. No effects, glow, lines, text, extra arms, weapons, magic. Entire six-frame row drawn together.\nFace consistency refinement: raised-arm frames 4,5,6 MUST retain the exact same exposed cheek width as frames 1,2,3 and Image 1. Do not compress the face when lifting the arm; keep the near ear and cheek visible instead of occluding them with the upper arm. Put raised arm slightly farther out to the left of the head. Same head scale in final wink. Retain the clear opposite-arm jab: F2 the near shoulder armor visibly crosses in front of chest core, opposite hand retracted, different from F1. Keep ample top clearance above raised fist.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-ea4c11d4-e80c-4816-b9e9-d7a2223f64f2.png",
+    "raw": "art/raw/motions-89/nova_female-victory-2.png",
+    "references": [
+      "art/raw/motions-89/nova_female-victory-anchor-4x.png",
+      "art/raw/motions-89/nova_female-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "rio_male",
+    "row": "victory",
+    "generation": 1,
+    "prompt": "Use case: identity-preserve. Regenerate the WHOLE Rio MALE six-frame victory motion. Image 1 is the definitive idle design, face size and costume. Image 2 is the current best row; repair the abrupt F3-to-F4 flourish-to-planted-sword connection. Output a single 1536x1024 sprite sheet, EXACT 3x2 equal 512px square cells in reading order, solid #00ff00 green, no grid/text. Identical head, exposed face width, body scale, and right-facing 3/4 face angle across six frames. Same spiky navy-blue hair, one blue visible eye with far eye naturally covered, black silver armor, blue cape lining, black boots, ONE full-length bright blue solid sword with gold guard. Sequence: F1 sword held low-forward as idle; F2 a compact upward flourish with entire sword visible diagonally upward, no foreshortening or tiny blade; F3 lowers blade to a nearly vertical down pose tilted only 20 degrees toward the right, sword hilt at waist, free hand approaches hilt; F4 blade completes that SMALL last rotation to vertical, tip meets ground BETWEEN boots, both hands rest on hilt; F5 settles into planted-sword pose; F6 same planted sword, subtle confident smile and cape settled. The crucial F3->F4 difference is a small controlled lowering and 20-degree rotation, NOT a huge swing or teleport. Sword tip and boot soles share the same baseline in planted frames; feet must NOT float above sword tip. Hands and full blade visible, consistent sword length. No sword glow spill, trails, effects, extra swords, no text. Full character, sword, cape fit every cell with >=60px margins.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-3eeb42ee-b713-49ef-a11d-a55dd48a9674.png",
+    "raw": "art/raw/motions-89/rio_male-victory-1.png",
+    "references": [
+      "art/raw/motions-89/rio_male-victory-anchor-4x.png",
+      "art/raw/motions-89/rio_male-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "rio_male",
+    "row": "victory",
+    "generation": 2,
+    "prompt": "Use case: identity-preserve. Regenerate the WHOLE Rio MALE six-frame victory motion. Image 1 is the definitive idle design, face size and costume. Image 2 is the current best row; repair the abrupt F3-to-F4 flourish-to-planted-sword connection. Output a single 1536x1024 sprite sheet, EXACT 3x2 equal 512px square cells in reading order, solid #00ff00 green, no grid/text. Identical head, exposed face width, body scale, and right-facing 3/4 face angle across six frames. Same spiky navy-blue hair, one blue visible eye with far eye naturally covered, black silver armor, blue cape lining, black boots, ONE full-length bright blue solid sword with gold guard. Sequence: F1 sword held low-forward as idle; F2 a compact upward flourish with entire sword visible diagonally upward, no foreshortening or tiny blade; F3 lowers blade to a nearly vertical down pose tilted only 20 degrees toward the right, sword hilt at waist, free hand approaches hilt; F4 blade completes that SMALL last rotation to vertical, tip meets ground BETWEEN boots, both hands rest on hilt; F5 settles into planted-sword pose; F6 same planted sword, subtle confident smile and cape settled. The crucial F3->F4 difference is a small controlled lowering and 20-degree rotation, NOT a huge swing or teleport. Sword tip and boot soles share the same baseline in planted frames; feet must NOT float above sword tip. Hands and full blade visible, consistent sword length. No sword glow spill, trails, effects, extra swords, no text. Full character, sword, cape fit every cell with >=60px margins.\nGround contact correction: In F3 the sword tip is still ABOVE the boot sole line, about 15 original pixels, while moving into planting. In F4-F6 the blue blade tip MUST end at EXACTLY the boot sole baseline, never lower. Shorten only the drawn downward reach via arm position as needed while preserving sword length. Both black boot soles must be the lowest points of the silhouette. Keep the face width same as Image 1 and same in every frame. F3 blade points almost straight down at a slight 15-20-degree angle, F4 finishes vertical centered between boots. No foot floating, no blade extending below the boot soles. Final three frames need the exact same face and head size, softly smiling.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-3ff937d9-2c4b-458b-afe2-816c50dd5010.png",
+    "raw": "art/raw/motions-89/rio_male-victory-2.png",
+    "references": [
+      "art/raw/motions-89/rio_male-victory-anchor-4x.png",
+      "art/raw/motions-89/rio_male-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "rio_male",
+    "row": "victory",
+    "generation": 3,
+    "prompt": "Use case: identity-preserve. Regenerate the WHOLE Rio MALE six-frame victory motion. Image 1 is the definitive idle design, face size and costume. Image 2 is the current best row; repair the abrupt F3-to-F4 flourish-to-planted-sword connection. Output a single 1536x1024 sprite sheet, EXACT 3x2 equal 512px square cells in reading order, solid #00ff00 green, no grid/text. Identical head, exposed face width, body scale, and right-facing 3/4 face angle across six frames. Same spiky navy-blue hair, one blue visible eye with far eye naturally covered, black silver armor, blue cape lining, black boots, ONE full-length bright blue solid sword with gold guard. Sequence: F1 sword held low-forward as idle; F2 a compact upward flourish with entire sword visible diagonally upward, no foreshortening or tiny blade; F3 lowers blade to a nearly vertical down pose tilted only 20 degrees toward the right, sword hilt at waist, free hand approaches hilt; F4 blade completes that SMALL last rotation to vertical, tip meets ground BETWEEN boots, both hands rest on hilt; F5 settles into planted-sword pose; F6 same planted sword, subtle confident smile and cape settled. The crucial F3->F4 difference is a small controlled lowering and 20-degree rotation, NOT a huge swing or teleport. Sword tip and boot soles share the same baseline in planted frames; feet must NOT float above sword tip. Hands and full blade visible, consistent sword length. No sword glow spill, trails, effects, extra swords, no text. Full character, sword, cape fit every cell with >=60px margins.\nGround contact correction: In F3 the sword tip is still ABOVE the boot sole line, about 15 original pixels, while moving into planting. In F4-F6 the blue blade tip MUST end at EXACTLY the boot sole baseline, never lower. Shorten only the drawn downward reach via arm position as needed while preserving sword length. Both black boot soles must be the lowest points of the silhouette. Keep the face width same as Image 1 and same in every frame. F3 blade points almost straight down at a slight 15-20-degree angle, F4 finishes vertical centered between boots. No foot floating, no blade extending below the boot soles. Final three frames need the exact same face and head size, softly smiling.\nFINAL SPECIFIC FIX: Frame 3 must visibly hover its blade tip above the ground, NOT touch the floor. Raise the entire sword-and-hands pose upward so the tip is at ANKLE HEIGHT, with a clear green gap of at least 40 original pixels between its tip and boot sole baseline. Hold hilt just below chest, blade nearly vertical tilted 15 degrees. Frame 4 lowers the hands and sword by that small gap to plant tip at sole baseline. Frames 4/5/6 sword must never extend beneath the boot soles. Maintain same full sword length, face and body proportions. This is a controlled transition, F3 sword just about to be planted, F4 planted. No effects.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-06caa733-d197-4b10-958e-5ba920b0425b.png",
+    "raw": "art/raw/motions-89/rio_male-victory-3.png",
+    "references": [
+      "art/raw/motions-89/rio_male-victory-anchor-4x.png",
+      "art/raw/motions-89/rio_male-victory-current-4x.png"
+    ]
+  },
+  {
+    "stem": "rio_male",
+    "row": "walk",
+    "generation": 1,
+    "prompt": "Create a complete EIGHT-frame looping walk sprite sheet for the same male blue-haired anime chibi sword knight. Image 1 is the exact IDENTITY AND BODY SCALE anchor; Image 2 is the current 8-frame walk, use its restored body, sword and cape size, but REPLACE the weak repeated leg poses with a correctly alternating WALK. Pure solid #00FF00 background. Exactly FOUR equal columns by TWO equal rows, eight full-body drawings, read left-to-right top-to-bottom. No labels, grids, border, shadows, extra effects. Generous empty green around EVERY figure, blade and cape. Same head angle, face size, eye proportions, hair silhouette, costume, silver-edged dark armor, blue cape and single blue long sword in the SAME NEAR HAND down-forward throughout. Every head should be drawn at exactly identical scale to one another and Image 1; do not enlarge the eyes. No body parts pasted. Low brisk WALK, never a run, a foot stays on ground in every frame. Preserve the identity of each leg as it crosses: the NEAR leg with its visible outer knee armor must pass IN FRONT of the far leg, and the FAR leg must visibly pass BEHIND the near leg. F1: near leg straight diagonally FORWARD (screen right), heel contact, far leg long BACK (screen left), toe contact. F2: near front knee bends and takes weight; far back heel lifts. F3: near leg SUPPORTS vertically beneath hip; far knee passes BEHIND the near thigh, far boot lifted at ankle height. F4: far lower leg reaches FORWARD, near leg trails. F5 is the OPPOSITE CONTACT of F1: FAR leg extends FORWARD with its knee partly occluded by near thigh, NEAR leg extends BACK and its outer armored shin is visible in foreground. Do not repeat F1 in F5. F6 far forward knee bends and takes weight, near rear heel lifts. F7 FAR leg SUPPORTS vertically beneath hip, NEAR knee passes IN FRONT with lifted boot and its silver knee edge prominently visible. F8 near leg reaches forward, far leg trails, returning to F1. Eight visibly distinct stepping poses; the overlap ordering at F3 and F7 and the foreground shin at F1 vs F5 must be unmistakable at tiny game size. Restrained torso bob. SAME exact face in all 8 frames, no extra limbs.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-aa7a78e2-795f-4a6a-9fbe-d8c77a8eb7db.png",
+    "raw": "art/raw/motions-89/rio_male-walk-1.png",
+    "references": [
+      "art/raw/motions-89/rio_male-walk-anchor-4x.png",
+      "art/raw/motions-89/rio_male-walk-current-4x.png"
+    ]
+  },
+  {
+    "stem": "rio_male",
+    "row": "walk",
+    "generation": 2,
+    "prompt": "Generate a NEW WHOLE 8-FRAME WALK ROW for this EXACT male blue-haired chibi swordsman, identity from Image 1, costume/body/weapon size from Image 2. Pure flat #00ff00 background, four columns by two rows of equally sized full character drawings, eight frames total. No text, no cell lines. Keep wide empty margins around each figure. No blade clipped. Same head/face size, same three-quarter face angle, same expression, same silver-edged black armor and blue cape; DO NOT add round kneecaps or new armor. Face proportions and exposed cheek width EXACTLY like Image 1 and IDENTICAL across eight drawings. One sword always in the near hand sloping down-right, no glow cloud. Crucial repair: this is a TWO-STEP walk loop, NOT eight versions of the same rightward stride. Each foot remains connected to its own hip. NEAR leg = the large thigh on screen left at the hip. FAR leg = the smaller thigh on screen right at the hip. On TOP ROW the NEAR leg swings forward: F1 near silver-edged shin and boot out FORWARD at screen right, far dark boot BACK at screen left; F2 near foot supporting forward with slightly bent knee, far heel rising; F3 near foot flat directly under hip, far foot swings low BEHIND the near calf; F4 near foot trails slightly left, far leg begins reaching right. On BOTTOM ROW the NEAR leg is now BACK: F5 the near large thigh slopes DOWN-LEFT with its silver-edged shin and boot at SCREEN LEFT; the far dark thigh slopes down-RIGHT with its smaller boot at SCREEN RIGHT. This foreground leg must cross in front of the far leg at the hip. F6 near rear boot pushes off at screen left, far foot bears weight forward at screen right. F7 near shin crosses IN FRONT of far standing calf, with near boot lifted just 8 pixels in source-equivalent proportion, knee still BELOW the hip (not a high-knee march). F8 near boot reaches screen right, far boot trails screen left, ready for frame1. At least one foot on the baseline in EVERY frame, no airborne phase. F1 and F5 MUST have opposite leg overlapping order, F3 and F7 MUST have opposite foot bearing weight. Moderate natural bob, unchanged head scale and restored large body; do not shrink legs or sword. Polished detailed pixel-art sprite drawings, maintain armor geometry frame to frame.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-c5f35091-9c3f-4acd-8ae4-e244c6dda9c2.png",
+    "raw": "art/raw/motions-89/rio_male-walk-2.png",
+    "references": [
+      "art/raw/motions-89/rio_male-walk-anchor-4x.png",
+      "art/raw/motions-89/rio_male-walk-current-4x.png"
+    ]
+  },
+  {
+    "stem": "rio_male",
+    "row": "walk",
+    "generation": 3,
+    "prompt": "Draw one polished sprite sheet: EIGHT consecutive frames of the blue-haired male knight WALKING RIGHT IN PLACE. Four columns, two rows, perfectly equal cells. Reference Image 1 is authoritative for his face/head/body proportions and exact costume. Reference Image 2 shows the current walk with a BUG: its foreground leg stays on the same side too much. FIX that bug by drawing an anatomically correct alternating leg cycle. Do NOT copy those repeated leg silhouettes. Keep the same compact silver-edged black boots and knee pads, blue cape, and long blue sword held down-right in his near hand. Same exact head in all drawings, identical exposed cheek width and eye scale to Image 1, same angle. No head turning or changing expression. Pure vivid green background #00ff00 with no ground, no labels, no dividing lines, no effect marks. Full figures including every blade tip and cape tip, generous margins. Pose sequence: 1 CONTACT A, near thigh points DOWN-RIGHT, near shin reaches forward to right heel; far thigh goes DOWN-LEFT to rear toe. The near thigh must be visibly in FRONT across the pelvis. 2 DOWN A, near foot supports weight in front, far rear foot lifts. 3 PASSING A, near leg is vertical and planted; the far boot moves forward BEHIND it, visible to the RIGHT of the standing calf, a small gap under that moving boot. 4 UP A, near leg now slopes back LEFT and supports; far knee extends in front RIGHT. 5 CONTACT B, near thigh points DOWN-LEFT and near shin reaches backward to LEFT toe; FAR thigh goes DOWN-RIGHT to forward RIGHT heel, visibly BEHIND the near thigh at the crossing. This is the opposite overlapping order of frame1. 6 DOWN B, far foot supports weight in front, near rear foot lifts. 7 PASSING B, far leg vertical and planted; near boot passes FORWARD across the FRONT of it to the RIGHT, its large near knee pad clearly below waist and calf visible on top of the standing leg. 8 UP B, far leg slopes back LEFT and supports, near leg reaches in front RIGHT ready for frame1. Keep grounded support, avoid running flight. The two passing frames should have visibly different overlapping silhouettes, not both putting the lifted boot behind on the left. The two contacts must swap foreground shin from right to left. Body/head size stable across eight frames, preserve substantial torso and legs rather than shrinking beneath large head. No circular oversized armor pieces, no extra limbs.",
+    "generated_path": "C:\\Users\\TH\\.codex\\generated_images\\01a172ad-92e6-7761-887d-70dfaced5e60\\exec-d16ae52a-46d1-456b-8976-4794b9366d71.png",
+    "raw": "art/raw/motions-89/rio_male-walk-3.png",
+    "references": [
+      "art/raw/motions-89/rio_male-walk-anchor-4x.png",
+      "art/raw/motions-89/rio_male-walk-current-4x.png"
+    ]
+  }
+]
