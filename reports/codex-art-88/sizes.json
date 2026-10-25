@@ -1,0 +1,160 @@
+[
+  {
+    "id": "C01",
+    "part": "어깨 룬 원판 외곽 가로폭",
+    "sample_frame": 1,
+    "idle": {
+      "size": 26,
+      "box": [
+        28,
+        36,
+        54,
+        62
+      ]
+    },
+    "before": {
+      "size": 26,
+      "box": [
+        31,
+        36,
+        57,
+        61
+      ]
+    },
+    "after": {
+      "size": 25,
+      "box": [
+        32,
+        37,
+        57,
+        61
+      ]
+    },
+    "ratio": 0.9615384615384616,
+    "nominal_ratio_from_common_factor": 0.988,
+    "method": "이전 수동 경계를 같은 부위의 전체 프레임 축소/이동으로 추적하고 최종 픽셀 경계로 반올림. 4배 보드에서 위치 확인. 수동 경계 ±1px; 독립적인 해부학 크기 보장 아님.",
+    "within_5_percent": true,
+    "factor_before": 0.188,
+    "factor_after": 0.185744,
+    "output_sha256": "4520d217d49750ee168dc0303125331270dce8569973462bd3ff6d7a19ee3156"
+  },
+  {
+    "id": "C07",
+    "part": "잎/팔 제외 씨앗 몸통 폭",
+    "sample_frame": 6,
+    "idle": {
+      "size": 45,
+      "box": [
+        26,
+        38,
+        71,
+        72
+      ]
+    },
+    "before": {
+      "size": 44,
+      "box": [
+        26,
+        39,
+        70,
+        67
+      ]
+    },
+    "after": {
+      "size": 43,
+      "box": [
+        27,
+        40,
+        70,
+        67
+      ]
+    },
+    "ratio": 0.9555555555555556,
+    "nominal_ratio_from_common_factor": 0.9582222222222222,
+    "method": "이전 수동 경계를 같은 부위의 전체 프레임 축소/이동으로 추적하고 최종 픽셀 경계로 반올림. 4배 보드에서 위치 확인. 수동 경계 ±1px; 독립적인 해부학 크기 보장 아님.",
+    "within_5_percent": true,
+    "factor_before": 0.24,
+    "factor_after": 0.2352,
+    "output_sha256": "386d43b597b4327b9e823f9b83b3c104f6ebc4c0be41e62f5f79ec65e10d7652"
+  },
+  {
+    "id": "C14",
+    "part": "어깨 룬 원판 외곽 가로폭",
+    "sample_frame": 1,
+    "idle": {
+      "size": 26,
+      "box": [
+        28,
+        36,
+        54,
+        62
+      ]
+    },
+    "before": {
+      "size": 26,
+      "box": [
+        31,
+        33,
+        57,
+        59
+      ]
+    },
+    "after": {
+      "size": 26,
+      "box": [
+        31,
+        34,
+        57,
+        59
+      ]
+    },
+    "ratio": 1.0,
+    "nominal_ratio_from_common_factor": 0.98,
+    "method": "이전 수동 경계를 같은 부위의 전체 프레임 축소/이동으로 추적하고 최종 픽셀 경계로 반올림. 4배 보드에서 위치 확인. 수동 경계 ±1px; 독립적인 해부학 크기 보장 아님.",
+    "within_5_percent": true,
+    "factor_before": 0.16,
+    "factor_after": 0.1568,
+    "output_sha256": "24b26dc435e4ce52df8136788ba550d4a5e27200bfc21ba9e2c5b71ada0acdb3"
+  },
+  {
+    "id": "C15",
+    "part": "후드 주황 면의 sqrt(area), y<48; 최대 4연결 성분",
+    "sample_frame": 1,
+    "idle": {
+      "area": 472,
+      "size": 21.72556098240043,
+      "box": [
+        34,
+        12,
+        73,
+        43
+      ]
+    },
+    "before": {
+      "area": 446,
+      "size": 21.118712081942874,
+      "box": [
+        49,
+        8,
+        86,
+        38
+      ]
+    },
+    "after": {
+      "area": 434,
+      "size": 20.83266665599966,
+      "box": [
+        48,
+        8,
+        85,
+        36
+      ]
+    },
+    "ratio": 0.9589012073325015,
+    "method": "ART-74 fix-1 동일 색 마스크를 최종 픽셀에서 재계측; y48 절단 미접촉. 색 면적 지표이며 해부학 전체 크기 아님.",
+    "within_5_percent": true,
+    "factor_before": 0.167,
+    "factor_after": 0.165,
+    "output_sha256": "c0bf9786301f41c15cb8afabba54afcc226660a16ec0b17068d486337f3e0ef2"
+  }
+]
