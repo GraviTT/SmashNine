@@ -1,0 +1,147 @@
+{
+  "generatedAt": "2026-10-25T13:11:08.071Z",
+  "commit": "3449a1dbe8a02814f1415bd9def735fc16b40a33",
+  "node": "v24.17.0",
+  "result": "PASS",
+  "counts": {
+    "rows": 222,
+    "newRows": 64,
+    "gameRepairs": 21,
+    "noNewRows": 5,
+    "newCandidates": 66,
+    "candidates": 267,
+    "legacyPairs": 15,
+    "files": 326,
+    "bytes": 23831288,
+    "batches": 2,
+    "versionFits": true,
+    "batchDetails": [
+      {
+        "file": "files-1.json",
+        "filesIncludingHtml": 250,
+        "bytesIncludingHtml": 16388997
+      },
+      {
+        "file": "files-2.json",
+        "filesIncludingHtml": 77,
+        "bytesIncludingHtml": 7713069
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "candidate-coverage",
+      "result": "PASS",
+      "scope": "files",
+      "detail": "267 active pickable candidates, each in exactly one row; adopted/retired excluded"
+    },
+    {
+      "name": "checkpoint-and-correspondence",
+      "result": "PASS",
+      "scope": "git/files",
+      "detail": "66 new PNGs exactly match changes.json; each is beside replaces/adopted game tile; 16 assemblies and 15 legacy sheets separately accounted for; authored text retained"
+    },
+    {
+      "name": "legacy-no-new-and-guardian",
+      "result": "PASS",
+      "scope": "files",
+      "detail": "15 pairs × 4 ART_ROWS; 5 no-new texts (including two rows that also have partial repairs); guardian is one projectile row with non-option reference"
+    },
+    {
+      "name": "timing-and-alignment",
+      "result": "PASS",
+      "scope": "data",
+      "detail": "Game manifest fps (including adopted speeds), otherwise newest metadata; every panel owns one fps; equal canvas size/scale and aligned feet or centred projectiles"
+    },
+    {
+      "name": "publish-integrity",
+      "result": "PASS",
+      "scope": "files",
+      "detail": {
+        "rows": 222,
+        "newRows": 64,
+        "gameRepairs": 21,
+        "noNewRows": 5,
+        "newCandidates": 66,
+        "candidates": 267,
+        "legacyPairs": 15,
+        "files": 326,
+        "bytes": 23831288,
+        "batches": 2,
+        "versionFits": true,
+        "batchDetails": [
+          {
+            "file": "files-1.json",
+            "filesIncludingHtml": 250,
+            "bytesIncludingHtml": 16388997
+          },
+          {
+            "file": "files-2.json",
+            "filesIncludingHtml": 77,
+            "bytesIncludingHtml": 7713069
+          }
+        ]
+      }
+    },
+    {
+      "name": "local-render-and-badges",
+      "result": "PASS",
+      "scope": "mock DOM",
+      "detail": "222 rows render without DB; all pick/memo controls disabled, visible Korean notice and five no-new badges; zero images loaded before intersections"
+    },
+    {
+      "name": "lazy-loading-and-playback",
+      "result": "PASS",
+      "scope": "mock Image/canvas/observer",
+      "detail": "Offscreen rows do not draw; 325 unique images fetched only as rows enter range; six times checked for every animated crop, frame counts, shared fps and 0.6s nonloop hold; portraits render as images"
+    },
+    {
+      "name": "clock-and-controls",
+      "result": "PASS",
+      "scope": "mock clock/DOM",
+      "detail": "Exactly one RAF callback scheduled; speed ×1.5, pause/resume, reduced-motion paused start, background-tab pause, background/size state changes"
+    },
+    {
+      "name": "one-pick-document",
+      "result": "PASS",
+      "scope": "mock DB/DOM",
+      "detail": "One DB acquisition and collection subscription, no writes on load/typing; all five kinds write exactly one 12-field row document per click and update saved list"
+    },
+    {
+      "name": "replace-none-clear-memo-reload",
+      "result": "PASS",
+      "scope": "mock DB/DOM",
+      "detail": "One selected radio per row; none is a saved choice with null file; clear writes picked:false; drafts survive snapshots; memo saves once/truncates at 300; new VM restores persisted selections and notes"
+    },
+    {
+      "name": "write-failure-and-double-click",
+      "result": "PASS",
+      "scope": "mock DB",
+      "detail": "Failure retains draft/previous choice and enables retry; delayed writes show saving status and block a second request"
+    },
+    {
+      "name": "snapshot-validation",
+      "result": "PASS",
+      "scope": "mock DB",
+      "detail": "Malformed fields, invalid dates/choices/paths, other-viewer and four-part old IDs do not count; records are rendered through textContent"
+    },
+    {
+      "name": "filters-navigation-db-fallbacks",
+      "result": "PASS",
+      "scope": "mock DOM/DB",
+      "detail": "New/unpicked filters, saved-list navigation reveals hidden target; missing/null/rejected DB and subscription loss disable saving; observer fallback initializes without eager image load"
+    },
+    {
+      "name": "artifact-css-controls-source",
+      "result": "PASS",
+      "scope": "static source/mock DOM",
+      "detail": "Unique stable control IDs, Korean UI, fragment/viewport/safe-area/token rules, two-column mobile CSS, keyboard focus, no external JS; built page matches source. CSS layout itself is untested."
+    }
+  ],
+  "limits": [
+    "Node mocks only: no browser layout, PNG decode, real paint or animation performance verified",
+    "Artifact DB API/persistence/reload and multi-batch publishing require lead browser/service check",
+    "375px wrapping, safe areas, theme/font rendering and keyboard interaction require a real browser",
+    "No network, package installs or Godot run; no commit performed"
+  ]
+}

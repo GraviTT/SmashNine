@@ -1,0 +1,372 @@
+<title>SmashNine 후보 비교</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+	--bg: #e8ebf1; --panel: #f8f9fb; --ink: #131a2c; --muted: #586179; --line: #cdd3de;
+	--accent: #9a6508; --accent-soft: #f4e2b8; --guide: #08889e;
+	--chk-a: #ffffff; --chk-b: #e1e6ee; --stage-dark: #121827; --stage-light: #f6f7f9;
+	--error: #a62e39; --error-soft: #fce8e9; --clear: transparent; --shockwave: #ffcc4d;
+	--font-display: "Silkscreen", "IBM Plex Mono", ui-monospace, monospace;
+	--font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+	--font-mono: "IBM Plex Mono", "Consolas", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--bg: #0c111e; --panel: #141b2c; --ink: #e7ebf4; --muted: #98a2bb; --line: #283150;
+		--accent: #f1c25a; --accent-soft: #3a3020; --guide: #4fd1e8;
+		--chk-a: #222a41; --chk-b: #1a2135; --stage-dark: #121827; --stage-light: #f6f7f9;
+		--error: #ff9ba5; --error-soft: #3d202b; --clear: transparent; --shockwave: #ffcc4d; color-scheme: dark;
+	}
+}
+:root[data-theme="dark"] {
+	--bg: #0c111e; --panel: #141b2c; --ink: #e7ebf4; --muted: #98a2bb; --line: #283150;
+	--accent: #f1c25a; --accent-soft: #3a3020; --guide: #4fd1e8;
+	--chk-a: #222a41; --chk-b: #1a2135; --stage-dark: #121827; --stage-light: #f6f7f9;
+	--error: #ff9ba5; --error-soft: #3d202b; --clear: transparent; --shockwave: #ffcc4d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.65 var(--font-body); }
+.wrap { max-width: 1320px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 26px 64px; --tile-min: 210px; --canvas-size: 192px; }
+h1, h2, h3, h4, p, figure { margin: 0; }
+h1 { font-size: clamp(25px, 4vw, 36px); line-height: 1.3; letter-spacing: -.04em; }
+h2 { font-size: 23px; } h3 { font-size: 18px; } h4 { font-size: 14px; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+button, select, input, textarea { font: inherit; color: inherit; accent-color: var(--accent); }
+button, select { border: 1px solid var(--line); border-radius: 7px; background: var(--panel); padding: 7px 11px; min-height: 38px; cursor: pointer; }
+button:hover, a.chip:hover { border-color: var(--accent); }
+button:disabled, input:disabled, textarea:disabled { cursor: not-allowed; opacity: .55; }
+:focus-visible { outline: 3px solid var(--guide); outline-offset: 3px; }
+.brand { color: var(--accent); font: 13px var(--font-display); letter-spacing: .08em; margin-bottom: 10px; }
+.intro { color: var(--muted); max-width: 750px; margin: 12px 0 20px; }
+.counts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+.count-card { border: 1px solid var(--line); background: var(--panel); border-radius: 10px; padding: 12px 16px; }
+.count-card span { display: block; color: var(--muted); font-size: 12px; }
+.count-card strong { font: 27px var(--font-mono); }
+.count-card:first-child { background: var(--accent-soft); border-color: var(--accent); }
+.saved-panel { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); padding: 12px 16px; margin-bottom: 16px; }
+summary { cursor: pointer; font-weight: 700; } .saved-count { font-size: 13px; color: var(--muted); font-weight: 400; margin-left: 10px; }
+#picked-list { max-height: 280px; overflow-y: auto; padding: 0; margin: 10px 0 0; list-style: none; }
+#picked-list li { border-top: 1px solid var(--line); padding: 8px 0; overflow-wrap: anywhere; }
+.db-note, .muted { color: var(--muted); font-size: 13px; }
+.controls { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.controls label { display: inline-flex; gap: 7px; align-items: center; font-size: 13px; min-width: 0; }
+.controls select { min-width: 0; max-width: 100%; }
+#play { background: var(--accent-soft); border-color: var(--accent); min-width: 72px; font-weight: 700; }
+.nav { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0; }
+.chip { display: inline-block; border: 1px solid var(--line); background: var(--panel); padding: 5px 11px; border-radius: 99px; text-decoration: none; color: var(--ink); font-size: 13px; }
+.filter-line { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 18px 0; }
+.filter-line label { display: inline-flex; align-items: center; gap: 7px; }
+.group { margin-top: 32px; scroll-margin-top: 210px; }
+.group > h2 { padding-bottom: 12px; border-bottom: 2px solid var(--line); margin-bottom: 16px; }
+.row { margin-bottom: 18px; border: 1px solid var(--line); border-radius: 12px; padding: 18px; background: var(--panel); scroll-margin-top: 210px; overflow-wrap: anywhere; }
+.row[data-picked="true"] { border-color: var(--accent); }
+.row-head { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.badge { display: inline-block; color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 2px 7px; font-size: 12px; }
+.badge.warning { color: var(--error); background: var(--error-soft); }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.panel-head { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; margin: 7px 0; }
+.timing { font: 12px var(--font-mono); color: var(--muted); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(var(--tile-min), 100%), 1fr)); gap: 10px; margin-bottom: 12px; }
+.tile { min-width: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.tile[data-new="true"] { border-color: var(--accent); }
+.tile-title { display: flex; gap: 6px; align-items: center; padding: 8px; font-size: 13px; font-weight: 700; min-height: 48px; }
+.tile-title input { flex: 0 0 auto; margin: 0; }
+.stage { display: grid; place-items: center; min-width: 0; padding: 8px 4px; min-height: 108px; background-color: var(--chk-a); background-image: linear-gradient(45deg, var(--chk-b) 25%, var(--clear) 25%, var(--clear) 75%, var(--chk-b) 75%), linear-gradient(45deg, var(--chk-b) 25%, var(--clear) 25%, var(--clear) 75%, var(--chk-b) 75%); background-size: 16px 16px; background-position: 0 0, 8px 8px; }
+.wrap[data-bg="dark"] .stage { background: var(--stage-dark); }
+.wrap[data-bg="light"] .stage { background: var(--stage-light); }
+.stage canvas { width: min(100%, var(--canvas-size)); height: auto; display: block; image-rendering: pixelated; }
+.stage img { width: min(100%, 142px); height: 164px; object-fit: contain; image-rendering: pixelated; display: block; }
+.wrap[data-size="small"] { --tile-min: 170px; --canvas-size: 144px; }
+.wrap[data-size="large"] { --tile-min: 270px; --canvas-size: 288px; }
+.tile-error { font-size: 12px; padding: 4px; color: var(--error); }
+.none-choice, .legacy-options { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 7px 0; font-size: 13px; }
+.none-choice label, .legacy-options label { display: inline-flex; align-items: center; gap: 5px; }
+.change-lines { display: grid; gap: 5px; margin: 8px 0; font-size: 13px; }
+.notice { color: var(--error); font-size: 13px; margin: 8px 0; }
+.row-note { color: var(--muted); font-size: 13px; margin: 8px 0; }
+.memo-area { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.memo-label { display: grid; gap: 4px; flex: 1 1 280px; font-size: 12px; color: var(--muted); min-width: 0; }
+textarea { width: 100%; max-width: 100%; min-height: 44px; resize: vertical; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; padding: 7px 9px; font-size: 13px; }
+.status { min-height: 22px; margin-top: 5px; color: var(--muted); font-size: 12px; }
+.status[data-error="true"] { color: var(--error); }
+@media (max-width: 600px) {
+	.counts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.count-card { padding: 10px 12px; }
+	.row { padding: 10px; }
+	.tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+	.tile-title { font-size: 12px; padding: 6px; min-height: 50px; }
+	.controls { gap: 7px 10px; padding: 8px; }
+	.controls label { font-size: 12px; gap: 4px; }
+	.controls select { padding: 6px; }
+	.stage img { height: 148px; }
+	.wrap[data-size="small"] .stage { padding: 14px; }
+	.wrap[data-size="large"] .stage { padding: 0; }
+	.memo-label { flex-basis: 100%; }
+}
+</style>
+<main class="wrap" id="viewer" lang="ko" data-bg="checker" data-size="normal">
+	<header>
+		<p class="brand">SmashNine</p>
+		<h1>후보 비교</h1>
+		<p class="intro">지금 게임과 옛·새 후보를 나란히 보고, 줄마다 하나씩 골라 주세요. 선택과 메모는 저장되며 게임 반영은 별도로 진행합니다.</p>
+		<div class="counts" id="counts" aria-label="비교 항목 수"></div>
+	</header>
+	<p class="db-note" id="db-note" role="status">저장 연결을 확인하는 중…</p>
+	<details class="saved-panel" id="picked-panel">
+		<summary id="picked-summary">고른 것 <span class="saved-count" id="picked-count"></span></summary>
+		<ul id="picked-list"></ul>
+	</details>
+	<div class="controls" id="playback" aria-label="재생과 보기 설정">
+		<button type="button" id="play" aria-pressed="false">멈춤</button>
+		<label for="speed">속도 <select id="speed"><option value="0.25">×0.25</option><option value="0.5">×0.5</option><option value="0.75">×0.75</option><option value="1" selected>×1</option><option value="1.25">×1.25</option><option value="1.5">×1.5</option></select></label>
+		<label for="background">배경 <select id="background"><option value="checker">체크</option><option value="dark">어둡게</option><option value="light">밝게</option></select></label>
+		<label for="size">크기 <select id="size"><option value="small">작게</option><option value="normal" selected>보통</option><option value="large">크게</option></select></label>
+	</div>
+	<nav class="nav" id="sections" aria-label="비교 항목 바로가기"></nav>
+	<div class="filter-line">
+		<label for="filter">보여 줄 항목 <select id="filter"><option value="all">전부</option><option value="new">새 버전 있는 줄</option><option value="unpicked">아직 안 고른 줄</option></select></label>
+		<span class="muted" id="visible-count" aria-live="polite"></span>
+	</div>
+	<p id="empty" class="muted" hidden>이 조건에 맞는 줄이 없습니다.</p>
+	<div id="groups"></div>
+</main>
+<script>
+const M = /*MANIFEST*/null;
+const $ = id => document.getElementById(id);
+const el = (tag, className = "", text = "") => { const e = document.createElement(tag); e.className = className; if (text) e.textContent = text; return e; };
+const rowId = r => `row-${r.key.replaceAll("~", "-")}`;
+const rowsByKey = new Map(M.rows.map(r => [r.key, r]));
+const views = new Map(), groupViews = new Map(), images = new Map(), active = new Set();
+let records = new Map(), db = null, playing = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+let clock = 0, lastTime = null, speed = 1, filter = "all";
+const tileLabel = t => t.label || `${t.version} · ${t.isNew ? `새 · ${t.card}` : "옛"}`;
+const choiceLabel = (row, choice) => choice === "none" ? row.kind === "legacy_sheet" ? "지금 그대로" : row.hasGame ? "둘 다 아님 · 지금 게임 그대로" : "둘 다 아님 · 게임에 넣지 않음" : choice === "fix1" ? "수리본 쓰기" : tileLabel(row.panels.flatMap(p => p.tiles).find(t => t.role === "candidate" && t.version === choice));
+const choiceFile = (row, choice) => choice === "none" ? null : row.panels.flatMap(p => p.tiles).find(t => t.role === "candidate" && t.version === choice)?.repoFile;
+
+function validRecord(id, value) {
+	const r = rowsByKey.get(id);
+	if (!r || !value || value.kind !== r.kind || value.id !== r.id || value.row !== r.row || value.viewer !== "compare") return false;
+	if (typeof value.picked !== "boolean" || !r.options.includes(value.choice) || value.file !== choiceFile(r, value.choice)) return false;
+	if (typeof value.note !== "string" || value.note.length > 300 || typeof value.commit !== "string" || !/^[a-f0-9]{7,40}$/.test(value.commit)) return false;
+	if (!Array.isArray(value.options) || new Set(value.options).size !== value.options.length || !value.options.includes(value.choice) || !value.options.includes("none")) return false;
+	if (!value.options.every(v => typeof v === "string" && (v === "none" || (r.kind === "legacy_sheet" ? v === "fix1" : /^v[1-9]\d*$/.test(v))))) return false;
+	if (typeof value.picked_at !== "string" || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(value.picked_at)) return false;
+	const stamp = new Date(value.picked_at);
+	return Number.isFinite(stamp.getTime()) && stamp.toISOString() === value.picked_at;
+}
+function refreshRow(view) {
+	const record = records.get(view.row.key), picked = Boolean(record?.picked);
+	view.root.dataset.picked = String(picked);
+	for (const [choice, radio] of view.radios) { radio.checked = picked && record.choice === choice; radio.disabled = !db || view.busy; }
+	view.memo.disabled = !db || view.busy;
+	view.save.disabled = !db || view.busy || !record;
+	view.clear.disabled = !db || view.busy || !picked;
+	if (!view.dirty && !view.busy) view.memo.value = record?.note || "";
+	view.status.textContent = view.busy ? "저장 중…" : view.error || (record ? record.picked ? "저장됨" : "고르기 지움 · 저장됨" : "아직 고르지 않음");
+	view.status.dataset.error = String(Boolean(view.error));
+}
+function goToRow(row) {
+	if (views.get(row.key).root.hidden) { filter = "all"; $("filter").value = "all"; applyFilter(); }
+	const v = views.get(row.key); v.root.scrollIntoView({ block: "start" }); v.root.focus({ preventScroll: true });
+}
+function refresh() {
+	for (const view of views.values()) refreshRow(view);
+	const selected = M.rows.filter(r => records.get(r.key)?.picked);
+	$("picked-count").textContent = `고른 줄 ${selected.length} / 전체 ${M.rows.length}`;
+	$("picked-list").replaceChildren();
+	if (!selected.length) $("picked-list").append(el("li", "muted", "아직 고른 줄이 없습니다."));
+	for (const row of selected) {
+		const record = records.get(row.key), item = el("li"), link = el("a", "", `${row.formName} · ${row.label} · ${choiceLabel(row, record.choice)}`);
+		link.id = `picked-${rowId(row)}`; link.href = `#${rowId(row)}`;
+		link.addEventListener("click", event => { event.preventDefault(); goToRow(row); });
+		item.append(link); if (record.note) item.append(el("p", "muted", record.note)); $("picked-list").append(item);
+	}
+	applyFilter();
+}
+async function saveRow(view, choice, picked) {
+	if (!db || view.busy || !view.row.options.includes(choice)) return;
+	const row = view.row;
+	const value = { kind: row.kind, id: row.id, row: row.row, choice, file: choiceFile(row, choice), options: [...row.options], picked,
+		note: view.memo.value.slice(0, 300), picked_at: new Date().toISOString(), viewer: "compare", commit: M.commit };
+	view.busy = true; view.error = ""; refreshRow(view);
+	try {
+		await db.collection("candidate_picks").doc(row.key).set(value);
+		// Under the unpicked filter a just-picked row stays until the filter changes, so its memo can still be written.
+		records.set(row.key, value); view.dirty = false; view.keep = true;
+	} catch { view.error = "저장하지 못했습니다. 같은 선택이나 버튼을 다시 눌러 주세요."; }
+	finally { view.busy = false; refresh(); }
+}
+async function connect() {
+	try {
+		const connected = await window.claude?.use?.("db");
+		if (!connected) { $("db-note").textContent = "저장은 게시된 페이지에서만 됩니다"; refresh(); return; }
+		db = connected;
+		$("db-note").textContent = "줄마다 하나씩 고르면 바로 저장됩니다. 메모는 ‘메모 저장’을 눌러 주세요.";
+		db.collection("candidate_picks").onSnapshot(snap => {
+			const next = new Map();
+			for (const doc of snap.docs) { if (!doc.exists) continue; const value = doc.data(); if (validRecord(doc.id, value)) next.set(doc.id, value); }
+			records = next; refresh();
+		}, () => { db = null; $("db-note").textContent = "저장 연결이 끊겼습니다. 페이지를 새로고침해 다시 시도해 주세요."; refresh(); });
+		refresh();
+	} catch { db = null; $("db-note").textContent = "저장은 게시된 페이지에서만 됩니다"; refresh(); }
+}
+function radioFor(view, choice) {
+	const radio = el("input"); radio.type = "radio"; radio.name = `pick-${view.row.key}`; radio.value = choice;
+	radio.id = `${rowId(view.row)}-${choice}`; radio.disabled = true;
+	radio.addEventListener("click", () => saveRow(view, choice, true));
+	view.radios.set(choice, radio); return radio;
+}
+function loadImage(file, callback) {
+	let entry = images.get(file);
+	if (!entry) {
+		entry = { image: new Image(), loaded: false, failed: false, callbacks: [] }; images.set(file, entry);
+		entry.image.addEventListener("load", () => { entry.loaded = true; for (const cb of entry.callbacks.splice(0)) cb(entry); });
+		entry.image.addEventListener("error", () => { entry.failed = true; for (const cb of entry.callbacks.splice(0)) cb(entry); });
+		entry.callbacks.push(callback); entry.image.src = file;
+	} else if (entry.loaded || entry.failed) callback(entry); else entry.callbacks.push(callback);
+}
+function frameAt(time, fps, frames, loop) {
+	const duration = frames / fps, cycle = duration + (loop ? 0 : .6);
+	return Math.min(frames - 1, Math.floor((time % cycle) * fps));
+}
+function draw(view) {
+	if (!view.near || view.root.hidden) return;
+	for (const pv of view.panels) for (const tv of pv.tiles) {
+		const p = pv.panel, t = tv.tile;
+		if (t.portrait || (!t.primitive && !tv.image)) continue;
+		const frame = frameAt(clock, p.fps, t.frames, p.loop);
+		if (frame === tv.last) continue;
+		tv.last = frame;
+		const ctx = tv.canvas.getContext("2d"); ctx.imageSmoothingEnabled = false; ctx.clearRect(0, 0, p.width, p.height);
+		if (t.primitive) {
+			ctx.strokeStyle = getComputedStyle($("viewer")).getPropertyValue("--shockwave"); ctx.lineWidth = 5; ctx.beginPath();
+			[[-16,12],[-8,-10],[0,-22],[8,-10],[16,12]].forEach(([x,y], i) => ctx[i ? "lineTo" : "moveTo"](t.x + x + 32, t.y + y + 24)); ctx.stroke();
+		} else {
+			const x = (frame % t.columns) * t.cell[0], y = (t.start + Math.floor(frame / t.columns)) * t.cell[1];
+			ctx.drawImage(tv.image, x, y, t.cell[0], t.cell[1], t.x, t.y, t.cell[0], t.cell[1]);
+		}
+		if (p.feet !== null) {
+			ctx.strokeStyle = getComputedStyle($("viewer")).getPropertyValue("--guide"); ctx.lineWidth = .5;
+			ctx.beginPath(); ctx.moveTo(0, p.feet + .5); ctx.lineTo(p.width, p.feet + .5); ctx.stroke();
+		}
+	}
+}
+function activate(view) {
+	view.near = true; active.add(view);
+	if (!view.loaded) {
+		view.loaded = true;
+		for (const pv of view.panels) for (const tv of pv.tiles) {
+			if (!tv.tile.file) continue;
+			loadImage(tv.tile.file, entry => {
+				if (entry.failed) { tv.error.textContent = "그림을 불러오지 못했습니다. 새로고침해 주세요."; return; }
+				if (tv.tile.portrait) { entry.image.alt = `${view.row.formName} ${view.row.label} ${tileLabel(tv.tile)}`; tv.stage.append(entry.image.cloneNode()); }
+				else tv.image = entry.image;
+				draw(view);
+			});
+		}
+	}
+	draw(view);
+}
+const observer = typeof IntersectionObserver === "function" ? new IntersectionObserver(entries => {
+	for (const entry of entries) {
+		const view = views.get(entry.target.dataset.key);
+		if (entry.isIntersecting && !view.root.hidden) activate(view);
+		else { view.near = false; active.delete(view); }
+	}
+}, { rootMargin: "320px 0px" }) : null;
+function fallbackVisibility() {
+	if (observer) return;
+	for (const view of views.values()) { const box = view.root.getBoundingClientRect(); if (!view.root.hidden && box.bottom >= -320 && box.top <= window.innerHeight + 320) activate(view); else { view.near = false; active.delete(view); } }
+}
+function applyFilter() {
+	let visible = 0;
+	for (const view of views.values()) {
+		const show = filter === "all" || (filter === "new" ? view.row.newCount > 0 : view.keep || !records.get(view.row.key)?.picked);
+		const wasHidden = view.root.hidden; view.root.hidden = !show;
+		if (show) visible++;
+		else { view.near = false; active.delete(view); }
+		if (show && wasHidden && observer) { observer.unobserve(view.root); observer.observe(view.root); }
+	}
+	for (const [id, group] of groupViews) group.hidden = !M.rows.some(r => r.group === id && !views.get(r.key).root.hidden);
+	$("visible-count").textContent = `${visible}줄 표시`; $("empty").hidden = visible > 0;
+	fallbackVisibility();
+}
+function buildRow(row, host) {
+	const root = el("article", "row"); root.id = rowId(row); root.dataset.key = row.key; root.tabIndex = -1;
+	const view = { row, root, panels: [], radios: new Map(), busy: false, dirty: false, error: "", loaded: false, near: false };
+	views.set(row.key, view);
+	const header = el("div", "row-head"), heading = el("h3", "", `${row.formName} · ${row.label}`); heading.id = `${root.id}-title`; root.setAttribute("aria-labelledby", heading.id); header.append(heading);
+	const badges = el("div", "badges");
+	if (row.newCount) badges.append(el("span", "badge", `새 버전 ${row.newCount}`));
+	if (row.gameRepair) badges.append(el("span", "badge", "지금 게임 시트 수리본"));
+	if (!row.hasGame) badges.append(el("span", "badge", "새 줄 — 게임에 아직 없음"));
+	if (row.noNewText) badges.append(el("span", "badge warning", "새 버전 없음"));
+	header.append(badges); root.append(header);
+	const fieldset = el("fieldset"); fieldset.id = `${root.id}-choices`; fieldset.append(el("legend", "sr", `${row.formName} ${row.label} 한 가지 고르기`));
+	for (let i = 0; i < row.panels.length; i++) {
+		const p = row.panels[i], ph = el("div", "panel-head"), tiles = el("div", "tiles"), pv = { panel: p, tiles: [] }; view.panels.push(pv);
+		if (row.kind === "legacy_sheet") ph.append(el("h4", "", p.label));
+		ph.append(el("span", "timing", `fps ${p.fps} · 프레임 ${p.tiles.map(t => t.frames).join(" / ")}${row.kind === "face" ? " · 정지 그림" : ""}`));
+		fieldset.append(ph);
+		for (let j = 0; j < p.tiles.length; j++) {
+			const t = p.tiles[j], figure = el("figure", "tile"), title = el(t.role === "candidate" && row.kind !== "legacy_sheet" ? "label" : "figcaption", "tile-title"), stage = el("div", "stage"), error = el("p", "tile-error");
+			figure.dataset.new = String(Boolean(t.isNew));
+			if (t.role === "candidate" && row.kind !== "legacy_sheet") { const radio = radioFor(view, t.version); title.htmlFor = radio.id; title.append(radio); }
+			title.append(el("span", "", tileLabel(t)));
+			const tv = { tile: t, stage, error, image: null, last: -1 }; pv.tiles.push(tv);
+			if (!t.portrait) { tv.canvas = el("canvas"); tv.canvas.width = p.width; tv.canvas.height = p.height; tv.canvas.setAttribute("aria-label", `${row.formName} ${p.label} ${tileLabel(t)}`); stage.append(tv.canvas); }
+			figure.append(title, stage, error); tiles.append(figure);
+		}
+		fieldset.append(tiles);
+	}
+	const extra = el("div", row.kind === "legacy_sheet" ? "legacy-options" : "none-choice");
+	for (const choice of row.kind === "legacy_sheet" ? ["fix1", "none"] : ["none"]) { const label = el("label"), radio = radioFor(view, choice); label.htmlFor = radio.id; label.append(radio, el("span", "", choiceLabel(row, choice))); extra.append(label); }
+	fieldset.append(extra); root.append(fieldset);
+	const changes = el("div", "change-lines");
+	if (row.kind === "legacy_sheet") changes.append(el("p", "", `${row.card} · ${row.qa.join(" · ")}: ${row.change}`));
+	else for (const t of row.panels.flatMap(p => p.tiles).filter(t => t.role === "candidate" && t.isNew)) changes.append(el("p", "", `${t.version} (${t.card}): ${t.change}`));
+	root.append(changes);
+	if (row.noNewText) root.append(el("p", "notice", row.noNewText));
+	if (row.note) root.append(el("p", "row-note", row.note));
+	const memoArea = el("div", "memo-area"), label = el("label", "memo-label", "메모 · 최대 300자"), memo = el("textarea");
+	memo.id = `${root.id}-memo`; memo.maxLength = 300; memo.rows = 1; memo.disabled = true; label.htmlFor = memo.id; label.append(memo);
+	memo.addEventListener("input", () => { view.dirty = true; });
+	const save = el("button", "", "메모 저장"), clear = el("button", "", "고르기 지움");
+	save.type = clear.type = "button"; save.id = `${root.id}-save`; clear.id = `${root.id}-clear`; save.disabled = clear.disabled = true;
+	save.addEventListener("click", () => { const record = records.get(row.key); if (record) return saveRow(view, record.choice, record.picked); });
+	clear.addEventListener("click", () => { const record = records.get(row.key); if (record?.picked) return saveRow(view, record.choice, false); });
+	const status = el("p", "status"); status.id = `${root.id}-status`; status.setAttribute("role", "status");
+	view.memo = memo; view.save = save; view.clear = clear; view.status = status;
+	memoArea.append(label, save, clear); root.append(memoArea, status); host.append(root);
+	if (observer) observer.observe(root);
+}
+for (const [label, count] of [["전체 줄", M.counts.rows], ["옛·새 나란히", M.counts.newRows], ["게임 시트 수리본 비교", M.counts.gameRepairs], ["새 버전 없음", M.counts.noNewRows]]) { const card = el("div", "count-card"); card.append(el("span", "", label), el("strong", "", String(count))); $("counts").append(card); }
+for (const group of M.groups) {
+	const section = el("section", "group"); section.id = `group-${group.id}`; section.append(el("h2", "", group.label)); groupViews.set(group.id, section);
+	$("groups").append(section);
+	const chip = el("a", "chip", group.label); chip.id = `nav-${group.id}`; chip.href = `#${section.id}`;
+	chip.addEventListener("click", event => { event.preventDefault(); if (section.hidden) { filter = "all"; $("filter").value = "all"; applyFilter(); } section.scrollIntoView({ block: "start" }); }); $("sections").append(chip);
+	for (const row of M.rows.filter(r => r.group === group.id)) buildRow(row, section);
+}
+function updatePlay() { $("play").textContent = playing ? "멈춤" : "재생"; $("play").setAttribute("aria-pressed", String(playing)); }
+$("play").addEventListener("click", () => { playing = !playing; lastTime = null; updatePlay(); });
+$("speed").addEventListener("change", event => { speed = Number(event.target.value); lastTime = null; });
+$("background").addEventListener("change", event => { $("viewer").dataset.bg = event.target.value; });
+$("size").addEventListener("change", event => { $("viewer").dataset.size = event.target.value; });
+$("filter").addEventListener("change", event => { filter = event.target.value; for (const view of views.values()) view.keep = false; applyFilter(); });
+document.addEventListener("visibilitychange", () => { lastTime = null; });
+if (!observer) { window.addEventListener("scroll", fallbackVisibility, { passive: true }); window.addEventListener("resize", fallbackVisibility); }
+function tick(now) {
+	if (lastTime !== null && playing && !document.hidden) clock += Math.min(Math.max(0, now - lastTime), 100) / 1000 * speed;
+	lastTime = now;
+	if (!document.hidden) for (const view of active) draw(view);
+	requestAnimationFrame(tick);
+}
+updatePlay(); refresh(); connect(); requestAnimationFrame(tick);
+</script>
