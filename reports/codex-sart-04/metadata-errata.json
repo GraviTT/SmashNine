@@ -1,0 +1,19 @@
+{
+  "note_ko": "기존 후보와 JSON을 덮어쓰지 않고 초기 alpha 설명의 오류를 정정한다. 실제 RGBA 측정은 measurements.json을 따른다.",
+  "corrections": [
+    {
+      "file": "art/bakeoff/story/map_path_tile-v1.json",
+      "field": "alpha",
+      "original": "binary 0/255; transparent RGB=0",
+      "correct": "binary 0/255; 174 fully transparent pixels retain dark outline RGB (16,24,39)",
+      "rendering_impact": "none with specified nearest filtering and normal alpha blend"
+    },
+    {
+      "file": "art/bakeoff/story/map_path_tile-v2.json",
+      "field": "alpha",
+      "original": "binary 0/255; transparent RGB=0",
+      "correct": "binary 0/255; 171 fully transparent pixels retain dark outline RGB (16,24,39)",
+      "rendering_impact": "none with specified nearest filtering and normal alpha blend"
+    }
+  ]
+}

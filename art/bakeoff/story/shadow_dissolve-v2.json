@@ -1,0 +1,192 @@
+{
+  "asset": "shadow_dissolve",
+  "variant": "v2",
+  "status": "candidate",
+  "note_ko": "둥글게 말린 보라 연무 덩어리가 나뉘어 위로 흩어진다. 발 원점은 (96,152).",
+  "canvas_size": [
+    1152,
+    192
+  ],
+  "frame_size": [
+    192,
+    192
+  ],
+  "frames": 6,
+  "fps": 12,
+  "loop": false,
+  "pivot": [
+    96,
+    152
+  ],
+  "method": "내장 image_gen 원본 → 3×2 고정 칸 분리 → 공통 배율 최근접 축소 → 지정 6색 매핑 → alpha 128 문턱의 이진화 → 1px 남청 외곽 → 상승 위치 보정",
+  "alpha": "binary 0/255; transparent RGB=0",
+  "palette": {
+    "ink": "#101827",
+    "gold": "#f3cd7c",
+    "ochre": "#a8742c",
+    "blue": "#3d7bd9",
+    "ice": "#9fd2ff",
+    "violet": "#3b1d5e",
+    "purple": "#6b2fa8",
+    "lilac": "#b98af0",
+    "pink": "#ff4fd8",
+    "blush": "#ffd6f5"
+  },
+  "processing": {
+    "raw": "art/raw/story/shadow_dissolve-v2_raw.png",
+    "raw_sha256": "70193dc348e91dda0df8fef22b5b2b256c8bc45e53513e326436365242f4cf89",
+    "grid": [
+      3,
+      2
+    ],
+    "common_scale": 0.28125,
+    "alpha_threshold": 128,
+    "palette": [
+      [
+        16,
+        24,
+        39
+      ],
+      [
+        59,
+        29,
+        94
+      ],
+      [
+        107,
+        47,
+        168
+      ],
+      [
+        185,
+        138,
+        240
+      ],
+      [
+        255,
+        79,
+        216
+      ],
+      [
+        255,
+        214,
+        245
+      ]
+    ],
+    "outline_px": 1,
+    "frame_mapping": [
+      {
+        "frame": 1,
+        "source_box": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          18
+        ],
+        "rise_px": 0
+      },
+      {
+        "frame": 2,
+        "source_box": [
+          512,
+          0,
+          1024,
+          512
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          14
+        ],
+        "rise_px": 4
+      },
+      {
+        "frame": 3,
+        "source_box": [
+          1024,
+          0,
+          1536,
+          512
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          8
+        ],
+        "rise_px": 10
+      },
+      {
+        "frame": 4,
+        "source_box": [
+          0,
+          512,
+          512,
+          1024
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          2
+        ],
+        "rise_px": 16
+      },
+      {
+        "frame": 5,
+        "source_box": [
+          512,
+          512,
+          1024,
+          1024
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          -2
+        ],
+        "rise_px": 20
+      },
+      {
+        "frame": 6,
+        "source_box": [
+          1024,
+          512,
+          1536,
+          1024
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          -4
+        ],
+        "rise_px": 22
+      }
+    ]
+  },
+  "blend": "normal alpha (not additive)",
+  "filter": "nearest",
+  "task": "design/tasks/SART-04.md",
+  "sha256": "2cf1a9ebe5cde7a41201a062a6e9c43aea075be0db3bb131dda347b1d76f5602"
+}

@@ -1,0 +1,40 @@
+{
+  "asset": "map_marker_next",
+  "variant": "v2",
+  "status": "candidate",
+  "note_ko": "두 갈래로 갈라지는 영혼 불꽃. 넓은 아래쪽 보라 불꽃 안에 분홍 하트가 남는 6프레임 루프.",
+  "canvas_size": [
+    288,
+    48
+  ],
+  "frame_size": [
+    48,
+    48
+  ],
+  "frames": 6,
+  "fps": 8,
+  "loop": true,
+  "pivot": [
+    24,
+    40
+  ],
+  "method": "Python + Pillow로 정확한 1배 캔버스에 직접 픽셀 드로잉. 보간·안티앨리어싱·디더링 없음.",
+  "alpha": "binary 0/255; transparent RGB=0",
+  "palette": {
+    "ink": "#101827",
+    "gold": "#f3cd7c",
+    "ochre": "#a8742c",
+    "blue": "#3d7bd9",
+    "ice": "#9fd2ff",
+    "violet": "#3b1d5e",
+    "purple": "#6b2fa8",
+    "lilac": "#b98af0",
+    "pink": "#ff4fd8",
+    "blush": "#ffd6f5"
+  },
+  "processing": null,
+  "blend": "normal alpha (not additive)",
+  "filter": "nearest",
+  "task": "design/tasks/SART-04.md",
+  "sha256": "83e93911b24d2deb9626ce0e27f6f2e7a359f8d1384d707416ae445ad16063dd"
+}
