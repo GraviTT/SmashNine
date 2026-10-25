@@ -1,0 +1,18 @@
+{
+  "reviewer": "Codex builder ART-84",
+  "type": "육안 판단이며 자동 측정의 합격 기준과 구분",
+  "surfaces": ["256x256 1배", "142x164 영역의 142x142 등비 축소", "주인공 왼쪽·발화자 오른쪽 대화 목업", "얼굴 4배 확대"],
+  "actual_godot_capture": false,
+  "reviews": [
+    {"file":"yuki_face-hurt-v2.png","judgment":"두 눈을 감고 입을 벌린 통증과 청록 땀방울이 v1보다 분명하다. 4배에서 뚜렷한 합성 테두리나 이중 입술은 보이지 않는다.","weakness":"눈썹은 원본 앞머리에 가려진다. 땀방울은 142px에서 여전히 작은 보조 신호다."},
+    {"file":"rio_male_face-hurt-v2.png","judgment":"닫힌 눈과 어두운 입 안이 함께 보여 피곤한 찡그림보다 통증으로 읽힌다. 4배에서 붙인 경계는 눈에 띄지 않는다.","weakness":"초상화 안에서 얼굴 면적이 작아 입 모양이 주요 신호다. 전신 포즈는 그대로라 피격 자세까지 바뀌지는 않는다."},
+    {"file":"frey_face-shadow-v2.png","judgment":"갑옷 반사가 낮아지고 민트 눈이 얼굴보다 먼저 보인다. 깃털과 금속 선은 남아 있다.","weakness":"어두운 배경에서는 검은 머리 외곽 대비가 줄어든다."},
+    {"file":"luna_face-shadow-v2.png","judgment":"피부·별 장식이 낮아져 청록 눈과 그림자 상태가 읽힌다. 리본과 의상 선을 확인했다.","weakness":"작은 표시에서는 머리 리본의 가장 어두운 결이 덜 보인다."},
+    {"file":"luna_brave_face-shadow-v2.png","judgment":"피부와 장갑의 밝기가 낮아지고 보라 눈이 남는다. 초기의 눈 주변 밝은 피부 띠는 최종 마스크에서 줄었다.","weakness":"보라 눈은 청록 눈보다 전체 팔레트와 가까워 색상 대비가 약하다."},
+    {"file":"yuki_face-shadow-v2.png","judgment":"손의 부적과 가슴 문양이 어두워져 눈과의 경쟁이 줄었다. 기존 머리카락과 부적 선이 남아 있다.","weakness":"앞머리와 작은 눈 때문에 142px 눈 가독성은 여덟 폼 중 가장 약하다."},
+    {"file":"nova_male_face-shadow-v2.png","judgment":"피부·금속이 낮아지고 눈이 코어보다 두드러진다. 보라 눈 주변 피부 띠와 작은 밝은 점을 최종 마스크에서 줄였다.","weakness":"기존 날카로운 눈썹 때문에 무표정보다 냉정한 적의로 읽힐 수 있다."},
+    {"file":"nova_female_face-shadow-v2.png","judgment":"밝은 얼굴과 흉갑이 어두워졌고 눈이 보인다. 갑옷의 선과 코어 구조를 확인했다.","weakness":"흉갑 코어는 여전히 큰 원형 장식으로 눈길을 끈다. 남성형과 눈 색 차이는 작다."},
+    {"file":"rio_male_face-shadow-v2.png","judgment":"밝던 피부와 은색 장비가 낮아지고 민트 눈이 보인다. 의상·칼·망토 선이 남아 있다.","weakness":"작은 얼굴과 머리카락 때문에 먼 쪽 눈은 작은 빛점으로 읽힌다."},
+    {"file":"rio_female_face-shadow-v2.png","judgment":"보이는 한쪽 눈의 밝기와 얼굴 대비가 개선됐다. 감긴 눈, 속눈썹과 기존 인물 위치는 유지됐다.","weakness":"발광 면적 자체는 늘리지 않아 142px에서 여전히 한쪽의 작은 빛점이다."}
+  ]
+}
