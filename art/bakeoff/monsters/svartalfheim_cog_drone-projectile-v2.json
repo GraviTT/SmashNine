@@ -1,0 +1,50 @@
+{
+  "note": "같은 폭탄 원화 한 장을 몸 중심에서 45도씩 시계 방향으로 회전한 8프레임. 도화선 불꽃만 밝기 변화. 12fps 후보이며 기존 파일은 보존.",
+  "frames": 8,
+  "fps": 12,
+  "cell": 48,
+  "aim": "none",
+  "replaces": "art/bakeoff/monsters/svartalfheim_cog_drone-projectile-v1.png",
+  "loop": true,
+  "status": "candidate",
+  "processing": {
+    "source": "art/raw/projectiles-85/bomb-gen2.png",
+    "source_box": [
+      219,
+      296,
+      946,
+      1099
+    ],
+    "source_body_pivot": [
+      582.5,
+      791.5
+    ],
+    "scale": 0.03997198944965499,
+    "supersampling": 4,
+    "rotation_degrees_clockwise": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ],
+    "spark_gain": [
+      1,
+      0.82,
+      1.08,
+      0.9,
+      1.04,
+      0.86,
+      1.1,
+      0.94
+    ],
+    "spark_source_mask_pixels_at_4x": 114
+  },
+  "pivot": [
+    24,
+    24
+  ]
+}
