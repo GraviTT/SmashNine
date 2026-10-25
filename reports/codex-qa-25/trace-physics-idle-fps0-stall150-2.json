@@ -1,0 +1,129 @@
+{
+	"errors": [],
+	"max_fps": 0,
+	"max_steps": 8,
+	"ok": true,
+	"physics_hz": 60,
+	"poll": "idle",
+	"stall_executed": false,
+	"startup": "physics",
+	"synthetic_stall_ms": 150,
+	"trace": [
+		{
+			"event": "before_J_call",
+			"phase": "slow",
+			"physics_frame": 1,
+			"player_id": 1,
+			"process_frame": 0,
+			"wall_us": 121921
+		},
+		{
+			"event": "after_J_call",
+			"phase": "slow",
+			"physics_frame": 1,
+			"process_frame": 0,
+			"wall_us": 122118
+		},
+		{
+			"attempt": 0,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "slow",
+			"physics_frame": 1,
+			"process_frame": 0,
+			"queued": false,
+			"wall_us": 122148
+		},
+		{
+			"event": "attack_enter",
+			"id": 59693336244,
+			"phase": "slow",
+			"physics_frame": 5,
+			"process_frame": 0,
+			"wall_us": 124280
+		},
+		{
+			"attempt": 1,
+			"event": "poll",
+			"found": true,
+			"id": 59693336244,
+			"phase": "slow",
+			"physics_frame": 8,
+			"process_frame": 0,
+			"queued": false,
+			"wall_us": 142623
+		},
+		{
+			"event": "before_J_call",
+			"phase": "fast",
+			"physics_frame": 8,
+			"player_id": 2,
+			"process_frame": 0,
+			"wall_us": 146113
+		},
+		{
+			"event": "after_J_call",
+			"phase": "fast",
+			"physics_frame": 8,
+			"process_frame": 0,
+			"wall_us": 146235
+		},
+		{
+			"attempt": 0,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 8,
+			"process_frame": 0,
+			"queued": false,
+			"wall_us": 146272
+		},
+		{
+			"created_phase": "slow",
+			"event": "attack_exit",
+			"id": 59693336244,
+			"phase": "fast",
+			"physics_frame": 10,
+			"process_frame": 1,
+			"wall_us": 146968
+		},
+		{
+			"event": "attack_enter",
+			"id": 62713235124,
+			"phase": "fast",
+			"physics_frame": 13,
+			"process_frame": 1,
+			"wall_us": 147192
+		},
+		{
+			"attempt": 1,
+			"event": "poll",
+			"found": true,
+			"id": 62713235124,
+			"phase": "fast",
+			"physics_frame": 16,
+			"process_frame": 1,
+			"queued": false,
+			"wall_us": 147737
+		},
+		{
+			"created_phase": "fast",
+			"event": "attack_exit",
+			"id": 62713235124,
+			"phase": "fast",
+			"physics_frame": 17,
+			"process_frame": 2,
+			"wall_us": 186413
+		},
+		{
+			"event": "momentum_result",
+			"ok": true,
+			"phase": "fast",
+			"physics_frame": 29,
+			"process_frame": 12,
+			"wall_us": 384028
+		}
+	]
+}

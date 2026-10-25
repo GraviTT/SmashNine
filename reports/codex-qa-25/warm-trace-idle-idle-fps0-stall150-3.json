@@ -1,0 +1,202 @@
+{
+	"errors": [],
+	"max_fps": 0,
+	"max_steps": 8,
+	"ok": true,
+	"physics_hz": 60,
+	"poll": "idle",
+	"stall_executed": false,
+	"startup": "idle",
+	"synthetic_stall_ms": 150,
+	"trace": [
+		{
+			"event": "synthetic_warmup_complete",
+			"phase": "slow",
+			"physics_frame": 18,
+			"process_frame": 23,
+			"wall_us": 145516
+		},
+		{
+			"event": "before_J_call",
+			"phase": "slow",
+			"physics_frame": 18,
+			"player_id": 1,
+			"process_frame": 23,
+			"wall_us": 278366
+		},
+		{
+			"event": "after_J_call",
+			"phase": "slow",
+			"physics_frame": 18,
+			"process_frame": 23,
+			"wall_us": 278562
+		},
+		{
+			"attempt": 0,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "slow",
+			"physics_frame": 18,
+			"process_frame": 23,
+			"queued": false,
+			"wall_us": 278595
+		},
+		{
+			"event": "attack_enter",
+			"id": 59743667892,
+			"phase": "slow",
+			"physics_frame": 25,
+			"process_frame": 24,
+			"wall_us": 280749
+		},
+		{
+			"attempt": 1,
+			"event": "poll",
+			"found": true,
+			"id": 59743667892,
+			"phase": "slow",
+			"physics_frame": 25,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 299920
+		},
+		{
+			"event": "before_J_call",
+			"phase": "fast",
+			"physics_frame": 25,
+			"player_id": 2,
+			"process_frame": 24,
+			"wall_us": 303840
+		},
+		{
+			"event": "after_J_call",
+			"phase": "fast",
+			"physics_frame": 25,
+			"process_frame": 24,
+			"wall_us": 303970
+		},
+		{
+			"attempt": 0,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 25,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 304014
+		},
+		{
+			"attempt": 1,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 27,
+			"process_frame": 25,
+			"queued": false,
+			"wall_us": 305000
+		},
+		{
+			"attempt": 2,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 27,
+			"process_frame": 27,
+			"queued": false,
+			"wall_us": 311642
+		},
+		{
+			"attempt": 3,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 28,
+			"process_frame": 28,
+			"queued": false,
+			"wall_us": 318658
+		},
+		{
+			"attempt": 4,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 28,
+			"process_frame": 29,
+			"queued": false,
+			"wall_us": 325431
+		},
+		{
+			"attempt": 5,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 29,
+			"process_frame": 30,
+			"queued": false,
+			"wall_us": 332408
+		},
+		{
+			"attempt": 6,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 29,
+			"process_frame": 31,
+			"queued": false,
+			"wall_us": 404293
+		},
+		{
+			"created_phase": "slow",
+			"event": "attack_exit",
+			"id": 59743667892,
+			"phase": "fast",
+			"physics_frame": 30,
+			"process_frame": 32,
+			"wall_us": 404444
+		},
+		{
+			"event": "attack_enter",
+			"id": 62981670580,
+			"phase": "fast",
+			"physics_frame": 32,
+			"process_frame": 32,
+			"wall_us": 404753
+		},
+		{
+			"attempt": 7,
+			"event": "poll",
+			"found": true,
+			"id": 62981670580,
+			"phase": "fast",
+			"physics_frame": 32,
+			"process_frame": 32,
+			"queued": false,
+			"wall_us": 405125
+		},
+		{
+			"created_phase": "fast",
+			"event": "attack_exit",
+			"id": 62981670580,
+			"phase": "fast",
+			"physics_frame": 33,
+			"process_frame": 33,
+			"wall_us": 407458
+		},
+		{
+			"event": "momentum_result",
+			"ok": true,
+			"phase": "fast",
+			"physics_frame": 49,
+			"process_frame": 38,
+			"wall_us": 687476
+		}
+	]
+}

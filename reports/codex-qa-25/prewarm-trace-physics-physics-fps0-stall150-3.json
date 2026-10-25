@@ -1,0 +1,250 @@
+{
+	"errors": [],
+	"max_fps": 0,
+	"max_steps": 8,
+	"ok": true,
+	"physics_hz": 60,
+	"poll": "physics",
+	"stall_executed": true,
+	"startup": "physics",
+	"synthetic_stall_ms": 150,
+	"trace": [
+		{
+			"event": "synthetic_warmup_complete",
+			"phase": "fast",
+			"physics_frame": 18,
+			"process_frame": 18,
+			"wall_us": 152556
+		},
+		{
+			"event": "before_J_call",
+			"phase": "slow",
+			"physics_frame": 18,
+			"player_id": 1,
+			"process_frame": 18,
+			"wall_us": 155850
+		},
+		{
+			"event": "after_J_call",
+			"phase": "slow",
+			"physics_frame": 18,
+			"process_frame": 18,
+			"wall_us": 156007
+		},
+		{
+			"attempt": 0,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "slow",
+			"physics_frame": 18,
+			"process_frame": 18,
+			"queued": false,
+			"wall_us": 156036
+		},
+		{
+			"attempt": 1,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "slow",
+			"physics_frame": 19,
+			"process_frame": 20,
+			"queued": false,
+			"wall_us": 166408
+		},
+		{
+			"attempt": 2,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "slow",
+			"physics_frame": 20,
+			"process_frame": 23,
+			"queued": false,
+			"wall_us": 187039
+		},
+		{
+			"event": "synthetic_stall_begin",
+			"ms": 150,
+			"phase": "slow",
+			"physics_frame": 20,
+			"process_frame": 23,
+			"wall_us": 187051
+		},
+		{
+			"event": "synthetic_stall_end",
+			"phase": "slow",
+			"physics_frame": 20,
+			"process_frame": 23,
+			"wall_us": 337213
+		},
+		{
+			"attempt": 3,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "slow",
+			"physics_frame": 21,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 337370
+		},
+		{
+			"attempt": 4,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "slow",
+			"physics_frame": 22,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 337415
+		},
+		{
+			"attempt": 5,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "slow",
+			"physics_frame": 23,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 337442
+		},
+		{
+			"event": "attack_enter",
+			"id": 61807265447,
+			"phase": "slow",
+			"physics_frame": 23,
+			"process_frame": 24,
+			"wall_us": 337767
+		},
+		{
+			"attempt": 6,
+			"event": "poll",
+			"found": true,
+			"id": 61807265447,
+			"phase": "slow",
+			"physics_frame": 24,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 355299
+		},
+		{
+			"event": "before_J_call",
+			"phase": "fast",
+			"physics_frame": 24,
+			"player_id": 2,
+			"process_frame": 24,
+			"wall_us": 359906
+		},
+		{
+			"event": "after_J_call",
+			"phase": "fast",
+			"physics_frame": 24,
+			"process_frame": 24,
+			"wall_us": 360097
+		},
+		{
+			"attempt": 0,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 24,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 360146
+		},
+		{
+			"attempt": 1,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 25,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 360922
+		},
+		{
+			"attempt": 2,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 26,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 361046
+		},
+		{
+			"attempt": 3,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 27,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 361113
+		},
+		{
+			"attempt": 4,
+			"event": "poll",
+			"found": false,
+			"id": -1,
+			"phase": "fast",
+			"physics_frame": 28,
+			"process_frame": 24,
+			"queued": false,
+			"wall_us": 361164
+		},
+		{
+			"event": "attack_enter",
+			"id": 64877495974,
+			"phase": "fast",
+			"physics_frame": 28,
+			"process_frame": 24,
+			"wall_us": 361347
+		},
+		{
+			"created_phase": "slow",
+			"event": "attack_exit",
+			"id": 61807265447,
+			"phase": "fast",
+			"physics_frame": 28,
+			"process_frame": 24,
+			"wall_us": 361781
+		},
+		{
+			"attempt": 5,
+			"event": "poll",
+			"found": true,
+			"id": 64877495974,
+			"phase": "fast",
+			"physics_frame": 29,
+			"process_frame": 25,
+			"queued": false,
+			"wall_us": 362269
+		},
+		{
+			"created_phase": "fast",
+			"event": "attack_exit",
+			"id": 64877495974,
+			"phase": "fast",
+			"physics_frame": 30,
+			"process_frame": 25,
+			"wall_us": 362969
+		},
+		{
+			"event": "momentum_result",
+			"ok": true,
+			"phase": "fast",
+			"physics_frame": 40,
+			"process_frame": 51,
+			"wall_us": 538756
+		}
+	]
+}

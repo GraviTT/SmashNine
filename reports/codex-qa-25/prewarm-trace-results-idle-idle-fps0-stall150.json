@@ -1,0 +1,62 @@
+{
+    "rows":  [
+                 {
+                     "errors":  [
+
+                                ],
+                     "seconds":  3.8801449,
+                     "iteration":  1,
+                     "exit":  0,
+                     "load_running_end":  0,
+                     "certificate":  1,
+                     "load_core_equivalent":  0,
+                     "load_engine_pids":  [
+
+                                          ],
+                     "label":  "prewarm-trace-idle-idle-fps0-stall150-1",
+                     "args":  "--headless --path . -s tests/analysis/codex_qa_25/timeline.gd -- --startup=idle --poll=idle --stall-ms=150 --out=prewarm-trace-idle-idle-fps0-stall150-1",
+                     "condition":  "trace",
+                     "stopped":  false,
+                     "console_wrapper_cpu_seconds":  0.046875
+                 },
+                 {
+                     "errors":  [
+
+                                ],
+                     "seconds":  3.8344663,
+                     "iteration":  2,
+                     "exit":  0,
+                     "load_running_end":  0,
+                     "certificate":  1,
+                     "load_core_equivalent":  0,
+                     "load_engine_pids":  [
+
+                                          ],
+                     "label":  "prewarm-trace-idle-idle-fps0-stall150-2",
+                     "args":  "--headless --path . -s tests/analysis/codex_qa_25/timeline.gd -- --startup=idle --poll=idle --stall-ms=150 --out=prewarm-trace-idle-idle-fps0-stall150-2",
+                     "condition":  "trace",
+                     "stopped":  false,
+                     "console_wrapper_cpu_seconds":  0.0625
+                 },
+                 {
+                     "errors":  [
+
+                                ],
+                     "seconds":  3.7413331,
+                     "iteration":  3,
+                     "exit":  0,
+                     "load_running_end":  0,
+                     "certificate":  1,
+                     "load_core_equivalent":  0,
+                     "load_engine_pids":  [
+
+                                          ],
+                     "label":  "prewarm-trace-idle-idle-fps0-stall150-3",
+                     "args":  "--headless --path . -s tests/analysis/codex_qa_25/timeline.gd -- --startup=idle --poll=idle --stall-ms=150 --out=prewarm-trace-idle-idle-fps0-stall150-3",
+                     "condition":  "trace",
+                     "stopped":  false,
+                     "console_wrapper_cpu_seconds":  0.015625
+                 }
+             ],
+    "logical_processors":  4
+}

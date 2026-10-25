@@ -1,0 +1,26 @@
+[
+    {
+        "errors":  [
+
+                   ],
+        "seconds":  285.7091628,
+        "exit":  0,
+        "certificate":  1,
+        "label":  "load-soak-1",
+        "args":  "--headless --path . --fixed-fps 60 -s tests/analysis/codex_qa_25/load_soak.gd -- --seconds=480 --seed=2501 --players=8 --worker=1",
+        "stopped":  true,
+        "console_wrapper_cpu_seconds":  0.015625
+    },
+    {
+        "errors":  [
+
+                   ],
+        "seconds":  285.6951744,
+        "exit":  0,
+        "certificate":  1,
+        "label":  "load-soak-2",
+        "args":  "--headless --path . --fixed-fps 60 -s tests/analysis/codex_qa_25/load_soak.gd -- --seconds=480 --seed=2502 --players=8 --worker=2",
+        "stopped":  false,
+        "console_wrapper_cpu_seconds":  0.015625
+    }
+]

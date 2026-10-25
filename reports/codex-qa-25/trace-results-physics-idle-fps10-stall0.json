@@ -1,0 +1,24 @@
+{
+    "rows":  [
+                 {
+                     "errors":  [
+
+                                ],
+                     "seconds":  5.8090958,
+                     "iteration":  1,
+                     "exit":  0,
+                     "load_running_end":  0,
+                     "certificate":  1,
+                     "load_core_equivalent":  0,
+                     "load_engine_pids":  [
+
+                                          ],
+                     "label":  "trace-physics-idle-fps10-stall0-1",
+                     "args":  "--headless --path . --max-fps 10 -s tests/analysis/codex_qa_25/timeline.gd -- --startup=physics --poll=idle --stall-ms=0 --out=trace-physics-idle-fps10-stall0-1",
+                     "condition":  "trace",
+                     "stopped":  false,
+                     "console_wrapper_cpu_seconds":  0.03125
+                 }
+             ],
+    "logical_processors":  4
+}

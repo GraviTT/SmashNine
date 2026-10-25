@@ -1,0 +1,62 @@
+{
+    "rows":  [
+                 {
+                     "errors":  [
+
+                                ],
+                     "seconds":  6.2074003,
+                     "iteration":  1,
+                     "exit":  0,
+                     "load_running_end":  0,
+                     "certificate":  1,
+                     "load_core_equivalent":  0,
+                     "load_engine_pids":  [
+
+                                          ],
+                     "label":  "trace-physics-physics-fps0-stall150-1",
+                     "args":  "--headless --path . -s tests/analysis/codex_qa_25/timeline.gd -- --startup=physics --poll=physics --stall-ms=150 --out=trace-physics-physics-fps0-stall150-1",
+                     "condition":  "trace",
+                     "stopped":  false,
+                     "console_wrapper_cpu_seconds":  0.03125
+                 },
+                 {
+                     "errors":  [
+
+                                ],
+                     "seconds":  6.9248522,
+                     "iteration":  2,
+                     "exit":  0,
+                     "load_running_end":  0,
+                     "certificate":  1,
+                     "load_core_equivalent":  0,
+                     "load_engine_pids":  [
+
+                                          ],
+                     "label":  "trace-physics-physics-fps0-stall150-2",
+                     "args":  "--headless --path . -s tests/analysis/codex_qa_25/timeline.gd -- --startup=physics --poll=physics --stall-ms=150 --out=trace-physics-physics-fps0-stall150-2",
+                     "condition":  "trace",
+                     "stopped":  false,
+                     "console_wrapper_cpu_seconds":  0.015625
+                 },
+                 {
+                     "errors":  [
+
+                                ],
+                     "seconds":  6.8577559,
+                     "iteration":  3,
+                     "exit":  0,
+                     "load_running_end":  0,
+                     "certificate":  1,
+                     "load_core_equivalent":  0,
+                     "load_engine_pids":  [
+
+                                          ],
+                     "label":  "trace-physics-physics-fps0-stall150-3",
+                     "args":  "--headless --path . -s tests/analysis/codex_qa_25/timeline.gd -- --startup=physics --poll=physics --stall-ms=150 --out=trace-physics-physics-fps0-stall150-3",
+                     "condition":  "trace",
+                     "stopped":  false,
+                     "console_wrapper_cpu_seconds":  0.03125
+                 }
+             ],
+    "logical_processors":  4
+}

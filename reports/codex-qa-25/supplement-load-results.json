@@ -1,0 +1,25 @@
+{
+    "rows":  [
+                 {
+                     "errors":  [
+
+                                ],
+                     "seconds":  14.033162599999999,
+                     "iteration":  1,
+                     "exit":  0,
+                     "load_running_end":  2,
+                     "certificate":  1,
+                     "load_core_equivalent":  0.57007819463304732,
+                     "load_engine_pids":  [
+                                              28740,
+                                              25624
+                                          ],
+                     "label":  "supplement-load-1",
+                     "args":  "--headless --path . -s tests/test_nova_prototype.gd",
+                     "condition":  "load",
+                     "stopped":  false,
+                     "console_wrapper_cpu_seconds":  0.015625
+                 }
+             ],
+    "logical_processors":  4
+}
