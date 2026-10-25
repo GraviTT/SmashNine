@@ -1,0 +1,68 @@
+{
+  "note": "ART-80에서 중립 얼굴을 직접 편집한 v1의 선화·좌표·알파를 유지하고 승인된 Pillow 점별 톤 곡선으로 피부·금속·부적을 어둡게 했다. 기존 눈 색 영역은 보호하거나 밝기를 보강했다. 리오 여성형의 감긴 눈을 새로 그리지 않았다. 미채택 v2 후보이며 게임 미연결.",
+  "expression": "shadow",
+  "edited_from": "smash-nine-prototype/assets/art/luna/luna_face.png",
+  "replaces": "art/bakeoff/luna/luna_face-shadow-v1.png",
+  "source_raw": "art/raw/faces-84/luna-shadow-v1.png",
+  "review_status": "candidate",
+  "candidate_only": true,
+  "delivered": true,
+  "size": [
+    256,
+    256
+  ],
+  "mode": "RGBA",
+  "measurements": {
+    "stem": "luna",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      -1,
+      0
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 78,
+    "face_sample_pixels": 341,
+    "before": {
+      "eye_luma": 158.3311,
+      "face_luma": 200.3914,
+      "eye_face_ratio": 0.7901,
+      "dialogue_eye_luma": 159.0835,
+      "dialogue_face_luma": 200.6203,
+      "dialogue_eye_face_ratio": 0.793
+    },
+    "after": {
+      "eye_luma": 167.184,
+      "face_luma": 95.099,
+      "eye_face_ratio": 1.758,
+      "dialogue_eye_luma": 153.7654,
+      "dialogue_face_luma": 95.2272,
+      "dialogue_eye_face_ratio": 1.6147
+    },
+    "strong_adjacent_edges": 39689,
+    "surviving_edges_delta_ge3": 39689,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 41414,
+      "after_delta_ge3_pairs": 41414,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "81a85c162ee9dccd69faac0b913e66a1680bb05b275068652b50501c82be47ae"
+  },
+  "review_board": "reports/codex-art-84/luna-shadow.png",
+  "processed_from": "art/bakeoff/luna/luna_face-shadow-v1.png",
+  "offset": [
+    -1,
+    0
+  ],
+  "additional_offset": [
+    0,
+    0
+  ],
+  "tone_config": "reports/codex-art-84/shadow-tone-config.json"
+}

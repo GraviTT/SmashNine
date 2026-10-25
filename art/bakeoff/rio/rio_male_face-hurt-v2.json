@@ -1,0 +1,42 @@
+{
+  "note": "중립 얼굴을 내장 이미지 도구로 편집하고 ART-73 정수 정렬·4px 내부 페더 마스크로 합성했다. 두 눈을 감고 통증으로 벌어진 입을 만들었으며 유키는 땀방울을 강조했다. 마스크 밖 RGBA 및 전체 알파는 중립과 같다. 미채택 v2 후보이며 게임 미연결.",
+  "expression": "hurt",
+  "edited_from": "smash-nine-prototype/assets/art/rio/rio_male_face.png",
+  "replaces": "art/bakeoff/rio/rio_male_face-hurt-v1.png",
+  "source_raw": "art/raw/faces-84/rio_male-hurt-generated-1.png",
+  "review_status": "candidate",
+  "candidate_only": true,
+  "delivered": true,
+  "size": [
+    256,
+    256
+  ],
+  "mode": "RGBA",
+  "measurements": {
+    "stem": "rio_male",
+    "expression": "hurt",
+    "selected_attempt": 1,
+    "offset": [
+      0,
+      0
+    ],
+    "alignment_roi_pixels": 292,
+    "outside_mask_changed_pixels": 0,
+    "alpha_changed_pixels": 0,
+    "seam_band_pixels": 678,
+    "seam_edit_neutral_rgb_mae": 21.5585,
+    "seam_composite_neutral_rgb_mae": 11.3024,
+    "seam_edit_neutral_rgb_p95": 127.3,
+    "mask_pixels": 1269,
+    "changed_pixels": 1210,
+    "candidate_sha256": "c0aae503cab95937486c07d1aaffa80423ccb6d6be5f97d5e64c51db369de025"
+  },
+  "review_board": "reports/codex-art-84/rio_male-hurt.png",
+  "offset": [
+    0,
+    0
+  ],
+  "mask": "reports/codex-art-84/rio_male-hurt-mask.png",
+  "feather_pixels": 4,
+  "selected_attempt": 1
+}
