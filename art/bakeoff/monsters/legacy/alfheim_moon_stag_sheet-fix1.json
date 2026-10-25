@@ -1,0 +1,416 @@
+{
+  "id": "alfheim_moon_stag",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L12",
+    "L27"
+  ],
+  "note": "L12, L27: 원본의 완전한 몸 영역을 다시 잘라 배치. 공격 원본은 3자세뿐. F4는 F1을 회수 자세로 재사용. 공격행 공통 0.25배로 넓은 돌진까지 보존하며 대기 대비 머리가 약 15% 작아지는 한계.",
+  "replaces": "smash-nine-prototype/assets/art/monsters/alfheim_moon_stag_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "19be291c34e03d314f5418c739d9280823133f7f55a0fa2429d1b292129ffeb3",
+  "candidate_file_sha256": "db88189bcc561c2cc812a9657ee91a7156a1a179488fe064f2b30592084b9b61",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "attack",
+      "frame": 1,
+      "source": "art/raw/monsters-87/alfheim_moon_stag_source.png",
+      "source_region": [
+        20,
+        574,
+        311,
+        756
+      ],
+      "alpha_bbox_in_region": [
+        6,
+        8,
+        284,
+        177
+      ],
+      "scale": 0.25,
+      "placement": [
+        13,
+        30
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          14,
+          22,
+          82,
+          72
+        ],
+        "bbox_alpha1": [
+          14,
+          22,
+          82,
+          72
+        ],
+        "area_alpha128": 2140,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "58e0117d867a534532c04fd86abc87553f86af78b4b0d0cd985503a55b09ff17"
+      },
+      "after": {
+        "bbox_alpha128": [
+          13,
+          30,
+          83,
+          72
+        ],
+        "bbox_alpha1": [
+          13,
+          30,
+          83,
+          72
+        ],
+        "area_alpha128": 1710,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "1bea2ae93a848f4cb69726c72c4e8161de3a8b57b69f4166686f8a65558afc60"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 2,
+      "source": "art/raw/monsters-87/alfheim_moon_stag_source.png",
+      "source_region": [
+        315,
+        570,
+        623,
+        756
+      ],
+      "alpha_bbox_in_region": [
+        2,
+        8,
+        299,
+        183
+      ],
+      "scale": 0.25,
+      "placement": [
+        11,
+        28
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          19,
+          20,
+          76,
+          72
+        ],
+        "bbox_alpha1": [
+          19,
+          20,
+          76,
+          72
+        ],
+        "area_alpha128": 1751,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "ecea13f177335d0899d244909eeab8a3f302e5a8198631062812755a6ecfb1f0"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          28,
+          85,
+          72
+        ],
+        "bbox_alpha1": [
+          11,
+          28,
+          85,
+          72
+        ],
+        "area_alpha128": 1797,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "90b614c0826fd2b796e1ae177443aca2acce4f450cf076b85a0e4eacabe1f08b"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 3,
+      "source": "art/raw/monsters-87/alfheim_moon_stag_source.png",
+      "source_region": [
+        634,
+        574,
+        1000,
+        756
+      ],
+      "alpha_bbox_in_region": [
+        6,
+        9,
+        359,
+        179
+      ],
+      "scale": 0.25,
+      "placement": [
+        4,
+        30
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          29,
+          25,
+          67,
+          72
+        ],
+        "bbox_alpha1": [
+          29,
+          25,
+          67,
+          72
+        ],
+        "area_alpha128": 994,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "44fe7162b3fd9e0dab0b19ae32089e22c4c61404553d29f7ab05c6984925a426"
+      },
+      "after": {
+        "bbox_alpha128": [
+          4,
+          30,
+          92,
+          72
+        ],
+        "bbox_alpha1": [
+          4,
+          30,
+          92,
+          72
+        ],
+        "area_alpha128": 2147,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "5d6dd94ff19bee493b246753d138179f30ccd916ffc2a1082a846addbb69289c"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 4,
+      "source": "art/raw/monsters-87/alfheim_moon_stag_source.png",
+      "source_region": [
+        20,
+        574,
+        311,
+        756
+      ],
+      "alpha_bbox_in_region": [
+        6,
+        8,
+        284,
+        177
+      ],
+      "scale": 0.25,
+      "placement": [
+        13,
+        30
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          15,
+          22,
+          81,
+          72
+        ],
+        "bbox_alpha1": [
+          15,
+          22,
+          81,
+          72
+        ],
+        "area_alpha128": 2038,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "c7b2580ea3f726232448d5be0a41b8b3f9e2584885e31372d6df1bec182eaeaa"
+      },
+      "after": {
+        "bbox_alpha128": [
+          13,
+          30,
+          83,
+          72
+        ],
+        "bbox_alpha1": [
+          13,
+          30,
+          83,
+          72
+        ],
+        "area_alpha128": 1710,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "1bea2ae93a848f4cb69726c72c4e8161de3a8b57b69f4166686f8a65558afc60"
+      }
+    },
+    {
+      "row": "hurt",
+      "frame": 1,
+      "source": "art/raw/monsters-87/alfheim_moon_stag_source.png",
+      "source_region": [
+        22,
+        781,
+        274,
+        989
+      ],
+      "alpha_bbox_in_region": [
+        7,
+        5,
+        246,
+        202
+      ],
+      "scale": 0.294,
+      "placement": [
+        13,
+        14
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          14,
+          14,
+          81,
+          72
+        ],
+        "bbox_alpha1": [
+          14,
+          14,
+          81,
+          72
+        ],
+        "area_alpha128": 2199,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "cf476e6e3e011682a5c1764d1eb83411f4131541e949bc9ac364a37cfc58d4f5"
+      },
+      "after": {
+        "bbox_alpha128": [
+          13,
+          14,
+          83,
+          72
+        ],
+        "bbox_alpha1": [
+          13,
+          14,
+          83,
+          72
+        ],
+        "area_alpha128": 2196,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "e1f654ff02853857a7dcfc75287fe892da892b2dfa0a24c9a2dc1f0c320a0806"
+      }
+    }
+  ]
+}

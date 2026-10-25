@@ -1,0 +1,357 @@
+{
+  "id": "yggdrasil_root_guardian",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L13"
+  ],
+  "note": "L13: 원본의 완전한 몸 영역을 다시 잘라 배치. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/yggdrasil_root_guardian_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "1ea8cb864d0df465ff2007801676393bce00d1d4dc5a2f83d81680b200537398",
+  "candidate_file_sha256": "27770c63463313dd874e7e1553a704a2e59e60c19f9dca40b8b92e23c730c301",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "attack",
+      "frame": 1,
+      "source": "art/raw/monsters-87/yggdrasil_root_guardian_source.png",
+      "source_region": [
+        17,
+        548,
+        274,
+        766
+      ],
+      "alpha_bbox_in_region": [
+        7,
+        4,
+        252,
+        213
+      ],
+      "scale": 0.303,
+      "placement": [
+        11,
+        9
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          11,
+          6,
+          84,
+          72
+        ],
+        "bbox_alpha1": [
+          11,
+          6,
+          84,
+          72
+        ],
+        "area_alpha128": 3110,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "9c961f48eee0e38f1007c5c5e0b3db920f972f6a5f88ee401cf7a560b0e4501b"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          9,
+          85,
+          72
+        ],
+        "bbox_alpha1": [
+          11,
+          9,
+          85,
+          72
+        ],
+        "area_alpha128": 2892,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "7f38bd9265843f05ad452c208cf75a500954769ed16f30adb0b8c1e523568e96"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 2,
+      "source": "art/raw/monsters-87/yggdrasil_root_guardian_source.png",
+      "source_region": [
+        296,
+        548,
+        537,
+        766
+      ],
+      "alpha_bbox_in_region": [
+        6,
+        4,
+        238,
+        213
+      ],
+      "scale": 0.303,
+      "placement": [
+        13,
+        9
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          15,
+          6,
+          81,
+          72
+        ],
+        "bbox_alpha1": [
+          15,
+          6,
+          81,
+          72
+        ],
+        "area_alpha128": 2876,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "51d88b22b7be7230121fd5e1466956818f823e392b9cf1a942c97bcccfaf57b3"
+      },
+      "after": {
+        "bbox_alpha128": [
+          13,
+          9,
+          83,
+          72
+        ],
+        "bbox_alpha1": [
+          13,
+          9,
+          83,
+          72
+        ],
+        "area_alpha128": 2698,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "234b189f032d7087b8c0112ebeafc8c640dc0af977852ca3b5a2acc88366b6a5"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 3,
+      "source": "art/raw/monsters-87/yggdrasil_root_guardian_source.png",
+      "source_region": [
+        550,
+        548,
+        840,
+        766
+      ],
+      "alpha_bbox_in_region": [
+        5,
+        11,
+        285,
+        213
+      ],
+      "scale": 0.303,
+      "placement": [
+        5,
+        11
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          14,
+          8,
+          81,
+          72
+        ],
+        "bbox_alpha1": [
+          14,
+          8,
+          81,
+          72
+        ],
+        "area_alpha128": 2529,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "e1b9395fb9d7484f7f2b75af1455aae0d61e8f3bc2285f6d708848fe374f1377"
+      },
+      "after": {
+        "bbox_alpha128": [
+          5,
+          11,
+          90,
+          72
+        ],
+        "bbox_alpha1": [
+          5,
+          11,
+          90,
+          72
+        ],
+        "area_alpha128": 2714,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "adb90232ba3973313ac7786da52930aefada25bb75fb803d2b7455ac0646ecc2"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 4,
+      "source": "art/raw/monsters-87/yggdrasil_root_guardian_source.png",
+      "source_region": [
+        843,
+        555,
+        1060,
+        766
+      ],
+      "alpha_bbox_in_region": [
+        6,
+        9,
+        210,
+        206
+      ],
+      "scale": 0.303,
+      "placement": [
+        17,
+        12
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          20,
+          10,
+          75,
+          72
+        ],
+        "bbox_alpha1": [
+          20,
+          10,
+          75,
+          72
+        ],
+        "area_alpha128": 2481,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "94a46c75440362cb1cdce477398f955aa4e98f535118182b2337add7cd4aa592"
+      },
+      "after": {
+        "bbox_alpha128": [
+          17,
+          12,
+          79,
+          72
+        ],
+        "bbox_alpha1": [
+          17,
+          12,
+          79,
+          72
+        ],
+        "area_alpha128": 2478,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "24f35d42818c50d976d54928b7a197d968092e91f6ba96d6199dc77f1ba442a4"
+      }
+    }
+  ]
+}
