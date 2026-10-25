@@ -1,0 +1,125 @@
+{
+  "note": "QA-23 L14. F5 온전한 칼끝 재추출, F6 분리 칼 조각 제거. 리드 재검토: F5 몸만 +8px 복원하고 칼날 부분만 가로 56→48px로 줄여 끝까지 보존(프레임/몸/머리 배율 변경 없음). F4/F5/F6 몸통 중심 98/94/105→98/102/105px, 발 범위 61–155/49–152/88–166→61–155/57–160/88–166px, 발선 모두 y152. F5 v1 몸통101 대비 +1px는 원본 재추출 및 길어진 칼을 포함한 중앙값 차이. 칼끝 (187,108) 한 픽셀, 오른쪽 여백4px, 전체 연결요소1개. F1~F4 및 직전 v2 F6 RGBA 동일. 얼굴 눈 간격0.963/1.034, 폭1.000 유지.",
+  "frames": 6,
+  "fps": 18.0,
+  "cell": 192,
+  "feet": 152,
+  "replaces": "rio_female-mana_combo-v1.png",
+  "qa23": "L14",
+  "review_status": "완료",
+  "changed_frames": [
+    5,
+    6
+  ],
+  "position_review": {
+    "measurement": "torso: opaque pixels, y60..110 inclusive; feet span: opaque pixels, y148..152 inclusive; local cell coordinates",
+    "frames": [
+      {
+        "frame": 4,
+        "adopted_v1": {
+          "torso_median_x": 98.0,
+          "feet_span_x": [
+            61,
+            155
+          ],
+          "feet_y": 152
+        },
+        "before": {
+          "torso_median_x": 98.0,
+          "feet_span_x": [
+            61,
+            155
+          ],
+          "feet_y": 152
+        },
+        "after": {
+          "torso_median_x": 98.0,
+          "feet_span_x": [
+            61,
+            155
+          ],
+          "feet_y": 152
+        }
+      },
+      {
+        "frame": 5,
+        "adopted_v1": {
+          "torso_median_x": 101.0,
+          "feet_span_x": [
+            57,
+            160
+          ],
+          "feet_y": 152
+        },
+        "before": {
+          "torso_median_x": 94.0,
+          "feet_span_x": [
+            49,
+            152
+          ],
+          "feet_y": 152
+        },
+        "after": {
+          "torso_median_x": 102.0,
+          "feet_span_x": [
+            57,
+            160
+          ],
+          "feet_y": 152
+        }
+      },
+      {
+        "frame": 6,
+        "adopted_v1": {
+          "torso_median_x": 104.0,
+          "feet_span_x": [
+            88,
+            166
+          ],
+          "feet_y": 152
+        },
+        "before": {
+          "torso_median_x": 105.0,
+          "feet_span_x": [
+            88,
+            166
+          ],
+          "feet_y": 152
+        },
+        "after": {
+          "torso_median_x": 105.0,
+          "feet_span_x": [
+            88,
+            166
+          ],
+          "feet_y": 152
+        }
+      }
+    ],
+    "body_translation": [
+      8,
+      0
+    ],
+    "body_scale": 1.0,
+    "blade_crop_before": [
+      132,
+      95,
+      188,
+      113
+    ],
+    "blade_output_size": [
+      48,
+      18
+    ],
+    "blade_destination": [
+      140,
+      95
+    ],
+    "blade_tip": [
+      187,
+      108
+    ],
+    "right_margin": 4,
+    "connected_components": 1
+  }
+}

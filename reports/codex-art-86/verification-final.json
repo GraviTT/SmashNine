@@ -1,0 +1,203 @@
+{
+  "changed_frame_count": 19,
+  "face_measurement_pass_count": 16,
+  "candidate_rows": [
+    {
+      "qa23": "L14",
+      "file": "art/bakeoff/rio/rio_female-mana_combo-v2.png",
+      "png_sha256": "43e8518b218d0a6ab01b761310ed4dd4aa5ea5bfd6c709a77ef2ba9cdb1474fc",
+      "changed_frames": [
+        5,
+        6
+      ],
+      "untouched_frames_rgba_identical": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "changed_frame_cleanup_pass": true,
+      "feet_line": 152,
+      "face_measurement_pass": [
+        true,
+        true
+      ],
+      "status": "완료",
+      "before_height_range": [
+        94,
+        111
+      ],
+      "after_height_range": [
+        94,
+        111
+      ]
+    },
+    {
+      "qa23": "L09",
+      "file": "art/bakeoff/nova/nova_male-walk-v3.png",
+      "png_sha256": "f404e87a471b894843ea6885d261d93472d0c39bd64bc0c289c6c7abe5856838",
+      "changed_frames": [
+        3
+      ],
+      "untouched_frames_rgba_identical": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "changed_frame_cleanup_pass": true,
+      "feet_line": 120,
+      "face_measurement_pass": [
+        true
+      ],
+      "status": "완료",
+      "before_height_range": [
+        99,
+        102
+      ],
+      "after_height_range": [
+        99,
+        102
+      ]
+    },
+    {
+      "qa23": "L10",
+      "file": "art/bakeoff/rio/rio_female-walk-v4.png",
+      "png_sha256": "c885eed12c559fd8d7a54d184c12884d17da0a031c522f85a6904a5b65aba95e",
+      "changed_frames": [
+        4
+      ],
+      "untouched_frames_rgba_identical": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "changed_frame_cleanup_pass": true,
+      "feet_line": 120,
+      "face_measurement_pass": [
+        true
+      ],
+      "status": "완료",
+      "before_height_range": [
+        94,
+        100
+      ],
+      "after_height_range": [
+        94,
+        100
+      ]
+    },
+    {
+      "qa23": "L11",
+      "file": "art/bakeoff/rio/rio_male-walk-v2.png",
+      "png_sha256": "f8dde0067619fdd969058a57e8cefab91f37b45c19f724cd18b0cbc57a42c286",
+      "changed_frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "untouched_frames_rgba_identical": [],
+      "changed_frame_cleanup_pass": true,
+      "feet_line": 120,
+      "face_measurement_pass": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "status": "크기 복구 완료 — 다리 교대 표현 약함",
+      "before_height_range": [
+        90,
+        95
+      ],
+      "after_height_range": [
+        94,
+        102
+      ]
+    },
+    {
+      "qa23": "L34",
+      "file": "art/bakeoff/nova/nova_female-gravity_brake-v2.png",
+      "png_sha256": "ffe5a9afe30d4a7b25b4b62b3c909897a4c8737a5b79792f1f3a1992a06685f9",
+      "changed_frames": [
+        4,
+        5,
+        6
+      ],
+      "untouched_frames_rgba_identical": [
+        1,
+        2,
+        3
+      ],
+      "changed_frame_cleanup_pass": true,
+      "feet_line": 152,
+      "face_measurement_pass": [
+        false,
+        false,
+        false
+      ],
+      "status": "채택 보류 — 기존 얼굴 검사 미통과",
+      "before_height_range": [
+        70,
+        80
+      ],
+      "after_height_range": [
+        70,
+        80
+      ]
+    },
+    {
+      "qa23": "L37",
+      "file": "art/bakeoff/frey/frey-attack-v5.png",
+      "png_sha256": "60490e269d0ecae1dd5b8d51e03927f2dbfd618149845d123161271742cc811f",
+      "changed_frames": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "untouched_frames_rgba_identical": [
+        1,
+        2
+      ],
+      "changed_frame_cleanup_pass": true,
+      "feet_line": 120,
+      "face_measurement_pass": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "status": "완료 — 가려진 얼굴 경계 재검토 권장",
+      "before_height_range": [
+        82,
+        92
+      ],
+      "after_height_range": [
+        82,
+        98
+      ]
+    }
+  ],
+  "tracked_files_modified": false,
+  "staged_files": 0,
+  "godot_run": false,
+  "game_wiring_changed": false,
+  "note": "Face matches are proposed landmarks. Frey F3 is partly occluded; L34 is blocked by preserved pre-existing face ratios."
+}
