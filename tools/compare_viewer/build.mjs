@@ -82,8 +82,10 @@ function motionRow(kind, id, group, formName, sheet, r) {
 	if (id === "yggdrasil_root_guardian" && r.name === "shockwave") return;
 	const sorted = [...r.candidates].sort((a,b) => Number(a.version.slice(1)) - Number(b.version.slice(1)));
 	const newest = sorted.at(-1), hasGame = !r.newRow && r.start !== null;
-	const fps = hasGame ? r.fps : newest.fps || r.fps;
-	const loop = hasGame ? r.loop : newest.loop ?? r.loop;
+	// A one-frame game row (a still jump, fall or hurt pose) has a placeholder fps; the candidates' own speed applies.
+	const gameTiming = hasGame && r.frames > 1;
+	const fps = gameTiming ? r.fps : newest.fps || r.fps;
+	const loop = gameTiming ? r.loop : newest.loop ?? r.loop;
 	const tiles = hasGame ? [tile(sheet.file, { label: "지금 게임", cell: sheet.cell, feet: sheet.feet, frames: r.frames, start: r.start })] : [];
 	tiles.push(...sorted.map(c => candidate(c, { cell: sheet.cell, feet: sheet.feet, frames: r.frames })));
 	need(rowNames[r.name], `Add Korean row label: ${r.name}`);

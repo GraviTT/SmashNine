@@ -128,12 +128,14 @@ try {
 	for (const c of motion.characters) for (const f of c.forms) for (const s of [f.base,f.moves].filter(Boolean)) for (const source of s.rows.filter(r => r.candidates.length)) {
 		const id = f.body ? `${c.id}_${f.body}` : c.id, r = M.rows.find(r => r.key === `fighter~${id}~${source.name}`);
 		const newest = [...source.candidates].sort((a,b) => Number(a.version.slice(1)) - Number(b.version.slice(1))).at(-1);
-		assert.equal(r.panels[0].fps, source.newRow ? newest.fps || source.fps : source.fps);
-		assert.equal(r.panels[0].loop, source.newRow ? newest.loop ?? source.loop : source.loop);
+		// New rows and one-frame game rows (still poses with a placeholder fps) play at the candidates' own timing.
+		const own = source.newRow || source.frames === 1;
+		assert.equal(r.panels[0].fps, own ? newest.fps || source.fps : source.fps);
+		assert.equal(r.panels[0].loop, own ? newest.loop ?? source.loop : source.loop);
 	}
 	for (const monster of motion.monsters) for (const source of monster.base.rows.filter(r => r.candidates.length && r.name !== "shockwave")) {
 		const r = M.rows.find(r => r.key === `monster~${monster.id}~${source.name}`), newest = source.candidates.at(-1);
-		assert.equal(r.panels[0].fps, source.newRow ? newest.fps || source.fps : source.fps);
+		assert.equal(r.panels[0].fps, source.newRow || source.frames === 1 ? newest.fps || source.fps : source.fps);
 	}
 	for (const r of M.rows) for (const p of r.panels) {
 		assert.ok(p.fps > 0); assert.equal(p.width, Math.max(...p.tiles.map(t => t.cell[0]))); assert.equal(p.height, Math.max(...p.tiles.map(t => t.cell[1])));
