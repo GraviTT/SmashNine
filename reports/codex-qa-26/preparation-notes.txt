@@ -1,0 +1,4 @@
+Before the one suite invocation:
+1. PowerShell Copy-Item failed on a >260-character shader-cache path inside the new runtime copy. Switched to robocopy, excluding .godot/editor and .godot/shader_cache (headless does not need these). Product/source/imported asset files remain exact copies.
+2. The reporting wrapper's Korean regex literal was decoded incorrectly by Windows PowerShell's legacy script encoding and raised a regex error. Changed that diagnostic filter to ASCII. No test or Godot had started at this point.
+3. tasklist /FO CSV returns ERROR: Access denied in this sandbox. The wrapper preserves that result and records the accessible .NET process-name/PID inventory as a fallback.

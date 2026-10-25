@@ -1,0 +1,441 @@
+{
+    "passed":  54,
+    "run":  {
+                "start_utc":  "2026-10-25T08:36:59.6700316Z",
+                "source_files_verified":  365,
+                "runtime_file_count":  2991,
+                "exit":  0,
+                "end_utc":  "2026-10-25T08:49:46.8117892Z",
+                "execution_project":  "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\qa-b\\SmashNine\\reports\\codex-qa-26\\runtime\\smash-nine-prototype",
+                "wall_seconds":  767.1417576,
+                "source_changes":  [
+
+                                   ]
+            },
+    "certificate_noise":  55,
+    "failed":  0,
+    "engine_errors":  [
+
+                      ],
+    "tests":  [
+                  {
+                      "detail":  "Character architecture combat regression tests passed",
+                      "status":  "PASS",
+                      "test":  "test_character_architecture"
+                  },
+                  {
+                      "detail":  "All character scene and sprite smoke tests passed",
+                      "status":  "PASS",
+                      "test":  "test_frey_sprite"
+                  },
+                  {
+                      "detail":  "Luna normal and Brave form prototype tests passed",
+                      "status":  "PASS",
+                      "test":  "test_luna_prototype"
+                  },
+                  {
+                      "detail":  "Nova momentum and gravity prototype tests passed",
+                      "status":  "PASS",
+                      "test":  "test_nova_prototype"
+                  },
+                  {
+                      "detail":  "Rio prototype tests passed",
+                      "status":  "PASS",
+                      "test":  "test_rio_prototype"
+                  },
+                  {
+                      "detail":  "Ultimate tests passed",
+                      "status":  "PASS",
+                      "test":  "test_ultimates"
+                  },
+                  {
+                      "detail":  "Match rule tests passed (13)",
+                      "status":  "PASS",
+                      "test":  "test_match_rules"
+                  },
+                  {
+                      "detail":  "Hazard tests passed (9)",
+                      "status":  "PASS",
+                      "test":  "test_hazards"
+                  },
+                  {
+                      "detail":  "Realm gimmick tests passed",
+                      "status":  "PASS",
+                      "test":  "test_realm_gimmicks"
+                  },
+                  {
+                      "detail":  "Soul crystal tests passed",
+                      "status":  "PASS",
+                      "test":  "test_soul_crystals"
+                  },
+                  {
+                      "detail":  "Art tests passed (original and prototype, every character and body)",
+                      "status":  "PASS",
+                      "test":  "test_art"
+                  },
+                  {
+                      "detail":  "Sprite frame tests passed (8 main sheets, 8 moves sheets, 18 monster sheets edge-clean, 0 head files valid)",
+                      "status":  "PASS",
+                      "test":  "test_sprite_frames"
+                  },
+                  {
+                      "detail":  "Off-screen marker tests passed",
+                      "status":  "PASS",
+                      "test":  "test_offscreen_markers"
+                  },
+                  {
+                      "detail":  "Relocation tests passed",
+                      "status":  "PASS",
+                      "test":  "test_relocation_active"
+                  },
+                  {
+                      "detail":  "Bot panel tests passed",
+                      "status":  "PASS",
+                      "test":  "test_bot_panel"
+                  },
+                  {
+                      "detail":  "Skill bar tests passed",
+                      "status":  "PASS",
+                      "test":  "test_skill_bar"
+                  },
+                  {
+                      "detail":  "Bot brain tests passed",
+                      "status":  "PASS",
+                      "test":  "test_bot_brain"
+                  },
+                  {
+                      "detail":  "Talisman burst tests passed",
+                      "status":  "PASS",
+                      "test":  "test_talisman_burst"
+                  },
+                  {
+                      "detail":  "Flash art tests passed",
+                      "status":  "PASS",
+                      "test":  "test_flash_art"
+                  },
+                  {
+                      "detail":  "Ultimate armor tests passed",
+                      "status":  "PASS",
+                      "test":  "test_ultimate_armor"
+                  },
+                  {
+                      "detail":  "Sprite pose tests passed",
+                      "status":  "PASS",
+                      "test":  "test_sprite_pose"
+                  },
+                  {
+                      "detail":  "Motion speed tests passed (91 rows)",
+                      "status":  "PASS",
+                      "test":  "test_motion_speeds"
+                  },
+                  {
+                      "detail":  "Game speed tests passed",
+                      "status":  "PASS",
+                      "test":  "test_game_speed"
+                  },
+                  {
+                      "detail":  "Frey kit tests passed",
+                      "status":  "PASS",
+                      "test":  "test_frey_kit"
+                  },
+                  {
+                      "detail":  "Luna kit tests passed",
+                      "status":  "PASS",
+                      "test":  "test_luna_kit"
+                  },
+                  {
+                      "detail":  "Skill FX art tests passed",
+                      "status":  "PASS",
+                      "test":  "test_skill_fx_art"
+                  },
+                  {
+                      "detail":  "Effect layout tests passed",
+                      "status":  "PASS",
+                      "test":  "test_effect_layout"
+                  },
+                  {
+                      "detail":  "Defeat motion tests passed",
+                      "status":  "PASS",
+                      "test":  "test_defeat_motion"
+                  },
+                  {
+                      "detail":  "Realm monster tests passed (9 themed pairs, behaviour preservation, missing-file fallback)",
+                      "status":  "PASS",
+                      "test":  "test_realm_monsters"
+                  },
+                  {
+                      "detail":  "Monster ecology tests passed (250 checks; 18 skins / 10 archetypes, windups, elite, pacing, lifecycle)",
+                      "status":  "PASS",
+                      "test":  "test_monster_ecology"
+                  },
+                  {
+                      "detail":  "Monster option tests passed (16 checks; default neutral, hostile acquisition/collision, boss profile/death)",
+                      "status":  "PASS",
+                      "test":  "test_monster_options"
+                  },
+                  {
+                      "detail":  "Move sheet tests passed (Frey, Luna, Brave Luna, Nova, Yuki, Rio rows and missing-sheet fallback)",
+                      "status":  "PASS",
+                      "test":  "test_moves_sheet"
+                  },
+                  {
+                      "detail":  "Hit spark and fighter status icon tests passed",
+                      "status":  "PASS",
+                      "test":  "test_hit_sparks"
+                  },
+                  {
+                      "detail":  "HUD frame tests passed (skill 4, HP 1, cards 3, result 1, menu 2; title art + ColorRect fallback)",
+                      "status":  "PASS",
+                      "test":  "test_hud_frames"
+                  },
+                  {
+                      "detail":  "Frontend flow tests passed (keyboard + mouse, 5 shortcuts, bodies, options, 3 result routes, 2 node/orphan cycles; nodes 1262, orphans 0)",
+                      "status":  "PASS",
+                      "test":  "test_frontend_flow"
+                  },
+                  {
+                      "detail":  "Language tests passed (382 keys, 92 tr literals; Korean/English reload, all fighters, HUD/hazard/cards/results, no saved-choice writes)",
+                      "status":  "PASS",
+                      "test":  "test_language"
+                  },
+                  {
+                      "detail":  "Font coverage tests passed (31933 characters of the translation table)",
+                      "status":  "PASS",
+                      "test":  "test_font_coverage"
+                  },
+                  {
+                      "detail":  "Story data tests passed (1672 assertions, 9 stages, 138 bilingual IDs, save isolation, Easy rules)",
+                      "status":  "PASS",
+                      "test":  "test_story_data"
+                  },
+                  {
+                      "detail":  "Story flow tests passed (259 assertions; title/select/map/dialogue/card/Q/result/pause/retry/Continue/replay, 5 heroes x 4 stages, home variants, nodes 1262, orphans 0, no real save)",
+                      "status":  "PASS",
+                      "test":  "test_story_flow"
+                  },
+                  {
+                      "detail":  "Late story flow tests passed (194 checks; 2 heroes stages 5-9, home variants, time-up/crystals/boss/reinforcements/mid/band/ending, no real save)",
+                      "status":  "PASS",
+                      "test":  "test_story_late_flow"
+                  },
+                  {
+                      "detail":  "Story presentation tests passed (marked pictures, 9-slice frame/name plate, all match HUD including timed warnings hidden during scenes)",
+                      "status":  "PASS",
+                      "test":  "test_story_presentation"
+                  },
+                  {
+                      "detail":  "Restart tests passed (10 restarts, start screen nodes 1262)",
+                      "status":  "PASS",
+                      "test":  "test_restart"
+                  },
+                  {
+                      "detail":  "Bug review regression tests passed (6)",
+                      "status":  "PASS",
+                      "test":  "test_bugfix_review"
+                  },
+                  {
+                      "detail":  "",
+                      "status":  "PASS",
+                      "test":  "visual_preview"
+                  },
+                  {
+                      "detail":  "Story reward tests passed (24 checks; stage 8 offer/root/F2/checkpoint, Easy shadow growth/heal cap, lethal hero-only band/retry)",
+                      "status":  "PASS",
+                      "test":  "test_story_rewards"
+                  },
+                  {
+                      "detail":  "Story exit reload tests passed (8 checks; crystals and boss exits keep live monsters stopped across F2)",
+                      "status":  "PASS",
+                      "test":  "test_story_exit_reload"
+                  },
+                  {
+                      "detail":  "Story text fit tests passed (520 bilingual dialogue/ending lines; maximum dialogue 58/120 px, ending 58/80 px)",
+                      "status":  "PASS",
+                      "test":  "test_story_text_fit"
+                  },
+                  {
+                      "detail":  "Story atomic reload tests passed (13 checks; final crystal, hero death in stages 1/9, boss death before deferred callbacks)",
+                      "status":  "PASS",
+                      "test":  "test_story_atomic_reload"
+                  },
+                  {
+                      "detail":  "Fighter motion: 132 checks, failed=false",
+                      "status":  "PASS",
+                      "test":  "test_fighter_motion"
+                  },
+                  {
+                      "detail":  "Monster motion: 293 checks, failed=false",
+                      "status":  "PASS",
+                      "test":  "test_monster_motion"
+                  },
+                  {
+                      "detail":  "Victory screens: 68 checks, failed=false",
+                      "status":  "PASS",
+                      "test":  "test_victory_screens"
+                  },
+                  {
+                      "detail":  "Audio tests passed (613 checks; 73/73 event ids requested, 4 fallback-only)",
+                      "status":  "PASS",
+                      "test":  "test_audio"
+                  },
+                  {
+                      "detail":  "Projectile art tests: 59 checks, PASSED",
+                      "status":  "PASS",
+                      "test":  "test_projectile_art"
+                  },
+                  {
+                      "detail":  "STORY_FACES_RESULT {\"assertions\":12022,\"counts\":{\"angry\":15,\"happy\":2,\"hurt\":2,\"neutral\":58,\"shadow\":10},\"fallback_lines\":1372,\"passed\":true}",
+                      "status":  "PASS",
+                      "test":  "test_story_faces"
+                  }
+              ],
+    "soaks":  [
+                  {
+                      "run":  "QA-22",
+                      "result":  {
+                                     "defeats":  7,
+                                     "defeats_by_cause":  {
+                                                              "player":  7
+                                                          },
+                                     "defeats_by_player":  {
+                                                               "Frey":  1,
+                                                               "Luna":  2,
+                                                               "Nova":  1,
+                                                               "Rio":  2,
+                                                               "Yuki":  1
+                                                           },
+                                     "eliminations":  [
+                                                          "Yuki t=195 by player ringouts=2 dmg_dealt=88",
+                                                          "Frey t=216 by player ringouts=2 dmg_dealt=138",
+                                                          "Luna t=247 by player ringouts=2 dmg_dealt=187",
+                                                          "Rio t=253 by player ringouts=1 dmg_dealt=274",
+                                                          "Rio t=261 by player ringouts=2 dmg_dealt=193",
+                                                          "Nova t=284 by player ringouts=1 dmg_dealt=355",
+                                                          "Luna t=332 by player ringouts=0 dmg_dealt=215"
+                                                      ],
+                                     "first_pvp_hit":  8.3,
+                                     "hazard_hits":  11,
+                                     "match_over":  true,
+                                     "monster_hits":  111,
+                                     "nan_positions":  0,
+                                     "node_count":  1648,
+                                     "playable_realms":  1,
+                                     "players":  8,
+                                     "pvp_hits":  709,
+                                     "ringouts":  13,
+                                     "seconds_simulated":  331.7,
+                                     "shared_realm_ratio":  0.94,
+                                     "souls":  [
+                                                   "Yuki:89/3",
+                                                   "Luna:171/3",
+                                                   "Luna:105/3",
+                                                   "Nova:186/3",
+                                                   "Nova:257/3",
+                                                   "Rio:154/3",
+                                                   "Rio:210/3",
+                                                   "Frey:143/3"
+                                               ],
+                                     "winner":  "Nova"
+                                 },
+                      "source":  "reports/codex-qa-22/suite-summary.log"
+                  },
+                  {
+                      "run":  "SYS-09",
+                      "result":  {
+                                     "defeats":  7,
+                                     "defeats_by_cause":  {
+                                                              "player":  7
+                                                          },
+                                     "defeats_by_player":  {
+                                                               "Frey":  1,
+                                                               "Luna":  2,
+                                                               "Nova":  1,
+                                                               "Rio":  2,
+                                                               "Yuki":  1
+                                                           },
+                                     "eliminations":  [
+                                                          "Yuki t=195 by player ringouts=2 dmg_dealt=88",
+                                                          "Frey t=216 by player ringouts=2 dmg_dealt=138",
+                                                          "Luna t=247 by player ringouts=2 dmg_dealt=187",
+                                                          "Rio t=253 by player ringouts=1 dmg_dealt=274",
+                                                          "Rio t=261 by player ringouts=2 dmg_dealt=193",
+                                                          "Nova t=284 by player ringouts=1 dmg_dealt=355",
+                                                          "Luna t=332 by player ringouts=0 dmg_dealt=215"
+                                                      ],
+                                     "first_pvp_hit":  8.3,
+                                     "hazard_hits":  11,
+                                     "match_over":  true,
+                                     "monster_hits":  111,
+                                     "nan_positions":  0,
+                                     "node_count":  1648,
+                                     "playable_realms":  1,
+                                     "players":  8,
+                                     "pvp_hits":  709,
+                                     "ringouts":  13,
+                                     "seconds_simulated":  331.7,
+                                     "shared_realm_ratio":  0.94,
+                                     "souls":  [
+                                                   "Yuki:89/3",
+                                                   "Luna:171/3",
+                                                   "Luna:105/3",
+                                                   "Nova:186/3",
+                                                   "Nova:257/3",
+                                                   "Rio:154/3",
+                                                   "Rio:210/3",
+                                                   "Frey:143/3"
+                                               ],
+                                     "winner":  "Nova"
+                                 },
+                      "source":  "reports/codex-sys-09/full-suite.log"
+                  },
+                  {
+                      "run":  "QA-26",
+                      "result":  {
+                                     "defeats":  7,
+                                     "defeats_by_cause":  {
+                                                              "player":  7
+                                                          },
+                                     "defeats_by_player":  {
+                                                               "Frey":  1,
+                                                               "Luna":  2,
+                                                               "Nova":  1,
+                                                               "Rio":  2,
+                                                               "Yuki":  1
+                                                           },
+                                     "eliminations":  [
+                                                          "Yuki t=195 by player ringouts=2 dmg_dealt=88",
+                                                          "Frey t=216 by player ringouts=2 dmg_dealt=138",
+                                                          "Luna t=247 by player ringouts=2 dmg_dealt=187",
+                                                          "Rio t=253 by player ringouts=1 dmg_dealt=274",
+                                                          "Rio t=261 by player ringouts=2 dmg_dealt=193",
+                                                          "Nova t=284 by player ringouts=1 dmg_dealt=355",
+                                                          "Luna t=332 by player ringouts=0 dmg_dealt=215"
+                                                      ],
+                                     "first_pvp_hit":  8.3,
+                                     "hazard_hits":  11,
+                                     "match_over":  true,
+                                     "monster_hits":  111,
+                                     "nan_positions":  0,
+                                     "node_count":  1648,
+                                     "playable_realms":  1,
+                                     "players":  8,
+                                     "pvp_hits":  709,
+                                     "ringouts":  13,
+                                     "seconds_simulated":  331.7,
+                                     "shared_realm_ratio":  0.94,
+                                     "souls":  [
+                                                   "Yuki:89/3",
+                                                   "Luna:171/3",
+                                                   "Luna:105/3",
+                                                   "Nova:186/3",
+                                                   "Nova:257/3",
+                                                   "Rio:154/3",
+                                                   "Rio:210/3",
+                                                   "Frey:143/3"
+                                               ],
+                                     "winner":  "Nova"
+                                 },
+                      "source":  "reports/codex-qa-26/suite.log"
+                  }
+              ]
+}
