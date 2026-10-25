@@ -1,0 +1,60 @@
+{
+  "note": "지붕 계곡 너머 중앙 회관과 갈라진 하늘을 바라보는 구도.",
+  "stage": 1,
+  "title": "부서진 하늘",
+  "version": 1,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-59cc4531-6193-4bd4-8dcf-e5e22a700d1f.png",
+    "raw_copy": "art/raw/story/stage_card_01-v1_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "1ef42654b40c90ff0b13ef80f956da788ea1271058fc56a8feb94fd644fd88d5",
+  "candidate_sha256": "b679c0be1c8a8191bd86f22bb0291095cafc7154af129a9a0436cd4cbe8aa74a",
+  "metrics": {
+    "brightness_mean_y709": 0.292926,
+    "saturation_mean_hsv": 0.544507,
+    "contrast_std_y709": 0.207606,
+    "outer_8px_mean_luma601": 0.195265
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 1, take A. A HUMAN TOWN of clustered steep timber-and-slate rooftops at DUSK. The central single landmark is a compact tall gabled town hall rising from the lower-third roofline, with blue-grey slate roofs, amber windows and warm ochre stone inspired by reference 3. High above it the indigo-and-copper dusk sky is visibly SPLIT by several irregular branching glowing pink-gold cracks, clearly a fissured sky rather than ordinary lightning. Three faraway realm islands drift across the distant sky, small restrained silhouettes with floating rock undersides. Take A composition: direct panoramic view across a shallow roof valley toward the town hall; the widest crack forms a branching arch above the middle landmark, no giant moon. Upper-left sunset illuminates the left roof planes. Keep dwellings simple and absent of flags, signs, clock faces and inhabitants.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_midgard/bg_far.png"
+  ]
+}

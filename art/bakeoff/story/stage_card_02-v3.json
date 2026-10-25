@@ -1,0 +1,61 @@
+{
+  "note": "v1의 과한 흰 구름과 주변 섬을 줄이고, 낮은 구름 수평선에 황금 날개 문을 배치한 보완안.",
+  "stage": 2,
+  "title": "발키리의 문",
+  "version": 3,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-1b9637de-faf0-4fac-8bfe-d0615e4d3e66.png",
+    "raw_copy": "art/raw/story/stage_card_02-v3_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "51a544f8f2a9cbaab7c17ad3e05b731d5f160d17a4b1ae4712eb377feb9c4ec4",
+  "candidate_sha256": "a4298b05f08ba7b8287dc542760ce40f4e83a6d3be50b87420dae004b79f3208",
+  "metrics": {
+    "brightness_mean_y709": 0.475758,
+    "saturation_mean_hsv": 0.464521,
+    "contrast_std_y709": 0.1965,
+    "outer_8px_mean_luma601": 0.32116
+  },
+  "prompt": "Use case: illustration-story. EDIT reference 1 into stage_card_02-v3, one opaque 16:9 painted pixel-art landscape at largest available resolution. Reference 1 is the image to revise. References 2 and 3 are game style anchors, reference 4 the Asgard palette/landmarks. Preserve the clearly sculpted feather-wing GOLDEN GATE, the castle behind and the falling light columns, and preserve this crisp pixel-cluster rendering. Correct the shared set composition and excessive brightness: lower the cloud-sea horizon to 74% image height; remove ALL of the tall peripheral floating islands, replacing them with a quiet wide blue-grey cloud sea and at most two small silhouettes below y70%. Show the entire central wing gate and castle together within x30-70%, their base at y76%, tallest spire at y24%, no enormous foreground bridge. Use a low short causeway only in bottom quarter. The upper-left light must stay clear, but change almost-white clouds into midtone slate blue / muted lilac and change white stone into pale muted GOLD, so overall exposure is medium, comparable to a twilight fantasy set. Warm highlights confined to gate edges and the three falling light pillars, no broad white blowout. Outer 8px calmer. Remove ALL flags, banners, dials, medallions, letters, glyphs and rune-like ornament. Gate feathers and plain architectural geometry only. No figures, faces, people, angels, statues, text, logos, frame or watermark. Keep it a wide establishing landscape, not a close-up.",
+  "references_in_order": [
+    "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-81ab5635-7b35-42fe-94c7-a322d673246c.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_asgard/bg_far.png"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "note": "v4의 밝기와 연무 색을 유지하면서 좌우 원경 지평선만 더 낮춘 최종 구도 보완안.",
+  "stage": 7,
+  "title": "불의 짐승",
+  "version": 5,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-a283314d-84be-4df8-a489-ce6b08b2b527.png",
+    "raw_copy": "art/raw/story/stage_card_07-v5_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1671,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      3,
+      2,
+      1667,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "323d5240dfb541d8b23a4a5e7e6f5033b7fcc16c248aad8181e3fc8731efcbd9",
+  "candidate_sha256": "e6201ac66e816b2fb7479b475ef256e184da82fe5ea79be7e25d879c45a40940",
+  "metrics": {
+    "brightness_mean_y709": 0.291044,
+    "saturation_mean_hsv": 0.461051,
+    "contrast_std_y709": 0.173023,
+    "outer_8px_mean_luma601": 0.209953
+  },
+  "prompt": "Use case: illustration-story. Precise single-change edit of reference 1, stage_card_07-v5. Reference 1 target, 2 and 3 game pixel painting style, 4 Muspelheim. PRESERVE the exact central fortress, two rising eruption pillars, orange lava accents, muted grey-mauve smoke exposure, upper-left light, and two eyes/two curved tusk tips HALF hidden by smoke. Preserve all central subject positions and colours. No full beast face or body. CHANGE ONLY THE DISTANT HORIZON in the left and right thirds: remove the distant tiny mountain skyline that is currently around y65%, extend the grey-mauve smoky SKY DOWNWARD by roughly 12% image height, and place a new perfectly low remote plain horizon at y77%. The central fortress stands on an elevated basalt mesa ABOVE this lower horizon. All remote background silhouettes stay below y77%; do not redraw any tall peripheral mountains. Keep the nearby lava terraces unchanged, no new objects. Opaque 16:9 at largest available landscape resolution, identical crisp pixel style, no glyphs, diamonds, text, letters, people, bodies, UI, borders or watermark.",
+  "references_in_order": [
+    "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-c8106b84-b5e6-487c-965b-775d6434686e.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png"
+  ]
+}

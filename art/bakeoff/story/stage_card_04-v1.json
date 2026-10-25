@@ -1,0 +1,60 @@
+{
+  "note": "큰 톱니 원형과 주황 대장간, 수평 벨트가 모인 중앙 탑.",
+  "stage": 4,
+  "title": "태엽 도시",
+  "version": 1,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-648fa481-6fcd-4fb0-98c4-31c0e9bf7096.png",
+    "raw_copy": "art/raw/story/stage_card_04-v1_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "3ecb4d7a52ccaf6957a66e6938c2b4168cc55c552bfaec6401e8a1f60fc214f5",
+  "candidate_sha256": "7ccd0ac447add59fdbcc8a58749ee6192982493d341421329ba829c5220d817a",
+  "metrics": {
+    "brightness_mean_y709": 0.246411,
+    "saturation_mean_hsv": 0.524073,
+    "contrast_std_y709": 0.166531,
+    "outer_8px_mean_luma601": 0.115252
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 4, take A. SVARTALFHEIM: the DWARVEN CLOCKWORK CITY, entirely empty of people. A central massive forge tower with two huge exposed BRASS GEARS, a visible orange FORGE GLOW in its open furnace, and TWO CONVEYOR BELTS with broad V-shaped CHEVRON TREADS physically built into the belts. The chevrons are machine tread geometry only, no standalone written arrows or signs. Take A: wide frontal city panorama across a dark teal cavern, one huge round gear silhouetted behind the central angular forge tower, interlocking smaller gear beside it; horizontal belts approach the furnace from the sides in lower third. Distant factory floor/fog horizon at y72%, cavern opens tall above; upper-left fissure sends pale warm light down-left-facing metal. Steel blue, dark teal, brass and amber palette of reference. Simplify outlying buildings, no clock face, numerals, runes, signs or inhabitants. LAYOUT PRIORITY over the reference compositions: references supply style and realm identity only. Do NOT repeat their tall busy edge islands or high skyline. Keep the distant horizon unmistakably at y=75% of frame height, leaving the top 70% broad quiet atmospheric space interrupted only by the SINGLE central landmark. All secondary distant ground details remain below y=70%. No elaborate foreground objects at the edges. Main landmark base at y=76%, top near y=28%, visual centre x=50%. Calm outer 8 pixels after downscale.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_svartalfheim/bg_far.png"
+  ]
+}

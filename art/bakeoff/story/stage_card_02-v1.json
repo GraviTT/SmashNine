@@ -1,0 +1,60 @@
+{
+  "note": "정면의 날개 문과 뒤편 성을 한 덩어리로 묶은 구도.",
+  "stage": 2,
+  "title": "발키리의 문",
+  "version": 1,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-81ab5635-7b35-42fe-94c7-a322d673246c.png",
+    "raw_copy": "art/raw/story/stage_card_02-v1_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "2f046ddfd5be64dee1e39e287676f55a584501ec9683e52b0246cf60bc99854b",
+  "candidate_sha256": "117e12b8866b1cc4403d8528599761f523581d26c4b028e5f4b22b7161b0d9ca",
+  "metrics": {
+    "brightness_mean_y709": 0.603475,
+    "saturation_mean_hsv": 0.327425,
+    "contrast_std_y709": 0.216486,
+    "outer_8px_mean_luma601": 0.511751
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 2, take A. ASGARD: a monumental GOLDEN GATE with an unmistakable pair of broad sculpted WINGS built into the two gateposts, and a compact spired GOLDEN CASTLE directly behind. The wing carvings are purely feathers, no angels or figures. Several luminous columns of light FALL from high clouds around the gate. Take A: direct frontal approach across a short pale-stone causeway, central gate opening clear and castle visible above it. Cool blue-grey clouds, warm ivory-gold stone and quiet cyan depth from realm reference. Broad open sky fills upper two thirds except central gate and castle silhouette; a low cloud-sea horizon at y72%, NO high mountain skyline. Upper-left diffuse golden daylight clearly illuminates left surfaces; vertical light pillars are secondary. No decorative runes, medallion symbols or lettering.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_asgard/bg_far.png"
+  ]
+}

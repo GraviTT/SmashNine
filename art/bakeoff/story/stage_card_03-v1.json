@@ -1,0 +1,60 @@
+{
+  "note": "수평의 긴 다리와 양 끝의 둥근 문을 선명하게 보여주는 구도.",
+  "stage": 3,
+  "title": "달빛 다리",
+  "version": 1,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-70b0b3ab-9db4-41aa-a9fe-73cd117084ec.png",
+    "raw_copy": "art/raw/story/stage_card_03-v1_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "0244251c6c16f0fd5fca494d850829ad1eb58fcc0199379d18cb18e52d195342",
+  "candidate_sha256": "bb2d4c00093c25d35dc06c7a67117f5c920287afc8564127d8426b00e97cca65",
+  "metrics": {
+    "brightness_mean_y709": 0.260062,
+    "saturation_mean_hsv": 0.670638,
+    "contrast_std_y709": 0.205864,
+    "outer_8px_mean_luma601": 0.115805
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 3, take A. ALFHEIM: one LONG MOONLIT BRIDGE, exactly TWO glowing circular MOON GATES positioned at its TWO ENDS, with a LARGE CRESCENT MOON above. Take A: mostly side-on wide establishing view of a long elegant silver-lavender arched bridge spanning x25-75%, both glowing round rings clearly readable at x28% and x72%, no additional rings or gates. This whole bridge is the single central landmark. Bridge walkway and distant cloud-sea horizon are low at y70-74%; each circular gate rises above it. Large crescent at x24% y23% casts the key moonlight from upper left. Open quiet indigo night sky, violet trees in modest clusters, lilac stone and white-blue glows matching realm reference. No banners or markings, no stars arranged like symbols, no figures.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_alfheim/bg_far.png"
+  ]
+}

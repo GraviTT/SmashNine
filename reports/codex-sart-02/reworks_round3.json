@@ -1,0 +1,62 @@
+{
+  "task": "SART-02",
+  "jobs": [
+    {
+      "id": "stage_card_05-v3",
+      "stage": 5,
+      "version": 3,
+      "title": "무너지는 숲",
+      "realm": "vanaheim",
+      "prompt": "Use case: illustration-story. Precise scenery edit of reference 1, stage_card_05-v3. Reference 1 is target; reference 2 and 3 game style, reference 4 Vanaheim identity. KEEP the central FOREST TEMPLE, both braided leafy VINE BRIDGES, the SPLITTING floating island with orange COLLAPSE glow, their scale and pixel rendering. CHANGE ONLY THE DISTANT BACKGROUND LAYOUT. Remove ALL the high distant temples and tall remote islands on both sides. Extend the muted teal-green SKY DOWN to a clearly LOW, FLAT distant cloud/forest horizon at 77% of frame height. The entire background above y75%, except the central subject and its vine bridges, must be open calm green-blue sky with sparse soft clouds. Place any tiny distant tree silhouettes only in a narrow low band at y77-82%. This central island floats HIGH above that low horizon. Do not move the island downward; lower only the remote horizon. Keep the foreground edges calm and dark green. Maintain upper-left natural light, moderate green and orange palette, no extra saturation. No text, glyphs, figures, faces, animals, statues, frame, border or watermark. Opaque wide 16:9, largest available landscape resolution; crisp painted pixel clusters.",
+      "note": "v2의 신전·덩굴·붕괴는 유지하고, 높은 원경 폐허를 걷어 낮은 숲 수평선으로 바꾼 보완안.",
+      "edit_of": "stage_card_05-v2",
+      "refs": [
+        "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-4f75a9b4-2a72-45e2-8109-5103c8efc23d.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_vanaheim/bg_far.png"
+      ],
+      "source": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-fbba9cef-db05-42e9-b2cc-45f88b52f0d7.png"
+    },
+    {
+      "id": "stage_card_07-v5",
+      "stage": 7,
+      "version": 5,
+      "title": "불의 짐승",
+      "realm": "muspelheim",
+      "prompt": "Use case: illustration-story. Precise single-change edit of reference 1, stage_card_07-v5. Reference 1 target, 2 and 3 game pixel painting style, 4 Muspelheim. PRESERVE the exact central fortress, two rising eruption pillars, orange lava accents, muted grey-mauve smoke exposure, upper-left light, and two eyes/two curved tusk tips HALF hidden by smoke. Preserve all central subject positions and colours. No full beast face or body. CHANGE ONLY THE DISTANT HORIZON in the left and right thirds: remove the distant tiny mountain skyline that is currently around y65%, extend the grey-mauve smoky SKY DOWNWARD by roughly 12% image height, and place a new perfectly low remote plain horizon at y77%. The central fortress stands on an elevated basalt mesa ABOVE this lower horizon. All remote background silhouettes stay below y77%; do not redraw any tall peripheral mountains. Keep the nearby lava terraces unchanged, no new objects. Opaque 16:9 at largest available landscape resolution, identical crisp pixel style, no glyphs, diamonds, text, letters, people, bodies, UI, borders or watermark.",
+      "note": "v4의 밝기와 연무 색을 유지하면서 좌우 원경 지평선만 더 낮춘 최종 구도 보완안.",
+      "edit_of": "stage_card_07-v4",
+      "refs": [
+        "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-c8106b84-b5e6-487c-965b-775d6434686e.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png"
+      ],
+      "source": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-a283314d-84be-4df8-a489-ce6b08b2b527.png"
+    },
+    {
+      "id": "stage_card_09-v3",
+      "stage": 9,
+      "version": 3,
+      "title": "세계수의 심장",
+      "realm": "center",
+      "prompt": "Use case: illustration-story. Tiny cleanup edit of reference 1 as stage_card_09-v3. Reference 1 is target image; references 2 and 3 are game style anchors, reference 4 is world-tree realm. Preserve the ENTIRE illustration composition: massive purple WORLD TREE, bright glowing PINK HEART in trunk, empty FLOATING ARENA platform below, low lavender cloud horizon, upper-left galaxy light, same palette, same scale and all major shapes. Change ONLY the accidental tiny CYAN RIGHT-ANGLE / LETTER-L / LETTER-GAMMA looking mark very near the extreme UPPER-LEFT corner (about x0.7%, y3.5%). Remove that mark completely and fill with matching plain dark starry-sky pixels, no replacement emblem or letter. Also ensure no other text-like corner marks appear. Keep crisp painted pixel-art texture; no text, letters, glyphs, signatures, faces, figures, UI, border or watermark. Opaque wide 16:9 at largest available landscape resolution. Do not add any new details.",
+      "note": "v2의 세계수·심장·발판을 유지한 보완안. 원본 좌상단의 문자 유사 픽셀은 생성 편집 후에도 남아, 최종 16:9 크롭 [20,7,1668,934]으로 해당 가장자리를 제외한다.",
+      "edit_of": "stage_card_09-v2",
+      "refs": [
+        "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-57b71115-d70d-41a9-b772-eabfea241dd7.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_center/bg_far.png"
+      ],
+      "source": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-682daec5-fb69-46c7-851a-32b300a9954a.png",
+      "crop_box": [
+        20,
+        7,
+        1668,
+        934
+      ]
+    }
+  ]
+}

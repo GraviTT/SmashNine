@@ -1,0 +1,60 @@
+{
+  "note": "비껴 본 성채와 분출 기둥, 옆 연무의 눈·엄니 단서.",
+  "stage": 7,
+  "title": "불의 짐승",
+  "version": 2,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-d0498a40-3d11-4171-a348-2a499523aa05.png",
+    "raw_copy": "art/raw/story/stage_card_07-v2_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "bcb5578e0f6ff255abc9023c317729c45c819f3d3371bb4b99af51f924982a19",
+  "candidate_sha256": "172cd51f3cc84f16540b3493d6e597719833eabfbbf60fdae35963e60c7fcd9b",
+  "metrics": {
+    "brightness_mean_y709": 0.199932,
+    "saturation_mean_hsv": 0.729004,
+    "contrast_std_y709": 0.144582,
+    "outer_8px_mean_luma601": 0.142306
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 7, take B. MUSPELHEIM: lava fortress, eruption pillars, the beast hinted ONLY by TWO ember eyes and TWO curved tusk tips half obscured by smoke. No beast face, snout, head contour, body, legs, giant animal portrait or animal-shaped cloud. Take B: wide three-quarter establishing view of a central long-spired basalt fortress on a flat dark lava shelf; two erupting lava columns behind and one smaller in front, asymmetrical geological arrangement. Thick smoke bank in lower-middle-right x61% y71% holds a tiny pair of amber eyes and disconnected pale curved tusk tips; at least half of each tusk concealed, only a subtle presence. Fortress remains the one main centre landmark. Low terrain/cloud horizon y73%; upper-left filtered daylight in the red storm clouds lights fortress left faces, lava is secondary. Muted burgundy, charcoal, amber-orange, deep blue-violet shadows. No text, runes, human shapes, statues, logos or border. LAYOUT PRIORITY over the reference compositions: references supply style and realm identity only. Do NOT repeat their tall busy edge islands or high skyline. Keep the distant horizon unmistakably at y=75% of frame height, leaving the top 70% broad quiet atmospheric space interrupted only by the SINGLE central landmark. All secondary distant ground details remain below y=70%. No elaborate foreground objects at the edges. Main landmark base at y=76%, top near y=28%, visual centre x=50%. Calm outer 8 pixels after downscale.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png"
+  ]
+}
