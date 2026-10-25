@@ -1,5 +1,5 @@
 {
-  "note": "ART-74 참조 팔레트의 색 경계를 부드럽게 연결하고 잎 하이라이트 확대를 줄임. 잎 영역 국소 밝기 이상점 927→536(보조 지표; 실제 결함 픽셀 수 아님). 전 프레임 알파/위치/크기 v1과 동일. 미세 점상 질감은 남아 있음.",
+  "note": "ART-74 참조 팔레트의 색 경계를 부드럽게 연결하고 잎 하이라이트 확대를 줄임. 잎 영역 국소 밝기 이상점 927→536(보조 지표; 실제 결함 픽셀 수 아님). 전 프레임 알파/위치/크기 v1과 동일. 미세 점상 질감은 남아 있음. ART-90: 잎 내부의 주변 중앙값 대비 25 초과 고립 대비만 RGB 80% 중앙값 혼합으로 완화. 밝은 눈 코어와 주변 3px는 보호. 실루엣/알파/위치/배율/눈/갈색 목질은 유지. 모든 점 제거가 아닌 잎 질감 보존형 잔점 정리.",
   "frames": 4,
   "fps": 7.272727,
   "loop": false,
@@ -8,5 +8,13 @@
   "factor": 0.15,
   "windup_seconds": 0.55,
   "hold_last": true,
-  "replaces": "vanaheim_vine_hound-windup-v1.png"
+  "replaces": "vanaheim_vine_hound-windup-v1.png",
+  "art90": {
+    "method": "leaf-only local outlier attenuation; one pass; no whole-frame blur",
+    "changed_pixels": 409,
+    "outliers_before": 213,
+    "outliers_after": 19,
+    "alpha_unchanged": true,
+    "review": "reports/codex-art-90/README.md"
+  }
 }

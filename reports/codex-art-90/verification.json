@@ -1,0 +1,1908 @@
+{
+  "total": 173,
+  "passed": 173,
+  "failed": [],
+  "changed_unique_frames": 34,
+  "protected_files_unchanged": 2230,
+  "head_review": "Luna manual pass; Nova nominal small outliers remain uncertain, NOT certified within tolerance; no new fighter versions",
+  "godot_run": false,
+  "checks": [
+    {
+      "name": "all pre-existing non-output protected files byte-identical",
+      "pass_": true,
+      "detail": {
+        "count": 2230,
+        "unexpected": []
+      }
+    },
+    {
+      "name": "guardian attack timing/scale unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian attack F1 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian attack F1 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          20,
+          4,
+          79,
+          73
+        ],
+        "margin": 4,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 132.66,
+        "spill_legacy": 0,
+        "area": 2644,
+        "rgba_sha256": "01fbbefdf1771a44093b2ee3f4969c521b710c9ea0b6a008eeb3b8405bf9a3b6"
+      }
+    },
+    {
+      "name": "guardian attack F2 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian attack F2 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          19,
+          15,
+          84,
+          73
+        ],
+        "margin": 12,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 135.0,
+        "spill_legacy": 0,
+        "area": 2183,
+        "rgba_sha256": "7eea97dfa47cb86191915224e4cda3e0157a854c4afb49ee4338bed1d1626246"
+      }
+    },
+    {
+      "name": "guardian attack F3 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian attack F3 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          15,
+          22,
+          86,
+          73
+        ],
+        "margin": 10,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 138.41,
+        "spill_legacy": 0,
+        "area": 2138,
+        "rgba_sha256": "0ad63bd6dc77cbc7bc273b545d70bb85d0915b8a802a5b3b6c5cb2bbaa20db2b"
+      }
+    },
+    {
+      "name": "guardian attack F4 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian attack F4 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          13,
+          20,
+          87,
+          73
+        ],
+        "margin": 9,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 136.59,
+        "spill_legacy": 0,
+        "area": 2329,
+        "rgba_sha256": "6be558adc00683872c9f6b2dfe1be1e07a8ce5fa02aac3cbebb2b95c0f64d65f"
+      }
+    },
+    {
+      "name": "guardian attack F5 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian attack F5 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          14,
+          9,
+          81,
+          73
+        ],
+        "margin": 9,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 136.41,
+        "spill_legacy": 0,
+        "area": 2497,
+        "rgba_sha256": "92f1a4ed7413d26bcb6407c7c374bb7601f7cd248f8b9dd6f359f171f36b0f4e"
+      }
+    },
+    {
+      "name": "guardian attack F6 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian attack F6 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          17,
+          6,
+          82,
+          73
+        ],
+        "margin": 6,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 131.41,
+        "spill_legacy": 0,
+        "area": 2675,
+        "rgba_sha256": "f9667e9f283a1c7c9657241144efcdbf7d7f7069a1fd3c6685c4f6c5b766e98e"
+      }
+    },
+    {
+      "name": "guardian defeat timing/scale unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian defeat F1 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian defeat F1 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          22,
+          4,
+          83,
+          73
+        ],
+        "margin": 4,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 126.79,
+        "spill_legacy": 0,
+        "area": 2832,
+        "rgba_sha256": "cf366ba6070d9c8c8b95e8d96d53faafeb9a110dffafa40dfd52313b653c5bfd"
+      }
+    },
+    {
+      "name": "guardian defeat F2 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian defeat F2 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          14,
+          16,
+          83,
+          73
+        ],
+        "margin": 13,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 122.63,
+        "spill_legacy": 0,
+        "area": 2547,
+        "rgba_sha256": "44408cb724440eed041ebab852556fe97327c9fd184c9709559c057d1e26f016"
+      }
+    },
+    {
+      "name": "guardian defeat F3 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian defeat F3 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          8,
+          31,
+          87,
+          73
+        ],
+        "margin": 8,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 122.94,
+        "spill_legacy": 0,
+        "area": 2037,
+        "rgba_sha256": "2e80761e03123f2d68f26a834abc97030aeb6b526c6762065795a2de35d41069"
+      }
+    },
+    {
+      "name": "guardian defeat F4 expected change",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "guardian defeat F4 margin/feet/alpha/spill",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          4,
+          38,
+          88,
+          73
+        ],
+        "margin": 4,
+        "bottom": 72,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "detail": 132.2,
+        "spill_legacy": 0,
+        "area": 1813,
+        "rgba_sha256": "2c4cbfdc48ac372b472eb2f69b453369b6d50d0604f7a7a5faa876dd7511aded"
+      }
+    },
+    {
+      "name": "hound idle timing/scale unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F1 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F1 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F1 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F2 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F2 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F2 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F3 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F3 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F3 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F4 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F4 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F4 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F5 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F5 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F5 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F6 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F6 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle F6 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound idle empty unused cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk timing/scale unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F1 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F1 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F1 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F2 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F2 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F2 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F3 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F3 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F3 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F4 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F4 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F4 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F5 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F5 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F5 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F6 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F6 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk F6 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound walk empty unused cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup timing/scale unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F1 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F1 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F1 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F2 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F2 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F2 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F3 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F3 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F3 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F4 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F4 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup F4 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound windup empty unused cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack timing/scale unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F1 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F1 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F1 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F2 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F2 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F2 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F3 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F3 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F3 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F4 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F4 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F4 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F5 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F5 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F5 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F6 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F6 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack F6 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound attack empty unused cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound hurt timing/scale unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound hurt F1 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound hurt F1 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound hurt F1 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound hurt F2 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound hurt F2 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound hurt F2 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound hurt empty unused cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat timing/scale unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F1 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F1 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F1 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F2 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F2 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F2 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F3 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F3 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F3 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F4 deterministic RGB-only cleaning",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F4 margin/binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat F4 no pure chroma",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "hound defeat empty unused cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "yggdrasil_root_guardian sheet dimensions",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "yggdrasil_root_guardian sheet row idle",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "yggdrasil_root_guardian sheet row walk",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "yggdrasil_root_guardian sheet row windup",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "yggdrasil_root_guardian sheet row attack",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "yggdrasil_root_guardian sheet row hurt",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "yggdrasil_root_guardian sheet row defeat",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "vanaheim_vine_hound sheet dimensions",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "vanaheim_vine_hound sheet row idle",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "vanaheim_vine_hound sheet row walk",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "vanaheim_vine_hound sheet row windup",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "vanaheim_vine_hound sheet row attack",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "vanaheim_vine_hound sheet row hurt",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "vanaheim_vine_hound sheet row defeat",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag dimensions",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row0 cell0 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row0 cell1 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row0 cell2 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row0 cell3 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row0 cell4 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row0 cell5 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row1 cell0 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row1 cell1 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row1 cell2 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row1 cell3 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row1 cell4 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row1 cell5 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row2 cell0 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag attack F1 margin/feet",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          7,
+          22,
+          89,
+          72
+        ],
+        "margin": 7,
+        "bottom": 71,
+        "alpha_values": [
+          0,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          41,
+          42,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          59,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          68,
+          70,
+          71,
+          72,
+          73,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          83,
+          84,
+          85,
+          86,
+          88,
+          89,
+          92,
+          94,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          112,
+          113,
+          116,
+          117,
+          118,
+          119,
+          120,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          155,
+          157,
+          160,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          170,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          202,
+          203,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          229,
+          230,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255
+        ],
+        "detail": 75.78,
+        "spill_legacy": 0,
+        "area": 2535,
+        "rgba_sha256": "840d55cd1fab2934601d289a7803189e0d28eb5bd5845c09557a1c100bf38bce"
+      }
+    },
+    {
+      "name": "stag row2 cell1 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag attack F2 margin/feet",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          4,
+          21,
+          91,
+          72
+        ],
+        "margin": 4,
+        "bottom": 71,
+        "alpha_values": [
+          0,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          53,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          62,
+          63,
+          65,
+          66,
+          67,
+          68,
+          70,
+          71,
+          72,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          85,
+          86,
+          87,
+          88,
+          89,
+          91,
+          92,
+          94,
+          95,
+          97,
+          98,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          131,
+          132,
+          133,
+          135,
+          136,
+          137,
+          138,
+          139,
+          141,
+          143,
+          144,
+          145,
+          147,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          176,
+          177,
+          178,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          190,
+          191,
+          194,
+          195,
+          196,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255
+        ],
+        "detail": 76.35,
+        "spill_legacy": 0,
+        "area": 2610,
+        "rgba_sha256": "ec257f69f8c569485b92eac1ccd2625e665f447af9de3536a360fcc0c13925dd"
+      }
+    },
+    {
+      "name": "stag row2 cell2 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag attack F3 margin/feet",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          6,
+          23,
+          90,
+          72
+        ],
+        "margin": 6,
+        "bottom": 71,
+        "alpha_values": [
+          0,
+          32,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          42,
+          43,
+          44,
+          45,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          60,
+          62,
+          63,
+          64,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          118,
+          120,
+          121,
+          122,
+          123,
+          125,
+          128,
+          129,
+          130,
+          131,
+          133,
+          134,
+          135,
+          137,
+          138,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          147,
+          149,
+          150,
+          151,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          160,
+          161,
+          162,
+          163,
+          164,
+          166,
+          167,
+          169,
+          170,
+          171,
+          172,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          192,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          204,
+          205,
+          207,
+          209,
+          210,
+          211,
+          212,
+          214,
+          215,
+          216,
+          217,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255
+        ],
+        "detail": 82.9,
+        "spill_legacy": 0,
+        "area": 2444,
+        "rgba_sha256": "caaef6cf2f70ce2acdb6290ed1bdde6bc7d243dbb9a63e511a07b455a9ebc3fc"
+      }
+    },
+    {
+      "name": "stag row2 cell3 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag attack F4 margin/feet",
+      "pass_": true,
+      "detail": {
+        "bbox": [
+          11,
+          10,
+          85,
+          72
+        ],
+        "margin": 10,
+        "bottom": 71,
+        "alpha_values": [
+          0,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          60,
+          61,
+          62,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          87,
+          88,
+          89,
+          91,
+          93,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          110,
+          111,
+          112,
+          113,
+          116,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          154,
+          156,
+          157,
+          159,
+          161,
+          164,
+          165,
+          166,
+          167,
+          170,
+          171,
+          172,
+          173,
+          174,
+          177,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          220,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255
+        ],
+        "detail": 86.48,
+        "spill_legacy": 0,
+        "area": 2480,
+        "rgba_sha256": "a90ca0806408f6f5f703f44d4727ea929baae5fb43ee4b72c235fefcbd7f5bf4"
+      }
+    },
+    {
+      "name": "stag row2 cell4 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row2 cell5 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row3 cell0 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row3 cell1 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row3 cell2 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row3 cell3 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row3 cell4 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag row3 cell5 change scope",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag four distinct RGBA frames",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "stag candidate SHA matches metadata",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Nova female adopted meteor strip equals current game row5",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "Nova male adopted meteor strip equals current game row5",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "no fighter candidate created",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "deliver.py parses",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "package.py parses",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "verify.py parses",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "work.py parses",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "tracked mutations only approved outputs",
+      "pass_": true,
+      "detail": [
+        "art/bakeoff/monsters/legacy/alfheim_moon_stag_sheet-fix1.json",
+        "art/bakeoff/monsters/legacy/alfheim_moon_stag_sheet-fix1.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound-attack-v2.json",
+        "art/bakeoff/monsters/vanaheim_vine_hound-attack-v2.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound-defeat-v2.json",
+        "art/bakeoff/monsters/vanaheim_vine_hound-defeat-v2.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound-hurt-v2.json",
+        "art/bakeoff/monsters/vanaheim_vine_hound-hurt-v2.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound-idle-v2.json",
+        "art/bakeoff/monsters/vanaheim_vine_hound-idle-v2.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound-walk-v2.json",
+        "art/bakeoff/monsters/vanaheim_vine_hound-walk-v2.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound-windup-v2.json",
+        "art/bakeoff/monsters/vanaheim_vine_hound-windup-v2.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png",
+        "art/bakeoff/monsters/yggdrasil_root_guardian-defeat-v2.json",
+        "art/bakeoff/monsters/yggdrasil_root_guardian-defeat-v2.png",
+        "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png"
+      ]
+    },
+    {
+      "name": "git index untouched and empty",
+      "pass_": true,
+      "detail": ""
+    }
+  ],
+  "handoff": {
+    "explicit_paths": 69,
+    "missing": 0,
+    "forbidden": 0,
+    "duplicate_paths": 0,
+    "CRLF_delivery_text_files": 0,
+    "powershell_parse": "PASS, parser only; script not executed",
+    "git_check_ignore": "no delivery path ignored",
+    "index_empty": true,
+    "script_executed": false,
+    "git_commit_created": false
+  }
+}
