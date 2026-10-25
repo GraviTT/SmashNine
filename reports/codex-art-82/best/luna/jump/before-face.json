@@ -1,0 +1,163 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      82.5,
+      67,
+      4,
+      5
+    ],
+    [
+      90,
+      67,
+      3,
+      4
+    ],
+    [
+      77,
+      67,
+      3,
+      4
+    ],
+    [
+      91,
+      67,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 82.184,
+      "y": 67.594,
+      "score": 1
+    },
+    {
+      "x": 89.805,
+      "y": 66.359,
+      "score": 1
+    },
+    {
+      "x": 77,
+      "y": 67,
+      "score": 1
+    },
+    {
+      "x": 91,
+      "y": 67,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.720418771025322,
+  "reference_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 79.899,
+          "y": 60.539,
+          "score": 0.956
+        },
+        {
+          "x": 87.679,
+          "y": 59.171,
+          "score": 0.818
+        },
+        {
+          "x": 75.0,
+          "y": 60.0,
+          "score": 0.952
+        },
+        {
+          "x": 89.0,
+          "y": 60.0,
+          "score": 0.864
+        }
+      ],
+      "eye_distance": 7.899,
+      "face_width": 14.0,
+      "eye_ratio": 1.023,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        63,
+        41,
+        0.913
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 79.155,
+          "y": 50.588,
+          "score": 0.956
+        },
+        {
+          "x": 86.602,
+          "y": 49.181,
+          "score": 0.764
+        },
+        {
+          "x": 74.0,
+          "y": 51.0,
+          "score": 0.909
+        },
+        {
+          "x": 88.0,
+          "y": 50.0,
+          "score": 0.856
+        }
+      ],
+      "eye_distance": 7.579,
+      "face_width": 14.0,
+      "eye_ratio": 0.982,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        62,
+        31,
+        0.886
+      ]
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 79.038,
+          "y": 50.692,
+          "score": 0.956
+        },
+        {
+          "x": 86.671,
+          "y": 49.208,
+          "score": 0.775
+        },
+        {
+          "x": 74.0,
+          "y": 50.0,
+          "score": 0.935
+        },
+        {
+          "x": 88.0,
+          "y": 50.0,
+          "score": 0.88
+        }
+      ],
+      "eye_distance": 7.776,
+      "face_width": 14.0,
+      "eye_ratio": 1.007,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        1.0,
+        62,
+        31,
+        0.889
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_passed": true,
+  "review_note": "도약·상승·정점 3장. 얼굴과 지팡이를 확인했다. F2·3 무릎 자세 차이는 작다."
+}
