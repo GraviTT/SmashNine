@@ -1,0 +1,337 @@
+{
+  "monster": "vanaheim_vine_hound",
+  "row": "idle",
+  "factor": 0.19,
+  "before": [
+    {
+      "frame": 1,
+      "bbox": [
+        7,
+        22,
+        87,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 94.19,
+      "spill": 905,
+      "alpha_binary": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        7,
+        22,
+        87,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 95.5,
+      "spill": 882,
+      "alpha_binary": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        6,
+        22,
+        87,
+        73
+      ],
+      "margin": 6,
+      "bottom": 72,
+      "detail": 93.1,
+      "spill": 886,
+      "alpha_binary": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        8,
+        23,
+        87,
+        73
+      ],
+      "margin": 8,
+      "bottom": 72,
+      "detail": 93.58,
+      "spill": 907,
+      "alpha_binary": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        7,
+        23,
+        87,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 94.77,
+      "spill": 880,
+      "alpha_binary": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        7,
+        22,
+        88,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 93.91,
+      "spill": 911,
+      "alpha_binary": true
+    }
+  ],
+  "after": [
+    {
+      "frame": 1,
+      "bbox": [
+        7,
+        22,
+        87,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 73.32,
+      "spill": 983,
+      "alpha_binary": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        7,
+        22,
+        87,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 74.08,
+      "spill": 952,
+      "alpha_binary": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        6,
+        22,
+        87,
+        73
+      ],
+      "margin": 6,
+      "bottom": 72,
+      "detail": 73.02,
+      "spill": 955,
+      "alpha_binary": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        8,
+        23,
+        87,
+        73
+      ],
+      "margin": 8,
+      "bottom": 72,
+      "detail": 73.25,
+      "spill": 968,
+      "alpha_binary": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        7,
+        23,
+        87,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 73.74,
+      "spill": 950,
+      "alpha_binary": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        7,
+        22,
+        88,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 73.53,
+      "spill": 971,
+      "alpha_binary": true
+    }
+  ],
+  "colour": {
+    "method": "ART-74 RGB-only reference ramp; smooth hue material boundaries and reduced leaf highlight expansion",
+    "alpha_unchanged": true,
+    "input": "art\\raw\\monsters-83\\vanaheim_vine_hound-idle-colour-input.png",
+    "source_spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "before_leaf_outliers": [
+      {
+        "count": 196,
+        "evaluated": 898,
+        "mean_local_deviation": 24.674276169265035
+      },
+      {
+        "count": 204,
+        "evaluated": 868,
+        "mean_local_deviation": 24.350038402457756
+      },
+      {
+        "count": 204,
+        "evaluated": 879,
+        "mean_local_deviation": 23.817785362153963
+      },
+      {
+        "count": 192,
+        "evaluated": 890,
+        "mean_local_deviation": 23.906554307116103
+      },
+      {
+        "count": 194,
+        "evaluated": 879,
+        "mean_local_deviation": 23.872961698900266
+      },
+      {
+        "count": 192,
+        "evaluated": 906,
+        "mean_local_deviation": 23.1322663723326
+      }
+    ],
+    "after_leaf_outliers": [
+      {
+        "count": 108,
+        "evaluated": 898,
+        "mean_local_deviation": 17.104677060133632
+      },
+      {
+        "count": 89,
+        "evaluated": 868,
+        "mean_local_deviation": 16.900537634408604
+      },
+      {
+        "count": 102,
+        "evaluated": 879,
+        "mean_local_deviation": 17.022753128555177
+      },
+      {
+        "count": 92,
+        "evaluated": 890,
+        "mean_local_deviation": 16.71067415730337
+      },
+      {
+        "count": 97,
+        "evaluated": 879,
+        "mean_local_deviation": 16.7650739476678
+      },
+      {
+        "count": 94,
+        "evaluated": 906,
+        "mean_local_deviation": 16.50147167034584
+      }
+    ],
+    "ramps": {
+      "leaf": [
+        [
+          36.0,
+          55.0,
+          30.0
+        ],
+        [
+          43.0,
+          75.0,
+          34.0
+        ],
+        [
+          53.0,
+          87.0,
+          33.0
+        ],
+        [
+          68.0,
+          102.0,
+          32.0
+        ],
+        [
+          94.0,
+          130.0,
+          32.0
+        ]
+      ],
+      "bark": [
+        [
+          50.0,
+          41.0,
+          35.0
+        ],
+        [
+          63.0,
+          50.0,
+          39.0
+        ],
+        [
+          74.0,
+          57.0,
+          40.0
+        ],
+        [
+          89.0,
+          67.0,
+          41.0
+        ],
+        [
+          113.0,
+          85.0,
+          44.0
+        ]
+      ],
+      "glow": [
+        [
+          106.0,
+          190.0,
+          144.0
+        ],
+        [
+          152.0,
+          224.0,
+          172.0
+        ],
+        [
+          183.0,
+          240.0,
+          192.0
+        ],
+        [
+          200.0,
+          246.0,
+          201.0
+        ],
+        [
+          212.0,
+          252.0,
+          208.0
+        ]
+      ]
+    }
+  }
+}

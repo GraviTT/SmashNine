@@ -1,0 +1,167 @@
+[
+  {
+    "monster": "mossling",
+    "row": "walk",
+    "trial": "b",
+    "factor": 0.2,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/mossling-walk-v2.png",
+    "metrics": "reports/codex-art-83/trials/mossling-walk-b/metrics.json",
+    "note": "가까운 밝은 앞다리가 F1 전방→F3 후방→F6 전방으로 교대하도록 재생성. 1×에서 기존 교대 불명확→교대 식별 가능(육안). 윗얼굴 폭 idle 22px / 대표 F1 22px.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "ember_imp",
+    "row": "walk",
+    "trial": "b",
+    "factor": 0.19,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/ember_imp-walk-v2.png",
+    "metrics": "reports/codex-art-83/trials/ember_imp-walk-b/metrics.json",
+    "note": "밝은 가까운 다리와 어두운 먼 다리의 전후 순서가 반전하도록 재생성. 1× 교대 불명확→식별 가능(육안). 두개골 폭 idle 20px / 대표 F1 21px(1.05).",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "ember_imp",
+    "row": "idle",
+    "trial": "a",
+    "factor": 0.17,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/ember_imp-idle-v2.png",
+    "metrics": "reports/codex-art-83/trials/ember_imp-idle-a/metrics.json",
+    "note": "두개골/몸 비율을 유지하며 비늘과 명암을 보강. interior_detail 72.40–76.21→96.58–100.55. 대표 두개골 폭 idle 20px / v2 20px.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "asgard_aegis_ram",
+    "row": "idle",
+    "trial": "b",
+    "factor": 0.168,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/asgard_aegis_ram-idle-v2.png",
+    "metrics": "reports/codex-art-83/trials/asgard_aegis_ram-idle-b/metrics.json",
+    "note": "깃/털과 금속 명암을 보강. interior_detail 74.75–80.76→92.44–97.10. 금색 주뿔 높이 기준 16px / v2 전 프레임 16px.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "mossling",
+    "row": "attack",
+    "trial": "a",
+    "factor": 0.24,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/mossling-attack-v2.png",
+    "metrics": "reports/codex-art-83/trials/mossling-attack-a/metrics.json",
+    "note": "몸통이 앞으로 뻗는 돌진으로 재생성. 등 위 싹의 갈색 줄기 부착부 F1→F3 x 변화 −2→+16px(수동 표식 ±1px). 윗얼굴 폭 22px. 게임 이동/타격 범위 수치 아님.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "vanaheim_seed_sprite",
+    "row": "attack",
+    "trial": "e",
+    "factor": 0.24,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/vanaheim_seed_sprite-attack-v2.png",
+    "metrics": "reports/codex-art-83/trials/vanaheim_seed_sprite-attack-e/metrics.json",
+    "note": "꽃 가지를 앞으로 뻗도록 재생성 후 ART-74 방식 녹색 복원. idle F1→attack F3 손/가지 접점 x 변화 5→10px(수동 표식 ±1px). 몸통 폭 idle 45px / F6 44px. 게임 공격 범위 수치 아님.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "idle",
+    "trial": "b",
+    "factor": 0.19,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/vanaheim_vine_hound-idle-v2.png",
+    "metrics": "reports/codex-art-83/trials/vanaheim_vine_hound-idle-b/metrics.json",
+    "note": "ART-74 참조 팔레트의 색 경계를 부드럽게 연결하고 잎 하이라이트 확대를 줄임. 잎 영역 국소 밝기 이상점 1182→582(보조 지표; 실제 결함 픽셀 수 아님). 전 프레임 알파/위치/크기 v1과 동일. 미세 점상 질감은 남아 있음.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "walk",
+    "trial": "b",
+    "factor": 0.19,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/vanaheim_vine_hound-walk-v2.png",
+    "metrics": "reports/codex-art-83/trials/vanaheim_vine_hound-walk-b/metrics.json",
+    "note": "ART-74 참조 팔레트의 색 경계를 부드럽게 연결하고 잎 하이라이트 확대를 줄임. 잎 영역 국소 밝기 이상점 1856→1187(보조 지표; 실제 결함 픽셀 수 아님). 전 프레임 알파/위치/크기 v1과 동일. 미세 점상 질감은 남아 있음.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "windup",
+    "trial": "b",
+    "factor": 0.15,
+    "frames": 4,
+    "candidate": "art/bakeoff/monsters/vanaheim_vine_hound-windup-v2.png",
+    "metrics": "reports/codex-art-83/trials/vanaheim_vine_hound-windup-b/metrics.json",
+    "note": "ART-74 참조 팔레트의 색 경계를 부드럽게 연결하고 잎 하이라이트 확대를 줄임. 잎 영역 국소 밝기 이상점 927→536(보조 지표; 실제 결함 픽셀 수 아님). 전 프레임 알파/위치/크기 v1과 동일. 미세 점상 질감은 남아 있음.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "attack",
+    "trial": "b",
+    "factor": 0.205,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/vanaheim_vine_hound-attack-v2.png",
+    "metrics": "reports/codex-art-83/trials/vanaheim_vine_hound-attack-b/metrics.json",
+    "note": "ART-74 참조 팔레트의 색 경계를 부드럽게 연결하고 잎 하이라이트 확대를 줄임. 잎 영역 국소 밝기 이상점 1742→1040(보조 지표; 실제 결함 픽셀 수 아님). 전 프레임 알파/위치/크기 v1과 동일. 미세 점상 질감은 남아 있음.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "hurt",
+    "trial": "b",
+    "factor": 0.12,
+    "frames": 2,
+    "candidate": "art/bakeoff/monsters/vanaheim_vine_hound-hurt-v2.png",
+    "metrics": "reports/codex-art-83/trials/vanaheim_vine_hound-hurt-b/metrics.json",
+    "note": "ART-74 참조 팔레트의 색 경계를 부드럽게 연결하고 잎 하이라이트 확대를 줄임. 잎 영역 국소 밝기 이상점 638→345(보조 지표; 실제 결함 픽셀 수 아님). 전 프레임 알파/위치/크기 v1과 동일. 미세 점상 질감은 남아 있음.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "defeat",
+    "trial": "b",
+    "factor": 0.164,
+    "frames": 4,
+    "candidate": "art/bakeoff/monsters/vanaheim_vine_hound-defeat-v2.png",
+    "metrics": "reports/codex-art-83/trials/vanaheim_vine_hound-defeat-b/metrics.json",
+    "note": "ART-74 참조 팔레트의 색 경계를 부드럽게 연결하고 잎 하이라이트 확대를 줄임. 잎 영역 국소 밝기 이상점 930→556(보조 지표; 실제 결함 픽셀 수 아님). 전 프레임 알파/위치/크기 v1과 동일. 미세 점상 질감은 남아 있음.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "alfheim_moon_moth",
+    "row": "windup",
+    "trial": "e",
+    "factor": 0.187,
+    "frames": 4,
+    "candidate": "art/bakeoff/monsters/alfheim_moon_moth-windup-v2.png",
+    "metrics": "reports/codex-art-83/trials/alfheim_moon_moth-windup-e/metrics.json",
+    "note": "행 공통 배율로 구형 머리 크기 보정. F2 sqrt(밝은 연결색 면적)/idle 0.896→1.020. 전체 F1–F4 0.951–1.037. 몸 중심 정렬. 더듬이 끝 식별은 여전히 약함.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "jotunheim_storm_wisp",
+    "row": "hurt",
+    "trial": "b",
+    "factor": 0.205,
+    "frames": 2,
+    "candidate": "art/bakeoff/monsters/jotunheim_storm_wisp-hurt-v2.png",
+    "metrics": "reports/codex-art-83/trials/jotunheim_storm_wisp-hurt-b/metrics.json",
+    "note": "돌 군집이 한쪽으로 기울어지는 피격 자세로 재생성. F1 상단 돌–청색 핵 중심 수평 차이 5→16px(수동 ±1px). F2 상단 타원석 장축 23.26px / idle 기준 평균 23.26px. 색 변화뿐 아니라 배치/실루엣 변화.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  },
+  {
+    "monster": "niflheim_glacier_wolf",
+    "row": "attack",
+    "trial": "b",
+    "factor": 0.215,
+    "frames": 6,
+    "candidate": "art/bakeoff/monsters/niflheim_glacier_wolf-attack-v2.png",
+    "metrics": "reports/codex-art-83/trials/niflheim_glacier_wolf-attack-b/metrics.json",
+    "note": "도약 정점을 F4→F3으로 이동. 최하단 y: 72,67,62,53,72,72→72,62,52,59,67,72. 대표 F6 가까운 뒷다리 청색 허벅지 폭 14px로 idle과 일치. 전 프레임 공통 배율 0.215.",
+    "visual_review": "모든 사용 프레임을 1×/4× 정지 비교판으로 직접 확인. 재생/게임 실행 검증 아님."
+  }
+]
