@@ -1,0 +1,36 @@
+{
+  "method": "Manual semantic ROI selection on the actual native 4x support board, followed by alpha-pixel bottom measurement. ROI choice is judgement; coordinates/counts are measured. Only valid for the exact candidate SHA-256.",
+  "records": [
+    {
+      "path": "art/bakeoff/monsters/vanaheim_seed_sprite-attack-v1.png",
+      "sha256": "5213fbaedfb5d3090b3d5f7b552f423f2e80ea9248ea757588dd71bcc785a25d",
+      "check": "feet",
+      "frames": [
+        {
+          "frame": 2,
+          "roi": [
+            27,
+            65,
+            40,
+            76
+          ],
+          "part": "visible supporting root foot; excludes extended leaf at x47..59,y72..74"
+        },
+        {
+          "frame": 3,
+          "roi": [
+            11,
+            65,
+            24,
+            76
+          ],
+          "part": "visible supporting root foot; excludes extended leaf at x49..63,y72..74"
+        }
+      ],
+      "evidence": "support/seed-feet-4x.png",
+      "uncertainty_px": 1,
+      "target_y": 72,
+      "tolerance_px": 1
+    }
+  ]
+}
