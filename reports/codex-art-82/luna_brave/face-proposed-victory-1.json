@@ -1,0 +1,103 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      79,
+      64.5,
+      4,
+      5
+    ],
+    [
+      86,
+      64.5,
+      3,
+      4
+    ],
+    [
+      73,
+      65.5,
+      3,
+      4
+    ],
+    [
+      87,
+      65.5,
+      3,
+      4
+    ]
+  ],
+  "rows": {
+    "fall": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 72.383,
+            "y": 49.994,
+            "score": 0.944
+          },
+          {
+            "x": 79.685,
+            "y": 48.236,
+            "score": 0.845
+          },
+          {
+            "x": 66.0,
+            "y": 50.5,
+            "score": 0.938
+          },
+          {
+            "x": 81.0,
+            "y": 49.5,
+            "score": 0.782
+          }
+        ],
+        "eye_distance": 7.511,
+        "face_width": 15.0,
+        "eye_ratio": 0.989,
+        "face_width_ratio": 1.071,
+        "head_alignment": [
+          0.96,
+          51,
+          30,
+          0.892
+        ]
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 75.348,
+            "y": 49.985,
+            "score": 0.949
+          },
+          {
+            "x": 82.697,
+            "y": 48.27,
+            "score": 0.884
+          },
+          {
+            "x": 70.0,
+            "y": 50.5,
+            "score": 0.877
+          },
+          {
+            "x": 84.0,
+            "y": 49.5,
+            "score": 0.762
+          }
+        ],
+        "eye_distance": 7.546,
+        "face_width": 14.0,
+        "eye_ratio": 0.994,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.96,
+          54,
+          30,
+          0.886
+        ]
+      }
+    ]
+  }
+}
