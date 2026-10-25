@@ -1,0 +1,292 @@
+{
+  "id": "svartalfheim_cog_drone",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L19",
+    "L25"
+  ],
+  "note": "L19, L25: 원본의 완전한 몸 영역을 다시 잘라 배치; 몸과 분리된 발사체·잔상·피격 표시 픽셀 제거; 발사체가 몸을 가린 1프레임은 이웃 프레임 참조로 재작화. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/svartalfheim_cog_drone_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "086a497e0e5dd223f1c2ead68d3303552c205bf975c30da1a8713afd5cf253cc",
+  "candidate_file_sha256": "c0cf77edfbe2279e199b853f9c358b77c4c24fd42b9400a1b6a658e75c501997",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "attack",
+      "frame": 2,
+      "source": "art/raw/monsters-87/svartalfheim_cog_drone_source.png",
+      "source_region": [
+        283,
+        547,
+        531,
+        754
+      ],
+      "alpha_bbox_in_region": [
+        5,
+        9,
+        244,
+        203
+      ],
+      "scale": 0.32,
+      "placement": [
+        10,
+        10
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          9,
+          5,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          9,
+          5,
+          86,
+          72
+        ],
+        "area_alpha128": 2804,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "f9f45cfe2f70531ab98e80b68e529face516d8101c6b0ebd524fe5859d3b0554"
+      },
+      "after": {
+        "bbox_alpha128": [
+          10,
+          10,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          10,
+          86,
+          72
+        ],
+        "area_alpha128": 2455,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "0d6c3ef6468df68bec7d861cb557e6f53cabde5bffd75966988fdd1f22c4e3c8"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 4,
+      "method": "built-in imagegen redraw: shot occluded source body",
+      "source": "art/raw/monsters-87/svartalfheim_cog_drone_attack4_redraw.png",
+      "source_region": [
+        104,
+        111,
+        1112,
+        953
+      ],
+      "target_size": [
+        77,
+        64
+      ],
+      "placement": [
+        8,
+        8
+      ],
+      "feet_boundary": 72,
+      "prior_cleanup": {
+        "method": "pixel cleanup only",
+        "source": "art/raw/monsters-87/svartalfheim_cog_drone_sheet.png",
+        "source_region": [
+          288,
+          192,
+          384,
+          288
+        ],
+        "removed_fx_polygons_local": [
+          [
+            [
+              81,
+              34
+            ],
+            [
+              92,
+              34
+            ],
+            [
+              92,
+              55
+            ],
+            [
+              81,
+              55
+            ]
+          ],
+          [
+            [
+              75,
+              28
+            ],
+            [
+              80,
+              28
+            ],
+            [
+              80,
+              34
+            ],
+            [
+              75,
+              34
+            ]
+          ]
+        ],
+        "removed_fx_pixels": 112
+      },
+      "reference": [
+        "svartalfheim_cog_drone_edit_target.png",
+        "svartalfheim_cog_drone_edit_reference.png"
+      ],
+      "original_source_compared": "art/raw/monsters-87/svartalfheim_cog_drone_source.png",
+      "redraw_reason": "원본에도 발사 효과가 손·포구·얼굴·돌 윤곽을 가림. 재슬라이스만으로 가려진 몸 픽셀을 복구할 수 없음.",
+      "before": {
+        "bbox_alpha128": [
+          8,
+          7,
+          88,
+          72
+        ],
+        "bbox_alpha1": [
+          8,
+          7,
+          88,
+          72
+        ],
+        "area_alpha128": 2700,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "a6b85bfa79ddc9511408951ac516720e29b7ff1d6a81d66f1991fe0efbdbca35"
+      },
+      "after": {
+        "bbox_alpha128": [
+          8,
+          8,
+          85,
+          72
+        ],
+        "bbox_alpha1": [
+          8,
+          8,
+          85,
+          72
+        ],
+        "area_alpha128": 2616,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "e99b1f527d2c6dabedd7685ed0a58ba1ee194475d737939b4dd90570f7174ea1"
+      }
+    }
+  ]
+}
