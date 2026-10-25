@@ -1,0 +1,23 @@
+ART-90 built-in image tool. Two calls, no CLI/API fallback. All generated files copied into art/raw/art-90/.
+
+1. Legacy stag attack F3
+Inputs:
+  art/raw/art-90/stag-attack-source-F3.png (edit target)
+  art/raw/art-90/stag-source-reference.png (idle/attack F1/F2 reference)
+transparent_background: true
+Output copied to: art/raw/art-90/stag-F3-generated.png
+Prompt:
+Use case: precise-object-edit. Game sprite frame repair, legacy SmashNine moon stag attack F3. Image 1 is the edit target: the airborne third attack pose. Image 2 is reference ONLY: the same character's idle and first two attack poses. Produce ONLY ONE whole stag, right-facing side view, on genuine transparent background, no text, no checkerboard, no shadow or effects. Preserve the exact legacy blue-violet pixel-art creature identity, dark outlines, violet-blue fur, cyan-lavender leafy mane, luminous crescent on hip, two crescent antlers, white glowing hooves, single visible eye. Repair the pose to be more compact horizontally: tuck the rear legs forward under belly and bring the head/neck slightly back/up, keeping a clearly airborne downward attacking pose. The original is too long to fit the 96px game cell at the same body size as the idle. Keep head and torso proportions like Image 2, do NOT make a long thin body. Entire silhouette width should be about 1.5 times its height, not the original 2.1. Keep all hooves, antlers and mane complete within broad transparent margins. Preserve the coarse pixel rendering and color scheme, do not upgrade to painterly or 3D. Do not make a sheet or collage.
+
+2. Legacy stag attack F4
+Inputs:
+  art/raw/art-90/stag-attack-source-F1.png (pose/identity reference)
+  art/raw/art-90/stag-source-reference.png (idle/attack F1/F2 reference)
+transparent_background: true
+Output copied to: art/raw/art-90/stag-F4-generated.png
+Prompt:
+Use case: precise-object-edit. One replacement game sprite, the missing fourth recovery frame of the legacy SmashNine moon stag attack. Reference 1 is attack frame 1. Reference 2 shows the exact idle, attack 1 and attack 2 design. Draw ONLY ONE whole right-facing moon stag in a NEW distinct recovery pose: after landing, all four hooves on ground, knees softly bent, head lifting halfway back toward its idle position, mane settling backward. The body and head MUST match the size and proportions of these references. Keep the round compact torso, short muzzle, two crescent antlers, blue-violet fur, cyan/lavender leafy mane and tail, crescent moon on near hip, luminous white-blue eye and hooves. Same coarse pixel art texture and dark outlines. No new creature design, no armor, no extra antlers. Whole body clearly within generous empty margins. TRANSPARENT BACKGROUND ONLY: no black or blue background, no glow outside the creature, no ground shadow, no checkerboard, no text, no labels, no effects. Do not copy the crouching F1 pose; this is a clearly distinct landing recovery with the head higher and front legs straightening. Do not generate a sheet.
+
+Guardian: no generation; intact raw resliced with transparent source padding at unchanged row factors.
+Hound: no generation; explicitly authorized Python/Pillow local RGB speckle attenuation, eye and silhouette protection.
+Fighters: no generation or candidate mutation; manual face recheck and automatic supporting measurement only.

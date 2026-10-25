@@ -1,0 +1,383 @@
+[
+  {
+    "monster": "mossling",
+    "row": "walk",
+    "frame": 1,
+    "part": "윗얼굴 폭; 잎/아래턱 제외",
+    "box": [
+      64,
+      48,
+      86,
+      62
+    ],
+    "idle_px": 22,
+    "after_px": 22,
+    "ratio": 1.0,
+    "uncertainty_px": 1,
+    "method": "출력 픽셀의 같은 해부 부위 수동 경계. 명목 비율; 오차까지 포함한 정밀 보장은 아님."
+  },
+  {
+    "monster": "ember_imp",
+    "row": "walk",
+    "frame": 1,
+    "part": "두개골 폭; 뿔/등가시 제외",
+    "box": [
+      52,
+      29,
+      73,
+      43
+    ],
+    "idle_px": 20,
+    "after_px": 21,
+    "ratio": 1.05,
+    "uncertainty_px": 1,
+    "method": "출력 픽셀의 같은 해부 부위 수동 경계. 명목 비율; 오차까지 포함한 정밀 보장은 아님."
+  },
+  {
+    "monster": "ember_imp",
+    "row": "idle",
+    "frame": 1,
+    "part": "두개골 폭; 뿔/등가시 제외",
+    "box": [
+      54,
+      30,
+      74,
+      45
+    ],
+    "idle_px": 20,
+    "after_px": 20,
+    "ratio": 1.0,
+    "uncertainty_px": 1,
+    "method": "출력 픽셀의 같은 해부 부위 수동 경계. 명목 비율; 오차까지 포함한 정밀 보장은 아님."
+  },
+  {
+    "monster": "mossling",
+    "row": "attack",
+    "frame": 1,
+    "part": "윗얼굴 폭; 잎/아래턱 제외",
+    "box": [
+      56,
+      50,
+      78,
+      64
+    ],
+    "idle_px": 22,
+    "after_px": 22,
+    "ratio": 1.0,
+    "uncertainty_px": 1,
+    "method": "출력 픽셀의 같은 해부 부위 수동 경계. 명목 비율; 오차까지 포함한 정밀 보장은 아님."
+  },
+  {
+    "monster": "vanaheim_seed_sprite",
+    "row": "attack",
+    "frame": 6,
+    "part": "잎/팔 제외 씨앗 몸통 폭",
+    "box": [
+      26,
+      39,
+      70,
+      67
+    ],
+    "idle_px": 45,
+    "after_px": 44,
+    "ratio": 0.9777777777777777,
+    "uncertainty_px": 1,
+    "method": "출력 픽셀의 같은 해부 부위 수동 경계. 명목 비율; 오차까지 포함한 정밀 보장은 아님."
+  },
+  {
+    "monster": "asgard_aegis_ram",
+    "row": "idle",
+    "idle_px": 16,
+    "features": [
+      {
+        "frame": 1,
+        "box": [
+          59,
+          31,
+          74,
+          47
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 118,
+        "ratio": 1.0
+      },
+      {
+        "frame": 2,
+        "box": [
+          60,
+          31,
+          76,
+          47
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 118,
+        "ratio": 1.0
+      },
+      {
+        "frame": 3,
+        "box": [
+          59,
+          31,
+          75,
+          47
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 118,
+        "ratio": 1.0
+      },
+      {
+        "frame": 4,
+        "box": [
+          60,
+          31,
+          76,
+          47
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 116,
+        "ratio": 1.0
+      },
+      {
+        "frame": 5,
+        "box": [
+          62,
+          31,
+          77,
+          47
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 120,
+        "ratio": 1.0
+      },
+      {
+        "frame": 6,
+        "box": [
+          60,
+          31,
+          76,
+          47
+        ],
+        "size": 16,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 125,
+        "ratio": 1.0
+      }
+    ],
+    "method": "ART-71 fix-1의 동일 연결색 영역 측정; ram 높이 / moth sqrt(area)"
+  },
+  {
+    "monster": "alfheim_moon_moth",
+    "row": "windup",
+    "idle_px": 15.0996688705415,
+    "features": [
+      {
+        "frame": 1,
+        "box": [
+          54,
+          41,
+          71,
+          59
+        ],
+        "size": 15.652475842498529,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 245,
+        "ratio": 1.0366105360784117
+      },
+      {
+        "frame": 2,
+        "box": [
+          54,
+          42,
+          72,
+          60
+        ],
+        "size": 15.394804318340652,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 237,
+        "ratio": 1.019545822516343
+      },
+      {
+        "frame": 3,
+        "box": [
+          54,
+          42,
+          71,
+          59
+        ],
+        "size": 15.0996688705415,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 228,
+        "ratio": 1.0
+      },
+      {
+        "frame": 4,
+        "box": [
+          54,
+          42,
+          70,
+          59
+        ],
+        "size": 14.352700094407323,
+        "kind": "connected_colour_pixels",
+        "uncertainty_px": 0,
+        "area": 206,
+        "ratio": 0.9505307843146504
+      }
+    ],
+    "method": "ART-71 fix-1의 동일 연결색 영역 측정; ram 높이 / moth sqrt(area)"
+  },
+  {
+    "monster": "jotunheim_storm_wisp",
+    "row": "hurt",
+    "frame": 2,
+    "part": "상단 타원석 장축; idle 6프레임 기준 평균",
+    "points": [
+      [
+        32,
+        27
+      ],
+      [
+        53,
+        17
+      ]
+    ],
+    "idle_px": 23.26338586109352,
+    "after_px": 23.259406699226016,
+    "ratio": 0.9998289517316497,
+    "endpoint_uncertainty_px": 1,
+    "length_uncertainty_px": 2,
+    "method": "ART-76 fix-1과 같은 수동 부위; 출력에서 재지정. 명목 비율."
+  },
+  {
+    "monster": "niflheim_glacier_wolf",
+    "row": "attack",
+    "frame": 6,
+    "part": "가까운 뒷다리 청색 허벅지 폭",
+    "points": [
+      [
+        32,
+        56
+      ],
+      [
+        46,
+        56
+      ]
+    ],
+    "idle_px": 14,
+    "after_px": 14.0,
+    "ratio": 1.0,
+    "endpoint_uncertainty_px": 1,
+    "length_uncertainty_px": 2,
+    "method": "ART-76 fix-1과 같은 수동 부위; 출력에서 재지정. 명목 비율."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "idle",
+    "frame": 1,
+    "part": "갈기를 뺀 얼굴·주둥이 외곽 가로폭",
+    "idle_px": 27,
+    "after_px": 27,
+    "ratio": 1.0,
+    "box": [
+      60,
+      41,
+      87,
+      64
+    ],
+    "method": "모든 알파 픽셀이 v1과 동일. fix-1 크기/위치 그대로."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "walk",
+    "frame": 1,
+    "part": "갈기를 뺀 얼굴·주둥이 외곽 가로폭",
+    "idle_px": 27,
+    "after_px": 27,
+    "ratio": 1.0,
+    "box": [
+      62,
+      38,
+      89,
+      62
+    ],
+    "method": "모든 알파 픽셀이 v1과 동일. fix-1 크기/위치 그대로."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "windup",
+    "frame": 1,
+    "part": "갈기를 뺀 얼굴·주둥이 외곽 가로폭",
+    "idle_px": 27,
+    "after_px": 26,
+    "ratio": 0.963,
+    "box": [
+      63,
+      41,
+      89,
+      63
+    ],
+    "method": "모든 알파 픽셀이 v1과 동일. fix-1 크기/위치 그대로."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "attack",
+    "frame": 6,
+    "part": "갈기를 뺀 얼굴·주둥이 외곽 가로폭",
+    "idle_px": 27,
+    "after_px": 26,
+    "ratio": 0.963,
+    "box": [
+      62,
+      32,
+      88,
+      58
+    ],
+    "method": "모든 알파 픽셀이 v1과 동일. fix-1 크기/위치 그대로."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "hurt",
+    "frame": 2,
+    "part": "갈기를 뺀 얼굴·주둥이 외곽 가로폭",
+    "idle_px": 27,
+    "after_px": 27,
+    "ratio": 1.0,
+    "box": [
+      61,
+      44,
+      88,
+      67
+    ],
+    "method": "모든 알파 픽셀이 v1과 동일. fix-1 크기/위치 그대로."
+  },
+  {
+    "monster": "vanaheim_vine_hound",
+    "row": "defeat",
+    "frame": 1,
+    "part": "갈기를 뺀 얼굴·주둥이 외곽 가로폭",
+    "idle_px": 27,
+    "after_px": 26,
+    "ratio": 0.963,
+    "box": [
+      61,
+      43,
+      87,
+      69
+    ],
+    "method": "모든 알파 픽셀이 v1과 동일. fix-1 크기/위치 그대로."
+  }
+]

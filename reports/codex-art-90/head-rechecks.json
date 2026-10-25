@@ -1,0 +1,451 @@
+{
+  "method": "4x nearest crops manually compared; pixel-coordinate grids used to record eye centres and exposed face-width endpoints, hair excluded. Whole-head template is supporting evidence only.",
+  "uncertainty": "눈/피부 끝점 각각 최소 ±0.5px. 가려진 반대쪽 눈은 약 ±1px. 약 8px 눈 간격에 4%는 0.32px뿐이므로 반 픽셀 단위 명목값만으로 확정하지 않음. 소수는 표식 좌표 계산값이며 정확도 보증 아님.",
+  "luna": {
+    "status": "수정 불필요",
+    "frames": [
+      {
+        "frame": "anchor",
+        "landmarks": [
+          [
+            82.25,
+            67.5
+          ],
+          [
+            89.75,
+            66.25
+          ],
+          [
+            77,
+            67
+          ],
+          [
+            91,
+            67
+          ]
+        ],
+        "eye_distance": 7.603453162872775,
+        "face_width": 14,
+        "eye_ratio": 1.0,
+        "face_width_ratio": 1.0
+      },
+      {
+        "frame": 1,
+        "landmarks": [
+          [
+            73.25,
+            50.5
+          ],
+          [
+            80.75,
+            49.5
+          ],
+          [
+            68,
+            50
+          ],
+          [
+            82,
+            50
+          ]
+        ],
+        "eye_distance": 7.566372975210778,
+        "face_width": 14,
+        "eye_ratio": 0.9951232437594201,
+        "face_width_ratio": 1.0
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          [
+            73.25,
+            50.5
+          ],
+          [
+            80.75,
+            49.25
+          ],
+          [
+            68,
+            50
+          ],
+          [
+            82,
+            50
+          ]
+        ],
+        "eye_distance": 7.603453162872775,
+        "face_width": 14,
+        "eye_ratio": 1.0,
+        "face_width_ratio": 1.0
+      }
+    ],
+    "automatic_median": 0.94,
+    "decision": "눈 간격 0.995–1.000, 얼굴 폭 1.000. 자동 머리는 위로 뜬 머리카락의 영향을 받음. v3 보존."
+  },
+  "nova": [
+    {
+      "sex": "male",
+      "method": "수동 4배 표식; 좌표는 셀 픽셀 중심, 눈/폭 끝점 ±0.5px 이상. 가림/시점 영향은 별도 판정.",
+      "frames": [
+        {
+          "frame": "anchor",
+          "landmarks": [
+            [
+              72,
+              58
+            ],
+            [
+              80,
+              58.5
+            ],
+            [
+              66,
+              59.5
+            ],
+            [
+              82,
+              59.5
+            ]
+          ],
+          "eye_distance": 8.0156097709407,
+          "face_width": 16,
+          "eye_ratio": 1.0,
+          "face_width_ratio": 1.0
+        },
+        {
+          "frame": 1,
+          "landmarks": [
+            [
+              102,
+              60
+            ],
+            [
+              110.5,
+              60.5
+            ],
+            [
+              95,
+              61
+            ],
+            [
+              112,
+              61
+            ]
+          ],
+          "eye_distance": 8.514693182963201,
+          "face_width": 17,
+          "eye_ratio": 1.062263935780887,
+          "face_width_ratio": 1.0625
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            [
+              101,
+              72
+            ],
+            [
+              109.5,
+              72.5
+            ],
+            [
+              94,
+              73
+            ],
+            [
+              111,
+              73
+            ]
+          ],
+          "eye_distance": 8.514693182963201,
+          "face_width": 17,
+          "eye_ratio": 1.062263935780887,
+          "face_width_ratio": 1.0625
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            [
+              100.5,
+              74.5
+            ],
+            [
+              108.5,
+              74.5
+            ],
+            [
+              94,
+              75
+            ],
+            [
+              110.5,
+              75
+            ]
+          ],
+          "eye_distance": 8.0,
+          "face_width": 16.5,
+          "eye_ratio": 0.9980525784828885,
+          "face_width_ratio": 1.03125
+        },
+        {
+          "frame": 4,
+          "landmarks": [
+            [
+              101.5,
+              81
+            ],
+            [
+              110,
+              81.5
+            ],
+            [
+              95,
+              82
+            ],
+            [
+              112,
+              82
+            ]
+          ],
+          "eye_distance": 8.514693182963201,
+          "face_width": 17,
+          "eye_ratio": 1.062263935780887,
+          "face_width_ratio": 1.0625
+        },
+        {
+          "frame": 5,
+          "landmarks": [
+            [
+              104.5,
+              111
+            ],
+            [
+              113.5,
+              111.5
+            ],
+            [
+              98,
+              112
+            ],
+            [
+              115,
+              112
+            ]
+          ],
+          "eye_distance": 9.013878188659973,
+          "face_width": 17,
+          "eye_ratio": 1.1245405460403444,
+          "face_width_ratio": 1.0625
+        },
+        {
+          "frame": 6,
+          "landmarks": [
+            [
+              106,
+              109.5
+            ],
+            [
+              114.5,
+              109.5
+            ],
+            [
+              100,
+              111
+            ],
+            [
+              117,
+              111
+            ]
+          ],
+          "eye_distance": 8.5,
+          "face_width": 17,
+          "eye_ratio": 1.060430864638069,
+          "face_width_ratio": 1.0625
+        }
+      ]
+    },
+    {
+      "sex": "female",
+      "method": "수동 4배 표식; 좌표는 셀 픽셀 중심, 눈/폭 끝점 ±0.5px 이상. 가림/시점 영향은 별도 판정.",
+      "frames": [
+        {
+          "frame": "anchor",
+          "landmarks": [
+            [
+              72,
+              59.5
+            ],
+            [
+              80,
+              59.5
+            ],
+            [
+              66.5,
+              61
+            ],
+            [
+              81.5,
+              61
+            ]
+          ],
+          "eye_distance": 8.0,
+          "face_width": 15.0,
+          "eye_ratio": 1.0,
+          "face_width_ratio": 1.0
+        },
+        {
+          "frame": 1,
+          "landmarks": [
+            [
+              99,
+              72.5
+            ],
+            [
+              107,
+              73
+            ],
+            [
+              93,
+              74
+            ],
+            [
+              108,
+              74
+            ]
+          ],
+          "eye_distance": 8.0156097709407,
+          "face_width": 15,
+          "eye_ratio": 1.0019512213675874,
+          "face_width_ratio": 1.0
+        },
+        {
+          "frame": 2,
+          "landmarks": [
+            [
+              102.5,
+              77
+            ],
+            [
+              110,
+              77.5
+            ],
+            [
+              96,
+              78
+            ],
+            [
+              111.5,
+              78
+            ]
+          ],
+          "eye_distance": 7.516648189186454,
+          "face_width": 15.5,
+          "eye_ratio": 0.9395810236483068,
+          "face_width_ratio": 1.0333333333333334
+        },
+        {
+          "frame": 3,
+          "landmarks": [
+            [
+              101,
+              84.5
+            ],
+            [
+              109,
+              85
+            ],
+            [
+              94.5,
+              86
+            ],
+            [
+              110.5,
+              86
+            ]
+          ],
+          "eye_distance": 8.0156097709407,
+          "face_width": 16.0,
+          "eye_ratio": 1.0019512213675874,
+          "face_width_ratio": 1.0666666666666667
+        },
+        {
+          "frame": 4,
+          "landmarks": [
+            [
+              101,
+              80
+            ],
+            [
+              109,
+              80.5
+            ],
+            [
+              94.5,
+              81.5
+            ],
+            [
+              110,
+              81.5
+            ]
+          ],
+          "eye_distance": 8.0156097709407,
+          "face_width": 15.5,
+          "eye_ratio": 1.0019512213675874,
+          "face_width_ratio": 1.0333333333333334
+        },
+        {
+          "frame": 5,
+          "landmarks": [
+            [
+              102.5,
+              96
+            ],
+            [
+              110.5,
+              96.5
+            ],
+            [
+              96,
+              97
+            ],
+            [
+              111.5,
+              97
+            ]
+          ],
+          "eye_distance": 8.0156097709407,
+          "face_width": 15.5,
+          "eye_ratio": 1.0019512213675874,
+          "face_width_ratio": 1.0333333333333334
+        },
+        {
+          "frame": 6,
+          "landmarks": [
+            [
+              104,
+              83.5
+            ],
+            [
+              112,
+              84
+            ],
+            [
+              97.5,
+              85
+            ],
+            [
+              113,
+              85
+            ]
+          ],
+          "eye_distance": 8.0156097709407,
+          "face_width": 15.5,
+          "eye_ratio": 1.0019512213675874,
+          "face_width_ratio": 1.0333333333333334
+        }
+      ]
+    }
+  ],
+  "nova_decision": "재검사 완료, 수리 판정 미확정. 양쪽 형태의 가려진 눈/얼굴 경계에 0.5~1px 수준 차이가 있으며 일부 명목 비율은 0.96~1.04 밖이다. 그 차이가 실제 머리 배율인지 얼굴 각도·앞머리 가림·표식 오차인지 확정하지 못했다. 범위 통과로 인증하지 않으며, 확정 이탈 때만 재작화하라는 카드에 따라 채택 v1 보존·새 후보 없음."
+}

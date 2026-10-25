@@ -1,0 +1,881 @@
+{
+  "id": "mossling",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L05",
+    "L29"
+  ],
+  "note": "L05, L29: ART-17 이전 보존본과 대조해 추가 림 제거; 몸과 분리된 발사체·잔상·피격 표시 픽셀 제거. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/mossling_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "932faf8fa1e1cb2034676a29999031c38e60d26c9d08e490831af7bdbac42062",
+  "candidate_file_sha256": "ace02d70bc8584342dcad9a4c9f9c324b805a6595abcc3d5713abf5c99a60764",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "idle",
+      "frame": 1,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          7,
+          7,
+          89,
+          75
+        ],
+        "bbox_alpha1": [
+          7,
+          7,
+          89,
+          75
+        ],
+        "area_alpha128": 3917,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "8d27d7dc810f93f49f9aab13ad41f7af50e74d9bbc6200c07874f4e223866763"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          9,
+          87,
+          73
+        ],
+        "bbox_alpha1": [
+          9,
+          9,
+          87,
+          73
+        ],
+        "area_alpha128": 3164,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "4baa48b35fa47116e86675caafea857b6eed7a702083310d485c9f5d75aee091"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 2,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        96,
+        0,
+        192,
+        96
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          8,
+          7,
+          88,
+          75
+        ],
+        "bbox_alpha1": [
+          8,
+          7,
+          88,
+          75
+        ],
+        "area_alpha128": 3885,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "aeb4a128862581f75632e4297f23bc0843ecf46c2086cda11d9ec928345343fc"
+      },
+      "after": {
+        "bbox_alpha128": [
+          10,
+          9,
+          86,
+          73
+        ],
+        "bbox_alpha1": [
+          10,
+          9,
+          86,
+          73
+        ],
+        "area_alpha128": 3151,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "980a835bd28b7f6d09983ab554c9d34ad1ce6dabeb0adf3a32d9bff71f30fcea"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 3,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        192,
+        0,
+        288,
+        96
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          11,
+          7,
+          85,
+          75
+        ],
+        "bbox_alpha1": [
+          11,
+          7,
+          85,
+          75
+        ],
+        "area_alpha128": 3661,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "b06a4dc42c60151a45f5db0885221692f85c3ee2b3be47f01cbf991e4c3bcb61"
+      },
+      "after": {
+        "bbox_alpha128": [
+          13,
+          9,
+          83,
+          73
+        ],
+        "bbox_alpha1": [
+          13,
+          9,
+          83,
+          73
+        ],
+        "area_alpha128": 2926,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "f7d5e72a0c04c3b70b998b0eda6a53a383542e1e4aba5242da769952fbb838be"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 4,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        288,
+        0,
+        384,
+        96
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          7,
+          7,
+          89,
+          75
+        ],
+        "bbox_alpha1": [
+          7,
+          7,
+          89,
+          75
+        ],
+        "area_alpha128": 4064,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "7e31510448af496ee07715109b0e9ce9b9e7f46b275eb3fd78ab4077de00198e"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          9,
+          87,
+          73
+        ],
+        "bbox_alpha1": [
+          9,
+          9,
+          87,
+          73
+        ],
+        "area_alpha128": 3313,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "922f0e0d716ff53d5cae5d59d2269fe89b463dfa2bb60e6801403d7996042d45"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 1,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        0,
+        96,
+        96,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          7,
+          7,
+          89,
+          75
+        ],
+        "bbox_alpha1": [
+          7,
+          7,
+          89,
+          75
+        ],
+        "area_alpha128": 3851,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "289a404af7a0a6dbb62e36fe894390e11d187f598594dd2fa9334d1e954dcc36"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          9,
+          87,
+          73
+        ],
+        "bbox_alpha1": [
+          9,
+          9,
+          87,
+          73
+        ],
+        "area_alpha128": 3130,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "d142eb409865978e2a45be930a162359b1b75caac29e9c7485f8964ff19976d2"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 2,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        96,
+        96,
+        192,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          7,
+          86,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          7,
+          86,
+          75
+        ],
+        "area_alpha128": 3470,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "64d3a37fccf0021aa2c4edb11c44db7b3f05b2b2348a95d343046f0c47acdd00"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          9,
+          84,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          9,
+          84,
+          73
+        ],
+        "area_alpha128": 2754,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "4bff828d57ae1787966c72c05593667c11719902754002e4d6d2daf9e7148f94"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 3,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        192,
+        96,
+        288,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          8,
+          7,
+          88,
+          75
+        ],
+        "bbox_alpha1": [
+          8,
+          7,
+          88,
+          75
+        ],
+        "area_alpha128": 3758,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "b6a7d06922724f888a7c60d43d56f3c567ec052b6c06bef65f0e948de553ddfa"
+      },
+      "after": {
+        "bbox_alpha128": [
+          10,
+          9,
+          86,
+          73
+        ],
+        "bbox_alpha1": [
+          10,
+          9,
+          86,
+          73
+        ],
+        "area_alpha128": 3007,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "aac5f96e793c7fcaf3071812a7730ae62d9a2293aae84973e07a876bd9418f5d"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 4,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        288,
+        96,
+        384,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          7,
+          86,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          7,
+          86,
+          75
+        ],
+        "area_alpha128": 3668,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "096b1fcd85b772580983f0fe4f963f4e6958233012f8a1b0e843fc7a97705d59"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          9,
+          84,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          9,
+          84,
+          73
+        ],
+        "area_alpha128": 2934,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "13e3956df2a7aa74f7e182bcf1635d02794901e0b1c4b9d0ff7e1178ce2067ce"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 5,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        384,
+        96,
+        480,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          7,
+          7,
+          89,
+          75
+        ],
+        "bbox_alpha1": [
+          7,
+          7,
+          89,
+          75
+        ],
+        "area_alpha128": 4088,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "e0f96679a7a1fbe08c56d7b5edeeecaa049206dfe317ddf216b3bc1651875a26"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          9,
+          87,
+          73
+        ],
+        "bbox_alpha1": [
+          9,
+          9,
+          87,
+          73
+        ],
+        "area_alpha128": 3290,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "5af32027201730fe237f22e85e7aae9551b980401ab23d1c0af19e0da1ad5752"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 6,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        480,
+        96,
+        576,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          7,
+          86,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          7,
+          86,
+          75
+        ],
+        "area_alpha128": 3714,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "51c8b19f4fad1dec49dd14f694c4465b39b0b3533934b17a4088ff7f468c45fd"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          9,
+          84,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          9,
+          84,
+          73
+        ],
+        "area_alpha128": 2943,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "55115ef4bdf2cfa60cb0a5c91c9fdcc196b9618fe35e782e40eac948b8c10987"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 1,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        0,
+        192,
+        96,
+        288
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          5,
+          16,
+          91,
+          75
+        ],
+        "bbox_alpha1": [
+          5,
+          16,
+          91,
+          75
+        ],
+        "area_alpha128": 3777,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "e5af84ca391328365ebba717cc66188268b705cca70e81a4bb048303e6b55036"
+      },
+      "after": {
+        "bbox_alpha128": [
+          7,
+          18,
+          89,
+          73
+        ],
+        "bbox_alpha1": [
+          7,
+          18,
+          89,
+          73
+        ],
+        "area_alpha128": 3100,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "834cb6e1ff536111658c37762137354d84934623613113453f8c9c33a716222c"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 2,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        96,
+        192,
+        192,
+        288
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          5,
+          13,
+          91,
+          75
+        ],
+        "bbox_alpha1": [
+          5,
+          13,
+          91,
+          75
+        ],
+        "area_alpha128": 3961,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "371a40c70dc8d377b7ad4c54dc9bfa00f2ece024c690afb8fc698915734dea53"
+      },
+      "after": {
+        "bbox_alpha128": [
+          7,
+          15,
+          89,
+          73
+        ],
+        "bbox_alpha1": [
+          7,
+          15,
+          89,
+          73
+        ],
+        "area_alpha128": 3168,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "7e1483ff89c8fd1c43d5ead8e336e7c99dee983de9563815f66083429a36e3eb"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 3,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        192,
+        192,
+        288,
+        288
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          5,
+          22,
+          91,
+          75
+        ],
+        "bbox_alpha1": [
+          5,
+          22,
+          91,
+          75
+        ],
+        "area_alpha128": 2916,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "37168c0a800bb82daf470cdee74fd38cc291d4e56ef8813200cf2a899d853fae"
+      },
+      "after": {
+        "bbox_alpha128": [
+          7,
+          24,
+          89,
+          73
+        ],
+        "bbox_alpha1": [
+          7,
+          24,
+          89,
+          73
+        ],
+        "area_alpha128": 2246,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "bc2145e3f64903257696c13d205c5b73a7c7eaff31a14edc2940d7284a0d1b32"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 4,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        288,
+        192,
+        384,
+        288
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          5,
+          16,
+          91,
+          75
+        ],
+        "bbox_alpha1": [
+          5,
+          16,
+          91,
+          75
+        ],
+        "area_alpha128": 3566,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "815c6ef03ce6a2caa376d0b835137db7454c14566e6734350751b7e2d0bf119e"
+      },
+      "after": {
+        "bbox_alpha128": [
+          7,
+          18,
+          89,
+          73
+        ],
+        "bbox_alpha1": [
+          7,
+          18,
+          89,
+          73
+        ],
+        "area_alpha128": 2857,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "39a680a6b10b4ab95a88a2f91196587fe4e14320c0b7b220108eef4c872e1c60"
+      }
+    },
+    {
+      "row": "hurt",
+      "frame": 1,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/mossling_before_art17.png",
+      "source_region": [
+        0,
+        288,
+        96,
+        384
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "removed_fx_polygons_local": [
+        [
+          [
+            63,
+            0
+          ],
+          [
+            95,
+            0
+          ],
+          [
+            95,
+            27
+          ],
+          [
+            73,
+            27
+          ],
+          [
+            73,
+            24
+          ],
+          [
+            63,
+            24
+          ]
+        ],
+        [
+          [
+            71,
+            24
+          ],
+          [
+            95,
+            24
+          ],
+          [
+            95,
+            30
+          ],
+          [
+            71,
+            30
+          ]
+        ],
+        [
+          [
+            75,
+            24
+          ],
+          [
+            95,
+            24
+          ],
+          [
+            95,
+            33
+          ],
+          [
+            75,
+            33
+          ]
+        ]
+      ],
+      "removed_fx_pixels": 165,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          7,
+          86,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          7,
+          86,
+          75
+        ],
+        "area_alpha128": 3772,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "76a7dc63d2ed829160bb581b6f75cd5154c75cf764edf116cb01636970de4b22"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          12,
+          81,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          12,
+          81,
+          73
+        ],
+        "area_alpha128": 2720,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "21fdccae8dd5cf007537112726ee25634f694e2d9dd74a2825f3468cf6c7d86e"
+      }
+    }
+  ]
+}
