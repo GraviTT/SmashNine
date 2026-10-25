@@ -1,0 +1,60 @@
+{
+  "note": "고리처럼 둘러선 거석 폐허와 수평 중력 소용돌이.",
+  "stage": 6,
+  "title": "중력의 우물",
+  "version": 1,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-b94ef92d-4c3f-46be-b4ea-a175a2e4b33a.png",
+    "raw_copy": "art/raw/story/stage_card_06-v1_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "b35213dc876f51b675956d2b1efb9c7d0264ee471db175b62067ae6a620ec075",
+  "candidate_sha256": "ecce554420c87b1d065c36c622b191096f51eb7be3311c2cbc2a3505ee3ad0b6",
+  "metrics": {
+    "brightness_mean_y709": 0.297784,
+    "saturation_mean_hsv": 0.587948,
+    "contrast_std_y709": 0.190876,
+    "outer_8px_mean_luma601": 0.200861
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 6, take A. JOTUNHEIM: GIANT STONE RUINS encircle a visibly SWIRLING GRAVITY WELL, with heavy STONES FLOATING UPWARD against a STORM SKY. Take A: level wide panorama of four enormous broken plain megalithic pillars forming a central ruin ring, around a luminous blue-violet horizontal spiral well at x50% y72%. A clear spiral of blue mist and bright curved streaks pulls loose boulders upward in a widening corkscrew, not a waterfall. Massive squared masonry, no faces or carved glyphs. Storm clouds fill upper two thirds, horizon at y73%, cool storm illumination breaks from upper left and lights left stone planes. Palette slate blue, deep indigo and restrained cyan-violet as reference. No bones, skeleton, ribcages, statues, text, glyphs, people or beings. LAYOUT PRIORITY over the reference compositions: references supply style and realm identity only. Do NOT repeat their tall busy edge islands or high skyline. Keep the distant horizon unmistakably at y=75% of frame height, leaving the top 70% broad quiet atmospheric space interrupted only by the SINGLE central landmark. All secondary distant ground details remain below y=70%. No elaborate foreground objects at the edges. Main landmark base at y=76%, top near y=28%, visual centre x=50%. Calm outer 8 pixels after downscale.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_jotunheim/bg_far.png"
+  ]
+}

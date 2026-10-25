@@ -1,0 +1,61 @@
+{
+  "note": "v2의 신전·덩굴·붕괴는 유지하고, 높은 원경 폐허를 걷어 낮은 숲 수평선으로 바꾼 보완안.",
+  "stage": 5,
+  "title": "무너지는 숲",
+  "version": 3,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-fbba9cef-db05-42e9-b2cc-45f88b52f0d7.png",
+    "raw_copy": "art/raw/story/stage_card_05-v3_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "0c5bd7fa96d943e220e52229993d20753d5daa9a05f8755b1c94b2eafa985dcd",
+  "candidate_sha256": "61c8165524719eaaf5969d2b2465544d718edc83a8678dd7529795bb2890c3ff",
+  "metrics": {
+    "brightness_mean_y709": 0.409391,
+    "saturation_mean_hsv": 0.567846,
+    "contrast_std_y709": 0.227943,
+    "outer_8px_mean_luma601": 0.25784
+  },
+  "prompt": "Use case: illustration-story. Precise scenery edit of reference 1, stage_card_05-v3. Reference 1 is target; reference 2 and 3 game style, reference 4 Vanaheim identity. KEEP the central FOREST TEMPLE, both braided leafy VINE BRIDGES, the SPLITTING floating island with orange COLLAPSE glow, their scale and pixel rendering. CHANGE ONLY THE DISTANT BACKGROUND LAYOUT. Remove ALL the high distant temples and tall remote islands on both sides. Extend the muted teal-green SKY DOWN to a clearly LOW, FLAT distant cloud/forest horizon at 77% of frame height. The entire background above y75%, except the central subject and its vine bridges, must be open calm green-blue sky with sparse soft clouds. Place any tiny distant tree silhouettes only in a narrow low band at y77-82%. This central island floats HIGH above that low horizon. Do not move the island downward; lower only the remote horizon. Keep the foreground edges calm and dark green. Maintain upper-left natural light, moderate green and orange palette, no extra saturation. No text, glyphs, figures, faces, animals, statues, frame, border or watermark. Opaque wide 16:9, largest available landscape resolution; crisp painted pixel clusters.",
+  "references_in_order": [
+    "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-4f75a9b4-2a72-45e2-8109-5103c8efc23d.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_vanaheim/bg_far.png"
+  ]
+}

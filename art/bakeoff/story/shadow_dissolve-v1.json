@@ -1,0 +1,192 @@
+{
+  "asset": "shadow_dissolve",
+  "variant": "v1",
+  "status": "candidate",
+  "note_ko": "가늘고 찢어진 보라 연무가 위로 흩어지며 작은 분홍 입자만 남는다. 발 원점은 (96,152).",
+  "canvas_size": [
+    1152,
+    192
+  ],
+  "frame_size": [
+    192,
+    192
+  ],
+  "frames": 6,
+  "fps": 12,
+  "loop": false,
+  "pivot": [
+    96,
+    152
+  ],
+  "method": "내장 image_gen 원본 → 3×2 고정 칸 분리 → 공통 배율 최근접 축소 → 지정 6색 매핑 → alpha 128 문턱의 이진화 → 1px 남청 외곽 → 상승 위치 보정",
+  "alpha": "binary 0/255; transparent RGB=0",
+  "palette": {
+    "ink": "#101827",
+    "gold": "#f3cd7c",
+    "ochre": "#a8742c",
+    "blue": "#3d7bd9",
+    "ice": "#9fd2ff",
+    "violet": "#3b1d5e",
+    "purple": "#6b2fa8",
+    "lilac": "#b98af0",
+    "pink": "#ff4fd8",
+    "blush": "#ffd6f5"
+  },
+  "processing": {
+    "raw": "art/raw/story/shadow_dissolve-v1_raw.png",
+    "raw_sha256": "c4975afb6879c29f78fce354d214ff7a0ec7d51b23f14964c70b0ed28da91f15",
+    "grid": [
+      3,
+      2
+    ],
+    "common_scale": 0.28125,
+    "alpha_threshold": 128,
+    "palette": [
+      [
+        16,
+        24,
+        39
+      ],
+      [
+        59,
+        29,
+        94
+      ],
+      [
+        107,
+        47,
+        168
+      ],
+      [
+        185,
+        138,
+        240
+      ],
+      [
+        255,
+        79,
+        216
+      ],
+      [
+        255,
+        214,
+        245
+      ]
+    ],
+    "outline_px": 1,
+    "frame_mapping": [
+      {
+        "frame": 1,
+        "source_box": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          16
+        ],
+        "rise_px": 0
+      },
+      {
+        "frame": 2,
+        "source_box": [
+          512,
+          0,
+          1024,
+          512
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          12
+        ],
+        "rise_px": 4
+      },
+      {
+        "frame": 3,
+        "source_box": [
+          1024,
+          0,
+          1536,
+          512
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          6
+        ],
+        "rise_px": 10
+      },
+      {
+        "frame": 4,
+        "source_box": [
+          0,
+          512,
+          512,
+          1024
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          0
+        ],
+        "rise_px": 16
+      },
+      {
+        "frame": 5,
+        "source_box": [
+          512,
+          512,
+          1024,
+          1024
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          -4
+        ],
+        "rise_px": 20
+      },
+      {
+        "frame": 6,
+        "source_box": [
+          1024,
+          512,
+          1536,
+          1024
+        ],
+        "resize": [
+          144,
+          144
+        ],
+        "paste": [
+          24,
+          -6
+        ],
+        "rise_px": 22
+      }
+    ]
+  },
+  "blend": "normal alpha (not additive)",
+  "filter": "nearest",
+  "task": "design/tasks/SART-04.md",
+  "sha256": "f92eb286a1a42e7644ef99738cb2613d03811eb0d40a07955b59b5d8bfac66d9"
+}

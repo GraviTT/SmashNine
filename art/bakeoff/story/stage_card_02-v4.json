@@ -1,0 +1,61 @@
+{
+  "note": "v3보다 노출을 낮추고 회청색 구름 바다를 넓힌 2차 보완안. 세트 밝기 편차 축소가 목적.",
+  "stage": 2,
+  "title": "발키리의 문",
+  "version": 4,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-6eec92bb-55fe-4c77-8d7b-a8778d884d1b.png",
+    "raw_copy": "art/raw/story/stage_card_02-v4_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "5756f7e087eb6e783360aa961463be1e9ae1b73655c883282269f0db8197eceb",
+  "candidate_sha256": "dd231a77e5ae457a026042fee551b84680e2f49cb1cdfd9274fcda09809e682a",
+  "metrics": {
+    "brightness_mean_y709": 0.337936,
+    "saturation_mean_hsv": 0.544371,
+    "contrast_std_y709": 0.168797,
+    "outer_8px_mean_luma601": 0.217309
+  },
+  "prompt": "EDIT reference 1 as stage_card_02-v4. Reference 1 is target, 2 and 3 style anchors, 4 Asgard palette and landmark reference. Keep the GOLDEN FEATHER-WING GATE, castle behind, clearly falling vertical light columns, painted pixel clusters, central landmark, no text. Main correction is SET EXPOSURE: current image is much too bright compared to the eight other cards. Create a visibly darker, medium-value TWILIGHT version: 70 percent of image area should be muted slate BLUE and grey-lilac clouds, softly lit and readable rather than black. Keep pale GOLD architecture, but its warm highlights occupy little area; no huge near-white clouds. Gold, slate-blue and lavender, medium saturation, no overexposure. Upper-left faint amber-silver skylight lights left surfaces. Keep three slender falling light shafts visible but subdued. Secondary correction: a very clear horizontal distant cloud-sea line at y78% of the frame; NO elevated cloud horizon at mid-height, no distant mountains. Main gate base at y80%, castle tallest point near y29%, entire winged silhouette fits x32-68%. Upper two-thirds dominated by roomy quiet blue-grey twilight sky; bottom quarter low cloud sea. No foreground road projecting out to corners, no secondary floating cities, no banners, no dials, no symbols or medallions, no glyphs, no text, people, statues, faces, wings attached to persons, borders or watermark. Wide establishing landscape, opaque 16:9 largest available resolution, similar overall pixel art contrast to a blue nighttime forest card, but retain clear gold Asgard identity.",
+  "references_in_order": [
+    "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-1b9637de-faf0-4fac-8bfe-d0615e4d3e66.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_asgard/bg_far.png"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "note": "얼음 동굴의 굽은 뿌리와 좌상단 오로라 채광.",
+  "stage": 8,
+  "title": "얼어붙은 뿌리",
+  "version": 1,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-68fa3fb2-d45f-483d-aa5a-3d56bf39225f.png",
+    "raw_copy": "art/raw/story/stage_card_08-v1_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "a8daf1c29467b20d695acdb35fff5276942b137becf1335767c86baaec419637",
+  "candidate_sha256": "1d45071cd978fcd19466c118f1164c21f2727a0b5daa933ccada2f214f581d57",
+  "metrics": {
+    "brightness_mean_y709": 0.31693,
+    "saturation_mean_hsv": 0.710258,
+    "contrast_std_y709": 0.232501,
+    "outer_8px_mean_luma601": 0.169027
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 8, take A. NIFLHEIM: inside a vast ICE CAVERN containing the FROZEN ROOT OF THE WORLD TREE under AURORA LIGHT. Take A: one enormous ancient woody root curves down from mid-upper centre and roots into the central frozen floor, an unmistakable gnarled BARK structure encased in blue ice with icicles, NOT a snake or animal. Root occupies middle third, entire main curve visible. Wide level establishing cave view with distant icy floor / mist boundary at y73%, most foreground remains calm frozen lake. A broad opening in UPPER LEFT ceiling admits visible green-teal AURORA ribbons and casts light down onto the left side of the root. Blue-black and icy cyan with restrained mint light matching realm reference; crisp pixel clusters. No runic seal, glyphs, symbols, stone gate, human figure, creature face, lettering or heart in this image. LAYOUT PRIORITY over the reference compositions: references supply style and realm identity only. Do NOT repeat their tall busy edge islands or high skyline. Keep the distant horizon unmistakably at y=75% of frame height, leaving the top 70% broad quiet atmospheric space interrupted only by the SINGLE central landmark. All secondary distant ground details remain below y=70%. No elaborate foreground objects at the edges. Main landmark base at y=76%, top near y=28%, visual centre x=50%. Calm outer 8 pixels after downscale.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_niflheim/bg_far.png"
+  ]
+}
