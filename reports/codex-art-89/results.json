@@ -1,0 +1,502 @@
+[
+  {
+    "stem": "frey",
+    "row": "victory",
+    "folder": "frey",
+    "old": 1,
+    "gen": 3,
+    "attempt": "attempts/frey-victory/g3-s345",
+    "factor": 0.345,
+    "deliver": false,
+    "motion": true,
+    "review": "frey-victory-final",
+    "exclude": [],
+    "reason": "검을 한 번 올려 유지하는 흐름은 충족. 눈 간격 1.025–1.081, 얼굴 폭 0.857–1.000으로 실패. F4–6 폭 표식은 올린 팔·머리카락의 영향으로 신뢰도가 낮지만, 분명한 눈 간격 초과가 남음.",
+    "frames": 6,
+    "cell": 192,
+    "eye_range": [
+      1.025,
+      1.081
+    ],
+    "width_range": [
+      0.857,
+      1.0
+    ],
+    "face_pass": false,
+    "minimum_margin": 21,
+    "detail": [
+      91.77,
+      98.52
+    ],
+    "height_range": [
+      96,
+      132
+    ],
+    "feet_y": 152,
+    "bottoms": [
+      152,
+      152,
+      152,
+      152,
+      152,
+      152
+    ],
+    "head_median": 1.0,
+    "source_original": "art/bakeoff/frey/frey-victory-v1.png",
+    "source_sha256": "17becb98dce5409990c6f3fa8bdbf24a55c3d8dfbc2661355bf4e42d30c17db6",
+    "anchor": "art/bakeoff/frey/frey-idle-v2.png",
+    "anchor_sha256": "d341b2ea7326c05f56cc3e9ded6e6e1e930fdd3526c06381b03134a3daa1c034",
+    "best": "reports/codex-art-89/best/frey-victory/frey-victory.png",
+    "candidate": null,
+    "measurement": "reports/codex-art-89/best/frey-victory/face-measured.json"
+  },
+  {
+    "stem": "frey",
+    "row": "jump",
+    "folder": "frey",
+    "old": 2,
+    "gen": 2,
+    "attempt": "attempts/frey-jump/g2-s1815",
+    "factor": 0.1815,
+    "deliver": true,
+    "motion": true,
+    "review": "frey-jump-best",
+    "exclude": [],
+    "reason": "도약의 뻗은 뒷다리, 상승의 양무릎 접기, 정점의 다리 풀기와 수평 망토를 구분. 칼·방패 손 유지. 공통 lift-scale 0.3.",
+    "frames": 3,
+    "cell": 128,
+    "eye_range": [
+      0.971,
+      1.016
+    ],
+    "width_range": [
+      1.0,
+      1.0
+    ],
+    "face_pass": true,
+    "minimum_margin": 10,
+    "detail": [
+      105.69,
+      110.37
+    ],
+    "height_range": [
+      91,
+      103
+    ],
+    "feet_y": 120,
+    "bottoms": [
+      117,
+      113,
+      117
+    ],
+    "head_median": 0.96,
+    "source_original": "art/bakeoff/frey/frey-jump-v2.png",
+    "source_sha256": "6126de1ea0d3a78f95d09c0d757687a7403a95b36ed2195a0569a85201f2eaaa",
+    "anchor": "art/bakeoff/frey/frey-idle-v2.png",
+    "anchor_sha256": "d341b2ea7326c05f56cc3e9ded6e6e1e930fdd3526c06381b03134a3daa1c034",
+    "best": "reports/codex-art-89/best/frey-jump/frey-jump.png",
+    "candidate": "art/bakeoff/frey/frey-jump-v3.png",
+    "measurement": "reports/codex-art-89/best/frey-jump/face-measured.json",
+    "candidate_sha256": "fe503fdd53accdb95d005734a94a51181cc06890b3a7a23d819727fd4a855094"
+  },
+  {
+    "stem": "luna_brave",
+    "row": "hurt",
+    "folder": "luna",
+    "old": 2,
+    "gen": 2,
+    "attempt": "attempts/luna_brave-hurt/g2-s170",
+    "factor": 0.17,
+    "deliver": true,
+    "motion": true,
+    "review": "luna_brave-hurt-best",
+    "exclude": [
+      1,
+      2
+    ],
+    "reason": "머리·상체를 뒤로 젖히는 타격 반동, 낮게 웅크림, 가드 복귀. F1·F2는 감은 눈 및 기울어진 얼굴로 측정 제외; F3만 눈 1.034 / 폭 1.000.",
+    "frames": 3,
+    "cell": 128,
+    "eye_range": [
+      1.034,
+      1.034
+    ],
+    "width_range": [
+      1.0,
+      1.0
+    ],
+    "face_pass": true,
+    "minimum_margin": 7,
+    "detail": [
+      126.65,
+      131.2
+    ],
+    "height_range": [
+      70,
+      80
+    ],
+    "feet_y": 120,
+    "bottoms": [
+      120,
+      120,
+      120
+    ],
+    "head_median": 0.92,
+    "source_original": "art/bakeoff/luna/luna_brave-hurt-v2.png",
+    "source_sha256": "103232002aaf1f1efe4f1921dcc31b8fb367a16dd585a391820a931a0c419a2a",
+    "anchor": "art/bakeoff/luna/luna_brave-idle-v4.png",
+    "anchor_sha256": "7598ac7b96e829a1afac2ae046a9589487c4c1f6940a0202892ea42a64e0e203",
+    "best": "reports/codex-art-89/best/luna_brave-hurt/luna_brave-hurt.png",
+    "candidate": "art/bakeoff/luna/luna_brave-hurt-v3.png",
+    "measurement": "reports/codex-art-89/best/luna_brave-hurt/face-measured.json",
+    "candidate_sha256": "5e979c7136d9bb9f78da1acd6341b7f2abe180fcb88d32acd8e58502c2902209"
+  },
+  {
+    "stem": "luna_brave",
+    "row": "jump",
+    "folder": "luna",
+    "old": 2,
+    "gen": 3,
+    "attempt": "attempts/luna_brave-jump/g3-s169",
+    "factor": 0.169,
+    "deliver": false,
+    "motion": true,
+    "review": "luna_brave-jump-best",
+    "exclude": [],
+    "reason": "도약·양무릎 접기·정점 다리 펼침 충족. F1 눈 0.950으로 하한 0.960 미달. 공통 lift-scale 0.3.",
+    "frames": 3,
+    "cell": 128,
+    "eye_range": [
+      0.95,
+      0.99
+    ],
+    "width_range": [
+      1.0,
+      1.0
+    ],
+    "face_pass": false,
+    "minimum_margin": 10,
+    "detail": [
+      123.74,
+      128.75
+    ],
+    "height_range": [
+      82,
+      93
+    ],
+    "feet_y": 120,
+    "bottoms": [
+      117,
+      114,
+      115
+    ],
+    "head_median": 0.96,
+    "source_original": "art/bakeoff/luna/luna_brave-jump-v2.png",
+    "source_sha256": "615cc4db79e4d5833a1f06b600f3baa1e94bae33dcee1a3b43a8d89a641c546c",
+    "anchor": "art/bakeoff/luna/luna_brave-idle-v4.png",
+    "anchor_sha256": "7598ac7b96e829a1afac2ae046a9589487c4c1f6940a0202892ea42a64e0e203",
+    "best": "reports/codex-art-89/best/luna_brave-jump/luna_brave-jump.png",
+    "candidate": null,
+    "measurement": "reports/codex-art-89/best/luna_brave-jump/face-measured.json"
+  },
+  {
+    "stem": "luna_brave",
+    "row": "fall",
+    "folder": "luna",
+    "old": 3,
+    "gen": 3,
+    "attempt": "attempts/luna_brave-fall/g3-s141",
+    "factor": 0.141,
+    "deliver": false,
+    "motion": true,
+    "review": "luna_brave-fall-best",
+    "exclude": [],
+    "reason": "포니테일·스카프·다리 간격이 두 프레임에서 다르게 흔들림. 눈 0.961 / 0.984는 충족하나 F1 얼굴 폭 1.071로 실패. 공통 lift-scale 0.3.",
+    "frames": 2,
+    "cell": 128,
+    "eye_range": [
+      0.961,
+      0.984
+    ],
+    "width_range": [
+      1.0,
+      1.071
+    ],
+    "face_pass": false,
+    "minimum_margin": 9,
+    "detail": [
+      127.16,
+      127.47
+    ],
+    "height_range": [
+      88,
+      95
+    ],
+    "feet_y": 120,
+    "bottoms": [
+      118,
+      117
+    ],
+    "head_median": 0.96,
+    "source_original": "art/bakeoff/luna/luna_brave-fall-v3.png",
+    "source_sha256": "1c8e41e71e14f66aed4996f6dfbb88d871396df31d519c54c58dba042c17b7bd",
+    "anchor": "art/bakeoff/luna/luna_brave-idle-v4.png",
+    "anchor_sha256": "7598ac7b96e829a1afac2ae046a9589487c4c1f6940a0202892ea42a64e0e203",
+    "best": "reports/codex-art-89/best/luna_brave-fall/luna_brave-fall.png",
+    "candidate": null,
+    "measurement": "reports/codex-art-89/best/luna_brave-fall/face-measured.json"
+  },
+  {
+    "stem": "yuki",
+    "row": "victory",
+    "folder": "yuki",
+    "old": 1,
+    "gen": 1,
+    "attempt": "attempts/yuki-victory/g1-s235",
+    "factor": 0.235,
+    "deliver": true,
+    "motion": true,
+    "review": "yuki-victory-best",
+    "exclude": [],
+    "reason": "부적 손목 튕김 뒤 반대 손의 부채를 올려 반개방→완전 개방→턱 앞 유지. 소품 손 유지, 눈높이 얼굴 경계가 부채 위에 남음. F6 미소는 작음.",
+    "frames": 6,
+    "cell": 192,
+    "eye_range": [
+      0.966,
+      0.985
+    ],
+    "width_range": [
+      1.0,
+      1.0
+    ],
+    "face_pass": true,
+    "minimum_margin": 39,
+    "detail": [
+      101.78,
+      105.88
+    ],
+    "height_range": [
+      87,
+      87
+    ],
+    "feet_y": 152,
+    "bottoms": [
+      152,
+      152,
+      152,
+      152,
+      152,
+      152
+    ],
+    "head_median": 0.92,
+    "source_original": "art/bakeoff/yuki/yuki-victory-v1.png",
+    "source_sha256": "bf7015af1da4cfb5db95061d7179982191090d9352ad22f5fd0ac975d1111599",
+    "anchor": "art/bakeoff/yuki/yuki-idle-v2.png",
+    "anchor_sha256": "12032758c908f2c861bdb1e1280cc2ec4ddbb0d4b321873074df04a955ffb647",
+    "best": "reports/codex-art-89/best/yuki-victory/yuki-victory.png",
+    "candidate": "art/bakeoff/yuki/yuki-victory-v2.png",
+    "measurement": "reports/codex-art-89/best/yuki-victory/face-measured.json",
+    "candidate_sha256": "c104a4f1468085b77816ab99e84e9cdaf871cb05a6363668773bc407ec661208"
+  },
+  {
+    "stem": "luna",
+    "row": "victory",
+    "folder": "luna",
+    "old": 2,
+    "gen": 2,
+    "attempt": "attempts/luna-victory/g2-s253",
+    "factor": 0.253,
+    "deliver": true,
+    "motion": true,
+    "review": "luna-victory-best",
+    "exclude": [
+      6
+    ],
+    "reason": "위→오른쪽→아래→몸 앞 왼쪽→위의 한 방향 지팡이 회전. F4는 지팡이 팔을 몸 앞에 가로지르는 중간 자세. 같은 손 유지, F5 별 자세·F6 윙크. F6 얼굴 수치는 제외. 정적 프레임 연결 검수이며 실시간 재생은 미검증.",
+    "frames": 6,
+    "cell": 192,
+    "eye_range": [
+      0.971,
+      1.003
+    ],
+    "width_range": [
+      1.0,
+      1.0
+    ],
+    "face_pass": true,
+    "minimum_margin": 36,
+    "detail": [
+      104.6,
+      109.81
+    ],
+    "height_range": [
+      86,
+      86
+    ],
+    "feet_y": 152,
+    "bottoms": [
+      152,
+      152,
+      152,
+      152,
+      152,
+      152
+    ],
+    "head_median": 1.0,
+    "source_original": "art/bakeoff/luna/luna-victory-v2.png",
+    "source_sha256": "cb169bcb5c650024024b658a0ad8edbb4fdd90c90a9389f38b9c6383dfc6139c",
+    "anchor": "art/bakeoff/luna/luna-idle-v3.png",
+    "anchor_sha256": "45b74da60592761505aca883aae01bfb1fe548c8432027682f7fe28ffd3ba3c5",
+    "best": "reports/codex-art-89/best/luna-victory/luna-victory.png",
+    "candidate": "art/bakeoff/luna/luna-victory-v3.png",
+    "measurement": "reports/codex-art-89/best/luna-victory/face-measured.json",
+    "candidate_sha256": "01266cdebd729f7b1796beff7bf5411e52dcf311ef1536b1fe304b1c7b626c0f"
+  },
+  {
+    "stem": "nova_female",
+    "row": "victory",
+    "folder": "nova",
+    "old": 2,
+    "gen": 2,
+    "attempt": "attempts/nova_female-victory/g2-s264",
+    "factor": 0.264,
+    "deliver": true,
+    "motion": true,
+    "review": "nova_female-victory-best",
+    "exclude": [],
+    "reason": "F1 먼쪽 팔 잽→F2 가까운 어깨가 가슴 앞으로 나오는 반대 팔 잽→가드→주먹 올려 유지→윙크. 모든 프레임 얼굴 폭 1.000. 기준부터 먼 눈 가림으로 눈 간격 전부 측정 불가. F6 자동 표식 신뢰도 낮음은 4배 얼굴 경계 확인과 별도로 기록.",
+    "frames": 6,
+    "cell": 192,
+    "eye_range": null,
+    "width_range": [
+      1.0,
+      1.0
+    ],
+    "face_pass": true,
+    "minimum_margin": 39,
+    "detail": [
+      97.69,
+      102.35
+    ],
+    "height_range": [
+      93,
+      102
+    ],
+    "feet_y": 152,
+    "bottoms": [
+      152,
+      152,
+      152,
+      152,
+      152,
+      152
+    ],
+    "head_median": 1.0,
+    "source_original": "art/bakeoff/nova/nova_female-victory-v2.png",
+    "source_sha256": "34d83e2150c4533884003014e1dc97d9e07518f74b3fa4df2d250ce0adb6dc2c",
+    "anchor": "art/bakeoff/nova/nova_female-idle-v2.png",
+    "anchor_sha256": "ccdf2b8da32eb7108c3b079d47da1891fa252d50a19d87d877e2ec11dad8b122",
+    "best": "reports/codex-art-89/best/nova_female-victory/nova_female-victory.png",
+    "candidate": "art/bakeoff/nova/nova_female-victory-v3.png",
+    "measurement": "reports/codex-art-89/best/nova_female-victory/face-measured.json",
+    "candidate_sha256": "68df130995a95ede7da85822b5d3ebc8a7a74d8497d8173311a78d13fe136bc0"
+  },
+  {
+    "stem": "rio_male",
+    "row": "victory",
+    "folder": "rio",
+    "old": 2,
+    "gen": 3,
+    "attempt": "attempts/rio_male-victory/g3-s295",
+    "factor": 0.295,
+    "deliver": false,
+    "motion": true,
+    "review": "rio_male-victory-best",
+    "exclude": [],
+    "reason": "F3 약간 기울인 검을 F4 수직으로 내려놓는 연결은 개선. F3 칼날은 약간 짧게 보임. 먼 눈은 앞머리에 가려 눈 간격 측정 불가. F5 폭 16/15=1.067로 얼굴 기준 실패.",
+    "frames": 6,
+    "cell": 192,
+    "eye_range": null,
+    "width_range": [
+      1.0,
+      1.067
+    ],
+    "face_pass": false,
+    "minimum_margin": 27,
+    "detail": [
+      120.5,
+      130.72
+    ],
+    "height_range": [
+      102,
+      118
+    ],
+    "feet_y": 152,
+    "bottoms": [
+      152,
+      152,
+      152,
+      152,
+      152,
+      152
+    ],
+    "head_median": 0.96,
+    "source_original": "art/bakeoff/rio/rio_male-victory-v2.png",
+    "source_sha256": "bfb88df616e084ecf7ccd329262c8c6231d16bb802c0fece4e6e1cd37f7584fb",
+    "anchor": "art/bakeoff/rio/rio_male-idle-v2.png",
+    "anchor_sha256": "f47a6ec8b1e3cf026ab12ff2f57d309e7cbbfc2206f20178a038897667f1b8f1",
+    "best": "reports/codex-art-89/best/rio_male-victory/rio_male-victory.png",
+    "candidate": null,
+    "measurement": "reports/codex-art-89/best/rio_male-victory/face-measured.json"
+  },
+  {
+    "stem": "rio_male",
+    "row": "walk",
+    "folder": "rio",
+    "old": 2,
+    "gen": 3,
+    "attempt": "attempts/rio_male-walk/g3-s270-xm4",
+    "factor": 0.27,
+    "deliver": false,
+    "motion": false,
+    "review": "rio_male-walk-best",
+    "exclude": [],
+    "reason": "F3·F7의 든 발을 앞으로 옮겼으나 두 접지 자세 F1·F5와 지지 다리의 겹침이 거의 반복되어 1배에서 좌우 교대가 충분히 읽히지 않음. F1/F5 얼굴 폭도 1.067/1.100으로 실패. 전체 높이 94–97px로 기존 v2의 94–102px 범위 안.",
+    "frames": 8,
+    "cell": 128,
+    "eye_range": null,
+    "width_range": [
+      1.0,
+      1.1
+    ],
+    "face_pass": false,
+    "minimum_margin": 4,
+    "detail": [
+      140.43,
+      145.56
+    ],
+    "height_range": [
+      94,
+      97
+    ],
+    "feet_y": 120,
+    "bottoms": [
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120
+    ],
+    "head_median": 0.96,
+    "source_original": "art/bakeoff/rio/rio_male-walk-v2.png",
+    "source_sha256": "f8dde0067619fdd969058a57e8cefab91f37b45c19f724cd18b0cbc57a42c286",
+    "anchor": "art/bakeoff/rio/rio_male-idle-v2.png",
+    "anchor_sha256": "f47a6ec8b1e3cf026ab12ff2f57d309e7cbbfc2206f20178a038897667f1b8f1",
+    "best": "reports/codex-art-89/best/rio_male-walk/rio_male-walk.png",
+    "candidate": null,
+    "measurement": "reports/codex-art-89/best/rio_male-walk/face-measured.json"
+  }
+]

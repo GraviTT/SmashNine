@@ -1,0 +1,109 @@
+{
+  "method": "ART-72 계열 4배 대응점 제안 + 4배 직접 검토. E는 눈 간격, W는 눈 아래 노출 얼굴 폭. 제외값은 통과값으로 대체하지 않음. 소수점은 정확도 보증이 아님.",
+  "anchor_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": 0.95,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.95,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 82.438,
+          "y": 54.033,
+          "score": 0.889
+        },
+        {
+          "x": 89.568,
+          "y": 52.942,
+          "score": 0.751
+        },
+        {
+          "x": 77.0,
+          "y": 54.5,
+          "score": 0.912
+        },
+        {
+          "x": 91.0,
+          "y": 54.5,
+          "score": 0.836
+        }
+      ],
+      "within_range": false
+    },
+    {
+      "frame": 2,
+      "eye_ratio": 0.969,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.969,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 81.193,
+          "y": 60.903,
+          "score": 0.95
+        },
+        {
+          "x": 88.414,
+          "y": 59.491,
+          "score": 0.772
+        },
+        {
+          "x": 75.0,
+          "y": 61.5,
+          "score": 0.958
+        },
+        {
+          "x": 89.0,
+          "y": 60.5,
+          "score": 0.858
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 3,
+      "eye_ratio": 0.99,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.99,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 76.823,
+          "y": 51.138,
+          "score": 0.902
+        },
+        {
+          "x": 84.275,
+          "y": 50.174,
+          "score": 0.822
+        },
+        {
+          "x": 71.0,
+          "y": 52.5,
+          "score": 0.926
+        },
+        {
+          "x": 85.0,
+          "y": 51.5,
+          "score": 0.881
+        }
+      ],
+      "within_range": true
+    }
+  ],
+  "eye_range": [
+    0.95,
+    0.99
+  ],
+  "width_range": [
+    1.0,
+    1.0
+  ],
+  "face_pass": false,
+  "judgment": "도약·양무릎 접기·정점 다리 펼침 충족. F1 눈 0.950으로 하한 0.960 미달. 공통 lift-scale 0.3."
+}

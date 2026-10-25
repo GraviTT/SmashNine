@@ -1,0 +1,200 @@
+{
+  "method": "ART-72 계열 4배 대응점 제안 + 4배 직접 검토. E는 눈 간격, W는 눈 아래 노출 얼굴 폭. 제외값은 통과값으로 대체하지 않음. 소수점은 정확도 보증이 아님.",
+  "anchor_face_width": 14.5,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": null,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 102.507,
+          "y": 86.684,
+          "score": 0.913
+        },
+        {
+          "x": 109.917,
+          "y": 85.1,
+          "score": 0.915
+        },
+        {
+          "x": 95.5,
+          "y": 90.0,
+          "score": 0.884
+        },
+        {
+          "x": 110.0,
+          "y": 89.0,
+          "score": 0.957
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": null,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 100.505,
+          "y": 86.43,
+          "score": 0.96
+        },
+        {
+          "x": 107.93,
+          "y": 85.679,
+          "score": 0.971
+        },
+        {
+          "x": 93.5,
+          "y": 90.0,
+          "score": 0.913
+        },
+        {
+          "x": 108.0,
+          "y": 90.0,
+          "score": 0.946
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 3,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": null,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 100.698,
+          "y": 86.361,
+          "score": 0.964
+        },
+        {
+          "x": 107.934,
+          "y": 85.732,
+          "score": 0.955
+        },
+        {
+          "x": 93.5,
+          "y": 90.0,
+          "score": 0.84
+        },
+        {
+          "x": 108.0,
+          "y": 89.0,
+          "score": 0.898
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 4,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": null,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 101.745,
+          "y": 86.444,
+          "score": 0.921
+        },
+        {
+          "x": 109.886,
+          "y": 85.748,
+          "score": 0.968
+        },
+        {
+          "x": 95.5,
+          "y": 90.0,
+          "score": 0.879
+        },
+        {
+          "x": 110.0,
+          "y": 89.0,
+          "score": 0.901
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": null,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 101.504,
+          "y": 86.538,
+          "score": 0.931
+        },
+        {
+          "x": 108.882,
+          "y": 85.608,
+          "score": 0.944
+        },
+        {
+          "x": 94.5,
+          "y": 89.0,
+          "score": 0.843
+        },
+        {
+          "x": 109.0,
+          "y": 89.0,
+          "score": 0.933
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 6,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": null,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 102.5,
+          "y": 88.0,
+          "score": 0.328
+        },
+        {
+          "x": 108.281,
+          "y": 87.299,
+          "score": 0.899
+        },
+        {
+          "x": 94.5,
+          "y": 90.0,
+          "score": 0.938
+        },
+        {
+          "x": 109.0,
+          "y": 90.0,
+          "score": 0.862
+        }
+      ],
+      "within_range": true
+    }
+  ],
+  "eye_range": null,
+  "width_range": [
+    1.0,
+    1.0
+  ],
+  "face_pass": true,
+  "judgment": "F1 먼쪽 팔 잽→F2 가까운 어깨가 가슴 앞으로 나오는 반대 팔 잽→가드→주먹 올려 유지→윙크. 모든 프레임 얼굴 폭 1.000. 기준부터 먼 눈 가림으로 눈 간격 전부 측정 불가. F6 자동 표식 신뢰도 낮음은 4배 얼굴 경계 확인과 별도로 기록.",
+  "width_limitation": "F6 자동 폭 대응점 점수가 낮아 4배 경계를 따로 확인. E는 모든 프레임 측정 불가."
+}

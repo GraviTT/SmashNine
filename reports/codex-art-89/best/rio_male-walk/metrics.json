@@ -1,0 +1,485 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-89/rio_male-walk-3.png",
+    "frames": null,
+    "grid": [
+      4,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 8,
+    "output_columns": 8,
+    "common_scale": 0.27,
+    "scale_by": "fixed:0.27",
+    "common_offset_x": -4,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      94,
+      97
+    ],
+    "body_width_range": [
+      106,
+      110
+    ],
+    "area_range": [
+      4287,
+      4577
+    ],
+    "area_spread_percent": 6.34,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3480,
+      3702
+    ],
+    "interior_detail_range": [
+      140.43,
+      145.56
+    ],
+    "interior_detail_mean": 143.34,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 111.7,
+    "interior_detail_ratio": 1.2833
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4258,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 111.7,
+    "colour_count_range": [
+      4258,
+      4258
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-89/rio_male-walk-3.png#0,0",
+      "bbox": [
+        13,
+        24,
+        121,
+        121
+      ],
+      "body_height": 97,
+      "body_width": 108,
+      "area": 4577,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 140.43,
+      "colour_count": 3702,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 13,
+        "top": 24,
+        "right": 7,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2572
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-89/rio_male-walk-3.png#1,0",
+      "bbox": [
+        13,
+        25,
+        120,
+        121
+      ],
+      "body_height": 96,
+      "body_width": 107,
+      "area": 4472,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 142.26,
+      "colour_count": 3639,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 13,
+        "top": 25,
+        "right": 8,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2736
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-89/rio_male-walk-3.png#2,0",
+      "bbox": [
+        10,
+        24,
+        116,
+        121
+      ],
+      "body_height": 97,
+      "body_width": 106,
+      "area": 4394,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 144.0,
+      "colour_count": 3552,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 10,
+        "top": 24,
+        "right": 12,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2892
+    },
+    {
+      "index": 3,
+      "source": "art/raw/motions-89/rio_male-walk-3.png#3,0",
+      "bbox": [
+        11,
+        24,
+        120,
+        121
+      ],
+      "body_height": 97,
+      "body_width": 109,
+      "area": 4543,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 144.14,
+      "colour_count": 3671,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 11,
+        "top": 24,
+        "right": 8,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2904
+    },
+    {
+      "index": 4,
+      "source": "art/raw/motions-89/rio_male-walk-3.png#0,1",
+      "bbox": [
+        13,
+        26,
+        123,
+        121
+      ],
+      "body_height": 95,
+      "body_width": 110,
+      "area": 4475,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 140.83,
+      "colour_count": 3627,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 13,
+        "top": 26,
+        "right": 5,
+        "bottom": 7,
+        "minimum": 5,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2608
+    },
+    {
+      "index": 5,
+      "source": "art/raw/motions-89/rio_male-walk-3.png#1,1",
+      "bbox": [
+        13,
+        26,
+        121,
+        121
+      ],
+      "body_height": 95,
+      "body_width": 108,
+      "area": 4415,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 144.7,
+      "colour_count": 3549,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 13,
+        "top": 26,
+        "right": 7,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.2954
+    },
+    {
+      "index": 6,
+      "source": "art/raw/motions-89/rio_male-walk-3.png#2,1",
+      "bbox": [
+        15,
+        27,
+        122,
+        121
+      ],
+      "body_height": 94,
+      "body_width": 107,
+      "area": 4287,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 145.56,
+      "colour_count": 3480,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 15,
+        "top": 27,
+        "right": 6,
+        "bottom": 7,
+        "minimum": 6,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.3031
+    },
+    {
+      "index": 7,
+      "source": "art/raw/motions-89/rio_male-walk-3.png#3,1",
+      "bbox": [
+        14,
+        26,
+        124,
+        121
+      ],
+      "body_height": 95,
+      "body_width": 110,
+      "area": 4403,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 144.76,
+      "colour_count": 3562,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 14,
+        "top": 26,
+        "right": 4,
+        "bottom": 7,
+        "minimum": 4,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.296
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-89/attempts/rio_male-walk/g3-s270-xm4/rio_male-walk.png",
+    "candidate": null,
+    "frames": "reports/codex-art-89/attempts/rio_male-walk/g3-s270-xm4/frames",
+    "closeup": "reports/codex-art-89/attempts/rio_male-walk/g3-s270-xm4/closeup.png",
+    "compare": "reports/codex-art-89/attempts/rio_male-walk/g3-s270-xm4/compare.png"
+  }
+}
