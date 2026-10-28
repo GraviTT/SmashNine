@@ -1,0 +1,68 @@
+{
+  "note": "ART-80에서 중립 얼굴을 직접 편집한 v1의 선화·좌표·알파를 유지하고 승인된 Pillow 점별 톤 곡선으로 피부·금속·부적을 어둡게 했다. 기존 눈 색 영역은 보호하거나 밝기를 보강했다. 리오 여성형의 감긴 눈을 새로 그리지 않았다. 미채택 v2 후보이며 게임 미연결.",
+  "expression": "shadow",
+  "edited_from": "smash-nine-prototype/assets/art/rio/rio_female_face.png",
+  "replaces": "art/bakeoff/rio/rio_female_face-shadow-v1.png",
+  "source_raw": "art/raw/faces-84/rio_female-shadow-v1.png",
+  "review_status": "candidate",
+  "candidate_only": true,
+  "delivered": true,
+  "size": [
+    256,
+    256
+  ],
+  "mode": "RGBA",
+  "measurements": {
+    "stem": "rio_female",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      0,
+      1
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 19,
+    "face_sample_pixels": 294,
+    "before": {
+      "eye_luma": 189.2557,
+      "face_luma": 207.0754,
+      "eye_face_ratio": 0.9139,
+      "dialogue_eye_luma": 185.2196,
+      "dialogue_face_luma": 206.31,
+      "dialogue_eye_face_ratio": 0.8978
+    },
+    "after": {
+      "eye_luma": 204.7866,
+      "face_luma": 97.7826,
+      "eye_face_ratio": 2.0943,
+      "dialogue_eye_luma": 152.9137,
+      "dialogue_face_luma": 97.0148,
+      "dialogue_eye_face_ratio": 1.5762
+    },
+    "strong_adjacent_edges": 567,
+    "surviving_edges_delta_ge3": 567,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 32317,
+      "after_delta_ge3_pairs": 32317,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "c6ef6c654d496f4f8bc87c780f5113518adb76206cd2b63496f303bf8e318d0a"
+  },
+  "review_board": "reports/codex-art-84/rio_female-shadow.png",
+  "processed_from": "art/bakeoff/rio/rio_female_face-shadow-v1.png",
+  "offset": [
+    0,
+    1
+  ],
+  "additional_offset": [
+    0,
+    0
+  ],
+  "tone_config": "reports/codex-art-84/shadow-tone-config.json"
+}

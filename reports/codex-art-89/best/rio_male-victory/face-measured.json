@@ -1,0 +1,200 @@
+{
+  "method": "ART-72 계열 4배 대응점 제안 + 4배 직접 검토. E는 눈 간격, W는 눈 아래 노출 얼굴 폭. 제외값은 통과값으로 대체하지 않음. 소수점은 정확도 보증이 아님.",
+  "anchor_face_width": 15,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": 0.972,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 115.235,
+          "y": 77.508,
+          "score": 0.951
+        },
+        {
+          "x": 121.638,
+          "y": 75.073,
+          "score": 0.694
+        },
+        {
+          "x": 107.0,
+          "y": 78.0,
+          "score": 0.868
+        },
+        {
+          "x": 122.0,
+          "y": 78.0,
+          "score": 0.874
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": 1.056,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 110.122,
+          "y": 76.423,
+          "score": 0.947
+        },
+        {
+          "x": 116.68,
+          "y": 72.893,
+          "score": 0.789
+        },
+        {
+          "x": 102.0,
+          "y": 77.0,
+          "score": 0.857
+        },
+        {
+          "x": 117.0,
+          "y": 77.0,
+          "score": 0.945
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 3,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": 1.11,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 109.04,
+          "y": 75.69,
+          "score": 0.964
+        },
+        {
+          "x": 115.849,
+          "y": 71.831,
+          "score": 0.677
+        },
+        {
+          "x": 101.0,
+          "y": 77.0,
+          "score": 0.928
+        },
+        {
+          "x": 116.0,
+          "y": 77.0,
+          "score": 0.906
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 4,
+      "eye_ratio": null,
+      "face_width_ratio": 1.033,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": 1.022,
+      "raw_proposed_width_ratio": 1.033,
+      "landmarks": [
+        {
+          "x": 108.91,
+          "y": 71.779,
+          "score": 0.943
+        },
+        {
+          "x": 115.643,
+          "y": 69.209,
+          "score": 0.716
+        },
+        {
+          "x": 100.5,
+          "y": 73.0,
+          "score": 0.864
+        },
+        {
+          "x": 116.0,
+          "y": 72.0,
+          "score": 0.874
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.067,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": 1.16,
+      "raw_proposed_width_ratio": 1.067,
+      "landmarks": [
+        {
+          "x": 108.35,
+          "y": 71.7,
+          "score": 0.909
+        },
+        {
+          "x": 115.609,
+          "y": 67.936,
+          "score": 0.841
+        },
+        {
+          "x": 100.0,
+          "y": 73.0,
+          "score": 0.938
+        },
+        {
+          "x": 116.0,
+          "y": 73.0,
+          "score": 0.895
+        }
+      ],
+      "within_range": false
+    },
+    {
+      "frame": 6,
+      "eye_ratio": null,
+      "face_width_ratio": 1.033,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가",
+      "raw_proposed_eye_ratio": 1.184,
+      "raw_proposed_width_ratio": 1.033,
+      "landmarks": [
+        {
+          "x": 108.0,
+          "y": 71.698,
+          "score": 0.967
+        },
+        {
+          "x": 115.441,
+          "y": 67.906,
+          "score": 0.695
+        },
+        {
+          "x": 99.5,
+          "y": 73.0,
+          "score": 0.866
+        },
+        {
+          "x": 115.0,
+          "y": 73.0,
+          "score": 0.887
+        }
+      ],
+      "within_range": true
+    }
+  ],
+  "eye_range": null,
+  "width_range": [
+    1.0,
+    1.067
+  ],
+  "face_pass": false,
+  "judgment": "F3 약간 기울인 검을 F4 수직으로 내려놓는 연결은 개선. F3 칼날은 약간 짧게 보임. 먼 눈은 앞머리에 가려 눈 간격 측정 불가. F5 폭 16/15=1.067로 얼굴 기준 실패.",
+  "width_limitation": "폭 제안값이며 확정 통과 판정에 사용하지 않음. 승리 F5는 격자에서 anchor 68–83(15px), 새 100–116(16px) 확인. 걷기는 동작도 미달."
+}

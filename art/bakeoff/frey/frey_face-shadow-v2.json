@@ -1,0 +1,68 @@
+{
+  "note": "ART-80에서 중립 얼굴을 직접 편집한 v1의 선화·좌표·알파를 유지하고 승인된 Pillow 점별 톤 곡선으로 피부·금속·부적을 어둡게 했다. 기존 눈 색 영역은 보호하거나 밝기를 보강했다. 리오 여성형의 감긴 눈을 새로 그리지 않았다. 미채택 v2 후보이며 게임 미연결.",
+  "expression": "shadow",
+  "edited_from": "smash-nine-prototype/assets/art/frey/frey_face.png",
+  "replaces": "art/bakeoff/frey/frey_face-shadow-v1.png",
+  "source_raw": "art/raw/faces-84/frey-shadow-v1.png",
+  "review_status": "candidate",
+  "candidate_only": true,
+  "delivered": true,
+  "size": [
+    256,
+    256
+  ],
+  "mode": "RGBA",
+  "measurements": {
+    "stem": "frey",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      -1,
+      0
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 45,
+    "face_sample_pixels": 305,
+    "before": {
+      "eye_luma": 184.6558,
+      "face_luma": 164.5497,
+      "eye_face_ratio": 1.1222,
+      "dialogue_eye_luma": 173.9159,
+      "dialogue_face_luma": 164.4688,
+      "dialogue_eye_face_ratio": 1.0574
+    },
+    "after": {
+      "eye_luma": 180.4912,
+      "face_luma": 79.6676,
+      "eye_face_ratio": 2.2656,
+      "dialogue_eye_luma": 160.8879,
+      "dialogue_face_luma": 79.6396,
+      "dialogue_eye_face_ratio": 2.0202
+    },
+    "strong_adjacent_edges": 40121,
+    "surviving_edges_delta_ge3": 40121,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 42109,
+      "after_delta_ge3_pairs": 42109,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "00d8ad6e65b84d4033f1d76bc8850bf0c91e70edeea0259194e36d578b7ca8eb"
+  },
+  "review_board": "reports/codex-art-84/frey-shadow.png",
+  "processed_from": "art/bakeoff/frey/frey_face-shadow-v1.png",
+  "offset": [
+    -1,
+    0
+  ],
+  "additional_offset": [
+    0,
+    0
+  ],
+  "tone_config": "reports/codex-art-84/shadow-tone-config.json"
+}

@@ -1,0 +1,202 @@
+{
+  "method": "ART-72 계열 4배 대응점 제안 + 4배 직접 검토. E는 눈 간격, W는 눈 아래 노출 얼굴 폭. 제외값은 통과값으로 대체하지 않음. 소수점은 정확도 보증이 아님.",
+  "anchor_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": 0.994,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.994,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 116.302,
+          "y": 92.59,
+          "score": 0.975
+        },
+        {
+          "x": 123.891,
+          "y": 91.452,
+          "score": 0.945
+        },
+        {
+          "x": 111.0,
+          "y": 92.0,
+          "score": 0.894
+        },
+        {
+          "x": 125.0,
+          "y": 92.0,
+          "score": 0.957
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 2,
+      "eye_ratio": 0.979,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.979,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 115.258,
+          "y": 92.586,
+          "score": 0.988
+        },
+        {
+          "x": 122.74,
+          "y": 91.517,
+          "score": 0.968
+        },
+        {
+          "x": 110.0,
+          "y": 92.0,
+          "score": 0.953
+        },
+        {
+          "x": 124.0,
+          "y": 92.0,
+          "score": 0.981
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 3,
+      "eye_ratio": 1.003,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.003,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 116.154,
+          "y": 92.485,
+          "score": 0.982
+        },
+        {
+          "x": 123.832,
+          "y": 91.504,
+          "score": 0.947
+        },
+        {
+          "x": 111.0,
+          "y": 92.0,
+          "score": 0.913
+        },
+        {
+          "x": 125.0,
+          "y": 92.0,
+          "score": 0.959
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 4,
+      "eye_ratio": 0.971,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.971,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 116.312,
+          "y": 92.468,
+          "score": 0.975
+        },
+        {
+          "x": 123.743,
+          "y": 91.492,
+          "score": 0.971
+        },
+        {
+          "x": 111.0,
+          "y": 92.0,
+          "score": 0.944
+        },
+        {
+          "x": 125.0,
+          "y": 92.0,
+          "score": 0.982
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 5,
+      "eye_ratio": 0.999,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.999,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 115.056,
+          "y": 92.43,
+          "score": 0.975
+        },
+        {
+          "x": 122.71,
+          "y": 91.483,
+          "score": 0.955
+        },
+        {
+          "x": 110.0,
+          "y": 92.0,
+          "score": 0.948
+        },
+        {
+          "x": 124.0,
+          "y": 92.0,
+          "score": 0.98
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 6,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "exclusion_reason": "윙크: 프레임 수치 제외",
+      "raw_proposed_eye_ratio": 1.49,
+      "raw_proposed_width_ratio": 1.036,
+      "landmarks": [
+        {
+          "x": 112.75,
+          "y": 95.25,
+          "score": 0.45
+        },
+        {
+          "x": 123.598,
+          "y": 91.431,
+          "score": 0.925
+        },
+        {
+          "x": 110.5,
+          "y": 91.0,
+          "score": 0.68
+        },
+        {
+          "x": 125.0,
+          "y": 92.0,
+          "score": 0.972
+        }
+      ],
+      "within_range": true
+    }
+  ],
+  "eye_range": [
+    0.971,
+    1.003
+  ],
+  "width_range": [
+    1.0,
+    1.0
+  ],
+  "face_pass": true,
+  "judgment": "위→오른쪽→아래→몸 앞 왼쪽→위의 한 방향 지팡이 회전. F4는 지팡이 팔을 몸 앞에 가로지르는 중간 자세. 같은 손 유지, F5 별 자세·F6 윙크. F6 얼굴 수치는 제외. 정적 프레임 연결 검수이며 실시간 재생은 미검증."
+}

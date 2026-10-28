@@ -1,0 +1,389 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-89/nova_female-victory-2.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.264,
+    "scale_by": "fixed:0.264",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      93,
+      102
+    ],
+    "body_width_range": [
+      70,
+      89
+    ],
+    "area_range": [
+      3459,
+      3783
+    ],
+    "area_spread_percent": 8.56,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2799,
+      3018
+    ],
+    "interior_detail_range": [
+      97.69,
+      102.35
+    ],
+    "interior_detail_mean": 100.69,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 95.3,
+    "interior_detail_ratio": 1.0566
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 95.3,
+        "colour_count": 2708,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 95.3,
+    "colour_count_range": [
+      2708,
+      2708
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-89/nova_female-victory-2.png#0,0",
+      "bbox": [
+        60,
+        60,
+        149,
+        153
+      ],
+      "body_height": 93,
+      "body_width": 89,
+      "area": 3783,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 100.66,
+      "colour_count": 3018,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 60,
+        "top": 60,
+        "right": 43,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0562
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-89/nova_female-victory-2.png#1,0",
+      "bbox": [
+        58,
+        60,
+        144,
+        153
+      ],
+      "body_height": 93,
+      "body_width": 86,
+      "area": 3674,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 97.69,
+      "colour_count": 2956,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 60,
+        "right": 48,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0251
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-89/nova_female-victory-2.png#2,0",
+      "bbox": [
+        61,
+        60,
+        131,
+        153
+      ],
+      "body_height": 93,
+      "body_width": 70,
+      "area": 3459,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.97,
+      "colour_count": 2799,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 61,
+        "top": 60,
+        "right": 61,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.07
+    },
+    {
+      "index": 3,
+      "source": "art/raw/motions-89/nova_female-victory-2.png#0,1",
+      "bbox": [
+        59,
+        52,
+        131,
+        153
+      ],
+      "body_height": 101,
+      "body_width": 72,
+      "area": 3662,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 99.83,
+      "colour_count": 2940,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 52,
+        "right": 61,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0475
+    },
+    {
+      "index": 4,
+      "source": "art/raw/motions-89/nova_female-victory-2.png#1,1",
+      "bbox": [
+        59,
+        51,
+        132,
+        153
+      ],
+      "body_height": 102,
+      "body_width": 73,
+      "area": 3637,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 101.63,
+      "colour_count": 2925,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 51,
+        "right": 60,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0664
+    },
+    {
+      "index": 5,
+      "source": "art/raw/motions-89/nova_female-victory-2.png#2,1",
+      "bbox": [
+        60,
+        52,
+        133,
+        153
+      ],
+      "body_height": 101,
+      "body_width": 73,
+      "area": 3691,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 102.35,
+      "colour_count": 2969,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 60,
+        "top": 52,
+        "right": 59,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.074
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-89/attempts/nova_female-victory/g2-s264/nova_female-victory.png",
+    "candidate": null,
+    "frames": "reports/codex-art-89/attempts/nova_female-victory/g2-s264/frames",
+    "closeup": "reports/codex-art-89/attempts/nova_female-victory/g2-s264/closeup.png",
+    "compare": "reports/codex-art-89/attempts/nova_female-victory/g2-s264/compare.png"
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "id": "yggdrasil_root_oracle",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L26"
+  ],
+  "note": "L26: 몸과 분리된 발사체·잔상·피격 표시 픽셀 제거; 발사체가 몸을 가린 1프레임은 이웃 프레임 참조로 재작화. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/yggdrasil_root_oracle_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "d43d0ea51cc72c66f8d1c8b8413ab2f151fbf05d69ffb9e0b11d1b6dbc83b1f8",
+  "candidate_file_sha256": "38e7c3c75134756dd123e324d1b0946f76a865dadf64719ce76e7248860a78e8",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "attack",
+      "frame": 2,
+      "method": "built-in imagegen redraw: shot occluded source body",
+      "source": "art/raw/monsters-87/yggdrasil_root_oracle_attack2_redraw.png",
+      "source_region": [
+        199,
+        161,
+        1017,
+        1019
+      ],
+      "target_size": [
+        61,
+        64
+      ],
+      "placement": [
+        10,
+        8
+      ],
+      "feet_boundary": 72,
+      "prior_cleanup": {
+        "method": "pixel cleanup only",
+        "source": "art/raw/monsters-87/yggdrasil_root_oracle_sheet.png",
+        "source_region": [
+          96,
+          192,
+          192,
+          288
+        ],
+        "removed_fx_polygons_local": [
+          [
+            [
+              69,
+              31
+            ],
+            [
+              91,
+              31
+            ],
+            [
+              91,
+              72
+            ],
+            [
+              69,
+              72
+            ]
+          ],
+          [
+            [
+              70,
+              23
+            ],
+            [
+              89,
+              23
+            ],
+            [
+              89,
+              31
+            ],
+            [
+              70,
+              31
+            ]
+          ]
+        ],
+        "removed_fx_pixels": 386
+      },
+      "reference": [
+        "yggdrasil_root_oracle_edit_target.png",
+        "yggdrasil_root_oracle_edit_reference.png"
+      ],
+      "original_source_compared": "art/raw/monsters-87/yggdrasil_root_oracle_source.png",
+      "redraw_reason": "원본에도 발사 효과가 손·포구·얼굴·돌 윤곽을 가림. 재슬라이스만으로 가려진 몸 픽셀을 복구할 수 없음.",
+      "before": {
+        "bbox_alpha128": [
+          10,
+          8,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          8,
+          86,
+          72
+        ],
+        "area_alpha128": 2609,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "9d815cf2d4093d6c1832acccf30cc9bc56446f55d9fd45f2421b2d63de8ccefc"
+      },
+      "after": {
+        "bbox_alpha128": [
+          10,
+          8,
+          71,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          8,
+          71,
+          72
+        ],
+        "area_alpha128": 2248,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "169fdffc62181b1c8330acf05a78196b6baa689f9d5f8f0c63caac7644130020"
+      }
+    }
+  ]
+}

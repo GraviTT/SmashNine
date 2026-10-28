@@ -1,0 +1,23 @@
+{
+  "note": "무릎이 접히고 옆으로 누움. 마지막 주먹 투영 폭 작음. ART-76 fix-1: raw에서 행 공통 배율로 재구축, 전체 프레임 평행 이동. ART-88 C22: F4 여백 3→4px, 경계 픽셀 3→0. F1 상단 여백 3px는 접지와 축소 허용 조건 충돌로 유지(미해결). ART-90: F1만 원본 전체 개체 bbox에 투명 주변 4 원본px를 포함해 기존 공통 배율로 재슬라이싱. 상단 여백 3→4px, 높이 70→69px, 발 y72 유지. 재작화·부분 붙이기·프레임별 축소 없음. F1 외 RGBA 동일. ART-88의 F1 미해결 기록은 이 수정으로 해소.",
+  "frames": 4,
+  "fps": 8,
+  "loop": false,
+  "cell": 96,
+  "feet": 72,
+  "factor": 0.1425,
+  "size_review": "reports/codex-art-76/fix-1/sizes.json",
+  "replaces": "yggdrasil_root_guardian-defeat-v1.png",
+  "art90": {
+    "method": "source reslice with transparent padding; LANCZOS/unsharp60/alpha128/despill auto",
+    "source": "art/raw/art-90/inputs/art/raw/monsters-76/yggdrasil_root_guardian-defeat.png",
+    "source_padding": 4,
+    "changed_frames": [
+      1
+    ],
+    "before_top": 3,
+    "after_top": 4,
+    "feet": 72,
+    "review": "reports/codex-art-90/README.md"
+  }
+}

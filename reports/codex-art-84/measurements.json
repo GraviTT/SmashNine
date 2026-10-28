@@ -1,0 +1,378 @@
+[
+  {
+    "stem": "yuki",
+    "expression": "hurt",
+    "selected_attempt": 2,
+    "offset": [
+      0,
+      0
+    ],
+    "alignment_roi_pixels": 216,
+    "outside_mask_changed_pixels": 0,
+    "alpha_changed_pixels": 0,
+    "seam_band_pixels": 824,
+    "seam_edit_neutral_rgb_mae": 17.1201,
+    "seam_composite_neutral_rgb_mae": 10.0008,
+    "seam_edit_neutral_rgb_p95": 79.85,
+    "mask_pixels": 1640,
+    "changed_pixels": 1596,
+    "candidate_sha256": "4e7184a0c568b75126844f0625975e5036ebcd55b3a50dbd844b1cd2608cd75b"
+  },
+  {
+    "stem": "rio_male",
+    "expression": "hurt",
+    "selected_attempt": 1,
+    "offset": [
+      0,
+      0
+    ],
+    "alignment_roi_pixels": 292,
+    "outside_mask_changed_pixels": 0,
+    "alpha_changed_pixels": 0,
+    "seam_band_pixels": 678,
+    "seam_edit_neutral_rgb_mae": 21.5585,
+    "seam_composite_neutral_rgb_mae": 11.3024,
+    "seam_edit_neutral_rgb_p95": 127.3,
+    "mask_pixels": 1269,
+    "changed_pixels": 1210,
+    "candidate_sha256": "c0aae503cab95937486c07d1aaffa80423ccb6d6be5f97d5e64c51db369de025"
+  },
+  {
+    "stem": "frey",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      -1,
+      0
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 45,
+    "face_sample_pixels": 305,
+    "before": {
+      "eye_luma": 184.6558,
+      "face_luma": 164.5497,
+      "eye_face_ratio": 1.1222,
+      "dialogue_eye_luma": 173.9159,
+      "dialogue_face_luma": 164.4688,
+      "dialogue_eye_face_ratio": 1.0574
+    },
+    "after": {
+      "eye_luma": 180.4912,
+      "face_luma": 79.6676,
+      "eye_face_ratio": 2.2656,
+      "dialogue_eye_luma": 160.8879,
+      "dialogue_face_luma": 79.6396,
+      "dialogue_eye_face_ratio": 2.0202
+    },
+    "strong_adjacent_edges": 40121,
+    "surviving_edges_delta_ge3": 40121,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 42109,
+      "after_delta_ge3_pairs": 42109,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "00d8ad6e65b84d4033f1d76bc8850bf0c91e70edeea0259194e36d578b7ca8eb"
+  },
+  {
+    "stem": "luna",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      -1,
+      0
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 78,
+    "face_sample_pixels": 341,
+    "before": {
+      "eye_luma": 158.3311,
+      "face_luma": 200.3914,
+      "eye_face_ratio": 0.7901,
+      "dialogue_eye_luma": 159.0835,
+      "dialogue_face_luma": 200.6203,
+      "dialogue_eye_face_ratio": 0.793
+    },
+    "after": {
+      "eye_luma": 167.184,
+      "face_luma": 95.099,
+      "eye_face_ratio": 1.758,
+      "dialogue_eye_luma": 153.7654,
+      "dialogue_face_luma": 95.2272,
+      "dialogue_eye_face_ratio": 1.6147
+    },
+    "strong_adjacent_edges": 39689,
+    "surviving_edges_delta_ge3": 39689,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 41414,
+      "after_delta_ge3_pairs": 41414,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "81a85c162ee9dccd69faac0b913e66a1680bb05b275068652b50501c82be47ae"
+  },
+  {
+    "stem": "luna_brave",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      0,
+      -1
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 127,
+    "face_sample_pixels": 421,
+    "before": {
+      "eye_luma": 155.1521,
+      "face_luma": 205.2473,
+      "eye_face_ratio": 0.7559,
+      "dialogue_eye_luma": 149.4332,
+      "dialogue_face_luma": 205.3204,
+      "dialogue_eye_face_ratio": 0.7278
+    },
+    "after": {
+      "eye_luma": 168.6533,
+      "face_luma": 97.1855,
+      "eye_face_ratio": 1.7354,
+      "dialogue_eye_luma": 146.1162,
+      "dialogue_face_luma": 97.2248,
+      "dialogue_eye_face_ratio": 1.5029
+    },
+    "strong_adjacent_edges": 33475,
+    "surviving_edges_delta_ge3": 33475,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 37007,
+      "after_delta_ge3_pairs": 37007,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "c3533118a73065a9b6284f72a9fab3cd0ea0d683ba86a6720dc9f0442208762a"
+  },
+  {
+    "stem": "yuki",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      0,
+      1
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 35,
+    "face_sample_pixels": 343,
+    "before": {
+      "eye_luma": 130.4938,
+      "face_luma": 211.1754,
+      "eye_face_ratio": 0.6179,
+      "dialogue_eye_luma": 125.3807,
+      "dialogue_face_luma": 209.8987,
+      "dialogue_eye_face_ratio": 0.5973
+    },
+    "after": {
+      "eye_luma": 157.6834,
+      "face_luma": 99.5125,
+      "eye_face_ratio": 1.5846,
+      "dialogue_eye_luma": 127.9929,
+      "dialogue_face_luma": 98.9681,
+      "dialogue_eye_face_ratio": 1.2933
+    },
+    "strong_adjacent_edges": 37595,
+    "surviving_edges_delta_ge3": 37595,
+    "edge_retention_percent": 100.0,
+    "talisman_luma_before": 100.4928,
+    "talisman_luma_after": 50.3849,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 39839,
+      "after_delta_ge3_pairs": 39839,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "bd90bfd10bb7a287fe593b866faa81187f5bf6fb86db465d588d5ff529056b42"
+  },
+  {
+    "stem": "nova_male",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      -1,
+      0
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 72,
+    "face_sample_pixels": 375,
+    "before": {
+      "eye_luma": 161.581,
+      "face_luma": 164.9368,
+      "eye_face_ratio": 0.9797,
+      "dialogue_eye_luma": 155.4279,
+      "dialogue_face_luma": 165.0294,
+      "dialogue_eye_face_ratio": 0.9418
+    },
+    "after": {
+      "eye_luma": 166.1704,
+      "face_luma": 79.6485,
+      "eye_face_ratio": 2.0863,
+      "dialogue_eye_luma": 145.6623,
+      "dialogue_face_luma": 78.8359,
+      "dialogue_eye_face_ratio": 1.8477
+    },
+    "strong_adjacent_edges": 64,
+    "surviving_edges_delta_ge3": 64,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 32108,
+      "after_delta_ge3_pairs": 32108,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "56455f709ca69bfd1790a24932c1efe21818a5c66809baa3df10336ec0fb7831"
+  },
+  {
+    "stem": "nova_female",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      -1,
+      0
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 71,
+    "face_sample_pixels": 360,
+    "before": {
+      "eye_luma": 162.5997,
+      "face_luma": 197.0419,
+      "eye_face_ratio": 0.8252,
+      "dialogue_eye_luma": 156.8448,
+      "dialogue_face_luma": 196.2965,
+      "dialogue_eye_face_ratio": 0.799
+    },
+    "after": {
+      "eye_luma": 168.4223,
+      "face_luma": 93.6713,
+      "eye_face_ratio": 1.798,
+      "dialogue_eye_luma": 148.1471,
+      "dialogue_face_luma": 92.8368,
+      "dialogue_eye_face_ratio": 1.5958
+    },
+    "strong_adjacent_edges": 157,
+    "surviving_edges_delta_ge3": 157,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 30896,
+      "after_delta_ge3_pairs": 30896,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "1c5f308c341ae87751349fae6aeef5eb372726435d6f108b039b21a23d317f5c"
+  },
+  {
+    "stem": "rio_male",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      0,
+      1
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 40,
+    "face_sample_pixels": 337,
+    "before": {
+      "eye_luma": 193.3386,
+      "face_luma": 200.7872,
+      "eye_face_ratio": 0.9629,
+      "dialogue_eye_luma": 169.8436,
+      "dialogue_face_luma": 198.982,
+      "dialogue_eye_face_ratio": 0.8536
+    },
+    "after": {
+      "eye_luma": 191.6534,
+      "face_luma": 95.2045,
+      "eye_face_ratio": 2.0131,
+      "dialogue_eye_luma": 148.5051,
+      "dialogue_face_luma": 93.843,
+      "dialogue_eye_face_ratio": 1.5825
+    },
+    "strong_adjacent_edges": 466,
+    "surviving_edges_delta_ge3": 466,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 26589,
+      "after_delta_ge3_pairs": 26589,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "0e87608f8df24ad53e3466a4a1637044beff888862956e8c130c220bfdc37e6a"
+  },
+  {
+    "stem": "rio_female",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      0,
+      1
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 19,
+    "face_sample_pixels": 294,
+    "before": {
+      "eye_luma": 189.2557,
+      "face_luma": 207.0754,
+      "eye_face_ratio": 0.9139,
+      "dialogue_eye_luma": 185.2196,
+      "dialogue_face_luma": 206.31,
+      "dialogue_eye_face_ratio": 0.8978
+    },
+    "after": {
+      "eye_luma": 204.7866,
+      "face_luma": 97.7826,
+      "eye_face_ratio": 2.0943,
+      "dialogue_eye_luma": 152.9137,
+      "dialogue_face_luma": 97.0148,
+      "dialogue_eye_face_ratio": 1.5762
+    },
+    "strong_adjacent_edges": 567,
+    "surviving_edges_delta_ge3": 567,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 32317,
+      "after_delta_ge3_pairs": 32317,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "c6ef6c654d496f4f8bc87c780f5113518adb76206cd2b63496f303bf8e318d0a"
+  }
+]

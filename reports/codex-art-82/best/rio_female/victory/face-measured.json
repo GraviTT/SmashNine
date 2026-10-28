@@ -1,0 +1,89 @@
+{
+  "method": "수동 검수 표식, ART-72의 eye-lower-edge exposed face width. 소수점은 좌표 출력 정밀도이며 오차 보증이 아님. 눈 간 거리 자동 제안은 폐기.",
+  "anchor": [
+    78,
+    90,
+    53
+  ],
+  "reference_face_width": 12,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "width": 12,
+      "points": [
+        115,
+        127,
+        83
+      ],
+      "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "width": 12,
+      "points": [
+        114,
+        126,
+        83
+      ],
+      "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+    },
+    {
+      "frame": 3,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "width": 12,
+      "points": [
+        114,
+        126,
+        83
+      ],
+      "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+    },
+    {
+      "frame": 4,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "width": 12,
+      "points": [
+        118,
+        130,
+        82
+      ],
+      "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+    },
+    {
+      "frame": 5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "width": 12,
+      "points": [
+        117,
+        129,
+        83
+      ],
+      "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+    },
+    {
+      "frame": 6,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "width": 12,
+      "points": [
+        117,
+        129,
+        82
+      ],
+      "reason": "반대쪽 눈은 기준부터 앞머리에 가려져 눈 간 거리 측정 불가. 머리카락을 제외한 눈 아래 경계의 노출 얼굴 폭을 4배 판에서 측정."
+    }
+  ],
+  "excluded_frames": [],
+  "review_note": "F6 얼굴 폭 수정. F1~5는 기존 후보와 픽셀 동일. 기준부터 반대 눈 가려짐: ART-77 수동 경계로 폭만 검증.",
+  "review_limit": "4배 육안과 표식 검토. 좌표 정밀도는 정확도 보증이 아니며 얼굴 경계 판독 약 1px 오차 가능. 허용 범위 0.96~1.04를 확대하지 않음.",
+  "measurable_face_passed": true,
+  "candidate_delivered": true,
+  "visual_passed": true
+}

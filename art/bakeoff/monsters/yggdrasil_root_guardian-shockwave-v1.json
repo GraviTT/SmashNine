@@ -1,0 +1,47 @@
+{
+  "note": "수호자의 보라색 나무껍질·청록 뿌리·자홍빛을 따른 오른쪽 진행 뿌리/흙 충격파. 바닥 경계 y=44, 최하단 y=43. 현재 게임은 몬스터별 충격파를 선택하지 않으므로 채택 후 별도 연결 필요. 공용 골렘 충격파를 전역 교체하지 말 것.",
+  "frames": 4,
+  "fps": 12,
+  "cell": [
+    64,
+    48
+  ],
+  "aim": "right",
+  "replaces": "art/bakeoff/monsters/slam_shockwave-v1.png",
+  "loop": true,
+  "status": "candidate",
+  "processing": {
+    "source": "art/raw/projectiles-85/guardian-gen1.png",
+    "source_boxes": [
+      [
+        33,
+        268,
+        499,
+        572
+      ],
+      [
+        531,
+        259,
+        1010,
+        572
+      ],
+      [
+        1030,
+        259,
+        1530,
+        572
+      ],
+      [
+        1561,
+        291,
+        2024,
+        572
+      ]
+    ],
+    "scale": 0.116,
+    "floor": 44,
+    "alignment": "opaque bottom edge 44, leading right edge 61; one common scale"
+  },
+  "floor": 44,
+  "replaces_scope": "guardian only; keep the existing shared golem asset"
+}

@@ -1,0 +1,131 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      83.5,
+      63,
+      3,
+      4
+    ],
+    [
+      90.5,
+      62.5,
+      3,
+      4
+    ],
+    [
+      79.5,
+      66,
+      3,
+      4
+    ],
+    [
+      91.5,
+      66,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 83.407,
+      "y": 63.842,
+      "score": 1
+    },
+    {
+      "x": 90.683,
+      "y": 63.107,
+      "score": 1
+    },
+    {
+      "x": 79.5,
+      "y": 66,
+      "score": 1
+    },
+    {
+      "x": 91.5,
+      "y": 66,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.313029536382316,
+  "reference_face_width": 12.0,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 80.415,
+          "y": 56.714,
+          "score": 0.812
+        },
+        {
+          "x": 87.624,
+          "y": 55.992,
+          "score": 0.79
+        },
+        {
+          "x": 76.5,
+          "y": 59.0,
+          "score": 0.678
+        },
+        {
+          "x": 88.5,
+          "y": 59.0,
+          "score": 0.921
+        }
+      ],
+      "eye_distance": 7.245,
+      "face_width": 12.0,
+      "eye_ratio": 0.991,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        64,
+        40,
+        0.804
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 80.419,
+          "y": 56.671,
+          "score": 0.787
+        },
+        {
+          "x": 87.664,
+          "y": 55.985,
+          "score": 0.728
+        },
+        {
+          "x": 76.5,
+          "y": 59.0,
+          "score": 0.685
+        },
+        {
+          "x": 88.5,
+          "y": 59.0,
+          "score": 0.916
+        }
+      ],
+      "eye_distance": 7.277,
+      "face_width": 12.0,
+      "eye_ratio": 0.995,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        64,
+        40,
+        0.803
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_note": "F2 머리끝·술·소매·붉은 천을 위로 흩날리게 변경. 3차에서 얼굴 폭도 복구. F1 보존, 두 프레임 전체 높이 86px 유지.",
+  "review_limit": "4배 육안과 표식 검토. 좌표 정밀도는 정확도 보증이 아니며 얼굴 경계 판독 약 1px 오차 가능. 허용 범위 0.96~1.04를 확대하지 않음.",
+  "measurable_face_passed": true,
+  "candidate_delivered": true,
+  "visual_passed": true
+}
