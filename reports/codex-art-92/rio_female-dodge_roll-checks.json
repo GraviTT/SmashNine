@@ -1,0 +1,290 @@
+{
+  "time": "2026-10-28T15:29:45+09:00",
+  "variant": {
+    "stem": "rio_female",
+    "row": "dodge_roll",
+    "generation": 2,
+    "factor": 0.275,
+    "label": "g2-s275",
+    "anchor": "art/bakeoff/rio/rio_female-idle-v2.png"
+  },
+  "normalization": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.275,
+    "scale_by": "fixed:0.275",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      72,
+      98
+    ],
+    "body_width_range": [
+      63,
+      83
+    ],
+    "area_range": [
+      3141,
+      4708
+    ],
+    "area_spread_percent": 33.28,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2826,
+      4134
+    ],
+    "interior_detail_range": [
+      96.64,
+      121.28
+    ],
+    "interior_detail_mean": 111.33,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 97.64,
+    "interior_detail_ratio": 1.1402
+  },
+  "checks": [
+    {
+      "frame": 1,
+      "margin": 7,
+      "detail": 119.33,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 2,
+      "margin": 7,
+      "detail": 107.71,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 3,
+      "margin": 7,
+      "detail": 111.75,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 4,
+      "margin": 7,
+      "detail": 96.64,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 5,
+      "margin": 7,
+      "detail": 111.25,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 6,
+      "margin": 7,
+      "detail": 121.28,
+      "spill": 0,
+      "bottom": 120
+    }
+  ],
+  "distinct_frame_sha256": [
+    "47119e585d132540165109781446dd1a1a1373ea11bbd8ed6ed3a9b9db4d2fcd",
+    "d10b62bb5558c906f39bf518b49003020dbb37154ef7065e12e7641e1829fb90",
+    "537701b591edaa4385cf51c4e33db4a5d5ea617929d91a87f5e559d111c33980",
+    "9202cd55fff3998308543e3a8041d045ff129e9bc3501418463453b89d35e735",
+    "8cfc3fb61c151a8307b2db4ea7d7d27d5f8ea52c9c473d4a6a68fd388988db61",
+    "baf039a8d1e371f97b149fae5f2ee2c5228738e37e314da4cad318e97343ba07"
+  ],
+  "face": {
+    "anchor": [
+      [
+        83.5,
+        51,
+        3,
+        4
+      ],
+      [
+        88.5,
+        49,
+        2,
+        3
+      ],
+      [
+        78,
+        53,
+        3,
+        3
+      ],
+      [
+        90,
+        53,
+        3,
+        3
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 83.319,
+        "y": 50.869,
+        "score": 1
+      },
+      {
+        "x": 89.164,
+        "y": 49.394,
+        "score": 1
+      },
+      {
+        "x": 78,
+        "y": 53,
+        "score": 1
+      },
+      {
+        "x": 90,
+        "y": 53,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 6.028237719267547,
+    "reference_face_width": 12,
+    "frames": [
+      {
+        "frame": 1,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "landmarks": [
+          {
+            "x": 91.314,
+            "y": 58.098,
+            "score": 0.918
+          },
+          {
+            "x": 97.965,
+            "y": 56.457,
+            "score": 0.929
+          },
+          {
+            "x": 86.0,
+            "y": 60.0,
+            "score": 0.941
+          },
+          {
+            "x": 98.0,
+            "y": 60.0,
+            "score": 0.899
+          }
+        ],
+        "head_alignment": [
+          1.02,
+          74,
+          38,
+          0.803
+        ],
+        "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+        "raw_proposed_eye_ratio": 1.136
+      },
+      {
+        "frame": 2,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "머리를 숙여 얼굴이 머리카락과 팔에 가림"
+      },
+      {
+        "frame": 3,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "거꾸로 회전해 얼굴이 가림"
+      },
+      {
+        "frame": 4,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "등과 포니테일로 얼굴 가림"
+      },
+      {
+        "frame": 5,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "눈을 감은 착지 자세"
+      },
+      {
+        "frame": 6,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "landmarks": [
+          {
+            "x": 85.84,
+            "y": 48.067,
+            "score": 0.828
+          },
+          {
+            "x": 92.282,
+            "y": 45.34,
+            "score": 0.927
+          },
+          {
+            "x": 81.0,
+            "y": 51.0,
+            "score": 0.805
+          },
+          {
+            "x": 93.0,
+            "y": 49.5,
+            "score": 0.77
+          }
+        ],
+        "head_alignment": [
+          1.0,
+          69,
+          29,
+          0.824
+        ],
+        "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+        "raw_proposed_eye_ratio": 1.16
+      }
+    ]
+  },
+  "visual_review": {
+    "costume_pass": true,
+    "motion_pass": true,
+    "contact_pass": true,
+    "hidden_far_eye": true,
+    "exclude": {
+      "2": "머리를 숙여 얼굴이 머리카락과 팔에 가림",
+      "3": "거꾸로 회전해 얼굴이 가림",
+      "4": "등과 포니테일로 얼굴 가림",
+      "5": "눈을 감은 착지 자세"
+    },
+    "note": "낮은 준비 → 웅크림 → 뒤집힌 회전 → 등쪽 회전 → 낮은 착지 → 검을 내린 준비. 긴 포니테일·청록 머리끈, 검정/은색 갑옷, 망토와 수정검을 idle과 비교. F1/F6 얼굴 폭 1.000; 기준부터 먼 눈이 가려 E 제외. 검은 같은 손에 유지하며 회전 중 원근 변화가 있음. 마지막 검 끝이 발 높이에 가까워 실제 재생에서 추가 확인 권장. 후보이며 실제 재생 미검증."
+  },
+  "anchor_sha256": "0ab4c8710bad2c79dd766fe93650532d4c7472f9bbcf58ba8d2e982b265a0d63"
+}

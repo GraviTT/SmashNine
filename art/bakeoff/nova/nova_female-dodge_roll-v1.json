@@ -1,0 +1,108 @@
+{
+  "note": "낮은 준비 → 몸 접기 → 뒤집힌 회전 → 등쪽 회전 → 낮은 착지 → 준비 복귀. 여성 idle의 긴 푸른 머리, 흰 가슴·어깨 장갑과 무릎판, 청록 장갑·부츠를 비교. F1/F6 얼굴 폭 1.000. 기준부터 먼 눈이 가려 E는 제외. F3 얼굴 일부는 보이나 거꾸로 회전해 upright 대응점 비교 불가. 정적 4배 검토이며 재생 미검증. 얼굴 idle 대비: F1 E=None W=1.0; F2 E=None W=None; F3 E=None W=None; F4 E=None W=None; F5 E=None W=None; F6 E=None W=1.0. None은 회전/가림/감은 눈으로 측정 제외이며 통과 수치가 아님. 전체 행 공통 배율 0.25. 후보이며 실제 재생과 게임 적용은 미검증.",
+  "frames": 6,
+  "fps": 14,
+  "cell": 128,
+  "feet": 120,
+  "loop": false,
+  "new_row": true,
+  "status": "candidate",
+  "factor": 0.25,
+  "source_task": "CODEX-ART-92",
+  "face_ratios": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 73.593,
+          "y": 73.413,
+          "score": 0.917
+        },
+        {
+          "x": 81.021,
+          "y": 72.394,
+          "score": 0.877
+        },
+        {
+          "x": 66.5,
+          "y": 76.0,
+          "score": 0.932
+        },
+        {
+          "x": 81.0,
+          "y": 76.0,
+          "score": 0.944
+        }
+      ],
+      "head_alignment": [
+        1.06,
+        56,
+        51,
+        0.862
+      ],
+      "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+      "raw_proposed_eye_ratio": 1.024
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "머리를 숙여 긴 앞머리가 얼굴을 가림"
+    },
+    {
+      "frame": 3,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "거꾸로 회전한 얼굴로 upright 대응점 측정 제외"
+    },
+    {
+      "frame": 4,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "등을 보여 얼굴이 보이지 않음"
+    },
+    {
+      "frame": 5,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "눈을 감은 착지"
+    },
+    {
+      "frame": 6,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 70.765,
+          "y": 47.743,
+          "score": 0.911
+        },
+        {
+          "x": 78.115,
+          "y": 47.401,
+          "score": 0.93
+        },
+        {
+          "x": 63.5,
+          "y": 50.0,
+          "score": 0.897
+        },
+        {
+          "x": 78.0,
+          "y": 51.0,
+          "score": 0.906
+        }
+      ],
+      "head_alignment": [
+        0.96,
+        55,
+        28,
+        0.915
+      ],
+      "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+      "raw_proposed_eye_ratio": 1.005
+    }
+  ]
+}

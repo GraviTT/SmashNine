@@ -1,0 +1,287 @@
+{
+  "time": "2026-10-28T14:52:55+09:00",
+  "variant": {
+    "stem": "luna",
+    "row": "dodge_roll",
+    "generation": 1,
+    "factor": 0.29,
+    "label": "g1-s290",
+    "anchor": "art/bakeoff/luna/luna-idle-v3.png"
+  },
+  "normalization": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.29,
+    "scale_by": "fixed:0.29",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      56,
+      81
+    ],
+    "body_width_range": [
+      74,
+      86
+    ],
+    "area_range": [
+      3089,
+      4295
+    ],
+    "area_spread_percent": 28.08,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2925,
+      4029
+    ],
+    "interior_detail_range": [
+      85.9,
+      107.05
+    ],
+    "interior_detail_mean": 98.71,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 93.44,
+    "interior_detail_ratio": 1.0564
+  },
+  "checks": [
+    {
+      "frame": 1,
+      "margin": 7,
+      "detail": 107.05,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 2,
+      "margin": 7,
+      "detail": 96.89,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 3,
+      "margin": 7,
+      "detail": 97.01,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 4,
+      "margin": 7,
+      "detail": 85.9,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 5,
+      "margin": 7,
+      "detail": 101.79,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 6,
+      "margin": 7,
+      "detail": 103.61,
+      "spill": 0,
+      "bottom": 120
+    }
+  ],
+  "distinct_frame_sha256": [
+    "29d6398be6e207e73fda2687e73369ee5eb0f071dd83fb5151487d069830d4e9",
+    "918ee1e04eead89606016bf330079e4a2c48523e1b1b9d40e85ae3c9c60aba1c",
+    "86d5efcd8b85339ab400675477dba405436ba3f0699c4c3139a0e1645744fdc5",
+    "dcfef76bfcb3917504679b6436b5d628ffb7afb49b6ea697ad3adcd4a1700a03",
+    "cf3761cae0349bee67dda750a1690a657649d47a833939ad8db2d2904ba7d99e",
+    "4af53b091f6b49ddfccbc076844f15b558bbcd1800e3766350e521a945ba2475"
+  ],
+  "face": {
+    "anchor": [
+      [
+        82.5,
+        67,
+        4,
+        5
+      ],
+      [
+        90,
+        67,
+        3,
+        4
+      ],
+      [
+        77,
+        67,
+        3,
+        4
+      ],
+      [
+        91,
+        67,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 82.184,
+        "y": 67.594,
+        "score": 1
+      },
+      {
+        "x": 89.805,
+        "y": 66.359,
+        "score": 1
+      },
+      {
+        "x": 77,
+        "y": 67,
+        "score": 1
+      },
+      {
+        "x": 91,
+        "y": 67,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 7.720418771025322,
+    "reference_face_width": 14,
+    "frames": [
+      {
+        "frame": 1,
+        "eye_ratio": 1.002,
+        "face_width_ratio": 1.0,
+        "landmarks": [
+          {
+            "x": 79.023,
+            "y": 70.571,
+            "score": 0.896
+          },
+          {
+            "x": 86.674,
+            "y": 69.44,
+            "score": 0.884
+          },
+          {
+            "x": 74.0,
+            "y": 70.0,
+            "score": 0.917
+          },
+          {
+            "x": 88.0,
+            "y": 70.0,
+            "score": 0.947
+          }
+        ],
+        "head_alignment": [
+          1.0,
+          62,
+          51,
+          0.889
+        ],
+        "reason": "자동 대응점 제안; 4배 육안 검토 필요"
+      },
+      {
+        "frame": 2,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "고개를 숙이고 앞머리에 얼굴이 가림"
+      },
+      {
+        "frame": 3,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "거꾸로 회전하며 얼굴이 가림"
+      },
+      {
+        "frame": 4,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "뒤를 향해 얼굴이 보이지 않음"
+      },
+      {
+        "frame": 5,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "눈을 감은 착지 자세"
+      },
+      {
+        "frame": 6,
+        "eye_ratio": 1.031,
+        "face_width_ratio": 1.0,
+        "landmarks": [
+          {
+            "x": 80.844,
+            "y": 66.487,
+            "score": 0.936
+          },
+          {
+            "x": 88.781,
+            "y": 65.837,
+            "score": 0.872
+          },
+          {
+            "x": 76.0,
+            "y": 66.0,
+            "score": 0.933
+          },
+          {
+            "x": 90.0,
+            "y": 66.0,
+            "score": 0.951
+          }
+        ],
+        "head_alignment": [
+          1.0,
+          64,
+          47,
+          0.922
+        ],
+        "reason": "자동 대응점 제안; 4배 육안 검토 필요"
+      }
+    ]
+  },
+  "visual_review": {
+    "costume_pass": true,
+    "motion_pass": true,
+    "contact_pass": true,
+    "exclude": {
+      "2": "고개를 숙이고 앞머리에 얼굴이 가림",
+      "3": "거꾸로 회전하며 얼굴이 가림",
+      "4": "뒤를 향해 얼굴이 보이지 않음",
+      "5": "눈을 감은 착지 자세"
+    },
+    "note": "웅크리기 → 머리 접기 → 등으로 회전 → 뒤쪽 구르기 → 낮은 착지 → 준비 자세. 원래 모자·리본·파란 별 지팡이·의상을 육안 비교. F2 지팡이 끝은 몸/머리에 가려 보이지 않으며 이후 다시 드러남. 회전 F3–4는 몸/머리 접촉, 나머지는 부츠 접지. 실제 애니메이션 재생은 하지 않음."
+  },
+  "anchor_sha256": "45b74da60592761505aca883aae01bfb1fe548c8432027682f7fe28ffd3ba3c5"
+}

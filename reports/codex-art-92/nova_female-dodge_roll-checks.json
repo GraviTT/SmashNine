@@ -1,0 +1,290 @@
+{
+  "time": "2026-10-28T15:10:50+09:00",
+  "variant": {
+    "stem": "nova_female",
+    "row": "dodge_roll",
+    "generation": 1,
+    "factor": 0.25,
+    "label": "g1-s250",
+    "anchor": "art/bakeoff/nova/nova_female-idle-v2.png"
+  },
+  "normalization": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.25,
+    "scale_by": "fixed:0.25",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      54,
+      100
+    ],
+    "body_width_range": [
+      62,
+      77
+    ],
+    "area_range": [
+      2267,
+      3582
+    ],
+    "area_spread_percent": 36.71,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      1952,
+      3001
+    ],
+    "interior_detail_range": [
+      86.36,
+      103.26
+    ],
+    "interior_detail_mean": 96.59,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 95.3,
+    "interior_detail_ratio": 1.0135
+  },
+  "checks": [
+    {
+      "frame": 1,
+      "margin": 7,
+      "detail": 103.26,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 2,
+      "margin": 7,
+      "detail": 92.16,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 3,
+      "margin": 7,
+      "detail": 94.94,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 4,
+      "margin": 7,
+      "detail": 86.36,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 5,
+      "margin": 7,
+      "detail": 99.74,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 6,
+      "margin": 7,
+      "detail": 103.09,
+      "spill": 0,
+      "bottom": 120
+    }
+  ],
+  "distinct_frame_sha256": [
+    "d1db06df59af4d53cec3d5b80181ad859f7f09c6fe52caee3a69876c703db260",
+    "e3600cf267554b54993a2ea189502b59d879580ae69eebe3af359f06738d224b",
+    "8a3dfbf055bdc37c25204840dd7058c1e5007fdcdcda83939427cc480f5ca41f",
+    "ce2c9ab5184ce2bbc400266a1ed2666ba6bd9c18e0ca27a011bbe94654553fd9",
+    "44cf3cd91b73a5b399e54493e8b35603af23901ed669de65a7a356e2a1f87100",
+    "cc29f0e0743d6c35b77335b6390acf72a6d6934177a7064b062258964e7236bf"
+  ],
+  "face": {
+    "anchor": [
+      [
+        72.5,
+        59,
+        3,
+        4
+      ],
+      [
+        79.5,
+        58.5,
+        2,
+        3
+      ],
+      [
+        65.5,
+        62,
+        3,
+        4
+      ],
+      [
+        80,
+        62,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 72.636,
+        "y": 59.394,
+        "score": 1
+      },
+      {
+        "x": 79.931,
+        "y": 58.751,
+        "score": 1
+      },
+      {
+        "x": 65.5,
+        "y": 62,
+        "score": 1
+      },
+      {
+        "x": 80,
+        "y": 62,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 7.323283006958015,
+    "reference_face_width": 14.5,
+    "frames": [
+      {
+        "frame": 1,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "landmarks": [
+          {
+            "x": 73.593,
+            "y": 73.413,
+            "score": 0.917
+          },
+          {
+            "x": 81.021,
+            "y": 72.394,
+            "score": 0.877
+          },
+          {
+            "x": 66.5,
+            "y": 76.0,
+            "score": 0.932
+          },
+          {
+            "x": 81.0,
+            "y": 76.0,
+            "score": 0.944
+          }
+        ],
+        "head_alignment": [
+          1.06,
+          56,
+          51,
+          0.862
+        ],
+        "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+        "raw_proposed_eye_ratio": 1.024
+      },
+      {
+        "frame": 2,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "머리를 숙여 긴 앞머리가 얼굴을 가림"
+      },
+      {
+        "frame": 3,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "거꾸로 회전한 얼굴로 upright 대응점 측정 제외"
+      },
+      {
+        "frame": 4,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "등을 보여 얼굴이 보이지 않음"
+      },
+      {
+        "frame": 5,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "reason": "눈을 감은 착지"
+      },
+      {
+        "frame": 6,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "landmarks": [
+          {
+            "x": 70.765,
+            "y": 47.743,
+            "score": 0.911
+          },
+          {
+            "x": 78.115,
+            "y": 47.401,
+            "score": 0.93
+          },
+          {
+            "x": 63.5,
+            "y": 50.0,
+            "score": 0.897
+          },
+          {
+            "x": 78.0,
+            "y": 51.0,
+            "score": 0.906
+          }
+        ],
+        "head_alignment": [
+          0.96,
+          55,
+          28,
+          0.915
+        ],
+        "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+        "raw_proposed_eye_ratio": 1.005
+      }
+    ]
+  },
+  "visual_review": {
+    "costume_pass": true,
+    "motion_pass": true,
+    "contact_pass": true,
+    "hidden_far_eye": true,
+    "exclude": {
+      "2": "머리를 숙여 긴 앞머리가 얼굴을 가림",
+      "3": "거꾸로 회전한 얼굴로 upright 대응점 측정 제외",
+      "4": "등을 보여 얼굴이 보이지 않음",
+      "5": "눈을 감은 착지"
+    },
+    "note": "낮은 준비 → 몸 접기 → 뒤집힌 회전 → 등쪽 회전 → 낮은 착지 → 준비 복귀. 여성 idle의 긴 푸른 머리, 흰 가슴·어깨 장갑과 무릎판, 청록 장갑·부츠를 비교. F1/F6 얼굴 폭 1.000. 기준부터 먼 눈이 가려 E는 제외. F3 얼굴 일부는 보이나 거꾸로 회전해 upright 대응점 비교 불가. 정적 4배 검토이며 재생 미검증."
+  },
+  "anchor_sha256": "ccdf2b8da32eb7108c3b079d47da1891fa252d50a19d87d877e2ec11dad8b122"
+}
