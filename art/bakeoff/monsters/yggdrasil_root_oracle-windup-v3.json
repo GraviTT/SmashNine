@@ -1,0 +1,60 @@
+{
+  "frames": 4,
+  "fps": 5.714286,
+  "cell": 96,
+  "feet": 72,
+  "loop": false,
+  "windup_seconds": 0.7,
+  "hold_last": true,
+  "replaces": "yggdrasil_root_oracle-windup-v2.png",
+  "factor": 0.1911764703972353,
+  "size_k": 1.1578947368421053,
+  "size_used": 1.0009239287813365,
+  "from_raw": true,
+  "raw_path": "art/raw/monsters-76/yggdrasil_root_oracle-windup.png",
+  "note": "ART-93: 고해상도 원본에서 행 공통 배율로 재정규화. 목표 ×1.157895, 적용 ×1.000923929; 유지 대기 대비 행 평균 그림 높이 1.041667→0.897727. 제한: width. 머리·몸 위쪽 y<58 보존, 아래 촉수만 압축해 네 장 모두 최하단 y72.",
+  "limited_by": [
+    "width"
+  ],
+  "height_ratio_before": 1.0416666666666667,
+  "height_ratio_after": 0.8977272727272727,
+  "lowest_drawn_rows": [
+    72,
+    72,
+    72,
+    72
+  ],
+  "method": "original chroma #00ff00 / LANCZOS / unsharp radius1 percent60 threshold2 / alpha128 / despill auto; pivot (48,72)",
+  "source_padding": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "tentacle_fix": [
+    {
+      "start_y": 58,
+      "old_bottom": 75,
+      "new_bottom": 72,
+      "vertical_factor": 0.8333333333333334
+    },
+    {
+      "start_y": 58,
+      "old_bottom": 79,
+      "new_bottom": 72,
+      "vertical_factor": 0.6818181818181818
+    },
+    {
+      "start_y": 58,
+      "old_bottom": 86,
+      "new_bottom": 72,
+      "vertical_factor": 0.5172413793103449
+    },
+    {
+      "start_y": 58,
+      "old_bottom": 86,
+      "new_bottom": 72,
+      "vertical_factor": 0.5172413793103449
+    }
+  ]
+}
