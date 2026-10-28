@@ -181,8 +181,9 @@ def monster_sheet(mid, legacy_rel, windup_rel, defeat_rel, docs):
             sys.exit(f"{mid} {row}: {frames} frames (RealmMonster plays 4)")
         strips[row] = exact_strip(f"{mid} {row}", rel, frames, MONSTER_CELL)
     # Only the legacy ART-27 golem stands on y=80 (its lowest drawn row is 79); the six-row rows
-    # end on row 72 (RealmMonster). Lifting by 7 puts every row on the same ground, unclipped.
-    lift = 7 if mid == "jotunheim_rune_golem" else 0
+    # end on row 72 (RealmMonster). Lifting by 6 keeps the tallest attack drawing off the cell's
+    # top border (test_sprite_frames) and leaves the kept rows 1 px lower than the new ones.
+    lift = 6 if mid == "jotunheim_rune_golem" else 0
     sheet = Image.new("RGBA", (576, 576), (0, 0, 0, 0))
     layout = [("idle", 0, 4), ("walk", 1, 6), ("attack", 2, 4), ("hurt", 3, 1)]
     target_row = {"idle": 0, "walk": 1, "attack": 3, "hurt": 4}
