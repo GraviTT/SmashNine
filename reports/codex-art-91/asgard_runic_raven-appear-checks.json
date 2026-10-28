@@ -1,0 +1,149 @@
+{
+  "config": {
+    "trial": "asgard_runic_raven-appear-b",
+    "id": "asgard_runic_raven",
+    "row": "appear",
+    "source": "C:/Users/TH/.codex/generated_images/01a18105-8977-7e21-8b97-3be33acd4e7e/exec-d118c10a-705c-4e0d-9c73-68f9e2c44ff7.png",
+    "idle": "art/bakeoff/monsters/asgard_runic_raven-idle-v1.png",
+    "support": "art/bakeoff/monsters/asgard_runic_raven-windup-v2.png",
+    "measure": "orb",
+    "measure_override": "median gold ring radius inside fixed anatomical ROI; not isolated connected fragment",
+    "grounded": false,
+    "prompt": "Identity-preserve sprite animation. SIX APPEAR frames of the exact blue runic raven from Image 1, with Image 2 as related windup reference. Image 1 identity is mandatory: small right-facing raven, layered icy blue wings, dark indigo head and chest, golden beak and claws, ROUND GOLD RIMMED BLUE MEDALLION with white rune at shoulder. Same head shape, beak and medallion size in EVERY frame. It hovers at a fixed body height. 1 wings tucked tightly downward beside the torso; 2 wings begin unfolding; 3 partly open to sides; 4 wings open into fan; 5 settle downward a little; 6 normal idle wing pose. Wing joints move, do not scale the bird. Medallion remains a rigid unchanging circle, visible in profile throughout. No body rotation, no zoom. Keep exact blue/gold palette and detailed crisp pixel clusters. Body only; no effects, wind streaks, light, particles, shadow or labels. True transparent background. ONE horizontal strip containing six equal-width cells with complete individual figures well inside their cells; very generous clear gutters and margins. No grids or text."
+  },
+  "factor": 0.235,
+  "idle_landmark": {
+    "size": 6.800735254367722,
+    "center": [
+      48.5,
+      50
+    ],
+    "method": "median gold ring radius"
+  },
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        10,
+        32,
+        76,
+        71
+      ],
+      "margin": 10,
+      "bottom": 70,
+      "landmark_ratio": 1.0078471973817373,
+      "ring_radius": 6.854101966249685,
+      "alignment": [
+        51,
+        50
+      ],
+      "alpha_binary": true,
+      "spill": 0,
+      "sha256": "657b7be775ff17b0e8a2f8a4e729dd12931076b3d16e37102d7a776789546f2d"
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        12,
+        22,
+        75,
+        71
+      ],
+      "margin": 12,
+      "bottom": 70,
+      "landmark_ratio": 1.0293004709313307,
+      "ring_radius": 7.0,
+      "alignment": [
+        51,
+        50
+      ],
+      "alpha_binary": true,
+      "spill": 0,
+      "sha256": "30db33cc41dcce01f5a937c58a96e1e2810d7fe9e61d20802fd6e9bb7573cc57"
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        5,
+        19,
+        76,
+        71
+      ],
+      "margin": 5,
+      "bottom": 70,
+      "landmark_ratio": 1.0293004709313307,
+      "ring_radius": 7.0,
+      "alignment": [
+        51,
+        50
+      ],
+      "alpha_binary": true,
+      "spill": 0,
+      "sha256": "1f23aeba957a31becb37438958c2b64f4772563a53f5595fb84fdec0eb23295f"
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        6,
+        8,
+        76,
+        71
+      ],
+      "margin": 6,
+      "bottom": 70,
+      "landmark_ratio": 1.0397504898200727,
+      "ring_radius": 7.0710678118654755,
+      "alignment": [
+        51,
+        50
+      ],
+      "alpha_binary": true,
+      "spill": 0,
+      "sha256": "eb0c216a4aaec0acc9e59056d36c9e8f28a21a8c1523918c6ad67f488e217bbc"
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        7,
+        21,
+        76,
+        71
+      ],
+      "margin": 7,
+      "bottom": 70,
+      "landmark_ratio": 1.0293004709313307,
+      "ring_radius": 7.0,
+      "alignment": [
+        51,
+        50
+      ],
+      "alpha_binary": true,
+      "spill": 0,
+      "sha256": "47f25a6dc30dcefeb8fad54e98fa782c3ec57fba4772044b8ba22a56a2d549c4"
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        8,
+        29,
+        77,
+        70
+      ],
+      "margin": 8,
+      "bottom": 69,
+      "landmark_ratio": 0.9863939238321437,
+      "ring_radius": 6.708203932499369,
+      "alignment": [
+        51,
+        50
+      ],
+      "alpha_binary": true,
+      "spill": 0,
+      "sha256": "f1833283938965638b3f1d7218424d918541f392918e1a0306900dda4f62a9fc"
+    }
+  ],
+  "failures": [],
+  "notes": "Whole-frame translation only. Gold ring entire circumference replaces unstable 4-connected fragment metric. X centre +2.5px for wing clearance; original hover y retained.",
+  "visual_review": "접은 날개를 펼쳐 부유 준비 자세로 전환. 문양 전체 금색 고리의 반경 중앙값은 idle 대비 0.986~1.040배, 부유 중심 y50 유지. 날개 여백을 위해 몸 전체 x를 기준보다 2.5px 오른쪽 정렬. 최소 여백5px·spill0. 문양은 대표 크기 지표이며 해부 전체 정밀 보장은 아님.",
+  "delivered_at": "2026-10-28T15:06:31.098601+09:00"
+}

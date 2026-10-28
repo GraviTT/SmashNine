@@ -1,0 +1,352 @@
+{
+  "config": {
+    "trial": "svartalfheim_cog_drone-appear-clean",
+    "id": "svartalfheim_cog_drone",
+    "row": "appear",
+    "source": "C:/Users/TH/.codex/generated_images/01a18105-8977-7e21-8b97-3be33acd4e7e/exec-05a24a0a-13ba-4a4e-9970-7af846efe4f0.png",
+    "idle": "art/bakeoff/monsters/svartalfheim_cog_drone-idle-v1.png",
+    "support": "art/bakeoff/monsters/svartalfheim_cog_drone-windup-v1.png",
+    "measure": "manual dark upper hull panel horizontal chord at middle height; source endpoints +-3px idle +-1px",
+    "idle_landmark_size": 25,
+    "idle_points": [
+      24,
+      35,
+      49,
+      35
+    ],
+    "raw_landmark_sizes": [
+      93,
+      96,
+      99,
+      98,
+      99,
+      100
+    ],
+    "manual_source_points": [
+      [
+        94,
+        310,
+        187,
+        310
+      ],
+      [
+        104,
+        305,
+        200,
+        305
+      ],
+      [
+        107,
+        300,
+        206,
+        300
+      ],
+      [
+        106,
+        300,
+        204,
+        300
+      ],
+      [
+        110,
+        300,
+        209,
+        300
+      ],
+      [
+        108,
+        300,
+        208,
+        300
+      ]
+    ],
+    "source_centers": [
+      [
+        252,
+        337
+      ],
+      [
+        263,
+        332
+      ],
+      [
+        272,
+        329
+      ],
+      [
+        270,
+        328
+      ],
+      [
+        276,
+        331
+      ],
+      [
+        273,
+        329
+      ]
+    ],
+    "target_center": [
+      66,
+      40
+    ],
+    "grounded": false,
+    "prompt": "Identity-preserve six-frame APPEAR animation of the exact brass cog drone in Image1 idle. Image2 windup reference. Small right-facing steampunk floating drone: bronze riveted oval main hull with dark gray upper armour panel, little gears on top/back, front short cyan-banded cylindrical nozzle, round amber lens at side, blue triangular underside stabilizer and small folded mechanical claws. Main rigid hull, armor panel and nozzle MUST stay identical size/shape and same side-view angle in every frame. Core hover height stays constant. Six distinct stages: 1 underside stabilizer and small claws folded close under hull, upper little gear assembly tucked close; 2 underside panel begins opening; 3 small claws extend down halfway; 4 stabilizer swings into ready position; 5 claws settle and top gear rises to idle; 6 exact idle configuration. Make small joint/panel articulations only, never warp, stretch or scale the main hull. No gun attack. No sparks, fumes, glows, projectiles, flying screws, debris, shadow, text or grids. True transparent background. Exactly SIX complete sprites in one horizontal strip of six equal-width cells, each body inside the CENTRAL55percent of cell width, generous empty gutters and margins. Detailed pixel-art clusters, bronze-gold/cyan palette as references."
+  },
+  "source_dimensions": [
+    2170,
+    725
+  ],
+  "factor": 0.2564102564102564,
+  "idle_landmark": {
+    "size": 25
+  },
+  "raw_landmarks": [
+    {
+      "size": 93
+    },
+    {
+      "size": 96
+    },
+    {
+      "size": 99
+    },
+    {
+      "size": 98
+    },
+    {
+      "size": 99
+    },
+    {
+      "size": 100
+    }
+  ],
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        7,
+        12,
+        86,
+        69
+      ],
+      "margin": 7,
+      "bottom": 68,
+      "landmark_ratio": 0.9538461538461537,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "f1c1f06934afd96e3c11a5a6a76fe92f712b86cf303ba764ebbec542eda33aa2",
+      "body_alignment": {
+        "source": [
+          252,
+          337
+        ],
+        "target": [
+          66,
+          40
+        ],
+        "translation": [
+          -1,
+          -4
+        ],
+        "after": [
+          65.97435897435898,
+          39.69230769230769
+        ]
+      },
+      "spill": 0,
+      "spill_before": 1,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        6,
+        12,
+        86,
+        72
+      ],
+      "margin": 6,
+      "bottom": 71,
+      "landmark_ratio": 0.9846153846153846,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "fd5c3b20fc40dae85654a766f7a5672657e30ca6a30b6a7ab02c0a6c52abaace",
+      "body_alignment": {
+        "source": [
+          263,
+          332
+        ],
+        "target": [
+          66,
+          40
+        ],
+        "translation": [
+          -2,
+          -1
+        ],
+        "after": [
+          66.25641025641025,
+          39.69230769230769
+        ]
+      },
+      "spill": 0,
+      "spill_before": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        6,
+        9,
+        87,
+        77
+      ],
+      "margin": 6,
+      "bottom": 76,
+      "landmark_ratio": 1.0153846153846153,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "f9e73641f0fbd180a46ea7812e456b27c0dfd3e0d88ac4c09d9757b698788f00",
+      "body_alignment": {
+        "source": [
+          272,
+          329
+        ],
+        "target": [
+          66,
+          40
+        ],
+        "translation": [
+          -2,
+          4
+        ],
+        "after": [
+          66.25641025641025,
+          40.02564102564102
+        ]
+      },
+      "spill": 0,
+      "spill_before": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        5,
+        9,
+        86,
+        79
+      ],
+      "margin": 5,
+      "bottom": 78,
+      "landmark_ratio": 1.0051282051282049,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "b8c0bac03608ed7e7518d8e23be6a4a301e4e5915220158e3d2640e36323661f",
+      "body_alignment": {
+        "source": [
+          270,
+          328
+        ],
+        "target": [
+          66,
+          40
+        ],
+        "translation": [
+          -3,
+          6
+        ],
+        "after": [
+          66.02564102564102,
+          40.02564102564102
+        ]
+      },
+      "spill": 0,
+      "spill_before": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        5,
+        8,
+        86,
+        75
+      ],
+      "margin": 5,
+      "bottom": 74,
+      "landmark_ratio": 1.0153846153846153,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "0a75927661ba6408871561324b3de27a84e34733d03311daa5ae13f65af6ca3a",
+      "body_alignment": {
+        "source": [
+          276,
+          331
+        ],
+        "target": [
+          66,
+          40
+        ],
+        "translation": [
+          -3,
+          2
+        ],
+        "after": [
+          65.76923076923077,
+          39.53846153846153
+        ]
+      },
+      "spill": 0,
+      "spill_before": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        6,
+        9,
+        86,
+        76
+      ],
+      "margin": 6,
+      "bottom": 75,
+      "landmark_ratio": 1.0256410256410255,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "063b01cc4269950bb4f88c0fa21c861856935f79c24f8c901383759377914bff",
+      "body_alignment": {
+        "source": [
+          273,
+          329
+        ],
+        "target": [
+          66,
+          40
+        ],
+        "translation": [
+          -2,
+          3
+        ],
+        "after": [
+          66.0,
+          40.02564102564102
+        ]
+      },
+      "spill": 0,
+      "spill_before": 0,
+      "alpha_unchanged": true
+    }
+  ],
+  "failures": [],
+  "notes": "Common factor unchanged; whole-frame translation to manually indicated core centre; source centre uncertainty +-3px. Standard normalize.py despill auto applied to all frames, no palette map.",
+  "visual_review": "접힌 하부 집게·안정판을 펼쳐 부유 준비 자세로 전환. 상부 회색 외피 중간 높이 가로폭 수동 명목 크기 0.954~1.026배(원본 ±3px, idle ±1px). 전면 렌즈 y40 부유 높이에 정렬, x는 여백 때문에 기준보다 약2px 오른쪽. 최소 여백5px·spill0. 마지막 집게가 idle보다 조금 열려 있음(육안).",
+  "delivered_at": "2026-10-28T15:40:53.282129+09:00"
+}
