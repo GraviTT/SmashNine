@@ -1,9 +1,11 @@
 """Apply the 2026-10-29 candidate picks to the game's art.
 
-usage: python apply_picks.py <repo root> <picks-snapshot.json>
+usage: python apply_picks.py <repo root> <picks-snapshot.json> [<overrides.json>]
 
 The snapshot is the comparison viewer's `candidate_picks` collection read once at the start
 (222 rows, every one picked). Rows whose choice is "none" keep the game's picture.
+overrides.json maps a snapshot doc id to the candidate file that replaces its pick (the user's
+2026-10-29 size match: monster windup/defeat rows rebuilt at the kept pictures' size, ART-93).
 Writes reports/apply-2026-10-29/applied.json (every file written, with hashes and checks).
 """
 import hashlib
@@ -18,6 +20,7 @@ from PIL import Image
 
 ROOT = os.path.abspath(sys.argv[1])
 SNAP = json.load(open(sys.argv[2], encoding="utf-8"))
+OVERRIDES = json.load(open(sys.argv[3], encoding="utf-8"))["rows"] if len(sys.argv) > 3 else {}
 GAME = os.path.join(ROOT, "smash-nine-prototype")
 ART = os.path.join(GAME, "assets", "art")
 TODAY = "2026-10-29"
@@ -99,6 +102,17 @@ def mark_adopted(src_rel):
         with open(meta, "w", encoding="utf-8", newline="\n") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             f.write("\n")
+
+
+def supersede(picked_rel, new_rel):
+    """The pick stays a candidate the user chose, but the game now uses its size-matched version."""
+    meta = src_path(picked_rel)[:-4] + ".json"
+    data = json.load(open(meta, encoding="utf-8"))
+    data.pop("adopted", None)
+    data["superseded_by"] = os.path.basename(new_rel)
+    with open(meta, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
 
 
 def row_table(script, const):
@@ -277,7 +291,13 @@ for mid in monster_ids:
     else:
         legacy_rel = os.path.join(ART, "monsters", f"{mid}_sheet.png")
     used = [f"monster~{mid}~windup", f"monster~{mid}~defeat"] + ([legacy_doc["doc"]] if legacy_doc else [])
-    monster_sheet(mid, legacy_rel, windup["file"], defeat["file"], used)
+    windup_rel = OVERRIDES.get(windup["doc"], windup["file"])
+    defeat_rel = OVERRIDES.get(defeat["doc"], defeat["file"])
+    for doc, picked, rel in ((windup["doc"], windup["file"], windup_rel), (defeat["doc"], defeat["file"], defeat_rel)):
+        if rel != picked:
+            notes.append(f"{doc}: size-matched {rel} replaces the pick {picked}")
+            supersede(picked, rel)
+    monster_sheet(mid, legacy_rel, windup_rel, defeat_rel, used)
 
 out = os.path.join(ROOT, "reports", "apply-2026-10-29", "applied.json")
 with open(out, "w", encoding="utf-8", newline="\n") as f:
