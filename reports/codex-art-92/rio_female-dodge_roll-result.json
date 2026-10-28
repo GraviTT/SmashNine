@@ -1,0 +1,150 @@
+{
+  "time": "2026-10-28T15:29:45+09:00",
+  "stem": "rio_female",
+  "row": "dodge_roll",
+  "status": "pass",
+  "frames": 6,
+  "candidate": "art/bakeoff/rio/rio_female-dodge_roll-v1.png",
+  "board": "reports/codex-art-92/rio_female-dodge_roll.png",
+  "checks": [
+    {
+      "frame": 1,
+      "margin": 7,
+      "detail": 119.33,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 2,
+      "margin": 7,
+      "detail": 107.71,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 3,
+      "margin": 7,
+      "detail": 111.75,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 4,
+      "margin": 7,
+      "detail": 96.64,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 5,
+      "margin": 7,
+      "detail": 111.25,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 6,
+      "margin": 7,
+      "detail": 121.28,
+      "spill": 0,
+      "bottom": 120
+    }
+  ],
+  "face_ratios": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 91.314,
+          "y": 58.098,
+          "score": 0.918
+        },
+        {
+          "x": 97.965,
+          "y": 56.457,
+          "score": 0.929
+        },
+        {
+          "x": 86.0,
+          "y": 60.0,
+          "score": 0.941
+        },
+        {
+          "x": 98.0,
+          "y": 60.0,
+          "score": 0.899
+        }
+      ],
+      "head_alignment": [
+        1.02,
+        74,
+        38,
+        0.803
+      ],
+      "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+      "raw_proposed_eye_ratio": 1.136
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "머리를 숙여 얼굴이 머리카락과 팔에 가림"
+    },
+    {
+      "frame": 3,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "거꾸로 회전해 얼굴이 가림"
+    },
+    {
+      "frame": 4,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "등과 포니테일로 얼굴 가림"
+    },
+    {
+      "frame": 5,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "눈을 감은 착지 자세"
+    },
+    {
+      "frame": 6,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 85.84,
+          "y": 48.067,
+          "score": 0.828
+        },
+        {
+          "x": 92.282,
+          "y": 45.34,
+          "score": 0.927
+        },
+        {
+          "x": 81.0,
+          "y": 51.0,
+          "score": 0.805
+        },
+        {
+          "x": 93.0,
+          "y": 49.5,
+          "score": 0.77
+        }
+      ],
+      "head_alignment": [
+        1.0,
+        69,
+        29,
+        0.824
+      ],
+      "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+      "raw_proposed_eye_ratio": 1.16
+    }
+  ],
+  "note": "낮은 준비 → 웅크림 → 뒤집힌 회전 → 등쪽 회전 → 낮은 착지 → 검을 내린 준비. 긴 포니테일·청록 머리끈, 검정/은색 갑옷, 망토와 수정검을 idle과 비교. F1/F6 얼굴 폭 1.000; 기준부터 먼 눈이 가려 E 제외. 검은 같은 손에 유지하며 회전 중 원근 변화가 있음. 마지막 검 끝이 발 높이에 가까워 실제 재생에서 추가 확인 권장. 후보이며 실제 재생 미검증."
+}
