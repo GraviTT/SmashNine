@@ -176,6 +176,18 @@ func _shockwaves(monster: Node) -> void:
 	var malformed := _shot(monster, "shockwave")
 	_check(_crest(malformed) != null, "malformed optional wave uses safe crest fallback")
 	malformed.free()
+	# A monster's own wave comes before the shared one: the root guardian's (applied 2026-10-29).
+	var own_path := DIR + "yggdrasil_root_guardian_shockwave.png"
+	var adopted := load(own_path) as Texture2D if ResourceLoader.exists(own_path) else null
+	_check(adopted != null and adopted.get_size() == Vector2(256, 48), "applied guardian wave is a 256x48 strip")
+	var shared := _inject(shock_path, 256, 48, 4)
+	var own := _inject(own_path, 256, 48, 4)
+	var skin: String = monster.skin_id
+	monster.skin_id = "yggdrasil_root_guardian"
+	_check(monster._shockwave_texture() == own, "guardian uses its own shockwave")
+	monster.skin_id = "jotunheim_rune_golem"
+	_check(monster._shockwave_texture() == shared, "golem keeps the shared slam wave")
+	monster.skin_id = skin
 
 func _fighter_unchanged(source: Node) -> void:
 	var shot := Area2D.new()

@@ -112,7 +112,10 @@ const SHEET_FEET_Y := {64: 48, 128: 120}
 ## On-screen size of one cell: both versions fill 128 px.
 const SHEET_SCREEN_CELL := 128.0
 ## Optional ART-72 strips beside the main sheet; no strip means the existing row stays.
-const OPTIONAL_MOTION_ROWS := [["jump", 3, 10.0, false], ["fall", 2, 8.0, true], ["hurt", 3, 12.0, false], ["land", 2, 12.0, false], ["victory", 6, 8.0, false]]
+## `defeat` (6 x 192, user 2026-10-17) feeds _show_defeat; without it the fighter vanishes as before.
+const OPTIONAL_MOTION_ROWS := [["jump", 3, 10.0, false], ["fall", 2, 8.0, true], ["hurt", 3, 12.0, false], ["land", 2, 12.0, false], ["victory", 6, 8.0, false], ["defeat", 6, 10.0, false]]
+## Strips drawn in the 192-px move-sheet cell (D34) so a big pose keeps the idle head size.
+const WIDE_MOTION_ROWS := ["victory", "defeat"]
 ## Air jumps a character can ever hold (base + Sky Step cards).
 const MAX_AIR_JUMPS := 3
 ## Hits inside an ultimate window freeze both fighters this much longer.
@@ -983,7 +986,7 @@ func _add_optional_motion_strip(frames: SpriteFrames, prefix: String, strip: Tex
 	if strip == null:
 		return false
 	var cell := strip.get_height()
-	var expected_cell := 192 if spec[0] == "victory" else 128
+	var expected_cell := 192 if spec[0] in WIDE_MOTION_ROWS else 128
 	if cell != expected_cell or strip.get_width() != cell * int(spec[1]) or original_sheet_cell != 128:
 		return false
 	var row := StringName("%s_%s" % [prefix, spec[0]])

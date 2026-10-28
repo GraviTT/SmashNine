@@ -1,20 +1,8 @@
 extends SceneTree
 const MENU := preload("res://scripts/ui/FrontendMenu.gd")
+const STORY := preload("res://scripts/ui/StoryScreens.gd")
 const FACTORY := preload("res://scripts/PlayerFactory.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
-
-class EndingWithRows:
-	extends "res://scripts/ui/StoryScreens.gd"
-	var stand_in: SpriteFrames
-	func _ending_victory_source() -> Node:
-		var fighter := super._ending_victory_source()
-		if stand_in != null:
-			fighter.character_sprite.sprite_frames = stand_in
-		else:
-			for row in fighter.character_sprite.sprite_frames.get_animation_names():
-				if String(row).ends_with("_victory"):
-					fighter.character_sprite.sprite_frames.remove_animation(row)
-		return fighter
 
 var failed := false
 var checks := 0
@@ -48,7 +36,7 @@ func _run() -> void:
 	var menu := Control.new()
 	menu.set_script(MENU)
 	root.add_child(menu)
-	var ending := EndingWithRows.new()
+	var ending: Control = STORY.new()
 	root.add_child(ending)
 	for id in REGISTRY.get_character_ids():
 		for body in REGISTRY.get_bodies(id):
@@ -68,11 +56,15 @@ func _run() -> void:
 				await _shot("results-existing")
 			ending.selected_id = id
 			ending.body = body
-			ending.stand_in = null
 			var players_before := get_nodes_in_group("players").size()
 			ending.show_story_ending()
-			_check(ending.content.get_node_or_null("VictoryMotion") == null and _illustrations(ending, MENU.illustration(id, body)) == 1, "ending keeps today's illustration without a row")
-			_check(get_nodes_in_group("players").size() == players_before, "ending preview never enters player group")
+			# D43: every form has an adopted victory row now; the story ending still shows the main illustration.
+			_check(ending.content.get_node_or_null("VictoryMotion") == null and _illustrations(ending, MENU.illustration(id, body)) == 1, "story ending keeps the main illustration for %s %s (D43)" % [id, body])
+			_check(get_nodes_in_group("players").size() == players_before, "ending builds no fighter")
+			if id == "frey":
+				menu.hide()
+				await _shot("ending-illustration")
+				menu.show()
 			_lend(winner)
 			winner._play_sprite_pose(&"attack", 0, 1, 0.4, 0.1)
 			var pose: StringName = winner.character_sprite.animation
@@ -84,21 +76,15 @@ func _run() -> void:
 			if id == "frey":
 				ending.hide()
 				await _shot("results-stand-in")
-			ending.stand_in = winner.character_sprite.sprite_frames
-			ending.show_story_ending()
-			_check(ending.content.get_node_or_null("VictoryMotion") != null, "ending plays hero victory with stand-in row")
-			if id == "frey":
-				menu.hide()
-				await _shot("ending-stand-in")
+				ending.show()
 			winner.free()
 	# Verify playback after the source fighter has been freed, including hold and screen cleanup.
 	await create_timer(0.84).timeout
-	for screen in [menu, ending]:
-		var motion := screen.content.get_node("VictoryMotion") as AnimatedSprite2D
-		_check(motion.frame == 5 and not motion.is_playing(), "screen victory holds final drawing after source removal")
-		var old_content: Control = screen.content
-		screen.show_title()
-		_check(old_content.is_queued_for_deletion() and screen.content.get_node_or_null("VictoryMotion") == null, "changing screen disposes victory preview")
+	var motion := menu.content.get_node("VictoryMotion") as AnimatedSprite2D
+	_check(motion.frame == 5 and not motion.is_playing(), "results victory holds final drawing after source removal")
+	var old_content: Control = menu.content
+	menu.show_title()
+	_check(old_content.is_queued_for_deletion() and menu.content.get_node_or_null("VictoryMotion") == null, "changing screen disposes victory preview")
 	var nobody: Array[Node] = []
 	menu.show_results(null, "draw", nobody, null, {})
 	_check(menu.content.get_node_or_null("VictoryMotion") == null, "draw has no winner motion")

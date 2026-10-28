@@ -11,7 +11,6 @@ const AUDIO_SETTINGS := preload("res://scripts/audio/AudioSettings.gd")
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
-const VICTORY_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const SIZE := Vector2(1280, 720)
 const GOLD := Color("f3cd7c")
 const DIM := Color("aebbd0")
@@ -456,14 +455,6 @@ func _victory_picture(fighter: Node, bounds: Rect2) -> bool:
 	content.add_child(sprite)
 	sprite.play(&"victory")
 	return true
-
-## Configure only the sprite, outside the tree: no player, physics or input enters the menu.
-func _ending_victory_source() -> Node:
-	var fighter: Node = VICTORY_FACTORY.create(selected_id, body)
-	fighter.character_id = selected_id
-	fighter.character_sprite = fighter.get_node("CharacterSprite")
-	fighter.configure_character_sprite()
-	return fighter
 
 func _activate(action: String, value: String) -> void:
 	AUDIO.sound(self, "ui_cancel" if action in ["title", "return_title", "return_select"] else "ui_select")
