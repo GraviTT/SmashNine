@@ -1,0 +1,346 @@
+{
+  "config": {
+    "trial": "jotunheim_storm_wisp-appear-clean",
+    "id": "jotunheim_storm_wisp",
+    "row": "appear",
+    "source": "C:/Users/TH/.codex/generated_images/01a18105-8977-7e21-8b97-3be33acd4e7e/exec-ffe37aaf-6ff1-4248-aeb4-9a5b1bdd0dad.png",
+    "idle": "art/bakeoff/monsters/jotunheim_storm_wisp-idle-v1.png",
+    "support": "art/bakeoff/monsters/jotunheim_storm_wisp-windup-v1.png",
+    "measure": "manual oblong top stone long axis, ART-83 idle reference 23.263px; source endpoints +-3px",
+    "idle_landmark_size": 23.263,
+    "raw_landmark_sizes": [
+      95.07891459203769,
+      95.07891459203769,
+      96.04686356149273,
+      96.56603957913983,
+      97.12363255150623,
+      99.04039579888602
+    ],
+    "manual_source_points": [
+      [
+        123,
+        306,
+        215,
+        282
+      ],
+      [
+        126,
+        299,
+        218,
+        275
+      ],
+      [
+        132,
+        294,
+        225,
+        270
+      ],
+      [
+        138,
+        293,
+        231,
+        267
+      ],
+      [
+        139,
+        286,
+        232,
+        258
+      ],
+      [
+        136,
+        285,
+        231,
+        257
+      ]
+    ],
+    "source_centers": [
+      [
+        176,
+        352
+      ],
+      [
+        176,
+        349
+      ],
+      [
+        182,
+        348
+      ],
+      [
+        188,
+        349
+      ],
+      [
+        191,
+        345
+      ],
+      [
+        189,
+        344
+      ]
+    ],
+    "target_center": [
+      47,
+      44
+    ],
+    "grounded": false,
+    "prompt": "Create a SIX-frame APPEAR motion, NOT an idle loop. Subject exactly storm wisp in Image1 and Image2: same five main blue stones, two cyan rune plates, small cyan-white body core. Same palette and exact dimensions of individual stones, no added particles or special effects. The six POSES MUST BE CLEARLY DIFFERENT: Frame1 two rune plates folded inward overlapping in front of the core, hiding most of the core; top oval stone tucked low. Frame2 left rune plate pivots outward by20degrees; Frame3 right rune plate also pivots outward, core half visible; Frame4 both plates open almost to their idle locations; Frame5 top stone settles into place and core becomes fully visible; Frame6 original idle-ready open stone arrangement. The core does NOT grow, become brighter or move vertically: it is merely revealed by opening the stones. Keep the top oval stone rigid same size and same tilt throughout, translate it rather than rotate/scale. No extra rocks, NO bursts, glow outside body, projectiles, sparks, shadows, text, numbers or grids. Same detailed pixel-art look as references. TRUE transparency. Layout one row six equal-width well separated cells, complete body in every frame, ample clear margins. One whole coherent unfolding animation, not six near-identical idle copies."
+  },
+  "source_dimensions": [
+    2170,
+    725
+  ],
+  "factor": 0.241094523046495,
+  "idle_landmark": {
+    "size": 23.263
+  },
+  "raw_landmarks": [
+    {
+      "size": 95.07891459203769
+    },
+    {
+      "size": 95.07891459203769
+    },
+    {
+      "size": 96.04686356149273
+    },
+    {
+      "size": 96.56603957913983
+    },
+    {
+      "size": 97.12363255150623
+    },
+    {
+      "size": 99.04039579888602
+    }
+  ],
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        20,
+        24,
+        70,
+        67
+      ],
+      "margin": 20,
+      "bottom": 66,
+      "landmark_ratio": 0.9853847554204428,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "8a05cff1b4961ea392fe38412753ba9ee461d73481a619d59ebe650cd82c84fb",
+      "body_alignment": {
+        "source": [
+          176,
+          352
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          -3,
+          -6
+        ],
+        "after": [
+          46.76149205816095,
+          44.25193993590558
+        ]
+      },
+      "spill": 0,
+      "spill_before": 1,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        19,
+        23,
+        74,
+        68
+      ],
+      "margin": 19,
+      "bottom": 67,
+      "landmark_ratio": 0.9853847554204428,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "310aef1f7e60ffc1204d52bd5029544221dd612f796344d596b0be14e3e544e0",
+      "body_alignment": {
+        "source": [
+          176,
+          349
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          -1,
+          -5
+        ],
+        "after": [
+          47.20805919643992,
+          43.975223505045065
+        ]
+      },
+      "spill": 0,
+      "spill_before": 1,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        18,
+        22,
+        75,
+        69
+      ],
+      "margin": 18,
+      "bottom": 68,
+      "landmark_ratio": 0.9954164450186936,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "0c8dd8f42d05b872ee15762c70fe77f215d287b16e58c5a5898ee008a4a8755a",
+      "body_alignment": {
+        "source": [
+          182,
+          348
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          -2,
+          -4
+        ],
+        "after": [
+          46.6902482425329,
+          44.180696120277545
+        ]
+      },
+      "spill": 0,
+      "spill_before": 2,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        16,
+        20,
+        76,
+        69
+      ],
+      "margin": 16,
+      "bottom": 68,
+      "landmark_ratio": 1.0007971136492142,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "7b7851a7a24017754cb3ba7cef1d03591309e4690b3dcb947443b14aca3b83ff",
+      "body_alignment": {
+        "source": [
+          188,
+          349
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          -2,
+          -4
+        ],
+        "after": [
+          47.101193472997856,
+          43.62726325855651
+        ]
+      },
+      "spill": 0,
+      "spill_before": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        15,
+        19,
+        76,
+        70
+      ],
+      "margin": 15,
+      "bottom": 69,
+      "landmark_ratio": 1.0065759302991202,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "91569013bdc8e2c5ef2fc88672b61fab2e184f4f8475617fbbe1595411cc0fa5",
+      "body_alignment": {
+        "source": [
+          191,
+          345
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          -3,
+          -3
+        ],
+        "after": [
+          46.824477042137346,
+          43.83273587378899
+        ]
+      },
+      "spill": 0,
+      "spill_before": 1,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        18,
+        19,
+        77,
+        71
+      ],
+      "margin": 18,
+      "bottom": 70,
+      "landmark_ratio": 1.0264410001920867,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "4b947a6ce0753c5ba77242a4eeee5b7dc63cdc52b22fbe97fe77d3210048a98b",
+      "body_alignment": {
+        "source": [
+          189,
+          344
+        ],
+        "target": [
+          47,
+          44
+        ],
+        "translation": [
+          0,
+          -2
+        ],
+        "after": [
+          47.1724372886259,
+          44.314924919881975
+        ]
+      },
+      "spill": 0,
+      "spill_before": 1,
+      "alpha_unchanged": true
+    }
+  ],
+  "failures": [],
+  "notes": "Common factor unchanged; whole-frame translation to manually indicated core centre; source centre uncertainty +-3px. Standard normalize.py despill auto applied to all frames, no palette map.",
+  "visual_review": "접힌 룬판이 열리며 중심핵이 드러나는 등장. 상단 타원석 장축 명목 크기 idle 대비 0.985~1.026배(수동 원본 끝점 약 ±3px). 몸 전체 이동으로 핵 중심 (47,44)에 정렬, 추정 y43.63~44.31. 표준 despill auto 후 spill0·알파 불변. 4~6번 정착 변화는 작음(육안).",
+  "delivered_at": "2026-10-28T15:31:01.767166+09:00"
+}
