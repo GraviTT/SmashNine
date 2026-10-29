@@ -1,0 +1,389 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-82/rio_male-victory-4.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.28,
+    "scale_by": "fixed:0.28",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      106,
+      109
+    ],
+    "body_width_range": [
+      75,
+      108
+    ],
+    "area_range": [
+      4694,
+      5308
+    ],
+    "area_spread_percent": 11.57,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      4000,
+      4520
+    ],
+    "interior_detail_range": [
+      115.82,
+      130.81
+    ],
+    "interior_detail_mean": 126.11,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 111.7,
+    "interior_detail_ratio": 1.129
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4258,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 111.7,
+    "colour_count_range": [
+      4258,
+      4258
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-82/rio_male-victory-4.png#0,0",
+      "bbox": [
+        49,
+        47,
+        157,
+        153
+      ],
+      "body_height": 106,
+      "body_width": 108,
+      "area": 5113,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 130.0,
+      "colour_count": 4321,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 49,
+        "top": 47,
+        "right": 35,
+        "bottom": 39,
+        "minimum": 35,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1638
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-82/rio_male-victory-4.png#1,0",
+      "bbox": [
+        34,
+        45,
+        129,
+        153
+      ],
+      "body_height": 108,
+      "body_width": 95,
+      "area": 5308,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 115.82,
+      "colour_count": 4520,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 34,
+        "top": 45,
+        "right": 63,
+        "bottom": 39,
+        "minimum": 34,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0369
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-82/rio_male-victory-4.png#2,0",
+      "bbox": [
+        50,
+        47,
+        127,
+        153
+      ],
+      "body_height": 106,
+      "body_width": 77,
+      "area": 4694,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 123.54,
+      "colour_count": 4000,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 50,
+        "top": 47,
+        "right": 65,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.106
+    },
+    {
+      "index": 3,
+      "source": "art/raw/motions-82/rio_male-victory-4.png#0,1",
+      "bbox": [
+        55,
+        44,
+        130,
+        153
+      ],
+      "body_height": 109,
+      "body_width": 75,
+      "area": 4732,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 127.02,
+      "colour_count": 4060,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 44,
+        "right": 62,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1372
+    },
+    {
+      "index": 4,
+      "source": "art/raw/motions-82/rio_male-victory-4.png#1,1",
+      "bbox": [
+        56,
+        44,
+        133,
+        153
+      ],
+      "body_height": 109,
+      "body_width": 77,
+      "area": 4887,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 129.49,
+      "colour_count": 4134,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 44,
+        "right": 59,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1593
+    },
+    {
+      "index": 5,
+      "source": "art/raw/motions-82/rio_male-victory-4.png#2,1",
+      "bbox": [
+        56,
+        44,
+        132,
+        153
+      ],
+      "body_height": 109,
+      "body_width": 76,
+      "area": 4838,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 130.81,
+      "colour_count": 4087,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 56,
+        "top": 44,
+        "right": 60,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1711
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-82/rio_male/victory/attempt-4/rio_male-victory.png",
+    "candidate": null,
+    "frames": "reports/codex-art-82/rio_male/victory/attempt-4/frames",
+    "closeup": "reports/codex-art-82/rio_male/victory/attempt-4/closeup.png",
+    "compare": "reports/codex-art-82/rio_male/victory/attempt-4/compare.png"
+  }
+}

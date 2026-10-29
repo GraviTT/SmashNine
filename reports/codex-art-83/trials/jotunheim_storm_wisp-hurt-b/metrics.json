@@ -1,0 +1,111 @@
+{
+  "monster": "jotunheim_storm_wisp",
+  "row": "hurt",
+  "raw": "art\\raw\\monsters-83\\jotunheim_storm_wisp-hurt-g2.png",
+  "factor": 0.205,
+  "method": "ART-71 Lanczos sharpen60 despill auto palette none; ART-74 padded canvas, whole-frame translation",
+  "placements": [
+    {
+      "frame": 1,
+      "source_bbox": [
+        708,
+        261,
+        1019,
+        513
+      ],
+      "work_bbox": [
+        92,
+        101,
+        156,
+        153
+      ],
+      "output_bbox": [
+        12,
+        17,
+        76,
+        69
+      ]
+    },
+    {
+      "frame": 2,
+      "source_bbox": [
+        78,
+        249,
+        382,
+        513
+      ],
+      "work_bbox": [
+        95,
+        99,
+        157,
+        153
+      ],
+      "output_bbox": [
+        15,
+        15,
+        77,
+        69
+      ]
+    }
+  ],
+  "before": [
+    {
+      "frame": 1,
+      "bbox": [
+        16,
+        18,
+        77,
+        72
+      ],
+      "margin": 16,
+      "bottom": 71,
+      "detail": 97.49,
+      "spill": 0,
+      "alpha_binary": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        15,
+        15,
+        79,
+        70
+      ],
+      "margin": 15,
+      "bottom": 69,
+      "detail": 96.63,
+      "spill": 0,
+      "alpha_binary": true
+    }
+  ],
+  "after": [
+    {
+      "frame": 1,
+      "bbox": [
+        12,
+        17,
+        76,
+        69
+      ],
+      "margin": 12,
+      "bottom": 68,
+      "detail": 123.88,
+      "spill": 0,
+      "alpha_binary": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        15,
+        15,
+        77,
+        69
+      ],
+      "margin": 15,
+      "bottom": 68,
+      "detail": 108.52,
+      "spill": 0,
+      "alpha_binary": true
+    }
+  ]
+}

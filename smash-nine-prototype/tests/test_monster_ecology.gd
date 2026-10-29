@@ -390,14 +390,19 @@ func _check_death_and_orphans() -> void:
 	monster.defeated.connect(func(_monster: Node, _attacker: Node, reward: int) -> void: rewards.append(reward))
 	monster._die(fighter)
 	monster._die(fighter)
-	_check(monster.state == MONSTER.State.DEFEATED and monster.visible and monster.art_sprite.animation == &"hurt", "Defeat shows hurt frame before fade")
+	# Six-row sheets (all monsters since 2026-10-29) play the defeat row for 0.5 s, then fade over 0.3 s;
+	# the 4-row layout shows the hurt drawing and fades over 0.55 s.
+	var death_row := &"defeat" if monster.six_row_art else &"hurt"
+	var motion := 0.5 if monster.six_row_art else 0.0
+	var fade := 0.3 if monster.six_row_art else 0.55
+	_check(monster.state == MONSTER.State.DEFEATED and monster.visible and monster.art_sprite.animation == death_row, "Defeat shows its death drawing before fade")
 	_check(rewards.size() == 1, "Defeat reward emitted once")
 	var hits_before := fighter.hits
 	shot._on_body_entered(fighter)
 	_check(fighter.hits == hits_before, "Defeated source cannot deal projectile damage")
-	monster._physics_process(0.25)
+	monster._physics_process(motion + fade * 0.45)
 	_check(monster.modulate.a > 0.0 and monster.modulate.a < 1.0, "Defeat fades instead of disappearing immediately")
-	monster._physics_process(0.31)
+	monster._physics_process(fade * 0.6)
 	_check(monster.is_queued_for_deletion(), "Defeat animation cleans itself up")
 	fighter.queue_free()
 	await process_frame

@@ -1,0 +1,19 @@
+{
+  "note": "QA-23 L37. 게임 기본시트의 예비 attack F3~F5를 ART37 원본 공통 배율0.253으로 다시 추출하고 F6만 좁은 웅크린 찌르기로 재생성. F1~F2 RGBA 동일. 눈 간격0.975~1.035, 얼굴 폭0.986~1.000. F3 왼쪽 볼이 팔에 가려져 대응점 신뢰도가 낮음. 현재 bakeoff attack-v4는192셀 attack_chain이므로 그것을 재조립하지 않았음.",
+  "frames": 6,
+  "fps": 21.0,
+  "cell": 128,
+  "feet": 120,
+  "replaces": "frey-attack-v4.png",
+  "qa23": "L37",
+  "review_status": "완료 — 가려진 얼굴 경계 재검토 권장",
+  "changed_frames": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "actual_replaces": "smash-nine-prototype/assets/art/frey/frey_sheet.png base attack R6 (y640:768), equal to art/raw/frey-37/attack/normalized/frey-attack-v4.png",
+  "replaces_path_is_name_collision": true,
+  "adopted": "2026-10-29"
+}

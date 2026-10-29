@@ -1,0 +1,163 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      79,
+      64.5,
+      4,
+      5
+    ],
+    [
+      86,
+      64.5,
+      3,
+      4
+    ],
+    [
+      73,
+      65.5,
+      3,
+      4
+    ],
+    [
+      87,
+      65.5,
+      3,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 79.332,
+      "y": 65.048,
+      "score": 1
+    },
+    {
+      "x": 86.808,
+      "y": 63.732,
+      "score": 1
+    },
+    {
+      "x": 73,
+      "y": 65.5,
+      "score": 1
+    },
+    {
+      "x": 87,
+      "y": 65.5,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 7.59094407830806,
+  "reference_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 76.349,
+          "y": 67.827,
+          "score": 0.876
+        },
+        {
+          "x": 84.132,
+          "y": 65.657,
+          "score": 0.691
+        },
+        {
+          "x": 71.0,
+          "y": 69.5,
+          "score": 0.923
+        },
+        {
+          "x": 85.0,
+          "y": 67.5,
+          "score": 0.646
+        }
+      ],
+      "eye_distance": 8.08,
+      "face_width": 14.0,
+      "eye_ratio": 1.064,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.98,
+        55,
+        48,
+        0.629
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 83.978,
+          "y": 80.947,
+          "score": 0.823
+        },
+        {
+          "x": 91.5,
+          "y": 79.898,
+          "score": 0.647
+        },
+        {
+          "x": 78.0,
+          "y": 82.5,
+          "score": 0.919
+        },
+        {
+          "x": 91.0,
+          "y": 81.5,
+          "score": 0.643
+        }
+      ],
+      "eye_distance": 7.595,
+      "face_width": 13.0,
+      "eye_ratio": 1.001,
+      "face_width_ratio": 0.929,
+      "head_alignment": [
+        0.92,
+        63,
+        62,
+        0.787
+      ]
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 81.293,
+          "y": 68.88,
+          "score": 0.914
+        },
+        {
+          "x": 88.635,
+          "y": 66.791,
+          "score": 0.712
+        },
+        {
+          "x": 75.0,
+          "y": 69.5,
+          "score": 0.903
+        },
+        {
+          "x": 90.0,
+          "y": 68.5,
+          "score": 0.764
+        }
+      ],
+      "eye_distance": 7.633,
+      "face_width": 15.0,
+      "eye_ratio": 1.006,
+      "face_width_ratio": 1.071,
+      "head_alignment": [
+        0.92,
+        61,
+        50,
+        0.796
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_passed": false,
+  "review_note": "F1 상체·머리가 뒤로 젖혀지고 F2 낮게 반동한 뒤 F3 가드로 복귀한다. 얼굴만 바뀌던 이전 행과 동작이 구분됨. 눈 1.001–1.064, 폭 0.929–1.071(F1–3)로 허용 범위 밖이라 미전달. F1 눈 1.064, F2 폭 0.929, F3 폭 1.071. 3회 상한."
+}

@@ -1,0 +1,903 @@
+{
+  "id": "ember_imp",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L04",
+    "L06",
+    "L23"
+  ],
+  "note": "L04, L06, L23: ART-17 이전 보존본과 대조해 추가 림 제거; 몸과 분리된 발사체·잔상·피격 표시 픽셀 제거; 발사체가 몸을 가린 1프레임은 이웃 프레임 참조로 재작화. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/ember_imp_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "4e39bcba54803786c7492a540585b3c068628616296e6d7dd30a36239124d2df",
+  "candidate_file_sha256": "8fca443560daa77be8561ed9684029d46e9fbaf55af0599b221d71c0e9274bcc",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "idle",
+      "frame": 1,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          13,
+          2,
+          83,
+          75
+        ],
+        "bbox_alpha1": [
+          13,
+          2,
+          83,
+          75
+        ],
+        "area_alpha128": 3265,
+        "edge_1px": 0,
+        "margin_4px": 28,
+        "rgba_sha256": "ac0e8abb47feeadb8ecfe6909b8e8a094de6480c42bc704db1a09a4a00653686"
+      },
+      "after": {
+        "bbox_alpha128": [
+          15,
+          4,
+          81,
+          73
+        ],
+        "bbox_alpha1": [
+          15,
+          4,
+          81,
+          73
+        ],
+        "area_alpha128": 2372,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "9b694a497a4c1d6acc16ca3edcafbd7fbc7cfbcba84fe6b21f315ea6878d5329"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 2,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        96,
+        0,
+        192,
+        96
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          15,
+          2,
+          81,
+          75
+        ],
+        "bbox_alpha1": [
+          15,
+          2,
+          81,
+          75
+        ],
+        "area_alpha128": 3176,
+        "edge_1px": 0,
+        "margin_4px": 24,
+        "rgba_sha256": "3c043543cc66cb7f9a11481112a535f9011df495e51e8758be8dd5b98ea6e0bd"
+      },
+      "after": {
+        "bbox_alpha128": [
+          17,
+          4,
+          79,
+          73
+        ],
+        "bbox_alpha1": [
+          17,
+          4,
+          79,
+          73
+        ],
+        "area_alpha128": 2242,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "694b9eb845867cf406db5809db4bf8053c41632fe718a231d208b92395d76f92"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 3,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        192,
+        0,
+        288,
+        96
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          13,
+          2,
+          83,
+          75
+        ],
+        "bbox_alpha1": [
+          13,
+          2,
+          83,
+          75
+        ],
+        "area_alpha128": 3180,
+        "edge_1px": 0,
+        "margin_4px": 14,
+        "rgba_sha256": "e7b8eb9338014f3bd68c85243af14b7460011faaa17635c07188835caf0e8ed5"
+      },
+      "after": {
+        "bbox_alpha128": [
+          15,
+          4,
+          81,
+          73
+        ],
+        "bbox_alpha1": [
+          15,
+          4,
+          81,
+          73
+        ],
+        "area_alpha128": 2330,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "3a351ce1393b242b8208a310a37896705d641b65186fc372bb461d1bbd9db239"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 4,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        288,
+        0,
+        384,
+        96
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          13,
+          2,
+          82,
+          75
+        ],
+        "bbox_alpha1": [
+          13,
+          2,
+          82,
+          75
+        ],
+        "area_alpha128": 3396,
+        "edge_1px": 0,
+        "margin_4px": 34,
+        "rgba_sha256": "33f7cff10dc7a2670a6e43044212cc5dbbd51b85e228ade15fc2f9ca64e7226c"
+      },
+      "after": {
+        "bbox_alpha128": [
+          15,
+          4,
+          80,
+          73
+        ],
+        "bbox_alpha1": [
+          15,
+          4,
+          80,
+          73
+        ],
+        "area_alpha128": 2437,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "949a144731775382ce7773cc05444ac43273d6018afe1b934421dda63a0ec19d"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 1,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        0,
+        96,
+        96,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          12,
+          2,
+          84,
+          75
+        ],
+        "bbox_alpha1": [
+          12,
+          2,
+          84,
+          75
+        ],
+        "area_alpha128": 3324,
+        "edge_1px": 0,
+        "margin_4px": 12,
+        "rgba_sha256": "a2ef27e560e391f7daf2695481936bb7d493e8f89f5cdb9508ff78f2b8878d13"
+      },
+      "after": {
+        "bbox_alpha128": [
+          14,
+          4,
+          82,
+          73
+        ],
+        "bbox_alpha1": [
+          14,
+          4,
+          82,
+          73
+        ],
+        "area_alpha128": 2470,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "a33711918788a5b5a319480ad1ce5d98372212640e80d5e8978b7bc6f07ebbe0"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 2,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        96,
+        96,
+        192,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          12,
+          2,
+          84,
+          75
+        ],
+        "bbox_alpha1": [
+          12,
+          2,
+          84,
+          75
+        ],
+        "area_alpha128": 3168,
+        "edge_1px": 0,
+        "margin_4px": 12,
+        "rgba_sha256": "f7552b7ea7451618a6fadf582c2234488cdebf6e98801aa43c52d3ea31fc50ec"
+      },
+      "after": {
+        "bbox_alpha128": [
+          14,
+          4,
+          82,
+          73
+        ],
+        "bbox_alpha1": [
+          14,
+          4,
+          82,
+          73
+        ],
+        "area_alpha128": 2335,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "27fa0a1b7b6e2b6d2b03f815a4142f1bc1435279d76958679f728468fb540024"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 3,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        192,
+        96,
+        288,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          2,
+          85,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          2,
+          85,
+          75
+        ],
+        "area_alpha128": 3206,
+        "edge_1px": 0,
+        "margin_4px": 40,
+        "rgba_sha256": "672e55a80126980b6f06833fa9d72210fa1ab331ccde87b8464cdecf13c44509"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          4,
+          83,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          4,
+          83,
+          73
+        ],
+        "area_alpha128": 2379,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "c74732fac8b99e8deac95e741509519341d2142911d2f72d0917474fa97866a1"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 4,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        288,
+        96,
+        384,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          12,
+          2,
+          84,
+          75
+        ],
+        "bbox_alpha1": [
+          12,
+          2,
+          84,
+          75
+        ],
+        "area_alpha128": 3142,
+        "edge_1px": 0,
+        "margin_4px": 12,
+        "rgba_sha256": "c93da778ce4aa7d71ea05c8bf08fb37c0bf1697a4672d2728359fec7f63cc3e7"
+      },
+      "after": {
+        "bbox_alpha128": [
+          14,
+          4,
+          82,
+          73
+        ],
+        "bbox_alpha1": [
+          14,
+          4,
+          82,
+          73
+        ],
+        "area_alpha128": 2304,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "6049eb54cb1da2c6236aaebd0da511457025c92f3781291d3fb1aafa7c3ec02f"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 5,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        384,
+        96,
+        480,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          2,
+          85,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          2,
+          85,
+          75
+        ],
+        "area_alpha128": 3366,
+        "edge_1px": 0,
+        "margin_4px": 36,
+        "rgba_sha256": "a3bad34eb0d3f97843339488f4ac97fb5041e8a021116d81542fa971cbc0f723"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          4,
+          83,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          4,
+          83,
+          73
+        ],
+        "area_alpha128": 2512,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "1c08c6630a3ddc2242d4c82e4c0512644d74bd9c8c395e5f40200ecb02d413a6"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 6,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        480,
+        96,
+        576,
+        192
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          2,
+          85,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          2,
+          85,
+          75
+        ],
+        "area_alpha128": 3311,
+        "edge_1px": 0,
+        "margin_4px": 36,
+        "rgba_sha256": "7a571c99ba4bdd81482326cd4426b8a7d7889e3bef7374d3cc8f1bd744d7db23"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          4,
+          83,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          4,
+          83,
+          73
+        ],
+        "area_alpha128": 2416,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "3d33f1257eedea356626c68efee9b74e9a0f019c56b3c143e1712eb4a954d99e"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 1,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        0,
+        192,
+        96,
+        288
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          2,
+          85,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          2,
+          85,
+          75
+        ],
+        "area_alpha128": 3504,
+        "edge_1px": 0,
+        "margin_4px": 14,
+        "rgba_sha256": "3bd25b1829e6e5da42119433185d8d99f43193ac4ddf3c7651d51644d6912edd"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          4,
+          83,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          4,
+          83,
+          73
+        ],
+        "area_alpha128": 2646,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "9a1b862bd96e4b5839009631d8991179a2022ae2c966aaa2249773b99e0fa384"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 2,
+      "method": "built-in imagegen redraw: shot occluded source body",
+      "source": "art/raw/monsters-87/ember_imp_attack2_redraw.png",
+      "source_region": [
+        156,
+        193,
+        1020,
+        956
+      ],
+      "target_size": [
+        65,
+        58
+      ],
+      "placement": [
+        12,
+        15
+      ],
+      "feet_boundary": 73,
+      "prior_cleanup": {
+        "method": "remove ART-17 added rim; restore preserved pixels",
+        "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+        "source_region": [
+          96,
+          192,
+          192,
+          288
+        ],
+        "solid_body_preserved_exact": true,
+        "feet_boundary": 73,
+        "removed_fx_polygons_local": [
+          [
+            [
+              69,
+              28
+            ],
+            [
+              89,
+              28
+            ],
+            [
+              89,
+              62
+            ],
+            [
+              69,
+              62
+            ]
+          ]
+        ],
+        "removed_fx_pixels": 167
+      },
+      "reference": [
+        "ember_imp_edit_target.png",
+        "ember_imp_edit_reference.png"
+      ],
+      "original_source_compared": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "redraw_reason": "원본에도 발사 효과가 손·포구·얼굴·돌 윤곽을 가림. 재슬라이스만으로 가려진 몸 픽셀을 복구할 수 없음.",
+      "before": {
+        "bbox_alpha128": [
+          10,
+          13,
+          86,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          13,
+          86,
+          75
+        ],
+        "area_alpha128": 3006,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "ed73a672b723fdfbbe78fa8435cd3c9c1ecdc2a6ad9cf60048d14263f146041c"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          15,
+          77,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          15,
+          77,
+          73
+        ],
+        "area_alpha128": 1962,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "b564f02aaad24238c47d6af3e9913a8e637cd01e7d3f2b622bb3e6612d9c1f1a"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 3,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        192,
+        192,
+        288,
+        288
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          4,
+          86,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          4,
+          86,
+          75
+        ],
+        "area_alpha128": 3268,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "782bcc222fd6c15fbab7f38942b2394e5e5be3b6602ea40bceac1ee481ebbac0"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          6,
+          84,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          6,
+          84,
+          73
+        ],
+        "area_alpha128": 2378,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "1d6905ce6914071c0f9c12f831bb3cc3995d8134cd5ddd2081330e57dd1ee484"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 4,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        288,
+        192,
+        384,
+        288
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "removed_fx_polygons_local": [
+        [
+          [
+            74,
+            32
+          ],
+          [
+            89,
+            32
+          ],
+          [
+            89,
+            64
+          ],
+          [
+            74,
+            64
+          ]
+        ],
+        [
+          [
+            68,
+            34
+          ],
+          [
+            73,
+            34
+          ],
+          [
+            73,
+            44
+          ],
+          [
+            68,
+            44
+          ]
+        ]
+      ],
+      "removed_fx_pixels": 83,
+      "before": {
+        "bbox_alpha128": [
+          10,
+          16,
+          86,
+          75
+        ],
+        "bbox_alpha1": [
+          10,
+          16,
+          86,
+          75
+        ],
+        "area_alpha128": 2437,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "85d8a57a1341a65cf4d704529874e04dfc7a5c97db99bb0cc907c5235747538a"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          18,
+          69,
+          73
+        ],
+        "bbox_alpha1": [
+          12,
+          18,
+          69,
+          73
+        ],
+        "area_alpha128": 1489,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "145b5a9e9c00b7b2444343c227f6c822bf0f1cc5f962b42d02bcf77107ad45a6"
+      }
+    },
+    {
+      "row": "hurt",
+      "frame": 1,
+      "method": "remove ART-17 added rim; restore preserved pixels",
+      "source": "art/raw/monsters-87/ember_imp_before_art17.png",
+      "source_region": [
+        0,
+        288,
+        96,
+        384
+      ],
+      "solid_body_preserved_exact": true,
+      "feet_boundary": 73,
+      "before": {
+        "bbox_alpha128": [
+          11,
+          4,
+          85,
+          75
+        ],
+        "bbox_alpha1": [
+          11,
+          4,
+          85,
+          75
+        ],
+        "area_alpha128": 3450,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "1ac504247ac8b16abcb602e686b9780c02b0a286d0cbc3280a6f8f709e84b0af"
+      },
+      "after": {
+        "bbox_alpha128": [
+          13,
+          6,
+          83,
+          73
+        ],
+        "bbox_alpha1": [
+          13,
+          6,
+          83,
+          73
+        ],
+        "area_alpha128": 2423,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "72ab977dafe5f6a75a0006f5bd27b045d91be9e7f89b2fb75c5b9fb5ca02460f"
+      }
+    }
+  ],
+  "adopted": "2026-10-29"
+}

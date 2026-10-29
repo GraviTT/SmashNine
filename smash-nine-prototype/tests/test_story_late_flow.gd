@@ -188,7 +188,12 @@ func _run() -> void:
 		main.story_session.dialogue.line_label.visible_characters = -1
 		main.story_session.dialogue._characters = main.story_session.dialogue.line_label.get_total_character_count()
 		_check(main.story_session.dialogue.speaker_label.text == tr("Shadow %s") % tr(str(main.characters[id].name)), "New shadow speaker uses translated hero name")
-		_check(main.story_session.dialogue.right_face.texture == ART.character_portrait(id, main.story_session.hero.body_type) and main.story_session.dialogue.right_face.modulate.r < 0.5, "Shadow speaker uses same body portrait, violet and right-aligned")
+		# A drawn shadow face (applied 2026-10-29 for every form) shows in its own colours; without one
+		# the same-body portrait is tinted violet.
+		var shadow_face := ART.character_portrait(id, main.story_session.hero.body_type, "shadow")
+		var drawn_shadow: bool = shadow_face != null and shadow_face.resource_path.ends_with("_face_shadow.png")
+		var right_face: TextureRect = main.story_session.dialogue.right_face
+		_check(right_face.texture == shadow_face and (right_face.modulate == Color.WHITE if drawn_shadow else right_face.modulate.r < 0.5), "Shadow speaker uses the shadow face (drawn, or the violet same-body portrait), right-aligned")
 		if id == "nova":
 			main = await _art_round_trip(main, "mid")
 			_check(main.players.size() == 1, "F2 during mid scene cannot spawn the own shadow early")

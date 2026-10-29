@@ -192,11 +192,30 @@ func _expressions() -> void:
 	var independent := _texture("res://assets/art/sys09_sheet/sys09_sheet_face_happy.png", Color.GREEN)
 	_check(ART.character_portrait("sys09_sheet", "female", "happy") == independent, "Expression can exist before neutral face art")
 
+## The faces applied on 2026-10-29: 22 expressions and 8 shadows. Yuki's and Rio (male)'s hurt were
+## not picked, so they fall back to the neutral face. Runs before the injected fixtures below.
+func _applied() -> void:
+	var picked := {"frey/frey": ["happy", "angry", "hurt"], "luna/luna": ["happy", "angry", "hurt"], "luna/luna_brave": ["happy", "angry", "hurt"],
+		"nova/nova_male": ["happy", "angry", "hurt"], "nova/nova_female": ["happy", "angry", "hurt"],
+		"rio/rio_male": ["happy", "angry"], "rio/rio_female": ["happy", "angry", "hurt"], "yuki/yuki": ["happy", "angry"]}
+	var expressions := 0
+	for stem in picked:
+		for face in ["happy", "angry", "hurt"]:
+			var applied: bool = face in picked[stem]
+			_check(ResourceLoader.exists("res://assets/art/%s_face_%s.png" % [stem, face]) == applied, "%s %s %s" % [stem, face, "applied" if applied else "not picked"])
+			expressions += 1 if applied else 0
+		_check(ResourceLoader.exists("res://assets/art/%s_face_shadow.png" % stem), "%s shadow applied" % stem)
+	_check(expressions == 22, "22 expressions applied")
+	_check(ART.character_portrait("yuki", "", "hurt") == ART.character_portrait("yuki", ""), "Yuki hurt falls back to the neutral face")
+	_check(ART.character_portrait("rio", "male", "hurt") == ART.character_portrait("rio", "male"), "Rio (male) hurt falls back to the neutral face")
+	_check(ART.character_portrait("rio", "female", "hurt") != ART.character_portrait("rio", "female"), "Rio (female) hurt is the applied face")
+
 func _run() -> void:
 	root.size = Vector2i(1280, 720)
 	dialogue = DIALOGUE.new()
 	root.add_child(dialogue)
 	await process_frame
+	_applied()
 	await _baseline()
 	await _expressions()
 	var counts := {"happy": 0, "angry": 0, "hurt": 0, "neutral": 0, "shadow": 0}

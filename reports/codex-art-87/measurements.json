@@ -1,0 +1,1119 @@
+{
+  "status": "PASS",
+  "scope": "PNG, source provenance, metadata, untouched RGBA, static script syntax; no Godot or runtime test",
+  "sheets": 15,
+  "changed_frames": 76,
+  "unchanged_used_frames": 149,
+  "unchanged_cells_including_empty": 284,
+  "empty_cells": 135,
+  "changed_frames_minimum_margin_px": 4,
+  "rim_comparison": [
+    {
+      "id": "ember_imp",
+      "pre_art17_solid_rgba_exact_in_game": true,
+      "solid_pixels": 34922,
+      "added_or_changed_rim_pixels": 13277
+    },
+    {
+      "id": "mossling",
+      "pre_art17_solid_rgba_exact_in_game": true,
+      "solid_pixels": 44868,
+      "added_or_changed_rim_pixels": 11200
+    }
+  ],
+  "inputs": [
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/alfheim_moon_stag_source.png",
+      "sha256": "ee41f4479a460422b3c7e117b0254a4eb5e2e09ee600246163d612b6571c8ddc"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/asgard_runic_raven_source.png",
+      "sha256": "bffdb84a28f15ce247a861b89caffff642a48aabb6cf1dcf8d1f83d2a33f5fb3"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/jotunheim_rune_golem_source.png",
+      "sha256": "327a6b48bad54af41bc4d39f1fb9938c8f0f94df852ca013560c8f88062c9cde"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/jotunheim_storm_wisp_source.png",
+      "sha256": "7c729de58889a4f40e3cb128ba7cd8034c0245eb6185c50769f1db6aca7ac2f1"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/midgard_rooftop_slinger_source.png",
+      "sha256": "ec1393abf281d34b9bb6ee1cc4ac07e3223ea66f9d9243b739ee1e1d89739c65"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/muspelheim_magma_boar_source.png",
+      "sha256": "95759612b4704318bee9eb96ba1e074aa8330f3ae2906976615919061f3bf365"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/niflheim_glacier_wolf_source.png",
+      "sha256": "ec38dc0bb32c49792ca54a22882a3a50b60ee2f13b58e259f869195560b33534"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/svartalfheim_cog_drone_source.png",
+      "sha256": "86c110d83c4ccb2c3169984c9681bddebcb5a6baea0d2c9cba16c726d1aa3eaf"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/svartalfheim_gear_beetle_source.png",
+      "sha256": "1130e5a94102abce768b319b7136df0a4685bb3a1434c64c5c297ad38ff7e12c"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/yggdrasil_root_guardian_source.png",
+      "sha256": "162edd73f0f92dd7ab9497d4966383c3be6a6ec8b91401720a20f1305f309d09"
+    },
+    {
+      "path": "smash-nine-prototype/assets/art/monsters/yggdrasil_root_oracle_source.png",
+      "sha256": "04ae164de51385d7f7faebce03fbc07b28ec2e1086379e19e1946cf45ce6cb36"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "alfheim_moon_moth",
+      "changed": 1,
+      "identical_cells": 23,
+      "identical_used_frames": 14,
+      "candidate_sha256": "d98c189aeaf7b47d77ebedb7f482baf8c399862d8b4ae539a8097f40919c1be5",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            11,
+            7,
+            82,
+            72
+          ],
+          "rgba_sha256": "b68426ad29049632e9c6a742672900b8fc1a668768b5391217dc354d90fe153b",
+          "minimum_margin_px": 7
+        }
+      ]
+    },
+    {
+      "id": "alfheim_moon_stag",
+      "changed": 5,
+      "identical_cells": 19,
+      "identical_used_frames": 10,
+      "candidate_sha256": "db88189bcc561c2cc812a9657ee91a7156a1a179488fe064f2b30592084b9b61",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 1,
+          "bbox_alpha1": [
+            13,
+            30,
+            83,
+            72
+          ],
+          "rgba_sha256": "1bea2ae93a848f4cb69726c72c4e8161de3a8b57b69f4166686f8a65558afc60",
+          "minimum_margin_px": 13
+        },
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            11,
+            28,
+            85,
+            72
+          ],
+          "rgba_sha256": "90b614c0826fd2b796e1ae177443aca2acce4f450cf076b85a0e4eacabe1f08b",
+          "minimum_margin_px": 11
+        },
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            4,
+            30,
+            92,
+            72
+          ],
+          "rgba_sha256": "5d6dd94ff19bee493b246753d138179f30ccd916ffc2a1082a846addbb69289c",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "attack",
+          "frame": 4,
+          "bbox_alpha1": [
+            13,
+            30,
+            83,
+            72
+          ],
+          "rgba_sha256": "1bea2ae93a848f4cb69726c72c4e8161de3a8b57b69f4166686f8a65558afc60",
+          "minimum_margin_px": 13
+        },
+        {
+          "row": "hurt",
+          "frame": 1,
+          "bbox_alpha1": [
+            13,
+            14,
+            83,
+            72
+          ],
+          "rgba_sha256": "e1f654ff02853857a7dcfc75287fe892da892b2dfa0a24c9a2dc1f0c320a0806",
+          "minimum_margin_px": 13
+        }
+      ]
+    },
+    {
+      "id": "asgard_aegis_ram",
+      "changed": 1,
+      "identical_cells": 23,
+      "identical_used_frames": 14,
+      "candidate_sha256": "83004884eeb1a5aa8712ae81fb9aef251186fae50712482fbcb062266173dfdf",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            7,
+            26,
+            89,
+            72
+          ],
+          "rgba_sha256": "e31a8d2a26557b4f5eb278e33f4400a336540b3c35e0d09948407fc09bb92329",
+          "minimum_margin_px": 7
+        }
+      ]
+    },
+    {
+      "id": "asgard_runic_raven",
+      "changed": 1,
+      "identical_cells": 23,
+      "identical_used_frames": 14,
+      "candidate_sha256": "6fbd99f0de59279a5a05c6418bcd707e4735e62bca67e9c2b9f88043324e5753",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            17,
+            21,
+            78,
+            72
+          ],
+          "rgba_sha256": "19f060dd6301394311968c78218a357bebb022e6f33356bb63e1b899cd1326c7",
+          "minimum_margin_px": 17
+        }
+      ]
+    },
+    {
+      "id": "ember_imp",
+      "changed": 15,
+      "identical_cells": 9,
+      "identical_used_frames": 0,
+      "candidate_sha256": "8fca443560daa77be8561ed9684029d46e9fbaf55af0599b221d71c0e9274bcc",
+      "frames": [
+        {
+          "row": "idle",
+          "frame": 1,
+          "bbox_alpha1": [
+            15,
+            4,
+            81,
+            73
+          ],
+          "rgba_sha256": "9b694a497a4c1d6acc16ca3edcafbd7fbc7cfbcba84fe6b21f315ea6878d5329",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "idle",
+          "frame": 2,
+          "bbox_alpha1": [
+            17,
+            4,
+            79,
+            73
+          ],
+          "rgba_sha256": "694b9eb845867cf406db5809db4bf8053c41632fe718a231d208b92395d76f92",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "idle",
+          "frame": 3,
+          "bbox_alpha1": [
+            15,
+            4,
+            81,
+            73
+          ],
+          "rgba_sha256": "3a351ce1393b242b8208a310a37896705d641b65186fc372bb461d1bbd9db239",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "idle",
+          "frame": 4,
+          "bbox_alpha1": [
+            15,
+            4,
+            80,
+            73
+          ],
+          "rgba_sha256": "949a144731775382ce7773cc05444ac43273d6018afe1b934421dda63a0ec19d",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "walk",
+          "frame": 1,
+          "bbox_alpha1": [
+            14,
+            4,
+            82,
+            73
+          ],
+          "rgba_sha256": "a33711918788a5b5a319480ad1ce5d98372212640e80d5e8978b7bc6f07ebbe0",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "walk",
+          "frame": 2,
+          "bbox_alpha1": [
+            14,
+            4,
+            82,
+            73
+          ],
+          "rgba_sha256": "27fa0a1b7b6e2b6d2b03f815a4142f1bc1435279d76958679f728468fb540024",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "walk",
+          "frame": 3,
+          "bbox_alpha1": [
+            12,
+            4,
+            83,
+            73
+          ],
+          "rgba_sha256": "c74732fac8b99e8deac95e741509519341d2142911d2f72d0917474fa97866a1",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "walk",
+          "frame": 4,
+          "bbox_alpha1": [
+            14,
+            4,
+            82,
+            73
+          ],
+          "rgba_sha256": "6049eb54cb1da2c6236aaebd0da511457025c92f3781291d3fb1aafa7c3ec02f",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "walk",
+          "frame": 5,
+          "bbox_alpha1": [
+            12,
+            4,
+            83,
+            73
+          ],
+          "rgba_sha256": "1c08c6630a3ddc2242d4c82e4c0512644d74bd9c8c395e5f40200ecb02d413a6",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "walk",
+          "frame": 6,
+          "bbox_alpha1": [
+            12,
+            4,
+            83,
+            73
+          ],
+          "rgba_sha256": "3d33f1257eedea356626c68efee9b74e9a0f019c56b3c143e1712eb4a954d99e",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "attack",
+          "frame": 1,
+          "bbox_alpha1": [
+            12,
+            4,
+            83,
+            73
+          ],
+          "rgba_sha256": "9a1b862bd96e4b5839009631d8991179a2022ae2c966aaa2249773b99e0fa384",
+          "minimum_margin_px": 4
+        },
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            12,
+            15,
+            77,
+            73
+          ],
+          "rgba_sha256": "b564f02aaad24238c47d6af3e9913a8e637cd01e7d3f2b622bb3e6612d9c1f1a",
+          "minimum_margin_px": 12
+        },
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            12,
+            6,
+            84,
+            73
+          ],
+          "rgba_sha256": "1d6905ce6914071c0f9c12f831bb3cc3995d8134cd5ddd2081330e57dd1ee484",
+          "minimum_margin_px": 6
+        },
+        {
+          "row": "attack",
+          "frame": 4,
+          "bbox_alpha1": [
+            12,
+            18,
+            69,
+            73
+          ],
+          "rgba_sha256": "145b5a9e9c00b7b2444343c227f6c822bf0f1cc5f962b42d02bcf77107ad45a6",
+          "minimum_margin_px": 12
+        },
+        {
+          "row": "hurt",
+          "frame": 1,
+          "bbox_alpha1": [
+            13,
+            6,
+            83,
+            73
+          ],
+          "rgba_sha256": "72ab977dafe5f6a75a0006f5bd27b045d91be9e7f89b2fb75c5b9fb5ca02460f",
+          "minimum_margin_px": 6
+        }
+      ]
+    },
+    {
+      "id": "jotunheim_rune_golem",
+      "changed": 15,
+      "identical_cells": 9,
+      "identical_used_frames": 0,
+      "candidate_sha256": "fe29532a4c8e83b97cb906abfdb836460ff4e4be9cecbde03d320f94a449d690",
+      "frames": [
+        {
+          "row": "idle",
+          "frame": 1,
+          "bbox_alpha1": [
+            10,
+            30,
+            85,
+            80
+          ],
+          "rgba_sha256": "2997518486888b581d109fd099d9cda83356e464edfe54dfb9b742b6bb9aef64",
+          "minimum_margin_px": 10
+        },
+        {
+          "row": "idle",
+          "frame": 2,
+          "bbox_alpha1": [
+            12,
+            28,
+            84,
+            80
+          ],
+          "rgba_sha256": "6f063136ba007f7a3f38d0cbac3dc3a13b5122b189f2b38a40a6f9b659ecf44d",
+          "minimum_margin_px": 12
+        },
+        {
+          "row": "idle",
+          "frame": 3,
+          "bbox_alpha1": [
+            11,
+            29,
+            84,
+            80
+          ],
+          "rgba_sha256": "0423274602de5690ee1a8d61d7fab90fec0ba12bd35cecad57b112aac92d96bf",
+          "minimum_margin_px": 11
+        },
+        {
+          "row": "idle",
+          "frame": 4,
+          "bbox_alpha1": [
+            10,
+            28,
+            86,
+            80
+          ],
+          "rgba_sha256": "5e46fd30b2ca2a18a6be8f5aca3233463b4163be4a6c8a701733587aa9b820d2",
+          "minimum_margin_px": 10
+        },
+        {
+          "row": "walk",
+          "frame": 1,
+          "bbox_alpha1": [
+            9,
+            31,
+            87,
+            80
+          ],
+          "rgba_sha256": "bd34695697ec483df9a6368a6278bb385d4fa7f9c57e6dba3cfda3f5d882b1b3",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 2,
+          "bbox_alpha1": [
+            9,
+            28,
+            86,
+            80
+          ],
+          "rgba_sha256": "c48e3e080a909bad50f5eb8f61bc5e78598bf4a9a86cc39a3970d249bd257519",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 3,
+          "bbox_alpha1": [
+            11,
+            29,
+            85,
+            80
+          ],
+          "rgba_sha256": "6a9da74645be2c6054e4bcb7aaa8ebc0ef42823af180dcb26adc97ba216d6681",
+          "minimum_margin_px": 11
+        },
+        {
+          "row": "walk",
+          "frame": 4,
+          "bbox_alpha1": [
+            7,
+            31,
+            89,
+            80
+          ],
+          "rgba_sha256": "b7fd1a36dc9e913e00c7ab4f66b7bb6625b929febf930a434eeb0437e2957662",
+          "minimum_margin_px": 7
+        },
+        {
+          "row": "walk",
+          "frame": 5,
+          "bbox_alpha1": [
+            9,
+            31,
+            86,
+            80
+          ],
+          "rgba_sha256": "d88ed6b5936123bb2cf482c6335ee4c9cffd0a1a1ac65ddf41785ad41b410c47",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 6,
+          "bbox_alpha1": [
+            11,
+            27,
+            85,
+            80
+          ],
+          "rgba_sha256": "aff8a24e3da39646d772cdff468a6e0a8664b7d1b28d3f41f100401c7f9c5513",
+          "minimum_margin_px": 11
+        },
+        {
+          "row": "attack",
+          "frame": 1,
+          "bbox_alpha1": [
+            9,
+            29,
+            86,
+            80
+          ],
+          "rgba_sha256": "415b4c117f2bef10a82b06429c29b4fb51bdeec0f59cad143c1c1d9c2b32c047",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            11,
+            7,
+            84,
+            80
+          ],
+          "rgba_sha256": "45497ff696d27e5ff789419a89748d212634b1bc1a73273327e4a289d4ed2ab5",
+          "minimum_margin_px": 7
+        },
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            5,
+            32,
+            91,
+            80
+          ],
+          "rgba_sha256": "ca3788667887b8776a18ae3998c7e7d84a4748a3964daac0a81b7b6ba5164608",
+          "minimum_margin_px": 5
+        },
+        {
+          "row": "attack",
+          "frame": 4,
+          "bbox_alpha1": [
+            9,
+            29,
+            87,
+            80
+          ],
+          "rgba_sha256": "f8016ee24fc869275ad2264c02f30b5a74fa1eed92d57e9e43441879a076c555",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "hurt",
+          "frame": 1,
+          "bbox_alpha1": [
+            11,
+            36,
+            84,
+            80
+          ],
+          "rgba_sha256": "b1396510d856ecfb7c7e134b34457dacc1f9bfbc2c13970bdd06fa0840e67407",
+          "minimum_margin_px": 11
+        }
+      ]
+    },
+    {
+      "id": "jotunheim_storm_wisp",
+      "changed": 1,
+      "identical_cells": 23,
+      "identical_used_frames": 14,
+      "candidate_sha256": "ab8721434eadea6da137bf9c87e01aa9871560519118fb141f06978cb5edc008",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 4,
+          "bbox_alpha1": [
+            9,
+            11,
+            76,
+            72
+          ],
+          "rgba_sha256": "18a2b2db30a73fbdb049e8dc16b1cde24154f1c72c8c52a2af5eb3c41d42428f",
+          "minimum_margin_px": 9
+        }
+      ]
+    },
+    {
+      "id": "midgard_rooftop_slinger",
+      "changed": 1,
+      "identical_cells": 23,
+      "identical_used_frames": 14,
+      "candidate_sha256": "e6a6c555166d85a418ca7a57028b8d667d5935c67f5d2d9e1ceeae398fd06d1e",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            5,
+            10,
+            90,
+            72
+          ],
+          "rgba_sha256": "972ae9e6a4d725791b5f855d0892100696d0e4158cee267458a9203922b82cea",
+          "minimum_margin_px": 5
+        }
+      ]
+    },
+    {
+      "id": "mossling",
+      "changed": 15,
+      "identical_cells": 9,
+      "identical_used_frames": 0,
+      "candidate_sha256": "ace02d70bc8584342dcad9a4c9f9c324b805a6595abcc3d5713abf5c99a60764",
+      "frames": [
+        {
+          "row": "idle",
+          "frame": 1,
+          "bbox_alpha1": [
+            9,
+            9,
+            87,
+            73
+          ],
+          "rgba_sha256": "4baa48b35fa47116e86675caafea857b6eed7a702083310d485c9f5d75aee091",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "idle",
+          "frame": 2,
+          "bbox_alpha1": [
+            10,
+            9,
+            86,
+            73
+          ],
+          "rgba_sha256": "980a835bd28b7f6d09983ab554c9d34ad1ce6dabeb0adf3a32d9bff71f30fcea",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "idle",
+          "frame": 3,
+          "bbox_alpha1": [
+            13,
+            9,
+            83,
+            73
+          ],
+          "rgba_sha256": "f7d5e72a0c04c3b70b998b0eda6a53a383542e1e4aba5242da769952fbb838be",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "idle",
+          "frame": 4,
+          "bbox_alpha1": [
+            9,
+            9,
+            87,
+            73
+          ],
+          "rgba_sha256": "922f0e0d716ff53d5cae5d59d2269fe89b463dfa2bb60e6801403d7996042d45",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 1,
+          "bbox_alpha1": [
+            9,
+            9,
+            87,
+            73
+          ],
+          "rgba_sha256": "d142eb409865978e2a45be930a162359b1b75caac29e9c7485f8964ff19976d2",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 2,
+          "bbox_alpha1": [
+            12,
+            9,
+            84,
+            73
+          ],
+          "rgba_sha256": "4bff828d57ae1787966c72c05593667c11719902754002e4d6d2daf9e7148f94",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 3,
+          "bbox_alpha1": [
+            10,
+            9,
+            86,
+            73
+          ],
+          "rgba_sha256": "aac5f96e793c7fcaf3071812a7730ae62d9a2293aae84973e07a876bd9418f5d",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 4,
+          "bbox_alpha1": [
+            12,
+            9,
+            84,
+            73
+          ],
+          "rgba_sha256": "13e3956df2a7aa74f7e182bcf1635d02794901e0b1c4b9d0ff7e1178ce2067ce",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 5,
+          "bbox_alpha1": [
+            9,
+            9,
+            87,
+            73
+          ],
+          "rgba_sha256": "5af32027201730fe237f22e85e7aae9551b980401ab23d1c0af19e0da1ad5752",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "walk",
+          "frame": 6,
+          "bbox_alpha1": [
+            12,
+            9,
+            84,
+            73
+          ],
+          "rgba_sha256": "55115ef4bdf2cfa60cb0a5c91c9fdcc196b9618fe35e782e40eac948b8c10987",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "attack",
+          "frame": 1,
+          "bbox_alpha1": [
+            7,
+            18,
+            89,
+            73
+          ],
+          "rgba_sha256": "834cb6e1ff536111658c37762137354d84934623613113453f8c9c33a716222c",
+          "minimum_margin_px": 7
+        },
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            7,
+            15,
+            89,
+            73
+          ],
+          "rgba_sha256": "7e1483ff89c8fd1c43d5ead8e336e7c99dee983de9563815f66083429a36e3eb",
+          "minimum_margin_px": 7
+        },
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            7,
+            24,
+            89,
+            73
+          ],
+          "rgba_sha256": "bc2145e3f64903257696c13d205c5b73a7c7eaff31a14edc2940d7284a0d1b32",
+          "minimum_margin_px": 7
+        },
+        {
+          "row": "attack",
+          "frame": 4,
+          "bbox_alpha1": [
+            7,
+            18,
+            89,
+            73
+          ],
+          "rgba_sha256": "39a680a6b10b4ab95a88a2f91196587fe4e14320c0b7b220108eef4c872e1c60",
+          "minimum_margin_px": 7
+        },
+        {
+          "row": "hurt",
+          "frame": 1,
+          "bbox_alpha1": [
+            12,
+            12,
+            81,
+            73
+          ],
+          "rgba_sha256": "21fdccae8dd5cf007537112726ee25634f694e2d9dd74a2825f3468cf6c7d86e",
+          "minimum_margin_px": 12
+        }
+      ]
+    },
+    {
+      "id": "muspelheim_magma_boar",
+      "changed": 7,
+      "identical_cells": 17,
+      "identical_used_frames": 8,
+      "candidate_sha256": "03611d027fae0b489f2ed639dafc6b87cb46b711059164b0011cf7afbda6d3cc",
+      "frames": [
+        {
+          "row": "idle",
+          "frame": 1,
+          "bbox_alpha1": [
+            12,
+            26,
+            84,
+            72
+          ],
+          "rgba_sha256": "6fa71c8ba58428297192c79c129d4181e123fa77a21c8c08dc599850698bb9fd",
+          "minimum_margin_px": 12
+        },
+        {
+          "row": "idle",
+          "frame": 2,
+          "bbox_alpha1": [
+            12,
+            24,
+            83,
+            72
+          ],
+          "rgba_sha256": "ee2bde8b34dfcc9f478b7b787317afc2aa3b31b0789520e56ec72e866275a97c",
+          "minimum_margin_px": 12
+        },
+        {
+          "row": "idle",
+          "frame": 3,
+          "bbox_alpha1": [
+            11,
+            26,
+            85,
+            72
+          ],
+          "rgba_sha256": "cf885da52a4fef605a8a9ed8f286760c8159014782b1764a81562ea89363977d",
+          "minimum_margin_px": 11
+        },
+        {
+          "row": "idle",
+          "frame": 4,
+          "bbox_alpha1": [
+            13,
+            26,
+            83,
+            72
+          ],
+          "rgba_sha256": "767290853df716b0c634cb4e9acbc4d8f3ee33c5c44d76a88b514568f9bb4365",
+          "minimum_margin_px": 13
+        },
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            6,
+            30,
+            89,
+            72
+          ],
+          "rgba_sha256": "d2e440adecdfec2c2f625377a451e85c18e3a60308b735613e2903546248ab16",
+          "minimum_margin_px": 6
+        },
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            6,
+            30,
+            90,
+            73
+          ],
+          "rgba_sha256": "3746ff578d5e5255d096ef7509ec2817c27f7538c686934b1f610efbe7fdb589",
+          "minimum_margin_px": 6
+        },
+        {
+          "row": "hurt",
+          "frame": 1,
+          "bbox_alpha1": [
+            8,
+            18,
+            80,
+            72
+          ],
+          "rgba_sha256": "097d7283b69972dd961183eda054d5be3338b5932d51c4871b3be28cb2c34a6b",
+          "minimum_margin_px": 8
+        }
+      ]
+    },
+    {
+      "id": "niflheim_glacier_wolf",
+      "changed": 5,
+      "identical_cells": 19,
+      "identical_used_frames": 10,
+      "candidate_sha256": "20b075b80fa9ae288eeb4f648415d1aaac4c16f2aa253d40eefe1bc5ef06a63f",
+      "frames": [
+        {
+          "row": "idle",
+          "frame": 1,
+          "bbox_alpha1": [
+            10,
+            24,
+            86,
+            72
+          ],
+          "rgba_sha256": "80503fac734721e15c0071a463f7e65060d73c0cbd882fbc54fb05284688fec1",
+          "minimum_margin_px": 10
+        },
+        {
+          "row": "idle",
+          "frame": 2,
+          "bbox_alpha1": [
+            12,
+            24,
+            84,
+            72
+          ],
+          "rgba_sha256": "de164ec24062cce36b8d7e1104c938939ab790dd8383c3e83a9bf0d0bc5f94d8",
+          "minimum_margin_px": 12
+        },
+        {
+          "row": "idle",
+          "frame": 3,
+          "bbox_alpha1": [
+            11,
+            22,
+            85,
+            72
+          ],
+          "rgba_sha256": "be20411488d9ee1126409b44548d594e4bea201f9b335831330ec217ef69d353",
+          "minimum_margin_px": 11
+        },
+        {
+          "row": "idle",
+          "frame": 4,
+          "bbox_alpha1": [
+            10,
+            25,
+            86,
+            72
+          ],
+          "rgba_sha256": "f2fdfdc6966cfdd009a31f4f26da197b628d84ea471c8f0aac2f2d28094e5398",
+          "minimum_margin_px": 10
+        },
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            4,
+            25,
+            91,
+            72
+          ],
+          "rgba_sha256": "1f4f62c96318b26f66cf6b5c7ea5f3891b261b508e6c3785746ba8c189f2e3f0",
+          "minimum_margin_px": 4
+        }
+      ]
+    },
+    {
+      "id": "svartalfheim_cog_drone",
+      "changed": 2,
+      "identical_cells": 22,
+      "identical_used_frames": 13,
+      "candidate_sha256": "c0cf77edfbe2279e199b853f9c358b77c4c24fd42b9400a1b6a658e75c501997",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            10,
+            10,
+            86,
+            72
+          ],
+          "rgba_sha256": "0d6c3ef6468df68bec7d861cb557e6f53cabde5bffd75966988fdd1f22c4e3c8",
+          "minimum_margin_px": 10
+        },
+        {
+          "row": "attack",
+          "frame": 4,
+          "bbox_alpha1": [
+            8,
+            8,
+            85,
+            72
+          ],
+          "rgba_sha256": "e99b1f527d2c6dabedd7685ed0a58ba1ee194475d737939b4dd90570f7174ea1",
+          "minimum_margin_px": 8
+        }
+      ]
+    },
+    {
+      "id": "svartalfheim_gear_beetle",
+      "changed": 2,
+      "identical_cells": 22,
+      "identical_used_frames": 13,
+      "candidate_sha256": "0bcb03b0fefc003de01d6f8fc2641bc6d1c8a93ad11651a9bf467f192627126f",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            10,
+            22,
+            85,
+            72
+          ],
+          "rgba_sha256": "d99ba615e2fb41974d0645036c54983f7846e5620938482e404773120287b849",
+          "minimum_margin_px": 10
+        },
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            5,
+            28,
+            90,
+            72
+          ],
+          "rgba_sha256": "b780e53ab2efabc425653db38d32d0f0d2467f27ba61e8a39b824e3886b754f3",
+          "minimum_margin_px": 5
+        }
+      ]
+    },
+    {
+      "id": "yggdrasil_root_guardian",
+      "changed": 4,
+      "identical_cells": 20,
+      "identical_used_frames": 11,
+      "candidate_sha256": "27770c63463313dd874e7e1553a704a2e59e60c19f9dca40b8b92e23c730c301",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 1,
+          "bbox_alpha1": [
+            11,
+            9,
+            85,
+            72
+          ],
+          "rgba_sha256": "7f38bd9265843f05ad452c208cf75a500954769ed16f30adb0b8c1e523568e96",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            13,
+            9,
+            83,
+            72
+          ],
+          "rgba_sha256": "234b189f032d7087b8c0112ebeafc8c640dc0af977852ca3b5a2acc88366b6a5",
+          "minimum_margin_px": 9
+        },
+        {
+          "row": "attack",
+          "frame": 3,
+          "bbox_alpha1": [
+            5,
+            11,
+            90,
+            72
+          ],
+          "rgba_sha256": "adb90232ba3973313ac7786da52930aefada25bb75fb803d2b7455ac0646ecc2",
+          "minimum_margin_px": 5
+        },
+        {
+          "row": "attack",
+          "frame": 4,
+          "bbox_alpha1": [
+            17,
+            12,
+            79,
+            72
+          ],
+          "rgba_sha256": "24f35d42818c50d976d54928b7a197d968092e91f6ba96d6199dc77f1ba442a4",
+          "minimum_margin_px": 12
+        }
+      ]
+    },
+    {
+      "id": "yggdrasil_root_oracle",
+      "changed": 1,
+      "identical_cells": 23,
+      "identical_used_frames": 14,
+      "candidate_sha256": "38e7c3c75134756dd123e324d1b0946f76a865dadf64719ce76e7248860a78e8",
+      "frames": [
+        {
+          "row": "attack",
+          "frame": 2,
+          "bbox_alpha1": [
+            10,
+            8,
+            71,
+            72
+          ],
+          "rgba_sha256": "169fdffc62181b1c8330acf05a78196b6baa689f9d5f8f0c63caac7644130020",
+          "minimum_margin_px": 8
+        }
+      ]
+    }
+  ]
+}

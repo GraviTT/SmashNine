@@ -1,0 +1,53 @@
+{
+  "note": "ART-89 전체 행 재생성 2회 중 2차 선택. F1 먼쪽 팔 잽→F2 가까운 어깨가 가슴 앞으로 나오는 반대 팔 잽→가드→주먹 올려 유지→윙크. 모든 프레임 얼굴 폭 1.000. 기준부터 먼 눈 가림으로 눈 간격 전부 측정 불가. F6 자동 표식 신뢰도 낮음은 4배 얼굴 경계 확인과 별도로 기록. 얼굴 idle 대비 비율: F1 E=측정 제외 W=1.0; F2 E=측정 제외 W=1.0; F3 E=측정 제외 W=1.0; F4 E=측정 제외 W=1.0; F5 E=측정 제외 W=1.0; F6 E=측정 제외 W=1.0. 측정 가능한 값은 0.96–1.04 충족. 행 전체 공통 배율 0.264, LANCZOS + unsharp 60 + despill auto, 팔레트 제한 없음. 프레임별 크기 보정·머리 붙이기 없음. 후보이며 게임 미연결, 실제 재생·사용자 채택 미확인.",
+  "fps": 8,
+  "frames": 6,
+  "loop": false,
+  "hold_last": true,
+  "factor": 0.264,
+  "cell": 192,
+  "feet": 152,
+  "replaces": "nova_female-victory-v2.png",
+  "status": "candidate",
+  "source_task": "CODEX-ART-89",
+  "generation": 2,
+  "face_ratios": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가"
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가"
+    },
+    {
+      "frame": 3,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가"
+    },
+    {
+      "frame": 4,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가"
+    },
+    {
+      "frame": 5,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가"
+    },
+    {
+      "frame": 6,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "기준부터 먼 눈이 머리카락에 가림: E 측정 불가"
+    }
+  ],
+  "adopted": "2026-10-29"
+}

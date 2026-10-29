@@ -1,0 +1,389 @@
+{
+  "input": {
+    "sheet": "art/raw/motions-89/luna-victory-2.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.253,
+    "scale_by": "fixed:0.253",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      86,
+      86
+    ],
+    "body_width_range": [
+      76,
+      98
+    ],
+    "area_range": [
+      4187,
+      4568
+    ],
+    "area_spread_percent": 8.34,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      3856,
+      4218
+    ],
+    "interior_detail_range": [
+      104.6,
+      109.81
+    ],
+    "interior_detail_mean": 107.2,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 93.44,
+    "interior_detail_ratio": 1.1473
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.44,
+        "colour_count": 4025,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 93.44,
+    "colour_count_range": [
+      4025,
+      4025
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/motions-89/luna-victory-2.png#0,0",
+      "bbox": [
+        59,
+        67,
+        149,
+        153
+      ],
+      "body_height": 86,
+      "body_width": 90,
+      "area": 4461,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 104.6,
+      "colour_count": 4104,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 67,
+        "right": 43,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1194
+    },
+    {
+      "index": 1,
+      "source": "art/raw/motions-89/luna-victory-2.png#1,0",
+      "bbox": [
+        58,
+        67,
+        156,
+        153
+      ],
+      "body_height": 86,
+      "body_width": 98,
+      "area": 4446,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 105.42,
+      "colour_count": 4103,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 67,
+        "right": 36,
+        "bottom": 39,
+        "minimum": 36,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1282
+    },
+    {
+      "index": 2,
+      "source": "art/raw/motions-89/luna-victory-2.png#2,0",
+      "bbox": [
+        59,
+        67,
+        144,
+        153
+      ],
+      "body_height": 86,
+      "body_width": 85,
+      "area": 4437,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 107.21,
+      "colour_count": 4091,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 67,
+        "right": 48,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1474
+    },
+    {
+      "index": 3,
+      "source": "art/raw/motions-89/luna-victory-2.png#0,1",
+      "bbox": [
+        59,
+        67,
+        135,
+        153
+      ],
+      "body_height": 86,
+      "body_width": 76,
+      "area": 4187,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 107.42,
+      "colour_count": 3856,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 67,
+        "right": 57,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1496
+    },
+    {
+      "index": 4,
+      "source": "art/raw/motions-89/luna-victory-2.png#1,1",
+      "bbox": [
+        58,
+        67,
+        152,
+        153
+      ],
+      "body_height": 86,
+      "body_width": 94,
+      "area": 4568,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 108.74,
+      "colour_count": 4218,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 67,
+        "right": 40,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1637
+    },
+    {
+      "index": 5,
+      "source": "art/raw/motions-89/luna-victory-2.png#2,1",
+      "bbox": [
+        59,
+        67,
+        152,
+        153
+      ],
+      "body_height": 86,
+      "body_width": 93,
+      "area": 4541,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 109.81,
+      "colour_count": 4200,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 59,
+        "top": 67,
+        "right": 40,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1752
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-89/attempts/luna-victory/g2-s253/luna-victory.png",
+    "candidate": null,
+    "frames": "reports/codex-art-89/attempts/luna-victory/g2-s253/frames",
+    "closeup": "reports/codex-art-89/attempts/luna-victory/g2-s253/closeup.png",
+    "compare": "reports/codex-art-89/attempts/luna-victory/g2-s253/compare.png"
+  }
+}

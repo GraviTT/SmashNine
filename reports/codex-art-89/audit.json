@@ -1,0 +1,3034 @@
+{
+  "status": "pass",
+  "checks": [
+    {
+      "check": "branch",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "tracked_files_unchanged",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "nothing_staged",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "24 whole-row generations",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 98.25
+      }
+    },
+    {
+      "check": "frey-victory F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-victory F1 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.073,
+        "recorded": 1.073
+      }
+    },
+    {
+      "check": "frey-victory F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "frey-victory F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 37,
+        "spill": 0,
+        "detail": 98.52
+      }
+    },
+    {
+      "check": "frey-victory F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-victory F2 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.068,
+        "recorded": 1.068
+      }
+    },
+    {
+      "check": "frey-victory F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "frey-victory F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 37,
+        "spill": 0,
+        "detail": 96.4
+      }
+    },
+    {
+      "check": "frey-victory F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-victory F3 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.061,
+        "recorded": 1.061
+      }
+    },
+    {
+      "check": "frey-victory F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "frey-victory F4 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 22,
+        "spill": 0,
+        "detail": 94.07
+      }
+    },
+    {
+      "check": "frey-victory F4 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-victory F4 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.076,
+        "recorded": 1.076
+      }
+    },
+    {
+      "check": "frey-victory F4 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.914,
+        "recorded": 0.914
+      }
+    },
+    {
+      "check": "frey-victory F5 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 22,
+        "spill": 0,
+        "detail": 93.85
+      }
+    },
+    {
+      "check": "frey-victory F5 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-victory F5 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.025,
+        "recorded": 1.025
+      }
+    },
+    {
+      "check": "frey-victory F5 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.857,
+        "recorded": 0.857
+      }
+    },
+    {
+      "check": "frey-victory F6 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 21,
+        "spill": 0,
+        "detail": 91.77
+      }
+    },
+    {
+      "check": "frey-victory F6 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-victory F6 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.081,
+        "recorded": 1.081
+      }
+    },
+    {
+      "check": "frey-victory F6 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.914,
+        "recorded": 0.914
+      }
+    },
+    {
+      "check": "frey-victory comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-victory withheld candidate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 10,
+        "spill": 0,
+        "detail": 105.69
+      }
+    },
+    {
+      "check": "frey-jump F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 117,
+        "expected_ground": 120,
+        "grounded": false,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-jump F1 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.971,
+        "recorded": 0.971
+      }
+    },
+    {
+      "check": "frey-jump F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "frey-jump F1 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 11,
+        "spill": 0,
+        "detail": 110.19
+      }
+    },
+    {
+      "check": "frey-jump F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 113,
+        "expected_ground": 120,
+        "grounded": false,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-jump F2 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.016,
+        "recorded": 1.016
+      }
+    },
+    {
+      "check": "frey-jump F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "frey-jump F2 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 10,
+        "spill": 0,
+        "detail": 110.37
+      }
+    },
+    {
+      "check": "frey-jump F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 117,
+        "expected_ground": 120,
+        "grounded": false,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "frey-jump F3 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "frey-jump F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "frey-jump F3 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump unused columns transparent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump delivered copy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump candidate metadata",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "frey-jump delivery gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 7,
+        "spill": 0,
+        "detail": 131.2
+      }
+    },
+    {
+      "check": "luna_brave-hurt F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna_brave-hurt F1 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 7,
+        "spill": 0,
+        "detail": 126.65
+      }
+    },
+    {
+      "check": "luna_brave-hurt F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna_brave-hurt F2 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 7,
+        "spill": 0,
+        "detail": 129.66
+      }
+    },
+    {
+      "check": "luna_brave-hurt F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna_brave-hurt F3 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.034,
+        "recorded": 1.034
+      }
+    },
+    {
+      "check": "luna_brave-hurt F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna_brave-hurt F3 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt unused columns transparent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt delivered copy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt candidate metadata",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-hurt delivery gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 10,
+        "spill": 0,
+        "detail": 123.74
+      }
+    },
+    {
+      "check": "luna_brave-jump F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 117,
+        "expected_ground": 120,
+        "grounded": false,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna_brave-jump F1 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.95,
+        "recorded": 0.95
+      }
+    },
+    {
+      "check": "luna_brave-jump F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna_brave-jump F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 13,
+        "spill": 0,
+        "detail": 128.75
+      }
+    },
+    {
+      "check": "luna_brave-jump F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 114,
+        "expected_ground": 120,
+        "grounded": false,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna_brave-jump F2 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.969,
+        "recorded": 0.969
+      }
+    },
+    {
+      "check": "luna_brave-jump F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna_brave-jump F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 12,
+        "spill": 0,
+        "detail": 124.31
+      }
+    },
+    {
+      "check": "luna_brave-jump F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 115,
+        "expected_ground": 120,
+        "grounded": false,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna_brave-jump F3 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.99,
+        "recorded": 0.99
+      }
+    },
+    {
+      "check": "luna_brave-jump F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna_brave-jump unused columns transparent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-jump withheld candidate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 9,
+        "spill": 0,
+        "detail": 127.47
+      }
+    },
+    {
+      "check": "luna_brave-fall F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 118,
+        "expected_ground": 120,
+        "grounded": false,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna_brave-fall F1 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.961,
+        "recorded": 0.961
+      }
+    },
+    {
+      "check": "luna_brave-fall F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.071,
+        "recorded": 1.071
+      }
+    },
+    {
+      "check": "luna_brave-fall F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 10,
+        "spill": 0,
+        "detail": 127.16
+      }
+    },
+    {
+      "check": "luna_brave-fall F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 117,
+        "expected_ground": 120,
+        "grounded": false,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna_brave-fall F2 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.984,
+        "recorded": 0.984
+      }
+    },
+    {
+      "check": "luna_brave-fall F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna_brave-fall unused columns transparent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna_brave-fall withheld candidate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 105.88
+      }
+    },
+    {
+      "check": "yuki-victory F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "yuki-victory F1 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.973,
+        "recorded": 0.973
+      }
+    },
+    {
+      "check": "yuki-victory F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "yuki-victory F1 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 104.88
+      }
+    },
+    {
+      "check": "yuki-victory F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "yuki-victory F2 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.976,
+        "recorded": 0.976
+      }
+    },
+    {
+      "check": "yuki-victory F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "yuki-victory F2 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 104.23
+      }
+    },
+    {
+      "check": "yuki-victory F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "yuki-victory F3 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.979,
+        "recorded": 0.979
+      }
+    },
+    {
+      "check": "yuki-victory F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "yuki-victory F3 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory F4 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 103.47
+      }
+    },
+    {
+      "check": "yuki-victory F4 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "yuki-victory F4 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.985,
+        "recorded": 0.985
+      }
+    },
+    {
+      "check": "yuki-victory F4 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "yuki-victory F4 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory F5 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 102.0
+      }
+    },
+    {
+      "check": "yuki-victory F5 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "yuki-victory F5 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.969,
+        "recorded": 0.969
+      }
+    },
+    {
+      "check": "yuki-victory F5 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "yuki-victory F5 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory F6 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 101.78
+      }
+    },
+    {
+      "check": "yuki-victory F6 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "yuki-victory F6 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.966,
+        "recorded": 0.966
+      }
+    },
+    {
+      "check": "yuki-victory F6 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "yuki-victory F6 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory delivered copy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory candidate metadata",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "yuki-victory delivery gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 104.6
+      }
+    },
+    {
+      "check": "luna-victory F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna-victory F1 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.994,
+        "recorded": 0.994
+      }
+    },
+    {
+      "check": "luna-victory F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna-victory F1 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 36,
+        "spill": 0,
+        "detail": 105.42
+      }
+    },
+    {
+      "check": "luna-victory F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna-victory F2 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.979,
+        "recorded": 0.979
+      }
+    },
+    {
+      "check": "luna-victory F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna-victory F2 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 107.21
+      }
+    },
+    {
+      "check": "luna-victory F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna-victory F3 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.003,
+        "recorded": 1.003
+      }
+    },
+    {
+      "check": "luna-victory F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna-victory F3 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory F4 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 107.42
+      }
+    },
+    {
+      "check": "luna-victory F4 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna-victory F4 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.971,
+        "recorded": 0.971
+      }
+    },
+    {
+      "check": "luna-victory F4 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna-victory F4 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory F5 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 108.74
+      }
+    },
+    {
+      "check": "luna-victory F5 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna-victory F5 E evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.999,
+        "recorded": 0.999
+      }
+    },
+    {
+      "check": "luna-victory F5 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "luna-victory F5 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory F6 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 109.81
+      }
+    },
+    {
+      "check": "luna-victory F6 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "luna-victory F6 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory delivered copy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory candidate metadata",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "luna-victory delivery gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 100.66
+      }
+    },
+    {
+      "check": "nova_female-victory F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "nova_female-victory F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "nova_female-victory F1 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 97.69
+      }
+    },
+    {
+      "check": "nova_female-victory F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "nova_female-victory F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "nova_female-victory F2 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 101.97
+      }
+    },
+    {
+      "check": "nova_female-victory F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "nova_female-victory F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "nova_female-victory F3 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory F4 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 99.83
+      }
+    },
+    {
+      "check": "nova_female-victory F4 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "nova_female-victory F4 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "nova_female-victory F4 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory F5 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 101.63
+      }
+    },
+    {
+      "check": "nova_female-victory F5 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "nova_female-victory F5 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "nova_female-victory F5 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory F6 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 102.35
+      }
+    },
+    {
+      "check": "nova_female-victory F6 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "nova_female-victory F6 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "nova_female-victory F6 measurable face threshold",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory delivered copy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory candidate metadata",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nova_female-victory delivery gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 27,
+        "spill": 0,
+        "detail": 130.72
+      }
+    },
+    {
+      "check": "rio_male-victory F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-victory F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "rio_male-victory F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 35,
+        "spill": 0,
+        "detail": 122.63
+      }
+    },
+    {
+      "check": "rio_male-victory F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-victory F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "rio_male-victory F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 120.58
+      }
+    },
+    {
+      "check": "rio_male-victory F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-victory F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "rio_male-victory F4 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 126.79
+      }
+    },
+    {
+      "check": "rio_male-victory F4 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-victory F4 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.033,
+        "recorded": 1.033
+      }
+    },
+    {
+      "check": "rio_male-victory F5 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 120.5
+      }
+    },
+    {
+      "check": "rio_male-victory F5 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-victory F5 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.067,
+        "recorded": 1.067
+      }
+    },
+    {
+      "check": "rio_male-victory F6 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 39,
+        "spill": 0,
+        "detail": 124.36
+      }
+    },
+    {
+      "check": "rio_male-victory F6 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 152,
+        "expected_ground": 152,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-victory F6 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.033,
+        "recorded": 1.033
+      }
+    },
+    {
+      "check": "rio_male-victory comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-victory withheld candidate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk anchor preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk current preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk no pixel assembly or extra edit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk same row factor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk normaliser settings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk generation cap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk F1 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 7,
+        "spill": 0,
+        "detail": 140.43
+      }
+    },
+    {
+      "check": "rio_male-walk F1 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-walk F1 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.067,
+        "recorded": 1.067
+      }
+    },
+    {
+      "check": "rio_male-walk F2 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 7,
+        "spill": 0,
+        "detail": 142.26
+      }
+    },
+    {
+      "check": "rio_male-walk F2 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-walk F2 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "rio_male-walk F3 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 7,
+        "spill": 0,
+        "detail": 144.0
+      }
+    },
+    {
+      "check": "rio_male-walk F3 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-walk F3 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "rio_male-walk F4 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 7,
+        "spill": 0,
+        "detail": 144.14
+      }
+    },
+    {
+      "check": "rio_male-walk F4 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-walk F4 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "rio_male-walk F5 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 5,
+        "spill": 0,
+        "detail": 140.83
+      }
+    },
+    {
+      "check": "rio_male-walk F5 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-walk F5 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.1,
+        "recorded": 1.1
+      }
+    },
+    {
+      "check": "rio_male-walk F6 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 7,
+        "spill": 0,
+        "detail": 144.7
+      }
+    },
+    {
+      "check": "rio_male-walk F6 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-walk F6 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "rio_male-walk F7 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 6,
+        "spill": 0,
+        "detail": 145.56
+      }
+    },
+    {
+      "check": "rio_male-walk F7 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-walk F7 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "recorded": 1.0
+      }
+    },
+    {
+      "check": "rio_male-walk F8 alpha/border/margin/spill/detail",
+      "pass": true,
+      "detail": {
+        "margin": 4,
+        "spill": 0,
+        "detail": 144.76
+      }
+    },
+    {
+      "check": "rio_male-walk F8 vertical placement",
+      "pass": true,
+      "detail": {
+        "lowest_visible_pixel": 120,
+        "expected_ground": 120,
+        "grounded": true,
+        "limitation": "최저 알파 픽셀의 위치 검사. 부츠 접지는 4배 육안 검토로 구분함."
+      }
+    },
+    {
+      "check": "rio_male-walk F8 W evidence",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.033,
+        "recorded": 1.033
+      }
+    },
+    {
+      "check": "rio_male-walk comparison board exists",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rio_male-walk withheld candidate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw frey-victory-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw frey-victory-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw frey-victory-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw frey-jump-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw frey-jump-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna_brave-hurt-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna_brave-hurt-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna_brave-jump-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna_brave-jump-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna_brave-jump-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna_brave-fall-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna_brave-fall-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna_brave-fall-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw yuki-victory-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna-victory-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw luna-victory-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw nova_female-victory-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw nova_female-victory-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw rio_male-victory-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw rio_male-victory-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw rio_male-victory-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw rio_male-walk-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw rio_male-walk-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw rio_male-walk-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/frey/frey-jump-v3.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/frey/frey-jump-v3.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/luna/luna-victory-v3.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/luna/luna-victory-v3.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/luna/luna_brave-hurt-v3.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/luna/luna_brave-hurt-v3.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/nova/nova_female-victory-v3.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/nova/nova_female-victory-v3.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/yuki/yuki-victory-v2.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest art/bakeoff/yuki/yuki-victory-v2.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest design/tasks/CODEX-ART-89.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest design/tasks/CODEX-ART-89.prompt.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/README.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/audit.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-jump/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-jump/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-jump/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-jump/frey-jump.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-jump/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-jump/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-jump/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-victory/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-victory/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-victory/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-victory/frey-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-victory/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-victory/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/frey-victory/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna-victory/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna-victory/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna-victory/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna-victory/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna-victory/luna-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna-victory/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna-victory/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-fall/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-fall/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-fall/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-fall/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-fall/luna_brave-fall.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-fall/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-fall/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-hurt/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-hurt/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-hurt/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-hurt/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-hurt/luna_brave-hurt.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-hurt/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-hurt/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-jump/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-jump/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-jump/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-jump/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-jump/luna_brave-jump.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-jump/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/luna_brave-jump/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/nova_female-victory/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/nova_female-victory/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/nova_female-victory/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/nova_female-victory/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/nova_female-victory/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/nova_female-victory/nova_female-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/nova_female-victory/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/grid-F0.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/grid-F5.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/rio_male-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-victory/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-walk/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-walk/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-walk/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-walk/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-walk/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-walk/rio_male-walk.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/rio_male-walk/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/yuki-victory/face-landmarks-proposed.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/yuki-victory/face-measured.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/yuki-victory/face-proposed.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/yuki-victory/head-scale.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/yuki-victory/metrics.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/yuki-victory/variant.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/best/yuki-victory/yuki-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/commit-paths.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/commit.ps1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/face_check.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/face_check_75.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/face_check_77.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/frey-jump.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/frey-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/generation-ledger.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/grid_faces_77.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/luna-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/luna_brave-fall.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/luna_brave-hurt.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/luna_brave-jump.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/make_manifest.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/make_review_v2.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/manual_faces_77.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/normalize_walk.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/nova_female-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/package_results.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/process.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/process_75.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/process_77.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/processing-incident.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/prompts.txt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/frey-jump/F01-03.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/frey-victory/F01-02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/frey-victory/F03-04.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/frey-victory/F05-06.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/luna-victory/F01-02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/luna-victory/F03-04.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/luna-victory/F05-06.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/luna_brave-fall/F01-02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/luna_brave-hurt/F01-03.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/luna_brave-jump/F01-03.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/nova_female-victory/F01-02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/nova_female-victory/F03-04.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/nova_female-victory/F05-06.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/rio_male-victory/F01-02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/rio_male-victory/F03-04.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/rio_male-victory/F05-06.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/rio_male-walk/F01-03.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/rio_male-walk/F04-06.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/rio_male-walk/F07-08.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/yuki-victory/F01-02.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/yuki-victory/F03-04.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/qa4x/yuki-victory/F05-06.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/results.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/rio_male-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/rio_male-walk-1x.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/rio_male-walk.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/run_variant_v2.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/run_walk_v2.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/selection.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/source-hashes.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/verify_delivery.py",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest reports/codex-art-89/yuki-victory.png",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest includes both task inputs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest includes all candidate pairs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest has no duplicates",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest paths not ignored",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "counts": {
+    "checks": 472,
+    "rows": 10,
+    "reviewed_frames": 49,
+    "delivered_rows": 5,
+    "delivered_frames": 24
+  },
+  "limitations": [
+    "얼굴 대응점과 동작/복장 판정은 별도 4배 육안 검토. 자동 검사가 미학적 품질이나 정확한 얼굴 동일성을 증명하지 않음.",
+    "Godot, 실제 모션 뷰어 재생, 배포, git add/commit을 실행하지 않음.",
+    "중간 출력 덮어쓰기 1건은 processing-incident.txt에 기록. 최종 패키지는 해당 혼합 디렉터리를 사용하지 않음."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "note": "ART-80에서 중립 얼굴을 직접 편집한 v1의 선화·좌표·알파를 유지하고 승인된 Pillow 점별 톤 곡선으로 피부·금속·부적을 어둡게 했다. 기존 눈 색 영역은 보호하거나 밝기를 보강했다. 리오 여성형의 감긴 눈을 새로 그리지 않았다. 미채택 v2 후보이며 게임 미연결.",
+  "expression": "shadow",
+  "edited_from": "smash-nine-prototype/assets/art/luna/luna_brave_face.png",
+  "replaces": "art/bakeoff/luna/luna_brave_face-shadow-v1.png",
+  "source_raw": "art/raw/faces-84/luna_brave-shadow-v1.png",
+  "review_status": "candidate",
+  "candidate_only": true,
+  "delivered": true,
+  "size": [
+    256,
+    256
+  ],
+  "mode": "RGBA",
+  "measurements": {
+    "stem": "luna_brave",
+    "expression": "shadow",
+    "inherited_generation_offset": [
+      0,
+      -1
+    ],
+    "additional_offset": [
+      0,
+      0
+    ],
+    "alpha_changed_pixels": 0,
+    "transparent_nonzero_rgb_pixels": 0,
+    "eye_sample_pixels": 127,
+    "face_sample_pixels": 421,
+    "before": {
+      "eye_luma": 155.1521,
+      "face_luma": 205.2473,
+      "eye_face_ratio": 0.7559,
+      "dialogue_eye_luma": 149.4332,
+      "dialogue_face_luma": 205.3204,
+      "dialogue_eye_face_ratio": 0.7278
+    },
+    "after": {
+      "eye_luma": 168.6533,
+      "face_luma": 97.1855,
+      "eye_face_ratio": 1.7354,
+      "dialogue_eye_luma": 146.1162,
+      "dialogue_face_luma": 97.2248,
+      "dialogue_eye_face_ratio": 1.5029
+    },
+    "strong_adjacent_edges": 33475,
+    "surviving_edges_delta_ge3": 33475,
+    "edge_retention_percent": 100.0,
+    "detail_check_alpha_ge240": {
+      "sample": "alpha>=240, eye protection<0.01; horizontal+vertical adjacent RGB max-channel difference",
+      "before_delta_ge12_pairs": 37007,
+      "after_delta_ge3_pairs": 37007,
+      "retention_percent": 100.0
+    },
+    "candidate_sha256": "c3533118a73065a9b6284f72a9fab3cd0ea0d683ba86a6720dc9f0442208762a"
+  },
+  "review_board": "reports/codex-art-84/luna_brave-shadow.png",
+  "processed_from": "art/bakeoff/luna/luna_brave_face-shadow-v1.png",
+  "offset": [
+    0,
+    -1
+  ],
+  "additional_offset": [
+    0,
+    0
+  ],
+  "tone_config": "reports/codex-art-84/shadow-tone-config.json",
+  "adopted": "2026-10-29"
+}

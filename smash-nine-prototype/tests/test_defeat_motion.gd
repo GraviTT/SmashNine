@@ -37,6 +37,11 @@ func _fighter(at: Vector2) -> Node:
 	fighter.global_position = at
 	fighter.setup(CHARACTER_REGISTRY.get_characters()["frey"], 1, false)
 	fighter.ringout_y = 100000.0
+	# Frey's real defeat strip was applied on 2026-10-29 (it plays at her adopted speed); keep the
+	# fixture on the stand-in row below so the timings here stay fixed.
+	var frames: SpriteFrames = fighter.character_sprite.sprite_frames
+	if frames.has_animation(&"frey_defeat"):
+		frames.remove_animation(&"frey_defeat")
 	return fighter
 
 func _floor() -> StaticBody2D:

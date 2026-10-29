@@ -50,7 +50,10 @@ func _check_characters() -> bool:
 			if not frames.has_animation(animation_name):
 				_fail("Missing animation: %s" % animation_name)
 				return false
-			if frames.get_frame_count(animation_name) != expected_counts[character_id][base_name]:
+			var expected: int = _adopted_strip_frames(player, character_id, base_name)
+			if expected == 0:
+				expected = expected_counts[character_id][base_name]
+			if frames.get_frame_count(animation_name) != expected:
 				_fail("Wrong frame count for %s" % animation_name)
 				return false
 		if not sprite.visible or player.get_node("Body").visible:
@@ -60,6 +63,17 @@ func _check_characters() -> bool:
 		player.free()
 	main.free()
 	return true
+
+## A sheet row replaced by an adopted SYS-06 strip plays the strip (jump 3, fall 2, hurt 3 drawings);
+## same lookup as PlayerBase._add_optional_motion_rows: <id>_<body>_<row>.png, else <id>_<row>.png.
+func _adopted_strip_frames(player: Node, prefix: String, row: String) -> int:
+	for spec in player.OPTIONAL_MOTION_ROWS:
+		if spec[0] != row:
+			continue
+		for stem in ["%s_%s" % [prefix, player.body_type], prefix]:
+			if ResourceLoader.exists("res://assets/art/%s/%s_%s.png" % [prefix, stem, row]):
+				return int(spec[1])
+	return 0
 
 func _fail(message: String) -> void:
 	push_error(message)

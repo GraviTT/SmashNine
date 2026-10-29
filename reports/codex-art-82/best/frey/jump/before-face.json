@@ -1,0 +1,163 @@
+{
+  "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+  "anchor": [
+    [
+      79,
+      51,
+      3,
+      4
+    ],
+    [
+      85,
+      51,
+      3,
+      4
+    ],
+    [
+      68,
+      53,
+      4,
+      4
+    ],
+    [
+      85.5,
+      53,
+      4,
+      4
+    ]
+  ],
+  "anchor_landmarks": [
+    {
+      "x": 79.385,
+      "y": 51.434,
+      "score": 1
+    },
+    {
+      "x": 85.722,
+      "y": 51.054,
+      "score": 1
+    },
+    {
+      "x": 68,
+      "y": 53,
+      "score": 1
+    },
+    {
+      "x": 85.5,
+      "y": 53,
+      "score": 1
+    }
+  ],
+  "reference_eye_distance": 6.348383179991568,
+  "reference_face_width": 17.5,
+  "frames": [
+    {
+      "frame": 1,
+      "landmarks": [
+        {
+          "x": 86.462,
+          "y": 45.046,
+          "score": 0.857
+        },
+        {
+          "x": 92.755,
+          "y": 44.904,
+          "score": 0.964
+        },
+        {
+          "x": 75.0,
+          "y": 46.0,
+          "score": 0.789
+        },
+        {
+          "x": 92.5,
+          "y": 46.0,
+          "score": 0.96
+        }
+      ],
+      "eye_distance": 6.295,
+      "face_width": 17.5,
+      "eye_ratio": 0.992,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        67,
+        26,
+        0.852
+      ]
+    },
+    {
+      "frame": 2,
+      "landmarks": [
+        {
+          "x": 76.986,
+          "y": 43.636,
+          "score": 0.941
+        },
+        {
+          "x": 83.588,
+          "y": 42.97,
+          "score": 0.928
+        },
+        {
+          "x": 66.0,
+          "y": 45.0,
+          "score": 0.839
+        },
+        {
+          "x": 83.5,
+          "y": 45.0,
+          "score": 0.776
+        }
+      ],
+      "eye_distance": 6.636,
+      "face_width": 17.5,
+      "eye_ratio": 1.045,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.92,
+        58,
+        25,
+        0.837
+      ]
+    },
+    {
+      "frame": 3,
+      "landmarks": [
+        {
+          "x": 82.096,
+          "y": 39.831,
+          "score": 0.94
+        },
+        {
+          "x": 88.675,
+          "y": 39.128,
+          "score": 0.952
+        },
+        {
+          "x": 71.0,
+          "y": 41.0,
+          "score": 0.892
+        },
+        {
+          "x": 88.5,
+          "y": 41.0,
+          "score": 0.883
+        }
+      ],
+      "eye_distance": 6.616,
+      "face_width": 17.5,
+      "eye_ratio": 1.042,
+      "face_width_ratio": 1.0,
+      "head_alignment": [
+        0.96,
+        63,
+        21,
+        0.869
+      ]
+    }
+  ],
+  "excluded_frames": [],
+  "review_passed": true,
+  "review_note": "ART-72 최선 3차를 그대로 전달. 눈 비율 0.992–1.045(F1–3), 폭 1.000으로 ART-78 허용 범위 안이며 F2 1.045와 F3 1.042는 목표 상한 1.04 밖이다. 도약·상승·정점과 검·방패를 4배 판에서 재확인."
+}

@@ -3,6 +3,8 @@ const MONSTER := preload("res://scripts/RealmMonster.gd")
 const ARCHETYPES := preload("res://scripts/monsters/MonsterArchetypes.gd")
 const LEGACY_ROWS := [["idle", 4, 6.0, true], ["walk", 6, 10.0, true], ["attack", 4, 12.0, false], ["hurt", 1, 1.0, false]]
 const NEW_COUNTS := {"idle": 6, "walk": 6, "windup": 4, "attack": 6, "hurt": 2, "defeat": 4}
+## The sheets applied on 2026-10-29 keep today's 4-row pictures beside the new windup and defeat rows.
+const MIXED_COUNTS := {"idle": 4, "walk": 6, "windup": 4, "attack": 4, "hurt": 1, "defeat": 4}
 var arena: Node2D
 var failed := false
 var checks := 0
@@ -69,6 +71,7 @@ func _run() -> void:
 		await _new_layout(str(behavior))
 		_execution_parity(str(behavior))
 	await _death()
+	_mixed_layout()
 	_golem_pivot()
 	arena.queue_free()
 	await process_frame
@@ -138,10 +141,53 @@ func _shots(monster: Node) -> Array:
 			shots.append(child)
 	return shots
 
+## A six-row row ends at its first empty cell, so the kept 4-row pictures play without blank frames.
+func _mixed_layout() -> void:
+	var monster := _monster(false)
+	var drawing: Image = monster.art_sprite.sprite_frames.get_frame_texture(&"hurt", 0).get_image()
+	var sheet := Image.create(576, 576, false, Image.FORMAT_RGBA8)
+	var row := 0
+	for name in MIXED_COUNTS:
+		for x in int(MIXED_COUNTS[name]):
+			sheet.blit_rect(drawing, Rect2i(0, 0, 96, 96), Vector2i(x * 96, row * 96))
+		row += 1
+	var frames: SpriteFrames = monster._frames_for_sheet(ImageTexture.create_from_image(sheet))
+	_check(monster.six_row_art, "mixed sheet uses the six-row layout")
+	for name in MIXED_COUNTS:
+		_check(frames.get_frame_count(name) == MIXED_COUNTS[name], "mixed %s plays only its drawn cells" % name)
+	monster.art_sprite.sprite_frames = frames
+	monster.action_phase = "windup"
+	for ratio in [0.0, 0.3, 0.55, 0.8, 1.0]:
+		monster.action_timer = monster.windup_duration * (1.0 - ratio)
+		monster._update_art(0.0)
+		_check(monster.art_sprite.animation == &"windup" and monster.art_sprite.frame == mini(int(ratio * 4.0), 3), "mixed windup steps through its drawings")
+	monster.free()
+	# Every monster in the game now has its applied six-row sheet.
+	var skins := 0
+	for file in DirAccess.get_files_at("res://assets/art/monsters"):
+		if not file.ends_with("_sheet.png"):
+			continue
+		var texture := load("res://assets/art/monsters/" + file) as Texture2D
+		skins += 1
+		_check(texture.get_size() == Vector2(576, 576), "%s is a six-row sheet" % file)
+		_check(MONSTER.drawn_frame_counts(texture, 96) == MIXED_COUNTS.values(), "%s rows hold the applied drawings" % file)
+	_check(skins == 18, "18 monster sheets")
+
 func _golem_pivot() -> void:
-	var old := _monster(false, "slam")
-	_check(old.art_sprite.position.y == -32.0, "legacy golem keeps its y=80 feet exception")
-	var drawing: Image = old.art_sprite.sprite_frames.get_frame_texture(&"hurt", 0).get_image()
+	# The real golem sheet is six rows now; a 4-row stand-in keeps the legacy exception covered.
+	var probe := _monster(false, "slam")
+	var drawing: Image = probe.art_sprite.sprite_frames.get_frame_texture(&"hurt", 0).get_image()
+	probe.free()
+	var four := Image.create(576, 384, false, Image.FORMAT_RGBA8)
+	for y in 4:
+		for x in int(LEGACY_ROWS[y][1]):
+			four.blit_rect(drawing, Rect2i(0, 0, 96, 96), Vector2i(x * 96, y * 96))
+	var old := SheetMonster.new()
+	old.stand_in = ImageTexture.create_from_image(four)
+	old.setup("mossling", 0, Vector2.ZERO, "jotunheim_rune_golem")
+	arena.add_child(old)
+	old.set_physics_process(false)
+	_check(not old.six_row_art and old.art_sprite.position.y == -32.0, "a 4-row golem sheet keeps its y=80 feet exception")
 	var sheet := Image.create(576, 576, false, Image.FORMAT_RGBA8)
 	for y in 6:
 		for x in 6:

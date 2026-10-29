@@ -1,0 +1,35 @@
+{
+  "note": "ART-89 전체 행 재생성 2회 중 2차 선택. 도약의 뻗은 뒷다리, 상승의 양무릎 접기, 정점의 다리 풀기와 수평 망토를 구분. 칼·방패 손 유지. 공통 lift-scale 0.3. 얼굴 idle 대비 비율: F1 E=0.971 W=1.0; F2 E=1.016 W=1.0; F3 E=1.0 W=1.0. 측정 가능한 값은 0.96–1.04 충족. 행 전체 공통 배율 0.1815, LANCZOS + unsharp 60 + despill auto, 팔레트 제한 없음. 프레임별 크기 보정·머리 붙이기 없음. 후보이며 게임 미연결, 실제 재생·사용자 채택 미확인.",
+  "fps": 10,
+  "frames": 3,
+  "loop": false,
+  "hold_last": true,
+  "factor": 0.1815,
+  "cell": 128,
+  "feet": 120,
+  "replaces": "frey-jump-v2.png",
+  "status": "candidate",
+  "source_task": "CODEX-ART-89",
+  "generation": 2,
+  "face_ratios": [
+    {
+      "frame": 1,
+      "eye_ratio": 0.971,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": ""
+    },
+    {
+      "frame": 2,
+      "eye_ratio": 1.016,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": ""
+    },
+    {
+      "frame": 3,
+      "eye_ratio": 1.0,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": ""
+    }
+  ],
+  "adopted": "2026-10-29"
+}

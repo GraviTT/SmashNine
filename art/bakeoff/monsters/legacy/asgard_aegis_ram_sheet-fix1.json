@@ -1,0 +1,253 @@
+{
+  "id": "asgard_aegis_ram",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L22"
+  ],
+  "note": "L22: 몸과 분리된 발사체·잔상·피격 표시 픽셀 제거. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/asgard_aegis_ram_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "ef77376ea6a1e4c9fb5f04cd6b53fa0082b5b636ab73da76f2abaccce88b1175",
+  "candidate_file_sha256": "83004884eeb1a5aa8712ae81fb9aef251186fae50712482fbcb062266173dfdf",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "attack",
+      "frame": 3,
+      "method": "pixel cleanup only",
+      "source": "art/raw/monsters-87/asgard_aegis_ram_sheet.png",
+      "source_region": [
+        192,
+        192,
+        288,
+        288
+      ],
+      "removed_fx_polygons_local": [
+        [
+          [
+            53,
+            20
+          ],
+          [
+            80,
+            20
+          ],
+          [
+            80,
+            33
+          ],
+          [
+            68,
+            33
+          ],
+          [
+            60,
+            29
+          ],
+          [
+            53,
+            29
+          ]
+        ],
+        [
+          [
+            19,
+            68
+          ],
+          [
+            54,
+            68
+          ],
+          [
+            54,
+            75
+          ],
+          [
+            19,
+            75
+          ]
+        ],
+        [
+          [
+            0,
+            39
+          ],
+          [
+            18,
+            39
+          ],
+          [
+            18,
+            45
+          ],
+          [
+            0,
+            45
+          ]
+        ],
+        [
+          [
+            0,
+            48
+          ],
+          [
+            12,
+            48
+          ],
+          [
+            12,
+            56
+          ],
+          [
+            0,
+            56
+          ]
+        ]
+      ],
+      "removed_fx_pixels": 223,
+      "before": {
+        "bbox_alpha128": [
+          7,
+          24,
+          89,
+          72
+        ],
+        "bbox_alpha1": [
+          7,
+          24,
+          89,
+          72
+        ],
+        "area_alpha128": 2759,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "db84dba28b90971d142ba937cbf0680c47466cc92002edf3fc56e1fb797bfcb0"
+      },
+      "after": {
+        "bbox_alpha128": [
+          7,
+          26,
+          89,
+          72
+        ],
+        "bbox_alpha1": [
+          7,
+          26,
+          89,
+          72
+        ],
+        "area_alpha128": 2565,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "e31a8d2a26557b4f5eb278e33f4400a336540b3c35e0d09948407fc09bb92329"
+      }
+    }
+  ],
+  "adopted": "2026-10-29"
+}

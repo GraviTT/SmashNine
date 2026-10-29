@@ -103,7 +103,8 @@ func _run() -> void:
 	boss.make_boss()
 	_check(is_equal_approx(boss.max_hp, base_hp * 12.0), "make_boss is idempotent")
 	boss.apply_hit(near, 100000.0, 0.0, Vector2.RIGHT, "fixed")
-	for frame in 40:
+	# Six-row death (all monsters since 2026-10-29): 0.5 s defeat row + 0.3 s fade.
+	for frame in 60:
 		await physics_frame
 	_check(not is_instance_valid(boss), "Boss death frees it without creating a replacement")
 	arena.queue_free()

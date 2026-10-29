@@ -1,0 +1,417 @@
+{
+  "id": "niflheim_glacier_wolf",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L03",
+    "L18"
+  ],
+  "note": "L03, L18: 원본의 완전한 몸 영역을 다시 잘라 배치. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/niflheim_glacier_wolf_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "69ed3c1aefd83418e03786cc6ac9d8cc25fc3acafa54ae0509411a2b7906657f",
+  "candidate_file_sha256": "20b075b80fa9ae288eeb4f648415d1aaac4c16f2aa253d40eefe1bc5ef06a63f",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "idle",
+      "frame": 1,
+      "source": "art/raw/monsters-87/niflheim_glacier_wolf_source.png",
+      "source_region": [
+        10,
+        118,
+        260,
+        282
+      ],
+      "alpha_bbox_in_region": [
+        5,
+        7,
+        241,
+        158
+      ],
+      "scale": 0.32,
+      "placement": [
+        10,
+        24
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          9,
+          29,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          9,
+          29,
+          86,
+          72
+        ],
+        "area_alpha128": 2024,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "34ce3871cad4c6189bdf0d39faf68cd372006df80f471bc8c077cc69091e4325"
+      },
+      "after": {
+        "bbox_alpha128": [
+          10,
+          24,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          24,
+          86,
+          72
+        ],
+        "area_alpha128": 2166,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "80503fac734721e15c0071a463f7e65060d73c0cbd882fbc54fb05284688fec1"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 2,
+      "source": "art/raw/monsters-87/niflheim_glacier_wolf_source.png",
+      "source_region": [
+        275,
+        119,
+        511,
+        282
+      ],
+      "alpha_bbox_in_region": [
+        5,
+        7,
+        230,
+        157
+      ],
+      "scale": 0.32,
+      "placement": [
+        12,
+        24
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          11,
+          29,
+          85,
+          72
+        ],
+        "bbox_alpha1": [
+          11,
+          29,
+          85,
+          72
+        ],
+        "area_alpha128": 1978,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "466b248d28d6b8f710277942cf183f5626b96eaf922870fca5c28f44644a6664"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          24,
+          84,
+          72
+        ],
+        "bbox_alpha1": [
+          12,
+          24,
+          84,
+          72
+        ],
+        "area_alpha128": 2080,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "de164ec24062cce36b8d7e1104c938939ab790dd8383c3e83a9bf0d0bc5f94d8"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 3,
+      "source": "art/raw/monsters-87/niflheim_glacier_wolf_source.png",
+      "source_region": [
+        520,
+        114,
+        763,
+        282
+      ],
+      "alpha_bbox_in_region": [
+        5,
+        7,
+        237,
+        162
+      ],
+      "scale": 0.32,
+      "placement": [
+        11,
+        22
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          10,
+          28,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          28,
+          86,
+          72
+        ],
+        "area_alpha128": 1986,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "e99ee7841c1fd0b4b8f919c0b7eb55729e9c998ea508a62c1b2583dff1278606"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          22,
+          85,
+          72
+        ],
+        "bbox_alpha1": [
+          11,
+          22,
+          85,
+          72
+        ],
+        "area_alpha128": 2148,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "be20411488d9ee1126409b44548d594e4bea201f9b335831330ec217ef69d353"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 4,
+      "source": "art/raw/monsters-87/niflheim_glacier_wolf_source.png",
+      "source_region": [
+        773,
+        123,
+        1022,
+        282
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        7,
+        243,
+        153
+      ],
+      "scale": 0.32,
+      "placement": [
+        10,
+        25
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          9,
+          31,
+          87,
+          72
+        ],
+        "bbox_alpha1": [
+          9,
+          31,
+          87,
+          72
+        ],
+        "area_alpha128": 1990,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "899941449e8a91c4077080a733056dc2ef980db2c61a11729e7a96b338e5c0a3"
+      },
+      "after": {
+        "bbox_alpha128": [
+          10,
+          25,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          25,
+          86,
+          72
+        ],
+        "area_alpha128": 2141,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "f2fdfdc6966cfdd009a31f4f26da197b628d84ea471c8f0aac2f2d28094e5398"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 2,
+      "source": "art/raw/monsters-87/niflheim_glacier_wolf_source.png",
+      "source_region": [
+        276,
+        578,
+        558,
+        742
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        9,
+        280,
+        159
+      ],
+      "scale": 0.315,
+      "placement": [
+        4,
+        25
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": true,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          10,
+          23,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          23,
+          86,
+          72
+        ],
+        "area_alpha128": 2140,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "16f8b14fb6b66df81bee899502886232adac8e59a663039c26fc62ad929ef3ab"
+      },
+      "after": {
+        "bbox_alpha128": [
+          4,
+          25,
+          91,
+          72
+        ],
+        "bbox_alpha1": [
+          4,
+          25,
+          91,
+          72
+        ],
+        "area_alpha128": 2191,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "1f4f62c96318b26f66cf6b5c7ea5f3891b261b508e6c3785746ba8c189f2e3f0"
+      }
+    }
+  ],
+  "adopted": "2026-10-29"
+}

@@ -25,7 +25,7 @@ func _fighter(id := "frey", body := "") -> Node:
 	# Keep the absent-row fixture independent of any art adopted after this card.
 	var frames: SpriteFrames = fighter.character_sprite.sprite_frames
 	for prefix in [id, "luna_brave"]:
-		for row in ["jump", "fall", "hurt", "land", "victory"]:
+		for row in ["jump", "fall", "hurt", "land", "victory", "defeat"]:
 			var name := StringName(prefix + "_" + row)
 			if not frames.has_animation(name):
 				continue
@@ -45,7 +45,7 @@ func _lend(fighter: Node, row: String, prefix := "") -> void:
 	for spec in fighter.OPTIONAL_MOTION_ROWS:
 		if spec[0] != row:
 			continue
-		var cell := 192 if row == "victory" else 128
+		var cell := 192 if row in fighter.WIDE_MOTION_ROWS else 128
 		var strip := Image.create(cell * int(spec[1]), cell, false, Image.FORMAT_RGBA8)
 		for index in int(spec[1]):
 			var margin := (cell - 128) / 2
@@ -60,7 +60,7 @@ func _run() -> void:
 			var old := _fighter(id, body)
 			for row in ["jump", "fall", "hurt"]:
 				_check(old.character_sprite.sprite_frames.get_frame_count(StringName(id + "_" + row)) == 1, "%s %s legacy %s stays one drawing" % [id, body, row])
-			_check(not old._has_motion_row(&"land") and not old._has_motion_row(&"victory"), "missing optional rows stay absent")
+			_check(not old._has_motion_row(&"land") and not old._has_motion_row(&"victory") and not old._has_motion_row(&"defeat"), "missing optional rows stay absent")
 			old.play_victory()
 			_check(old.character_sprite.animation == StringName(id + "_idle"), "victory without row uses idle")
 			old.velocity.y = -50.0
@@ -73,6 +73,8 @@ func _run() -> void:
 			old._update_character_sprite()
 			_check(old.character_sprite.speed_scale == 1.0 and old.character_sprite.frame == 0, "legacy hurt keeps original speed and frame")
 			old.free()
+	_adopted_strips()
+	_defeat_row()
 	await _air_and_hurt("frey", false)
 	await _air_and_hurt("luna", false)
 	await _air_and_hurt("luna", true)
@@ -83,6 +85,51 @@ func _run() -> void:
 	await process_frame
 	print("Fighter motion: %d checks, failed=%s" % [checks, failed])
 	quit(1 if failed else 0)
+
+## The strips applied on 2026-10-29 (candidate picks) load at their real size: the loader skips a
+## wrong-sized strip without a word, so a bad file would only show as a missing row.
+func _adopted_strips() -> void:
+	var expected := {
+		"frey": ["jump", "land", "victory", "defeat"], "luna": ["jump", "land", "victory", "defeat"],
+		"luna_brave": ["jump", "hurt", "land", "victory", "defeat"],
+		"nova_male": ["jump", "land", "victory", "defeat"], "nova_female": ["jump", "fall", "land", "victory", "defeat"],
+		"rio_male": ["jump", "land", "victory"], "rio_female": ["land", "victory", "defeat"],
+		"yuki": ["jump", "land", "victory", "defeat"],
+	}
+	for id in REGISTRY.get_character_ids():
+		for body in REGISTRY.get_bodies(id):
+			var fighter: Node = FACTORY.create(id, body)
+			arena.add_child(fighter)
+			fighter.setup(REGISTRY.get_characters()[id], 1, false)
+			fighter.set_physics_process(false)
+			var prefixes: Array = [id, "luna_brave"] if id == "luna" else [id]
+			for prefix in prefixes:
+				# Same lookup as the loader: <prefix>_<body> first, else <prefix> (frey, luna, yuki).
+				var form: String = "%s_%s" % [prefix, body] if expected.has("%s_%s" % [prefix, body]) else prefix
+				var frames: SpriteFrames = fighter.character_sprite.sprite_frames
+				for spec in fighter.OPTIONAL_MOTION_ROWS:
+					var row := StringName("%s_%s" % [prefix, spec[0]])
+					var adopted: bool = spec[0] in expected[form]
+					var loaded: bool = frames.has_animation(row) and frames.get_frame_count(row) == int(spec[1])
+					if adopted:
+						_check(loaded, "%s %s strip loads with %d drawings" % [form, spec[0], spec[1]])
+					elif spec[0] in ["land", "victory", "defeat"]:
+						_check(not frames.has_animation(row), "%s keeps no %s row" % [form, spec[0]])
+			fighter.free()
+
+## A defeat row plays where the fighter fell; without one the fighter vanishes as before.
+func _defeat_row() -> void:
+	var plain := _fighter("frey")
+	plain._show_defeat(true)
+	_check(not plain.visible, "without a defeat row the fighter vanishes at once")
+	plain.free()
+	var fighter := _fighter("frey")
+	_lend(fighter, "defeat")
+	fighter._show_defeat(true)
+	_check(fighter.visible and fighter.character_sprite.animation == &"frey_defeat" and fighter.character_sprite.is_playing(), "defeat row plays where the fighter fell")
+	fighter._show_defeat(false)
+	_check(not fighter.visible, "a fighter knocked out in the air still vanishes")
+	fighter.free()
 
 func _air_and_hurt(id: String, brave: bool) -> void:
 	var fighter := _fighter(id)

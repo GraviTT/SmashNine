@@ -1,0 +1,337 @@
+{
+  "monster": "vanaheim_vine_hound",
+  "row": "attack",
+  "factor": 0.205,
+  "before": [
+    {
+      "frame": 1,
+      "bbox": [
+        10,
+        28,
+        85,
+        73
+      ],
+      "margin": 10,
+      "bottom": 72,
+      "detail": 114.7,
+      "spill": 684,
+      "alpha_binary": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        4,
+        24,
+        88,
+        73
+      ],
+      "margin": 4,
+      "bottom": 72,
+      "detail": 118.41,
+      "spill": 748,
+      "alpha_binary": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        4,
+        7,
+        92,
+        54
+      ],
+      "margin": 4,
+      "bottom": 53,
+      "detail": 113.7,
+      "spill": 754,
+      "alpha_binary": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        7,
+        9,
+        88,
+        61
+      ],
+      "margin": 7,
+      "bottom": 60,
+      "detail": 114.08,
+      "spill": 698,
+      "alpha_binary": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        7,
+        26,
+        88,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 115.6,
+      "spill": 711,
+      "alpha_binary": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        7,
+        24,
+        88,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 118.93,
+      "spill": 707,
+      "alpha_binary": true
+    }
+  ],
+  "after": [
+    {
+      "frame": 1,
+      "bbox": [
+        10,
+        28,
+        85,
+        73
+      ],
+      "margin": 10,
+      "bottom": 72,
+      "detail": 96.54,
+      "spill": 672,
+      "alpha_binary": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        4,
+        24,
+        88,
+        73
+      ],
+      "margin": 4,
+      "bottom": 72,
+      "detail": 98.49,
+      "spill": 751,
+      "alpha_binary": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        4,
+        7,
+        92,
+        54
+      ],
+      "margin": 4,
+      "bottom": 53,
+      "detail": 96.32,
+      "spill": 732,
+      "alpha_binary": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        7,
+        9,
+        88,
+        61
+      ],
+      "margin": 7,
+      "bottom": 60,
+      "detail": 95.53,
+      "spill": 688,
+      "alpha_binary": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        7,
+        26,
+        88,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 98.45,
+      "spill": 710,
+      "alpha_binary": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        7,
+        24,
+        88,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "detail": 100.05,
+      "spill": 704,
+      "alpha_binary": true
+    }
+  ],
+  "colour": {
+    "method": "ART-74 RGB-only reference ramp; smooth hue material boundaries and reduced leaf highlight expansion",
+    "alpha_unchanged": true,
+    "input": "art\\raw\\monsters-83\\vanaheim_vine_hound-attack-colour-input.png",
+    "source_spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "before_leaf_outliers": [
+      {
+        "count": 266,
+        "evaluated": 744,
+        "mean_local_deviation": 31.76635304659498
+      },
+      {
+        "count": 311,
+        "evaluated": 831,
+        "mean_local_deviation": 32.39510629763337
+      },
+      {
+        "count": 297,
+        "evaluated": 826,
+        "mean_local_deviation": 31.54741727199354
+      },
+      {
+        "count": 262,
+        "evaluated": 779,
+        "mean_local_deviation": 31.30894308943089
+      },
+      {
+        "count": 298,
+        "evaluated": 805,
+        "mean_local_deviation": 31.671635610766042
+      },
+      {
+        "count": 308,
+        "evaluated": 806,
+        "mean_local_deviation": 32.73717948717948
+      }
+    ],
+    "after_leaf_outliers": [
+      {
+        "count": 154,
+        "evaluated": 744,
+        "mean_local_deviation": 23.141129032258064
+      },
+      {
+        "count": 192,
+        "evaluated": 831,
+        "mean_local_deviation": 23.276173285198556
+      },
+      {
+        "count": 182,
+        "evaluated": 826,
+        "mean_local_deviation": 23.11097659402744
+      },
+      {
+        "count": 161,
+        "evaluated": 779,
+        "mean_local_deviation": 22.659392383397517
+      },
+      {
+        "count": 174,
+        "evaluated": 805,
+        "mean_local_deviation": 22.4712215320911
+      },
+      {
+        "count": 177,
+        "evaluated": 806,
+        "mean_local_deviation": 23.27894954507858
+      }
+    ],
+    "ramps": {
+      "leaf": [
+        [
+          36.0,
+          55.0,
+          30.0
+        ],
+        [
+          43.0,
+          75.0,
+          34.0
+        ],
+        [
+          53.0,
+          87.0,
+          33.0
+        ],
+        [
+          68.0,
+          102.0,
+          32.0
+        ],
+        [
+          94.0,
+          130.0,
+          32.0
+        ]
+      ],
+      "bark": [
+        [
+          50.0,
+          41.0,
+          35.0
+        ],
+        [
+          63.0,
+          50.0,
+          39.0
+        ],
+        [
+          74.0,
+          57.0,
+          40.0
+        ],
+        [
+          89.0,
+          67.0,
+          41.0
+        ],
+        [
+          113.0,
+          85.0,
+          44.0
+        ]
+      ],
+      "glow": [
+        [
+          106.0,
+          190.0,
+          144.0
+        ],
+        [
+          152.0,
+          224.0,
+          172.0
+        ],
+        [
+          183.0,
+          240.0,
+          192.0
+        ],
+        [
+          200.0,
+          246.0,
+          201.0
+        ],
+        [
+          212.0,
+          252.0,
+          208.0
+        ]
+      ]
+    }
+  }
+}

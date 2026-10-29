@@ -1,0 +1,113 @@
+[
+  {
+    "monster": "mossling",
+    "row": "attack",
+    "feature": "몸통 위 싹의 부착부: attack F1→F3",
+    "before_points": [
+      [
+        58,
+        36
+      ],
+      [
+        56,
+        31
+      ]
+    ],
+    "after_points": [
+      [
+        45,
+        35
+      ],
+      [
+        61,
+        34
+      ]
+    ],
+    "before_forward_px": -2,
+    "after_forward_px": 16,
+    "endpoint_uncertainty_px": 1,
+    "note": "정지 프레임 안 그림의 위치. 게임 이동/타격 범위 아님.",
+    "review": "14배 좌표 확대에서 갈색 줄기와 등 몸통이 만나는 부착부 중심을 재지정. 기존 movement-final.json의 임시 표식보다 우선함."
+  },
+  {
+    "monster": "vanaheim_seed_sprite",
+    "row": "attack",
+    "feature": "꽃 가지를 쥔 손/가지 접점: idle F1→attack F3",
+    "before_points": [
+      [
+        69,
+        55
+      ],
+      [
+        74,
+        47
+      ]
+    ],
+    "after_points": [
+      [
+        69,
+        55
+      ],
+      [
+        79,
+        52
+      ]
+    ],
+    "before_forward_px": 5,
+    "after_forward_px": 10,
+    "endpoint_uncertainty_px": 1,
+    "note": "정지 프레임 안 그림의 위치. 게임 이동/타격 범위 아님."
+  },
+  {
+    "monster": "jotunheim_storm_wisp",
+    "row": "hurt",
+    "feature": "F1 상단 돌 중심과 청색 핵 중심의 수평 벌어짐",
+    "before_points": [
+      [
+        43,
+        24
+      ],
+      [
+        48,
+        46
+      ]
+    ],
+    "after_points": [
+      [
+        27,
+        27
+      ],
+      [
+        43,
+        40
+      ]
+    ],
+    "before_px": 5,
+    "after_px": 16,
+    "endpoint_uncertainty_px": 1,
+    "note": "수동 중심. 몸체 기울기와 돌 배치 변화의 보조 지표; 피격감은 육안 판단."
+  },
+  {
+    "monster": "niflheim_glacier_wolf",
+    "row": "attack",
+    "feature": "프레임 최하단 불투명 픽셀 y",
+    "before_y": [
+      72,
+      67,
+      62,
+      53,
+      72,
+      72
+    ],
+    "after_y": [
+      72,
+      62,
+      52,
+      59,
+      67,
+      72
+    ],
+    "before_apex": 4,
+    "after_apex": 3
+  }
+]

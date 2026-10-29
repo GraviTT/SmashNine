@@ -1,0 +1,4897 @@
+[
+  {
+    "monster": "alfheim_moon_moth",
+    "row": "windup",
+    "old": "art/bakeoff/monsters/alfheim_moon_moth-windup-v2.png",
+    "new": "art/bakeoff/monsters/alfheim_moon_moth-windup-v3.png",
+    "review": "art/raw/monsters-93/final-review/alfheim_moon_moth-windup-review.png",
+    "raw": "art/raw/monsters-83/alfheim_moon_moth-windup-g1.png",
+    "raw_sha256": "63e4e9815d188726c731a47c8ec0a8c8d4dff5a98ec3c4d1654f21e437d20486",
+    "source_boxes": [
+      {
+        "bbox": [
+          328,
+          187,
+          699,
+          458
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          70,
+          224,
+          468,
+          465
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          346,
+          89,
+          670,
+          368
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          86,
+          140,
+          432,
+          368
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      59,
+      63,
+      59,
+      59
+    ],
+    "candidate_idle_heights": [
+      48,
+      48,
+      52,
+      48,
+      46,
+      48
+    ],
+    "kept_idle_mean": 60.0,
+    "candidate_idle_mean": 48.333333333333336,
+    "k": 1.2413793103448276,
+    "used": 1.135355924005052,
+    "old_factor": 0.187,
+    "new_factor": 0.2123115577889447,
+    "limited_by": [
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.1359772485440636,
+      "violations": [
+        "width"
+      ]
+    },
+    "tested_event_count": 195,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          16,
+          20,
+          85,
+          71
+        ],
+        "height": 51,
+        "width": 69,
+        "bottom": 70,
+        "margin": 11,
+        "opaque": 1832
+      },
+      {
+        "bbox": [
+          13,
+          26,
+          87,
+          71
+        ],
+        "height": 45,
+        "width": 74,
+        "bottom": 70,
+        "margin": 9,
+        "opaque": 1575
+      },
+      {
+        "bbox": [
+          22,
+          19,
+          83,
+          71
+        ],
+        "height": 52,
+        "width": 61,
+        "bottom": 70,
+        "margin": 13,
+        "opaque": 1758
+      },
+      {
+        "bbox": [
+          17,
+          27,
+          82,
+          70
+        ],
+        "height": 43,
+        "width": 65,
+        "bottom": 69,
+        "margin": 14,
+        "opaque": 1479
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          11,
+          13,
+          90,
+          71
+        ],
+        "height": 58,
+        "width": 79,
+        "bottom": 70,
+        "margin": 6,
+        "opaque": 2394
+      },
+      {
+        "bbox": [
+          8,
+          20,
+          92,
+          71
+        ],
+        "height": 51,
+        "width": 84,
+        "bottom": 70,
+        "margin": 4,
+        "opaque": 2029
+      },
+      {
+        "bbox": [
+          19,
+          12,
+          88,
+          71
+        ],
+        "height": 59,
+        "width": 69,
+        "bottom": 70,
+        "margin": 8,
+        "opaque": 2277
+      },
+      {
+        "bbox": [
+          13,
+          22,
+          86,
+          70
+        ],
+        "height": 48,
+        "width": 73,
+        "bottom": 69,
+        "margin": 10,
+        "opaque": 1857
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          11,
+          13
+        ],
+        "pre_fix_bbox": [
+          11,
+          13,
+          90,
+          71
+        ],
+        "resize_size": [
+          79,
+          58
+        ],
+        "final_bbox": [
+          11,
+          13,
+          90,
+          71
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          8,
+          20
+        ],
+        "pre_fix_bbox": [
+          8,
+          20,
+          92,
+          71
+        ],
+        "resize_size": [
+          84,
+          51
+        ],
+        "final_bbox": [
+          8,
+          20,
+          92,
+          71
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          19,
+          12
+        ],
+        "pre_fix_bbox": [
+          19,
+          12,
+          88,
+          71
+        ],
+        "resize_size": [
+          69,
+          59
+        ],
+        "final_bbox": [
+          19,
+          12,
+          88,
+          71
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          13,
+          22
+        ],
+        "pre_fix_bbox": [
+          13,
+          22,
+          86,
+          70
+        ],
+        "resize_size": [
+          73,
+          48
+        ],
+        "final_bbox": [
+          13,
+          22,
+          86,
+          70
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.7958333333333333,
+    "height_ratio_after": 0.9,
+    "binding_limit": [
+      "width"
+    ],
+    "output_sha256": "8969f867f256ffba69eda75f2e3afa554b76f09736ec271a55a7a1049d469742",
+    "changed_visible_pixels": [
+      2528,
+      2172,
+      2399,
+      1959
+    ]
+  },
+  {
+    "monster": "alfheim_moon_moth",
+    "row": "defeat",
+    "old": "art/bakeoff/monsters/alfheim_moon_moth-defeat-v2.png",
+    "new": "art/bakeoff/monsters/alfheim_moon_moth-defeat-v3.png",
+    "review": "art/raw/monsters-93/final-review/alfheim_moon_moth-defeat-review.png",
+    "raw": "art/raw/monsters-71/alfheim_moon_moth-defeat.png",
+    "raw_sha256": "ba1cd3edefa333a9ca5290da339e42b3c447e4e28a131ae78a89d01f464706a2",
+    "source_boxes": [
+      {
+        "bbox": [
+          91,
+          309,
+          499,
+          540
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          95,
+          363,
+          504,
+          541
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          134,
+          331,
+          537,
+          464
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          95,
+          339,
+          548,
+          457
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      59,
+      63,
+      59,
+      59
+    ],
+    "candidate_idle_heights": [
+      48,
+      48,
+      52,
+      48,
+      46,
+      48
+    ],
+    "kept_idle_mean": 60.0,
+    "candidate_idle_mean": 48.333333333333336,
+    "k": 1.2413793103448276,
+    "used": 1.0049959335424654,
+    "old_factor": 0.19,
+    "new_factor": 0.19094922737306844,
+    "limited_by": [
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.0053222935002957,
+      "violations": [
+        "width"
+      ]
+    },
+    "tested_event_count": 421,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          7,
+          29,
+          85,
+          73
+        ],
+        "height": 44,
+        "width": 78,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 1668
+      },
+      {
+        "bbox": [
+          6,
+          39,
+          84,
+          73
+        ],
+        "height": 34,
+        "width": 78,
+        "bottom": 72,
+        "margin": 6,
+        "opaque": 1434
+      },
+      {
+        "bbox": [
+          10,
+          48,
+          87,
+          73
+        ],
+        "height": 25,
+        "width": 77,
+        "bottom": 72,
+        "margin": 9,
+        "opaque": 1291
+      },
+      {
+        "bbox": [
+          4,
+          51,
+          90,
+          73
+        ],
+        "height": 22,
+        "width": 86,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1199
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          7,
+          29,
+          85,
+          73
+        ],
+        "height": 44,
+        "width": 78,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 1668
+      },
+      {
+        "bbox": [
+          6,
+          39,
+          84,
+          73
+        ],
+        "height": 34,
+        "width": 78,
+        "bottom": 72,
+        "margin": 6,
+        "opaque": 1434
+      },
+      {
+        "bbox": [
+          10,
+          48,
+          87,
+          73
+        ],
+        "height": 25,
+        "width": 77,
+        "bottom": 72,
+        "margin": 9,
+        "opaque": 1291
+      },
+      {
+        "bbox": [
+          4,
+          50,
+          90,
+          73
+        ],
+        "height": 23,
+        "width": 86,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1250
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          7,
+          29
+        ],
+        "pre_fix_bbox": [
+          7,
+          29,
+          85,
+          73
+        ],
+        "resize_size": [
+          78,
+          44
+        ],
+        "final_bbox": [
+          7,
+          29,
+          85,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          6,
+          39
+        ],
+        "pre_fix_bbox": [
+          6,
+          39,
+          84,
+          73
+        ],
+        "resize_size": [
+          78,
+          34
+        ],
+        "final_bbox": [
+          6,
+          39,
+          84,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          10,
+          48
+        ],
+        "pre_fix_bbox": [
+          10,
+          48,
+          87,
+          73
+        ],
+        "resize_size": [
+          77,
+          25
+        ],
+        "final_bbox": [
+          10,
+          48,
+          87,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          4,
+          50
+        ],
+        "pre_fix_bbox": [
+          4,
+          50,
+          90,
+          73
+        ],
+        "resize_size": [
+          86,
+          23
+        ],
+        "final_bbox": [
+          4,
+          50,
+          90,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.5208333333333334,
+    "height_ratio_after": 0.525,
+    "binding_limit": [
+      "width"
+    ],
+    "output_sha256": "acd0ab40c0302a7469bd207d1a2f7e1fb239553e9a14d49d6a7ebeb3500fa0a0",
+    "changed_visible_pixels": [
+      0,
+      0,
+      0,
+      1232
+    ]
+  },
+  {
+    "monster": "yggdrasil_root_oracle",
+    "row": "windup",
+    "old": "art/bakeoff/monsters/yggdrasil_root_oracle-windup-v2.png",
+    "new": "art/bakeoff/monsters/yggdrasil_root_oracle-windup-v3.png",
+    "review": "art/raw/monsters-93/final-review/yggdrasil_root_oracle-windup-review.png",
+    "raw": "art/raw/monsters-76/yggdrasil_root_oracle-windup.png",
+    "raw_sha256": "cd77c2b61c4bdf100f4ebb2ff78dd5a79bcc0e943aec75aecbb84437337e8cae",
+    "source_boxes": [
+      {
+        "bbox": [
+          248,
+          119,
+          581,
+          460
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          140,
+          119,
+          514,
+          460
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          247,
+          32,
+          619,
+          403
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          149,
+          21,
+          500,
+          408
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      67,
+      66,
+      66,
+      65
+    ],
+    "candidate_idle_heights": [
+      57,
+      57,
+      57,
+      58,
+      56,
+      57
+    ],
+    "kept_idle_mean": 66.0,
+    "candidate_idle_mean": 57.0,
+    "k": 1.1578947368421053,
+    "used": 1.0009239287813365,
+    "old_factor": 0.191,
+    "new_factor": 0.1911764703972353,
+    "limited_by": [
+      "height",
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.0009239297813366,
+      "violations": [
+        "width"
+      ]
+    },
+    "tested_event_count": 320,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          15,
+          11,
+          79,
+          76
+        ],
+        "height": 65,
+        "width": 64,
+        "bottom": 75,
+        "margin": 11,
+        "opaque": 2223
+      },
+      {
+        "bbox": [
+          21,
+          15,
+          92,
+          80
+        ],
+        "height": 65,
+        "width": 71,
+        "bottom": 79,
+        "margin": 4,
+        "opaque": 2424
+      },
+      {
+        "bbox": [
+          20,
+          16,
+          91,
+          87
+        ],
+        "height": 71,
+        "width": 71,
+        "bottom": 86,
+        "margin": 5,
+        "opaque": 2436
+      },
+      {
+        "bbox": [
+          22,
+          13,
+          89,
+          87
+        ],
+        "height": 74,
+        "width": 67,
+        "bottom": 86,
+        "margin": 7,
+        "opaque": 2433
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          15,
+          11,
+          79,
+          73
+        ],
+        "height": 62,
+        "width": 64,
+        "bottom": 72,
+        "margin": 11,
+        "opaque": 2152
+      },
+      {
+        "bbox": [
+          21,
+          15,
+          92,
+          73
+        ],
+        "height": 58,
+        "width": 71,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 2228
+      },
+      {
+        "bbox": [
+          20,
+          16,
+          91,
+          73
+        ],
+        "height": 57,
+        "width": 71,
+        "bottom": 72,
+        "margin": 5,
+        "opaque": 1995
+      },
+      {
+        "bbox": [
+          22,
+          13,
+          89,
+          73
+        ],
+        "height": 60,
+        "width": 67,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 1964
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          15,
+          11
+        ],
+        "pre_fix_bbox": [
+          15,
+          11,
+          79,
+          76
+        ],
+        "resize_size": [
+          64,
+          65
+        ],
+        "tentacle_squash": {
+          "start_y": 58,
+          "old_bottom": 75,
+          "new_bottom": 72,
+          "vertical_factor": 0.8333333333333334
+        },
+        "final_bbox": [
+          15,
+          11,
+          79,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          21,
+          15
+        ],
+        "pre_fix_bbox": [
+          21,
+          15,
+          92,
+          80
+        ],
+        "resize_size": [
+          71,
+          65
+        ],
+        "tentacle_squash": {
+          "start_y": 58,
+          "old_bottom": 79,
+          "new_bottom": 72,
+          "vertical_factor": 0.6818181818181818
+        },
+        "final_bbox": [
+          21,
+          15,
+          92,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          20,
+          16
+        ],
+        "pre_fix_bbox": [
+          20,
+          16,
+          91,
+          87
+        ],
+        "resize_size": [
+          71,
+          71
+        ],
+        "tentacle_squash": {
+          "start_y": 58,
+          "old_bottom": 86,
+          "new_bottom": 72,
+          "vertical_factor": 0.5172413793103449
+        },
+        "final_bbox": [
+          20,
+          16,
+          91,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          22,
+          13
+        ],
+        "pre_fix_bbox": [
+          22,
+          13,
+          89,
+          87
+        ],
+        "resize_size": [
+          67,
+          74
+        ],
+        "tentacle_squash": {
+          "start_y": 58,
+          "old_bottom": 86,
+          "new_bottom": 72,
+          "vertical_factor": 0.5172413793103449
+        },
+        "final_bbox": [
+          22,
+          13,
+          89,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 1.0416666666666667,
+    "height_ratio_after": 0.8977272727272727,
+    "binding_limit": [
+      "width"
+    ],
+    "output_sha256": "2213e94c786a21f7f09ac8aeb2c00f04e1d26699ccebff96df0ccf82bf94ec20",
+    "changed_visible_pixels": [
+      443,
+      676,
+      960,
+      1032
+    ]
+  },
+  {
+    "monster": "yggdrasil_root_oracle",
+    "row": "defeat",
+    "old": "art/bakeoff/monsters/yggdrasil_root_oracle-defeat-v1.png",
+    "new": "art/bakeoff/monsters/yggdrasil_root_oracle-defeat-v2.png",
+    "review": "art/raw/monsters-93/final-review/yggdrasil_root_oracle-defeat-review.png",
+    "raw": "art/raw/monsters-76/yggdrasil_root_oracle-defeat.png",
+    "raw_sha256": "74a685fe74a1b3e20fe882edca30a19496a413924642da59770e1614bb26e448",
+    "source_boxes": [
+      {
+        "bbox": [
+          153,
+          193,
+          533,
+          568
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          96,
+          258,
+          466,
+          584
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          144,
+          183,
+          566,
+          483
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          53,
+          263,
+          502,
+          481
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      67,
+      66,
+      66,
+      65
+    ],
+    "candidate_idle_heights": [
+      57,
+      57,
+      57,
+      58,
+      56,
+      57
+    ],
+    "kept_idle_mean": 66.0,
+    "candidate_idle_mean": 57.0,
+    "k": 1.1578947368421053,
+    "used": 1.1083333333333334,
+    "old_factor": 0.16,
+    "new_factor": 0.17733333333333334,
+    "limited_by": [
+      "height",
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.1101973674210526,
+      "violations": [
+        "height"
+      ]
+    },
+    "tested_event_count": 91,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          16,
+          10,
+          77,
+          70
+        ],
+        "height": 60,
+        "width": 61,
+        "bottom": 69,
+        "margin": 10,
+        "opaque": 1875
+      },
+      {
+        "bbox": [
+          16,
+          21,
+          75,
+          73
+        ],
+        "height": 52,
+        "width": 59,
+        "bottom": 72,
+        "margin": 16,
+        "opaque": 1818
+      },
+      {
+        "bbox": [
+          10,
+          25,
+          78,
+          73
+        ],
+        "height": 48,
+        "width": 68,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 1823
+      },
+      {
+        "bbox": [
+          8,
+          38,
+          80,
+          73
+        ],
+        "height": 35,
+        "width": 72,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 1585
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          13,
+          4,
+          80,
+          70
+        ],
+        "height": 66,
+        "width": 67,
+        "bottom": 69,
+        "margin": 4,
+        "opaque": 2268
+      },
+      {
+        "bbox": [
+          12,
+          15,
+          78,
+          73
+        ],
+        "height": 58,
+        "width": 66,
+        "bottom": 72,
+        "margin": 12,
+        "opaque": 2281
+      },
+      {
+        "bbox": [
+          6,
+          20,
+          81,
+          73
+        ],
+        "height": 53,
+        "width": 75,
+        "bottom": 72,
+        "margin": 6,
+        "opaque": 2203
+      },
+      {
+        "bbox": [
+          4,
+          34,
+          84,
+          73
+        ],
+        "height": 39,
+        "width": 80,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1955
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          13,
+          4
+        ],
+        "pre_fix_bbox": [
+          13,
+          4,
+          80,
+          70
+        ],
+        "resize_size": [
+          67,
+          66
+        ],
+        "final_bbox": [
+          13,
+          4,
+          80,
+          70
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          12,
+          15
+        ],
+        "pre_fix_bbox": [
+          12,
+          15,
+          78,
+          73
+        ],
+        "resize_size": [
+          66,
+          58
+        ],
+        "final_bbox": [
+          12,
+          15,
+          78,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          6,
+          20
+        ],
+        "pre_fix_bbox": [
+          6,
+          20,
+          81,
+          73
+        ],
+        "resize_size": [
+          75,
+          53
+        ],
+        "final_bbox": [
+          6,
+          20,
+          81,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          4,
+          34
+        ],
+        "pre_fix_bbox": [
+          4,
+          34,
+          84,
+          73
+        ],
+        "resize_size": [
+          80,
+          39
+        ],
+        "final_bbox": [
+          4,
+          34,
+          84,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.7386363636363636,
+    "height_ratio_after": 0.8181818181818182,
+    "binding_limit": [
+      "height"
+    ],
+    "output_sha256": "664cff843c91e973fec537eb68e390b553856844b5a05a459136e107ba60e3a8",
+    "changed_visible_pixels": [
+      2455,
+      2429,
+      2329,
+      2037
+    ]
+  },
+  {
+    "monster": "asgard_aegis_ram",
+    "row": "windup",
+    "old": "art/bakeoff/monsters/asgard_aegis_ram-windup-v2.png",
+    "new": "art/bakeoff/monsters/asgard_aegis_ram-windup-v3.png",
+    "review": "art/raw/monsters-93/final-review/asgard_aegis_ram-windup-review.png",
+    "raw": "art/raw/monsters-71/asgard_aegis_ram-windup.png",
+    "raw_sha256": "0f2f9406ea38af054c27ea7b169e02b25f3ff133c55ea91e2018fdfe0cc76cc3",
+    "source_boxes": [
+      {
+        "bbox": [
+          122,
+          281,
+          539,
+          574
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          36,
+          340,
+          538,
+          574
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          140,
+          177,
+          539,
+          420
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          48,
+          198,
+          510,
+          420
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      52,
+      52,
+      52,
+      50
+    ],
+    "candidate_idle_heights": [
+      45,
+      45,
+      45,
+      45,
+      45,
+      45
+    ],
+    "kept_idle_mean": 51.5,
+    "candidate_idle_mean": 45.0,
+    "k": 1.1444444444444444,
+    "used": 1.001874852527068,
+    "old_factor": 0.17,
+    "new_factor": 0.17031872492960157,
+    "limited_by": [
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.001874853527068,
+      "violations": [
+        "width"
+      ]
+    },
+    "tested_event_count": 276,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          12,
+          23,
+          83,
+          73
+        ],
+        "height": 50,
+        "width": 71,
+        "bottom": 72,
+        "margin": 12,
+        "opaque": 2280
+      },
+      {
+        "bbox": [
+          4,
+          33,
+          89,
+          73
+        ],
+        "height": 40,
+        "width": 85,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 2065
+      },
+      {
+        "bbox": [
+          13,
+          32,
+          81,
+          73
+        ],
+        "height": 41,
+        "width": 68,
+        "bottom": 72,
+        "margin": 13,
+        "opaque": 1922
+      },
+      {
+        "bbox": [
+          4,
+          35,
+          83,
+          73
+        ],
+        "height": 38,
+        "width": 79,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1933
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          12,
+          23,
+          83,
+          73
+        ],
+        "height": 50,
+        "width": 71,
+        "bottom": 72,
+        "margin": 12,
+        "opaque": 2280
+      },
+      {
+        "bbox": [
+          4,
+          33,
+          89,
+          73
+        ],
+        "height": 40,
+        "width": 85,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 2065
+      },
+      {
+        "bbox": [
+          13,
+          32,
+          81,
+          73
+        ],
+        "height": 41,
+        "width": 68,
+        "bottom": 72,
+        "margin": 13,
+        "opaque": 1922
+      },
+      {
+        "bbox": [
+          4,
+          35,
+          83,
+          73
+        ],
+        "height": 38,
+        "width": 79,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1933
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          12,
+          23
+        ],
+        "pre_fix_bbox": [
+          12,
+          23,
+          83,
+          73
+        ],
+        "resize_size": [
+          71,
+          50
+        ],
+        "final_bbox": [
+          12,
+          23,
+          83,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          4,
+          33
+        ],
+        "pre_fix_bbox": [
+          4,
+          33,
+          89,
+          73
+        ],
+        "resize_size": [
+          85,
+          40
+        ],
+        "final_bbox": [
+          4,
+          33,
+          89,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          13,
+          32
+        ],
+        "pre_fix_bbox": [
+          13,
+          32,
+          81,
+          73
+        ],
+        "resize_size": [
+          68,
+          41
+        ],
+        "final_bbox": [
+          13,
+          32,
+          81,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          4,
+          35
+        ],
+        "pre_fix_bbox": [
+          4,
+          35,
+          83,
+          73
+        ],
+        "resize_size": [
+          79,
+          38
+        ],
+        "final_bbox": [
+          4,
+          35,
+          83,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.8203883495145631,
+    "height_ratio_after": 0.8203883495145631,
+    "binding_limit": [
+      "width"
+    ],
+    "output_sha256": "d7e4b5a5b15b81fa516d84f7d73e0a68633d859f60ebe7c732fd3ed6ac1d6fc3",
+    "changed_visible_pixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "monster": "asgard_aegis_ram",
+    "row": "defeat",
+    "old": "art/bakeoff/monsters/asgard_aegis_ram-defeat-v1.png",
+    "new": "art/bakeoff/monsters/asgard_aegis_ram-defeat-v2.png",
+    "review": "art/raw/monsters-93/final-review/asgard_aegis_ram-defeat-review.png",
+    "raw": "art/raw/monsters-71/asgard_aegis_ram-defeat.png",
+    "raw_sha256": "d66970d9426b8c15ce07cb663793b5138d4deac0161a8b1b61a816362b68be8a",
+    "source_boxes": [
+      {
+        "bbox": [
+          103,
+          265,
+          521,
+          561
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          38,
+          356,
+          502,
+          570
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          76,
+          246,
+          560,
+          442
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          64,
+          254,
+          565,
+          443
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      52,
+      52,
+      52,
+      50
+    ],
+    "candidate_idle_heights": [
+      45,
+      45,
+      45,
+      45,
+      45,
+      45
+    ],
+    "kept_idle_mean": 51.5,
+    "candidate_idle_mean": 45.0,
+    "k": 1.1444444444444444,
+    "used": 1.0026737957914438,
+    "old_factor": 0.17,
+    "new_factor": 0.17045454528454546,
+    "limited_by": [
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.0026737967914439,
+      "violations": [
+        "width"
+      ]
+    },
+    "tested_event_count": 270,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          16,
+          23,
+          87,
+          73
+        ],
+        "height": 50,
+        "width": 71,
+        "bottom": 72,
+        "margin": 9,
+        "opaque": 2434
+      },
+      {
+        "bbox": [
+          8,
+          37,
+          87,
+          73
+        ],
+        "height": 36,
+        "width": 79,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 1988
+      },
+      {
+        "bbox": [
+          10,
+          40,
+          92,
+          73
+        ],
+        "height": 33,
+        "width": 82,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1961
+      },
+      {
+        "bbox": [
+          7,
+          41,
+          92,
+          73
+        ],
+        "height": 32,
+        "width": 85,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1985
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          16,
+          23,
+          87,
+          73
+        ],
+        "height": 50,
+        "width": 71,
+        "bottom": 72,
+        "margin": 9,
+        "opaque": 2434
+      },
+      {
+        "bbox": [
+          8,
+          37,
+          87,
+          73
+        ],
+        "height": 36,
+        "width": 79,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 1988
+      },
+      {
+        "bbox": [
+          10,
+          40,
+          92,
+          73
+        ],
+        "height": 33,
+        "width": 82,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1961
+      },
+      {
+        "bbox": [
+          7,
+          41,
+          92,
+          73
+        ],
+        "height": 32,
+        "width": 85,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1985
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          16,
+          23
+        ],
+        "pre_fix_bbox": [
+          16,
+          23,
+          87,
+          73
+        ],
+        "resize_size": [
+          71,
+          50
+        ],
+        "final_bbox": [
+          16,
+          23,
+          87,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          8,
+          37
+        ],
+        "pre_fix_bbox": [
+          8,
+          37,
+          87,
+          73
+        ],
+        "resize_size": [
+          79,
+          36
+        ],
+        "final_bbox": [
+          8,
+          37,
+          87,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          10,
+          40
+        ],
+        "pre_fix_bbox": [
+          10,
+          40,
+          92,
+          73
+        ],
+        "resize_size": [
+          82,
+          33
+        ],
+        "final_bbox": [
+          10,
+          40,
+          92,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          7,
+          41
+        ],
+        "pre_fix_bbox": [
+          7,
+          41,
+          92,
+          73
+        ],
+        "resize_size": [
+          85,
+          32
+        ],
+        "final_bbox": [
+          7,
+          41,
+          92,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.7330097087378641,
+    "height_ratio_after": 0.7330097087378641,
+    "binding_limit": [
+      "width"
+    ],
+    "output_sha256": "7b05684a2f41065189f7a0acd4be5315836ffd400c9c8c4f2c3d65c745cf4225",
+    "changed_visible_pixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "monster": "asgard_runic_raven",
+    "row": "windup",
+    "old": "art/bakeoff/monsters/asgard_runic_raven-windup-v2.png",
+    "new": "art/bakeoff/monsters/asgard_runic_raven-windup-v3.png",
+    "review": "art/raw/monsters-93/final-review/asgard_runic_raven-windup-review.png",
+    "raw": "art/raw/monsters-71/asgard_runic_raven-windup.png",
+    "raw_sha256": "52b69c34f56e5ab17fd6e7457eaba8d7239071c3568d5683f4c09a61683e9cf8",
+    "source_boxes": [
+      {
+        "bbox": [
+          160,
+          225,
+          536,
+          579
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          119,
+          176,
+          464,
+          579
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          146,
+          155,
+          551,
+          467
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          115,
+          193,
+          497,
+          449
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      53,
+      54,
+      50,
+      46
+    ],
+    "candidate_idle_heights": [
+      42,
+      49,
+      52,
+      42,
+      41,
+      42
+    ],
+    "kept_idle_mean": 50.75,
+    "candidate_idle_mean": 44.666666666666664,
+    "k": 1.1361940298507462,
+    "used": 1.0023692363768908,
+    "old_factor": 0.177,
+    "new_factor": 0.17741935483870966,
+    "limited_by": [
+      "height",
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.004149010299435,
+      "violations": [
+        "height"
+      ]
+    },
+    "tested_event_count": 273,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          7,
+          9,
+          74,
+          72
+        ],
+        "height": 63,
+        "width": 67,
+        "bottom": 71,
+        "margin": 7,
+        "opaque": 2480
+      },
+      {
+        "bbox": [
+          10,
+          4,
+          71,
+          75
+        ],
+        "height": 71,
+        "width": 61,
+        "bottom": 74,
+        "margin": 4,
+        "opaque": 2940
+      },
+      {
+        "bbox": [
+          4,
+          15,
+          76,
+          70
+        ],
+        "height": 55,
+        "width": 72,
+        "bottom": 69,
+        "margin": 4,
+        "opaque": 2668
+      },
+      {
+        "bbox": [
+          6,
+          22,
+          74,
+          67
+        ],
+        "height": 45,
+        "width": 68,
+        "bottom": 66,
+        "margin": 6,
+        "opaque": 1989
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          7,
+          9,
+          74,
+          72
+        ],
+        "height": 63,
+        "width": 67,
+        "bottom": 71,
+        "margin": 7,
+        "opaque": 2480
+      },
+      {
+        "bbox": [
+          10,
+          4,
+          71,
+          75
+        ],
+        "height": 71,
+        "width": 61,
+        "bottom": 74,
+        "margin": 4,
+        "opaque": 2940
+      },
+      {
+        "bbox": [
+          4,
+          15,
+          76,
+          70
+        ],
+        "height": 55,
+        "width": 72,
+        "bottom": 69,
+        "margin": 4,
+        "opaque": 2668
+      },
+      {
+        "bbox": [
+          6,
+          22,
+          74,
+          67
+        ],
+        "height": 45,
+        "width": 68,
+        "bottom": 66,
+        "margin": 6,
+        "opaque": 1989
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          7,
+          9
+        ],
+        "pre_fix_bbox": [
+          7,
+          9,
+          74,
+          72
+        ],
+        "resize_size": [
+          67,
+          63
+        ],
+        "final_bbox": [
+          7,
+          9,
+          74,
+          72
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          10,
+          4
+        ],
+        "pre_fix_bbox": [
+          10,
+          4,
+          71,
+          75
+        ],
+        "resize_size": [
+          61,
+          72
+        ],
+        "final_bbox": [
+          10,
+          4,
+          71,
+          75
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          4,
+          15
+        ],
+        "pre_fix_bbox": [
+          4,
+          15,
+          76,
+          70
+        ],
+        "resize_size": [
+          72,
+          55
+        ],
+        "final_bbox": [
+          4,
+          15,
+          76,
+          70
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          6,
+          22
+        ],
+        "pre_fix_bbox": [
+          6,
+          22,
+          74,
+          67
+        ],
+        "resize_size": [
+          68,
+          45
+        ],
+        "final_bbox": [
+          6,
+          22,
+          74,
+          67
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 1.1527093596059113,
+    "height_ratio_after": 1.1527093596059113,
+    "binding_limit": [
+      "height"
+    ],
+    "output_sha256": "d7c93085c0790377418ed82f01fb9912faf8bda81164c88b44e8968f255155ba",
+    "changed_visible_pixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "monster": "asgard_runic_raven",
+    "row": "defeat",
+    "old": "art/bakeoff/monsters/asgard_runic_raven-defeat-v1.png",
+    "new": "art/bakeoff/monsters/asgard_runic_raven-defeat-v2.png",
+    "review": "art/raw/monsters-93/final-review/asgard_runic_raven-defeat-review.png",
+    "raw": "art/raw/monsters-71/asgard_runic_raven-defeat.png",
+    "raw_sha256": "a6ea16585d4d9981391ca8aec3bb9b960ad4e51b6670831b9702455b4faf614f",
+    "source_boxes": [
+      {
+        "bbox": [
+          103,
+          268,
+          536,
+          561
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          43,
+          336,
+          512,
+          567
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          87,
+          262,
+          550,
+          486
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          37,
+          300,
+          548,
+          472
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      53,
+      54,
+      50,
+      46
+    ],
+    "candidate_idle_heights": [
+      42,
+      49,
+      52,
+      42,
+      41,
+      42
+    ],
+    "kept_idle_mean": 50.75,
+    "candidate_idle_mean": 44.666666666666664,
+    "k": 1.1361940298507462,
+    "used": 1.0579745596868884,
+    "old_factor": 0.16,
+    "new_factor": 0.16927592954990214,
+    "limited_by": [
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.0594349670170573,
+      "violations": [
+        "width"
+      ]
+    },
+    "tested_event_count": 141,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          15,
+          26,
+          84,
+          73
+        ],
+        "height": 47,
+        "width": 69,
+        "bottom": 72,
+        "margin": 12,
+        "opaque": 1986
+      },
+      {
+        "bbox": [
+          9,
+          36,
+          84,
+          73
+        ],
+        "height": 37,
+        "width": 75,
+        "bottom": 72,
+        "margin": 9,
+        "opaque": 1789
+      },
+      {
+        "bbox": [
+          15,
+          37,
+          89,
+          73
+        ],
+        "height": 36,
+        "width": 74,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 1882
+      },
+      {
+        "bbox": [
+          8,
+          45,
+          90,
+          73
+        ],
+        "height": 28,
+        "width": 82,
+        "bottom": 72,
+        "margin": 6,
+        "opaque": 1546
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          13,
+          23,
+          86,
+          73
+        ],
+        "height": 50,
+        "width": 73,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 2239
+      },
+      {
+        "bbox": [
+          7,
+          34,
+          86,
+          73
+        ],
+        "height": 39,
+        "width": 79,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 1989
+      },
+      {
+        "bbox": [
+          13,
+          35,
+          91,
+          73
+        ],
+        "height": 38,
+        "width": 78,
+        "bottom": 72,
+        "margin": 5,
+        "opaque": 2087
+      },
+      {
+        "bbox": [
+          6,
+          44,
+          92,
+          73
+        ],
+        "height": 29,
+        "width": 86,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1681
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          13,
+          23
+        ],
+        "pre_fix_bbox": [
+          13,
+          23,
+          86,
+          73
+        ],
+        "resize_size": [
+          73,
+          50
+        ],
+        "final_bbox": [
+          13,
+          23,
+          86,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          7,
+          34
+        ],
+        "pre_fix_bbox": [
+          7,
+          34,
+          86,
+          73
+        ],
+        "resize_size": [
+          79,
+          39
+        ],
+        "final_bbox": [
+          7,
+          34,
+          86,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          13,
+          35
+        ],
+        "pre_fix_bbox": [
+          13,
+          35,
+          91,
+          73
+        ],
+        "resize_size": [
+          78,
+          38
+        ],
+        "final_bbox": [
+          13,
+          35,
+          91,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          6,
+          44
+        ],
+        "pre_fix_bbox": [
+          6,
+          44,
+          92,
+          73
+        ],
+        "resize_size": [
+          86,
+          29
+        ],
+        "final_bbox": [
+          6,
+          44,
+          92,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.729064039408867,
+    "height_ratio_after": 0.7684729064039408,
+    "binding_limit": [
+      "width"
+    ],
+    "output_sha256": "e9d73aa576215596b172c21eea10e9a4f6898c835961ca0f34de05959cb693d7",
+    "changed_visible_pixels": [
+      2266,
+      1994,
+      2111,
+      1679
+    ]
+  },
+  {
+    "monster": "niflheim_frost_owl",
+    "row": "windup",
+    "old": "art/bakeoff/monsters/niflheim_frost_owl-windup-v1.png",
+    "new": "art/bakeoff/monsters/niflheim_frost_owl-windup-v2.png",
+    "review": "art/raw/monsters-93/final-review/niflheim_frost_owl-windup-review.png",
+    "raw": "art/raw/monsters-76/niflheim_frost_owl-windup.png",
+    "raw_sha256": "70f34af16701349d2428119b7c9ebb3f1ee1c231866ef635d0782cd351ea735d",
+    "source_boxes": [
+      {
+        "bbox": [
+          108,
+          138,
+          507,
+          489
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          104,
+          144,
+          490,
+          489
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          130,
+          109,
+          510,
+          476
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          101,
+          89,
+          501,
+          476
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      66,
+      67,
+      60,
+      65
+    ],
+    "candidate_idle_heights": [
+      58,
+      61,
+      57,
+      56,
+      57,
+      57
+    ],
+    "kept_idle_mean": 64.5,
+    "candidate_idle_mean": 57.666666666666664,
+    "k": 1.1184971098265897,
+    "used": 1.1184971098265897,
+    "old_factor": 0.16,
+    "new_factor": 0.17895953757225436,
+    "limited_by": [],
+    "last_rejected": null,
+    "tested_event_count": 1,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          14,
+          17,
+          78,
+          73
+        ],
+        "height": 56,
+        "width": 64,
+        "bottom": 72,
+        "margin": 14,
+        "opaque": 2260
+      },
+      {
+        "bbox": [
+          16,
+          18,
+          78,
+          73
+        ],
+        "height": 55,
+        "width": 62,
+        "bottom": 72,
+        "margin": 16,
+        "opaque": 2319
+      },
+      {
+        "bbox": [
+          16,
+          14,
+          77,
+          73
+        ],
+        "height": 59,
+        "width": 61,
+        "bottom": 72,
+        "margin": 14,
+        "opaque": 2384
+      },
+      {
+        "bbox": [
+          15,
+          11,
+          79,
+          73
+        ],
+        "height": 62,
+        "width": 64,
+        "bottom": 72,
+        "margin": 11,
+        "opaque": 2656
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          10,
+          10,
+          81,
+          73
+        ],
+        "height": 63,
+        "width": 71,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 2823
+      },
+      {
+        "bbox": [
+          12,
+          11,
+          81,
+          73
+        ],
+        "height": 62,
+        "width": 69,
+        "bottom": 72,
+        "margin": 11,
+        "opaque": 2915
+      },
+      {
+        "bbox": [
+          12,
+          7,
+          80,
+          73
+        ],
+        "height": 66,
+        "width": 68,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 2973
+      },
+      {
+        "bbox": [
+          11,
+          4,
+          83,
+          73
+        ],
+        "height": 69,
+        "width": 72,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 3320
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          10,
+          10
+        ],
+        "pre_fix_bbox": [
+          10,
+          10,
+          81,
+          73
+        ],
+        "resize_size": [
+          71,
+          63
+        ],
+        "final_bbox": [
+          10,
+          10,
+          81,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          12,
+          11
+        ],
+        "pre_fix_bbox": [
+          12,
+          11,
+          81,
+          73
+        ],
+        "resize_size": [
+          69,
+          62
+        ],
+        "final_bbox": [
+          12,
+          11,
+          81,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          12,
+          7
+        ],
+        "pre_fix_bbox": [
+          12,
+          7,
+          80,
+          73
+        ],
+        "resize_size": [
+          68,
+          66
+        ],
+        "final_bbox": [
+          12,
+          7,
+          80,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          11,
+          4
+        ],
+        "pre_fix_bbox": [
+          11,
+          4,
+          83,
+          73
+        ],
+        "resize_size": [
+          72,
+          69
+        ],
+        "final_bbox": [
+          11,
+          4,
+          83,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.8992248062015504,
+    "height_ratio_after": 1.0077519379844961,
+    "binding_limit": [],
+    "output_sha256": "941d53e9dfb19dfcb8dd096a998118dcd10aed33b5f7cb1c906c7d6d6f8c5e4b",
+    "changed_visible_pixels": [
+      2852,
+      2943,
+      3010,
+      3355
+    ]
+  },
+  {
+    "monster": "niflheim_frost_owl",
+    "row": "defeat",
+    "old": "art/bakeoff/monsters/niflheim_frost_owl-defeat-v2.png",
+    "new": "art/bakeoff/monsters/niflheim_frost_owl-defeat-v3.png",
+    "review": "art/raw/monsters-93/final-review/niflheim_frost_owl-defeat-review.png",
+    "raw": "art/raw/monsters-76/niflheim_frost_owl-defeat.png",
+    "raw_sha256": "6825764b9f6ff058273e90d681d9d63e8e7349d2169cd66f6bfb6d37bdef7fde",
+    "source_boxes": [
+      {
+        "bbox": [
+          123,
+          154,
+          500,
+          540
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          72,
+          295,
+          537,
+          540
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          102,
+          213,
+          590,
+          486
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          34,
+          274,
+          575,
+          495
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      66,
+      67,
+      60,
+      65
+    ],
+    "candidate_idle_heights": [
+      58,
+      61,
+      57,
+      56,
+      57,
+      57
+    ],
+    "kept_idle_mean": 64.5,
+    "candidate_idle_mean": 57.666666666666664,
+    "k": 1.1184971098265897,
+    "used": 1.004312999616143,
+    "old_factor": 0.15,
+    "new_factor": 0.15064694994242145,
+    "limited_by": [
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.0043130006161431,
+      "violations": [
+        "width"
+      ]
+    },
+    "tested_event_count": 202,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          18,
+          15,
+          75,
+          73
+        ],
+        "height": 58,
+        "width": 57,
+        "bottom": 72,
+        "margin": 15,
+        "opaque": 2279
+      },
+      {
+        "bbox": [
+          9,
+          36,
+          79,
+          73
+        ],
+        "height": 37,
+        "width": 70,
+        "bottom": 72,
+        "margin": 9,
+        "opaque": 1783
+      },
+      {
+        "bbox": [
+          8,
+          32,
+          81,
+          73
+        ],
+        "height": 41,
+        "width": 73,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 1978
+      },
+      {
+        "bbox": [
+          4,
+          40,
+          85,
+          73
+        ],
+        "height": 33,
+        "width": 81,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1699
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          18,
+          15,
+          75,
+          73
+        ],
+        "height": 58,
+        "width": 57,
+        "bottom": 72,
+        "margin": 15,
+        "opaque": 2279
+      },
+      {
+        "bbox": [
+          9,
+          36,
+          79,
+          73
+        ],
+        "height": 37,
+        "width": 70,
+        "bottom": 72,
+        "margin": 9,
+        "opaque": 1783
+      },
+      {
+        "bbox": [
+          7,
+          32,
+          81,
+          73
+        ],
+        "height": 41,
+        "width": 74,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 2011
+      },
+      {
+        "bbox": [
+          4,
+          40,
+          85,
+          73
+        ],
+        "height": 33,
+        "width": 81,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1699
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          18,
+          15
+        ],
+        "pre_fix_bbox": [
+          18,
+          15,
+          75,
+          73
+        ],
+        "resize_size": [
+          57,
+          58
+        ],
+        "final_bbox": [
+          18,
+          15,
+          75,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          9,
+          36
+        ],
+        "pre_fix_bbox": [
+          9,
+          36,
+          79,
+          73
+        ],
+        "resize_size": [
+          70,
+          37
+        ],
+        "final_bbox": [
+          9,
+          36,
+          79,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          7,
+          32
+        ],
+        "pre_fix_bbox": [
+          7,
+          32,
+          81,
+          73
+        ],
+        "resize_size": [
+          74,
+          41
+        ],
+        "final_bbox": [
+          7,
+          32,
+          81,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          4,
+          40
+        ],
+        "pre_fix_bbox": [
+          4,
+          40,
+          85,
+          73
+        ],
+        "resize_size": [
+          81,
+          33
+        ],
+        "final_bbox": [
+          4,
+          40,
+          85,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.6550387596899225,
+    "height_ratio_after": 0.6550387596899225,
+    "binding_limit": [
+      "width"
+    ],
+    "output_sha256": "a62abcb0a35ff397752c024068e473b43fe354e8d03c9a190df7b86e1b2a93e4",
+    "changed_visible_pixels": [
+      0,
+      0,
+      1914,
+      0
+    ]
+  },
+  {
+    "monster": "ember_imp",
+    "row": "windup",
+    "old": "art/bakeoff/monsters/ember_imp-windup-v1.png",
+    "new": "art/bakeoff/monsters/ember_imp-windup-v2.png",
+    "review": "art/raw/monsters-93/final-review/ember_imp-windup-review.png",
+    "raw": "art/raw/monsters-71/ember_imp-windup.png",
+    "raw_sha256": "91767097612e6deb42476cf71a470dad113bbb9ac9005e173a1c9794d49f9982",
+    "source_boxes": [
+      {
+        "bbox": [
+          132,
+          129,
+          476,
+          539
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          74,
+          178,
+          471,
+          538
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          123,
+          91,
+          521,
+          506
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          104,
+          118,
+          535,
+          514
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      69,
+      69,
+      69,
+      69
+    ],
+    "candidate_idle_heights": [
+      62,
+      63,
+      63,
+      63,
+      62,
+      63
+    ],
+    "kept_idle_mean": 69.0,
+    "candidate_idle_mean": 62.666666666666664,
+    "k": 1.1010638297872342,
+    "used": 1.1010638297872342,
+    "old_factor": 0.145,
+    "new_factor": 0.15965425531914895,
+    "limited_by": [],
+    "last_rejected": null,
+    "tested_event_count": 1,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          24,
+          14,
+          74,
+          73
+        ],
+        "height": 59,
+        "width": 50,
+        "bottom": 72,
+        "margin": 14,
+        "opaque": 1620
+      },
+      {
+        "bbox": [
+          19,
+          21,
+          77,
+          73
+        ],
+        "height": 52,
+        "width": 58,
+        "bottom": 72,
+        "margin": 19,
+        "opaque": 1651
+      },
+      {
+        "bbox": [
+          19,
+          13,
+          77,
+          73
+        ],
+        "height": 60,
+        "width": 58,
+        "bottom": 72,
+        "margin": 13,
+        "opaque": 1849
+      },
+      {
+        "bbox": [
+          18,
+          16,
+          80,
+          73
+        ],
+        "height": 57,
+        "width": 62,
+        "bottom": 72,
+        "margin": 16,
+        "opaque": 1955
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          22,
+          8,
+          77,
+          73
+        ],
+        "height": 65,
+        "width": 55,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 1969
+      },
+      {
+        "bbox": [
+          16,
+          16,
+          79,
+          73
+        ],
+        "height": 57,
+        "width": 63,
+        "bottom": 72,
+        "margin": 16,
+        "opaque": 1976
+      },
+      {
+        "bbox": [
+          16,
+          7,
+          80,
+          73
+        ],
+        "height": 66,
+        "width": 64,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 2237
+      },
+      {
+        "bbox": [
+          15,
+          10,
+          84,
+          73
+        ],
+        "height": 63,
+        "width": 69,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 2416
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          22,
+          8
+        ],
+        "pre_fix_bbox": [
+          22,
+          8,
+          77,
+          73
+        ],
+        "resize_size": [
+          55,
+          65
+        ],
+        "final_bbox": [
+          22,
+          8,
+          77,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          16,
+          16
+        ],
+        "pre_fix_bbox": [
+          16,
+          16,
+          79,
+          73
+        ],
+        "resize_size": [
+          63,
+          57
+        ],
+        "final_bbox": [
+          16,
+          16,
+          79,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          16,
+          7
+        ],
+        "pre_fix_bbox": [
+          16,
+          7,
+          80,
+          73
+        ],
+        "resize_size": [
+          64,
+          66
+        ],
+        "final_bbox": [
+          16,
+          7,
+          80,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          15,
+          10
+        ],
+        "pre_fix_bbox": [
+          15,
+          10,
+          84,
+          73
+        ],
+        "resize_size": [
+          69,
+          63
+        ],
+        "final_bbox": [
+          15,
+          10,
+          84,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.8260869565217391,
+    "height_ratio_after": 0.9094202898550725,
+    "binding_limit": [],
+    "output_sha256": "87bb2baae94a0abc3a022663c062042bbaa58dc3ecba4818911fdc178c1a57e3",
+    "changed_visible_pixels": [
+      2073,
+      2088,
+      2382,
+      2616
+    ]
+  },
+  {
+    "monster": "ember_imp",
+    "row": "defeat",
+    "old": "art/bakeoff/monsters/ember_imp-defeat-v1.png",
+    "new": "art/bakeoff/monsters/ember_imp-defeat-v2.png",
+    "review": "art/raw/monsters-93/final-review/ember_imp-defeat-review.png",
+    "raw": "art/raw/monsters-71/ember_imp-defeat.png",
+    "raw_sha256": "ff2726ab42b69d7f90e25a79ef9514127f3cb0beb66a81201cd4019f938806ab",
+    "source_boxes": [
+      {
+        "bbox": [
+          159,
+          148,
+          480,
+          550
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          106,
+          218,
+          500,
+          554
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          87,
+          250,
+          540,
+          450
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          77,
+          257,
+          544,
+          450
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      69,
+      69,
+      69,
+      69
+    ],
+    "candidate_idle_heights": [
+      62,
+      63,
+      63,
+      63,
+      62,
+      63
+    ],
+    "kept_idle_mean": 69.0,
+    "candidate_idle_mean": 62.666666666666664,
+    "k": 1.1010638297872342,
+    "used": 1.1010638297872342,
+    "old_factor": 0.14782609,
+    "new_factor": 0.16276596079787234,
+    "limited_by": [],
+    "last_rejected": null,
+    "tested_event_count": 1,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          33,
+          14,
+          80,
+          73
+        ],
+        "height": 59,
+        "width": 47,
+        "bottom": 72,
+        "margin": 14,
+        "opaque": 1355
+      },
+      {
+        "bbox": [
+          21,
+          23,
+          79,
+          73
+        ],
+        "height": 50,
+        "width": 58,
+        "bottom": 72,
+        "margin": 17,
+        "opaque": 1360
+      },
+      {
+        "bbox": [
+          14,
+          43,
+          81,
+          73
+        ],
+        "height": 30,
+        "width": 67,
+        "bottom": 72,
+        "margin": 14,
+        "opaque": 1118
+      },
+      {
+        "bbox": [
+          11,
+          44,
+          80,
+          73
+        ],
+        "height": 29,
+        "width": 69,
+        "bottom": 72,
+        "margin": 11,
+        "opaque": 1113
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          31,
+          8,
+          83,
+          73
+        ],
+        "height": 65,
+        "width": 52,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 1659
+      },
+      {
+        "bbox": [
+          18,
+          18,
+          82,
+          73
+        ],
+        "height": 55,
+        "width": 64,
+        "bottom": 72,
+        "margin": 14,
+        "opaque": 1658
+      },
+      {
+        "bbox": [
+          10,
+          40,
+          84,
+          73
+        ],
+        "height": 33,
+        "width": 74,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 1365
+      },
+      {
+        "bbox": [
+          7,
+          42,
+          83,
+          73
+        ],
+        "height": 31,
+        "width": 76,
+        "bottom": 72,
+        "margin": 7,
+        "opaque": 1308
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          31,
+          8
+        ],
+        "pre_fix_bbox": [
+          31,
+          8,
+          83,
+          73
+        ],
+        "resize_size": [
+          52,
+          65
+        ],
+        "final_bbox": [
+          31,
+          8,
+          83,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          18,
+          18
+        ],
+        "pre_fix_bbox": [
+          18,
+          18,
+          82,
+          73
+        ],
+        "resize_size": [
+          64,
+          55
+        ],
+        "final_bbox": [
+          18,
+          18,
+          82,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          10,
+          40
+        ],
+        "pre_fix_bbox": [
+          10,
+          40,
+          84,
+          73
+        ],
+        "resize_size": [
+          74,
+          33
+        ],
+        "final_bbox": [
+          10,
+          40,
+          84,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          7,
+          42
+        ],
+        "pre_fix_bbox": [
+          7,
+          42,
+          83,
+          73
+        ],
+        "resize_size": [
+          76,
+          31
+        ],
+        "final_bbox": [
+          7,
+          42,
+          83,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.6086956521739131,
+    "height_ratio_after": 0.6666666666666666,
+    "binding_limit": [],
+    "output_sha256": "1d3002e8402a77929a45fe038b7fb1c055bbefe6c1949e546200eac72158e8bb",
+    "changed_visible_pixels": [
+      1735,
+      1733,
+      1403,
+      1339
+    ]
+  },
+  {
+    "monster": "yggdrasil_root_guardian",
+    "row": "windup",
+    "old": "art/bakeoff/monsters/yggdrasil_root_guardian-windup-v1.png",
+    "new": "art/bakeoff/monsters/yggdrasil_root_guardian-windup-v2.png",
+    "review": "art/raw/monsters-93/final-review/yggdrasil_root_guardian-windup-review.png",
+    "raw": "art/raw/monsters-76/yggdrasil_root_guardian-windup.png",
+    "raw_sha256": "dfc1890333ae2720ac73b6841ab72713e45f1d87ed4c383a6d09cdb61a66865e",
+    "source_boxes": [
+      {
+        "bbox": [
+          164,
+          217,
+          529,
+          562
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          111,
+          225,
+          464,
+          560
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          178,
+          100,
+          528,
+          443
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          117,
+          75,
+          427,
+          443
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      68,
+      67,
+      68,
+      68
+    ],
+    "candidate_idle_heights": [
+      62,
+      62,
+      63,
+      62,
+      61,
+      61
+    ],
+    "kept_idle_mean": 67.75,
+    "candidate_idle_mean": 61.833333333333336,
+    "k": 1.0956873315363882,
+    "used": 1.0388267087578322,
+    "old_factor": 0.1818,
+    "new_factor": 0.1888586956521739,
+    "limited_by": [
+      "height"
+    ],
+    "last_rejected": {
+      "k": 1.0398300093983,
+      "violations": [
+        "height"
+      ]
+    },
+    "tested_event_count": 115,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          15,
+          10,
+          81,
+          73
+        ],
+        "height": 63,
+        "width": 66,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 2504
+      },
+      {
+        "bbox": [
+          17,
+          12,
+          81,
+          73
+        ],
+        "height": 61,
+        "width": 64,
+        "bottom": 72,
+        "margin": 12,
+        "opaque": 2575
+      },
+      {
+        "bbox": [
+          17,
+          11,
+          81,
+          73
+        ],
+        "height": 62,
+        "width": 64,
+        "bottom": 72,
+        "margin": 11,
+        "opaque": 2649
+      },
+      {
+        "bbox": [
+          21,
+          6,
+          77,
+          73
+        ],
+        "height": 67,
+        "width": 56,
+        "bottom": 72,
+        "margin": 6,
+        "opaque": 2473
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          13,
+          8,
+          82,
+          73
+        ],
+        "height": 65,
+        "width": 69,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 2696
+      },
+      {
+        "bbox": [
+          16,
+          10,
+          83,
+          73
+        ],
+        "height": 63,
+        "width": 67,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 2783
+      },
+      {
+        "bbox": [
+          16,
+          8,
+          82,
+          73
+        ],
+        "height": 65,
+        "width": 66,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 2851
+      },
+      {
+        "bbox": [
+          20,
+          4,
+          79,
+          73
+        ],
+        "height": 69,
+        "width": 59,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 2689
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          13,
+          8
+        ],
+        "pre_fix_bbox": [
+          13,
+          8,
+          82,
+          73
+        ],
+        "resize_size": [
+          69,
+          65
+        ],
+        "final_bbox": [
+          13,
+          8,
+          82,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          16,
+          10
+        ],
+        "pre_fix_bbox": [
+          16,
+          10,
+          83,
+          73
+        ],
+        "resize_size": [
+          67,
+          63
+        ],
+        "final_bbox": [
+          16,
+          10,
+          83,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          16,
+          8
+        ],
+        "pre_fix_bbox": [
+          16,
+          8,
+          82,
+          73
+        ],
+        "resize_size": [
+          66,
+          65
+        ],
+        "final_bbox": [
+          16,
+          8,
+          82,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          20,
+          4
+        ],
+        "pre_fix_bbox": [
+          20,
+          4,
+          79,
+          73
+        ],
+        "resize_size": [
+          59,
+          70
+        ],
+        "final_bbox": [
+          20,
+          4,
+          79,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.933579335793358,
+    "height_ratio_after": 0.966789667896679,
+    "binding_limit": [
+      "height"
+    ],
+    "output_sha256": "625e8199213354e0b3cbd7786684504eb3083fb15c0fc9d26eb115c7804088de",
+    "changed_visible_pixels": [
+      2789,
+      2891,
+      2979,
+      2775
+    ]
+  },
+  {
+    "monster": "yggdrasil_root_guardian",
+    "row": "defeat",
+    "old": "art/bakeoff/monsters/yggdrasil_root_guardian-defeat-v2.png",
+    "new": "art/bakeoff/monsters/yggdrasil_root_guardian-defeat-v3.png",
+    "review": "art/raw/monsters-93/final-review/yggdrasil_root_guardian-defeat-review.png",
+    "raw": "art/raw/monsters-76/yggdrasil_root_guardian-defeat.png",
+    "raw_sha256": "ae1ea80931e5493b1bd7b1a7aa3444e6e030dc0346c86595d0d83724f62099ae",
+    "source_boxes": [
+      {
+        "bbox": [
+          110,
+          123,
+          547,
+          616
+        ],
+        "transparent_padding": 4
+      },
+      {
+        "bbox": [
+          41,
+          224,
+          522,
+          621
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          42,
+          218,
+          596,
+          513
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          12,
+          266,
+          602,
+          513
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      68,
+      67,
+      68,
+      68
+    ],
+    "candidate_idle_heights": [
+      62,
+      62,
+      63,
+      62,
+      61,
+      61
+    ],
+    "kept_idle_mean": 67.75,
+    "candidate_idle_mean": 61.833333333333336,
+    "k": 1.0956873315363882,
+    "used": 1.0015057594090064,
+    "old_factor": 0.1425,
+    "new_factor": 0.14271457071578342,
+    "limited_by": [
+      "height",
+      "width"
+    ],
+    "last_rejected": {
+      "k": 1.0015057604090065,
+      "violations": [
+        "height"
+      ]
+    },
+    "tested_event_count": 172,
+    "baseline_rgba_exact": [
+      false,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          22,
+          4,
+          83,
+          73
+        ],
+        "height": 69,
+        "width": 61,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 2832
+      },
+      {
+        "bbox": [
+          14,
+          16,
+          83,
+          73
+        ],
+        "height": 57,
+        "width": 69,
+        "bottom": 72,
+        "margin": 13,
+        "opaque": 2547
+      },
+      {
+        "bbox": [
+          8,
+          31,
+          87,
+          73
+        ],
+        "height": 42,
+        "width": 79,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 2037
+      },
+      {
+        "bbox": [
+          4,
+          38,
+          88,
+          73
+        ],
+        "height": 35,
+        "width": 84,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1813
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          22,
+          4,
+          84,
+          73
+        ],
+        "height": 69,
+        "width": 62,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 2872
+      },
+      {
+        "bbox": [
+          14,
+          16,
+          83,
+          73
+        ],
+        "height": 57,
+        "width": 69,
+        "bottom": 72,
+        "margin": 13,
+        "opaque": 2547
+      },
+      {
+        "bbox": [
+          8,
+          31,
+          87,
+          73
+        ],
+        "height": 42,
+        "width": 79,
+        "bottom": 72,
+        "margin": 8,
+        "opaque": 2037
+      },
+      {
+        "bbox": [
+          4,
+          38,
+          88,
+          73
+        ],
+        "height": 35,
+        "width": 84,
+        "bottom": 72,
+        "margin": 4,
+        "opaque": 1813
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          22,
+          4
+        ],
+        "pre_fix_bbox": [
+          22,
+          4,
+          84,
+          73
+        ],
+        "resize_size": [
+          64,
+          71
+        ],
+        "final_bbox": [
+          22,
+          4,
+          84,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          14,
+          16
+        ],
+        "pre_fix_bbox": [
+          14,
+          16,
+          83,
+          73
+        ],
+        "resize_size": [
+          69,
+          57
+        ],
+        "final_bbox": [
+          14,
+          16,
+          83,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          8,
+          31
+        ],
+        "pre_fix_bbox": [
+          8,
+          31,
+          87,
+          73
+        ],
+        "resize_size": [
+          79,
+          42
+        ],
+        "final_bbox": [
+          8,
+          31,
+          87,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          4,
+          38
+        ],
+        "pre_fix_bbox": [
+          4,
+          38,
+          88,
+          73
+        ],
+        "resize_size": [
+          84,
+          35
+        ],
+        "final_bbox": [
+          4,
+          38,
+          88,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.7490774907749077,
+    "height_ratio_after": 0.7490774907749077,
+    "binding_limit": [
+      "height"
+    ],
+    "output_sha256": "6b507a2fbe2ec036f39e133e46a003382f5d2ca6c51ecca6e4e9c3eab4071b0d",
+    "changed_visible_pixels": [
+      2901,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "monster": "jotunheim_storm_wisp",
+    "row": "windup",
+    "old": "art/bakeoff/monsters/jotunheim_storm_wisp-windup-v1.png",
+    "new": "art/bakeoff/monsters/jotunheim_storm_wisp-windup-v2.png",
+    "review": "art/raw/monsters-93/final-review/jotunheim_storm_wisp-windup-review.png",
+    "raw": "art/raw/monsters-76/jotunheim_storm_wisp-windup.png",
+    "raw_sha256": "96ae6bd82aafabc51d6954e806b663fe31e4a34f9820c15b845c6a95e6694325",
+    "source_boxes": [
+      {
+        "bbox": [
+          96,
+          129,
+          546,
+          525
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          126,
+          163,
+          519,
+          510
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          138,
+          139,
+          519,
+          475
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          124,
+          148,
+          476,
+          469
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      61,
+      62,
+      62,
+      61
+    ],
+    "candidate_idle_heights": [
+      56,
+      55,
+      57,
+      56,
+      55,
+      58
+    ],
+    "kept_idle_mean": 61.5,
+    "candidate_idle_mean": 56.166666666666664,
+    "k": 1.0949554896142433,
+    "used": 1.0949554896142433,
+    "old_factor": 0.14,
+    "new_factor": 0.15329376854599408,
+    "limited_by": [],
+    "last_rejected": null,
+    "tested_event_count": 1,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          16,
+          15,
+          79,
+          70
+        ],
+        "height": 55,
+        "width": 63,
+        "bottom": 69,
+        "margin": 15,
+        "opaque": 2227
+      },
+      {
+        "bbox": [
+          20,
+          18,
+          75,
+          67
+        ],
+        "height": 49,
+        "width": 55,
+        "bottom": 66,
+        "margin": 18,
+        "opaque": 1839
+      },
+      {
+        "bbox": [
+          20,
+          19,
+          73,
+          66
+        ],
+        "height": 47,
+        "width": 53,
+        "bottom": 65,
+        "margin": 19,
+        "opaque": 1722
+      },
+      {
+        "bbox": [
+          21,
+          21,
+          70,
+          66
+        ],
+        "height": 45,
+        "width": 49,
+        "bottom": 65,
+        "margin": 21,
+        "opaque": 1579
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          13,
+          9,
+          82,
+          70
+        ],
+        "height": 61,
+        "width": 69,
+        "bottom": 69,
+        "margin": 9,
+        "opaque": 2702
+      },
+      {
+        "bbox": [
+          17,
+          13,
+          77,
+          66
+        ],
+        "height": 53,
+        "width": 60,
+        "bottom": 65,
+        "margin": 13,
+        "opaque": 2178
+      },
+      {
+        "bbox": [
+          17,
+          13,
+          75,
+          65
+        ],
+        "height": 52,
+        "width": 58,
+        "bottom": 64,
+        "margin": 13,
+        "opaque": 2088
+      },
+      {
+        "bbox": [
+          18,
+          16,
+          72,
+          65
+        ],
+        "height": 49,
+        "width": 54,
+        "bottom": 64,
+        "margin": 16,
+        "opaque": 1900
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          13,
+          9
+        ],
+        "pre_fix_bbox": [
+          13,
+          9,
+          82,
+          70
+        ],
+        "resize_size": [
+          69,
+          61
+        ],
+        "final_bbox": [
+          13,
+          9,
+          82,
+          70
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          17,
+          13
+        ],
+        "pre_fix_bbox": [
+          17,
+          13,
+          77,
+          66
+        ],
+        "resize_size": [
+          60,
+          53
+        ],
+        "final_bbox": [
+          17,
+          13,
+          77,
+          66
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          17,
+          13
+        ],
+        "pre_fix_bbox": [
+          17,
+          13,
+          75,
+          65
+        ],
+        "resize_size": [
+          58,
+          52
+        ],
+        "final_bbox": [
+          17,
+          13,
+          75,
+          65
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          18,
+          16
+        ],
+        "pre_fix_bbox": [
+          18,
+          16,
+          72,
+          65
+        ],
+        "resize_size": [
+          54,
+          49
+        ],
+        "final_bbox": [
+          18,
+          16,
+          72,
+          65
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.7967479674796748,
+    "height_ratio_after": 0.8739837398373984,
+    "binding_limit": [],
+    "output_sha256": "eb9d80b0cb25f9cc78c13e0787aff2634e90d7bc8006a3c607414c61fef0024d",
+    "changed_visible_pixels": [
+      2770,
+      2231,
+      2128,
+      1928
+    ]
+  },
+  {
+    "monster": "jotunheim_storm_wisp",
+    "row": "defeat",
+    "old": "art/bakeoff/monsters/jotunheim_storm_wisp-defeat-v1.png",
+    "new": "art/bakeoff/monsters/jotunheim_storm_wisp-defeat-v2.png",
+    "review": "art/raw/monsters-93/final-review/jotunheim_storm_wisp-defeat-review.png",
+    "raw": "art/raw/monsters-76/jotunheim_storm_wisp-defeat.png",
+    "raw_sha256": "2fc7ae46792452f07ef8a25e5a9ce9a520873109ad806dd2c015abacc347b577",
+    "source_boxes": [
+      {
+        "bbox": [
+          121,
+          203,
+          530,
+          560
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          102,
+          236,
+          514,
+          569
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          71,
+          233,
+          571,
+          458
+        ],
+        "transparent_padding": 0
+      },
+      {
+        "bbox": [
+          62,
+          250,
+          563,
+          458
+        ],
+        "transparent_padding": 0
+      }
+    ],
+    "kept_idle_heights": [
+      61,
+      62,
+      62,
+      61
+    ],
+    "candidate_idle_heights": [
+      56,
+      55,
+      57,
+      56,
+      55,
+      58
+    ],
+    "kept_idle_mean": 61.5,
+    "candidate_idle_mean": 56.166666666666664,
+    "k": 1.0949554896142433,
+    "used": 1.0949554896142433,
+    "old_factor": 0.15,
+    "new_factor": 0.1642433234421365,
+    "limited_by": [],
+    "last_rejected": null,
+    "tested_event_count": 1,
+    "baseline_rgba_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_alpha_and_visible_exact": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "before": [
+      {
+        "bbox": [
+          17,
+          18,
+          78,
+          72
+        ],
+        "height": 54,
+        "width": 61,
+        "bottom": 71,
+        "margin": 17,
+        "opaque": 2122
+      },
+      {
+        "bbox": [
+          17,
+          23,
+          79,
+          73
+        ],
+        "height": 50,
+        "width": 62,
+        "bottom": 72,
+        "margin": 17,
+        "opaque": 1984
+      },
+      {
+        "bbox": [
+          10,
+          39,
+          85,
+          73
+        ],
+        "height": 34,
+        "width": 75,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 1743
+      },
+      {
+        "bbox": [
+          10,
+          42,
+          85,
+          73
+        ],
+        "height": 31,
+        "width": 75,
+        "bottom": 72,
+        "margin": 10,
+        "opaque": 1650
+      }
+    ],
+    "after": [
+      {
+        "bbox": [
+          14,
+          13,
+          81,
+          72
+        ],
+        "height": 59,
+        "width": 67,
+        "bottom": 71,
+        "margin": 13,
+        "opaque": 2540
+      },
+      {
+        "bbox": [
+          14,
+          18,
+          82,
+          73
+        ],
+        "height": 55,
+        "width": 68,
+        "bottom": 72,
+        "margin": 14,
+        "opaque": 2396
+      },
+      {
+        "bbox": [
+          6,
+          36,
+          88,
+          73
+        ],
+        "height": 37,
+        "width": 82,
+        "bottom": 72,
+        "margin": 6,
+        "opaque": 2070
+      },
+      {
+        "bbox": [
+          6,
+          39,
+          88,
+          73
+        ],
+        "height": 34,
+        "width": 82,
+        "bottom": 72,
+        "margin": 6,
+        "opaque": 1972
+      }
+    ],
+    "placement": [
+      {
+        "frame": 1,
+        "placement": [
+          14,
+          13
+        ],
+        "pre_fix_bbox": [
+          14,
+          13,
+          81,
+          72
+        ],
+        "resize_size": [
+          67,
+          59
+        ],
+        "final_bbox": [
+          14,
+          13,
+          81,
+          72
+        ],
+        "violations": []
+      },
+      {
+        "frame": 2,
+        "placement": [
+          14,
+          18
+        ],
+        "pre_fix_bbox": [
+          14,
+          18,
+          82,
+          73
+        ],
+        "resize_size": [
+          68,
+          55
+        ],
+        "final_bbox": [
+          14,
+          18,
+          82,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 3,
+        "placement": [
+          6,
+          36
+        ],
+        "pre_fix_bbox": [
+          6,
+          36,
+          88,
+          73
+        ],
+        "resize_size": [
+          82,
+          37
+        ],
+        "final_bbox": [
+          6,
+          36,
+          88,
+          73
+        ],
+        "violations": []
+      },
+      {
+        "frame": 4,
+        "placement": [
+          6,
+          39
+        ],
+        "pre_fix_bbox": [
+          6,
+          39,
+          88,
+          73
+        ],
+        "resize_size": [
+          82,
+          34
+        ],
+        "final_bbox": [
+          6,
+          39,
+          88,
+          73
+        ],
+        "violations": []
+      }
+    ],
+    "height_ratio_before": 0.6869918699186992,
+    "height_ratio_after": 0.7520325203252033,
+    "binding_limit": [],
+    "output_sha256": "0e6754d4840e511e7fe682ae9d96d1bf95ec23a710b06ae2548f84f7d5afac5d",
+    "changed_visible_pixels": [
+      2601,
+      2440,
+      2085,
+      1982
+    ]
+  }
+]

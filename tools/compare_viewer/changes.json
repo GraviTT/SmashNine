@@ -1,0 +1,522 @@
+{
+ "about": "후보 비교 뷰어의 대응표. 출처: reports/after-checkpoint-2026-10-25/art-sprite.md의 새 버전 ↔ 기존 후보 표(리드 작성, 2026-10-25). 경로는 art/bakeoff 기준이고, legacy의 replaces만 저장소 기준이다.",
+ "checkpoint": "checkpoint-2026-10-25",
+ "new": {
+  "luna/luna-jump-v4.png": {
+   "card": "ART-82",
+   "replaces": "luna/luna-jump-v3.png",
+   "change": "F3를 무릎 당긴 정점으로 다시 그림(F2와 구분). F1·F2는 그대로"
+  },
+  "luna/luna-victory-v2.png": {
+   "card": "ART-82",
+   "replaces": "luna/luna-victory-v1.png",
+   "change": "F2 얼굴 폭을 기준 안으로(0.929 → 1.000). 지팡이 회전 F3→F4 간격은 그대로"
+  },
+  "luna/luna_brave-victory-v2.png": {
+   "card": "ART-82",
+   "replaces": "luna/luna_brave-victory-v1.png",
+   "change": "F1 얼굴 폭을 기준 안으로(1.071 → 1.000)"
+  },
+  "nova/nova_female-victory-v2.png": {
+   "card": "ART-82",
+   "replaces": "nova/nova_female-victory-v1.png",
+   "change": "F1·F3·F6 얼굴 폭을 기준 안으로(0.931~1.069 → 1.000). 두 잽이 같은 팔인 것은 그대로"
+  },
+  "rio/rio_female-victory-v2.png": {
+   "card": "ART-82",
+   "replaces": "rio/rio_female-victory-v1.png",
+   "change": "F6 얼굴 폭을 기준 안으로(1.083 → 1.000)"
+  },
+  "rio/rio_male-victory-v2.png": {
+   "card": "ART-82",
+   "replaces": "rio/rio_male-victory-v1.png",
+   "change": "F2를 다시 그림. F3→F4 간격은 그대로"
+  },
+  "yuki/yuki-fall-v3.png": {
+   "card": "ART-82",
+   "replaces": "yuki/yuki-fall-v2.png",
+   "change": "F2의 머리카락·소매·장식이 F1과 다르게 날림"
+  },
+  "rio/rio_female-mana_combo-v2.png": {
+   "card": "ART-86",
+   "replaces": "rio/rio_female-mana_combo-v1.png",
+   "change": "F5 잘린 칼끝을 되살리고 F6의 떨어진 칼 조각을 지움(QA-23 L14)",
+   "game_repair": true
+  },
+  "nova/nova_male-walk-v3.png": {
+   "card": "ART-86",
+   "replaces": "nova/nova_male-walk-v2.png",
+   "change": "F3 팔 보호대·정강이를 다른 프레임과 맞춤(QA-23 L09)",
+   "game_repair": true
+  },
+  "rio/rio_female-walk-v4.png": {
+   "card": "ART-86",
+   "replaces": "rio/rio_female-walk-v3.png",
+   "change": "F4 검 방향을 F3·F5와 맞춤(QA-23 L10)",
+   "game_repair": true
+  },
+  "rio/rio_male-walk-v2.png": {
+   "card": "ART-86",
+   "replaces": "rio/rio_male-walk-v1.png",
+   "change": "18% 작던 걷기 전체를 대기 크기로 맞춤(QA-23 L11). 다리 교대는 여전히 약함",
+   "game_repair": true
+  },
+  "nova/nova_female-gravity_brake-v2.png": {
+   "card": "ART-86",
+   "replaces": "nova/nova_female-gravity_brake-v1.png",
+   "change": "F4–F6 발을 발 기준선으로 4px 내림(QA-23 L34). 원래 줄부터 얼굴 검사가 기준 밖이라 Codex가 보류로 표시",
+   "game_repair": true
+  },
+  "frey/frey-attack-v5.png": {
+   "card": "ART-86",
+   "replaces": "frey/frey-attack-v4.png",
+   "change": "F3–F6 머리 크기를 기준 안으로(0.92 → 기준 안, QA-23 L37). 기본 시트의 예비 공격 줄",
+   "game_repair": true
+  },
+  "frey/frey-jump-v3.png": {
+   "card": "ART-89",
+   "replaces": "frey/frey-jump-v2.png",
+   "change": "줄 전체를 새로 그림: 도약(뒷다리 뻗음)·상승(무릎 접음)·정점(다리 풂, 망토 수평)이 구분됨. 얼굴 0.971–1.016"
+  },
+  "luna/luna_brave-hurt-v3.png": {
+   "card": "ART-89",
+   "replaces": "luna/luna_brave-hurt-v2.png",
+   "change": "줄 전체를 새로 그림: 머리·상체가 뒤로 젖혀짐 → 웅크림 → 가드 복귀. F3 얼굴 1.034(F1·F2는 감은 눈)"
+  },
+  "yuki/yuki-victory-v2.png": {
+   "card": "ART-89",
+   "replaces": "yuki/yuki-victory-v1.png",
+   "change": "줄 전체를 새로 그림: 부적 튕김 → 부채 반쯤 펼침 → 완전히 펼침 → 턱 앞. 얼굴 0.966–0.985"
+  },
+  "luna/luna-victory-v3.png": {
+   "card": "ART-89",
+   "replaces": "luna/luna-victory-v2.png",
+   "change": "줄 전체를 새로 그림: 지팡이를 한 방향으로 돌리고 같은 손으로 듦, 별 자세·윙크. F3→F4 이동은 아직 큰 편"
+  },
+  "nova/nova_female-victory-v3.png": {
+   "card": "ART-89",
+   "replaces": "nova/nova_female-victory-v2.png",
+   "change": "줄 전체를 새로 그림: 두 잽이 서로 다른 팔, 주먹을 올린 채 유지하고 윙크"
+  },
+  "monsters/mossling-walk-v2.png": {
+   "card": "ART-83",
+   "replaces": "monsters/mossling-walk-v1.png",
+   "change": "다리 교대가 1배에서도 보임"
+  },
+  "monsters/mossling-attack-v2.png": {
+   "card": "ART-83",
+   "replaces": "monsters/mossling-attack-v1.png",
+   "change": "물 때 몸이 16px 앞으로 나감"
+  },
+  "monsters/ember_imp-walk-v2.png": {
+   "card": "ART-83",
+   "replaces": "monsters/ember_imp-walk-v1.png",
+   "change": "다리 교대가 1배에서도 보임"
+  },
+  "monsters/ember_imp-idle-v2.png": {
+   "card": "ART-83",
+   "replaces": "monsters/ember_imp-idle-v1.png",
+   "change": "세부 묘사를 늘림(디테일 72–76 → 97–101)"
+  },
+  "monsters/asgard_aegis_ram-idle-v2.png": {
+   "card": "ART-83",
+   "replaces": "monsters/asgard_aegis_ram-idle-v1.png",
+   "change": "세부 묘사를 늘림(디테일 75–81 → 92–97)"
+  },
+  "monsters/vanaheim_seed_sprite-attack-v2.png": {
+   "card": "ART-83·88",
+   "replaces": "monsters/vanaheim_seed_sprite-attack-v1.png",
+   "change": "앞으로 뻗는 거리 5 → 10px(ART-83), 칸 가장자리 4px 여백(ART-88)"
+  },
+  "monsters/vanaheim_vine_hound-idle-v2.png": {
+   "card": "ART-83·90",
+   "replaces": "monsters/vanaheim_vine_hound-idle-v1.png",
+   "change": "잎 가장자리 자글거림과 잔점을 정리(ART-83·90)"
+  },
+  "monsters/vanaheim_vine_hound-walk-v2.png": {
+   "card": "ART-83·90",
+   "replaces": "monsters/vanaheim_vine_hound-walk-v1.png",
+   "change": "잎 가장자리 자글거림과 잔점을 정리(ART-83·90)"
+  },
+  "monsters/vanaheim_vine_hound-windup-v2.png": {
+   "card": "ART-83·90",
+   "replaces": "monsters/vanaheim_vine_hound-windup-v1.png",
+   "change": "잎 가장자리 자글거림과 잔점을 정리(ART-83·90)"
+  },
+  "monsters/vanaheim_vine_hound-attack-v2.png": {
+   "card": "ART-83·90",
+   "replaces": "monsters/vanaheim_vine_hound-attack-v1.png",
+   "change": "잎 가장자리 자글거림과 잔점을 정리(ART-83·90)"
+  },
+  "monsters/vanaheim_vine_hound-hurt-v2.png": {
+   "card": "ART-83·90",
+   "replaces": "monsters/vanaheim_vine_hound-hurt-v1.png",
+   "change": "잎 가장자리 자글거림과 잔점을 정리(ART-83·90)"
+  },
+  "monsters/vanaheim_vine_hound-defeat-v2.png": {
+   "card": "ART-83·88·90",
+   "replaces": "monsters/vanaheim_vine_hound-defeat-v1.png",
+   "change": "잎 가장자리 자글거림과 잔점을 정리(ART-83·90), 칸 가장자리 4px 여백(ART-88)"
+  },
+  "monsters/alfheim_moon_moth-windup-v2.png": {
+   "card": "ART-83",
+   "replaces": "monsters/alfheim_moon_moth-windup-v1.png",
+   "change": "F2 크기를 대기와 맞춤(0.896 → 1.020)"
+  },
+  "monsters/jotunheim_storm_wisp-hurt-v2.png": {
+   "card": "ART-83",
+   "replaces": "monsters/jotunheim_storm_wisp-hurt-v1.png",
+   "change": "움찔하는 모양 변화가 커짐(돌–핵 간격 5 → 16px)"
+  },
+  "monsters/niflheim_glacier_wolf-attack-v2.png": {
+   "card": "ART-83",
+   "replaces": "monsters/niflheim_glacier_wolf-attack-v1.png",
+   "change": "도약 정점이 가운데(F4 → F3)로"
+  },
+  "monsters/alfheim_moon_moth-defeat-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/alfheim_moon_moth-defeat-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/asgard_aegis_ram-windup-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/asgard_aegis_ram-windup-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/asgard_runic_raven-windup-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/asgard_runic_raven-windup-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/jotunheim_rune_golem-attack-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/jotunheim_rune_golem-attack-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/jotunheim_rune_golem-defeat-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/jotunheim_rune_golem-defeat-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/jotunheim_rune_golem-hurt-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/jotunheim_rune_golem-hurt-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/jotunheim_rune_golem-walk-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/jotunheim_rune_golem-walk-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/jotunheim_storm_wisp-attack-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/jotunheim_storm_wisp-attack-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/midgard_rooftop_slinger-attack-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/midgard_rooftop_slinger-attack-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/midgard_rooftop_slinger-defeat-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/midgard_rooftop_slinger-defeat-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/muspelheim_magma_boar-defeat-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/muspelheim_magma_boar-defeat-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/muspelheim_magma_boar-windup-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/muspelheim_magma_boar-windup-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/niflheim_frost_owl-defeat-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/niflheim_frost_owl-defeat-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/svartalfheim_cog_drone-defeat-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/svartalfheim_cog_drone-defeat-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/vanaheim_seed_sprite-defeat-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/vanaheim_seed_sprite-defeat-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/yggdrasil_root_oracle-windup-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/yggdrasil_root_oracle-windup-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임)"
+  },
+  "monsters/muspelheim_magma_boar-attack-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/muspelheim_magma_boar-attack-v1.png",
+   "change": "칸 가장자리 4px 여백 확보(칸 안에서 옮기거나 줄 배율을 조금 줄임). 준비→공격 엄니 간격이 8 → 6px로 줄어듦"
+  },
+  "monsters/niflheim_glacier_wolf-hurt-v2.png": {
+   "card": "ART-88",
+   "replaces": "monsters/niflheim_glacier_wolf-hurt-v1.png",
+   "change": "들어 올린 머리 윗부분이 잘린 것을 원본에서 다시 자름"
+  },
+  "monsters/yggdrasil_root_guardian-defeat-v2.png": {
+   "card": "ART-88·90",
+   "replaces": "monsters/yggdrasil_root_guardian-defeat-v1.png",
+   "change": "칸 가장자리 4px 여백(ART-88), F1 팔을 조금 낮춰 위 여백 4px(ART-90)"
+  },
+  "monsters/yggdrasil_root_guardian-attack-v2.png": {
+   "card": "ART-90",
+   "replaces": "monsters/yggdrasil_root_guardian-attack-v1.png",
+   "change": "F1 팔을 조금 낮춰 위 여백 4px"
+  },
+  "monsters/svartalfheim_cog_drone-projectile-v2.png": {
+   "card": "ART-85",
+   "replaces": "monsters/svartalfheim_cog_drone-projectile-v1.png",
+   "change": "4장 90° 회전 → 8장 45° 회전, 불꽃 깜박임"
+  },
+  "monsters/niflheim_frost_owl-projectile-v2.png": {
+   "card": "ART-85",
+   "replaces": "monsters/niflheim_frost_owl-projectile-v1.png",
+   "change": "얼음 본체는 고정, 꼬리만 조금 반짝임"
+  },
+  "monsters/yggdrasil_root_guardian-shockwave-v1.png": {
+   "card": "ART-85",
+   "replaces": "monsters/slam_shockwave-v1.png",
+   "change": "수호자 색으로 따로 그린 뿌리 충격파(수호자 전용, 골렘은 공용 그대로). 고르면 게임 코드 연결이 필요함",
+   "new_row": true
+  },
+  "yuki/yuki_face-hurt-v2.png": {
+   "card": "ART-84",
+   "replaces": "yuki/yuki_face-hurt-v1.png",
+   "change": "감은 눈·벌린 입·땀방울로 아픔이 더 잘 읽힘"
+  },
+  "rio/rio_male_face-hurt-v2.png": {
+   "card": "ART-84",
+   "replaces": "rio/rio_male_face-hurt-v1.png",
+   "change": "피곤한 얼굴에서 아픈 얼굴로"
+  },
+  "frey/frey_face-shadow-v2.png": {
+   "card": "ART-84",
+   "replaces": "frey/frey_face-shadow-v1.png",
+   "change": "피부·금속을 더 어둡게 해 눈빛이 상대적으로 강해짐. 어두운 대화창에서 머리·옷 세부는 덜 보임."
+  },
+  "luna/luna_face-shadow-v2.png": {
+   "card": "ART-84",
+   "replaces": "luna/luna_face-shadow-v1.png",
+   "change": "피부·금속을 더 어둡게 해 눈빛이 상대적으로 강해짐. 어두운 대화창에서 머리·옷 세부는 덜 보임."
+  },
+  "luna/luna_brave_face-shadow-v2.png": {
+   "card": "ART-84",
+   "replaces": "luna/luna_brave_face-shadow-v1.png",
+   "change": "피부·금속을 더 어둡게 해 눈빛이 상대적으로 강해짐. 어두운 대화창에서 머리·옷 세부는 덜 보임."
+  },
+  "yuki/yuki_face-shadow-v2.png": {
+   "card": "ART-84",
+   "replaces": "yuki/yuki_face-shadow-v1.png",
+   "change": "피부·금속을 더 어둡게 해 눈빛이 상대적으로 강해짐. 어두운 대화창에서 머리·옷 세부는 덜 보임. Yuki 부적 밝기를 낮춤."
+  },
+  "nova/nova_male_face-shadow-v2.png": {
+   "card": "ART-84",
+   "replaces": "nova/nova_male_face-shadow-v1.png",
+   "change": "피부·금속을 더 어둡게 해 눈빛이 상대적으로 강해짐. 어두운 대화창에서 머리·옷 세부는 덜 보임."
+  },
+  "nova/nova_female_face-shadow-v2.png": {
+   "card": "ART-84",
+   "replaces": "nova/nova_female_face-shadow-v1.png",
+   "change": "피부·금속을 더 어둡게 해 눈빛이 상대적으로 강해짐. 어두운 대화창에서 머리·옷 세부는 덜 보임."
+  },
+  "rio/rio_male_face-shadow-v2.png": {
+   "card": "ART-84",
+   "replaces": "rio/rio_male_face-shadow-v1.png",
+   "change": "피부·금속을 더 어둡게 해 눈빛이 상대적으로 강해짐. 어두운 대화창에서 머리·옷 세부는 덜 보임."
+  },
+  "rio/rio_female_face-shadow-v2.png": {
+   "card": "ART-84",
+   "replaces": "rio/rio_female_face-shadow-v1.png",
+   "change": "피부·금속을 더 어둡게 해 눈빛이 상대적으로 강해짐. 어두운 대화창에서 머리·옷 세부는 덜 보임. 한쪽 눈빛을 강화함."
+  }
+ },
+ "legacy": {
+  "alfheim_moon_moth": {
+   "card": "ART-87",
+   "file": "monsters/legacy/alfheim_moon_moth_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/alfheim_moon_moth_sheet.png",
+   "qa": [
+    "L21"
+   ],
+   "change": "몸 그림에 섞여 있던 발사 효과 픽셀을 지움"
+  },
+  "alfheim_moon_stag": {
+   "card": "ART-87·90",
+   "file": "monsters/legacy/alfheim_moon_stag_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/alfheim_moon_stag_sheet.png",
+   "qa": [
+    "L12",
+    "L27"
+   ],
+   "change": "공격 줄의 잘린 머리·앞몸을 원본에서 다시 자르고 F3·F4를 다시 그림(4장 모두 다르고 다른 줄과 같은 크기, ART-90), 피격의 잘린 뿔 수리"
+  },
+  "asgard_aegis_ram": {
+   "card": "ART-87",
+   "file": "monsters/legacy/asgard_aegis_ram_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/asgard_aegis_ram_sheet.png",
+   "qa": [
+    "L22"
+   ],
+   "change": "몸 그림에 섞여 있던 발사 효과 픽셀을 지움"
+  },
+  "asgard_runic_raven": {
+   "card": "ART-87",
+   "file": "monsters/legacy/asgard_runic_raven_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/asgard_runic_raven_sheet.png",
+   "qa": [
+    "L15"
+   ],
+   "change": "공격 F3 오른쪽 잘림 수리(부리까지 복구), 앞의 깃털 발사체는 몸에서 뺌"
+  },
+  "ember_imp": {
+   "card": "ART-87",
+   "file": "monsters/legacy/ember_imp_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/ember_imp_sheet.png",
+   "qa": [
+    "L04",
+    "L06",
+    "L23"
+   ],
+   "change": "보라색 계단 테두리 정리, 뿔 끝 위 여백, 섞인 발사 효과 제거(가려진 1장은 다시 그림)"
+  },
+  "jotunheim_rune_golem": {
+   "card": "ART-87",
+   "file": "monsters/legacy/jotunheim_rune_golem_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/jotunheim_rune_golem_sheet.png",
+   "qa": [
+    "L01",
+    "L07",
+    "L08"
+   ],
+   "change": "직선으로 잘린 하체와 넓은 어깨를 원본에서 다시 자름. 전보다 조금 작아짐"
+  },
+  "jotunheim_storm_wisp": {
+   "card": "ART-87",
+   "file": "monsters/legacy/jotunheim_storm_wisp_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/jotunheim_storm_wisp_sheet.png",
+   "qa": [
+    "L24"
+   ],
+   "change": "섞인 발사 효과 제거(가려진 1장은 다시 그림)"
+  },
+  "midgard_rooftop_slinger": {
+   "card": "ART-87",
+   "file": "monsters/legacy/midgard_rooftop_slinger_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/midgard_rooftop_slinger_sheet.png",
+   "qa": [
+    "L16"
+   ],
+   "change": "공격 F3 오른쪽 잘림을 원본에서 다시 자름"
+  },
+  "mossling": {
+   "card": "ART-87",
+   "file": "monsters/legacy/mossling_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/mossling_sheet.png",
+   "qa": [
+    "L05",
+    "L29"
+   ],
+   "change": "청록색 계단 테두리 정리, 섞인 발사 효과 제거"
+  },
+  "muspelheim_magma_boar": {
+   "card": "ART-87",
+   "file": "monsters/legacy/muspelheim_magma_boar_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/muspelheim_magma_boar_sheet.png",
+   "qa": [
+    "L02",
+    "L17",
+    "L30"
+   ],
+   "change": "대기의 잘린 배·다리와 공격 F2–F3 오른쪽 잘림을 원본에서 다시 자름, 섞인 발사 효과 제거"
+  },
+  "niflheim_glacier_wolf": {
+   "card": "ART-87",
+   "file": "monsters/legacy/niflheim_glacier_wolf_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/niflheim_glacier_wolf_sheet.png",
+   "qa": [
+    "L03",
+    "L18"
+   ],
+   "change": "대기의 잘린 다리와 공격 F2 오른쪽 잘림을 원본에서 다시 자름"
+  },
+  "svartalfheim_cog_drone": {
+   "card": "ART-87",
+   "file": "monsters/legacy/svartalfheim_cog_drone_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/svartalfheim_cog_drone_sheet.png",
+   "qa": [
+    "L19",
+    "L25"
+   ],
+   "change": "공격 F2 오른쪽 잘림을 다시 자르고 섞인 발사 효과 제거(가려진 1장은 다시 그림)"
+  },
+  "svartalfheim_gear_beetle": {
+   "card": "ART-87",
+   "file": "monsters/legacy/svartalfheim_gear_beetle_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/svartalfheim_gear_beetle_sheet.png",
+   "qa": [
+    "L20"
+   ],
+   "change": "공격 F2–F3 오른쪽 잘림 수리(드릴 전체 복구), 앞 파편은 몸에서 뺌"
+  },
+  "yggdrasil_root_guardian": {
+   "card": "ART-87",
+   "file": "monsters/legacy/yggdrasil_root_guardian_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/yggdrasil_root_guardian_sheet.png",
+   "qa": [
+    "L13"
+   ],
+   "change": "공격 줄의 잘린 주먹·얼굴을 원본에서 다시 자름"
+  },
+  "yggdrasil_root_oracle": {
+   "card": "ART-87",
+   "file": "monsters/legacy/yggdrasil_root_oracle_sheet-fix1.png",
+   "replaces": "smash-nine-prototype/assets/art/monsters/yggdrasil_root_oracle_sheet.png",
+   "qa": [
+    "L26"
+   ],
+   "change": "섞인 발사 효과 제거(가려진 1장은 다시 그림)"
+  }
+ },
+ "no_new_version": [
+  {
+   "kind": "fighter",
+   "id": "frey",
+   "row": "victory",
+   "text": "새 버전 없음 — 프레임 단위로 다시 그리기(ART-82)와 줄 전체 새로 그리기(ART-89) 모두 얼굴 기준을 못 맞춤"
+  },
+  {
+   "kind": "fighter",
+   "id": "luna_brave",
+   "row": "jump",
+   "text": "새 버전 없음 — 프레임 단위로 다시 그리기(ART-82)와 줄 전체 새로 그리기(ART-89) 모두 얼굴 기준을 못 맞춤"
+  },
+  {
+   "kind": "fighter",
+   "id": "luna_brave",
+   "row": "fall",
+   "text": "새 버전 없음 — 프레임 단위로 다시 그리기(ART-82)와 줄 전체 새로 그리기(ART-89) 모두 얼굴 기준을 못 맞춤"
+  },
+  {
+   "kind": "fighter",
+   "id": "rio_male",
+   "row": "victory",
+   "text": "F3→F4 연결은 새 버전 없음 — ART-89 줄 전체 새로 그리기 실패. v2(ART-82)는 F2만 다시 그림"
+  },
+  {
+   "kind": "fighter",
+   "id": "rio_male",
+   "row": "walk",
+   "text": "다리 교대는 새 버전 없음 — ART-89 줄 전체 새로 그리기 실패. v2(ART-86)는 크기만 맞춤"
+  }
+ ]
+}

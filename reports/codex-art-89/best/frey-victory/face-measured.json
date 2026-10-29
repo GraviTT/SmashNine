@@ -1,0 +1,203 @@
+{
+  "method": "ART-72 계열 4배 대응점 제안 + 4배 직접 검토. E는 눈 간격, W는 눈 아래 노출 얼굴 폭. 제외값은 통과값으로 대체하지 않음. 소수점은 정확도 보증이 아님.",
+  "anchor_face_width": 17.5,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": 1.073,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.073,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 111.909,
+          "y": 85.119,
+          "score": 0.794
+        },
+        {
+          "x": 118.712,
+          "y": 84.764,
+          "score": 0.919
+        },
+        {
+          "x": 101.0,
+          "y": 87.0,
+          "score": 0.869
+        },
+        {
+          "x": 118.5,
+          "y": 86.0,
+          "score": 0.952
+        }
+      ],
+      "within_range": false
+    },
+    {
+      "frame": 2,
+      "eye_ratio": 1.068,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.068,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 111.995,
+          "y": 85.19,
+          "score": 0.847
+        },
+        {
+          "x": 118.77,
+          "y": 84.864,
+          "score": 0.939
+        },
+        {
+          "x": 101.0,
+          "y": 87.0,
+          "score": 0.896
+        },
+        {
+          "x": 118.5,
+          "y": 86.0,
+          "score": 0.948
+        }
+      ],
+      "within_range": false
+    },
+    {
+      "frame": 3,
+      "eye_ratio": 1.061,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.061,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 110.692,
+          "y": 85.084,
+          "score": 0.919
+        },
+        {
+          "x": 117.425,
+          "y": 84.84,
+          "score": 0.868
+        },
+        {
+          "x": 100.0,
+          "y": 87.0,
+          "score": 0.858
+        },
+        {
+          "x": 117.5,
+          "y": 87.0,
+          "score": 0.919
+        }
+      ],
+      "within_range": false
+    },
+    {
+      "frame": 4,
+      "eye_ratio": 1.076,
+      "face_width_ratio": 0.914,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.076,
+      "raw_proposed_width_ratio": 0.914,
+      "landmarks": [
+        {
+          "x": 109.779,
+          "y": 85.109,
+          "score": 0.734
+        },
+        {
+          "x": 116.611,
+          "y": 84.956,
+          "score": 0.957
+        },
+        {
+          "x": 100.5,
+          "y": 87.0,
+          "score": 0.476
+        },
+        {
+          "x": 116.5,
+          "y": 87.0,
+          "score": 0.969
+        }
+      ],
+      "within_range": false
+    },
+    {
+      "frame": 5,
+      "eye_ratio": 1.025,
+      "face_width_ratio": 0.857,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.025,
+      "raw_proposed_width_ratio": 0.857,
+      "landmarks": [
+        {
+          "x": 111.285,
+          "y": 85.294,
+          "score": 0.955
+        },
+        {
+          "x": 117.793,
+          "y": 85.147,
+          "score": 0.929
+        },
+        {
+          "x": 102.5,
+          "y": 87.0,
+          "score": 0.474
+        },
+        {
+          "x": 117.5,
+          "y": 86.0,
+          "score": 0.856
+        }
+      ],
+      "within_range": false
+    },
+    {
+      "frame": 6,
+      "eye_ratio": 1.081,
+      "face_width_ratio": 0.914,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.081,
+      "raw_proposed_width_ratio": 0.914,
+      "landmarks": [
+        {
+          "x": 103.904,
+          "y": 85.253,
+          "score": 0.901
+        },
+        {
+          "x": 110.763,
+          "y": 84.957,
+          "score": 0.974
+        },
+        {
+          "x": 94.5,
+          "y": 86.0,
+          "score": 0.28
+        },
+        {
+          "x": 110.5,
+          "y": 86.0,
+          "score": 0.884
+        }
+      ],
+      "within_range": false
+    }
+  ],
+  "eye_range": [
+    1.025,
+    1.081
+  ],
+  "width_range": [
+    0.857,
+    1.0
+  ],
+  "face_pass": false,
+  "judgment": "검을 한 번 올려 유지하는 흐름은 충족. 눈 간격 1.025–1.081, 얼굴 폭 0.857–1.000으로 실패. F4–6 폭 표식은 올린 팔·머리카락의 영향으로 신뢰도가 낮지만, 분명한 눈 간격 초과가 남음.",
+  "width_limitation": "F4–6 폭 대응점은 올린 팔/머리카락 영향으로 신뢰도 낮음. E 초과만으로도 미납품."
+}

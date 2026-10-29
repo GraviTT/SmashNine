@@ -30,6 +30,10 @@ const FIREBALL_ART := "res://assets/art/monsters/ember_fireball.png"
 ## older 64 px cells (CODEX-ART-05) at 1.5x, so a monster is 96 screen px either way.
 const ART_ROWS := [["idle", 4, 6.0, true], ["walk", 6, 10.0, true], ["attack", 4, 12.0, false], ["hurt", 1, 1.0, false]]
 const ART_ROWS_SIX := [["idle", 6, 6.0, true], ["walk", 6, 10.0, true], ["windup", 4, 8.0, false], ["attack", 6, 12.0, false], ["hurt", 2, 8.0, false], ["defeat", 4, 8.0, false]]
+## A six-row row may hold fewer drawings than ART_ROWS_SIX: the sheets applied on 2026-10-29 keep
+## today's idle 4 / attack 4 / hurt 1 pictures beside the new windup and defeat rows. A row ends at
+## its first empty cell; the counts are read once per sheet file.
+static var drawn_counts_cache := {}
 const ART_SCREEN_CELL := 96.0
 ## Fireball art: 36 px at 1x, or the older 24 px at 1.5x.
 const FIREBALL_SCREEN_SIZE := 36.0
@@ -286,12 +290,33 @@ func _frames_for_sheet(sheet: Texture2D) -> SpriteFrames:
 	var cell := sheet.get_width() / 6
 	six_row_art = sheet.get_height() == 6 * cell
 	var rows: Array = ART_ROWS_SIX if six_row_art else ART_ROWS
+	var counts := drawn_frame_counts(sheet, cell) if six_row_art else []
 	var frames := FRAMES.create_frames()
 	for row in rows.size():
 		var spec: Array = rows[row]
 		var loops := archetype in ["charge", "swoop"] if six_row_art and spec[0] == "attack" else bool(spec[3])
-		FRAMES.add_grid(frames, StringName(spec[0]), sheet, Vector2i(cell, cell), 6, row * 6, int(spec[1]), float(spec[2]), loops)
+		var count := int(counts[row]) if six_row_art else int(spec[1])
+		FRAMES.add_grid(frames, StringName(spec[0]), sheet, Vector2i(cell, cell), 6, row * 6, count, float(spec[2]), loops)
 	return frames
+
+## Drawings per row of a six-row sheet, at most ART_ROWS_SIX's count (see drawn_counts_cache).
+static func drawn_frame_counts(sheet: Texture2D, cell: int) -> Array:
+	var key := sheet.resource_path
+	if key != "" and drawn_counts_cache.has(key):
+		return drawn_counts_cache[key]
+	var image := sheet.get_image()
+	if image != null and image.is_compressed():
+		image.decompress()
+	var counts := []
+	for row in ART_ROWS_SIX.size():
+		var limit := int(ART_ROWS_SIX[row][1])
+		var drawn := 0
+		while image != null and drawn < limit and not image.get_region(Rect2i(drawn * cell, row * cell, cell, cell)).is_invisible():
+			drawn += 1
+		counts.append(limit if image == null else maxi(drawn, 1))
+	if key != "":
+		drawn_counts_cache[key] = counts
+	return counts
 
 func _update_art(delta: float) -> void:
 	if art_sprite == null:
@@ -329,7 +354,8 @@ func _update_six_row_art(delta: float) -> void:
 		art_sprite.animation = &"windup"
 		art_sprite.pause()
 		var progress := 1.0 - clampf(action_timer / maxf(windup_duration, 0.001), 0.0, 1.0)
-		art_sprite.frame = mini(int(progress * 4.0), 3)
+		var count := art_sprite.sprite_frames.get_frame_count(&"windup")
+		art_sprite.frame = mini(int(progress * count), count - 1)
 		return
 	elif motion_attack_timer > 0.0 or action_phase in ["active", "arrival"]:
 		animation = &"attack"
@@ -659,8 +685,13 @@ func _apply_shockwave_art(projectile: Area2D) -> void:
 	projectile.add_child(crest)
 
 ## Separate lookup lets procedural fixtures represent an absent optional resource,
-## even after the real shockwave has been adopted into the game's assets.
+## even after the real shockwave has been adopted into the game's assets. A monster's own
+## <skin>_shockwave.png (the root guardian's, 2026-10-29) comes before the shared slam wave.
 func _shockwave_texture() -> Texture2D:
+	for id in [skin_id, monster_type]:
+		var own := ART_SETTINGS.original_texture("%s/%s_shockwave.png" % [MONSTER_ART_DIR, id])
+		if own != null:
+			return own
 	return ART_SETTINGS.original_texture("%s/slam_shockwave.png" % MONSTER_ART_DIR)
 
 func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: Vector2, damage_type := "normal") -> bool:

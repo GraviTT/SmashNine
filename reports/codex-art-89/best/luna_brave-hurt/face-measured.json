@@ -1,0 +1,109 @@
+{
+  "method": "ART-72 계열 4배 대응점 제안 + 4배 직접 검토. E는 눈 간격, W는 눈 아래 노출 얼굴 폭. 제외값은 통과값으로 대체하지 않음. 소수점은 정확도 보증이 아님.",
+  "anchor_face_width": 14,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "exclusion_reason": "감은 눈과 얼굴 기울기: 프레임 수치 제외",
+      "raw_proposed_eye_ratio": 1.132,
+      "raw_proposed_width_ratio": 0.911,
+      "landmarks": [
+        {
+          "x": 72.968,
+          "y": 69.465,
+          "score": 0.441
+        },
+        {
+          "x": 81.559,
+          "y": 69.703,
+          "score": 0.235
+        },
+        {
+          "x": 69.25,
+          "y": 68.0,
+          "score": 0.733
+        },
+        {
+          "x": 82.0,
+          "y": 70.25,
+          "score": 0.239
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "exclusion_reason": "감은 눈과 얼굴 기울기: 프레임 수치 제외",
+      "raw_proposed_eye_ratio": 1.107,
+      "raw_proposed_width_ratio": 1.018,
+      "landmarks": [
+        {
+          "x": 79.585,
+          "y": 78.341,
+          "score": 0.264
+        },
+        {
+          "x": 86.33,
+          "y": 83.351,
+          "score": 0.346
+        },
+        {
+          "x": 73.25,
+          "y": 80.5,
+          "score": 0.795
+        },
+        {
+          "x": 87.5,
+          "y": 80.25,
+          "score": 0.32
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 3,
+      "eye_ratio": 1.034,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.034,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 79.577,
+          "y": 68.973,
+          "score": 0.86
+        },
+        {
+          "x": 87.246,
+          "y": 67.302,
+          "score": 0.709
+        },
+        {
+          "x": 74.0,
+          "y": 69.5,
+          "score": 0.884
+        },
+        {
+          "x": 88.0,
+          "y": 68.5,
+          "score": 0.603
+        }
+      ],
+      "within_range": true
+    }
+  ],
+  "eye_range": [
+    1.034,
+    1.034
+  ],
+  "width_range": [
+    1.0,
+    1.0
+  ],
+  "face_pass": true,
+  "judgment": "머리·상체를 뒤로 젖히는 타격 반동, 낮게 웅크림, 가드 복귀. F1·F2는 감은 눈 및 기울어진 얼굴로 측정 제외; F3만 눈 1.034 / 폭 1.000."
+}

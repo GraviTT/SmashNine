@@ -1,0 +1,7390 @@
+{
+  "status": "PASS_WITH_DECLARED_UNRESOLVED",
+  "checks": 1419,
+  "failures": [],
+  "known_unresolved": [
+    {
+      "id": "C08",
+      "frame": 1,
+      "reason": "grounded height 70 > available 69; feet y72; width <=88 so card does not authorize shrinking"
+    },
+    {
+      "id": "C22",
+      "frame": 1,
+      "reason": "grounded height 70 > available 69; feet y72; width <=88 so card does not authorize shrinking",
+      "margin": 3
+    }
+  ],
+  "rows": [
+    {
+      "id": "C01",
+      "path": "art/bakeoff/monsters/jotunheim_rune_golem-walk-v2.png",
+      "frames": 6,
+      "changed_frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "C02",
+      "path": "art/bakeoff/monsters/jotunheim_rune_golem-attack-v2.png",
+      "frames": 6,
+      "changed_frames": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "C03",
+      "path": "art/bakeoff/monsters/jotunheim_storm_wisp-attack-v2.png",
+      "frames": 6,
+      "changed_frames": [
+        3
+      ]
+    },
+    {
+      "id": "C04",
+      "path": "art/bakeoff/monsters/midgard_rooftop_slinger-attack-v2.png",
+      "frames": 6,
+      "changed_frames": [
+        3
+      ]
+    },
+    {
+      "id": "C05",
+      "path": "art/bakeoff/monsters/muspelheim_magma_boar-attack-v2.png",
+      "frames": 6,
+      "changed_frames": [
+        3
+      ]
+    },
+    {
+      "id": "C07",
+      "path": "art/bakeoff/monsters/vanaheim_seed_sprite-attack-v2.png",
+      "frames": 6,
+      "changed_frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "C09",
+      "path": "art/bakeoff/monsters/niflheim_glacier_wolf-hurt-v2.png",
+      "frames": 2,
+      "changed_frames": [
+        1
+      ]
+    },
+    {
+      "id": "C10",
+      "path": "art/bakeoff/monsters/jotunheim_rune_golem-hurt-v2.png",
+      "frames": 2,
+      "changed_frames": [
+        1
+      ]
+    },
+    {
+      "id": "C11",
+      "path": "art/bakeoff/monsters/alfheim_moon_moth-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        4
+      ]
+    },
+    {
+      "id": "C12",
+      "path": "art/bakeoff/monsters/asgard_aegis_ram-windup-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        2
+      ]
+    },
+    {
+      "id": "C13",
+      "path": "art/bakeoff/monsters/asgard_runic_raven-windup-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        2
+      ]
+    },
+    {
+      "id": "C14",
+      "path": "art/bakeoff/monsters/jotunheim_rune_golem-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "C15",
+      "path": "art/bakeoff/monsters/midgard_rooftop_slinger-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "C16",
+      "path": "art/bakeoff/monsters/muspelheim_magma_boar-windup-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        4
+      ]
+    },
+    {
+      "id": "C17",
+      "path": "art/bakeoff/monsters/muspelheim_magma_boar-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        4
+      ]
+    },
+    {
+      "id": "C18",
+      "path": "art/bakeoff/monsters/niflheim_frost_owl-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        4
+      ]
+    },
+    {
+      "id": "C19",
+      "path": "art/bakeoff/monsters/svartalfheim_cog_drone-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "C20",
+      "path": "art/bakeoff/monsters/vanaheim_seed_sprite-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        3
+      ]
+    },
+    {
+      "id": "C21",
+      "path": "art/bakeoff/monsters/vanaheim_vine_hound-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        4
+      ]
+    },
+    {
+      "id": "C22",
+      "path": "art/bakeoff/monsters/yggdrasil_root_guardian-defeat-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        4
+      ]
+    },
+    {
+      "id": "C23",
+      "path": "art/bakeoff/monsters/yggdrasil_root_oracle-windup-v2.png",
+      "frames": 4,
+      "changed_frames": [
+        2
+      ]
+    }
+  ],
+  "sheet_count": 14,
+  "metadata_count": 43,
+  "changed_frame_count": 39,
+  "protected_hashes_unchanged": 479,
+  "side_effect": {
+    "part": "멧돼지 앞 엄니 외곽: windup F4 → attack F3",
+    "before_points": [
+      [
+        84,
+        64
+      ],
+      [
+        92,
+        59
+      ]
+    ],
+    "after_points": [
+      [
+        85,
+        64
+      ],
+      [
+        91,
+        59
+      ]
+    ],
+    "before_dx": 8,
+    "after_dx": 6,
+    "uncertainty_px": 2,
+    "interpretation": "정수 평행이동으로 간격이 2px 줄었음. 실제 게임 이동량/공격 판정 아님; 새 4px 여백과 종전 전진 목표를 함께 유지할 수 없어 공개."
+  },
+  "godot_run": false,
+  "image_tool_calls": 0,
+  "all_checks": [
+    {
+      "name": "C01 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F5 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F5 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F5 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F5 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F6 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F6 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F6 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 F6 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F5 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F5 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F5 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F5 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F5 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F5 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F6 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F6 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F6 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F6 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F6 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C02 F6 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F4 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F5 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F5 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F5 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F5 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F5 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F5 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F6 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F6 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F6 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F6 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F6 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C03 F6 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F4 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F5 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F5 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F5 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F5 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F5 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F5 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F6 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F6 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F6 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F6 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F6 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C04 F6 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F4 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F5 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F5 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F5 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F5 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F5 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F5 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F6 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F6 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F6 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F6 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F6 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C05 F6 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C06 unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F5 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F5 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F5 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F5 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F6 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F6 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F6 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 F6 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C08 unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C09 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C10 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C11 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F4 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C12 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F4 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C13 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C16 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C17 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C18 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C19 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F4 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C20 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C21 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F2 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C22 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 RGBA 576x96",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 review equals delivery",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 frames fps loop cell feet preserved",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 note replaces",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 binary alpha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 empty trailing cells",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F1 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F1 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F1 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F1 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F1 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F1 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F2 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F2 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F2 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F2 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F2 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F3 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F3 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F3 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F3 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F3 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F3 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F4 measured metrics",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F4 outer clear",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F4 margin4",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F4 untouched",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F4 translation preserves RGBA",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C23 F4 baseline bottom kept",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-defeat-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-defeat-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-defeat-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-fall-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-fall-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-fall-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-hurt-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-hurt-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-hurt-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-land-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-land-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-land-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-defeat-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-defeat-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-defeat-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-fall-v3.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-fall-v3.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-fall-v3.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-hurt-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-hurt-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-hurt-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-jump-v3.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-jump-v3.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-jump-v3.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-land-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-land-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-land-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-defeat-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-defeat-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-defeat-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-land-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-land-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-land-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-defeat-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-defeat-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-defeat-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-fall-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-fall-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-fall-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v3.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v3.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v3.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-jump-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-jump-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-jump-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-land-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-land-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-land-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-defeat-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-defeat-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-defeat-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-fall-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-fall-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-fall-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-hurt-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-hurt-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-hurt-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-jump-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-jump-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-jump-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-land-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-land-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-land-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-victory-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-victory-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-victory-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-attack-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-attack-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-attack-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-defeat-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-defeat-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-defeat-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-dimension_slash-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-dimension_slash-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-dimension_slash-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-fall-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-fall-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-fall-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-hurt-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-hurt-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-hurt-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-jump-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-jump-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-jump-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-land-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-land-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-land-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-low_sweep-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-low_sweep-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-low_sweep-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-attack-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-attack-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-attack-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-defeat-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-defeat-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-defeat-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-fall-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-fall-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-fall-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-hurt-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-hurt-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-hurt-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-jump-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-jump-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-jump-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-land-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-land-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-land-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-victory-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-victory-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-victory-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-defeat-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-defeat-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-defeat-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-fall-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-fall-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-fall-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-hurt-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-hurt-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-hurt-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-jump-v2.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-jump-v2.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-jump-v2.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-land-v1.json additions only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-land-v1.json complete",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-land-v1.json cell geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png geometry",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png idle pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png idle latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png walk pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png walk latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png windup pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png windup latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png attack pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png attack latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png hurt pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png hurt latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png defeat pixels",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v2.png defeat latest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-attack-v4.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-attack_air_side-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-attack_down-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-attack_up-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-dash_strike-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-descent-v4.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-fall-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-jump-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-land-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-rising_cleave-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-spike_followup-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-tumble-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-victory-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey-walk-v6.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey_face-angry-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey_face-happy-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey_face-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/frey_face-shadow-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-attack-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-fall-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-idle-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-jump-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-land-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-moon_ring-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-star_comet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-star_down-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-star_up-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-transform-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-tumble-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-victory-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna-walk-v5.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-attack-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-brave_air_side-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-brave_combo-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-brave_dive-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-brave_low-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-brave_upper-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-comet_drive-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-fall-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-heart_laser-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-idle-v4.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-jump-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-land-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-luna_breaker-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-tumble-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-victory-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave_face-angry-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave_face-happy-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave_face-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_brave_face-shadow-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_face-angry-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_face-happy-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_face-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/luna_face-shadow-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth-windup-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_moth_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_stag-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_stag-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_stag-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_stag-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_stag-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_stag-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/alfheim_moon_stag_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_aegis_ram_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/asgard_runic_raven_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-projectile-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/ember_imp_sheet-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_rune_golem_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp-projectile-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger-projectile-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/midgard_rooftop_slinger_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling-attack-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/mossling_sheet-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/muspelheim_magma_boar_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl-projectile-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_frost_owl_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf-attack-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/slam_shockwave-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone-projectile-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_cog_drone_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_gear_beetle-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_gear_beetle-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_gear_beetle-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_gear_beetle-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_gear_beetle-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_gear_beetle-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/svartalfheim_gear_beetle_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite-projectile-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-attack-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound-windup-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_guardian_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle-projectile-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle-windup-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/monsters/yggdrasil_root_oracle_sheet-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-air_side-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-compression_stomp-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-fall-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-gravity_brake-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-hurt-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-jump-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-land-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-meteor_kick-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-slingshot_start-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-tumble-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-vector_shift-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-vector_side-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-vector_upper-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-victory-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female_face-angry-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female_face-happy-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female_face-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_female_face-shadow-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-air_side-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-compression_stomp-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-fall-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-gravity_brake-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-jump-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-land-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-meteor_kick-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-slingshot_start-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-tumble-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-vector_shift-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-vector_side-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-vector_upper-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-victory-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male_face-angry-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male_face-happy-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male_face-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/nova_male_face-shadow-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-air_slash-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-attack-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-dimension_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-dimension_slash-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-fall-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-infinity_overdrive-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-jump-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-land-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-low_sweep-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-low_sweep-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-mana_combo-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-plunge-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-rising_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-rune_shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-tumble-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-victory-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female-walk-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female_face-angry-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female_face-happy-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female_face-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_female_face-shadow-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-air_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-attack-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-dimension_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-fall-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-infinity_overdrive-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-jump-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-land-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-low_sweep-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-mana_combo-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-plunge-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-rising_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-rune_shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-tumble-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-victory-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male_face-angry-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male_face-happy-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male_face-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/rio_male_face-shadow-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-defeat-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-fall-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-grand_ward-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-ground_ward-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-hurt-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-jump-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-land-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-seal_activate-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-seal_place-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-talisman_air_down-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-talisman_air_side-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-talisman_side-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-talisman_up-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-tumble-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-victory-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki_face-angry-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki_face-happy-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki_face-hurt-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/yuki_face-shadow-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/common/guard_bubble-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/common/parry_flash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/common/status_stun-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/common/status_super_armor-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/frey/frey_pursuit_mark-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/frey/frey_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/frey/frey_spike_ring-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/frey/frey_ult_charge-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/luna/luna_brave_aura-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/luna/luna_moon_ring-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/luna/luna_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/luna/luna_star_bloom-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/luna/luna_star_charge-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/luna/luna_ult_transform-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/luna_brave/luna_brave_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/nova/nova_gravity_burst-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/nova/nova_impact_star-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/nova/nova_momentum_trail-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/nova/nova_shift_ready-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/nova/nova_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/nova/nova_ult_core-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/nova/nova_vector_streak-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/rio/rio_gem_sword-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/rio/rio_mana_wave-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/rio/rio_rune_guard-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/rio/rio_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/rio/rio_ult_circle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/yuki/yuki_l-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/yuki/yuki_seal_break-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/yuki/yuki_seal_idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/yuki/yuki_slash-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/yuki/yuki_talisman-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/effects/yuki/yuki_ult_seal-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/main/frey_face-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/main/frey_face-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/main/frey_illustration-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/main/frey_illustration-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-attack-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-descent-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-descent-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-rising_cleave-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-spike_followup-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-tumble-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-walk-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-walk-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-walk-v4.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/frey/retired/frey-walk-v5.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/main/luna_brave_face-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/main/luna_brave_face-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/main/luna_brave_illustration-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/main/luna_brave_illustration-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/main/luna_face-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/main/luna_face-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/main/luna_illustration-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/main/luna_illustration-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-fall-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-jump-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-transform-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-walk-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna-walk-v4.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna_brave-attack-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna_brave-brave_combo-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna_brave-fall-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna_brave-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna_brave-idle-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna_brave-idle-v3.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/luna/retired/luna_brave-idle-v5.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/main/nova_female_face-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/main/nova_female_face-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/main/nova_female_illustration-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/main/nova_female_illustration-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/main/nova_male_face-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/main/nova_male_face-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/main/nova_male_illustration-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/main/nova_male_illustration-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/retired/nova_female-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/retired/nova_female-vector_side-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/retired/nova_male-fall-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/retired/nova_male-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/retired/nova_male-jump-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/retired/nova_male-shield-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/nova/retired/nova_male-vector_side-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/main/rio_female_face-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/main/rio_female_face-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/main/rio_female_illustration-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/main/rio_female_illustration-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/main/rio_male_face-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/main/rio_male_face-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/main/rio_male_illustration-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/main/rio_male_illustration-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/retired/rio_female-air_slash-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/retired/rio_female-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/retired/rio_female-plunge-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/rio/retired/rio_female-walk-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/main/yuki_face-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/main/yuki_face-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/main/yuki_illustration-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/main/yuki_illustration-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/retired/yuki-ground_ward-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/retired/yuki-idle-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/retired/yuki-talisman_air_down-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/retired/yuki-talisman_side-v2.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/bakeoff/yuki/retired/yuki-tumble-v1.png baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "qa23/fix-list.md baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "qa23/LEAD-REVIEW.md baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "qa23/README.md baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "ref81/audit.json baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "ref81/audit.py baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "ref81/issues.json baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "ref81/README.md baseline hash",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/raw/monsters-76/niflheim_glacier_wolf-hurt.png raw unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "art/raw/monsters-74/midgard_rooftop_slinger-defeat.png raw unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 size sample bound to final PNG",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C01 representative size +/-5%",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 size sample bound to final PNG",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C07 representative size +/-5%",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 size sample bound to final PNG",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C14 representative size +/-5%",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 size sample bound to final PNG",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "C15 representative size +/-5%",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "boar reach transported points opaque",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "tracked changes within delivery",
+      "pass_": true,
+      "detail": [
+        "art/bakeoff/frey/frey-defeat-v1.json",
+        "art/bakeoff/frey/frey-fall-v2.json",
+        "art/bakeoff/frey/frey-hurt-v2.json",
+        "art/bakeoff/frey/frey-land-v1.json",
+        "art/bakeoff/luna/luna-defeat-v1.json",
+        "art/bakeoff/luna/luna-fall-v3.json",
+        "art/bakeoff/luna/luna-hurt-v2.json",
+        "art/bakeoff/luna/luna-jump-v3.json",
+        "art/bakeoff/luna/luna-land-v1.json",
+        "art/bakeoff/luna/luna_brave-defeat-v1.json",
+        "art/bakeoff/luna/luna_brave-land-v1.json",
+        "art/bakeoff/monsters/alfheim_moon_moth_sheet-v2.png",
+        "art/bakeoff/monsters/asgard_aegis_ram_sheet-v2.png",
+        "art/bakeoff/monsters/jotunheim_storm_wisp_sheet-v2.png",
+        "art/bakeoff/monsters/niflheim_glacier_wolf_sheet-v2.png",
+        "art/bakeoff/monsters/vanaheim_seed_sprite-attack-v2.json",
+        "art/bakeoff/monsters/vanaheim_seed_sprite-attack-v2.png",
+        "art/bakeoff/monsters/vanaheim_seed_sprite_sheet-v2.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound-defeat-v2.json",
+        "art/bakeoff/monsters/vanaheim_vine_hound-defeat-v2.png",
+        "art/bakeoff/monsters/vanaheim_vine_hound_sheet-v2.png",
+        "art/bakeoff/nova/nova_female-defeat-v1.json",
+        "art/bakeoff/nova/nova_female-fall-v2.json",
+        "art/bakeoff/nova/nova_female-hurt-v2.json",
+        "art/bakeoff/nova/nova_female-hurt-v3.json",
+        "art/bakeoff/nova/nova_female-jump-v2.json",
+        "art/bakeoff/nova/nova_female-land-v1.json",
+        "art/bakeoff/nova/nova_male-defeat-v1.json",
+        "art/bakeoff/nova/nova_male-fall-v2.json",
+        "art/bakeoff/nova/nova_male-hurt-v2.json",
+        "art/bakeoff/nova/nova_male-jump-v2.json",
+        "art/bakeoff/nova/nova_male-land-v1.json",
+        "art/bakeoff/nova/nova_male-victory-v1.json",
+        "art/bakeoff/rio/rio_female-attack-v2.json",
+        "art/bakeoff/rio/rio_female-defeat-v1.json",
+        "art/bakeoff/rio/rio_female-dimension_slash-v2.json",
+        "art/bakeoff/rio/rio_female-fall-v2.json",
+        "art/bakeoff/rio/rio_female-hurt-v2.json",
+        "art/bakeoff/rio/rio_female-jump-v2.json",
+        "art/bakeoff/rio/rio_female-land-v1.json",
+        "art/bakeoff/rio/rio_female-low_sweep-v2.json",
+        "art/bakeoff/rio/rio_male-attack-v2.json",
+        "art/bakeoff/rio/rio_male-defeat-v1.json",
+        "art/bakeoff/rio/rio_male-fall-v2.json",
+        "art/bakeoff/rio/rio_male-hurt-v2.json",
+        "art/bakeoff/rio/rio_male-jump-v2.json",
+        "art/bakeoff/rio/rio_male-land-v1.json",
+        "art/bakeoff/rio/rio_male-victory-v1.json",
+        "art/bakeoff/yuki/yuki-defeat-v1.json",
+        "art/bakeoff/yuki/yuki-fall-v2.json",
+        "art/bakeoff/yuki/yuki-hurt-v2.json",
+        "art/bakeoff/yuki/yuki-jump-v2.json",
+        "art/bakeoff/yuki/yuki-land-v1.json"
+      ]
+    },
+    {
+      "name": "product and tools unchanged",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "index empty",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "no report bytecode",
+      "pass_": true,
+      "detail": null
+    }
+  ]
+}

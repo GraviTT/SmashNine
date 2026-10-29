@@ -1,0 +1,566 @@
+{
+  "id": "muspelheim_magma_boar",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L02",
+    "L17",
+    "L30"
+  ],
+  "note": "L02, L17, L30: 원본의 완전한 몸 영역을 다시 잘라 배치; 몸과 분리된 발사체·잔상·피격 표시 픽셀 제거. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/muspelheim_magma_boar_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "9fc7326cc0640b505cc33a0c351b924beec8e4cc6d875292f6eb353f5eb4c302",
+  "candidate_file_sha256": "03611d027fae0b489f2ed639dafc6b87cb46b711059164b0011cf7afbda6d3cc",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "idle",
+      "frame": 1,
+      "source": "art/raw/monsters-87/muspelheim_magma_boar_source.png",
+      "source_region": [
+        30,
+        130,
+        265,
+        285
+      ],
+      "alpha_bbox_in_region": [
+        5,
+        7,
+        229,
+        151
+      ],
+      "scale": 0.32,
+      "placement": [
+        12,
+        26
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          10,
+          32,
+          85,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          32,
+          85,
+          72
+        ],
+        "area_alpha128": 2122,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "2d0d3e75659d57bdf8f9d77de882be2970f008a55a4b2976a7640a2b4a422a6f"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          26,
+          84,
+          72
+        ],
+        "bbox_alpha1": [
+          12,
+          26,
+          84,
+          72
+        ],
+        "area_alpha128": 2296,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "6fa71c8ba58428297192c79c129d4181e123fa77a21c8c08dc599850698bb9fd"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 2,
+      "source": "art/raw/monsters-87/muspelheim_magma_boar_source.png",
+      "source_region": [
+        284,
+        126,
+        515,
+        285
+      ],
+      "alpha_bbox_in_region": [
+        5,
+        6,
+        228,
+        155
+      ],
+      "scale": 0.32,
+      "placement": [
+        12,
+        24
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          10,
+          30,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          10,
+          30,
+          86,
+          72
+        ],
+        "area_alpha128": 2222,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "378347b70dfb5755e0c4d6761efabe208d68f1c65c2fe9b1e2439c5823a6413b"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          24,
+          83,
+          72
+        ],
+        "bbox_alpha1": [
+          12,
+          24,
+          83,
+          72
+        ],
+        "area_alpha128": 2363,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "ee2bde8b34dfcc9f478b7b787317afc2aa3b31b0789520e56ec72e866275a97c"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 3,
+      "source": "art/raw/monsters-87/muspelheim_magma_boar_source.png",
+      "source_region": [
+        536,
+        128,
+        774,
+        285
+      ],
+      "alpha_bbox_in_region": [
+        3,
+        8,
+        234,
+        153
+      ],
+      "scale": 0.32,
+      "placement": [
+        11,
+        26
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          9,
+          31,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          9,
+          31,
+          86,
+          72
+        ],
+        "area_alpha128": 2220,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "44bfd750318350804635f8998bd3394f831e34cfe38cd833998c981f65821e00"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          26,
+          85,
+          72
+        ],
+        "bbox_alpha1": [
+          11,
+          26,
+          85,
+          72
+        ],
+        "area_alpha128": 2330,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "cf885da52a4fef605a8a9ed8f286760c8159014782b1764a81562ea89363977d"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 4,
+      "source": "art/raw/monsters-87/muspelheim_magma_boar_source.png",
+      "source_region": [
+        787,
+        130,
+        1015,
+        285
+      ],
+      "alpha_bbox_in_region": [
+        3,
+        7,
+        221,
+        151
+      ],
+      "scale": 0.32,
+      "placement": [
+        13,
+        26
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          11,
+          32,
+          85,
+          72
+        ],
+        "bbox_alpha1": [
+          11,
+          32,
+          85,
+          72
+        ],
+        "area_alpha128": 2083,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "bfa296297269685aa76b75148bbe042376cb199c70f716c1147a45a3098f2ca3"
+      },
+      "after": {
+        "bbox_alpha128": [
+          13,
+          26,
+          83,
+          72
+        ],
+        "bbox_alpha1": [
+          13,
+          26,
+          83,
+          72
+        ],
+        "area_alpha128": 2250,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "767290853df716b0c634cb4e9acbc4d8f3ee33c5c44d76a88b514568f9bb4365"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 2,
+      "source": "art/raw/monsters-87/muspelheim_magma_boar_source.png",
+      "source_region": [
+        282,
+        572,
+        547,
+        717
+      ],
+      "alpha_bbox_in_region": [
+        5,
+        6,
+        265,
+        138
+      ],
+      "scale": 0.32,
+      "placement": [
+        6,
+        30
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": true,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          9,
+          27,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          9,
+          27,
+          86,
+          72
+        ],
+        "area_alpha128": 2575,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "df7b5dd5d5c39ccc5bfd47a30f5bf9ce7a5cb0320762a42966cee16fde0d9bb8"
+      },
+      "after": {
+        "bbox_alpha128": [
+          6,
+          30,
+          89,
+          72
+        ],
+        "bbox_alpha1": [
+          6,
+          30,
+          89,
+          72
+        ],
+        "area_alpha128": 2397,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "d2e440adecdfec2c2f625377a451e85c18e3a60308b735613e2903546248ab16"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 3,
+      "source": "art/raw/monsters-87/muspelheim_magma_boar_source.png",
+      "source_region": [
+        540,
+        575,
+        815,
+        724
+      ],
+      "alpha_bbox_in_region": [
+        2,
+        6,
+        270,
+        144
+      ],
+      "scale": 0.315,
+      "placement": [
+        6,
+        30
+      ],
+      "method": "re-slice",
+      "feet_boundary": 72,
+      "largest_component_only": true,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "body_feet_roi": [
+        0,
+        0,
+        60,
+        96
+      ],
+      "alignment_note": "부분 알파 포함 발굽은 y=72 경계, 엄니 궤적은 y=73 경계. 몸 발굽 기준 1px 하향.",
+      "before": {
+        "bbox_alpha128": [
+          9,
+          25,
+          86,
+          72
+        ],
+        "bbox_alpha1": [
+          9,
+          25,
+          86,
+          72
+        ],
+        "area_alpha128": 2599,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "6a1e16e667df936c6d78b67e0d30e9b2221a05913b1129cd00a0a73be18ad754"
+      },
+      "after": {
+        "bbox_alpha128": [
+          6,
+          30,
+          89,
+          73
+        ],
+        "bbox_alpha1": [
+          6,
+          30,
+          90,
+          73
+        ],
+        "area_alpha128": 2414,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "3746ff578d5e5255d096ef7509ec2817c27f7538c686934b1f610efbe7fdb589"
+      }
+    },
+    {
+      "row": "hurt",
+      "frame": 1,
+      "method": "pixel cleanup only",
+      "source": "art/raw/monsters-87/muspelheim_magma_boar_sheet.png",
+      "source_region": [
+        0,
+        288,
+        96,
+        384
+      ],
+      "removed_fx_polygons_local": [
+        [
+          [
+            68,
+            25
+          ],
+          [
+            76,
+            25
+          ],
+          [
+            76,
+            34
+          ],
+          [
+            68,
+            34
+          ]
+        ],
+        [
+          [
+            77,
+            23
+          ],
+          [
+            89,
+            23
+          ],
+          [
+            89,
+            36
+          ],
+          [
+            77,
+            36
+          ]
+        ]
+      ],
+      "removed_fx_pixels": 121,
+      "before": {
+        "bbox_alpha128": [
+          8,
+          18,
+          87,
+          72
+        ],
+        "bbox_alpha1": [
+          8,
+          18,
+          87,
+          72
+        ],
+        "area_alpha128": 2782,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "ebbf03f81c66c9656ac4c400d3e26bde6dc7e673ce1e2eb1c0da883d2ec0945d"
+      },
+      "after": {
+        "bbox_alpha128": [
+          8,
+          18,
+          79,
+          72
+        ],
+        "bbox_alpha1": [
+          8,
+          18,
+          80,
+          72
+        ],
+        "area_alpha128": 2681,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "097d7283b69972dd961183eda054d5be3338b5932d51c4871b3be28cb2c34a6b"
+      }
+    }
+  ],
+  "adopted": "2026-10-29"
+}

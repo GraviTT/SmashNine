@@ -1,0 +1,109 @@
+{
+  "method": "ART-72 계열 4배 대응점 제안 + 4배 직접 검토. E는 눈 간격, W는 눈 아래 노출 얼굴 폭. 제외값은 통과값으로 대체하지 않음. 소수점은 정확도 보증이 아님.",
+  "anchor_face_width": 17.5,
+  "frames": [
+    {
+      "frame": 1,
+      "eye_ratio": 0.971,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 0.971,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 83.703,
+          "y": 42.912,
+          "score": 0.841
+        },
+        {
+          "x": 89.866,
+          "y": 42.756,
+          "score": 0.853
+        },
+        {
+          "x": 72.0,
+          "y": 44.0,
+          "score": 0.799
+        },
+        {
+          "x": 89.5,
+          "y": 44.0,
+          "score": 0.892
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 2,
+      "eye_ratio": 1.016,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.016,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 78.332,
+          "y": 51.001,
+          "score": 0.905
+        },
+        {
+          "x": 84.727,
+          "y": 50.138,
+          "score": 0.935
+        },
+        {
+          "x": 67.0,
+          "y": 53.0,
+          "score": 0.764
+        },
+        {
+          "x": 84.5,
+          "y": 52.0,
+          "score": 0.95
+        }
+      ],
+      "within_range": true
+    },
+    {
+      "frame": 3,
+      "eye_ratio": 1.0,
+      "face_width_ratio": 1.0,
+      "exclusion_reason": "",
+      "raw_proposed_eye_ratio": 1.0,
+      "raw_proposed_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 84.446,
+          "y": 42.942,
+          "score": 0.896
+        },
+        {
+          "x": 90.749,
+          "y": 42.178,
+          "score": 0.932
+        },
+        {
+          "x": 73.0,
+          "y": 44.0,
+          "score": 0.744
+        },
+        {
+          "x": 90.5,
+          "y": 44.0,
+          "score": 0.964
+        }
+      ],
+      "within_range": true
+    }
+  ],
+  "eye_range": [
+    0.971,
+    1.016
+  ],
+  "width_range": [
+    1.0,
+    1.0
+  ],
+  "face_pass": true,
+  "judgment": "도약의 뻗은 뒷다리, 상승의 양무릎 접기, 정점의 다리 풀기와 수평 망토를 구분. 칼·방패 손 유지. 공통 lift-scale 0.3."
+}

@@ -1,0 +1,489 @@
+{
+  "passed": 73,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "exact_card_inventory",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "fresh_discovery_matches_audit",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "fighter_pass_count_recomputed",
+      "pass": true,
+      "details": 0
+    },
+    {
+      "name": "monster_pass_count_recomputed",
+      "pass": true,
+      "details": 5
+    },
+    {
+      "name": "monster_sheet_pass_count_recomputed",
+      "pass": true,
+      "details": 0
+    },
+    {
+      "name": "projectile_pass_count_recomputed",
+      "pass": true,
+      "details": 5
+    },
+    {
+      "name": "face_pass_count_recomputed",
+      "pass": true,
+      "details": 32
+    },
+    {
+      "name": "all_nine_checks_recorded",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "wink_exclusion_is_not_a_size_defect",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "leaf_tip_not_confused_with_supporting_foot",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "invalid_colour_components_not_reported_as_size_defects",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "all_measured_inputs_unchanged",
+      "pass": true,
+      "details": {
+        "files": 715,
+        "changed": []
+      }
+    },
+    {
+      "name": "current_candidate_hashes",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "small_sprite_change_not_diluted_by_padding",
+      "pass": true,
+      "details": {
+        "union_pixels": 64,
+        "mae_union_0_255": 127.5,
+        "mae_canvas_0_255": 0.498047,
+        "changed_visible_pixels": 64,
+        "fraction_changed_gt8": 1.0,
+        "silhouette_iou": 1.0
+      }
+    },
+    {
+      "name": "invisible_rgb_does_not_create_motion",
+      "pass": true,
+      "details": {
+        "union_pixels": 64,
+        "mae_union_0_255": 0.0,
+        "mae_canvas_0_255": 0.0,
+        "changed_visible_pixels": 0,
+        "fraction_changed_gt8": 0.0,
+        "silhouette_iou": 1.0
+      }
+    },
+    {
+      "name": "fft_correlation_equals_direct",
+      "pass": true,
+      "details": 1.0658141036401503e-14
+    },
+    {
+      "name": "masked_ncc_known_translation",
+      "pass": true,
+      "details": {
+        "scale": 1.0,
+        "score": 1.0,
+        "box": [
+          39,
+          27,
+          55,
+          47
+        ],
+        "scale_scores": [
+          [
+            0.8,
+            0.150263
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            1.2,
+            0.090491
+          ]
+        ]
+      }
+    },
+    {
+      "name": "masked_ncc_known_scale",
+      "pass": true,
+      "details": {
+        "scale": 1.25,
+        "score": 1.0,
+        "box": [
+          31,
+          22,
+          51,
+          47
+        ],
+        "scale_scores": [
+          [
+            1.0,
+            0.113499
+          ],
+          [
+            1.25,
+            1.0
+          ],
+          [
+            1.5,
+            0.089338
+          ]
+        ]
+      }
+    },
+    {
+      "name": "fft_head_matches_project_method",
+      "pass": true,
+      "details": {
+        "project_scale": 0.96,
+        "project_score": 0.8495737413296326,
+        "audit_scale": 0.96,
+        "audit_score": 0.849574
+      }
+    },
+    {
+      "name": "subopaque_margin_is_counted",
+      "pass": true,
+      "details": {
+        "bbox": [
+          3,
+          2,
+          9,
+          9
+        ],
+        "margins_ltrb": [
+          3,
+          2,
+          3,
+          3
+        ],
+        "alpha_pixels": 37,
+        "solid_bbox": [
+          3,
+          3,
+          9,
+          9
+        ],
+        "bottom_y": 8,
+        "semi_transparent_pixels": 1,
+        "transparent_rgb_pixels": 0,
+        "edge_pixels": 20,
+        "light_edge_pixels": 0,
+        "dark_edge_pixels": 0,
+        "key_green_pixels": 0,
+        "checker_tiles": [],
+        "components_4connected": [
+          {
+            "area": 37,
+            "bbox": [
+              3,
+              2,
+              9,
+              9
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "face_preservation_frey_face-angry-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_frey_face-happy-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_frey_face-hurt-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_frey_face-shadow-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_luna_brave_face-angry-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_luna_brave_face-happy-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_luna_brave_face-hurt-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_luna_brave_face-shadow-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_luna_face-angry-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_luna_face-happy-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_luna_face-hurt-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_luna_face-shadow-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_yuki_face-angry-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_yuki_face-happy-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_yuki_face-hurt-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_yuki_face-shadow-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_nova_female_face-angry-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_nova_female_face-happy-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_nova_female_face-hurt-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_nova_female_face-shadow-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_nova_male_face-angry-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_nova_male_face-happy-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_nova_male_face-hurt-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_nova_male_face-shadow-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_rio_female_face-angry-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_rio_female_face-happy-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_rio_female_face-hurt-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_rio_female_face-shadow-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_rio_male_face-angry-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_rio_male_face-happy-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_rio_male_face-hurt-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "face_preservation_rio_male_face-shadow-v1",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_alfheim_moon_moth",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_alfheim_moon_stag",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_asgard_aegis_ram",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_asgard_runic_raven",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_ember_imp",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_jotunheim_rune_golem",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_jotunheim_storm_wisp",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_midgard_rooftop_slinger",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_mossling",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_muspelheim_magma_boar",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_niflheim_frost_owl",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_niflheim_glacier_wolf",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_svartalfheim_cog_drone",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_svartalfheim_gear_beetle",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_vanaheim_seed_sprite",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_vanaheim_vine_hound",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_yggdrasil_root_guardian",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sheet_pixel_assembly_yggdrasil_root_oracle",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "twenty_distinct_4x_boards",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "commit_file_scope",
+      "pass": true,
+      "details": {
+        "files": 39,
+        "bad": []
+      }
+    },
+    {
+      "name": "commit_syntax_only_and_clean_original_files",
+      "pass": true,
+      "details": {
+        "syntax_valid": true,
+        "script_executed": false,
+        "errors": [],
+        "branch": "codex/art-81",
+        "tracked_diff": [],
+        "staged_diff": []
+      }
+    }
+  ],
+  "meaning": "Audit algorithm/coverage and immutable PNG validation, not Godot tests."
+}

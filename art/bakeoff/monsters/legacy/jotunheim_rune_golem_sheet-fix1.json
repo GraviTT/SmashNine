@@ -1,0 +1,998 @@
+{
+  "id": "jotunheim_rune_golem",
+  "status": "fallback_candidate",
+  "qa_ids": [
+    "L01",
+    "L07",
+    "L08"
+  ],
+  "note": "L01, L07, L08: 원본의 완전한 몸 영역을 다시 잘라 배치. ",
+  "replaces": "smash-nine-prototype/assets/art/monsters/jotunheim_rune_golem_sheet.png",
+  "size": [
+    576,
+    384
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_counts": [
+    4,
+    6,
+    4,
+    1
+  ],
+  "original_file_sha256": "27c7f6187f1dd1e508ffbee0ee6d5f98524e38d4461680d08f78a32d4f8e01ef",
+  "candidate_file_sha256": "fe29532a4c8e83b97cb906abfdb836460ff4e4be9cecbde03d320f94a449d690",
+  "unchanged_cells_rgba_identical": [
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "frames": [
+    {
+      "row": "idle",
+      "frame": 1,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        16,
+        105,
+        257,
+        278
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        12,
+        237,
+        167
+      ],
+      "scale": 0.32,
+      "placement": [
+        10,
+        30
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          1,
+          25,
+          94,
+          80
+        ],
+        "bbox_alpha1": [
+          1,
+          25,
+          94,
+          80
+        ],
+        "area_alpha128": 3326,
+        "edge_1px": 0,
+        "margin_4px": 25,
+        "rgba_sha256": "7a9d733ae1f134ccff8c9bdc84d76d7706ba7f708728b7eb667cdd3dc91ea6f4"
+      },
+      "after": {
+        "bbox_alpha128": [
+          10,
+          30,
+          85,
+          80
+        ],
+        "bbox_alpha1": [
+          10,
+          30,
+          85,
+          80
+        ],
+        "area_alpha128": 2532,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "2997518486888b581d109fd099d9cda83356e464edfe54dfb9b742b6bb9aef64"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 2,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        269,
+        101,
+        501,
+        278
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        7,
+        228,
+        171
+      ],
+      "scale": 0.32,
+      "placement": [
+        12,
+        28
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          3,
+          21,
+          92,
+          80
+        ],
+        "bbox_alpha1": [
+          3,
+          21,
+          92,
+          80
+        ],
+        "area_alpha128": 3360,
+        "edge_1px": 0,
+        "margin_4px": 1,
+        "rgba_sha256": "fb7cf573e03caba032ffedfd0fbeb8a550b1663c2a7ceae847882a01c7db166e"
+      },
+      "after": {
+        "bbox_alpha128": [
+          12,
+          28,
+          84,
+          80
+        ],
+        "bbox_alpha1": [
+          12,
+          28,
+          84,
+          80
+        ],
+        "area_alpha128": 2464,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "6f063136ba007f7a3f38d0cbac3dc3a13b5122b189f2b38a40a6f9b659ecf44d"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 3,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        518,
+        109,
+        751,
+        278
+      ],
+      "alpha_bbox_in_region": [
+        3,
+        5,
+        230,
+        163
+      ],
+      "scale": 0.32,
+      "placement": [
+        11,
+        29
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          3,
+          34,
+          93,
+          80
+        ],
+        "bbox_alpha1": [
+          3,
+          34,
+          93,
+          80
+        ],
+        "area_alpha128": 2992,
+        "edge_1px": 0,
+        "margin_4px": 7,
+        "rgba_sha256": "0b4058c85a62127b620de6524d5d507d244901535389362958ce5d51da8b4bfe"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          29,
+          84,
+          80
+        ],
+        "bbox_alpha1": [
+          11,
+          29,
+          84,
+          80
+        ],
+        "area_alpha128": 2443,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "0423274602de5690ee1a8d61d7fab90fec0ba12bd35cecad57b112aac92d96bf"
+      }
+    },
+    {
+      "row": "idle",
+      "frame": 4,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        774,
+        101,
+        1018,
+        278
+      ],
+      "alpha_bbox_in_region": [
+        3,
+        7,
+        239,
+        171
+      ],
+      "scale": 0.32,
+      "placement": [
+        10,
+        28
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          1,
+          21,
+          95,
+          80
+        ],
+        "bbox_alpha1": [
+          1,
+          21,
+          95,
+          80
+        ],
+        "area_alpha128": 3491,
+        "edge_1px": 0,
+        "margin_4px": 42,
+        "rgba_sha256": "ade6c78bb015b61b8c4217b9583c6eea76b05baff4c13d714a13240f04aec46e"
+      },
+      "after": {
+        "bbox_alpha128": [
+          10,
+          28,
+          86,
+          80
+        ],
+        "bbox_alpha1": [
+          10,
+          28,
+          86,
+          80
+        ],
+        "area_alpha128": 2558,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "5e46fd30b2ca2a18a6be8f5aca3233463b4163be4a6c8a701733587aa9b820d2"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 1,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        16,
+        337,
+        266,
+        506
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        8,
+        247,
+        162
+      ],
+      "scale": 0.32,
+      "placement": [
+        9,
+        31
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          4,
+          23,
+          91,
+          80
+        ],
+        "bbox_alpha1": [
+          4,
+          23,
+          91,
+          80
+        ],
+        "area_alpha128": 3390,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "65f43ee1afed976a11f5d60fd366202ebe74a76286d1ad760d91cc3748fd0074"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          31,
+          87,
+          80
+        ],
+        "bbox_alpha1": [
+          9,
+          31,
+          87,
+          80
+        ],
+        "area_alpha128": 2550,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "bd34695697ec483df9a6368a6278bb385d4fa7f9c57e6dba3cfda3f5d882b1b3"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 2,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        273,
+        328,
+        522,
+        506
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        7,
+        246,
+        171
+      ],
+      "scale": 0.32,
+      "placement": [
+        9,
+        28
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          4,
+          19,
+          91,
+          80
+        ],
+        "bbox_alpha1": [
+          4,
+          19,
+          91,
+          80
+        ],
+        "area_alpha128": 3425,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "df0beec5f0eda2d8ff5993b397e6bd7090598b006fc10e916404ba97e51d81b1"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          28,
+          86,
+          80
+        ],
+        "bbox_alpha1": [
+          9,
+          28,
+          86,
+          80
+        ],
+        "area_alpha128": 2545,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "c48e3e080a909bad50f5eb8f61bc5e78598bf4a9a86cc39a3970d249bd257519"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 3,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        529,
+        331,
+        766,
+        506
+      ],
+      "alpha_bbox_in_region": [
+        3,
+        8,
+        234,
+        168
+      ],
+      "scale": 0.32,
+      "placement": [
+        11,
+        29
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          5,
+          21,
+          90,
+          80
+        ],
+        "bbox_alpha1": [
+          5,
+          21,
+          90,
+          80
+        ],
+        "area_alpha128": 3143,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "40d6d18b290daf46595d919ae3eb4a2ba1cac2ccca52a0d43ff4b193a8dcb1d9"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          29,
+          85,
+          80
+        ],
+        "bbox_alpha1": [
+          11,
+          29,
+          85,
+          80
+        ],
+        "area_alpha128": 2354,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "6a9da74645be2c6054e4bcb7aaa8ebc0ef42823af180dcb26adc97ba216d6681"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 4,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        766,
+        338,
+        1026,
+        506
+      ],
+      "alpha_bbox_in_region": [
+        2,
+        7,
+        257,
+        161
+      ],
+      "scale": 0.32,
+      "placement": [
+        7,
+        31
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          1,
+          23,
+          95,
+          80
+        ],
+        "bbox_alpha1": [
+          1,
+          23,
+          95,
+          80
+        ],
+        "area_alpha128": 3443,
+        "edge_1px": 0,
+        "margin_4px": 61,
+        "rgba_sha256": "66373482d1add5beaed9fc14548cfa0369bebba793c31252022c61dce3be74d0"
+      },
+      "after": {
+        "bbox_alpha128": [
+          7,
+          31,
+          89,
+          80
+        ],
+        "bbox_alpha1": [
+          7,
+          31,
+          89,
+          80
+        ],
+        "area_alpha128": 2579,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "b7fd1a36dc9e913e00c7ab4f66b7bb6625b929febf930a434eeb0437e2957662"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 5,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        1030,
+        338,
+        1278,
+        506
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        7,
+        244,
+        161
+      ],
+      "scale": 0.32,
+      "placement": [
+        9,
+        31
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          4,
+          23,
+          92,
+          80
+        ],
+        "bbox_alpha1": [
+          4,
+          23,
+          92,
+          80
+        ],
+        "area_alpha128": 3377,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "6f439f64f0fb9224495989c18b2d53b0ddd9c856bbc36b313b976d0cdd53ce90"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          31,
+          86,
+          80
+        ],
+        "bbox_alpha1": [
+          9,
+          31,
+          86,
+          80
+        ],
+        "area_alpha128": 2533,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "d88ed6b5936123bb2cf482c6335ee4c9cffd0a1a1ac65ddf41785ad41b410c47"
+      }
+    },
+    {
+      "row": "walk",
+      "frame": 6,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        1283,
+        326,
+        1523,
+        506
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        7,
+        236,
+        173
+      ],
+      "scale": 0.32,
+      "placement": [
+        11,
+        27
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          5,
+          19,
+          91,
+          80
+        ],
+        "bbox_alpha1": [
+          5,
+          19,
+          91,
+          80
+        ],
+        "area_alpha128": 3367,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "c90cac1065c6da7abcd126352f53157b26e4397b439831615c479ed6689ab4b1"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          27,
+          85,
+          80
+        ],
+        "bbox_alpha1": [
+          11,
+          27,
+          85,
+          80
+        ],
+        "area_alpha128": 2521,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "aff8a24e3da39646d772cdff468a6e0a8664b7d1b28d3f41f100401c7f9c5513"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 1,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        16,
+        590,
+        264,
+        763
+      ],
+      "alpha_bbox_in_region": [
+        3,
+        8,
+        245,
+        168
+      ],
+      "scale": 0.32,
+      "placement": [
+        9,
+        29
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          6,
+          24,
+          90,
+          80
+        ],
+        "bbox_alpha1": [
+          6,
+          24,
+          90,
+          80
+        ],
+        "area_alpha128": 3141,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "7346b2a306dfd660788a70c14efae6a41d81711919c874f40d0c1fa3684b992e"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          29,
+          86,
+          80
+        ],
+        "bbox_alpha1": [
+          9,
+          29,
+          86,
+          80
+        ],
+        "area_alpha128": 2575,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "415b4c117f2bef10a82b06429c29b4fb51bdeec0f59cad143c1c1d9c2b32c047"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 2,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        277,
+        525,
+        509,
+        763
+      ],
+      "alpha_bbox_in_region": [
+        3,
+        6,
+        232,
+        233
+      ],
+      "scale": 0.32,
+      "placement": [
+        11,
+        7
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          8,
+          1,
+          88,
+          81
+        ],
+        "bbox_alpha1": [
+          8,
+          1,
+          88,
+          81
+        ],
+        "area_alpha128": 3832,
+        "edge_1px": 0,
+        "margin_4px": 26,
+        "rgba_sha256": "6cde4a4206561b10cea9c5ad9089e806d8f4359bbeafc4aebb0d4b08a64508cc"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          7,
+          83,
+          80
+        ],
+        "bbox_alpha1": [
+          11,
+          7,
+          84,
+          80
+        ],
+        "area_alpha128": 3145,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "45497ff696d27e5ff789419a89748d212634b1bc1a73273327e4a289d4ed2ab5"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 3,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        506,
+        600,
+        779,
+        763
+      ],
+      "alpha_bbox_in_region": [
+        0,
+        8,
+        270,
+        158
+      ],
+      "scale": 0.32,
+      "placement": [
+        5,
+        32
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          2,
+          27,
+          93,
+          80
+        ],
+        "bbox_alpha1": [
+          2,
+          27,
+          93,
+          80
+        ],
+        "area_alpha128": 3066,
+        "edge_1px": 0,
+        "margin_4px": 32,
+        "rgba_sha256": "fea614f4733b61dbfcf79673282621c353351d9f82e0d59acbf974d87bf9d163"
+      },
+      "after": {
+        "bbox_alpha128": [
+          5,
+          32,
+          91,
+          80
+        ],
+        "bbox_alpha1": [
+          5,
+          32,
+          91,
+          80
+        ],
+        "area_alpha128": 2541,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "ca3788667887b8776a18ae3998c7e7d84a4748a3964daac0a81b7b6ba5164608"
+      }
+    },
+    {
+      "row": "attack",
+      "frame": 4,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        790,
+        590,
+        1042,
+        763
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        8,
+        248,
+        167
+      ],
+      "scale": 0.32,
+      "placement": [
+        9,
+        29
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          7,
+          24,
+          88,
+          80
+        ],
+        "bbox_alpha1": [
+          7,
+          24,
+          88,
+          80
+        ],
+        "area_alpha128": 3073,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "c618f727db7ed204a7b6505a8f69747f587255875065ae4948e7c46cbde3dafe"
+      },
+      "after": {
+        "bbox_alpha128": [
+          9,
+          29,
+          87,
+          80
+        ],
+        "bbox_alpha1": [
+          9,
+          29,
+          87,
+          80
+        ],
+        "area_alpha128": 2589,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "f8016ee24fc869275ad2264c02f30b5a74fa1eed92d57e9e43441879a076c555"
+      }
+    },
+    {
+      "row": "hurt",
+      "frame": 1,
+      "source": "art/raw/monsters-87/jotunheim_rune_golem_source.png",
+      "source_region": [
+        16,
+        840,
+        252,
+        990
+      ],
+      "alpha_bbox_in_region": [
+        4,
+        8,
+        231,
+        145
+      ],
+      "scale": 0.32,
+      "placement": [
+        11,
+        36
+      ],
+      "method": "re-slice",
+      "feet_boundary": 80,
+      "largest_component_only": false,
+      "resampling": "LANCZOS + RGB unsharp(radius=1, percent=60, threshold=3); alpha<32 cleared",
+      "before": {
+        "bbox_alpha128": [
+          1,
+          23,
+          95,
+          80
+        ],
+        "bbox_alpha1": [
+          1,
+          23,
+          95,
+          80
+        ],
+        "area_alpha128": 3549,
+        "edge_1px": 0,
+        "margin_4px": 69,
+        "rgba_sha256": "dbb5aa71b609df53bfb990ebba36e81fea879cb8423dbf71e941f1b34e3be42c"
+      },
+      "after": {
+        "bbox_alpha128": [
+          11,
+          36,
+          84,
+          80
+        ],
+        "bbox_alpha1": [
+          11,
+          36,
+          84,
+          80
+        ],
+        "area_alpha128": 2182,
+        "edge_1px": 0,
+        "margin_4px": 0,
+        "rgba_sha256": "b1396510d856ecfb7c7e134b34457dacc1f9bfbc2c13970bdd06fa0840e67407"
+      }
+    }
+  ],
+  "adopted": "2026-10-29"
+}
