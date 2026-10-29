@@ -1,5 +1,6 @@
 extends SceneTree
-## SYS-05: real event hooks with no assets, then in-memory tones (never written to assets/).
+## SYS-05: real event hooks with every file masked as missing, then in-memory tones (never
+## written to assets/). Sound apply 10-29: the adopted files themselves (_test_adopted_files).
 const AUDIO := preload("res://scripts/audio/AudioManager.gd")
 const SETTINGS := preload("res://scripts/audio/AudioSettings.gd")
 const CATALOG := preload("res://scripts/audio/AudioCatalog.gd")
@@ -56,6 +57,10 @@ func _run() -> void:
 		print("SYS08 focused audio %s (%d checks)" % ["FAILED" if failed else "passed", checks])
 		quit(1 if failed else 0)
 		return
+	# Null cache entries read as missing files, so the hook probe and the fallback tests keep
+	# their asset-free meaning now that assets/audio holds the adopted files.
+	for id: String in CATALOG.SOUNDS:
+		manager.register_stream(id, null)
 	await _probe_hooks()
 	await _probe_story_dialogue()
 	probe_counts = manager.requests.duplicate()
@@ -75,6 +80,7 @@ func _run() -> void:
 	await _test_landing_audio()
 	await _test_music()
 	await _test_settings_and_options()
+	await _test_adopted_files()
 	_test_contract()
 	print("AUDIO_PROBE " + JSON.stringify({"requests": probe_counts, "resolution_attempts": probe_resolution_attempts, "world": probe_world, "world_filter_checks": world_filter_checks, "unrequested": unreachable, "checks": checks}))
 	if OS.get_cmdline_user_args().has("--report"):
@@ -622,6 +628,13 @@ func _test_voices() -> void:
 	_check(manager.play("jump") == null and manager.voices.size() == AUDIO.POOL_SIZE, "Global voice pool must stay bounded")
 	_stop_voices()
 
+## Waits for the 0.5 s music fade by its own tween (at most 3 s). A fixed 0.55 s timer could
+## fire one slow frame before the tween's last step: 1 failure in 6 runs under PC load (10-29).
+func _await_fade() -> void:
+	var deadline := Time.get_ticks_msec() + 3000
+	while manager.music_tween != null and manager.music_tween.is_running() and Time.get_ticks_msec() < deadline:
+		await process_frame
+
 func _test_music() -> void:
 	manager.register_stream("music_battle", _tone(0.15))
 	manager.register_stream("music_title", _tone(0.15))
@@ -631,24 +644,24 @@ func _test_music() -> void:
 	_check(manager.music_players.all(func(item: AudioStreamPlayer) -> bool: return not item.playing), "Locked music must remain silent")
 	manager.unlock()
 	_check(manager.current_music == "music_battle", "Unlock must start only the newest pending track")
-	await create_timer(0.55, true, false, true).timeout
+	await _await_fade()
 	var player: AudioStreamPlayer = manager.music_players[manager.music_index]
 	_check(player.playing and player.bus == "Music" and is_zero_approx(player.volume_db), "Music must reach full level and loop past tone duration")
 	_check(not (manager.cache["music_battle"] as AudioStreamWAV).loop_mode, "Looping must not mutate a cached or caller-owned test stream")
 	manager.play_music("music_title")
 	_check(manager.music_players[0].playing and manager.music_players[1].playing, "Music change must overlap during the crossfade")
-	await create_timer(0.55, true, false, true).timeout
+	await _await_fade()
 	_check(manager.music_players.filter(func(item: AudioStreamPlayer) -> bool: return item.playing).size() == 1, "Only one music player remains after crossfade")
 	for track in ["music_battle", "music_title", "music_story", "music_title"]:
 		manager.play_music(track)
-	await create_timer(0.55, true, false, true).timeout
+	await _await_fade()
 	_check(manager.music_players.filter(func(item: AudioStreamPlayer) -> bool: return item.playing).size() == 1, "Rapid retargeting must leave one player")
 	manager.play_music("music_story")
 	_check(manager.resolved_music == "music_battle", "Missing story music must fall back to battle")
 	manager.cache["music_battle"] = null
 	manager.cache["music_results"] = null
 	manager.play_music("music_results")
-	await create_timer(0.55, true, false, true).timeout
+	await _await_fade()
 	_check(manager.music_players.all(func(item: AudioStreamPlayer) -> bool: return not item.playing), "Missing music must fade the old track to silence")
 
 func _test_settings_and_options() -> void:
@@ -701,6 +714,46 @@ func _test_settings_and_options() -> void:
 	LANGUAGE.set_locale("en")
 	menu.queue_free()
 	await process_frame
+
+## Sound apply 10-29 (reports/apply-sound-2026-10-29): every id has its own picked OGG at the
+## design/AUDIO.md path, music loops from its import settings at its exact loop length
+## (bars x 4 x 60/BPM x 44100 frames), and the manager plays these files, not fallbacks.
+const MUSIC_FRAMES := {"music_title": 1693440, "music_battle": 1587600, "music_select": 1411200, "music_story": 1881600, "music_results": 1270080}
+
+func _test_adopted_files() -> void:
+	manager.cache.clear()
+	manager.unlocked = true
+	_stop_voices()
+	for id: String in CATALOG.SOUNDS:
+		var path := "res://assets/audio/%s/%s.ogg" % ["music" if id.begins_with("music_") else "sfx", id]
+		var stream: AudioStreamOggVorbis = load(path) if ResourceLoader.exists(path) else null
+		_check(stream != null and stream.get_length() > 0.0, "Adopted file must load: " + path)
+		if stream == null:
+			continue
+		_check(manager._resolve(id) == id and manager.cache[id] == stream, "The manager must load the adopted file, not a fallback: " + id)
+		if MUSIC_FRAMES.has(id):
+			_check(stream.loop and is_zero_approx(stream.loop_offset), "Music must import with loop on from the start: " + id)
+			_check(roundi(stream.get_length() * 44100.0) == MUSIC_FRAMES[id], "Music must keep its exact loop length: " + id)
+		else:
+			_check(not stream.loop, "Effects must import without loop: " + id)
+	var voice: AudioStreamPlayer = manager.play("hit_light")
+	_check(voice != null and voice.playing and voice.bus == "SFX" and voice.stream.resource_path == "res://assets/audio/sfx/hit_light.ogg", "A hook must play its adopted file on SFX")
+	_stop_voices()
+	manager.play_music("music_battle")
+	var player: AudioStreamPlayer = manager.music_players[manager.music_index]
+	_check(player.playing and player.bus == "Music" and manager.resolved_music == "music_battle", "Battle music must play its own file on Music")
+	_check(player.stream is AudioStreamOggVorbis and player.stream.loop and player.stream != manager.cache["music_battle"], "Music must play a looping copy of the cached file")
+	await _await_fade()
+	_check(player.playing and is_zero_approx(player.volume_db), "Adopted music must reach full level")
+	for item: AudioStreamPlayer in manager.music_players + manager.voices:
+		item.stop()
+		item.stream = null
+	manager.current_music = ""
+	manager.resolved_music = ""
+	manager.cache.clear()
+	# The mixer thread drops stopped playbacks (which hold the loaded files) on its next cycles;
+	# quitting before that reports the files as resources still in use at exit.
+	await _real_wait(250)
 
 func _test_contract() -> void:
 	var doc := FileAccess.get_file_as_string("res://../design/AUDIO.md")
