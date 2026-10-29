@@ -1,0 +1,1003 @@
+{
+  "pillow_version": "12.3.0",
+  "candidates": [
+    {
+      "name": "cg_forest-v1",
+      "note": "높은 왼쪽 사원과 내려앉는 오른쪽 거목 섬을 멀리서 보는 전경. 끊어진 덩굴 다리와 높이가 다른 수정 3개가 한눈에 보인다. v2보다 넓고 안정된 구도.",
+      "for_lines": [
+        "story.s05.pre.1",
+        "story.s05.pre.2"
+      ],
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "opaque": true,
+      "candidate_status": "review_candidate",
+      "recommended_by_unit": true,
+      "adopted": false,
+      "parent_variant": null,
+      "raw": "art/raw/story/cg_forest-v1_raw.png",
+      "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-f753de4d-3f7c-4f24-b62b-f5354889b5bf.png",
+      "raw_sha256": "2098e1f9d8816c79452b0f2d74afa39b5db7476e0e309bbe055da31889e25dcc",
+      "candidate_sha256": "f1d6ac113aab2319f8fddda669199298e3029c64761eb1cda60c5b0202c5c127",
+      "reference_images_in_order": [
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_vanaheim/bg_far.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/objects/soul_crystal.png"
+      ],
+      "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+      "processing": {
+        "tool": "Python + Pillow",
+        "pillow_version": "12.3.0",
+        "raw_size": [
+          1672,
+          941
+        ],
+        "raw_mode": "RGB",
+        "crop_box": [
+          4,
+          2,
+          1668,
+          938
+        ],
+        "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+        "cropped_size": [
+          1664,
+          936
+        ],
+        "resize": {
+          "from": [
+            1664,
+            936
+          ],
+          "to": [
+            1600,
+            900
+          ],
+          "filter": "LANCZOS",
+          "scale": 0.9615384615384616
+        },
+        "upscaled": false,
+        "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+      },
+      "measurements": {
+        "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+        "top_three_quarters_box": [
+          0,
+          0,
+          1600,
+          675
+        ],
+        "bottom_quarter_box": [
+          0,
+          675,
+          1600,
+          900
+        ],
+        "top_mean_luma": 69.8923,
+        "bottom_mean_luma": 22.9128,
+        "bottom_to_top_ratio": 0.327831,
+        "bottom_pixels_luma_at_least_128_percent": 0.17417,
+        "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+        "nearest_palette_mean_delta_e76": 32.6198,
+        "nearest_palette_p90_delta_e76": 49.6061,
+        "palette_swatches": [
+          {
+            "hex": "#0e3b2a",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 0.89965
+          },
+          {
+            "hex": "#3f7d3a",
+            "minimum_delta_e76": 0.7329,
+            "pixels_within_delta_e76_10_percent": 0.08083
+          },
+          {
+            "hex": "#e8c86a",
+            "minimum_delta_e76": 0.6236,
+            "pixels_within_delta_e76_10_percent": 0.78576
+          },
+          {
+            "hex": "#ff6a3d",
+            "minimum_delta_e76": 0.947,
+            "pixels_within_delta_e76_10_percent": 0.08444
+          },
+          {
+            "hex": "#b77cff",
+            "minimum_delta_e76": 1.3833,
+            "pixels_within_delta_e76_10_percent": 0.00813
+          }
+        ]
+      }
+    },
+    {
+      "name": "cg_forest-v2",
+      "note": "왼쪽 거목과 가까운 끊어진 다리를 통해 오른쪽 위로 기운 사원을 올려다보는 사선 구도. v1보다 다리와 뿌리가 가까워 붕괴 압박이 강하다.",
+      "for_lines": [
+        "story.s05.pre.1",
+        "story.s05.pre.2"
+      ],
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "opaque": true,
+      "candidate_status": "review_candidate",
+      "recommended_by_unit": false,
+      "adopted": false,
+      "parent_variant": null,
+      "raw": "art/raw/story/cg_forest-v2_raw.png",
+      "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-ea182611-738c-4522-85f2-50ac5671918d.png",
+      "raw_sha256": "9af358ac7314750b14304ad52e6c8a3ffd10424b4d1a9900df8cf79e10d34daf",
+      "candidate_sha256": "204c7f5e1bacf0e91a0662b933775c4d1779ce540187ec178c762e9fa95a4d61",
+      "reference_images_in_order": [
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_vanaheim/bg_far.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/objects/soul_crystal.png"
+      ],
+      "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+      "processing": {
+        "tool": "Python + Pillow",
+        "pillow_version": "12.3.0",
+        "raw_size": [
+          1672,
+          940
+        ],
+        "raw_mode": "RGB",
+        "crop_box": [
+          4,
+          2,
+          1668,
+          938
+        ],
+        "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+        "cropped_size": [
+          1664,
+          936
+        ],
+        "resize": {
+          "from": [
+            1664,
+            936
+          ],
+          "to": [
+            1600,
+            900
+          ],
+          "filter": "LANCZOS",
+          "scale": 0.9615384615384616
+        },
+        "upscaled": false,
+        "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+      },
+      "measurements": {
+        "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+        "top_three_quarters_box": [
+          0,
+          0,
+          1600,
+          675
+        ],
+        "bottom_quarter_box": [
+          0,
+          675,
+          1600,
+          900
+        ],
+        "top_mean_luma": 71.6236,
+        "bottom_mean_luma": 28.9313,
+        "bottom_to_top_ratio": 0.403935,
+        "bottom_pixels_luma_at_least_128_percent": 0.4325,
+        "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+        "nearest_palette_mean_delta_e76": 27.7422,
+        "nearest_palette_p90_delta_e76": 39.4872,
+        "palette_swatches": [
+          {
+            "hex": "#0e3b2a",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 1.54431
+          },
+          {
+            "hex": "#3f7d3a",
+            "minimum_delta_e76": 1.7018,
+            "pixels_within_delta_e76_10_percent": 0.03139
+          },
+          {
+            "hex": "#e8c86a",
+            "minimum_delta_e76": 0.4404,
+            "pixels_within_delta_e76_10_percent": 1.02132
+          },
+          {
+            "hex": "#ff6a3d",
+            "minimum_delta_e76": 2.2936,
+            "pixels_within_delta_e76_10_percent": 0.0675
+          },
+          {
+            "hex": "#b77cff",
+            "minimum_delta_e76": 4.0557,
+            "pixels_within_delta_e76_10_percent": 0.00674
+          }
+        ]
+      }
+    },
+    {
+      "name": "cg_beast-v1",
+      "note": "오른쪽을 향한 거대 마그마 멧돼지의 측면 원안. 앞발과 바닥을 긁는 불꽃이 하단 25%에 걸쳐 검수에서 탈락. 수정본 v3를 비교 후보로 사용한다.",
+      "for_lines": [
+        "story.s07.pre.1",
+        "story.s07.pre.2"
+      ],
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "opaque": true,
+      "candidate_status": "superseded_failed_bottom_quarter",
+      "recommended_by_unit": false,
+      "adopted": false,
+      "parent_variant": null,
+      "raw": "art/raw/story/cg_beast-v1_raw.png",
+      "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-f2cfb96d-c1b8-414e-819c-36d1e11d564e.png",
+      "raw_sha256": "1942ded9f4192c16fbcab4b986723bdacaf648fe04ade262ad8c437abe65fc54",
+      "candidate_sha256": "9761276594e7ec3afa41d104906ff1c1f1b03b5e087fb0315068b2c395a41b92",
+      "reference_images_in_order": [
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/art/bakeoff/monsters/muspelheim_magma_boar-idle-v1.png"
+      ],
+      "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+      "processing": {
+        "tool": "Python + Pillow",
+        "pillow_version": "12.3.0",
+        "raw_size": [
+          1672,
+          941
+        ],
+        "raw_mode": "RGB",
+        "crop_box": [
+          4,
+          2,
+          1668,
+          938
+        ],
+        "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+        "cropped_size": [
+          1664,
+          936
+        ],
+        "resize": {
+          "from": [
+            1664,
+            936
+          ],
+          "to": [
+            1600,
+            900
+          ],
+          "filter": "LANCZOS",
+          "scale": 0.9615384615384616
+        },
+        "upscaled": false,
+        "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+      },
+      "measurements": {
+        "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+        "top_three_quarters_box": [
+          0,
+          0,
+          1600,
+          675
+        ],
+        "bottom_quarter_box": [
+          0,
+          675,
+          1600,
+          900
+        ],
+        "top_mean_luma": 56.2462,
+        "bottom_mean_luma": 25.4663,
+        "bottom_to_top_ratio": 0.452765,
+        "bottom_pixels_luma_at_least_128_percent": 3.12694,
+        "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+        "nearest_palette_mean_delta_e76": 17.8347,
+        "nearest_palette_p90_delta_e76": 33.8667,
+        "palette_swatches": [
+          {
+            "hex": "#2a1410",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 17.12653
+          },
+          {
+            "hex": "#ff5a1f",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 4.05056
+          },
+          {
+            "hex": "#ffd27a",
+            "minimum_delta_e76": 0.3548,
+            "pixels_within_delta_e76_10_percent": 0.22306
+          },
+          {
+            "hex": "#4a2a2a",
+            "minimum_delta_e76": 0.6451,
+            "pixels_within_delta_e76_10_percent": 6.02708
+          }
+        ]
+      }
+    },
+    {
+      "name": "cg_beast-v2",
+      "note": "정면에 가까운 왼쪽 사선의 멧돼지 원안. 양쪽 엄니와 들이받기 직전 자세가 강조되나 앞발과 불꽃이 하단 25%에 걸쳐 탈락. 수정본 v4 사용.",
+      "for_lines": [
+        "story.s07.pre.1",
+        "story.s07.pre.2"
+      ],
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "opaque": true,
+      "candidate_status": "superseded_failed_bottom_quarter",
+      "recommended_by_unit": false,
+      "adopted": false,
+      "parent_variant": null,
+      "raw": "art/raw/story/cg_beast-v2_raw.png",
+      "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-4aeaa96f-5b0c-47d6-9a37-f87b162d9c3f.png",
+      "raw_sha256": "eaaf0f7ba05535a8b34128d64c9519db87ba55720e0ae4cc444cc06820c3b664",
+      "candidate_sha256": "7387c74ee6fb5923c2b6761ba4e7cb9d11ae529d95de52002d29cba01a9f2cdf",
+      "reference_images_in_order": [
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/art/bakeoff/monsters/muspelheim_magma_boar-idle-v1.png"
+      ],
+      "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+      "processing": {
+        "tool": "Python + Pillow",
+        "pillow_version": "12.3.0",
+        "raw_size": [
+          1672,
+          941
+        ],
+        "raw_mode": "RGB",
+        "crop_box": [
+          4,
+          2,
+          1668,
+          938
+        ],
+        "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+        "cropped_size": [
+          1664,
+          936
+        ],
+        "resize": {
+          "from": [
+            1664,
+            936
+          ],
+          "to": [
+            1600,
+            900
+          ],
+          "filter": "LANCZOS",
+          "scale": 0.9615384615384616
+        },
+        "upscaled": false,
+        "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+      },
+      "measurements": {
+        "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+        "top_three_quarters_box": [
+          0,
+          0,
+          1600,
+          675
+        ],
+        "bottom_quarter_box": [
+          0,
+          675,
+          1600,
+          900
+        ],
+        "top_mean_luma": 52.362,
+        "bottom_mean_luma": 19.6714,
+        "bottom_to_top_ratio": 0.375681,
+        "bottom_pixels_luma_at_least_128_percent": 1.59528,
+        "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+        "nearest_palette_mean_delta_e76": 17.8608,
+        "nearest_palette_p90_delta_e76": 34.154,
+        "palette_swatches": [
+          {
+            "hex": "#2a1410",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 16.19986
+          },
+          {
+            "hex": "#ff5a1f",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 3.26861
+          },
+          {
+            "hex": "#ffd27a",
+            "minimum_delta_e76": 0.3548,
+            "pixels_within_delta_e76_10_percent": 0.24806
+          },
+          {
+            "hex": "#4a2a2a",
+            "minimum_delta_e76": 0.4497,
+            "pixels_within_delta_e76_10_percent": 6.09243
+          }
+        ]
+      }
+    },
+    {
+      "name": "cg_heart-v1",
+      "note": "세계수와 뒤틀려 갈라진 심장을 정면 중앙에 놓은 원형 경기장. 어두운 보라 불꽃 5개가 얕은 호로 분리되어 v2보다 수량과 최종 무대가 빠르게 읽힌다.",
+      "for_lines": [
+        "story.s09.pre.1",
+        "story.s09.pre.2"
+      ],
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "opaque": true,
+      "candidate_status": "review_candidate",
+      "recommended_by_unit": true,
+      "adopted": false,
+      "parent_variant": null,
+      "raw": "art/raw/story/cg_heart-v1_raw.png",
+      "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-9d667721-fa13-49e2-8d5d-a2037ea29c89.png",
+      "raw_sha256": "001ca93cef52ca20987d738fcf5319b65216b24c378ef0e7f0795cd7ef9babc1",
+      "candidate_sha256": "b7e967f892a07df64daee4139aef3d77c557bf39879b8710672b93259ff0d15d",
+      "reference_images_in_order": [
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_center/bg_far.png"
+      ],
+      "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+      "processing": {
+        "tool": "Python + Pillow",
+        "pillow_version": "12.3.0",
+        "raw_size": [
+          1672,
+          941
+        ],
+        "raw_mode": "RGB",
+        "crop_box": [
+          4,
+          2,
+          1668,
+          938
+        ],
+        "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+        "cropped_size": [
+          1664,
+          936
+        ],
+        "resize": {
+          "from": [
+            1664,
+            936
+          ],
+          "to": [
+            1600,
+            900
+          ],
+          "filter": "LANCZOS",
+          "scale": 0.9615384615384616
+        },
+        "upscaled": false,
+        "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+      },
+      "measurements": {
+        "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+        "top_three_quarters_box": [
+          0,
+          0,
+          1600,
+          675
+        ],
+        "bottom_quarter_box": [
+          0,
+          675,
+          1600,
+          900
+        ],
+        "top_mean_luma": 58.8957,
+        "bottom_mean_luma": 17.3705,
+        "bottom_to_top_ratio": 0.294937,
+        "bottom_pixels_luma_at_least_128_percent": 0.44306,
+        "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+        "nearest_palette_mean_delta_e76": 16.5717,
+        "nearest_palette_p90_delta_e76": 29.857,
+        "palette_swatches": [
+          {
+            "hex": "#3b1d5e",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 9.48736
+          },
+          {
+            "hex": "#1a0f2e",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 17.76063
+          },
+          {
+            "hex": "#9b5cff",
+            "minimum_delta_e76": 2.0545,
+            "pixels_within_delta_e76_10_percent": 0.15507
+          },
+          {
+            "hex": "#ff4fd8",
+            "minimum_delta_e76": 1.0976,
+            "pixels_within_delta_e76_10_percent": 0.2475
+          },
+          {
+            "hex": "#ffd6f5",
+            "minimum_delta_e76": 0.3522,
+            "pixels_within_delta_e76_10_percent": 0.44188
+          }
+        ]
+      }
+    },
+    {
+      "name": "cg_heart-v2",
+      "note": "경기장 왼쪽에서 오른쪽 위 심장을 보는 비대칭 사선 구도. 보라 불꽃 5개와 뿌리가 대각선 흐름을 이루며 v1보다 공간 깊이가 강조된다.",
+      "for_lines": [
+        "story.s09.pre.1",
+        "story.s09.pre.2"
+      ],
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "opaque": true,
+      "candidate_status": "review_candidate",
+      "recommended_by_unit": false,
+      "adopted": false,
+      "parent_variant": null,
+      "raw": "art/raw/story/cg_heart-v2_raw.png",
+      "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-3f072bda-c050-4b4a-9def-37ed1e05257e.png",
+      "raw_sha256": "47ba1935e1c8b5f385cb85bafe62159e6781f4a0d5769e1e36e0d3395491e34e",
+      "candidate_sha256": "4d516d371e224632fbd756de2f6b20c7ef0969289f1e764fdc9cda7844ea7017",
+      "reference_images_in_order": [
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_center/bg_far.png"
+      ],
+      "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+      "processing": {
+        "tool": "Python + Pillow",
+        "pillow_version": "12.3.0",
+        "raw_size": [
+          1672,
+          941
+        ],
+        "raw_mode": "RGB",
+        "crop_box": [
+          4,
+          2,
+          1668,
+          938
+        ],
+        "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+        "cropped_size": [
+          1664,
+          936
+        ],
+        "resize": {
+          "from": [
+            1664,
+            936
+          ],
+          "to": [
+            1600,
+            900
+          ],
+          "filter": "LANCZOS",
+          "scale": 0.9615384615384616
+        },
+        "upscaled": false,
+        "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+      },
+      "measurements": {
+        "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+        "top_three_quarters_box": [
+          0,
+          0,
+          1600,
+          675
+        ],
+        "bottom_quarter_box": [
+          0,
+          675,
+          1600,
+          900
+        ],
+        "top_mean_luma": 55.0899,
+        "bottom_mean_luma": 16.2126,
+        "bottom_to_top_ratio": 0.294293,
+        "bottom_pixels_luma_at_least_128_percent": 0.0825,
+        "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+        "nearest_palette_mean_delta_e76": 16.7048,
+        "nearest_palette_p90_delta_e76": 29.6581,
+        "palette_swatches": [
+          {
+            "hex": "#3b1d5e",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 7.49306
+          },
+          {
+            "hex": "#1a0f2e",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 18.34986
+          },
+          {
+            "hex": "#9b5cff",
+            "minimum_delta_e76": 0.6155,
+            "pixels_within_delta_e76_10_percent": 0.42097
+          },
+          {
+            "hex": "#ff4fd8",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 0.34667
+          },
+          {
+            "hex": "#ffd6f5",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 0.49986
+          }
+        ]
+      }
+    },
+    {
+      "name": "cg_beast-v3",
+      "note": "v1의 측면 구도를 유지하며 카메라를 물려 발과 바닥 긁기를 위로 올린 수정본. 하단은 어두운 식은 암석과 연무이며 v4보다 몸통과 등 가시 실루엣이 잘 보인다.",
+      "for_lines": [
+        "story.s07.pre.1",
+        "story.s07.pre.2"
+      ],
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "opaque": true,
+      "candidate_status": "review_candidate",
+      "recommended_by_unit": true,
+      "adopted": false,
+      "parent_variant": "cg_beast-v1",
+      "raw": "art/raw/story/cg_beast-v3_raw.png",
+      "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-10addb07-aca1-4c37-a4a8-773299808a69.png",
+      "raw_sha256": "a5009f3489b9029fbc97f9e2a3a1f85d04fa0b07338184b8083a4927e434b6f6",
+      "candidate_sha256": "720abc1397a0d8cfe8c20fbadc6fc32d00128300d3afbf1e279c5513d824507d",
+      "reference_images_in_order": [
+        "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-f2cfb96d-c1b8-414e-819c-36d1e11d564e.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/art/bakeoff/monsters/muspelheim_magma_boar-idle-v1.png"
+      ],
+      "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+      "processing": {
+        "tool": "Python + Pillow",
+        "pillow_version": "12.3.0",
+        "raw_size": [
+          1672,
+          941
+        ],
+        "raw_mode": "RGB",
+        "crop_box": [
+          4,
+          2,
+          1668,
+          938
+        ],
+        "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+        "cropped_size": [
+          1664,
+          936
+        ],
+        "resize": {
+          "from": [
+            1664,
+            936
+          ],
+          "to": [
+            1600,
+            900
+          ],
+          "filter": "LANCZOS",
+          "scale": 0.9615384615384616
+        },
+        "upscaled": false,
+        "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+      },
+      "measurements": {
+        "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+        "top_three_quarters_box": [
+          0,
+          0,
+          1600,
+          675
+        ],
+        "bottom_quarter_box": [
+          0,
+          675,
+          1600,
+          900
+        ],
+        "top_mean_luma": 49.7578,
+        "bottom_mean_luma": 9.06,
+        "bottom_to_top_ratio": 0.182082,
+        "bottom_pixels_luma_at_least_128_percent": 0.0,
+        "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+        "nearest_palette_mean_delta_e76": 18.0794,
+        "nearest_palette_p90_delta_e76": 33.3185,
+        "palette_swatches": [
+          {
+            "hex": "#2a1410",
+            "minimum_delta_e76": 0.6037,
+            "pixels_within_delta_e76_10_percent": 8.92764
+          },
+          {
+            "hex": "#ff5a1f",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 3.92681
+          },
+          {
+            "hex": "#ffd27a",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 0.21778
+          },
+          {
+            "hex": "#4a2a2a",
+            "minimum_delta_e76": 0.4497,
+            "pixels_within_delta_e76_10_percent": 2.46354
+          }
+        ]
+      }
+    },
+    {
+      "name": "cg_beast-v4",
+      "note": "v2의 정면 사선 구도를 유지하며 발과 바닥 긁기를 위로 올린 수정본. v3보다 눈앞으로 돌진할 듯한 압박감과 두 엄니가 강조된다.",
+      "for_lines": [
+        "story.s07.pre.1",
+        "story.s07.pre.2"
+      ],
+      "size": [
+        1600,
+        900
+      ],
+      "mode": "RGB",
+      "opaque": true,
+      "candidate_status": "review_candidate",
+      "recommended_by_unit": false,
+      "adopted": false,
+      "parent_variant": "cg_beast-v2",
+      "raw": "art/raw/story/cg_beast-v4_raw.png",
+      "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-8f1ddbf3-497e-4c4d-97a4-2acbc681826f.png",
+      "raw_sha256": "54bff961b3805561641f242b288424c391d8cf03113cb1b47ab9f8296a867eaf",
+      "candidate_sha256": "f2089f0ef87c5ea51c305b1d2fb1d78c915a7384af8dd4f6cb68dc4e5271eb63",
+      "reference_images_in_order": [
+        "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-4aeaa96f-5b0c-47d6-9a37-f87b162d9c3f.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/art/bakeoff/monsters/muspelheim_magma_boar-idle-v1.png"
+      ],
+      "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+      "processing": {
+        "tool": "Python + Pillow",
+        "pillow_version": "12.3.0",
+        "raw_size": [
+          1672,
+          940
+        ],
+        "raw_mode": "RGB",
+        "crop_box": [
+          4,
+          2,
+          1668,
+          938
+        ],
+        "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+        "cropped_size": [
+          1664,
+          936
+        ],
+        "resize": {
+          "from": [
+            1664,
+            936
+          ],
+          "to": [
+            1600,
+            900
+          ],
+          "filter": "LANCZOS",
+          "scale": 0.9615384615384616
+        },
+        "upscaled": false,
+        "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+      },
+      "measurements": {
+        "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+        "top_three_quarters_box": [
+          0,
+          0,
+          1600,
+          675
+        ],
+        "bottom_quarter_box": [
+          0,
+          675,
+          1600,
+          900
+        ],
+        "top_mean_luma": 47.44,
+        "bottom_mean_luma": 7.5494,
+        "bottom_to_top_ratio": 0.159136,
+        "bottom_pixels_luma_at_least_128_percent": 0.0,
+        "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+        "nearest_palette_mean_delta_e76": 18.4584,
+        "nearest_palette_p90_delta_e76": 34.4027,
+        "palette_swatches": [
+          {
+            "hex": "#2a1410",
+            "minimum_delta_e76": 0.5212,
+            "pixels_within_delta_e76_10_percent": 9.03542
+          },
+          {
+            "hex": "#ff5a1f",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 3.62201
+          },
+          {
+            "hex": "#ffd27a",
+            "minimum_delta_e76": 0.5903,
+            "pixels_within_delta_e76_10_percent": 0.13403
+          },
+          {
+            "hex": "#4a2a2a",
+            "minimum_delta_e76": 0.0,
+            "pixels_within_delta_e76_10_percent": 2.76361
+          }
+        ]
+      }
+    }
+  ],
+  "contact_sheets": [
+    {
+      "path": "reports/codex-sart-01/cg_forest-contact.jpg",
+      "size": [
+        3840,
+        828
+      ],
+      "tile_size": [
+        1280,
+        720
+      ],
+      "jpeg_quality": 90,
+      "subsampling": 2,
+      "bytes": 1201868,
+      "sha256": "f007e958f91626e7561fd27feda3a9858b91d081d6c62fcf001b75b090ad66e8",
+      "band": {
+        "y_in_tile": 540,
+        "height": 180,
+        "rgba": [
+          8,
+          12,
+          25,
+          200
+        ]
+      },
+      "sources": [
+        "art/bakeoff/story/cg_forest-v1.png",
+        "art/bakeoff/story/cg_forest-v2.png",
+        "smash-nine-prototype/assets/art/story/cg_prologue.png"
+      ]
+    },
+    {
+      "path": "reports/codex-sart-01/cg_beast-contact.jpg",
+      "size": [
+        3840,
+        828
+      ],
+      "tile_size": [
+        1280,
+        720
+      ],
+      "jpeg_quality": 90,
+      "subsampling": 2,
+      "bytes": 1015103,
+      "sha256": "c57e23db328b546fcb1a92597f04bbd30f74c2ddb42af652ee89467ed64e07f5",
+      "band": {
+        "y_in_tile": 540,
+        "height": 180,
+        "rgba": [
+          8,
+          12,
+          25,
+          200
+        ]
+      },
+      "sources": [
+        "art/bakeoff/story/cg_beast-v3.png",
+        "art/bakeoff/story/cg_beast-v4.png",
+        "smash-nine-prototype/assets/art/story/cg_prologue.png"
+      ]
+    },
+    {
+      "path": "reports/codex-sart-01/cg_heart-contact.jpg",
+      "size": [
+        3840,
+        828
+      ],
+      "tile_size": [
+        1280,
+        720
+      ],
+      "jpeg_quality": 90,
+      "subsampling": 2,
+      "bytes": 1180891,
+      "sha256": "8c5b7124a3be36d39abf53d710e39768b703e0c7628bbf76eccade7a4e73d55d",
+      "band": {
+        "y_in_tile": 540,
+        "height": 180,
+        "rgba": [
+          8,
+          12,
+          25,
+          200
+        ]
+      },
+      "sources": [
+        "art/bakeoff/story/cg_heart-v1.png",
+        "art/bakeoff/story/cg_heart-v2.png",
+        "smash-nine-prototype/assets/art/story/cg_prologue.png"
+      ]
+    },
+    {
+      "path": "reports/codex-sart-01/cg_beast-before-contact.jpg",
+      "size": [
+        3840,
+        828
+      ],
+      "tile_size": [
+        1280,
+        720
+      ],
+      "jpeg_quality": 90,
+      "subsampling": 2,
+      "bytes": 1099754,
+      "sha256": "68a0d6d70cf9f3289a83ed32b0c96bc6f477361252decc31c87bdbd70283f5b9",
+      "band": {
+        "y_in_tile": 540,
+        "height": 180,
+        "rgba": [
+          8,
+          12,
+          25,
+          200
+        ]
+      },
+      "sources": [
+        "art/bakeoff/story/cg_beast-v1.png",
+        "art/bakeoff/story/cg_beast-v2.png",
+        "smash-nine-prototype/assets/art/story/cg_prologue.png"
+      ]
+    }
+  ]
+}

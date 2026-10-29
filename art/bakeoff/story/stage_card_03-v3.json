@@ -1,0 +1,61 @@
+{
+  "note": "v1의 다리를 아래로 내려 구름 수평선을 하단 1/3에 맞추고 주변 성을 비운 보완안.",
+  "stage": 3,
+  "title": "달빛 다리",
+  "version": 3,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-a2e6e6b6-1f43-45e7-b173-337a4ad91720.png",
+    "raw_copy": "art/raw/story/stage_card_03-v3_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "80fad1b878ab5fb35c5ccf30bbb885cf1704042cd4e7e6f111362151fba56c21",
+  "candidate_sha256": "54812d2464dd498bbb36a3a652edd47737530881fb7e94339746cd6693b02931",
+  "metrics": {
+    "brightness_mean_y709": 0.256866,
+    "saturation_mean_hsv": 0.726112,
+    "contrast_std_y709": 0.195026,
+    "outer_8px_mean_luma601": 0.151309
+  },
+  "prompt": "Use case: illustration-story. EDIT reference 1 into stage_card_03-v3, opaque 16:9 painted pixel-art story landscape, largest available resolution. Reference 1 edit target, references 2 and 3 game style, reference 4 Alfheim palette/landmarks. Preserve the LONG horizontal moonlit arched bridge, exactly TWO glowing CIRCULAR moon gates at its two ends, and the large crescent in the upper left. Correct the high horizon and overcrowded edges: move the WHOLE BRIDGE DOWN so its deck lies exactly around y74% image height, both gates' centres at y61% and bases on that same deck. The bridge should span x28-72%, centred, and the two full circular gates at x29% and x71%. Cloud-sea horizon must be a clear low horizontal band at y75%. DELETE ALL high side mountains, tall side castles and multiple peripheral islands. Replace them with quiet open blue-violet night sky and a few low misty silhouettes ONLY below y76%. A few lilac trees can sit beside bridge ends, BELOW gate top height. Leave main landmarks wholly visible. Outer 3% calm and low contrast. Silver moonlight falls from upper-left crescent; lavender stone, navy-blue sky, controlled midtones, crisp painted pixel clusters matching game. No banners, signs, sigils, lettering, glyphs, runes, figures, faces, people, animals, UI, frame, border, watermark. This must be one wide scene, no layout annotations.",
+  "references_in_order": [
+    "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-70b0b3ab-9db4-41aa-a9fe-73cd117084ec.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_alfheim/bg_far.png"
+  ]
+}

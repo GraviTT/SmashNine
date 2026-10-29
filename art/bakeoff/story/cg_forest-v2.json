@@ -1,0 +1,112 @@
+{
+  "name": "cg_forest-v2",
+  "note": "왼쪽 거목과 가까운 끊어진 다리를 통해 오른쪽 위로 기운 사원을 올려다보는 사선 구도. v1보다 다리와 뿌리가 가까워 붕괴 압박이 강하다.",
+  "for_lines": [
+    "story.s05.pre.1",
+    "story.s05.pre.2"
+  ],
+  "size": [
+    1600,
+    900
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "candidate_status": "review_candidate",
+  "recommended_by_unit": false,
+  "adopted": false,
+  "parent_variant": null,
+  "raw": "art/raw/story/cg_forest-v2_raw.png",
+  "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-ea182611-738c-4522-85f2-50ac5671918d.png",
+  "raw_sha256": "9af358ac7314750b14304ad52e6c8a3ffd10424b4d1a9900df8cf79e10d34daf",
+  "candidate_sha256": "204c7f5e1bacf0e91a0662b933775c4d1779ce540187ec178c762e9fa95a4d61",
+  "reference_images_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_vanaheim/bg_far.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/objects/soul_crystal.png"
+  ],
+  "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+  "processing": {
+    "tool": "Python + Pillow",
+    "pillow_version": "12.3.0",
+    "raw_size": [
+      1672,
+      940
+    ],
+    "raw_mode": "RGB",
+    "crop_box": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+    "cropped_size": [
+      1664,
+      936
+    ],
+    "resize": {
+      "from": [
+        1664,
+        936
+      ],
+      "to": [
+        1600,
+        900
+      ],
+      "filter": "LANCZOS",
+      "scale": 0.9615384615384616
+    },
+    "upscaled": false,
+    "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+  },
+  "measurements": {
+    "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+    "top_three_quarters_box": [
+      0,
+      0,
+      1600,
+      675
+    ],
+    "bottom_quarter_box": [
+      0,
+      675,
+      1600,
+      900
+    ],
+    "top_mean_luma": 71.6236,
+    "bottom_mean_luma": 28.9313,
+    "bottom_to_top_ratio": 0.403935,
+    "bottom_pixels_luma_at_least_128_percent": 0.4325,
+    "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+    "nearest_palette_mean_delta_e76": 27.7422,
+    "nearest_palette_p90_delta_e76": 39.4872,
+    "palette_swatches": [
+      {
+        "hex": "#0e3b2a",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 1.54431
+      },
+      {
+        "hex": "#3f7d3a",
+        "minimum_delta_e76": 1.7018,
+        "pixels_within_delta_e76_10_percent": 0.03139
+      },
+      {
+        "hex": "#e8c86a",
+        "minimum_delta_e76": 0.4404,
+        "pixels_within_delta_e76_10_percent": 1.02132
+      },
+      {
+        "hex": "#ff6a3d",
+        "minimum_delta_e76": 2.2936,
+        "pixels_within_delta_e76_10_percent": 0.0675
+      },
+      {
+        "hex": "#b77cff",
+        "minimum_delta_e76": 4.0557,
+        "pixels_within_delta_e76_10_percent": 0.00674
+      }
+    ]
+  }
+}
