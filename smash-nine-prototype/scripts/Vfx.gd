@@ -20,6 +20,7 @@ const HAZARDS_DIR := "res://assets/art/hazards/%s.png"
 ## name: [frames, fps, anchor in the frame, additive(, folder pattern when not DIR)]
 const SPECS := {
 	"shadow_aura": [6, 10.0, Vector2(64, 160), false, "res://assets/art/story/%s.png"],
+	"shadow_dissolve": [6, 12.0, Vector2(96, 152), false, "res://assets/art/story/%s.png"],
 	"frey_ult_charge": [6, 24.0, Vector2(64, 124), true],
 	"frey_ult_wave": [8, 30.0, Vector2(0, 96), true],
 	"yuki_ult_seal": [8, 12.0, Vector2(128, 128), false],

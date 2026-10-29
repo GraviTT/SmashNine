@@ -81,15 +81,22 @@ static func _dialogue(number: int) -> Dictionary:
 			lines.home_pre[1].append({"cg": "", "face": "angry"})
 		8:
 			lines.home_pre[1].append({"cg": "", "face": "hurt"})
-	# Scene pictures (ART-70, StoryDialogue) behind the prologue, the opened root seal and the calm heart.
+	# Scene pictures (StoryDialogue) behind the prologue, the opened root seal and the calm heart
+	# (ART-70), and behind the narration of the falling forest, the fire beast and the heart where
+	# the shadows rise (SART-01, 2026-10-29).
 	match number:
 		1:
 			for index in 3:
 				lines.pre[index].append({"cg": "prologue"})
+		5, 7:
+			for line: Array in lines.pre:
+				line.append({"cg": "forest" if number == 5 else "beast"})
 		8:
 			for line: Array in lines.post + lines.home_post:
 				line.append({"cg": "root"})
 		9:
+			for line: Array in lines.pre:
+				line.append({"cg": "heart"})
 			for line: Array in lines.post:
 				line.append({"cg": "epilogue"})
 	return lines
