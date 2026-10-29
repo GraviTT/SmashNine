@@ -18,3 +18,5 @@ Bottom-right HUD skill bar icons for the focused fighter.
 | Rio | `rio_j.png` | `rio_k.png` | `rio_l.png` | `rio_i.png` |
 
 Source and verification workflow: `tests/art_preview/skill_icons_18/build_skill_icons.gd`.
+
+**2026-10-29:** Brave Luna's `luna_brave_j`, `_k`, `_l` were redrawn (CODEX-VFX-02, candidate A, user's pick) to show her moves: a gauntlet fist (J chain), a star-led body dash (K Comet Drive), a crescent kick arc (L Luna Breaker). Same canvas, outline and style; `luna_brave_i` is unchanged.
