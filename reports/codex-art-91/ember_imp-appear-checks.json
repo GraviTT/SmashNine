@@ -1,0 +1,208 @@
+{
+  "config": {
+    "trial": "ember_imp-appear-clean",
+    "id": "ember_imp",
+    "row": "appear",
+    "source": "C:/Users/TH/.codex/generated_images/01a18105-8977-7e21-8b97-3be33acd4e7e/exec-3434c338-9ab2-4fe7-a19f-c790dc0c4465.png",
+    "idle": "art/bakeoff/monsters/ember_imp-idle-v2.png",
+    "support": "art/bakeoff/monsters/ember_imp-windup-v1.png",
+    "measure": "manual red face width at eye level; flame hair excluded; endpoints estimated on source ruler, uncertainty +-3 source px / +-1 idle px",
+    "idle_landmark_size": 20,
+    "raw_landmark_sizes": [
+      84,
+      86,
+      83,
+      89,
+      87,
+      85
+    ],
+    "manual_source_points": [
+      [
+        215,
+        416,
+        299,
+        416
+      ],
+      [
+        217,
+        406,
+        303,
+        406
+      ],
+      [
+        219,
+        381,
+        302,
+        381
+      ],
+      [
+        215,
+        345,
+        304,
+        345
+      ],
+      [
+        216,
+        329,
+        303,
+        329
+      ],
+      [
+        220,
+        345,
+        305,
+        345
+      ]
+    ],
+    "grounded": true,
+    "prompt": "Identity-preserve pixel sprite animation: exactly SIX APPEAR drawings of the Ember Imp in Image 1. Image1 idle is authoritative identity/scale; Image2 windup is pose reference. Small orange-red flame-haired imp, swept spiky flame hair, orange face with a dark eye, two arms two legs, clawed red feet, curling flame-tipped tail. All flame shapes are attached anatomy, NO separate effects or fireballs. Keep same slender imp proportions, EXACT SAME skull width/height and eye position relative to face throughout, always right-facing side profile. Six clear stages: 1 crouched low knees deeply bent, arms close; 2 hands lower and legs begin extending; 3 rises halfway; 4 stands mostly upright; 5 raises chin slightly and settles hands; 6 original idle ready pose. Do not rotate toward camera. Head is rigid unchanged, joints move. Same body scale in all frames, no zoom. Transparent background, no shadow, dust, sparks, light burst, projectile, text or grid. ONE HORIZONTAL ROW of SIX equal-width cells, each figure fully inside its cell with generous 15% empty margin. Detailed crisp pixel-art clusters and exact colors like reference, no redesign or thick smooth outlines."
+  },
+  "source_dimensions": [
+    2170,
+    725
+  ],
+  "factor": 0.23346303501945523,
+  "idle_landmark": {
+    "size": 20
+  },
+  "raw_landmarks": [
+    {
+      "size": 84
+    },
+    {
+      "size": 86
+    },
+    {
+      "size": 83
+    },
+    {
+      "size": 89
+    },
+    {
+      "size": 87
+    },
+    {
+      "size": 85
+    }
+  ],
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        20,
+        27,
+        75,
+        73
+      ],
+      "margin": 20,
+      "bottom": 72,
+      "landmark_ratio": 0.9805447470817119,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "70cd7314f404dffd619fe85230dd5985cf16b09ee2a358f03c6682a8172cb0e5",
+      "spill_before": 4,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        20,
+        25,
+        77,
+        73
+      ],
+      "margin": 19,
+      "bottom": 72,
+      "landmark_ratio": 1.0038910505836574,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "35ef843c03011c244a550291661dbb8e0b483b839301e582b72f443aa96e1f91",
+      "spill_before": 0,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        20,
+        18,
+        76,
+        73
+      ],
+      "margin": 18,
+      "bottom": 72,
+      "landmark_ratio": 0.9688715953307392,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "d62de0b4cd6a59d4c3102daaf877916870ffa5e69bf15903ec9848bcd685044e",
+      "spill_before": 1,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        20,
+        11,
+        76,
+        73
+      ],
+      "margin": 11,
+      "bottom": 72,
+      "landmark_ratio": 1.0389105058365757,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "8c094f1b3368f0aff54cae1d7fa7887003c940a8f141811061dd810faf5646fc",
+      "spill_before": 2,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        21,
+        6,
+        75,
+        73
+      ],
+      "margin": 6,
+      "bottom": 72,
+      "landmark_ratio": 1.0155642023346303,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "4ca4d406b109d6a28d178898e8ddbd738a3b7c0a902391b3d2d8f68040513c66",
+      "spill_before": 0,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        21,
+        9,
+        75,
+        73
+      ],
+      "margin": 9,
+      "bottom": 72,
+      "landmark_ratio": 0.9922178988326846,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "51a6ed3b346ac7718dcb64dccd74eb589c71eb9c1248bdd53751b8e615f32935",
+      "spill_before": 1,
+      "spill": 0,
+      "alpha_unchanged": true
+    }
+  ],
+  "failures": [],
+  "notes": "Size uses named anatomical landmark, not pose bbox. Manual endpoint uncertainty is separate from nominal ratios. Alpha source means no chroma-key removal or palette remapping. Standard normalize.py despill auto applied to all frames, no palette map.",
+  "visual_review": "재검사 통과: 표준 despill auto로 8개 번짐 판정 픽셀 제거, 전 프레임 spill0·알파 불변. 낮은 웅크림에서 준비 자세로 일어남. 눈높이 얼굴 폭 수동 명목 크기 idle 대비 0.969~1.039배(원본 ±3px, idle ±1px). 여백6px 이상·발 하단 y72. 이전 회수본은 raw 보존; 이번 파일이 최종 후보.",
+  "delivered_at": "2026-10-28T15:33:57.672576+09:00"
+}

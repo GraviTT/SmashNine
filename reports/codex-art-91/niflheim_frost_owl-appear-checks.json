@@ -1,0 +1,214 @@
+{
+  "config": {
+    "trial": "niflheim_frost_owl-appear-clean",
+    "id": "niflheim_frost_owl",
+    "row": "appear",
+    "source": "C:/Users/TH/.codex/generated_images/01a18105-8977-7e21-8b97-3be33acd4e7e/exec-cb950c01-9d72-4c4c-a0ea-9c3cb5ac93db.png",
+    "idle": "art/bakeoff/monsters/niflheim_frost_owl-idle-v1.png",
+    "support": "art/bakeoff/monsters/niflheim_frost_owl-windup-v1.png",
+    "measure": "manual skull axis excluding feather crest, rear head to beak base; source endpoints +-3px idle +-1px",
+    "idle_landmark_size": 27.51363298439521,
+    "idle_points": [
+      43,
+      35,
+      69,
+      44
+    ],
+    "raw_landmark_sizes": [
+      116.24543001770004,
+      119.23086848631104,
+      115.55085460523433,
+      116.36150566231085,
+      116.77756633874506,
+      116.36150566231085
+    ],
+    "manual_source_points": [
+      [
+        233,
+        408,
+        341,
+        451
+      ],
+      [
+        218,
+        387,
+        328,
+        433
+      ],
+      [
+        210,
+        347,
+        316,
+        393
+      ],
+      [
+        214,
+        342,
+        320,
+        390
+      ],
+      [
+        210,
+        349,
+        316,
+        398
+      ],
+      [
+        218,
+        343,
+        324,
+        391
+      ]
+    ],
+    "grounded": true,
+    "prompt": "Identity-preserve detailed pixel game animation: SIX APPEAR frames for the exact frost owl in Image1 idle, Image2 windup reference. Small blue ice owl facing RIGHT, round cyan-rimmed black eye, narrow hooked beak, swept-back angular icy feather crest, layered blue wing feathers and tiny blue talons, pale cyan rune on chest. Preserve EXACT original head proportions and beak, SAME round eye and skull size across all frames, no new costume. Same side-profile direction. Six clear stages: 1 crouched low on talons, wings tightly folded downward; 2 chest begins rising; 3 body rises halfway, wings loosen; 4 stands with wings half-unfolded; 5 feathers settle backward; 6 original idle ready stance. All figures remain grounded at talons, no flight or jumping. Body scale and camera fixed. Only body, NO frost particles, glow outside body, spells, projectiles, floor/shadows, text or grid. Transparent background. Exactly SIX full characters in one horizontal strip of six equal-width cells. Every figure centered with wide clear 20percent margins each side, all crest feathers and talons fully included. Use the reference's dense pixel clusters and exact blue-white palette."
+  },
+  "source_dimensions": [
+    2170,
+    725
+  ],
+  "factor": 0.23565348044723727,
+  "idle_landmark": {
+    "size": 27.51363298439521
+  },
+  "raw_landmarks": [
+    {
+      "size": 116.24543001770004
+    },
+    {
+      "size": 119.23086848631104
+    },
+    {
+      "size": 115.55085460523433
+    },
+    {
+      "size": 116.36150566231085
+    },
+    {
+      "size": 116.77756633874506
+    },
+    {
+      "size": 116.36150566231085
+    }
+  ],
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        14,
+        30,
+        83,
+        73
+      ],
+      "margin": 13,
+      "bottom": 72,
+      "landmark_ratio": 0.9956387869712989,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "9a866c2ec28e51424def316f1649de9fe7ed60705a277562f4b8230ca632d1fd",
+      "spill_before": 0,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        16,
+        23,
+        80,
+        73
+      ],
+      "margin": 16,
+      "bottom": 72,
+      "landmark_ratio": 1.021208982161017,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "655f0fcb7b46b53c79b0d59b7ba5793688cbf22c1ce9beb92d99e2da100fefef",
+      "spill_before": 0,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        18,
+        13,
+        77,
+        73
+      ],
+      "margin": 13,
+      "bottom": 72,
+      "landmark_ratio": 0.98968976840754,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "736bb4cd3e573bba4f11a0809e467fd731a62cf5f59713cb6e5a1722c02fb472",
+      "spill_before": 0,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        16,
+        12,
+        81,
+        73
+      ],
+      "margin": 12,
+      "bottom": 72,
+      "landmark_ratio": 0.9966329715511111,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "e4f9799397beb85444e9d05e52d09d158b771e6418955f74ef4d57aba27efd58",
+      "spill_before": 0,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        14,
+        14,
+        81,
+        73
+      ],
+      "margin": 14,
+      "bottom": 72,
+      "landmark_ratio": 1.0001965193579223,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "a599c613d6b4c67b038c1231cd911d453dbece9789c03cc07e0dce23a7187552",
+      "spill_before": 0,
+      "spill": 0,
+      "alpha_unchanged": true
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        18,
+        14,
+        78,
+        73
+      ],
+      "margin": 14,
+      "bottom": 72,
+      "landmark_ratio": 0.9966329715511111,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "00e56bedf8a2169a8a39bebcce179ea6c2740cf62771a325548fcb672d8f21b3",
+      "spill_before": 0,
+      "spill": 0,
+      "alpha_unchanged": true
+    }
+  ],
+  "failures": [],
+  "notes": "Size uses named anatomical landmark, not pose bbox. Manual endpoint uncertainty is separate from nominal ratios. Alpha source means no chroma-key removal or palette remapping. Standard normalize.py despill auto applied to all frames, no palette map.",
+  "visual_review": "웅크린 자세에서 일어나 날개를 느슨하게 펼친 뒤 준비 자세로 정착. 깃 장식 제외 뒤통수~부리 밑동 축 수동 명목 크기 0.990~1.021배(원본 ±3px, idle ±1px). 발 하단 y72·최소 여백12px·표준 despill 후 spill0. 4~5번 날개가 기준보다 옆으로 펼쳐짐(육안).",
+  "delivered_at": "2026-10-28T15:35:38.662293+09:00"
+}

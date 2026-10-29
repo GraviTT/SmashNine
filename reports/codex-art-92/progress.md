@@ -1,0 +1,15 @@
+# ART-92 행별 진행
+
+시간(KST) | 폼 | 행 | 파일 | 프레임 | 검사 | 비고
+---|---|---|---|---|---|---
+2026-10-28T14:48:23+09:00 | frey | dodge_roll | 미납품 | 6 | FAIL | 1차 F5 E=1.443/W=0.829 자동 대응점은 자세 영향으로 신뢰 낮음; F6 W=1.043 기준 초과. 2차 원본 F2 오른쪽 경계 접촉으로 고정 분할 실패. 2회 상한.
+2026-10-28T14:52:55+09:00 | luna | dodge_roll | art/bakeoff/luna/luna-dodge_roll-v1.png | 6 | PASS: margin 7, detail 85.90, spill 0, distinct 6/6; F1 E=1.002 W=1.0; F2 E=None W=None; F3 E=None W=None; F4 E=None W=None; F5 E=None W=None; F6 E=1.031 W=1.0 | 웅크리기 → 머리 접기 → 등으로 회전 → 뒤쪽 구르기 → 낮은 착지 → 준비 자세. 원래 모자·리본·파란 별 지팡이·의상을 육안 비교. F2 지팡이 끝은 몸/머리에 가려 보이지 않으며 이후 다시 드러남. 회전 F3–4는 몸/머리 접촉, 나머지는 부츠 접지. 실제 애니메이션 재생은 하지 않음.
+2026-10-28T15:06:29+09:00 | luna_brave | dodge_roll | 미납품 | 6 | FAIL | 2회 생성. 2차 배율0.280: F1 E0.971/W1.000, F6 E0.985/W1.071. 0.2765로 낮추면 F6 W1.000이나 E0.913. 검토한 공통 배율에서 얼굴 두 조건 동시 충족 못함.
+2026-10-28T15:06:56+09:00 | nova_male | dodge_roll | art/bakeoff/nova/nova_male-dodge_roll-v1.png | 6 | PASS: margin 7, detail 99.40, spill 0, distinct 6/6; F1 E=None W=1.0; F2 E=None W=None; F3 E=None W=None; F4 E=None W=None; F5 E=None W=None; F6 E=None W=1.0 | 낮은 가드 → 몸 접기 → 거꾸로 회전 → 등쪽 구르기 → 무릎 착지 → 가드 복귀. 남성 idle의 청록 장갑·부츠, 흰 가슴/무릎 장갑과 금색 테두리를 육안 확인. F1/F6 W=1.000; 기준의 먼 눈이 머리카락에 가려 E는 판정 제외. 보조 머리 템플릿은 0.90–0.92로 낮으나 ART-72 규칙에 따라 얼굴 폭을 우선. 신체 비율·연결은 정적 비교이며 재생 미검증.
+2026-10-28T15:10:50+09:00 | nova_female | dodge_roll | art/bakeoff/nova/nova_female-dodge_roll-v1.png | 6 | PASS: margin 7, detail 86.36, spill 0, distinct 6/6; F1 E=None W=1.0; F2 E=None W=None; F3 E=None W=None; F4 E=None W=None; F5 E=None W=None; F6 E=None W=1.0 | 낮은 준비 → 몸 접기 → 뒤집힌 회전 → 등쪽 회전 → 낮은 착지 → 준비 복귀. 여성 idle의 긴 푸른 머리, 흰 가슴·어깨 장갑과 무릎판, 청록 장갑·부츠를 비교. F1/F6 얼굴 폭 1.000. 기준부터 먼 눈이 가려 E는 제외. F3 얼굴 일부는 보이나 거꾸로 회전해 upright 대응점 비교 불가. 정적 4배 검토이며 재생 미검증.
+2026-10-28T15:18:58+09:00 | rio_male | dodge_roll | 미납품 | 6 | FAIL | 1차 원본 F1 검이 고정 분할 경계 초과. 2차 배율0.320 F1 W0.967/F6 W1.000이나 F2 얼굴 W0.817, 팔·검과 가림으로 자동 대응 신뢰도도 낮아 전체 얼굴 조건 통과를 확정하지 못함. 2회 상한.
+2026-10-28T15:29:45+09:00 | rio_female | dodge_roll | art/bakeoff/rio/rio_female-dodge_roll-v1.png | 6 | PASS: margin 7, detail 96.64, spill 0, distinct 6/6; F1 E=None W=1.0; F2 E=None W=None; F3 E=None W=None; F4 E=None W=None; F5 E=None W=None; F6 E=None W=1.0 | 낮은 준비 → 웅크림 → 뒤집힌 회전 → 등쪽 회전 → 낮은 착지 → 검을 내린 준비. 긴 포니테일·청록 머리끈, 검정/은색 갑옷, 망토와 수정검을 idle과 비교. F1/F6 얼굴 폭 1.000; 기준부터 먼 눈이 가려 E 제외. 검은 같은 손에 유지하며 회전 중 원근 변화가 있음. 마지막 검 끝이 발 높이에 가까워 실제 재생에서 추가 확인 권장. 후보이며 실제 재생 미검증.
+2026-10-28T15:29:46+09:00 | yuki | dodge_roll | 미납품 | 6 | FAIL | 1차 F2 원본 경계 접촉. 2차 배율0.32 detail 최저71.02, E0.850/0.868. 배율0.36 E0.980/0.962이나 W1.083이고 detail 최저67.43<79. 2회 상한.
+2026-10-28T15:38:09+09:00 | frey | taunt | 미납품 | 6 | FAIL | 1차 원본 분할 경계 접촉. 2차 공통배율0.325에서 F3 E1.050, F5/F6 W1.057로 얼굴 조건 실패. 다른 픽셀 검사 통과하지만 미납품. 2회 상한.
+2026-10-28T15:46:07+09:00 | luna | taunt | 미납품 | 6 | FAIL | 1차 원본 F1 별 지팡이 경계 초과 및 손 전환 의심. 2차 3x2 재생성: 배율0.255에서 F1/F2 W0.929, F4 E1.071로 얼굴 조건 실패. 배율0.245도 W0.929. 2회 상한.
+2026-10-28T15:52:24+09:00 | luna_brave | taunt | 미납품 | 6 | FAIL | 2회 생성. 2차 배율0.250에서 F2 E0.947/W1.071, F5 E0.954, F6 E0.956/W1.071. 0.235에서는 얼굴이 작음. 전 프레임 얼굴 조건 미충족. 픽셀 검사 통과지만 미납품.

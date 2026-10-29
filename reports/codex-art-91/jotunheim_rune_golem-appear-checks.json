@@ -1,0 +1,190 @@
+{
+  "config": {
+    "trial": "jotunheim_rune_golem-appear-b",
+    "id": "jotunheim_rune_golem",
+    "row": "appear",
+    "source": "C:/Users/TH/.codex/generated_images/01a18105-8977-7e21-8b97-3be33acd4e7e/exec-274142ff-ba88-4ed5-a92a-34f0b3a7417e.png",
+    "idle": "art/bakeoff/monsters/jotunheim_rune_golem-idle-v1.png",
+    "support": "art/bakeoff/monsters/jotunheim_rune_golem-windup-v1.png",
+    "measure": "manual eye-level stone face width; source endpoint uncertainty +-3px, idle +-1px",
+    "idle_landmark_size": 24,
+    "raw_landmark_sizes": [
+      87,
+      89,
+      88,
+      88,
+      88,
+      88
+    ],
+    "manual_source_points": [
+      [
+        227,
+        414,
+        314,
+        414
+      ],
+      [
+        229,
+        410,
+        318,
+        410
+      ],
+      [
+        226,
+        396,
+        314,
+        396
+      ],
+      [
+        214,
+        384,
+        302,
+        384
+      ],
+      [
+        225,
+        398,
+        313,
+        398
+      ],
+      [
+        226,
+        398,
+        314,
+        398
+      ]
+    ],
+    "grounded": true,
+    "prompt": "Create a detailed pixel-art sprite sheet, 6 APPEAR frames of the exact blue stone golem from image1 idle, image2 windup pose reference. Identity and palette unchanged: squat low stone gorilla/turtle-like quadruped, cyan eye in low stone face, cyan diamond on shoulder, blue-gray irregular rock fists, tiny feet. Keep the SAME HEAD, each body rock and shoulder-rune size throughout. No humanoid standing. SIX distinct stages: collapsed compact low crouch; front arms extend a little; chest rises halfway; front fists brace; rises to normal low stance; settles in reference idle stance. One horizontal row six equal-width cells. CRITICAL FRAMING: make each complete character occupy ONLY THE CENTRAL 55 PERCENT OF ITS CELL WIDTH; leave 22 percent EMPTY TRANSPARENT SPACE ON EACH SIDE. Never touch adjacent frame boundaries. All six frames must fit completely with huge clear gutters and outer margins. Character height at most55percent of canvas height, same camera/scale in every cell. No separate debris/effects, no glows, no shadow, no text, no grid. Genuine transparent background. Detailed crisp pixel cluster shading, matching references exactly. The large empty margins are essential for later fixed-width slicing."
+  },
+  "source_dimensions": [
+    2170,
+    725
+  ],
+  "factor": 0.2727272727272727,
+  "idle_landmark": {
+    "size": 24
+  },
+  "raw_landmarks": [
+    {
+      "size": 87
+    },
+    {
+      "size": 89
+    },
+    {
+      "size": 88
+    },
+    {
+      "size": 88
+    },
+    {
+      "size": 88
+    },
+    {
+      "size": 88
+    }
+  ],
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        10,
+        33,
+        87,
+        73
+      ],
+      "margin": 9,
+      "bottom": 72,
+      "landmark_ratio": 0.9886363636363636,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "35daba5310447ed0174be0d83fd6059943e28f72e4ee871bb7dcdc6fa6faf62b"
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        4,
+        29,
+        91,
+        73
+      ],
+      "margin": 4,
+      "bottom": 72,
+      "landmark_ratio": 1.0113636363636362,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "ff573a2541f12b1596d7423af58f3627bde9cb6f4cd4044eea4a6dc5244ba44f"
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        7,
+        25,
+        89,
+        73
+      ],
+      "margin": 7,
+      "bottom": 72,
+      "landmark_ratio": 1.0,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "ff3bd20380e2feb41aa4d36a59c4bc207d37f98246efa2d2a69406fb36675720"
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        8,
+        22,
+        87,
+        73
+      ],
+      "margin": 8,
+      "bottom": 72,
+      "landmark_ratio": 1.0,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "bd3aa5003a9c236d0c0422a819d7011ea4a4d3282863322ed91e1cd9aee0ccc4"
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        8,
+        25,
+        88,
+        73
+      ],
+      "margin": 8,
+      "bottom": 72,
+      "landmark_ratio": 1.0,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "256a2cac659a41f495ecf69107a6440078df71b94392b9d823073d3a847a7a49"
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        10,
+        25,
+        87,
+        73
+      ],
+      "margin": 9,
+      "bottom": 72,
+      "landmark_ratio": 1.0,
+      "orb": null,
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "b175ea0b7db16a836cf6f7bcf23aaaac62acf093d82a048296ce8d234ed2feaa"
+    }
+  ],
+  "failures": [],
+  "notes": "Size uses named anatomical landmark, not pose bbox. Manual endpoint uncertainty is separate from nominal ratios. Alpha source means no chroma-key removal or palette remapping.",
+  "visual_review": "접힌 바위 몸을 앞주먹으로 받치며 일으켜 준비 자세로 전환. 눈높이 돌 얼굴 폭 수동 명목 크기 0.989~1.011배(원본 ±3px, idle ±1px). 발 하단 y72·최소 여백4px. 첫 생성의 F5 경계 접촉을 재생성으로 해결. 둘째 프레임은 앞팔을 조금 넓게 짚음(육안).",
+  "delivered_at": "2026-10-28T15:21:07.068287+09:00"
+}

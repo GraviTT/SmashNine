@@ -1,0 +1,285 @@
+{
+  "config": {
+    "trial": "alfheim_moon_moth-appear-a",
+    "id": "alfheim_moon_moth",
+    "row": "appear",
+    "source": "C:/Users/TH/.codex/generated_images/01a18105-8977-7e21-8b97-3be33acd4e7e/exec-1fd5f4e6-6eaf-4013-9bcf-8568f899c47a.png",
+    "idle": "art/bakeoff/monsters/alfheim_moon_moth-idle-v1.png",
+    "support": "art/bakeoff/monsters/alfheim_moon_moth-windup-v2.png",
+    "measure": "orb",
+    "grounded": false,
+    "prompt": "Use case: identity-preserve. Create a new game sprite animation row for alfheim_moon_moth: APPEAR, 6 distinct sequential drawings. Image 1 is its existing idle style and exact anatomy reference; Image 2 is windup pose reference. Preserve this tiny moon moth's bright white round orb head, violet outline, two curled thin antennae with white tips, blue-lavender crystalline wings, small purple body. Facing RIGHT in all frames. It is hovering, not standing. Start with wings folded downward and antennae curled in; then gradually unfold wings and raise antennae, ending in the exact ready silhouette from image 1. Head must stay the SAME circular size throughout all six frames; no squash or zoom. Keep identical material, detailed pixel-art cluster shading and palette. Body only, absolutely no bloom, aura, sparks, stars, trails, text or floor shadow. Transparent background. Layout: precisely SIX equal square cells in ONE horizontal row (6:1 aspect), one complete character centered in each cell, all six visible. Broad empty gutters and outer margins; no part touches any cell edge. Same camera and drawing scale for every frame. Make motion by wing/antenna articulation, not sliding or scaling duplicate figures. Final game normalization will be 96px square cells with orb center around (62,50), so leave generous top/left/right/bottom clearance. Draw complete figures. No grid lines, no labels."
+  },
+  "source_dimensions": [
+    2172,
+    724
+  ],
+  "factor": 0.26880517215521527,
+  "idle_landmark": {
+    "size": 15.0996688705415,
+    "center": [
+      62.0,
+      49.5
+    ],
+    "bbox": [
+      54,
+      41,
+      71,
+      59
+    ]
+  },
+  "raw_landmarks": [
+    {
+      "size": 56.18718715152058,
+      "center": [
+        225.5,
+        378.0
+      ],
+      "bbox": [
+        195,
+        345,
+        257,
+        412
+      ]
+    },
+    {
+      "size": 55.86591089385369,
+      "center": [
+        230.0,
+        378.5
+      ],
+      "bbox": [
+        199,
+        346,
+        262,
+        412
+      ]
+    },
+    {
+      "size": 56.1159513863928,
+      "center": [
+        230.0,
+        377.5
+      ],
+      "bbox": [
+        199,
+        345,
+        262,
+        411
+      ]
+    },
+    {
+      "size": 56.133768802744754,
+      "center": [
+        234.5,
+        377.5
+      ],
+      "bbox": [
+        204,
+        345,
+        266,
+        411
+      ]
+    },
+    {
+      "size": 56.68333088307355,
+      "center": [
+        231.0,
+        377.5
+      ],
+      "bbox": [
+        200,
+        345,
+        263,
+        411
+      ]
+    },
+    {
+      "size": 56.05354582896607,
+      "center": [
+        237.0,
+        377.5
+      ],
+      "bbox": [
+        206,
+        345,
+        269,
+        411
+      ]
+    }
+  ],
+  "frames": [
+    {
+      "frame": 1,
+      "bbox": [
+        24,
+        31,
+        78,
+        73
+      ],
+      "margin": 18,
+      "bottom": 72,
+      "landmark_ratio": 0.9978046076701186,
+      "orb": {
+        "size": 15.066519173319364,
+        "center": [
+          62.0,
+          49.5
+        ],
+        "bbox": [
+          54,
+          41,
+          71,
+          59
+        ]
+      },
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "6db3ca477523a127c13be3f25713b0be5f9b76845de1cdb76106f0fbbe25fa11"
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        19,
+        23,
+        81,
+        73
+      ],
+      "margin": 15,
+      "bottom": 72,
+      "landmark_ratio": 1.002190583128918,
+      "orb": {
+        "size": 15.132745950421556,
+        "center": [
+          62.0,
+          49.5
+        ],
+        "bbox": [
+          54,
+          41,
+          71,
+          59
+        ]
+      },
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "4c7160c20590aaa8e31bdd444fe67e50dc43e35477f12b2d4a6cc6d84e71f534"
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        22,
+        21,
+        83,
+        73
+      ],
+      "margin": 13,
+      "bottom": 72,
+      "landmark_ratio": 0.9978046076701186,
+      "orb": {
+        "size": 15.066519173319364,
+        "center": [
+          62.0,
+          49.5
+        ],
+        "bbox": [
+          54,
+          41,
+          71,
+          59
+        ]
+      },
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "4b0716ee4496bcf15a88cecac2eed845be69c4658f8d49a41eb7078a321b9f91"
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        20,
+        21,
+        83,
+        72
+      ],
+      "margin": 13,
+      "bottom": 71,
+      "landmark_ratio": 1.0109054478839272,
+      "orb": {
+        "size": 15.264337522473747,
+        "center": [
+          62.0,
+          49.5
+        ],
+        "bbox": [
+          54,
+          41,
+          71,
+          59
+        ]
+      },
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "39e709cfef7a3ae82fd53d42fd8174dc80adda540023da554644e2f7edcc412f"
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        22,
+        21,
+        82,
+        72
+      ],
+      "margin": 14,
+      "bottom": 71,
+      "landmark_ratio": 1.0130724502589556,
+      "orb": {
+        "size": 15.297058540778355,
+        "center": [
+          62.0,
+          49.5
+        ],
+        "bbox": [
+          54,
+          41,
+          71,
+          59
+        ]
+      },
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "6c08e3f332d81c6e0b03aacb56d53cc547346b2661bf3e4e26e5d12611194952"
+    },
+    {
+      "frame": 6,
+      "bbox": [
+        21,
+        20,
+        84,
+        71
+      ],
+      "margin": 12,
+      "bottom": 70,
+      "landmark_ratio": 1.002190583128918,
+      "orb": {
+        "size": 15.132745950421556,
+        "center": [
+          62.0,
+          49.5
+        ],
+        "bbox": [
+          54,
+          41,
+          71,
+          59
+        ]
+      },
+      "alpha_binary": true,
+      "pure_chroma_pixels": 0,
+      "sha256": "7c827aef05f3663adb3f08e433f9b30aa59d2fdffc0488fbf88f9b6225fba583"
+    }
+  ],
+  "failures": [],
+  "notes": "Size uses named anatomical landmark, not pose bbox. Manual endpoint uncertainty is separate from nominal ratios. Alpha source means no chroma-key removal or palette remapping.",
+  "visual_review": "접힌 날개와 더듬이를 펼쳐 부유 준비 자세로 전환. 밝은 머리 연결영역 제곱근 크기 idle 대비 0.998~1.013, 중심 y49.5 유지. 4~6번 정착 동작은 작음(육안); 색·정체성 일치, 이펙트 없음. 전체 해부 크기 정밀 측정은 아님.",
+  "delivered_at": "2026-10-28T14:51:26.830564+09:00"
+}
