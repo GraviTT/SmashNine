@@ -745,15 +745,9 @@ func _test_adopted_files() -> void:
 	_check(player.stream is AudioStreamOggVorbis and player.stream.loop and player.stream != manager.cache["music_battle"], "Music must play a looping copy of the cached file")
 	await _await_fade()
 	_check(player.playing and is_zero_approx(player.volume_db), "Adopted music must reach full level")
-	for item: AudioStreamPlayer in manager.music_players + manager.voices:
-		item.stop()
-		item.stream = null
-	manager.current_music = ""
-	manager.resolved_music = ""
-	manager.cache.clear()
-	# The mixer thread drops stopped playbacks (which hold the loaded files) on its next cycles;
-	# quitting before that reports the files as resources still in use at exit.
-	await _real_wait(250)
+	# Left playing on purpose: freeing the manager at the end must release the loaded files
+	# (AudioManager._exit_tree); run_all fails on "resources still in use at exit" otherwise.
+	_check(player.playing, "Adopted music keeps playing until the manager is freed")
 
 func _test_contract() -> void:
 	var doc := FileAccess.get_file_as_string("res://../design/AUDIO.md")

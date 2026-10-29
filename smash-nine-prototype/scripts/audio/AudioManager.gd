@@ -7,6 +7,7 @@ const POOL_SIZE := 24
 const MIN_GAP_USEC := 40000
 const MIN_LAND_AIR_SECONDS := 0.12
 const FADE_SECONDS := 0.5
+const EXIT_RELEASE_MSEC := 150
 var voices: Array[AudioStreamPlayer] = []
 var music_players: Array[AudioStreamPlayer] = []
 var cache: Dictionary = {}
@@ -88,6 +89,15 @@ func _ready() -> void:
 		add_child(player)
 		music_players.append(player)
 		player.finished.connect(_loop_music.bind(player))
+
+## Leaving the tree only pauses a player's sounds, and the mixer thread keeps a stopped sound
+## (and its loaded file) until a few buffers later. Stop everything and give the mixer that
+## time once, so quitting does not report the audio files as resources still in use at exit.
+func _exit_tree() -> void:
+	for player in voices + music_players:
+		player.stop()
+	if not OS.has_feature("web"):
+		OS.delay_msec(EXIT_RELEASE_MSEC)
 
 func _input(event: InputEvent) -> void:
 	if not unlocked and ((event is InputEventKey and event.pressed and not event.echo) or (event is InputEventMouseButton and event.pressed) or (event is InputEventScreenTouch and event.pressed) or (event is InputEventJoypadButton and event.pressed)):
