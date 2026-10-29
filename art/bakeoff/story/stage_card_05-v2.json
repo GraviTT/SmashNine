@@ -1,0 +1,60 @@
+{
+  "note": "비대칭으로 기운 섬과 길게 휘는 덩굴 다리로 붕괴 긴장을 강조.",
+  "stage": 5,
+  "title": "무너지는 숲",
+  "version": 2,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-4f75a9b4-2a72-45e2-8109-5103c8efc23d.png",
+    "raw_copy": "art/raw/story/stage_card_05-v2_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "a271ff3fb8d7e9edbc62fa2a039b23f4ab4246c6ae69a83dfdcb4b02d0e6c61c",
+  "candidate_sha256": "3230b3ea2c09010d42e25e0438416cf1d1f302ae41eae6da9ef1ee3ca0781819",
+  "metrics": {
+    "brightness_mean_y709": 0.411734,
+    "saturation_mean_hsv": 0.54137,
+    "contrast_std_y709": 0.22543,
+    "outer_8px_mean_luma601": 0.261864
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 5, take B. VANAHEIM: vine-clad forest temple, VINE BRIDGES, a floating island BREAKING with glowing ORANGE collapse fissures. Take B: wide three-quarter view of a central tall open temple arch and ruined green spire on an island split into two tilted slabs. A long sagging braided VINE bridge comes in from lower left, another taut vine bridge departs toward right; these must read as living vines with leaves, not stone aqueducts. Orange light shines through a clear diagonal rupture across the island front, several large rocks falling away. Strong recognisable temple remains centred; low distant cloud horizon at y72%, ample uncluttered forest-green sky and layered mist, soft key light from upper left. Deep green and turquoise with amber-orange danger accent. No figures, faces, carved writing, rune stones, idols or animals. LAYOUT PRIORITY over the reference compositions: references supply style and realm identity only. Do NOT repeat their tall busy edge islands or high skyline. Keep the distant horizon unmistakably at y=75% of frame height, leaving the top 70% broad quiet atmospheric space interrupted only by the SINGLE central landmark. All secondary distant ground details remain below y=70%. No elaborate foreground objects at the edges. Main landmark base at y=76%, top near y=28%, visual centre x=50%. Calm outer 8 pixels after downscale.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_vanaheim/bg_far.png"
+  ]
+}

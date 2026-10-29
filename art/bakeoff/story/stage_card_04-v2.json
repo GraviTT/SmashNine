@@ -1,0 +1,60 @@
+{
+  "note": "쌍기어 대장간과 대각선 운반 벨트가 만드는 깊이.",
+  "stage": 4,
+  "title": "태엽 도시",
+  "version": 2,
+  "status": "candidate",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "processing": {
+    "source_returned_by_image_gen": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-40fe6aa0-0a63-4c28-a852-9838f6649ffc.png",
+    "raw_copy": "art/raw/story/stage_card_04-v2_raw.png",
+    "raw_byte_identical": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box_ltrb_exclusive": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_size": [
+      1664,
+      936
+    ],
+    "crop_method": "largest centred exact 16:9 integer crop",
+    "resize_to": [
+      640,
+      360
+    ],
+    "resize_filter": "Pillow Image.Resampling.LANCZOS",
+    "scale_x": 0.38461538461538464,
+    "scale_y": 0.38461538461538464,
+    "upscale": false,
+    "other_operations": [
+      "convert RGB (source already opaque)"
+    ],
+    "colour_or_content_edit": false
+  },
+  "raw_sha256": "c84d8f234d4d806f8c2faace6b8f702a7c214fc074284fdc8d9edb1fb2654257",
+  "candidate_sha256": "c69f4b5d3a150a456c6e3fc91503399250db8ce733934c861e19161e376dbdf1",
+  "metrics": {
+    "brightness_mean_y709": 0.287222,
+    "saturation_mean_hsv": 0.50995,
+    "contrast_std_y709": 0.194798,
+    "outer_8px_mean_luma601": 0.175403
+  },
+  "prompt": "Use case: illustration-story. Create ONE finished story-stage landscape illustration, without any title or lettering. Opaque wide 16:9 at the largest available landscape resolution, intended for downscaling to 640x360 and display at 360-480px width. Reference 1 is the game's painted pixel-art style anchor; reference 2 is its story painting style; reference 3 is this realm's palette, architecture and landmarks. All are reference inputs, not edit targets. Match the crisp visible painted pixel clusters and stepped silhouettes, rich but controlled colour, layered fantasy depth; no photographic or smooth 3D rendering. Cohesive nine-picture set rules: wide level establishing view, one dominant landmark centred horizontally in the MIDDLE THIRD, skyline/horizon around 70-74% image height in the LOWER THIRD, key environmental light from UPPER LEFT, midtone readability with dark blue-violet shadows, moderate saturation and contrast comparable to the other realms. Simple large shapes readable in a thumbnail. The outermost 3% on every side must be low-detail calm scenery safe for an 8px frame overlap, but DO NOT draw a frame. Keep the entire landmark in view. No people, human faces, humanoid figures, statues, letters, text-like decoration, glyphs, runes, numerals, logo, watermark, UI, borders or frames. No text anywhere. Stage 4, take B. SVARTALFHEIM: empty dwarven clockwork city with BIG GEARS, orange FORGE GLOW and CONVEYOR BELTS WITH CHEVRONS. Take B: wide three-quarter establishing view of a squat central double-gear foundry on a high terrace; two great offset brass cogwheels form one unmistakable central silhouette. A broad dark-steel conveyor crosses diagonally from lower-left toward the central glowing forge, second conveyor extends behind right; repeat only large mechanical V-shaped tread blocks, not painted signage. Open upper cavern space, low back-wall/floor mist boundary at y72%, restrained peripheral factory stacks. Key light from a cavern cleft in upper left, local orange furnace glow secondary. Muted teal steel, warm brass, amber. No machinery shaped like faces, no numeric dials, glyphs, writing, people or figures. LAYOUT PRIORITY over the reference compositions: references supply style and realm identity only. Do NOT repeat their tall busy edge islands or high skyline. Keep the distant horizon unmistakably at y=75% of frame height, leaving the top 70% broad quiet atmospheric space interrupted only by the SINGLE central landmark. All secondary distant ground details remain below y=70%. No elaborate foreground objects at the edges. Main landmark base at y=76%, top near y=28%, visual centre x=50%. Calm outer 8 pixels after downscale.",
+  "references_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_svartalfheim/bg_far.png"
+  ]
+}

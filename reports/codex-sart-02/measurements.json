@@ -1,0 +1,420 @@
+{
+  "definitions": {
+    "brightness_mean_y709": "mean((0.2126 R + 0.7152 G + 0.0722 B)/255), sRGB code values",
+    "saturation_mean_hsv": "Pillow HSV S channel mean /255",
+    "contrast_std_y709": "population standard deviation of per-pixel Y709",
+    "interpretation": "diagnostic spread only; aesthetic matching requires visual judgement"
+  },
+  "variants": [
+    {
+      "id": "stage_card_01-v1",
+      "stage": 1,
+      "version": 1,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.292926,
+      "saturation_mean_hsv": 0.544507,
+      "contrast_std_y709": 0.207606,
+      "outer_8px_mean_luma601": 0.195265
+    },
+    {
+      "id": "stage_card_01-v2",
+      "stage": 1,
+      "version": 2,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.331364,
+      "saturation_mean_hsv": 0.445009,
+      "contrast_std_y709": 0.189745,
+      "outer_8px_mean_luma601": 0.232362
+    },
+    {
+      "id": "stage_card_02-v1",
+      "stage": 2,
+      "version": 1,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.603475,
+      "saturation_mean_hsv": 0.327425,
+      "contrast_std_y709": 0.216486,
+      "outer_8px_mean_luma601": 0.511751
+    },
+    {
+      "id": "stage_card_02-v2",
+      "stage": 2,
+      "version": 2,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.580259,
+      "saturation_mean_hsv": 0.318799,
+      "contrast_std_y709": 0.242576,
+      "outer_8px_mean_luma601": 0.46065
+    },
+    {
+      "id": "stage_card_03-v1",
+      "stage": 3,
+      "version": 1,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.260062,
+      "saturation_mean_hsv": 0.670638,
+      "contrast_std_y709": 0.205864,
+      "outer_8px_mean_luma601": 0.115805
+    },
+    {
+      "id": "stage_card_03-v2",
+      "stage": 3,
+      "version": 2,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.257989,
+      "saturation_mean_hsv": 0.682906,
+      "contrast_std_y709": 0.193135,
+      "outer_8px_mean_luma601": 0.140832
+    },
+    {
+      "id": "stage_card_04-v1",
+      "stage": 4,
+      "version": 1,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.246411,
+      "saturation_mean_hsv": 0.524073,
+      "contrast_std_y709": 0.166531,
+      "outer_8px_mean_luma601": 0.115252
+    },
+    {
+      "id": "stage_card_04-v2",
+      "stage": 4,
+      "version": 2,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.287222,
+      "saturation_mean_hsv": 0.50995,
+      "contrast_std_y709": 0.194798,
+      "outer_8px_mean_luma601": 0.175403
+    },
+    {
+      "id": "stage_card_05-v1",
+      "stage": 5,
+      "version": 1,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.503188,
+      "saturation_mean_hsv": 0.467328,
+      "contrast_std_y709": 0.247146,
+      "outer_8px_mean_luma601": 0.391523
+    },
+    {
+      "id": "stage_card_05-v2",
+      "stage": 5,
+      "version": 2,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.411734,
+      "saturation_mean_hsv": 0.54137,
+      "contrast_std_y709": 0.22543,
+      "outer_8px_mean_luma601": 0.261864
+    },
+    {
+      "id": "stage_card_06-v1",
+      "stage": 6,
+      "version": 1,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.297784,
+      "saturation_mean_hsv": 0.587948,
+      "contrast_std_y709": 0.190876,
+      "outer_8px_mean_luma601": 0.200861
+    },
+    {
+      "id": "stage_card_06-v2",
+      "stage": 6,
+      "version": 2,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.301308,
+      "saturation_mean_hsv": 0.557628,
+      "contrast_std_y709": 0.189541,
+      "outer_8px_mean_luma601": 0.195874
+    },
+    {
+      "id": "stage_card_07-v1",
+      "stage": 7,
+      "version": 1,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.207411,
+      "saturation_mean_hsv": 0.721383,
+      "contrast_std_y709": 0.158127,
+      "outer_8px_mean_luma601": 0.137572
+    },
+    {
+      "id": "stage_card_07-v2",
+      "stage": 7,
+      "version": 2,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.199932,
+      "saturation_mean_hsv": 0.729004,
+      "contrast_std_y709": 0.144582,
+      "outer_8px_mean_luma601": 0.142306
+    },
+    {
+      "id": "stage_card_08-v1",
+      "stage": 8,
+      "version": 1,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.31693,
+      "saturation_mean_hsv": 0.710258,
+      "contrast_std_y709": 0.232501,
+      "outer_8px_mean_luma601": 0.169027
+    },
+    {
+      "id": "stage_card_08-v2",
+      "stage": 8,
+      "version": 2,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.31189,
+      "saturation_mean_hsv": 0.755871,
+      "contrast_std_y709": 0.211148,
+      "outer_8px_mean_luma601": 0.148781
+    },
+    {
+      "id": "stage_card_09-v1",
+      "stage": 9,
+      "version": 1,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.258625,
+      "saturation_mean_hsv": 0.710538,
+      "contrast_std_y709": 0.194783,
+      "outer_8px_mean_luma601": 0.200237
+    },
+    {
+      "id": "stage_card_09-v2",
+      "stage": 9,
+      "version": 2,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.248859,
+      "saturation_mean_hsv": 0.684919,
+      "contrast_std_y709": 0.183173,
+      "outer_8px_mean_luma601": 0.174529
+    },
+    {
+      "id": "stage_card_02-v3",
+      "stage": 2,
+      "version": 3,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.475758,
+      "saturation_mean_hsv": 0.464521,
+      "contrast_std_y709": 0.1965,
+      "outer_8px_mean_luma601": 0.32116
+    },
+    {
+      "id": "stage_card_03-v3",
+      "stage": 3,
+      "version": 3,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.256866,
+      "saturation_mean_hsv": 0.726112,
+      "contrast_std_y709": 0.195026,
+      "outer_8px_mean_luma601": 0.151309
+    },
+    {
+      "id": "stage_card_07-v3",
+      "stage": 7,
+      "version": 3,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.165409,
+      "saturation_mean_hsv": 0.798579,
+      "contrast_std_y709": 0.137983,
+      "outer_8px_mean_luma601": 0.099134
+    },
+    {
+      "id": "stage_card_02-v4",
+      "stage": 2,
+      "version": 4,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.337936,
+      "saturation_mean_hsv": 0.544371,
+      "contrast_std_y709": 0.168797,
+      "outer_8px_mean_luma601": 0.217309
+    },
+    {
+      "id": "stage_card_07-v4",
+      "stage": 7,
+      "version": 4,
+      "recommended": false,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.29313,
+      "saturation_mean_hsv": 0.456267,
+      "contrast_std_y709": 0.175887,
+      "outer_8px_mean_luma601": 0.211487
+    },
+    {
+      "id": "stage_card_05-v3",
+      "stage": 5,
+      "version": 3,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.409391,
+      "saturation_mean_hsv": 0.567846,
+      "contrast_std_y709": 0.227943,
+      "outer_8px_mean_luma601": 0.25784
+    },
+    {
+      "id": "stage_card_07-v5",
+      "stage": 7,
+      "version": 5,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.291044,
+      "saturation_mean_hsv": 0.461051,
+      "contrast_std_y709": 0.173023,
+      "outer_8px_mean_luma601": 0.209953
+    },
+    {
+      "id": "stage_card_09-v3",
+      "stage": 9,
+      "version": 3,
+      "recommended": true,
+      "size": [
+        640,
+        360
+      ],
+      "brightness_mean_y709": 0.245562,
+      "saturation_mean_hsv": 0.697295,
+      "contrast_std_y709": 0.18167,
+      "outer_8px_mean_luma601": 0.181796
+    }
+  ],
+  "all": {
+    "brightness_mean_y709": {
+      "mean": 0.32278711538461535,
+      "min": 0.165409,
+      "max": 0.603475,
+      "range": 0.43806599999999996,
+      "std_population": 0.10902558956160666
+    },
+    "saturation_mean_hsv": {
+      "mean": 0.5848306153846153,
+      "min": 0.318799,
+      "max": 0.798579,
+      "range": 0.47978000000000004,
+      "std_population": 0.12975102057997223
+    },
+    "contrast_std_y709": {
+      "mean": 0.1942645,
+      "min": 0.137983,
+      "max": 0.247146,
+      "range": 0.10916300000000001,
+      "std_population": 0.02723206920476439
+    }
+  },
+  "recommended": {
+    "brightness_mean_y709": {
+      "mean": 0.3086247777777778,
+      "min": 0.245562,
+      "max": 0.409391,
+      "range": 0.163829,
+      "std_population": 0.0460381618654635
+    },
+    "saturation_mean_hsv": {
+      "mean": 0.5799466666666667,
+      "min": 0.445009,
+      "max": 0.726112,
+      "range": 0.281103,
+      "std_population": 0.10070310789422317
+    },
+    "contrast_std_y709": {
+      "mean": 0.19478266666666666,
+      "min": 0.168797,
+      "max": 0.232501,
+      "range": 0.06370400000000001,
+      "std_population": 0.020805642851025888
+    }
+  }
+}

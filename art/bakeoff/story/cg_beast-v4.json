@@ -1,0 +1,108 @@
+{
+  "name": "cg_beast-v4",
+  "note": "v2의 정면 사선 구도를 유지하며 발과 바닥 긁기를 위로 올린 수정본. v3보다 눈앞으로 돌진할 듯한 압박감과 두 엄니가 강조된다.",
+  "for_lines": [
+    "story.s07.pre.1",
+    "story.s07.pre.2"
+  ],
+  "size": [
+    1600,
+    900
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "candidate_status": "review_candidate",
+  "recommended_by_unit": false,
+  "adopted": false,
+  "parent_variant": "cg_beast-v2",
+  "raw": "art/raw/story/cg_beast-v4_raw.png",
+  "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-8f1ddbf3-497e-4c4d-97a4-2acbc681826f.png",
+  "raw_sha256": "54bff961b3805561641f242b288424c391d8cf03113cb1b47ab9f8296a867eaf",
+  "candidate_sha256": "f2089f0ef87c5ea51c305b1d2fb1d78c915a7384af8dd4f6cb68dc4e5271eb63",
+  "reference_images_in_order": [
+    "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-4aeaa96f-5b0c-47d6-9a37-f87b162d9c3f.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/art/bakeoff/monsters/muspelheim_magma_boar-idle-v1.png"
+  ],
+  "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+  "processing": {
+    "tool": "Python + Pillow",
+    "pillow_version": "12.3.0",
+    "raw_size": [
+      1672,
+      940
+    ],
+    "raw_mode": "RGB",
+    "crop_box": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+    "cropped_size": [
+      1664,
+      936
+    ],
+    "resize": {
+      "from": [
+        1664,
+        936
+      ],
+      "to": [
+        1600,
+        900
+      ],
+      "filter": "LANCZOS",
+      "scale": 0.9615384615384616
+    },
+    "upscaled": false,
+    "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+  },
+  "measurements": {
+    "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+    "top_three_quarters_box": [
+      0,
+      0,
+      1600,
+      675
+    ],
+    "bottom_quarter_box": [
+      0,
+      675,
+      1600,
+      900
+    ],
+    "top_mean_luma": 47.44,
+    "bottom_mean_luma": 7.5494,
+    "bottom_to_top_ratio": 0.159136,
+    "bottom_pixels_luma_at_least_128_percent": 0.0,
+    "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+    "nearest_palette_mean_delta_e76": 18.4584,
+    "nearest_palette_p90_delta_e76": 34.4027,
+    "palette_swatches": [
+      {
+        "hex": "#2a1410",
+        "minimum_delta_e76": 0.5212,
+        "pixels_within_delta_e76_10_percent": 9.03542
+      },
+      {
+        "hex": "#ff5a1f",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 3.62201
+      },
+      {
+        "hex": "#ffd27a",
+        "minimum_delta_e76": 0.5903,
+        "pixels_within_delta_e76_10_percent": 0.13403
+      },
+      {
+        "hex": "#4a2a2a",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 2.76361
+      }
+    ]
+  }
+}

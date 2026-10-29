@@ -1,0 +1,107 @@
+{
+  "name": "cg_beast-v2",
+  "note": "정면에 가까운 왼쪽 사선의 멧돼지 원안. 양쪽 엄니와 들이받기 직전 자세가 강조되나 앞발과 불꽃이 하단 25%에 걸쳐 탈락. 수정본 v4 사용.",
+  "for_lines": [
+    "story.s07.pre.1",
+    "story.s07.pre.2"
+  ],
+  "size": [
+    1600,
+    900
+  ],
+  "mode": "RGB",
+  "opaque": true,
+  "candidate_status": "superseded_failed_bottom_quarter",
+  "recommended_by_unit": false,
+  "adopted": false,
+  "parent_variant": null,
+  "raw": "art/raw/story/cg_beast-v2_raw.png",
+  "source_tool_path": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-5b83-7b52-b1d3-46cce7b2a1e4\\exec-4aeaa96f-5b0c-47d6-9a37-f87b162d9c3f.png",
+  "raw_sha256": "eaaf0f7ba05535a8b34128d64c9519db87ba55720e0ae4cc444cc06820c3b664",
+  "candidate_sha256": "7387c74ee6fb5923c2b6761ba4e7cb9d11ae529d95de52002d29cba01a9f2cdf",
+  "reference_images_in_order": [
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png",
+    "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-a/SmashNine/art/bakeoff/monsters/muspelheim_magma_boar-idle-v1.png"
+  ],
+  "prompt_manifest": "reports/codex-sart-01/generation-manifest-v2.json",
+  "processing": {
+    "tool": "Python + Pillow",
+    "pillow_version": "12.3.0",
+    "raw_size": [
+      1672,
+      941
+    ],
+    "raw_mode": "RGB",
+    "crop_box": [
+      4,
+      2,
+      1668,
+      938
+    ],
+    "crop_convention": "[left, top, right, bottom), exclusive right/bottom",
+    "cropped_size": [
+      1664,
+      936
+    ],
+    "resize": {
+      "from": [
+        1664,
+        936
+      ],
+      "to": [
+        1600,
+        900
+      ],
+      "filter": "LANCZOS",
+      "scale": 0.9615384615384616
+    },
+    "upscaled": false,
+    "other_operations": "RGB encoding only; no paint, compositing, palette mapping, sharpening, darkening or text removal"
+  },
+  "measurements": {
+    "brightness_method": "Mean encoded-sRGB luma Y'=0.2126R+0.7152G+0.0722B, range 0..255; all pixels; no dialogue overlay",
+    "top_three_quarters_box": [
+      0,
+      0,
+      1600,
+      675
+    ],
+    "bottom_quarter_box": [
+      0,
+      675,
+      1600,
+      900
+    ],
+    "top_mean_luma": 52.362,
+    "bottom_mean_luma": 19.6714,
+    "bottom_to_top_ratio": 0.375681,
+    "bottom_pixels_luma_at_least_128_percent": 1.59528,
+    "palette_method": "CIE76 DeltaE in CIELAB D65 from sRGB, exact weighted RGB histogram of all final pixels; lower distance is closer. No palette quantization. Contract supplies no numeric pass threshold.",
+    "nearest_palette_mean_delta_e76": 17.8608,
+    "nearest_palette_p90_delta_e76": 34.154,
+    "palette_swatches": [
+      {
+        "hex": "#2a1410",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 16.19986
+      },
+      {
+        "hex": "#ff5a1f",
+        "minimum_delta_e76": 0.0,
+        "pixels_within_delta_e76_10_percent": 3.26861
+      },
+      {
+        "hex": "#ffd27a",
+        "minimum_delta_e76": 0.3548,
+        "pixels_within_delta_e76_10_percent": 0.24806
+      },
+      {
+        "hex": "#4a2a2a",
+        "minimum_delta_e76": 0.4497,
+        "pixels_within_delta_e76_10_percent": 6.09243
+      }
+    ]
+  }
+}

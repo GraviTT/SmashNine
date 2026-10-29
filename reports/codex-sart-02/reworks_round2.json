@@ -1,0 +1,39 @@
+{
+  "task": "SART-02",
+  "jobs": [
+    {
+      "id": "stage_card_02-v4",
+      "stage": 2,
+      "version": 4,
+      "title": "발키리의 문",
+      "realm": "asgard",
+      "note": "v3보다 노출을 낮추고 회청색 구름 바다를 넓힌 2차 보완안. 세트 밝기 편차 축소가 목적.",
+      "prompt": "EDIT reference 1 as stage_card_02-v4. Reference 1 is target, 2 and 3 style anchors, 4 Asgard palette and landmark reference. Keep the GOLDEN FEATHER-WING GATE, castle behind, clearly falling vertical light columns, painted pixel clusters, central landmark, no text. Main correction is SET EXPOSURE: current image is much too bright compared to the eight other cards. Create a visibly darker, medium-value TWILIGHT version: 70 percent of image area should be muted slate BLUE and grey-lilac clouds, softly lit and readable rather than black. Keep pale GOLD architecture, but its warm highlights occupy little area; no huge near-white clouds. Gold, slate-blue and lavender, medium saturation, no overexposure. Upper-left faint amber-silver skylight lights left surfaces. Keep three slender falling light shafts visible but subdued. Secondary correction: a very clear horizontal distant cloud-sea line at y78% of the frame; NO elevated cloud horizon at mid-height, no distant mountains. Main gate base at y80%, castle tallest point near y29%, entire winged silhouette fits x32-68%. Upper two-thirds dominated by roomy quiet blue-grey twilight sky; bottom quarter low cloud sea. No foreground road projecting out to corners, no secondary floating cities, no banners, no dials, no symbols or medallions, no glyphs, no text, people, statues, faces, wings attached to persons, borders or watermark. Wide establishing landscape, opaque 16:9 largest available resolution, similar overall pixel art contrast to a blue nighttime forest card, but retain clear gold Asgard identity.",
+      "refs": [
+        "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-1b9637de-faf0-4fac-8bfe-d0615e4d3e66.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_asgard/bg_far.png"
+      ],
+      "edit_of": "stage_card_02-v3",
+      "source": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-6eec92bb-55fe-4c77-8d7b-a8778d884d1b.png"
+    },
+    {
+      "id": "stage_card_07-v4",
+      "stage": 7,
+      "version": 4,
+      "title": "불의 짐승",
+      "realm": "muspelheim",
+      "note": "v3의 과한 붉은 채도·암부를 회보라 연무로 바꾸고 용암을 강조색으로 남긴 2차 보완안.",
+      "prompt": "EDIT reference 1 as stage_card_07-v4. Reference 1 target, 2 and 3 painted pixel game style, 4 Muspelheim realm reference. Keep the central LAVA FORTRESS, TWO vertical magma eruption pillars, and ONLY two glowing eyes plus two curved tusk tips HALF hidden in smoke below the fortress, no beast body or head outline. Preserve the removal of the diamond emblem: fortress surfaces plain unmarked stone. Main correction is SET COLOUR: current image is too dark and far too uniformly saturated red. Change the broad smoke sky, smoke foreground and basalt from pure dark red into DESATURATED SLATE GREY, smoky MAUVE and muted burgundy midtones, noticeably lighter and clearer. The ORANGE lava, eruption pillars and ember eyes remain orange but occupy only about 10-15% of the area. Do NOT make the whole sky glow red. Medium exposure, controlled saturated accents, cool grey-purple shadows like the other fantasy cards, no crushed black. Key light soft silver-orange from UPPER LEFT cloud break. Clear low distant flat ground horizon at y77%, no mountains rising above it; fortress spire near y29%, fortress base y77%. Wide level establishing view, central landmark x35-65%, quieter edge scenery. Keep exactly the four tiny beast clues concealed in neutral grey smoke: no full face, snout, head border, mouth, body, legs, character silhouette. Crisp painted pixel clusters, not smooth painting. No writing, letters, emblems, runes, glyphs, people, frames, borders or watermark. Opaque landscape 16:9 at largest available resolution.",
+      "refs": [
+        "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-22756186-fe88-4ffe-af75-28bb4d942991.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/ui/title_bg.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/story/cg_prologue.png",
+        "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/story-art-b/SmashNine/smash-nine-prototype/assets/art/realm_muspelheim/bg_far.png"
+      ],
+      "edit_of": "stage_card_07-v3",
+      "source": "C:\\Users\\TH\\.codex\\generated_images\\01a17200-649b-7f81-8696-abc89984992e\\exec-c8106b84-b5e6-487c-965b-775d6434686e.png"
+    }
+  ]
+}
