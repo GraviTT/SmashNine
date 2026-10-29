@@ -768,6 +768,7 @@ func _apply_movement(delta: float) -> void:
 			_restart_jump_motion()
 			air_jumps_left -= 1
 			jump_buffer_timer = 0.0
+			character_on_air_jump()
 
 	var input_velocity := velocity
 	velocity = input_velocity + knockback_velocity + skill_dash_velocity
@@ -860,6 +861,10 @@ func character_physics_process(_delta: float) -> void:
 	pass
 
 func character_landing_state() -> void:
+	pass
+
+## An air jump was just spent (`air_jumps_left` is already lowered). Presentation only.
+func character_on_air_jump() -> void:
 	pass
 
 func character_on_hit() -> void:

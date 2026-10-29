@@ -24,7 +24,7 @@ func _run() -> void:
 	root.add_child(arena)
 	main = MAIN_SCRIPT.new()
 	rio_data = CHARACTER_REGISTRY.get_characters()["rio"]
-	for test in [_test_air_jumps, _test_mana_wave, _test_dimension_slash, _test_rune_shield, _test_rune_whiff, _test_overdrive, _test_bot_recovery_aim]:
+	for test in [_test_air_jumps, _test_air_step_effect, _test_mana_wave, _test_dimension_slash, _test_rune_shield, _test_rune_whiff, _test_overdrive, _test_bot_recovery_aim]:
 		await test.call()
 		if failed:
 			quit(1)
@@ -77,6 +77,41 @@ func _test_air_jumps() -> void:
 	if rio.max_air_jumps != 3:
 		_fail("Rio air jumps with two Sky Steps should cap at 3, got %d" % rio.max_air_jumps)
 	rio.queue_free()
+
+## The extra air jump shows a step plate at the soles (CODEX-VFX-01 candidate a, 2026-10-29):
+## the brighter `_last` plate when no air jump is left, raised to the soles of the jump drawing.
+func _test_air_step_effect() -> void:
+	for body in ["male", "female"]:
+		var rio := _create_rio(3, body)
+		rio.global_position = Vector2(6600.0, -400.0)
+		rio.set_physics_process(true)
+		for frame in 2:
+			await physics_frame
+		# Spawned in the air, so give him the two jumps a landing would.
+		rio.air_jumps_left = rio.max_air_jumps
+		var expected := ["rio_air_step", "rio_air_step_last"]
+		for jump in 2:
+			var before: int = rio.air_jumps_left
+			var at: Vector2 = rio.global_position
+			rio.jump_buffer_timer = 0.1
+			rio.coyote_timer = 0.0
+			await physics_frame
+			if rio.air_jumps_left != before - 1:
+				_fail("Rio (%s) should spend an air jump (left %d -> %d)" % [body, before, rio.air_jumps_left])
+				rio.queue_free()
+				return
+			var plate: Node2D = arena.get_node_or_null("Vfx_%s" % expected[jump])
+			if plate == null:
+				_fail("Rio (%s) air jump %d should show %s" % [body, jump + 1, expected[jump]])
+				rio.queue_free()
+				return
+			var rise: float = rio.AIR_STEP_SOLE_RISE[body]
+			# The plate is placed before the jump moves him, at the soles of that moment.
+			if plate.global_position.distance_to(at - Vector2(0.0, rise)) > 0.5:
+				_fail("Rio (%s) air step should start at the soles (plate %s, expected %s)" % [body, plate.global_position, at - Vector2(0.0, rise)])
+			plate.free()
+		rio.queue_free()
+		await process_frame
 
 func _test_mana_wave() -> void:
 	var rio := _create_rio(2)
