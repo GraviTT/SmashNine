@@ -1,0 +1,26 @@
+{
+ "what": "Web build of this branch (f7258fe0) served on 8062, opened in the Claude desktop app's built-in browser (Chromium). Hooks on AudioBufferSourceNode.prototype.start and MessagePort.prototype.postMessage (the no-threads stream worklet) were installed before the first input; one click on the title background unlocked audio, then Down and Up on the title menu.",
+ "playback_mode": "Godot web sample playback: every sound is an AudioBufferSourceNode; the stream worklet only received silent chunks (5,943 chunks, all zero).",
+ "before_fix_build": {
+  "build": "0dfceccf + 1d4e79c6 (install not yet fixed)",
+  "console": "ERROR: Parent node is busy setting up children, `add_child()` failed.",
+  "after_click_and_keys": "0 buffer sources started, worklet chunks all zero: silent"
+ },
+ "after_fix_build": {
+  "build": "f7258fe0",
+  "console_busy_errors_on_this_build": 0,
+  "sources_started": [
+   {"perf_ms": 18930, "buffer_s": 38.4, "frames": 1843200, "channels": 2, "context_rate": 48000, "is": "music_title (first start, after the click)"},
+   {"perf_ms": 21977, "buffer_s": 0.045, "frames": 2159, "channels": 2, "is": "ui_move (Down)"},
+   {"perf_ms": 23015, "buffer_s": 0.045, "frames": 2159, "channels": 2, "is": "ui_move (Up)"},
+   {"perf_ms": 57355, "buffer_s": 38.4, "is": "music_title restarted at its end"},
+   {"perf_ms": 95758, "buffer_s": 38.4, "context_time_s": 93.2613, "is": "music_title restarted"},
+   {"perf_ms": 134174, "buffer_s": 38.4, "context_time_s": 131.672, "is": "music_title restarted"}
+  ],
+  "loop_restart_gap_ms": {
+   "from_main_thread_clock": [25, 3, 16],
+   "from_audio_clock": 10.7,
+   "note": "Godot's web samples loop by starting the buffer again on its 'ended' event, so each wrap leaves about 3-25 ms of silence (audio clock 10.7 ms, resolution 2.7 ms). Desktop wraps sample-exactly (decode-check.json, capture-check.json)."
+  }
+ }
+}
