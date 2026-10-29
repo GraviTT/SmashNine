@@ -29,20 +29,31 @@ var pitch_rng := RandomNumberGenerator.new()
 var _snapshots: Dictionary = {}
 var _missing_reported: Dictionary = {}
 var _landing_states: Dictionary = {}
+static var _waiting: Node
 
+## At game start the engine readies the main scene (Main._ready calls this) before the root
+## itself, and the root refuses add_child until then: the manager joins it at the end of the
+## frame instead, and find() hands it out meanwhile (music waits in pending_music).
 static func install(source: Node) -> Node:
 	var tree := source.get_tree()
-	var manager := tree.root.get_node_or_null("AudioManager")
+	var manager := find(source)
 	if manager == null:
 		manager = load("res://scripts/audio/AudioManager.gd").new()
 		manager.name = "AudioManager"
-		tree.root.add_child(manager)
+		if tree.root.is_node_ready():
+			tree.root.add_child(manager)
+		else:
+			_waiting = manager
+			tree.root.add_child.call_deferred(manager)
 	return manager
 
 static func find(source: Node) -> Node:
 	if not is_instance_valid(source) or not source.is_inside_tree():
 		return null
-	return source.get_tree().root.get_node_or_null("AudioManager")
+	var manager := source.get_tree().root.get_node_or_null("AudioManager")
+	if manager == null and is_instance_valid(_waiting):
+		manager = _waiting
+	return manager
 
 static func sound(source: Node, id: String, options: Dictionary = {}) -> void:
 	var manager := find(source)
@@ -89,6 +100,10 @@ func _ready() -> void:
 		add_child(player)
 		music_players.append(player)
 		player.finished.connect(_loop_music.bind(player))
+	if _waiting == self:
+		_waiting = null
+	if unlocked and pending_music != "":
+		unlock()
 
 ## Leaving the tree only pauses a player's sounds, and the mixer thread keeps a stopped sound
 ## (and its loaded file) until a few buffers later. Stop everything and give the mixer that
@@ -192,7 +207,7 @@ func play_music(track: String) -> void:
 	_record(track)
 	if not CATALOG.SOUNDS.has(track) or not track.begins_with("music_"):
 		return
-	if not unlocked:
+	if not unlocked or not is_node_ready():
 		pending_music = track
 		return
 	_start_music(track)

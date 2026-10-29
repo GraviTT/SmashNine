@@ -81,6 +81,7 @@ func _run() -> void:
 	await _test_music()
 	await _test_settings_and_options()
 	await _test_adopted_files()
+	_test_startup_path()
 	_test_contract()
 	print("AUDIO_PROBE " + JSON.stringify({"requests": probe_counts, "resolution_attempts": probe_resolution_attempts, "world": probe_world, "world_filter_checks": world_filter_checks, "unrequested": unreachable, "checks": checks}))
 	if OS.get_cmdline_user_args().has("--report"):
@@ -748,6 +749,26 @@ func _test_adopted_files() -> void:
 	# Left playing on purpose: freeing the manager at the end must release the loaded files
 	# (AudioManager._exit_tree); run_all fails on "resources still in use at exit" otherwise.
 	_check(player.playing, "Adopted music keeps playing until the manager is freed")
+
+## The game's own start-up: the engine readies Main before the root, so install() must defer
+## the manager. Until 10-29 the root refused it there and the whole game was silent; every test
+## here adds Main to a ready root and never saw it. Runs tests/audio_startup_probe.gd in a
+## child Godot with the main scene as its argument (that is what reproduces the start-up order).
+func _test_startup_path() -> void:
+	var output: Array = []
+	var args := ["--headless", "--path", ProjectSettings.globalize_path("res://"), "-s", "res://tests/audio_startup_probe.gd", "res://scenes/Main.tscn"]
+	var code := OS.execute(OS.get_executable_path(), args, output, true)
+	var info: Dictionary = {}
+	var errors: Array[String] = []
+	for row: String in "\n".join(output).split("\n"):
+		if row.begins_with("STARTUP "):
+			info = JSON.parse_string(row.substr(8))
+		elif row.strip_edges().begins_with("ERROR") and row.strip_edges() != "ERROR: Failed to read the root certificate store.":
+			errors.append(row)
+	_check(code == 0 and errors.is_empty() and not info.is_empty(), "The start-up probe must run cleanly: %s" % ", ".join(errors))
+	_check(bool(info.get("manager_in_tree", false)), "The manager must join the root at game start")
+	_check(info.get("music_path", "") == "res://assets/audio/music/music_title.ogg" and bool(info.get("music_playing", false)) and bool(info.get("music_loop", false)), "Title music must play its looping file from game start")
+	_check(float(info.get("rms_dbfs", -200.0)) > -40.0, "The Master bus must receive the title music at game start")
 
 func _test_contract() -> void:
 	var doc := FileAccess.get_file_as_string("res://../design/AUDIO.md")
