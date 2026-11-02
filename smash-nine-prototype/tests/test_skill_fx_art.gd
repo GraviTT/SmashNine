@@ -43,10 +43,8 @@ func _run_original_checks() -> void:
 	luna._create_transformation_aura()
 	_expect_vfx(luna, "luna_brave_aura")
 
-	var comet := _comet_node()
-	comet._spawn_trail()
-	_expect_vfx(arena, "luna_comet_trail")
-	comet._spawn_bloom_flash()
+	# The big J star's burst (D45) uses the old comet's burst art.
+	luna.star_burst_at(Vector2(200, 0), Vector2.RIGHT)
 	_expect_vfx(arena, "luna_comet_burst")
 
 	var nova := _player("nova")
@@ -107,9 +105,7 @@ func _run_fallback_checks() -> void:
 	_expect_added_shape("Luna star bloom", Polygon2D, func() -> void: luna._play_star_bloom(Vector2.ZERO, 40.0, Color.WHITE))
 	_expect_added_shape("Luna moon ring", Line2D, func() -> void: luna._play_moon_ring_flash(60.0))
 	_expect_added_shape("Luna brave aura", Line2D, func() -> void: luna._create_transformation_aura())
-	var comet := _comet_node()
-	_expect_added_shape("Luna comet trail", Polygon2D, func() -> void: comet._spawn_trail())
-	_expect_added_shape("Luna comet burst", Polygon2D, func() -> void: comet._spawn_bloom_flash())
+	_expect_added_shape("Luna star burst", Polygon2D, func() -> void: luna.star_burst_at(Vector2(200, 0), Vector2.RIGHT))
 
 	var nova := _player("nova")
 	_expect_added_shape("Nova gravity burst", Polygon2D, func() -> void: nova._spawn_gravity_burst(72.0, 1.0, 1.0, 0.5, Color.WHITE, "test"))
@@ -144,7 +140,7 @@ func _run_fallback_checks() -> void:
 	var attack := _attack_node()
 	_expect_added_shape("Attack afterimage", ColorRect, func() -> void: attack._spawn_trail_afterimage())
 	_run_fallback_realm_checks()
-	for effect in ["luna_star_bloom", "luna_moon_ring", "luna_brave_aura", "luna_comet_trail", "luna_comet_burst", "nova_gravity_burst", "nova_momentum_trail", "nova_vector_streak", "nova_shift_dash", "nova_shift_ready", "nova_impact_star", "nova_launch_flash", "rio_rune_guard", "rio_rune_burst", "rio_blink_trail", "yuki_grand_ward", "guard_bubble", "attack_afterimage"]:
+	for effect in ["luna_star_bloom", "luna_moon_ring", "luna_brave_aura", "luna_comet_burst", "nova_gravity_burst", "nova_momentum_trail", "nova_vector_streak", "nova_shift_dash", "nova_shift_ready", "nova_impact_star", "nova_launch_flash", "rio_rune_guard", "rio_rune_burst", "rio_blink_trail", "yuki_grand_ward", "guard_bubble", "attack_afterimage"]:
 		if _has_vfx(arena, effect):
 			_fail("Prototype mode unexpectedly drew %s art" % effect)
 
@@ -201,18 +197,6 @@ func _run_fallback_realm_checks() -> void:
 		var effect := "warning_edge" if state == "warning" else ("seal_barrier" if state == "locked" else "collapse_cracks")
 		if _has_vfx(state_root, effect) or _count_type(state_root, ColorRect) == 0:
 			_fail("Realm %s did not keep its tint fallback" % state)
-
-func _comet_node() -> Node:
-	var comet: Node = load("res://characters/luna/LunaComet.gd").new()
-	var collision := CollisionShape2D.new()
-	collision.name = "CollisionShape2D"
-	comet.add_child(collision)
-	var visual := Polygon2D.new()
-	visual.name = "Visual"
-	comet.add_child(visual)
-	arena.add_child(comet)
-	comet.set_physics_process(false)
-	return comet
 
 func _expect_vfx(node: Node, effect: String) -> void:
 	if not _has_vfx(node, effect):

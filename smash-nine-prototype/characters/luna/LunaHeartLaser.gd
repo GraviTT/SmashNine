@@ -13,6 +13,12 @@ var knockback_per_tick := 95.0
 var beam_length := 560.0
 var beam_height := 112.0
 var target_cooldowns: Dictionary = {}
+## Brave Luna's star beam (I, 2026-11-03 D45): ticks this often, keeps whoever it holds in hitstun
+## between ticks, and ends with one strong blast through the whole beam.
+var hit_interval := HIT_INTERVAL
+var hold_hitstun := 0.0
+var final_damage := 0.0
+var final_knockback := 0.0
 ## Original beam art: a tiled strip whose frame advances, plus the heart head at the far end.
 var beam_art: TextureRect
 var beam_frames: Array[Texture2D] = []
@@ -94,6 +100,7 @@ func _physics_process(delta: float) -> void:
 	for body in get_overlapping_bodies():
 		_try_hit_body(body)
 	if elapsed >= duration:
+		_final_blast()
 		queue_free()
 
 func _update_position() -> void:
@@ -118,11 +125,24 @@ func _try_hit_body(body: Node) -> void:
 		return
 	var landed = body.apply_hit(source, damage_per_tick, knockback_per_tick, direction)
 	if landed == false:
-		target_cooldowns[target_id] = HIT_INTERVAL * 0.55
+		target_cooldowns[target_id] = hit_interval * 0.55
 		return
-	target_cooldowns[target_id] = HIT_INTERVAL
+	target_cooldowns[target_id] = hit_interval
+	if hold_hitstun > 0.0 and body.get("hitstun_timer") != null:
+		body.set("hitstun_timer", maxf(float(body.get("hitstun_timer")), hold_hitstun))
 	if is_instance_valid(source) and source.has_method("on_attack_landed"):
 		source.on_attack_landed(global_position + direction * beam_length * 0.35, damage_per_tick, knockback_per_tick)
+
+func _final_blast() -> void:
+	if final_damage <= 0.0 or not is_instance_valid(source):
+		return
+	for body in get_overlapping_bodies():
+		if body == source or not body.has_method("apply_hit"):
+			continue
+		var landed = body.apply_hit(source, final_damage, final_knockback, Vector2(direction.x, -0.35))
+		if landed != false and source.has_method("on_attack_landed"):
+			source.on_attack_landed((body as Node2D).global_position + Vector2(0, -34), final_damage, final_knockback)
+	VFX.spawn(get_parent(), "luna_comet_burst", global_position + direction * beam_length * 0.5, Vector2.ONE * 1.2 * GAME_SCALE.COMBAT, false, 6)
 
 func _make_beam_polygon(length: float, height: float) -> PackedVector2Array:
 	var half_length := length * 0.5

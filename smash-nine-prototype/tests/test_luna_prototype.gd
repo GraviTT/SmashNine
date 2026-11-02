@@ -4,7 +4,8 @@ const MAIN_SCRIPT := preload("res://scripts/Main.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const ATTACK_PATH := "res://scripts/Attack.gd"
-const COMET_PATH := "res://characters/luna/LunaComet.gd"
+const STAR_PATH := "res://characters/luna/LunaStar.gd"
+const BARRIER_PATH := "res://characters/luna/LunaBarrier.gd"
 const HEART_LASER_PATH := "res://characters/luna/LunaHeartLaser.gd"
 
 var arena: Node2D
@@ -19,9 +20,9 @@ func _run() -> void:
 	root.add_child(arena)
 	main = MAIN_SCRIPT.new()
 	luna_data = CHARACTER_REGISTRY.get_characters()["luna"]
-	if not await _test_normal_star_echo():
+	if not await _test_normal_star_volley():
 		return
-	if not await _test_comet_and_ring():
+	if not await _test_warp_and_barrier():
 		return
 	if not await _test_brave_transformation():
 		return
@@ -39,62 +40,56 @@ func _create_luna(player_id: int) -> Node:
 	luna.set_physics_process(false)
 	return luna
 
-func _test_normal_star_echo() -> bool:
+## Normal J (D45): each press fires a star projectile; the fourth is the big one.
+func _test_normal_star_volley() -> bool:
 	var luna := _create_luna(1)
-	# Count hitboxes as they are created: the trail (0.1 s) and the bloom (after 0.065 s)
-	# overlap for only ~2 physics frames, so sampling live nodes was flaky.
-	var created: Array[Node] = []
+	var stars: Array[Node] = []
 	var on_node_added := func(node: Node) -> void:
 		var script: Script = node.get_script()
-		if script != null and script.resource_path == ATTACK_PATH:
-			created.append(node)
+		if script != null and script.resource_path == STAR_PATH:
+			stars.append(node)
 	node_added.connect(on_node_added)
-	luna.perform_basic_attack("side", Vector2.RIGHT)
-	for attempt in 80:
-		if created.size() >= 2:
+	var big_flags: Array[bool] = []
+	for press in 4:
+		luna.attack_lock_timer = 0.0
+		luna.basic_attack()
+		if not await _wait_for(func() -> bool: return stars.size() > press, 0.5):
 			break
-		await create_timer(0.005).timeout
+		big_flags.append(bool(stars[press].big))
 	node_added.disconnect(on_node_added)
-	var saw_two_beats := created.size() >= 2
-	if not saw_two_beats:
-		_fail("Luna normal J did not create the trail and delayed star bloom")
+	if big_flags != [false, false, false, true]:
+		_fail("Luna normal J should fire three small stars and then a big one (got %s)" % [big_flags])
 		return false
 	luna.queue_free()
-	await create_timer(0.25).timeout
+	await create_timer(0.4).timeout
 	return true
 
-func _test_comet_and_ring() -> bool:
+## Normal K warps and bursts on both sides of her; normal L raises the star barrier.
+func _test_warp_and_barrier() -> bool:
 	var luna := _create_luna(2)
-	luna.skill_one()
-	var comet: Node
-	for attempt in 80:
-		comet = _find_node_with_script(COMET_PATH)
-		if is_instance_valid(comet):
-			break
-		await create_timer(0.01).timeout
-	if not is_instance_valid(comet):
-		_fail("Luna K did not create a star comet")
-		return false
-	var attacks_before_bloom := _count_nodes_with_script(ATTACK_PATH)
-	comet._detonate()
-	# The bloom lives 0.13 s; one late process frame can outlast it, a physics frame cannot.
-	if not await _wait_for(func() -> bool: return _count_nodes_with_script(ATTACK_PATH) > attacks_before_bloom, 0.5):
-		_fail("Luna comet did not create its range-end bloom attack")
-		return false
-	luna.attack_lock_timer = 0.0
-	# Counted as they are created, like the star echo, so the bloom running out meanwhile
-	# cannot hide a half.
-	var ring_halves: Array[Node] = []
+	var start_x: float = luna.global_position.x
+	var bursts: Array[Node] = []
 	var on_node_added := func(node: Node) -> void:
 		var script: Script = node.get_script()
 		if script != null and script.resource_path == ATTACK_PATH:
-			ring_halves.append(node)
+			bursts.append(node)
 	node_added.connect(on_node_added)
-	luna.skill_two()
-	await _wait_for(func() -> bool: return ring_halves.size() >= 2, 1.0)
+	luna.skill_one()
+	await _wait_for(func() -> bool: return bursts.size() >= 2, 1.0)
 	node_added.disconnect(on_node_added)
-	if ring_halves.size() < 2:
-		_fail("Luna L did not create both rotating ring halves")
+	if bursts.size() < 2 or absf(luna.global_position.x - start_x) < 150.0:
+		_fail("Luna K should warp her ahead and burst on both sides (%d hit areas, moved %.0f)" % [bursts.size(), luna.global_position.x - start_x])
+		return false
+	luna.attack_lock_timer = 0.0
+	luna.skill_two()
+	var barrier: Node
+	for attempt in 60:
+		barrier = luna.get_node_or_null("StarBarrier")
+		if is_instance_valid(barrier):
+			break
+		await create_timer(0.01).timeout
+	if not is_instance_valid(barrier) or barrier.get_script().resource_path != BARRIER_PATH or not barrier.is_in_group("projectile_barriers"):
+		_fail("Luna L did not raise the star barrier")
 		return false
 	luna.queue_free()
 	await create_timer(0.3).timeout
@@ -125,13 +120,15 @@ func _test_brave_transformation() -> bool:
 			break
 		await create_timer(0.01).timeout
 	if luna.skill_dash_velocity.length() <= 600.0:
-		_fail("Brave K did not move Luna's character body")
+		_fail("Brave K did not dash Luna's character body")
 		return false
+	luna.grab_dash_timer = 0.0
 	luna.skill_dash_timer = 0.0
 	luna._end_skill_dash()
 	luna.attack_lock_timer = 0.0
 	luna.transformation_timer = 0.46
-	var expected_laser_duration: float = luna.transformation_timer
+	# The star beam (D45) always lasts 3 s, whatever is left of the Brave form.
+	var expected_laser_duration: float = luna.BEAM_TIME
 	var target := _create_luna(4)
 	target.global_position = luna.global_position + Vector2(220.0, 0.0)
 	var target_hp_before: float = target.hp
@@ -146,7 +143,7 @@ func _test_brave_transformation() -> bool:
 		_fail("Ultimate re-input did not fire Luna's heart laser")
 		return false
 	if absf(laser.duration - expected_laser_duration) > 0.02:
-		_fail("Luna heart laser duration did not match the remaining transformation time")
+		_fail("Luna star beam should last BEAM_TIME")
 		return false
 	if laser.collision_shape.shape.size.x < 500.0 or laser.collision_shape.shape.size.y < 100.0:
 		_fail("Luna heart laser did not create a giant forward hitbox")
@@ -158,7 +155,7 @@ func _test_brave_transformation() -> bool:
 	if target.hp >= target_hp_before - 4.0:
 		_fail("Luna heart laser did not apply repeated damage while sustained")
 		return false
-	for attempt in 100:
+	for attempt in 400:
 		if not luna.transformed:
 			break
 		await create_timer(0.01).timeout

@@ -4,6 +4,7 @@ const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const TALISMAN_ART := "res://assets/art/effects/yuki_talisman.png"
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const VFX := preload("res://scripts/Vfx.gd")
+const PROJECTILE_BARRIERS := preload("res://scripts/ProjectileBarriers.gd")
 ## The burst art (Yuki's ward burst, CODEX-ART-13) is authored 192 px wide.
 const BURST_ART_WIDTH := 192.0
 
@@ -70,6 +71,9 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 		return
 	position += direction * speed * delta
+	if PROJECTILE_BARRIERS.stopped(self, source):
+		queue_free()
+		return
 	if mode == "flare" and elapsed >= 0.18:
 		_begin_burst()
 

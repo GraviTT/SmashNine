@@ -210,6 +210,8 @@ var last_attacker: Node
 var last_attacker_timer := 0.0
 var invulnerable_timer := 0.0
 var last_hit_absorbed := false
+## The last hit's damage before any absorption (Luna's star barrier takes it in her place).
+var last_incoming_damage := 0.0
 ## Hidden in a bush (RealmHazards): faded, and bots only notice up close.
 var concealed := false
 var action_epoch := 0
@@ -300,6 +302,13 @@ var guard_visual: Line2D
 var status_icon: Sprite2D
 var status_icon_kind := ""
 var status_icon_phase := 0.0
+## Luna's star mark (passive "별의 마법", 2026-11-03 D45): a marked fighter takes
+## STAR_MARK_DAMAGE_SCALE of every hit until the mark runs out or its Luna bursts it.
+const STAR_MARK_DAMAGE_SCALE := 1.1
+const STAR_MARK_ARTS := ["luna_star_mark", "luna_star_charge"]
+var star_mark_timer := 0.0
+var star_mark_source: Node
+var star_mark_icon: Sprite2D
 
 func _ready() -> void:
 	add_to_group("players")
@@ -447,6 +456,9 @@ func _update_match_timers(delta: float) -> void:
 	ultimate_window_timer = maxf(ultimate_window_timer - delta, 0.0)
 	ultimate_armor_timer = maxf(ultimate_armor_timer - delta, 0.0)
 	last_attacker_timer = maxf(last_attacker_timer - delta, 0.0)
+	if star_mark_timer > 0.0:
+		star_mark_timer = maxf(star_mark_timer - delta, 0.0)
+		_update_star_mark_icon()
 	if invulnerable_timer > 0.0:
 		invulnerable_timer = maxf(invulnerable_timer - delta, 0.0)
 		modulate.a = _visible_alpha() if invulnerable_timer <= 0.0 or int(invulnerable_timer * 12.0) % 2 == 0 else 0.45
@@ -1327,6 +1339,7 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	var final_damage := _calculate_incoming_damage(attacker, damage, damage_type)
 	var guard_reduction := _get_guard_reduction() if guard_result == GUARD_BLOCK else 0.0
 	final_damage *= 1.0 - guard_reduction
+	last_incoming_damage = final_damage
 	if absorption >= 0.0:
 		final_damage *= absorption
 	hp = maxf(hp - final_damage, 0.0)
@@ -1425,6 +1438,7 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 	var final_damage := _calculate_incoming_damage(attacker, damage, damage_type)
 	var guard_reduction := _get_guard_reduction() if guard_result == GUARD_BLOCK else 0.0
 	final_damage *= 1.0 - guard_reduction
+	last_incoming_damage = final_damage
 	if absorption >= 0.0:
 		final_damage *= absorption
 	hp = maxf(hp - final_damage, 0.0)
@@ -1511,6 +1525,61 @@ func apply_grab_pull(center: Vector2, speed: float) -> bool:
 	current_knockback_decay = KNOCKBACK_AIR_DECAY
 	return true
 
+## Held in a grab (Brave Luna's K) at `at` for `duration`: the guard drops, the move in progress
+## stops and the fighter cannot act. Returns whether it was held.
+func apply_grab_hold(holder: Node, at: Vector2, duration: float) -> bool:
+	if is_defeated or is_invulnerable():
+		return false
+	if is_guarding:
+		_stop_guard(false)
+	_remember_attacker(holder)
+	cancel_pending_actions()
+	attack_lock_timer = 0.0
+	skill_dash_timer = 0.0
+	action_locked_until_land = false
+	_end_skill_dash()
+	velocity = Vector2.ZERO
+	knockback_velocity = Vector2.ZERO
+	hitstun_timer = maxf(hitstun_timer, duration)
+	movement_freeze_timer = maxf(movement_freeze_timer, duration)
+	movement_freeze_position = at
+	character_on_hit()
+	return true
+
+## Luna's star mark: `duration` seconds of STAR_MARK_DAMAGE_SCALE damage, which `source` can burst.
+func apply_star_mark(source: Node, duration: float) -> void:
+	if is_defeated:
+		return
+	star_mark_source = source
+	star_mark_timer = maxf(star_mark_timer, duration)
+	_update_star_mark_icon()
+
+func clear_star_mark() -> void:
+	star_mark_timer = 0.0
+	star_mark_source = null
+	_update_star_mark_icon()
+
+## The mark's star over the head (beside the stun or armour icon when one shows); it blinks in
+## its last 2 s.
+func _update_star_mark_icon() -> void:
+	if star_mark_timer <= 0.0:
+		if is_instance_valid(star_mark_icon):
+			star_mark_icon.visible = false
+		return
+	if not is_instance_valid(star_mark_icon):
+		star_mark_icon = Sprite2D.new()
+		star_mark_icon.name = "StarMark"
+		star_mark_icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		star_mark_icon.z_index = 7
+		for art in STAR_MARK_ARTS:
+			star_mark_icon.texture = SHEET_ART.original_texture(STATUS_ICON_ART % art)
+			if star_mark_icon.texture != null:
+				break
+		add_child(star_mark_icon)
+	var beside := is_instance_valid(status_icon) and status_icon.visible
+	star_mark_icon.position = Vector2(22.0 if beside else 0.0, STATUS_ICON_Y - 2.0)
+	star_mark_icon.visible = star_mark_timer > 2.0 or int(star_mark_timer * 8.0) % 2 == 0
+
 func apply_yuki_seal_burst(attacker: Node, activation_id: int, damage: float, knockback: float, direction: Vector2) -> bool:
 	if last_yuki_activation_hit == activation_id:
 		return false
@@ -1585,7 +1654,8 @@ func _calculate_incoming_damage(attacker: Node, base_damage: float, damage_type:
 		var power_value = attacker.get("attack_power")
 		if power_value != null:
 			attacker_power = float(power_value)
-	return maxf(base_damage * attacker_power / 100.0 * 100.0 / (100.0 + maxf(defense, 0.0)) * incoming_damage_scale, 1.0)
+	var mark_scale := STAR_MARK_DAMAGE_SCALE if star_mark_timer > 0.0 else 1.0
+	return maxf(base_damage * attacker_power / 100.0 * 100.0 / (100.0 + maxf(defense, 0.0)) * incoming_damage_scale * mark_scale, 1.0)
 
 func _get_hit_direction(direction: Vector2, was_grounded: bool) -> Vector2:
 	var hit_direction := direction.normalized()
@@ -1654,6 +1724,7 @@ func _defeat(attacker: Node) -> void:
 	ultimate_armor_timer = 0.0
 	_reset_guard_state()
 	_end_skill_dash()
+	clear_star_mark()
 	character_cleanup()
 	var grounded := is_on_floor()
 	is_defeated = true
@@ -1706,6 +1777,7 @@ func _respawn() -> void:
 	ultimate_window_timer = 0.0
 	ultimate_armor_timer = 0.0
 	_reset_guard_state()
+	clear_star_mark()
 	character_on_respawn()
 	if not spawn_points.is_empty():
 		global_position = spawn_points.pick_random()
@@ -1766,6 +1838,7 @@ func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	ultimate_window_timer = 0.0
 	ultimate_armor_timer = 0.0
 	_reset_guard_state()
+	clear_star_mark()
 	character_cleanup()
 	character_on_respawn()
 	control_slow_timer = 0.0

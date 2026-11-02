@@ -11,6 +11,7 @@ var hit_targets: Array[Node] = []
 var damage_type := "normal"
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const VFX := preload("res://scripts/Vfx.gd")
+const PROJECTILE_BARRIERS := preload("res://scripts/ProjectileBarriers.gd")
 ## Effect strip played where this projectile hits (scripts/Vfx.gd name), tinted.
 var impact_vfx := ""
 var impact_tint := Color.WHITE
@@ -114,6 +115,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	position += direction * speed * delta
+	if PROJECTILE_BARRIERS.stopped(self, source):
+		_discard_orphaned_projectile()
 
 func _on_body_entered(body: Node) -> void:
 	if not is_instance_valid(source):
