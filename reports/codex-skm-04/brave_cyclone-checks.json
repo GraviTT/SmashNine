@@ -1,0 +1,778 @@
+{
+  "selection": {
+    "row": "brave_cyclone",
+    "stem": "luna_brave",
+    "attempt": 3,
+    "factor": 0.36,
+    "accepted": false,
+    "face_verified": false,
+    "costume_ok": true,
+    "pose_ok": false,
+    "fps": 20,
+    "loop": true,
+    "for": "브레이브 L 별의 회오리 회전",
+    "face_frames": [
+      1,
+      2,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "excluded_faces": {
+      "3": "옆모습: 한 눈만 보여 두 눈 거리 직접 비교 불가",
+      "4": "뒷모습: 얼굴 없음, 자동 표식 무효",
+      "5": "옆모습: 한 눈만 보여 두 눈 거리 직접 비교 불가"
+    },
+    "note": "3회 생성 후 보류. 3차는 회전 방향을 확보했으나 얼굴 제안값 눈 거리 0.867–1.006·폭 0.857–0.964로 하한을 벗어나고, 발뒤꿈치가 들린 회전 자세도 약하다.",
+    "attempt_notes": "1차 F6이 다시 오른쪽을 향해 회전 방향이 끊김. 2차는 방향 개선, 얼굴·머리가 작음. 3차는 머리 자동 중앙값 1.01이나 얼굴 차이와 평평한 발 자세가 남음.",
+    "human_review": "F6→F1 회전 연결, F1/F2의 비슷한 몸 방향, 얼굴 인상·크기, 발끝 회전 자세. 이 보드는 실패 근거이며 채택 후보가 아님."
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-04\\luna_brave\\brave_cyclone\\attempt-3\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.36,
+      "scale_by": "fixed:0.36",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        94,
+        95
+      ],
+      "body_width_range": [
+        76,
+        90
+      ],
+      "area_range": [
+        3274,
+        3911
+      ],
+      "area_spread_percent": 16.29,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        3074,
+        3639
+      ],
+      "interior_detail_range": [
+        96.74,
+        118.44
+      ],
+      "interior_detail_mean": 108.02,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 107.04,
+      "interior_detail_ratio": 1.0092
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 107.04,
+          "colour_count": 3461,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 107.04,
+      "colour_count_range": [
+        3461,
+        3461
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/source-frames/00.png",
+        "bbox": [
+          49,
+          59,
+          139,
+          153
+        ],
+        "body_height": 94,
+        "body_width": 90,
+        "area": 3911,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 115.21,
+        "colour_count": 3639,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 49,
+          "top": 59,
+          "right": 53,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.0763
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/source-frames/01.png",
+        "bbox": [
+          48,
+          58,
+          132,
+          153
+        ],
+        "body_height": 95,
+        "body_width": 84,
+        "area": 3802,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 112.46,
+        "colour_count": 3542,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 48,
+          "top": 58,
+          "right": 60,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.0506
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/source-frames/02.png",
+        "bbox": [
+          56,
+          58,
+          132,
+          153
+        ],
+        "body_height": 95,
+        "body_width": 76,
+        "area": 3443,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 102.5,
+        "colour_count": 3255,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 56,
+          "top": 58,
+          "right": 60,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.9576
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/source-frames/03.png",
+        "bbox": [
+          57,
+          58,
+          135,
+          153
+        ],
+        "body_height": 95,
+        "body_width": 78,
+        "area": 3274,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 96.74,
+        "colour_count": 3074,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 57,
+          "top": 58,
+          "right": 57,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.9038
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/source-frames/04.png",
+        "bbox": [
+          58,
+          59,
+          138,
+          153
+        ],
+        "body_height": 94,
+        "body_width": 80,
+        "area": 3451,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 102.74,
+        "colour_count": 3245,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 58,
+          "top": 59,
+          "right": 54,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.9598
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/source-frames/05.png",
+        "bbox": [
+          57,
+          59,
+          143,
+          153
+        ],
+        "body_height": 94,
+        "body_width": 86,
+        "area": 3749,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 118.44,
+        "colour_count": 3445,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 57,
+          "top": 59,
+          "right": 49,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1065
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/luna_brave-brave_cyclone.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/frames",
+      "closeup": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/closeup.png",
+      "compare": "reports/codex-skm-04/luna_brave/brave_cyclone/attempt-3/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        79,
+        64.5,
+        4,
+        5
+      ],
+      [
+        86,
+        64.5,
+        3,
+        4
+      ],
+      [
+        73,
+        65.5,
+        3,
+        4
+      ],
+      [
+        87,
+        65.5,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 79.332,
+        "y": 65.048,
+        "score": 1
+      },
+      {
+        "x": 86.808,
+        "y": 63.732,
+        "score": 1
+      },
+      {
+        "x": 73,
+        "y": 65.5,
+        "score": 1
+      },
+      {
+        "x": 87,
+        "y": 65.5,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 7.59094407830806,
+    "reference_face_width": 14,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 106.27,
+            "y": 87.983,
+            "score": 0.907
+          },
+          {
+            "x": 113.333,
+            "y": 86.684,
+            "score": 0.73
+          },
+          {
+            "x": 100.0,
+            "y": 88.5,
+            "score": 0.862
+          },
+          {
+            "x": 113.0,
+            "y": 88.0,
+            "score": 0.645
+          }
+        ],
+        "eye_distance": 7.181,
+        "face_width": 13.0,
+        "eye_ratio": 0.946,
+        "face_width_ratio": 0.929,
+        "head_alignment": [
+          1.0,
+          84,
+          68,
+          0.81
+        ]
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 106.818,
+            "y": 87.009,
+            "score": 0.854
+          },
+          {
+            "x": 113.3,
+            "y": 85.88,
+            "score": 0.813
+          },
+          {
+            "x": 101.0,
+            "y": 87.5,
+            "score": 0.944
+          },
+          {
+            "x": 114.5,
+            "y": 87.5,
+            "score": 0.714
+          }
+        ],
+        "eye_distance": 6.58,
+        "face_width": 13.5,
+        "eye_ratio": 0.867,
+        "face_width_ratio": 0.964,
+        "head_alignment": [
+          1.02,
+          84,
+          66,
+          0.792
+        ]
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 118.083,
+            "y": 86.586,
+            "score": 0.635
+          },
+          {
+            "x": 122.246,
+            "y": 87.416,
+            "score": 0.573
+          },
+          {
+            "x": 111.75,
+            "y": 87.5,
+            "score": 0.815
+          },
+          {
+            "x": 123.0,
+            "y": 88.5,
+            "score": 0.391
+          }
+        ],
+        "eye_distance": 4.245,
+        "face_width": 11.25,
+        "eye_ratio": 0.559,
+        "face_width_ratio": 0.804,
+        "head_alignment": [
+          1.01,
+          94,
+          67,
+          0.571
+        ]
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 93.505,
+            "y": 89.276,
+            "score": 0.585
+          },
+          {
+            "x": 101.0,
+            "y": 91.25,
+            "score": 0.466
+          },
+          {
+            "x": 87.0,
+            "y": 92.0,
+            "score": 0.739
+          },
+          {
+            "x": 101.5,
+            "y": 92.25,
+            "score": 0.596
+          }
+        ],
+        "eye_distance": 7.751,
+        "face_width": 14.5,
+        "eye_ratio": 1.021,
+        "face_width_ratio": 1.036,
+        "head_alignment": [
+          1.01,
+          72,
+          69,
+          0.447
+        ]
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 112.887,
+            "y": 87.002,
+            "score": 0.378
+          },
+          {
+            "x": 117.746,
+            "y": 88.754,
+            "score": 0.598
+          },
+          {
+            "x": 105.0,
+            "y": 88.5,
+            "score": 0.776
+          },
+          {
+            "x": 118.0,
+            "y": 90.5,
+            "score": 0.47
+          }
+        ],
+        "eye_distance": 5.165,
+        "face_width": 13.0,
+        "eye_ratio": 0.68,
+        "face_width_ratio": 0.929,
+        "head_alignment": [
+          1.01,
+          88,
+          68,
+          0.576
+        ]
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 102.5,
+            "y": 87.804,
+            "score": 0.807
+          },
+          {
+            "x": 109.91,
+            "y": 85.97,
+            "score": 0.655
+          },
+          {
+            "x": 97.0,
+            "y": 89.5,
+            "score": 0.827
+          },
+          {
+            "x": 109.0,
+            "y": 88.5,
+            "score": 0.606
+          }
+        ],
+        "eye_distance": 7.634,
+        "face_width": 12.0,
+        "eye_ratio": 1.006,
+        "face_width_ratio": 0.857,
+        "head_alignment": [
+          1.01,
+          80,
+          67,
+          0.733
+        ]
+      }
+    ]
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-04\\luna_brave\\brave_cyclone\\attempt-3\\luna_brave-brave_cyclone.png",
+    "frames": [
+      {
+        "scale": 1.0,
+        "score": 0.81
+      },
+      {
+        "scale": 1.02,
+        "score": 0.791
+      },
+      {
+        "scale": 0.62,
+        "score": 0.581
+      },
+      {
+        "scale": 0.72,
+        "score": 0.437
+      },
+      {
+        "scale": 0.96,
+        "score": 0.522
+      },
+      {
+        "scale": 0.92,
+        "score": 0.547
+      }
+    ],
+    "median": 1.01,
+    "used": 2
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-04\\luna_brave-brave_cyclone-3.png",
+    "size": [
+      2170,
+      725
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      30086,
+      29349,
+      28807,
+      26734,
+      26689,
+      25278,
+      42,
+      24
+    ],
+    "boxes": [
+      [
+        69,
+        224,
+        319,
+        485
+      ],
+      [
+        432,
+        222,
+        666,
+        485
+      ],
+      [
+        787,
+        222,
+        999,
+        485
+      ],
+      [
+        1162,
+        222,
+        1379,
+        485
+      ],
+      [
+        1520,
+        223,
+        1742,
+        485
+      ],
+      [
+        1862,
+        224,
+        2101,
+        485
+      ]
+    ]
+  },
+  "sheet_sha256": "47867ee2a7fe39bef404bb042285bd07fda0af6581e971fc971700dbf044ba09"
+}

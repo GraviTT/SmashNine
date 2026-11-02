@@ -1,0 +1,779 @@
+{
+  "selection": {
+    "row": "star_warp",
+    "stem": "luna",
+    "attempt": 1,
+    "factor": 0.36,
+    "accepted": false,
+    "face_verified": false,
+    "costume_ok": true,
+    "pose_ok": true,
+    "fps": 20,
+    "loop": false,
+    "for": "노말 K 반짝 도약",
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "excluded_faces": {},
+    "note": "3회 생성 후 보류. 최선 1차·공통 배율 0.36에서 F1 눈 거리 1.074, F3 눈 거리 1.095, F4 얼굴 폭 0.929로 전달 범위를 벗어난다.",
+    "attempt_notes": "1차는 지팡이 유지와 자세가 가장 명료하지만 얼굴 편차가 남음. 2차는 눈 간격 확대와 표식 불안정. 3차는 F2 얼굴이 든 팔에 가려지고 F1 지팡이가 가슴을 가로지르지 않음. 1차 공통 배율 0.35–0.37을 비교했지만 전체 얼굴 기준은 충족하지 못함.",
+    "human_review": "F2→F3 순간이동 출발·도착 자세의 구분, 지팡이를 쥔 손 유지, F3→F4 회전과 치마 흐름, F1/F3 눈 간격과 F4 얼굴 폭. 보류 자료이며 채택 후보가 아님."
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-04\\luna\\star_warp\\attempt-1\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.36,
+      "scale_by": "fixed:0.36",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        68,
+        99
+      ],
+      "body_width_range": [
+        74,
+        90
+      ],
+      "area_range": [
+        3238,
+        3771
+      ],
+      "area_spread_percent": 14.13,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        2977,
+        3425
+      ],
+      "interior_detail_range": [
+        121.34,
+        130.46
+      ],
+      "interior_detail_mean": 124.29,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 93.44,
+      "interior_detail_ratio": 1.3302
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 93.44,
+          "colour_count": 4025,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 93.44,
+      "colour_count_range": [
+        4025,
+        4025
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-04/luna/star_warp/attempt-1/source-frames/00.png",
+        "bbox": [
+          60,
+          85,
+          136,
+          153
+        ],
+        "body_height": 68,
+        "body_width": 76,
+        "area": 3238,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 123.58,
+        "colour_count": 2977,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 60,
+          "top": 85,
+          "right": 56,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3226
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-04/luna/star_warp/attempt-1/source-frames/01.png",
+        "bbox": [
+          64,
+          54,
+          138,
+          153
+        ],
+        "body_height": 99,
+        "body_width": 74,
+        "area": 3377,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 130.46,
+        "colour_count": 3034,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 64,
+          "top": 54,
+          "right": 54,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3962
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-04/luna/star_warp/attempt-1/source-frames/02.png",
+        "bbox": [
+          54,
+          79,
+          144,
+          153
+        ],
+        "body_height": 74,
+        "body_width": 90,
+        "area": 3545,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 121.34,
+        "colour_count": 3216,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 54,
+          "top": 79,
+          "right": 48,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2986
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-04/luna/star_warp/attempt-1/source-frames/03.png",
+        "bbox": [
+          58,
+          73,
+          147,
+          153
+        ],
+        "body_height": 80,
+        "body_width": 89,
+        "area": 3525,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 123.8,
+        "colour_count": 3177,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 58,
+          "top": 73,
+          "right": 45,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3249
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-04/luna/star_warp/attempt-1/source-frames/04.png",
+        "bbox": [
+          60,
+          74,
+          138,
+          153
+        ],
+        "body_height": 79,
+        "body_width": 78,
+        "area": 3624,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 124.73,
+        "colour_count": 3269,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 60,
+          "top": 74,
+          "right": 54,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3349
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-04/luna/star_warp/attempt-1/source-frames/05.png",
+        "bbox": [
+          60,
+          74,
+          140,
+          153
+        ],
+        "body_height": 79,
+        "body_width": 80,
+        "area": 3771,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 121.83,
+        "colour_count": 3425,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 60,
+          "top": 74,
+          "right": 52,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3038
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-04/luna/star_warp/attempt-1/luna-star_warp.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-04/luna/star_warp/attempt-1/frames",
+      "closeup": "reports/codex-skm-04/luna/star_warp/attempt-1/closeup.png",
+      "compare": "reports/codex-skm-04/luna/star_warp/attempt-1/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        82.5,
+        67,
+        4,
+        5
+      ],
+      [
+        90,
+        67,
+        3,
+        4
+      ],
+      [
+        77,
+        67,
+        3,
+        4
+      ],
+      [
+        91,
+        67,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 82.184,
+        "y": 67.594,
+        "score": 1
+      },
+      {
+        "x": 89.805,
+        "y": 66.359,
+        "score": 1
+      },
+      {
+        "x": 77,
+        "y": 67,
+        "score": 1
+      },
+      {
+        "x": 91,
+        "y": 67,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 7.720418771025322,
+    "reference_face_width": 14,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 111.438,
+            "y": 110.794,
+            "score": 0.741
+          },
+          {
+            "x": 119.31,
+            "y": 108.191,
+            "score": 0.705
+          },
+          {
+            "x": 107.0,
+            "y": 110.0,
+            "score": 0.873
+          },
+          {
+            "x": 120.5,
+            "y": 108.0,
+            "score": 0.787
+          }
+        ],
+        "eye_distance": 8.291,
+        "face_width": 13.5,
+        "eye_ratio": 1.074,
+        "face_width_ratio": 0.964,
+        "head_alignment": [
+          0.86,
+          97,
+          93,
+          0.796
+        ]
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 111.511,
+            "y": 94.778,
+            "score": 0.77
+          },
+          {
+            "x": 119.545,
+            "y": 93.64,
+            "score": 0.708
+          },
+          {
+            "x": 107.0,
+            "y": 94.0,
+            "score": 0.828
+          },
+          {
+            "x": 121.0,
+            "y": 94.0,
+            "score": 0.796
+          }
+        ],
+        "eye_distance": 8.114,
+        "face_width": 14.0,
+        "eye_ratio": 1.051,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.9,
+          96,
+          77,
+          0.64
+        ]
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 107.066,
+            "y": 105.234,
+            "score": 0.734
+          },
+          {
+            "x": 115.39,
+            "y": 103.768,
+            "score": 0.665
+          },
+          {
+            "x": 102.5,
+            "y": 104.0,
+            "score": 0.777
+          },
+          {
+            "x": 117.0,
+            "y": 103.0,
+            "score": 0.832
+          }
+        ],
+        "eye_distance": 8.452,
+        "face_width": 14.5,
+        "eye_ratio": 1.095,
+        "face_width_ratio": 1.036,
+        "head_alignment": [
+          0.9,
+          93,
+          87,
+          0.703
+        ]
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 109.125,
+            "y": 98.33,
+            "score": 0.677
+          },
+          {
+            "x": 116.48,
+            "y": 98.545,
+            "score": 0.703
+          },
+          {
+            "x": 105.0,
+            "y": 97.0,
+            "score": 0.826
+          },
+          {
+            "x": 118.0,
+            "y": 97.0,
+            "score": 0.798
+          }
+        ],
+        "eye_distance": 7.358,
+        "face_width": 13.0,
+        "eye_ratio": 0.953,
+        "face_width_ratio": 0.929,
+        "head_alignment": [
+          0.9,
+          94,
+          80,
+          0.752
+        ]
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 112.271,
+            "y": 99.314,
+            "score": 0.801
+          },
+          {
+            "x": 119.432,
+            "y": 97.324,
+            "score": 0.681
+          },
+          {
+            "x": 107.0,
+            "y": 98.0,
+            "score": 0.777
+          },
+          {
+            "x": 121.0,
+            "y": 96.5,
+            "score": 0.813
+          }
+        ],
+        "eye_distance": 7.432,
+        "face_width": 14.0,
+        "eye_ratio": 0.963,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.9,
+          97,
+          81,
+          0.846
+        ]
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 112.956,
+            "y": 99.559,
+            "score": 0.727
+          },
+          {
+            "x": 120.566,
+            "y": 97.807,
+            "score": 0.725
+          },
+          {
+            "x": 108.5,
+            "y": 99.0,
+            "score": 0.754
+          },
+          {
+            "x": 122.0,
+            "y": 98.0,
+            "score": 0.826
+          }
+        ],
+        "eye_distance": 7.809,
+        "face_width": 13.5,
+        "eye_ratio": 1.011,
+        "face_width_ratio": 0.964,
+        "head_alignment": [
+          0.9,
+          97,
+          82,
+          0.697
+        ]
+      }
+    ]
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-04\\luna\\star_warp\\attempt-1\\luna-star_warp.png",
+    "frames": [
+      {
+        "scale": 0.86,
+        "score": 0.803
+      },
+      {
+        "scale": 0.6,
+        "score": 0.497
+      },
+      {
+        "scale": 0.9,
+        "score": 0.697
+      },
+      {
+        "scale": 0.6,
+        "score": 0.341
+      },
+      {
+        "scale": 0.9,
+        "score": 0.851
+      },
+      {
+        "scale": 0.6,
+        "score": 0.465
+      }
+    ],
+    "median": 0.9,
+    "used": 3
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-04\\luna-star_warp-1.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      29215,
+      28227,
+      27358,
+      27256,
+      26163,
+      25154,
+      11,
+      11,
+      1,
+      1
+    ],
+    "boxes": [
+      [
+        96,
+        293,
+        308,
+        482
+      ],
+      [
+        441,
+        208,
+        647,
+        482
+      ],
+      [
+        791,
+        277,
+        1041,
+        482
+      ],
+      [
+        1146,
+        260,
+        1394,
+        482
+      ],
+      [
+        1512,
+        262,
+        1730,
+        482
+      ],
+      [
+        1873,
+        262,
+        2095,
+        482
+      ]
+    ]
+  },
+  "sheet_sha256": "cdbad94fbf6610ee647cf46f5d68b561f4a7ba843aaca63408a226868867f4e6"
+}
