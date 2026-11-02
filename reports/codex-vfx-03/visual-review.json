@@ -1,0 +1,31 @@
+{
+  "method": "view_image, every listed board at exact nearest 4x; static manual inspection, no Godot run",
+  "reviewed": [
+    "wings_a_4x.png",
+    "wings_b_4x.png",
+    "wave_a_4x.png",
+    "wave_b_4x.png",
+    "light_a_f1_4x.png",
+    "light_a_f2_4x.png",
+    "light_a_f3_4x.png",
+    "light_a_f4_4x.png",
+    "light_a_f5_4x.png",
+    "light_a_f6_4x.png",
+    "light_b_f1_4x.png",
+    "light_b_f2_4x.png",
+    "light_b_f3_4x.png",
+    "light_b_f4_4x.png",
+    "light_b_f5_4x.png",
+    "light_b_f6_4x.png",
+    "slow_4x.png",
+    "icons_a_4x.png",
+    "icons_b_4x.png"
+  ],
+  "findings": {
+    "wings": "Behind hover pose; face and sword stay readable. B is taller and narrower. 170px requirement conflicts with frame/scale.",
+    "wave": "Right-facing leading edges; distinct smooth versus feathered rear. Loop feel needs human playback judgment.",
+    "light": "Expanding rings and inward feather positions visible. Centre remains open. B is denser near 250px target.",
+    "slow": "Hourglass versus down chevrons distinguishable from stun and armor.",
+    "icons": "Full 24-icon sets inspected. A diagonal and B horizontal sword visibly different. Human must judge spin/release meaning."
+  }
+}
