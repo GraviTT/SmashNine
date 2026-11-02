@@ -20,13 +20,13 @@ Rows come from `Luna.SHEET_ROWS`, which both forms share.
 
 | Row | Frames | FPS | Move | Source |
 | --- | ---: | ---: | --- | --- |
-| `star_up` | 6 | 21 | normal up/air-up J | `luna-star_up-v1` |
-| `star_down` | 6 | 21 | normal down/air-down J | `luna-star_down-v1` |
-| `star_comet` | 6 | 21 | normal K Star Comet | `luna-star_comet-v1` |
-| `moon_ring` | 6 | 16.8 | normal L Moon Ring (a spin in place) | `luna-moon_ring-v1` |
+| `star_up` | 6 | 21 | normal up/air-up J Star Volley (D45) | `luna-star_up-v1` |
+| `star_down` | 6 | 21 | normal down/air-down J Star Volley (D45) | `luna-star_down-v1` |
+| `star_comet` | 6 | 21 | normal K Twinkle Warp (D45 stand-in; was Star Comet) | `luna-star_comet-v1` |
+| `moon_ring` | 6 | 16.8 | normal L Star Barrier (D45 stand-in; was Moon Ring, a spin in place) | `luna-moon_ring-v1` |
 | `transform` | 12 | 12 | I: the special transformation into Brave Luna (② design, D36) | `luna-transform-v3` |
 | `tumble` | 6 | 21, loop | strong-launch hitstun | `luna-tumble-v1` |
-| `star_side` | 6 | 21 | normal side/air-side J Star Echo | `luna-attack-v2` |
+| `star_side` | 6 | 21 | normal side/air-side J Star Volley (D45; was Star Echo) | `luna-attack-v2` |
 
 ## The special transformation
 The user asked for it on 2026-10-14. The 12 frames:
