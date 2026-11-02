@@ -184,3 +184,49 @@ QA-23 수리 목록 원문: 버그 확인 세션 브랜치 `bug-check/after-chec
 | Brave Luna | dodge_roll | — | — | 실패(2회 생성) — 배율 하나로 얼굴 폭(1.071)과 눈 간격(0.913)을 함께 맞출 수 없음 | 납품 안 함 |
 | 몬스터 alfheim_moon_stag | appear | — | — | 실패(2회 생성) — 모양이 idle과 달라짐 | 납품 안 함 |
 | 몬스터 asgard_aegis_ram | appear | — | — | 보류 — 크기 확인 못 함 | 납품 안 함 |
+
+## 소리 적용 (10-29)
+
+- 지시(10-29, 점검 세션이 사용자 승인을 전달): 소리 뷰어 DB `sound_picks`대로 넣는다. 효과음 전체 c, 예외 7종(ui_move·ui_select·ui_cancel·story_text·story_advance·victory·results) b, 음악 5곡 b. 고른 WAV 77개를 OGG로 바꿔 `design/AUDIO.md` 경로에 넣고, 다음을 지킨다:
+  - 음악 반복 이음새와 Godot 가져오기 loop를 맞춘다.
+  - 효과음과 음악의 음량 균형을 확인한다.
+  - SYS-08 간격은 그대로 둔다.
+  - 웹 빌드 크기 변화를 기록한다.
+- 브랜치 `apply/sound-2026-10-29`(main `8f75113c`에서 시작), 작업 폴더 `SmashNine-units/apply/SmashNine`.
+  - 커밋 순서: `0dfceccf`(파일·테스트·증거) → `1d4e79c6`(종료 처리) → `f7258fe0`(시작 처리) → `abff97ab`(보고서).
+  - 메인 저장소에는 fetch만 했다. main은 `8f75113c` 그대로다.
+  - 자세한 기록: 브랜치의 `reports/apply-sound-2026-10-29/README.md`.
+- 스냅샷: DB 문서 13개를 10-29 14:44 UTC에 한 번 읽었다(모두 version 1, `picks-snapshot.json`).
+
+| 항목 | 결과 |
+|---|---|
+| 넣은 파일 | `assets/audio/sfx/<id>.ogg` 72 + `assets/audio/music/<id>.ogg` 5. libvorbis q6, 2.53MB(WAV 34.2MB). 음악 `.import`만 loop=true |
+| 파일 확인 | 77개 모두 끝 granule = WAV 프레임 수. Godot 디코드: 시작 위치가 모두 같고, 1/3옥타브 대역 차이 ≤1.53dB |
+| 음악 반복 | 데스크톱: 디코드와 게임 녹음 모두 이음새 앞뒤 정렬 차 0, AUD-02 이음새 기준 5/5 통과. 웹: 한 바퀴마다 약 3~25ms 끊김(Godot 웹 Sample 재생은 끝났다는 이벤트를 받고 다시 시작) |
+| 게임에서 재생 | 효과음 72·음악 5가 각자 자기 파일로 재생됐다(녹음 + 로그). 봇 경기 60초에 24개 파일, 폴백 없음. 실제 게임 시작 경로와 웹 빌드(8062)에서도 확인 |
+| 음량 균형 | 음악 −22.4dBFS, 전투음은 그보다 +9~13dB 위. story_text −7.5dB, ui_move −3.5dB는 설계대로 작다(귀로 확인할 것) |
+| SYS-08 간격 | 그대로 |
+| 웹 빌드 | build/web 71,888,308 → 74,600,440 B(+2.71MB), zip 40,138,035 → 42,400,077 B(+2.26MB), wasm 그대로 |
+| 테스트 | 작업 폴더 run_all **ALL PASSED**(54개 + 봇 소크 seed 1001), 시간 초과 없음. test_audio 858개 확인 |
+
+적용하면서 찾은 것:
+1. **고침 — 게임을 켜면 소리가 전혀 나지 않았다.**
+   - `Main._ready`에서 오디오 관리자를 루트에 붙일 때, 게임 시작 순간에는 루트가 거부한다("Parent node is busy setting up children"). 그래서 관리자가 없었다.
+   - 테스트는 모두 이미 준비된 루트에 Main을 붙이기 때문에 이 순서를 만나지 않았다.
+   - `AudioManager.install`이 그때는 프레임 끝에 붙이도록 고쳤다. `test_audio`가 실제 시작 순서를 하위 Godot로 매번 확인하고, 고치기 전 코드로는 이 확인이 실패한다.
+2. **고침 — 종료 때 "resources still in use at exit" 오류.** 파일이 생기자 이 오류로 run_all 7개가 실패했다. `_exit_tree`에서 소리를 멈추고 150ms 기다리게 했다.
+3. **결정 필요 — 효과음이 많이 겹치면 출력이 넘친다.**
+   - 60초 봇 경기에서 0.13% 프레임이 넘쳤고 최대 +10.1dBFS였다.
+   - 추천: 동시 재생 수에 따라 새 소리의 음량을 낮추기(웹에서도 듣는다) + 데스크톱 Master 리미터.
+   - 들어 볼 파일: 브랜치의 `reports/apply-sound-2026-10-29/capture/match_mix_output_20s.ogg`.
+4. **결정 필요 — 웹 음악 반복 때 짧은 끊김(약 10~25ms).** 음악 player만 스트림 재생으로 바꾸면 이음새가 정확해진다. 다만 스레드 없는 웹 빌드에서는 프레임이 끊길 때 음악도 끊길 위험이 있다.
+
+영역 밖에서 바꾼 파일:
+- `smash-nine-prototype/scripts/audio/AudioManager.gd`: 위 1·2의 시작·종료 처리. 소리 선택과 SYS-08 간격 코드는 그대로다.
+- `design/AUDIO.md`: 상태 문장 2곳.
+- `smash-nine-prototype/tests/test_audio.gd`: 기존 테스트 파일에 확인 245개 추가, 음악 페이드 고정 대기 4곳을 트윈 대기로 바꿈.
+- 새 파일: `tests/audio_startup_probe.gd`, `tests/analysis/lead/sound_apply_capture.gd`, `tests/analysis/lead/sound_apply_decode.gd`.
+- `run_all.ps1`은 그대로다.
+- 메인 폴더 `.claude/launch.json`: 8062 미리보기 항목을 잠시 넣었다가 그대로 되돌렸다(다른 세션의 8063·8064 항목은 그대로).
+
+미리보기: 작업 폴더 루트에서 `node tools/serve_web.js build/web 8062` → http://localhost:8062. 웹은 첫 클릭이나 키 입력 뒤에 소리가 난다.

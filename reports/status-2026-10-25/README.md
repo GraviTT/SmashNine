@@ -5,6 +5,14 @@
   - 들어간 것: 결정된 222줄, 몬스터 준비·쓰러짐 크기 맞춤, 엔딩은 메인 일러스트(D43).
   - 아직 main 밖에 있는 것: `after-cp/story-mode`, `after-cp/character-skills`, `after-cp/new-motions-art`, `after-cp/new-motions-skills`. 모두 고르기 전이다.
   - 기록: `reports/after-checkpoint-2026-10-25/apply-2026-10-29.md`.
+- **10-29 남은 후보 결정:** 사용자 지시("추천대로 정하기")로 소리, 스토리 그림, 스킬 후보, 새 동작을 각 세션의 추천대로 정했다.
+  - 소리는 소리 뷰어 DB에 기록했다(효과음 C·예외 7종 B, 음악 5곡 B).
+  - 목록: `reports/after-checkpoint-2026-10-25/candidate-decisions-2026-10-29-rest.md`.
+  - 11-02 main에 합쳤다(아래).
+- **11-02 main 합침:** 사용자 승인("합치기")으로 모은 브랜치 `apply/rest-2026-10-29`를 main에 합쳤다(`3203719e`).
+  - 들어간 것: 소리 77개와 무음 결함 수정, 스토리 그림(SART-01~04), Rio 공중 점프 발판, Brave Luna 아이콘, 새 동작 후보 파일(게임에 연결 안 함).
+  - `after-cp/…` 브랜치는 이제 모두 main에 있다. main 밖에 남은 것은 `bug-check/after-checkpoint-2026-10-25`(7커밋, QA-23~26 기록과 분석 스크립트뿐이고 게임 코드는 바꾸지 않음) 하나다.
+  - 사용자 판단 4개(효과음 넘침, 웹 음악 끊김, ⑨ 소멸, 시작 카드 시간)와 기록: `reports/after-checkpoint-2026-10-25/apply-2026-10-29-rest.md`.
 - **체크포인트 이후 결과:** Codex 작업 결과는 main에 넣지 않는다. `reports/after-checkpoint-2026-10-25/`와 `codex/…`·`after-cp/…` 브랜치에만 쌓고, 아래 점검이 끝난 뒤 따로 검토·적용한다.
 - **근거:** 세션 보고서 6개 — [총괄](lead.md), [이미지/스프라이트](art-sprite.md), [스토리 모드](story-mode.md), [버그 확인](bug-check.md), [캐릭터 스킬](character-skills.md), [Rio 테스트 worktree](rio-slash-test-worktree.md).
 

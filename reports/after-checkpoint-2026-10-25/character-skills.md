@@ -95,3 +95,29 @@
   - 15:49 기록은 used 4%(남은 96%)로, 실행 중에 초기화됐다. 초기화 시각이 11-02 14:59에서 11-04로 바뀌었다.
   - 초기화 뒤 "남은 90%까지" 규칙에는 아직 닿지 않았고, 시간 규칙으로 멈췄다.
 - **적용할 때:** 후보는 모션 뷰어를 다시 빌드하면 보인다(이번에는 다시 게시하지 않음). 게임에 넣으려면 해당 스킬을 만들 때 기술 시트에 줄을 더하고 코드를 연결해야 한다. 지금 스킬은 바꾸지 않았다.
+
+## 스킬 후보 적용 (10-29)
+
+- **지시:** 점검 세션이 사용자 결정 "적용 진행"(2026-10-29)을 전달함. 목록 `candidate-decisions-2026-10-29-rest.md` 3절.
+  - Rio 공중 추가 점프 이펙트: a안, 상태 1·2 모두, 발끝에 붙게 올림
+  - Brave Luna 아이콘: A안
+- **브랜치:** `apply/skill-fx-2026-10-29` `0c1ac1f`. main `8f75113c`에서 시작해 클론 `SmashNine-units/vfx-a`에서 작업했고, `after-cp/character-skills`를 합쳤다. 메인 저장소에는 fetch만 했다.
+
+| 무엇 | 파일 | 확인 |
+| --- | --- | --- |
+| Rio 공중 추가 점프 발판 | 그림 `effects/skill/rio_air_step.png`, `rio_air_step_last.png`(+import). 코드 `Vfx.gd` SPECS 2줄(5프레임, 40fps, 앵커 (32,3)), `PlayerBase.character_on_air_jump` 훅(공중 점프 직후 한 번 부름, 그 밖의 동작 없음), `Rio.character_on_air_jump`(남은 점프가 0이면 `_last`), `Rio.AIR_STEP_SOLE_RISE` 남·여 8px | 점프 그림의 발바닥을 쟀다(두 체형 모두 y=112, 바닥선 y=120). `test_rio_prototype`에 테스트를 더했다: 남·여 공중 점프 2회, 첫·마지막 그림, 발바닥 위치 ±0.5px. 훅을 빼면 실패하는 것도 확인했다. 창 모드 캡처 `reports/apply-skill-fx-2026-10-29/rio_air_step_board.png`(점프 순간 발판이 발바닥에 붙음, 3프레임 뒤 떠오르며 부서짐) |
+| Brave Luna 아이콘 J·K·L | `skill_icons/luna_brave_{j,k,l}.png`를 A안으로 교체, README 메모 | 경기 HUD 캡처 `brave_luna_skill_bar_3x.png`(변신 뒤 스킬 바에 새 아이콘) |
+| 문서 | `design/SKILLS.md`: Rio 공중 점프 행(그림, 값), 이펙트 작업 목록 4순위 "그림(2026-10-29 적용)" | 기술 수치·타이밍은 바꾸지 않았다 |
+
+- **테스트:**
+  - 클론에서 `run_all.ps1`: **55개 ALL PASSED**(봇 소크 seed 1001 포함).
+  - 그 뒤 여자 발바닥 값을 0에서 8로 고쳐서, 관련 테스트 5개(`test_rio_prototype`, `test_skill_fx_art`, `test_skill_bar`, `test_effect_layout`, `test_art`)를 다시 돌렸고 모두 통과했다.
+  - 부하로 인한 시간 초과는 없었다.
+- **웹 빌드:** 클론 `build/web`. 미리보기는 `node tools/serve_web.js C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-a/SmashNine/build/web 8064`(메인 `.claude/launch.json`의 `skill-fx-8064`).
+  - Rio로 한 판을 시작해 공중 점프를 해 봤다.
+  - 콘솔에 `Parent node is busy setting up children, add_child() failed`가 나온다. 지금 main(`8f75113c`)을 똑같이 빌드해 같은 조작을 하면 5번 나와서, **이번 변경 전부터 있던 웹 전용 오류**다(경기 시작 때). 고치지 않았다.
+- **영역 밖에서 바꾼 것:**
+  - `PlayerBase.gd`: 훅 함수 하나와 호출 한 줄
+  - `Vfx.gd`: SPECS 2줄
+  - 메인 폴더 `.claude/launch.json`: 미리보기 설정 `skill-fx-8064`(커밋 안 함)
+  - `tests/run_all.ps1`은 바꾸지 않았다.
