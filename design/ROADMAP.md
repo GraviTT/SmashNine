@@ -10,6 +10,8 @@
   - [x] Codex 독립 재측정(QA-17 2b) — `reports/codex-qa-17/round-2-codex/` (점수 Frey 26·Luna 28, Nova 링아웃 증가 = 아머 부작용)
   - [ ] 궁극기 아머의 Nova 부작용(링아웃 29 → 42) 처리 방향 — 사람 판단 뒤 같은 시드 A/B
   - [ ] 다음 캐릭터(Nova·Rio·Yuki, 순서는 사용자) — 같은 7가지 기준, 같은 probe(`tests/analysis/codex_qa_17/`, `tests/analysis/lead/*_r2`)
+  - [x] 스킬 만들기 세션(2026-11-03, 사용자 변경안): Frey 새 키트(D44, `reports/frey-kit-2026-11-03/`), Luna 새 키트(D45, 취침 루틴, `reports/luna-kit-2026-11-03/`). 그림은 임시.
+  - [ ] 사람 확인: 두 새 키트의 조작감, 리드가 채운 Luna 빈 부분(보고서 표), 그림 후보 고르기(Frey `wing_hover`·VFX-03 A/B, Luna `star_warp`·`brave_grab`·VFX-04 A/B) → 리드가 고른 것을 게임에 넣음. 다시 그릴 것: Frey `whirl_spin`, Brave `brave_cyclone`
 - **봇 조절은 멈춤.** 과정·현재 상태·다음 대기열은 `design/BOT_TUNING.md`. 캐릭터 기술이 바뀌면 그 문서 6번 체크리스트대로 봇도 손본다(2026-10-10: Frey 강스파이크·Luna 레이저 재입력).
 - **스토리 모드(2026-10-22, D43)는 캐릭터 완성과 나란히 간다.** 캐릭터 기술·봇 두뇌·배틀로얄 규칙은 바꾸지 않는다. 단계는 아래 M4.
 
