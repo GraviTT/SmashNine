@@ -1,0 +1,102 @@
+[
+  {
+    "row": "brave_cyclone",
+    "stem": "luna_brave",
+    "attempt": 3,
+    "factor": 0.36,
+    "accepted": false,
+    "face_verified": false,
+    "costume_ok": true,
+    "pose_ok": false,
+    "fps": 20,
+    "loop": true,
+    "for": "브레이브 L 별의 회오리 회전",
+    "face_frames": [
+      1,
+      2,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "excluded_faces": {
+      "3": "옆모습: 한 눈만 보여 두 눈 거리 직접 비교 불가",
+      "4": "뒷모습: 얼굴 없음, 자동 표식 무효",
+      "5": "옆모습: 한 눈만 보여 두 눈 거리 직접 비교 불가"
+    },
+    "note": "3회 생성 후 보류. 3차는 회전 방향을 확보했으나 얼굴 제안값 눈 거리 0.867–1.006·폭 0.857–0.964로 하한을 벗어나고, 발뒤꿈치가 들린 회전 자세도 약하다.",
+    "attempt_notes": "1차 F6이 다시 오른쪽을 향해 회전 방향이 끊김. 2차는 방향 개선, 얼굴·머리가 작음. 3차는 머리 자동 중앙값 1.01이나 얼굴 차이와 평평한 발 자세가 남음.",
+    "human_review": "F6→F1 회전 연결, F1/F2의 비슷한 몸 방향, 얼굴 인상·크기, 발끝 회전 자세. 이 보드는 실패 근거이며 채택 후보가 아님."
+  },
+  {
+    "row": "brave_grab",
+    "stem": "luna_brave",
+    "attempt": 3,
+    "factor": 0.35,
+    "accepted": false,
+    "face_verified": false,
+    "costume_ok": true,
+    "pose_ok": true,
+    "fps": 18,
+    "loop": false,
+    "for": "브레이브 K 혜성 붙잡기",
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "excluded_faces": {},
+    "note": "3회 생성 후 보류. 3차 공통 배율 0.35에서 눈 거리 0.955–1.003은 허용 범위지만 F2·4·5·6 얼굴 폭 1.071이 상한 1.06을 넘는다.",
+    "attempt_notes": "1차 배율 조정에도 눈 간격/폭 편차. 2차 F3 눈 거리 0.882와 폭 1.143, F5 폭 0.857. 3차는 동작·얼굴 통일 개선, 폭 1.071 잔존.",
+    "human_review": "잡은 뒤 가슴으로 당기는 느낌, F4→F5의 두 팔 투척, 얼굴 크기·인상. 이 보드는 보류 검토 자료다."
+  },
+  {
+    "row": "star_warp",
+    "stem": "luna",
+    "attempt": 1,
+    "factor": 0.36,
+    "accepted": false,
+    "face_verified": false,
+    "costume_ok": true,
+    "pose_ok": true,
+    "fps": 20,
+    "loop": false,
+    "for": "노말 K 반짝 도약",
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "excluded_faces": {},
+    "note": "3회 생성 후 보류. 최선 1차·공통 배율 0.36에서 F1 눈 거리 1.074, F3 눈 거리 1.095, F4 얼굴 폭 0.929로 전달 범위를 벗어난다.",
+    "attempt_notes": "1차는 지팡이 유지와 자세가 가장 명료하지만 얼굴 편차가 남음. 2차는 눈 간격 확대와 표식 불안정. 3차는 F2 얼굴이 든 팔에 가려지고 F1 지팡이가 가슴을 가로지르지 않음. 1차 공통 배율 0.35–0.37을 비교했지만 전체 얼굴 기준은 충족하지 못함.",
+    "human_review": "F2→F3 순간이동 출발·도착 자세의 구분, 지팡이를 쥔 손 유지, F3→F4 회전과 치마 흐름, F1/F3 눈 간격과 F4 얼굴 폭. 보류 자료이며 채택 후보가 아님."
+  }
+]
