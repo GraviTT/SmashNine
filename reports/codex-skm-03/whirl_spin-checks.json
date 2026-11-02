@@ -1,0 +1,774 @@
+{
+  "selection": {
+    "row": "whirl_spin",
+    "attempt": 3,
+    "accepted": false,
+    "factor": 0.404,
+    "fps": 14,
+    "for": "회오리 검기 회전",
+    "note": "생성 3회 종료 후 보류: 선택한 3차 원본·공통 배율 0.404에서 F1·F3 얼굴 폭 0.943이 전달 하한 0.95보다 작다. 눈 거리 1.006–1.055, 여백·번짐·디테일은 통과하지만 얼굴 표식의 불확실성을 육안만으로 통과 처리하지 않았다.",
+    "face_frames": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "excluded_faces": {
+      "2": "뒷모습이라 눈·얼굴이 보이지 않음. 팔에서 잡힌 자동 얼굴 표식과 머리값은 무효."
+    },
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "costume_ok": true,
+    "pose_ok": true,
+    "face_verified": false,
+    "human_review": "F1·F3의 얼굴 폭과 인상, 뒷모습→F3 수평 검 최대 뻗기가 한 바퀴 회전으로 읽히는지. 이 보드는 실패 근거를 보존한 검토 자료이며 채택 후보가 아니다."
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-03\\frey\\whirl_spin\\attempt-3\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.404,
+      "scale_by": "fixed:0.404",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        102,
+        104
+      ],
+      "body_width_range": [
+        90,
+        141
+      ],
+      "area_range": [
+        5268,
+        5856
+      ],
+      "area_spread_percent": 10.04,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        4446,
+        4950
+      ],
+      "interior_detail_range": [
+        86.25,
+        119.41
+      ],
+      "interior_detail_mean": 111.56,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 97.69,
+      "interior_detail_ratio": 1.142
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 97.69,
+          "colour_count": 4737,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 97.69,
+      "colour_count_range": [
+        4737,
+        4737
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-03/frey/whirl_spin/attempt-3/source-frames/00.png",
+        "bbox": [
+          19,
+          50,
+          141,
+          153
+        ],
+        "body_height": 103,
+        "body_width": 122,
+        "area": 5856,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 117.29,
+        "colour_count": 4950,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 19,
+          "top": 50,
+          "right": 51,
+          "bottom": 39,
+          "minimum": 19,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2006
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-03/frey/whirl_spin/attempt-3/source-frames/01.png",
+        "bbox": [
+          49,
+          51,
+          176,
+          153
+        ],
+        "body_height": 102,
+        "body_width": 127,
+        "area": 5647,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 86.25,
+        "colour_count": 4877,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 49,
+          "top": 51,
+          "right": 16,
+          "bottom": 39,
+          "minimum": 16,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.8829
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-03/frey/whirl_spin/attempt-3/source-frames/02.png",
+        "bbox": [
+          46,
+          50,
+          187,
+          153
+        ],
+        "body_height": 103,
+        "body_width": 141,
+        "area": 5718,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 113.91,
+        "colour_count": 4823,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 46,
+          "top": 50,
+          "right": 5,
+          "bottom": 39,
+          "minimum": 5,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.166
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-03/frey/whirl_spin/attempt-3/source-frames/03.png",
+        "bbox": [
+          47,
+          50,
+          176,
+          153
+        ],
+        "body_height": 103,
+        "body_width": 129,
+        "area": 5454,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 113.67,
+        "colour_count": 4655,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 47,
+          "top": 50,
+          "right": 16,
+          "bottom": 39,
+          "minimum": 16,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1636
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-03/frey/whirl_spin/attempt-3/source-frames/04.png",
+        "bbox": [
+          50,
+          49,
+          140,
+          153
+        ],
+        "body_height": 104,
+        "body_width": 90,
+        "area": 5405,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 118.81,
+        "colour_count": 4528,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 50,
+          "top": 49,
+          "right": 52,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2162
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-03/frey/whirl_spin/attempt-3/source-frames/05.png",
+        "bbox": [
+          51,
+          49,
+          141,
+          153
+        ],
+        "body_height": 104,
+        "body_width": 90,
+        "area": 5268,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 119.41,
+        "colour_count": 4446,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 51,
+          "top": 49,
+          "right": 51,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2223
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-03/frey/whirl_spin/attempt-3/frey-whirl_spin.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-03/frey/whirl_spin/attempt-3/frames",
+      "closeup": "reports/codex-skm-03/frey/whirl_spin/attempt-3/closeup.png",
+      "compare": "reports/codex-skm-03/frey/whirl_spin/attempt-3/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        79,
+        51,
+        3,
+        4
+      ],
+      [
+        85,
+        51,
+        3,
+        4
+      ],
+      [
+        68,
+        53,
+        4,
+        4
+      ],
+      [
+        85.5,
+        53,
+        4,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 79.385,
+        "y": 51.434,
+        "score": 1
+      },
+      {
+        "x": 85.722,
+        "y": 51.054,
+        "score": 1
+      },
+      {
+        "x": 68,
+        "y": 53,
+        "score": 1
+      },
+      {
+        "x": 85.5,
+        "y": 53,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 6.348383179991568,
+    "reference_face_width": 17.5,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 119.144,
+            "y": 81.58,
+            "score": 0.8
+          },
+          {
+            "x": 125.575,
+            "y": 80.193,
+            "score": 0.824
+          },
+          {
+            "x": 109.0,
+            "y": 83.0,
+            "score": 0.703
+          },
+          {
+            "x": 125.5,
+            "y": 83.0,
+            "score": 0.758
+          }
+        ],
+        "eye_distance": 6.579,
+        "face_width": 16.5,
+        "eye_ratio": 1.036,
+        "face_width_ratio": 0.943,
+        "head_alignment": [
+          0.94,
+          101,
+          63,
+          0.515
+        ]
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 120.848,
+            "y": 90.369,
+            "score": 0.496
+          },
+          {
+            "x": 128.42,
+            "y": 90.112,
+            "score": 0.717
+          },
+          {
+            "x": 114.0,
+            "y": 91.0,
+            "score": 0.588
+          },
+          {
+            "x": 131.5,
+            "y": 91.0,
+            "score": 0.519
+          }
+        ],
+        "eye_distance": 7.576,
+        "face_width": 17.5,
+        "eye_ratio": 1.193,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.94,
+          105,
+          72,
+          0.241
+        ]
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 111.929,
+            "y": 78.654,
+            "score": 0.817
+          },
+          {
+            "x": 118.526,
+            "y": 78.235,
+            "score": 0.883
+          },
+          {
+            "x": 101.0,
+            "y": 80.0,
+            "score": 0.895
+          },
+          {
+            "x": 117.5,
+            "y": 80.0,
+            "score": 0.749
+          }
+        ],
+        "eye_distance": 6.61,
+        "face_width": 16.5,
+        "eye_ratio": 1.041,
+        "face_width_ratio": 0.943,
+        "head_alignment": [
+          0.92,
+          94,
+          60,
+          0.776
+        ]
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 114.804,
+            "y": 78.756,
+            "score": 0.789
+          },
+          {
+            "x": 121.433,
+            "y": 78.018,
+            "score": 0.868
+          },
+          {
+            "x": 103.0,
+            "y": 80.0,
+            "score": 0.753
+          },
+          {
+            "x": 120.5,
+            "y": 79.0,
+            "score": 0.804
+          }
+        ],
+        "eye_distance": 6.67,
+        "face_width": 17.5,
+        "eye_ratio": 1.051,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.96,
+          95,
+          60,
+          0.833
+        ]
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 113.282,
+            "y": 78.749,
+            "score": 0.835
+          },
+          {
+            "x": 119.636,
+            "y": 78.077,
+            "score": 0.937
+          },
+          {
+            "x": 102.0,
+            "y": 80.0,
+            "score": 0.851
+          },
+          {
+            "x": 119.5,
+            "y": 80.0,
+            "score": 0.801
+          }
+        ],
+        "eye_distance": 6.389,
+        "face_width": 17.5,
+        "eye_ratio": 1.006,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.96,
+          94,
+          60,
+          0.843
+        ]
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 113.118,
+            "y": 78.666,
+            "score": 0.792
+          },
+          {
+            "x": 119.786,
+            "y": 78.019,
+            "score": 0.962
+          },
+          {
+            "x": 102.0,
+            "y": 80.0,
+            "score": 0.745
+          },
+          {
+            "x": 119.5,
+            "y": 80.0,
+            "score": 0.926
+          }
+        ],
+        "eye_distance": 6.699,
+        "face_width": 17.5,
+        "eye_ratio": 1.055,
+        "face_width_ratio": 1.0,
+        "head_alignment": [
+          0.92,
+          95,
+          60,
+          0.845
+        ]
+      }
+    ]
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-03\\frey\\whirl_spin\\attempt-3\\frey-whirl_spin.png",
+    "frames": [
+      {
+        "scale": 1.02,
+        "score": 0.57
+      },
+      {
+        "scale": 0.68,
+        "score": 0.286
+      },
+      {
+        "scale": 0.92,
+        "score": 0.775
+      },
+      {
+        "scale": 0.96,
+        "score": 0.829
+      },
+      {
+        "scale": 0.96,
+        "score": 0.839
+      },
+      {
+        "scale": 0.92,
+        "score": 0.841
+      }
+    ],
+    "median": 0.94,
+    "used": 4
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-03\\frey-whirl_spin-3.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      36141,
+      35355,
+      34754,
+      33556,
+      33156,
+      32527,
+      1
+    ],
+    "boxes": [
+      [
+        18,
+        243,
+        321,
+        499
+      ],
+      [
+        442,
+        245,
+        757,
+        498
+      ],
+      [
+        790,
+        242,
+        1140,
+        497
+      ],
+      [
+        1167,
+        242,
+        1487,
+        497
+      ],
+      [
+        1541,
+        239,
+        1764,
+        497
+      ],
+      [
+        1886,
+        239,
+        2110,
+        497
+      ]
+    ]
+  },
+  "sheet_sha256": "fa9c0766a14c8305db8ad6629f8d98aa06c1dfe1ec884cebc7316612c97198b7"
+}
