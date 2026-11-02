@@ -158,7 +158,7 @@ const FIGHTER_ATTACKER_MEMORY := 8.0
 ## Rio reached a floor 2 of 10 times, 2 of 4 with the limit in round 4), aimed a little above
 ## it; the last chance near the bottom of the realm still takes it. Frey (18 of 19) and Nova
 ## go from anywhere (Nova with the limit: 3 of 21 instead of 3 of 15, round 4).
-const RECOVERY_SKILL_REACH := {"frey": 100000.0, "nova": 100000.0, "rio": 290.0}
+const RECOVERY_SKILL_REACH := {"nova": 100000.0, "rio": 290.0}
 const RECOVERY_SKILL_AIM_ABOVE := 60.0
 ## At most this many recovery-skill uses per recovery (round 6: Frey dashed 437 times, 416 of
 ## them in two long recoveries).
@@ -204,7 +204,7 @@ const VENT_MARGIN := 40.0
 ## Engagement distances per fighter, from each kit's reach (CODEX-ANALYST-01: one 235 px
 ## profile for everyone erased Yuki's range). "kite" fighters back off when crowded.
 const COMBAT_PROFILES := {
-	"frey": {"min_range": 45.0, "max_range": 170.0, "attack_range": 200.0, "kite": false, "recovery_skill": true},
+	"frey": {"min_range": 45.0, "max_range": 170.0, "attack_range": 200.0, "kite": false, "recovery_skill": false},
 	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false, "recovery_skill": true},
 	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
 	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true, "basic_reach": 240.0},
@@ -758,7 +758,7 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 	return attack_name
 
 func _mobility_skill_is_safe(player) -> bool:
-	if not ["frey", "nova", "rio"].has(player.character_id):
+	if not ["nova", "rio"].has(player.character_id):
 		return true
 	if not player.is_on_floor():
 		return false
@@ -1439,7 +1439,7 @@ func _attack_aim(player, attack_name: String) -> Vector2:
 	if offset.length() < 1.0:
 		return Vector2(float(player.facing), 0.0)
 	var side: float = signf(offset.x) if absf(offset.x) > 1.0 else float(player.facing)
-	if attack_name == "skill_1" and ["frey", "nova", "rio"].has(player.character_id):
+	if attack_name == "skill_1" and ["nova", "rio"].has(player.character_id):
 		var dash := offset.normalized()
 		dash.y = minf(dash.y, 0.2)
 		return dash.normalized()

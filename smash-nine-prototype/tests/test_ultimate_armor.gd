@@ -109,7 +109,8 @@ func _test_frey_dive_armor() -> void:
 	var foe := _fighter("luna", 2, Vector2(60, -600))
 	await physics_frame
 	frey.ultimate()
-	for frame in 3:
+	# Since 2026-11-03 (D44) the light shines for ULTIMATE_LIGHT_TIME (0.45 s) before the dive.
+	for frame in 30:
 		await physics_frame
 	if not bool(frey.ultimate_diving):
 		_fail("Test setup: Frey's air ultimate should dive")

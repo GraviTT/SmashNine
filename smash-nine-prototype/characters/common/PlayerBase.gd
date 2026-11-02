@@ -763,12 +763,8 @@ func _apply_movement(delta: float) -> void:
 			_restart_jump_motion()
 			jump_buffer_timer = 0.0
 			coyote_timer = 0.0
-		elif attack_lock_timer <= 0.0 and jump_buffer_timer > 0.0 and air_jumps_left > 0:
-			velocity.y = jump_velocity * 0.86 * (0.78 if control_jump_slow_timer > 0.0 else 1.0)
-			_restart_jump_motion()
-			air_jumps_left -= 1
-			jump_buffer_timer = 0.0
-			character_on_air_jump()
+		elif attack_lock_timer <= 0.0 and jump_buffer_timer > 0.0 and air_jumps_left > 0 and not character_defers_air_jump():
+			_perform_air_jump()
 
 	var input_velocity := velocity
 	velocity = input_velocity + knockback_velocity + skill_dash_velocity
@@ -866,6 +862,18 @@ func character_landing_state() -> void:
 ## An air jump was just spent (`air_jumps_left` is already lowered). Presentation only.
 func character_on_air_jump() -> void:
 	pass
+
+## True while the character decides what an air jump press becomes (Frey: a held press is her
+## wing hover); she then calls `_perform_air_jump()` herself for a tap.
+func character_defers_air_jump() -> bool:
+	return false
+
+func _perform_air_jump() -> void:
+	velocity.y = jump_velocity * 0.86 * (0.78 if control_jump_slow_timer > 0.0 else 1.0)
+	_restart_jump_motion()
+	air_jumps_left -= 1
+	jump_buffer_timer = 0.0
+	character_on_air_jump()
 
 func character_on_hit() -> void:
 	pass
@@ -1483,6 +1491,25 @@ func apply_control_pull(center: Vector2, strength: float, delta: float, slow_dur
 	control_slow_timer = maxf(control_slow_timer, slow_duration)
 	if slow_jump:
 		control_jump_slow_timer = maxf(control_jump_slow_timer, slow_duration)
+
+## A slowing hit (Frey's sword wave): the same move-speed slow as a ward, for `duration`.
+func apply_slow(duration: float) -> void:
+	if is_defeated or is_invulnerable():
+		return
+	control_slow_timer = maxf(control_slow_timer, duration)
+
+## Dragged toward `center` at `speed` px/s (Frey's descent light). A guarding fighter holds its
+## ground. Returns whether it was pulled.
+func apply_grab_pull(center: Vector2, speed: float) -> bool:
+	if is_defeated or is_invulnerable() or is_guarding:
+		return false
+	var offset := center - global_position
+	if offset.length() < 24.0:
+		knockback_velocity = Vector2.ZERO
+		return true
+	knockback_velocity = offset.normalized() * minf(speed, offset.length() * 12.0)
+	current_knockback_decay = KNOCKBACK_AIR_DECAY
+	return true
 
 func apply_yuki_seal_burst(attacker: Node, activation_id: int, damage: float, knockback: float, direction: Vector2) -> bool:
 	if last_yuki_activation_hit == activation_id:

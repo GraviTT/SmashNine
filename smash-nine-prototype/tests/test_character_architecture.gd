@@ -21,7 +21,7 @@ func _run() -> void:
 		return
 	if not await _test_public_ability_dispatch():
 		return
-	if not await _test_frey_dash():
+	if not await _test_frey_wave():
 		return
 	if not await _test_yuki_seal():
 		return
@@ -58,19 +58,17 @@ func _test_public_ability_dispatch() -> bool:
 		player.queue_free()
 	return true
 
-func _test_frey_dash() -> bool:
+## Frey's K (2026-11-03): one spin, then a sword wave that slows what it hits.
+func _test_frey_wave() -> bool:
 	var frey := _create_player("frey", 10)
-	var start_position: Vector2 = frey.global_position
 	frey.skill_one()
-	await create_timer(0.15).timeout
-	if frey.skill_dash_velocity.length() < 700.0:
-		_fail("Frey K did not start the character-body dash")
+	await create_timer(0.25).timeout
+	var waves := arena.get_children().filter(func(node): return node.get_script() != null and node.get_script().resource_path == "res://scripts/Projectile.gd" and node.get("source") == frey)
+	if waves.size() != 1:
+		_fail("Frey K should send one sword wave (got %d)" % waves.size())
 		return false
-	if frey.skill_dash_timer <= 0.0:
-		_fail("Frey K dash timer was not armed")
-		return false
-	if frey.global_position != start_position:
-		_fail("Disabled physics unexpectedly moved Frey during the dash assertion")
+	if absf(float(waves[0].hit_slow_time) - 2.0) > 0.001:
+		_fail("Frey's sword wave should slow for 2 s on a hit (got %.2f)" % float(waves[0].hit_slow_time))
 		return false
 	return true
 

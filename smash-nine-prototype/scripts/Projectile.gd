@@ -14,6 +14,8 @@ const VFX := preload("res://scripts/Vfx.gd")
 ## Effect strip played where this projectile hits (scripts/Vfx.gd name), tinted.
 var impact_vfx := ""
 var impact_tint := Color.WHITE
+## Seconds of slow a landed hit puts on the target (Frey's sword wave), 0 for none.
+var hit_slow_time := 0.0
 ## Fighters' projectiles are drawn at GameScale.COMBAT (set by PlayerBase); monsters' at 1.
 var art_scale_multiplier := 1.0
 ## Widths the callers' art scales were written for (files redrawn bigger draw smaller).
@@ -121,7 +123,9 @@ func _on_body_entered(body: Node) -> void:
 		return
 	if body.has_method("apply_hit"):
 		hit_targets.append(body)
-		body.apply_hit(source, damage, knockback, direction, damage_type)
+		var landed = body.apply_hit(source, damage, knockback, direction, damage_type)
+		if hit_slow_time > 0.0 and landed != false and body.has_method("apply_slow"):
+			body.apply_slow(hit_slow_time)
 		if impact_vfx != "":
 			VFX.spawn(get_parent(), impact_vfx, global_position, Vector2.ONE * 1.4 * art_scale_multiplier, false, 5, impact_tint)
 		queue_free()

@@ -65,7 +65,10 @@ func _run() -> void:
 	await _expect_move("down J", "attack_down", func(fighter): fighter.perform_basic_attack("down", Vector2.DOWN))
 	await _expect_move("air-side J", "attack_air_side", func(fighter): fighter.perform_basic_attack("air_side", Vector2.RIGHT))
 	await _expect_chain()
-	await _expect_move("dash strike", "dash_strike", func(fighter): fighter.perform_skill_one())
+	# K (sword wave, 2026-11-03) plays the spike row's sweep until the spin has its own drawing;
+	# the wing hover holds the dash row's aim frames.
+	await _expect_move("sword wave", "spike_followup", func(fighter): fighter.perform_skill_one())
+	await _expect_move("wing hover", "dash_strike", func(fighter): fighter._start_wing_hover())
 	await _expect_move("rising cleave", "rising_cleave", func(fighter): fighter.perform_skill_two())
 	await _expect_move("spike follow-up", "spike_followup", func(fighter):
 		fighter.rising_followup_timer = 0.18

@@ -220,8 +220,21 @@ func _test_portal_grace() -> void:
 ## go from anywhere. Round 6: asked only while free to act (round 4: 2,200 asks for 21 uses),
 ## and again after each use (round 5: once per recovery cut Frey from 18/19 to 6/13), at most
 ## twice per recovery and only while the skill can start in the air (round 7).
+## 2026-11-03 (D44): Frey's K is a sword wave now; she recovers with her jumps only.
 func _test_recovery_skill() -> void:
-	for id in ["frey", "nova", "rio"]:
+	var frey := _fighter("frey", 1, Vector2(0, 300))
+	frey.set_physics_process(false)
+	frey.realm_origin = Vector2(-960, -540)
+	frey.realm_size = Vector2(1920, 1080)
+	frey.ai_controller.state = frey.ai_controller.STATE_RECOVER
+	frey.ai_controller.recovery_target = Vector2(120, 160)
+	frey.velocity = Vector2(0, 120)
+	frey.air_jumps_left = 0
+	if str(frey.ai_controller._recover_intent(frey).get("attack", "")) == "skill_1":
+		_fail("Frey's K (the sword wave) is not a recovery move")
+	frey.queue_free()
+	await process_frame
+	for id in ["nova", "rio"]:
 		var bot := _fighter(id, 1, Vector2(0, 300))
 		bot.set_physics_process(false)
 		bot.realm_origin = Vector2(-960, -540)
@@ -261,7 +274,7 @@ func _test_recovery_skill() -> void:
 		intent = ai._recover_intent(bot)
 		var far_skill: bool = str(intent.get("attack", "")) == "skill_1"
 		if far_skill != (id != "rio"):
-			_fail("%s with the ledge out of reach: skill %s (Frey and Nova use it from afar, Rio waits)" % [id, far_skill])
+			_fail("%s with the ledge out of reach: skill %s (Nova uses it from afar, Rio waits)" % [id, far_skill])
 		bot.queue_free()
 		await process_frame
 

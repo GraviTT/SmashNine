@@ -17,10 +17,10 @@ const DIM := Color("aebbd0")
 const INK := Color("101827")
 ## Short descriptions from design/SKILLS.md; no balance data is duplicated here.
 const KITS := {
-	"frey": ["Claim close range with your sword.\nLaunch rivals, then chase them through the air.",
-		"Sword chain  /  Direction changes your slash.", "Dash Strike  /  Aim, then lunge in 8 directions.",
-		"Rising Cleave  /  Hit, then tap L again to spike.", "Valkyrie Descent  /  Dive into two shockwaves.",
-		"Pursuit  /  Move faster toward marked airborne rivals."],
+	"frey": ["Claim close range with your sword.\nHover on your wings, then strike from any angle.",
+		"Sword chain  /  Direction changes your slash.", "Whirlwind Wave  /  Spin and send a slowing wave.",
+		"Soaring Cleave  /  Tap L again: Valhalla Strike.", "Valkyrie Descent  /  Light pulls foes in, then a slam.",
+		"Valkyrie Wings  /  Hold jump in the air, then dash-slash."],
 	"yuki": ["Set talismans along your opponent's path.\nControl landings with seals and pulling wards.",
 		"Snow Talisman  /  Fire ahead, above or below.", "Binding Seal  /  Place up to two fragile seals.",
 		"Release Ward  /  Pull and burst; no seals: repel.", "Grand Ward  /  Pull, slow and finish with a blast.",
