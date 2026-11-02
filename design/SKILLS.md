@@ -142,7 +142,7 @@
 | `K` | 차원의 베기 | 마지막 8방향 입력으로 최대 200 기본 px 순간이동하고 실제 지나간 경로를 벤다. 지형 앞에서 멈추며 공중에서는 착지 전 1회다. | 준비 0.06초 `[BLINK_HOLD]`, 후딜 0.20초 `[BLINK_RECOVERY]`; 거리 `200×WORLD=300` 화면 px `[BLINK_DISTANCE]`; 피해 10, 56×44, 넉백 340, 0.08초 | `dimension_slash` 전체 | `attack_vfx/rio_k.png`, `skill/rio_blink_trail.png`; `_dimension_slash`, `_play_blink_trail` | 그림 | 실제 이동한 거리·방향, 잘린 경로, 최대 300 화면 px |
 | `L` | 룬 방패·반격 | 0.5초 동안 받은 피해를 절반으로 줄이고 넉백·경직을 없앤다. 끝에 흡수 횟수와 넉백에 따라 전방 충격파를 돌려준다. 아무것도 못 받으면 0.32초 빈틈이 생긴다. | 지속 0.5초 `[RUNE_DURATION]`, 피해 배율 0.5 `[RUNE_DAMAGE_SCALE]`, 쿨 3초 `[RUNE_COOLDOWN]`; 반격 피해 `min(6+3×횟수,15)`, 넉백 `min(320+흡수넉백×0.5,820)`, 판정 70×84, 끝 110, 0.12초 | `rune_shield` 전체; 반격은 기본 `attack` | `attack_vfx/rio_l.png`, `rio_rune_guard.png`, `rio_rune_burst.png`; `_show_rune`, `_play_rune_burst` (반격에 공용 `rio_slash` 없음, D40) | 그림 | 0.5초 육각 방패, 흡수 횟수, 반격 40 기본 반경·전방 방향 |
 | `I` | 무한 오버드라이브 | 보석 검 6자루가 0.55초 공전한 뒤 0.07초 간격으로 발사된다. 입력 방향, 같은 렐름의 가장 가까운 적, 바라보는 방향 순으로 조준한다. 피격되면 남은 검이 사라진다. | 6자루 `[OVERDRIVE_SWORDS]`, 공전 0.55초 `[OVERDRIVE_ORBIT_TIME]`, 간격 0.07초 `[OVERDRIVE_FIRE_GAP]`, 공전 반경 `58×COMBAT`; 앞 5자루 피해 11 `[OVERDRIVE_SWORD_DAMAGE]`·넉백 320, 마지막 피해 18 `[OVERDRIVE_LAST_DAMAGE]`·넉백 520; 판정 `28×28×COMBAT`, 속도 `980×COMBAT`, 수명 0.62초, 자동조준 `720×COMBAT` | `infinity_overdrive` 전체 | `rio_gem_sword.png`, `vfx/rio_ult_circle.png`, 적중 `vfx/rio_ult_impact.png`; `_make_gem_sword`, `_fire_gem_sword` | 그림 | 6색·6자루 순서, 공전 반경, 발사 간격, 마지막 검의 더 강한 밝기·충격 |
-| 자동 | 공중 2회 추가 점프 | 지상을 떠난 뒤 점프를 두 번 더 쓸 수 있다. Sky Step 카드 포함 상한은 3회다. | 기본 공중 점프 2 (`RioData.air_jumps`), 공통 상한 3 `[MAX_AIR_JUMPS]`; 공중 점프 y속도=`jump_velocity×0.86` | `jump` | 별도 점프 이펙트 없음 | 없음 | 남은 점프 횟수, 공중 점프 순간과 위 방향 |
+| 자동 | 공중 2회 추가 점프 | 지상을 떠난 뒤 점프를 두 번 더 쓸 수 있다. Sky Step 카드 포함 상한은 3회다. | 기본 공중 점프 2 (`RioData.air_jumps`), 공통 상한 3 `[MAX_AIR_JUMPS]`; 공중 점프 y속도=`jump_velocity×0.86` | `jump` | 발밑 마력 발판 `skill/rio_air_step.png`, 마지막 공중 점프는 더 밝은 `rio_air_step_last.png`(64×64 5프레임, 40fps, 앵커 위 가운데 (32,3)); `Rio.character_on_air_jump`(공용 훅 `PlayerBase.character_on_air_jump`). 발바닥 높이 `[AIR_STEP_SOLE_RISE]` 남·여 8 | 그림 | 남은 점프 횟수(0이면 `_last`), 공중 점프 순간의 발바닥 위치 |
 | Guard | 공용 방어/패리 | 룬 방패 L과 별개인 공용 지상 방어다. | 공용 조작 절 참고 | `shield` 전체 | `guard_bubble.png`, `parry_flash.png` | 공용 | 방향, 패리 창, 감소율; 룬 방패와 시각적으로 구분 |
 
 특수 상태: 룬 방패는 공용 Guard/패리와 별도다. 흡수할 때 마지막 공격자 쪽으로 몸을 돌리고, 여러 번 맞을수록 반격이 커진다. 무한 오버드라이브의 여섯 검은 빨강·주황·초록·하늘·보라·분홍 순으로 돌며 마지막 검만 피해와 넉백이 더 크다.
@@ -186,7 +186,7 @@
 | 1 | 모든 캐릭터 J(지상·공중, 방향별) | 그림 | 새 스프라이트 수준으로 다시 그리기: `attack_vfx/<id>_slash.png`, Luna `luna_star_bloom`, Yuki `yuki_talisman`·`yuki_slash`, Nova `nova_slash`·`nova_vector_streak`·`nova_impact_star`·`nova_gravity_burst`, Rio `rio_slash`·`rio_mana_wave` | 각 J 행의 "이펙트가 따라야 할 값" |
 | 2 | 스킬 K·L, 궁극기, 패시브 | 그림 | J 다음 단계 | 각 행 |
 | 3 | 전 캐릭터 Guard/패리 | 공용 | 캐릭터 색이 읽히게 할지 결정 | `guard_direction`, `guard_parry_timer`, `_get_guard_reduction` |
-| 4 | Rio 공중 추가 점프 | 없음 | 발밑 마력 발판 등 작은 그림(약 64×64, 4~5프레임, 0.10~0.14초) | `air_jumps_left`, `jump_velocity×0.86`, 위 방향 |
+| 4 | Rio 공중 추가 점프 | **그림(2026-10-29 적용)** | CODEX-VFX-01 a안(마력 발판), 첫·마지막 두 상태. 점프 그림이 바뀌면 `[AIR_STEP_SOLE_RISE]`를 다시 잰다 | `air_jumps_left`, 점프 그림의 발바닥 높이 |
 
 공용 적중 보조 그림은 이미 있고, 모든 전용 공격 그림이 맞춰야 할 접촉 기준이다.
 - 공격자별 `hit/<id>_hit.png`: 96×96, 4프레임, 44fps

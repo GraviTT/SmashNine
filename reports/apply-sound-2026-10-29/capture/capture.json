@@ -1,0 +1,765 @@
+{
+	"match": {
+		"frames": 753664,
+		"max_50ms_rms_dbfs": -4.01,
+		"music": "music_battle",
+		"peak_dbfs": 8.27,
+		"requests": {
+			"beam": 1,
+			"belt_reverse": 1,
+			"dash": 2,
+			"eruption": 1,
+			"gate_open": 1,
+			"hazard_warning": 6,
+			"hit_light": 19,
+			"hurt": 19,
+			"jump": 43,
+			"land": 53,
+			"match_start": 1,
+			"monster_bolt": 6,
+			"monster_charge": 4,
+			"monster_defeat": 10,
+			"monster_hurt": 76,
+			"monster_leap": 5,
+			"monster_shell": 6,
+			"monster_slam": 2,
+			"monster_swoop": 5,
+			"monster_windup": 50,
+			"music_battle": 1,
+			"quake": 1,
+			"skill_luna_1": 2,
+			"skill_rio_1": 2,
+			"skill_yuki_1": 6,
+			"soul_pickup": 12,
+			"swing_heavy": 19,
+			"swing_light": 66,
+			"ult_yuki": 1,
+			"vines": 1
+		},
+		"resolutions": {
+			"hazard_warning": "hazard_warning",
+			"hit_light": "hit_light",
+			"hurt": "hurt",
+			"jump": "jump",
+			"land": "land",
+			"match_start": "match_start",
+			"monster_bolt": "monster_bolt",
+			"monster_defeat": "monster_defeat",
+			"monster_hurt": "monster_hurt",
+			"monster_slam": "monster_slam",
+			"monster_windup": "monster_windup",
+			"quake": "quake",
+			"skill_yuki_1": "skill_yuki_1",
+			"swing_heavy": "swing_heavy",
+			"swing_light": "swing_light",
+			"ult_yuki": "ult_yuki"
+		},
+		"rms_dbfs": -15.73,
+		"seconds": 20.0,
+		"started_paths": {
+			"res://assets/audio/music/music_battle.ogg": 1,
+			"res://assets/audio/sfx/hazard_warning.ogg": 1,
+			"res://assets/audio/sfx/hit_light.ogg": 2,
+			"res://assets/audio/sfx/hurt.ogg": 2,
+			"res://assets/audio/sfx/jump.ogg": 10,
+			"res://assets/audio/sfx/land.ogg": 13,
+			"res://assets/audio/sfx/monster_bolt.ogg": 4,
+			"res://assets/audio/sfx/monster_defeat.ogg": 1,
+			"res://assets/audio/sfx/monster_hurt.ogg": 10,
+			"res://assets/audio/sfx/monster_slam.ogg": 2,
+			"res://assets/audio/sfx/monster_windup.ogg": 7,
+			"res://assets/audio/sfx/quake.ogg": 1,
+			"res://assets/audio/sfx/skill_yuki_1.ogg": 4,
+			"res://assets/audio/sfx/swing_heavy.ogg": 3,
+			"res://assets/audio/sfx/swing_light.ogg": 8,
+			"res://assets/audio/sfx/ult_yuki.ogg": 1
+		},
+		"wav": "match_mix.wav"
+	},
+	"mixer": {
+		"buses": {
+			"Master": -1.94,
+			"Music": -4.44,
+			"SFX": -1.94
+		},
+		"driver": "Dummy",
+		"mix_rate": 44100.0
+	},
+	"music": {
+		"music_battle": {
+			"frames": 114688,
+			"imported_loop": true,
+			"length_s": 36.0,
+			"max_50ms_rms_dbfs": -18.14,
+			"path": "res://assets/audio/music/music_battle.ogg",
+			"peak_dbfs": -9.88,
+			"playing_stream_loop": true,
+			"resolved": "music_battle",
+			"rms_dbfs": -22.28
+		},
+		"music_results": {
+			"frames": 126976,
+			"imported_loop": true,
+			"length_s": 28.7999992370605,
+			"max_50ms_rms_dbfs": -17.62,
+			"path": "res://assets/audio/music/music_results.ogg",
+			"peak_dbfs": -10.5,
+			"playing_stream_loop": true,
+			"resolved": "music_results",
+			"rms_dbfs": -20.5
+		},
+		"music_select": {
+			"frames": 131072,
+			"imported_loop": true,
+			"length_s": 32.0,
+			"max_50ms_rms_dbfs": -18.86,
+			"path": "res://assets/audio/music/music_select.ogg",
+			"peak_dbfs": -10.88,
+			"playing_stream_loop": true,
+			"resolved": "music_select",
+			"rms_dbfs": -22.58
+		},
+		"music_story": {
+			"frames": 110592,
+			"imported_loop": true,
+			"length_s": 42.6666679382324,
+			"max_50ms_rms_dbfs": -19.42,
+			"path": "res://assets/audio/music/music_story.ogg",
+			"peak_dbfs": -11.23,
+			"playing_stream_loop": true,
+			"resolved": "music_story",
+			"rms_dbfs": -22.18
+		},
+		"music_title": {
+			"frames": 118784,
+			"imported_loop": true,
+			"length_s": 38.4000015258789,
+			"max_50ms_rms_dbfs": -19.61,
+			"path": "res://assets/audio/music/music_title.ogg",
+			"peak_dbfs": -12.78,
+			"playing_stream_loop": true,
+			"resolved": "music_title",
+			"rms_dbfs": -22.71
+		}
+	},
+	"seams": {
+		"music_battle": {
+			"frames": 102400,
+			"length_s": 36.0,
+			"position_after_s": 1.41777777671814,
+			"seek_to_s": 35.0,
+			"still_playing": true,
+			"wav": "seam_music_battle.wav"
+		},
+		"music_results": {
+			"frames": 90112,
+			"length_s": 28.7999992370605,
+			"position_after_s": 1.139115691185,
+			"seek_to_s": 27.7999992370605,
+			"still_playing": true,
+			"wav": "seam_music_results.wav"
+		},
+		"music_select": {
+			"frames": 118784,
+			"length_s": 32.0,
+			"position_after_s": 2.25369620323181,
+			"seek_to_s": 31.0,
+			"still_playing": true,
+			"wav": "seam_music_select.wav"
+		},
+		"music_story": {
+			"frames": 98304,
+			"length_s": 42.6666679382324,
+			"position_after_s": 1.32489800453186,
+			"seek_to_s": 41.6666679382324,
+			"still_playing": true,
+			"wav": "seam_music_story.wav"
+		},
+		"music_title": {
+			"frames": 102400,
+			"length_s": 38.4000015258789,
+			"position_after_s": 1.51065754890442,
+			"seek_to_s": 37.4000015258789,
+			"still_playing": true,
+			"wav": "seam_music_title.wav"
+		}
+	},
+	"sfx": {
+		"beam": {
+			"frames": 24576,
+			"max_50ms_rms_dbfs": -12.86,
+			"path": "res://assets/audio/sfx/beam.ogg",
+			"peak_dbfs": -4.76,
+			"resolved": "beam",
+			"rms_dbfs": -20.01
+		},
+		"belt_reverse": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -16.36,
+			"path": "res://assets/audio/sfx/belt_reverse.ogg",
+			"peak_dbfs": -6.18,
+			"resolved": "belt_reverse",
+			"rms_dbfs": -22.25
+		},
+		"bush_rustle": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -21.07,
+			"path": "res://assets/audio/sfx/bush_rustle.ogg",
+			"peak_dbfs": -5.94,
+			"resolved": "bush_rustle",
+			"rms_dbfs": -28.16
+		},
+		"card_offer": {
+			"frames": 24576,
+			"max_50ms_rms_dbfs": -15.72,
+			"path": "res://assets/audio/sfx/card_offer.ogg",
+			"peak_dbfs": -6.48,
+			"resolved": "card_offer",
+			"rms_dbfs": -20.76
+		},
+		"card_pick": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -14.0,
+			"path": "res://assets/audio/sfx/card_pick.ogg",
+			"peak_dbfs": -5.43,
+			"resolved": "card_pick",
+			"rms_dbfs": -19.28
+		},
+		"collapse_warning": {
+			"frames": 45056,
+			"max_50ms_rms_dbfs": -12.62,
+			"path": "res://assets/audio/sfx/collapse_warning.ogg",
+			"peak_dbfs": -4.98,
+			"resolved": "collapse_warning",
+			"rms_dbfs": -19.45
+		},
+		"dash": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -12.03,
+			"path": "res://assets/audio/sfx/dash.ogg",
+			"peak_dbfs": -2.98,
+			"resolved": "dash",
+			"rms_dbfs": -18.45
+		},
+		"elite_appear": {
+			"frames": 36864,
+			"max_50ms_rms_dbfs": -13.69,
+			"path": "res://assets/audio/sfx/elite_appear.ogg",
+			"peak_dbfs": -5.1,
+			"resolved": "elite_appear",
+			"rms_dbfs": -18.0
+		},
+		"eruption": {
+			"frames": 36864,
+			"max_50ms_rms_dbfs": -10.55,
+			"path": "res://assets/audio/sfx/eruption.ogg",
+			"peak_dbfs": -3.0,
+			"resolved": "eruption",
+			"rms_dbfs": -18.83
+		},
+		"gate_open": {
+			"frames": 32768,
+			"max_50ms_rms_dbfs": -15.21,
+			"path": "res://assets/audio/sfx/gate_open.ogg",
+			"peak_dbfs": -5.09,
+			"resolved": "gate_open",
+			"rms_dbfs": -20.05
+		},
+		"gate_travel": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -13.11,
+			"path": "res://assets/audio/sfx/gate_travel.ogg",
+			"peak_dbfs": -4.98,
+			"resolved": "gate_travel",
+			"rms_dbfs": -20.11
+		},
+		"guard": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -10.96,
+			"path": "res://assets/audio/sfx/guard.ogg",
+			"peak_dbfs": -3.22,
+			"resolved": "guard",
+			"rms_dbfs": -17.15
+		},
+		"hazard_warning": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -14.8,
+			"path": "res://assets/audio/sfx/hazard_warning.ogg",
+			"peak_dbfs": -6.93,
+			"resolved": "hazard_warning",
+			"rms_dbfs": -20.55
+		},
+		"hit_heavy": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -9.95,
+			"path": "res://assets/audio/sfx/hit_heavy.ogg",
+			"peak_dbfs": -2.78,
+			"resolved": "hit_heavy",
+			"rms_dbfs": -15.83
+		},
+		"hit_launch": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -9.46,
+			"path": "res://assets/audio/sfx/hit_launch.ogg",
+			"peak_dbfs": -2.98,
+			"resolved": "hit_launch",
+			"rms_dbfs": -16.31
+		},
+		"hit_light": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -10.97,
+			"path": "res://assets/audio/sfx/hit_light.ogg",
+			"peak_dbfs": -2.87,
+			"resolved": "hit_light",
+			"rms_dbfs": -15.67
+		},
+		"hurt": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -10.25,
+			"path": "res://assets/audio/sfx/hurt.ogg",
+			"peak_dbfs": -2.87,
+			"resolved": "hurt",
+			"rms_dbfs": -16.22
+		},
+		"jump": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -11.12,
+			"path": "res://assets/audio/sfx/jump.ogg",
+			"peak_dbfs": -3.06,
+			"resolved": "jump",
+			"rms_dbfs": -16.33
+		},
+		"ko": {
+			"frames": 40960,
+			"max_50ms_rms_dbfs": -10.32,
+			"path": "res://assets/audio/sfx/ko.ogg",
+			"peak_dbfs": -2.83,
+			"resolved": "ko",
+			"rms_dbfs": -18.69
+		},
+		"land": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -12.29,
+			"path": "res://assets/audio/sfx/land.ogg",
+			"peak_dbfs": -2.89,
+			"resolved": "land",
+			"rms_dbfs": -17.78
+		},
+		"match_start": {
+			"frames": 40960,
+			"max_50ms_rms_dbfs": -12.68,
+			"path": "res://assets/audio/sfx/match_start.ogg",
+			"peak_dbfs": -3.18,
+			"resolved": "match_start",
+			"rms_dbfs": -18.33
+		},
+		"monster_attack": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -10.41,
+			"path": "res://assets/audio/sfx/monster_attack.ogg",
+			"peak_dbfs": -2.79,
+			"resolved": "monster_attack",
+			"rms_dbfs": -16.73
+		},
+		"monster_bite": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -10.86,
+			"path": "res://assets/audio/sfx/monster_bite.ogg",
+			"peak_dbfs": -2.95,
+			"resolved": "monster_bite",
+			"rms_dbfs": -16.01
+		},
+		"monster_blink": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -13.61,
+			"path": "res://assets/audio/sfx/monster_blink.ogg",
+			"peak_dbfs": -2.97,
+			"resolved": "monster_blink",
+			"rms_dbfs": -18.05
+		},
+		"monster_bolt": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -10.79,
+			"path": "res://assets/audio/sfx/monster_bolt.ogg",
+			"peak_dbfs": -2.94,
+			"resolved": "monster_bolt",
+			"rms_dbfs": -17.63
+		},
+		"monster_charge": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -12.47,
+			"path": "res://assets/audio/sfx/monster_charge.ogg",
+			"peak_dbfs": -2.92,
+			"resolved": "monster_charge",
+			"rms_dbfs": -16.57
+		},
+		"monster_defeat": {
+			"frames": 32768,
+			"max_50ms_rms_dbfs": -11.37,
+			"path": "res://assets/audio/sfx/monster_defeat.ogg",
+			"peak_dbfs": -2.86,
+			"resolved": "monster_defeat",
+			"rms_dbfs": -19.06
+		},
+		"monster_homing": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -9.83,
+			"path": "res://assets/audio/sfx/monster_homing.ogg",
+			"peak_dbfs": -2.91,
+			"resolved": "monster_homing",
+			"rms_dbfs": -17.01
+		},
+		"monster_hurt": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -10.35,
+			"path": "res://assets/audio/sfx/monster_hurt.ogg",
+			"peak_dbfs": -2.93,
+			"resolved": "monster_hurt",
+			"rms_dbfs": -16.83
+		},
+		"monster_leap": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -9.82,
+			"path": "res://assets/audio/sfx/monster_leap.ogg",
+			"peak_dbfs": -2.88,
+			"resolved": "monster_leap",
+			"rms_dbfs": -17.13
+		},
+		"monster_lob": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -11.46,
+			"path": "res://assets/audio/sfx/monster_lob.ogg",
+			"peak_dbfs": -3.24,
+			"resolved": "monster_lob",
+			"rms_dbfs": -16.72
+		},
+		"monster_shell": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -11.56,
+			"path": "res://assets/audio/sfx/monster_shell.ogg",
+			"peak_dbfs": -3.26,
+			"resolved": "monster_shell",
+			"rms_dbfs": -16.16
+		},
+		"monster_slam": {
+			"frames": 24576,
+			"max_50ms_rms_dbfs": -8.85,
+			"path": "res://assets/audio/sfx/monster_slam.ogg",
+			"peak_dbfs": -2.85,
+			"resolved": "monster_slam",
+			"rms_dbfs": -16.93
+		},
+		"monster_swoop": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -10.42,
+			"path": "res://assets/audio/sfx/monster_swoop.ogg",
+			"peak_dbfs": -2.79,
+			"resolved": "monster_swoop",
+			"rms_dbfs": -17.57
+		},
+		"monster_windup": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -17.18,
+			"path": "res://assets/audio/sfx/monster_windup.ogg",
+			"peak_dbfs": -9.22,
+			"resolved": "monster_windup",
+			"rms_dbfs": -20.56
+		},
+		"parry": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -10.39,
+			"path": "res://assets/audio/sfx/parry.ogg",
+			"peak_dbfs": -3.34,
+			"resolved": "parry",
+			"rms_dbfs": -17.3
+		},
+		"portal": {
+			"frames": 45056,
+			"max_50ms_rms_dbfs": -10.03,
+			"path": "res://assets/audio/sfx/portal.ogg",
+			"peak_dbfs": -3.26,
+			"resolved": "portal",
+			"rms_dbfs": -17.93
+		},
+		"quake": {
+			"frames": 32768,
+			"max_50ms_rms_dbfs": -12.18,
+			"path": "res://assets/audio/sfx/quake.ogg",
+			"peak_dbfs": -2.9,
+			"resolved": "quake",
+			"rms_dbfs": -17.93
+		},
+		"respawn": {
+			"frames": 24576,
+			"max_50ms_rms_dbfs": -14.37,
+			"path": "res://assets/audio/sfx/respawn.ogg",
+			"peak_dbfs": -4.33,
+			"resolved": "respawn",
+			"rms_dbfs": -18.03
+		},
+		"results": {
+			"frames": 32768,
+			"max_50ms_rms_dbfs": -15.75,
+			"path": "res://assets/audio/sfx/results.ogg",
+			"peak_dbfs": -8.63,
+			"resolved": "results",
+			"rms_dbfs": -20.34
+		},
+		"skill_cast": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -11.26,
+			"path": "res://assets/audio/sfx/skill_cast.ogg",
+			"peak_dbfs": -3.58,
+			"resolved": "skill_cast",
+			"rms_dbfs": -17.56
+		},
+		"skill_frey_1": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -10.65,
+			"path": "res://assets/audio/sfx/skill_frey_1.ogg",
+			"peak_dbfs": -3.08,
+			"resolved": "skill_frey_1",
+			"rms_dbfs": -16.41
+		},
+		"skill_frey_2": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -10.25,
+			"path": "res://assets/audio/sfx/skill_frey_2.ogg",
+			"peak_dbfs": -2.37,
+			"resolved": "skill_frey_2",
+			"rms_dbfs": -16.34
+		},
+		"skill_luna_1": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -12.58,
+			"path": "res://assets/audio/sfx/skill_luna_1.ogg",
+			"peak_dbfs": -2.89,
+			"resolved": "skill_luna_1",
+			"rms_dbfs": -17.16
+		},
+		"skill_luna_2": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -11.83,
+			"path": "res://assets/audio/sfx/skill_luna_2.ogg",
+			"peak_dbfs": -2.98,
+			"resolved": "skill_luna_2",
+			"rms_dbfs": -16.06
+		},
+		"skill_luna_brave_1": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -10.58,
+			"path": "res://assets/audio/sfx/skill_luna_brave_1.ogg",
+			"peak_dbfs": -2.88,
+			"resolved": "skill_luna_brave_1",
+			"rms_dbfs": -16.93
+		},
+		"skill_luna_brave_2": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -10.94,
+			"path": "res://assets/audio/sfx/skill_luna_brave_2.ogg",
+			"peak_dbfs": -2.98,
+			"resolved": "skill_luna_brave_2",
+			"rms_dbfs": -17.25
+		},
+		"skill_nova_1": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -11.32,
+			"path": "res://assets/audio/sfx/skill_nova_1.ogg",
+			"peak_dbfs": -2.9,
+			"resolved": "skill_nova_1",
+			"rms_dbfs": -16.78
+		},
+		"skill_nova_2": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -10.48,
+			"path": "res://assets/audio/sfx/skill_nova_2.ogg",
+			"peak_dbfs": -3.16,
+			"resolved": "skill_nova_2",
+			"rms_dbfs": -15.94
+		},
+		"skill_rio_1": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -10.34,
+			"path": "res://assets/audio/sfx/skill_rio_1.ogg",
+			"peak_dbfs": -2.86,
+			"resolved": "skill_rio_1",
+			"rms_dbfs": -16.2
+		},
+		"skill_rio_2": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -10.29,
+			"path": "res://assets/audio/sfx/skill_rio_2.ogg",
+			"peak_dbfs": -2.73,
+			"resolved": "skill_rio_2",
+			"rms_dbfs": -17.04
+		},
+		"skill_yuki_1": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -11.0,
+			"path": "res://assets/audio/sfx/skill_yuki_1.ogg",
+			"peak_dbfs": -2.89,
+			"resolved": "skill_yuki_1",
+			"rms_dbfs": -16.6
+		},
+		"skill_yuki_2": {
+			"frames": 24576,
+			"max_50ms_rms_dbfs": -11.08,
+			"path": "res://assets/audio/sfx/skill_yuki_2.ogg",
+			"peak_dbfs": -2.3,
+			"resolved": "skill_yuki_2",
+			"rms_dbfs": -17.6
+		},
+		"soul_pickup": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -18.24,
+			"path": "res://assets/audio/sfx/soul_pickup.ogg",
+			"peak_dbfs": -8.57,
+			"resolved": "soul_pickup",
+			"rms_dbfs": -23.52
+		},
+		"story_advance": {
+			"frames": 4096,
+			"max_50ms_rms_dbfs": -22.75,
+			"path": "res://assets/audio/sfx/story_advance.ogg",
+			"peak_dbfs": -12.69,
+			"resolved": "story_advance",
+			"rms_dbfs": -25.41
+		},
+		"story_text": {
+			"frames": 4096,
+			"max_50ms_rms_dbfs": -31.86,
+			"path": "res://assets/audio/sfx/story_text.ogg",
+			"peak_dbfs": -18.12,
+			"resolved": "story_text",
+			"rms_dbfs": -34.55
+		},
+		"swing": {
+			"frames": 12288,
+			"max_50ms_rms_dbfs": -11.95,
+			"path": "res://assets/audio/sfx/swing.ogg",
+			"peak_dbfs": -2.47,
+			"resolved": "swing",
+			"rms_dbfs": -18.54
+		},
+		"swing_heavy": {
+			"frames": 16384,
+			"max_50ms_rms_dbfs": -11.58,
+			"path": "res://assets/audio/sfx/swing_heavy.ogg",
+			"peak_dbfs": -3.09,
+			"resolved": "swing_heavy",
+			"rms_dbfs": -18.16
+		},
+		"swing_light": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -12.81,
+			"path": "res://assets/audio/sfx/swing_light.ogg",
+			"peak_dbfs": -2.73,
+			"resolved": "swing_light",
+			"rms_dbfs": -17.82
+		},
+		"tumble": {
+			"frames": 20480,
+			"max_50ms_rms_dbfs": -10.51,
+			"path": "res://assets/audio/sfx/tumble.ogg",
+			"peak_dbfs": -2.86,
+			"resolved": "tumble",
+			"rms_dbfs": -18.07
+		},
+		"ui_cancel": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -12.92,
+			"path": "res://assets/audio/sfx/ui_cancel.ogg",
+			"peak_dbfs": -2.87,
+			"resolved": "ui_cancel",
+			"rms_dbfs": -18.59
+		},
+		"ui_move": {
+			"frames": 4096,
+			"max_50ms_rms_dbfs": -26.4,
+			"path": "res://assets/audio/sfx/ui_move.ogg",
+			"peak_dbfs": -14.1,
+			"resolved": "ui_move",
+			"rms_dbfs": -29.09
+		},
+		"ui_select": {
+			"frames": 8192,
+			"max_50ms_rms_dbfs": -12.86,
+			"path": "res://assets/audio/sfx/ui_select.ogg",
+			"peak_dbfs": -2.81,
+			"resolved": "ui_select",
+			"rms_dbfs": -18.56
+		},
+		"ult_frey": {
+			"frames": 49152,
+			"max_50ms_rms_dbfs": -10.98,
+			"path": "res://assets/audio/sfx/ult_frey.ogg",
+			"peak_dbfs": -3.25,
+			"resolved": "ult_frey",
+			"rms_dbfs": -16.05
+		},
+		"ult_luna": {
+			"frames": 57344,
+			"max_50ms_rms_dbfs": -11.28,
+			"path": "res://assets/audio/sfx/ult_luna.ogg",
+			"peak_dbfs": -2.97,
+			"resolved": "ult_luna",
+			"rms_dbfs": -16.34
+		},
+		"ult_luna_brave": {
+			"frames": 49152,
+			"max_50ms_rms_dbfs": -10.13,
+			"path": "res://assets/audio/sfx/ult_luna_brave.ogg",
+			"peak_dbfs": -2.85,
+			"resolved": "ult_luna_brave",
+			"rms_dbfs": -16.17
+		},
+		"ult_nova": {
+			"frames": 53248,
+			"max_50ms_rms_dbfs": -10.53,
+			"path": "res://assets/audio/sfx/ult_nova.ogg",
+			"peak_dbfs": -2.85,
+			"resolved": "ult_nova",
+			"rms_dbfs": -16.07
+		},
+		"ult_rio": {
+			"frames": 49152,
+			"max_50ms_rms_dbfs": -10.63,
+			"path": "res://assets/audio/sfx/ult_rio.ogg",
+			"peak_dbfs": -3.05,
+			"resolved": "ult_rio",
+			"rms_dbfs": -15.98
+		},
+		"ult_start": {
+			"frames": 40960,
+			"max_50ms_rms_dbfs": -9.73,
+			"path": "res://assets/audio/sfx/ult_start.ogg",
+			"peak_dbfs": -3.08,
+			"resolved": "ult_start",
+			"rms_dbfs": -16.03
+		},
+		"ult_yuki": {
+			"frames": 53248,
+			"max_50ms_rms_dbfs": -12.01,
+			"path": "res://assets/audio/sfx/ult_yuki.ogg",
+			"peak_dbfs": -3.52,
+			"resolved": "ult_yuki",
+			"rms_dbfs": -16.26
+		},
+		"victory": {
+			"frames": 73728,
+			"max_50ms_rms_dbfs": -13.66,
+			"path": "res://assets/audio/sfx/victory.ogg",
+			"peak_dbfs": -4.31,
+			"resolved": "victory",
+			"rms_dbfs": -17.96
+		},
+		"vines": {
+			"frames": 28672,
+			"max_50ms_rms_dbfs": -16.84,
+			"path": "res://assets/audio/sfx/vines.ogg",
+			"peak_dbfs": -4.82,
+			"resolved": "vines",
+			"rms_dbfs": -23.25
+		}
+	}
+}

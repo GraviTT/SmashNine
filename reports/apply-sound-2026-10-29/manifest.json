@@ -1,0 +1,2410 @@
+{
+ "snapshot_read_at": "2026-10-29T14:44:10.447Z",
+ "default_sfx_style": "c",
+ "ffmpeg": "ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+ "encoder": {
+  "codec": "libvorbis",
+  "sfx_quality": 6,
+  "music_quality": 6,
+  "flags": "-map_metadata -1 -fflags +bitexact -flags:a +bitexact"
+ },
+ "sounds": [
+  {
+   "id": "swing_light",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/swing_light-c.wav",
+   "source_sha256": "6f98afc4e1c27305c5e9d661e0c6e656d6f5eae29a5fb0cb64c0cdebe1ac387f",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/swing_light.ogg",
+   "ogg_bytes": 6331,
+   "ogg_sha256": "fffe8f58bfc5b8298b80a1266e0604c403b15bd82a4190e610920c05a6a01802",
+   "wav_bytes": 14156,
+   "channels": 1,
+   "frames_wav": 7056,
+   "end_granule": 7056,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 7616,
+   "seconds": 0.16,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 15.67,
+   "wav_levels": {
+    "rms_dbfs": -15.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -10.55
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.58,
+    "peak_dbfs": -0.81,
+    "max_50ms_rms_dbfs": -10.81
+   }
+  },
+  {
+   "id": "swing_heavy",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/swing_heavy-c.wav",
+   "source_sha256": "0a6ccb74b5215a95752fb4eca5533b4dbc86a7d0a66f78ddb62eaa29cfba060d",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/swing_heavy.ogg",
+   "ogg_bytes": 7852,
+   "ogg_sha256": "9cb784fe74762f4302fc39b3d257de42ea66a9bd8b0b8f199235e247d2428c62",
+   "wav_bytes": 25622,
+   "channels": 1,
+   "frames_wav": 12789,
+   "end_granule": 12789,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 12800,
+   "seconds": 0.29,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 15.01,
+   "wav_levels": {
+    "rms_dbfs": -15.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.37
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.21,
+    "peak_dbfs": -1.03,
+    "max_50ms_rms_dbfs": -9.53
+   }
+  },
+  {
+   "id": "hit_light",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/hit_light-c.wav",
+   "source_sha256": "374417a128be5f882fe3efb18158ba93d16a157ef3f6ef9a51adf008102b633b",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/hit_light.ogg",
+   "ogg_bytes": 6267,
+   "ogg_sha256": "c580f43d5373d077ee13a23b9f307b3af88a70979b525334b97f44ae6e743402",
+   "wav_bytes": 15920,
+   "channels": 1,
+   "frames_wav": 7938,
+   "end_granule": 7938,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 7810,
+   "seconds": 0.18,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 30.78,
+   "wav_levels": {
+    "rms_dbfs": -13.5,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.94
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.37,
+    "peak_dbfs": -0.83,
+    "max_50ms_rms_dbfs": -8.89
+   }
+  },
+  {
+   "id": "hit_heavy",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/hit_heavy-c.wav",
+   "source_sha256": "d966b0a9f938f0fa89579a60a07dc3b07083730ad0b53baa2a5b32da3485d594",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/hit_heavy.ogg",
+   "ogg_bytes": 8017,
+   "ogg_sha256": "d031bcd3204ced62d0e02f7d761b857e86933d850fc42230188867b9d3f83d9d",
+   "wav_bytes": 30032,
+   "channels": 1,
+   "frames_wav": 14994,
+   "end_granule": 14994,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 15936,
+   "seconds": 0.34,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.36,
+   "wav_levels": {
+    "rms_dbfs": -13.5,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -7.93
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.71,
+    "peak_dbfs": -0.88,
+    "max_50ms_rms_dbfs": -7.88
+   }
+  },
+  {
+   "id": "hit_launch",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/hit_launch-c.wav",
+   "source_sha256": "cf897e1ee55b87662494c044600cce1a91f064ff4a3e8a350da629fd2269412a",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/hit_launch.ogg",
+   "ogg_bytes": 8821,
+   "ogg_sha256": "b8550c5c69ff739c70fd1e1bca56f71b4691b6d10407bca9834e8e57192b9488",
+   "wav_bytes": 33560,
+   "channels": 1,
+   "frames_wav": 16758,
+   "end_granule": 16758,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 16630,
+   "seconds": 0.38,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 25.66,
+   "wav_levels": {
+    "rms_dbfs": -13.5,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -7.36
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.45,
+    "peak_dbfs": -1.07,
+    "max_50ms_rms_dbfs": -7.33
+   }
+  },
+  {
+   "id": "hurt",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/hurt-c.wav",
+   "source_sha256": "0234114a300cb588cb2a501e17ba7a658b8a62232c5a339a37e0799952354c3c",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/hurt.ogg",
+   "ogg_bytes": 8418,
+   "ogg_sha256": "5108675963c4df00cdbc73f25310111a087da7b0771b361529ea5beae57d5854",
+   "wav_bytes": 20330,
+   "channels": 1,
+   "frames_wav": 10143,
+   "end_granule": 10143,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 10015,
+   "seconds": 0.23,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 37.95,
+   "wav_levels": {
+    "rms_dbfs": -13.5,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.25
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.4,
+    "peak_dbfs": -0.93,
+    "max_50ms_rms_dbfs": -8.2
+   }
+  },
+  {
+   "id": "guard",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/guard-c.wav",
+   "source_sha256": "6cb0d1ca902697deed883b7ca51dbd2a5594eff84d33161362a3a339ddcd7de3",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/guard.ogg",
+   "ogg_bytes": 6580,
+   "ogg_sha256": "ec9365288d3946f0fef5aa6b9d92fd4db4bdb6a440466b0502d4f6d1760bbaed",
+   "wav_bytes": 18566,
+   "channels": 1,
+   "frames_wav": 9261,
+   "end_granule": 9261,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 9133,
+   "seconds": 0.21,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.53,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.99
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.92,
+    "peak_dbfs": -1.29,
+    "max_50ms_rms_dbfs": -8.98
+   }
+  },
+  {
+   "id": "parry",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/parry-c.wav",
+   "source_sha256": "33ca9a13b7ad40336e260d8fee2929983a2a0a0369b2fb8c05d357e30790d78d",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/parry.ogg",
+   "ogg_bytes": 8868,
+   "ogg_sha256": "8a07c5d4612aeb10b19bb9a7121b645d3f274b9b703322677a378ced91d3c965",
+   "wav_bytes": 30032,
+   "channels": 1,
+   "frames_wav": 14994,
+   "end_granule": 14994,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 15552,
+   "seconds": 0.34,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 25.1,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.3
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -14.16,
+    "peak_dbfs": -1.4,
+    "max_50ms_rms_dbfs": -8.34
+   }
+  },
+  {
+   "id": "jump",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/jump-c.wav",
+   "source_sha256": "4e304cba45536b411b7a063af0cffdba9d47e997b8d04056509188457c0207bd",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/jump.ogg",
+   "ogg_bytes": 5950,
+   "ogg_sha256": "10ddfc886cb7acf42a602909ce83e74458778f06a8069233acf0f3afbc027d4b",
+   "wav_bytes": 15038,
+   "channels": 1,
+   "frames_wav": 7497,
+   "end_granule": 7497,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 7369,
+   "seconds": 0.17,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 30.92,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.13
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.93,
+    "peak_dbfs": -1.12,
+    "max_50ms_rms_dbfs": -9.15
+   }
+  },
+  {
+   "id": "land",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/land-c.wav",
+   "source_sha256": "2e0627616c39e991b60fa002d94ae6d7ce670d9dcd346f86218cafee24bb33e4",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/land.ogg",
+   "ogg_bytes": 5431,
+   "ogg_sha256": "9d3ad9082ba8a446aba5fe7f788d0fd6751c421bdf9495dac1111cce6b0814f3",
+   "wav_bytes": 10628,
+   "channels": 1,
+   "frames_wav": 5292,
+   "end_granule": 5292,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 6208,
+   "seconds": 0.12,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 38.19,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -10.39
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -14.64,
+    "peak_dbfs": -0.95,
+    "max_50ms_rms_dbfs": -10.33
+   }
+  },
+  {
+   "id": "dash",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/dash-c.wav",
+   "source_sha256": "ba06396ae19c9d9441c284f9de9372404bdc2db0aa5cbb6f5be621207952edb3",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/dash.ogg",
+   "ogg_bytes": 6941,
+   "ogg_sha256": "10b24cb8534f1f0a9824d148d1f0cabcf69df9221294c990d56195b99f02ef0a",
+   "wav_bytes": 17684,
+   "channels": 1,
+   "frames_wav": 8820,
+   "end_granule": 8820,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 8692,
+   "seconds": 0.2,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 17.54,
+   "wav_levels": {
+    "rms_dbfs": -15.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.96
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.01,
+    "peak_dbfs": -1.05,
+    "max_50ms_rms_dbfs": -10.04
+   }
+  },
+  {
+   "id": "tumble",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/tumble-c.wav",
+   "source_sha256": "d6e6ecfcdb52ea21d1c8ec8fc5ef3a2093c98f9e7b813a92d25f6936c3895759",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/tumble.ogg",
+   "ogg_bytes": 7791,
+   "ogg_sha256": "3bfff2e381eb1243fdb957d8af863b97fe1887f851767ea49918f41f746fbbcb",
+   "wav_bytes": 24740,
+   "channels": 1,
+   "frames_wav": 12348,
+   "end_granule": 12348,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 12220,
+   "seconds": 0.28,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 33.01,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.63
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.89,
+    "peak_dbfs": -0.92,
+    "max_50ms_rms_dbfs": -8.56
+   }
+  },
+  {
+   "id": "ko",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/ko-c.wav",
+   "source_sha256": "0cb189a8f23bbbe4426289bb7a30bc10ea82e5cc06617f3b77ec3b133b32dff0",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ko.ogg",
+   "ogg_bytes": 12410,
+   "ogg_sha256": "78ef596db6d7e9196ada36f923492142d34ec317a49048ac03643a2318540b41",
+   "wav_bytes": 68840,
+   "channels": 1,
+   "frames_wav": 34398,
+   "end_granule": 34398,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 34270,
+   "seconds": 0.78,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 28.19,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.32
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.97,
+    "peak_dbfs": -0.89,
+    "max_50ms_rms_dbfs": -8.33
+   }
+  },
+  {
+   "id": "respawn",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/respawn-c.wav",
+   "source_sha256": "15733f01ea4f44b96c0c5c185179308f5a3dc12eaba8f0c333677986b3ea8431",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/respawn.ogg",
+   "ogg_bytes": 9115,
+   "ogg_sha256": "33322b8eee834c7a74001e3865c6c8b5555391ddada77e0e01efeb2437a6d09d",
+   "wav_bytes": 47672,
+   "channels": 1,
+   "frames_wav": 23814,
+   "end_granule": 23814,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 23686,
+   "seconds": 0.54,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 30.23,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -2.54,
+    "max_50ms_rms_dbfs": -11.98
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.94,
+    "peak_dbfs": -2.39,
+    "max_50ms_rms_dbfs": -11.96
+   }
+  },
+  {
+   "id": "skill_frey_1",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_frey_1-c.wav",
+   "source_sha256": "9283749a605d7856de8d3a5d10267cd59798f0b9bdc90a7f308ef383b5ac573f",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_frey_1.ogg",
+   "ogg_bytes": 7105,
+   "ogg_sha256": "ffb68a777a6aa210befa61bb24d9b7e57d74fbbb67969c1d3449034af1366ebc",
+   "wav_bytes": 22094,
+   "channels": 1,
+   "frames_wav": 11025,
+   "end_granule": 11025,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 11968,
+   "seconds": 0.25,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 21.24,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.63
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -14.36,
+    "peak_dbfs": -1.14,
+    "max_50ms_rms_dbfs": -8.63
+   }
+  },
+  {
+   "id": "skill_frey_2",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_frey_2-c.wav",
+   "source_sha256": "bf8d142bb0f5e7f7f22963e562be34b680a62ff6ed654488cec2829e057c7729",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_frey_2.ogg",
+   "ogg_bytes": 8306,
+   "ogg_sha256": "d5c9cb66ab55de7ca09b86ff036cea59a7ae9f3aeda6478bd57bef1540afbf52",
+   "wav_bytes": 30032,
+   "channels": 1,
+   "frames_wav": 14994,
+   "end_granule": 14994,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 14866,
+   "seconds": 0.34,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 21.05,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.2
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.98,
+    "peak_dbfs": -0.43,
+    "max_50ms_rms_dbfs": -8.25
+   }
+  },
+  {
+   "id": "ult_frey",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/ult_frey-c.wav",
+   "source_sha256": "249b3893229282388da24b58da6415cd972982c91edd8e139ba66a7472957639",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ult_frey.ogg",
+   "ogg_bytes": 16888,
+   "ogg_sha256": "9fa9e51cfdd80dc0e1fa2f8e6c52f16c9f2553a605f08103b2f90190b92e50ee",
+   "wav_bytes": 95300,
+   "channels": 1,
+   "frames_wav": 47628,
+   "end_granule": 47628,
+   "audio_pages": 2,
+   "frames_ffmpeg_decode": 47628,
+   "seconds": 1.08,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 24.8,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.04
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.97,
+    "peak_dbfs": -1.31,
+    "max_50ms_rms_dbfs": -9.03
+   }
+  },
+  {
+   "id": "skill_luna_1",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_luna_1-c.wav",
+   "source_sha256": "28417e4d29659dbb2b222980b2b3c8ead756cd83d9405f55667523a19191125b",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_luna_1.ogg",
+   "ogg_bytes": 8148,
+   "ogg_sha256": "22be7632abcc60ac0bf0225137fb6f95ca7727c9a22b91834523cdc2a6e95359",
+   "wav_bytes": 24740,
+   "channels": 1,
+   "frames_wav": 12348,
+   "end_granule": 12348,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 12220,
+   "seconds": 0.28,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.29,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -10.66
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.94,
+    "peak_dbfs": -0.96,
+    "max_50ms_rms_dbfs": -10.63
+   }
+  },
+  {
+   "id": "skill_luna_2",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_luna_2-c.wav",
+   "source_sha256": "2fb2b10604a578b7edd9d3351272a498cb886539d568c756546317641a780f58",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_luna_2.ogg",
+   "ogg_bytes": 8707,
+   "ogg_sha256": "3c2b63741e1c9dda68a24d7bef085f5931da4bbbd23d42d050d4792b3a42f58e",
+   "wav_bytes": 31796,
+   "channels": 1,
+   "frames_wav": 15876,
+   "end_granule": 15876,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 15748,
+   "seconds": 0.36,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.76,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.89
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.95,
+    "peak_dbfs": -1.04,
+    "max_50ms_rms_dbfs": -9.87
+   }
+  },
+  {
+   "id": "ult_luna",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/ult_luna-c.wav",
+   "source_sha256": "4abd9ff2f2401dcb51cf2d072a6431b4e5de3df0dbf178bdcf25ad2ea848661e",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ult_luna.ogg",
+   "ogg_bytes": 19272,
+   "ogg_sha256": "1e6e00546219c49701d31b87a1e5beec95fba7da2b8e0442ce4a6164dd3b740d",
+   "wav_bytes": 104120,
+   "channels": 1,
+   "frames_wav": 52038,
+   "end_granule": 52038,
+   "audio_pages": 2,
+   "frames_ffmpeg_decode": 52038,
+   "seconds": 1.18,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.77,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.3
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.98,
+    "peak_dbfs": -1.03,
+    "max_50ms_rms_dbfs": -9.25
+   }
+  },
+  {
+   "id": "skill_luna_brave_1",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_luna_brave_1-c.wav",
+   "source_sha256": "ea58fa249d0fbfc693eaf4c7b8cf2667f0cb325aa8536bd784903edd4b1c59a4",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_luna_brave_1.ogg",
+   "ogg_bytes": 6546,
+   "ogg_sha256": "6e24af73da739af0963ef6e888323f5982e498a562474dd19d325a8ab3cddf79",
+   "wav_bytes": 19448,
+   "channels": 1,
+   "frames_wav": 9702,
+   "end_granule": 9702,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 9574,
+   "seconds": 0.22,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 28.22,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.63
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.91,
+    "peak_dbfs": -0.94,
+    "max_50ms_rms_dbfs": -8.6
+   }
+  },
+  {
+   "id": "skill_luna_brave_2",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_luna_brave_2-c.wav",
+   "source_sha256": "c2e1fa3ffad87c2fb58ec4f028184fedf9c8dfa459af529fe62c49fe24aeb2ba",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_luna_brave_2.ogg",
+   "ogg_bytes": 8061,
+   "ogg_sha256": "bcc745c64eac8f2609bacb186906bb31ae656644d7bc3d1a497595c9845d8be7",
+   "wav_bytes": 30032,
+   "channels": 1,
+   "frames_wav": 14994,
+   "end_granule": 14994,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 14866,
+   "seconds": 0.34,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.7,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.02
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.92,
+    "peak_dbfs": -1.04,
+    "max_50ms_rms_dbfs": -8.99
+   }
+  },
+  {
+   "id": "ult_luna_brave",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/ult_luna_brave-c.wav",
+   "source_sha256": "e4d85628642d8bcfc766c0432b52bc0fd1e5dd7eaaeba9912da4c7e085f142cc",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ult_luna_brave.ogg",
+   "ogg_bytes": 15959,
+   "ogg_sha256": "a738c97ccab00650c80b8fb414be1a01e0c6b50373c9c229961564b78547943b",
+   "wav_bytes": 92654,
+   "channels": 1,
+   "frames_wav": 46305,
+   "end_granule": 46305,
+   "audio_pages": 2,
+   "frames_ffmpeg_decode": 46305,
+   "seconds": 1.05,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 30.22,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.14
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.97,
+    "peak_dbfs": -0.91,
+    "max_50ms_rms_dbfs": -8.1
+   }
+  },
+  {
+   "id": "skill_yuki_1",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_yuki_1-c.wav",
+   "source_sha256": "62428daa13158803a61b10795580dafa966d80714a9183c6e40af54f73acdfd1",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_yuki_1.ogg",
+   "ogg_bytes": 7359,
+   "ogg_sha256": "68b86511dbaa3d894758914c1ca7b6f066ccd61fc12d3127dc7ef2d20aba0a20",
+   "wav_bytes": 21212,
+   "channels": 1,
+   "frames_wav": 10584,
+   "end_granule": 10584,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 10456,
+   "seconds": 0.24,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 22.5,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.93
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.96,
+    "peak_dbfs": -0.96,
+    "max_50ms_rms_dbfs": -8.98
+   }
+  },
+  {
+   "id": "skill_yuki_2",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_yuki_2-c.wav",
+   "source_sha256": "c75aec73b4fd25b0026c1f6c1973cb325c733dbae9b277934f93b9835b47ed46",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_yuki_2.ogg",
+   "ogg_bytes": 9637,
+   "ogg_sha256": "480037d05d774ce40ecc3a4cefccde78b7fcf3e97ff0a585a6b5968a3a150827",
+   "wav_bytes": 33560,
+   "channels": 1,
+   "frames_wav": 16758,
+   "end_granule": 16758,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 16630,
+   "seconds": 0.38,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 22.71,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.05
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.96,
+    "peak_dbfs": -0.36,
+    "max_50ms_rms_dbfs": -9.04
+   }
+  },
+  {
+   "id": "ult_yuki",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/ult_yuki-c.wav",
+   "source_sha256": "39d7f409f52295454defe62755549dd33509024d5a4df7ee24633b1fb423718c",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ult_yuki.ogg",
+   "ogg_bytes": 19668,
+   "ogg_sha256": "934df9fd1806263a15b4e0d6db1a5d8ff32d4bf45a1531f0805a749aabf2463e",
+   "wav_bytes": 98828,
+   "channels": 1,
+   "frames_wav": 49392,
+   "end_granule": 49392,
+   "audio_pages": 2,
+   "frames_ffmpeg_decode": 49392,
+   "seconds": 1.12,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 23.94,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.94
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.58,
+    "max_50ms_rms_dbfs": -9.95
+   }
+  },
+  {
+   "id": "skill_nova_1",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_nova_1-c.wav",
+   "source_sha256": "130f09e6f24c3190647733bcc5f3a93663689ab7806e7a2220b11d763e10f27d",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_nova_1.ogg",
+   "ogg_bytes": 6908,
+   "ogg_sha256": "0332ee9203116bb8dd628b97b5c062e33e8ecc82ff3050ed05469a2979d59575",
+   "wav_bytes": 20330,
+   "channels": 1,
+   "frames_wav": 10143,
+   "end_granule": 10143,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 10015,
+   "seconds": 0.23,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 28.48,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.29
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.95,
+    "peak_dbfs": -0.96,
+    "max_50ms_rms_dbfs": -9.32
+   }
+  },
+  {
+   "id": "skill_nova_2",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_nova_2-c.wav",
+   "source_sha256": "e0feca807021914769d93827c6feaeb23f21b2644f46df1ab5c5a08855d246f4",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_nova_2.ogg",
+   "ogg_bytes": 7952,
+   "ogg_sha256": "9104e1edafa570075f5e8d0f6f31106912f20fd8e1912d84647003ef64fa5edc",
+   "wav_bytes": 32678,
+   "channels": 1,
+   "frames_wav": 16317,
+   "end_granule": 16317,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 16189,
+   "seconds": 0.37,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 28.95,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.46
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.95,
+    "peak_dbfs": -1.22,
+    "max_50ms_rms_dbfs": -8.48
+   }
+  },
+  {
+   "id": "ult_nova",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/ult_nova-c.wav",
+   "source_sha256": "215a9234f521582fdc14a1fa1cffe44e072d51ce286fb6e766e79b05dbf08371",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ult_nova.ogg",
+   "ogg_bytes": 17528,
+   "ogg_sha256": "54f87aeedcf5dfbd52dca70117122055948691067366726acfedfd18dfdc1f61",
+   "wav_bytes": 102356,
+   "channels": 1,
+   "frames_wav": 51156,
+   "end_granule": 51156,
+   "audio_pages": 2,
+   "frames_ffmpeg_decode": 51156,
+   "seconds": 1.16,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 30.93,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.54
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.96,
+    "peak_dbfs": -0.91,
+    "max_50ms_rms_dbfs": -8.49
+   }
+  },
+  {
+   "id": "skill_rio_1",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_rio_1-c.wav",
+   "source_sha256": "63315ce6f46645e58f1bcae2015aabf0a9c854e863a83d4a99c4497202371585",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_rio_1.ogg",
+   "ogg_bytes": 7073,
+   "ogg_sha256": "410cbe7ededd199fcad45a4a7ee0f2f1c54c9f64d753449a355f42aae08e76c1",
+   "wav_bytes": 22976,
+   "channels": 1,
+   "frames_wav": 11466,
+   "end_granule": 11466,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 11338,
+   "seconds": 0.26,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 26.91,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.37
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.91,
+    "peak_dbfs": -0.92,
+    "max_50ms_rms_dbfs": -8.32
+   }
+  },
+  {
+   "id": "skill_rio_2",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_rio_2-c.wav",
+   "source_sha256": "29639dcdec3c0c1c2b522cb7bb53e78db153da87a551618b7f7613f291db119e",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_rio_2.ogg",
+   "ogg_bytes": 8182,
+   "ogg_sha256": "9f34a1b0cfc7639b2bac5e6fdc157dbf0dc94381f42b5305fe396a45052d127a",
+   "wav_bytes": 31796,
+   "channels": 1,
+   "frames_wav": 15876,
+   "end_granule": 15876,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 16832,
+   "seconds": 0.36,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.28,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -7.94
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -14.25,
+    "peak_dbfs": -0.79,
+    "max_50ms_rms_dbfs": -7.93
+   }
+  },
+  {
+   "id": "ult_rio",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/ult_rio-c.wav",
+   "source_sha256": "1be52374d9e4857ddb0bc5518a8dce7310b35cc37eee3adae931f8599eb96863",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ult_rio.ogg",
+   "ogg_bytes": 16705,
+   "ogg_sha256": "c443c97758bcf66cbc40f3423f6c25f8c8d288ff885baa52d202ba1de9a29d68",
+   "wav_bytes": 97064,
+   "channels": 1,
+   "frames_wav": 48510,
+   "end_granule": 48510,
+   "audio_pages": 2,
+   "frames_ffmpeg_decode": 48510,
+   "seconds": 1.1,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.05,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.67
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.98,
+    "peak_dbfs": -1.11,
+    "max_50ms_rms_dbfs": -8.66
+   }
+  },
+  {
+   "id": "monster_windup",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_windup-c.wav",
+   "source_sha256": "5065794ad12905cd7efca1cf31a4e629920f9e5e718fe67b34edc43529f53286",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_windup.ogg",
+   "ogg_bytes": 5246,
+   "ogg_sha256": "ddddd07294ac04481959435b5332e4b2d75ac2bf9fe6f247202e926fde642bab",
+   "wav_bytes": 14156,
+   "channels": 1,
+   "frames_wav": 7056,
+   "end_granule": 7056,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 6928,
+   "seconds": 0.16,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 30.71,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -7.31,
+    "max_50ms_rms_dbfs": -15.19
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.89,
+    "peak_dbfs": -7.28,
+    "max_50ms_rms_dbfs": -15.14
+   }
+  },
+  {
+   "id": "monster_bite",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_bite-c.wav",
+   "source_sha256": "66c164c8ae2562c5fde49e1a4b28be80db29786b8d6612ce334e81e5fce2d1e6",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_bite.ogg",
+   "ogg_bytes": 6061,
+   "ogg_sha256": "d314af576673e69893f9c19cd13db40182cf4ebdf68b77462ebbc9e406fe418b",
+   "wav_bytes": 15920,
+   "channels": 1,
+   "frames_wav": 7938,
+   "end_granule": 7938,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 7810,
+   "seconds": 0.18,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.65,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.95
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.86,
+    "peak_dbfs": -1.01,
+    "max_50ms_rms_dbfs": -8.87
+   }
+  },
+  {
+   "id": "monster_charge",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_charge-c.wav",
+   "source_sha256": "7e9704d4615513611de4d3f50714992064313353116ac55b37f0b3c763460482",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_charge.ogg",
+   "ogg_bytes": 8120,
+   "ogg_sha256": "fdf784c045597286f3d0aeb74dc94866633ab8a23833528663636c16aefdf9b7",
+   "wav_bytes": 28268,
+   "channels": 1,
+   "frames_wav": 14112,
+   "end_granule": 14112,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 13984,
+   "seconds": 0.32,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 23.97,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -10.46
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.95,
+    "peak_dbfs": -0.99,
+    "max_50ms_rms_dbfs": -10.48
+   }
+  },
+  {
+   "id": "monster_leap",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_leap-c.wav",
+   "source_sha256": "625ae4d835f8895a252529b51314f31ecfd6328482d65449ee2ec52d7ae50227",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_leap.ogg",
+   "ogg_bytes": 7187,
+   "ogg_sha256": "260fe551e2c041a3ebe5d5acc33c80e1b9b85eeb6f67ffbe75d14adcc973b35a",
+   "wav_bytes": 24740,
+   "channels": 1,
+   "frames_wav": 12348,
+   "end_granule": 12348,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 12220,
+   "seconds": 0.28,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 28.88,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -7.85
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.92,
+    "peak_dbfs": -0.94,
+    "max_50ms_rms_dbfs": -7.81
+   }
+  },
+  {
+   "id": "monster_slam",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_slam-c.wav",
+   "source_sha256": "c4ef4cc8b67fef6a724498147b666a33bacb3b14fae7cc9b6c1d9193f22ac097",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_slam.ogg",
+   "ogg_bytes": 9603,
+   "ogg_sha256": "3146dbd6987602ebf33937ba17facbf950b807b2a2ba744cf5e283dec3af94bc",
+   "wav_bytes": 34442,
+   "channels": 1,
+   "frames_wav": 17199,
+   "end_granule": 17199,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 17071,
+   "seconds": 0.39,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.74,
+   "wav_levels": {
+    "rms_dbfs": -13.5,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -6.83
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.41,
+    "peak_dbfs": -0.92,
+    "max_50ms_rms_dbfs": -6.78
+   }
+  },
+  {
+   "id": "monster_shell",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_shell-c.wav",
+   "source_sha256": "1a76bf302178837d445442e4f037dbebddc389aa8c16756c0bfa0240b65fa767",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_shell.ogg",
+   "ogg_bytes": 7886,
+   "ogg_sha256": "a4253dd39af5cf749d9bd4bcd881fd050897a5096670f267bcdc61a0ad759691",
+   "wav_bytes": 30914,
+   "channels": 1,
+   "frames_wav": 15435,
+   "end_granule": 15435,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 15307,
+   "seconds": 0.35,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 32.43,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.62
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.93,
+    "peak_dbfs": -1.32,
+    "max_50ms_rms_dbfs": -9.59
+   }
+  },
+  {
+   "id": "monster_bolt",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_bolt-c.wav",
+   "source_sha256": "f4e3af4010700c7a0528bcbc4dd0e492395154a83692e6a16c7fc394cea44ccf",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_bolt.ogg",
+   "ogg_bytes": 6179,
+   "ogg_sha256": "777e3f03b692bc1475b0bba281f29f3d612ad83ee7d7a062b4d368b5db48c11f",
+   "wav_bytes": 16802,
+   "channels": 1,
+   "frames_wav": 8379,
+   "end_granule": 8379,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 8251,
+   "seconds": 0.19,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 25.89,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.76
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.96,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.8
+   }
+  },
+  {
+   "id": "monster_lob",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_lob-c.wav",
+   "source_sha256": "cf3e1f981bf1cbbb1c2e76965037d8a287061f36cdb6a0bc77d1c4c4185e6192",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_lob.ogg",
+   "ogg_bytes": 7313,
+   "ogg_sha256": "186aac703aca263b00125d02713b23fff9fbc1b2c7c516b5d6cf4ffbd7815a6d",
+   "wav_bytes": 27386,
+   "channels": 1,
+   "frames_wav": 13671,
+   "end_granule": 13671,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 13543,
+   "seconds": 0.31,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.2,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.48
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.96,
+    "peak_dbfs": -1.3,
+    "max_50ms_rms_dbfs": -9.48
+   }
+  },
+  {
+   "id": "monster_swoop",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_swoop-c.wav",
+   "source_sha256": "c6cb30f28b4b2913e87d57473a44bb140b73116dac06eee0a460b2eaa6ca1c06",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_swoop.ogg",
+   "ogg_bytes": 8358,
+   "ogg_sha256": "abad2193419c8295783ea0cd6f96cf9a897db4ceac88b5033adcbf18f24a1661",
+   "wav_bytes": 29150,
+   "channels": 1,
+   "frames_wav": 14553,
+   "end_granule": 14553,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 14592,
+   "seconds": 0.33,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 17.32,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.26
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -14.16,
+    "peak_dbfs": -0.85,
+    "max_50ms_rms_dbfs": -8.39
+   }
+  },
+  {
+   "id": "monster_blink",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_blink-c.wav",
+   "source_sha256": "e8df37b83381efd55128029e1fc53b89680f0ed7b301b8e5c96d39f128ff255e",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_blink.ogg",
+   "ogg_bytes": 6817,
+   "ogg_sha256": "1fe6757a8a59b1daf7611a5d1ceca5172cdd265d896049f600a25715ba0077c8",
+   "wav_bytes": 19448,
+   "channels": 1,
+   "frames_wav": 9702,
+   "end_granule": 9702,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 9574,
+   "seconds": 0.22,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 24.89,
+   "wav_levels": {
+    "rms_dbfs": -15.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -11.55
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.03,
+    "peak_dbfs": -1.04,
+    "max_50ms_rms_dbfs": -11.66
+   }
+  },
+  {
+   "id": "monster_homing",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_homing-c.wav",
+   "source_sha256": "3fd62615e5fea7a8c53c3ac868131dc0578f9b73b7f55e5e17a44b16def0906c",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_homing.ogg",
+   "ogg_bytes": 8439,
+   "ogg_sha256": "4d01512bfed9363043ecb75cbfd0012a13d8ff5fe45dc0054b76ec427aa1b910",
+   "wav_bytes": 31796,
+   "channels": 1,
+   "frames_wav": 15876,
+   "end_granule": 15876,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 15748,
+   "seconds": 0.36,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.27,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -7.86
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.93,
+    "peak_dbfs": -0.97,
+    "max_50ms_rms_dbfs": -7.84
+   }
+  },
+  {
+   "id": "monster_hurt",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_hurt-c.wav",
+   "source_sha256": "8fc5992dd15fecc1bc7514429f5fb1e7d3f39af570a85ebcb6950ae1fed41f86",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_hurt.ogg",
+   "ogg_bytes": 6982,
+   "ogg_sha256": "070f6ef327f738476bc02e4cae0486f1aa517546ba84c2db1d026764cb892ab0",
+   "wav_bytes": 17684,
+   "channels": 1,
+   "frames_wav": 8820,
+   "end_granule": 8820,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 8692,
+   "seconds": 0.2,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 36.01,
+   "wav_levels": {
+    "rms_dbfs": -13.5,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.36
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.39,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.31
+   }
+  },
+  {
+   "id": "monster_defeat",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_defeat-c.wav",
+   "source_sha256": "edbdd2fd0f1d36c108b74d5c85e16b2d7ac925d1cb5a8f1ce423a2fb154cee6f",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_defeat.ogg",
+   "ogg_bytes": 9414,
+   "ogg_sha256": "7a956f9da8f042a66d976d2064d93a4cb3c0046a8f2d6d18d74d2407e6086b68",
+   "wav_bytes": 50318,
+   "channels": 1,
+   "frames_wav": 25137,
+   "end_granule": 25137,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 25009,
+   "seconds": 0.57,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.06,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.39
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.95,
+    "peak_dbfs": -0.92,
+    "max_50ms_rms_dbfs": -9.43
+   }
+  },
+  {
+   "id": "elite_appear",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/elite_appear-c.wav",
+   "source_sha256": "43447761dfa03cf464db8fee4e32148d3242bd5b689c5d6035c88405f9c64881",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/elite_appear.ogg",
+   "ogg_bytes": 8804,
+   "ogg_sha256": "acc608279b816669fa87963e0c05e555623fd24c9beaae8efa376dc962906ed3",
+   "wav_bytes": 72368,
+   "channels": 1,
+   "frames_wav": 36162,
+   "end_granule": 36162,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 36034,
+   "seconds": 0.82,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 32.39,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -3.14,
+    "max_50ms_rms_dbfs": -11.38
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.96,
+    "peak_dbfs": -3.16,
+    "max_50ms_rms_dbfs": -11.37
+   }
+  },
+  {
+   "id": "hazard_warning",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/hazard_warning-c.wav",
+   "source_sha256": "90be4e0eb05631fed740f22cecba91c4bba2edd5ea32ca22ad5c68df7581fb8a",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/hazard_warning.ogg",
+   "ogg_bytes": 6763,
+   "ogg_sha256": "57f51bc704bce8173931603c0ee2bc803427e11ee513c07f6143a6ad9a8ae6b6",
+   "wav_bytes": 35324,
+   "channels": 1,
+   "frames_wav": 17640,
+   "end_granule": 17640,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 17512,
+   "seconds": 0.4,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 37.78,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -4.99,
+    "max_50ms_rms_dbfs": -12.87
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.93,
+    "peak_dbfs": -4.99,
+    "max_50ms_rms_dbfs": -12.82
+   }
+  },
+  {
+   "id": "eruption",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/eruption-c.wav",
+   "source_sha256": "b586a08eb0841bd9441de4e33e59f312f82bc3418585e2065b7975aed2882cde",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/eruption.ogg",
+   "ogg_bytes": 12675,
+   "ogg_sha256": "3bbcdd5f4713e06dce0e76bd47880a911840604e81b119290ae929ca90174dbe",
+   "wav_bytes": 60020,
+   "channels": 1,
+   "frames_wav": 29988,
+   "end_granule": 29988,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 30528,
+   "seconds": 0.68,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 21.92,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.61
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -16.08,
+    "peak_dbfs": -1.06,
+    "max_50ms_rms_dbfs": -8.56
+   }
+  },
+  {
+   "id": "quake",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/quake-c.wav",
+   "source_sha256": "1943bffd0b5fc0d4e83aec516529cb96653317f64fef866dab40b8dc48987813",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/quake.ogg",
+   "ogg_bytes": 11023,
+   "ogg_sha256": "3e9a72dc6d6cc7b101cb24e24f0815c7ca47b70b8169aff14d9e7c264c316dbf",
+   "wav_bytes": 65312,
+   "channels": 1,
+   "frames_wav": 32634,
+   "end_granule": 32634,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 32506,
+   "seconds": 0.74,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.5,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -10.23
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.95,
+    "peak_dbfs": -0.96,
+    "max_50ms_rms_dbfs": -10.21
+   }
+  },
+  {
+   "id": "beam",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/beam-c.wav",
+   "source_sha256": "a65c38b8a8a51d742a4a45f86c25a5dead016f131ddd26b305fd26719a163217",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/beam.ogg",
+   "ogg_bytes": 9490,
+   "ogg_sha256": "b7079d3a6ec32d0e00ab459fa73e4db281ddef184635919acde1ed37e2056c95",
+   "wav_bytes": 48554,
+   "channels": 1,
+   "frames_wav": 24255,
+   "end_granule": 24255,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 24127,
+   "seconds": 0.55,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 26.24,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -2.67,
+    "max_50ms_rms_dbfs": -10.76
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -2.83,
+    "max_50ms_rms_dbfs": -10.81
+   }
+  },
+  {
+   "id": "vines",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/vines-c.wav",
+   "source_sha256": "d689c84460b803b89cd3514b257216ab1ba194c1927480491c4fa58823227645",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/vines.ogg",
+   "ogg_bytes": 7937,
+   "ogg_sha256": "1780cf9739f80365b2c8d6b9f804e174eb92f7e14fb36a97605f2d5345d0505c",
+   "wav_bytes": 43262,
+   "channels": 1,
+   "frames_wav": 21609,
+   "end_granule": 21609,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 21481,
+   "seconds": 0.49,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 20.09,
+   "wav_levels": {
+    "rms_dbfs": -20.0,
+    "peak_dbfs": -2.75,
+    "max_50ms_rms_dbfs": -14.75
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -20.05,
+    "peak_dbfs": -2.88,
+    "max_50ms_rms_dbfs": -14.88
+   }
+  },
+  {
+   "id": "belt_reverse",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/belt_reverse-c.wav",
+   "source_sha256": "39f8a683bfeb37253a6e5fd6acf93f2297e0973f4b61584a80ad21cc90853e49",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/belt_reverse.ogg",
+   "ogg_bytes": 7072,
+   "ogg_sha256": "c2708ea913139209313acd9eac76b786705e80f3b2d91652c5678e436fff3278",
+   "wav_bytes": 30914,
+   "channels": 1,
+   "frames_wav": 15435,
+   "end_granule": 15435,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 15307,
+   "seconds": 0.35,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 25.56,
+   "wav_levels": {
+    "rms_dbfs": -20.0,
+    "peak_dbfs": -4.28,
+    "max_50ms_rms_dbfs": -14.07
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -20.02,
+    "peak_dbfs": -4.24,
+    "max_50ms_rms_dbfs": -14.15
+   }
+  },
+  {
+   "id": "gate_open",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/gate_open-c.wav",
+   "source_sha256": "bd04a6b817dafed10d9391abf89738541f9135928c13aee4b33e65f883148f28",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/gate_open.ogg",
+   "ogg_bytes": 10642,
+   "ogg_sha256": "094c3b4128dce6d54cdc78b1e1397422cc1b81d8a64f42332a94347c78c51e2e",
+   "wav_bytes": 63548,
+   "channels": 1,
+   "frames_wav": 31752,
+   "end_granule": 31752,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 31624,
+   "seconds": 0.72,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.75,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -2.97,
+    "max_50ms_rms_dbfs": -12.67
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.95,
+    "peak_dbfs": -3.16,
+    "max_50ms_rms_dbfs": -12.64
+   }
+  },
+  {
+   "id": "gate_travel",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/gate_travel-c.wav",
+   "source_sha256": "d44a85311bc82641a1192e35bc48174117ea6eaa7e137abd698b73834641e6ba",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/gate_travel.ogg",
+   "ogg_bytes": 8275,
+   "ogg_sha256": "19f1537c9178f441ba2392d47f047fcac1c63dec17cf20739dc3ffeddea4c4f2",
+   "wav_bytes": 39734,
+   "channels": 1,
+   "frames_wav": 19845,
+   "end_granule": 19845,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 19717,
+   "seconds": 0.45,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 23.51,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -3.13,
+    "max_50ms_rms_dbfs": -10.99
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -18.01,
+    "peak_dbfs": -3.05,
+    "max_50ms_rms_dbfs": -11.07
+   }
+  },
+  {
+   "id": "bush_rustle",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/bush_rustle-c.wav",
+   "source_sha256": "91c63b8ff56d275451afa39b8907305fe5d253a691a38fcb9b8c56021885a113",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/bush_rustle.ogg",
+   "ogg_bytes": 5905,
+   "ogg_sha256": "de74f4ba98f5beeaf0136b42e41af7a2bd1286c4a0f0ba5e59c2f4e476605689",
+   "wav_bytes": 15920,
+   "channels": 1,
+   "frames_wav": 7938,
+   "end_granule": 7938,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 7810,
+   "seconds": 0.18,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 14.17,
+   "wav_levels": {
+    "rms_dbfs": -24.0,
+    "peak_dbfs": -3.97,
+    "max_50ms_rms_dbfs": -18.73
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -24.25,
+    "peak_dbfs": -4.0,
+    "max_50ms_rms_dbfs": -19.07
+   }
+  },
+  {
+   "id": "collapse_warning",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/collapse_warning-c.wav",
+   "source_sha256": "911b9fc108f0bf3fb1edbf169cafbf2c8d42afe7db298b110825ecd14cc64ff4",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/collapse_warning.ogg",
+   "ogg_bytes": 9462,
+   "ogg_sha256": "25bf375433b0e2f7069221827e8e8d63a399216758aacd87f61e7b8a6aecec26",
+   "wav_bytes": 79424,
+   "channels": 1,
+   "frames_wav": 39690,
+   "end_granule": 39690,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 40640,
+   "seconds": 0.9,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 38.51,
+   "wav_levels": {
+    "rms_dbfs": -17.0,
+    "peak_dbfs": -3.02,
+    "max_50ms_rms_dbfs": -10.63
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.06,
+    "peak_dbfs": -3.04,
+    "max_50ms_rms_dbfs": -10.61
+   }
+  },
+  {
+   "id": "portal",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/portal-c.wav",
+   "source_sha256": "863afaae199324a98e51ea8ab044f9469d757f3bae8f278be1cddf952cd974ca",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/portal.ogg",
+   "ogg_bytes": 14944,
+   "ogg_sha256": "c6e1295d4c70d6fafd0a66c18205582c96a0aa0cc09dae445d939d2b0d176a49",
+   "wav_bytes": 90008,
+   "channels": 1,
+   "frames_wav": 44982,
+   "end_granule": 44982,
+   "audio_pages": 2,
+   "frames_ffmpeg_decode": 44982,
+   "seconds": 1.02,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.36,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -7.94
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.98,
+    "peak_dbfs": -1.33,
+    "max_50ms_rms_dbfs": -7.94
+   }
+  },
+  {
+   "id": "soul_pickup",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/soul_pickup-c.wav",
+   "source_sha256": "a9d8c65d63e0c0fd6549b79393353f9adf580c74c42623c000e7965bb9c4aab1",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/soul_pickup.ogg",
+   "ogg_bytes": 5421,
+   "ogg_sha256": "0199b2dbcbaa1e9d6a9a81efbfda21ac9b122ffa7e43b9342e2cf034ad4c9190",
+   "wav_bytes": 11510,
+   "channels": 1,
+   "frames_wav": 5733,
+   "end_granule": 5733,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 5605,
+   "seconds": 0.13,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 27.46,
+   "wav_levels": {
+    "rms_dbfs": -20.0,
+    "peak_dbfs": -6.62,
+    "max_50ms_rms_dbfs": -16.23
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -19.93,
+    "peak_dbfs": -6.63,
+    "max_50ms_rms_dbfs": -16.26
+   }
+  },
+  {
+   "id": "card_offer",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/card_offer-c.wav",
+   "source_sha256": "dc9e80e00c01b5dce93a1942a9a0c8ed3938d18f526eff485525b5f041c533b9",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/card_offer.ogg",
+   "ogg_bytes": 8093,
+   "ogg_sha256": "11bfec230f4efdd2cc091fcbfac0b14528c40a9b848ed29dc5a061e5bc11dbbe",
+   "wav_bytes": 40616,
+   "channels": 1,
+   "frames_wav": 20286,
+   "end_granule": 20286,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 20158,
+   "seconds": 0.46,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 28.65,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -4.37,
+    "max_50ms_rms_dbfs": -13.77
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.96,
+    "peak_dbfs": -4.54,
+    "max_50ms_rms_dbfs": -13.78
+   }
+  },
+  {
+   "id": "card_pick",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/card_pick-c.wav",
+   "source_sha256": "5c9aa1ccea986191cf2616f2e657d6da61feddf3ba593421e777252a247fec9d",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/card_pick.ogg",
+   "ogg_bytes": 6483,
+   "ogg_sha256": "bb88c4acf1b3e5e2bcc3db5c0b709a771af26c0510bb9b6ea4a710fb957feca4",
+   "wav_bytes": 30032,
+   "channels": 1,
+   "frames_wav": 14994,
+   "end_granule": 14994,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 14866,
+   "seconds": 0.34,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 30.75,
+   "wav_levels": {
+    "rms_dbfs": -17.0,
+    "peak_dbfs": -3.51,
+    "max_50ms_rms_dbfs": -12.12
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -16.92,
+    "peak_dbfs": -3.49,
+    "max_50ms_rms_dbfs": -12.08
+   }
+  },
+  {
+   "id": "match_start",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/match_start-c.wav",
+   "source_sha256": "e2d6a1dcf6364e6ecf4dab7cd099e83a4e8fba0a8a0e22bf18ff47fc2e1b2c57",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/match_start.ogg",
+   "ogg_bytes": 9463,
+   "ogg_sha256": "d229a5bd34c7a765b80d00f5d3aed18a53038242c26a78f2e3fa18d731f53c23",
+   "wav_bytes": 74132,
+   "channels": 1,
+   "frames_wav": 37044,
+   "end_granule": 37044,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 36916,
+   "seconds": 0.84,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 35.39,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -1.32,
+    "max_50ms_rms_dbfs": -10.8
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.94,
+    "peak_dbfs": -1.24,
+    "max_50ms_rms_dbfs": -10.76
+   }
+  },
+  {
+   "id": "results",
+   "folder": "sfx",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/results-b.wav",
+   "source_sha256": "708b448442dff523c8e814f13e5c2aabb097940065db2f7bc7cc38f1b17e9f6f",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/results.ogg",
+   "ogg_bytes": 8356,
+   "ogg_sha256": "37830802c94e952583ddd1ca74bd594dda12d89d3008d0cd58a81b5d0bfa2fe7",
+   "wav_bytes": 59138,
+   "channels": 1,
+   "frames_wav": 29547,
+   "end_granule": 29547,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 30528,
+   "seconds": 0.67,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 33.47,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -6.7,
+    "max_50ms_rms_dbfs": -13.63
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -18.09,
+    "peak_dbfs": -6.7,
+    "max_50ms_rms_dbfs": -13.61
+   }
+  },
+  {
+   "id": "victory",
+   "folder": "sfx",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/victory-b.wav",
+   "source_sha256": "720ff645751d392660b968cd10f365f966a887a3d1d28cbbc2dd0532f6dc2870",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/victory.ogg",
+   "ogg_bytes": 14874,
+   "ogg_sha256": "5500419240cc5a17893ab1786795fe79c36a0a799c2363f1e9c098153d8a3e26",
+   "wav_bytes": 145574,
+   "channels": 1,
+   "frames_wav": 72765,
+   "end_granule": 72765,
+   "audio_pages": 2,
+   "frames_ffmpeg_decode": 72765,
+   "seconds": 1.65,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 34.26,
+   "wav_levels": {
+    "rms_dbfs": -16.0,
+    "peak_dbfs": -2.4,
+    "max_50ms_rms_dbfs": -11.68
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.96,
+    "peak_dbfs": -2.37,
+    "max_50ms_rms_dbfs": -11.64
+   }
+  },
+  {
+   "id": "ui_move",
+   "folder": "sfx",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/ui_move-b.wav",
+   "source_sha256": "19890571117681dd8e009a3a7792baf5a2f86f3d0c80bff7342ea3ba9bc267a4",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ui_move.ogg",
+   "ogg_bytes": 4472,
+   "ogg_sha256": "2395c97cf2c0e1641e5724cb4f3921712e4f404757ccec368248c46eac80e783",
+   "wav_bytes": 4012,
+   "channels": 1,
+   "frames_wav": 1984,
+   "end_granule": 1984,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 1856,
+   "seconds": 0.045,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 34.15,
+   "wav_levels": {
+    "rms_dbfs": -24.0,
+    "peak_dbfs": -11.99,
+    "max_50ms_rms_dbfs": -24.0
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -23.71,
+    "peak_dbfs": -12.17,
+    "max_50ms_rms_dbfs": -23.71
+   }
+  },
+  {
+   "id": "ui_select",
+   "folder": "sfx",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/ui_select-b.wav",
+   "source_sha256": "767c111c4ee728da21cd0d082610f2280485133774106fe5c5d248360eca6f80",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ui_select.ogg",
+   "ogg_bytes": 5097,
+   "ogg_sha256": "9bc019d184343d26c1528be07432b8df0b6458e635b0cb2b8f2938067e112172",
+   "wav_bytes": 8864,
+   "channels": 1,
+   "frames_wav": 4410,
+   "end_granule": 4410,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 4282,
+   "seconds": 0.1,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 31.14,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -10.99
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.81,
+    "peak_dbfs": -0.88,
+    "max_50ms_rms_dbfs": -10.92
+   }
+  },
+  {
+   "id": "ui_cancel",
+   "folder": "sfx",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/ui_cancel-b.wav",
+   "source_sha256": "6d2fec786d3c0e555a677e56644fee82d0afb97ba92f200282b447e4826b66bc",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ui_cancel.ogg",
+   "ogg_bytes": 5168,
+   "ogg_sha256": "e878a1a96f20c742fe4e4da51e096adef3dfbafb5af20dfe8dec611fb382a1ef",
+   "wav_bytes": 8864,
+   "channels": 1,
+   "frames_wav": 4410,
+   "end_granule": 4410,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 4282,
+   "seconds": 0.1,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 29.42,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -11.01
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.84,
+    "peak_dbfs": -0.93,
+    "max_50ms_rms_dbfs": -10.98
+   }
+  },
+  {
+   "id": "story_text",
+   "folder": "sfx",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/story_text-b.wav",
+   "source_sha256": "9407ae0df3948c48be08b2db45fdf3d2774dfd12d8efa41d66b24bb19b3732ee",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/story_text.ogg",
+   "ogg_bytes": 4481,
+   "ogg_sha256": "4134fbcdcd407c34f69d62a01acee206713ee727c10b3856c209cfeb977b0c14",
+   "wav_bytes": 2866,
+   "channels": 1,
+   "frames_wav": 1411,
+   "end_granule": 1411,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 1283,
+   "seconds": 0.032,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 37.37,
+   "wav_levels": {
+    "rms_dbfs": -28.0,
+    "peak_dbfs": -16.25,
+    "max_50ms_rms_dbfs": -28.0
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -27.57,
+    "peak_dbfs": -16.19,
+    "max_50ms_rms_dbfs": -27.57
+   }
+  },
+  {
+   "id": "story_advance",
+   "folder": "sfx",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/story_advance-b.wav",
+   "source_sha256": "2c6e4c4330c294f858a416663cfbabe409bca091c113b8570088661def0e4f12",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/story_advance.ogg",
+   "ogg_bytes": 5053,
+   "ogg_sha256": "156bc23702d48f8172bb817067829c643f849bba8d30b9ad657688367e0996a2",
+   "wav_bytes": 7542,
+   "channels": 1,
+   "frames_wav": 3749,
+   "end_granule": 3749,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 3621,
+   "seconds": 0.085,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 26.5,
+   "wav_levels": {
+    "rms_dbfs": -23.0,
+    "peak_dbfs": -10.83,
+    "max_50ms_rms_dbfs": -20.72
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -22.94,
+    "peak_dbfs": -10.75,
+    "max_50ms_rms_dbfs": -20.81
+   }
+  },
+  {
+   "id": "music_title",
+   "folder": "music",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/music_title-b.wav",
+   "source_sha256": "9346f75fa4017bb32e447901f76d224311919fbb396e0bdf9cbb75505e7ad7a3",
+   "ogg": "smash-nine-prototype/assets/audio/music/music_title.ogg",
+   "ogg_bytes": 413744,
+   "ogg_sha256": "d8d8687d2b890668d9e512c84608fcb83c88dd05fbeadbe34f35f8dda8ac08dc",
+   "wav_bytes": 6773804,
+   "channels": 2,
+   "frames_wav": 1693440,
+   "end_granule": 1693440,
+   "audio_pages": 38,
+   "frames_ffmpeg_decode": 1693440,
+   "seconds": 38.4,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 36.13,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -5.44,
+    "max_50ms_rms_dbfs": -12.1
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.95,
+    "peak_dbfs": -5.36,
+    "max_50ms_rms_dbfs": -12.09
+   },
+   "seam_wav": {
+    "step_fs": 0.00043,
+    "rms10_before_db": -19.39,
+    "rms10_after_db": -14.61,
+    "rms10_diff_db": 4.78,
+    "rms20_vs_400_db": 0.15,
+    "pass": true
+   },
+   "seam_ogg": {
+    "step_fs": 0.00342,
+    "rms10_before_db": -19.34,
+    "rms10_after_db": -14.61,
+    "rms10_diff_db": 4.73,
+    "rms20_vs_400_db": 0.11,
+    "pass": true
+   }
+  },
+  {
+   "id": "music_select",
+   "folder": "music",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/music_select-b.wav",
+   "source_sha256": "879231345aa04e25abfaa7e21538b3cf075b1ee1bc786e642881684aa04162fa",
+   "ogg": "smash-nine-prototype/assets/audio/music/music_select.ogg",
+   "ogg_bytes": 367518,
+   "ogg_sha256": "5e149576477a4a9afba383c98e1497f18e925304c6d1bdbb73bfbaffcd80b52c",
+   "wav_bytes": 5644844,
+   "channels": 2,
+   "frames_wav": 1411200,
+   "end_granule": 1411200,
+   "audio_pages": 32,
+   "frames_ffmpeg_decode": 1411200,
+   "seconds": 32.0,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 36.35,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -5.16,
+    "max_50ms_rms_dbfs": -12.88
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.95,
+    "peak_dbfs": -5.15,
+    "max_50ms_rms_dbfs": -12.82
+   },
+   "seam_wav": {
+    "step_fs": 0.00159,
+    "rms10_before_db": -20.22,
+    "rms10_after_db": -16.11,
+    "rms10_diff_db": 4.11,
+    "rms20_vs_400_db": -0.72,
+    "pass": true
+   },
+   "seam_ogg": {
+    "step_fs": 0.00269,
+    "rms10_before_db": -20.18,
+    "rms10_after_db": -16.07,
+    "rms10_diff_db": 4.11,
+    "rms20_vs_400_db": -0.72,
+    "pass": true
+   }
+  },
+  {
+   "id": "music_battle",
+   "folder": "music",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/music_battle-b.wav",
+   "source_sha256": "be3868861ed030ce02defb344ac19d88a421efcde2cf5e8a4dd9b72fc3a96721",
+   "ogg": "smash-nine-prototype/assets/audio/music/music_battle.ogg",
+   "ogg_bytes": 507980,
+   "ogg_sha256": "8b986e74e4d0927bf161b70336ed0ab036878c31992e8f696b030a6e8f4e570c",
+   "wav_bytes": 6350444,
+   "channels": 2,
+   "frames_wav": 1587600,
+   "end_granule": 1587600,
+   "audio_pages": 36,
+   "frames_ffmpeg_decode": 1587600,
+   "seconds": 36.0,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 33.56,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -3.77,
+    "max_50ms_rms_dbfs": -12.37
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.96,
+    "peak_dbfs": -3.78,
+    "max_50ms_rms_dbfs": -12.34
+   },
+   "seam_wav": {
+    "step_fs": 0.00186,
+    "rms10_before_db": -19.98,
+    "rms10_after_db": -16.54,
+    "rms10_diff_db": 3.44,
+    "rms20_vs_400_db": 0.0,
+    "pass": true
+   },
+   "seam_ogg": {
+    "step_fs": 0.00128,
+    "rms10_before_db": -20.0,
+    "rms10_after_db": -16.46,
+    "rms10_diff_db": 3.54,
+    "rms20_vs_400_db": 0.01,
+    "pass": true
+   }
+  },
+  {
+   "id": "music_story",
+   "folder": "music",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/music_story-b.wav",
+   "source_sha256": "df0e2b7581363e874653a556603e7f17ade6d60425058f2465a61164044f25b7",
+   "ogg": "smash-nine-prototype/assets/audio/music/music_story.ogg",
+   "ogg_bytes": 330750,
+   "ogg_sha256": "889a6e5b48a19a63f8254ac92a83feed8164fcdc77c31e7e767d1e2adbc6dc59",
+   "wav_bytes": 7526444,
+   "channels": 2,
+   "frames_wav": 1881600,
+   "end_granule": 1881600,
+   "audio_pages": 43,
+   "frames_ffmpeg_decode": 1881600,
+   "seconds": 42.6667,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 34.82,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -6.81,
+    "max_50ms_rms_dbfs": -14.97
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.96,
+    "peak_dbfs": -6.79,
+    "max_50ms_rms_dbfs": -14.93
+   },
+   "seam_wav": {
+    "step_fs": 0.00058,
+    "rms10_before_db": -22.58,
+    "rms10_after_db": -19.83,
+    "rms10_diff_db": 2.75,
+    "rms20_vs_400_db": -1.93,
+    "pass": true
+   },
+   "seam_ogg": {
+    "step_fs": 0.00208,
+    "rms10_before_db": -22.5,
+    "rms10_after_db": -19.76,
+    "rms10_diff_db": 2.74,
+    "rms20_vs_400_db": -1.91,
+    "pass": true
+   }
+  },
+  {
+   "id": "music_results",
+   "folder": "music",
+   "style": "b",
+   "picked_by": "per-sound document",
+   "source": "art/audio_bakeoff/music_results-b.wav",
+   "source_sha256": "98db5805e3512cd0c0593cb25b55fba7d4f680da19ea62c897488ec5710009e7",
+   "ogg": "smash-nine-prototype/assets/audio/music/music_results.ogg",
+   "ogg_bytes": 275386,
+   "ogg_sha256": "a7162920cba778e27a4441a7b51a8e92c5a7d0d8e5b69be16bab8ac4a4e87e2f",
+   "wav_bytes": 5080364,
+   "channels": 2,
+   "frames_wav": 1270080,
+   "end_granule": 1270080,
+   "audio_pages": 29,
+   "frames_ffmpeg_decode": 1270080,
+   "seconds": 28.8,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 35.22,
+   "wav_levels": {
+    "rms_dbfs": -18.0,
+    "peak_dbfs": -6.12,
+    "max_50ms_rms_dbfs": -13.05
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -17.96,
+    "peak_dbfs": -6.06,
+    "max_50ms_rms_dbfs": -12.97
+   },
+   "seam_wav": {
+    "step_fs": 0.00125,
+    "rms10_before_db": -21.44,
+    "rms10_after_db": -18.59,
+    "rms10_diff_db": 2.85,
+    "rms20_vs_400_db": -1.75,
+    "pass": true
+   },
+   "seam_ogg": {
+    "step_fs": 0.00024,
+    "rms10_before_db": -21.42,
+    "rms10_after_db": -18.53,
+    "rms10_diff_db": 2.89,
+    "rms20_vs_400_db": -1.77,
+    "pass": true
+   }
+  },
+  {
+   "id": "swing",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/swing-c.wav",
+   "source_sha256": "5a3b563f9838d65d2e0fa4b9930bb4d6b45d1e2e6e50d25357f8c56de7a91fb7",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/swing.ogg",
+   "ogg_bytes": 6836,
+   "ogg_sha256": "7cd91e77331ee055dbe4e5580f61c86f7e3924ce54dc5bd1a50f644311c91ac3",
+   "wav_bytes": 18566,
+   "channels": 1,
+   "frames_wav": 9261,
+   "end_granule": 9261,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 9792,
+   "seconds": 0.21,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 16.44,
+   "wav_levels": {
+    "rms_dbfs": -15.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -9.66
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -15.39,
+    "peak_dbfs": -0.41,
+    "max_50ms_rms_dbfs": -9.79
+   }
+  },
+  {
+   "id": "skill_cast",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/skill_cast-c.wav",
+   "source_sha256": "2e38804a7b8994297cfdcea99c033c5a0a8b8ace822ad8c81170ca026b142f81",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/skill_cast.ogg",
+   "ogg_bytes": 6282,
+   "ogg_sha256": "527f0c92ee6f128e08d5067b3b297e977e9c408782507c661f3bb517db79d176",
+   "wav_bytes": 21212,
+   "channels": 1,
+   "frames_wav": 10584,
+   "end_granule": 10584,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 10456,
+   "seconds": 0.24,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 26.91,
+   "wav_levels": {
+    "rms_dbfs": -15.0,
+    "peak_dbfs": -1.72,
+    "max_50ms_rms_dbfs": -9.28
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -14.92,
+    "peak_dbfs": -1.64,
+    "max_50ms_rms_dbfs": -9.26
+   }
+  },
+  {
+   "id": "ult_start",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/ult_start-c.wav",
+   "source_sha256": "60e9d3b2d0097c528c50027f10c56df3b95700c8ae983a124b9d64567e9a70bb",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/ult_start.ogg",
+   "ogg_bytes": 12936,
+   "ogg_sha256": "640d8ee6ad76528938f5c9ec8bcb1f960f7362b3b0f5020b79cc8d31b623e039",
+   "wav_bytes": 79424,
+   "channels": 1,
+   "frames_wav": 39690,
+   "end_granule": 39690,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 40640,
+   "seconds": 0.9,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 32.75,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -7.76
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -14.05,
+    "peak_dbfs": -1.14,
+    "max_50ms_rms_dbfs": -7.71
+   }
+  },
+  {
+   "id": "monster_attack",
+   "folder": "sfx",
+   "style": "c",
+   "picked_by": "style document",
+   "source": "art/audio_bakeoff/monster_attack-c.wav",
+   "source_sha256": "d422d303820533140b812561a6e8a13db884cdc5091158de78c5dfd1db6facd9",
+   "ogg": "smash-nine-prototype/assets/audio/sfx/monster_attack.ogg",
+   "ogg_bytes": 8397,
+   "ogg_sha256": "853eb3b28e90d388011e5bbbe7a5fa8664a83f4df223afa53063adf51875634c",
+   "wav_bytes": 20330,
+   "channels": 1,
+   "frames_wav": 10143,
+   "end_granule": 10143,
+   "audio_pages": 1,
+   "frames_ffmpeg_decode": 10015,
+   "seconds": 0.23,
+   "ffmpeg_lag_samples": 0,
+   "ffmpeg_snr_db": 34.19,
+   "wav_levels": {
+    "rms_dbfs": -14.0,
+    "peak_dbfs": -1.0,
+    "max_50ms_rms_dbfs": -8.49
+   },
+   "ogg_levels_ffmpeg": {
+    "rms_dbfs": -13.9,
+    "peak_dbfs": -0.85,
+    "max_50ms_rms_dbfs": -8.45
+   }
+  }
+ ],
+ "totals": {
+  "sfx_ogg_bytes": 630805,
+  "music_ogg_bytes": 1895378,
+  "wav_bytes": 34177830,
+  "count": 77,
+  "failures": []
+ }
+}

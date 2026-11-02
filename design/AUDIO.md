@@ -1,8 +1,10 @@
 # 사운드 연결 계약 · SYS-05
 
-음원은 아직 없다. 채택 파일은 효과음 `assets/audio/sfx/<id>.ogg|wav`, 음악 `assets/audio/music/<id>.ogg|wav`에 배치한다. AUD-01a의 12개 id는 그대로 유지하며 swing_light/heavy는 swing으로 폴백한다.
+채택 파일은 효과음 `assets/audio/sfx/<id>.ogg|wav`, 음악 `assets/audio/music/<id>.ogg|wav`에 배치한다. AUD-01a의 12개 id는 그대로 유지하며 swing_light/heavy는 swing으로 폴백한다.
 
-매니저는 Main._ready에서 SceneTree 루트에 1회 생성한다(autoload 아님). 장면 재시작과 옵션/타이틀 전환을 넘어 유지된다. 버스 레이아웃 파일 없이 Master 아래 Music/SFX를 코드로 생성한다. 모든 효과음은 요청 id 및 최종 폴백 id 기준 동시 제한, 카탈로그의 ID별 `gap_ms`(생략하면 40ms) 간격, 전역 24 voice 풀을 적용한다. 음악은 정상 상태 1 player, 0.5초 전환 동안만 이전 player를 겹친다.
+10-29 소리 적용(`reports/apply-sound-2026-10-29/`): 아래 77개 id 모두에 사용자가 고른 파일이 OGG Vorbis(q6, 44.1kHz)로 들어 있다. 효과음은 C 스타일, 예외 7종(ui_move·ui_select·ui_cancel·story_text·story_advance·victory·results)은 B, 음악 5곡은 B다. 음악 `.import`는 `loop=true`(loop_offset 0)이고 길이는 마디 끝에 정확히 맞는다. 모든 id가 자기 파일을 가지므로 폴백은 파일이 빠졌을 때만 쓰인다. 출처 WAV, 해시, 측정값은 그 폴더의 `manifest.json`에 있다.
+
+매니저는 Main._ready에서 SceneTree 루트에 1회 생성한다(autoload 아님). 게임 시작 때는 엔진이 Main을 루트보다 먼저 준비시켜 루트가 add_child를 거부하므로, 그때는 프레임 끝에 붙이고 그 사이 `find()`가 같은 매니저를 돌려준다. 그 사이의 음악 요청은 `_ready`(웹은 첫 입력)에서 시작하고 효과음 요청은 버린다(10-29, 그 전에는 실제 게임에서 매니저가 없어 소리가 나지 않았다). 장면 재시작과 옵션/타이틀 전환을 넘어 유지된다. 버스 레이아웃 파일 없이 Master 아래 Music/SFX를 코드로 생성한다. 모든 효과음은 요청 id 및 최종 폴백 id 기준 동시 제한, 카탈로그의 ID별 `gap_ms`(생략하면 40ms) 간격, 전역 24 voice 풀을 적용한다. 음악은 정상 상태 1 player, 0.5초 전환 동안만 이전 player를 겹친다.
 
 | 그룹 | id | 재생 시점·변경 이유 | 훅 (file:function) | fallback id | max voices | gap_ms | world |
 |---|---|---|---|---|---:|---:|---|

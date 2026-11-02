@@ -1,0 +1,1114 @@
+{
+  "task": "SART-03",
+  "status": "candidate",
+  "note_ko": "열린 한 방향 붓획으로 다시 편집한 후보. 글자처럼 보이는 획을 줄였고 부적 마스크 밖과 하단 25%는 원본 픽셀을 복원했다. 채택·게임 반영은 하지 않았다.",
+  "source": "smash-nine-prototype/assets/art/story/cg_root.png",
+  "raw": "art/raw/story/cg_root-v3_raw.png",
+  "raw_sha256": "585fe94db60a75c029629119d43b7fcc1631317c764c95bb509e0a719d40711a",
+  "mask": "reports/codex-sart-03/cg-root-paper-mask-v3.png",
+  "edit_alpha": "reports/codex-sart-03/cg-root-edit-alpha-v3.png",
+  "metrics": {
+    "size": [
+      1600,
+      900
+    ],
+    "mode": "RGB",
+    "opaque": true,
+    "raw_size": [
+      1672,
+      941
+    ],
+    "processing": "full image LANCZOS resize to 1600x900, no crop; local paper-only composite onto original",
+    "mask_pixels": 107849,
+    "mask_percent": 7.489514,
+    "outside_mask_pixels": 1332151,
+    "raw_outside_mask_rgb_MAE_0_255": 10.208957,
+    "final_outside_mask_rgb_MAE_0_255": 0.0,
+    "final_outside_mask_max_channel_difference": 0,
+    "final_inside_mask_rgb_MAE_0_255": 32.915342,
+    "changed_pixel_percent": 6.987847,
+    "bottom_quarter_rgb_MAE_0_255": 0.0,
+    "paper_roi_count": 40
+  },
+  "localization": {
+    "roi_coordinates": "source 1600x900",
+    "silhouette_selection": "largest warm-neutral connected component in each paper ROI, fill mark holes",
+    "dilation_px": 5,
+    "feather_gaussian_sigma_px": 1.2,
+    "alpha_less_than_2_zeroed": true,
+    "bottom_quarter_locked": true,
+    "rois": [
+      {
+        "id": 1,
+        "roi_xyxy": [
+          195,
+          381,
+          306,
+          507
+        ],
+        "original": {
+          "pixels": 2381,
+          "bbox": [
+            10,
+            22,
+            101,
+            108
+          ]
+        },
+        "generated": {
+          "pixels": 2571,
+          "bbox": [
+            5,
+            9,
+            91,
+            112
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "roi_xyxy": [
+          244,
+          348,
+          282,
+          390
+        ],
+        "original": {
+          "pixels": 203,
+          "bbox": [
+            3,
+            10,
+            33,
+            32
+          ]
+        },
+        "generated": {
+          "pixels": 230,
+          "bbox": [
+            5,
+            2,
+            30,
+            33
+          ]
+        }
+      },
+      {
+        "id": 3,
+        "roi_xyxy": [
+          284,
+          372,
+          333,
+          431
+        ],
+        "original": {
+          "pixels": 537,
+          "bbox": [
+            6,
+            9,
+            42,
+            51
+          ]
+        },
+        "generated": {
+          "pixels": 520,
+          "bbox": [
+            5,
+            4,
+            39,
+            51
+          ]
+        }
+      },
+      {
+        "id": 4,
+        "roi_xyxy": [
+          320,
+          280,
+          363,
+          328
+        ],
+        "original": {
+          "pixels": 297,
+          "bbox": [
+            4,
+            8,
+            38,
+            37
+          ]
+        },
+        "generated": {
+          "pixels": 313,
+          "bbox": [
+            6,
+            5,
+            33,
+            40
+          ]
+        }
+      },
+      {
+        "id": 5,
+        "roi_xyxy": [
+          351,
+          333,
+          401,
+          393
+        ],
+        "original": {
+          "pixels": 544,
+          "bbox": [
+            3,
+            8,
+            46,
+            50
+          ]
+        },
+        "generated": {
+          "pixels": 602,
+          "bbox": [
+            12,
+            3,
+            42,
+            55
+          ]
+        }
+      },
+      {
+        "id": 6,
+        "roi_xyxy": [
+          405,
+          371,
+          447,
+          431
+        ],
+        "original": {
+          "pixels": 664,
+          "bbox": [
+            0,
+            4,
+            42,
+            57
+          ]
+        },
+        "generated": {
+          "pixels": 623,
+          "bbox": [
+            0,
+            0,
+            42,
+            55
+          ]
+        }
+      },
+      {
+        "id": 7,
+        "roi_xyxy": [
+          433,
+          380,
+          482,
+          468
+        ],
+        "original": {
+          "pixels": 1098,
+          "bbox": [
+            0,
+            0,
+            44,
+            74
+          ]
+        },
+        "generated": {
+          "pixels": 1037,
+          "bbox": [
+            0,
+            0,
+            38,
+            75
+          ]
+        }
+      },
+      {
+        "id": 8,
+        "roi_xyxy": [
+          443,
+          291,
+          469,
+          341
+        ],
+        "original": {
+          "pixels": 267,
+          "bbox": [
+            1,
+            12,
+            24,
+            49
+          ]
+        },
+        "generated": {
+          "pixels": 327,
+          "bbox": [
+            4,
+            10,
+            20,
+            50
+          ]
+        }
+      },
+      {
+        "id": 9,
+        "roi_xyxy": [
+          496,
+          283,
+          529,
+          328
+        ],
+        "original": {
+          "pixels": 203,
+          "bbox": [
+            2,
+            10,
+            27,
+            34
+          ]
+        },
+        "generated": {
+          "pixels": 182,
+          "bbox": [
+            4,
+            7,
+            25,
+            36
+          ]
+        }
+      },
+      {
+        "id": 10,
+        "roi_xyxy": [
+          498,
+          324,
+          544,
+          397
+        ],
+        "original": {
+          "pixels": 722,
+          "bbox": [
+            0,
+            9,
+            46,
+            59
+          ]
+        },
+        "generated": {
+          "pixels": 671,
+          "bbox": [
+            11,
+            6,
+            46,
+            60
+          ]
+        }
+      },
+      {
+        "id": 11,
+        "roi_xyxy": [
+          540,
+          293,
+          569,
+          330
+        ],
+        "original": {
+          "pixels": 126,
+          "bbox": [
+            5,
+            7,
+            22,
+            25
+          ]
+        },
+        "generated": {
+          "pixels": 138,
+          "bbox": [
+            6,
+            4,
+            23,
+            26
+          ]
+        }
+      },
+      {
+        "id": 12,
+        "roi_xyxy": [
+          577,
+          344,
+          616,
+          400
+        ],
+        "original": {
+          "pixels": 262,
+          "bbox": [
+            9,
+            12,
+            30,
+            41
+          ]
+        },
+        "generated": {
+          "pixels": 292,
+          "bbox": [
+            10,
+            7,
+            28,
+            43
+          ]
+        }
+      },
+      {
+        "id": 13,
+        "roi_xyxy": [
+          563,
+          410,
+          627,
+          515
+        ],
+        "original": {
+          "pixels": 1830,
+          "bbox": [
+            0,
+            11,
+            57,
+            90
+          ]
+        },
+        "generated": {
+          "pixels": 2242,
+          "bbox": [
+            0,
+            7,
+            64,
+            105
+          ]
+        }
+      },
+      {
+        "id": 14,
+        "roi_xyxy": [
+          628,
+          297,
+          667,
+          344
+        ],
+        "original": {
+          "pixels": 246,
+          "bbox": [
+            4,
+            10,
+            32,
+            35
+          ]
+        },
+        "generated": {
+          "pixels": 264,
+          "bbox": [
+            5,
+            8,
+            32,
+            41
+          ]
+        }
+      },
+      {
+        "id": 15,
+        "roi_xyxy": [
+          680,
+          280,
+          715,
+          326
+        ],
+        "original": {
+          "pixels": 93,
+          "bbox": [
+            11,
+            10,
+            26,
+            31
+          ]
+        },
+        "generated": {
+          "pixels": 172,
+          "bbox": [
+            12,
+            4,
+            30,
+            32
+          ]
+        }
+      },
+      {
+        "id": 16,
+        "roi_xyxy": [
+          720,
+          265,
+          746,
+          305
+        ],
+        "original": {
+          "pixels": 36,
+          "bbox": [
+            7,
+            12,
+            17,
+            25
+          ]
+        },
+        "generated": {
+          "pixels": 87,
+          "bbox": [
+            7,
+            8,
+            20,
+            27
+          ]
+        }
+      },
+      {
+        "id": 17,
+        "roi_xyxy": [
+          767,
+          258,
+          803,
+          301
+        ],
+        "original": {
+          "pixels": 231,
+          "bbox": [
+            6,
+            8,
+            27,
+            33
+          ]
+        },
+        "generated": {
+          "pixels": 194,
+          "bbox": [
+            10,
+            7,
+            31,
+            35
+          ]
+        }
+      },
+      {
+        "id": 18,
+        "roi_xyxy": [
+          838,
+          231,
+          868,
+          269
+        ],
+        "original": {
+          "pixels": 152,
+          "bbox": [
+            9,
+            2,
+            22,
+            26
+          ]
+        },
+        "generated": {
+          "pixels": 173,
+          "bbox": [
+            7,
+            1,
+            19,
+            27
+          ]
+        }
+      },
+      {
+        "id": 19,
+        "roi_xyxy": [
+          350,
+          462,
+          395,
+          511
+        ],
+        "original": {
+          "pixels": 425,
+          "bbox": [
+            0,
+            10,
+            39,
+            44
+          ]
+        },
+        "generated": {
+          "pixels": 465,
+          "bbox": [
+            0,
+            3,
+            35,
+            47
+          ]
+        }
+      },
+      {
+        "id": 20,
+        "roi_xyxy": [
+          447,
+          510,
+          511,
+          575
+        ],
+        "original": {
+          "pixels": 583,
+          "bbox": [
+            8,
+            10,
+            54,
+            51
+          ]
+        },
+        "generated": {
+          "pixels": 649,
+          "bbox": [
+            7,
+            5,
+            49,
+            55
+          ]
+        }
+      },
+      {
+        "id": 21,
+        "roi_xyxy": [
+          835,
+          485,
+          895,
+          553
+        ],
+        "original": {
+          "pixels": 874,
+          "bbox": [
+            0,
+            12,
+            55,
+            58
+          ]
+        },
+        "generated": {
+          "pixels": 940,
+          "bbox": [
+            0,
+            9,
+            52,
+            66
+          ]
+        }
+      },
+      {
+        "id": 22,
+        "roi_xyxy": [
+          925,
+          491,
+          985,
+          581
+        ],
+        "original": {
+          "pixels": 1349,
+          "bbox": [
+            0,
+            16,
+            60,
+            78
+          ]
+        },
+        "generated": {
+          "pixels": 1380,
+          "bbox": [
+            0,
+            10,
+            55,
+            86
+          ]
+        }
+      },
+      {
+        "id": 23,
+        "roi_xyxy": [
+          1038,
+          507,
+          1108,
+          616
+        ],
+        "original": {
+          "pixels": 2109,
+          "bbox": [
+            1,
+            13,
+            61,
+            94
+          ]
+        },
+        "generated": {
+          "pixels": 2338,
+          "bbox": [
+            0,
+            4,
+            62,
+            107
+          ]
+        }
+      },
+      {
+        "id": 24,
+        "roi_xyxy": [
+          1068,
+          437,
+          1114,
+          499
+        ],
+        "original": {
+          "pixels": 471,
+          "bbox": [
+            5,
+            13,
+            40,
+            54
+          ]
+        },
+        "generated": {
+          "pixels": 499,
+          "bbox": [
+            7,
+            11,
+            38,
+            56
+          ]
+        }
+      },
+      {
+        "id": 25,
+        "roi_xyxy": [
+          947,
+          439,
+          991,
+          494
+        ],
+        "original": {
+          "pixels": 328,
+          "bbox": [
+            5,
+            10,
+            35,
+            42
+          ]
+        },
+        "generated": {
+          "pixels": 372,
+          "bbox": [
+            7,
+            8,
+            36,
+            47
+          ]
+        }
+      },
+      {
+        "id": 26,
+        "roi_xyxy": [
+          1169,
+          423,
+          1209,
+          478
+        ],
+        "original": {
+          "pixels": 233,
+          "bbox": [
+            12,
+            11,
+            32,
+            39
+          ]
+        },
+        "generated": {
+          "pixels": 299,
+          "bbox": [
+            7,
+            6,
+            31,
+            42
+          ]
+        }
+      },
+      {
+        "id": 27,
+        "roi_xyxy": [
+          1202,
+          451,
+          1249,
+          503
+        ],
+        "original": {
+          "pixels": 182,
+          "bbox": [
+            25,
+            8,
+            46,
+            33
+          ]
+        },
+        "generated": {
+          "pixels": 221,
+          "bbox": [
+            18,
+            10,
+            44,
+            37
+          ]
+        }
+      },
+      {
+        "id": 28,
+        "roi_xyxy": [
+          1244,
+          414,
+          1291,
+          468
+        ],
+        "original": {
+          "pixels": 438,
+          "bbox": [
+            0,
+            10,
+            42,
+            45
+          ]
+        },
+        "generated": {
+          "pixels": 416,
+          "bbox": [
+            4,
+            7,
+            37,
+            47
+          ]
+        }
+      },
+      {
+        "id": 29,
+        "roi_xyxy": [
+          1197,
+          502,
+          1254,
+          580
+        ],
+        "original": {
+          "pixels": 690,
+          "bbox": [
+            11,
+            12,
+            51,
+            64
+          ]
+        },
+        "generated": {
+          "pixels": 686,
+          "bbox": [
+            16,
+            10,
+            49,
+            68
+          ]
+        }
+      },
+      {
+        "id": 30,
+        "roi_xyxy": [
+          1239,
+          494,
+          1290,
+          566
+        ],
+        "original": {
+          "pixels": 594,
+          "bbox": [
+            0,
+            6,
+            45,
+            58
+          ]
+        },
+        "generated": {
+          "pixels": 469,
+          "bbox": [
+            7,
+            8,
+            39,
+            57
+          ]
+        }
+      },
+      {
+        "id": 31,
+        "roi_xyxy": [
+          1325,
+          486,
+          1376,
+          537
+        ],
+        "original": {
+          "pixels": 401,
+          "bbox": [
+            0,
+            8,
+            44,
+            38
+          ]
+        },
+        "generated": {
+          "pixels": 403,
+          "bbox": [
+            5,
+            7,
+            41,
+            46
+          ]
+        }
+      },
+      {
+        "id": 32,
+        "roi_xyxy": [
+          1332,
+          547,
+          1374,
+          595
+        ],
+        "original": {
+          "pixels": 297,
+          "bbox": [
+            0,
+            10,
+            36,
+            37
+          ]
+        },
+        "generated": {
+          "pixels": 333,
+          "bbox": [
+            0,
+            8,
+            33,
+            43
+          ]
+        }
+      },
+      {
+        "id": 33,
+        "roi_xyxy": [
+          1280,
+          468,
+          1322,
+          509
+        ],
+        "original": {
+          "pixels": 166,
+          "bbox": [
+            3,
+            9,
+            30,
+            28
+          ]
+        },
+        "generated": {
+          "pixels": 168,
+          "bbox": [
+            3,
+            10,
+            28,
+            32
+          ]
+        }
+      },
+      {
+        "id": 34,
+        "roi_xyxy": [
+          1418,
+          439,
+          1466,
+          493
+        ],
+        "original": {
+          "pixels": 258,
+          "bbox": [
+            0,
+            12,
+            38,
+            36
+          ]
+        },
+        "generated": {
+          "pixels": 399,
+          "bbox": [
+            1,
+            14,
+            31,
+            54
+          ]
+        }
+      },
+      {
+        "id": 35,
+        "roi_xyxy": [
+          1402,
+          538,
+          1526,
+          650
+        ],
+        "original": {
+          "pixels": 2283,
+          "bbox": [
+            6,
+            12,
+            112,
+            86
+          ]
+        },
+        "generated": {
+          "pixels": 2948,
+          "bbox": [
+            10,
+            4,
+            110,
+            104
+          ]
+        }
+      },
+      {
+        "id": 36,
+        "roi_xyxy": [
+          1182,
+          558,
+          1311,
+          667
+        ],
+        "original": {
+          "pixels": 2166,
+          "bbox": [
+            11,
+            15,
+            116,
+            89
+          ]
+        },
+        "generated": {
+          "pixels": 2842,
+          "bbox": [
+            16,
+            8,
+            117,
+            103
+          ]
+        }
+      },
+      {
+        "id": 37,
+        "roi_xyxy": [
+          1097,
+          628,
+          1157,
+          674
+        ],
+        "original": {
+          "pixels": 362,
+          "bbox": [
+            8,
+            8,
+            51,
+            38
+          ]
+        },
+        "generated": {
+          "pixels": 413,
+          "bbox": [
+            8,
+            7,
+            46,
+            45
+          ]
+        }
+      },
+      {
+        "id": 38,
+        "roi_xyxy": [
+          1125,
+          406,
+          1158,
+          444
+        ],
+        "original": {
+          "pixels": 134,
+          "bbox": [
+            0,
+            0,
+            13,
+            38
+          ]
+        },
+        "generated": {
+          "pixels": 71,
+          "bbox": [
+            0,
+            3,
+            11,
+            38
+          ]
+        }
+      },
+      {
+        "id": 39,
+        "roi_xyxy": [
+          865,
+          252,
+          889,
+          279
+        ],
+        "original": {
+          "pixels": 16,
+          "bbox": [
+            14,
+            8,
+            21,
+            15
+          ]
+        },
+        "generated": {
+          "pixels": 23,
+          "bbox": [
+            12,
+            9,
+            21,
+            20
+          ]
+        }
+      },
+      {
+        "id": 40,
+        "roi_xyxy": [
+          638,
+          268,
+          656,
+          292
+        ],
+        "original": {
+          "pixels": 0,
+          "bbox": null
+        },
+        "generated": {
+          "pixels": 0,
+          "bbox": null
+        }
+      }
+    ]
+  },
+  "human_judgment_ko": "全부적의 붓획이 글자로 읽히지 않는지, 긴 종이 비례와 펄럭임, 부적 주변 복원 경계와 봉인 고리의 자연스러움을 판단해 주세요."
+}

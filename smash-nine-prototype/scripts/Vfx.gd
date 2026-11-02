@@ -20,6 +20,7 @@ const HAZARDS_DIR := "res://assets/art/hazards/%s.png"
 ## name: [frames, fps, anchor in the frame, additive(, folder pattern when not DIR)]
 const SPECS := {
 	"shadow_aura": [6, 10.0, Vector2(64, 160), false, "res://assets/art/story/%s.png"],
+	"shadow_dissolve": [6, 12.0, Vector2(96, 152), false, "res://assets/art/story/%s.png"],
 	"frey_ult_charge": [6, 24.0, Vector2(64, 124), true],
 	"frey_ult_wave": [8, 30.0, Vector2(0, 96), true],
 	"yuki_ult_seal": [8, 12.0, Vector2(128, 128), false],
@@ -76,6 +77,10 @@ const SPECS := {
 	"rio_rune_guard": [6, 12.0, Vector2(64, 64), true, SKILL_DIR],
 	"rio_rune_burst": [6, 37.5, Vector2(160, 160), true, SKILL_DIR],
 	"rio_blink_trail": [5, 31.25, Vector2(128, 32), true, SKILL_DIR],
+	# CODEX-VFX-01 candidate a (user 2026-10-29): Rio's extra air jump, a mana step plate under the
+	# soles; the anchor is the plate's top centre. `_last` is the brighter one for the last jump.
+	"rio_air_step": [5, 40.0, Vector2(32, 3), false, SKILL_DIR],
+	"rio_air_step_last": [5, 40.0, Vector2(32, 3), false, SKILL_DIR],
 	"yuki_grand_ward": [8, 12.0, Vector2(320, 320), false, SKILL_DIR],
 	"guard_bubble": [3, 1.0, Vector2(64, 64), false, SKILL_DIR],
 	"attack_afterimage": [4, 57.143, Vector2(80, 32), true, SKILL_DIR],

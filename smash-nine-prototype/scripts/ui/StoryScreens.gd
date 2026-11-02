@@ -3,6 +3,18 @@ extends "res://scripts/ui/FrontendMenu.gd"
 const STORY := preload("res://scripts/story/StoryCatalog.gd")
 const PROGRESS := preload("res://scripts/story/StoryProgress.gd")
 const REALMS := preload("res://scripts/realms/RealmCatalog.gd")
+## Story art applied 2026-10-29: each stage's picture on the start card inside the dialogue box's
+## 9-slice family (SART-02, SART-03), and on the map a root path, a looping soul flame on the next
+## stage and clear/locked seals (SART-04).
+const CARD_ART := "res://assets/art/story/stage_card_%02d.png"
+const CARD_FRAME_ART := "res://assets/art/story/start_card_frame.png"
+const CARD_FRAME_MARGIN := 24
+const CARD_PANEL := Rect2(190, 98, 900, 520)
+const CARD_PICTURE := Rect2(224, 126, 384, 216)
+const MAP_PATH_ART := "res://assets/art/story/map_path_tile.png"
+const MAP_NEXT_ART := "res://assets/art/story/map_marker_next.png"
+const MAP_SEAL_ART := "res://assets/art/story/map_seal_%s.png"
+const MAP_NEXT_FPS := 8.0
 var difficulty := "normal"
 var map_stage := 1
 var continue_button: Button
@@ -14,6 +26,7 @@ var map_realm: Label
 var map_status: Label
 var map_face: TextureRect
 var stage_buttons: Array[Button] = []
+var map_next_flame: AtlasTexture
 var stage_result: Dictionary = {}
 var card_deadline := 0
 var _story_preview_id := ""
@@ -79,14 +92,24 @@ func show_story_map(selected_stage := 1) -> void:
 	var initial_stage := clampi(selected_stage, 1, 9)
 	map_stage = initial_stage
 	stage_buttons.clear()
+	map_next_flame = null
 	_label("STORY MAP", Rect2(44, 24, 800, 48), 34, GOLD)
 	_label(tr("%s's journey") % tr(str(_roster[selected_id].name)), Rect2(46, 80, 820, 32), 20, DIM)
 	var realms := REALMS.build_maps()
 	var stages := STORY.stages()
 	var cleared := int(PROGRESS.get_run(selected_id).get("cleared", 0))
 	var path := Line2D.new()
-	path.width = 5
-	path.default_color = Color("777255")
+	var root_tile := ART.original_texture(MAP_PATH_ART)
+	if root_tile != null:
+		# The root repeats along the path at 1x; the cells cover it except in the gaps between them.
+		path.texture = root_tile
+		path.texture_mode = Line2D.LINE_TEXTURE_TILE
+		path.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+		path.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		path.width = root_tile.get_height()
+	else:
+		path.width = 5
+		path.default_color = Color("777255")
 	content.add_child(path)
 	for data in stages:
 		var grid: Vector2i = realms[data.realm].grid
@@ -106,6 +129,7 @@ func show_story_map(selected_stage := 1) -> void:
 		caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		var status := _label(tr("CLEAR") if int(data.id) <= cleared else (tr("Coming soon") if not data.ready else (tr("Next stage") if int(data.id) == cleared + 1 else tr("Locked"))), Rect2(x + 4, y + 124, 188, 22), 14, GOLD if int(data.id) <= cleared + 1 else DIM)
 		status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_map_badge(int(data.id), cleared, bool(data.ready), Vector2(x + 150, y + 6))
 	_panel(Rect2(730, 132, 510, 488))
 	map_title = _label("", Rect2(754, 152, 460, 98), 30, GOLD)
 	map_realm = _label("", Rect2(754, 256, 460, 30), 22, DIM)
@@ -148,25 +172,73 @@ func _refresh_map_detail() -> void:
 	else:
 		map_face.modulate = Color.WHITE
 
+## The cell's top-right badge: a seal on cleared and locked stages, the soul flame on the next one.
+func _map_badge(id: int, cleared: int, playable: bool, at: Vector2) -> void:
+	if not playable:
+		return
+	if id == cleared + 1:
+		var strip := ART.original_texture(MAP_NEXT_ART)
+		if strip != null:
+			map_next_flame = AtlasTexture.new()
+			map_next_flame.atlas = strip
+			map_next_flame.region = Rect2(0, 0, strip.get_height(), strip.get_height())
+			_picture(map_next_flame, Rect2(at - Vector2(4, 4), map_next_flame.region.size), true)
+		return
+	var seal := ART.original_texture(MAP_SEAL_ART % ("clear" if id <= cleared else "locked"))
+	if seal != null:
+		_picture(seal, Rect2(at, seal.get_size()), true)
+
 func show_stage_card(data: Dictionary) -> void:
 	_clear("story_start")
-	_panel(Rect2(190, 98, 900, 520), 0.98)
+	_card_frame()
 	var realm: Dictionary = REALMS.build_maps()[data.realm]
-	_picture(ART.original_texture("res://assets/art/ui/realm_emblems/%s.png" % str(realm.name).to_lower().replace(" ", "_")), Rect2(224, 124, 96, 96), true)
-	_label(tr("STAGE %d") % int(data.id), Rect2(348, 120, 680, 40), 28, GOLD)
-	_label(tr(str(data.title)), Rect2(348, 164, 680, 64), 38)
-	_label(tr(str(realm.name)), Rect2(224, 244, 810, 34), 24, GOLD)
-	_label(tr("Defeat the home guardian") if STORY.is_home(data, selected_id) else tr(str(data.goal)), Rect2(224, 294, 810, 60), 24)
+	# The stage's picture on the left with the title beside it; the realm emblem stands in when
+	# that art is off (F2) or missing.
+	var picture := ART.original_texture(CARD_ART % int(data.id))
+	if picture != null:
+		_panel(CARD_PICTURE.grow(2), 1.0)
+		_picture(picture, CARD_PICTURE)
+	else:
+		_picture(ART.original_texture("res://assets/art/ui/realm_emblems/%s.png" % str(realm.name).to_lower().replace(" ", "_")), Rect2(CARD_PICTURE.get_center() - Vector2(48, 48), Vector2(96, 96)), true)
+	_label(tr("STAGE %d") % int(data.id), Rect2(632, 124, 424, 42), 28, GOLD)
+	_label(tr(str(data.title)), Rect2(632, 166, 424, 52), 32)
+	_label(tr(str(realm.name)), Rect2(632, 222, 424, 36), 24, GOLD)
+	_label(tr("Defeat the home guardian") if STORY.is_home(data, selected_id) else tr(str(data.goal)), Rect2(632, 262, 424, 66), 22)
 	for index in data.tips.size():
-		_label(tr(str(data.tips[index])), Rect2(224, 364 + index * 36, 810, 34), 19, DIM)
+		_label(tr(str(data.tips[index])), Rect2(224, 360 + index * 32, 832, 30), 19, DIM)
 	if data.rival != "" and not STORY.is_home(data, selected_id):
-		_picture(ART.original_texture("res://assets/art/vfx/ult_cutin_band.png"), Rect2(224, 444, 810, 94), true)
-		_picture(ART.character_portrait(selected_id, body), Rect2(280, 442, 94, 94))
-		_picture(ART.character_portrait(data.rival, "male"), Rect2(890, 442, 94, 94))
-		var vs := _label("VS", Rect2(590, 462, 100, 40), 30, GOLD)
+		_picture(ART.original_texture("res://assets/art/vfx/ult_cutin_band.png"), Rect2(224, 436, 810, 94), true)
+		_picture(ART.character_portrait(selected_id, body), Rect2(280, 434, 94, 94))
+		_picture(ART.character_portrait(data.rival, "male"), Rect2(890, 434, 94, 94))
+		var vs := _label("VS", Rect2(590, 454, 100, 40), 30, GOLD)
 		vs.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_button("Begin", Rect2(490, 550, 300, 48), "story_begin")
 	card_deadline = Time.get_ticks_msec() + 2500
+
+## A dark backing under the start card's 9-slice frame, as under the dialogue box; the plain
+## panel when that art is off (F2) or missing.
+func _card_frame() -> void:
+	var frame := ART.original_texture(CARD_FRAME_ART)
+	if frame == null:
+		_panel(CARD_PANEL, 0.98)
+		return
+	var backing := ColorRect.new()
+	backing.position = CARD_PANEL.position + Vector2(6, 6)
+	backing.size = CARD_PANEL.size - Vector2(12, 12)
+	backing.color = Color(INK, 0.98)
+	backing.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(backing)
+	var patch := NinePatchRect.new()
+	patch.texture = frame
+	patch.patch_margin_left = CARD_FRAME_MARGIN
+	patch.patch_margin_top = CARD_FRAME_MARGIN
+	patch.patch_margin_right = CARD_FRAME_MARGIN
+	patch.patch_margin_bottom = CARD_FRAME_MARGIN
+	patch.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	patch.position = CARD_PANEL.position
+	patch.size = CARD_PANEL.size
+	patch.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(patch)
 
 func show_story_pause() -> void:
 	_clear("story_pause")
@@ -285,3 +357,7 @@ func _process(_delta: float) -> void:
 		for index in stage_buttons.size():
 			if is_instance_valid(stage_buttons[index]):
 				stage_buttons[index].modulate = Color(1.0, 0.88 + 0.12 * sin(Time.get_ticks_msec() * 0.004), 0.7) if index == next else Color.WHITE
+		if map_next_flame != null:
+			var cell := map_next_flame.region.size.x
+			var frames := int(map_next_flame.atlas.get_width() / cell)
+			map_next_flame.region.position.x = cell * (int(Time.get_ticks_msec() * MAP_NEXT_FPS / 1000.0) % frames)

@@ -251,6 +251,10 @@ func _on_rival_defeated(_enemy: Node, _attacker: Node) -> void:
 	var aura := _enemy.get_node_or_null("Vfx_shadow_aura")
 	if aura != null:
 		aura.queue_free()
+	# SART-04: a defeated shadow's body breaks into violet smoke rising from where its feet were
+	# (the strip's anchor), in the world so the smoke outlives the hidden body.
+	if _enemy.get_meta("story_shadow", false) and VFX.spawn(main, "shadow_dissolve", _enemy.global_position, _enemy.global_scale.abs()) != null:
+		_enemy.visible = false
 	if is_instance_valid(hero) and not hero.is_defeated:
 		hero.add_souls(int(data.souls_reward))
 	_enemy_fell()

@@ -1,0 +1,78 @@
+{
+  "task": "SART-03",
+  "status": "candidate",
+  "note_ko": "대화 틀과 같은 금색 잎날개·청색 마름모 계열의 시작 카드 후보. image_gen 코너를 추출하고 정확한 24px 9-slice 직선부를 구성했다. 게임 미반영.",
+  "size": [
+    480,
+    300
+  ],
+  "nine_slice_margins_LTRB": [
+    24,
+    24,
+    24,
+    24
+  ],
+  "palette": [
+    "#f3cd7c",
+    "#a8742c",
+    "#3d7bd9",
+    "#9fd2ff",
+    "#101827"
+  ],
+  "raw": "art/raw/story/start_card_frame-v1_raw.png",
+  "raw_sha256": "651e21f05142c8f2d96c60e04c93b6ca3903b3abeedf65e27f7c908c0543a30c",
+  "processing": {
+    "corner_crop_xyxy": [
+      0,
+      70,
+      100,
+      170
+    ],
+    "corner_resize": [
+      22,
+      22
+    ],
+    "filter": "NEAREST",
+    "alpha_threshold": 180,
+    "corner_placements": [
+      [
+        1,
+        1
+      ],
+      [
+        457,
+        1
+      ],
+      [
+        1,
+        277
+      ],
+      [
+        457,
+        277
+      ]
+    ],
+    "palette_mapping": "nearest RGB squared distance",
+    "straight_edges": "Pillow 1px uniform gold/blue double lines; no centre gem"
+  },
+  "metrics": {
+    "size": [
+      480,
+      300
+    ],
+    "mode": "RGBA",
+    "margin_px": 24,
+    "centre_alpha_unique": [
+      0
+    ],
+    "centre_fully_transparent": true,
+    "opaque_pixels_outside_margins": 0,
+    "nonzero_alpha_pixels_outside_margins": 0,
+    "centre_rgba_unique_count": 1,
+    "horizontal_top_repeatable": true,
+    "horizontal_bottom_repeatable": true,
+    "vertical_left_repeatable": true,
+    "vertical_right_repeatable": true
+  },
+  "human_judgment_ko": "원본 대화 틀과 코너 장식 밀도·크기, 900×520에서의 금/청색 선 두께와 연결부를 판단해 주세요."
+}

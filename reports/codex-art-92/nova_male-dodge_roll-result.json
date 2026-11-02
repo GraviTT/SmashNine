@@ -1,0 +1,150 @@
+{
+  "time": "2026-10-28T15:06:56+09:00",
+  "stem": "nova_male",
+  "row": "dodge_roll",
+  "status": "pass",
+  "frames": 6,
+  "candidate": "art/bakeoff/nova/nova_male-dodge_roll-v1.png",
+  "board": "reports/codex-art-92/nova_male-dodge_roll.png",
+  "checks": [
+    {
+      "frame": 1,
+      "margin": 7,
+      "detail": 113.64,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 2,
+      "margin": 7,
+      "detail": 102.87,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 3,
+      "margin": 7,
+      "detail": 116.03,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 4,
+      "margin": 7,
+      "detail": 99.4,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 5,
+      "margin": 7,
+      "detail": 108.01,
+      "spill": 0,
+      "bottom": 120
+    },
+    {
+      "frame": 6,
+      "margin": 7,
+      "detail": 107.86,
+      "spill": 0,
+      "bottom": 120
+    }
+  ],
+  "face_ratios": [
+    {
+      "frame": 1,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 73.824,
+          "y": 70.944,
+          "score": 0.93
+        },
+        {
+          "x": 81.375,
+          "y": 69.976,
+          "score": 0.932
+        },
+        {
+          "x": 67.5,
+          "y": 73.0,
+          "score": 0.931
+        },
+        {
+          "x": 82.0,
+          "y": 73.0,
+          "score": 0.887
+        }
+      ],
+      "head_alignment": [
+        0.9,
+        59,
+        52,
+        0.856
+      ],
+      "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+      "raw_proposed_eye_ratio": 0.989
+    },
+    {
+      "frame": 2,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "머리를 접어 머리카락이 얼굴을 가림"
+    },
+    {
+      "frame": 3,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "거꾸로 몸을 접어 얼굴 가림"
+    },
+    {
+      "frame": 4,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "뒤쪽을 향한 회전으로 얼굴 가림"
+    },
+    {
+      "frame": 5,
+      "eye_ratio": null,
+      "face_width_ratio": null,
+      "reason": "눈을 감은 낮은 착지"
+    },
+    {
+      "frame": 6,
+      "eye_ratio": null,
+      "face_width_ratio": 1.0,
+      "landmarks": [
+        {
+          "x": 70.292,
+          "y": 62.101,
+          "score": 0.914
+        },
+        {
+          "x": 77.872,
+          "y": 60.906,
+          "score": 0.929
+        },
+        {
+          "x": 63.5,
+          "y": 64.0,
+          "score": 0.899
+        },
+        {
+          "x": 78.0,
+          "y": 64.0,
+          "score": 0.92
+        }
+      ],
+      "head_alignment": [
+        0.92,
+        55,
+        42,
+        0.893
+      ],
+      "reason": "기준부터 먼 눈이 머리카락에 가려 E 측정 불가; W만 검토",
+      "raw_proposed_eye_ratio": 0.997
+    }
+  ],
+  "note": "낮은 가드 → 몸 접기 → 거꾸로 회전 → 등쪽 구르기 → 무릎 착지 → 가드 복귀. 남성 idle의 청록 장갑·부츠, 흰 가슴/무릎 장갑과 금색 테두리를 육안 확인. F1/F6 W=1.000; 기준의 먼 눈이 머리카락에 가려 E는 판정 제외. 보조 머리 템플릿은 0.90–0.92로 낮으나 ART-72 규칙에 따라 얼굴 폭을 우선. 신체 비율·연결은 정적 비교이며 재생 미검증."
+}

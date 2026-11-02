@@ -27,6 +27,11 @@ const OVERDRIVE_SPIN := 7.0
 const OVERDRIVE_AIM_RANGE := 720.0
 const OVERDRIVE_SWORD_DAMAGE := 11.0
 const OVERDRIVE_LAST_DAMAGE := 18.0
+## Extra air jump (sprite audit D40 B8, CODEX-VFX-01 candidate a, user 2026-10-29): a mana step
+## plate breaks under his soles, brighter on the last jump. Rise from the feet line to the soles
+## in the jump drawing shown at that moment: soles at y=112 of the 128 cell, feet line y=120, in
+## both `rio_male_jump.png` frame 0 and the female base-sheet jump row (row 3; walk takes rows 1-2).
+const AIR_STEP_SOLE_RISE := {"male": 8.0, "female": 8.0}
 const MANA_COLOR := Color(0.45, 0.78, 1.0, 0.6)
 const MANA_WAVE_ART := "res://assets/art/effects/rio_mana_wave.png"
 const GEM_SWORD_ART := "res://assets/art/effects/rio_gem_sword.png"
@@ -116,6 +121,11 @@ func skill_cooldown(slot: String) -> Vector2:
 
 func perform_ultimate() -> void:
 	_overdrive_start()
+
+func character_on_air_jump() -> void:
+	var effect := "rio_air_step_last" if air_jumps_left <= 0 else "rio_air_step"
+	var soles := global_position - Vector2(0.0, float(AIR_STEP_SOLE_RISE.get(body_type, 0.0)))
+	VFX.spawn(get_parent(), effect, soles, Vector2.ONE, false, 2)
 
 func character_physics_process(delta: float) -> void:
 	combo_timer = maxf(combo_timer - delta, 0.0)

@@ -1,0 +1,45 @@
+{
+  "method": "Largest connected warm ivory region: R>140,G>140,B>110,R-B>4,R>=G>=B; minimum-area rotated rectangle. Excludes cool cyan ring; projection/curl still affects ratios.",
+  "note_ko": "앞선 느슨한 마스크 측정은 청색 고리의 밝은 픽셀을 포함하여 가운데 부적 폭을 과대 추정했다. 이 보조 측정은 따뜻한 종이색만 사용한다. 원근이 포함된 화면상 비율이다.",
+  "measurements": [
+    {
+      "roi_id": 1,
+      "pixels": 2590,
+      "bbox_local": [
+        8,
+        11,
+        91,
+        110
+      ],
+      "short_px": 37.365,
+      "long_px": 125.117,
+      "long_over_short": 3.349
+    },
+    {
+      "roi_id": 23,
+      "pixels": 2241,
+      "bbox_local": [
+        17,
+        8,
+        60,
+        105
+      ],
+      "short_px": 32.778,
+      "long_px": 102.36,
+      "long_over_short": 3.123
+    },
+    {
+      "roi_id": 35,
+      "pixels": 2682,
+      "bbox_local": [
+        13,
+        7,
+        107,
+        102
+      ],
+      "short_px": 36.41,
+      "long_px": 126.329,
+      "long_over_short": 3.47
+    }
+  ]
+}
