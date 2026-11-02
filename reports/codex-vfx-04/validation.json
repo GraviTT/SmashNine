@@ -1,0 +1,886 @@
+{
+  "passed": true,
+  "asset_count": 16,
+  "frame_count": 62,
+  "failures": [],
+  "trailing_whitespace": [],
+  "source_fit": {
+    "no_upscale": true,
+    "no_cropped_pixels": true,
+    "maximum_source_scale": 0.7949493793931695,
+    "processed_frames": 54,
+    "barrier_a_break_first_identical": true,
+    "barrier_b_break_first_identical": true
+  },
+  "assets": [
+    {
+      "path": "art/bakeoff/effects/luna/luna_barrier-a-v1.png",
+      "sha256": "a9985e6a167cd7202327343b94ae1ac747c20a5558760c57fc77b906e4d48307",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          21,
+          10,
+          236,
+          246
+        ],
+        [
+          17,
+          12,
+          239,
+          242
+        ],
+        [
+          13,
+          14,
+          243,
+          241
+        ],
+        [
+          12,
+          21,
+          246,
+          235
+        ],
+        [
+          13,
+          16,
+          243,
+          235
+        ],
+        [
+          16,
+          11,
+          241,
+          243
+        ]
+      ],
+      "opaque_counts": [
+        4902,
+        4858,
+        4709,
+        4896,
+        4838,
+        4858
+      ],
+      "median_opaque_radius": [
+        104.0,
+        103.769,
+        104.01,
+        103.812,
+        103.484,
+        104.043
+      ],
+      "loop_diagnostics": {
+        "adjacent_rgba_mae": [
+          8.7148,
+          7.542,
+          7.6418,
+          9.221,
+          9.3884,
+          9.3483
+        ],
+        "last_to_first_over_internal_median": 1.0727,
+        "meaning": "Diagnostic only. Pixel differences do not prove perceptual smoothness."
+      }
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_barrier_break-a-v1.png",
+      "sha256": "7c75a96dc7ab9a4792a2608b0c22ee4145d94d7d0e71d111abb210b25fa3c63d",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          21,
+          10,
+          236,
+          246
+        ],
+        [
+          10,
+          9,
+          246,
+          247
+        ],
+        [
+          7,
+          11,
+          249,
+          246
+        ],
+        [
+          6,
+          7,
+          251,
+          248
+        ],
+        [
+          4,
+          7,
+          252,
+          248
+        ],
+        [
+          4,
+          13,
+          251,
+          244
+        ]
+      ],
+      "opaque_counts": [
+        4902,
+        5406,
+        4370,
+        2753,
+        1101,
+        221
+      ],
+      "median_opaque_radius": [
+        104.0,
+        101.213,
+        92.698,
+        99.765,
+        109.073,
+        112.539
+      ]
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_barrier-b-v1.png",
+      "sha256": "e0c26ffde40aedb0b984f1d1c49c4c8176fd7dea9a592359ff5ff5e39fced2e7",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          17,
+          8,
+          241,
+          249
+        ],
+        [
+          18,
+          8,
+          241,
+          248
+        ],
+        [
+          17,
+          7,
+          241,
+          248
+        ],
+        [
+          18,
+          9,
+          242,
+          248
+        ],
+        [
+          14,
+          8,
+          241,
+          249
+        ],
+        [
+          17,
+          8,
+          240,
+          249
+        ]
+      ],
+      "opaque_counts": [
+        7629,
+        7826,
+        7775,
+        7852,
+        7683,
+        7589
+      ],
+      "median_opaque_radius": [
+        103.576,
+        103.586,
+        103.368,
+        103.368,
+        103.407,
+        103.6
+      ],
+      "loop_diagnostics": {
+        "adjacent_rgba_mae": [
+          4.4608,
+          4.6302,
+          6.812,
+          6.1822,
+          4.0698,
+          3.6739
+        ],
+        "last_to_first_over_internal_median": 0.7935,
+        "meaning": "Diagnostic only. Pixel differences do not prove perceptual smoothness."
+      }
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_barrier_break-b-v1.png",
+      "sha256": "db6fe8a4b1163bed3fc58441de7e05f09c3a86166d7f2a7f1e756441949ef2d6",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          17,
+          8,
+          241,
+          249
+        ],
+        [
+          13,
+          24,
+          243,
+          233
+        ],
+        [
+          11,
+          21,
+          245,
+          236
+        ],
+        [
+          7,
+          12,
+          249,
+          244
+        ],
+        [
+          9,
+          16,
+          246,
+          240
+        ],
+        [
+          6,
+          5,
+          250,
+          252
+        ]
+      ],
+      "opaque_counts": [
+        7629,
+        6924,
+        6321,
+        3761,
+        2179,
+        728
+      ],
+      "median_opaque_radius": [
+        103.576,
+        86.833,
+        85.51,
+        93.172,
+        97.185,
+        110.318
+      ]
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_cyclone-a-v1.png",
+      "sha256": "054e3f372bcc58e4a9e9453f9441991373d0fe1a0167e71fc39ea1105cefad7b",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          40,
+          7,
+          151,
+          185
+        ],
+        [
+          42,
+          9,
+          150,
+          183
+        ],
+        [
+          42,
+          9,
+          150,
+          183
+        ],
+        [
+          43,
+          10,
+          148,
+          183
+        ],
+        [
+          45,
+          9,
+          147,
+          184
+        ],
+        [
+          42,
+          6,
+          150,
+          185
+        ]
+      ],
+      "opaque_counts": [
+        4092,
+        4350,
+        4418,
+        4623,
+        4445,
+        4562
+      ],
+      "median_opaque_radius": [
+        47.424,
+        45.238,
+        44.621,
+        46.861,
+        48.662,
+        47.927
+      ],
+      "loop_diagnostics": {
+        "adjacent_rgba_mae": [
+          19.3692,
+          20.1132,
+          24.3791,
+          22.3473,
+          28.4264,
+          16.4365
+        ],
+        "last_to_first_over_internal_median": 0.7355,
+        "meaning": "Diagnostic only. Pixel differences do not prove perceptual smoothness."
+      }
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_cyclone-b-v1.png",
+      "sha256": "fc04d9c2087cae78dfa95b8251d5866a783faea8fb7885538c62848597101ae5",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          30,
+          9,
+          161,
+          184
+        ],
+        [
+          30,
+          9,
+          162,
+          183
+        ],
+        [
+          30,
+          7,
+          163,
+          185
+        ],
+        [
+          29,
+          7,
+          163,
+          185
+        ],
+        [
+          27,
+          8,
+          165,
+          184
+        ],
+        [
+          29,
+          8,
+          164,
+          183
+        ]
+      ],
+      "opaque_counts": [
+        6372,
+        6536,
+        6613,
+        6876,
+        6864,
+        6423
+      ],
+      "median_opaque_radius": [
+        58.241,
+        58.009,
+        60.407,
+        61.327,
+        60.0,
+        59.548
+      ],
+      "loop_diagnostics": {
+        "adjacent_rgba_mae": [
+          34.3397,
+          33.8873,
+          20.7726,
+          27.0181,
+          47.4,
+          14.4874
+        ],
+        "last_to_first_over_internal_median": 0.4275,
+        "meaning": "Diagnostic only. Pixel differences do not prove perceptual smoothness."
+      }
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_warp-a-v1.png",
+      "sha256": "c57cd89593fb27a44c35342449e2d20fcd7e469553da43980be08019f69f01ef",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          105,
+          104,
+          151,
+          152
+        ],
+        [
+          72,
+          79,
+          183,
+          177
+        ],
+        [
+          30,
+          46,
+          226,
+          211
+        ],
+        [
+          36,
+          51,
+          220,
+          206
+        ],
+        [
+          42,
+          54,
+          213,
+          203
+        ],
+        [
+          51,
+          65,
+          205,
+          192
+        ]
+      ],
+      "opaque_counts": [
+        905,
+        2340,
+        6250,
+        2502,
+        928,
+        151
+      ],
+      "median_opaque_radius": [
+        14.0,
+        32.249,
+        67.472,
+        68.782,
+        67.179,
+        64.661
+      ]
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_warp-b-v1.png",
+      "sha256": "8c0355925f2e3678a5cfde1f2e4d0c73c510b3653c82fa11d1e13d8f4ccf27af",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          106,
+          104,
+          151,
+          153
+        ],
+        [
+          65,
+          69,
+          191,
+          187
+        ],
+        [
+          31,
+          46,
+          226,
+          211
+        ],
+        [
+          38,
+          59,
+          218,
+          197
+        ],
+        [
+          46,
+          70,
+          210,
+          185
+        ],
+        [
+          55,
+          79,
+          203,
+          178
+        ]
+      ],
+      "opaque_counts": [
+        798,
+        2765,
+        5745,
+        2581,
+        940,
+        140
+      ],
+      "median_opaque_radius": [
+        12.042,
+        41.195,
+        56.719,
+        63.127,
+        59.076,
+        59.169
+      ]
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_star_shot-v1.png",
+      "sha256": "d661d905875612d50be4deb58d8f29fc88e8049004ecaa5e93b8f909f042e1fb",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          2,
+          8,
+          41,
+          41
+        ],
+        [
+          3,
+          9,
+          41,
+          40
+        ],
+        [
+          2,
+          12,
+          36,
+          35
+        ],
+        [
+          1,
+          9,
+          40,
+          39
+        ]
+      ],
+      "opaque_counts": [
+        322,
+        324,
+        338,
+        325
+      ],
+      "median_opaque_radius": [
+        7.616,
+        7.28,
+        7.81,
+        7.81
+      ],
+      "loop_diagnostics": {
+        "adjacent_rgba_mae": [
+          21.0777,
+          23.4795,
+          22.5653,
+          22.2084
+        ],
+        "last_to_first_over_internal_median": 0.9842,
+        "meaning": "Diagnostic only. Pixel differences do not prove perceptual smoothness."
+      }
+    },
+    {
+      "path": "art/bakeoff/effects/luna/luna_star_big-v1.png",
+      "sha256": "53e15f737914b80cf086951866384e461c6713539aedaecbd34ae3df2b2e7b89",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          8,
+          17,
+          79,
+          78
+        ],
+        [
+          8,
+          19,
+          77,
+          76
+        ],
+        [
+          7,
+          26,
+          70,
+          70
+        ],
+        [
+          9,
+          22,
+          76,
+          76
+        ]
+      ],
+      "opaque_counts": [
+        1195,
+        1227,
+        1250,
+        1241
+      ],
+      "median_opaque_radius": [
+        14.318,
+        14.422,
+        14.866,
+        14.56
+      ],
+      "loop_diagnostics": {
+        "adjacent_rgba_mae": [
+          18.3734,
+          19.4478,
+          18.9605,
+          21.7938
+        ],
+        "last_to_first_over_internal_median": 1.1494,
+        "meaning": "Diagnostic only. Pixel differences do not prove perceptual smoothness."
+      }
+    },
+    {
+      "path": "art/bakeoff/ui/status/luna_star_mark-v1.png",
+      "sha256": "ff8e8447fbed100bd9833e4f51fd9890fc453dae4779bf732931d81bb98da72d",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          1,
+          1,
+          23,
+          23
+        ]
+      ],
+      "opaque_counts": [
+        223
+      ],
+      "median_opaque_radius": [
+        7.28
+      ]
+    },
+    {
+      "path": "art/bakeoff/skill_icons/luna/luna_j-v1.png",
+      "sha256": "ea91dc31b58357596e11464c4512037ecb2bad6eb51988c69bf3c7d15405407d",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          3,
+          10,
+          39,
+          34
+        ]
+      ],
+      "opaque_counts": [
+        331
+      ],
+      "median_opaque_radius": [
+        9.22
+      ]
+    },
+    {
+      "path": "art/bakeoff/skill_icons/luna/luna_k-v1.png",
+      "sha256": "2d2c66a765b25c3ad41a3490ec31b3b136174714389a07067462ec877ae795bd",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          3,
+          7,
+          39,
+          34
+        ]
+      ],
+      "opaque_counts": [
+        321
+      ],
+      "median_opaque_radius": [
+        11.402
+      ]
+    },
+    {
+      "path": "art/bakeoff/skill_icons/luna/luna_l-v1.png",
+      "sha256": "fc2c1395f056785f11d02e712d12303872143e785a65b3de23579827d69704b4",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          3,
+          1,
+          37,
+          36
+        ]
+      ],
+      "opaque_counts": [
+        481
+      ],
+      "median_opaque_radius": [
+        13.454
+      ]
+    },
+    {
+      "path": "art/bakeoff/skill_icons/luna/luna_brave_k-v1.png",
+      "sha256": "4f95f73b64d35a5fea1f91148331bcdb50e72bd0c3c6910088eb8783d2b04ff8",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          4,
+          2,
+          37,
+          33
+        ]
+      ],
+      "opaque_counts": [
+        540
+      ],
+      "median_opaque_radius": [
+        9.487
+      ]
+    },
+    {
+      "path": "art/bakeoff/skill_icons/luna/luna_brave_l-v1.png",
+      "sha256": "637a4c41e5d892d5410547f8892aca75e5164fdba925035a5b3e5f056f4f37e6",
+      "checks": {
+        "rgba": true,
+        "dimensions": true,
+        "binary_alpha": true,
+        "metadata": true,
+        "transparent_rgb_zero": true,
+        "clear_1px_border": true,
+        "all_frames_nonempty": true
+      },
+      "frame_bboxes": [
+        [
+          3,
+          1,
+          38,
+          36
+        ]
+      ],
+      "opaque_counts": [
+        489
+      ],
+      "median_opaque_radius": [
+        10.05
+      ]
+    }
+  ],
+  "scope": "Static art contract and processing only; no Godot run, no product files changed."
+}

@@ -1,0 +1,556 @@
+[
+  {
+    "path": "art/bakeoff/effects/luna/luna_barrier-a-v1.png",
+    "note": "청록 단일 테두리와 회전하는 작은 금색 별. 중심은 거의 비움.",
+    "replaces": "assets/art/effects/skill/luna_barrier.png",
+    "frames": 6,
+    "fps": 10,
+    "anchor": [
+      128,
+      128
+    ],
+    "loop": true,
+    "frame_size": [
+      256,
+      256
+    ],
+    "processing": {
+      "ellipse_fits": [
+        {
+          "source_center": [
+            256.7637087684661,
+            243.94193465739838
+          ],
+          "source_radii": [
+            186.38763641524005,
+            187.07542764510225
+          ],
+          "scale": [
+            0.5579769237928723,
+            0.5559254965184242
+          ]
+        },
+        {
+          "source_center": [
+            253.49198906707255,
+            242.0547764049499
+          ],
+          "source_radii": [
+            187.86950881740438,
+            188.40149572408365
+          ],
+          "scale": [
+            0.5535757274006635,
+            0.5520126026616545
+          ]
+        },
+        {
+          "source_center": [
+            252.63690956695567,
+            242.08332918511863
+          ],
+          "source_radii": [
+            188.1316515640925,
+            188.47529374412215
+          ],
+          "scale": [
+            0.5528043746778537,
+            0.5517964606076831
+          ]
+        },
+        {
+          "source_center": [
+            257.9438423039883,
+            236.94178403543935
+          ],
+          "source_radii": [
+            185.54665642278434,
+            185.55393849822508
+          ],
+          "scale": [
+            0.5605059234429257,
+            0.5604839263543566
+          ]
+        },
+        {
+          "source_center": [
+            252.53136305472304,
+            235.76997531655212
+          ],
+          "source_radii": [
+            185.24012342176727,
+            184.71700216163924
+          ],
+          "scale": [
+            0.5614334415185297,
+            0.5630234292617705
+          ]
+        },
+        {
+          "source_center": [
+            249.55654695764642,
+            235.57766926858346
+          ],
+          "source_radii": [
+            184.4987822930433,
+            184.55884408659995
+          ],
+          "scale": [
+            0.5636893572273806,
+            0.563505913329195
+          ]
+        }
+      ],
+      "rim_center_radius": 104
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_barrier_break-a-v1.png",
+    "note": "같은 후보 방어막에서 시작해 테두리가 갈라지고 작은 별 파편으로 사라짐.",
+    "replaces": "assets/art/effects/skill/luna_barrier_break.png",
+    "frames": 6,
+    "fps": 24,
+    "anchor": [
+      128,
+      128
+    ],
+    "loop": false,
+    "frame_size": [
+      256,
+      256
+    ],
+    "processing": {
+      "first_frame_matches_barrier": true,
+      "source_scale": 0.7142963510213058
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_barrier-b-v1.png",
+    "note": "분홍·금색 두 가닥 테두리와 청록 반짝임. 중심은 거의 비움.",
+    "replaces": "assets/art/effects/skill/luna_barrier.png",
+    "frames": 6,
+    "fps": 10,
+    "anchor": [
+      128,
+      128
+    ],
+    "loop": true,
+    "frame_size": [
+      256,
+      256
+    ],
+    "processing": {
+      "ellipse_fits": [
+        {
+          "source_center": [
+            253.94024914646656,
+            242.43340073117315
+          ],
+          "source_radii": [
+            158.288646090329,
+            159.50387451992208
+          ],
+          "scale": [
+            0.6570275415752268,
+            0.6520217788628725
+          ]
+        },
+        {
+          "source_center": [
+            254.29521928076034,
+            242.53899321967876
+          ],
+          "source_radii": [
+            158.27614249117622,
+            159.16570409064457
+          ],
+          "scale": [
+            0.6570794458539317,
+            0.6534070929047139
+          ]
+        },
+        {
+          "source_center": [
+            254.41104179982398,
+            242.30281618391302
+          ],
+          "source_radii": [
+            158.59263646100476,
+            159.73631460249527
+          ],
+          "scale": [
+            0.6557681511623765,
+            0.6510729902514941
+          ]
+        },
+        {
+          "source_center": [
+            253.6849293575123,
+            242.6708370299537
+          ],
+          "source_radii": [
+            158.65968394276283,
+            159.42289378047562
+          ],
+          "scale": [
+            0.6554910322241563,
+            0.6523529810166875
+          ]
+        },
+        {
+          "source_center": [
+            254.59541512030964,
+            242.84656566502878
+          ],
+          "source_radii": [
+            158.29208100210352,
+            159.40154108112316
+          ],
+          "scale": [
+            0.6570132841870843,
+            0.6524403672300256
+          ]
+        },
+        {
+          "source_center": [
+            254.54106496003925,
+            242.74745091090568
+          ],
+          "source_radii": [
+            158.14793019543993,
+            159.191933885494
+          ],
+          "scale": [
+            0.6576121475094636,
+            0.6532994320855899
+          ]
+        }
+      ],
+      "rim_center_radius": 104
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_barrier_break-b-v1.png",
+    "note": "같은 후보 방어막에서 시작해 테두리가 갈라지고 작은 별 파편으로 사라짐.",
+    "replaces": "assets/art/effects/skill/luna_barrier_break.png",
+    "frames": 6,
+    "fps": 24,
+    "anchor": [
+      128,
+      128
+    ],
+    "loop": false,
+    "frame_size": [
+      256,
+      256
+    ],
+    "processing": {
+      "first_frame_matches_barrier": true,
+      "source_scale": 0.7272111814971887
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_cyclone-a-v1.png",
+    "note": "가는 나선 리본과 별, 몸이 보이는 큰 틈.",
+    "replaces": "assets/art/effects/skill/luna_cyclone.png",
+    "frames": 6,
+    "fps": 20,
+    "anchor": [
+      96,
+      96
+    ],
+    "loop": true,
+    "frame_size": [
+      192,
+      192
+    ],
+    "processing": {
+      "source_scale": 0.39035087719298245,
+      "render_scales": [
+        1.25,
+        1
+      ]
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_cyclone-b-v1.png",
+    "note": "넓은 분홍·금색 바람 리본과 짧은 청록 바람, 강한 회전감.",
+    "replaces": "assets/art/effects/skill/luna_cyclone.png",
+    "frames": 6,
+    "fps": 20,
+    "anchor": [
+      96,
+      96
+    ],
+    "loop": true,
+    "frame_size": [
+      192,
+      192
+    ],
+    "processing": {
+      "source_scale": 0.3982102908277405,
+      "render_scales": [
+        1.25,
+        1
+      ]
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_warp-a-v1.png",
+    "note": "얇은 타원 빛 고리가 커진 뒤 별 반짝임으로 흩어짐.",
+    "replaces": "assets/art/effects/skill/luna_warp.png",
+    "frames": 6,
+    "fps": 24,
+    "anchor": [
+      128,
+      128
+    ],
+    "loop": false,
+    "frame_size": [
+      256,
+      256
+    ],
+    "processing": {
+      "source_scale": [
+        0.4229934924078091,
+        0.4411764705882353
+      ],
+      "envelope": [
+        195,
+        165
+      ]
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_warp-b-v1.png",
+    "note": "별빛 꽃잎이 뻗는 타원 고리 폭발. 중앙은 비워 몸을 보여 줌.",
+    "replaces": "assets/art/effects/skill/luna_warp.png",
+    "frames": 6,
+    "fps": 24,
+    "anchor": [
+      128,
+      128
+    ],
+    "loop": false,
+    "frame_size": [
+      256,
+      256
+    ],
+    "processing": {
+      "source_scale": [
+        0.4105263157894737,
+        0.4114713216957606
+      ],
+      "envelope": [
+        195,
+        165
+      ]
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_star_shot-v1.png",
+    "note": "오른쪽 비행. 별 중심 고정, 왼쪽 짧은 반짝임 꼬리. 작은 연사 별.",
+    "replaces": "assets/art/effects/luna_star_shot.png",
+    "frames": 4,
+    "fps": 16,
+    "anchor": [
+      24,
+      24
+    ],
+    "loop": true,
+    "frame_size": [
+      48,
+      48
+    ],
+    "processing": {
+      "frames": [
+        {
+          "source_center": [
+            333.0,
+            303.0
+          ],
+          "scale": 0.09705882352941177,
+          "flip_y": false
+        },
+        {
+          "source_center": [
+            313.0,
+            301.0
+          ],
+          "scale": 0.09705882352941177,
+          "flip_y": false
+        },
+        {
+          "source_center": [
+            337.0,
+            295.0
+          ],
+          "scale": 0.09705882352941177,
+          "flip_y": false
+        },
+        {
+          "source_center": [
+            322.0,
+            338.0
+          ],
+          "scale": 0.09705882352941177,
+          "flip_y": true
+        }
+      ]
+    }
+  },
+  {
+    "path": "art/bakeoff/effects/luna/luna_star_big-v1.png",
+    "note": "오른쪽 비행. 별 중심 고정, 왼쪽 짧은 반짝임 꼬리. 더 밝은 금백색 중심과 큰 꼬리의 마지막 별.",
+    "replaces": "assets/art/effects/luna_star_big.png",
+    "frames": 4,
+    "fps": 16,
+    "anchor": [
+      48,
+      48
+    ],
+    "loop": true,
+    "frame_size": [
+      96,
+      96
+    ],
+    "processing": {
+      "frames": [
+        {
+          "source_center": [
+            339.0,
+            311.0
+          ],
+          "scale": 0.13636363636363635,
+          "flip_y": false
+        },
+        {
+          "source_center": [
+            338.0,
+            307.0
+          ],
+          "scale": 0.13636363636363635,
+          "flip_y": false
+        },
+        {
+          "source_center": [
+            340.0,
+            301.0
+          ],
+          "scale": 0.13636363636363635,
+          "flip_y": false
+        },
+        {
+          "source_center": [
+            331.0,
+            295.0
+          ],
+          "scale": 0.13636363636363635,
+          "flip_y": false
+        }
+      ]
+    }
+  },
+  {
+    "path": "art/bakeoff/ui/status/luna_star_mark-v1.png",
+    "note": "분홍 조준 고리 안의 금색 별. 기절·아머·충전 별과 구분.",
+    "replaces": "assets/art/ui/status/luna_star_mark.png",
+    "frames": 1,
+    "fps": 0,
+    "anchor": [
+      12,
+      12
+    ],
+    "loop": false,
+    "frame_size": [
+      24,
+      24
+    ],
+    "processing": {}
+  },
+  {
+    "path": "art/bakeoff/skill_icons/luna/luna_j-v1.png",
+    "note": "작은 별 세 발과 큰 마무리 별이 오른쪽으로 비행.",
+    "replaces": "assets/art/skill_icons/luna_j.png",
+    "frames": 1,
+    "fps": 0,
+    "anchor": [
+      20,
+      20
+    ],
+    "loop": false,
+    "frame_size": [
+      40,
+      40
+    ],
+    "processing": {}
+  },
+  {
+    "path": "art/bakeoff/skill_icons/luna/luna_k-v1.png",
+    "note": "점선 도약 궤적 끝에서 별빛 폭발.",
+    "replaces": "assets/art/skill_icons/luna_k.png",
+    "frames": 1,
+    "fps": 0,
+    "anchor": [
+      20,
+      20
+    ],
+    "loop": false,
+    "frame_size": [
+      40,
+      40
+    ],
+    "processing": {}
+  },
+  {
+    "path": "art/bakeoff/skill_icons/luna/luna_l-v1.png",
+    "note": "작은 금색 별이 붙은 둥근 분홍·청록 방어막.",
+    "replaces": "assets/art/skill_icons/luna_l.png",
+    "frames": 1,
+    "fps": 0,
+    "anchor": [
+      20,
+      20
+    ],
+    "loop": false,
+    "frame_size": [
+      40,
+      40
+    ],
+    "processing": {}
+  },
+  {
+    "path": "art/bakeoff/skill_icons/luna/luna_brave_k-v1.png",
+    "note": "별을 움켜쥔 보라색 건틀릿과 던지기 화살표.",
+    "replaces": "assets/art/skill_icons/luna_brave_k.png",
+    "frames": 1,
+    "fps": 0,
+    "anchor": [
+      20,
+      20
+    ],
+    "loop": false,
+    "frame_size": [
+      40,
+      40
+    ],
+    "processing": {}
+  },
+  {
+    "path": "art/bakeoff/skill_icons/luna/luna_brave_l-v1.png",
+    "note": "세 층의 분홍·금색 회오리.",
+    "replaces": "assets/art/skill_icons/luna_brave_l.png",
+    "frames": 1,
+    "fps": 0,
+    "anchor": [
+      20,
+      20
+    ],
+    "loop": false,
+    "frame_size": [
+      40,
+      40
+    ],
+    "processing": {}
+  }
+]
