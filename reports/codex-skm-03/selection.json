@@ -1,0 +1,34 @@
+[
+  {
+    "row": "wing_hover",
+    "attempt": 3,
+    "accepted": true,
+    "factor": 0.382,
+    "fps": 20,
+    "for": "발키리의 날개 정지",
+    "note": "무릎을 접고 공중 정지한 뒤 돌진을 겨누는 6프레임 후보이며 마지막 자세를 유지한다. 얼굴 눈 거리 0.962–1.032, 눈높이 폭 1.000–1.057(F3 1.057)로 전달 허용 범위이며, 기존 돌진과의 검 방향·몸 높이 연결은 뷰어에서 판단해야 한다.",
+    "face_frames": [1,2,3,4,5,6],
+    "excluded_faces": {},
+    "reviewed_frames": [1,2,3,4,5,6],
+    "costume_ok": true,
+    "pose_ok": true,
+    "face_verified": true,
+    "human_review": "0.3초 정지감, F6→기존 dash_strike F3의 검 방향과 몸 높이 연결, 허벅지·무릎 갑옷 및 얼굴 인상. 기존 dash_strike F3는 검을 뒤로 당긴 그림이므로 실제 연속 재생에서 연결을 판단해야 한다."
+  },
+  {
+    "row": "whirl_spin",
+    "attempt": 3,
+    "accepted": false,
+    "factor": 0.404,
+    "fps": 14,
+    "for": "회오리 검기 회전",
+    "note": "생성 3회 종료 후 보류: 선택한 3차 원본·공통 배율 0.404에서 F1·F3 얼굴 폭 0.943이 전달 하한 0.95보다 작다. 눈 거리 1.006–1.055, 여백·번짐·디테일은 통과하지만 얼굴 표식의 불확실성을 육안만으로 통과 처리하지 않았다.",
+    "face_frames": [1,3,4,5,6],
+    "excluded_faces": {"2": "뒷모습이라 눈·얼굴이 보이지 않음. 팔에서 잡힌 자동 얼굴 표식과 머리값은 무효."},
+    "reviewed_frames": [1,2,3,4,5,6],
+    "costume_ok": true,
+    "pose_ok": true,
+    "face_verified": false,
+    "human_review": "F1·F3의 얼굴 폭과 인상, 뒷모습→F3 수평 검 최대 뻗기가 한 바퀴 회전으로 읽히는지. 이 보드는 실패 근거를 보존한 검토 자료이며 채택 후보가 아니다."
+  }
+]
