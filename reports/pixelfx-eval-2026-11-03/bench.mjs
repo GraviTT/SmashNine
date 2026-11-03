@@ -260,9 +260,11 @@ export function savePNG(file, cv, k = 1) {
 /**
  * Bake a pixelfx effect into a game strip: frames of size [w, h] with the effect's origin at `anchor`.
  * additive: colour and light summed premultiplied into opaque pixels (alpha 0/1), so Godot's add blend shows the same.
- * Not additive: the colour layer only, alpha kept. The 1 px border of every frame stays empty (D32).
+ * mixed (normal blend): translucent colour keeps its alpha and the light is folded in as colour over it, alpha
+ * raised by the light's brightness (soft dust with glints; reads like the add blend over dark realms).
+ * Neither: the colour layer only, alpha kept. The 1 px border of every frame stays empty (D32).
  */
-export function bakeStrip(mod, opts, { frames, fps, w, h, anchor, additive = true, lightK = 1, minLight = 10, border = 1, start = 0 }) {
+export function bakeStrip(mod, opts, { frames, fps, w, h, anchor, additive = true, mixed = false, lightK = 1, minLight = 10, border = 1, start = 0 }) {
   const inst = core.createFx(mod, { ...opts, x: anchor[0], y: anchor[1] });
   const step = 1 / fps, out = { w: w * frames, h, data: new Uint8ClampedArray(w * frames * h * 4) };
   const f = core.createFrame(w, h);
@@ -276,7 +278,12 @@ export function bakeStrip(mod, opts, { frames, fps, w, h, anchor, additive = tru
       for (let x = border; x < w - border; x++) {
         const i = y * w + x, c = f.color[i], l = f.light[i] & 0xffffff, a = (c >>> 24) / 255, d = (y * out.w + n * w + x) * 4;
         let r = (c & 255) * a, g = ((c >>> 8) & 255) * a, b = ((c >>> 16) & 255) * a;
-        if (additive) {
+        if (mixed) {
+          r += (l & 255) * lightK; g += ((l >>> 8) & 255) * lightK; b += ((l >>> 16) & 255) * lightK;
+          const al = Math.min(1, a + Math.max(r, g, b) / 255 * (1 - a));
+          if (al * 255 < 6 || (a === 0 && Math.max(r, g, b) < minLight)) continue;
+          out.data[d] = r / al; out.data[d + 1] = g / al; out.data[d + 2] = b / al; out.data[d + 3] = al * 255;
+        } else if (additive) {
           r += (l & 255) * lightK; g += ((l >>> 8) & 255) * lightK; b += ((l >>> 16) & 255) * lightK;
           if (Math.max(r, g, b) < minLight && a === 0) continue;
           out.data[d] = r; out.data[d + 1] = g; out.data[d + 2] = b; out.data[d + 3] = 255;
