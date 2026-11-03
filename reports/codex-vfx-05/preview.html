@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova VFX-05 · 후보 루프 검토</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#111728;color:#d8e6f9;font:15px/1.6 system-ui,sans-serif}
+header{position:sticky;top:0;z-index:10;padding:15px 24px;background:#111728f5;border-bottom:1px solid #33415a}
+h1{font-size:22px;margin:0 0 8px}p{margin:4px 0;color:#9cafc9}button,select{font:inherit;color:inherit;background:#23314b;border:1px solid #51617c;border-radius:4px;padding:5px 12px;margin-right:8px}
+main{padding:24px;max-width:1460px}section{padding:12px 0 25px;border-bottom:1px solid #33415a}h2{font-size:20px;color:#4bdee3}
+.pair{display:flex;gap:24px;flex-wrap:wrap}.view{overflow:auto;max-width:100%;background:#111728}.label{font-size:15px;margin-bottom:8px}canvas{display:block;image-rendering:pixelated;max-width:none}a{color:#8ce8ec}.note{font-size:13px}
+</style>
+<header>
+<h1>Nova · VFX-05 후보 루프</h1>
+<p>실제 시트의 캐릭터를 넣은 합성 검토입니다. 게임 실행 화면이 아닙니다. A 왼쪽 · B 오른쪽.</p>
+<button id="pause">일시정지</button><button id="step">1/16초 이동</button>
+<select id="speed" aria-label="재생 속도"><option value="1">정속</option><option value="0.25">¼ 속도</option></select>
+<select id="scale" aria-label="표시 배율"><option value="1">1×</option><option value="4">4× · 스크롤</option></select>
+<span id="status">이미지 불러오는 중…</span> · <a href="board.png">전체 비교 보드</a>
+</header><main id="main"></main>
+<script>
+const spec={root:[96,32,6,10,'nova_gravity_root'],orb:[64,64,4,16,'nova_orb'],field:[640,640,6,8,'nova_field'],head:[48,48,4,16,'nova_beam_head'],tile:[64,16,1,0,'nova_beam_tile'],sphere:[320,320,6,12,'nova_sphere']};
+const images={},panels=[],loaded=[];let stopped=false,clock=0,last=0;
+async function image(key,url){const i=new Image();await new Promise((ok,bad)=>{i.onload=ok;i.onerror=()=>bad(new Error(url));i.src=url});images[key]=i;loaded.push(key)}
+function blit(ctx,key,x,y,frame=0,kind=null,add=false){const im=images[key];ctx.globalCompositeOperation=add?'lighter':'source-over';if(kind){const[w,h]=spec[kind];ctx.drawImage(im,frame*w,0,w,h,x,y,w,h)}else ctx.drawImage(im,x,y);ctx.globalCompositeOperation='source-over'}
+function fighter(ctx,name,x,y){ctx.drawImage(images[name],0,0,128,128,x-64,y-120,128,128)}
+function panel(section,key,v,w,h){const wrap=document.createElement('div');wrap.className='view';const label=document.createElement('div');label.className='label';label.textContent=v.toUpperCase();const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;wrap.append(label,canvas);section.append(wrap);const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;panels.push({key,v,canvas,ctx,w,h})}
+function row(title,key,w,h,note){const s=document.createElement('section');const h2=document.createElement('h2');h2.textContent=title;const p=document.createElement('p');p.className='note';p.textContent=note;const pair=document.createElement('div');pair.className='pair';s.append(h2,p,pair);document.querySelector('#main').append(s);for(const v of ['a','b'])panel(pair,key,v,w,h)}
+function draw(p){const{key,v,ctx,w,h}=p;ctx.fillStyle='#111728';ctx.fillRect(0,0,w,h);const n=k=>Math.floor(clock*spec[k][3])%spec[k][2];
+ if(key==='stacks'){for(let s=1;s<=3;s++){const x=62+(s-1)*140;fighter(ctx,'nova',x,160);blit(ctx,'mark'+v+s,x-12,5)}for(let i=0;i<4;i++)blit(ctx,'old'+i,64+i*48,180)}
+ if(key==='root'){fighter(ctx,'nova',120,145);blit(ctx,'root'+v,72,129,n('root'),'root',true)}
+ if(key==='orb'){fighter(ctx,'nova',62,145);blit(ctx,'orb'+v,160-32,85-32,n('orb'),'orb',true);ctx.strokeStyle='#be9b43';ctx.strokeRect(137.5,62.5,45,45)}
+ if(key==='field'){ctx.globalAlpha=.26;ctx.drawImage(images.realm,(images.realm.width-640)/2,(images.realm.height-640)/2,640,640,0,0,640,640);ctx.globalAlpha=1;fighter(ctx,'nova',295,390);fighter(ctx,'frey',465,330);blit(ctx,'field'+v,0,0,n('field'),'field',true)}
+ if(key==='beam'){fighter(ctx,'nova',65,138);for(let x=86;x<386;x+=64){ctx.globalCompositeOperation='lighter';const len=Math.min(64,386-x);ctx.drawImage(images['tile'+v],0,0,len,16,x,91,len,16)}ctx.globalCompositeOperation='source-over';blit(ctx,'head'+v,362,75,n('head'),'head',true)}
+ if(key==='sphere'){blit(ctx,'sphere'+v,30,10,n('sphere'),'sphere',false);fighter(ctx,'frey',78,212);fighter(ctx,'luna',302,212);fighter(ctx,'nova',190,362)}
+ if(key==='icons'){for(let i=0;i<5;i++){const x=i*60+3;ctx.fillStyle='#1a2236';ctx.fillRect(x,5,48,48);blit(ctx,'icon'+'jklui'[i],x+4,9);ctx.fillStyle='#d8e6f9';ctx.font='14px system-ui';ctx.fillText('JKLUI'[i],x+20,72)}}
+}
+function animate(t){if(last&&!stopped)clock+=(t-last)/1000*Number(document.querySelector('#speed').value);last=t;for(const p of panels)draw(p);document.querySelector('#status').textContent=`${loaded.length}개 이미지 준비 · ${stopped?'정지':'반복 재생'}`;window.__vfxAudit={loaded:loaded.length,panels:panels.length,clock,stopped};requestAnimationFrame(animate)}
+document.querySelector('#pause').onclick=()=>{stopped=!stopped;document.querySelector('#pause').textContent=stopped?'재생':'일시정지'};
+document.querySelector('#step').onclick=()=>{stopped=true;clock+=1/16;document.querySelector('#pause').textContent='재생'};
+document.querySelector('#scale').onchange=e=>{const scale=Number(e.target.value);for(const p of panels){p.canvas.style.width=p.w*scale+'px';p.canvas.style.height=p.h*scale+'px'}};
+(async()=>{const tasks=[];for(const[k,s]of Object.entries(spec))for(const v of ['a','b'])tasks.push(image(k+v,`../../art/bakeoff/effects/nova/${s[4]}-${v}-v1.png`));
+ for(const v of ['a','b'])for(let s=1;s<=3;s++)tasks.push(image('mark'+v+s,`../../art/bakeoff/ui/status/nova_gravity_${s}-${v}-v1.png`));
+ for(const key of 'jklui')tasks.push(image('icon'+key,`../../art/bakeoff/skill_icons/nova/nova_${key}-v1.png`));
+ for(const[i,file]of ['stun','super_armor','slow','luna_star_mark'].entries())tasks.push(image('old'+i,`../../smash-nine-prototype/assets/art/ui/status/${file}.png`));
+ tasks.push(image('nova','../../art/bakeoff/nova/nova_male-idle-v2.png'),image('frey','../../art/bakeoff/frey/frey-idle-v2.png'),image('luna','../../art/bakeoff/luna/luna-idle-v3.png'),image('realm','../../smash-nine-prototype/assets/art/realm_center/bg_far.png'));
+ await Promise.all(tasks);row('01 · 중력 중첩','stacks',440,220,'1·2·3단계 / 아래: 기절·아머·슬로우·루나 표식');row('01 · 고정 고리','root',260,180,'96×32 · 6장 · 10fps · 발 중심');row('02 · 중력 구체','orb',260,180,'64×64 · 4장 · 16fps · 참고 판정45×45');row('03 · 중력 필드','field',640,640,'640×640 · 6장 · 8fps · 반경300 · 내부를 덮지 않는 additive');row('04 · 중력 광선','beam',470,160,'48×48 head · 4장 · 16fps / 64×16 tile · 손부터300px');row('05 · 사건의 지평선','sphere',380,415,'320×320 · 6장 · 12fps · 적은 반경112에서 앞에 표시');row('06 · HUD 아이콘','icons',300,90,'J · K · L · U · I · 아이콘은 공통 1종');requestAnimationFrame(animate)
+})().catch(e=>{document.querySelector('#status').textContent='로드 오류: '+e.message;console.error(e)});
+</script></html>
