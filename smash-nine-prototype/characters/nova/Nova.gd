@@ -88,8 +88,10 @@ const ULTIMATE_COLLAPSE_KNOCKBACK := 600.0
 ## (fps x 6 / old frames), the idle at 6.3 fps (D37). The base `attack` row is only a fallback.
 const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 35.25, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34). `tumble` is new for Nova: strong launches play it instead of the hurt frame.
-## The new skills borrow rows until theirs are drawn: the orb `gravity_brake`, the field
-## `slingshot_start`, the beam `vector_side` 5-6, the J chain `vector_side` two drawings a hit.
+## The J chain plays `vector_side` two drawings a hit; the ultimate's sphere `slingshot_start`.
+## The new kit's own rows (CODEX-SKM-05, adopted 2026-11-03): K orb_throw, U gravity_beam, the
+## flight in her field field_fly (loop), the field cast zero_gravity. vector_shift and
+## gravity_brake are no longer played and stay so the rows keep their place.
 const MOVE_SHEET_ROWS := [
 	["vector_side", 6, 35.25, false],
 	["vector_upper", 6, 33.0, false],
@@ -100,6 +102,10 @@ const MOVE_SHEET_ROWS := [
 	["gravity_brake", 6, 14.3, false],
 	["slingshot_start", 6, 14.0, false],
 	["tumble", 6, 21.0, true],
+	["orb_throw", 6, 16.0, false],
+	["gravity_beam", 6, 18.0, false],
+	["field_fly", 6, 10.0, true],
+	["zero_gravity", 6, 13.0, false],
 ]
 
 var combo_step := 0
@@ -171,20 +177,21 @@ func perform_basic_attack(attack_type: String, input_direction: Vector2) -> void
 
 func perform_skill_one() -> void:
 	_reset_combo()
-	_start_attack(ORB_STARTUP, ORB_RECOVERY, Callable(self, "_fire_orb"), Vector2i(-1, -1), &"gravity_brake")
+	_start_attack(ORB_STARTUP, ORB_RECOVERY, Callable(self, "_fire_orb"), Vector2i(-1, -1), &"orb_throw")
 
 func perform_skill_two() -> void:
 	if field_cooldown_timer > 0.0:
 		return
 	_reset_combo()
-	_start_attack(FIELD_STARTUP, FIELD_RECOVERY, Callable(self, "_cast_field"), Vector2i(-1, -1), &"slingshot_start")
+	_start_attack(FIELD_STARTUP, FIELD_RECOVERY, Callable(self, "_cast_field"), Vector2i(-1, -1), &"zero_gravity")
 
 func has_skill_three() -> bool:
 	return true
 
+## The cast plays gravity_beam 1-3 (aim, palm shot, hold); a hit plays the pull, 4-6.
 func perform_skill_three() -> void:
 	_reset_combo()
-	_start_attack(BEAM_STARTUP, BEAM_RECOVERY, Callable(self, "_fire_beam"), Vector2i(-1, -1), &"vector_side", Vector2i(4, 5))
+	_start_attack(BEAM_STARTUP, BEAM_RECOVERY, Callable(self, "_fire_beam"), Vector2i(-1, -1), &"gravity_beam", Vector2i(0, 2))
 
 func skill_cooldown(slot: String) -> Vector2:
 	if slot == "l":
@@ -412,6 +419,10 @@ func _cast_field() -> void:
 func _in_own_field() -> bool:
 	return is_instance_valid(field) and field.contains(global_position + GAME_SCALE.BODY_CENTRE)
 
+## Off the floor in her own field she flies (field_fly loop) instead of the jump and fall frames.
+func character_air_motion() -> StringName:
+	return &"field_fly" if _in_own_field() and _has_motion_row(&"field_fly") else &""
+
 ## W/A/S/D for a player; a bot steers toward its aim.
 func _flight_input() -> Vector2:
 	if hitstun_timer > 0.0 or is_dummy:
@@ -446,11 +457,18 @@ func on_beam_hit(body: Node, direction: Vector2) -> void:
 		if body.apply_forced_launch_hit(self, BEAM_SLAM_DAMAGE, Vector2(0.0, BEAM_SLAM_SPEED), BEAM_SLAM_HITSTUN, 420.0, Vector2.DOWN) != false:
 			_stack(body)
 		_play_impact_flash((body as Node2D).global_position + GAME_SCALE.BODY_CENTRE, 34.0, Color(0.74, 0.5, 1.0, 0.8))
+		_play_beam_pull_pose(0.3)
 		return
 	if body.apply_hit(self, BEAM_DAMAGE, 0.0, -direction) != false:
 		beam_target = body
 		beam_pull_timer = BEAM_PULL_TIME
 		_start_beam_wrap(body as Node2D)
+		_play_beam_pull_pose(BEAM_PULL_TIME)
+
+## The fist pulls, the other hand catches (gravity_beam 4-6), unless she has moved on to another move.
+func _play_beam_pull_pose(duration: float) -> void:
+	if attack_lock_timer <= 0.0 or sprite_action == &"gravity_beam":
+		_play_move_sprite_pose(&"gravity_beam", -1, -1, duration, 3, 5)
 
 func _update_beam_pull(delta: float) -> void:
 	if beam_pull_timer <= 0.0:

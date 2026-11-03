@@ -924,6 +924,11 @@ func character_on_air_jump() -> void:
 func character_defers_air_jump() -> bool:
 	return false
 
+## A row the character plays off the floor instead of jump/fall (Nova's flight in her field), or
+## empty for the usual frames.
+func character_air_motion() -> StringName:
+	return &""
+
 func _perform_air_jump() -> void:
 	velocity.y = jump_velocity * 0.86 * (0.78 if control_jump_slow_timer > 0.0 else 1.0) * gravity_jump_scale()
 	_restart_jump_motion()
@@ -2411,7 +2416,11 @@ func _update_character_sprite(force := false) -> void:
 	elif is_guarding:
 		target = &"shield"
 	elif not is_on_floor():
-		target = &"jump" if velocity.y < 0.0 else &"fall"
+		var air_motion := character_air_motion()
+		if air_motion != &"":
+			target = air_motion
+		else:
+			target = &"jump" if velocity.y < 0.0 else &"fall"
 	elif absf(velocity.x) > 20.0 or absf(move_input) > 0.1:
 		target = &"walk"
 	elif landing_motion_timer > 0.0:

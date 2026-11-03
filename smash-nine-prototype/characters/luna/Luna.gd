@@ -13,6 +13,8 @@ const BRAVE_SHEET_ART := "res://assets/art/luna/luna_brave_sheet.png"
 ## two sheet rows (user 2026-10-15). Both forms share this base table.
 const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34). `transform` is the special 12-frame transformation and fills two sheet rows.
+## star_warp and brave_grab (CODEX-SKM-04, adopted 2026-11-03) are K's own drawings since the new
+## kit (D45); star_comet and comet_drive are no longer played and stay so the rows keep their place.
 const MOVE_SHEET_ROWS := [
 	["star_up", 6, 21.0, false],
 	["star_down", 6, 21.0, false],
@@ -21,6 +23,7 @@ const MOVE_SHEET_ROWS := [
 	["transform", 12, 12.0, false],
 	["tumble", 6, 21.0, true],
 	["star_side", 6, 21.0, false],
+	["star_warp", 6, 20.0, false],
 ]
 const BRAVE_MOVE_SHEET_ROWS := [
 	["brave_combo", 6, 16.0, false],
@@ -32,6 +35,7 @@ const BRAVE_MOVE_SHEET_ROWS := [
 	["luna_breaker", 6, 16.0, false],
 	["heart_laser", 6, 12.0, false],
 	["tumble", 6, 21.0, true],
+	["brave_grab", 6, 18.0, false],
 ]
 ## The special transformation (user 2026-10-14): the 12-frame row at its own speed. She becomes
 ## Brave Luna, with the burst, as she lands on frame 9; the ultimate's super armour covers the motion.
@@ -399,7 +403,8 @@ func _warp_start() -> void:
 		if not warp_air_available:
 			return
 		warp_air_available = false
-	_start_attack(WARP_STARTUP, WARP_RECOVERY, Callable(self, "_warp"), Vector2i(-1, -1), &"star_comet")
+	# Crouch and vanish over the start-up; she reappears swinging the staff (frame 3) as she warps.
+	_start_attack(WARP_STARTUP, WARP_RECOVERY, Callable(self, "_warp"), Vector2i(-1, -1), &"star_warp")
 	_freeze_movement(WARP_STARTUP)
 	velocity = Vector2(velocity.x * 0.3, minf(velocity.y, 0.0) * 0.3)
 
@@ -709,7 +714,8 @@ func _reset_brave_combo() -> void:
 
 func _brave_grab_start() -> void:
 	_reset_brave_combo()
-	_start_attack(GRAB_STARTUP, GRAB_DASH_TIME + GRAB_WHIFF_RECOVERY, Callable(self, "_brave_grab_dash"), Vector2i(1, 1), &"comet_drive")
+	# brave_grab: the reaching dash (1), the catch and pull (2-4) while she holds, the throw (5-6).
+	_start_attack(GRAB_STARTUP, GRAB_DASH_TIME + GRAB_WHIFF_RECOVERY, Callable(self, "_brave_grab_dash"), Vector2i(1, 1), &"brave_grab", Vector2i(0, 0))
 
 func _brave_grab_dash() -> void:
 	var direction := _get_late_skill_direction()
@@ -765,7 +771,7 @@ func _grab(foe: Node2D) -> void:
 	grab_hold_timer = GRAB_HOLD_TIME
 	attack_lock_timer = GRAB_HOLD_TIME + THROW_RECOVERY
 	_freeze_movement(GRAB_HOLD_TIME)
-	_play_move_sprite_pose(&"luna_breaker", 0, 1, GRAB_HOLD_TIME, 0, 1)
+	_play_move_sprite_pose(&"brave_grab", 0, 1, GRAB_HOLD_TIME, 1, 3)
 	_play_star_bloom(Vector2(30 * facing, -34), 26.0, BRAVE_IMPACT_COLOR, 0.12)
 
 func _hold_point() -> Vector2:
@@ -781,7 +787,7 @@ func _throw() -> void:
 	grabbed = null
 	var launch := _throw_velocity()
 	attack_lock_timer = THROW_RECOVERY
-	_play_move_sprite_pose(&"luna_breaker", 2, 5, THROW_RECOVERY, 2, 5)
+	_play_move_sprite_pose(&"brave_grab", 2, 5, THROW_RECOVERY, 4, 5)
 	if not is_instance_valid(target):
 		return
 	target.movement_freeze_timer = 0.0

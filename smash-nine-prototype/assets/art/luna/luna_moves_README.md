@@ -16,17 +16,18 @@ Rows come from `Luna.SHEET_ROWS`, which both forms share.
 | hurt | 1 | 1 | `luna-hurt-v1` |
 
 ## `luna_moves_sheet.png`: move sheet (192 px, feet y=152, D34)
-8 sheet rows: `transform` fills two.
+9 sheet rows: `transform` fills two.
 
 | Row | Frames | FPS | Move | Source |
 | --- | ---: | ---: | --- | --- |
 | `star_up` | 6 | 21 | normal up/air-up J Star Volley (D45) | `luna-star_up-v1` |
 | `star_down` | 6 | 21 | normal down/air-down J Star Volley (D45) | `luna-star_down-v1` |
-| `star_comet` | 6 | 21 | normal K Twinkle Warp (D45 stand-in; was Star Comet) | `luna-star_comet-v1` |
+| `star_comet` | 6 | 21 | no longer played (was Star Comet, then the Twinkle Warp stand-in); kept so the rows keep their place | `luna-star_comet-v1` |
 | `moon_ring` | 6 | 16.8 | normal L Star Barrier (D45 stand-in; was Moon Ring, a spin in place) | `luna-moon_ring-v1` |
 | `transform` | 12 | 12 | I: the special transformation into Brave Luna (② design, D36) | `luna-transform-v3` |
 | `tumble` | 6 | 21, loop | strong-launch hitstun | `luna-tumble-v1` |
 | `star_side` | 6 | 21 | normal side/air-side J Star Volley (D45; was Star Echo) | `luna-attack-v2` |
+| `star_warp` | 6 | 20 | normal K Twinkle Warp: crouch, vanish, reappear swinging (frame 3 at the warp), spin, guard (adopted 2026-11-03, the lead's pick for the user's playtest) | `luna-star_warp-v1` (CODEX-SKM-04) |
 
 ## The special transformation
 The user asked for it on 2026-10-14. The 12 frames:

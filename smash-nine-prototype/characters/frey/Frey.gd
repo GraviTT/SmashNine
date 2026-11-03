@@ -40,6 +40,7 @@ const ULTIMATE_AFTERSHOCK_DAMAGE := 10.0
 ## 128-px fallback. The walk is 8 frames at 13.3 fps and fills two sheet rows (user 2026-10-15).
 const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34): big poses keep the idle head size. The J chain lives here as attack_chain.
+## wing_hover (CODEX-SKM-03, adopted 2026-11-03): the wing hover, knees tucked, aiming the dash.
 const MOVE_SHEET_ROWS := [
 	["attack_up", 6, 21.0, false],
 	["attack_down", 6, 21.0, false],
@@ -50,6 +51,7 @@ const MOVE_SHEET_ROWS := [
 	["descent", 6, 14.0, false],
 	["tumble", 6, 21.0, true],
 	["attack_chain", 6, 21.0, false],
+	["wing_hover", 6, 20.0, false],
 ]
 
 var combo_step := 0
@@ -185,8 +187,8 @@ func _start_wing_hover() -> void:
 	current_attack_started_airborne = true
 	_freeze_movement(WING_HOVER_TIME)
 	velocity = Vector2.ZERO
-	# The dash row's aim frames (1-2) held while she hangs in the air.
-	_play_move_sprite_pose(&"dash_strike", 0, 0, WING_HOVER_TIME, 0, 1)
+	# Knees tucked, then the dash aim held while she hangs in the air.
+	_play_move_sprite_pose(&"wing_hover", 0, 0, WING_HOVER_TIME)
 	_play_dash_hold()
 	_play_wing_spread()
 	var held_facing := facing

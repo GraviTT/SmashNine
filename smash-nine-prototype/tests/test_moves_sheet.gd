@@ -15,6 +15,7 @@ const ROW_COUNTS := {
 	"descent": 6,
 	"tumble": 6,
 	"attack_chain": 6,
+	"wing_hover": 6,
 }
 ## Luna and Brave Luna redrawn at 6 frames (2026-10-14, D33-D36); the special transformation is 12.
 const LUNA_ROW_COUNTS := {
@@ -25,6 +26,7 @@ const LUNA_ROW_COUNTS := {
 	"luna_transform": 12,
 	"luna_tumble": 6,
 	"luna_star_side": 6,
+	"luna_star_warp": 6,
 	"luna_brave_brave_combo": 6,
 	"luna_brave_brave_upper": 6,
 	"luna_brave_brave_low": 6,
@@ -34,6 +36,7 @@ const LUNA_ROW_COUNTS := {
 	"luna_brave_luna_breaker": 6,
 	"luna_brave_heart_laser": 6,
 	"luna_brave_tumble": 6,
+	"luna_brave_brave_grab": 6,
 }
 
 var arena: Node2D
@@ -46,7 +49,7 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	var image := Image.create(768, 1280, false, Image.FORMAT_RGBA8)
+	var image := Image.create(768, 128 * 14, false, Image.FORMAT_RGBA8)
 	image.fill(Color.WHITE)
 	generated_moves_sheet = ImageTexture.create_from_image(image)
 	var probe := _fighter(false)
@@ -66,9 +69,9 @@ func _run() -> void:
 	await _expect_move("air-side J", "attack_air_side", func(fighter): fighter.perform_basic_attack("air_side", Vector2.RIGHT))
 	await _expect_chain()
 	# K (sword wave, 2026-11-03) plays the spike row's sweep until the spin has its own drawing;
-	# the wing hover holds the dash row's aim frames.
+	# the wing hover has its own row (SKM-03, adopted 2026-11-03).
 	await _expect_move("sword wave", "spike_followup", func(fighter): fighter.perform_skill_one())
-	await _expect_move("wing hover", "dash_strike", func(fighter): fighter._start_wing_hover())
+	await _expect_move("wing hover", "wing_hover", func(fighter): fighter._start_wing_hover())
 	await _expect_move("rising cleave", "rising_cleave", func(fighter): fighter.perform_skill_two())
 	await _expect_move("spike follow-up", "spike_followup", func(fighter):
 		fighter.rising_followup_timer = 0.18
@@ -151,14 +154,14 @@ func _test_luna_rows_and_moves() -> void:
 
 	await _expect_luna("up star echo", "star_up", false, func(fighter): fighter.perform_basic_attack("up", Vector2.UP))
 	await _expect_luna("down star echo", "star_down", false, func(fighter): fighter.perform_basic_attack("down", Vector2.DOWN))
-	await _expect_luna("star comet", "star_comet", false, func(fighter): fighter.perform_skill_one())
+	await _expect_luna("twinkle warp", "star_warp", false, func(fighter): fighter.perform_skill_one())
 	await _expect_luna("moon ring", "moon_ring", false, func(fighter): fighter.perform_skill_two())
 	await _expect_luna("transformation", "transform", false, func(fighter): fighter.perform_ultimate())
 	await _expect_luna("Brave uppercut", "brave_upper", true, func(fighter): fighter.perform_basic_attack("up", Vector2.UP))
 	await _expect_luna("Brave low sweep", "brave_low", true, func(fighter): fighter.perform_basic_attack("down", Vector2.DOWN))
 	await _expect_luna("Brave flying kick", "brave_air_side", true, func(fighter): fighter.perform_basic_attack("air_side", Vector2.RIGHT))
 	await _expect_luna("Brave dive kick", "brave_dive", true, func(fighter): fighter.perform_basic_attack("air_down", Vector2.DOWN))
-	await _expect_luna("Comet Drive", "comet_drive", true, func(fighter): fighter.perform_skill_one())
+	await _expect_luna("Comet Catch", "brave_grab", true, func(fighter): fighter.perform_skill_one())
 	await _expect_luna("Luna Breaker", "luna_breaker", true, func(fighter): fighter.perform_skill_two())
 	await _expect_luna("Heart Laser", "heart_laser", true, func(fighter): fighter.try_ultimate_followup())
 	await _expect_strong_launch("Luna normal tumble", false, &"luna_tumble")
@@ -227,6 +230,9 @@ func _test_character_moves(character_id: String) -> void:
 		elif row == "tumble":
 			# A strong launch without the tumble row keeps the hurt frame (_play_launch_hit_sprite).
 			expected_fallback = StringName("%s_hurt" % character_id)
+		elif row == "field_fly":
+			# Without the flight row she shows the fall frame in the air.
+			expected_fallback = StringName("%s_fall" % character_id)
 		if fallback.character_sprite.animation != expected_fallback:
 			_fail("%s %s without a move sheet should fall back to %s, got %s" % [character_id.capitalize(), row, expected_fallback, fallback.character_sprite.animation])
 		fallback.queue_free()
@@ -253,11 +259,18 @@ func _play_character_row(fighter: Node, character_id: String, row: String) -> vo
 				"compression_stomp": fighter.perform_basic_attack("down", Vector2.DOWN)
 				"air_side": fighter.perform_basic_attack("air_side", Vector2.RIGHT)
 				"meteor_kick": fighter.perform_basic_attack("air_down", Vector2.DOWN)
-				# Since D47 the rows serve the new skills: the orb (K) gravity_brake, the field (L)
-				# slingshot_start; vector_shift is unused until the beam has its own row.
+				# The new kit's rows (D47, adopted 2026-11-03); vector_shift and gravity_brake are
+				# no longer played, slingshot_start is the ultimate's sphere.
 				"vector_shift": fighter._play_move_sprite_pose(&"vector_shift", -1, -1, 0.2)
-				"gravity_brake": fighter.perform_skill_one()
-				"slingshot_start": fighter.perform_skill_two()
+				"gravity_brake": fighter._play_move_sprite_pose(&"gravity_brake", -1, -1, 0.2)
+				"slingshot_start": fighter.perform_ultimate()
+				"orb_throw": fighter.perform_skill_one()
+				"zero_gravity": fighter.perform_skill_two()
+				"gravity_beam": fighter.perform_skill_three()
+				# Off the floor in her own field: the flight loop.
+				"field_fly":
+					fighter._cast_field()
+					fighter._update_character_sprite(true)
 				# New for Nova (2026-10-14): a strong launch plays her/his tumble row.
 				"tumble": fighter.apply_forced_launch_hit(null, 1.0, Vector2(620.0, -260.0), 0.25, 620.0, Vector2.RIGHT)
 		"yuki":

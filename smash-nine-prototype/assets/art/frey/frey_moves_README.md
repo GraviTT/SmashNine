@@ -26,7 +26,7 @@ Strips are stacked as they are; nothing was scaled or moved again.
 | hurt | 1 | 1 | `frey-hurt-v1` |
 
 ## `frey_moves_sheet.png`: move sheet
-- 1152×1728, 6 columns × 9 rows, **192-px cells** (D34).
+- 1152×1920, 6 columns × 10 rows, **192-px cells** (D34).
 - Feet y=152 and torso centre x=96, the same place on screen as y=120 and x=64 in a 128 cell.
 - Drawn 1:1 next to the base sheet, so big poses keep the idle head size.
 
@@ -41,6 +41,7 @@ Strips are stacked as they are; nothing was scaled or moved again.
 | descent | 6 | 14 | I: dive and sword slam | `frey-descent-v4` |
 | tumble | 6 | 21, loop | strong-launch hitstun | `frey-tumble-v3` |
 | attack_chain | 6 | 21 | neutral J chain: hits at 1–2, 3–4, 5–6 | `frey-attack-v4` |
+| wing_hover | 6 | 20 | passive wing hover: knees tucked, the dash aim held (adopted 2026-11-03, the lead's pick for the user's playtest) | `frey-wing_hover-v1` (CODEX-SKM-03) |
 
 Every motion that had 4 or 5 frames now has 6, and its length is unchanged. The game spreads a
 move row over the move's own duration (`_play_sprite_pose`).

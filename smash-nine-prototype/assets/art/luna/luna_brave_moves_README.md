@@ -28,9 +28,10 @@ She has the same face and head size as Luna (2.2 heads). Both sheets were stacke
 | `brave_low` | 6 | 24 | Brave down J: low sweep | `luna_brave-brave_low-v1` |
 | `brave_air_side` | 6 | 24 | Brave air-side J: flying kick | `luna_brave-brave_air_side-v1` |
 | `brave_dive` | 6 | 24 | Brave air-down J: dive kick | `luna_brave-brave_dive-v1` |
-| `comet_drive` | 6 | 24 | Brave K Comet Catch: the dash (D45 stand-in; was Comet Drive) | `luna_brave-comet_drive-v1` |
-| `luna_breaker` | 6 | 16 | Brave K hold 1–2 and throw 3–6, Brave L Star Cyclone wind-up and release (D45 stand-ins; was Luna Breaker) | `luna_brave-luna_breaker-v1` |
+| `comet_drive` | 6 | 24 | no longer played (was Comet Drive, then the Comet Catch stand-in); kept so the rows keep their place | `luna_brave-comet_drive-v1` |
+| `luna_breaker` | 6 | 16 | Brave L Star Cyclone wind-up and release (D45 stand-in; was Luna Breaker) | `luna_brave-luna_breaker-v1` |
 | `heart_laser` | 6 | 12 | Brave I Star Beam: hands make a heart, then the firing stance (held) | `luna_brave-heart_laser-v1` |
 | `tumble` | 6 | 21, loop | strong-launch hitstun; Brave L Star Cyclone spin (D45 stand-in) | `luna_brave-tumble-v1` |
+| `brave_grab` | 6 | 18 | Brave K Comet Catch: the reaching dash 1, the catch and pull 2–4 while she holds, the throw 5–6 (adopted 2026-11-03, the lead's pick for the user's playtest) | `luna_brave-brave_grab-v1` (CODEX-SKM-04) |
 
 No effects are drawn into these frames. The game draws the star bursts, the comet light, the heart laser and the aura.
