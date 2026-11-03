@@ -1,0 +1,814 @@
+{
+  "selection": {
+    "stem": "nova_male",
+    "row": "orb_throw",
+    "attempt": 2,
+    "accepted": true,
+    "fps": 16,
+    "loop": false,
+    "factor": 0.34,
+    "face_verified": true,
+    "costume_ok": true,
+    "pose_ok": true,
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "note": "양손을 모은 뒤 발을 내딛고 한 팔로 던지는 6프레임 후보입니다. 노출 얼굴 폭 0.966–1.000이며 반대쪽 눈은 기준부터 가려져 눈 간 거리는 측정 불가입니다.",
+    "for": "K 중력 구체 던지기",
+    "attempt_notes": "2차에서 양손 모으기를 더 명확히 했다. 공통 배율 0.34 선정. F1 자동 얼굴 오른쪽 표식이 눈/앞머리 안쪽 y93을 잡아, 격자 대조 후 같은 눈 아래 y95의 실제 경계로 수정했다(원래 표식과 이유는 checks JSON에 보존). 나머지 표식은 직접 확인해 채택했다.",
+    "human_review": "모으기→한 팔 던지기의 연결, F1·F2 준비 자세의 작은 차이, F5 뒤쪽 팔과 들린 발의 균형을 모션 뷰어에서 판단."
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-05\\nova_male\\orb_throw\\attempt-2\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.34,
+      "scale_by": "fixed:0.34",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        89,
+        91
+      ],
+      "body_width_range": [
+        57,
+        94
+      ],
+      "area_range": [
+        3115,
+        3518
+      ],
+      "area_spread_percent": 11.46,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        2529,
+        2813
+      ],
+      "interior_detail_range": [
+        119.63,
+        122.91
+      ],
+      "interior_detail_mean": 121.33,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 93.13,
+      "interior_detail_ratio": 1.3028
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 93.13,
+          "colour_count": 2768,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 93.13,
+      "colour_count_range": [
+        2768,
+        2768
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/source-frames/00.png",
+        "bbox": [
+          68,
+          63,
+          125,
+          153
+        ],
+        "body_height": 90,
+        "body_width": 57,
+        "area": 3115,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 119.63,
+        "colour_count": 2529,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 68,
+          "top": 63,
+          "right": 67,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2845
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/source-frames/01.png",
+        "bbox": [
+          67,
+          63,
+          128,
+          153
+        ],
+        "body_height": 90,
+        "body_width": 61,
+        "area": 3152,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 122.29,
+        "colour_count": 2541,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 67,
+          "top": 63,
+          "right": 64,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3131
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/source-frames/02.png",
+        "bbox": [
+          61,
+          62,
+          132,
+          153
+        ],
+        "body_height": 91,
+        "body_width": 71,
+        "area": 3364,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 121.26,
+        "colour_count": 2695,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 61,
+          "top": 62,
+          "right": 60,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3021
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/source-frames/03.png",
+        "bbox": [
+          59,
+          63,
+          146,
+          153
+        ],
+        "body_height": 90,
+        "body_width": 87,
+        "area": 3518,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 121.56,
+        "colour_count": 2813,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 59,
+          "top": 63,
+          "right": 46,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3053
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/source-frames/04.png",
+        "bbox": [
+          50,
+          64,
+          144,
+          153
+        ],
+        "body_height": 89,
+        "body_width": 94,
+        "area": 3489,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 122.91,
+        "colour_count": 2794,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 50,
+          "top": 64,
+          "right": 48,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3198
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/source-frames/05.png",
+        "bbox": [
+          66,
+          64,
+          124,
+          153
+        ],
+        "body_height": 89,
+        "body_width": 58,
+        "area": 3194,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 120.35,
+        "colour_count": 2629,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 66,
+          "top": 64,
+          "right": 68,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2923
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/nova_male-orb_throw.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/frames",
+      "closeup": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/closeup.png",
+      "compare": "reports/codex-skm-05/nova_male/orb_throw/attempt-2/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        72.5,
+        57,
+        3,
+        4
+      ],
+      [
+        79.5,
+        56,
+        2,
+        3
+      ],
+      [
+        65.5,
+        60,
+        3,
+        4
+      ],
+      [
+        80,
+        60,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 72.474,
+        "y": 57.807,
+        "score": 1
+      },
+      {
+        "x": 80.259,
+        "y": 57.12,
+        "score": 1
+      },
+      {
+        "x": 65.5,
+        "y": 60,
+        "score": 1
+      },
+      {
+        "x": 80,
+        "y": 60,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 7.815253930615431,
+    "reference_face_width": 14.5,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 107.122,
+            "y": 92.173,
+            "score": 0.896
+          },
+          {
+            "x": 114.5,
+            "y": 90.964,
+            "score": 0.906
+          },
+          {
+            "x": 100.5,
+            "y": 95,
+            "score": 0.877
+          },
+          {
+            "x": 114.5,
+            "y": 95,
+            "score": 0.878
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.0,
+        "eye_ratio": null,
+        "face_width_ratio": 0.9655,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          90,
+          71,
+          0.787
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 107.122,
+              "y": 92.173,
+              "score": 0.896
+            },
+            {
+              "x": 114.5,
+              "y": 90.964,
+              "score": 0.906
+            },
+            {
+              "x": 100.5,
+              "y": 95.0,
+              "score": 0.877
+            },
+            {
+              "x": 114.0,
+              "y": 93.0,
+              "score": 0.878
+            }
+          ],
+          "face_width_ratio": 0.931
+        },
+        "correction_reason": "4배 및 픽셀 격자에서 F1 자동 오른쪽 표식이 y93의 눈/앞머리 안쪽을 잡은 것을 확인했다. 왼쪽 표식과 같은 눈 아래 y95에서 밝은 얼굴 x114와 어두운 외곽 x115 사이 경계 x114.5로 수정했다. 왼쪽 x100.5는 유지. 원본 그림은 변경하지 않았다.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 110.026,
+            "y": 92.465,
+            "score": 0.882
+          },
+          {
+            "x": 118.048,
+            "y": 91.04,
+            "score": 0.961
+          },
+          {
+            "x": 103.5,
+            "y": 95.0,
+            "score": 0.878
+          },
+          {
+            "x": 118.0,
+            "y": 94.0,
+            "score": 0.912
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          94,
+          72,
+          0.804
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 103.069,
+            "y": 91.409,
+            "score": 0.857
+          },
+          {
+            "x": 111.045,
+            "y": 89.865,
+            "score": 0.907
+          },
+          {
+            "x": 96.5,
+            "y": 94.0,
+            "score": 0.871
+          },
+          {
+            "x": 111.0,
+            "y": 93.0,
+            "score": 0.899
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          87,
+          71,
+          0.805
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 109.144,
+            "y": 92.584,
+            "score": 0.904
+          },
+          {
+            "x": 117.135,
+            "y": 91.13,
+            "score": 0.99
+          },
+          {
+            "x": 102.5,
+            "y": 95.0,
+            "score": 0.899
+          },
+          {
+            "x": 117.0,
+            "y": 94.0,
+            "score": 0.88
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          93,
+          72,
+          0.796
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 105.856,
+            "y": 93.061,
+            "score": 0.886
+          },
+          {
+            "x": 113.5,
+            "y": 91.997,
+            "score": 0.899
+          },
+          {
+            "x": 98.5,
+            "y": 95.0,
+            "score": 0.881
+          },
+          {
+            "x": 113.0,
+            "y": 94.0,
+            "score": 0.887
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          90,
+          73,
+          0.823
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 104.888,
+            "y": 92.85,
+            "score": 0.914
+          },
+          {
+            "x": 113.167,
+            "y": 91.167,
+            "score": 0.947
+          },
+          {
+            "x": 98.5,
+            "y": 95.0,
+            "score": 0.797
+          },
+          {
+            "x": 113.0,
+            "y": 95.0,
+            "score": 0.879
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          88,
+          72,
+          0.853
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      }
+    ],
+    "review_note": "Inspected ART-72 landmarks; corrections, if any, retain the original proposal and reason. Same row factor; no image editing. Eye distance remains unavailable.",
+    "sheet_sha256": "08b53c46abb653462cd17aa6c1715e421cc3560331229a8335423c1316d41b71"
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-05\\nova_male\\orb_throw\\attempt-2\\nova_male-orb_throw.png",
+    "frames": [
+      {
+        "scale": 1.0,
+        "score": 0.787
+      },
+      {
+        "scale": 0.96,
+        "score": 0.804
+      },
+      {
+        "scale": 0.96,
+        "score": 0.806
+      },
+      {
+        "scale": 0.96,
+        "score": 0.798
+      },
+      {
+        "scale": 0.96,
+        "score": 0.824
+      },
+      {
+        "scale": 1.0,
+        "score": 0.853
+      }
+    ],
+    "median": 0.96,
+    "used": 6
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-05\\nova_male-orb_throw-2.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      30292,
+      30232,
+      29257,
+      27708,
+      27334,
+      26791
+    ],
+    "boxes": [
+      [
+        93,
+        257,
+        260,
+        521
+      ],
+      [
+        440,
+        256,
+        620,
+        521
+      ],
+      [
+        781,
+        253,
+        991,
+        520
+      ],
+      [
+        1130,
+        256,
+        1385,
+        520
+      ],
+      [
+        1496,
+        257,
+        1771,
+        520
+      ],
+      [
+        1901,
+        257,
+        2071,
+        520
+      ]
+    ]
+  },
+  "sheet_sha256": "08b53c46abb653462cd17aa6c1715e421cc3560331229a8335423c1316d41b71"
+}
