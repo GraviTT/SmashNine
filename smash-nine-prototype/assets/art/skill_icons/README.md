@@ -20,3 +20,5 @@ Bottom-right HUD skill bar icons for the focused fighter.
 Source and verification workflow: `tests/art_preview/skill_icons_18/build_skill_icons.gd`.
 
 **2026-10-29:** Brave Luna's `luna_brave_j`, `_k`, `_l` were redrawn (CODEX-VFX-02, candidate A, user's pick) to show her moves: a gauntlet fist (J chain), a star-led body dash (K Comet Drive), a crescent kick arc (L Luna Breaker). Same canvas, outline and style; `luna_brave_i` is unchanged.
+
+**2026-11-03:** Luna's `luna_j`, `luna_k`, `luna_l`, `luna_brave_k`, `luna_brave_l` were replaced for her new kit (D45; CODEX-VFX-04, the only candidates, user's pick): stars flying (Star Volley), a sparkle burst after a dotted jump (Twinkle Warp), a round star shield (Star Barrier), a gauntlet gripping with a throw arrow (Comet Catch), a whirlwind (Star Cyclone). Frey's `frey_k` (Whirl Wave, D44) still shows the old dash; its A/B candidates (CODEX-VFX-03) wait for the user's pick.

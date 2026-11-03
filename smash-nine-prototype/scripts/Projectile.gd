@@ -20,7 +20,7 @@ var hit_slow_time := 0.0
 ## Fighters' projectiles are drawn at GameScale.COMBAT (set by PlayerBase); monsters' at 1.
 var art_scale_multiplier := 1.0
 ## Widths the callers' art scales were written for (files redrawn bigger draw smaller).
-const AUTHORED_ART_WIDTH := {"rio_gem_sword.png": 48.0, "rio_mana_wave.png": 24.0, "yuki_talisman.png": 32.0, "luna_star.png": 24.0}
+const AUTHORED_ART_WIDTH := {"rio_gem_sword.png": 48.0, "rio_mana_wave.png": 24.0, "yuki_talisman.png": 32.0}
 ## Opt-in monster art tracking; set_art() callers retain their original behaviour.
 var _tracked_art: Node2D
 var _art_aimed := true
@@ -59,6 +59,22 @@ func set_art(path: String, tint := Color.WHITE, art_scale := 2.0) -> bool:
 	var sprite := ART_SETTINGS.aimed_sprite(texture, direction, art_scale * art_scale_multiplier / ratio)
 	sprite.modulate = tint
 	add_child(sprite)
+	visual.visible = false
+	return true
+
+## A looping strip from Vfx.SPECS in place of the coloured rect (the hitbox stays), turned to the
+## flight direction and drawn at `screen_scale`: fighters' animated shots (Frey's sword wave,
+## Luna's stars). Returns false when the art is missing or the prototype style is on.
+func set_effect_art(effect: String, screen_scale := 1.0) -> bool:
+	var sprite := VFX.spawn(self, effect, Vector2.ZERO, Vector2.ONE * screen_scale, true, 0, Color.WHITE, true)
+	if sprite == null:
+		return false
+	# Flying left: mirrored about the anchor, not turned upside down.
+	if direction.x < 0.0:
+		sprite.scale.x = -sprite.scale.x
+		sprite.rotation = (-direction).angle()
+	else:
+		sprite.rotation = direction.angle()
 	visual.visible = false
 	return true
 

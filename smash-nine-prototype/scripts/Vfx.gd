@@ -81,6 +81,20 @@ const SPECS := {
 	# soles; the anchor is the plate's top centre. `_last` is the brighter one for the last jump.
 	"rio_air_step": [5, 40.0, Vector2(32, 3), false, SKILL_DIR],
 	"rio_air_step_last": [5, 40.0, Vector2(32, 3), false, SKILL_DIR],
+	# CODEX-VFX-03 picks (user 2026-11-03), Frey: the wings (a; drawn at 2x, shown at half size,
+	# the anchor on her feet), the K sword wave (b, flies with the projectile), the descent light (b).
+	"frey_wings": [6, 20.0, Vector2(128, 240), true, SKILL_DIR],
+	"frey_wave": [4, 16.0, Vector2(64, 64), false, EFFECTS_DIR],
+	"frey_ult_light": [6, 13.3, Vector2(168, 168), true],
+	# CODEX-VFX-04 picks (user 2026-11-03), Luna: the barrier and its break (b), the cyclone around
+	# her (b) and fired (a), the warp burst (b), the J stars. All shown at 1x on screen.
+	"luna_barrier": [6, 10.0, Vector2(128, 128), true, SKILL_DIR],
+	"luna_barrier_break": [6, 24.0, Vector2(128, 128), true, SKILL_DIR],
+	"luna_cyclone": [6, 20.0, Vector2(96, 96), true, SKILL_DIR],
+	"luna_cyclone_shot": [6, 20.0, Vector2(96, 96), true, SKILL_DIR],
+	"luna_warp": [6, 24.0, Vector2(128, 128), true, SKILL_DIR],
+	"luna_star_shot": [4, 16.0, Vector2(24, 24), false, EFFECTS_DIR],
+	"luna_star_big": [4, 16.0, Vector2(48, 48), false, EFFECTS_DIR],
 	"yuki_grand_ward": [8, 12.0, Vector2(320, 320), false, SKILL_DIR],
 	"guard_bubble": [3, 1.0, Vector2(64, 64), false, SKILL_DIR],
 	"attack_afterimage": [4, 57.143, Vector2(80, 32), true, SKILL_DIR],

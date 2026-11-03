@@ -102,3 +102,22 @@ CODEX-ART-20의 네 짧은 효과는 `tests/art_preview/flash_art_20/build_effec
 - 렐름은 포털의 기존 96×96 표시 크기, 256px 봉인 타일, 320×128 붕괴 균열 타일, 320×48 가장자리 타일을 사용한다. 포털 틴트와 코드 텍스트는 그대로 남는다.
 
 최종 불투명 픽셀은 모두 지정 팔레트의 정확한 색이므로 최종 팔레트 거리(최근접 RGB 제곱거리)는 0이다. 원본 모드에서만 아트를 그리고 파일 누락/F2 프로토타입 모드에서는 기존 `Line2D`·`Polygon2D`·`ColorRect`가 그대로 동작한다.
+
+## Frey·Luna 새 기술 그림 (CODEX-VFX-03·04, 사용자 선택 2026-11-03)
+
+후보는 `art/bakeoff/effects/{frey,luna}/`에 있고, 고른 것만 여기로 옮겼다(후보 JSON에 `"adopted"`). 코드는 `scripts/Vfx.gd` SPECS, 투사체는 `Projectile.set_effect_art`(날아가는 방향으로 돌리고 왼쪽이면 뒤집음). 게임 화면 확인: `reports/vfx-picks-2026-11-03/board.png`.
+
+| 파일 | 후보 | 프레임 셀 | FPS / 반복 | 앵커 | blend | 표시 |
+|---|---|---:|---:|---:|---|---|
+| `skill/frey_wings.png` | 날개 A | 6 × 256×256 | 20 / 아니오 | (128,240) 발 | additive | 0.5배(2배 밀도), 몸 뒤 |
+| `frey_wave.png` | 검기 B | 4 × 128×128 | 16 / 예 | (64,64) | normal | 1배, 투사체 |
+| `../vfx/frey_ult_light.png` | 강림 빛 B | 6 × 336×336 | 13.3 / 아니오 | (168,168) | additive | 2배, 발 위 40px |
+| `skill/luna_barrier.png` | 방어막 B | 6 × 256×256 | 10 / 예 | (128,128) 몸 중심 | additive | 1배(테두리 지름 210) |
+| `skill/luna_barrier_break.png` | 깨짐 B | 6 × 256×256 | 24 / 아니오 | (128,128) | additive | 1배 |
+| `skill/luna_cyclone.png` | 회오리(도는 동안) B | 6 × 192×192 | 20 / 예 | (96,96) 몸 중심 | additive | 1.25배 |
+| `skill/luna_cyclone_shot.png` | 회오리(쏜 것) A | 6 × 192×192 | 20 / 예 | (96,96) | additive | 1배, 투사체 |
+| `skill/luna_warp.png` | 도약 폭발 B | 6 × 256×256 | 24 / 아니오 | (128,128) 몸 중심 | additive | 1배 |
+| `luna_star_shot.png` | 작은 별(하나뿐) | 4 × 48×48 | 16 / 예 | (24,24) | normal | 1배, 투사체 |
+| `luna_star_big.png` | 큰 별(하나뿐) | 4 × 96×96 | 16 / 예 | (48,48) | normal | 1배, 투사체 |
+
+상태 표시 `ui/status/slow.png`(모래시계 A)와 `ui/status/luna_star_mark.png`, Luna 스킬 아이콘 5개도 같은 날 넣었다. 그림이 없거나 F2 프로토타입 모드면 예전 코드 도형·색 사각형이 그대로 나온다.

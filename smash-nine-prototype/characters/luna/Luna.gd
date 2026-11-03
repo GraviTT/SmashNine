@@ -65,8 +65,6 @@ const STAR_BURST_SIZE := Vector2(120, 120)
 const STAR_BURST_DAMAGE := 8.0
 const STAR_BURST_KNOCKBACK := 420.0
 const STAR_MARK_TIME := 10.0
-## The old comet's star stands in for the shot art (CODEX-VFX-04 draws the new stars).
-const STAR_ART := "res://assets/art/effects/luna_star.png"
 ## K "반짝 도약" (Twinkle Warp): she vanishes and reappears WARP_DISTANCE away in the held direction
 ## (ahead when none; solid ground stops her), and a star burst around her hits whoever is close.
 ## Once per airtime.
@@ -364,7 +362,8 @@ func _fire_star(aim: Vector2, big: bool, low: bool) -> void:
 	var color := Color(1.0, 0.86, 0.42, 0.9) if big else Color(1.0, 0.6, 0.9, 0.85)
 	star.configure(self, size * GAME_SCALE.COMBAT, STAR_BIG_DAMAGE if big else STAR_SHOT_DAMAGE, 90.0 if big else STAR_SHOT_KNOCKBACK, aim, color, (STAR_BIG_SPEED if big else STAR_SHOT_SPEED) * GAME_SCALE.COMBAT, STAR_BIG_LIFETIME if big else STAR_SHOT_LIFETIME)
 	star.big = big
-	star.set_art(STAR_ART, Color.WHITE, 2.0 if big else 1.0)
+	# The J stars (CODEX-VFX-04); the coloured rect without the art.
+	star.set_effect_art("luna_star_big" if big else "luna_star_shot")
 	_play_star_bloom(Vector2(20 * facing, -38) + aim * 6.0, 18.0 if big else 12.0, Color(1.0, 0.8, 0.95, 0.8), 0.1)
 
 ## A star that landed (LunaStar).
@@ -418,8 +417,8 @@ func _warp() -> void:
 	_spawn_attack(WARP_BURST_SIZE, Vector2(WARP_BURST_SIZE.x * 0.5, -34), WARP_BURST_DAMAGE, WARP_BURST_KNOCKBACK, Vector2(1, -0.35), STAR_BLOOM_COLOR, 0.12)
 	_spawn_attack(WARP_BURST_SIZE, Vector2(-WARP_BURST_SIZE.x * 0.5, -34), WARP_BURST_DAMAGE, WARP_BURST_KNOCKBACK, Vector2(-1, -0.35), STAR_BLOOM_COLOR, 0.12)
 	attack_art_enabled = true
-	# The warp burst art (CODEX-VFX-04) replaces this bloom once it is in Vfx.SPECS.
-	if not VFX.SPECS.has("luna_warp") or VFX.spawn(get_parent(), "luna_warp", global_position + GAME_SCALE.attack_point(Vector2(0, -34)), Vector2.ONE, false, 5) == null:
+	# The warp burst (CODEX-VFX-04 b); a bloom without the art.
+	if VFX.spawn(get_parent(), "luna_warp", global_position + GAME_SCALE.attack_point(Vector2(0, -34)), Vector2.ONE, false, 5) == null:
 		_play_star_bloom(Vector2(0, -34), 62.0, Color(0.6, 0.95, 1.0, 0.85), 0.2)
 
 # --- Normal L: star barrier ---

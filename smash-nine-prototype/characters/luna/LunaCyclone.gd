@@ -1,9 +1,9 @@
 extends "res://scripts/Projectile.gd"
 ## Brave Luna's fired cyclone (L "별의 회오리", 2026-11-03 D45): it flies through everyone in its
 ## path; each body it reaches is stunned, then thrown up by the source (on_cyclone_hit).
-## Drawn as swirling arcs until the cyclone art is in.
+## Its art is CODEX-VFX-04 a (the cyclone around her is b); swirling arcs without it.
 
-const CYCLONE_ART := "luna_cyclone"
+const CYCLONE_ART := "luna_cyclone_shot"
 var swirl: Node2D
 
 func _ready() -> void:
@@ -12,8 +12,8 @@ func _ready() -> void:
 
 func dress(height: float) -> void:
 	visual.visible = false
-	if VFX.SPECS.has(CYCLONE_ART) and VFX.available(CYCLONE_ART):
-		VFX.spawn(self, CYCLONE_ART, Vector2.ZERO, Vector2.ONE * height / 150.0, true, 0, Color.WHITE, true)
+	# 1x on screen at the 150-px hit box.
+	if VFX.spawn(self, CYCLONE_ART, Vector2.ZERO, Vector2.ONE * height / 150.0, true, 0, Color.WHITE, true) != null:
 		return
 	swirl = Node2D.new()
 	add_child(swirl)

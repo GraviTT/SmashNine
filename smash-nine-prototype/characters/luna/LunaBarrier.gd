@@ -2,7 +2,7 @@ extends Node2D
 ## A circle around Luna that stops other fighters' projectiles (2026-11-03 D45): her star barrier
 ## (L "별의 방어막") and Brave Luna's cyclone (L "별의 회오리"). The star barrier also takes the hits
 ## meant for her (Luna.character_hit_absorption) until it has taken `max_hp`, nudges away whoever
-## touches it, and breaks after `duration`. Drawn in code until the barrier and cyclone art is in.
+## touches it, and breaks after `duration`. Art from CODEX-VFX-04 (b); code shapes without it.
 
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const VFX := preload("res://scripts/Vfx.gd")
@@ -28,6 +28,7 @@ var spin := 0.0
 var rim: Line2D
 var fill: Polygon2D
 var stars: Node2D
+var art_sprite: AnimatedSprite2D
 
 func configure(owner_fighter: Node2D, new_style: String, new_radius: float, new_duration: float, new_hp := INF, damage := 0.0, knockback := 0.0) -> void:
 	fighter = owner_fighter
@@ -69,8 +70,14 @@ func shatter() -> void:
 	broken = true
 	remove_from_group(PROJECTILE_BARRIERS.GROUP)
 	broke.emit()
-	if is_instance_valid(get_parent()):
-		VFX.spawn(get_parent(), "luna_moon_ring", global_position, Vector2.ONE * radius * 2.16 / 204.0, false, 5)
+	if not is_instance_valid(get_parent()):
+		_fade_out(0.14)
+		return
+	# The break art starts on the barrier's own first frame, so the barrier hides at once.
+	if style == "barrier" and VFX.spawn(get_parent(), "luna_barrier_break", global_position, Vector2.ONE * radius * 2.0 / 210.0, false, 5) != null:
+		queue_free()
+		return
+	VFX.spawn(get_parent(), "luna_moon_ring", global_position, Vector2.ONE * radius * 2.16 / 204.0, false, 5)
 	_fade_out(0.14)
 
 func _physics_process(delta: float) -> void:
@@ -88,8 +95,10 @@ func _physics_process(delta: float) -> void:
 	spin += delta * (9.0 if style == "cyclone" else 1.6)
 	if is_instance_valid(stars):
 		stars.rotation = spin
-	if style == "barrier" and is_instance_valid(rim):
-		rim.modulate.a = 0.75 + 0.25 * sin(elapsed * 6.0) if elapsed < duration - 1.0 else (0.35 if int(elapsed * 10.0) % 2 == 0 else 0.9)
+	# The barrier pulses, then blinks in its last second.
+	var shown: CanvasItem = art_sprite if is_instance_valid(art_sprite) else rim
+	if style == "barrier" and is_instance_valid(shown):
+		shown.modulate.a = 0.75 + 0.25 * sin(elapsed * 6.0) if elapsed < duration - 1.0 else (0.35 if int(elapsed * 10.0) % 2 == 0 else 0.9)
 	for target_id in contact_cooldowns.keys():
 		contact_cooldowns[target_id] = float(contact_cooldowns[target_id]) - delta
 		if float(contact_cooldowns[target_id]) <= 0.0:
@@ -120,11 +129,11 @@ func _nudge_touching() -> void:
 		_flash(global_position + offset.normalized() * radius)
 
 func _build_visual() -> void:
+	# The barrier's rim is 210 px across in its art, the cyclone 192 px tall (1.25x around her).
 	var art := "luna_barrier" if style == "barrier" else "luna_cyclone"
-	# Until the art is in Vfx.SPECS (CODEX-VFX-04), the code shapes below draw it.
-	if VFX.SPECS.has(art) and VFX.available(art):
-		var art_scale := radius * 2.0 / 210.0 if style == "barrier" else radius * 2.0 / 192.0
-		VFX.spawn(self, art, Vector2.ZERO, Vector2.ONE * art_scale, true, 0, Color.WHITE, true)
+	var art_scale := radius * 2.0 / 210.0 if style == "barrier" else radius * 2.0 / 192.0
+	art_sprite = VFX.spawn(self, art, Vector2.ZERO, Vector2.ONE * art_scale, true, 0, Color.WHITE, true)
+	if art_sprite != null:
 		return
 	if style == "barrier":
 		fill = Polygon2D.new()

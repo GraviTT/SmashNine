@@ -54,7 +54,11 @@ func _run() -> void:
 	for frame in 16:
 		await physics_frame
 	await _shot("3_sword_wave")
-	await _settle(40)
+	# The wave's hit: the slow hourglass over the fighter (CODEX-VFX-03 picks, 2026-11-03).
+	for frame in 14:
+		await physics_frame
+	await _shot("3b_wave_slow")
+	await _settle(26)
 	# 3. Descent light pulling the fighter in.
 	foe.global_position = Vector2(60, -2)
 	await _settle(10)

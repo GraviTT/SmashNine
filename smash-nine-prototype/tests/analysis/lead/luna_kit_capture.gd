@@ -54,6 +54,11 @@ func _run() -> void:
 	_wave(rio)
 	await _frames(9)
 	await _shot("3_barrier")
+	# The break (CODEX-VFX-04 picks, 2026-11-03), once the wave has stopped at the rim.
+	await _frames(8)
+	luna.barrier.shatter()
+	await _frames(4)
+	await _shot("3b_barrier_break")
 	# 4. Transformation: the mark on a fighter far off bursts into a 3 s stun.
 	await _scene()
 	luna = _fighter("luna", 1, Vector2(-300, -2))

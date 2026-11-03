@@ -230,10 +230,10 @@ func _wing_dash(direction: Vector2) -> void:
 	attack_art_enabled = true
 	_draw_skill_art("frey_k", global_position + GAME_SCALE.BODY_CENTRE, direction, (WING_DASH_REACH * GAME_SCALE.COMBAT + 54.0) / 224.0)
 
-## Gold wings behind her while she hangs (the ultimate's wing glow, small, until the passive has
-## its own art).
+## Her wings open behind her while she hangs (CODEX-VFX-03 a, drawn at 2x: half size, mirrored
+## when she faces left); the ultimate's charge glow stands in without the art.
 func _play_wing_spread() -> void:
-	var wings := VFX.spawn(self, "frey_ult_charge", Vector2.ZERO, Vector2.ONE * 1.15, false, -1, Color.WHITE, true)
+	var wings := VFX.spawn(self, "frey_wings", Vector2.ZERO, Vector2(0.5 * facing, 0.5), false, -1, Color.WHITE, true)
 	if wings != null:
 		return
 	_play_ultimate_charge()
@@ -342,7 +342,8 @@ func _sword_wave() -> void:
 	var direction := Vector2(facing, _wave_tilt() * WAVE_TILT).normalized()
 	var wave: Node = _spawn_projectile(Vector2(30, 64), 10, 300, direction, Color(1.0, 0.82, 0.32, 0.8), WAVE_SPEED, WAVE_LIFETIME)
 	wave.hit_slow_time = WAVE_SLOW_TIME
-	_dress_wave(wave, direction)
+	# The gold crescent (CODEX-VFX-03 b); the coloured rectangle without the art.
+	wave.set_effect_art("frey_wave")
 
 ## Up (-1), down (+1) or level (0) at the moment the wave leaves.
 func _wave_tilt() -> float:
@@ -350,21 +351,6 @@ func _wave_tilt() -> float:
 		return signf(Input.get_axis("move_up", "move_down"))
 	var aim: Vector2 = ai_controller.aim_direction
 	return signf(aim.y) if absf(aim.y) > 0.35 else 0.0
-
-## The gold crescent of her slash art (frame 2 of frey_slash) flying as the wave, until the wave
-## has its own drawing; the coloured rectangle stays without the art.
-func _dress_wave(wave: Node, direction: Vector2) -> void:
-	var frames := VFX.frame_textures("frey_slash")
-	if frames.size() < 2:
-		return
-	var sprite := Sprite2D.new()
-	sprite.name = "WaveArt"
-	sprite.texture = frames[1]
-	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	sprite.rotation = direction.angle()
-	sprite.scale = Vector2.ONE * 0.5
-	wave.add_child(sprite)
-	wave.get_node("Visual").visible = false
 
 # --- L: rising cleave, then the spike ---
 
@@ -501,8 +487,11 @@ func _release_caught() -> void:
 	ultimate_pulling = false
 	ultimate_caught.clear()
 
-## A gold disc that grows to the light's reach and fades (until the light has its own art).
+## The light spreading to its reach (CODEX-VFX-03 b, drawn at half size: shown at 2x, 330 px
+## radius); without the art a gold disc grows and fades.
 func _show_light() -> void:
+	if VFX.spawn(self, "frey_ult_light", Vector2(0, -40), Vector2.ONE * 2.0, false, -1, Color.WHITE, true) != null:
+		return
 	var radius := ULTIMATE_LIGHT_RADIUS * GAME_SCALE.COMBAT
 	var light := Polygon2D.new()
 	light.name = "DescentLight"

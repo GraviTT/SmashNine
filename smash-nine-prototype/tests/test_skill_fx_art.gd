@@ -6,6 +6,9 @@ const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
+## The CODEX-VFX-03/04 picks (user 2026-11-03): Frey's wings, descent light and sword wave; Luna's
+## barrier and its break, the cyclone around her and fired, the warp burst and the J stars.
+const PICKED_EFFECTS := ["frey_wings", "frey_ult_light", "frey_wave", "luna_barrier", "luna_barrier_break", "luna_cyclone", "luna_cyclone_shot", "luna_warp", "luna_star_shot", "luna_star_big"]
 
 var failed := false
 var arena: Node2D
@@ -46,6 +49,18 @@ func _run_original_checks() -> void:
 	# The big J star's burst (D45) uses the old comet's burst art.
 	luna.star_burst_at(Vector2(200, 0), Vector2.RIGHT)
 	_expect_vfx(arena, "luna_comet_burst")
+
+	var picked := _play_picked_effects()
+	for effect in PICKED_EFFECTS:
+		_expect_vfx(arena, effect)
+	var slowed: Node = picked[0]
+	slowed.apply_slow(2.0)
+	slowed._update_status_icon(0.0)
+	if slowed.status_icon_kind != "slow" or slowed.status_icon.texture == null:
+		_fail("A slowed fighter should show the slow hourglass")
+	slowed.apply_star_mark(picked[1], 10.0)
+	if slowed.star_mark_icon == null or slowed.star_mark_icon.texture == null or slowed.star_mark_icon.texture.resource_path.get_file() != "luna_star_mark.png":
+		_fail("A marked fighter should show the star mark art")
 
 	var nova := _player("nova")
 	var burst: Node = nova._spawn_gravity_burst(72.0, 1.0, 1.0, 0.5, Color.WHITE, "test")
@@ -140,9 +155,28 @@ func _run_fallback_checks() -> void:
 	var attack := _attack_node()
 	_expect_added_shape("Attack afterimage", ColorRect, func() -> void: attack._spawn_trail_afterimage())
 	_run_fallback_realm_checks()
-	for effect in ["luna_star_bloom", "luna_moon_ring", "luna_brave_aura", "luna_comet_burst", "nova_gravity_burst", "nova_momentum_trail", "nova_vector_streak", "nova_shift_dash", "nova_shift_ready", "nova_impact_star", "nova_launch_flash", "rio_rune_guard", "rio_rune_burst", "rio_blink_trail", "yuki_grand_ward", "guard_bubble", "attack_afterimage"]:
+	_play_picked_effects()
+	for effect in ["luna_star_bloom", "luna_moon_ring", "luna_brave_aura", "luna_comet_burst", "nova_gravity_burst", "nova_momentum_trail", "nova_vector_streak", "nova_shift_dash", "nova_shift_ready", "nova_impact_star", "nova_launch_flash", "rio_rune_guard", "rio_rune_burst", "rio_blink_trail", "yuki_grand_ward", "guard_bubble", "attack_afterimage"] + PICKED_EFFECTS:
 		if _has_vfx(arena, effect):
 			_fail("Prototype mode unexpectedly drew %s art" % effect)
+
+## Plays every picked effect; returns [Frey, Luna].
+func _play_picked_effects() -> Array:
+	var frey := _player("frey")
+	frey.is_human = true
+	frey._play_wing_spread()
+	frey._show_light()
+	frey._sword_wave()
+	var luna := _player("luna")
+	luna.is_human = true
+	luna._raise_barrier()
+	luna.barrier.shatter()
+	luna._spin_cyclone()
+	luna._fire_cyclone()
+	luna._warp()
+	luna._fire_star(Vector2.RIGHT, false, false)
+	luna._fire_star(Vector2.RIGHT, true, false)
+	return [frey, luna]
 
 func _player(id: String) -> Node:
 	var player := PLAYER_FACTORY.create(id)

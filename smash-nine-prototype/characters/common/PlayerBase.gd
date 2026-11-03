@@ -2040,6 +2040,9 @@ func _update_status_icon(delta: float) -> void:
 		kind = "stun"
 	elif ultimate_armor_timer > 0.0:
 		kind = "super_armor"
+	elif control_slow_timer > 0.0:
+		# The gold hourglass (CODEX-VFX-03 a): Frey's wave or a ward slows the walk.
+		kind = "slow"
 	if kind == "":
 		status_icon.visible = false
 		status_icon_kind = ""
