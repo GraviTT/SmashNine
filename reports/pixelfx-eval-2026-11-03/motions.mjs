@@ -122,12 +122,12 @@ TESTS["luna-idle"] = async () => {
   const stars = await effect("arcane/sn-luna-idle-stars"), W = 200, H = 150, floor = 138, X = 96;
   const wand = wandOf(cell(LUNA, 0));
   console.log("luna wand star (feet-relative):", wand, "box", boxOf(cell(LUNA, 0)));
-  const stars16 = strip("luna_idle_stars-v1");
+  const starStrips = { v1: strip("luna_idle_stars-v1"), v2: strip("luna_idle_stars-v2") };
   const panels = [
     panel({ W, H, floor, title: "LUNA IDLE NOW", script: (t, fl) => ({ body: cell(LUNA, IDLE(t)), x: X, y: fl }) }),
-    panel({ W, H, floor, title: "+ PIXELFX IDLE STARS (STRIP)", script: (t, fl) => ({ body: cell(LUNA, IDLE(t)), x: X, y: fl, strips: [stars16.at(t, X, fl, { loop: true })] }) }),
+    ...["v1", "v2"].map((v) => panel({ W, H, floor, title: `+ PIXELFX ${v.toUpperCase()}`, script: (t, fl) => ({ body: cell(LUNA, IDLE(t)), x: X, y: fl, strips: [starStrips[v].at(t, X, fl, { loop: true })] }) })),
   ];
-  clip("motion-luna-idle", panels, { cols: 2, seconds: 8 / 3, fps: 24, k: 2, stills: [6, 18, 30, 44] });
+  clip("motion-luna-idle", panels, { cols: 3, seconds: 8 / 3, fps: 24, k: 2, stills: [6, 18, 30, 44] });
 };
 
 // ---- Luna landing: grey dust now, her stardust with pixelfx -----------------------------------------------
@@ -135,9 +135,10 @@ TESTS["luna-idle"] = async () => {
 TESTS["luna-land"] = async () => {
   const dustFx = await effect("impacts/sn-luna-stardust-land"), W = 200, H = 170, floor = 156, X = 100, LAND = 0.42, LOOP = 1.5;
   const dust = art("assets/art/effects/landing_dust.png");
-  const air = cell(LUNA, 24), land = (i) => stripCell("assets/art/luna/luna_land.png", 2, i), stardust = strip("luna_land_stardust-v1");
-  const script = (withFx) => (t, fl) => {
-    const tt = t % LOOP, cycleN = Math.floor(t / LOOP);
+  const air = cell(LUNA, 24), land = (i) => stripCell("assets/art/luna/luna_land.png", 2, i);
+  const stardust = { v1: strip("luna_land_stardust-v1"), v2: strip("luna_land_stardust-v2") };
+  const script = (ver) => (t, fl) => {
+    const withFx = !!ver, tt = t % LOOP;
     let body, y = fl;
     if (tt < LAND) { body = air; const u = tt / LAND; y = fl - 96 * (1 - u * u); }
     else if (tt < LAND + 2 / 12) body = land(Math.floor((tt - LAND) * 12));
@@ -148,15 +149,16 @@ TESTS["luna-land"] = async () => {
       const fr = stripFrame(dust, 5, Math.floor(age * 41.667));
       s.strips.push({ draw: (cv) => blit(cv, fr, X - 48, fl - 31) });
     }
-    if (withFx && age >= 0) { const d = stardust.at(age, X, fl); if (d) s.strips.push(d); }
+    if (withFx && age >= 0) { const d = stardust[ver].at(age, X, fl); if (d) s.strips.push(d); }
     return s;
   };
   const panels = [
-    panel({ W, H, floor, title: "LUNA LANDING NOW (GREY DUST)", script: script(false) }),
-    panel({ W, H, floor, title: "+ PIXELFX STARDUST (STRIP)", script: script(true) }),
+    panel({ W, H, floor, title: "LUNA LANDING NOW (GREY DUST)", script: script(null) }),
+    panel({ W, H, floor, title: "+ PIXELFX STARDUST V1", script: script("v1") }),
+    panel({ W, H, floor, title: "+ PIXELFX STARDUST V2", script: script("v2") }),
   ];
   const f = (s) => Math.round(s * 24);
-  clip("motion-luna-land", panels, { cols: 2, seconds: LOOP * 2, fps: 24, k: 2, stills: [f(LAND + 0.02), f(LAND + 0.1), f(LAND + 0.22), f(LAND + 0.4)] });
+  clip("motion-luna-land", panels, { cols: 3, seconds: LOOP * 2, fps: 24, k: 2, stills: [f(LAND + 0.02), f(LAND + 0.1), f(LAND + 0.22), f(LAND + 0.4)] });
 };
 
 // ---- Frey running: footstep dust ----------------------------------------------------------------------------
@@ -172,15 +174,15 @@ function footOf(c) {
 }
 
 TESTS["frey-run"] = async () => {
-  const step = strip("frey_step_dust-v1"), W = 480, H = 150, floor = 138, SPEED = 400, LOOP = 1.25;
+  const steps = { v1: strip("frey_step_dust-v1"), v2: strip("frey_step_dust-v2") }, W = 480, H = 150, floor = 138, SPEED = 400, LOOP = 1.25;
   const feet = Array.from({ length: 8 }, (_, i) => footOf(cell(FREY, 6 + i)));
   console.log("walk frames, feet on the floor:", feet.map((f, i) => `${i}:${f ? f.feet : 0}`).join(" "));
   // a step lands on the frames where a new foot reaches the floor in front (two clusters, the front one new)
   const contacts = [];
   for (let i = 0; i < 8; i++) { const f = feet[i], p = feet[(i + 7) % 8]; if (f && f.feet >= 2 && (!p || p.feet < 2 || f.front.x1 - p.front.x1 > 6)) contacts.push(i); }
   console.log("contact frames:", contacts);
-  const script = (withFx) => (t, fl) => {
-    const tt = t % LOOP, n = Math.floor(t / LOOP), x = 40 + SPEED * tt, frame = Math.floor(tt * 11.31) % 8;
+  const script = (ver) => (t, fl) => {
+    const withFx = !!ver, step = steps[ver], tt = t % LOOP, x = 40 + SPEED * tt, frame = Math.floor(tt * 11.31) % 8;
     const s = { body: cell(FREY, 6 + frame), x, y: fl, strips: [] };
     if (withFx)
       for (let k = 0; k <= Math.floor(tt * 11.31); k++) {
@@ -192,8 +194,9 @@ TESTS["frey-run"] = async () => {
     return s;
   };
   const panels = [
-    panel({ W, H, floor, realmName: "midgard", title: "FREY RUN NOW", script: script(false) }),
-    panel({ W, H, floor, realmName: "midgard", title: "+ PIXELFX STEP DUST (STRIP)", script: script(true) }),
+    panel({ W, H, floor, realmName: "midgard", title: "FREY RUN NOW", script: script(null) }),
+    panel({ W, H, floor, realmName: "midgard", title: "+ PIXELFX STEP DUST V1", script: script("v1") }),
+    panel({ W, H, floor, realmName: "midgard", title: "+ PIXELFX STEP DUST V2", script: script("v2") }),
   ];
   clip("motion-frey-run", panels, { cols: 1, seconds: LOOP * 2, fps: 24, k: 2, stills: [8, 14, 20] });
 };
@@ -207,10 +210,11 @@ const CUTS = [
 ];
 
 TESTS["frey-chain"] = async () => {
-  const sparkStrips = [1, 2, 3].map((i) => strip(`frey_slash_sparks_${i}-v1`)), slash = art("assets/art/attack_vfx/frey_slash.png");
+  const sparkStrips = { v1: [1, 2, 3].map((i) => strip(`frey_slash_sparks_${i}-v1`)), v2: [1, 2, 3].map((i) => strip(`frey_slash_sparks_${i}-v2`)) };
+  const slash = art("assets/art/attack_vfx/frey_slash.png");
   const W = 340, H = 170, floor = 156, X = 80, LOOP = 1.45, BODY = [X, floor - 32];
-  const script = (withFx) => (t, fl) => {
-    const tt = t % LOOP, n = Math.floor(t / LOOP), s = { body: cell(FREY, IDLE(tt - 0.86)), x: X, y: fl, strips: [], spawns: [] };
+  const script = (ver) => (t, fl) => {
+    const withFx = !!ver, tt = t % LOOP, s = { body: cell(FREY, IDLE(tt - 0.86)), x: X, y: fl, strips: [], spawns: [] };
     for (const c of CUTS) {
       const age = tt - c.start, hit = c.startup;
       if (age >= 0 && age < c.startup + c.recovery) s.body = moveCell(8, age < hit ? c.pose[0] : c.pose[1]);
@@ -221,13 +225,14 @@ TESTS["frey-chain"] = async () => {
         const scale = Math.min(3, Math.max(0.5, c.reach / 192)) / 2, rot = Math.atan2(aim[1], aim[0]);
         s.strips.push({ draw: (cv) => drawAffine(cv, frame, BODY, [0, -128], scale, scale * 0.62, rot, "add") });
       }
-      if (withFx) { const d = sparkStrips[CUTS.indexOf(c)].at(sa, BODY[0], BODY[1]); if (d) s.strips.push(d); }
+      if (withFx) { const d = sparkStrips[ver][CUTS.indexOf(c)].at(sa, BODY[0], BODY[1]); if (d) s.strips.push(d); }
     }
     return s;
   };
   const panels = [
-    panel({ W, H, floor, realmName: "asgard", title: "FREY J CHAIN NOW", script: script(false) }),
-    panel({ W, H, floor, realmName: "asgard", title: "+ PIXELFX SPARKS (STRIP)", script: script(true) }),
+    panel({ W, H, floor, realmName: "asgard", title: "FREY J CHAIN NOW", script: script(null) }),
+    panel({ W, H, floor, realmName: "asgard", title: "+ PIXELFX SPARKS V1", script: script("v1") }),
+    panel({ W, H, floor, realmName: "asgard", title: "+ PIXELFX SPARKS V2", script: script("v2") }),
   ];
   const f = (s) => Math.round(s * 30);
   clip("motion-frey-chain", panels, { cols: 1, seconds: LOOP * 2, fps: 30, k: 2, stills: [f(0.13), f(0.27), f(0.4), f(0.68), f(0.8), f(0.95)] });
@@ -235,8 +240,11 @@ TESTS["frey-chain"] = async () => {
 
 // ---- strips for the game (Vfx.gd format), candidates only ----------------------------------------------------
 
-TESTS.strips = async () => {
-  const save = async (name, id, opts, spec, meta) => {
+TESTS["strips-v2"] = () => bakeAll("v2");
+TESTS.strips = () => bakeAll("v1");
+async function bakeAll(V) {
+  const save = async (base, id, opts, spec, meta) => {
+    const name = base.replace(/-v1$/, `-${V}`);
     const mod = await effect(id), strip = bakeStrip(mod, opts, { ...spec, minLight: 40 });
     saveStrip(name, strip, { ...meta, frames: spec.frames, fps: spec.fps, anchor: spec.anchor, blend: spec.mixed ? "mix" : spec.additive ? "add" : "mix", source: `pixelfx ${id} (pinned a84159688af3)` });
   };
@@ -245,15 +253,15 @@ TESTS.strips = async () => {
     { frames: 16, fps: 12, w: 128, h: 128, anchor: [64, 120], additive: true },
     { loop: true, attach: "Luna 대기(idle) 동안 몸에 붙여 반복(local, 발 기준)", note: "pixelfx: 실루엣 가장자리와 지팡이 별에서 작은 분홍·금 별이 반짝이고, 지팡이에서 빛 알갱이가 떠오른다." });
   await save("luna_land_stardust-v1", "impacts/sn-luna-stardust-land", {},
-    { frames: 10, fps: 20, w: 176, h: 64, anchor: [88, 56], additive: false, mixed: true },
+    V === "v1" ? { frames: 10, fps: 20, w: 176, h: 64, anchor: [88, 56], additive: false, mixed: true } : { frames: 17, fps: 20, w: 208, h: 104, anchor: [104, 72], additive: false, mixed: true },
     { loop: false, attach: "Luna 착지 순간, 발 위치(지금 landing_dust 자리)", note: "pixelfx: 분홍 별가루 뭉치가 양쪽으로 굴러 나가고 바닥 고리, 튀어 오르는 작은 별. 회색 먼지 대신." });
   await save("frey_step_dust-v1", "impacts/sn-frey-step-dust", {},
-    { frames: 8, fps: 16, w: 76, h: 32, anchor: [54, 28], additive: false, mixed: true },
+    V === "v1" ? { frames: 8, fps: 16, w: 76, h: 32, anchor: [54, 28], additive: false, mixed: true } : { frames: 11, fps: 16, w: 96, h: 40, anchor: [70, 34], additive: false, mixed: true },
     { loop: false, attach: "Frey 달리기, 걷기 줄 4·8번째 그림(앞발이 닿는 순간)에 그 발 위치, 바라보는 쪽 반대로 흩날림", note: "pixelfx: 발 뒤로 작은 먼지 뭉치 둘과 알갱이." });
   for (const [i, c] of CUTS.entries())
     await save(`frey_slash_sparks_${i + 1}-v1`, "melee/sn-frey-slash-sparks", { reach: c.reach * (350 / 384), big: c.big, floorY: 32 },
-      { frames: 15, fps: 20, w: 280, h: 128, anchor: [20, 64], additive: true },
+      { frames: V === "v1" ? 15 : 19, fps: 20, w: 280, h: 128, anchor: [20, 64], additive: true },
       { loop: false, attach: `Frey J ${i + 1}번째 베기, frey_slash와 같은 자리(몸 중심)·같은 순간`, note: "pixelfx: 초승달 끝에서 불꽃이 튀고, 사라진 뒤 금빛 반짝임이 곡선을 따라 남아 떨어진다." });
-};
+}
 
 await run(process.argv.slice(2));
