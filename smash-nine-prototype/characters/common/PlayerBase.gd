@@ -1679,50 +1679,74 @@ func _update_gravity_stacks(delta: float) -> void:
 			gravity_stage_timer = GRAVITY_STACK_TIME if gravity_stage > 0 else 0.0
 	_update_gravity_marks()
 
-## Three pips over the head for the stage (a dim first one inside a field) and a ring at the feet
-## while rooted. Drawn in code until the gravity art is in.
+## The stage's mark over the head (CODEX-VFX-05 b: a gravity well filling up; dim inside a field
+## without a stack) and the chain ring at the feet while rooted (b). Three code pips and a code
+## ring stand in without the art.
 func _update_gravity_marks() -> void:
-	var shown := gravity_stage > 0 or gravity_root_timer > 0.0 or gravity_field_timer > 0.0
-	if not shown:
+	var stage := gravity_effect_stage()
+	var rooted := gravity_root_timer > 0.0
+	if stage <= 0 and not rooted:
 		if is_instance_valid(gravity_marks):
 			gravity_marks.visible = false
 		return
 	if not is_instance_valid(gravity_marks):
-		gravity_marks = Node2D.new()
-		gravity_marks.name = "GravityMarks"
-		gravity_marks.z_index = 7
-		add_child(gravity_marks)
-		for index in 3:
-			var pip := Polygon2D.new()
-			pip.name = "Pip%d" % (index + 1)
-			var points := PackedVector2Array()
-			for step in 10:
-				points.append(Vector2.RIGHT.rotated(TAU * float(step) / 10.0) * 4.5)
-			pip.polygon = points
-			pip.position = Vector2((index - 1) * 12.0, STATUS_ICON_Y - 18.0)
-			gravity_marks.add_child(pip)
-		var ring := Line2D.new()
-		ring.name = "RootRing"
-		var ring_points := PackedVector2Array()
-		for step in 20:
-			var angle := TAU * float(step) / 20.0
-			ring_points.append(Vector2(cos(angle) * 30.0, sin(angle) * 8.0 - 3.0))
-		ring.points = ring_points
-		ring.closed = true
-		ring.width = 3.0
-		ring.default_color = GRAVITY_MARK_COLOR
-		gravity_marks.add_child(ring)
+		_create_gravity_marks()
 	gravity_marks.visible = true
+	var icon := gravity_marks.get_node("StageIcon") as Sprite2D
+	icon.texture = SHEET_ART.original_texture(STATUS_ICON_ART % ("nova_gravity_%d" % clampi(stage, 1, 3)))
+	icon.visible = icon.texture != null
+	icon.modulate.a = 1.0 if gravity_stage > 0 else 0.5
+	var pips := gravity_marks.get_node("Pips") as Node2D
+	pips.visible = not icon.visible
 	for index in 3:
-		var pip := gravity_marks.get_child(index) as Polygon2D
+		var pip := pips.get_child(index) as Polygon2D
 		if index < gravity_stage:
 			pip.color = GRAVITY_MARK_COLOR
 		else:
 			pip.color = Color(GRAVITY_MARK_COLOR, 0.5 if index == 0 and gravity_field_timer > 0.0 else 0.18)
+	var ring_art := gravity_marks.get_node_or_null("Vfx_nova_gravity_root") as AnimatedSprite2D
+	if rooted and ring_art == null:
+		ring_art = EFFECT_STRIPS.spawn(gravity_marks, "nova_gravity_root", Vector2.ZERO, Vector2.ONE, true, 0, Color.WHITE, true)
+	if ring_art != null:
+		ring_art.visible = rooted
 	var root_ring := gravity_marks.get_node("RootRing") as Line2D
-	root_ring.visible = gravity_root_timer > 0.0
+	root_ring.visible = rooted and ring_art == null
 	if root_ring.visible:
 		root_ring.modulate.a = 0.6 + 0.4 * sin(gravity_root_timer * 12.0)
+
+func _create_gravity_marks() -> void:
+	gravity_marks = Node2D.new()
+	gravity_marks.name = "GravityMarks"
+	gravity_marks.z_index = 7
+	add_child(gravity_marks)
+	# Above the status icon row (stun, armour, slow, star mark).
+	var icon := Sprite2D.new()
+	icon.name = "StageIcon"
+	icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	icon.position = Vector2(0, STATUS_ICON_Y - 26.0)
+	gravity_marks.add_child(icon)
+	var pips := Node2D.new()
+	pips.name = "Pips"
+	gravity_marks.add_child(pips)
+	for index in 3:
+		var pip := Polygon2D.new()
+		var points := PackedVector2Array()
+		for step in 10:
+			points.append(Vector2.RIGHT.rotated(TAU * float(step) / 10.0) * 4.5)
+		pip.polygon = points
+		pip.position = Vector2((index - 1) * 12.0, STATUS_ICON_Y - 26.0)
+		pips.add_child(pip)
+	var ring := Line2D.new()
+	ring.name = "RootRing"
+	var ring_points := PackedVector2Array()
+	for step in 20:
+		var angle := TAU * float(step) / 20.0
+		ring_points.append(Vector2(cos(angle) * 30.0, sin(angle) * 8.0 - 3.0))
+	ring.points = ring_points
+	ring.closed = true
+	ring.width = 3.0
+	ring.default_color = GRAVITY_MARK_COLOR
+	gravity_marks.add_child(ring)
 
 func apply_yuki_seal_burst(attacker: Node, activation_id: int, damage: float, knockback: float, direction: Vector2) -> bool:
 	if last_yuki_activation_hit == activation_id:

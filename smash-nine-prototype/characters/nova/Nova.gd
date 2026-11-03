@@ -112,6 +112,7 @@ var orb_pull_centre := Vector2.ZERO
 var orb_pull_timer := 0.0
 var beam_target: Node
 var beam_pull_timer := 0.0
+var beam_wrap: Node2D
 
 var ultimate_phase := ULTIMATE_NONE
 ## The sphere's centre (a world point; bots aim from it).
@@ -229,6 +230,7 @@ func character_on_hit() -> void:
 	_reset_combo()
 	beam_target = null
 	beam_pull_timer = 0.0
+	_clear_beam_wrap()
 	if ultimate_phase == ULTIMATE_ORBIT or ultimate_phase == ULTIMATE_LAUNCH:
 		_stop_ultimate_motion()
 		_drop_sphere()
@@ -448,6 +450,7 @@ func on_beam_hit(body: Node, direction: Vector2) -> void:
 	if body.apply_hit(self, BEAM_DAMAGE, 0.0, -direction) != false:
 		beam_target = body
 		beam_pull_timer = BEAM_PULL_TIME
+		_start_beam_wrap(body as Node2D)
 
 func _update_beam_pull(delta: float) -> void:
 	if beam_pull_timer <= 0.0:
@@ -456,16 +459,69 @@ func _update_beam_pull(delta: float) -> void:
 	if not is_instance_valid(beam_target) or beam_target.get("is_defeated") == true:
 		beam_target = null
 		beam_pull_timer = 0.0
+		_clear_beam_wrap()
 		return
 	var spot := global_position + Vector2(facing * BEAM_HOLD_OFFSET * GAME_SCALE.COMBAT, 0.0)
 	var arrived := (beam_target as Node2D).global_position.distance_to(spot) < 30.0
 	_drag(beam_target, spot, BEAM_PULL_SPEED, delta)
+	_update_beam_wrap(beam_target as Node2D)
 	if arrived or beam_pull_timer <= 0.0:
 		_stack(beam_target)
 		if beam_target.get("hitstun_timer") != null:
 			beam_target.hitstun_timer = maxf(float(beam_target.hitstun_timer), BEAM_ARRIVAL_DAZE)
 		beam_target = null
 		beam_pull_timer = 0.0
+		_clear_beam_wrap()
+
+## The beam's tip split round the foe it drags (user 2026-11-03: "끝에서 갈라지며 적을 감싼 뒤"):
+## four claws close round the body and a cord runs back to her hand. Code shapes until the wrap
+## art is picked (CODEX-VFX-06).
+func _start_beam_wrap(target: Node2D) -> void:
+	_clear_beam_wrap()
+	beam_wrap = Node2D.new()
+	beam_wrap.name = "NovaBeamWrap"
+	beam_wrap.z_index = 6
+	get_parent().add_child(beam_wrap)
+	var cord := Line2D.new()
+	cord.name = "Cord"
+	cord.width = 5.0
+	cord.default_color = Color(0.74, 0.5, 1.0, 0.85)
+	cord.antialiased = true
+	beam_wrap.add_child(cord)
+	var claws := Node2D.new()
+	claws.name = "Claws"
+	beam_wrap.add_child(claws)
+	for index in 4:
+		var claw := Line2D.new()
+		var points := PackedVector2Array()
+		var from := -PI * 0.85 + float(index) * PI * 0.5
+		for step in 7:
+			var angle := from + float(step) * PI * 0.35 / 6.0
+			points.append(Vector2(cos(angle) * 30.0, sin(angle) * 46.0))
+		claw.points = points
+		claw.width = 4.0
+		claw.default_color = Color(0.88, 0.76, 1.0, 0.95)
+		claw.antialiased = true
+		claws.add_child(claw)
+	# The tip springs open, then closes on the body.
+	claws.scale = Vector2.ONE * 1.8
+	claws.modulate.a = 0.0
+	var tween := claws.create_tween()
+	tween.tween_property(claws, "scale", Vector2.ONE, 0.1)
+	tween.parallel().tween_property(claws, "modulate:a", 1.0, 0.1)
+	_update_beam_wrap(target)
+
+func _update_beam_wrap(target: Node2D) -> void:
+	if not is_instance_valid(beam_wrap) or not is_instance_valid(target):
+		return
+	beam_wrap.global_position = target.global_position + GAME_SCALE.BODY_CENTRE
+	var hand := global_position + GAME_SCALE.BODY_CENTRE + Vector2(facing * 20.0, 0.0)
+	(beam_wrap.get_node("Cord") as Line2D).points = PackedVector2Array([beam_wrap.to_local(hand), Vector2.ZERO])
+
+func _clear_beam_wrap() -> void:
+	if is_instance_valid(beam_wrap):
+		beam_wrap.queue_free()
+	beam_wrap = null
 
 func _is_airborne(body: Node) -> bool:
 	if body.has_method("is_floating") and body.is_floating():
@@ -593,7 +649,9 @@ func _update_sphere(delta: float) -> void:
 	_spin_caught(delta)
 	if is_instance_valid(singularity_visual):
 		singularity_visual.global_position = ultimate_center
-		singularity_visual.rotation += delta * 4.5 * ultimate_orbit_sign
+		# The sphere art turns in its own frames; the stand-in core is spun here.
+		if singularity_visual.get_node_or_null("Vfx_nova_sphere") == null:
+			singularity_visual.rotation += delta * 4.5 * ultimate_orbit_sign
 
 ## Starts the sphere's fall (once): when she launches, when its time runs out, when she is hit
 ## while circling. Still circling then: she launches with it.
@@ -803,14 +861,18 @@ func _clear_ultimate_launch_preview() -> void:
 	ultimate_preview_line = null
 	ultimate_preview_target = null
 
-## The sphere: the core art, big, until the sphere has its own drawing.
+## The sphere (CODEX-VFX-05 a: behind the fighters it swings, its own frames spin it); without
+## it the ultimate's core art, big, with two rings, in front of them.
 func _create_singularity_visual() -> void:
 	_clear_singularity_visual()
 	singularity_visual = Node2D.new()
 	singularity_visual.name = "NovaSingularity"
-	singularity_visual.z_index = 6
 	get_parent().add_child(singularity_visual)
 	singularity_visual.global_position = ultimate_center
+	if VFX.spawn(singularity_visual, "nova_sphere", Vector2.ZERO, Vector2.ONE, true, 0, Color.WHITE, true) != null:
+		singularity_visual.z_index = -1
+		return
+	singularity_visual.z_index = 6
 	var core_art := VFX.spawn(singularity_visual, "nova_ult_core", Vector2.ZERO, Vector2.ONE * 2.2, true, 0, Color.WHITE, true)
 	var core := Polygon2D.new()
 	core.visible = core_art == null
@@ -843,6 +905,7 @@ func _reset_nova_state() -> void:
 	orb_pull_timer = 0.0
 	beam_target = null
 	beam_pull_timer = 0.0
+	_clear_beam_wrap()
 
 func _play_vector_flash(direction: Vector2, length: float, power: float) -> void:
 	var art := VFX.spawn(get_parent(), "nova_vector_streak", global_position + Vector2(0, -32) + direction * length * 0.5, Vector2(length / 180.0, lerpf(0.55, 1.0, power)), false, 5, STRIKE_COLOR)

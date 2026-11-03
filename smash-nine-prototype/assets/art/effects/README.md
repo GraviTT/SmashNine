@@ -121,3 +121,16 @@ CODEX-ART-20의 네 짧은 효과는 `tests/art_preview/flash_art_20/build_effec
 | `luna_star_big.png` | 큰 별(하나뿐) | 4 × 96×96 | 16 / 예 | (48,48) | normal | 1배, 투사체 |
 
 상태 표시 `ui/status/slow.png`(모래시계 A)와 `ui/status/luna_star_mark.png`, Luna 스킬 아이콘 5개도 같은 날 넣었다. 그림이 없거나 F2 프로토타입 모드면 예전 코드 도형·색 사각형이 그대로 나온다.
+
+## Nova 새 기술 그림 (CODEX-VFX-05, 사용자 선택 2026-11-03)
+
+사용자 선택: 중력 중첩 B, 중력 구체 A, 중력 필드 B, 사건의 지평선 A, 아이콘은 하나뿐인 후보. 중력 광선은 A/B 대신 "끝에서 갈라지며 적을 감싸 끌고 오는" 새 그림을 CODEX-VFX-06이 만든다(지금은 코드 도형).
+
+| 파일 | 후보 | 프레임 셀 | FPS / 반복 | 앵커 | blend | 표시 |
+|---|---|---:|---:|---:|---|---|
+| `skill/nova_gravity_root.png` | 고정 고리 B | 6 × 96×32 | 10 / 예 | (48,16) 발 | additive | 1배, 고정 중 발밑 |
+| `nova_orb.png` | 구체 A | 4 × 64×64 | 16 / 예 | (32,32) | additive | 1배, 투사체 |
+| `skill/nova_field.png` | 필드 B | 6 × 640×640 | 8 / 예 | (320,320) | additive | 1배(테두리 반경 300) |
+| `../vfx/nova_sphere.png` | 지평선 구체 A | 6 × 320×320 | 12 / 예 | (160,160) | normal | 1배, 도는 적 뒤 |
+
+상태 표시 `ui/status/nova_gravity_{1,2,3}.png`(중첩 B)와 Nova 스킬 아이콘 5개(`nova_u` 새로)도 같은 날 넣었다.

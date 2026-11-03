@@ -22,7 +22,7 @@
 ## ART-25 렐름 및 HUD 세트
 
 - `realm_emblems/`: 미니맵용 32×32 투명 엠블럼 9종.
-- `status/`: 슈퍼 아머, 기절, Luna 별 충전, Frey 추적 표식, 실드 파괴, 낮은 HP용 24×24 투명 아이콘 6종. 2026-11-03에 슬로우(`slow.png`, CODEX-VFX-03 A 모래시계)와 Luna 별 표식(`luna_star_mark.png`, CODEX-VFX-04)을 더했다.
+- `status/`: 슈퍼 아머, 기절, Luna 별 충전, Frey 추적 표식, 실드 파괴, 낮은 HP용 24×24 투명 아이콘 6종. 2026-11-03에 슬로우(`slow.png`, CODEX-VFX-03 A 모래시계)와 Luna 별 표식(`luna_star_mark.png`, CODEX-VFX-04)을 더했다. 같은 날 Nova 중력 중첩 3단계(`nova_gravity_{1,2,3}.png`, CODEX-VFX-05 B)도 더했다.
 - `title_bg.png`: 1920×1080 타이틀 배경. 생성된 1672×941 그림은 확대하지 않고 짙은 배경 캔버스 중앙에 원본 배율로 배치했습니다.
 - `frames/`: 중앙이 투명한 9-slice 프레임. 권장 패치 여백은 아래와 같습니다.
 

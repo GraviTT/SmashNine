@@ -1,9 +1,11 @@
 extends Node2D
 ## Nova's gravity field (L "중력 필드", 2026-11-03 D47): a circle that stays where she cast it.
 ## Inside, other fighters walk and jump as at gravity stage 1 (no stack) and neutral monsters
-## float helpless; Nova flies in it (Nova.gd asks `contains`). Drawn in code until its art is in.
+## float helpless; Nova flies in it (Nova.gd asks `contains`). Its art is CODEX-VFX-05 b (the
+## rim at 300 px at 1x); code shapes without it.
 
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
+const VFX := preload("res://scripts/Vfx.gd")
 const FILL_COLOR := Color(0.46, 0.26, 0.86, 0.12)
 const RIM_COLOR := Color(0.74, 0.52, 1.0, 0.8)
 
@@ -14,6 +16,7 @@ var elapsed := 0.0
 var finished := false
 var rings: Node2D
 var rim: Line2D
+var art_sprite: AnimatedSprite2D
 
 func configure(owner_fighter: Node2D, new_radius: float, new_duration: float) -> void:
 	fighter = owner_fighter
@@ -51,8 +54,10 @@ func _physics_process(delta: float) -> void:
 			monster.apply_gravity_float(0.15)
 	if is_instance_valid(rings):
 		rings.rotation += delta * 0.6
-	if is_instance_valid(rim):
-		rim.modulate.a = 1.0 if elapsed < duration - 1.0 else (0.35 if int(elapsed * 10.0) % 2 == 0 else 1.0)
+	# It blinks in its last second.
+	var shown: CanvasItem = art_sprite if is_instance_valid(art_sprite) else rim
+	if is_instance_valid(shown):
+		shown.modulate.a = 1.0 if elapsed < duration - 1.0 else (0.35 if int(elapsed * 10.0) % 2 == 0 else 1.0)
 
 func end_field() -> void:
 	if finished:
@@ -63,6 +68,9 @@ func end_field() -> void:
 	tween.tween_callback(queue_free)
 
 func _build_visual() -> void:
+	art_sprite = VFX.spawn(self, "nova_field", Vector2.ZERO, Vector2.ONE * radius / 300.0, true, 0, Color.WHITE, true)
+	if art_sprite != null:
+		return
 	var fill := Polygon2D.new()
 	fill.polygon = _circle(radius, 48)
 	fill.color = FILL_COLOR

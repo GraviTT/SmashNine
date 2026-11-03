@@ -260,14 +260,23 @@ func _test_beam() -> void:
 	var hp_before: float = foe.hp
 	nova.skill_three()
 	var stacked := false
+	var wrapped := false
 	for frame in 70:
 		await physics_frame
+		var wrap := arena.get_node_or_null("NovaBeamWrap")
+		if wrap != null and wrap.get_node_or_null("Claws") != null:
+			wrapped = true
 		if foe.gravity_stage >= 1:
 			stacked = true
 			break
 	if not stacked:
 		_fail("The beam should drag a grounded foe and stack it")
 		return
+	if not wrapped:
+		_fail("The beam's tip should split and wrap the foe while it drags it")
+	await _frames(2)
+	if arena.get_node_or_null("NovaBeamWrap") != null:
+		_fail("The wrap should let go once the foe has arrived")
 	var pulled_to: float = foe.global_position.distance_to(nova.global_position)
 	if pulled_to > 130.0:
 		_fail("The beam should drag the foe to just in front of her (%.0f px away)" % pulled_to)

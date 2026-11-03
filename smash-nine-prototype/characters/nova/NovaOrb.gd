@@ -1,18 +1,18 @@
 extends "res://scripts/Projectile.gd"
 ## Nova's gravity orb (K "중력 구체", 2026-11-03 D47): it bursts on the first body it reaches or
 ## where its flight ends; the source's orb_burst_at pulls whoever the burst catches.
-## Drawn as the ultimate's core, small, until the orb has its own art.
+## Its art is CODEX-VFX-05 a (1x; its own frames spin it); a core and a ring without it.
 
-const CORE_ART := "nova_ult_core"
+const ORB_ART := "nova_orb"
 var burst_done := false
 var spin: Node2D
 
 func dress(radius: float) -> void:
 	visual.visible = false
+	if VFX.spawn(self, ORB_ART, Vector2.ZERO, Vector2.ONE, true, 0, Color.WHITE, true) != null:
+		return
 	spin = Node2D.new()
 	add_child(spin)
-	if VFX.spawn(spin, CORE_ART, Vector2.ZERO, Vector2.ONE * radius * 2.0 / 96.0, true, 0, Color.WHITE, true) != null:
-		return
 	var core := Polygon2D.new()
 	var points := PackedVector2Array()
 	for index in 16:

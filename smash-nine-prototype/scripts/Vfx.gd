@@ -95,6 +95,13 @@ const SPECS := {
 	"luna_warp": [6, 24.0, Vector2(128, 128), true, SKILL_DIR],
 	"luna_star_shot": [4, 16.0, Vector2(24, 24), false, EFFECTS_DIR],
 	"luna_star_big": [4, 16.0, Vector2(48, 48), false, EFFECTS_DIR],
+	# CODEX-VFX-05 picks (user 2026-11-03), Nova: the chain ring under a rooted fighter (b), the K
+	# orb (a), the L field (b, its rim at 300 px at 1x), the I sphere (a; normal blend, the core is
+	# black, drawn behind the fighters it swings).
+	"nova_gravity_root": [6, 10.0, Vector2(48, 16), true, SKILL_DIR],
+	"nova_orb": [4, 16.0, Vector2(32, 32), true, EFFECTS_DIR],
+	"nova_field": [6, 8.0, Vector2(320, 320), true, SKILL_DIR],
+	"nova_sphere": [6, 12.0, Vector2(160, 160), false],
 	"yuki_grand_ward": [8, 12.0, Vector2(320, 320), false, SKILL_DIR],
 	"guard_bubble": [3, 1.0, Vector2(64, 64), false, SKILL_DIR],
 	"attack_afterimage": [4, 57.143, Vector2(80, 32), true, SKILL_DIR],

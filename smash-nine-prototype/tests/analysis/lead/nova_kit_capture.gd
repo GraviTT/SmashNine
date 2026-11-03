@@ -76,7 +76,12 @@ func _run() -> void:
 	await _frames(20)
 	nova.facing = 1
 	nova.skill_three()
-	await _frames(13)
+	# The tip split round the fighter, half way in.
+	for frame in 40:
+		await physics_frame
+		if arena.get_node_or_null("NovaBeamWrap") != null:
+			break
+	await _frames(6)
 	await _shot("4_beam_drag")
 	# 5. The beam slamming a fighter down out of the air.
 	await _scene()

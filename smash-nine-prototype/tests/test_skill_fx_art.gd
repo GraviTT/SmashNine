@@ -6,9 +6,10 @@ const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
-## The CODEX-VFX-03/04 picks (user 2026-11-03): Frey's wings, descent light and sword wave; Luna's
-## barrier and its break, the cyclone around her and fired, the warp burst and the J stars.
-const PICKED_EFFECTS := ["frey_wings", "frey_ult_light", "frey_wave", "luna_barrier", "luna_barrier_break", "luna_cyclone", "luna_cyclone_shot", "luna_warp", "luna_star_shot", "luna_star_big"]
+## The CODEX-VFX-03/04/05 picks (user 2026-11-03): Frey's wings, descent light and sword wave; Luna's
+## barrier and its break, the cyclone around her and fired, the warp burst and the J stars; Nova's
+## orb, field, sphere and the root ring under a rooted fighter.
+const PICKED_EFFECTS := ["frey_wings", "frey_ult_light", "frey_wave", "luna_barrier", "luna_barrier_break", "luna_cyclone", "luna_cyclone_shot", "luna_warp", "luna_star_shot", "luna_star_big", "nova_orb", "nova_field", "nova_sphere", "nova_gravity_root"]
 
 var failed := false
 var arena: Node2D
@@ -61,6 +62,9 @@ func _run_original_checks() -> void:
 	slowed.apply_star_mark(picked[1], 10.0)
 	if slowed.star_mark_icon == null or slowed.star_mark_icon.texture == null or slowed.star_mark_icon.texture.resource_path.get_file() != "luna_star_mark.png":
 		_fail("A marked fighter should show the star mark art")
+	var stage_icon := picked[1].get_node_or_null("GravityMarks/StageIcon") as Sprite2D
+	if stage_icon == null or not stage_icon.visible or stage_icon.texture.resource_path.get_file() != "nova_gravity_3.png":
+		_fail("A rooted fighter should show the stage 3 gravity mark art")
 
 	var nova := _player("nova")
 	var burst: Node = nova._spawn_gravity_burst(72.0, 1.0, 1.0, 0.5, Color.WHITE, "test")
@@ -166,7 +170,14 @@ func _play_picked_effects() -> Array:
 	luna._warp()
 	luna._fire_star(Vector2.RIGHT, false, false)
 	luna._fire_star(Vector2.RIGHT, true, false)
-	return [frey, luna]
+	var nova := _player("nova")
+	nova.is_human = true
+	nova._fire_orb()
+	nova._cast_field()
+	nova._sphere_start()
+	for stack in 3:
+		luna.add_gravity_stack(nova)
+	return [frey, luna, nova]
 
 func _player(id: String) -> Node:
 	var player := PLAYER_FACTORY.create(id)
