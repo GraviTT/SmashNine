@@ -122,10 +122,10 @@ TESTS["luna-idle"] = async () => {
   const stars = await effect("arcane/sn-luna-idle-stars"), W = 200, H = 150, floor = 138, X = 96;
   const wand = wandOf(cell(LUNA, 0));
   console.log("luna wand star (feet-relative):", wand, "box", boxOf(cell(LUNA, 0)));
-  const starStrips = { v1: strip("luna_idle_stars-v1"), v2: strip("luna_idle_stars-v2") };
+  const starStrips = { v1: strip("luna_idle_stars-v1"), v2: strip("luna_idle_stars-v2"), v3: strip("luna_idle_stars-v3") };
   const panels = [
     panel({ W, H, floor, title: "LUNA IDLE NOW", script: (t, fl) => ({ body: cell(LUNA, IDLE(t)), x: X, y: fl }) }),
-    ...["v1", "v2"].map((v) => panel({ W, H, floor, title: `+ PIXELFX ${v.toUpperCase()}`, script: (t, fl) => ({ body: cell(LUNA, IDLE(t)), x: X, y: fl, strips: [starStrips[v].at(t, X, fl, { loop: true })] }) })),
+    ...["v2", "v3"].map((v) => panel({ W, H, floor, title: `+ PIXELFX ${v.toUpperCase()}${v === "v3" ? " (HEAD CALMER)" : ""}`, script: (t, fl) => ({ body: cell(LUNA, IDLE(t)), x: X, y: fl, strips: [starStrips[v].at(t, X, fl, { loop: true })] }) })),
   ];
   clip("motion-luna-idle", panels, { cols: 3, seconds: 8 / 3, fps: 24, k: 2, stills: [6, 18, 30, 44] });
 };
@@ -241,9 +241,11 @@ TESTS["frey-chain"] = async () => {
 // ---- strips for the game (Vfx.gd format), candidates only ----------------------------------------------------
 
 TESTS["strips-v2"] = () => bakeAll("v2");
+TESTS["strips-idle-v3"] = () => bakeAll("v3", ["luna_idle_stars"]);
 TESTS.strips = () => bakeAll("v1");
-async function bakeAll(V) {
+async function bakeAll(V, only = null) {
   const save = async (base, id, opts, spec, meta) => {
+    if (only && !only.some((o) => base.startsWith(o))) return;
     const name = base.replace(/-v1$/, `-${V}`);
     const mod = await effect(id), strip = bakeStrip(mod, opts, { ...spec, minLight: 40 });
     saveStrip(name, strip, { ...meta, frames: spec.frames, fps: spec.fps, anchor: spec.anchor, blend: spec.mixed ? "mix" : spec.additive ? "add" : "mix", source: `pixelfx ${id} (pinned a84159688af3)` });
