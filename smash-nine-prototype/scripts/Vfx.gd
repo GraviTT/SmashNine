@@ -102,6 +102,11 @@ const SPECS := {
 	"nova_orb": [4, 16.0, Vector2(32, 32), true, EFFECTS_DIR],
 	"nova_field": [6, 8.0, Vector2(320, 320), true, SKILL_DIR],
 	"nova_sphere": [6, 12.0, Vector2(160, 160), false],
+	# CODEX-VFX-06 a (user 2026-11-03): the beam's curved-tendril tip, and on a hit the tip splitting
+	# round the foe, then binding it while it is dragged (drawn with the cord from the left).
+	"nova_beam_head": [4, 16.0, Vector2(24, 24), true, EFFECTS_DIR],
+	"nova_beam_split": [4, 40.0, Vector2(80, 80), true, SKILL_DIR],
+	"nova_beam_bind": [4, 12.0, Vector2(80, 80), true, SKILL_DIR],
 	"yuki_grand_ward": [8, 12.0, Vector2(320, 320), false, SKILL_DIR],
 	"guard_bubble": [3, 1.0, Vector2(64, 64), false, SKILL_DIR],
 	"attack_afterimage": [4, 57.143, Vector2(80, 32), true, SKILL_DIR],

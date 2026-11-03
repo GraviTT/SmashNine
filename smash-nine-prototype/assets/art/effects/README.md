@@ -124,7 +124,7 @@ CODEX-ART-20의 네 짧은 효과는 `tests/art_preview/flash_art_20/build_effec
 
 ## Nova 새 기술 그림 (CODEX-VFX-05, 사용자 선택 2026-11-03)
 
-사용자 선택: 중력 중첩 B, 중력 구체 A, 중력 필드 B, 사건의 지평선 A, 아이콘은 하나뿐인 후보. 중력 광선은 A/B 대신 "끝에서 갈라지며 적을 감싸 끌고 오는" 새 그림을 CODEX-VFX-06이 만든다(지금은 코드 도형).
+사용자 선택: 중력 중첩 B, 중력 구체 A, 중력 필드 B, 사건의 지평선 A, 아이콘은 하나뿐인 후보. 중력 광선은 A/B 대신 "끝에서 갈라지며 적을 감싸 끌고 오는" 새 그림을 CODEX-VFX-06이 만들었고, 사용자가 A(곡선 촉수)를 골랐다.
 
 | 파일 | 후보 | 프레임 셀 | FPS / 반복 | 앵커 | blend | 표시 |
 |---|---|---:|---:|---:|---|---|
@@ -132,5 +132,9 @@ CODEX-ART-20의 네 짧은 효과는 `tests/art_preview/flash_art_20/build_effec
 | `nova_orb.png` | 구체 A | 4 × 64×64 | 16 / 예 | (32,32) | additive | 1배, 투사체 |
 | `skill/nova_field.png` | 필드 B | 6 × 640×640 | 8 / 예 | (320,320) | additive | 1배(테두리 반경 300) |
 | `../vfx/nova_sphere.png` | 지평선 구체 A | 6 × 320×320 | 12 / 예 | (160,160) | normal | 1배, 도는 적 뒤 |
+| `nova_beam_head.png` | 광선 촉 VFX-06 A | 4 × 48×48 | 16 / 예 | (24,24) | additive | 1배, 투사체 |
+| `nova_beam_tile.png` | 광선 줄 VFX-06 A | 1 × 64×16 | — | 좌우 이음 | additive | `Line2D` 타일 반복, 폭 16 |
+| `skill/nova_beam_split.png` | 갈라져 감쌈 VFX-06 A | 4 × 160×160 | 40 / 아니오 | (80,80) 몸 중심 | additive | 1배, 줄이 왼쪽(오른쪽이면 뒤집음) |
+| `skill/nova_beam_bind.png` | 감싼 채 조임 VFX-06 A | 4 × 160×160 | 12 / 예 | (80,80) 몸 중심 | additive | 1배, 끌려오는 동안 |
 
 상태 표시 `ui/status/nova_gravity_{1,2,3}.png`(중첩 B)와 Nova 스킬 아이콘 5개(`nova_u` 새로)도 같은 날 넣었다.

@@ -8,8 +8,8 @@ const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
 ## The CODEX-VFX-03/04/05 picks (user 2026-11-03): Frey's wings, descent light and sword wave; Luna's
 ## barrier and its break, the cyclone around her and fired, the warp burst and the J stars; Nova's
-## orb, field, sphere and the root ring under a rooted fighter.
-const PICKED_EFFECTS := ["frey_wings", "frey_ult_light", "frey_wave", "luna_barrier", "luna_barrier_break", "luna_cyclone", "luna_cyclone_shot", "luna_warp", "luna_star_shot", "luna_star_big", "nova_orb", "nova_field", "nova_sphere", "nova_gravity_root"]
+## orb, field, sphere, the root ring under a rooted fighter and the beam (VFX-06 a: tip, split).
+const PICKED_EFFECTS := ["frey_wings", "frey_ult_light", "frey_wave", "luna_barrier", "luna_barrier_break", "luna_cyclone", "luna_cyclone_shot", "luna_warp", "luna_star_shot", "luna_star_big", "nova_orb", "nova_field", "nova_sphere", "nova_gravity_root", "nova_beam_head", "nova_beam_split"]
 
 var failed := false
 var arena: Node2D
@@ -62,6 +62,9 @@ func _run_original_checks() -> void:
 	slowed.apply_star_mark(picked[1], 10.0)
 	if slowed.star_mark_icon == null or slowed.star_mark_icon.texture == null or slowed.star_mark_icon.texture.resource_path.get_file() != "luna_star_mark.png":
 		_fail("A marked fighter should show the star mark art")
+	var cord := picked[2].beam_wrap.get_node_or_null("Cord") as Line2D
+	if cord == null or cord.texture == null or cord.texture.resource_path.get_file() != "nova_beam_tile.png":
+		_fail("Nova's beam cord should tile the picked cord art")
 	var stage_icon := picked[1].get_node_or_null("GravityMarks/StageIcon") as Sprite2D
 	if stage_icon == null or not stage_icon.visible or stage_icon.texture.resource_path.get_file() != "nova_gravity_3.png":
 		_fail("A rooted fighter should show the stage 3 gravity mark art")
@@ -175,6 +178,8 @@ func _play_picked_effects() -> Array:
 	nova._fire_orb()
 	nova._cast_field()
 	nova._sphere_start()
+	nova._fire_beam()
+	nova._start_beam_wrap(frey)
 	for stack in 3:
 		luna.add_gravity_stack(nova)
 	return [frey, luna, nova]

@@ -474,23 +474,27 @@ func _update_beam_pull(delta: float) -> void:
 		_clear_beam_wrap()
 
 ## The beam's tip split round the foe it drags (user 2026-11-03: "끝에서 갈라지며 적을 감싼 뒤"):
-## four claws close round the body and a cord runs back to her hand. Code shapes until the wrap
-## art is picked (CODEX-VFX-06).
+## the curved tendrils split open round the body, then bind it while the cord drags it in
+## (CODEX-VFX-06 a, drawn with the cord coming from the left: mirrored when she is on the right).
+## Four code claws stand in without the art.
 func _start_beam_wrap(target: Node2D) -> void:
 	_clear_beam_wrap()
 	beam_wrap = Node2D.new()
 	beam_wrap.name = "NovaBeamWrap"
 	beam_wrap.z_index = 6
 	get_parent().add_child(beam_wrap)
-	var cord := Line2D.new()
+	var cord := BEAM_SCRIPT.make_cord()
 	cord.name = "Cord"
-	cord.width = 5.0
-	cord.default_color = Color(0.74, 0.5, 1.0, 0.85)
-	cord.antialiased = true
 	beam_wrap.add_child(cord)
 	var claws := Node2D.new()
 	claws.name = "Claws"
 	beam_wrap.add_child(claws)
+	var split := VFX.spawn(claws, "nova_beam_split", Vector2.ZERO, Vector2.ONE, false, 0, Color.WHITE, true)
+	if split != null:
+		claws.scale.x = -1.0 if global_position.x > target.global_position.x else 1.0
+		split.animation_finished.connect(_bind_beam_wrap.bind(claws))
+		_update_beam_wrap(target)
+		return
 	for index in 4:
 		var claw := Line2D.new()
 		var points := PackedVector2Array()
@@ -510,6 +514,11 @@ func _start_beam_wrap(target: Node2D) -> void:
 	tween.tween_property(claws, "scale", Vector2.ONE, 0.1)
 	tween.parallel().tween_property(claws, "modulate:a", 1.0, 0.1)
 	_update_beam_wrap(target)
+
+## After the split the tendrils hold the body (looping) until the wrap is cleared.
+func _bind_beam_wrap(claws: Node2D) -> void:
+	if is_instance_valid(claws):
+		VFX.spawn(claws, "nova_beam_bind", Vector2.ZERO, Vector2.ONE, true, 0, Color.WHITE, true)
 
 func _update_beam_wrap(target: Node2D) -> void:
 	if not is_instance_valid(beam_wrap) or not is_instance_valid(target):
