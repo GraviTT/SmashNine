@@ -1,0 +1,433 @@
+{
+  "tool": "built-in image_gen",
+  "raw_generation_count": 8,
+  "reference_images": [
+    "art/bakeoff/nova/nova_male-idle-v2.png",
+    "art/bakeoff/effects/nova/nova_orb-a-v1.png",
+    "art/bakeoff/effects/nova/nova_field-b-v1.png",
+    "art/bakeoff/effects/nova/nova_sphere-a-v1.png"
+  ],
+  "method": "Raw crop/pad, LANCZOS downscale, unsharp55, alpha>=128, transparent RGB zero. Left tail x0..55 shrinks to x35..55 for the 69px arrival. Bind first is split last. Cyclic contraction and luminance; source sparks move left. Tether mirrored period, generated exposed core copied across A core row.",
+  "samples": [
+    {
+      "id": "head-a",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        75,
+        114,
+        1165,
+        1204
+      ],
+      "output_size": [
+        48,
+        48
+      ],
+      "source_px_per_output_px": [
+        22.708333333333332,
+        22.708333333333332
+      ]
+    },
+    {
+      "id": "bind-a-0",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        66,
+        -14,
+        1314,
+        1298
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        7.8,
+        8.2
+      ]
+    },
+    {
+      "id": "bind-a-1",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        55,
+        -21,
+        1325,
+        1305
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        7.9375,
+        8.2875
+      ]
+    },
+    {
+      "id": "bind-a-2",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        66,
+        -14,
+        1314,
+        1298
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        7.8,
+        8.2
+      ]
+    },
+    {
+      "id": "bind-a-3",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        77,
+        -7,
+        1303,
+        1291
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        7.6625,
+        8.1125
+      ]
+    },
+    {
+      "id": "split-a-0",
+      "source_size": [
+        627,
+        627
+      ],
+      "crop": [
+        18,
+        -16,
+        682,
+        648
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        4.15,
+        4.15
+      ]
+    },
+    {
+      "id": "split-a-1",
+      "source_size": [
+        627,
+        627
+      ],
+      "crop": [
+        18,
+        -16,
+        682,
+        648
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        4.15,
+        4.15
+      ]
+    },
+    {
+      "id": "split-a-2",
+      "source_size": [
+        627,
+        627
+      ],
+      "crop": [
+        18,
+        9,
+        682,
+        673
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        4.15,
+        4.15
+      ]
+    },
+    {
+      "id": "tile-a-half",
+      "source_size": [
+        2172,
+        724
+      ],
+      "crop": [
+        974,
+        305,
+        1198,
+        417
+      ],
+      "output_size": [
+        32,
+        16
+      ],
+      "source_px_per_output_px": [
+        7.0,
+        7.0
+      ]
+    },
+    {
+      "id": "tile-a-source",
+      "source_size": [
+        2172,
+        724
+      ],
+      "crop": [
+        960,
+        305,
+        1212,
+        417
+      ],
+      "output_size": [
+        36,
+        16
+      ],
+      "source_px_per_output_px": [
+        7.0,
+        7.0
+      ]
+    },
+    {
+      "id": "head-b",
+      "source_size": [
+        1774,
+        887
+      ],
+      "crop": [
+        269,
+        -149,
+        1503,
+        1085
+      ],
+      "output_size": [
+        48,
+        48
+      ],
+      "source_px_per_output_px": [
+        25.708333333333332,
+        25.708333333333332
+      ]
+    },
+    {
+      "id": "bind-b-0",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        -10,
+        -2,
+        1350,
+        1214
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        8.5,
+        7.6
+      ]
+    },
+    {
+      "id": "bind-b-1",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        -22,
+        -8,
+        1362,
+        1220
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        8.65,
+        7.675
+      ]
+    },
+    {
+      "id": "bind-b-2",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        -10,
+        -2,
+        1350,
+        1214
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        8.5,
+        7.6
+      ]
+    },
+    {
+      "id": "bind-b-3",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "crop": [
+        2,
+        4,
+        1338,
+        1208
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        8.35,
+        7.525
+      ]
+    },
+    {
+      "id": "split-b-0",
+      "source_size": [
+        627,
+        627
+      ],
+      "crop": [
+        11,
+        -27,
+        659,
+        621
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        4.05,
+        4.05
+      ]
+    },
+    {
+      "id": "split-b-1",
+      "source_size": [
+        627,
+        627
+      ],
+      "crop": [
+        11,
+        -27,
+        659,
+        621
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        4.05,
+        4.05
+      ]
+    },
+    {
+      "id": "split-b-2",
+      "source_size": [
+        627,
+        627
+      ],
+      "crop": [
+        11,
+        -27,
+        659,
+        621
+      ],
+      "output_size": [
+        160,
+        160
+      ],
+      "source_px_per_output_px": [
+        4.05,
+        4.05
+      ]
+    },
+    {
+      "id": "tile-b-half",
+      "source_size": [
+        2172,
+        724
+      ],
+      "crop": [
+        1014,
+        324,
+        1158,
+        396
+      ],
+      "output_size": [
+        32,
+        16
+      ],
+      "source_px_per_output_px": [
+        4.5,
+        4.5
+      ]
+    },
+    {
+      "id": "tile-b-source",
+      "source_size": [
+        2172,
+        724
+      ],
+      "crop": [
+        1005,
+        324,
+        1167,
+        396
+      ],
+      "output_size": [
+        36,
+        16
+      ],
+      "source_px_per_output_px": [
+        4.5,
+        4.5
+      ]
+    }
+  ]
+}
