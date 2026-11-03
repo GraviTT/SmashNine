@@ -19,6 +19,11 @@
 - 이펙트 상태는 전용 파일이 있으면 **그림**, 코드 도형만 있으면 **도형**, 몸 동작 외 표시가 없으면 **없음**, 여러 캐릭터가 같은 파일을 쓰면 **공용**이다. 원본 아트 모드가 아니거나 파일이 없으면 대부분 `ColorRect`, `Line2D`, `Polygon2D` 도형으로 대체된다.
 - `assets/art/` 아래 경로는 표에서 짧게 쓸 수 있다. 예를 들어 `attack_vfx/frey_k.png`는 `assets/art/attack_vfx/frey_k.png`, `skill/luna_star_bloom.png`는 `assets/art/effects/skill/luna_star_bloom.png`다.
 - `Attack.gd` 판정과 `source.on_attack_landed`를 부르는 투사체가 적중하면 공격자별 `assets/art/effects/hit/<id>_hit.png`, 공용 `hit_streak.png`가 나온다. 공중 공격 착지에는 공용 `landing_dust.png`가 나올 수 있다. 맞은 쪽의 `apply_hit`도 공격자의 `hit/<id>_hit.png`를 몸 위치에 그리므로, 모든 적중(투사체 포함)에 공격자 색의 불꽃이 나온다. Rio의 일반 마력 검기는 `on_attack_landed`를 부르지 않아 `hit_streak`과 공격자 경직만 없다.
+- pixelfx 동작 이펙트(2026-11-04, D48; 파일 계약 `assets/art/effects/motion/README.md`):
+  - Luna(노말)가 대기하는 동안 `motion/luna_idle_stars.png`가 몸에 붙어 반복한다(발 기준, 바라보는 쪽으로 뒤집음, 다른 동작이 되면 바로 꺼짐). Brave에는 없다.
+  - Luna는 공중 0.12초 이상 뒤 착지마다(착지 소리와 같은 조건) `motion/luna_land_stardust.png`를 발 위치에 남긴다. 행동 뒤 착지의 `landing_dust.png`도 Luna는 이것으로 바뀐다(Brave 포함).
+  - Frey가 달리면 걷기 줄 4·8번째 그림(앞발이 닿는 순간)에 `motion/frey_step_dust.png`가 그 발 자리(발에서 앞으로 18·21px)에 남는다. 서 있거나 벽을 밀 때, 수풀에 숨었을 때는 없다. 걷기 그림이 바뀌면 `Frey.STEP_DUST`의 그림 번호와 발 위치를 다시 잰다.
+  - 공용 부품: `PlayerBase.get_motion_overlays`(몸에 붙는 반복), `get_motion_frame_effects`(그림 번호에 맞춘 한 번), `character_landing_effect`(착지).
 
 ## 공용 조작
 
@@ -34,9 +39,9 @@
 
 | 입력 | 기술 | 하는 일 | 주요 수치 | 몸 동작 | 이펙트와 그리기 | 상태 | 이펙트가 따라야 할 값 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `J` 1타 | 발키리 검 연계 1 | 앞으로 조금 나가며 빠르게 벤다. 적중하면 다음 타의 후딜을 바로 끊는다. | 피해 8, 판정 42×34, 이동점 14→58→100, 넉백 235, 활성 0.085초; 선딜/후딜 0.07/0.16초 | `attack_chain` 1~2 | `frey_slash`를 `PlayerBase._draw_attack_art`가 궤적 길이에 맞춰 그림 | 그림 | 판정 크기, 세 이동점, 진행 방향, 0.085초, Frey 금색 |
-| `J` 2타 | 발키리 검 연계 2 | 더 멀리 전진해 두 번째 검격을 잇는다. 적중하면 3타로 바로 이어진다. | 피해 9, 44×36, 12→62→108, 넉백 275, 활성 0.095초; 0.08/0.18초 | `attack_chain` 3~4 | `frey_slash`; `_draw_attack_art` | 그림 | 판정과 궤적, 0.095초, 진행 방향 |
-| `J` 3타 | 발키리 검 연계 마무리 | 흰빛으로 예고한 뒤 넓게 베어 강하게 날린다. | 피해 13, 52×42, 18→70→118, 넉백 430, 활성 0.12초; 0.11/0.26초 | `attack_chain` 5~6 | `frey_slash`; `_play_finisher_glint`가 몸을 흰색으로 번쩍임 | 그림 | 가장 큰 판정·사거리, 0.12초, 마무리의 밝기 |
+| `J` 1타 | 발키리 검 연계 1 | 앞으로 조금 나가며 빠르게 벤다. 적중하면 다음 타의 후딜을 바로 끊는다. | 피해 8, 판정 42×34, 이동점 14→58→100, 넉백 235, 활성 0.085초; 선딜/후딜 0.07/0.16초 | `attack_chain` 1~2 | `frey_slash`를 `PlayerBase._draw_attack_art`가 궤적 길이에 맞춰 그림; 같은 순간·자리(몸 중심)에 `motion/frey_slash_sparks_1.png`(pixelfx 끝 불꽃·금빛 반짝임, D48) | 그림 | 판정 크기, 세 이동점, 진행 방향, 0.085초, Frey 금색; 불꽃은 궤적 길이 181·방향 -0.06에 맞춰 구움 |
+| `J` 2타 | 발키리 검 연계 2 | 더 멀리 전진해 두 번째 검격을 잇는다. 적중하면 3타로 바로 이어진다. | 피해 9, 44×36, 12→62→108, 넉백 275, 활성 0.095초; 0.08/0.18초 | `attack_chain` 3~4 | `frey_slash`; `_draw_attack_art`; `motion/frey_slash_sparks_2.png`(D48) | 그림 | 판정과 궤적, 0.095초, 진행 방향; 불꽃은 길이 193·방향 -0.1 |
+| `J` 3타 | 발키리 검 연계 마무리 | 흰빛으로 예고한 뒤 넓게 베어 강하게 날린다. | 피해 13, 52×42, 18→70→118, 넉백 430, 활성 0.12초; 0.11/0.26초 | `attack_chain` 5~6 | `frey_slash`; `_play_finisher_glint`가 몸을 흰색으로 번쩍임; `motion/frey_slash_sparks_3.png`(더 큰 불꽃, D48) | 그림 | 가장 큰 판정·사거리, 0.12초, 마무리의 밝기; 불꽃은 길이 209.5·방향 -0.18 |
 | `↑J` | 대공 베기 | 몸 앞에서 머리 위로 벤다. | 피해 10, 40×44, 끝점 y=-114, 넉백 310, 활성 0.105초; 자신 y속도 최대 `-120×JUMP_SPEED` | `attack_up` 2~4 | `frey_slash` | 그림 | 위쪽 궤적, 판정 |
 | `공중 ↑J` | 공중 대공 베기 | 지상 대공 베기와 같은 판정으로 공중에서 위를 벤다. | `↑J`와 동일 | `attack_up` 2~4 | `frey_slash` | 그림 | `↑J`와 동일, 공중 방향 |
 | `↓J` | 내려 베기 | 앞으로 내려가며 낮은 위치를 벤다. | 피해 12, 44×40, 끝점 (54,38), 넉백 380, 활성 0.115초; y속도 +130 | `attack_down` 3~4 | `frey_slash` | 그림 | 아래쪽 궤적, 판정과 0.115초 |
@@ -208,6 +213,7 @@
 - 공격자별 `hit/<id>_hit.png`: 96×96, 4프레임, 44fps
 - `hit_streak.png`: 160×24, 4프레임. 길이는 넉백에 따라 `46~92×COMBAT`
 - `landing_dust.png`: 96×32, 5프레임
+- pixelfx 동작 이펙트(D48): `motion/` 6장 — `luna_idle_stars` 128×128 16프레임, `luna_land_stardust` 208×104 17프레임, `frey_step_dust` 96×40 11프레임, `frey_slash_sparks_1~3` 280×128 19프레임
 
 ## 기술을 바꿀 때
 
@@ -225,5 +231,5 @@
 - Yuki: `characters/yuki/Yuki.md`, `Yuki.gd`, `YukiTalisman.gd`, `YukiSeal.gd`, `YukiGrandWard.gd`, `YukiData.gd`
 - Nova: `characters/nova/Nova.md`, `Nova.gd`, `NovaGravityBurst.gd`, `NovaBodyHitbox.gd`, `NovaData.gd`
 - Rio: `characters/rio/Rio.md`, `Rio.gd`, `RioData.gd`
-- 이펙트 파일 계약: `scripts/Vfx.gd`, `assets/art/effects/README.md`, `assets/art/effects/passive/README.md`
+- 이펙트 파일 계약: `scripts/Vfx.gd`, `assets/art/effects/README.md`, `assets/art/effects/passive/README.md`, `assets/art/effects/motion/README.md`
 - 전역 배율: `scripts/GameScale.gd`

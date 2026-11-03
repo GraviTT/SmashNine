@@ -75,6 +75,14 @@ func get_move_sheet_rows() -> Array:
 func get_sheet_rows() -> Array:
 	return SHEET_ROWS
 
+## pixelfx motion effects (user 2026-11-04, reports/pixelfx-eval-2026-11-03/): dust behind the front
+## foot on the two walk drawings where it lands (the 4th and 8th; x of that foot from her feet), and
+## sparks with gold glints after each J cut (_spawn_slash_sparks).
+const STEP_DUST := [[&"frey_walk", 3, "frey_step_dust", 18.0], [&"frey_walk", 7, "frey_step_dust", 21.0]]
+
+func get_motion_frame_effects() -> Array:
+	return STEP_DUST
+
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	match attack_type:
 		"up", "air_up":
@@ -249,6 +257,7 @@ func _combo_slash_one() -> void:
 		Vector2(58 * facing, -32),
 		Vector2(100 * facing, -30)
 	], 8, 235, Vector2(facing, -0.06), Color(1.0, 0.72, 0.34, 0.55), 0.085)
+	_spawn_slash_sparks(1)
 	# On hit, J2 can start at once (after the hitstop) and lands inside the target's hitstun.
 	last_attack.set_meta("chain_cancel", 0.0)
 
@@ -259,6 +268,7 @@ func _combo_slash_two() -> void:
 		Vector2(62 * facing, -34),
 		Vector2(108 * facing, -24)
 	], 9, 275, Vector2(facing, -0.1), Color(1.0, 0.78, 0.36, 0.58), 0.095)
+	_spawn_slash_sparks(2)
 	# On hit, J3 can start at once and lands inside the hitstun.
 	last_attack.set_meta("chain_cancel", 0.0)
 
@@ -269,6 +279,12 @@ func _combo_slash_three() -> void:
 		Vector2(70 * facing, -34),
 		Vector2(118 * facing, -18)
 	], 13, 430, Vector2(facing, -0.18), Color(1.0, 0.62, 0.24, 0.64), 0.12)
+	_spawn_slash_sparks(3)
+
+## The sparks and gold glints after J cut 1-3 (pixelfx 2026-11-04), over frey_slash at the same place
+## (her body centre) and moment; each strip is drawn for its cut's reach, facing right.
+func _spawn_slash_sparks(cut: int) -> void:
+	VFX.spawn(get_parent(), "frey_slash_sparks_%d" % cut, global_position + GAME_SCALE.BODY_CENTRE, Vector2(facing, 1.0), false, 5)
 
 func _up_slash() -> void:
 	velocity.y = minf(velocity.y, -120.0 * GAME_SCALE.JUMP_SPEED)

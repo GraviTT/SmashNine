@@ -26,6 +26,7 @@ $tests += @("test_fighter_motion", "test_monster_motion", "test_victory_screens"
 $tests += @("test_audio")
 $tests += @("test_projectile_art")
 $tests += @("test_story_faces")
+$tests += @("test_motion_fx")
 $failed = @()
 $certificateNoise = 0
 

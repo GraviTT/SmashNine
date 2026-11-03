@@ -17,6 +17,8 @@ const ULTIMATE_FLASH_ALPHA := 0.7
 const REALM_EFFECTS_DIR := "res://assets/art/effects/realm/%s.png"
 const REALM_CENTER_DIR := "res://assets/art/realm_center/%s.png"
 const HAZARDS_DIR := "res://assets/art/hazards/%s.png"
+## Motion effects drawn with pixelfx (user 2026-11-04), 1 art px = 1 screen px.
+const MOTION_DIR := "res://assets/art/effects/motion/%s.png"
 ## name: [frames, fps, anchor in the frame, additive(, folder pattern when not DIR)]
 const SPECS := {
 	"shadow_aura": [6, 10.0, Vector2(64, 160), false, "res://assets/art/story/%s.png"],
@@ -107,6 +109,17 @@ const SPECS := {
 	"nova_beam_head": [4, 16.0, Vector2(24, 24), true, EFFECTS_DIR],
 	"nova_beam_split": [4, 40.0, Vector2(80, 80), true, SKILL_DIR],
 	"nova_beam_bind": [4, 12.0, Vector2(80, 80), true, SKILL_DIR],
+	# pixelfx motion effects (user 2026-11-04: "현재 테스트로 만든 것들 전부 게임에 넣어볼 것"; comparisons
+	# in reports/pixelfx-eval-2026-11-03/): Luna's idle stars, looped over her body (anchor on the feet;
+	# v3, nothing round her head or face); her landing stardust; Frey's step dust behind the landing foot;
+	# the sparks and gold glints after each J cut, from the body centre like frey_slash. The dust and the
+	# stardust are soft-edged (normal blend, translucent); the others add.
+	"luna_idle_stars": [16, 12.0, Vector2(64, 120), true, MOTION_DIR],
+	"luna_land_stardust": [17, 20.0, Vector2(104, 72), false, MOTION_DIR],
+	"frey_step_dust": [11, 16.0, Vector2(70, 34), false, MOTION_DIR],
+	"frey_slash_sparks_1": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
+	"frey_slash_sparks_2": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
+	"frey_slash_sparks_3": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
 	"yuki_grand_ward": [8, 12.0, Vector2(320, 320), false, SKILL_DIR],
 	"guard_bubble": [3, 1.0, Vector2(64, 64), false, SKILL_DIR],
 	"attack_afterimage": [4, 57.143, Vector2(80, 32), true, SKILL_DIR],

@@ -259,6 +259,12 @@ var air_jumps_left := 1
 var sprite_action := &""
 var sprite_action_timer := 0.0
 var landing_motion_timer := 0.0
+## Seconds since the fighter left the floor (0 on it). A character's own landing art needs as much
+## air as the landing sound (AudioManager.MIN_LAND_AIR_SECONDS).
+var air_time := 0.0
+## The effect looping over the body for the animation it plays now (get_motion_overlays).
+var motion_overlay: AnimatedSprite2D
+var motion_overlay_effect := ""
 var victory_motion := false
 var hurt_motion_duration := 0.0
 ## Last frame of a pose (_play_sprite_pose) to hold until the action ends; -1 for none.
@@ -335,6 +341,9 @@ func _ready() -> void:
 	ai_controller.reset(global_position)
 	body.pivot_offset = body.size * 0.5
 	configure_character_sprite()
+	if is_instance_valid(character_sprite):
+		character_sprite.animation_changed.connect(_update_motion_overlay)
+		character_sprite.frame_changed.connect(_on_character_frame_changed)
 	_create_guard_visual()
 	_create_status_icon()
 	was_on_floor_last_frame = is_on_floor()
@@ -467,6 +476,7 @@ func _physics_process(delta: float) -> void:
 	_apply_movement(delta)
 	_handle_landing_state()
 	_update_character_sprite()
+	_update_motion_overlay()
 	if global_position.y > ringout_y or global_position.x < blast_left or global_position.x > blast_right:
 		_ringout()
 
@@ -929,6 +939,23 @@ func character_defers_air_jump() -> bool:
 func character_air_motion() -> StringName:
 	return &""
 
+## Motion effects (pixelfx, user 2026-11-04), presentation only. {animation: effect}: the effect
+## (scripts/Vfx.gd name) loops over the body while that sprite animation plays, its anchor on the
+## feet, mirrored with the facing (Luna's idle stars).
+func get_motion_overlays() -> Dictionary:
+	return {}
+
+## [animation, frame, effect, foot x] entries: when that drawing comes up while the fighter runs on
+## the floor, the effect plays once at the foot (x from the feet for a fighter facing right, mirrored)
+## and stays where the foot landed (Frey's step dust).
+func get_motion_frame_effects() -> Array:
+	return []
+
+## The character's own landing art (scripts/Vfx.gd name), shown on every landing from a jump or
+## fall and in place of the grey dust (Luna's stardust); empty: the dust after an action only.
+func character_landing_effect() -> String:
+	return ""
+
 func _perform_air_jump() -> void:
 	velocity.y = jump_velocity * 0.86 * (0.78 if control_jump_slow_timer > 0.0 else 1.0) * gravity_jump_scale()
 	_restart_jump_motion()
@@ -1188,6 +1215,10 @@ func _handle_landing_state() -> void:
 		_stop_guard(true)
 	var landed := is_on_floor() and not was_on_floor_last_frame
 	AUDIO.landing(self, landed)
+	# A character's own landing art comes with the landing sound and stands in for the dust below.
+	var own_landing_art := landed and character_landing_effect() != "" and air_time + 0.000001 >= AUDIO.MIN_LAND_AIR_SECONDS
+	if own_landing_art:
+		_spawn_landing_puff()
 	if landed and _has_motion_row(&"land") and sprite_action_timer <= 0.0 and attack_lock_timer <= 0.0 and not is_guarding and absf(move_input) <= 0.01 and absf(velocity.x) <= 20.0:
 		landing_motion_timer = 2.0 / 12.0
 		character_sprite.play(_get_sprite_animation_name(&"land"))
@@ -1195,18 +1226,25 @@ func _handle_landing_state() -> void:
 	if landed and action_locked_until_land:
 		action_locked_until_land = false
 		attack_lock_timer = 0.0
-		_spawn_landing_puff()
+		if not own_landing_art:
+			_spawn_landing_puff()
 	if landed and current_attack_started_airborne and attack_lock_timer > AIR_ATTACK_LANDING_RECOVERY:
 		attack_lock_timer = AIR_ATTACK_LANDING_RECOVERY
 		current_attack_started_airborne = false
-		_spawn_landing_puff()
+		if not own_landing_art:
+			_spawn_landing_puff()
 	if is_on_floor() and attack_lock_timer <= 0.0:
 		current_attack_started_airborne = false
+	air_time = 0.0 if is_on_floor() else air_time + get_physics_process_delta_time()
 	was_on_floor_last_frame = is_on_floor()
 
 func _spawn_landing_puff() -> void:
-	# Dust puffs (CODEX-ART-20); the flat bar only without the art.
-	if EFFECT_STRIPS.spawn(get_parent(), "landing_dust", global_position, Vector2.ONE, false, 4) != null:
+	# Dust puffs (CODEX-ART-20) or the character's own landing art, as faint as a hidden fighter;
+	# the flat bar only without the art.
+	var effect := character_landing_effect()
+	if effect == "" or not EFFECT_STRIPS.available(effect):
+		effect = "landing_dust"
+	if EFFECT_STRIPS.spawn(get_parent(), effect, global_position, Vector2.ONE, false, 4, Color(1, 1, 1, _visible_alpha())) != null:
 		return
 	var puff := ColorRect.new()
 	puff.size = Vector2(44, 8)
@@ -2444,6 +2482,36 @@ func _update_character_sprite(force := false) -> void:
 			character_sprite.pause()
 		elif not character_sprite.is_playing() and character_sprite.frame < character_sprite.sprite_frames.get_frame_count(target_animation) - 1:
 			character_sprite.play(target_animation)
+
+## Starts, turns or ends the effect looping over the body for the animation it plays now.
+func _update_motion_overlay() -> void:
+	var effect := ""
+	if is_instance_valid(character_sprite) and character_sprite.visible:
+		effect = str(get_motion_overlays().get(character_sprite.animation, ""))
+	if effect != "" and not EFFECT_STRIPS.available(effect):
+		effect = ""
+	if effect != motion_overlay_effect and is_instance_valid(motion_overlay):
+		motion_overlay.queue_free()
+		motion_overlay = null
+	motion_overlay_effect = effect
+	if effect == "":
+		return
+	if not is_instance_valid(motion_overlay):
+		motion_overlay = EFFECT_STRIPS.spawn(self, effect, Vector2.ZERO, Vector2.ONE, true, 4, Color.WHITE, true)
+		if motion_overlay == null:
+			motion_overlay_effect = ""
+			return
+	motion_overlay.scale.x = absf(motion_overlay.scale.x) * float(facing)
+	motion_overlay.speed_scale = character_sprite.speed_scale
+
+## A drawing listed in get_motion_frame_effects came up: its effect plays at the foot while the
+## fighter runs on the floor (not hidden in a bush, where dust would give it away).
+func _on_character_frame_changed() -> void:
+	if not is_on_floor() or absf(velocity.x) <= 20.0 or concealed:
+		return
+	for entry in get_motion_frame_effects():
+		if character_sprite.animation == entry[0] and character_sprite.frame == int(entry[1]):
+			EFFECT_STRIPS.spawn(get_parent(), str(entry[2]), global_position + Vector2(float(entry[3]) * facing, 0.0), Vector2(facing, 1.0), false, 4)
 
 func _set_hurt_motion_speed() -> void:
 	var frames := character_sprite.sprite_frames
