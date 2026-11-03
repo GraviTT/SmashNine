@@ -102,7 +102,8 @@ func perform_basic_attack(attack_type: String, _direction: Vector2) -> void:
 					_start_attack(0.08, 0.22, Callable(self, "_mana_wave"), Vector2i(-1, -1), &"mana_combo", Vector2i(4, 5))
 
 func perform_skill_one() -> void:
-	if not is_on_floor() and not air_blink_available:
+	# No blinking out of a gravity root (Nova, D47).
+	if is_gravity_rooted() or (not is_on_floor() and not air_blink_available):
 		return
 	_dimension_slash_start()
 

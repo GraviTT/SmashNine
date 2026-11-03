@@ -150,7 +150,7 @@ func _wing_usable() -> bool:
 	return not is_on_floor() and air_jumps_left > 0 and hitstun_timer <= 0.0 \
 		and knockback_velocity.length() < WING_KNOCKBACK_LIMIT and attack_lock_timer <= 0.0 \
 		and not action_locked_until_land and skill_dash_timer <= 0.0 and movement_freeze_timer <= 0.0 \
-		and not wing_hovering and not is_guarding
+		and not wing_hovering and not is_guarding and not is_gravity_rooted()
 
 func _jump_held() -> bool:
 	return Input.is_action_pressed("jump") or Input.is_action_pressed("move_up")

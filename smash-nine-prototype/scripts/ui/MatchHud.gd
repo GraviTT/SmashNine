@@ -22,13 +22,14 @@ const HUD_FRAME_MARGINS := {
 	"result_panel": 18,
 	"menu_button": 10,
 }
-const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L skills  I ultimate  Q portal  1-3 soul card  F3 debug  F4 bots"
+const CONTROLS_HINT := "A/D move  W jump  S+S drop  Space guard  J attack  K/L/U skills  I ultimate  Q portal  1-3 soul card  F3 debug  F4 bots"
 ## Bottom right, all match (user 2026-10-08: "화면 오른쪽 아래에 조작키를 간단히 표시하고, 스킬
 ## 아이콘도 간단하게"): the focused fighter's four moves as icon slots with their keys, and the
 ## other keys in one short line under them.
 const CONTROLS_SHORT := "A/D move   W jump   S+S drop   Space guard   Q portal   F4 bots"
 const SKILL_ICON_ART := "res://assets/art/skill_icons/%s.png"
-const SKILL_SLOTS: Array[String] = ["j", "k", "l", "i"]
+## U (the third skill, 2026-11-03 D47) shows only for a fighter that has one.
+const SKILL_SLOTS: Array[String] = ["j", "k", "l", "u", "i"]
 const SKILL_SLOT_SIZE := 48.0
 const SKILL_SLOT_GAP := 6.0
 const SKILL_BAR_MARGIN := 12.0
@@ -333,6 +334,19 @@ func _build_skill_bar() -> void:
 		key.add_theme_stylebox_override("normal", badge)
 		panel.add_child(key)
 		skill_slots[slot] = {"style": style, "frame": frame, "icon": icon, "glyph": glyph, "key": key, "shade": shade, "time": time}
+	_layout_skill_bar(false)
+
+## The slots in a row against the right edge; U only when the fighter has a third skill.
+func _layout_skill_bar(show_third: bool) -> void:
+	var shown := SKILL_SLOTS.filter(func(slot: String) -> bool: return slot != "u" or show_third)
+	var width := shown.size() * SKILL_SLOT_SIZE + (shown.size() - 1) * SKILL_SLOT_GAP
+	skill_bar.size = Vector2(width, SKILL_SLOT_SIZE)
+	skill_bar.position.x = 1280.0 - SKILL_BAR_MARGIN - width
+	for slot in SKILL_SLOTS:
+		var panel := skill_bar.get_node("SkillSlot%s" % slot.to_upper()) as Control
+		panel.visible = shown.has(slot)
+		if panel.visible:
+			panel.position.x = shown.find(slot) * (SKILL_SLOT_SIZE + SKILL_SLOT_GAP)
 
 func _slot_label(text: String, position: Vector2, size: Vector2, font_size: int, alignment: HorizontalAlignment) -> Label:
 	var label := Label.new()
@@ -359,6 +373,7 @@ func update_skill_bar(fighter: Node, delta: float) -> void:
 	var icon_set := "%s%s|%s" % [character_id, "_brave" if fighter.get("transformed") == true else "", ART_SETTINGS.use_original()]
 	if icon_set != skill_icon_set:
 		skill_icon_set = icon_set
+		_layout_skill_bar(fighter.has_method("has_skill_three") and fighter.has_skill_three())
 		var accent: Color = fighter.get("body_color") if fighter.get("body_color") is Color else Color.WHITE
 		for slot in SKILL_SLOTS:
 			var nodes: Dictionary = skill_slots[slot]

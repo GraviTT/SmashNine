@@ -27,14 +27,15 @@ func _initialize() -> void:
 	if _failed:
 		quit(1)
 		return
-	print("HUD frame tests passed (skill 4, HP 1, cards 3, result 1, menu 2; title art + ColorRect fallback)")
+	print("HUD frame tests passed (skill 5 with U hidden, HP 1, cards 3, result 1, menu 2; title art + ColorRect fallback)")
 	quit(0)
 
 var _failed := false
 
 func _check_original(hud: CanvasLayer) -> void:
 	var expected := {
-		"SkillSlotFrame": 4,
+		# J, K, L, U (the third skill, D47; shown only for a fighter that has one) and I.
+		"SkillSlotFrame": 5,
 		"HpBarFrame": 1,
 		"CardPanelFrame": 3,
 		"ResultPanelFrame": 1,
@@ -44,6 +45,9 @@ func _check_original(hud: CanvasLayer) -> void:
 		var found := _count_named_type(hud, prefix, "NinePatchRect")
 		if found != int(expected[prefix]):
 			_fail("Original HUD expected %d NinePatchRect nodes for %s, got %d" % [expected[prefix], prefix, found])
+	var third := hud.skill_bar.get_node_or_null("SkillSlotU") as Control
+	if third == null or third.visible:
+		_fail("The U slot should exist and stay hidden until a fighter with a third skill shows")
 	if hud.overlay_background_art.texture == null:
 		_fail("Original HUD did not load title_bg.png")
 	elif hud.overlay_background_art.texture.resource_path != "res://assets/art/ui/title_bg.png":
@@ -53,7 +57,7 @@ func _check_fallback(hud: CanvasLayer) -> void:
 	for prefix in ["SkillSlotFrame", "HpBarFrame", "CardPanelFrame", "ResultPanelFrame", "Menu"]:
 		if _count_named_type(hud, prefix, "NinePatchRect") != 0:
 			_fail("Prototype HUD unexpectedly kept authored NinePatchRect for %s" % prefix)
-	var expected := {"SkillSlotFrame": 4, "HpBarFrame": 1, "CardPanelFrame": 3, "ResultPanelFrame": 1, "Menu": 2}
+	var expected := {"SkillSlotFrame": 5, "HpBarFrame": 1, "CardPanelFrame": 3, "ResultPanelFrame": 1, "Menu": 2}
 	for prefix: String in expected:
 		var found := _count_named_type(hud, prefix, "ColorRect")
 		if found != int(expected[prefix]):

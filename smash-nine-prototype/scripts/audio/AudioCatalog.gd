@@ -30,6 +30,7 @@ const SOUNDS := {
 	"ult_yuki": {"fallback": "ult_start", "voices": 2, "group": "Skills", "world": true},
 	"skill_nova_1": {"fallback": "skill_cast", "voices": 3, "group": "Skills", "world": true},
 	"skill_nova_2": {"fallback": "skill_cast", "voices": 3, "group": "Skills", "world": true},
+	"skill_nova_3": {"fallback": "skill_cast", "voices": 3, "group": "Skills", "world": true},
 	"ult_nova": {"fallback": "ult_start", "voices": 2, "group": "Skills", "world": true},
 	"skill_rio_1": {"fallback": "skill_cast", "voices": 3, "group": "Skills", "world": true},
 	"skill_rio_2": {"fallback": "skill_cast", "voices": 3, "group": "Skills", "world": true},

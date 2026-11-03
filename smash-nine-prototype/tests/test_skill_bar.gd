@@ -26,7 +26,7 @@ func _run() -> void:
 		await process_frame
 	var hud: Node = main.hud
 	var rio: Node = main._get_human_player()
-	if not hud.skill_bar.visible or not hud.controls_label.visible or hud.skill_slots.size() != 4:
+	if not hud.skill_bar.visible or not hud.controls_label.visible or hud.skill_slots.size() != 5:
 		_fail("The skill bar and the short controls line should show during a match")
 	# Cooldown shades: the ultimate and Rio's rune shield.
 	rio.ultimate_cooldown_timer = 15.0

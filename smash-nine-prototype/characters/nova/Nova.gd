@@ -4,42 +4,92 @@ const ANIMATION := preload("res://characters/common/CharacterAnimation.gd")
 const GRAVITY_BURST_SCRIPT := preload("res://characters/nova/NovaGravityBurst.gd")
 const VFX := preload("res://scripts/Vfx.gd")
 const BODY_HITBOX_SCRIPT := preload("res://characters/nova/NovaBodyHitbox.gd")
+const ORB_SCRIPT := preload("res://characters/nova/NovaOrb.gd")
+const BEAM_SCRIPT := preload("res://characters/nova/NovaBeam.gd")
+const FIELD_SCRIPT := preload("res://characters/nova/NovaField.gd")
 
-## Speeds follow the run speed (GameScale.MOVE); launches cover the bigger realms (WORLD).
-const MOMENTUM_START_SPEED := 170.0 * GAME_SCALE.MOVE
-const MOMENTUM_MAX_SPEED := 700.0 * GAME_SCALE.MOVE
-const VECTOR_SHIFT_DURATION := 0.22
-const VECTOR_SHIFT_ACCELERATION := 5400.0 * GAME_SCALE.MOVE
-const VECTOR_SHIFT_MAX_SPEED := 760.0 * GAME_SCALE.MOVE
-## Gravity brake start-up (frozen in place, then the burst): two drawings before the strike at the
-## female row's adopted 10.01 fps, the slower body (D39; was 0.08).
-const BRAKE_STARTUP := 0.2
-## Slingshot cast pose: its strike drawing at two drawings of the male row's adopted 9.1 fps (D39).
+## The kit (user 2026-11-03, D47; the user's concept and the lead's filled gaps are in
+## reports/nova-rio-concepts-2026-11-03/nova-user-concept-review.md). Play style: enemy and
+## gravity control (D46). Her stacking hits add gravity stacks (passive "중력 중첩",
+## PlayerBase.add_gravity_stack): the J chain's last hit, the orb, the beam, the ultimate's launch
+## and its sphere. The momentum passive is gone: strikes use what was the middle of its scale.
+const STRIKE_POWER := 0.5
+const STRIKE_COLOR := Color(0.62, 0.76, 1.0, 0.64)
+const COMBO_RESET_TIME := 0.46
+## K "중력 구체" (Gravity Orb): flies where she aims (ahead when nothing is held) and bursts on the
+## first body or at its range; whoever the burst reaches is pulled to its centre for
+## ORB_PULL_TIME, then gets a stack.
+const ORB_STARTUP := 0.12
+const ORB_RECOVERY := 0.22
+const ORB_SIZE := Vector2(30, 30)
+const ORB_SPEED := 520.0
+const ORB_LIFETIME := 0.5
+const ORB_BURST_RADIUS := 90.0
+const ORB_DAMAGE := 8.0
+const ORB_PULL_TIME := 0.35
+const ORB_PULL_SPEED := 760.0
+## L "중력 필드" (Gravity Field): FIELD_RADIUS where she casts it, for FIELD_TIME. Inside she
+## flies with W/A/S/D in eight directions (W is also the jump, so the field has no jump), other
+## fighters move as at stage 1 (no stack) and neutral monsters float helpless (NovaField).
+const FIELD_STARTUP := 0.14
+const FIELD_RECOVERY := 0.2
+const FIELD_RADIUS := 200.0
+const FIELD_TIME := 6.0
+const FIELD_COOLDOWN := 12.0
+const FIELD_FLY_SPEED := 470.0
+const FIELD_FLY_ACCEL := 3200.0
+## U "중력 광선" (Gravity Beam): where she aims; the first body it reaches is dragged to just in
+## front of her (a short daze on arrival), then gets a stack. A body in the air is slammed down
+## instead, with more damage.
+const BEAM_STARTUP := 0.1
+const BEAM_RECOVERY := 0.24
+const BEAM_SIZE := Vector2(26, 18)
+const BEAM_SPEED := 1150.0
+const BEAM_LIFETIME := 0.36
+const BEAM_DAMAGE := 5.0
+const BEAM_SLAM_DAMAGE := 11.0
+const BEAM_SLAM_SPEED := 1000.0
+const BEAM_SLAM_HITSTUN := 0.45
+const BEAM_PULL_SPEED := 1100.0
+const BEAM_PULL_TIME := 0.45
+const BEAM_HOLD_OFFSET := 46.0
+const BEAM_ARRIVAL_DAZE := 0.3
+## I "사건의 지평선" (Event Horizon): a big sphere above her head; fighters and monsters within
+## ULTIMATE_CATCH_RADIUS of it circle it for up to ULTIMATE_SPHERE_TIME. I again, held: she circles
+## it too; letting go shoots her off the way she holds (along the orbit when nothing is held),
+## hurting and stacking whoever she meets. Then (or when its time runs out, or when she is hit
+## while circling) the sphere drops to the floor below (at most ULTIMATE_FALL_TIME) and bursts on
+## everyone it carried: damage and a stack. Bots press I again instead of letting go (EnemyAI).
 const SLINGSHOT_POSE_STRIKE := 0.22
-const ULTIMATE_CORE_DISTANCE := 105.0
-const ULTIMATE_PULL_RADIUS := 230.0
-const ULTIMATE_PULL_STRENGTH := 240.0
-## The core collapses as Nova slings off, hitting whoever it gathered (added 2026-10-08: the
-## launch flies along the orbit's tangent, away from the pulled-in opponents).
-const ULTIMATE_COLLAPSE_RADIUS := 118.0
-const ULTIMATE_COLLAPSE_DAMAGE := 18.0
-const ULTIMATE_COLLAPSE_KNOCKBACK := 300.0
-const ULTIMATE_MIN_ORBIT_RADIUS := 52.0
-const ULTIMATE_MAX_TUNING_RADIUS := 260.0
-const ULTIMATE_NEAR_ORBIT_SPEED := 1080.0
-const ULTIMATE_FAR_ORBIT_SPEED := 560.0
-const ULTIMATE_FAST_LAUNCH_SPEED := 1460.0 * GAME_SCALE.WORLD
-const ULTIMATE_SLOW_LAUNCH_SPEED := 860.0 * GAME_SCALE.WORLD
-const ULTIMATE_FAST_LAUNCH_DURATION := 0.46
-const ULTIMATE_SLOW_LAUNCH_DURATION := 0.3
 const ULTIMATE_NONE := 0
-const ULTIMATE_CORE := 1
+const ULTIMATE_SPHERE := 1
 const ULTIMATE_ORBIT := 2
 const ULTIMATE_LAUNCH := 3
+const ULTIMATE_SPHERE_HEIGHT := 150.0
+const ULTIMATE_SPHERE_TIME := 3.0
+const ULTIMATE_CATCH_RADIUS := 230.0
+const ULTIMATE_FOE_ORBIT := 75.0
+const ULTIMATE_FOE_SPIN := 3.2
+const ULTIMATE_MIN_ORBIT_RADIUS := 60.0
+const ULTIMATE_MAX_ORBIT_RADIUS := 200.0
+const ULTIMATE_ORBIT_SPEED := 900.0
+const ULTIMATE_LAUNCH_SPEED := 1150.0 * GAME_SCALE.WORLD
+const ULTIMATE_LAUNCH_DURATION := 0.4
+const ULTIMATE_LAUNCH_DAMAGE := 14.0
+const ULTIMATE_LAUNCH_KNOCKBACK := 520.0
+const ULTIMATE_FALL_ACCEL := 2600.0
+const ULTIMATE_FALL_MAX_SPEED := 1100.0
+const ULTIMATE_FALL_TIME := 1.0
+## The sphere's burst (bots read the radius to aim the launch away from it).
+const ULTIMATE_COLLAPSE_RADIUS := 120.0
+const ULTIMATE_COLLAPSE_DAMAGE := 16.0
+const ULTIMATE_COLLAPSE_KNOCKBACK := 600.0
 ## Redrawn 2026-10-14 for both bodies (D33-D37): every motion is 6 frames with its old length
 ## (fps x 6 / old frames), the idle at 6.3 fps (D37). The base `attack` row is only a fallback.
 const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 35.25, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34). `tumble` is new for Nova: strong launches play it instead of the hurt frame.
+## The new skills borrow rows until theirs are drawn: the orb `gravity_brake`, the field
+## `slingshot_start`, the beam `vector_side` 5-6, the J chain `vector_side` two drawings a hit.
 const MOVE_SHEET_ROWS := [
 	["vector_side", 6, 35.25, false],
 	["vector_upper", 6, 33.0, false],
@@ -52,30 +102,32 @@ const MOVE_SHEET_ROWS := [
 	["tumble", 6, 21.0, true],
 ]
 
-var vector_shift_active := false
-var vector_shift_timer := 0.0
-var vector_shift_direction := Vector2.RIGHT
-var air_vector_shift_available := true
-var momentum_trail_timer := 0.0
+var combo_step := 0
+var combo_timer := 0.0
 var meteor_diving := false
-var meteor_momentum_ratio := 0.0
-var brake_restore_consumed := false
+var field: Node2D
+var field_cooldown_timer := 0.0
+var orb_pull_targets: Array[Node] = []
+var orb_pull_centre := Vector2.ZERO
+var orb_pull_timer := 0.0
+var beam_target: Node
+var beam_pull_timer := 0.0
 
 var ultimate_phase := ULTIMATE_NONE
+## The sphere's centre (a world point; bots aim from it).
 var ultimate_center := Vector2.ZERO
-var ultimate_entry_direction := Vector2.RIGHT
-var ultimate_entry_momentum := 0.0
 var ultimate_elapsed := 0.0
 var ultimate_orbit_sign := 1.0
-var ultimate_orbit_radius := ULTIMATE_CORE_DISTANCE
-var ultimate_orbit_speed := ULTIMATE_FAR_ORBIT_SPEED
-var ultimate_launch_speed := ULTIMATE_SLOW_LAUNCH_SPEED
-var ultimate_launch_duration := ULTIMATE_SLOW_LAUNCH_DURATION
-var ultimate_launch_power := 0.0
-var ultimate_launch_shift_available := false
-var ultimate_contact_requested := false
+var ultimate_orbit_radius := ULTIMATE_MIN_ORBIT_RADIUS
 var ultimate_launch_direction := Vector2.RIGHT
 var ultimate_saved_collision_mask := 0
+var sphere_active := false
+var sphere_timer := 0.0
+var sphere_falling := false
+var sphere_fall_speed := 0.0
+var sphere_fall_elapsed := 0.0
+var sphere_caught: Array[Node] = []
+var sphere_angles: Dictionary = {}
 var singularity_visual: Node2D
 var ultimate_body_hitbox: Node
 var ultimate_launch_preview: Node2D
@@ -93,81 +145,93 @@ func get_sheet_rows() -> Array:
 	return SHEET_ROWS
 
 func perform_basic_attack(attack_type: String, input_direction: Vector2) -> void:
-	var momentum := _get_momentum_ratio()
-	var impact_direction := _get_impact_direction(input_direction)
-	_cancel_vector_shift()
 	match attack_type:
-		"up":
-			_start_attack(0.087, 0.19, Callable(self, "_vector_uppercut").bind(momentum, false), Vector2i(-1, -1), &"vector_upper")
-		"air_up":
-			_start_attack(0.087, 0.17, Callable(self, "_vector_uppercut").bind(momentum, true), Vector2i(-1, -1), &"vector_upper")
+		"up", "air_up":
+			_reset_combo()
+			_start_attack(0.087, 0.19 if attack_type == "up" else 0.17, Callable(self, "_vector_uppercut").bind(attack_type == "air_up"), Vector2i(-1, -1), &"vector_upper")
 		"down":
-			_start_attack(0.102, 0.23, Callable(self, "_compression_stomp").bind(momentum), Vector2i(-1, -1), &"compression_stomp")
+			_reset_combo()
+			_start_attack(0.102, 0.23, Callable(self, "_compression_stomp"), Vector2i(-1, -1), &"compression_stomp")
 		"air_down":
-			_start_attack(0.089, 0.2, Callable(self, "_meteor_kick_start").bind(momentum), Vector2i(-1, -1), &"meteor_kick")
+			_reset_combo()
+			_start_attack(0.089, 0.2, Callable(self, "_meteor_kick_start"), Vector2i(-1, -1), &"meteor_kick")
 		"air_side":
-			_start_attack(0.077, 0.15, Callable(self, "_vector_side_strike").bind(momentum, true, impact_direction), Vector2i(-1, -1), &"air_side")
+			_reset_combo()
+			_start_attack(0.077, 0.15, Callable(self, "_vector_side_strike").bind(true, input_direction), Vector2i(-1, -1), &"air_side")
 		_:
-			_start_attack(0.076, 0.17, Callable(self, "_vector_side_strike").bind(momentum, false, Vector2(facing, -0.04)), Vector2i(-1, -1), &"vector_side")
-
-## One vector shift per airtime, like the skill itself (Codex QA-14 round 6: bots asked for it
-## 35,321 frames for 27 uses).
-func can_use_skill_one() -> bool:
-	return super() and (is_on_floor() or air_vector_shift_available)
+			# The chain: two drawings of the vector_side row a hit; the third adds a stack.
+			match _consume_combo_step():
+				0:
+					_start_attack(0.07, 0.15, Callable(self, "_chain_strike").bind(0), Vector2i(-1, -1), &"vector_side", Vector2i(0, 1))
+				1:
+					_start_attack(0.07, 0.16, Callable(self, "_chain_strike").bind(1), Vector2i(-1, -1), &"vector_side", Vector2i(2, 3))
+				_:
+					_start_attack(0.09, 0.24, Callable(self, "_chain_strike").bind(2), Vector2i(-1, -1), &"vector_side", Vector2i(4, 5))
 
 func perform_skill_one() -> void:
-	_start_vector_shift()
+	_reset_combo()
+	_start_attack(ORB_STARTUP, ORB_RECOVERY, Callable(self, "_fire_orb"), Vector2i(-1, -1), &"gravity_brake")
 
 func perform_skill_two() -> void:
-	_gravity_brake_start()
+	if field_cooldown_timer > 0.0:
+		return
+	_reset_combo()
+	_start_attack(FIELD_STARTUP, FIELD_RECOVERY, Callable(self, "_cast_field"), Vector2i(-1, -1), &"slingshot_start")
 
-func perform_ultimate() -> void:
-	_gravity_slingshot_start()
-
-func try_skill_one_followup() -> bool:
-	if ultimate_phase != ULTIMATE_LAUNCH:
-		return false
-	if ultimate_launch_shift_available:
-		_redirect_ultimate_launch_with_vector_shift()
+func has_skill_three() -> bool:
 	return true
 
+func perform_skill_three() -> void:
+	_reset_combo()
+	_start_attack(BEAM_STARTUP, BEAM_RECOVERY, Callable(self, "_fire_beam"), Vector2i(-1, -1), &"vector_side", Vector2i(4, 5))
+
+func skill_cooldown(slot: String) -> Vector2:
+	if slot == "l":
+		return Vector2(field_cooldown_timer, FIELD_COOLDOWN)
+	return super(slot)
+
+func perform_ultimate() -> void:
+	_sphere_start()
+
 func try_ultimate_followup() -> bool:
-	if ultimate_phase == ULTIMATE_CORE:
+	if ultimate_phase == ULTIMATE_SPHERE:
 		_begin_ultimate_orbit()
 		ultimate_followup_started = true
 		return true
 	if ultimate_phase == ULTIMATE_ORBIT:
+		# A bot (or a test) presses again to let go; a player lets go of the key.
 		_begin_ultimate_launch(_get_ultimate_tangent())
-		ultimate_followup_started = true
 		return true
 	return ultimate_phase != ULTIMATE_NONE
 
 func character_physics_process(delta: float) -> void:
-	momentum_trail_timer = maxf(momentum_trail_timer - delta, 0.0)
-	if vector_shift_active:
-		vector_shift_timer = maxf(vector_shift_timer - delta, 0.0)
-		if vector_shift_timer <= 0.0:
-			vector_shift_active = false
+	combo_timer = maxf(combo_timer - delta, 0.0)
+	if combo_timer <= 0.0:
+		combo_step = 0
+	field_cooldown_timer = maxf(field_cooldown_timer - delta, 0.0)
 	if meteor_diving:
 		velocity.y = minf(velocity.y + 2600.0 * GAME_SCALE.JUMP_SPEED * delta, 1120.0 * GAME_SCALE.JUMP_SPEED)
+	_update_orb_pull(delta)
+	_update_beam_pull(delta)
 	_update_ultimate(delta)
-	_update_momentum_visual()
+	_update_sphere(delta)
 
 func character_landing_state() -> void:
-	if is_on_floor():
-		air_vector_shift_available = true
 	if meteor_diving and is_on_floor():
 		meteor_diving = false
-		var radius := lerpf(68.0, 98.0, meteor_momentum_ratio)
-		var damage := lerpf(9.0, 14.0, meteor_momentum_ratio)
-		var knockback := lerpf(350.0, 610.0, meteor_momentum_ratio)
-		_spawn_gravity_burst(radius, damage, knockback, meteor_momentum_ratio, Color(0.26, 0.9, 1.0, 0.56), "meteor")
+		var radius := lerpf(68.0, 98.0, STRIKE_POWER)
+		_spawn_gravity_burst(radius, lerpf(9.0, 14.0, STRIKE_POWER), lerpf(350.0, 610.0, STRIKE_POWER), STRIKE_POWER, Color(0.26, 0.9, 1.0, 0.56), "meteor")
 		_play_impact_flash(global_position + Vector2(0, -8), radius, Color(0.36, 0.95, 1.0, 0.78))
 
+## Hit while circling or launching: she stops and the sphere drops on whoever it holds.
 func character_on_hit() -> void:
-	_cancel_vector_shift()
 	meteor_diving = false
-	_cancel_ultimate()
+	_reset_combo()
+	beam_target = null
+	beam_pull_timer = 0.0
+	if ultimate_phase == ULTIMATE_ORBIT or ultimate_phase == ULTIMATE_LAUNCH:
+		_stop_ultimate_motion()
+		_drop_sphere()
 
 func character_on_respawn() -> void:
 	_reset_nova_state()
@@ -175,134 +239,494 @@ func character_on_respawn() -> void:
 func character_cleanup() -> void:
 	_reset_nova_state()
 
+func character_on_attack_hit_body(body: Node, attack: Node) -> void:
+	if attack.has_meta("nova_gravity"):
+		_stack(body)
+
+## A body the ultimate's launch hit (NovaBodyHitbox).
+func on_nova_body_hit(body: Node) -> void:
+	if ultimate_phase == ULTIMATE_LAUNCH:
+		_stack(body)
+
+## In her own field she flies: no gravity, no jump, W/A/S/D in eight directions.
 func apply_character_gravity(delta: float) -> bool:
-	if not vector_shift_active:
+	if not _in_own_field():
 		return false
-	if is_on_floor() and vector_shift_direction.y < -0.1:
-		velocity.y = minf(velocity.y, -110.0 * GAME_SCALE.JUMP_SPEED)
-	velocity += vector_shift_direction * VECTOR_SHIFT_ACCELERATION * delta
-	if velocity.length() > VECTOR_SHIFT_MAX_SPEED:
-		velocity = velocity.normalized() * VECTOR_SHIFT_MAX_SPEED
+	var wanted := _flight_input() * FIELD_FLY_SPEED * GAME_SCALE.MOVE
+	velocity = velocity.move_toward(wanted, FIELD_FLY_ACCEL * GAME_SCALE.MOVE * delta)
+	if absf(wanted.x) > 1.0:
+		facing = 1 if wanted.x > 0.0 else -1
+	jump_buffer_timer = 0.0
 	return true
 
 func get_nova_impact_direction() -> Vector2:
-	if ultimate_phase == ULTIMATE_ORBIT:
-		var offset := global_position - ultimate_center
-		if offset.length() > 0.01:
-			return Vector2(-offset.y, offset.x).normalized() * ultimate_orbit_sign
 	if ultimate_phase == ULTIMATE_LAUNCH:
 		return ultimate_launch_direction
 	if velocity.length() > 0.01:
 		return velocity.normalized()
 	return Vector2(facing, -0.05).normalized()
 
-func _vector_side_strike(momentum: float, airborne: bool, travel_direction: Vector2) -> void:
+# --- J ---
+
+func _chain_strike(step: int) -> void:
+	var direction := Vector2(facing, -0.04 if step < 2 else -0.3).normalized()
+	var travel: float = [70.0, 80.0, 104.0][step]
+	var size: Vector2 = [Vector2(40, 32), Vector2(42, 34), Vector2(48, 38)][step]
+	velocity.x += facing * [70.0, 90.0, 110.0][step]
+	attack_art_enabled = false
+	_spawn_sweeping_attack(size, [
+		Vector2(0, -32) + Vector2(facing, 0) * 10.0,
+		Vector2(0, -32) + Vector2(facing, 0) * travel * 0.55,
+		Vector2(0, -32) + Vector2(facing, 0) * travel
+	], [6.0, 7.0, 9.0][step], [200.0, 230.0, 400.0][step], direction, STRIKE_COLOR, [0.08, 0.085, 0.1][step])
+	attack_art_enabled = true
+	if step < 2:
+		# On hit the next hit starts at once and lands inside the hitstun.
+		last_attack.set_meta("chain_cancel", 0.0)
+	else:
+		last_attack.set_meta("nova_gravity", true)
+	_play_vector_flash(Vector2(facing, 0), travel, 0.3 + 0.2 * step)
+
+func _consume_combo_step() -> int:
+	if combo_timer <= 0.0:
+		combo_step = 0
+	var step := combo_step
+	if step >= 2:
+		_reset_combo()
+	else:
+		combo_step = step + 1
+		combo_timer = COMBO_RESET_TIME
+	return step
+
+func _reset_combo() -> void:
+	combo_step = 0
+	combo_timer = 0.0
+
+func _vector_side_strike(airborne: bool, travel_direction: Vector2) -> void:
 	var direction := travel_direction.normalized()
 	if direction == Vector2.ZERO:
 		direction = Vector2(facing, 0.0)
 	if absf(direction.x) > 0.16:
 		facing = signi(int(direction.x))
-	var travel := lerpf(76.0, 138.0, momentum)
-	var size := Vector2(lerpf(38.0, 54.0, momentum), lerpf(30.0, 42.0, momentum))
-	var damage := lerpf(7.0, 11.0, momentum)
-	var knockback := lerpf(235.0, 510.0, momentum)
-	velocity += direction * lerpf(65.0, 165.0, momentum)
+	var travel := lerpf(76.0, 138.0, STRIKE_POWER)
+	velocity += direction * lerpf(65.0, 165.0, STRIKE_POWER)
 	if airborne:
 		velocity.y *= 0.82
 	# The vector streak is this strike's own effect; the shared slash doubled it into one white
 	# blot (sprite audit 2026-10-16, CODEX-QA-19 B5).
 	attack_art_enabled = false
-	_spawn_sweeping_attack(size, [
+	_spawn_sweeping_attack(Vector2(lerpf(38.0, 54.0, STRIKE_POWER), lerpf(30.0, 42.0, STRIKE_POWER)), [
 		Vector2(0, -32) + direction * 10.0,
 		Vector2(0, -32) + direction * travel * 0.55,
 		Vector2(0, -32) + direction * travel
-	], damage, knockback, direction, _momentum_color(momentum), lerpf(0.075, 0.12, momentum))
+	], lerpf(7.0, 11.0, STRIKE_POWER), lerpf(235.0, 510.0, STRIKE_POWER), direction, STRIKE_COLOR, lerpf(0.075, 0.12, STRIKE_POWER))
 	attack_art_enabled = true
-	_play_vector_flash(direction, travel, momentum)
+	_play_vector_flash(direction, travel, STRIKE_POWER)
 
-func _vector_uppercut(momentum: float, airborne: bool) -> void:
-	var rise_speed := lerpf(-390.0, -570.0, momentum)
+func _vector_uppercut(airborne: bool) -> void:
+	var rise_speed := lerpf(-390.0, -570.0, STRIKE_POWER)
 	if airborne:
 		rise_speed *= 0.88
 	velocity.y = minf(velocity.y, rise_speed * GAME_SCALE.JUMP_SPEED)
-	velocity.x += facing * lerpf(35.0, 85.0, momentum)
-	var launch_velocity := Vector2(facing * lerpf(55.0, 105.0, momentum), lerpf(-470.0, -720.0, momentum))
+	velocity.x += facing * lerpf(35.0, 85.0, STRIKE_POWER)
+	var launch_velocity := Vector2(facing * lerpf(55.0, 105.0, STRIKE_POWER), lerpf(-470.0, -720.0, STRIKE_POWER))
 	# The impact star marks this launcher; no shared slash under it (CODEX-QA-19 B5).
 	attack_art_enabled = false
-	_spawn_sweeping_launch_attack(Vector2(lerpf(38.0, 48.0, momentum), lerpf(48.0, 62.0, momentum)), [
+	_spawn_sweeping_launch_attack(Vector2(lerpf(38.0, 48.0, STRIKE_POWER), lerpf(48.0, 62.0, STRIKE_POWER)), [
 		Vector2(10 * facing, -26),
 		Vector2(26 * facing, -70),
-		Vector2(38 * facing, lerpf(-108.0, -138.0, momentum))
-	], lerpf(7.0, 11.0, momentum), lerpf(300.0, 510.0, momentum), Vector2(0.12 * facing, -1), _momentum_color(momentum), 0.11, launch_velocity, lerpf(0.22, 0.32, momentum))
+		Vector2(38 * facing, lerpf(-108.0, -138.0, STRIKE_POWER))
+	], lerpf(7.0, 11.0, STRIKE_POWER), lerpf(300.0, 510.0, STRIKE_POWER), Vector2(0.12 * facing, -1), STRIKE_COLOR, 0.11, launch_velocity, lerpf(0.22, 0.32, STRIKE_POWER))
 	attack_art_enabled = true
-	_play_impact_flash(global_position + GAME_SCALE.attack_point(Vector2(36 * facing, -112)), lerpf(28.0, 42.0, momentum), _momentum_color(momentum))
+	_play_impact_flash(global_position + GAME_SCALE.attack_point(Vector2(36 * facing, -112)), lerpf(28.0, 42.0, STRIKE_POWER), STRIKE_COLOR)
 
-func _compression_stomp(momentum: float) -> void:
+func _compression_stomp() -> void:
 	velocity.x *= 0.55
-	var radius := lerpf(48.0, 72.0, momentum)
-	_spawn_gravity_burst(radius, lerpf(7.0, 11.0, momentum), lerpf(260.0, 480.0, momentum), momentum, Color(0.3, 0.88, 1.0, 0.5), "stomp")
+	var radius := lerpf(48.0, 72.0, STRIKE_POWER)
+	_spawn_gravity_burst(radius, lerpf(7.0, 11.0, STRIKE_POWER), lerpf(260.0, 480.0, STRIKE_POWER), STRIKE_POWER, Color(0.3, 0.88, 1.0, 0.5), "stomp")
 	_play_impact_flash(global_position + Vector2(0, -10), radius, Color(0.38, 0.94, 1.0, 0.72))
 
-func _meteor_kick_start(momentum: float) -> void:
+func _meteor_kick_start() -> void:
 	meteor_diving = true
-	meteor_momentum_ratio = maxf(momentum, 0.35)
 	action_locked_until_land = true
-	velocity.x += facing * lerpf(45.0, 110.0, momentum)
-	velocity.y = maxf(velocity.y, lerpf(560.0, 760.0, momentum) * GAME_SCALE.JUMP_SPEED)
+	velocity.x += facing * lerpf(45.0, 110.0, STRIKE_POWER)
+	velocity.y = maxf(velocity.y, lerpf(560.0, 760.0, STRIKE_POWER) * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_attack(Vector2(40, 46), [
 		Vector2(0, -24),
 		Vector2(12 * facing, 24),
 		Vector2(24 * facing, 72)
-	], lerpf(6.0, 9.0, momentum), lerpf(270.0, 430.0, momentum), Vector2(0.12 * facing, 1), _momentum_color(momentum), 0.12)
+	], lerpf(6.0, 9.0, STRIKE_POWER), lerpf(270.0, 430.0, STRIKE_POWER), Vector2(0.12 * facing, 1), STRIKE_COLOR, 0.12)
 
-func _start_vector_shift() -> void:
-	if not is_on_floor() and not air_vector_shift_available:
+# --- K: gravity orb ---
+
+func _fire_orb() -> void:
+	var aim := _get_attack_direction()
+	var orb := _make_shot(ORB_SCRIPT)
+	orb.global_position = global_position + GAME_SCALE.BODY_CENTRE + aim * 30.0 * GAME_SCALE.COMBAT
+	orb.configure(self, ORB_SIZE * GAME_SCALE.COMBAT, 0.0, 0.0, aim, Color(0.5, 0.3, 0.9, 0.85), ORB_SPEED * GAME_SCALE.COMBAT, ORB_LIFETIME)
+	orb.dress(ORB_SIZE.x * GAME_SCALE.COMBAT * 0.5)
+
+## The orb's burst at `at` (NovaOrb): it hurts and starts the pull.
+func orb_burst_at(at: Vector2) -> void:
+	if is_defeated or not is_instance_valid(get_parent()):
 		return
-	var direction := _get_attack_direction()
-	if direction == Vector2.ZERO:
-		direction = Vector2(facing, 0.0)
-	vector_shift_active = true
-	vector_shift_timer = VECTOR_SHIFT_DURATION
-	vector_shift_direction = direction.normalized()
-	# Shift trail (nova_k): starts behind her and streaks the way she goes.
-	_draw_skill_art("nova_k", global_position + GAME_SCALE.BODY_CENTRE - vector_shift_direction * 90.0, vector_shift_direction, 1.2)
-	if not is_on_floor():
-		air_vector_shift_available = false
-	if absf(vector_shift_direction.x) > 0.18:
-		facing = signi(int(vector_shift_direction.x))
-	attack_lock_timer = maxf(attack_lock_timer, 0.045)
-	current_attack_started_airborne = not is_on_floor()
-	if character_sprite.sprite_frames.has_animation(_get_sprite_animation_name(&"vector_shift")):
-		_play_move_sprite_pose(&"vector_shift", -1, -1, VECTOR_SHIFT_DURATION)
-	else:
-		_play_sprite_action(&"jump", VECTOR_SHIFT_DURATION)
-	_play_shift_flash(vector_shift_direction)
+	var radius := ORB_BURST_RADIUS * GAME_SCALE.COMBAT
+	if VFX.spawn(get_parent(), "nova_gravity_burst", at, Vector2.ONE * (radius * 2.0 / 232.0), false, 6, Color(0.86, 0.72, 1.0, 0.9)) == null:
+		_play_impact_flash(at, ORB_BURST_RADIUS, Color(0.6, 0.4, 1.0, 0.7))
+	orb_pull_targets.clear()
+	for target in _foes_near(at, radius):
+		var inward: Vector2 = (at - (target as Node2D).global_position).normalized()
+		if target.apply_hit(self, ORB_DAMAGE, 60.0, inward) != false:
+			orb_pull_targets.append(target)
+	orb_pull_centre = at
+	orb_pull_timer = ORB_PULL_TIME if not orb_pull_targets.is_empty() else 0.0
 
-func _cancel_vector_shift() -> void:
-	vector_shift_active = false
-	vector_shift_timer = 0.0
+func _update_orb_pull(delta: float) -> void:
+	if orb_pull_timer <= 0.0:
+		return
+	orb_pull_timer = maxf(orb_pull_timer - delta, 0.0)
+	for target in orb_pull_targets:
+		if is_instance_valid(target) and target.get("is_defeated") != true:
+			_drag(target, orb_pull_centre - GAME_SCALE.BODY_CENTRE, ORB_PULL_SPEED, delta)
+	if orb_pull_timer <= 0.0:
+		for target in orb_pull_targets:
+			_stack(target)
+		orb_pull_targets.clear()
 
-func _gravity_brake_start() -> void:
-	var momentum := _get_momentum_ratio()
-	_cancel_vector_shift()
+# --- L: gravity field ---
+
+func _cast_field() -> void:
+	_clear_field()
+	field_cooldown_timer = FIELD_COOLDOWN
+	field = Node2D.new()
+	field.set_script(FIELD_SCRIPT)
+	field.name = "NovaField"
+	field.z_index = -1
+	get_parent().add_child(field)
+	field.global_position = global_position + GAME_SCALE.BODY_CENTRE
+	field.configure(self, FIELD_RADIUS * GAME_SCALE.COMBAT, FIELD_TIME)
+	_play_impact_flash(global_position + GAME_SCALE.BODY_CENTRE, 46.0, Color(0.6, 0.4, 1.0, 0.7))
+
+func _in_own_field() -> bool:
+	return is_instance_valid(field) and field.contains(global_position + GAME_SCALE.BODY_CENTRE)
+
+## W/A/S/D for a player; a bot steers toward its aim.
+func _flight_input() -> Vector2:
+	if hitstun_timer > 0.0 or is_dummy:
+		return Vector2.ZERO
+	if is_human:
+		var held := Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
+		return held.normalized() if held.length() > 0.2 else Vector2.ZERO
+	var aim: Vector2 = ai_controller.aim_direction
+	return Vector2(move_input, clampf(aim.y, -1.0, 1.0)).limit_length(1.0)
+
+func _clear_field() -> void:
+	if is_instance_valid(field):
+		field.end_field()
+	field = null
+
+# --- U: gravity beam ---
+
+func _fire_beam() -> void:
+	var aim := _get_attack_direction()
+	var beam := _make_shot(BEAM_SCRIPT)
+	beam.global_position = global_position + GAME_SCALE.BODY_CENTRE + aim * 24.0 * GAME_SCALE.COMBAT
+	beam.configure(self, BEAM_SIZE * GAME_SCALE.COMBAT, 0.0, 0.0, aim, Color(0.74, 0.5, 1.0, 0.8), BEAM_SPEED * GAME_SCALE.COMBAT, BEAM_LIFETIME)
+	beam.dress()
+
+## The body the beam reached (NovaBeam): slammed down from the air, else dragged to her.
+func on_beam_hit(body: Node, direction: Vector2) -> void:
+	if is_defeated or not is_instance_valid(body):
+		return
+	if _is_airborne(body):
+		if body.has_method("end_gravity_float"):
+			body.end_gravity_float()
+		if body.apply_forced_launch_hit(self, BEAM_SLAM_DAMAGE, Vector2(0.0, BEAM_SLAM_SPEED), BEAM_SLAM_HITSTUN, 420.0, Vector2.DOWN) != false:
+			_stack(body)
+		_play_impact_flash((body as Node2D).global_position + GAME_SCALE.BODY_CENTRE, 34.0, Color(0.74, 0.5, 1.0, 0.8))
+		return
+	if body.apply_hit(self, BEAM_DAMAGE, 0.0, -direction) != false:
+		beam_target = body
+		beam_pull_timer = BEAM_PULL_TIME
+
+func _update_beam_pull(delta: float) -> void:
+	if beam_pull_timer <= 0.0:
+		return
+	beam_pull_timer = maxf(beam_pull_timer - delta, 0.0)
+	if not is_instance_valid(beam_target) or beam_target.get("is_defeated") == true:
+		beam_target = null
+		beam_pull_timer = 0.0
+		return
+	var spot := global_position + Vector2(facing * BEAM_HOLD_OFFSET * GAME_SCALE.COMBAT, 0.0)
+	var arrived := (beam_target as Node2D).global_position.distance_to(spot) < 30.0
+	_drag(beam_target, spot, BEAM_PULL_SPEED, delta)
+	if arrived or beam_pull_timer <= 0.0:
+		_stack(beam_target)
+		if beam_target.get("hitstun_timer") != null:
+			beam_target.hitstun_timer = maxf(float(beam_target.hitstun_timer), BEAM_ARRIVAL_DAZE)
+		beam_target = null
+		beam_pull_timer = 0.0
+
+func _is_airborne(body: Node) -> bool:
+	if body.has_method("is_floating") and body.is_floating():
+		return true
+	return body is CharacterBody2D and not (body as CharacterBody2D).is_on_floor()
+
+# --- I: event horizon ---
+
+func _sphere_start() -> void:
+	_reset_combo()
+	_end_sphere(false)
+	ultimate_phase = ULTIMATE_SPHERE
+	ultimate_center = global_position + GAME_SCALE.BODY_CENTRE + Vector2(0, -ULTIMATE_SPHERE_HEIGHT)
+	ultimate_orbit_sign = 1.0 if facing >= 0 else -1.0
+	ultimate_saved_collision_mask = collision_mask
+	sphere_active = true
+	sphere_timer = ULTIMATE_SPHERE_TIME
+	sphere_falling = false
+	attack_lock_timer = maxf(attack_lock_timer, 0.16)
+	# The sphere appears at once; only the body's cast pose is longer, so its drawings play at the
+	# row's adopted speed (D39): the strike drawing at SLINGSHOT_POSE_STRIKE.
+	_play_move_sprite_pose(&"slingshot_start", -1, -1, SLINGSHOT_POSE_STRIKE + 0.107, -1, -1, SLINGSHOT_POSE_STRIKE)
+	_create_singularity_visual()
+
+func _begin_ultimate_orbit() -> void:
 	meteor_diving = false
-	brake_restore_consumed = false
-	attack_lock_timer = BRAKE_STARTUP + 0.34
-	_play_move_sprite_pose(&"gravity_brake", -1, -1, BRAKE_STARTUP + 0.34, -1, -1, BRAKE_STARTUP)
-	_freeze_movement(BRAKE_STARTUP)
-	velocity = Vector2.ZERO
-	_play_brake_charge(momentum)
-	if not await _wait_action(BRAKE_STARTUP):
+	ultimate_phase = ULTIMATE_ORBIT
+	ultimate_elapsed = 0.0
+	var offset := global_position + GAME_SCALE.BODY_CENTRE - ultimate_center
+	ultimate_orbit_radius = clampf(offset.length(), ULTIMATE_MIN_ORBIT_RADIUS * GAME_SCALE.COMBAT, ULTIMATE_MAX_ORBIT_RADIUS * GAME_SCALE.COMBAT)
+	if offset.length() > 0.01 and velocity.length() > 80.0:
+		var clockwise := Vector2(-offset.normalized().y, offset.normalized().x)
+		ultimate_orbit_sign = 1.0 if clockwise.dot(velocity.normalized()) >= 0.0 else -1.0
+	collision_mask = 0
+	_create_ultimate_launch_preview()
+	_update_ultimate_launch_preview(_get_ultimate_tangent())
+
+func _update_ultimate(delta: float) -> void:
+	if ultimate_phase == ULTIMATE_ORBIT:
+		ultimate_elapsed += delta
+		attack_lock_timer = maxf(attack_lock_timer, 0.12)
+		var offset := global_position + GAME_SCALE.BODY_CENTRE - ultimate_center
+		if offset.length() < 10.0:
+			offset = Vector2(-facing, 0.0) * ultimate_orbit_radius
+		var radial := offset.normalized()
+		var tangent := Vector2(-radial.y, radial.x) * ultimate_orbit_sign
+		skill_dash_velocity = tangent * ULTIMATE_ORBIT_SPEED + radial * (ultimate_orbit_radius - offset.length()) * 10.0
+		skill_dash_timer = 0.06
+		_set_character_rotation(tangent.angle())
+		var launch := _held_launch_direction(tangent)
+		_update_ultimate_launch_preview(launch)
+		if is_human and not Input.is_action_pressed("ultimate"):
+			_begin_ultimate_launch(launch)
+	elif ultimate_phase == ULTIMATE_LAUNCH:
+		ultimate_elapsed += delta
+		attack_lock_timer = maxf(attack_lock_timer, 0.12)
+		skill_dash_velocity = ultimate_launch_direction * ULTIMATE_LAUNCH_SPEED
+		skill_dash_timer = 0.06
+		_set_character_rotation(ultimate_launch_direction.angle())
+		var collided_with_world := ultimate_elapsed > 0.04 and get_slide_collision_count() > 0
+		if collided_with_world or ultimate_elapsed >= ULTIMATE_LAUNCH_DURATION:
+			_finish_ultimate_launch()
+
+## The way a player holds (eight directions), or along the orbit.
+func _held_launch_direction(tangent: Vector2) -> Vector2:
+	if is_human:
+		var held := Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
+		if held.length() > 0.2:
+			return held.normalized()
+	return tangent
+
+func _begin_ultimate_launch(direction: Vector2) -> void:
+	if ultimate_phase != ULTIMATE_ORBIT:
 		return
-	movement_freeze_timer = 0.0
-	if is_defeated or hitstun_timer > 0.0:
+	ultimate_phase = ULTIMATE_LAUNCH
+	ultimate_elapsed = 0.0
+	ultimate_launch_direction = direction.normalized() if direction.length() > 0.01 else Vector2(facing, 0.0)
+	if absf(ultimate_launch_direction.x) > 0.18:
+		facing = signi(int(signf(ultimate_launch_direction.x)))
+	collision_mask = ultimate_saved_collision_mask
+	_clear_ultimate_launch_preview()
+	_spawn_ultimate_body_hitbox(42.0, ULTIMATE_LAUNCH_DAMAGE, ULTIMATE_LAUNCH_KNOCKBACK, ULTIMATE_LAUNCH_DURATION + 0.08, false, Color(0.62, 0.42, 1.0, 0.6))
+	_play_launch_flash(ultimate_launch_direction)
+	_drop_sphere()
+
+func _finish_ultimate_launch() -> void:
+	_stop_ultimate_motion()
+	velocity = ultimate_launch_direction * 180.0
+	attack_lock_timer = maxf(attack_lock_timer, 0.3)
+
+## Her orbit or launch ends (the sphere carries on).
+func _stop_ultimate_motion() -> void:
+	ultimate_phase = ULTIMATE_NONE
+	if ultimate_saved_collision_mask != 0:
+		collision_mask = ultimate_saved_collision_mask
+	skill_dash_timer = 0.0
+	_end_skill_dash()
+	_clear_ultimate_body_hitbox()
+	_clear_ultimate_launch_preview()
+	_reset_character_rotation()
+
+func _update_sphere(delta: float) -> void:
+	if not sphere_active:
 		return
-	var radius := lerpf(58.0, 112.0, momentum)
-	var damage := lerpf(6.0, 15.0, momentum)
-	var knockback := lerpf(210.0, 640.0, momentum)
-	_spawn_gravity_burst(radius, damage, knockback, momentum, _momentum_color(momentum), "brake")
-	_play_impact_flash(global_position + Vector2(0, -30), radius, _momentum_color(momentum))
-	_draw_skill_art("nova_l", global_position, Vector2.ZERO, radius * GAME_SCALE.COMBAT * 2.0 / 192.0)
+	if sphere_falling:
+		sphere_fall_elapsed += delta
+		sphere_fall_speed = minf(sphere_fall_speed + ULTIMATE_FALL_ACCEL * delta, ULTIMATE_FALL_MAX_SPEED)
+		var step := sphere_fall_speed * delta
+		var floor_point = _floor_below(ultimate_center, step + 24.0)
+		if floor_point != null:
+			ultimate_center = floor_point - Vector2(0, 24.0)
+			_spin_caught(delta)
+			_sphere_burst()
+			return
+		ultimate_center.y += step
+		if sphere_fall_elapsed >= ULTIMATE_FALL_TIME:
+			_spin_caught(delta)
+			_sphere_burst()
+			return
+	else:
+		sphere_timer = maxf(sphere_timer - delta, 0.0)
+		_catch_into_sphere()
+		if sphere_timer <= 0.0:
+			_drop_sphere()
+	_spin_caught(delta)
+	if is_instance_valid(singularity_visual):
+		singularity_visual.global_position = ultimate_center
+		singularity_visual.rotation += delta * 4.5 * ultimate_orbit_sign
+
+## Starts the sphere's fall (once): when she launches, when its time runs out, when she is hit
+## while circling. Still circling then: she launches with it.
+func _drop_sphere() -> void:
+	if not sphere_active or sphere_falling:
+		return
+	sphere_falling = true
+	sphere_fall_speed = 0.0
+	sphere_fall_elapsed = 0.0
+	if ultimate_phase == ULTIMATE_ORBIT:
+		_begin_ultimate_launch(_held_launch_direction(_get_ultimate_tangent()))
+	elif ultimate_phase == ULTIMATE_SPHERE:
+		ultimate_phase = ULTIMATE_NONE
+
+func _catch_into_sphere() -> void:
+	for target in _foes_near(ultimate_center, ULTIMATE_CATCH_RADIUS * GAME_SCALE.COMBAT):
+		if sphere_caught.has(target):
+			continue
+		if target.has_method("is_gravity_rooted") and target.is_gravity_rooted():
+			continue
+		var offset: Vector2 = (target as Node2D).global_position + GAME_SCALE.BODY_CENTRE - ultimate_center
+		var angle := offset.angle() if offset.length() > 0.01 else 0.0
+		var spot := ultimate_center + Vector2.RIGHT.rotated(angle) * ULTIMATE_FOE_ORBIT * GAME_SCALE.COMBAT - GAME_SCALE.BODY_CENTRE
+		if target.has_method("apply_grab_hold"):
+			if not target.apply_grab_hold(self, spot, 0.2):
+				continue
+		elif target.has_method("apply_gravity_hold"):
+			target.apply_gravity_hold(spot, 0.2)
+		sphere_caught.append(target)
+		sphere_angles[target.get_instance_id()] = angle
+
+## Swings everyone caught round the sphere (players pinned like Luna's grab, monsters held).
+func _spin_caught(delta: float) -> void:
+	for target in sphere_caught.duplicate():
+		if not is_instance_valid(target) or target.get("is_defeated") == true:
+			sphere_caught.erase(target)
+			continue
+		var key: int = target.get_instance_id()
+		var angle: float = float(sphere_angles.get(key, 0.0)) + ULTIMATE_FOE_SPIN * ultimate_orbit_sign * delta
+		sphere_angles[key] = angle
+		var spot := ultimate_center + Vector2.RIGHT.rotated(angle) * ULTIMATE_FOE_ORBIT * GAME_SCALE.COMBAT - GAME_SCALE.BODY_CENTRE
+		if target.has_method("apply_grab_hold"):
+			target.movement_freeze_position = spot
+			target.movement_freeze_timer = maxf(target.movement_freeze_timer, 0.05)
+			target.hitstun_timer = maxf(target.hitstun_timer, 0.1)
+		elif target.has_method("apply_gravity_hold"):
+			target.apply_gravity_hold(spot, 0.05)
+
+func _sphere_burst() -> void:
+	var at := ultimate_center
+	var radius := ULTIMATE_COLLAPSE_RADIUS * GAME_SCALE.COMBAT
+	if is_instance_valid(get_parent()):
+		VFX.spawn(get_parent(), "nova_ult_burst", at, Vector2.ONE * (radius * 2.2 / 256.0), false, 6, Color(0.82, 0.72, 1.0, VFX.ULTIMATE_FLASH_ALPHA))
+	_play_impact_flash(at, ULTIMATE_COLLAPSE_RADIUS * 0.6, Color(0.62, 0.42, 1.0, 0.8))
+	for target in sphere_caught:
+		if not is_instance_valid(target) or target.get("is_defeated") == true:
+			continue
+		if target.get("movement_freeze_timer") != null:
+			target.movement_freeze_timer = 0.0
+		var outward: Vector2 = ((target as Node2D).global_position + GAME_SCALE.BODY_CENTRE - at).normalized()
+		if outward == Vector2.ZERO:
+			outward = Vector2.UP
+		if target.apply_hit(self, ULTIMATE_COLLAPSE_DAMAGE, ULTIMATE_COLLAPSE_KNOCKBACK, (outward + Vector2.UP * 0.6).normalized()) != false:
+			_stack(target)
+	_end_sphere(false)
+
+## Clears the sphere; `release` lets go of whoever it held without the burst.
+func _end_sphere(release: bool) -> void:
+	if release:
+		for target in sphere_caught:
+			if is_instance_valid(target) and target.get("movement_freeze_timer") != null:
+				target.movement_freeze_timer = 0.0
+	sphere_caught.clear()
+	sphere_angles.clear()
+	sphere_active = false
+	sphere_falling = false
+	_clear_singularity_visual()
+
+## The first floor top straight below `from` within `distance`, or null.
+func _floor_below(from: Vector2, distance: float) -> Variant:
+	var query := PhysicsRayQueryParameters2D.create(from, from + Vector2(0, distance), WORLD_LAYER)
+	var hit := get_world_2d().direct_space_state.intersect_ray(query)
+	return hit.position if not hit.is_empty() else null
+
+func _get_ultimate_tangent() -> Vector2:
+	var offset := global_position + GAME_SCALE.BODY_CENTRE - ultimate_center
+	if offset.length() < 0.01:
+		offset = Vector2(-facing, 0.0)
+	return Vector2(-offset.y, offset.x).normalized() * ultimate_orbit_sign
+
+# --- Shared helpers ---
+
+## Fighters (not her) and monsters in her realm whose body centre is within `radius` of `point`.
+func _foes_near(point: Vector2, radius: float) -> Array[Node]:
+	var found: Array[Node] = []
+	for target in get_tree().get_nodes_in_group("players"):
+		if target == self or target.is_defeated or target.realm_index != realm_index:
+			continue
+		if target.global_position.distance_to(point - GAME_SCALE.BODY_CENTRE) <= radius:
+			found.append(target)
+	for monster in get_tree().get_nodes_in_group("realm_monsters"):
+		if int(monster.get("realm_index")) != realm_index or not monster.has_method("apply_hit"):
+			continue
+		if (monster as Node2D).global_position.distance_to(point) <= radius:
+			found.append(monster)
+	return found
+
+## Moves a fighter (pulled) or a monster (held a step closer) toward `spot` this frame.
+func _drag(target: Node, spot: Vector2, speed: float, delta: float) -> void:
+	if target.has_method("apply_grab_pull"):
+		target.apply_grab_pull(spot, speed)
+	elif target.has_method("apply_gravity_hold"):
+		target.apply_gravity_hold((target as Node2D).global_position.move_toward(spot, speed * delta), 0.05)
+
+## A gravity stack on a fighter (monsters have none).
+func _stack(target: Node) -> void:
+	if is_instance_valid(target) and target.has_method("add_gravity_stack"):
+		target.add_gravity_stack(self)
+
+func _make_shot(script: Script) -> Area2D:
+	var shot := Area2D.new()
+	shot.set_script(script)
+	shot.collision_layer = 0
+	shot.collision_mask = PLAYER_LAYER | MONSTER_LAYER
+	var shape := CollisionShape2D.new()
+	shape.name = "CollisionShape2D"
+	var visual := ColorRect.new()
+	visual.name = "Visual"
+	shot.add_child(shape)
+	shot.add_child(visual)
+	get_parent().add_child(shot)
+	shot.set("art_scale_multiplier", GAME_SCALE.COMBAT)
+	return shot
 
 func _spawn_gravity_burst(radius: float, damage: float, knockback: float, momentum: float, color: Color, hit_tag: String) -> Area2D:
 	var burst := Area2D.new()
@@ -319,156 +743,6 @@ func _spawn_gravity_burst(radius: float, damage: float, knockback: float, moment
 	burst.global_position = global_position + Vector2(0, -30)
 	burst.configure(self, radius * GAME_SCALE.COMBAT, damage, knockback, momentum, color, hit_tag)
 	return burst
-
-func on_nova_gravity_burst_landed(momentum: float, hit_tag: String) -> void:
-	if hit_tag != "brake" or momentum < 0.6 or brake_restore_consumed:
-		return
-	brake_restore_consumed = true
-	air_vector_shift_available = true
-	_play_shift_recharge_flash()
-
-func _gravity_slingshot_start() -> void:
-	ultimate_phase = ULTIMATE_CORE
-	ultimate_launch_shift_available = false
-	ultimate_entry_direction = _get_attack_direction().normalized()
-	if ultimate_entry_direction == Vector2.ZERO:
-		ultimate_entry_direction = Vector2(facing, 0.0)
-	ultimate_center = global_position + ultimate_entry_direction * ULTIMATE_CORE_DISTANCE
-	ultimate_orbit_sign = 1.0 if facing >= 0 else -1.0
-	ultimate_elapsed = 0.0
-	ultimate_contact_requested = false
-	ultimate_saved_collision_mask = collision_mask
-	attack_lock_timer = maxf(attack_lock_timer, 0.16)
-	# The core appears at once; only the body's cast pose is longer, so its drawings play at the
-	# row's adopted speed (D39): the strike drawing at SLINGSHOT_POSE_STRIKE, as long a follow-through.
-	_play_move_sprite_pose(&"slingshot_start", -1, -1, SLINGSHOT_POSE_STRIKE + 0.107, -1, -1, SLINGSHOT_POSE_STRIKE)
-	_create_singularity_visual()
-
-func _begin_ultimate_orbit() -> void:
-	_cancel_vector_shift()
-	meteor_diving = false
-	ultimate_phase = ULTIMATE_ORBIT
-	ultimate_elapsed = 0.0
-	ultimate_entry_momentum = _get_momentum_ratio()
-	var offset := global_position - ultimate_center
-	if offset.length() < ULTIMATE_MIN_ORBIT_RADIUS:
-		offset = -ultimate_entry_direction * ULTIMATE_MIN_ORBIT_RADIUS
-		global_position = ultimate_center + offset
-	ultimate_orbit_radius = offset.length()
-	var radius_ratio := clampf(
-		(ultimate_orbit_radius - ULTIMATE_MIN_ORBIT_RADIUS) \
-		/ (ULTIMATE_MAX_TUNING_RADIUS - ULTIMATE_MIN_ORBIT_RADIUS),
-		0.0,
-		1.0
-	)
-	ultimate_launch_power = clampf((1.0 - radius_ratio) * 0.82 + ultimate_entry_momentum * 0.18, 0.0, 1.0)
-	ultimate_orbit_speed = lerpf(ULTIMATE_NEAR_ORBIT_SPEED, ULTIMATE_FAR_ORBIT_SPEED, radius_ratio)
-	ultimate_orbit_speed *= 1.0 + ultimate_entry_momentum * 0.08
-	ultimate_launch_speed = lerpf(ULTIMATE_SLOW_LAUNCH_SPEED, ULTIMATE_FAST_LAUNCH_SPEED, ultimate_launch_power)
-	ultimate_launch_duration = lerpf(ULTIMATE_SLOW_LAUNCH_DURATION, ULTIMATE_FAST_LAUNCH_DURATION, ultimate_launch_power)
-	var clockwise_tangent := Vector2(-offset.normalized().y, offset.normalized().x)
-	if velocity.length() > 80.0:
-		ultimate_orbit_sign = 1.0 if clockwise_tangent.dot(velocity.normalized()) >= 0.0 else -1.0
-	collision_mask = 0
-	_create_ultimate_launch_preview()
-	_update_ultimate_launch_preview(_get_ultimate_tangent())
-	_spawn_ultimate_body_hitbox(36.0, lerpf(7.0, 10.0, ultimate_launch_power), lerpf(230.0, 350.0, ultimate_launch_power), 30.0, false, Color(0.38, 0.94, 1.0, 0.52))
-
-func _update_ultimate(delta: float) -> void:
-	if ultimate_phase == ULTIMATE_NONE:
-		return
-	ultimate_elapsed += delta
-	if ultimate_phase == ULTIMATE_CORE or ultimate_phase == ULTIMATE_ORBIT:
-		_pull_toward_core(delta)
-	if is_instance_valid(singularity_visual):
-		singularity_visual.rotation += delta * 4.5 * ultimate_orbit_sign
-	if ultimate_phase == ULTIMATE_ORBIT:
-		attack_lock_timer = maxf(attack_lock_timer, 0.12)
-		var offset := global_position - ultimate_center
-		if offset.length() < 10.0:
-			offset = -ultimate_entry_direction * ultimate_orbit_radius
-		var radial := offset.normalized()
-		var tangent := Vector2(-radial.y, radial.x) * ultimate_orbit_sign
-		var radial_correction := radial * (ultimate_orbit_radius - offset.length()) * 10.0
-		skill_dash_velocity = tangent * ultimate_orbit_speed + radial_correction
-		skill_dash_timer = 0.06
-		_set_character_rotation(tangent.angle())
-		_update_ultimate_launch_preview(tangent)
-	elif ultimate_phase == ULTIMATE_LAUNCH:
-		attack_lock_timer = maxf(attack_lock_timer, 0.12)
-		skill_dash_velocity = ultimate_launch_direction * ultimate_launch_speed
-		skill_dash_timer = 0.06
-		_set_character_rotation(ultimate_launch_direction.angle())
-		var collided_with_world := ultimate_elapsed > 0.04 and get_slide_collision_count() > 0
-		if ultimate_contact_requested or collided_with_world or ultimate_elapsed >= ultimate_launch_duration:
-			_finish_ultimate_impact()
-
-func _begin_ultimate_launch(tangent: Vector2) -> void:
-	if ultimate_phase != ULTIMATE_ORBIT:
-		return
-	ultimate_phase = ULTIMATE_LAUNCH
-	ultimate_elapsed = 0.0
-	ultimate_launch_direction = tangent.normalized()
-	if ultimate_launch_direction == Vector2.ZERO:
-		ultimate_launch_direction = Vector2(facing, 0.0)
-	ultimate_launch_shift_available = true
-	ultimate_contact_requested = false
-	collision_mask = ultimate_saved_collision_mask
-	_clear_ultimate_body_hitbox()
-	_clear_ultimate_launch_preview()
-	_spawn_ultimate_body_hitbox(42.0, lerpf(15.0, 22.0, ultimate_launch_power), lerpf(480.0, 700.0, ultimate_launch_power), ultimate_launch_duration + 0.08, true, Color(1.0, 0.56, 0.24, 0.68))
-	_play_launch_flash(ultimate_launch_direction)
-	var core_point := ultimate_center + Vector2(0, -32)
-	var collapse := _spawn_gravity_burst(ULTIMATE_COLLAPSE_RADIUS, ULTIMATE_COLLAPSE_DAMAGE, ULTIMATE_COLLAPSE_KNOCKBACK, ultimate_launch_power, Color(0.62, 0.42, 1.0, 0.6), "ultimate")
-	collapse.global_position = core_point
-	VFX.spawn(get_parent(), "nova_ult_burst", core_point, Vector2.ONE * (ULTIMATE_COLLAPSE_RADIUS * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6, Color(0.82, 0.72, 1.0, VFX.ULTIMATE_FLASH_ALPHA))
-
-func _redirect_ultimate_launch_with_vector_shift() -> void:
-	if ultimate_phase != ULTIMATE_LAUNCH or not ultimate_launch_shift_available:
-		return
-	var direction := _get_attack_direction()
-	if direction == Vector2.ZERO:
-		direction = ultimate_launch_direction
-	ultimate_launch_direction = direction.normalized()
-	ultimate_launch_speed = minf(ultimate_launch_speed + 110.0, ULTIMATE_FAST_LAUNCH_SPEED + 110.0)
-	ultimate_launch_shift_available = false
-	if absf(ultimate_launch_direction.x) > 0.18:
-		facing = signi(int(ultimate_launch_direction.x))
-	_play_sprite_action(&"jump", 0.14)
-	_play_shift_flash(ultimate_launch_direction)
-
-func on_nova_ultimate_contact(_hit_position: Vector2) -> void:
-	if ultimate_phase == ULTIMATE_LAUNCH:
-		ultimate_contact_requested = true
-
-func _finish_ultimate_impact() -> void:
-	if ultimate_phase != ULTIMATE_LAUNCH:
-		return
-	ultimate_phase = ULTIMATE_NONE
-	ultimate_launch_shift_available = false
-	collision_mask = ultimate_saved_collision_mask
-	skill_dash_timer = 0.0
-	_end_skill_dash()
-	velocity = ultimate_launch_direction * 180.0
-	_clear_ultimate_body_hitbox()
-	_clear_ultimate_launch_preview()
-	_clear_singularity_visual()
-	_reset_character_rotation()
-	# Tuned 2026-10-08 (6.3 -> ~12 damage per cast after the match scale).
-	var radius := lerpf(124.0, 170.0, ultimate_launch_power)
-	_spawn_gravity_burst(radius, lerpf(34.0, 46.0, ultimate_launch_power), lerpf(700.0, 940.0, ultimate_launch_power), ultimate_launch_power, Color(0.48, 0.3, 0.92, 0.68), "ultimate")
-	_play_impact_flash(global_position + Vector2(0, -30), radius, Color(1.0, 0.62, 0.24, 0.88))
-	VFX.spawn(get_parent(), "nova_ult_burst", global_position + Vector2(0, -30), Vector2.ONE * (radius * GAME_SCALE.COMBAT * 2.2 / 256.0), false, 6, Color(1, 1, 1, VFX.ULTIMATE_FLASH_ALPHA))
-	attack_lock_timer = maxf(attack_lock_timer, 0.48)
-
-## Event Horizon: while the core stands, nearby opponents are dragged toward it, so the
-## slingshot and its burst catch them (added 2026-10-08: the burst alone often missed).
-func _pull_toward_core(delta: float) -> void:
-	for target in get_tree().get_nodes_in_group("players"):
-		if target == self or target.is_defeated or target.realm_index != realm_index:
-			continue
-		if target.global_position.distance_to(ultimate_center) <= ULTIMATE_PULL_RADIUS * GAME_SCALE.COMBAT:
-			target.apply_control_pull(ultimate_center, ULTIMATE_PULL_STRENGTH, delta, 0.15, false)
 
 func _spawn_ultimate_body_hitbox(radius: float, damage: float, knockback: float, lifetime: float, end_on_hit: bool, color: Color) -> void:
 	_clear_ultimate_body_hitbox()
@@ -487,34 +761,10 @@ func _spawn_ultimate_body_hitbox(radius: float, damage: float, knockback: float,
 	hitbox.configure(self, radius * GAME_SCALE.COMBAT, damage, knockback, lifetime, color, end_on_hit)
 	ultimate_body_hitbox = hitbox
 
-func _cancel_ultimate() -> void:
-	if ultimate_phase == ULTIMATE_NONE \
-		and not is_instance_valid(singularity_visual) \
-		and not is_instance_valid(ultimate_body_hitbox) \
-		and not is_instance_valid(ultimate_launch_preview):
-		return
-	ultimate_phase = ULTIMATE_NONE
-	ultimate_launch_shift_available = false
-	ultimate_contact_requested = false
-	if ultimate_saved_collision_mask != 0:
-		collision_mask = ultimate_saved_collision_mask
-	skill_dash_timer = 0.0
-	_end_skill_dash()
-	_clear_ultimate_body_hitbox()
-	_clear_ultimate_launch_preview()
-	_clear_singularity_visual()
-	_reset_character_rotation()
-
 func _clear_ultimate_body_hitbox() -> void:
 	if is_instance_valid(ultimate_body_hitbox):
 		ultimate_body_hitbox.queue_free()
 	ultimate_body_hitbox = null
-
-func _get_ultimate_tangent() -> Vector2:
-	var offset := global_position - ultimate_center
-	if offset.length() < 0.01:
-		offset = -ultimate_entry_direction * ultimate_orbit_radius
-	return Vector2(-offset.y, offset.x).normalized() * ultimate_orbit_sign
 
 func _create_ultimate_launch_preview() -> void:
 	_clear_ultimate_launch_preview()
@@ -525,7 +775,7 @@ func _create_ultimate_launch_preview() -> void:
 	ultimate_preview_line = Line2D.new()
 	ultimate_preview_line.name = "Trajectory"
 	ultimate_preview_line.width = 4.0
-	ultimate_preview_line.default_color = Color(1.0, 0.72, 0.24, 0.58)
+	ultimate_preview_line.default_color = Color(0.82, 0.6, 1.0, 0.58)
 	ultimate_preview_line.antialiased = true
 	ultimate_launch_preview.add_child(ultimate_preview_line)
 	ultimate_preview_target = Line2D.new()
@@ -533,14 +783,14 @@ func _create_ultimate_launch_preview() -> void:
 	ultimate_preview_target.points = _make_circle_points(18.0, 24)
 	ultimate_preview_target.closed = true
 	ultimate_preview_target.width = 4.5
-	ultimate_preview_target.default_color = Color(1.0, 0.54, 0.18, 0.88)
+	ultimate_preview_target.default_color = Color(0.86, 0.5, 1.0, 0.88)
 	ultimate_preview_target.antialiased = true
 	ultimate_launch_preview.add_child(ultimate_preview_target)
 
 func _update_ultimate_launch_preview(direction: Vector2) -> void:
 	if not is_instance_valid(ultimate_launch_preview) or direction == Vector2.ZERO:
 		return
-	var launch_distance := ultimate_launch_speed * ultimate_launch_duration
+	var launch_distance := ULTIMATE_LAUNCH_SPEED * ULTIMATE_LAUNCH_DURATION
 	ultimate_launch_preview.global_position = global_position + Vector2(0, -32)
 	ultimate_preview_line.points = PackedVector2Array([Vector2.ZERO, direction * launch_distance])
 	ultimate_preview_target.position = direction * launch_distance
@@ -553,25 +803,26 @@ func _clear_ultimate_launch_preview() -> void:
 	ultimate_preview_line = null
 	ultimate_preview_target = null
 
+## The sphere: the core art, big, until the sphere has its own drawing.
 func _create_singularity_visual() -> void:
 	_clear_singularity_visual()
 	singularity_visual = Node2D.new()
 	singularity_visual.name = "NovaSingularity"
 	singularity_visual.z_index = 6
 	get_parent().add_child(singularity_visual)
-	singularity_visual.global_position = ultimate_center + Vector2(0, -32)
-	var core_art := VFX.spawn(singularity_visual, "nova_ult_core", Vector2.ZERO, Vector2.ONE * 1.1 * GAME_SCALE.COMBAT, true, 0, Color.WHITE, true)
+	singularity_visual.global_position = ultimate_center
+	var core_art := VFX.spawn(singularity_visual, "nova_ult_core", Vector2.ZERO, Vector2.ONE * 2.2, true, 0, Color.WHITE, true)
 	var core := Polygon2D.new()
 	core.visible = core_art == null
-	core.polygon = _make_star_points(28.0, 17.0)
+	core.polygon = _make_star_points(56.0, 34.0)
 	core.color = Color(0.12, 0.06, 0.24, 0.94)
 	singularity_visual.add_child(core)
 	for index in 2:
 		var ring := Line2D.new()
-		ring.points = _make_circle_points(40.0 + index * 14.0, 24)
+		ring.points = _make_circle_points(ULTIMATE_FOE_ORBIT * GAME_SCALE.COMBAT + index * 18.0, 32)
 		ring.closed = true
 		ring.width = 3.5 - index
-		ring.default_color = Color(0.34 + index * 0.28, 0.86, 1.0, 0.72 - index * 0.16)
+		ring.default_color = Color(0.62 + index * 0.2, 0.5, 1.0, 0.6 - index * 0.16)
 		ring.rotation = index * 0.45
 		ring.antialiased = true
 		singularity_visual.add_child(ring)
@@ -582,64 +833,26 @@ func _clear_singularity_visual() -> void:
 	singularity_visual = null
 
 func _reset_nova_state() -> void:
-	_cancel_vector_shift()
 	meteor_diving = false
-	air_vector_shift_available = true
-	brake_restore_consumed = false
-	_cancel_ultimate()
-	if is_instance_valid(character_sprite):
-		character_sprite.modulate = Color.WHITE
+	_reset_combo()
+	_stop_ultimate_motion()
+	_end_sphere(true)
+	_clear_field()
+	field_cooldown_timer = 0.0
+	orb_pull_targets.clear()
+	orb_pull_timer = 0.0
+	beam_target = null
+	beam_pull_timer = 0.0
 
-func _get_momentum_ratio() -> float:
-	return clampf((velocity.length() - MOMENTUM_START_SPEED) / (MOMENTUM_MAX_SPEED - MOMENTUM_START_SPEED), 0.0, 1.0)
-
-func _get_impact_direction(input_direction: Vector2) -> Vector2:
-	if velocity.length() >= MOMENTUM_START_SPEED:
-		return velocity.normalized()
-	if input_direction.length() > 0.01:
-		return input_direction.normalized()
-	return Vector2(facing, 0.0)
-
-func _momentum_color(momentum: float) -> Color:
-	return Color(
-		lerpf(0.24, 1.0, momentum),
-		lerpf(0.88, 0.64, momentum),
-		lerpf(1.0, 0.24, momentum),
-		lerpf(0.5, 0.78, momentum)
-	)
-
-func _update_momentum_visual() -> void:
-	var momentum := _get_momentum_ratio()
-	if is_instance_valid(character_sprite):
-		character_sprite.modulate = Color(1.0, 1.0, lerpf(1.0, 0.7, momentum), 1.0)
-	if momentum < 0.34 or momentum_trail_timer > 0.0:
-		return
-	momentum_trail_timer = lerpf(0.075, 0.035, momentum)
-	var art := VFX.spawn(get_parent(), "nova_momentum_trail", global_position + Vector2(0, -32), Vector2.ONE, false, 2, _momentum_color(momentum))
-	if art != null:
-		art.rotation = get_nova_impact_direction().angle()
-		return
-	var trail := Polygon2D.new()
-	trail.polygon = PackedVector2Array([Vector2(-24, 0), Vector2(0, -8), Vector2(24, 0), Vector2(0, 8)])
-	trail.color = _momentum_color(momentum)
-	trail.z_index = 2
-	get_parent().add_child(trail)
-	trail.global_position = global_position + Vector2(0, -32)
-	trail.rotation = get_nova_impact_direction().angle()
-	var tween := trail.create_tween()
-	tween.tween_property(trail, "scale", Vector2(0.3, 0.3), 0.1)
-	tween.parallel().tween_property(trail, "modulate:a", 0.0, 0.1)
-	tween.tween_callback(trail.queue_free)
-
-func _play_vector_flash(direction: Vector2, length: float, momentum: float) -> void:
-	var art := VFX.spawn(get_parent(), "nova_vector_streak", global_position + Vector2(0, -32) + direction * length * 0.5, Vector2(length / 180.0, lerpf(0.55, 1.0, momentum)), false, 5, _momentum_color(momentum))
+func _play_vector_flash(direction: Vector2, length: float, power: float) -> void:
+	var art := VFX.spawn(get_parent(), "nova_vector_streak", global_position + Vector2(0, -32) + direction * length * 0.5, Vector2(length / 180.0, lerpf(0.55, 1.0, power)), false, 5, STRIKE_COLOR)
 	if art != null:
 		art.rotation = direction.angle()
 		return
 	var line := Line2D.new()
 	line.points = PackedVector2Array([Vector2.ZERO, direction * length])
-	line.width = lerpf(5.0, 12.0, momentum)
-	line.default_color = _momentum_color(momentum)
+	line.width = lerpf(5.0, 12.0, power)
+	line.default_color = STRIKE_COLOR
 	line.antialiased = true
 	line.z_index = 5
 	get_parent().add_child(line)
@@ -647,46 +860,6 @@ func _play_vector_flash(direction: Vector2, length: float, momentum: float) -> v
 	var tween := line.create_tween()
 	tween.tween_property(line, "modulate:a", 0.0, 0.12)
 	tween.tween_callback(line.queue_free)
-
-func _play_shift_flash(direction: Vector2) -> void:
-	var art := VFX.spawn(get_parent(), "nova_shift_dash", global_position + Vector2(0, -32) - direction * 26.0, Vector2(52.0 / 88.0, 1.0), false, 4)
-	if art != null:
-		art.rotation = direction.angle()
-		return
-	var line := Line2D.new()
-	line.points = PackedVector2Array([-direction * 52.0, Vector2.ZERO])
-	line.width = 7.0
-	line.default_color = Color(0.32, 0.96, 1.0, 0.74)
-	line.antialiased = true
-	line.z_index = 4
-	get_parent().add_child(line)
-	line.global_position = global_position + Vector2(0, -32)
-	var tween := line.create_tween()
-	tween.tween_property(line, "modulate:a", 0.0, VECTOR_SHIFT_DURATION)
-	tween.tween_callback(line.queue_free)
-
-func _play_brake_charge(momentum: float) -> void:
-	body.color = _momentum_color(momentum)
-	var tween := body.create_tween()
-	tween.tween_property(body, "scale", Vector2(1.18, 0.82), 0.04)
-	tween.tween_property(body, "scale", Vector2(0.86, 1.14), 0.04)
-	tween.tween_property(body, "scale", Vector2.ONE, 0.08)
-
-func _play_shift_recharge_flash() -> void:
-	if VFX.spawn(get_parent(), "nova_shift_ready", global_position + Vector2(0, -32), Vector2.ONE * (102.0 / 116.0), false, 6) != null:
-		return
-	var ring := Line2D.new()
-	ring.points = _make_circle_points(34.0, 20)
-	ring.closed = true
-	ring.width = 4.0
-	ring.default_color = Color(0.42, 1.0, 0.72, 0.84)
-	ring.z_index = 6
-	get_parent().add_child(ring)
-	ring.global_position = global_position + Vector2(0, -32)
-	var tween := ring.create_tween()
-	tween.tween_property(ring, "scale", Vector2(1.5, 1.5), 0.14)
-	tween.parallel().tween_property(ring, "modulate:a", 0.0, 0.14)
-	tween.tween_callback(ring.queue_free)
 
 func _play_impact_flash(world_position: Vector2, radius: float, color: Color) -> void:
 	radius *= GAME_SCALE.COMBAT
@@ -713,7 +886,7 @@ func _play_launch_flash(direction: Vector2) -> void:
 	var line := Line2D.new()
 	line.points = PackedVector2Array([Vector2.ZERO, direction * 180.0])
 	line.width = 18.0
-	line.default_color = Color(1.0, 0.62, 0.22, 0.82)
+	line.default_color = Color(0.82, 0.6, 1.0, 0.82)
 	line.antialiased = true
 	line.z_index = 6
 	get_parent().add_child(line)

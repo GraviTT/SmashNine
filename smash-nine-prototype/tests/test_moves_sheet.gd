@@ -222,9 +222,7 @@ func _test_character_moves(character_id: String) -> void:
 		var fallback := _move_fighter(character_id, false)
 		_play_character_row(fallback, character_id, row)
 		var expected_fallback := StringName("%s_attack" % character_id)
-		if character_id == "nova" and row == "vector_shift":
-			expected_fallback = &"nova_jump"
-		elif character_id == "rio" and row == "rune_shield":
+		if character_id == "rio" and row == "rune_shield":
 			expected_fallback = &"rio_shield"
 		elif row == "tumble":
 			# A strong launch without the tumble row keeps the hurt frame (_play_launch_hit_sprite).
@@ -255,9 +253,11 @@ func _play_character_row(fighter: Node, character_id: String, row: String) -> vo
 				"compression_stomp": fighter.perform_basic_attack("down", Vector2.DOWN)
 				"air_side": fighter.perform_basic_attack("air_side", Vector2.RIGHT)
 				"meteor_kick": fighter.perform_basic_attack("air_down", Vector2.DOWN)
-				"vector_shift": fighter.perform_skill_one()
-				"gravity_brake": fighter.perform_skill_two()
-				"slingshot_start": fighter.perform_ultimate()
+				# Since D47 the rows serve the new skills: the orb (K) gravity_brake, the field (L)
+				# slingshot_start; vector_shift is unused until the beam has its own row.
+				"vector_shift": fighter._play_move_sprite_pose(&"vector_shift", -1, -1, 0.2)
+				"gravity_brake": fighter.perform_skill_one()
+				"slingshot_start": fighter.perform_skill_two()
 				# New for Nova (2026-10-14): a strong launch plays her/his tumble row.
 				"tumble": fighter.apply_forced_launch_hit(null, 1.0, Vector2(620.0, -260.0), 0.25, 620.0, Vector2.RIGHT)
 		"yuki":

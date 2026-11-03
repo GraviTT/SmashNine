@@ -69,6 +69,13 @@ var wander_direction := 0.0
 var attack_timer := 0.0
 var hitstun_timer := 0.0
 var knockback_velocity := Vector2.ZERO
+## Nova (2026-11-03 D47): held at a point (her ultimate swings it round its sphere), or floating
+## helpless while it stays in her gravity field (it rises GRAVITY_FLOAT_RISE and stops acting).
+const GRAVITY_FLOAT_RISE := 70.0
+var gravity_hold_timer := 0.0
+var gravity_hold_position := Vector2.ZERO
+var gravity_float_timer := 0.0
+var gravity_float_y := 0.0
 var art_sprite: AnimatedSprite2D
 var attack_animation_timer := 0.0
 var six_row_art := false
@@ -246,6 +253,26 @@ func _physics_process(delta: float) -> void:
 	attack_timer = maxf(attack_timer - delta, 0.0)
 	hitstun_timer = maxf(hitstun_timer - delta, 0.0)
 	control_slow_timer = maxf(control_slow_timer - delta, 0.0)
+	if gravity_hold_timer > 0.0:
+		gravity_hold_timer = maxf(gravity_hold_timer - delta, 0.0)
+		_cancel_action()
+		global_position = gravity_hold_position
+		velocity = Vector2.ZERO
+		knockback_velocity = Vector2.ZERO
+		_update_art(delta)
+		queue_redraw()
+		return
+	if gravity_float_timer > 0.0:
+		gravity_float_timer = maxf(gravity_float_timer - delta, 0.0)
+		_cancel_action()
+		velocity = Vector2(velocity.x * 0.9, (gravity_float_y - global_position.y) * 4.0)
+		velocity += knockback_velocity
+		move_and_slide()
+		velocity -= knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1050.0 * GAME_SCALE.KNOCKBACK * delta)
+		_update_art(delta)
+		queue_redraw()
+		return
 	if not is_on_floor() and archetype != "swoop":
 		velocity.y = minf(velocity.y + GRAVITY * delta, 900.0 * GAME_SCALE.JUMP_SPEED)
 
@@ -749,6 +776,28 @@ func apply_control_pull(center: Vector2, strength: float, delta: float, slow_dur
 		return
 	knockback_velocity += (center - global_position).normalized() * strength * GAME_SCALE.KNOCKBACK * delta
 	control_slow_timer = maxf(control_slow_timer, slow_duration)
+
+## Held at `at` for `duration` (Nova's ultimate moves `at` every frame).
+func apply_gravity_hold(at: Vector2, duration: float) -> void:
+	if state == State.DEFEATED:
+		return
+	gravity_hold_timer = maxf(gravity_hold_timer, duration)
+	gravity_hold_position = at
+
+## Floating in Nova's gravity field for `duration` (refreshed while it stays inside).
+func apply_gravity_float(duration: float) -> void:
+	if state == State.DEFEATED:
+		return
+	if gravity_float_timer <= 0.0:
+		gravity_float_y = global_position.y - GRAVITY_FLOAT_RISE
+	gravity_float_timer = maxf(gravity_float_timer, duration)
+
+func is_floating() -> bool:
+	return gravity_float_timer > 0.0
+
+## Out of a float at once (Nova's beam pulls it down).
+func end_gravity_float() -> void:
+	gravity_float_timer = 0.0
 
 func apply_yuki_seal_burst(attacker: Node, activation_id: int, damage: float, knockback: float, direction: Vector2) -> bool:
 	if last_yuki_activation_hit == activation_id:

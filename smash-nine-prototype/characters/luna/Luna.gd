@@ -392,6 +392,9 @@ func _offset_to(at: Vector2) -> Vector2:
 # --- Normal K: twinkle warp ---
 
 func _warp_start() -> void:
+	# No warping out of a gravity root (Nova, D47).
+	if is_gravity_rooted():
+		return
 	if not is_on_floor():
 		if not warp_air_available:
 			return
@@ -618,6 +621,8 @@ func _remember_purify(body: Node) -> void:
 		purify_timer = PURIFY_WINDOW
 
 func _purify_ready() -> bool:
+	if is_gravity_rooted():
+		return false
 	if purify_timer <= 0.0 or not is_instance_valid(purify_target) or purify_target.get("is_defeated") == true:
 		return false
 	return purify_target.global_position.distance_to(global_position) <= PURIFY_RANGE

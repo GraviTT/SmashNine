@@ -65,15 +65,9 @@ func _run_original_checks() -> void:
 	var nova := _player("nova")
 	var burst: Node = nova._spawn_gravity_burst(72.0, 1.0, 1.0, 0.5, Color.WHITE, "test")
 	_expect_vfx(burst, "nova_gravity_burst")
-	nova.velocity = Vector2(700, 0)
-	nova._update_momentum_visual()
-	_expect_vfx(arena, "nova_momentum_trail")
+	# Nova's momentum trail, shift dash and shift-ready flash left with her old kit (D47).
 	nova._play_vector_flash(Vector2.RIGHT, 120.0, 0.8)
 	_expect_vfx(arena, "nova_vector_streak")
-	nova._play_shift_flash(Vector2.RIGHT)
-	_expect_vfx(arena, "nova_shift_dash")
-	nova._play_shift_recharge_flash()
-	_expect_vfx(arena, "nova_shift_ready")
 	nova._play_impact_flash(Vector2.ZERO, 70.0, Color.WHITE)
 	_expect_vfx(arena, "nova_impact_star")
 	nova._play_launch_flash(Vector2.RIGHT)
@@ -124,11 +118,7 @@ func _run_fallback_checks() -> void:
 
 	var nova := _player("nova")
 	_expect_added_shape("Nova gravity burst", Polygon2D, func() -> void: nova._spawn_gravity_burst(72.0, 1.0, 1.0, 0.5, Color.WHITE, "test"))
-	nova.velocity = Vector2(700, 0)
-	_expect_added_shape("Nova momentum trail", Polygon2D, func() -> void: nova._update_momentum_visual())
 	_expect_added_shape("Nova vector streak", Line2D, func() -> void: nova._play_vector_flash(Vector2.RIGHT, 120.0, 0.8))
-	_expect_added_shape("Nova shift dash", Line2D, func() -> void: nova._play_shift_flash(Vector2.RIGHT))
-	_expect_added_shape("Nova shift ready", Line2D, func() -> void: nova._play_shift_recharge_flash())
 	_expect_added_shape("Nova impact star", Polygon2D, func() -> void: nova._play_impact_flash(Vector2.ZERO, 70.0, Color.WHITE))
 	_expect_added_shape("Nova launch flash", Line2D, func() -> void: nova._play_launch_flash(Vector2.RIGHT))
 
@@ -156,7 +146,7 @@ func _run_fallback_checks() -> void:
 	_expect_added_shape("Attack afterimage", ColorRect, func() -> void: attack._spawn_trail_afterimage())
 	_run_fallback_realm_checks()
 	_play_picked_effects()
-	for effect in ["luna_star_bloom", "luna_moon_ring", "luna_brave_aura", "luna_comet_burst", "nova_gravity_burst", "nova_momentum_trail", "nova_vector_streak", "nova_shift_dash", "nova_shift_ready", "nova_impact_star", "nova_launch_flash", "rio_rune_guard", "rio_rune_burst", "rio_blink_trail", "yuki_grand_ward", "guard_bubble", "attack_afterimage"] + PICKED_EFFECTS:
+	for effect in ["luna_star_bloom", "luna_moon_ring", "luna_brave_aura", "luna_comet_burst", "nova_gravity_burst", "nova_vector_streak", "nova_impact_star", "nova_launch_flash", "rio_rune_guard", "rio_rune_burst", "rio_blink_trail", "yuki_grand_ward", "guard_bubble", "attack_afterimage"] + PICKED_EFFECTS:
 		if _has_vfx(arena, effect):
 			_fail("Prototype mode unexpectedly drew %s art" % effect)
 

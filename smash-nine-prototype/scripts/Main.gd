@@ -32,7 +32,7 @@ const OFFSCREEN_MARKER_INSET := 34.0
 ## The live bot panel refreshes this often (seconds).
 const BOT_PANEL_REFRESH := 0.1
 const BOT_STATE_LABELS := {"wander": "WANDER", "pursue": "CHASE", "engage": "FIGHT", "portal": "PORTAL", "recover": "RECOVER"}
-const BOT_ATTACK_KEYS := {"basic": "J", "skill_1": "K", "skill_2": "L", "ultimate": "I"}
+const BOT_ATTACK_KEYS := {"basic": "J", "skill_1": "K", "skill_2": "L", "skill_3": "U", "ultimate": "I"}
 var bot_panel_timer := 0.0
 const CAMERA_EDGE_PADDING := 80.0
 const ULTIMATE_CAST_SHAKE := 6.0

@@ -5,6 +5,7 @@ extends SceneTree
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const ART := preload("res://scripts/ArtSettings.gd")
+const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 var failed := false
 var capture := false
 var report_dir := ""
@@ -152,7 +153,10 @@ func _run() -> void:
 	for index in 5:
 		await _click(main.hud.frontend.portrait_buttons[index])
 		_check(main.hud.frontend.hero_art.texture != null, "Every fighter must have main art")
-		_check(main.hud.frontend.skill_labels.size() == 5, "Every fighter must show J/K/L/I and passive guidance")
+		# Five rows (J, K, L, I, passive), six for a fighter with a third skill (U, D47).
+		var rows: int = main.hud.frontend.skill_labels.filter(func(label: Label) -> bool: return label.visible and label.text != "").size()
+		var wanted: int = 6 if REGISTRY.get_character_ids()[index] == "nova" else 5
+		_check(rows == wanted, "Every fighter must show J/K/L(/U)/I and passive guidance (%s: %d rows)" % [REGISTRY.get_character_ids()[index], rows])
 	await _tap(KEY_V)
 	_check(main.hud.frontend.hero_art.texture.resource_path.ends_with("rio_female_illustration.png"), "Rio body must also switch its main art")
 	await _tap(KEY_ESCAPE)

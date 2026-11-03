@@ -194,25 +194,19 @@ func _last_attack() -> Node:
 			found = child
 	return found
 
-## Nova's core drags nearby opponents toward it while it stands.
+## Nova's sphere (D47) catches a nearby opponent and swings it round; her launch drops it.
 func _test_nova_pull() -> void:
 	var nova := _fighter("nova", 1, Vector2(0, 0))
-	var victim := _fighter("frey", 2, Vector2(300, 0))
-	nova.ultimate_phase = nova.ULTIMATE_CORE
-	nova.ultimate_center = Vector2(150, 0)
-	nova._update_ultimate(0.1)
-	if victim.knockback_velocity.x >= 0.0:
-		_fail("Nova's core should pull a nearby opponent toward it (velocity %s)" % victim.knockback_velocity)
-	# Slinging off collapses the core: a burst appears where the core stood.
-	nova.ultimate_phase = nova.ULTIMATE_ORBIT
+	var victim := _fighter("frey", 2, Vector2(200, 0))
+	nova._sphere_start()
+	nova._update_sphere(0.1)
+	if not nova.sphere_caught.has(victim):
+		_fail("Nova's sphere should catch a nearby opponent")
+	nova._begin_ultimate_orbit()
 	nova._begin_ultimate_launch(Vector2.RIGHT)
-	var collapse_found := false
-	for child in arena.get_children():
-		if child is Area2D and child.get("hit_tag") == "ultimate" and child.global_position.distance_to(nova.ultimate_center + Vector2(0, -32)) < 1.0:
-			collapse_found = true
-	if not collapse_found:
-		_fail("Nova's launch should collapse the core with a burst at its centre")
-	nova._cancel_ultimate()
+	if not nova.sphere_falling:
+		_fail("Nova's launch should drop the sphere")
+	nova._reset_nova_state()
 	nova.ultimate_phase = nova.ULTIMATE_NONE
 	nova.queue_free()
 	victim.queue_free()

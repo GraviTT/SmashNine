@@ -266,7 +266,7 @@ static func end_action(source: Node, slot: String) -> void:
 		return
 	var id: String = before[2]
 	sound(source, "skill_%s_%s" % [id, slot])
-	if slot == "1" and id in ["frey", "nova", "rio"]:
+	if slot == "1" and id in ["frey", "rio"]:
 		sound(source, "dash")
 
 static func _fighter_id(source: Node) -> String:

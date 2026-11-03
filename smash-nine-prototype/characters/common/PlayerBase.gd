@@ -309,6 +309,25 @@ const STAR_MARK_ARTS := ["luna_star_mark", "luna_star_charge"]
 var star_mark_timer := 0.0
 var star_mark_source: Node
 var star_mark_icon: Sprite2D
+## Nova's gravity stacks (passive "중력 중첩", 2026-11-03 D47): each stacking hit raises the stage
+## (at most 3) and restarts GRAVITY_STACK_TIME; the stage then drops one step per that time.
+## Stages 1 and 2 slow the walk and lower the jumps; stage 3 roots the fighter where it stands for
+## GRAVITY_ROOT_TIME (no walking, jumping, moving skills or knockback; attacks and guard still
+## work), then the stacks clear. Nothing stacks while rooted.
+const GRAVITY_STACK_TIME := 2.0
+const GRAVITY_ROOT_TIME := 2.0
+const GRAVITY_MOVE_SCALES := [1.0, 0.8, 0.5]
+## Jump height kept at each stage; the jump speed scales by its square root.
+const GRAVITY_JUMP_HEIGHTS := [1.0, 0.8, 0.6]
+const GRAVITY_MARK_COLOR := Color(0.72, 0.42, 1.0, 0.95)
+var gravity_stage := 0
+var gravity_stage_timer := 0.0
+var gravity_root_timer := 0.0
+var gravity_root_position := Vector2.ZERO
+var gravity_source: Node
+## Kept above zero by a gravity field the fighter stands in: stage 1's slow without a stack.
+var gravity_field_timer := 0.0
+var gravity_marks: Node2D
 
 func _ready() -> void:
 	add_to_group("players")
@@ -459,6 +478,8 @@ func _update_match_timers(delta: float) -> void:
 	if star_mark_timer > 0.0:
 		star_mark_timer = maxf(star_mark_timer - delta, 0.0)
 		_update_star_mark_icon()
+	if gravity_stage > 0 or gravity_root_timer > 0.0 or gravity_field_timer > 0.0:
+		_update_gravity_stacks(delta)
 	if invulnerable_timer > 0.0:
 		invulnerable_timer = maxf(invulnerable_timer - delta, 0.0)
 		modulate.a = _visible_alpha() if invulnerable_timer <= 0.0 or int(invulnerable_timer * 12.0) % 2 == 0 else 0.45
@@ -522,6 +543,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if try_skill_two_followup():
 			return
 		skill_two()
+	if event.is_action_pressed("skill_3"):
+		if try_skill_three_followup():
+			return
+		skill_three()
 	if event.is_action_pressed("ultimate"):
 		ultimate()
 
@@ -732,8 +757,9 @@ func _update_current_floor_platform() -> void:
 			return
 
 func _apply_movement(delta: float) -> void:
-	if movement_freeze_timer > 0.0:
-		global_position = movement_freeze_position
+	# A gravity root holds the fighter over anything else that would move it (a grab, a pull).
+	if movement_freeze_timer > 0.0 or gravity_root_timer > 0.0:
+		global_position = gravity_root_position if gravity_root_timer > 0.0 else movement_freeze_position
 		velocity = Vector2.ZERO
 		knockback_velocity = Vector2.ZERO
 		skill_dash_velocity = Vector2.ZERO
@@ -758,7 +784,7 @@ func _apply_movement(delta: float) -> void:
 
 	var on_floor := is_on_floor()
 	var accel := FLOOR_ACCEL * (0.4 + 0.6 * ground_traction) if on_floor else AIR_ACCEL
-	var control_speed_scale := 0.55 if control_slow_timer > 0.0 else 1.0
+	var control_speed_scale: float = (0.55 if control_slow_timer > 0.0 else 1.0) * GRAVITY_MOVE_SCALES[mini(gravity_effect_stage(), 2)]
 	var character_movement_multiplier := get_character_movement_multiplier()
 	var mobility_scale := 1.0
 	if attack_lock_timer > 0.0:
@@ -771,7 +797,7 @@ func _apply_movement(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0.0, FRICTION * (ground_traction if is_on_floor() else 1.0) * delta)
 
 		if attack_lock_timer <= 0.0 and jump_buffer_timer > 0.0 and coyote_timer > 0.0:
-			velocity.y = jump_velocity * (0.78 if control_jump_slow_timer > 0.0 else 1.0)
+			velocity.y = jump_velocity * (0.78 if control_jump_slow_timer > 0.0 else 1.0) * gravity_jump_scale()
 			_restart_jump_motion()
 			jump_buffer_timer = 0.0
 			coyote_timer = 0.0
@@ -812,6 +838,14 @@ func skill_two() -> void:
 	perform_skill_two()
 	AUDIO.end_action(self, "2")
 
+## The third skill (U, 2026-11-03 D47): only characters that have one (has_skill_three).
+func skill_three() -> void:
+	if not has_skill_three() or not _can_start_attack():
+		return
+	AUDIO.begin_action(self)
+	perform_skill_three()
+	AUDIO.end_action(self, "3")
+
 func ultimate() -> void:
 	# Follow-up presses (Nova's slingshot stages, Luna's heart laser) are part of the same ultimate.
 	ultimate_followup_started = false
@@ -837,7 +871,7 @@ func is_ultimate_ready() -> bool:
 func can_use_skill_one() -> bool:
 	return _can_start_attack()
 
-## [seconds left, full cooldown] for a skill bar slot ("j", "k", "l", "i"); zero when the move
+## [seconds left, full cooldown] for a skill bar slot ("j", "k", "l", "u", "i"); zero when the move
 ## has no cooldown. Characters with a skill cooldown add theirs (Rio's rune shield).
 func skill_cooldown(slot: String) -> Vector2:
 	if slot == "i":
@@ -853,10 +887,20 @@ func perform_skill_one() -> void:
 func perform_skill_two() -> void:
 	pass
 
+## True for a character with a third skill on U (the skill bar shows its slot).
+func has_skill_three() -> bool:
+	return false
+
+func perform_skill_three() -> void:
+	pass
+
 func perform_ultimate() -> void:
 	pass
 
 func try_skill_two_followup() -> bool:
+	return false
+
+func try_skill_three_followup() -> bool:
 	return false
 
 func try_skill_one_followup() -> bool:
@@ -881,7 +925,7 @@ func character_defers_air_jump() -> bool:
 	return false
 
 func _perform_air_jump() -> void:
-	velocity.y = jump_velocity * 0.86 * (0.78 if control_jump_slow_timer > 0.0 else 1.0)
+	velocity.y = jump_velocity * 0.86 * (0.78 if control_jump_slow_timer > 0.0 else 1.0) * gravity_jump_scale()
 	_restart_jump_motion()
 	air_jumps_left -= 1
 	jump_buffer_timer = 0.0
@@ -1580,6 +1624,106 @@ func _update_star_mark_icon() -> void:
 	star_mark_icon.position = Vector2(22.0 if beside else 0.0, STATUS_ICON_Y - 2.0)
 	star_mark_icon.visible = star_mark_timer > 2.0 or int(star_mark_timer * 8.0) % 2 == 0
 
+## One gravity stack from `source` (Nova): the stage rises, and at 3 the fighter is rooted.
+func add_gravity_stack(source: Node) -> void:
+	if is_defeated or is_invulnerable() or gravity_root_timer > 0.0:
+		return
+	gravity_source = source
+	gravity_stage = mini(gravity_stage + 1, 3)
+	gravity_stage_timer = GRAVITY_STACK_TIME
+	if gravity_stage >= 3:
+		gravity_root_timer = GRAVITY_ROOT_TIME
+		gravity_root_position = global_position
+		velocity = Vector2.ZERO
+		knockback_velocity = Vector2.ZERO
+		skill_dash_timer = 0.0
+		_end_skill_dash()
+	_update_gravity_marks()
+
+## Standing in a gravity field (Nova's L): stage 1's slow and jump for `duration`, no stack.
+func apply_gravity_field(duration: float) -> void:
+	if is_defeated:
+		return
+	gravity_field_timer = maxf(gravity_field_timer, duration)
+	_update_gravity_marks()
+
+func is_gravity_rooted() -> bool:
+	return gravity_root_timer > 0.0
+
+## The stage the walk and jump follow: the stacks, or 1 inside a field.
+func gravity_effect_stage() -> int:
+	return maxi(gravity_stage, 1 if gravity_field_timer > 0.0 else 0)
+
+func gravity_jump_scale() -> float:
+	return sqrt(float(GRAVITY_JUMP_HEIGHTS[mini(gravity_effect_stage(), 2)]))
+
+func clear_gravity_stacks() -> void:
+	gravity_stage = 0
+	gravity_stage_timer = 0.0
+	gravity_root_timer = 0.0
+	gravity_field_timer = 0.0
+	gravity_source = null
+	_update_gravity_marks()
+
+func _update_gravity_stacks(delta: float) -> void:
+	gravity_field_timer = maxf(gravity_field_timer - delta, 0.0)
+	if gravity_root_timer > 0.0:
+		gravity_root_timer = maxf(gravity_root_timer - delta, 0.0)
+		if gravity_root_timer <= 0.0:
+			gravity_stage = 0
+			gravity_stage_timer = 0.0
+	elif gravity_stage > 0:
+		gravity_stage_timer -= delta
+		if gravity_stage_timer <= 0.0:
+			gravity_stage -= 1
+			gravity_stage_timer = GRAVITY_STACK_TIME if gravity_stage > 0 else 0.0
+	_update_gravity_marks()
+
+## Three pips over the head for the stage (a dim first one inside a field) and a ring at the feet
+## while rooted. Drawn in code until the gravity art is in.
+func _update_gravity_marks() -> void:
+	var shown := gravity_stage > 0 or gravity_root_timer > 0.0 or gravity_field_timer > 0.0
+	if not shown:
+		if is_instance_valid(gravity_marks):
+			gravity_marks.visible = false
+		return
+	if not is_instance_valid(gravity_marks):
+		gravity_marks = Node2D.new()
+		gravity_marks.name = "GravityMarks"
+		gravity_marks.z_index = 7
+		add_child(gravity_marks)
+		for index in 3:
+			var pip := Polygon2D.new()
+			pip.name = "Pip%d" % (index + 1)
+			var points := PackedVector2Array()
+			for step in 10:
+				points.append(Vector2.RIGHT.rotated(TAU * float(step) / 10.0) * 4.5)
+			pip.polygon = points
+			pip.position = Vector2((index - 1) * 12.0, STATUS_ICON_Y - 18.0)
+			gravity_marks.add_child(pip)
+		var ring := Line2D.new()
+		ring.name = "RootRing"
+		var ring_points := PackedVector2Array()
+		for step in 20:
+			var angle := TAU * float(step) / 20.0
+			ring_points.append(Vector2(cos(angle) * 30.0, sin(angle) * 8.0 - 3.0))
+		ring.points = ring_points
+		ring.closed = true
+		ring.width = 3.0
+		ring.default_color = GRAVITY_MARK_COLOR
+		gravity_marks.add_child(ring)
+	gravity_marks.visible = true
+	for index in 3:
+		var pip := gravity_marks.get_child(index) as Polygon2D
+		if index < gravity_stage:
+			pip.color = GRAVITY_MARK_COLOR
+		else:
+			pip.color = Color(GRAVITY_MARK_COLOR, 0.5 if index == 0 and gravity_field_timer > 0.0 else 0.18)
+	var root_ring := gravity_marks.get_node("RootRing") as Line2D
+	root_ring.visible = gravity_root_timer > 0.0
+	if root_ring.visible:
+		root_ring.modulate.a = 0.6 + 0.4 * sin(gravity_root_timer * 12.0)
+
 func apply_yuki_seal_burst(attacker: Node, activation_id: int, damage: float, knockback: float, direction: Vector2) -> bool:
 	if last_yuki_activation_hit == activation_id:
 		return false
@@ -1725,6 +1869,7 @@ func _defeat(attacker: Node) -> void:
 	_reset_guard_state()
 	_end_skill_dash()
 	clear_star_mark()
+	clear_gravity_stacks()
 	character_cleanup()
 	var grounded := is_on_floor()
 	is_defeated = true
@@ -1778,6 +1923,7 @@ func _respawn() -> void:
 	ultimate_armor_timer = 0.0
 	_reset_guard_state()
 	clear_star_mark()
+	clear_gravity_stacks()
 	character_on_respawn()
 	if not spawn_points.is_empty():
 		global_position = spawn_points.pick_random()
@@ -1839,6 +1985,7 @@ func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	ultimate_armor_timer = 0.0
 	_reset_guard_state()
 	clear_star_mark()
+	clear_gravity_stacks()
 	character_cleanup()
 	character_on_respawn()
 	control_slow_timer = 0.0

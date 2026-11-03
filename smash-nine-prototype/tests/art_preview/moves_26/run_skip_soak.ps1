@@ -10,7 +10,7 @@ New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 
 $tests = @(
 	"test_character_architecture", "test_frey_sprite", "test_luna_prototype",
-	"test_nova_prototype", "test_rio_prototype", "test_ultimates", "test_match_rules",
+	"test_nova_kit", "test_rio_prototype", "test_ultimates", "test_match_rules",
 	"test_hazards", "test_soul_crystals", "test_art", "test_sprite_frames",
 	"test_offscreen_markers", "test_relocation_active", "test_bot_panel", "test_skill_bar",
 	"test_bot_brain", "test_talisman_burst", "test_flash_art", "test_ultimate_armor",

@@ -29,10 +29,12 @@ const KITS := {
 		"Star Volley  /  Three small stars, then a bursting one.", "Twinkle Warp  /  Warp where you aim; burst on arrival.",
 		"Star Barrier  /  Block shots and take hits for 5 s.", "Brave Luna  /  Transform, burst marks; I again: beam.",
 		"Star Magic  /  Marked foes take 10% more damage."],
-	"nova": ["Turn speed into heavier, wider attacks.\nUse gravity to chase rivals and redirect your flight.",
-		"Vector Strike  /  Momentum adds reach and power.", "Vector Shift  /  Accelerate in 8 directions; no hit.",
-		"Gravity Brake  /  Stop and turn speed into a blast.", "Event Horizon  /  Tap I: core, orbit, then launch.",
-		"Momentum  /  Faster movement powers your attacks."],
+	# Nova has a third skill (U, D47): J, K, L, U, I, passive.
+	"nova": ["Pull, float and pin your foes with gravity.\nStack it to root them, then fling them off your sphere.",
+		"Vector Chain  /  Three strikes; the last adds a gravity stack.", "Gravity Orb  /  Bursts, pulls foes in, adds a stack.",
+		"Gravity Field  /  Fly inside it; foes slow, monsters float.", "Gravity Beam  /  Drag a foe to you; slam one in the air.",
+		"Event Horizon  /  Foes circle a sphere; hold I, let go to launch.",
+		"Gravity Stacks  /  Three stacks root a foe for 2 s."],
 	"rio": ["Blink in, cut through and slip away.\nCounter attacks with runes and stay mobile in the air.",
 		"Mana Combo  /  Three cuts; the last sends a wave.", "Dimension Slash  /  Blink and cut along your path.",
 		"Rune Shield  /  Absorb hits, then counter; risky on miss.", "Infinity Overdrive  /  Aim six flying gem swords.",
@@ -44,7 +46,7 @@ const CONTROLS := [
 	["S, S  or  Down, Down", "Drop through a thin platform"],
 	["Space", "Guard / tap just before a hit to parry"],
 	["J  + direction", "Basic attack (ground and air variants)"],
-	["K / L", "Character skills"], ["I", "Ultimate (30 second cooldown)"],
+	["K / L / U", "Character skills (U: third skill)"], ["I", "Ultimate (30 second cooldown)"],
 	["Q", "Use the portal under your feet"], ["1 / 2 / 3", "Pick a soul card when offered"],
 	["H", "Spawn / remove a training dummy"], ["F3 / F4", "Debug panel / live bot panel"],
 	["T", "Game speed: 100 / 90 / 80 / 70%"], ["F2 (before a match)", "Switch original / prototype art"],
@@ -68,6 +70,7 @@ var hero_art: TextureRect
 var fighter_name: Label
 var fighter_role: Label
 var description: Label
+var skill_keys: Array[Label] = []
 var skill_labels: Array[Label] = []
 var body_button: Button
 var speed_button: Button
@@ -102,6 +105,7 @@ func _clear(next_screen: String) -> void:
 	screen = next_screen
 	buttons.clear()
 	portrait_buttons.clear()
+	skill_keys.clear()
 	skill_labels.clear()
 	if is_instance_valid(content):
 		remove_child(content)
@@ -273,10 +277,10 @@ func show_select() -> void:
 	fighter_name = _label("", Rect2(766, 146, 450, 53), 40, GOLD)
 	fighter_role = _label("", Rect2(768, 202, 442, 30), 22)
 	description = _label("", Rect2(768, 247, 448, 68), 17, DIM)
-	for index in 5:
-		var key: String = ["J", "K", "L", "I", "PASSIVE"][index]
-		_label(key, Rect2(768, 334 + index * 49, 80, 24), 15, GOLD)
-		var line := _label("", Rect2(850, 330 + index * 49, 366, 44), 15)
+	# Six rows for a fighter with a third skill (U); _refresh_fighter places and fills them.
+	for index in 6:
+		skill_keys.append(_label("", Rect2(768, 334, 80, 24), 15, GOLD))
+		var line := _label("", Rect2(850, 330, 366, 44), 15)
 		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		skill_labels.append(line)
 	body_button = _button("", Rect2(52, 584, 296, 40), "body")
@@ -292,7 +296,17 @@ func _refresh_fighter() -> void:
 	fighter_role.text = tr(str(data.role))
 	var kit: Array = KITS[selected_id]
 	description.text = tr(kit[0])
-	for index in 5:
+	var keys: Array = ["J", "K", "L", "U", "I", "PASSIVE"] if kit.size() > 6 else ["J", "K", "L", "I", "PASSIVE"]
+	var step := 49.0 if keys.size() == 5 else 41.0
+	for index in 6:
+		var shown := index < keys.size()
+		skill_keys[index].visible = shown
+		skill_labels[index].visible = shown
+		if not shown:
+			continue
+		skill_keys[index].text = keys[index]
+		skill_keys[index].position.y = 334.0 + index * step
+		skill_labels[index].position.y = 330.0 + index * step
 		skill_labels[index].text = tr(kit[index + 1])
 	var bodies := REGISTRY.get_bodies(selected_id)
 	body_button.text = tr("[V] Body: %s") % tr((body if bodies.size() > 1 else bodies[0]).capitalize())

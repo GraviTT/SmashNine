@@ -108,10 +108,10 @@ func _test_own_effects_only() -> void:
 	_clear([rio])
 	var nova := _player("nova")
 	await physics_frame
-	nova._vector_side_strike(0.5, false, Vector2.RIGHT)
+	nova._vector_side_strike(false, Vector2.RIGHT)
 	if _vfx("nova_slash") != null or _vfx("nova_vector_streak") == null:
 		_fail("Nova's vector strike should draw its streak and no shared slash")
-	nova._vector_uppercut(0.5, false)
+	nova._vector_uppercut(false)
 	if _vfx("nova_slash") != null:
 		_fail("Nova's vector uppercut should draw no shared slash")
 	_clear([nova])

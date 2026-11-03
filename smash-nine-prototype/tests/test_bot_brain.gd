@@ -165,25 +165,28 @@ func _test_climb_keeps_last_air_jump() -> void:
 	await process_frame
 
 func _test_nova_redirect() -> void:
+	# Nova's event horizon (D47): a bot joins the sphere's orbit, then presses again to launch
+	# toward its target (no redirect any more).
 	var nova := _fighter("nova", 1, Vector2(0, 0))
 	var foe := _fighter("frey", 2, Vector2(400, 0))
 	nova.set_physics_process(false)
 	foe.set_physics_process(false)
 	var ai = nova.ai_controller
 	ai.target = foe
-	var redirected := false
-	for attempt in 12:
-		nova.ultimate_phase = nova.ULTIMATE_LAUNCH
-		nova.ultimate_launch_direction = Vector2.LEFT
-		nova.ultimate_launch_shift_available = true
-		ai.nova_redirect_timer = 0.001
-		ai._drive_nova_slingshot(nova, 0.01)
-		if nova.ultimate_launch_direction.x > 0.5:
-			redirected = true
+	nova._sphere_start()
+	for think in 40:
+		ai._drive_nova_slingshot(nova, 0.05)
+		if nova.ultimate_phase == nova.ULTIMATE_ORBIT:
 			break
-	nova.ultimate_phase = nova.ULTIMATE_NONE
-	if not redirected:
-		_fail("A bot-driven Nova launch flying away should redirect toward its target")
+	if nova.ultimate_phase != nova.ULTIMATE_ORBIT:
+		_fail("A bot Nova should join her sphere's orbit (phase %d)" % nova.ultimate_phase)
+	for think in 40:
+		ai._drive_nova_slingshot(nova, 0.05)
+		if nova.ultimate_phase == nova.ULTIMATE_LAUNCH:
+			break
+	if nova.ultimate_phase != nova.ULTIMATE_LAUNCH:
+		_fail("A bot Nova should launch from the orbit by 0.8 s (phase %d)" % nova.ultimate_phase)
+	nova._reset_nova_state()
 	nova.queue_free()
 	foe.queue_free()
 	await process_frame
@@ -234,7 +237,8 @@ func _test_recovery_skill() -> void:
 		_fail("Frey's K (the sword wave) is not a recovery move")
 	frey.queue_free()
 	await process_frame
-	for id in ["nova", "rio"]:
+	# Nova's K is the gravity orb since D47: no recovery skill (checked below).
+	for id in ["rio"]:
 		var bot := _fighter(id, 1, Vector2(0, 300))
 		bot.set_physics_process(false)
 		bot.realm_origin = Vector2(-960, -540)
@@ -264,19 +268,24 @@ func _test_recovery_skill() -> void:
 			if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
 				_fail("Rio should not ask for a second blink in the same airtime")
 			bot.air_blink_available = true
-		if id == "nova":
-			# One vector shift per airtime (round 6: 35,321 asking frames for 27 uses).
-			bot.air_vector_shift_available = false
-			if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
-				_fail("Nova should not ask for a second vector shift in the same airtime")
-			bot.air_vector_shift_available = true
 		ai.recovery_target = Vector2(600, -100)
 		intent = ai._recover_intent(bot)
 		var far_skill: bool = str(intent.get("attack", "")) == "skill_1"
 		if far_skill != (id != "rio"):
-			_fail("%s with the ledge out of reach: skill %s (Nova uses it from afar, Rio waits)" % [id, far_skill])
+			_fail("%s with the ledge out of reach: skill %s (Rio waits)" % [id, far_skill])
 		bot.queue_free()
 		await process_frame
+	var nova := _fighter("nova", 1, Vector2(0, 300))
+	nova.set_physics_process(false)
+	nova.realm_origin = Vector2(-960, -540)
+	nova.realm_size = Vector2(1920, 1080)
+	nova.ai_controller.state = nova.ai_controller.STATE_RECOVER
+	nova.ai_controller.recovery_target = Vector2(120, 160)
+	nova.air_jumps_left = 0
+	if str(nova.ai_controller._recover_intent(nova).get("attack", "")) == "skill_1":
+		_fail("Nova should not fire her gravity orb to recover")
+	nova.queue_free()
+	await process_frame
 
 ## Round 3: a target jumping above our own floor in a close fight is not "another level" (the
 ## old check read its height, so bots dropped close fights whenever the target jumped).

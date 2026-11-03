@@ -36,6 +36,7 @@
 | Skills | `ult_yuki` | 궁극기 시작(후속 단계 중복 요청 없음) | `characters/common/PlayerBase.gd:ultimate` | `ult_start` | 2 | 40 | true |
 | Skills | `skill_nova_1` | nova 기술 1: 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인 | `characters/common/PlayerBase.gd:skill_one` | `skill_cast` | 3 | 40 | true |
 | Skills | `skill_nova_2` | nova 기술 2: 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인 | `characters/common/PlayerBase.gd:skill_two` | `skill_cast` | 3 | 40 | true |
+| Skills | `skill_nova_3` | nova 기술 3(U 중력 광선, D47): 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인. 파일은 임시로 `skill_nova_1` 복사 | `characters/common/PlayerBase.gd:skill_three` | `skill_cast` | 3 | 40 | true |
 | Skills | `ult_nova` | 궁극기 시작(후속 단계 중복 요청 없음) | `characters/common/PlayerBase.gd:ultimate` | `ult_start` | 2 | 40 | true |
 | Skills | `skill_rio_1` | rio 기술 1: 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인 | `characters/common/PlayerBase.gd:skill_one` | `skill_cast` | 3 | 40 | true |
 | Skills | `skill_rio_2` | rio 기술 2: 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인 | `characters/common/PlayerBase.gd:skill_two` | `skill_cast` | 3 | 40 | true |

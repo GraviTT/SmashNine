@@ -22,7 +22,7 @@
 
 ## 공용 조작
 
-`PlayerBase._get_basic_attack_type`은 지상과 공중, 입력 방향을 조합해 `neutral`, `side`, `up`, `down`, `air_side`, `air_up`, `air_down`으로 나눈다. `basic_attack`, `skill_one`, `skill_two`, `ultimate`이 각 캐릭터의 `perform_*` 함수로 넘긴다. 독립된 공용 대시 입력은 없으며, 코드에서 대시는 Frey K, Brave Luna K, Nova K, Rio K처럼 각 캐릭터 기술의 `skill_dash_velocity`로 구현된다.
+`PlayerBase._get_basic_attack_type`은 지상과 공중, 입력 방향을 조합해 `neutral`, `side`, `up`, `down`, `air_side`, `air_up`, `air_down`으로 나눈다. `basic_attack`, `skill_one`, `skill_two`, `skill_three`, `ultimate`이 각 캐릭터의 `perform_*` 함수로 넘긴다. `skill_three`(U 키, 2026-11-03 D47)는 세 번째 스킬이 있는 캐릭터(`has_skill_three`, 지금 Nova)만 쓰고, 스킬 바의 U 칸도 그때만 보인다. 독립된 공용 대시 입력은 없으며, 코드에서 대시는 Frey K, Brave Luna K, Nova K, Rio K처럼 각 캐릭터 기술의 `skill_dash_velocity`로 구현된다.
 
 방어는 전 캐릭터 공통이다. 지상에서 Guard를 누르면 입력 방향의 140도 범위를 막는다. 처음 0.1초는 패리이며 `[GUARD_PARRY_WINDOW]`, 일반 막기의 피해 감소율은 처음 75%에서 5초 동안 30%까지 내려간다 `[GUARD_START_REDUCTION]`, `[GUARD_MIN_REDUCTION]`, `[GUARD_DECAY_TIME]`. 놓은 뒤 회복은 0.26초다 `[GUARD_RECOVERY]`. 동작은 `shield` 줄 전체이며, 이펙트는 공용 `assets/art/effects/skill/guard_bubble.png`의 평상/피격/패리 프레임과 패리 성공 시 `parry_flash.png`다. 그림이 없으면 `PlayerBase._update_guard_visual`의 `Line2D` 호와 `_play_parry_effect`의 `ColorRect`가 대신한다.
 
@@ -101,28 +101,24 @@
 
 ## Nova
 
-플레이 스타일: **적군·중력 제어**(D46). 아래 표는 아직 예전 기술(속도가 곧 힘)이고, 새 컨셉안은 `reports/nova-rio-concepts-2026-11-03/`에 있다.
+플레이 스타일: **적군·중력 제어**(D46).
 
-역할과 방식: 현재 이동 속도와 방향을 공격의 거리·크기·피해로 바꾸는 중력 벡터 공중 추격자다.
+역할과 방식: 공격으로 중력 중첩을 쌓아 적을 느리게 하고, 3단계에서 그 자리에 묶는다. 구체로 끌어오고, 광선으로 낚아채고, 필드 안에서는 날아다니며, 궁극기로 적을 구체 둘레에 돌리다 떨어뜨린다. 2026-11-03 사용자 컨셉으로 J·K·L·I·패시브를 바꾸고 세 번째 스킬(U)을 더했다(D47). 예전 벡터 시프트(K), 중력 제동(L), 운동량(패시브), 세 번 누르는 투석은 없앴다. 원문과 리드가 채운 빈 부분은 `reports/nova-kit-2026-11-03/README.md`.
 
 | 입력 | 기술 | 하는 일 | 주요 수치 | 몸 동작 | 이펙트와 그리기 | 상태 | 이펙트가 따라야 할 값 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `J` | 벡터 타격·옆 | 현재 운동량에 따라 더 멀리 이동하는 전방 타격이다. | 운동량 0→1: 이동 76→138, 판정 38×30→54×42, 피해 7→11, 넉백 235→510, 활성 0.075→0.12초 | `vector_side` 전체 | `nova_vector_streak.png`; `_play_vector_flash` (공용 `nova_slash` 없음, D40) | 그림 | 실제 운동 방향, 이동·판정·색의 연속 보간 |
-| `공중 J` | 공중 벡터 타격 | 현재 비행 방향으로 치며 K를 취소하고 속도를 공격으로 바꾼다. | 지상 옆 J와 같은 보간; y속도 ×0.82 | `air_side` 전체 | `nova_vector_streak` (공용 `nova_slash` 없음) | 그림 | 입력보다 현재 속도 방향 우선, 운동량 색 |
-| `↑J` | 벡터 어퍼컷 | 위로 상승하며 상대를 강제로 띄운다. | 운동량 0→1: 피해 7→11, 판정 38×48→48×62, 넉백 300→510, 자신 y속도 -390→-570, 상대 발사 y=-470→-720, 경직 0.22→0.32초 | `vector_upper` 전체 | `nova_impact_star.png` (공용 `nova_slash` 없음, D40) | 그림 | 운동량에 따른 크기·밝기와 위쪽 발사 |
-| `공중 ↑J` | 공중 벡터 어퍼컷 | 공중에서 상승량을 88%로 줄여 같은 띄우기를 쓴다. | 공격은 `↑J`와 같음; 자신 상승 속도 ×0.88 | `vector_upper` 전체 | `nova_impact_star` (공용 `nova_slash` 없음) | 그림 | 공중 상승량과 상단 판정 |
-| `↓J` | 중력 압축 발구르기 | 현재 위치 주변에 원형 중력 폭발을 낸다. | 운동량 0→1: 반경 48→72, 피해 7→11, 넉백 260→480; 활성 0.14초 | `compression_stomp` 전체 | `nova_gravity_burst.png`, `nova_impact_star.png`; `NovaGravityBurst.configure` | 그림 | 실제 반경 `×COMBAT`, 운동량 색과 0.14초 |
-| `공중 ↓J` | 메테오 킥 | 먼저 아래를 차며 급강하하고, 착지 때 현재 운동량에 따른 원형 충격파를 낸다. 착지까지 행동이 잠긴다. | 발차기 피해 6→9, 40×46, 넉백 270→430, 0.12초; 낙하 y속도 560→760, 추가 중력 2600; 착지 반경 68→98, 피해 9→14, 넉백 350→610 | `meteor_kick` 전체 | 발차기 `nova_slash`; 착지 `nova_gravity_burst`, `nova_impact_star`, 공용 `landing_dust` | 그림 | 낙하 방향, 착지 반경·운동량, 지면 위치 |
-| `K` | 벡터 시프트 | 입력한 8방향으로 0.22초 동안 개인 중력을 바꿔 가속한다. 공격 판정은 없고 공중에서는 착지 전 1회다. | 0.22초 `[VECTOR_SHIFT_DURATION]`, 가속 `5400×MOVE` `[VECTOR_SHIFT_ACCELERATION]`, 최대 속도 `760×MOVE` `[VECTOR_SHIFT_MAX_SPEED]` | `vector_shift` 전체 | `attack_vfx/nova_k.png`, `nova_shift_dash.png`; `_start_vector_shift`, `_play_shift_flash` | 그림 | 가속 방향·0.22초, 뒤쪽 52px 잔광 |
-| `L` | 중력 제동 | 속도를 0으로 만들고 운동량을 원형 폭발로 바꾼다. 운동량 0.6 이상으로 적중하면 공중 K 1회를 회복한다. | 고정 0.2초 후 발동; 반경 58→112, 피해 6→15, 넉백 210→640, 활성 0.14초; 전체 잠금 0.54초 | `gravity_brake` 전체 | `attack_vfx/nova_l.png`, `nova_gravity_burst.png`, `nova_impact_star.png`; 회복 `nova_shift_ready.png` | 그림 | 반경 `×COMBAT`, 운동량 색, 회복 기준 0.6 |
-| `I` 1회 | 사건의 지평선·핵 생성 | 입력 방향 105px 위치에 중력핵을 만들고 230 기본 px 안의 적을 끈다. Nova의 이동은 계속된다. | 핵 거리 105 `[ULTIMATE_CORE_DISTANCE]`, 흡입 반경 `230×COMBAT` `[ULTIMATE_PULL_RADIUS]`, 힘 240 `[ULTIMATE_PULL_STRENGTH]` | `slingshot_start` 전체 | `vfx/nova_ult_core.png`; 없으면 `Polygon2D` 핵과 `Line2D` 고리 | 그림 | 핵 고정 위치, 흡입 반경, 회전 방향 |
-| `I` 2회 | 사건의 지평선·공전 | 현재 위치에서 핵 주위를 공전한다. 가까운 공전일수록 빠르고 다음 돌진이 길다. 몸 주위 공격 판정과 예상 궤적이 생긴다. | 공전 반경 최소 52, 조정 상한 260; 공전 속도 1080→560; 몸 판정 반경 `36×COMBAT`, 피해 7→10, 넉백 230→350; 궤적 길이=`launch_speed×duration` | `slingshot_start` 뒤 몸 회전 | 핵 `nova_ult_core`; 예상선·도착원은 `_create_ultimate_launch_preview`의 `Line2D`, 몸 판정은 `Polygon2D` | 그림 | 실제 공전 반경, 접선 방향, 예상 종착점; 전용 핵 그림과 도형 선을 함께 사용 |
-| `I` 3회 | 사건의 지평선·투석 | 접선으로 돌진한다. 시작 때 핵이 붕괴하고, 적·지형 충돌 또는 최대 시간에 최종 중력 폭발을 낸다. | 돌진 속도 `860→1460×WORLD`, 지속 0.30→0.46초; 몸 반경 `42×COMBAT`, 피해 15→22, 넉백 480→700; 핵 붕괴 반경 `118×COMBAT`, 피해 18, 넉백 300; 최종 반경 124→170 `×COMBAT`, 피해 34→46, 넉백 700→940 | 몸이 돌진 방향으로 회전 | `nova_launch_flash.png`, `nova_ult_burst.png`, `nova_gravity_burst.png`, `nova_impact_star.png` | 그림 | 접선·돌진력, 핵 붕괴와 최종 폭발의 서로 다른 중심·반경 |
-| 투석 중 `K` | 투석 방향 전환 | 궁극기 돌진 중 한 번 입력 방향으로 궤도를 꺾고 속도 110을 더한다. 남은 시간은 바뀌지 않는다. | 1회, 속도 +110, 상한 `ULTIMATE_FAST_LAUNCH_SPEED+110` | `jump` | `nova_shift_dash.png`; `_redirect_ultimate_launch_with_vector_shift` | 그림 | 새 방향, 변경 순간, 남은 돌진 시간 |
-| 자동 | 운동량 | 속도 204부터 강화가 시작되고 840에서 최대가 된다. 고속이면 청록에서 금색으로 바뀌는 잔상이 생긴다. | 코드 기본 170→700에 `MOVE=1.2`: 204→840 `[MOMENTUM_START_SPEED]`, `[MOMENTUM_MAX_SPEED]`; 잔상은 비율 0.34부터 0.075→0.035초 간격 | 별도 몸 동작 없음 | `skill/nova_momentum_trail.png`; `_update_momentum_visual` | 그림 | 현재 속도 비율, 실제 이동 방향, 청록→금색 |
+| 자동 | 중력 중첩 | 쌓는 공격에 맞은 적은 중첩이 1단계씩 오른다(최대 3). 쌓일 때마다 2초가 새로 시작되고, 2초마다 한 단계씩 내려간다. 1단계 이동 80%·점프 높이 80%, 2단계 50%·60%. 3단계는 그 자리에 2초 고정(걷기·점프·이동기·넉백 없음, 공격·방어는 됨, 공중이면 그 자리에 뜸)된 뒤 0단계로 돌아간다. 고정 중에는 쌓이지 않는다. | `PlayerBase.GRAVITY_STACK_TIME` 2초, `GRAVITY_ROOT_TIME` 2초, `GRAVITY_MOVE_SCALES` [1, 0.8, 0.5], `GRAVITY_JUMP_HEIGHTS` [1, 0.8, 0.6](점프 속도는 제곱근); `add_gravity_stack`, `is_gravity_rooted` | 없음 | 임시: 머리 위 보라 점 3개(단계), 고정 중 발밑 고리(`_update_gravity_marks`) | 도형 | 상태 아이콘 줄 위 18px, 3단계 구분, 고정 고리 |
+| `J` 1~3타 | 벡터 연타 | 세 번 이어 친다. 1·2타는 적중하면 다음 타가 바로 이어지고, 3타째는 조금 날리며 중첩 1. | 1타 피해 6·40×32·끝 70·넉백 200, 2타 7·42×34·80·230, 3타 9·48×38·104·400 방향 (앞,-0.3); 선딜/후딜 0.07/0.15, 0.07/0.16, 0.09/0.24초; 이어 누르기 0.46초 `[COMBO_RESET_TIME]` | `vector_side` 1~2, 3~4, 5~6 | `nova_vector_streak`; `_chain_strike` | 그림 | 궤적 끝, 3타째 중첩 |
+| `↑J`·`공중 ↑J`·`↓J`·`공중 ↓J`·`공중 J` | 벡터 어퍼컷·압축 발구르기·메테오 킥·공중 벡터 타격 | 동작은 그대로다. 운동량이 없어져 예전 중간 세기로 고정했다. 중첩은 쌓지 않는다. | 예전 운동량 0.5의 값 `[STRIKE_POWER]`(예: ↑J 피해 9, ↓J 반경 60·피해 9) | 각 줄 그대로 | 그대로 | 그림 | 그대로 |
+| `K` | 중력 구체 | 누른 방향(없으면 앞)으로 구체를 날린다. 처음 닿은 몸이나 최대 사거리에서 터지고, 터진 곳 둘레의 적을 0.35초 끌어온 뒤 중첩 1. 몬스터도 끌려온다. | 선딜/후딜 0.12/0.22초; 구체 30×30(화면 45), 속도 `520×COMBAT`, 수명 0.5초(약 390px); 폭발 반경 `90×COMBAT`(135px), 피해 8, 끌기 0.35초·760px/s `[ORB_*]` | `gravity_brake` 전체(임시) | 임시: 날아가는 구체는 `vfx/nova_ult_core`를 작게, 폭발은 `skill/nova_gravity_burst`; `NovaOrb`, `orb_burst_at` | 임시 | 45px 구체, 반경 135 폭발 |
+| `L` | 중력 필드 | 쓴 자리에 큰 필드를 6초 깐다. 안에서 Nova는 떠서 W/A/S/D로 8방향을 빠르게 날아다닌다(점프 없음). 다른 캐릭터는 안에 있는 동안 1단계 효과(중첩은 아님)를 받고, 나가면 바로 풀린다. 중립 몬스터는 떠올라 아무것도 못 한다. | 반경 `200×COMBAT`(300px), 6초, 쿨다운 12초(스킬 바), 비행 `470×MOVE`, 가속 `3200×MOVE` `[FIELD_*]` | `slingshot_start` 전체(임시) | 임시: 코드 원(옅은 보라 막, 테두리, 도는 호 2개, 마지막 1초 깜박임; `NovaField`) | 임시 | 반경 300, 6초 |
+| `U` | 중력 광선 | 누른 방향(없으면 앞)으로 광선을 쏜다. 처음 닿은 몸이 땅에 있으면 Nova 앞까지 끌어오고(도착하면 0.3초 경직) 중첩 1. 공중에 있거나 떠 있으면 바로 아래로 내리꽂고 더 큰 피해와 중첩 1. | 선딜/후딜 0.1/0.24초; 26×18, 속도 `1150×COMBAT`, 수명 0.36초(약 620px); 끌기 피해 5·1100px/s·최대 0.45초, 앞 46px; 내리꽂기 피해 11·아래 1000·경직 0.45초 `[BEAM_*]` | `vector_side` 5~6(임시) | 임시: 손에서 머리까지 보라 줄과 별 머리(`NovaBeam`) | 임시 | 줄의 시작(몸 중심)과 머리 |
+| `I` 1회 | 사건의 지평선·구체 | 머리 위에 큰 구체를 띄운다. 3초 동안 둘레 345px 안의 적·몬스터(방어 중이어도)가 구체 둘레를 돈다. Nova는 그동안 자유롭다. | 구체 높이 몸 중심 위 150 `[ULTIMATE_SPHERE_HEIGHT]`, 3초, 잡는 반경 `230×COMBAT`, 도는 반경 `75×COMBAT`(112px), 회전 3.2rad/s | `slingshot_start` 전체 | `vfx/nova_ult_core` 2.2배 + 도는 고리 2개(`_create_singularity_visual`) | 그림(임시 크기) | 구체 크기, 도는 반경 112 |
+| `I` 다시(누르고 있기) | 사건의 지평선·공전과 사출 | 누르고 있는 동안 Nova도 구체 둘레를 돌고(예상 궤적 표시), 떼면 누르고 있던 방향(없으면 궤도 접선)으로 날아가 부딪힌 적에게 피해와 중첩 1. 사출하면 구체가 떨어진다. 봇은 한 번 더 눌러 사출한다. | 공전 반경 `60~200×COMBAT`, 속도 900; 사출 `1150×WORLD` 0.4초, 몸 반경 `42×COMBAT`, 피해 14, 넉백 520 `[ULTIMATE_LAUNCH_*]` | 몸이 진행 방향으로 회전 | `nova_launch_flash`, 예상선 `Line2D` | 그림 | 사출 방향·거리 |
+| `I` 끝 | 사건의 지평선·낙하 | 3초가 지나거나, Nova가 사출하거나, 공전·사출 중 Nova가 맞으면 구체가 떨어진다. 아래 발판에 닿으면(없으면 1초 뒤) 터지며 돌던 적에게 피해와 중첩 1. | 낙하 가속 2600, 최대 1100, 최대 1초 `[ULTIMATE_FALL_*]`; 폭발 피해 16, 넉백 600, 반경 `120×COMBAT` `[ULTIMATE_COLLAPSE_*]` | 없음 | `vfx/nova_ult_burst`, `nova_impact_star` | 그림 | 터지는 자리(발판 위) |
 | Guard | 공용 방어/패리 | 공용 지상 방어다. | 공용 조작 절 참고 | `shield` 전체 | `guard_bubble.png`, `parry_flash.png` | 공용 | 방향, 패리 창, 감소율 |
 
-특수 상태: 운동량은 게이지가 아니라 `velocity.length()`에서 매번 계산한다. K는 공격이 아니며 J나 L을 누르면 즉시 끝난다. 궁극기는 핵 생성 → 공전 → 투석의 세 번 입력이고, 공전·투석 중 피격되면 핵·판정·예고선을 모두 지운다.
+특수 상태: 중첩·고정은 `PlayerBase`에 있어 누구나 받는다(쌓는 것은 Nova뿐). 고정은 다른 위치 고정(잡기, 끌기, 궁극기 공전)보다 우선한다. 고정 중에는 순간이동·날개 돌진이 막힌다(Luna 반짝 도약·별의 정화, Rio 차원의 베기, Frey 날개). 필드 안 Nova는 `apply_character_gravity`로 난다. 몬스터는 `RealmMonster.apply_gravity_float`·`apply_gravity_hold`로 뜨고 붙잡힌다.
 
 ## Rio
 
@@ -198,6 +194,13 @@
 | 12 | Brave 별의 회오리·혜성 붙잡기 | **회오리 그림(2026-11-03 적용)** | 도는 동안 VFX-04 B안, 쏜 회오리 A안. 몸 동작 줄 `brave_grab` 후보는 사용자 선택 대기, `brave_cyclone`은 보류(다시 그림) | 반경 120, 탄 105×150 |
 | 13 | Luna 스킬 아이콘 | **그림(2026-11-03 적용)** | VFX-04 `luna_j`·`luna_k`·`luna_l`·`luna_brave_k`·`luna_brave_l` | 새 기술 |
 | 14 | Brave 별의 광선 | 하트 광선 그대로 | 별 모양 광선으로 바꿀지 사용자가 정한다 | 840×168, 3초 |
+| 15 | Nova 중력 중첩 표시·고정 | **다시 그림** | 머리 위 3단계 표시(지금 코드 점 3개), 고정 중 발밑 고리 | 상태 아이콘 줄 위, 3단계 |
+| 16 | Nova 중력 구체·폭발 | **다시 그림** | 날아가는 구체(지금 궁극기 핵을 작게)와 터짐(지금 중력 폭발) | 45px, 반경 135 |
+| 17 | Nova 중력 필드 | **다시 그림** | 큰 반복 그림(지금 코드 원) | 반경 300, 6초 |
+| 18 | Nova 중력 광선 | **다시 그림** | 광선 머리와 줄(지금 코드 선), 끌기·내리꽂기 | 26×18, 약 620px |
+| 19 | Nova 사건의 지평선 구체 | **다시 그림** | 거대 구체(지금 핵 그림 2.2배), 낙하와 폭발 | 도는 반경 112 |
+| 20 | Nova 스킬 아이콘 | **다시 그림** | `nova_j`·`nova_k`·`nova_l`·`nova_i`와 새 `nova_u`(없으면 스킬 바에 글자 U) | 새 기술 |
+| 21 | Nova 몸 동작 줄 | **다시 그림** | 구체 던지기, 필드 펼치기, 광선, 필드 안 비행 | 지금 `gravity_brake`·`slingshot_start`·`vector_side` 빌림 |
 
 5~13의 이펙트는 2026-11-03 사용자 선택으로 넣었다(Frey 날개 A·검기 B·강림 빛 B·슬로우 모래시계, Luna 회오리 투사체 A·회전 중 B·나머지 B와 하나뿐인 후보; `reports/vfx-picks-2026-11-03/`). 남은 것: Frey K 아이콘 A/B와 몸 동작 줄 후보(`wing_hover`, `star_warp`, `brave_grab`)는 사용자 선택 대기, `whirl_spin`·`brave_cyclone`은 다시 그림.
 

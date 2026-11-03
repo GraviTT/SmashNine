@@ -59,6 +59,8 @@ func _hit_body(body: Node) -> void:
 		return
 	if source.has_method("on_attack_landed"):
 		source.on_attack_landed(global_position, damage, knockback)
+	if source.has_method("on_nova_body_hit"):
+		source.on_nova_body_hit(body)
 	if end_on_hit and source.has_method("on_nova_ultimate_contact"):
 		source.on_nova_ultimate_contact(global_position)
 

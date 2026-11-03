@@ -158,7 +158,7 @@ const FIGHTER_ATTACKER_MEMORY := 8.0
 ## Rio reached a floor 2 of 10 times, 2 of 4 with the limit in round 4), aimed a little above
 ## it; the last chance near the bottom of the realm still takes it. Frey (18 of 19) and Nova
 ## go from anywhere (Nova with the limit: 3 of 21 instead of 3 of 15, round 4).
-const RECOVERY_SKILL_REACH := {"nova": 100000.0, "rio": 290.0}
+const RECOVERY_SKILL_REACH := {"rio": 290.0}
 const RECOVERY_SKILL_AIM_ABOVE := 60.0
 ## At most this many recovery-skill uses per recovery (round 6: Frey dashed 437 times, 416 of
 ## them in two long recoveries).
@@ -184,17 +184,12 @@ const DISENGAGE_COOLDOWN := 10.0
 const BACK_OFF_TIME := 4.0
 ## Players outrank monsters once this few fighters remain (QA-14: 4).
 const FEW_LEFT := 4
-## Nova's slingshot (debate): orbit after 0.25-0.4 s, launch when the orbit's tangent points
-## within 20 degrees of where the target will be (0.15 s ahead), forced at 0.8 s; 0.12-0.2 s
-## after launch, redirect with skill one (75%) if still more than 25 degrees off.
+## Nova's event horizon (debate, kept for D47): orbit after 0.25-0.4 s, launch when the orbit's
+## tangent points within 20 degrees of where the target will be (0.15 s ahead), forced at 0.8 s.
 const NOVA_ORBIT_DELAY_MIN := 0.25
 const NOVA_ORBIT_DELAY_MAX := 0.4
 const NOVA_LAUNCH_ANGLE := 20.0
 const NOVA_LAUNCH_LATEST := 0.8
-const NOVA_REDIRECT_DELAY_MIN := 0.12
-const NOVA_REDIRECT_DELAY_MAX := 0.2
-const NOVA_REDIRECT_ANGLE := 25.0
-const NOVA_REDIRECT_CHANCE := 0.75
 const TARGET_LEAD_TIME := 0.15
 const PASSIVE_PLAYER_PENALTY := 900.0 * GAME_SCALE.WORLD
 const DISENGAGE_HP_RATIO := 0.3
@@ -205,7 +200,7 @@ const VENT_MARGIN := 40.0
 ## profile for everyone erased Yuki's range). "kite" fighters back off when crowded.
 const COMBAT_PROFILES := {
 	"frey": {"min_range": 45.0, "max_range": 170.0, "attack_range": 200.0, "kite": false, "recovery_skill": false},
-	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false, "recovery_skill": true},
+	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false, "recovery_skill": false},
 	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
 	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true, "basic_reach": 240.0},
 	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true, "basic_reach": 120.0}
@@ -283,7 +278,6 @@ var escape_cooldown: float = 0.0
 var attack_age: float = 100.0
 var back_off_timer: float = 0.0
 var nova_stage_timer: float = -1.0
-var nova_redirect_timer: float = -1.0
 var debug_reason: String = ""
 ## -1: no spike planned for the current window; otherwise seconds until the re-press.
 var spike_delay: float = -1.0
@@ -365,7 +359,6 @@ func reset(position: Vector2) -> void:
 	progress_target = null
 	progress_timer = 0.0
 	nova_stage_timer = -1.0
-	nova_redirect_timer = -1.0
 	state = STATE_WANDER
 	target = null
 	target_lock_timer = 0.0
@@ -737,8 +730,8 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 		attack_name = "skill_2"
 	if attack_name == "skill_1" and not _mobility_skill_is_safe(player):
 		attack_name = "basic" if distance_x <= 195.0 * GAME_SCALE.COMBAT else "skill_2"
-	# Nova's vector shift closes distance; Yuki's binding talisman needs a target close and on
-	# the same level (QA-14: 2.4% and 5.7% hit rates when thrown at any range).
+	# Nova's gravity orb at close range only wastes the chain (D47); Yuki's binding talisman needs
+	# a target close and on the same level (QA-14: 2.4% and 5.7% hit rates when thrown at any range).
 	if attack_name == "skill_1" and player.character_id == "nova" and distance_x < float(profile.attack_range) * 0.5:
 		attack_name = "basic"
 	if attack_name == "skill_1" and player.character_id == "yuki" and (distance_x > float(profile.attack_range) * 0.7 or distance_y > NAV_SAME_LEVEL):
@@ -758,7 +751,7 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 	return attack_name
 
 func _mobility_skill_is_safe(player) -> bool:
-	if not ["nova", "rio"].has(player.character_id):
+	if player.character_id != "rio":
 		return true
 	if not player.is_on_floor():
 		return false
@@ -1439,7 +1432,7 @@ func _attack_aim(player, attack_name: String) -> Vector2:
 	if offset.length() < 1.0:
 		return Vector2(float(player.facing), 0.0)
 	var side: float = signf(offset.x) if absf(offset.x) > 1.0 else float(player.facing)
-	if attack_name == "skill_1" and ["nova", "rio"].has(player.character_id):
+	if attack_name == "skill_1" and player.character_id == "rio":
 		var dash := offset.normalized()
 		dash.y = minf(dash.y, 0.2)
 		return dash.normalized()
@@ -1601,22 +1594,19 @@ func _ultimate_score(player) -> int:
 		if other != player and other != target and _is_valid_target_candidate(player, other) and other.global_position.distance_to(target.global_position) <= 260.0 * GAME_SCALE.COMBAT:
 			score += 1
 			break
-	if player.character_id == "nova" and not _mobility_skill_is_safe(player):
-		score -= 3
 	# Luna's ultimate is a 6 s transformation: worth more while she can stay in the fight.
 	if player.character_id == "luna" and float(player.hp) / maxf(float(player.max_hp), 1.0) >= 0.5:
 		score += 1
 	return score
 
-## Nova's three-press slingshot, aimed: orbit shortly after the core, launch when the tangent
-## points at the target (or at 0.8 s), then redirect once if the launch is off.
+## Nova's event horizon (D47), aimed: join the sphere's orbit shortly after it appears, then
+## press again (a player lets go) when the tangent points at the target (or at 0.8 s).
 func _drive_nova_slingshot(player, delta: float) -> void:
 	if player.character_id != "nova":
 		return
 	var phase := int(player.get("ultimate_phase"))
 	if phase == 0:
 		nova_stage_timer = -1.0
-		nova_redirect_timer = -1.0
 		return
 	if phase == 1:
 		if nova_stage_timer < 0.0:
@@ -1642,16 +1632,7 @@ func _drive_nova_slingshot(player, delta: float) -> void:
 			tolerance = 30.0
 		if nova_stage_timer >= NOVA_LAUNCH_LATEST or rad_to_deg(absf(tangent.angle_to(wanted))) <= tolerance:
 			player.ultimate()
-			nova_redirect_timer = randf_range(NOVA_REDIRECT_DELAY_MIN, NOVA_REDIRECT_DELAY_MAX)
 		return
-	if phase == 3 and nova_redirect_timer >= 0.0:
-		nova_redirect_timer -= delta
-		if nova_redirect_timer < 0.0 and is_instance_valid(target):
-			var wanted_launch: Vector2 = (_predicted_target_position() - player.global_position).normalized()
-			var launch: Vector2 = player.ultimate_launch_direction
-			if rad_to_deg(absf(launch.angle_to(wanted_launch))) > NOVA_REDIRECT_ANGLE and randf() < NOVA_REDIRECT_CHANCE:
-				aim_direction = wanted_launch
-				player.skill_one()
 
 ## Living opponents in a realm (for choosing where to retreat).
 func _opponents_in_realm(player, realm: int) -> int:

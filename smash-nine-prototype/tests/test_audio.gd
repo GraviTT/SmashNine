@@ -156,10 +156,11 @@ func _probe_hooks() -> void:
 		actor.realm_index = main.current_map_index
 		actor.set_physics_process(false)
 		actor.global_position = Vector2(0, -300)
-		for slot in ["1", "2", "ult"]:
+		for slot in ["1", "2", "3", "ult"]:
 			_reset_action(actor)
 			if slot == "1": actor.skill_one()
 			elif slot == "2": actor.skill_two()
+			elif slot == "3": actor.skill_three()
 			else: actor.ultimate()
 			actor.cancel_pending_actions()
 		if id == "luna":
@@ -170,12 +171,9 @@ func _probe_hooks() -> void:
 				elif slot == "2": actor.skill_two()
 				else: actor.ultimate()
 				actor.cancel_pending_actions()
-		if id in ["rio", "nova"]:
+		if id == "rio":
 			_reset_action(actor)
-			if id == "rio":
-				actor.air_blink_available = false
-			else:
-				actor.air_vector_shift_available = false
+			actor.air_blink_available = false
 			var before: int = manager.requests.get("skill_%s_1" % id, 0)
 			actor.skill_one()
 			_check(int(manager.requests.get("skill_%s_1" % id, 0)) == before, "Rejected airborne skill must not sound: " + id)
@@ -554,7 +552,7 @@ func _reset_action(actor: Node) -> void:
 		actor.air_blink_available = true
 		actor.rune_cooldown_timer = 0.0
 	elif actor.character_id == "nova":
-		actor.air_vector_shift_available = true
+		actor.field_cooldown_timer = 0.0
 		actor.ultimate_phase = actor.ULTIMATE_NONE
 
 func _tone(seconds := 1.0) -> AudioStreamWAV:
