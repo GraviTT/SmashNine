@@ -1,0 +1,783 @@
+{
+  "selection": {
+    "stem": "nova_male",
+    "row": "field_fly",
+    "attempt": 1,
+    "accepted": true,
+    "fps": 10,
+    "loop": true,
+    "factor": 0.373,
+    "face_verified": true,
+    "costume_ok": true,
+    "pose_ok": true,
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "note": "양손을 편 채 다리를 모으고 발끝을 아래로 향한 차분한 비행 반복 후보입니다. 노출 얼굴 폭 1.000이며 발끝 y152 고정, 기준에서 가려진 반대쪽 눈 때문에 눈 간 거리는 측정 불가입니다.",
+    "for": "L 중력 필드 안 비행",
+    "attempt_notes": "1차 생성 사용. 공통 배율 0.373에서 전신·얼굴·F6→F1 보드를 직접 확인했다. 표식 수동 수정 없음. 원본의 전체 상하 이동은 발 기준선에 맞추며, 정규화 뒤 상체·무릎 변화는 작게 남는다.",
+    "human_review": "F6→F1 반복 연결, 작은 상체·무릎 움직임이 비행으로 충분히 읽히는지, 대기보다 다리를 편 실루엣을 모션 뷰어에서 판단."
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-05\\nova_male\\field_fly\\attempt-1\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        4
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.373,
+      "scale_by": "fixed:0.373",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        105,
+        107
+      ],
+      "body_width_range": [
+        59,
+        60
+      ],
+      "area_range": [
+        3077,
+        3176
+      ],
+      "area_spread_percent": 3.12,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        2600,
+        2702
+      ],
+      "interior_detail_range": [
+        113.44,
+        115.86
+      ],
+      "interior_detail_mean": 115.0,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 93.13,
+      "interior_detail_ratio": 1.2348
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 93.13,
+          "colour_count": 2768,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 93.13,
+      "colour_count_range": [
+        2768,
+        2768
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-05/nova_male/field_fly/attempt-1/source-frames/00.png",
+        "bbox": [
+          67,
+          47,
+          126,
+          153
+        ],
+        "body_height": 106,
+        "body_width": 59,
+        "area": 3077,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 115.36,
+        "colour_count": 2600,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 67,
+          "top": 47,
+          "right": 66,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2387
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-05/nova_male/field_fly/attempt-1/source-frames/01.png",
+        "bbox": [
+          66,
+          46,
+          126,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 60,
+        "area": 3151,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 114.41,
+        "colour_count": 2658,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 66,
+          "top": 46,
+          "right": 66,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2285
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-05/nova_male/field_fly/attempt-1/source-frames/02.png",
+        "bbox": [
+          67,
+          48,
+          127,
+          153
+        ],
+        "body_height": 105,
+        "body_width": 60,
+        "area": 3146,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 115.86,
+        "colour_count": 2681,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 67,
+          "top": 48,
+          "right": 65,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2441
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-05/nova_male/field_fly/attempt-1/source-frames/03.png",
+        "bbox": [
+          67,
+          46,
+          127,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 60,
+        "area": 3165,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 113.44,
+        "colour_count": 2702,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 67,
+          "top": 46,
+          "right": 65,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2181
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-05/nova_male/field_fly/attempt-1/source-frames/04.png",
+        "bbox": [
+          66,
+          46,
+          126,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 60,
+        "area": 3153,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 115.78,
+        "colour_count": 2679,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 66,
+          "top": 46,
+          "right": 66,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2432
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-05/nova_male/field_fly/attempt-1/source-frames/05.png",
+        "bbox": [
+          66,
+          46,
+          126,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 60,
+        "area": 3176,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 115.13,
+        "colour_count": 2677,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 66,
+          "top": 46,
+          "right": 66,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2362
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-05/nova_male/field_fly/attempt-1/nova_male-field_fly.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-05/nova_male/field_fly/attempt-1/frames",
+      "closeup": "reports/codex-skm-05/nova_male/field_fly/attempt-1/closeup.png",
+      "compare": "reports/codex-skm-05/nova_male/field_fly/attempt-1/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        72.5,
+        57,
+        3,
+        4
+      ],
+      [
+        79.5,
+        56,
+        2,
+        3
+      ],
+      [
+        65.5,
+        60,
+        3,
+        4
+      ],
+      [
+        80,
+        60,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 72.474,
+        "y": 57.807,
+        "score": 1
+      },
+      {
+        "x": 80.259,
+        "y": 57.12,
+        "score": 1
+      },
+      {
+        "x": 65.5,
+        "y": 60,
+        "score": 1
+      },
+      {
+        "x": 80,
+        "y": 60,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 7.815253930615431,
+    "reference_face_width": 14.5,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 102.789,
+            "y": 75.831,
+            "score": 0.88
+          },
+          {
+            "x": 110.133,
+            "y": 74.747,
+            "score": 0.911
+          },
+          {
+            "x": 95.5,
+            "y": 78.0,
+            "score": 0.847
+          },
+          {
+            "x": 110.0,
+            "y": 78.0,
+            "score": 0.824
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          86,
+          56,
+          0.765
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 102.045,
+            "y": 75.003,
+            "score": 0.947
+          },
+          {
+            "x": 109.311,
+            "y": 74.152,
+            "score": 0.941
+          },
+          {
+            "x": 95.5,
+            "y": 78.0,
+            "score": 0.869
+          },
+          {
+            "x": 110.0,
+            "y": 78.0,
+            "score": 0.912
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          1.02,
+          85,
+          54,
+          0.753
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 103.267,
+            "y": 76.993,
+            "score": 0.904
+          },
+          {
+            "x": 111.037,
+            "y": 75.985,
+            "score": 0.934
+          },
+          {
+            "x": 96.5,
+            "y": 80.0,
+            "score": 0.897
+          },
+          {
+            "x": 111.0,
+            "y": 80.0,
+            "score": 0.765
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          87,
+          57,
+          0.736
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 102.728,
+            "y": 75.062,
+            "score": 0.948
+          },
+          {
+            "x": 110.215,
+            "y": 74.148,
+            "score": 0.942
+          },
+          {
+            "x": 96.5,
+            "y": 78.0,
+            "score": 0.867
+          },
+          {
+            "x": 111.0,
+            "y": 78.0,
+            "score": 0.934
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          86,
+          55,
+          0.762
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 101.935,
+            "y": 74.853,
+            "score": 0.966
+          },
+          {
+            "x": 109.146,
+            "y": 73.842,
+            "score": 0.932
+          },
+          {
+            "x": 95.5,
+            "y": 77.0,
+            "score": 0.844
+          },
+          {
+            "x": 110.0,
+            "y": 78.0,
+            "score": 0.909
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          86,
+          55,
+          0.765
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 102.629,
+            "y": 74.848,
+            "score": 0.903
+          },
+          {
+            "x": 110.14,
+            "y": 73.711,
+            "score": 0.87
+          },
+          {
+            "x": 95.5,
+            "y": 77.0,
+            "score": 0.836
+          },
+          {
+            "x": 110.0,
+            "y": 76.0,
+            "score": 0.725
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 14.5,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye is occluded by bangs, as recorded in SKM-02; not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          86,
+          55,
+          0.762
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      }
+    ],
+    "review_note": "Inspected ART-72 landmarks; corrections, if any, retain the original proposal and reason. Same row factor; no image editing. Eye distance remains unavailable.",
+    "sheet_sha256": "778bd66b6b3bde4042205a12936a10dc581d6d3a23cfc3cc82a5927ad14642a5"
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-05\\nova_male\\field_fly\\attempt-1\\nova_male-field_fly.png",
+    "frames": [
+      {
+        "scale": 0.96,
+        "score": 0.767
+      },
+      {
+        "scale": 1.02,
+        "score": 0.754
+      },
+      {
+        "scale": 0.96,
+        "score": 0.737
+      },
+      {
+        "scale": 1.0,
+        "score": 0.762
+      },
+      {
+        "scale": 0.96,
+        "score": 0.764
+      },
+      {
+        "scale": 0.96,
+        "score": 0.765
+      }
+    ],
+    "median": 0.96,
+    "used": 6
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-05\\nova_male-field_fly-1.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      22788,
+      22782,
+      22713,
+      22524,
+      22499,
+      22308
+    ],
+    "boxes": [
+      [
+        124,
+        220,
+        283,
+        505
+      ],
+      [
+        475,
+        212,
+        635,
+        498
+      ],
+      [
+        826,
+        200,
+        986,
+        482
+      ],
+      [
+        1178,
+        212,
+        1338,
+        498
+      ],
+      [
+        1532,
+        229,
+        1693,
+        517
+      ],
+      [
+        1887,
+        220,
+        2047,
+        507
+      ]
+    ]
+  },
+  "sheet_sha256": "778bd66b6b3bde4042205a12936a10dc581d6d3a23cfc3cc82a5927ad14642a5"
+}
