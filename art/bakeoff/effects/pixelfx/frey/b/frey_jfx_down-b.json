@@ -1,0 +1,23 @@
+{
+  "note": "지상의 15도 내려 베기를 따라 금빛 검날 조각이 남고 쇳불꽃이 발 높이에서 튄다.",
+  "frames": 15,
+  "fps": 20,
+  "anchor": [
+    35,
+    90
+  ],
+  "blend": "add",
+  "attach": "Frey jfx_down: 해당 J 판정 활성 순간, frey_slash와 같은 몸 중심. 오른쪽 기준 15도 내장, 좌우 반전만 하고 회전·확대하지 않음. 생성 위치에 남음.",
+  "source": "art/bakeoff/effects/pixelfx/frey/b/src/sn-frey-jfx-down-b.js",
+  "frame_size": [
+    300,
+    150
+  ],
+  "loop": false,
+  "duration": 0.75,
+  "start_delay": 0,
+  "aim_degrees": 15,
+  "reach": 157,
+  "floor_y": 32,
+  "candidate": "B"
+}
