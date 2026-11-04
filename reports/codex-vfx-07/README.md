@@ -38,7 +38,7 @@
 ## 확인 방법
 
 - 실제 Frey 셀 위에서 98프레임 모두를 1배와 4배로 보았습니다(`visual-review.json`, 4배 확대는 `qa/`).
-- 다시 만들기: `node art/bakeoff/effects/pixelfx/frey/b/bake.mjs` → `node reports/codex-vfx-07/audit.mjs`, `preview.mjs`, `delivery.mjs`
+- 다시 만들기: `node art/bakeoff/effects/pixelfx/frey/b/bake.mjs --pilot`(VFX-08부터 옵션 없이 돌리면 그 카드의 시트를 굽습니다) → `node reports/codex-vfx-07/audit.mjs`, `preview.mjs`, `delivery.mjs`
 
 ## 사람이 판단할 것
 
