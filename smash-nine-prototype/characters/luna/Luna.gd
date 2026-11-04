@@ -186,14 +186,17 @@ func get_sheet_rows() -> Array:
 
 ## pixelfx motion effects (user 2026-11-04, reports/pixelfx-eval-2026-11-03/): in her idle, stars
 ## twinkle round her outline (none on her head or face), the wand glints and three stars circle her
-## waist; normal Luna only, the twinkles sit on her outline. Her landings scatter pink stardust.
+## waist; normal Luna only, the twinkles sit on her outline. Her landings scatter pink stardust: the
+## clear v2 after a big jump or fall, the earlier small v1 after a small one (user 2026-11-04). A held
+## jump falls about 220 px, a tapped one (JUMP_CUT_MULTIPLIER) 50-110 px.
 const MOTION_OVERLAYS := {&"luna_idle": "luna_idle_stars"}
+const BIG_LANDING_DROP := 130.0
 
 func get_motion_overlays() -> Dictionary:
 	return MOTION_OVERLAYS
 
-func character_landing_effect() -> String:
-	return "luna_land_stardust"
+func character_landing_effect(drop: float) -> String:
+	return "luna_land_stardust" if drop >= BIG_LANDING_DROP else "luna_land_stardust_small"
 
 ## Brave Luna's own sheet (CODEX-ART-06), cut like the normal one into luna_brave_*.
 func _add_brave_sheet() -> void:

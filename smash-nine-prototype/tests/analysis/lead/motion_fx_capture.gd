@@ -1,7 +1,8 @@
 extends SceneTree
 ## Lead capture (2026-11-04, D48): the pixelfx motion effects in the game: Luna idling (her stars),
 ## then jumping in place and landing (her stardust); Frey running (step dust); Frey's three J cuts
-## (sparks after each slash). Frame sequences at 30 fps, camera zoom 2 (1 art px = 2 screen px).
+## (sparks after each slash); Luna tapping then holding jump (small, then big landing stardust). Frame
+## sequences at 30 fps, camera zoom 2 (1 art px = 2 screen px).
 ## Windowed run (not headless):
 ## <godot> --path . --fixed-fps 60 -s tests/analysis/lead/motion_fx_capture.gd -- --out=<dir>
 
@@ -50,6 +51,19 @@ func _run() -> void:
 			shot = await _record("frey_chain", frey, shot, 1)
 		frey.basic_attack()
 	await _record("frey_chain", frey, shot, 44)
+	# 4. Luna's landings by height (user 2026-11-04): a tapped jump (small stardust), then a held one (big).
+	await _scene(Vector2(0, -110))
+	luna = _fighter("luna", 1, Vector2(0, -2), true)
+	await _frames(30)
+	shot = await _record("luna_hops", luna, 0, 6)
+	Input.action_press("jump")
+	shot = await _record("luna_hops", luna, shot, 1)
+	Input.action_release("jump")
+	shot = await _record("luna_hops", luna, shot, 40)
+	Input.action_press("jump")
+	shot = await _record("luna_hops", luna, shot, 14)
+	Input.action_release("jump")
+	await _record("luna_hops", luna, shot, 46)
 	print("CAPTURE_DONE ", out_dir)
 	quit(0)
 

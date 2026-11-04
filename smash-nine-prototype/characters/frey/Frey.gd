@@ -76,9 +76,10 @@ func get_sheet_rows() -> Array:
 	return SHEET_ROWS
 
 ## pixelfx motion effects (user 2026-11-04, reports/pixelfx-eval-2026-11-03/): dust behind the front
-## foot on the two walk drawings where it lands (the 4th and 8th; x of that foot from her feet), and
-## sparks with gold glints after each J cut (_spawn_slash_sparks).
-const STEP_DUST := [[&"frey_walk", 3, "frey_step_dust", 18.0], [&"frey_walk", 7, "frey_step_dust", 21.0]]
+## foot on the two walk drawings where it lands (the 4th and 8th; x of that foot from her feet), over
+## the 4 drawings of one step ("Frey의 발걸음 속도에 맞춰서"), and sparks with gold glints after each J
+## cut (_spawn_slash_sparks).
+const STEP_DUST := [[&"frey_walk", 3, "frey_step_dust", 18.0, 4], [&"frey_walk", 7, "frey_step_dust", 21.0, 4]]
 
 func get_motion_frame_effects() -> Array:
 	return STEP_DUST

@@ -1,9 +1,10 @@
 extends SceneTree
 ## pixelfx motion effects (user 2026-11-04: "현재 테스트로 만든 것들 전부 게임에 넣어볼 것"): Luna's idle
 ## stars loop over her while she idles (normal form only) and turn with her; a landing from a jump
-## scatters her stardust, never the grey dust, and a tiny drop shows nothing; Frey kicks up dust on
-## the walk drawings where a foot lands, only while she runs, behind her in either direction; each J
-## cut draws its own sparks with the slash. Presentation only: nothing in the plain style (F2).
+## scatters her stardust, never the grey dust: the clear one after a big fall, the small one after a
+## small one (user 2026-11-04), and a tiny drop shows nothing; Frey kicks up dust on the walk drawings
+## where a foot lands, only while she runs, behind her in either direction, each puff over one step;
+## each J cut draws its own sparks with the slash. Presentation only: nothing in the plain style (F2).
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
@@ -13,9 +14,11 @@ var arena: Node2D
 var failed := false
 ## The Vfx strips of the sprites added to the arena, in order ("" for other nodes).
 var spawned: Array[String] = []
-## The running Frey, and each of her step dusts seen from her feet: [x, y, scale.x].
+## The running Frey, and each of her step dusts seen from her feet: [x, y, scale.x], and how long
+## each one plays (seconds).
 var runner: Node
 var steps: Array[Vector3] = []
+var step_spans: Array[float] = []
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -91,6 +94,8 @@ func _note_step(node: Node) -> void:
 	if is_instance_valid(node) and is_instance_valid(runner):
 		var offset: Vector2 = node.global_position - runner.global_position
 		steps.append(Vector3(offset.x, offset.y, node.scale.x))
+		var sprite := node as AnimatedSprite2D
+		step_spans.append(sprite.sprite_frames.get_frame_count(&"play") / (sprite.sprite_frames.get_animation_speed(&"play") * sprite.speed_scale))
 
 func _count(effect: String) -> int:
 	return spawned.count(effect)
@@ -132,7 +137,7 @@ func _test_luna_idle_stars() -> void:
 	if luna.character_sprite.animation != &"luna_brave_idle" or luna.motion_overlay != null:
 		_fail("Brave Luna's idle has no stars (they sit on normal Luna's outline; plays %s)" % luna.character_sprite.animation)
 	luna.transformed = false
-	if _count("luna_land_stardust") != 0:
+	if _count("luna_land_stardust") != 0 or _count("luna_land_stardust_small") != 0:
 		_fail("A one-pixel drop onto the floor should not scatter stardust")
 	await _remove(luna)
 
@@ -146,13 +151,24 @@ func _test_luna_landing() -> void:
 	if not luna.is_on_floor():
 		_fail("Test setup: Luna should land")
 	await _frames(2)
-	if _count("luna_land_stardust") != 1 or _count("landing_dust") != 0:
-		_fail("Luna's landing from a fall should scatter one stardust and no grey dust (%s)" % [spawned])
+	if _count("luna_land_stardust") != 1 or _count("luna_land_stardust_small") != 0 or _count("landing_dust") != 0:
+		_fail("Luna's landing from a big fall should scatter the clear stardust once, nothing else (%s)" % [spawned])
 	# A landing that ends an action shows her stardust in place of the grey dust too.
 	spawned.clear()
 	luna._spawn_landing_puff()
 	if _count("luna_land_stardust") != 1 or _count("landing_dust") != 0:
 		_fail("Luna's action landing should show stardust, not the grey dust (%s)" % [spawned])
+	await _remove(luna)
+	# A small fall (a tapped jump falls 50-110 px) shows the small stardust.
+	spawned.clear()
+	luna = _fighter("luna", 2, Vector2(600, -70))
+	for frame in 120:
+		await physics_frame
+		if luna.is_on_floor():
+			break
+	await _frames(2)
+	if _count("luna_land_stardust_small") != 1 or _count("luna_land_stardust") != 0 or absf(luna.landing_drop - 69.0) > 2.0:
+		_fail("Luna's landing from a small fall should scatter the small stardust (drop %s, %s)" % [luna.landing_drop, spawned])
 	await _remove(luna)
 	# Frey keeps the old rule: no dust on a plain landing.
 	spawned.clear()
@@ -175,8 +191,10 @@ func _test_frey_step_dust() -> void:
 		_fail("Frey standing still should not kick up dust")
 	# The dust sits on the front foot of the drawing (18 or 21 px ahead of her feet) and trails
 	# behind her: drawn facing her way.
+	var step_time: float = 4.0 / runner.character_sprite.sprite_frames.get_animation_speed(&"frey_walk")
 	for side in [1, -1]:
 		steps.clear()
+		step_spans.clear()
 		var action := "move_right" if side > 0 else "move_left"
 		Input.action_press(action)
 		await _frames(80)
@@ -188,6 +206,11 @@ func _test_frey_step_dust() -> void:
 			var on_foot := is_equal_approx(step.x, 18.0 * side) or is_equal_approx(step.x, 21.0 * side)
 			if not on_foot or absf(step.y) > 0.01 or signf(step.z) != float(side):
 				_fail("Step dust on her front foot, drawn her way (from the feet %s, scale %s, side %d)" % [Vector2(step.x, step.y), step.z, side])
+				break
+		# Each puff plays out within the step it marks (4 walk drawings), not over two.
+		for span in step_spans:
+			if absf(span - step_time) > step_time * 0.01:
+				_fail("A step dust should last one step (%.3f s, step %.3f s)" % [span, step_time])
 				break
 		await _frames(30)
 	await _remove(runner)
@@ -227,7 +250,7 @@ func _test_plain_style() -> void:
 	spawned.clear()
 	frey._combo_slash_one()
 	luna._spawn_landing_puff()
-	if luna.motion_overlay != null or _count("frey_slash_sparks_1") != 0 or _count("luna_land_stardust") != 0:
+	if luna.motion_overlay != null or _count("frey_slash_sparks_1") != 0 or _count("luna_land_stardust") != 0 or _count("luna_land_stardust_small") != 0:
 		_fail("The plain style should draw none of the motion effects (overlay %s, %s)" % [luna.motion_overlay, spawned])
 	ART_SETTINGS.style = ART_SETTINGS.STYLE_ORIGINAL
 	await _frames(2)

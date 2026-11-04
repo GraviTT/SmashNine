@@ -21,8 +21,8 @@
 - `Attack.gd` 판정과 `source.on_attack_landed`를 부르는 투사체가 적중하면 공격자별 `assets/art/effects/hit/<id>_hit.png`, 공용 `hit_streak.png`가 나온다. 공중 공격 착지에는 공용 `landing_dust.png`가 나올 수 있다. 맞은 쪽의 `apply_hit`도 공격자의 `hit/<id>_hit.png`를 몸 위치에 그리므로, 모든 적중(투사체 포함)에 공격자 색의 불꽃이 나온다. Rio의 일반 마력 검기는 `on_attack_landed`를 부르지 않아 `hit_streak`과 공격자 경직만 없다.
 - pixelfx 동작 이펙트(2026-11-04, D48; 파일 계약 `assets/art/effects/motion/README.md`):
   - Luna(노말)가 대기하는 동안 `motion/luna_idle_stars.png`가 몸에 붙어 반복한다(발 기준, 바라보는 쪽으로 뒤집음, 다른 동작이 되면 바로 꺼짐). Brave에는 없다.
-  - Luna는 공중 0.12초 이상 뒤 착지마다(착지 소리와 같은 조건) `motion/luna_land_stardust.png`를 발 위치에 남긴다. 행동 뒤 착지의 `landing_dust.png`도 Luna는 이것으로 바뀐다(Brave 포함).
-  - Frey가 달리면 걷기 줄 4·8번째 그림(앞발이 닿는 순간)에 `motion/frey_step_dust.png`가 그 발 자리(발에서 앞으로 18·21px)에 남는다. 서 있거나 벽을 밀 때, 수풀에 숨었을 때는 없다. 걷기 그림이 바뀌면 `Frey.STEP_DUST`의 그림 번호와 발 위치를 다시 잰다.
+  - Luna는 공중 0.12초 이상 뒤 착지마다(착지 소리와 같은 조건) 별가루를 발 위치에 남긴다. 130px 이상 떨어지면 `motion/luna_land_stardust.png`(큰 것), 그보다 낮으면 `motion/luna_land_stardust_small.png`(작은 것)다(사용자 2026-11-04). 행동 뒤 착지의 `landing_dust.png`도 Luna는 이것으로 바뀐다(Brave 포함).
+  - Frey가 달리면 걷기 줄 4·8번째 그림(앞발이 닿는 순간)에 `motion/frey_step_dust.png`가 그 발 자리(발에서 앞으로 18·21px)에 남는다. 먼지 하나는 걷기 그림 4장(한 걸음) 안에 다 재생된다(사용자 2026-11-04: "발걸음 속도에 맞춰서"). 서 있거나 벽을 밀 때, 수풀에 숨었을 때는 없다. 걷기 그림이 바뀌면 `Frey.STEP_DUST`의 그림 번호와 발 위치를 다시 잰다.
   - 공용 부품: `PlayerBase.get_motion_overlays`(몸에 붙는 반복), `get_motion_frame_effects`(그림 번호에 맞춘 한 번), `character_landing_effect`(착지).
 
 ## 공용 조작
@@ -213,7 +213,7 @@
 - 공격자별 `hit/<id>_hit.png`: 96×96, 4프레임, 44fps
 - `hit_streak.png`: 160×24, 4프레임. 길이는 넉백에 따라 `46~92×COMBAT`
 - `landing_dust.png`: 96×32, 5프레임
-- pixelfx 동작 이펙트(D48): `motion/` 6장 — `luna_idle_stars` 128×128 16프레임, `luna_land_stardust` 208×104 17프레임, `frey_step_dust` 96×40 11프레임, `frey_slash_sparks_1~3` 280×128 19프레임
+- pixelfx 동작 이펙트(D48): `motion/` 7장 — `luna_idle_stars` 128×128 16프레임, `luna_land_stardust` 208×104 17프레임, `luna_land_stardust_small` 176×64 10프레임, `frey_step_dust` 96×40 9프레임, `frey_slash_sparks_1~3` 280×128 19프레임
 
 ## 기술을 바꿀 때
 

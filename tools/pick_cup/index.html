@@ -1,0 +1,526 @@
+<title>SmashNine 시안 월드컵</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: one match at a time. Item tabs on top, two candidates face off (A | VS | B) playing in sync,
+   the verdict bar under them, then the item's league table, every match with its notes, and the AI verdict.
+   One dark look on purpose: the clips are game footage on dark arenas. */
+:root {
+  --bg: #0f1219;
+  --surface: #171b26;
+  --surface-2: #1f2534;
+  --line: #2b3346;
+  --fg: #e9ecf4;
+  --muted: #98a1b8;
+  --a: #ffb547;
+  --b: #4fd1ff;
+  --draw: #c6cbdb;
+  --ok: #7ddc94;
+  --warn: #ffcf66;
+  --err: #ff8080;
+  --display: "Black Han Sans", "Noto Sans KR", system-ui, sans-serif;
+  --body: "Noto Sans KR", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 48px;
+}
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 20px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, textarea:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+
+.top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 8px 24px; }
+.top h1 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4vw, 40px); letter-spacing: 0.01em; }
+.top h1 span { color: var(--a); }
+.top h1 em { font-style: normal; color: var(--b); }
+.meta { color: var(--muted); font-size: 14px; }
+.db { font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.db[data-state="live"] { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.db[data-state="offline"], .db[data-state="slow"] { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.db[data-state="error"] { color: var(--err); border-color: color-mix(in srgb, var(--err) 45%, var(--line)); }
+
+.items { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+.chip[aria-current="true"] { border-color: var(--fg); background: var(--surface-2); }
+.chip .count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.chip .count.done { color: var(--ok); }
+
+.match { display: grid; gap: 14px; }
+.question { margin: 0; color: var(--muted); max-width: 70ch; }
+.round-label { font-size: 13px; letter-spacing: 0.06em; color: var(--muted); }
+.arena { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 14px; align-items: start; }
+.side { display: grid; gap: 10px; min-width: 0; padding: 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--tone); }
+.side.a { --tone: var(--a); }
+.side.b { --tone: var(--b); }
+.side header { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.badge { font-family: var(--display); font-size: 26px; line-height: 1; color: var(--tone); }
+.side h2 { font-size: 18px; font-weight: 700; }
+.side .desc { margin: 0; color: var(--muted); font-size: 14px; min-height: 2.6em; }
+.stage { background: #000; border-radius: 8px; overflow: auto; }
+.stage video { display: block; width: 100%; height: auto; margin: 0 auto; image-rendering: pixelated; }
+.stage[data-size="1"] video, .stage[data-size="2"] video { max-width: none; }
+.side label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.side textarea { width: 100%; min-height: 64px; resize: vertical; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: inherit; font-size: 14px; }
+.vs { align-self: center; font-family: var(--display); font-size: 30px; color: var(--muted); padding: 0 2px; }
+
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; color: var(--muted); font-size: 14px; }
+.group { display: flex; align-items: center; gap: 4px; }
+.seg { padding: 5px 11px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; }
+.seg[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+.verdict { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; }
+.pick { padding: 14px 16px; border-radius: 12px; border: 2px solid var(--tone); background: color-mix(in srgb, var(--tone) 12%, var(--surface)); font-weight: 700; font-size: 17px; }
+.pick:hover { background: color-mix(in srgb, var(--tone) 24%, var(--surface)); }
+.pick.a { --tone: var(--a); }
+.pick.b { --tone: var(--b); }
+.pick.draw { --tone: var(--draw); min-width: 110px; }
+.pick[aria-pressed="true"] { background: var(--tone); color: var(--bg); }
+.pick kbd { font-family: var(--body); font-weight: 500; font-size: 12px; opacity: 0.7; margin-left: 6px; }
+.status { margin: 0; min-height: 1.5em; font-size: 14px; color: var(--muted); }
+.status.err { color: var(--err); }
+
+.board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.card { padding: 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); display: grid; gap: 12px; min-width: 0; }
+.card h3 { font-size: 16px; }
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 14px; }
+th, td { padding: 7px 8px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:nth-child(2), td:nth-child(2) { text-align: left; white-space: normal; }
+th { color: var(--muted); font-weight: 500; font-size: 13px; }
+td.points { font-weight: 700; }
+.games { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.game { display: grid; gap: 4px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); text-align: left; width: 100%; }
+.game[aria-current="true"] { border-color: var(--fg); }
+.game .line { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.game .result { font-size: 13px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.game .result.won { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.game .note { font-size: 13px; color: var(--muted); }
+.game .note b { color: var(--fg); font-weight: 500; }
+.ai { padding: 12px 14px; border-radius: 10px; border: 1px dashed var(--line); color: var(--muted); font-size: 14px; }
+.ai.has { border-style: solid; border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); color: var(--fg); }
+.ai strong { display: block; color: var(--ok); margin-bottom: 4px; }
+.how { color: var(--muted); font-size: 13px; margin: 0; }
+
+@media (max-width: 760px) {
+  .arena { grid-template-columns: minmax(0, 1fr); }
+  .vs { justify-self: center; font-size: 24px; }
+  .board { grid-template-columns: minmax(0, 1fr); }
+  .verdict { grid-template-columns: 1fr 1fr; }
+  .pick.draw { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>SmashNine <span>시안</span> <em>월드컵</em></h1>
+      <div class="meta" id="round-meta">라운드를 불러오는 중입니다.</div>
+    </div>
+    <div class="db" id="db-state" data-state="loading">기록 연결 중</div>
+  </header>
+
+  <nav class="items" id="items" aria-label="항목"></nav>
+
+  <section class="match" id="match" aria-live="polite">
+    <div class="round-label" id="match-label"></div>
+    <p class="question" id="question"></p>
+    <div class="arena">
+      <article class="side a">
+        <header><span class="badge">A</span><h2 id="name-left"></h2></header>
+        <p class="desc" id="desc-left"></p>
+        <div class="stage" id="stage-left" data-size="fit"><video id="video-left" muted playsinline preload="auto"></video></div>
+        <label for="note-left">A가 나은 점<textarea id="note-left" maxlength="400" placeholder="예: 발이 닿는 순간이 또렷하다"></textarea></label>
+      </article>
+      <div class="vs" aria-hidden="true">VS</div>
+      <article class="side b">
+        <header><span class="badge">B</span><h2 id="name-right"></h2></header>
+        <p class="desc" id="desc-right"></p>
+        <div class="stage" id="stage-right" data-size="fit"><video id="video-right" muted playsinline preload="auto"></video></div>
+        <label for="note-right">B가 나은 점<textarea id="note-right" maxlength="400" placeholder="예: 여운이 길어 더 잘 보인다"></textarea></label>
+      </article>
+    </div>
+    <div class="controls">
+      <div class="group">
+        <button class="seg" id="play" type="button">멈춤</button>
+        <button class="seg" id="restart" type="button">처음부터</button>
+      </div>
+      <div class="group" role="group" aria-label="속도">속도
+        <button class="seg" type="button" data-speed="1" aria-pressed="true">1배</button>
+        <button class="seg" type="button" data-speed="0.5" aria-pressed="false">½</button>
+        <button class="seg" type="button" data-speed="0.25" aria-pressed="false">¼</button>
+      </div>
+      <div class="group" role="group" aria-label="크기">크기
+        <button class="seg" type="button" data-size="fit" aria-pressed="true">맞춤</button>
+        <button class="seg" type="button" data-size="1" aria-pressed="false">1배</button>
+        <button class="seg" type="button" data-size="2" aria-pressed="false">2배</button>
+      </div>
+    </div>
+    <div class="verdict">
+      <button class="pick a" id="pick-left" type="button">A가 낫다<kbd>←</kbd></button>
+      <button class="pick draw" id="pick-draw" type="button">비김<kbd>↓</kbd></button>
+      <button class="pick b" id="pick-right" type="button">B가 낫다<kbd>→</kbd></button>
+    </div>
+    <p class="status" id="status"></p>
+  </section>
+
+  <section class="board">
+    <div class="card">
+      <h3>리그 표 <span class="meta" id="table-note"></span></h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>순위</th><th>시안</th><th>경기</th><th>승</th><th>무</th><th>패</th><th>승점</th></tr></thead>
+          <tbody id="standings"></tbody>
+        </table>
+      </div>
+      <p class="how">이기면 3점, 비기면 1점. 셋 이상이면 모든 시안이 한 번씩 맞붙습니다.</p>
+      <div class="ai" id="ai"></div>
+    </div>
+    <div class="card">
+      <h3>경기 기록</h3>
+      <ul class="games" id="games"></ul>
+      <p class="how">경기를 누르면 다시 보고 결과와 메모를 바꿀 수 있습니다.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const state = {
+  round: null, items: [], item: 0, key: null,
+  results: new Map(), verdicts: new Map(),
+  db: null, dbState: "loading", speed: 1, size: "fit", playing: true,
+  // Set once the viewer picks or opens a match; until then the first records jump to the first open match.
+  touched: false,
+};
+
+function hash(text) {
+  let h = 2166136261;
+  for (const ch of text) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+const docId = (item, a, b) => `${state.round.round}~${item}~${a}~${b}`;
+const itemNow = () => state.items[state.item];
+const cand = (item, id) => item.candidates.find((c) => c.id === id);
+
+/** Every pair once, in a fixed shuffled order; which candidate stands on the left is fixed per pair. */
+function matchesOf(item) {
+  const ids = item.candidates.map((c) => c.id);
+  const pairs = [];
+  for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) pairs.push([ids[i], ids[j]].sort());
+  pairs.sort((p, q) => hash(item.id + p.join("|")) - hash(item.id + q.join("|")));
+  return pairs.map(([a, b]) => {
+    const swap = hash(item.id + b + a) % 2 === 1;
+    return { a, b, key: docId(item.id, a, b), left: swap ? b : a, right: swap ? a : b };
+  });
+}
+
+function standings(item) {
+  const rows = new Map(item.candidates.map((c) => [c.id, { c, n: 0, w: 0, d: 0, l: 0, p: 0 }]));
+  for (const m of matchesOf(item)) {
+    const r = state.results.get(m.key);
+    if (!r) continue;
+    const A = rows.get(m.a), B = rows.get(m.b);
+    A.n++; B.n++;
+    if (r.winner === "draw") { A.d++; B.d++; A.p++; B.p++; }
+    else if (r.winner === m.a) { A.w++; B.l++; A.p += 3; }
+    else if (r.winner === m.b) { B.w++; A.l++; B.p += 3; }
+  }
+  return [...rows.values()].sort((x, y) => y.p - x.p || y.w - x.w || x.l - y.l);
+}
+
+function played(item) { return matchesOf(item).filter((m) => state.results.has(m.key)).length; }
+
+function renderItems() {
+  const nav = $("items");
+  nav.replaceChildren(...state.items.map((item, index) => {
+    const total = matchesOf(item).length, done = played(item);
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip";
+    chip.setAttribute("aria-current", String(index === state.item));
+    const name = document.createElement("span");
+    name.textContent = item.title;
+    const count = document.createElement("span");
+    count.className = "count" + (done === total ? " done" : "");
+    count.textContent = done === total ? `끝 ${done}/${total}` : `${done}/${total}`;
+    chip.append(name, count);
+    chip.addEventListener("click", () => { state.item = index; state.key = null; state.touched = true; render(true); });
+    return chip;
+  }));
+}
+
+function currentMatch(item) {
+  const list = matchesOf(item);
+  return list.find((m) => m.key === state.key) ?? list.find((m) => !state.results.has(m.key)) ?? list[0];
+}
+
+function renderMatch(reload) {
+  const item = itemNow();
+  const list = matchesOf(item);
+  const m = currentMatch(item);
+  const changed = state.key !== m.key;
+  state.key = m.key;
+  const index = list.findIndex((x) => x.key === m.key) + 1;
+  const done = played(item);
+  $("match-label").textContent = `${item.title} · 경기 ${index} / ${list.length}` + (done === list.length ? " · 모든 경기를 했습니다" : "");
+  $("question").textContent = item.question ?? "";
+  const left = cand(item, m.left), right = cand(item, m.right);
+  $("name-left").textContent = left.name;
+  $("desc-left").textContent = left.desc ?? "";
+  $("name-right").textContent = right.name;
+  $("desc-right").textContent = right.desc ?? "";
+  const record = state.results.get(m.key);
+  if (changed || reload) {
+    $("note-left").value = record?.notes?.[left.id] ?? "";
+    $("note-right").value = record?.notes?.[right.id] ?? "";
+    loadVideos(left.media, right.media);
+  }
+  $("pick-left").setAttribute("aria-pressed", String(record?.winner === left.id));
+  $("pick-right").setAttribute("aria-pressed", String(record?.winner === right.id));
+  $("pick-draw").setAttribute("aria-pressed", String(record?.winner === "draw"));
+}
+
+function renderBoard() {
+  const item = itemNow();
+  const rows = standings(item);
+  let rank = 0, last = null;
+  $("standings").replaceChildren(...rows.map((row, i) => {
+    if (last === null || row.p !== last) rank = i + 1;
+    last = row.p;
+    const tr = document.createElement("tr");
+    for (const [text, cls] of [[rank, ""], [row.c.name, ""], [row.n, ""], [row.w, ""], [row.d, ""], [row.l, ""], [row.p, "points"]]) {
+      const td = document.createElement("td");
+      td.textContent = text;
+      if (cls) td.className = cls;
+      tr.append(td);
+    }
+    return tr;
+  }));
+  const total = matchesOf(item).length, done = played(item);
+  $("table-note").textContent = done === total ? "· 끝" : `· ${done}/${total}경기`;
+  $("games").replaceChildren(...matchesOf(item).map((m, i) => {
+    const li = document.createElement("li");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "game";
+    button.setAttribute("aria-current", String(m.key === state.key));
+    const r = state.results.get(m.key);
+    const line = document.createElement("span");
+    line.className = "line";
+    const title = document.createElement("span");
+    title.textContent = `${i + 1}. ${cand(item, m.a).name} 대 ${cand(item, m.b).name}`;
+    const result = document.createElement("span");
+    result.className = "result" + (r && r.winner !== "draw" ? " won" : "");
+    result.textContent = !r ? "아직" : r.winner === "draw" ? "비김" : `${cand(item, r.winner)?.name ?? r.winner} 승`;
+    line.append(title, result);
+    button.append(line);
+    for (const id of [m.a, m.b]) {
+      const text = r?.notes?.[id];
+      if (!text) continue;
+      const note = document.createElement("span");
+      note.className = "note";
+      const who = document.createElement("b");
+      who.textContent = `${cand(item, id).name}: `;
+      note.append(who, text);
+      button.append(note);
+    }
+    button.addEventListener("click", () => { state.key = m.key; state.touched = true; render(true); window.scrollTo({ top: 0, behavior: "smooth" }); });
+    li.append(button);
+    return li;
+  }));
+  const verdict = state.verdicts.get(`${state.round.round}~${item.id}`);
+  const ai = $("ai");
+  ai.className = "ai" + (verdict ? " has" : "");
+  if (verdict) {
+    const head = document.createElement("strong");
+    head.textContent = `AI 판정: ${cand(item, verdict.choice)?.name ?? verdict.choice}`;
+    const body = document.createElement("span");
+    body.textContent = verdict.reason ?? "";
+    ai.replaceChildren(head, body);
+  } else {
+    ai.textContent = done === total
+      ? "경기를 모두 했습니다. Claude가 이 기록과 메모를 읽고 판정을 여기에 남깁니다."
+      : "경기를 마치면 Claude가 기록과 메모를 읽고 판정을 여기에 남깁니다.";
+  }
+}
+
+function render(reload = false) {
+  if (!state.round) return;
+  renderItems();
+  renderMatch(reload);
+  renderBoard();
+}
+
+// ---- playback: both clips from the same moment, kept together ---------------------------------------
+const vl = $("video-left"), vr = $("video-right");
+const master = () => ((vr.duration || 0) > (vl.duration || 0) ? vr : vl);
+function loadVideos(left, right) {
+  vl.src = left;
+  vr.src = right;
+  restart();
+}
+function restart() {
+  for (const v of [vl, vr]) { v.currentTime = 0; v.playbackRate = state.speed; }
+  state.playing = true;
+  $("play").textContent = "멈춤";
+  vl.play().catch(() => {});
+  vr.play().catch(() => {});
+}
+function togglePlay() {
+  state.playing = !state.playing;
+  $("play").textContent = state.playing ? "멈춤" : "재생";
+  for (const v of [vl, vr]) {
+    if (state.playing) v.play().catch(() => {}); else v.pause();
+  }
+}
+for (const v of [vl, vr]) v.addEventListener("ended", () => { if (v === master() && state.playing) restart(); });
+function keepTogether() {
+  const m = master(), s = m === vl ? vr : vl;
+  if (state.playing && !m.paused && !s.ended && s.duration && m.currentTime < s.duration && Math.abs(s.currentTime - m.currentTime) > 0.06) {
+    s.currentTime = m.currentTime;
+  }
+  requestAnimationFrame(keepTogether);
+}
+requestAnimationFrame(keepTogether);
+
+$("play").addEventListener("click", togglePlay);
+$("restart").addEventListener("click", restart);
+for (const b of document.querySelectorAll("[data-speed]")) {
+  b.addEventListener("click", () => {
+    state.speed = Number(b.dataset.speed);
+    for (const o of document.querySelectorAll("[data-speed]")) o.setAttribute("aria-pressed", String(o === b));
+    for (const v of [vl, vr]) v.playbackRate = state.speed;
+  });
+}
+function applySize() {
+  for (const [stage, video] of [[$("stage-left"), vl], [$("stage-right"), vr]]) {
+    stage.dataset.size = state.size;
+    video.style.width = state.size === "fit" || !video.videoWidth ? "" : `${video.videoWidth * Number(state.size)}px`;
+  }
+}
+for (const b of document.querySelectorAll("button[data-size]")) {
+  b.addEventListener("click", () => {
+    state.size = b.dataset.size;
+    for (const o of document.querySelectorAll("button[data-size]")) o.setAttribute("aria-pressed", String(o === b));
+    applySize();
+  });
+}
+for (const v of [vl, vr]) v.addEventListener("loadedmetadata", applySize);
+
+// ---- judging -----------------------------------------------------------------------------------------
+function setStatus(text, error = false) {
+  $("status").textContent = text;
+  $("status").className = "status" + (error ? " err" : "");
+}
+
+async function pick(side) {
+  if (state.dbState === "loading") {
+    setStatus("기록 연결을 기다리는 중입니다. 잠시 뒤 다시 눌러 주세요.");
+    return;
+  }
+  state.touched = true;
+  const item = itemNow();
+  const m = currentMatch(item);
+  const left = cand(item, m.left), right = cand(item, m.right);
+  const winner = side === "left" ? left.id : side === "right" ? right.id : "draw";
+  const notes = {};
+  const noteLeft = $("note-left").value.trim(), noteRight = $("note-right").value.trim();
+  if (noteLeft) notes[left.id] = noteLeft;
+  if (noteRight) notes[right.id] = noteRight;
+  const record = { round: state.round.round, item: item.id, a: m.a, b: m.b, left: left.id, winner, notes, at: new Date().toISOString() };
+  state.results.set(m.key, record);
+  const label = winner === "draw" ? "비김" : `${cand(item, winner).name} 승`;
+  if (state.db) {
+    setStatus(`${label} 저장 중…`);
+    try {
+      await state.db.doc(`cup_matches/${m.key}`).set(record);
+      setStatus(`${label} 저장했습니다.`);
+    } catch (e) {
+      setStatus(`저장하지 못했습니다(${e?.code ?? "오류"}). 잠시 뒤 다시 눌러 주세요.`, true);
+      return;
+    }
+  } else {
+    setStatus(`${label}. 이 화면에서는 기록이 저장되지 않습니다.`);
+  }
+  // On to the next match not yet played in this item, then the next item that has one.
+  const next = matchesOf(item).find((x) => !state.results.has(x.key));
+  if (next) state.key = next.key;
+  else {
+    const other = state.items.findIndex((it) => played(it) < matchesOf(it).length);
+    if (other >= 0 && other !== state.item) { state.item = other; state.key = null; }
+  }
+  render();
+}
+$("pick-left").addEventListener("click", () => pick("left"));
+$("pick-right").addEventListener("click", () => pick("right"));
+$("pick-draw").addEventListener("click", () => pick("draw"));
+document.addEventListener("keydown", (e) => {
+  if (e.target.closest && e.target.closest("textarea, input")) return;
+  if (e.key === "ArrowLeft") { e.preventDefault(); pick("left"); }
+  else if (e.key === "ArrowRight") { e.preventDefault(); pick("right"); }
+  else if (e.key === "ArrowDown") { e.preventDefault(); pick("draw"); }
+  else if (e.key === " ") { e.preventDefault(); togglePlay(); }
+  else if (e.key === "r" || e.key === "R") restart();
+});
+
+// ---- records: the artifact's database (Claude reads cup_matches and writes cup_verdicts) ---------------
+function setDb(stateName, text) {
+  state.dbState = stateName;
+  const el = $("db-state");
+  el.dataset.state = stateName;
+  el.textContent = text;
+}
+async function connect() {
+  const slow = setTimeout(() => setDb("slow", "기록을 아직 불러오지 못했습니다"), 10000);
+  const api = window.claude;
+  const db = api && typeof api.use === "function" ? await api.use("db").catch(() => null) : null;
+  if (!db) {
+    clearTimeout(slow);
+    setDb("offline", "기록 저장 안 됨 (이 화면)");
+    return;
+  }
+  state.db = db;
+  db.collection("cup_matches").where("round", "==", state.round.round).onSnapshot((snap) => {
+    clearTimeout(slow);
+    state.results = new Map(snap.docs.map((d) => [d.id, d.data()]));
+    setDb("live", snap.metadata.fromCache ? "기록 (확인 중)" : "기록 저장됨");
+    if (!state.touched) {
+      // A returning viewer starts at the first item and match still open.
+      const open = state.items.findIndex((it) => played(it) < matchesOf(it).length);
+      state.item = Math.max(open, 0);
+      state.key = null;
+      render(true);
+      return;
+    }
+    render();
+  }, (e) => {
+    clearTimeout(slow);
+    setDb("error", `기록 연결 끊김 (${e.code})`);
+  });
+  db.collection("cup_verdicts").where("round", "==", state.round.round).onSnapshot((snap) => {
+    state.verdicts = new Map(snap.docs.map((d) => [d.id, d.data()]));
+    render();
+  }, () => {});
+}
+
+fetch("items.json").then((r) => r.json()).then((round) => {
+  state.round = round;
+  state.items = round.items;
+  const games = round.items.reduce((n, it) => n + matchesOf(it).length, 0);
+  $("round-meta").textContent = `${round.title} · ${round.round} · 항목 ${round.items.length} · 경기 ${games}`;
+  render(true);
+  connect();
+}).catch(() => {
+  $("round-meta").textContent = "항목 목록(items.json)을 읽지 못했습니다.";
+});
+</script>

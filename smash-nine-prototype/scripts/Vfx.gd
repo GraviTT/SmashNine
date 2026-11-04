@@ -116,7 +116,10 @@ const SPECS := {
 	# stardust are soft-edged (normal blend, translucent); the others add.
 	"luna_idle_stars": [16, 12.0, Vector2(64, 120), true, MOTION_DIR],
 	"luna_land_stardust": [17, 20.0, Vector2(104, 72), false, MOTION_DIR],
-	"frey_step_dust": [11, 16.0, Vector2(70, 34), false, MOTION_DIR],
+	# The earlier, smaller stardust (v1) for small jumps (user 2026-11-04). The step dust starts on the
+	# puff (v2 without its empty first and last drawings); its pace is set per step by the caller.
+	"luna_land_stardust_small": [10, 20.0, Vector2(88, 56), false, MOTION_DIR],
+	"frey_step_dust": [9, 16.0, Vector2(70, 34), false, MOTION_DIR],
 	"frey_slash_sparks_1": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
 	"frey_slash_sparks_2": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
 	"frey_slash_sparks_3": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],

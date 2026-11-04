@@ -262,6 +262,10 @@ var landing_motion_timer := 0.0
 ## Seconds since the fighter left the floor (0 on it). A character's own landing art needs as much
 ## air as the landing sound (AudioManager.MIN_LAND_AIR_SECONDS).
 var air_time := 0.0
+## The highest point (lowest y) since the fighter left the floor, INF before it has been airborne,
+## and the height of the last landing's fall from it (the landing art's size follows it).
+var air_top_y := INF
+var landing_drop := 0.0
 ## The effect looping over the body for the animation it plays now (get_motion_overlays).
 var motion_overlay: AnimatedSprite2D
 var motion_overlay_effect := ""
@@ -945,15 +949,17 @@ func character_air_motion() -> StringName:
 func get_motion_overlays() -> Dictionary:
 	return {}
 
-## [animation, frame, effect, foot x] entries: when that drawing comes up while the fighter runs on
-## the floor, the effect plays once at the foot (x from the feet for a fighter facing right, mirrored)
-## and stays where the foot landed (Frey's step dust).
+## [animation, frame, effect, foot x, drawings] entries: when that drawing comes up while the fighter
+## runs on the floor, the effect plays once at the foot (x from the feet for a fighter facing right,
+## mirrored) and stays where the foot landed, over as many drawings of the row as `drawings`, so it
+## keeps pace with the motion (Frey's step dust: one step, user 2026-11-04).
 func get_motion_frame_effects() -> Array:
 	return []
 
-## The character's own landing art (scripts/Vfx.gd name), shown on every landing from a jump or
-## fall and in place of the grey dust (Luna's stardust); empty: the dust after an action only.
-func character_landing_effect() -> String:
+## The character's own landing art (scripts/Vfx.gd name) for a fall of `drop` px, shown on every
+## landing from a jump or fall and in place of the grey dust (Luna's stardust, big or small); empty:
+## the dust after an action only.
+func character_landing_effect(_drop: float) -> String:
 	return ""
 
 func _perform_air_jump() -> void:
@@ -1215,8 +1221,10 @@ func _handle_landing_state() -> void:
 		_stop_guard(true)
 	var landed := is_on_floor() and not was_on_floor_last_frame
 	AUDIO.landing(self, landed)
+	if landed:
+		landing_drop = maxf(global_position.y - air_top_y, 0.0) if air_top_y < INF else 0.0
 	# A character's own landing art comes with the landing sound and stands in for the dust below.
-	var own_landing_art := landed and character_landing_effect() != "" and air_time + 0.000001 >= AUDIO.MIN_LAND_AIR_SECONDS
+	var own_landing_art := landed and character_landing_effect(landing_drop) != "" and air_time + 0.000001 >= AUDIO.MIN_LAND_AIR_SECONDS
 	if own_landing_art:
 		_spawn_landing_puff()
 	if landed and _has_motion_row(&"land") and sprite_action_timer <= 0.0 and attack_lock_timer <= 0.0 and not is_guarding and absf(move_input) <= 0.01 and absf(velocity.x) <= 20.0:
@@ -1236,12 +1244,13 @@ func _handle_landing_state() -> void:
 	if is_on_floor() and attack_lock_timer <= 0.0:
 		current_attack_started_airborne = false
 	air_time = 0.0 if is_on_floor() else air_time + get_physics_process_delta_time()
+	air_top_y = global_position.y if is_on_floor() else minf(air_top_y, global_position.y)
 	was_on_floor_last_frame = is_on_floor()
 
 func _spawn_landing_puff() -> void:
 	# Dust puffs (CODEX-ART-20) or the character's own landing art, as faint as a hidden fighter;
 	# the flat bar only without the art.
-	var effect := character_landing_effect()
+	var effect := character_landing_effect(landing_drop)
 	if effect == "" or not EFFECT_STRIPS.available(effect):
 		effect = "landing_dust"
 	if EFFECT_STRIPS.spawn(get_parent(), effect, global_position, Vector2.ONE, false, 4, Color(1, 1, 1, _visible_alpha())) != null:
@@ -1991,6 +2000,7 @@ func _respawn() -> void:
 	_reset_guard_state()
 	clear_star_mark()
 	clear_gravity_stacks()
+	air_top_y = INF
 	character_on_respawn()
 	if not spawn_points.is_empty():
 		global_position = spawn_points.pick_random()
@@ -2053,6 +2063,7 @@ func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	_reset_guard_state()
 	clear_star_mark()
 	clear_gravity_stacks()
+	air_top_y = INF
 	character_cleanup()
 	character_on_respawn()
 	control_slow_timer = 0.0
@@ -2511,7 +2522,11 @@ func _on_character_frame_changed() -> void:
 		return
 	for entry in get_motion_frame_effects():
 		if character_sprite.animation == entry[0] and character_sprite.frame == int(entry[1]):
-			EFFECT_STRIPS.spawn(get_parent(), str(entry[2]), global_position + Vector2(float(entry[3]) * facing, 0.0), Vector2(facing, 1.0), false, 4)
+			var effect := str(entry[2])
+			var sprite := EFFECT_STRIPS.spawn(get_parent(), effect, global_position + Vector2(float(entry[3]) * facing, 0.0), Vector2(facing, 1.0), false, 4)
+			var row_time := float(entry[4]) * _row_frame_time(character_sprite.animation) / maxf(character_sprite.speed_scale, 0.01)
+			if sprite != null and row_time > 0.0:
+				sprite.speed_scale = float(EFFECT_STRIPS.SPECS[effect][0]) / EFFECT_STRIPS.fps(effect) / row_time
 
 func _set_hurt_motion_speed() -> void:
 	var frames := character_sprite.sprite_frames

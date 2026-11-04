@@ -30,6 +30,16 @@
         "8072"
       ],
       "port": 8072
+    },
+    {
+      "name": "pick-cup",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "tools/serve_web.js",
+        "tools/pick_cup/dist",
+        "8074"
+      ],
+      "port": 8074
     }
   ]
 }
