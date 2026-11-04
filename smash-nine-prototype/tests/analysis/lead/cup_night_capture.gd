@@ -6,6 +6,9 @@ extends SceneTree
 ##   frey-land, luna-land  every landing, small (a fall under 130 px) or big
 ##   luna-star             each J star: the launch at its spawn point, the trail riding the star
 ##   luna-hit              each star that hits a standing fighter: the afterglow where its hit spark plays
+##   luna-step             Luna running: on the walk drawings where the front foot lands, over one step
+##   brave-j               Brave Luna's seven J moves: where and when her strike strip starts (body centre)
+##   brave-hit             her rush and uppercut on a standing fighter: the afterglow where her hit spark plays
 ## Windowed run at the match camera (0.85), one item and variant per run:
 ## <godot> --path . --fixed-fps 60 -s tests/analysis/lead/cup_night_capture.gd -- --out=<dir> --item=frey-jump --variant=a
 
@@ -14,6 +17,9 @@ const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const STAR_SCRIPT := preload("res://characters/luna/LunaStar.gd")
 const CANDIDATE := "res://../art/bakeoff/effects/pixelfx/%s/%s/%s-%s"
 const BIG_DROP := 130.0
+## Luna's walk drawings where the front foot lands, and that foot's x from her feet (facing right).
+const LUNA_STEPS := {3: 17.0, 7: 18.0}
+const BRAVE_MOVES := {"up": "brave_up", "down": "brave_low", "air_side": "brave_side_air", "air_down": "brave_down_air"}
 
 var out_dir := "user://cup_night"
 var item := "frey-jump"
@@ -33,6 +39,9 @@ var last_air_jumps := 0
 # Stars fired, oldest first (true for the big one), and the last afterglow time per foe.
 var fired: Array[bool] = []
 var last_glow_msec := -100000
+# Brave Luna: the move under way and how many rush strikes have come out.
+var move := ""
+var rush_count := 0
 
 func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
@@ -59,11 +68,17 @@ func _run() -> void:
 			await _scene_volley(false)
 		"luna-hit":
 			await _scene_volley(true)
+		"luna-step":
+			await _scene_run()
+		"brave-j":
+			await _scene_brave(false)
+		"brave-hit":
+			await _scene_brave(true)
 	print("CAPTURE_DONE ", out_dir)
 	quit(0)
 
 func _character() -> String:
-	return item.get_slice("-", 0)
+	return "luna_brave" if item.begins_with("brave") else item.get_slice("-", 0)
 
 func _stage() -> void:
 	arena = Node2D.new()
@@ -132,6 +147,62 @@ func _scene_volley(with_foe: bool) -> void:
 		shot = await _record(shot, 2)
 	await _record(shot, 40)
 
+## Luna runs right; the camera follows her.
+func _scene_run() -> void:
+	actor = _fighter("luna", 1, Vector2(-600, -2), true)
+	actor.facing = 1
+	actor.character_sprite.frame_changed.connect(_on_luna_frame)
+	await _frames(30)
+	var shot := await _record(0, 6, true)
+	Input.action_press("move_right")
+	shot = await _record(shot, 66, true)
+	Input.action_release("move_right")
+	await _record(shot, 18, true)
+
+func _on_luna_frame() -> void:
+	var sprite: AnimatedSprite2D = actor.character_sprite
+	if variant == "now" or sprite.animation != &"luna_walk" or not LUNA_STEPS.has(sprite.frame) or not actor.is_on_floor() or absf(actor.velocity.x) <= 20.0:
+		return
+	var step := _overlay("luna_step", actor.global_position + Vector2(LUNA_STEPS[sprite.frame] * actor.facing, 0.0))
+	if step != null:
+		# The game plays a step effect over the four walk drawings of one step.
+		var step_time: float = 4.0 / sprite.sprite_frames.get_animation_speed(sprite.animation)
+		step.speed_scale = step.sprite_frames.get_frame_count(&"play") / step.sprite_frames.get_animation_speed(&"play") / step_time
+
+## Brave Luna's seven J moves (the rush three times, uppercut, low sweep, then the flying and dive kicks in the
+## air), or her rush and uppercut on a standing fighter.
+func _scene_brave(with_foe: bool) -> void:
+	actor = _fighter("luna", 1, Vector2(-260 if with_foe else -420, -2), false)
+	actor.facing = 1
+	if with_foe:
+		foe = _fighter("rio", 2, Vector2(-120, -2), false)
+		foe.facing = -1
+	await _frames(10)
+	actor._enter_transformation()
+	actor.transformation_timer = 60.0
+	await _frames(60)
+	var steps := ["rush", "rush", "rush", "up"] if with_foe else ["rush", "rush", "rush", "up", "down", "air_side", "air_down"]
+	var shot := await _record(0, 6, not with_foe)
+	for step in steps:
+		if step.begins_with("air"):
+			actor.velocity.y = actor.jump_velocity
+			shot = await _record(shot, 9, not with_foe)
+		for wait in 60:
+			if actor._can_start_attack():
+				break
+			shot = await _record(shot, 1, not with_foe)
+		if step == "rush" and move != "rush":
+			rush_count = 0
+		move = step
+		actor.perform_basic_attack("neutral" if step == "rush" else step, Vector2.RIGHT)
+		shot = await _record(shot, 12 if step == "rush" else 24, not with_foe)
+		if with_foe and step == "rush" and rush_count == 3:
+			shot = await _record(shot, 30, false)
+			foe.global_position = actor.global_position + Vector2(90, 0)
+			foe.velocity = Vector2.ZERO
+			foe.hitstun_timer = 0.0
+	await _record(shot, 30, not with_foe)
+
 ## Holds the action for `shots` shots (two physics frames each), recording, then lets go.
 func _press(action: String, shots: int, shot: int) -> int:
 	Input.action_press(action)
@@ -181,6 +252,15 @@ func _watch() -> void:
 func _on_spawned(node: Node) -> void:
 	if node.get_script() == STAR_SCRIPT:
 		_after_star.call_deferred(node)
+	elif item.begins_with("brave") and node is AnimatedSprite2D and _atlas_name(node) == "luna_brave_slash":
+		if move == "rush":
+			rush_count += 1
+		if variant != "now" and item == "brave-j":
+			_after_strike.call_deferred(node, "brave_rush_%d" % mini(rush_count, 3) if move == "rush" else str(BRAVE_MOVES.get(move, "")))
+	elif variant != "now" and item == "brave-hit" and node is AnimatedSprite2D and String(node.name).begins_with("HitSpark_luna_brave") \
+			and is_instance_valid(foe) and node.position.distance_to(foe.global_position + Vector2(0, -34)) < 2.0:
+		var strong: bool = (move == "rush" and rush_count == 3) or move in ["up", "air_down"]
+		_overlay("brave_hit_after_big" if strong else "brave_hit_after", node.position)
 	elif variant != "now" and item == "luna-hit" and node is AnimatedSprite2D and String(node.name).begins_with("HitSpark_luna") \
 			and is_instance_valid(foe) and node.position.distance_to(foe.global_position + Vector2(0, -34)) < 2.0:
 		# The big star's burst lands a second hit on the same foe right after the star: one afterglow.
@@ -189,6 +269,17 @@ func _on_spawned(node: Node) -> void:
 		last_glow_msec = Time.get_ticks_msec()
 		var big: bool = fired.pop_front() if not fired.is_empty() else false
 		_overlay("luna_hit_after_big" if big else "luna_hit_after", node.position)
+
+## Vfx.spawn places the strike strip after adding it: the candidate starts where it ends up.
+func _after_strike(node: Node, strip: String) -> void:
+	if is_instance_valid(node) and strip != "":
+		_overlay(strip, (node as Node2D).global_position)
+
+func _atlas_name(node: AnimatedSprite2D) -> String:
+	if node.sprite_frames == null or not node.sprite_frames.has_animation(&"play"):
+		return ""
+	var frame := node.sprite_frames.get_frame_texture(&"play", 0) as AtlasTexture
+	return frame.atlas.resource_path.get_file().get_basename() if frame != null and frame.atlas != null else ""
 
 ## The star is placed and told whether it is big after it joins the tree.
 func _after_star(star: Node) -> void:
@@ -263,11 +354,15 @@ func _frames(count: int) -> void:
 	for frame in count:
 		await physics_frame
 
-## Saves `count` shots, one every two physics frames (30 fps).
-func _record(first: int, count: int) -> int:
+## Saves `count` shots, one every two physics frames (30 fps); `follow` keeps the camera on the actor.
+func _record(first: int, count: int, follow := false) -> int:
 	DirAccess.make_dir_recursive_absolute(out_dir)
 	for index in count:
 		await _frames(2)
+		if follow and is_instance_valid(actor):
+			camera.global_position = Vector2(actor.global_position.x + 60.0, -110.0)
+		elif item.begins_with("brave"):
+			camera.global_position = Vector2(0, -90)
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png("%s/%04d.png" % [out_dir, first + index])
 	return first + count
