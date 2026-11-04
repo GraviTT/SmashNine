@@ -37,7 +37,7 @@
    - 시안은 항목마다 2개 이상입니다.
    - 한 라운드는 작게 잡습니다(항목 2~3개).
 3. **만들고 게시합니다.**
-   - `node tools/pick_cup/build.mjs [rounds/<파일>]`를 돌립니다. 인자가 없으면 가장 최근 라운드입니다. 결과는 `dist/`에 나옵니다(git 제외).
+   - `node tools/pick_cup/build.mjs [rounds/<파일>]`를 돌립니다. 인자가 없으면 마지막으로 고친 라운드 파일입니다. 결과는 `dist/`에 나옵니다(git 제외).
    - 위 주소에 다시 게시합니다. `file_path`는 `dist/index.html`, `root`는 `tools/pick_cup/dist`, `files`는 `dist/files.json` 목록입니다.
    - `capabilities`는 빼서 `db`를 유지합니다.
    - 라운드를 바꿔도 이전 라운드의 기록은 데이터베이스에 남습니다(문서 id 앞에 라운드).

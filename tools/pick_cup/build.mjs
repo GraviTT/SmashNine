@@ -11,7 +11,9 @@ import { fileURLToPath } from "node:url";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = join(HERE, "..", "..");
 const DIST = join(HERE, "dist");
-const rounds = readdirSync(join(HERE, "rounds")).filter((f) => f.endsWith(".json")).sort();
+// Default: the round file changed last (names like 2026-11-04-frey do not sort after 2026-11-04).
+const rounds = readdirSync(join(HERE, "rounds")).filter((f) => f.endsWith(".json"))
+  .map((f) => [f, statSync(join(HERE, "rounds", f)).mtimeMs]).sort((x, y) => x[1] - y[1]).map(([f]) => f);
 const roundFile = process.argv[2] ? join(HERE, process.argv[2]) : join(HERE, "rounds", rounds[rounds.length - 1]);
 const round = JSON.parse(readFileSync(roundFile, "utf8"));
 
