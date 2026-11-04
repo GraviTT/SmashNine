@@ -1,0 +1,3182 @@
+{
+  "definitions": {
+    "peak": "알파를 곱한 max(R,G,B) 합계가 최대인 첫 프레임",
+    "painted": "모든 프레임의 비투명 픽셀 경계 합집합",
+    "head": "몸 중심 기준 x -36..36, y -98..-22",
+    "torso": "몸 중심 기준 x -22..22, y -21..24"
+  },
+  "measurements": [
+    {
+      "id": "luna_step",
+      "frames": 7,
+      "fps": 20,
+      "duration": 0.35,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        42,
+        17
+      ],
+      "painted_bounds": [
+        -41,
+        -15,
+        0,
+        1
+      ],
+      "frame_size": [
+        46,
+        21
+      ],
+      "anchor": [
+        43,
+        17
+      ],
+      "peak_pixels": 178,
+      "peak_energy": 33810,
+      "last_energy_pct": 6.94,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "1c04d46432ea0d877b7c14aa6f193150877e4a0091032586758b2af29cd2e5d6",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 178,
+          "energy": 33810,
+          "border": 0,
+          "nonbinary_alpha": 106,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 178,
+          "bounds": [
+            -18,
+            -11,
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 185,
+          "energy": 31643,
+          "border": 0,
+          "nonbinary_alpha": 128,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 154,
+          "bounds": [
+            -26,
+            -12,
+            -7,
+            -1
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 205,
+          "energy": 28995,
+          "border": 0,
+          "nonbinary_alpha": 177,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 106,
+          "bounds": [
+            -32,
+            -13,
+            -10,
+            -3
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 224,
+          "energy": 22946,
+          "border": 0,
+          "nonbinary_alpha": 214,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 70,
+          "bounds": [
+            -36,
+            -15,
+            -13,
+            -4
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 231,
+          "energy": 15517,
+          "border": 0,
+          "nonbinary_alpha": 229,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 42,
+          "bounds": [
+            -39,
+            -15,
+            -15,
+            -4
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 247,
+          "energy": 8565,
+          "border": 0,
+          "nonbinary_alpha": 247,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 25,
+          "bounds": [
+            -41,
+            -14,
+            -18,
+            -2
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 193,
+          "energy": 2347,
+          "border": 0,
+          "nonbinary_alpha": 193,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 9,
+          "bounds": [
+            -40,
+            -14,
+            -20,
+            0
+          ]
+        }
+      ],
+      "last_visible_frame": 7,
+      "baked_module_mismatches": 0,
+      "game_fps": 19.7925,
+      "game_duration": 0.3536693191865606
+    },
+    {
+      "id": "luna_jump",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        133,
+        24
+      ],
+      "painted_bounds": [
+        -66,
+        -20,
+        66,
+        3
+      ],
+      "frame_size": [
+        137,
+        28
+      ],
+      "anchor": [
+        68,
+        22
+      ],
+      "peak_pixels": 634,
+      "peak_energy": 111479,
+      "last_energy_pct": 0.72,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "ac0f0b44bb7da632eb2cbb78c8f1c43cfe33323600daa233045d4310934c8c31",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 634,
+          "energy": 111479,
+          "border": 0,
+          "nonbinary_alpha": 424,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 584,
+          "bounds": [
+            -27,
+            -12,
+            22,
+            3
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 693,
+          "energy": 109617,
+          "border": 0,
+          "nonbinary_alpha": 506,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 408,
+          "bounds": [
+            -36,
+            -12,
+            31,
+            1
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 740,
+          "energy": 105654,
+          "border": 0,
+          "nonbinary_alpha": 612,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 242,
+          "bounds": [
+            -43,
+            -15,
+            38,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 786,
+          "energy": 98918,
+          "border": 0,
+          "nonbinary_alpha": 712,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 110,
+          "bounds": [
+            -49,
+            -16,
+            44,
+            -2
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 824,
+          "energy": 87891,
+          "border": 0,
+          "nonbinary_alpha": 790,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 43,
+          "bounds": [
+            -53,
+            -18,
+            48,
+            -2
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 868,
+          "energy": 75260,
+          "border": 0,
+          "nonbinary_alpha": 853,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 24,
+          "bounds": [
+            -57,
+            -19,
+            52,
+            -3
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 894,
+          "energy": 59912,
+          "border": 0,
+          "nonbinary_alpha": 892,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 11,
+          "bounds": [
+            -60,
+            -20,
+            55,
+            -2
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 924,
+          "energy": 46755,
+          "border": 0,
+          "nonbinary_alpha": 924,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 7,
+          "bounds": [
+            -62,
+            -20,
+            57,
+            -2
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 966,
+          "energy": 33564,
+          "border": 0,
+          "nonbinary_alpha": 966,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -64,
+            -19,
+            59,
+            -1
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 1006,
+          "energy": 20374,
+          "border": 0,
+          "nonbinary_alpha": 1006,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -65,
+            -18,
+            60,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 1039,
+          "energy": 9169,
+          "border": 0,
+          "nonbinary_alpha": 1039,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -66,
+            -17,
+            62,
+            2
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 32,
+          "energy": 807,
+          "border": 0,
+          "nonbinary_alpha": 32,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -62,
+            -7,
+            66,
+            0
+          ]
+        }
+      ],
+      "last_visible_frame": 12,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.6
+    },
+    {
+      "id": "luna_air_jump",
+      "frames": 14,
+      "fps": 20,
+      "duration": 0.7,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        124,
+        42
+      ],
+      "painted_bounds": [
+        -63,
+        2,
+        60,
+        43
+      ],
+      "frame_size": [
+        128,
+        46
+      ],
+      "anchor": [
+        65,
+        0
+      ],
+      "peak_pixels": 307,
+      "peak_energy": 72045,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "5563c7b393971a5e125c262aff0aff62f55bf7c0701e67c589bdcd75209d0315",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 307,
+          "energy": 72045,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 10,
+          "head": 0,
+          "torso": 247,
+          "bounds": [
+            -37,
+            2,
+            37,
+            17
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 281,
+          "energy": 63106,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 2,
+          "head": 0,
+          "torso": 194,
+          "bounds": [
+            -37,
+            3,
+            37,
+            17
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 270,
+          "energy": 54840,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 1,
+          "head": 0,
+          "torso": 151,
+          "bounds": [
+            -37,
+            4,
+            37,
+            18
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 254,
+          "energy": 44507,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 1,
+          "head": 0,
+          "torso": 116,
+          "bounds": [
+            -37,
+            6,
+            37,
+            19
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 235,
+          "energy": 33388,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 51,
+          "head": 0,
+          "torso": 92,
+          "bounds": [
+            -37,
+            8,
+            37,
+            20
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 185,
+          "energy": 23372,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 81,
+          "head": 0,
+          "torso": 44,
+          "bounds": [
+            -41,
+            9,
+            40,
+            22
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 109,
+          "energy": 18784,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 4,
+          "bounds": [
+            -45,
+            12,
+            43,
+            25
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 90,
+          "energy": 13662,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -48,
+            14,
+            46,
+            28
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 81,
+          "energy": 10462,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -52,
+            16,
+            50,
+            32
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 76,
+          "energy": 8039,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -56,
+            19,
+            53,
+            35
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 63,
+          "energy": 5187,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 24,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -59,
+            23,
+            57,
+            39
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 49,
+          "energy": 2966,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 46,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -63,
+            26,
+            60,
+            43
+          ]
+        },
+        {
+          "frame": 13,
+          "time": 0.6,
+          "pixels": 11,
+          "energy": 559,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 11,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            50,
+            33,
+            60,
+            41
+          ]
+        },
+        {
+          "frame": 14,
+          "time": 0.65,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 13,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.7
+    },
+    {
+      "id": "brave_rush_1",
+      "frames": 10,
+      "fps": 20,
+      "duration": 0.5,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        79,
+        43
+      ],
+      "painted_bounds": [
+        56,
+        -21,
+        134,
+        21
+      ],
+      "frame_size": [
+        83,
+        47
+      ],
+      "anchor": [
+        -54,
+        23
+      ],
+      "peak_pixels": 286,
+      "peak_energy": 62466,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "a2946f3c0d81b1f2f4297fd07e70490fe5de79772c72655663cea4e2c0fe6eea",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 286,
+          "energy": 62466,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 20,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            56,
+            -21,
+            127,
+            16
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 266,
+          "energy": 55597,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 17,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            57,
+            -21,
+            128,
+            16
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 240,
+          "energy": 46987,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 7,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            58,
+            -20,
+            129,
+            16
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 226,
+          "energy": 38270,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 2,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            59,
+            -19,
+            131,
+            17
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 216,
+          "energy": 30446,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 17,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            60,
+            -18,
+            131,
+            18
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 198,
+          "energy": 21337,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 83,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            60,
+            -18,
+            132,
+            18
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 139,
+          "energy": 11916,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 59,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            71,
+            -16,
+            134,
+            19
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 69,
+          "energy": 5599,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 40,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            74,
+            -12,
+            134,
+            19
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 34,
+          "energy": 1889,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 34,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            77,
+            -10,
+            131,
+            21
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 9,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.5
+    },
+    {
+      "id": "brave_rush_2",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        105,
+        54
+      ],
+      "painted_bounds": [
+        63,
+        -25,
+        167,
+        28
+      ],
+      "frame_size": [
+        109,
+        58
+      ],
+      "anchor": [
+        -61,
+        27
+      ],
+      "peak_pixels": 339,
+      "peak_energy": 76285,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "1d62ac13fb208d0e4cf41d8416941177b7283daea33e8b9fe1fa13e524053df3",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 339,
+          "energy": 76285,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 15,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            63,
+            -24,
+            144,
+            12
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 315,
+          "energy": 68337,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 9,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            63,
+            -25,
+            147,
+            13
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 299,
+          "energy": 60478,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 6,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            64,
+            -25,
+            149,
+            13
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 278,
+          "energy": 49436,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 2,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            65,
+            -24,
+            151,
+            13
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 262,
+          "energy": 39436,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 20,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            66,
+            -25,
+            153,
+            15
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 241,
+          "energy": 28977,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 102,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            67,
+            -23,
+            156,
+            16
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 176,
+          "energy": 19350,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 61,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            87,
+            -22,
+            158,
+            17
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 98,
+          "energy": 11492,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            89,
+            -21,
+            160,
+            21
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 80,
+          "energy": 7172,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 21,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            91,
+            -19,
+            163,
+            22
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 79,
+          "energy": 5031,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 72,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            93,
+            -17,
+            165,
+            25
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 29,
+          "energy": 1414,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 29,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            95,
+            -2,
+            167,
+            28
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 11,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.6
+    },
+    {
+      "id": "brave_rush_3",
+      "frames": 14,
+      "fps": 20,
+      "duration": 0.7,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        116,
+        87
+      ],
+      "painted_bounds": [
+        54,
+        -83,
+        169,
+        3
+      ],
+      "frame_size": [
+        120,
+        91
+      ],
+      "anchor": [
+        -52,
+        85
+      ],
+      "peak_pixels": 454,
+      "peak_energy": 103673,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "1cd0221d990d94ed9006e677570db489a411ed5ece055a085a2d231e040ed92c",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 454,
+          "energy": 103673,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 20,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            54,
+            -81,
+            146,
+            -3
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 415,
+          "energy": 91015,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 18,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            55,
+            -82,
+            148,
+            -4
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 373,
+          "energy": 79222,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 5,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            56,
+            -82,
+            150,
+            -4
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 356,
+          "energy": 68011,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 2,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            56,
+            -83,
+            153,
+            -4
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 339,
+          "energy": 56572,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 20,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            57,
+            -83,
+            155,
+            -3
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 314,
+          "energy": 44063,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 107,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            58,
+            -83,
+            157,
+            -3
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 240,
+          "energy": 32202,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 63,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            78,
+            -83,
+            160,
+            -4
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 154,
+          "energy": 21894,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            80,
+            -82,
+            162,
+            -7
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 134,
+          "energy": 16104,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            82,
+            -81,
+            165,
+            -5
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 118,
+          "energy": 11506,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 8,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            84,
+            -79,
+            167,
+            -2
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 103,
+          "energy": 7628,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 67,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            86,
+            -77,
+            169,
+            0
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 75,
+          "energy": 4210,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 75,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            87,
+            -71,
+            157,
+            3
+          ]
+        },
+        {
+          "frame": 13,
+          "time": 0.6,
+          "pixels": 12,
+          "energy": 519,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 12,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            90,
+            -49,
+            159,
+            -11
+          ]
+        },
+        {
+          "frame": 14,
+          "time": 0.65,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 13,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.7
+    },
+    {
+      "id": "brave_up",
+      "frames": 14,
+      "fps": 20,
+      "duration": 0.7,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        31,
+        91
+      ],
+      "painted_bounds": [
+        52,
+        -144,
+        82,
+        -54
+      ],
+      "frame_size": [
+        35,
+        95
+      ],
+      "anchor": [
+        -50,
+        146
+      ],
+      "peak_pixels": 416,
+      "peak_energy": 91474,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "e34c1d854da75a8a27a1b1c66f2ecab476f12a98aad74914b850d1b3ace29d32",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 416,
+          "energy": 91474,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 17,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            52,
+            -142,
+            74,
+            -54
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 393,
+          "energy": 82888,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 10,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            52,
+            -143,
+            75,
+            -57
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 368,
+          "energy": 72476,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 3,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            52,
+            -143,
+            75,
+            -59
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 358,
+          "energy": 62247,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 4,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            52,
+            -144,
+            77,
+            -60
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 332,
+          "energy": 48796,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 29,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            53,
+            -144,
+            77,
+            -60
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 321,
+          "energy": 38222,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 160,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            53,
+            -144,
+            78,
+            -60
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 227,
+          "energy": 25053,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 111,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            55,
+            -144,
+            78,
+            -63
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 103,
+          "energy": 15390,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            54,
+            -143,
+            79,
+            -63
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 99,
+          "energy": 12582,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            54,
+            -142,
+            79,
+            -62
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 83,
+          "energy": 8612,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            56,
+            -140,
+            80,
+            -61
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 85,
+          "energy": 6834,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 41,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            56,
+            -139,
+            81,
+            -59
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 58,
+          "energy": 3314,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 58,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            56,
+            -137,
+            81,
+            -58
+          ]
+        },
+        {
+          "frame": 13,
+          "time": 0.6,
+          "pixels": 20,
+          "energy": 935,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 20,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            56,
+            -125,
+            82,
+            -55
+          ]
+        },
+        {
+          "frame": 14,
+          "time": 0.65,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 13,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.7
+    },
+    {
+      "id": "brave_low",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        107,
+        40
+      ],
+      "painted_bounds": [
+        67,
+        15,
+        173,
+        54
+      ],
+      "frame_size": [
+        111,
+        44
+      ],
+      "anchor": [
+        -65,
+        -13
+      ],
+      "peak_pixels": 378,
+      "peak_energy": 82612,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "03e3959145076749cf98571ad667ab24c0ded1e32ee6d81f0658f7e548db7139",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 378,
+          "energy": 82612,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 26,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            67,
+            15,
+            151,
+            37
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 341,
+          "energy": 73506,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 11,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            68,
+            15,
+            154,
+            37
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 334,
+          "energy": 67147,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 11,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            69,
+            15,
+            156,
+            38
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 306,
+          "energy": 53963,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 8,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            70,
+            16,
+            159,
+            39
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 269,
+          "energy": 40620,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 22,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            71,
+            16,
+            161,
+            41
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 268,
+          "energy": 32876,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 107,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            71,
+            17,
+            163,
+            42
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 191,
+          "energy": 20705,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 71,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            86,
+            18,
+            166,
+            45
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 103,
+          "energy": 12071,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            89,
+            24,
+            168,
+            48
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 91,
+          "energy": 8235,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 24,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            92,
+            25,
+            171,
+            50
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 74,
+          "energy": 4791,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 60,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            94,
+            28,
+            173,
+            54
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 31,
+          "energy": 1572,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 31,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            112,
+            30,
+            166,
+            51
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 11,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.6
+    },
+    {
+      "id": "brave_side_air",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        114,
+        56
+      ],
+      "painted_bounds": [
+        72,
+        -36,
+        185,
+        19
+      ],
+      "frame_size": [
+        118,
+        60
+      ],
+      "anchor": [
+        -70,
+        38
+      ],
+      "peak_pixels": 371,
+      "peak_energy": 81789,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "5f2e1963736a05b474abf806a6cbf03f415a9b6c8d314e867bcc984fdaa3cc5c",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 371,
+          "energy": 81789,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 18,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            72,
+            -36,
+            164,
+            8
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 341,
+          "energy": 72190,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 13,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            73,
+            -35,
+            165,
+            8
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 326,
+          "energy": 63828,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 12,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            74,
+            -34,
+            168,
+            8
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 309,
+          "energy": 53719,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 7,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            74,
+            -34,
+            170,
+            9
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 288,
+          "energy": 42231,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 27,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            75,
+            -31,
+            172,
+            9
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 269,
+          "energy": 31549,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 123,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            76,
+            -30,
+            174,
+            10
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 181,
+          "energy": 19093,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 73,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            94,
+            -29,
+            176,
+            11
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 95,
+          "energy": 11221,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            96,
+            -26,
+            178,
+            12
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 80,
+          "energy": 7333,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 13,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            98,
+            -24,
+            181,
+            15
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 74,
+          "energy": 4687,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 65,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            100,
+            -21,
+            183,
+            18
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 26,
+          "energy": 1257,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 26,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            132,
+            -19,
+            185,
+            19
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 11,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.6
+    },
+    {
+      "id": "brave_down_air",
+      "frames": 16,
+      "fps": 20,
+      "duration": 0.8,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        67,
+        175
+      ],
+      "painted_bounds": [
+        -6,
+        86,
+        60,
+        260
+      ],
+      "frame_size": [
+        71,
+        179
+      ],
+      "anchor": [
+        8,
+        -84
+      ],
+      "peak_pixels": 577,
+      "peak_energy": 133954,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "27463724145ca1301503cce5731e309a6e5b48a5c9865b6bef6d7d80b6b2a5cd",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 577,
+          "energy": 133954,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 11,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -6,
+            86,
+            49,
+            202
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 535,
+          "energy": 118970,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 13,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -4,
+            87,
+            51,
+            205
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 497,
+          "energy": 105409,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 7,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -3,
+            88,
+            51,
+            208
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 473,
+          "energy": 92617,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 3,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -1,
+            89,
+            51,
+            211
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 451,
+          "energy": 78091,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 33,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            0,
+            91,
+            52,
+            214
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 432,
+          "energy": 65518,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 139,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            1,
+            92,
+            53,
+            219
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 329,
+          "energy": 48742,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 83,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            3,
+            114,
+            54,
+            223
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 225,
+          "energy": 36656,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            4,
+            118,
+            55,
+            227
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 199,
+          "energy": 28585,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            4,
+            124,
+            55,
+            232
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 181,
+          "energy": 22464,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            4,
+            128,
+            56,
+            237
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 169,
+          "energy": 17555,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            4,
+            134,
+            57,
+            242
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 150,
+          "energy": 12509,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 62,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            3,
+            139,
+            58,
+            249
+          ]
+        },
+        {
+          "frame": 13,
+          "time": 0.6,
+          "pixels": 128,
+          "energy": 7963,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 118,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            4,
+            145,
+            58,
+            254
+          ]
+        },
+        {
+          "frame": 14,
+          "time": 0.65,
+          "pixels": 60,
+          "energy": 3065,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 60,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            4,
+            174,
+            59,
+            260
+          ]
+        },
+        {
+          "frame": 15,
+          "time": 0.7,
+          "pixels": 5,
+          "energy": 208,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 5,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            10,
+            182,
+            60,
+            243
+          ]
+        },
+        {
+          "frame": 16,
+          "time": 0.75,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 15,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.8
+    },
+    {
+      "id": "brave_hit_after",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_size": [
+        150,
+        47
+      ],
+      "painted_bounds": [
+        -71,
+        -10,
+        78,
+        36
+      ],
+      "frame_size": [
+        154,
+        51
+      ],
+      "anchor": [
+        73,
+        12
+      ],
+      "peak_pixels": 205,
+      "peak_energy": 46962,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "14bf9935e47af38070876390aa544303627a1c2d1ed6304d952f76d8a7e9d121",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 205,
+          "energy": 46962,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 21,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -56,
+            -10,
+            57,
+            22
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 202,
+          "energy": 45326,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 24,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -58,
+            -9,
+            58,
+            21
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 187,
+          "energy": 41848,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 14,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -59,
+            -9,
+            61,
+            22
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 164,
+          "energy": 34554,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 9,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -61,
+            -8,
+            63,
+            22
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 146,
+          "energy": 28405,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 3,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -62,
+            -8,
+            65,
+            24
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 127,
+          "energy": 22098,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -64,
+            -6,
+            68,
+            25
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 108,
+          "energy": 16150,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -65,
+            -5,
+            69,
+            27
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 95,
+          "energy": 11779,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -68,
+            -3,
+            72,
+            28
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 75,
+          "energy": 7386,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 9,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -68,
+            -1,
+            74,
+            31
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 66,
+          "energy": 4712,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 39,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -71,
+            0,
+            76,
+            33
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 36,
+          "energy": 1892,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 36,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -70,
+            3,
+            78,
+            36
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 11,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.6
+    },
+    {
+      "id": "brave_hit_after_big",
+      "frames": 16,
+      "fps": 20,
+      "duration": 0.8,
+      "first_visible_frame": 1,
+      "peak_frame": 2,
+      "peak_time": 0.05,
+      "painted_size": [
+        203,
+        66
+      ],
+      "painted_bounds": [
+        -100,
+        -10,
+        102,
+        55
+      ],
+      "frame_size": [
+        207,
+        70
+      ],
+      "anchor": [
+        102,
+        12
+      ],
+      "peak_pixels": 490,
+      "peak_energy": 112098,
+      "last_energy_pct": 0,
+      "clipped_pixels": 0,
+      "border_pixels": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "sha256": "71cd30ecc6bb8619b5e9e8155f3ed0759528316161698e9ae78e65152fe72dbd",
+      "errors": [],
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 421,
+          "energy": 95661,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 40,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -65,
+            -10,
+            67,
+            34
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 490,
+          "energy": 112098,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 43,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -67,
+            -10,
+            68,
+            34
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 453,
+          "energy": 103144,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 38,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -70,
+            -10,
+            70,
+            34
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 427,
+          "energy": 97922,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 21,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -71,
+            -10,
+            71,
+            35
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 392,
+          "energy": 85911,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 15,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -74,
+            -9,
+            74,
+            35
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 356,
+          "energy": 72479,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 11,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -77,
+            -9,
+            77,
+            36
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 326,
+          "energy": 61046,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 7,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -80,
+            -7,
+            81,
+            38
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 276,
+          "energy": 47008,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 3,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -83,
+            -6,
+            84,
+            39
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 257,
+          "energy": 38978,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 3,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -86,
+            -5,
+            87,
+            41
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 214,
+          "energy": 28857,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -89,
+            -3,
+            91,
+            43
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 196,
+          "energy": 22362,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 9,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -93,
+            0,
+            93,
+            45
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 182,
+          "energy": 16916,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 52,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -96,
+            2,
+            96,
+            48
+          ]
+        },
+        {
+          "frame": 13,
+          "time": 0.6,
+          "pixels": 157,
+          "energy": 11454,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 88,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -99,
+            7,
+            99,
+            51
+          ]
+        },
+        {
+          "frame": 14,
+          "time": 0.65,
+          "pixels": 96,
+          "energy": 5681,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 96,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -100,
+            12,
+            102,
+            55
+          ]
+        },
+        {
+          "frame": 15,
+          "time": 0.7,
+          "pixels": 38,
+          "energy": 1727,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 38,
+          "head": 0,
+          "torso": 0,
+          "bounds": [
+            -76,
+            41,
+            92,
+            52
+          ]
+        },
+        {
+          "frame": 16,
+          "time": 0.75,
+          "pixels": 0,
+          "energy": 0,
+          "border": 0,
+          "nonbinary_alpha": 0,
+          "under40": 0,
+          "dark_opaque": 0,
+          "head": 0,
+          "torso": 0,
+          "bounds": null
+        }
+      ],
+      "last_visible_frame": 15,
+      "baked_module_mismatches": 0,
+      "game_fps": 20,
+      "game_duration": 0.8
+    }
+  ]
+}
