@@ -2168,10 +2168,31 @@ func on_tagged_attack_landed(hit_tag: String) -> void:
 ## says which move it was).
 func on_attack_hit_body(body: Node, attack: Node) -> void:
 	_cancel_chain_recovery(attack)
+	_spawn_hit_afterglow(body, attack)
 	character_on_attack_hit_body(body, attack)
 
 func character_on_attack_hit_body(_body: Node, _attack: Node) -> void:
 	pass
+
+## The afterglow this fighter's melee hits leave on the struck body (scripts/Vfx.gd name; pixelfx, D49) for
+## an attack of `knockback` (its base value); empty for none. Frey's: a gold ring and steel sparks.
+func character_hit_afterglow(_knockback: float) -> String:
+	return ""
+
+## Once per landed melee hit, fighter or monster (on_attack_hit_body runs once for each body an attack hits;
+## the two hit sparks of a fighter hit come from apply_hit and on_attack_landed, so neither is used): at the
+## struck body's centre, where its hit spark plays, turned the attacker's way.
+func _spawn_hit_afterglow(body: Node, attack: Node) -> void:
+	var target := body as Node2D
+	var knockback: Variant = attack.get("knockback")
+	var effect := character_hit_afterglow(float(knockback) if knockback != null else 0.0)
+	if effect == "" or target == null:
+		return
+	var at := target.global_position + Vector2(0, -34)
+	var art: Variant = target.get("art_sprite")
+	if not target.is_in_group("players") and art is Node2D and is_instance_valid(art):
+		at = (art as Node2D).global_position
+	EFFECT_STRIPS.spawn(get_parent(), effect, at, Vector2(facing, 1.0), false, 5)
 
 ## A chain hit that lands cuts its own recovery to the meta "chain_cancel" seconds, so the next
 ## hit of the chain arrives inside the target's hitstun (2026-10-10: Frey's and Brave Luna's

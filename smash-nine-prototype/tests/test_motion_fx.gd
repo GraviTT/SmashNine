@@ -4,11 +4,15 @@ extends SceneTree
 ## scatters her stardust, never the grey dust: the clear one after a big fall, the small one after a
 ## small one (user 2026-11-04), and a tiny drop shows nothing; Frey kicks up dust on the walk drawings
 ## where a foot lands, only while she runs, behind her in either direction, each puff over one step;
-## each J cut draws its own sparks with the slash. Presentation only: nothing in the plain style (F2).
+## each J cut draws its own sparks with the slash. The Frey pilot picks (2026-11-04, D49): her up, down
+## and air J draw their follow-through (ground and air versions apart), and each melee hit that lands,
+## on a fighter or a monster, leaves exactly one afterglow on the struck body (the big one for a strong
+## hit), none on a miss. Presentation only: nothing in the plain style (F2).
 
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
+const MONSTER_SCRIPT := preload("res://scripts/RealmMonster.gd")
 
 var arena: Node2D
 var failed := false
@@ -33,6 +37,8 @@ func _run() -> void:
 	await _test_luna_landing()
 	await _test_frey_step_dust()
 	await _test_frey_slash_sparks()
+	await _test_frey_follow_through()
+	await _test_frey_hit_afterglow()
 	await _test_plain_style()
 	arena.queue_free()
 	await process_frame
@@ -237,6 +243,89 @@ func _test_frey_slash_sparks() -> void:
 	var mirrored := arena.get_children().filter(func(node: Node) -> bool: return _effect_of(node) == "frey_slash_sparks_1" and not node.is_queued_for_deletion() and node.scale.x < 0.0)
 	if mirrored.is_empty():
 		_fail("Facing left, the J sparks should be mirrored")
+	await _remove(frey)
+
+## The newest live sprite playing that strip in the arena, or null.
+func _live(effect: String) -> Node2D:
+	var found: Node2D = null
+	for node in arena.get_children():
+		if _effect_of(node) == effect and not node.is_queued_for_deletion():
+			found = node
+	return found
+
+func _test_frey_follow_through() -> void:
+	var frey: Node = _fighter("frey", 8, Vector2(2400, -1))
+	await _frames(20)
+	for step in [["_up_slash", "frey_jfx_up"], ["_down_cut", "frey_jfx_down"]]:
+		spawned.clear()
+		frey.call(step[0])
+		var strip := _live(step[1])
+		if strip == null or _count("frey_slash") != 1:
+			_fail("On the ground %s should draw frey_slash and %s (%s)" % [step[0], step[1], spawned])
+		elif strip.global_position != frey.global_position + Vector2(0, -32) or strip.scale.x != float(frey.facing):
+			_fail("%s belongs on her body centre, facing her way (at %s, Frey %s)" % [step[1], strip.global_position, frey.global_position])
+		await _frames(30)
+	# Nothing under her: the air versions.
+	frey.global_position = Vector2(2400, -900)
+	frey.velocity = Vector2.ZERO
+	await _frames(2)
+	for step in [["_up_slash", "frey_jfx_up_air"], ["_down_cut", "frey_jfx_down_air"], ["_air_slash", "frey_jfx_side_air"]]:
+		spawned.clear()
+		frey.call(step[0])
+		if _count(step[1]) != 1 or _count("frey_jfx_up") + _count("frey_jfx_down") != 0:
+			_fail("In the air %s should draw %s only (%s)" % [step[0], step[1], spawned])
+	await _remove(frey)
+
+func _test_frey_hit_afterglow() -> void:
+	var frey: Node = _fighter("frey", 9, Vector2(-2600, -1))
+	var foe: Node = _fighter("rio", 10, Vector2(-2540, -1))
+	await _frames(20)
+	frey.facing = 1
+	spawned.clear()
+	var centre: Vector2 = foe.global_position + Vector2(0, -34)
+	frey._combo_slash_one()
+	await _frames(6)
+	var glow := _live("frey_hit_after")
+	if _count("frey_hit_after") != 1 or _count("frey_hit_after_big") != 0 or glow == null:
+		_fail("A J hit on a fighter should leave exactly one afterglow (%s)" % [spawned])
+	elif glow.global_position.distance_to(centre) > 6.0 or glow.scale.x != 1.0:
+		_fail("The afterglow belongs on the struck body's centre, facing Frey's way (at %s, centre %s)" % [glow.global_position, centre])
+	# A miss leaves none.
+	foe.global_position = Vector2(-1900, -1)
+	await _frames(2)
+	spawned.clear()
+	frey._combo_slash_two()
+	await _frames(6)
+	if _count("frey_hit_after") + _count("frey_hit_after_big") != 0:
+		_fail("A miss should leave no afterglow (%s)" % [spawned])
+	# The finisher (knockback 430) leaves the big one.
+	foe.global_position = frey.global_position + Vector2(60, 0)
+	foe.velocity = Vector2.ZERO
+	await _frames(20)
+	spawned.clear()
+	frey._combo_slash_three()
+	await _frames(6)
+	if _count("frey_hit_after_big") != 1 or _count("frey_hit_after") != 0:
+		_fail("The finisher should leave exactly one big afterglow (%s)" % [spawned])
+	await _remove(foe)
+	# A monster gets one too, on its drawing's centre.
+	var monster := CharacterBody2D.new()
+	monster.set_script(MONSTER_SCRIPT)
+	monster.setup("ember_imp", 0, frey.global_position + Vector2(70, -2))
+	arena.add_child(monster)
+	monster.global_position = frey.global_position + Vector2(70, -2)
+	await _frames(4)
+	spawned.clear()
+	var art: Node2D = monster.art_sprite
+	var art_centre: Vector2 = art.global_position if art != null else Vector2.ZERO
+	frey._combo_slash_one()
+	await _frames(6)
+	glow = _live("frey_hit_after")
+	if _count("frey_hit_after") != 1 or glow == null:
+		_fail("A J hit on a monster should leave exactly one afterglow (%s)" % [spawned])
+	elif art != null and glow.global_position.distance_to(art_centre) > 8.0:
+		_fail("The monster's afterglow belongs on its drawing's centre (at %s, centre %s)" % [glow.global_position, art_centre])
+	monster.queue_free()
 	await _remove(frey)
 
 func _test_plain_style() -> void:

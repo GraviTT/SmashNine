@@ -123,6 +123,16 @@ const SPECS := {
 	"frey_slash_sparks_1": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
 	"frey_slash_sparks_2": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
 	"frey_slash_sparks_3": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
+	# The Frey pilot picks (pick cup 2026-11-04-frey, D49): the follow-through after her up, down and air J
+	# (candidate B, Codex CODEX-VFX-07), from the body centre with the move's angle drawn in, the ground and
+	# air versions apart; the afterglow her melee hits leave on the struck body (candidate A, the lead).
+	"frey_jfx_up": [16, 20.0, Vector2(70, 190), true, MOTION_DIR],
+	"frey_jfx_up_air": [16, 20.0, Vector2(70, 190), true, MOTION_DIR],
+	"frey_jfx_down": [15, 20.0, Vector2(35, 90), true, MOTION_DIR],
+	"frey_jfx_down_air": [14, 20.0, Vector2(65, 95), true, MOTION_DIR],
+	"frey_jfx_side_air": [16, 20.0, Vector2(35, 100), true, MOTION_DIR],
+	"frey_hit_after": [10, 20.0, Vector2(64, 56), true, MOTION_DIR],
+	"frey_hit_after_big": [14, 20.0, Vector2(96, 80), true, MOTION_DIR],
 	"yuki_grand_ward": [8, 12.0, Vector2(320, 320), false, SKILL_DIR],
 	"guard_bubble": [3, 1.0, Vector2(64, 64), false, SKILL_DIR],
 	"attack_afterimage": [4, 57.143, Vector2(80, 32), true, SKILL_DIR],

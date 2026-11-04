@@ -84,6 +84,13 @@ const STEP_DUST := [[&"frey_walk", 3, "frey_step_dust", 18.0, 4], [&"frey_walk",
 func get_motion_frame_effects() -> Array:
 	return STEP_DUST
 
+## Her hit afterglow (pick cup 2026-11-04-frey, D49): the bigger one for a strong hit (the finisher, 430, and
+## the spike, 700; the up and down J are 310 and 380).
+const BIG_HIT_KNOCKBACK := 400.0
+
+func character_hit_afterglow(knockback: float) -> String:
+	return "frey_hit_after_big" if knockback >= BIG_HIT_KNOCKBACK else "frey_hit_after"
+
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	match attack_type:
 		"up", "air_up":
@@ -285,7 +292,12 @@ func _combo_slash_three() -> void:
 ## The sparks and gold glints after J cut 1-3 (pixelfx 2026-11-04), over frey_slash at the same place
 ## (her body centre) and moment; each strip is drawn for its cut's reach, facing right.
 func _spawn_slash_sparks(cut: int) -> void:
-	VFX.spawn(get_parent(), "frey_slash_sparks_%d" % cut, global_position + GAME_SCALE.BODY_CENTRE, Vector2(facing, 1.0), false, 5)
+	_spawn_follow_through("frey_slash_sparks_%d" % cut)
+
+## A J's follow-through strip (pixelfx, D48/D49): where and when frey_slash starts, mirrored with her facing;
+## the strip has the move's angle drawn in, so it is not turned.
+func _spawn_follow_through(effect: String) -> void:
+	VFX.spawn(get_parent(), effect, global_position + GAME_SCALE.BODY_CENTRE, Vector2(facing, 1.0), false, 5)
 
 func _up_slash() -> void:
 	velocity.y = minf(velocity.y, -120.0 * GAME_SCALE.JUMP_SPEED)
@@ -294,6 +306,7 @@ func _up_slash() -> void:
 		Vector2(8 * facing, -68),
 		Vector2(0, -114)
 	], 10, 310, Vector2(0.12 * facing, -1), Color(1.0, 0.82, 0.4, 0.56), 0.105)
+	_spawn_follow_through("frey_jfx_up" if is_on_floor() else "frey_jfx_up_air")
 
 func _down_cut() -> void:
 	velocity.y += 130.0
@@ -303,6 +316,8 @@ func _down_cut() -> void:
 		Vector2(36 * facing, 2),
 		Vector2(54 * facing, 38)
 	], 12, 380, Vector2(0.3 * facing, 1), Color(1.0, 0.55, 0.24, 0.56), 0.115)
+	# On the ground the slash is shown along the floor at 15 degrees (PlayerBase.GROUND_TRAIL_MAX_DROP).
+	_spawn_follow_through("frey_jfx_down" if is_on_floor() else "frey_jfx_down_air")
 
 func _air_slash() -> void:
 	velocity.x += facing * 120.0
@@ -312,6 +327,7 @@ func _air_slash() -> void:
 		Vector2(60 * facing, -32),
 		Vector2(104 * facing, -28)
 	], 8, 260, Vector2(facing, -0.04), Color(1.0, 0.72, 0.34, 0.52), 0.095)
+	_spawn_follow_through("frey_jfx_side_air")
 
 func _consume_combo_step() -> int:
 	if combo_timer <= 0.0:

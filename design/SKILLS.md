@@ -24,6 +24,7 @@
   - Luna는 공중 0.12초 이상 뒤 착지마다(착지 소리와 같은 조건) 별가루를 발 위치에 남긴다. 130px 이상 떨어지면 `motion/luna_land_stardust.png`(큰 것), 그보다 낮으면 `motion/luna_land_stardust_small.png`(작은 것)다(사용자 2026-11-04). 행동 뒤 착지의 `landing_dust.png`도 Luna는 이것으로 바뀐다(Brave 포함).
   - Frey가 달리면 걷기 줄 4·8번째 그림(앞발이 닿는 순간)에 `motion/frey_step_dust.png`가 그 발 자리(발에서 앞으로 18·21px)에 남는다. 먼지 하나는 걷기 그림 4장(한 걸음) 안에 다 재생된다(사용자 2026-11-04: "발걸음 속도에 맞춰서"). 서 있거나 벽을 밀 때, 수풀에 숨었을 때는 없다. 걷기 그림이 바뀌면 `Frey.STEP_DUST`의 그림 번호와 발 위치를 다시 잰다.
   - 공용 부품: `PlayerBase.get_motion_overlays`(몸에 붙는 반복), `get_motion_frame_effects`(그림 번호에 맞춘 한 번), `character_landing_effect`(착지).
+  - 적중 여운(D49): `character_hit_afterglow(넉백)`이 이름을 주면, 근접 적중 한 번에 한 번(`on_attack_hit_body`) 맞은 몸 중심(몬스터는 그림 중심)에 나온다. 지금은 Frey만: `motion/frey_hit_after.png`, 넉백 400 이상은 `frey_hit_after_big.png`. 빗나감·방어에는 없다.
 
 ## 공용 조작
 
@@ -42,11 +43,11 @@
 | `J` 1타 | 발키리 검 연계 1 | 앞으로 조금 나가며 빠르게 벤다. 적중하면 다음 타의 후딜을 바로 끊는다. | 피해 8, 판정 42×34, 이동점 14→58→100, 넉백 235, 활성 0.085초; 선딜/후딜 0.07/0.16초 | `attack_chain` 1~2 | `frey_slash`를 `PlayerBase._draw_attack_art`가 궤적 길이에 맞춰 그림; 같은 순간·자리(몸 중심)에 `motion/frey_slash_sparks_1.png`(pixelfx 끝 불꽃·금빛 반짝임, D48) | 그림 | 판정 크기, 세 이동점, 진행 방향, 0.085초, Frey 금색; 불꽃은 궤적 길이 181·방향 -0.06에 맞춰 구움 |
 | `J` 2타 | 발키리 검 연계 2 | 더 멀리 전진해 두 번째 검격을 잇는다. 적중하면 3타로 바로 이어진다. | 피해 9, 44×36, 12→62→108, 넉백 275, 활성 0.095초; 0.08/0.18초 | `attack_chain` 3~4 | `frey_slash`; `_draw_attack_art`; `motion/frey_slash_sparks_2.png`(D48) | 그림 | 판정과 궤적, 0.095초, 진행 방향; 불꽃은 길이 193·방향 -0.1 |
 | `J` 3타 | 발키리 검 연계 마무리 | 흰빛으로 예고한 뒤 넓게 베어 강하게 날린다. | 피해 13, 52×42, 18→70→118, 넉백 430, 활성 0.12초; 0.11/0.26초 | `attack_chain` 5~6 | `frey_slash`; `_play_finisher_glint`가 몸을 흰색으로 번쩍임; `motion/frey_slash_sparks_3.png`(더 큰 불꽃, D48) | 그림 | 가장 큰 판정·사거리, 0.12초, 마무리의 밝기; 불꽃은 길이 209.5·방향 -0.18 |
-| `↑J` | 대공 베기 | 몸 앞에서 머리 위로 벤다. | 피해 10, 40×44, 끝점 y=-114, 넉백 310, 활성 0.105초; 자신 y속도 최대 `-120×JUMP_SPEED` | `attack_up` 2~4 | `frey_slash` | 그림 | 위쪽 궤적, 판정 |
-| `공중 ↑J` | 공중 대공 베기 | 지상 대공 베기와 같은 판정으로 공중에서 위를 벤다. | `↑J`와 동일 | `attack_up` 2~4 | `frey_slash` | 그림 | `↑J`와 동일, 공중 방향 |
-| `↓J` | 내려 베기 | 앞으로 내려가며 낮은 위치를 벤다. | 피해 12, 44×40, 끝점 (54,38), 넉백 380, 활성 0.115초; y속도 +130 | `attack_down` 3~4 | `frey_slash` | 그림 | 아래쪽 궤적, 판정과 0.115초 |
-| `공중 ↓J` | 공중 내려 베기 | 공중에서 같은 내려 베기를 쓴다. | `↓J`와 동일 | `attack_down` 3~4 | `frey_slash` | 그림 | `↓J`와 동일, 낙하 방향 |
-| `공중 J` | 공중 옆 베기 | 낙하 속도를 줄이고 전방을 빠르게 벤다. | 피해 8, 40×32, 끝점 x=104, 넉백 260, 활성 0.095초; x속도 +120, y속도 ×0.82 | `attack_air_side` 2~3 | `frey_slash` | 그림 | 104 기본 px 궤적, 진행 방향, 0.095초 |
+| `↑J` | 대공 베기 | 몸 앞에서 머리 위로 벤다. | 피해 10, 40×44, 끝점 y=-114, 넉백 310, 활성 0.105초; 자신 y속도 최대 `-120×JUMP_SPEED` | `attack_up` 2~4 | `frey_slash`; 같은 순간·자리에 `motion/frey_jfx_up.png`(pixelfx 여운, D49) | 그림 | 위쪽 궤적, 판정 |
+| `공중 ↑J` | 공중 대공 베기 | 지상 대공 베기와 같은 판정으로 공중에서 위를 벤다. | `↑J`와 동일 | `attack_up` 2~4 | `frey_slash`; `motion/frey_jfx_up_air.png`(바닥 없음) | 그림 | `↑J`와 동일, 공중 방향 |
+| `↓J` | 내려 베기 | 앞으로 내려가며 낮은 위치를 벤다. | 피해 12, 44×40, 끝점 (54,38), 넉백 380, 활성 0.115초; y속도 +130 | `attack_down` 3~4 | `frey_slash`(땅에서는 15°로 눕힘); `motion/frey_jfx_down.png`(15°에 맞춤) | 그림 | 아래쪽 궤적, 판정과 0.115초 |
+| `공중 ↓J` | 공중 내려 베기 | 공중에서 같은 내려 베기를 쓴다. | `↓J`와 동일 | `attack_down` 3~4 | `frey_slash`; `motion/frey_jfx_down_air.png`(73°) | 그림 | `↓J`와 동일, 낙하 방향 |
+| `공중 J` | 공중 옆 베기 | 낙하 속도를 줄이고 전방을 빠르게 벤다. | 피해 8, 40×32, 끝점 x=104, 넉백 260, 활성 0.095초; x속도 +120, y속도 ×0.82 | `attack_air_side` 2~3 | `frey_slash`; `motion/frey_jfx_side_air.png` | 그림 | 104 기본 px 궤적, 진행 방향, 0.095초 |
 | `K` | 회오리 검기 | 한 바퀴 돌며 전방으로 검기를 날린다. 맞은 적은 2초 동안 느려진다. 위·아래 방향키로 검기가 조금 위·아래로 기운다. 공중에서도 쓴다. | 선딜/후딜 0.16/0.26초; 검기 피해 10, 기본 30×64, 넉백 300, 속도 `640×COMBAT` `[WAVE_SPEED]`, 수명 0.36초 `[WAVE_LIFETIME]`(약 346 화면 px), 기울기 ±0.3 `[WAVE_TILT]`; 슬로우 2초 `[WAVE_SLOW_TIME]`(이동 ×0.55, `apply_slow`) | 임시: `spike_followup` 전체(회전 동작 줄이 생길 때까지) | `effects/frey_wave.png`(VFX-03 B, 4프레임 16fps 반복, 1배)를 `Projectile.set_effect_art`가 날아가는 방향에 맞춰 그림. 슬로우 동안 맞은 적 머리 위 `ui/status/slow.png`(VFX-03 A 모래시계). 그림이 없으면 색 사각형 | 그림(몸 동작은 임시) | 진행 방향·기울기, 30×64 판정(화면 45×96), 수명 0.36초, 금빛; 슬로우 표시 |
 | `L` | 비상 베기 | 검을 올려치며 뛰어올라 전방의 적을 Frey보다 높이 띄운다. 맞든 안 맞든 L 재입력 창이 열린다. 공중에서도 쓴다. | 피해 15, 58×58, 끝점 (62,-136), 넉백 510, 활성 0.16초; 강제 발사 (105,-760), 경직 0.32초; 재입력 0.45초 `[RISING_FOLLOWUP_WINDOW]` | `rising_cleave` 2~4 | `attack_vfx/frey_l.png`; 재입력 신호 `frey_spike_ring.png` | 그림 | 위쪽 판정 136, 발사 방향, 재입력 창 0.45초 |
 | `L` 재입력 | 발할라 일격 | 비상 베기 뒤 다시 누르면 후딜을 끊고 공중에서 전방을 크게 베어 적들을 날려 버린다. 그 뒤 땅에 닿을 때까지 무방비(다른 행동 잠금)다. | 피해 18, 76×48, 끝점 150, 넉백 700, 활성 0.14초; 선딜 0.127초 `[SPIKE_STARTUP]` | `spike_followup` 3~4 | `frey_slash`; 창이 열린 동안 `frey_spike_ring.png` | 그림 | 0.45초 입력 창, 전방 150 판정, 큰 넉백과 붉은 금색 |
@@ -213,7 +214,7 @@
 - 공격자별 `hit/<id>_hit.png`: 96×96, 4프레임, 44fps
 - `hit_streak.png`: 160×24, 4프레임. 길이는 넉백에 따라 `46~92×COMBAT`
 - `landing_dust.png`: 96×32, 5프레임
-- pixelfx 동작 이펙트(D48): `motion/` 7장 — `luna_idle_stars` 128×128 16프레임, `luna_land_stardust` 208×104 17프레임, `luna_land_stardust_small` 176×64 10프레임, `frey_step_dust` 96×40 9프레임, `frey_slash_sparks_1~3` 280×128 19프레임
+- pixelfx 동작 이펙트(D48·D49): `motion/` 14장 — `luna_idle_stars` 128×128 16프레임, `luna_land_stardust` 208×104 17프레임, `luna_land_stardust_small` 176×64 10프레임, `frey_step_dust` 96×40 9프레임, `frey_slash_sparks_1~3` 280×128 19프레임, `frey_jfx_*` 5장(14~16프레임), `frey_hit_after` 128×112 10프레임, `frey_hit_after_big` 192×160 14프레임
 
 ## 기술을 바꿀 때
 

@@ -14,6 +14,10 @@ pixelfx(`/도트이펙트`, 코드로 그리는 픽셀 이펙트)로 그린 동�
 | `luna_land_stardust_small.png` | 1760×64 | 10 × 176×64 | 20 | (88,56), 발 | 보통(반투명) | Luna의 작은 착지: 130px보다 낮게 떨어진 착지(짧게 누른 점프 50~110px, 위 발판에 올라섬) (v1, 사용자 2026-11-04) |
 | `frey_step_dust.png` | 864×40 | 9 × 96×40 | 16 → 걸음 박자 | (70,34), 앞발 | 보통(반투명) | Frey 달리기. `frey_walk` 4·8번째 그림(앞발이 닿는 순간)에 그 발 자리(발에서 앞으로 18·21px)에 남는다. v2에서 빈 첫·끝 그림을 뺐고, 걷기 그림 4장(한 걸음, 0.35초) 안에 다 재생된다("Frey의 발걸음 속도에 맞춰서", 사용자 2026-11-04) |
 | `frey_slash_sparks_{1,2,3}.png` | 5320×128 | 19 × 280×128 | 20 | (20,64), 몸 중심 | 더하기 | Frey J 1~3타. `frey_slash`와 같은 자리(몸 중심)·같은 순간에 나온다. 궤적 길이 181·193·209.5와 방향 -0.06·-0.1·-0.18에 맞춰 구웠다 (v2) |
+| `frey_jfx_up.png` · `frey_jfx_up_air.png` | 16 × 200×250 · 200×370 | 16 | 20 | (70,190), 몸 중심 | 더하기 | Frey ↑J(땅 · 공중) 여운. 베기 그림과 같은 순간·자리 (B안, Codex CODEX-VFX-07, 시안 월드컵 2026-11-04-frey) |
+| `frey_jfx_down.png` · `frey_jfx_down_air.png` | 15 × 300×150 · 14 × 240×440 | | 20 | (35,90) · (65,95) | 더하기 | Frey ↓J 여운. 땅은 15°로 눕힌 베기, 공중은 73° (B안) |
+| `frey_jfx_side_air.png` | 16 × 330×360 | 16 | 20 | (35,100) | 더하기 | Frey 공중 J 여운 (B안) |
+| `frey_hit_after.png` · `frey_hit_after_big.png` | 10 × 128×112 · 14 × 192×160 | | 20 | (64,56) · (96,80), 맞은 몸 중심 | 더하기 | Frey 근접 적중 한 번에 한 번 남는 여운: 금빛 고리, 강철 불꽃, 반짝임. 넉백 400 이상은 큰 것 (A안, 리드) |
 
 - 모두 오른쪽을 보고 그렸고, 바라보는 쪽으로 좌우만 뒤집어 그린다(회전 없음).
 - 1 art px = 1 screen px(월드 1배)이다. 확대하지 않는다.
@@ -42,5 +46,7 @@ pixelfx(`/도트이펙트`, 코드로 그리는 픽셀 이펙트)로 그린 동�
 - 그림 번호에 맞춘 한 번: `PlayerBase.get_motion_frame_effects()` — Frey `STEP_DUST`. 수풀에 숨었을 때는 나오지 않는다.
 - 착지: `PlayerBase.character_landing_effect(drop)` — Luna, 낙하 높이 `drop`(`air_top_y`부터)이 `Luna.BIG_LANDING_DROP` 130px 이상이면 큰 것
 - 걸음 박자: `get_motion_frame_effects()` 항목의 다섯째 값(걷기 그림 수)에 맞춰 이펙트 재생 속도를 정한다.
-- J 불꽃: `Frey._spawn_slash_sparks`
+- J 불꽃 · 여운: `Frey._spawn_follow_through`(3연타 `_spawn_slash_sparks`, ↑J · ↓J · 공중 J)
+- 적중 여운: `PlayerBase.character_hit_afterglow(knockback)` → `on_attack_hit_body`에서 한 번 (Frey `BIG_HIT_KNOCKBACK` 400)
+- 원본: B안은 `art/bakeoff/effects/pixelfx/frey/b/src/`(굽기 `bake.mjs`), A안은 pixelfx 사본의 `sn-frey-hit-after-a.js`(`reports/pixelfx-frey-pilot-2026-11-04/bake_a.mjs`)
 - 시험: `tests/test_motion_fx.gd`
