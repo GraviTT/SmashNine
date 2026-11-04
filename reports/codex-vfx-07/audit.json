@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "effects": 7,
+  "frames": 98,
+  "checks": [
+    {
+      "id": "jfx_up",
+      "frames": 16,
+      "contract": "PASS",
+      "rebounds_in_particle_lifetime": 3,
+      "samples_below_foot": 0,
+      "max_particle_y": 31.856,
+      "max_ground_y": 31.856
+    },
+    {
+      "id": "jfx_up_air",
+      "frames": 16,
+      "contract": "PASS",
+      "rebounds_in_particle_lifetime": 0,
+      "samples_below_foot": 48,
+      "max_particle_y": 108.619,
+      "max_ground_y": null
+    },
+    {
+      "id": "jfx_down",
+      "frames": 15,
+      "contract": "PASS",
+      "rebounds_in_particle_lifetime": 15,
+      "samples_below_foot": 0,
+      "max_particle_y": 32,
+      "max_ground_y": 32
+    },
+    {
+      "id": "jfx_down_air",
+      "frames": 14,
+      "contract": "PASS",
+      "rebounds_in_particle_lifetime": 0,
+      "samples_below_foot": 984,
+      "max_particle_y": 298.905,
+      "max_ground_y": null
+    },
+    {
+      "id": "jfx_side_air",
+      "frames": 16,
+      "contract": "PASS",
+      "rebounds_in_particle_lifetime": 0,
+      "samples_below_foot": 494,
+      "max_particle_y": 253.238,
+      "max_ground_y": null
+    },
+    {
+      "id": "hit_after",
+      "frames": 9,
+      "contract": "PASS",
+      "rebounds_in_particle_lifetime": 0,
+      "samples_below_foot": 0,
+      "max_particle_y": 17.22,
+      "max_ground_y": null
+    },
+    {
+      "id": "hit_after_big",
+      "frames": 12,
+      "contract": "PASS",
+      "rebounds_in_particle_lifetime": 0,
+      "samples_below_foot": 0,
+      "max_particle_y": 23.743,
+      "max_ground_y": null
+    }
+  ],
+  "notes": [
+    "Peak is summed max(R,G,B), not a human visibility rating.",
+    "Physics sampled at 120 Hz; particle centre floor and downward acceleration checked.",
+    "Empty-end, border, enlarged-canvas clipping and deterministic bake checks use measurements.json.",
+    "No gameplay, web p95/p99, hit-event count or 8-player performance claim."
+  ]
+}

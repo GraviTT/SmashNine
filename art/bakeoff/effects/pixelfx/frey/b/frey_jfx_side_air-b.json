@@ -1,0 +1,23 @@
+{
+  "note": "공중 옆 베기의 끝과 휘어진 검날에 금빛 반짝임이 남고 불꽃이 앞으로 튀며 낙하한다.",
+  "frames": 16,
+  "fps": 20,
+  "anchor": [
+    35,
+    100
+  ],
+  "blend": "add",
+  "attach": "Frey jfx_side_air: 해당 J 판정 활성 순간, frey_slash와 같은 몸 중심. 오른쪽 기준 -2도 내장, 좌우 반전만 하고 회전·확대하지 않음. 생성 위치에 남음.",
+  "source": "art/bakeoff/effects/pixelfx/frey/b/src/sn-frey-jfx-side-air-b.js",
+  "frame_size": [
+    330,
+    360
+  ],
+  "loop": false,
+  "duration": 0.8,
+  "start_delay": 0,
+  "aim_degrees": -2,
+  "reach": 186,
+  "floor_y": null,
+  "candidate": "B"
+}

@@ -1,0 +1,23 @@
+{
+  "note": "기존 적중 불꽃이 잦아들 때 몸 양옆에 짧은 금빛 검날 조각과 작은 쇳불꽃이 남는다.",
+  "frames": 9,
+  "fps": 20,
+  "anchor": [
+    75,
+    70
+  ],
+  "blend": "add",
+  "attach": "Frey의 일반 실제 적중 1회당 1번, 기존 적중 불꽃 시작 0.075초 뒤 맞은 몸 중심에 생성. 방어·패리·빗나감 제외. 좌우 반전만, 1배.",
+  "source": "art/bakeoff/effects/pixelfx/frey/b/src/sn-frey-hit-after-b.js",
+  "frame_size": [
+    160,
+    150
+  ],
+  "loop": false,
+  "duration": 0.45,
+  "start_delay": 0.075,
+  "aim_degrees": null,
+  "reach": null,
+  "floor_y": null,
+  "candidate": "B"
+}

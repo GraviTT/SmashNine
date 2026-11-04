@@ -1,0 +1,23 @@
+{
+  "note": "공중 대공 베기 뒤 금빛 검날 흔적과 반짝임이 남고 불꽃은 바닥 없이 아래로 떨어진다.",
+  "frames": 16,
+  "fps": 20,
+  "anchor": [
+    70,
+    190
+  ],
+  "blend": "add",
+  "attach": "Frey jfx_up_air: 해당 J 판정 활성 순간, frey_slash와 같은 몸 중심. 오른쪽 기준 -83도 내장, 좌우 반전만 하고 회전·확대하지 않음. 생성 위치에 남음.",
+  "source": "art/bakeoff/effects/pixelfx/frey/b/src/sn-frey-jfx-up-air-b.js",
+  "frame_size": [
+    200,
+    370
+  ],
+  "loop": false,
+  "duration": 0.8,
+  "start_delay": 0,
+  "aim_degrees": -83,
+  "reach": 155,
+  "floor_y": null,
+  "candidate": "B"
+}

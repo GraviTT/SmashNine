@@ -1,0 +1,100 @@
+{
+  "reviewer": "Codex builder",
+  "method": "Final PNGs visually inspected on actual Frey cells, all frames at 1x and 4x nearest neighbour. Not a game recording.",
+  "effects": [
+    {
+      "id": "jfx_up",
+      "frames": [
+        1,
+        16
+      ],
+      "scales_reviewed": [
+        1,
+        4
+      ],
+      "finding": "Upper arc breaks and falls; ground rebound visible late."
+    },
+    {
+      "id": "jfx_up_air",
+      "frames": [
+        1,
+        16
+      ],
+      "scales_reviewed": [
+        1,
+        4
+      ],
+      "finding": "Same upper cut; falling filings pass below feet with no rebound."
+    },
+    {
+      "id": "jfx_down",
+      "frames": [
+        1,
+        15
+      ],
+      "scales_reviewed": [
+        1,
+        4
+      ],
+      "finding": "Low gold cut and shallow bounce stay near the floor."
+    },
+    {
+      "id": "jfx_down_air",
+      "frames": [
+        1,
+        14
+      ],
+      "scales_reviewed": [
+        1,
+        4
+      ],
+      "finding": "Steep cut breaks into downward filings without clipping."
+    },
+    {
+      "id": "jfx_side_air",
+      "frames": [
+        1,
+        16
+      ],
+      "scales_reviewed": [
+        1,
+        4
+      ],
+      "finding": "Horizontal curved edge becomes falling filings; tail remains inside canvas."
+    },
+    {
+      "id": "hit_after",
+      "frames": [
+        1,
+        9
+      ],
+      "scales_reviewed": [
+        1,
+        4
+      ],
+      "finding": "Small side fragments and three glints leave body centre readable."
+    },
+    {
+      "id": "hit_after_big",
+      "frames": [
+        1,
+        12
+      ],
+      "scales_reviewed": [
+        1,
+        4
+      ],
+      "finding": "Wider five-glint afterglow remains outside the central torso."
+    }
+  ],
+  "human_judgment_pending": [
+    "v2 brightness sufficiency",
+    "normal/big balance",
+    "repeat-hit visual density",
+    "combined follow-through and hit read in actual match"
+  ],
+  "limitations": [
+    "Static bench positions; not runtime physics.",
+    "Current slash and hit spark are present, so composite brightness is not B-only brightness."
+  ]
+}
