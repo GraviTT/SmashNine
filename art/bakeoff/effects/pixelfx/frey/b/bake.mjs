@@ -56,4 +56,8 @@ export async function bake() {
  for(const m of metrics)console.log(`${m.name}: ${m.duration}s F${m.first_frame}->peak F${m.peak_frame}, bbox ${m.painted_size.join("x")}, core ${m.max_core_pixels}, clipped ${m.clipped_pixels}, last ${m.last_energy_pct}%`);
  return metrics;
 }
-if(process.argv[1]===fileURLToPath(import.meta.url))await bake();
+// Keep the pilot's exports and its explicit rebuild path; the default builds the current card.
+if(process.argv[1]===fileURLToPath(import.meta.url)) {
+ if(process.argv.includes("--pilot"))await bake();
+ else { const {bakeCharacter}=await import("../../../../../../reports/codex-vfx-08-b/bake-lib.mjs"); await bakeCharacter("frey"); }
+}

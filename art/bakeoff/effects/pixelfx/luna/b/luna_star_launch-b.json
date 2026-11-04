@@ -1,0 +1,20 @@
+{
+  "note": "작은 별이 발사된 자리 아래쪽에서 분홍·금 별가루가 전방으로 밀려 나간다. 회전해도 발사자의 얼굴을 피한다.",
+  "frames": 9,
+  "fps": 20,
+  "anchor": [
+    28,
+    18
+  ],
+  "blend": "add",
+  "loop": false,
+  "attach": "Luna _fire_star의 실제 작은 별 생성 위치에 한 번. +x를 발사 방향(0도, 위·아래 60도)에 맞춰 회전. 생성 위치에 남는다.",
+  "source": "art/bakeoff/effects/pixelfx/luna/b/src/sn-luna-star-launch-b.js",
+  "frame_size": [
+    112,
+    64
+  ],
+  "duration": 0.45,
+  "candidate": "B",
+  "start_delay": 0
+}

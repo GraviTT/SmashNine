@@ -1,0 +1,2413 @@
+{
+  "peak_definition": "알파를 곱한 max(R,G,B) 합계가 최대인 첫 프레임. 크기는 전체 프레임의 그려진 픽셀 합집합 경계.",
+  "head_region": "적중 중심 기준 x=[-24,24), y=[-70,-24)",
+  "body_region": "적중 중심 기준 x=[-20,20), y=[-24,24)",
+  "measurements": [
+    {
+      "id": "frey_jump",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 2,
+      "peak_time": 0.05,
+      "painted_bounds": [
+        -62,
+        -4,
+        57,
+        25
+      ],
+      "painted_size": [
+        120,
+        30
+      ],
+      "frame_size": [
+        160,
+        64
+      ],
+      "peak_energy": 83348,
+      "peak_pixels": 504,
+      "last_energy_pct": 2.42,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": null,
+      "end_pixels": 0,
+      "deterministic": true,
+      "loop_exact_difference": null,
+      "loop_seam_difference": null,
+      "loop_internal_differences": null,
+      "head_peak_pixels": null,
+      "body_peak_pixels": null,
+      "sha256": "f4c0f88bd23cd23fde74ff7993d1d160d22ff995030d67280ec3b9e08ad93d3f",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 381,
+          "energy": 74096,
+          "border": 0,
+          "badAlpha": 143,
+          "head": 0,
+          "body": 328,
+          "bounds": [
+            -25,
+            -4,
+            25,
+            13
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 504,
+          "energy": 83348,
+          "border": 0,
+          "badAlpha": 346,
+          "head": 0,
+          "body": 165,
+          "bounds": [
+            -33,
+            -4,
+            31,
+            16
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 572,
+          "energy": 80644,
+          "border": 0,
+          "badAlpha": 446,
+          "head": 0,
+          "body": 60,
+          "bounds": [
+            -41,
+            -3,
+            38,
+            18
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 596,
+          "energy": 76092,
+          "border": 0,
+          "badAlpha": 580,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -47,
+            -3,
+            44,
+            21
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 650,
+          "energy": 70492,
+          "border": 0,
+          "badAlpha": 646,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -51,
+            -3,
+            49,
+            23
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 706,
+          "energy": 63823,
+          "border": 0,
+          "badAlpha": 706,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -55,
+            -3,
+            52,
+            24
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 786,
+          "energy": 55599,
+          "border": 0,
+          "badAlpha": 786,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -59,
+            -2,
+            54,
+            25
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 814,
+          "energy": 44665,
+          "border": 0,
+          "badAlpha": 814,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -60,
+            -2,
+            55,
+            25
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 833,
+          "energy": 30892,
+          "border": 0,
+          "badAlpha": 833,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -62,
+            -2,
+            56,
+            23
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 742,
+          "energy": 16608,
+          "border": 0,
+          "badAlpha": 742,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -62,
+            -1,
+            57,
+            23
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 230,
+          "energy": 5777,
+          "border": 0,
+          "badAlpha": 230,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -54,
+            2,
+            56,
+            24
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 50,
+          "energy": 2016,
+          "border": 0,
+          "badAlpha": 50,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -51,
+            10,
+            -44,
+            25
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "frey_air_jump",
+      "frames": 14,
+      "fps": 20,
+      "duration": 0.7,
+      "first_visible_frame": 1,
+      "peak_frame": 2,
+      "peak_time": 0.05,
+      "painted_bounds": [
+        -60,
+        -2,
+        57,
+        33
+      ],
+      "painted_size": [
+        118,
+        36
+      ],
+      "frame_size": [
+        160,
+        72
+      ],
+      "peak_energy": 83872,
+      "peak_pixels": 397,
+      "last_energy_pct": 0.79,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "loop_exact_difference": null,
+      "loop_seam_difference": null,
+      "loop_internal_differences": null,
+      "head_peak_pixels": null,
+      "body_peak_pixels": null,
+      "sha256": "c0f1bff48e8125a991ea142c7b974844532ed0effe2966318dd3f207f0eddedb",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 329,
+          "energy": 77046,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 217,
+          "bounds": [
+            -31,
+            -2,
+            29,
+            14
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 397,
+          "energy": 83872,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 146,
+          "bounds": [
+            -36,
+            -2,
+            34,
+            19
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 431,
+          "energy": 77990,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 68,
+          "bounds": [
+            -41,
+            -2,
+            39,
+            22
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 320,
+          "energy": 63542,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 1,
+          "bounds": [
+            -44,
+            4,
+            42,
+            24
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 308,
+          "energy": 56642,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -47,
+            5,
+            47,
+            27
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 291,
+          "energy": 49145,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -49,
+            6,
+            51,
+            30
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 290,
+          "energy": 44496,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -53,
+            7,
+            54,
+            31
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 273,
+          "energy": 37091,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -56,
+            8,
+            56,
+            32
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 243,
+          "energy": 29885,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -58,
+            9,
+            53,
+            32
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 229,
+          "energy": 23608,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -59,
+            10,
+            55,
+            31
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 204,
+          "energy": 17457,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -60,
+            11,
+            56,
+            31
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 152,
+          "energy": 10646,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -56,
+            10,
+            57,
+            32
+          ]
+        },
+        {
+          "frame": 13,
+          "time": 0.6,
+          "pixels": 74,
+          "energy": 4284,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -56,
+            10,
+            43,
+            33
+          ]
+        },
+        {
+          "frame": 14,
+          "time": 0.65,
+          "pixels": 16,
+          "energy": 666,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -52,
+            29,
+            -45,
+            33
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "frey_land",
+      "frames": 11,
+      "fps": 20,
+      "duration": 0.55,
+      "first_visible_frame": 1,
+      "peak_frame": 2,
+      "peak_time": 0.05,
+      "painted_bounds": [
+        -57,
+        -19,
+        65,
+        1
+      ],
+      "painted_size": [
+        123,
+        21
+      ],
+      "frame_size": [
+        160,
+        64
+      ],
+      "peak_energy": 64612,
+      "peak_pixels": 440,
+      "last_energy_pct": 3.14,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": null,
+      "end_pixels": 0,
+      "deterministic": true,
+      "loop_exact_difference": null,
+      "loop_seam_difference": null,
+      "loop_internal_differences": null,
+      "head_peak_pixels": null,
+      "body_peak_pixels": null,
+      "sha256": "4e382a59c845a71646727bf7fc04b1262773511f0fcea9c37effbddac481fe7f",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 296,
+          "energy": 53275,
+          "border": 0,
+          "badAlpha": 124,
+          "head": 0,
+          "body": 275,
+          "bounds": [
+            -21,
+            -11,
+            21,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 440,
+          "energy": 64612,
+          "border": 0,
+          "badAlpha": 282,
+          "head": 0,
+          "body": 172,
+          "bounds": [
+            -31,
+            -14,
+            33,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 520,
+          "energy": 63531,
+          "border": 0,
+          "badAlpha": 377,
+          "head": 0,
+          "body": 81,
+          "bounds": [
+            -37,
+            -16,
+            41,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 512,
+          "energy": 58467,
+          "border": 0,
+          "badAlpha": 498,
+          "head": 0,
+          "body": 6,
+          "bounds": [
+            -42,
+            -18,
+            48,
+            -1
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 592,
+          "energy": 55144,
+          "border": 0,
+          "badAlpha": 591,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -46,
+            -19,
+            53,
+            -1
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 630,
+          "energy": 48733,
+          "border": 0,
+          "badAlpha": 630,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -50,
+            -19,
+            57,
+            -1
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 681,
+          "energy": 40259,
+          "border": 0,
+          "badAlpha": 681,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -53,
+            -19,
+            61,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 715,
+          "energy": 29656,
+          "border": 0,
+          "badAlpha": 715,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -55,
+            -18,
+            63,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 664,
+          "energy": 16916,
+          "border": 0,
+          "badAlpha": 664,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -57,
+            -15,
+            65,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 271,
+          "energy": 6009,
+          "border": 0,
+          "badAlpha": 271,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -57,
+            -13,
+            63,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 49,
+          "energy": 2032,
+          "border": 0,
+          "badAlpha": 49,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -53,
+            -9,
+            -29,
+            1
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "frey_land_big",
+      "frames": 16,
+      "fps": 20,
+      "duration": 0.8,
+      "first_visible_frame": 1,
+      "peak_frame": 5,
+      "peak_time": 0.2,
+      "painted_bounds": [
+        -85,
+        -24,
+        103,
+        3
+      ],
+      "painted_size": [
+        189,
+        28
+      ],
+      "frame_size": [
+        216,
+        80
+      ],
+      "peak_energy": 160809,
+      "peak_pixels": 1346,
+      "last_energy_pct": 1.05,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": null,
+      "end_pixels": 0,
+      "deterministic": true,
+      "loop_exact_difference": null,
+      "loop_seam_difference": null,
+      "loop_internal_differences": null,
+      "head_peak_pixels": null,
+      "body_peak_pixels": null,
+      "sha256": "b0d69539bcf1bce1716df2648312ef27b35bae1c4a12db308188d5fcdfcb4c58",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 590,
+          "energy": 109905,
+          "border": 0,
+          "badAlpha": 250,
+          "head": 0,
+          "body": 431,
+          "bounds": [
+            -31,
+            -13,
+            31,
+            2
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 808,
+          "energy": 133857,
+          "border": 0,
+          "badAlpha": 404,
+          "head": 0,
+          "body": 222,
+          "bounds": [
+            -40,
+            -14,
+            42,
+            1
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 1030,
+          "energy": 147965,
+          "border": 0,
+          "badAlpha": 728,
+          "head": 0,
+          "body": 98,
+          "bounds": [
+            -50,
+            -17,
+            53,
+            1
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 1158,
+          "energy": 152666,
+          "border": 0,
+          "badAlpha": 1041,
+          "head": 0,
+          "body": 10,
+          "bounds": [
+            -58,
+            -19,
+            63,
+            1
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 1346,
+          "energy": 160809,
+          "border": 0,
+          "badAlpha": 1280,
+          "head": 0,
+          "body": 2,
+          "bounds": [
+            -65,
+            -21,
+            70,
+            1
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 1470,
+          "energy": 160139,
+          "border": 0,
+          "badAlpha": 1452,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -70,
+            -23,
+            77,
+            1
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 1620,
+          "energy": 155409,
+          "border": 0,
+          "badAlpha": 1610,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -74,
+            -24,
+            83,
+            1
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 1702,
+          "energy": 147221,
+          "border": 0,
+          "badAlpha": 1701,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -77,
+            -24,
+            88,
+            1
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 1812,
+          "energy": 133940,
+          "border": 0,
+          "badAlpha": 1812,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -79,
+            -24,
+            92,
+            1
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 1900,
+          "energy": 117613,
+          "border": 0,
+          "badAlpha": 1900,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -81,
+            -24,
+            95,
+            2
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 1960,
+          "energy": 98608,
+          "border": 0,
+          "badAlpha": 1960,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -83,
+            -22,
+            98,
+            2
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 1974,
+          "energy": 77356,
+          "border": 0,
+          "badAlpha": 1974,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -84,
+            -21,
+            101,
+            2
+          ]
+        },
+        {
+          "frame": 13,
+          "time": 0.6,
+          "pixels": 1895,
+          "energy": 51227,
+          "border": 0,
+          "badAlpha": 1895,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -85,
+            -19,
+            103,
+            2
+          ]
+        },
+        {
+          "frame": 14,
+          "time": 0.65,
+          "pixels": 1623,
+          "energy": 26926,
+          "border": 0,
+          "badAlpha": 1623,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -85,
+            -18,
+            101,
+            3
+          ]
+        },
+        {
+          "frame": 15,
+          "time": 0.7,
+          "pixels": 673,
+          "energy": 9203,
+          "border": 0,
+          "badAlpha": 673,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -77,
+            -18,
+            86,
+            2
+          ]
+        },
+        {
+          "frame": 16,
+          "time": 0.75,
+          "pixels": 54,
+          "energy": 1687,
+          "border": 0,
+          "badAlpha": 54,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -60,
+            -9,
+            -50,
+            2
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "luna_star_launch",
+      "frames": 9,
+      "fps": 20,
+      "duration": 0.45,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_bounds": [
+        -12,
+        21,
+        31,
+        32
+      ],
+      "painted_size": [
+        44,
+        12
+      ],
+      "frame_size": [
+        112,
+        64
+      ],
+      "peak_energy": 21035,
+      "peak_pixels": 110,
+      "last_energy_pct": 0.97,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "loop_exact_difference": null,
+      "loop_seam_difference": null,
+      "loop_internal_differences": null,
+      "head_peak_pixels": null,
+      "body_peak_pixels": null,
+      "sha256": "12d707634045334553e5bae01a61c0b944ad4355caed559279acb21b8addfe18",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 110,
+          "energy": 21035,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 31,
+          "bounds": [
+            -12,
+            21,
+            10,
+            32
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 107,
+          "energy": 20852,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 4,
+          "bounds": [
+            -4,
+            23,
+            16,
+            32
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 99,
+          "energy": 17996,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            3,
+            24,
+            21,
+            32
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 103,
+          "energy": 15668,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            7,
+            24,
+            25,
+            32
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 84,
+          "energy": 11205,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            11,
+            26,
+            27,
+            32
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 64,
+          "energy": 7749,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            13,
+            25,
+            29,
+            32
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 55,
+          "energy": 5096,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            15,
+            24,
+            30,
+            31
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 32,
+          "energy": 2058,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            17,
+            24,
+            31,
+            29
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 4,
+          "energy": 205,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            21,
+            25,
+            29,
+            26
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "luna_star_launch_big",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_bounds": [
+        -12,
+        22,
+        48,
+        37
+      ],
+      "painted_size": [
+        61,
+        16
+      ],
+      "frame_size": [
+        136,
+        88
+      ],
+      "peak_energy": 34433,
+      "peak_pixels": 167,
+      "last_energy_pct": 0.51,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "loop_exact_difference": null,
+      "loop_seam_difference": null,
+      "loop_internal_differences": null,
+      "head_peak_pixels": null,
+      "body_peak_pixels": null,
+      "sha256": "2ba3971da1c6b6c1a5e00c6f1563d91845fffcadac1b3874461ce7c9e4a4b596",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 167,
+          "energy": 34433,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 25,
+          "bounds": [
+            -12,
+            22,
+            10,
+            37
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 157,
+          "energy": 31004,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 7,
+          "bounds": [
+            -6,
+            22,
+            19,
+            37
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 156,
+          "energy": 29509,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 1,
+          "bounds": [
+            -1,
+            23,
+            26,
+            37
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 147,
+          "energy": 25199,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            3,
+            24,
+            31,
+            37
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 133,
+          "energy": 21231,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            6,
+            24,
+            36,
+            34
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 119,
+          "energy": 18363,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            9,
+            25,
+            39,
+            36
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 102,
+          "energy": 13712,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            11,
+            25,
+            42,
+            35
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 95,
+          "energy": 11140,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            13,
+            25,
+            44,
+            35
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 90,
+          "energy": 8411,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            15,
+            24,
+            46,
+            34
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 80,
+          "energy": 5631,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            17,
+            24,
+            47,
+            32
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 38,
+          "energy": 1982,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            22,
+            25,
+            48,
+            31
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 4,
+          "energy": 176,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            25,
+            24,
+            44,
+            27
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "luna_star_trail",
+      "frames": 10,
+      "fps": 20,
+      "duration": 0.5,
+      "first_visible_frame": 1,
+      "peak_frame": 4,
+      "peak_time": 0.15,
+      "painted_bounds": [
+        -109,
+        -16,
+        -4,
+        23
+      ],
+      "painted_size": [
+        106,
+        40
+      ],
+      "frame_size": [
+        144,
+        52
+      ],
+      "peak_energy": 24383,
+      "peak_pixels": 231,
+      "last_energy_pct": 6.27,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": 0,
+      "end_pixels": 6,
+      "deterministic": true,
+      "loop_exact_difference": 0,
+      "loop_seam_difference": 2762,
+      "loop_internal_differences": [
+        162,
+        47066,
+        58985,
+        69133,
+        64550,
+        63896,
+        61980,
+        48354,
+        30712
+      ],
+      "head_peak_pixels": null,
+      "body_peak_pixels": null,
+      "sha256": "c030ce4a1022dee9923753cba7d49b7f33638e81dbd6ede85dd83a74c1093a7c",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 6,
+          "energy": 1530,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 6,
+          "bounds": [
+            -7,
+            21,
+            -4,
+            22
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 6,
+          "energy": 1528,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 6,
+          "bounds": [
+            -7,
+            21,
+            -4,
+            22
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 182,
+          "energy": 19000,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 34,
+          "bounds": [
+            -65,
+            -7,
+            -5,
+            22
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 231,
+          "energy": 24383,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 36,
+          "bounds": [
+            -100,
+            -8,
+            -5,
+            23
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 229,
+          "energy": 23168,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 31,
+          "bounds": [
+            -109,
+            -16,
+            -5,
+            23
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 217,
+          "energy": 22325,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 27,
+          "bounds": [
+            -109,
+            -16,
+            -5,
+            23
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 220,
+          "energy": 20438,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 30,
+          "bounds": [
+            -101,
+            -15,
+            -5,
+            23
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 204,
+          "energy": 19148,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 24,
+          "bounds": [
+            -106,
+            -15,
+            -5,
+            22
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 156,
+          "energy": 13254,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 33,
+          "bounds": [
+            -63,
+            -11,
+            -4,
+            22
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 6,
+          "energy": 1528,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 6,
+          "bounds": [
+            -7,
+            21,
+            -4,
+            22
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "luna_star_trail_big",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 5,
+      "peak_time": 0.2,
+      "painted_bounds": [
+        -149,
+        -23,
+        -4,
+        26
+      ],
+      "painted_size": [
+        146,
+        50
+      ],
+      "frame_size": [
+        192,
+        60
+      ],
+      "peak_energy": 32079,
+      "peak_pixels": 287,
+      "last_energy_pct": 4.77,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": 0,
+      "end_pixels": 6,
+      "deterministic": true,
+      "loop_exact_difference": 0,
+      "loop_seam_difference": 2753,
+      "loop_internal_differences": [
+        105,
+        38434,
+        61144,
+        90910,
+        101469,
+        91972,
+        101023,
+        104750,
+        93548,
+        56582,
+        21454
+      ],
+      "head_peak_pixels": null,
+      "body_peak_pixels": null,
+      "sha256": "a679ab60e443fe5d213336fbb585ccd308c3b9fa624aecb4f5fdb44253938f95",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 6,
+          "energy": 1530,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -7,
+            24,
+            -4,
+            25
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 6,
+          "energy": 1530,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -7,
+            24,
+            -4,
+            25
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 158,
+          "energy": 16527,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -50,
+            -18,
+            -4,
+            25
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 249,
+          "energy": 27095,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -93,
+            -19,
+            -5,
+            25
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 287,
+          "energy": 32079,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 1,
+          "bounds": [
+            -138,
+            -22,
+            -5,
+            26
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 291,
+          "energy": 31534,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 1,
+          "bounds": [
+            -148,
+            -23,
+            -5,
+            26
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 289,
+          "energy": 29484,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 1,
+          "bounds": [
+            -147,
+            -22,
+            -5,
+            26
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 288,
+          "energy": 29944,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 1,
+          "bounds": [
+            -149,
+            -22,
+            -5,
+            26
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 307,
+          "energy": 29597,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 1,
+          "bounds": [
+            -139,
+            -22,
+            -5,
+            25
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 250,
+          "energy": 24373,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -100,
+            -22,
+            -4,
+            25
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 115,
+          "energy": 9774,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -50,
+            -13,
+            -4,
+            25
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 6,
+          "energy": 1530,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -7,
+            24,
+            -4,
+            25
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "luna_hit_after",
+      "frames": 12,
+      "fps": 20,
+      "duration": 0.6,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_bounds": [
+        -65,
+        -12,
+        73,
+        32
+      ],
+      "painted_size": [
+        139,
+        45
+      ],
+      "frame_size": [
+        176,
+        100
+      ],
+      "peak_energy": 51538,
+      "peak_pixels": 237,
+      "last_energy_pct": 1.07,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "loop_exact_difference": null,
+      "loop_seam_difference": null,
+      "loop_internal_differences": null,
+      "head_peak_pixels": 0,
+      "body_peak_pixels": 0,
+      "sha256": "94094aee695e287f6aa19108591e9f203d132f6ef7fca21e83912372c182fc7c",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 237,
+          "energy": 51538,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -45,
+            -12,
+            43,
+            23
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 207,
+          "energy": 43142,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -50,
+            -11,
+            50,
+            23
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 189,
+          "energy": 38809,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -53,
+            -11,
+            55,
+            25
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 174,
+          "energy": 34057,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -56,
+            -10,
+            60,
+            25
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 162,
+          "energy": 30492,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -58,
+            -10,
+            63,
+            28
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 142,
+          "energy": 24344,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -59,
+            -9,
+            66,
+            29
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 129,
+          "energy": 20011,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -62,
+            -8,
+            68,
+            29
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 118,
+          "energy": 15754,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -62,
+            -6,
+            69,
+            31
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 108,
+          "energy": 11996,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -63,
+            -5,
+            71,
+            31
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 93,
+          "energy": 7942,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -64,
+            -3,
+            72,
+            31
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 69,
+          "energy": 3948,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -65,
+            -2,
+            73,
+            32
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 10,
+          "energy": 553,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -65,
+            -1,
+            73,
+            22
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "luna_hit_after_big",
+      "frames": 16,
+      "fps": 20,
+      "duration": 0.8,
+      "first_visible_frame": 1,
+      "peak_frame": 1,
+      "peak_time": 0,
+      "painted_bounds": [
+        -85,
+        -15,
+        93,
+        40
+      ],
+      "painted_size": [
+        179,
+        56
+      ],
+      "frame_size": [
+        216,
+        112
+      ],
+      "peak_energy": 88937,
+      "peak_pixels": 417,
+      "last_energy_pct": 0.83,
+      "border_pixels": 0,
+      "clipped_pixels": 0,
+      "nonbinary_alpha": 0,
+      "end_pixels": 0,
+      "deterministic": true,
+      "loop_exact_difference": null,
+      "loop_seam_difference": null,
+      "loop_internal_differences": null,
+      "head_peak_pixels": 0,
+      "body_peak_pixels": 0,
+      "sha256": "0ddfcd39e797b147c9d6eaa3b8a6403b2afa637994bcbdf10b5a17f7de21be7e",
+      "per_frame": [
+        {
+          "frame": 1,
+          "time": 0,
+          "pixels": 417,
+          "energy": 88937,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -63,
+            -15,
+            51,
+            31
+          ]
+        },
+        {
+          "frame": 2,
+          "time": 0.05,
+          "pixels": 381,
+          "energy": 80124,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -68,
+            -14,
+            58,
+            32
+          ]
+        },
+        {
+          "frame": 3,
+          "time": 0.1,
+          "pixels": 367,
+          "energy": 77506,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -72,
+            -13,
+            64,
+            32
+          ]
+        },
+        {
+          "frame": 4,
+          "time": 0.15,
+          "pixels": 353,
+          "energy": 75392,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -75,
+            -12,
+            70,
+            34
+          ]
+        },
+        {
+          "frame": 5,
+          "time": 0.2,
+          "pixels": 310,
+          "energy": 64957,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -77,
+            -11,
+            74,
+            36
+          ]
+        },
+        {
+          "frame": 6,
+          "time": 0.25,
+          "pixels": 289,
+          "energy": 57170,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -78,
+            -10,
+            78,
+            35
+          ]
+        },
+        {
+          "frame": 7,
+          "time": 0.3,
+          "pixels": 284,
+          "energy": 51442,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -79,
+            -9,
+            81,
+            38
+          ]
+        },
+        {
+          "frame": 8,
+          "time": 0.35,
+          "pixels": 275,
+          "energy": 46619,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -80,
+            -8,
+            84,
+            38
+          ]
+        },
+        {
+          "frame": 9,
+          "time": 0.4,
+          "pixels": 247,
+          "energy": 37835,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -81,
+            -8,
+            86,
+            39
+          ]
+        },
+        {
+          "frame": 10,
+          "time": 0.45,
+          "pixels": 223,
+          "energy": 30791,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -81,
+            -7,
+            88,
+            40
+          ]
+        },
+        {
+          "frame": 11,
+          "time": 0.5,
+          "pixels": 202,
+          "energy": 24517,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -82,
+            -6,
+            90,
+            40
+          ]
+        },
+        {
+          "frame": 12,
+          "time": 0.55,
+          "pixels": 192,
+          "energy": 19846,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -83,
+            -4,
+            91,
+            40
+          ]
+        },
+        {
+          "frame": 13,
+          "time": 0.6,
+          "pixels": 173,
+          "energy": 14481,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -84,
+            -3,
+            92,
+            40
+          ]
+        },
+        {
+          "frame": 14,
+          "time": 0.65,
+          "pixels": 149,
+          "energy": 9428,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -85,
+            -2,
+            93,
+            40
+          ]
+        },
+        {
+          "frame": 15,
+          "time": 0.7,
+          "pixels": 47,
+          "energy": 2695,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -85,
+            0,
+            93,
+            37
+          ]
+        },
+        {
+          "frame": 16,
+          "time": 0.75,
+          "pixels": 15,
+          "energy": 738,
+          "border": 0,
+          "badAlpha": 0,
+          "head": 0,
+          "body": 0,
+          "bounds": [
+            -79,
+            2,
+            89,
+            29
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ]
+}
