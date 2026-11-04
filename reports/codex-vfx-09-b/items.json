@@ -1,0 +1,278 @@
+[
+  {
+    "id": "luna_step",
+    "family": "luna",
+    "kind": "step",
+    "duration": 0.35,
+    "size": [
+      100,
+      48
+    ],
+    "origin": [
+      78,
+      34
+    ],
+    "blend": "mix",
+    "note": "앞발 뒤로 분홍 먼지와 금빛 별가루가 낮게 흐른다. 한 걸음 0.35초에 끝난다.",
+    "attach": "걷기 4·8번째 그림의 앞발, 발 기준 +17·18px. 한 걸음(4그림) 동안 재생.",
+    "fps": 20,
+    "frames": 7,
+    "seed": 909
+  },
+  {
+    "id": "luna_jump",
+    "family": "luna",
+    "kind": "jump",
+    "duration": 0.6,
+    "size": [
+      180,
+      70
+    ],
+    "origin": [
+      90,
+      48
+    ],
+    "blend": "mix",
+    "note": "도약 자리에서 별가루가 양옆으로 밀려나며 뒤쪽에 더 오래 남는다.",
+    "attach": "지상 점프 출발 순간 발 위치에 한 번, 오른쪽 기준.",
+    "fps": 20,
+    "frames": 12,
+    "seed": 946
+  },
+  {
+    "id": "luna_air_jump",
+    "family": "luna",
+    "kind": "air",
+    "duration": 0.7,
+    "size": [
+      190,
+      110
+    ],
+    "origin": [
+      95,
+      25
+    ],
+    "blend": "add",
+    "note": "공중 발밑에서 열린 두 갈래 별빛과 별조각이 아래·바깥으로 흐른다.",
+    "attach": "공중 점프 순간 발 위치에 한 번, 오른쪽 기준.",
+    "fps": 20,
+    "frames": 14,
+    "seed": 983
+  },
+  {
+    "id": "brave_rush_1",
+    "kind": "jab",
+    "aimDeg": -1,
+    "reach": 131,
+    "duration": 0.5,
+    "size": [
+      250,
+      150
+    ],
+    "origin": [
+      35,
+      65
+    ],
+    "row": 0,
+    "strike": 1,
+    "recovery": 0.1,
+    "family": "luna_brave",
+    "blend": "add",
+    "note": "잽 방향을 따라 끊어진 분홍·금빛 선과 별조각이 남고 아래로 가라앉는다.",
+    "attach": "luna_brave_slash와 같은 시작 순간·몸 중심(발보다 32px 위). 각도 -1도, 도달거리 131px를 그림에 반영. 좌우 반전만 사용, 회전 금지. ",
+    "fps": 20,
+    "frames": 10,
+    "seed": 1020
+  },
+  {
+    "id": "brave_rush_2",
+    "kind": "kick",
+    "aimDeg": -3,
+    "reach": 147,
+    "duration": 0.6,
+    "size": [
+      270,
+      160
+    ],
+    "origin": [
+      35,
+      65
+    ],
+    "row": 0,
+    "strike": 3,
+    "recovery": 0.11,
+    "family": "luna_brave",
+    "blend": "add",
+    "note": "보디 킥 방향을 따라 끊어진 분홍·금빛 선과 별조각이 남고 아래로 가라앉는다.",
+    "attach": "luna_brave_slash와 같은 시작 순간·몸 중심(발보다 32px 위). 각도 -3도, 도달거리 147px를 그림에 반영. 좌우 반전만 사용, 회전 금지. ",
+    "fps": 20,
+    "frames": 12,
+    "seed": 1057
+  },
+  {
+    "id": "brave_rush_3",
+    "kind": "spin",
+    "aimDeg": -22,
+    "reach": 157,
+    "duration": 0.7,
+    "size": [
+      280,
+      200
+    ],
+    "origin": [
+      40,
+      120
+    ],
+    "row": 0,
+    "strike": 5,
+    "recovery": 0.18,
+    "family": "luna_brave",
+    "blend": "add",
+    "note": "회전 킥 방향을 따라 끊어진 분홍·금빛 선과 별조각이 남고 아래로 가라앉는다.",
+    "attach": "luna_brave_slash와 같은 시작 순간·몸 중심(발보다 32px 위). 각도 -22도, 도달거리 157px를 그림에 반영. 좌우 반전만 사용, 회전 금지. ",
+    "fps": 20,
+    "frames": 14,
+    "seed": 1094
+  },
+  {
+    "id": "brave_up",
+    "kind": "upper",
+    "aimDeg": -83,
+    "reach": 156,
+    "duration": 0.7,
+    "size": [
+      200,
+      280
+    ],
+    "origin": [
+      80,
+      235
+    ],
+    "row": 1,
+    "strike": 2,
+    "recovery": 0.14,
+    "family": "luna_brave",
+    "blend": "add",
+    "note": "어퍼컷 방향을 따라 끊어진 분홍·금빛 선과 별조각이 남고 아래로 가라앉는다.",
+    "attach": "luna_brave_slash와 같은 시작 순간·몸 중심(발보다 32px 위). 각도 -83도, 도달거리 156px를 그림에 반영. 좌우 반전만 사용, 회전 금지. ",
+    "fps": 20,
+    "frames": 14,
+    "seed": 1131
+  },
+  {
+    "id": "brave_low",
+    "kind": "low",
+    "aimDeg": -3,
+    "reach": 157,
+    "duration": 0.6,
+    "size": [
+      270,
+      145
+    ],
+    "origin": [
+      35,
+      48
+    ],
+    "row": 2,
+    "strike": 2,
+    "recovery": 0.14,
+    "family": "luna_brave",
+    "blend": "add",
+    "note": "낮은 후리기 방향을 따라 끊어진 분홍·금빛 선과 별조각이 남고 아래로 가라앉는다.",
+    "attach": "luna_brave_slash와 같은 시작 순간·몸 중심(발보다 32px 위). 각도 -3도, 도달거리 157px를 그림에 반영. 좌우 반전만 사용, 회전 금지. 낮은 후리기는 그림 안에서 발 높이 +32px로 내렸다.",
+    "fps": 20,
+    "frames": 12,
+    "seed": 1168
+  },
+  {
+    "id": "brave_side_air",
+    "kind": "fly",
+    "aimDeg": -5,
+    "reach": 170,
+    "duration": 0.6,
+    "size": [
+      290,
+      170
+    ],
+    "origin": [
+      35,
+      75
+    ],
+    "row": 3,
+    "strike": 2,
+    "recovery": 0.12,
+    "family": "luna_brave",
+    "blend": "add",
+    "note": "비행 킥 방향을 따라 끊어진 분홍·금빛 선과 별조각이 남고 아래로 가라앉는다.",
+    "attach": "luna_brave_slash와 같은 시작 순간·몸 중심(발보다 32px 위). 각도 -5도, 도달거리 170px를 그림에 반영. 좌우 반전만 사용, 회전 금지. ",
+    "fps": 20,
+    "frames": 12,
+    "seed": 1205
+  },
+  {
+    "id": "brave_down_air",
+    "kind": "dive",
+    "aimDeg": 81,
+    "reach": 206,
+    "duration": 0.8,
+    "size": [
+      200,
+      360
+    ],
+    "origin": [
+      70,
+      50
+    ],
+    "row": 4,
+    "strike": 2,
+    "recovery": 0.18,
+    "family": "luna_brave",
+    "blend": "add",
+    "note": "급강하 킥 방향을 따라 끊어진 분홍·금빛 선과 별조각이 남고 아래로 가라앉는다.",
+    "attach": "luna_brave_slash와 같은 시작 순간·몸 중심(발보다 32px 위). 각도 81도, 도달거리 206px를 그림에 반영. 좌우 반전만 사용, 회전 금지. ",
+    "fps": 20,
+    "frames": 16,
+    "seed": 1242
+  },
+  {
+    "id": "brave_hit_after",
+    "family": "luna_brave",
+    "kind": "hit",
+    "duration": 0.6,
+    "size": [
+      240,
+      140
+    ],
+    "origin": [
+      105,
+      65
+    ],
+    "blend": "add",
+    "note": "적중 불꽃 바깥에 분홍·금빛 별조각이 전방으로 길게 흐른다. 중심은 비운다.",
+    "attach": "Brave 근접 적중마다 피격 몸 중심에 한 번. 기본 넉백 400 미만.",
+    "fps": 20,
+    "frames": 12,
+    "seed": 1279
+  },
+  {
+    "id": "brave_hit_after_big",
+    "family": "luna_brave",
+    "kind": "hit",
+    "big": true,
+    "duration": 0.8,
+    "size": [
+      290,
+      175
+    ],
+    "origin": [
+      125,
+      70
+    ],
+    "blend": "add",
+    "note": "강한 적중 뒤 더 넓고 긴 별조각 여운. 중심 섬광은 기존 적중 그림이 담당한다.",
+    "attach": "Brave 근접 강타 적중마다 피격 몸 중심에 한 번. 기본 넉백 400 이상: 회전 킥 520, 어퍼컷 430, 급강하 475.",
+    "fps": 20,
+    "frames": 16,
+    "seed": 1316
+  }
+]
