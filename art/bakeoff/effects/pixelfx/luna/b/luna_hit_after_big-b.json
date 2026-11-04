@@ -1,0 +1,20 @@
+{
+  "note": "기존 혜성 폭발이 사라진 뒤에도 진행 방향 아래쪽으로 떨어지는 더 큰 별 조각. 중심 섬광은 추가하지 않는다.",
+  "frames": 16,
+  "fps": 20,
+  "anchor": [
+    96,
+    44
+  ],
+  "blend": "add",
+  "loop": false,
+  "attach": "큰 별의 실제 적중당 한 번, 맞은 몸 중심. luna_comet_burst와 함께 검사한 여운. 직접 적중과 폭발에서 중복 생성하지 않는다. 방어·패리·빗나감 제외. +x가 발사 방향이며 좌우 반전.",
+  "source": "art/bakeoff/effects/pixelfx/luna/b/src/sn-luna-hit-after-big-b.js",
+  "frame_size": [
+    216,
+    112
+  ],
+  "duration": 0.8,
+  "candidate": "B",
+  "start_delay": 0
+}

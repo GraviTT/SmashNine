@@ -1,0 +1,21 @@
+{
+  "note": "큰 별의 중심을 비워 둔 채 더 길게 흐르는 분홍·금빛 별가루 꼬리.",
+  "frames": 12,
+  "fps": 20,
+  "anchor": [
+    174,
+    30
+  ],
+  "blend": "add",
+  "loop": true,
+  "attach": "큰 LunaStar의 중심에 붙여 비행 중에만 반복. +x를 비행 방향으로 회전하고 -x에 꼬리. 별 제거 시 즉시 제거. 속도 930px/s, 수명 0.36초.",
+  "source": "art/bakeoff/effects/pixelfx/luna/b/src/sn-luna-star-trail-big-b.js",
+  "frame_size": [
+    192,
+    60
+  ],
+  "duration": 0.6,
+  "candidate": "B",
+  "start_delay": 0,
+  "playback": "반드시 1프레임부터 시작한다. 짧게 시작해 길어졌다 짧아지는 반복을 시트 자체에 구웠다. 무작위 시작 프레임을 쓰지 않는다. 생성 순간 기존의 긴 꼬리가 발사자와 겹치는 것을 방지한다."
+}
