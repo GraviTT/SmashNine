@@ -729,6 +729,8 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 		var power_value = attacker.get("attack_power")
 		if power_value != null:
 			final_damage *= float(power_value) / 100.0
+		if attacker.has_method("damage_scale_against"):
+			final_damage *= float(attacker.damage_scale_against(self))
 	if archetype == "shell" and action_phase == "active":
 		var frontal := direction.x * facing < 0.0
 		if is_instance_valid(attacker) and attacker is Node2D:
@@ -794,6 +796,10 @@ func apply_gravity_float(duration: float) -> void:
 
 func is_floating() -> bool:
 	return gravity_float_timer > 0.0
+
+## Defeated (Rio's stuck swords drop off it).
+func is_down() -> bool:
+	return state == State.DEFEATED
 
 ## Out of a float at once (Nova's beam pulls it down).
 func end_gravity_float() -> void:

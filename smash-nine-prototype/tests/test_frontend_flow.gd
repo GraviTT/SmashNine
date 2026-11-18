@@ -153,9 +153,9 @@ func _run() -> void:
 	for index in 5:
 		await _click(main.hud.frontend.portrait_buttons[index])
 		_check(main.hud.frontend.hero_art.texture != null, "Every fighter must have main art")
-		# Five rows (J, K, L, I, passive), six for a fighter with a third skill (U, D47).
+		# Five rows (J, K, L, I, passive), six for a fighter with a third skill (U: Nova D47, Rio D50).
 		var rows: int = main.hud.frontend.skill_labels.filter(func(label: Label) -> bool: return label.visible and label.text != "").size()
-		var wanted: int = 6 if REGISTRY.get_character_ids()[index] == "nova" else 5
+		var wanted: int = 6 if REGISTRY.get_character_ids()[index] in ["nova", "rio"] else 5
 		_check(rows == wanted, "Every fighter must show J/K/L(/U)/I and passive guidance (%s: %d rows)" % [REGISTRY.get_character_ids()[index], rows])
 	await _tap(KEY_V)
 	_check(main.hud.frontend.hero_art.texture.resource_path.ends_with("rio_female_illustration.png"), "Rio body must also switch its main art")

@@ -263,11 +263,11 @@ func _test_recovery_skill() -> void:
 			_fail("%s should stop after two recovery-skill uses in one recovery" % id)
 		ai.recovery_skill_uses = 0
 		if id == "rio":
-			# One blink per airtime: after it, Rio does not keep asking in the air.
-			bot.air_blink_available = false
+			# One sword throw per airtime (D50): after it, Rio does not keep asking in the air.
+			bot.air_throw_available = false
 			if str(ai._recover_intent(bot).get("attack", "")) == "skill_1":
-				_fail("Rio should not ask for a second blink in the same airtime")
-			bot.air_blink_available = true
+				_fail("Rio should not ask for a second throw in the same airtime")
+			bot.air_throw_available = true
 		ai.recovery_target = Vector2(600, -100)
 		intent = ai._recover_intent(bot)
 		var far_skill: bool = str(intent.get("attack", "")) == "skill_1"

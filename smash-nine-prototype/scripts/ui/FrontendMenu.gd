@@ -35,10 +35,12 @@ const KITS := {
 		"Gravity Field  /  Fly inside it; foes slow, monsters float.", "Gravity Beam  /  Drag a foe to you; slam one in the air.",
 		"Event Horizon  /  Foes circle a sphere; hold I, let go to launch.",
 		"Gravity Stacks  /  Three stacks root a foe for 2 s."],
-	"rio": ["Blink in, cut through and slip away.\nCounter attacks with runes and stay mobile in the air.",
-		"Mana Combo  /  Three cuts; the last sends a wave.", "Dimension Slash  /  Blink and cut along your path.",
-		"Rune Shield  /  Absorb hits, then counter; risky on miss.", "Infinity Overdrive  /  Aim six flying gem swords.",
-		"Air Steps  /  Two extra jumps before landing."]
+	# Rio's kit v3 also has a third skill (U, D50).
+	"rio": ["Blink to your sword, behind attackers or into your decoy.\nHits from behind cut deeper.",
+		"Mana Combo  /  Three cuts; the last dashes through the foe.", "Sword Throw  /  K again: blink to it, behind a struck foe.",
+		"Shadow Counter  /  Take a hit unharmed, strike from behind.", "Decoy Swap  /  Leave a decoy and step back; U again: swap.",
+		"Blade Flurry  /  Stick six gem swords; I again: cut them all.",
+		"Backstab  /  Hits from behind deal 1.5x. Two air jumps."]
 }
 const CONTROLS := [
 	["A / D  or  Left / Right", "Move / aim attacks"],

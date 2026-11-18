@@ -101,10 +101,10 @@ func _test_ground_down_trail() -> void:
 func _test_own_effects_only() -> void:
 	var rio := _player("rio")
 	await physics_frame
-	rio.rune_absorbed_hits = 2
-	rio._rune_release()
+	rio._decoy_cast()
+	rio.decoy_burst(rio.decoy)
 	if _vfx("rio_slash") != null or _vfx("rio_rune_burst") == null:
-		_fail("Rio's rune counter should draw its rune burst and no shared slash (slash %s)" % [_vfx("rio_slash")])
+		_fail("Rio's decoy burst should draw its rune burst and no shared slash (slash %s)" % [_vfx("rio_slash")])
 	_clear([rio])
 	var nova := _player("nova")
 	await physics_frame

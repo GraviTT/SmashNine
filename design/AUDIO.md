@@ -40,6 +40,7 @@
 | Skills | `ult_nova` | 궁극기 시작(후속 단계 중복 요청 없음) | `characters/common/PlayerBase.gd:ultimate` | `ult_start` | 2 | 40 | true |
 | Skills | `skill_rio_1` | rio 기술 1: 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인 | `characters/common/PlayerBase.gd:skill_one` | `skill_cast` | 3 | 40 | true |
 | Skills | `skill_rio_2` | rio 기술 2: 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인 | `characters/common/PlayerBase.gd:skill_two` | `skill_cast` | 3 | 40 | true |
+| Skills | `skill_rio_3` | rio 기술 3(U 분신 바꿔치기, D50): 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인. 파일은 임시로 `skill_rio_1` 복사 | `characters/common/PlayerBase.gd:skill_three` | `skill_cast` | 3 | 40 | true |
 | Skills | `ult_rio` | 궁극기 시작(후속 단계 중복 요청 없음) | `characters/common/PlayerBase.gd:ultimate` | `ult_start` | 2 | 40 | true |
 | Monsters | `monster_windup` | 공격 예고 시작 | `scripts/RealmMonster.gd:_begin_windup` | `monster_attack` | 3 | 40 | true |
 | Monsters | `monster_bite` | bite 원형 공격 실행 | `scripts/RealmMonster.gd:_execute_action` | `monster_attack` | 3 | 40 | true |

@@ -28,16 +28,16 @@ func _run() -> void:
 	var rio: Node = main._get_human_player()
 	if not hud.skill_bar.visible or not hud.controls_label.visible or hud.skill_slots.size() != 5:
 		_fail("The skill bar and the short controls line should show during a match")
-	# Cooldown shades: the ultimate and Rio's rune shield.
+	# Cooldown shades: the ultimate and Rio's shadow counter.
 	rio.ultimate_cooldown_timer = 15.0
-	rio.rune_cooldown_timer = 1.5
+	rio.counter_cooldown_timer = 1.5
 	hud.update_skill_bar(rio, 0.016)
 	var ultimate: Dictionary = hud.skill_slots["i"]
 	var rune: Dictionary = hud.skill_slots["l"]
 	if absf(ultimate.shade.size.y - hud.SKILL_SLOT_SIZE * 0.5) > 0.5 or ultimate.time.text != "15":
 		_fail("Half the ultimate cooldown left should shade half the slot and say 15 (%.1f, %s)" % [ultimate.shade.size.y, ultimate.time.text])
 	if rune.shade.size.y <= 0.0 or rune.time.text != "2":
-		_fail("Rio's rune shield cooldown should shade its slot")
+		_fail("Rio's counter cooldown should shade its slot")
 	if hud.skill_slots["k"].shade.size.y > 0.0:
 		_fail("A move without a cooldown should not be shaded")
 	rio.ultimate_cooldown_timer = 0.0

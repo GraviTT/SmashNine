@@ -34,6 +34,7 @@ const SOUNDS := {
 	"ult_nova": {"fallback": "ult_start", "voices": 2, "group": "Skills", "world": true},
 	"skill_rio_1": {"fallback": "skill_cast", "voices": 3, "group": "Skills", "world": true},
 	"skill_rio_2": {"fallback": "skill_cast", "voices": 3, "group": "Skills", "world": true},
+	"skill_rio_3": {"fallback": "skill_cast", "voices": 3, "group": "Skills", "world": true},
 	"ult_rio": {"fallback": "ult_start", "voices": 2, "group": "Skills", "world": true},
 	"monster_windup": {"fallback": "monster_attack", "voices": 3, "group": "Monsters", "world": true},
 	"monster_bite": {"fallback": "monster_attack", "voices": 3, "group": "Monsters", "world": true},

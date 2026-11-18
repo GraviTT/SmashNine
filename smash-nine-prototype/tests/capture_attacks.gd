@@ -62,8 +62,9 @@ func _ready_to_act(fighter: Node) -> void:
 	fighter.attack_lock_timer = 0.0
 	fighter.hitstun_timer = 0.0
 	fighter.is_guarding = false
-	if fighter.get("rune_cooldown_timer") != null:
-		fighter.rune_cooldown_timer = 0.0
+	if fighter.get("counter_cooldown_timer") != null:
+		fighter.counter_cooldown_timer = 0.0
+		fighter.decoy_cooldown_timer = 0.0
 
 func _seconds(duration: float) -> void:
 	if duration > 0.0:

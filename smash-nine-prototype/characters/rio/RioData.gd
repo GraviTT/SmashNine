@@ -5,7 +5,7 @@ static func get_data() -> Dictionary:
 		"id": "rio",
 		"name": "Rio",
 		"role": "Spellblade Assassin",
-		"ultimate_name": "Infinity Overdrive",
+		"ultimate_name": "Blade Flurry",
 		"ultimate_window": 1.8,
 		"color": Color(0.5, 0.72, 1.0),
 		"bodies": ["male", "female"],

@@ -80,16 +80,17 @@ func _run_original_checks() -> void:
 	nova._play_launch_flash(Vector2.RIGHT)
 	_expect_vfx(arena, "nova_launch_flash")
 
+	# Rio's kit v3 (D50): the decoy bursts with the rune burst; the thrown swords (K and I) use the
+	# gem sword picture. His counter stance is code-drawn until its art.
 	var rio := _player("rio")
-	rio._show_rune(true)
-	_expect_vfx(rio, "rio_rune_guard")
-	rio._play_rune_burst()
+	rio._decoy_cast()
+	rio.decoy_burst(rio.decoy)
 	_expect_vfx(arena, "rio_rune_burst")
 	rio._play_blink_trail(Vector2.ZERO, Vector2(180, 0))
 	_expect_vfx(arena, "rio_blink_trail")
-	var sword: Node = rio._make_gem_sword(Color.CYAN)
+	var sword: Node = rio._make_sword(Vector2.RIGHT, Vector2(28, 28), 2.0, 0.0, 980.0, 0.62, Color.CYAN)
 	if sword.get_node_or_null("ArtSprite") == null:
-		_fail("Rio gem sword did not use rio_gem_sword.png")
+		_fail("Rio's thrown sword did not use rio_gem_sword.png")
 	sword.free()
 
 	# Yuki's ultimate shows the adopted seal (CODEX-ART-67); the thin ring art used to hide it
@@ -130,12 +131,12 @@ func _run_fallback_checks() -> void:
 	_expect_added_shape("Nova launch flash", Line2D, func() -> void: nova._play_launch_flash(Vector2.RIGHT))
 
 	var rio := _player("rio")
-	_expect_added_shape("Rio rune guard", Line2D, func() -> void: rio._show_rune(true))
-	_expect_added_shape("Rio rune burst", Line2D, func() -> void: rio._play_rune_burst())
+	_expect_added_shape("Rio counter stance", Line2D, func() -> void: rio._show_stance(true))
+	_expect_added_shape("Rio decoy burst", Line2D, func() -> void: rio._play_ring(Vector2.ZERO, Color.WHITE))
 	_expect_added_shape("Rio blink trail", Line2D, func() -> void: rio._play_blink_trail(Vector2.ZERO, Vector2(180, 0)))
-	var sword: Polygon2D = rio._make_gem_sword(Color.CYAN)
-	if sword.polygon.is_empty() or sword.get_node_or_null("ArtSprite") != null:
-		_fail("Rio gem sword fallback was not the old polygon")
+	var sword: Node = rio._make_sword(Vector2.RIGHT, Vector2(28, 28), 2.0, 0.0, 980.0, 0.62, Color.CYAN)
+	if not sword.art is Polygon2D or sword.get_node_or_null("ArtSprite") != null:
+		_fail("Rio's thrown sword fallback should be a code blade")
 	sword.free()
 
 	var ward: Node = load("res://characters/yuki/YukiGrandWard.gd").new()

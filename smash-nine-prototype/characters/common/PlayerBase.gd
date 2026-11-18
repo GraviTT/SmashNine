@@ -943,6 +943,11 @@ func character_defers_air_jump() -> bool:
 func character_air_motion() -> StringName:
 	return &""
 
+## This fighter's damage scale on a hit against `target` (Rio's backstab, D50); 1 for most.
+## Fighters and monsters ask it when they take the hit.
+func damage_scale_against(_target: Node) -> float:
+	return 1.0
+
 ## Motion effects (pixelfx, user 2026-11-04), presentation only. {animation: effect}: the effect
 ## (scripts/Vfx.gd name) loops over the body while that sprite animation plays, its anchor on the
 ## feet, mirrored with the facing (Luna's idle stars).
@@ -1875,7 +1880,10 @@ func _calculate_incoming_damage(attacker: Node, base_damage: float, damage_type:
 		if power_value != null:
 			attacker_power = float(power_value)
 	var mark_scale := STAR_MARK_DAMAGE_SCALE if star_mark_timer > 0.0 else 1.0
-	return maxf(base_damage * attacker_power / 100.0 * 100.0 / (100.0 + maxf(defense, 0.0)) * incoming_damage_scale * mark_scale, 1.0)
+	var attacker_scale := 1.0
+	if is_instance_valid(attacker) and attacker.has_method("damage_scale_against"):
+		attacker_scale = float(attacker.damage_scale_against(self))
+	return maxf(base_damage * attacker_power / 100.0 * 100.0 / (100.0 + maxf(defense, 0.0)) * incoming_damage_scale * mark_scale * attacker_scale, 1.0)
 
 func _get_hit_direction(direction: Vector2, was_grounded: bool) -> Vector2:
 	var hit_direction := direction.normalized()

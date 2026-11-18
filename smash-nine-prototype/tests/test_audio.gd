@@ -173,7 +173,7 @@ func _probe_hooks() -> void:
 				actor.cancel_pending_actions()
 		if id == "rio":
 			_reset_action(actor)
-			actor.air_blink_available = false
+			actor.air_throw_available = false
 			var before: int = manager.requests.get("skill_%s_1" % id, 0)
 			actor.skill_one()
 			_check(int(manager.requests.get("skill_%s_1" % id, 0)) == before, "Rejected airborne skill must not sound: " + id)
@@ -549,8 +549,11 @@ func _reset_action(actor: Node) -> void:
 	actor.ultimate_cooldown_timer = 0.0
 	actor.ultimate_armor_timer = 0.0
 	if actor.character_id == "rio":
-		actor.air_blink_available = true
-		actor.rune_cooldown_timer = 0.0
+		actor.air_throw_available = true
+		actor.counter_cooldown_timer = 0.0
+		actor.decoy_cooldown_timer = 0.0
+		actor._clear_sword()
+		actor._clear_flurry()
 	elif actor.character_id == "nova":
 		actor.field_cooldown_timer = 0.0
 		actor.ultimate_phase = actor.ULTIMATE_NONE
