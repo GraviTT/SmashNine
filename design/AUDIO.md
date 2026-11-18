@@ -42,6 +42,10 @@
 | Skills | `skill_rio_2` | rio 기술 2: 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인 | `characters/common/PlayerBase.gd:skill_two` | `skill_cast` | 3 | 40 | true |
 | Skills | `skill_rio_3` | rio 기술 3(U 분신 바꿔치기, D50): 공통 래퍼에서 실행 후 공격 잠금/serial 증가 확인. 파일은 임시로 `skill_rio_1` 복사 | `characters/common/PlayerBase.gd:skill_three` | `skill_cast` | 3 | 40 | true |
 | Skills | `ult_rio` | 궁극기 시작(후속 단계 중복 요청 없음) | `characters/common/PlayerBase.gd:ultimate` | `ult_start` | 2 | 40 | true |
+| Skills | `skill_xion_1` | xion 기술 1(K 장전 구르기, 2026-11-18). 파일은 임시로 `dash` 복사 | `characters/common/PlayerBase.gd:skill_one` | `skill_cast` | 3 | 40 | true |
+| Skills | `skill_xion_2` | xion 기술 2(L 반동 도약). 파일은 임시로 `hit_launch` 복사 | `characters/common/PlayerBase.gd:skill_two` | `skill_cast` | 3 | 40 | true |
+| Skills | `skill_xion_3` | xion 기술 3(U 도플갱어). 파일은 임시로 `skill_cast` 복사 | `characters/common/PlayerBase.gd:skill_three` | `skill_cast` | 3 | 40 | true |
+| Skills | `ult_xion` | xion 궁극기 시작(I 이퀄리브리엄). 파일은 임시로 `ult_start` 복사 | `characters/common/PlayerBase.gd:ultimate` | `ult_start` | 2 | 40 | true |
 | Monsters | `monster_windup` | 공격 예고 시작 | `scripts/RealmMonster.gd:_begin_windup` | `monster_attack` | 3 | 40 | true |
 | Monsters | `monster_bite` | bite 원형 공격 실행 | `scripts/RealmMonster.gd:_execute_action` | `monster_attack` | 3 | 40 | true |
 | Monsters | `monster_charge` | charge 원형 공격 실행 | `scripts/RealmMonster.gd:_execute_action` | `monster_attack` | 3 | 40 | true |

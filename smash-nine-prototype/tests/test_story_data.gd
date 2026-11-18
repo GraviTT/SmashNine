@@ -58,7 +58,8 @@ func _run() -> void:
 			_check(destination == realm_order[index + 1], "Exit leads to next realm, stage " + str(index + 1))
 		else:
 			_check(data.exit == Vector2i.ZERO, "Root/ending uses no grid exit")
-		for hero in REGISTRY.get_character_ids():
+		# Story heroes only: Xion has no story yet (D43).
+		for hero in REGISTRY.get_story_character_ids():
 			for scene in data.dialogue:
 				for line: Array in data.dialogue[scene]:
 					var id := STORY.resolve_id(str(line[1]), hero, str(data.rival))

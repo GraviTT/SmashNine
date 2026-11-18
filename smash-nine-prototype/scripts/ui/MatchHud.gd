@@ -333,7 +333,13 @@ func _build_skill_bar() -> void:
 		badge.set_corner_radius_all(3)
 		key.add_theme_stylebox_override("normal", badge)
 		panel.add_child(key)
-		skill_slots[slot] = {"style": style, "frame": frame, "icon": icon, "glyph": glyph, "key": key, "shade": shade, "time": time}
+		# A short count in the top corner (Xion's rounds on J, 2026-11-18): only while the fighter
+		# shown on the bar has one.
+		var count := _slot_label("", Vector2(3, 1), Vector2(30, 16), 13, HORIZONTAL_ALIGNMENT_LEFT)
+		count.name = "Count"
+		count.add_theme_color_override("font_color", Color(1.0, 0.92, 0.78))
+		panel.add_child(count)
+		skill_slots[slot] = {"style": style, "frame": frame, "icon": icon, "glyph": glyph, "key": key, "shade": shade, "time": time, "count": count}
 	_layout_skill_bar(false)
 
 ## The slots in a row against the right edge; U only when the fighter has a third skill.
@@ -388,6 +394,7 @@ func update_skill_bar(fighter: Node, delta: float) -> void:
 		var waiting: float = clampf(cooldown.x / cooldown.y, 0.0, 1.0) if cooldown.y > 0.0 else 0.0
 		nodes.shade.size = Vector2(SKILL_SLOT_SIZE, SKILL_SLOT_SIZE * waiting)
 		nodes.time.text = "%d" % ceili(cooldown.x) if cooldown.x > 0.0 else ""
+		nodes.count.text = fighter.skill_counter(slot) if fighter.has_method("skill_counter") else ""
 		# Without an icon the key letter fills the slot; the seconds take its place while waiting.
 		nodes.glyph.visible = nodes.icon.texture == null and cooldown.x <= 0.0
 		var frame: Control = nodes.frame

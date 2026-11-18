@@ -40,7 +40,13 @@ const KITS := {
 		"Mana Combo  /  Three cuts; the last dashes through the foe.", "Sword Throw  /  K again: blink to it, behind a struck foe.",
 		"Shadow Counter  /  Take a hit unharmed, strike from behind.", "Decoy Swap  /  Leave a decoy and step back; U again: swap.",
 		"Blade Flurry  /  Stick six gem swords; I again: cut them all.",
-		"Backstab  /  Hits from behind deal 1.5x. Two air jumps."]
+		"Backstab  /  Hits from behind deal 1.5x. Two air jumps."],
+	# Xion (2026-11-18, the user's kit): J, K, L, U, I, passive.
+	"xion": ["Push foes back with twin shotguns from mid range.\nYour doppelganger pins one; close in for double damage.",
+		"Buckshot  /  10 rounds, 2 a second; empty: 3 s reload.", "Reload Roll  /  Roll unharmed at first and load 2 rounds.",
+		"Recoil Jump  /  Fire every round down and rise.", "Doppelganger  /  Hunts and pins a foe 3 s; U again: dive to it.",
+		"Equilibrium  /  Shots all round, your double too; walk slowly.",
+		"Double Shotgun  /  The closer the foe, the more damage (up to 2x)."]
 }
 const CONTROLS := [
 	["A / D  or  Left / Right", "Move / aim attacks"],
@@ -84,6 +90,8 @@ var audio_buttons: Dictionary = {}
 var footer: Label
 var session_status: Label
 var _roster := REGISTRY.get_characters()
+## The fighters the select screen shows, in order (story mode passes its own heroes).
+var select_ids: Array[String] = []
 
 func _init() -> void:
 	LANGUAGE.load_saved()
@@ -224,7 +232,7 @@ func _finish(hint: String) -> void:
 	footer = _label(hint, Rect2(44, 672, 1192, 26), 15, DIM)
 	footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	if not buttons.is_empty():
-		var initial := REGISTRY.get_character_ids().find(selected_id) if screen == "select" else 0
+		var initial := maxi(select_ids.find(selected_id), 0) if screen == "select" else 0
 		buttons[initial].grab_focus()
 
 func show_title() -> void:
@@ -245,22 +253,27 @@ func show_title() -> void:
 	session_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	refresh_options()
 	_label("Working title  /  Prototype", Rect2(44, 28, 500, 26), 15, DIM)
-	_finish("Arrows / W-S: navigate    Enter / J: confirm    1-5: quick start    V: body    B: watch    T: speed    F2: art")
+	_finish("Arrows / W-S: navigate    Enter / J: confirm    1-6: quick start    V: body    B: watch    T: speed    F2: art")
 
-func show_select() -> void:
+## `ids`: the fighters to offer (default: the whole roster). Up to five fit two columns with
+## Random; six or more (Xion, 2026-11-18) take three narrower columns.
+func show_select(ids: Array[String] = []) -> void:
 	AUDIO.music(self, "music_select")
 	_clear("select")
+	select_ids = ids if not ids.is_empty() else REGISTRY.get_character_ids()
+	if not select_ids.has(selected_id):
+		selected_id = select_ids[0]
 	_label("CHOOSE YOUR FIGHTER", Rect2(44, 26, 900, 50), 34, GOLD)
-	_label("Five worlds. Five ways to survive.", Rect2(46, 79, 800, 26), 17, DIM)
+	_label("Six fighters. Six ways to survive.", Rect2(46, 79, 800, 26), 17, DIM)
 	_panel(Rect2(36, 128, 330, 510))
 	_panel(Rect2(742, 128, 502, 510))
 	hero_art = _picture(null, Rect2(370, 118, 366, 460))
-	var ids := REGISTRY.get_character_ids()
-	for index in ids.size():
-		var id := ids[index]
-		var x := 52.0 + (index % 2) * 154
-		var y := 148.0 + floori(index / 2.0) * 144
-		var button := _button("", Rect2(x, y, 142, 132), "pick", id)
+	for index in select_ids.size():
+		var id := select_ids[index]
+		var tile := _select_tile(index)
+		var x := tile.position.x
+		var y := tile.position.y
+		var button := _button("", tile, "pick", id)
 		portrait_buttons.append(button)
 		var selected_frame := Panel.new()
 		selected_frame.name = "SelectionOutline"
@@ -272,10 +285,10 @@ func show_select() -> void:
 		selected_style.set_border_width_all(3)
 		selected_frame.add_theme_stylebox_override("panel", selected_style)
 		button.add_child(selected_frame)
-		_picture(ART.character_portrait(id, body), Rect2(x + 8, y + 6, 126, 94))
-		var caption := _label("%d  %s" % [index + 1, tr(str(_roster[id].name))], Rect2(x, y + 100, 142, 26), 18)
+		_picture(ART.character_portrait(id, body), Rect2(x + 8, y + 6, tile.size.x - 16, 94))
+		var caption := _label("%d  %s" % [index + 1, tr(str(_roster[id].name))], Rect2(x, y + 100, tile.size.x, 26), 18 if tile.size.x > 120.0 else 16)
 		caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_button("Random", Rect2(206, 436, 142, 132), "random")
+	_button("Random", _select_tile(select_ids.size()), "random")
 	fighter_name = _label("", Rect2(766, 146, 450, 53), 40, GOLD)
 	fighter_role = _label("", Rect2(768, 202, 442, 30), 22)
 	description = _label("", Rect2(768, 247, 448, 68), 17, DIM)
@@ -289,7 +302,14 @@ func show_select() -> void:
 	_button("Back", Rect2(394, 584, 150, 44), "title")
 	_button("Start match", Rect2(558, 584, 162, 44), "start")
 	_refresh_fighter()
-	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-5: quick start    Esc: back")
+	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-6: quick start    Esc: back")
+
+## The select grid's tile `index` (the fighters, then Random): two columns of 142 px while the
+## roster and Random fit six tiles, else three of 100 px.
+func _select_tile(index: int) -> Rect2:
+	if select_ids.size() + 1 <= 6:
+		return Rect2(52.0 + (index % 2) * 154, 148.0 + floori(index / 2.0) * 144, 142, 132)
+	return Rect2(46.0 + (index % 3) * 106, 148.0 + floori(index / 3.0) * 144, 100, 132)
 
 func _refresh_fighter() -> void:
 	var data: Dictionary = _roster[selected_id]
@@ -314,10 +334,10 @@ func _refresh_fighter() -> void:
 	body_button.text = tr("[V] Body: %s") % tr((body if bodies.size() > 1 else bodies[0]).capitalize())
 	body_button.disabled = bodies.size() < 2
 	for index in portrait_buttons.size():
-		portrait_buttons[index].get_node("SelectionOutline").visible = REGISTRY.get_character_ids()[index] == selected_id
+		portrait_buttons[index].get_node("SelectionOutline").visible = select_ids[index] == selected_id
 		# Each portrait is followed by its picture and caption in content.
 		var picture := content.get_child(portrait_buttons[index].get_index() + 1) as TextureRect
-		picture.texture = ART.character_portrait(REGISTRY.get_character_ids()[index], body)
+		picture.texture = ART.character_portrait(select_ids[index], body)
 
 static func illustration(id: String, selected_body: String) -> Texture2D:
 	var stem := id + "_" + selected_body if REGISTRY.get_bodies(id).size() > 1 else id
@@ -486,7 +506,7 @@ func _activate(action: String, value: String) -> void:
 			AUDIO_SETTINGS.cycle(action.trim_prefix("audio_"))
 			refresh_options()
 		"random":
-			var ids := REGISTRY.get_character_ids()
+			var ids := select_ids if not select_ids.is_empty() else REGISTRY.get_character_ids()
 			selected_id = ids.pick_random()
 			_refresh_fighter()
 		_: action_requested.emit(action, value)

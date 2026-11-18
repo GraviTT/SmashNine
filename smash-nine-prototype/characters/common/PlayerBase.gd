@@ -249,6 +249,10 @@ var current_attack_started_airborne := false
 var was_on_floor_last_frame := false
 var movement_freeze_timer := 0.0
 var movement_freeze_position := Vector2.ZERO
+## Pinned by Xion's doppelganger (2026-11-18): held where it caught the fighter, unable to act;
+## hits land in full but push nothing (apply_pin_hold).
+var pin_hold_timer := 0.0
+var pin_hold_position := Vector2.ZERO
 var last_yuki_activation_hit := -1
 var control_slow_timer := 0.0
 var control_jump_slow_timer := 0.0
@@ -485,6 +489,10 @@ func _physics_process(delta: float) -> void:
 		_ringout()
 
 func _update_match_timers(delta: float) -> void:
+	if pin_hold_timer > 0.0:
+		pin_hold_timer = maxf(pin_hold_timer - delta, 0.0)
+		# Hits during the pin add no hitstun of their own; the pin keeps the fighter still.
+		hitstun_timer = maxf(hitstun_timer, pin_hold_timer)
 	ultimate_cooldown_timer = maxf(ultimate_cooldown_timer - delta, 0.0)
 	ultimate_window_timer = maxf(ultimate_window_timer - delta, 0.0)
 	ultimate_armor_timer = maxf(ultimate_armor_timer - delta, 0.0)
@@ -771,9 +779,13 @@ func _update_current_floor_platform() -> void:
 			return
 
 func _apply_movement(delta: float) -> void:
-	# A gravity root holds the fighter over anything else that would move it (a grab, a pull).
-	if movement_freeze_timer > 0.0 or gravity_root_timer > 0.0:
-		global_position = gravity_root_position if gravity_root_timer > 0.0 else movement_freeze_position
+	# A doppelganger's pin, then a gravity root, hold the fighter over anything else that would
+	# move it (a grab, a pull).
+	if pin_hold_timer > 0.0 or movement_freeze_timer > 0.0 or gravity_root_timer > 0.0:
+		if pin_hold_timer > 0.0:
+			global_position = pin_hold_position
+		else:
+			global_position = gravity_root_position if gravity_root_timer > 0.0 else movement_freeze_position
 		velocity = Vector2.ZERO
 		knockback_velocity = Vector2.ZERO
 		skill_dash_velocity = Vector2.ZERO
@@ -891,6 +903,10 @@ func skill_cooldown(slot: String) -> Vector2:
 	if slot == "i":
 		return Vector2(ultimate_cooldown_timer, ULTIMATE_COOLDOWN)
 	return Vector2.ZERO
+
+## A short count the skill bar shows in a slot's corner ("" for none): Xion's rounds on J.
+func skill_counter(_slot: String) -> String:
+	return ""
 
 func perform_basic_attack(_attack_type: String, _direction: Vector2) -> void:
 	pass
@@ -1495,6 +1511,9 @@ func _hitstop_scale_from(attacker: Node) -> float:
 ## the character's own absorption (Rio's rune shield), else the ultimate's super armor (full
 ## damage).
 func _incoming_absorption() -> float:
+	# Pinned (Xion's doppelganger): every hit lands in full and pushes nothing.
+	if pin_hold_timer > 0.0:
+		return 1.0
 	var own := character_hit_absorption()
 	if own >= 0.0:
 		return own
@@ -1505,7 +1524,9 @@ func _finish_absorbed_hit(absorption: float, attacker: Node, knockback: float, d
 	if not last_hit_absorbed:
 		return false
 	AUDIO.hit(self, final_damage, 0.0, false, true)
-	if character_hit_absorption() >= 0.0:
+	if pin_hold_timer > 0.0:
+		pass
+	elif character_hit_absorption() >= 0.0:
 		character_on_hit_absorbed(attacker, knockback, direction)
 	else:
 		_play_armor_flash()
@@ -1629,7 +1650,7 @@ func apply_grab_pull(center: Vector2, speed: float) -> bool:
 ## Held in a grab (Brave Luna's K) at `at` for `duration`: the guard drops, the move in progress
 ## stops and the fighter cannot act. Returns whether it was held.
 func apply_grab_hold(holder: Node, at: Vector2, duration: float) -> bool:
-	if is_defeated or is_invulnerable():
+	if is_defeated or is_invulnerable() or pin_hold_timer > 0.0:
 		return false
 	if is_guarding:
 		_stop_guard(false)
@@ -1646,6 +1667,41 @@ func apply_grab_hold(holder: Node, at: Vector2, duration: float) -> bool:
 	movement_freeze_position = at
 	character_on_hit()
 	return true
+
+## Pinned by Xion's doppelganger (2026-11-18, user's kit) for `duration`: held where it stands (in
+## the air too), unable to act; every hit meanwhile lands in full and pushes nothing (so no
+## ring-out). `holder` is credited as the attacker. Returns whether it was pinned.
+func apply_pin_hold(holder: Node, duration: float) -> bool:
+	if is_defeated or is_invulnerable() or pin_hold_timer > 0.0:
+		return false
+	if is_guarding:
+		_stop_guard(false)
+	_remember_attacker(holder)
+	cancel_pending_actions()
+	attack_lock_timer = 0.0
+	skill_dash_timer = 0.0
+	action_locked_until_land = false
+	_end_skill_dash()
+	velocity = Vector2.ZERO
+	knockback_velocity = Vector2.ZERO
+	movement_freeze_timer = 0.0
+	pin_hold_timer = duration
+	pin_hold_position = global_position
+	hitstun_timer = maxf(hitstun_timer, duration)
+	_play_stun_effect(duration)
+	character_on_hit()
+	return true
+
+## The pin ends early (the doppelganger is spent): the fighter can act again at once.
+func release_pin_hold() -> void:
+	if pin_hold_timer <= 0.0:
+		return
+	pin_hold_timer = 0.0
+	hitstun_timer = 0.0
+	status_stun_timer = 0.0
+
+func is_pinned() -> bool:
+	return pin_hold_timer > 0.0
 
 ## Luna's star mark: `duration` seconds of STAR_MARK_DAMAGE_SCALE damage, which `source` can burst.
 func apply_star_mark(source: Node, duration: float) -> void:
@@ -2020,6 +2076,7 @@ func _respawn() -> void:
 	skill_dash_timer = 0.0
 	body.rotation = 0.0
 	movement_freeze_timer = 0.0
+	pin_hold_timer = 0.0
 	# The swing or hit in progress at the ring-out is over (as in reset_for_map): its lock kept a
 	# respawned fighter from jumping or attacking, up to 1.45 s after Frey's air ultimate.
 	attack_lock_timer = 0.0
@@ -2087,6 +2144,7 @@ func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	hitstun_timer = 0.0
 	hitstop_timer = 0.0
 	movement_freeze_timer = 0.0
+	pin_hold_timer = 0.0
 	current_knockback_decay = KNOCKBACK_DECAY
 	air_jumps_left = max_air_jumps
 	body.rotation = 0.0

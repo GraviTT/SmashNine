@@ -70,7 +70,7 @@ func _baseline() -> void:
 		var row := csv.get_csv_line()
 		if row.size() == 3:
 			table[row[0]] = {"en": row[1], "ko": row[2]}
-	for id in REGISTRY.get_character_ids():
+	for id in REGISTRY.get_story_character_ids():
 		for body in REGISTRY.get_bodies(id):
 			for face in ["happy", "angry", "hurt", "shadow"]:
 				if ResourceLoader.exists(_face_path(id, body).get_basename() + "_" + face + ".png"):
@@ -83,7 +83,7 @@ func _baseline() -> void:
 		ART.style = ART.STYLE_ORIGINAL if original else ART.STYLE_PROTOTYPE
 		for locale in ["ko", "en"]:
 			TranslationServer.set_locale(locale)
-			for hero in REGISTRY.get_character_ids():
+			for hero in REGISTRY.get_story_character_ids():
 				for body in REGISTRY.get_bodies(hero):
 					for data: Dictionary in STORY.stages():
 						for scene in ["pre", "mid", "post"]:
@@ -124,7 +124,7 @@ func _baseline() -> void:
 
 func _expressions() -> void:
 	# All seven selectable bodies; the eighth ART-73 form (Brave Luna) is not a story hero.
-	for hero in REGISTRY.get_character_ids():
+	for hero in REGISTRY.get_story_character_ids():
 		for body in REGISTRY.get_bodies(hero):
 			var neutral := _texture(_face_path(hero, body), Color.GRAY)
 			_check(ART.character_portrait(hero, body) == neutral, "Existing two-argument caller unchanged")

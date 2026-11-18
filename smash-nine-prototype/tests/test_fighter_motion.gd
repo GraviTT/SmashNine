@@ -95,6 +95,8 @@ func _adopted_strips() -> void:
 		"nova_male": ["jump", "land", "victory", "defeat"], "nova_female": ["jump", "fall", "land", "victory", "defeat"],
 		"rio_male": ["jump", "land", "victory"], "rio_female": ["land", "victory", "defeat"],
 		"yuki": ["jump", "land", "victory", "defeat"],
+		# Xion's stand-ins (2026-11-18): Nova female's strips recoloured.
+		"xion": ["jump", "fall", "land", "victory", "defeat"],
 	}
 	for id in REGISTRY.get_character_ids():
 		for body in REGISTRY.get_bodies(id):

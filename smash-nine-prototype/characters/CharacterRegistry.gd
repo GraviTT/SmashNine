@@ -20,6 +20,10 @@ const ENTRIES := {
 	"rio": {
 		"scene": preload("res://characters/rio/Rio.tscn"),
 		"data": preload("res://characters/rio/RioData.gd")
+	},
+	"xion": {
+		"scene": preload("res://characters/xion/Xion.tscn"),
+		"data": preload("res://characters/xion/XionData.gd")
 	}
 }
 
@@ -37,6 +41,15 @@ static func get_scene(character_id: String) -> PackedScene:
 static func get_character_ids() -> Array[String]:
 	var result: Array[String] = []
 	result.assign(ENTRIES.keys())
+	return result
+
+## The heroes story mode offers: data "story": false keeps a character out until its story is
+## written (Xion, 2026-11-18; D43).
+static func get_story_character_ids() -> Array[String]:
+	var result: Array[String] = []
+	for character_id in ENTRIES:
+		if bool(ENTRIES[character_id].data.get_data().get("story", true)):
+			result.append(character_id)
 	return result
 
 ## Body types a character is drawn in (user 2026-10-07: female characters female only,

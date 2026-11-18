@@ -112,7 +112,7 @@ static func waves_for(data: Dictionary, hero: String) -> Array:
 		var shadows: Array = []
 		var group: Dictionary = data.waves[0][0]
 		var own: Dictionary = data.waves[1][0]
-		for id in REGISTRY.get_character_ids():
+		for id in REGISTRY.get_story_character_ids():
 			if id != hero:
 				shadows.append({"kind": "shadow", "id": id, "hp": float(group.hp), "cards": int(group.get("cards", 0))})
 		return [shadows, [{"kind": "shadow", "id": hero, "hp": float(own.hp), "cards": int(own.cards)}]]

@@ -55,14 +55,15 @@ func _run() -> void:
 		_check(main.hud.frontend.selected_id == "yuki", "Keyboard browsing must change the selected fighter")
 		await _tap(KEY_A)
 		_check(main.hud.frontend.selected_id == "frey", "Keyboard browsing must work in both directions")
+		# Six fighters and Random fill three columns (Xion, 2026-11-18): down from Frey is Nova.
 		await _tap(KEY_DOWN)
-		_check(main.hud.frontend.selected_id == "luna", "Down must follow the portrait grid to the next row")
+		_check(main.hud.frontend.selected_id == "nova", "Down must follow the portrait grid to the next row")
 		await _tap(KEY_UP)
 		_check(main.hud.frontend.selected_id == "frey", "Up must return to the previous portrait row")
 		await _tap(KEY_TAB)
 		_check(main.hud.frontend.selected_id == "yuki", "Tab focus must also update the fighter preview")
 		await _tap(KEY_A)
-		await _click(main.hud.frontend.buttons[5])
+		await _click(main.hud.frontend.buttons[main.hud.frontend.portrait_buttons.size()])
 		_check(main.characters.has(main.hud.frontend.selected_id) and not main.match_started, "Random must choose a valid preview without starting")
 		# Mouse chooses Nova; V changes its art and the actual spawned body.
 		await _click(main.hud.frontend.portrait_buttons[3])
@@ -136,13 +137,13 @@ func _run() -> void:
 		main.human_body = "male"
 		main.hud.frontend.refresh_body("male")
 	# All remaining number shortcuts work from both title and select.
-	for index in 4:
+	for index in 5:
 		main = current_scene
 		if index % 2 == 0:
 			await _tap(KEY_ENTER)
 		await _tap(KEY_2 + index)
 		await _frames(4)
-		var expected: String = ["yuki", "luna", "nova", "rio"][index]
+		var expected: String = ["yuki", "luna", "nova", "rio", "xion"][index]
 		_check(main.match_started and main.players[0].character_id == expected, "Number shortcut did not start %s" % expected)
 		main.director._finish(main.players[0], "shortcut test")
 		await _frames(2)
@@ -150,13 +151,14 @@ func _run() -> void:
 		await _frames(6)
 	main = current_scene
 	await _tap(KEY_ENTER)
-	for index in 5:
+	for index in REGISTRY.get_character_ids().size():
 		await _click(main.hud.frontend.portrait_buttons[index])
 		_check(main.hud.frontend.hero_art.texture != null, "Every fighter must have main art")
-		# Five rows (J, K, L, I, passive), six for a fighter with a third skill (U: Nova D47, Rio D50).
+		# Five rows (J, K, L, I, passive), six for a fighter with a third skill (U: Nova D47, Rio D50, Xion D51).
 		var rows: int = main.hud.frontend.skill_labels.filter(func(label: Label) -> bool: return label.visible and label.text != "").size()
-		var wanted: int = 6 if REGISTRY.get_character_ids()[index] in ["nova", "rio"] else 5
+		var wanted: int = 6 if REGISTRY.get_character_ids()[index] in ["nova", "rio", "xion"] else 5
 		_check(rows == wanted, "Every fighter must show J/K/L(/U)/I and passive guidance (%s: %d rows)" % [REGISTRY.get_character_ids()[index], rows])
+	await _click(main.hud.frontend.portrait_buttons[REGISTRY.get_character_ids().find("rio")])
 	await _tap(KEY_V)
 	_check(main.hud.frontend.hero_art.texture.resource_path.ends_with("rio_female_illustration.png"), "Rio body must also switch its main art")
 	await _tap(KEY_ESCAPE)
@@ -226,7 +228,7 @@ func _run() -> void:
 	SPEED.factor = 1.0
 	SPEED.reset_engine()
 	if not failed:
-		print("Frontend flow tests passed (keyboard + mouse, 5 shortcuts, bodies, options, 3 result routes, 2 node/orphan cycles; nodes %d, orphans %d)" % [baseline, orphan_baseline])
+		print("Frontend flow tests passed (keyboard + mouse, 6 shortcuts, bodies, options, 3 result routes, 2 node/orphan cycles; nodes %d, orphans %d)" % [baseline, orphan_baseline])
 	quit(1 if failed else 0)
 
 func _frames(count: int) -> void:

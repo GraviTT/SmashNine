@@ -37,13 +37,14 @@ func _ready() -> void:
 
 func show_story_select() -> void:
 	_story_preview_id = ""
-	super.show_select()
+	# Story heroes only: a character whose story is not written yet (Xion, D43) stays out.
+	super.show_select(REGISTRY.get_story_character_ids())
 	screen = "story_select"
 	content.get_child(0).text = tr("CHOOSE YOUR HERO")
 	content.get_child(1).text = tr("A journey through nine realms.")
 	# Keep the existing five portraits and kit preview; progress fits beneath each name.
 	for index in portrait_buttons.size():
-		var id := REGISTRY.get_character_ids()[index]
+		var id := select_ids[index]
 		var run := PROGRESS.get_run(id)
 		portrait_buttons[index].focus_entered.connect(func() -> void:
 			selected_id = id
@@ -55,8 +56,9 @@ func show_story_select() -> void:
 		caption.text = "%d  %s\n%s" % [index + 1, tr(str(_roster[id].name)), tr("CLEAR") if run.get("done", false) else "★ %d/9" % int(run.get("cleared", 0))]
 		var picture := content.get_child(portrait_buttons[index].get_index() + 1) as TextureRect
 		picture.size.y = 82
-	buttons[5].visible = false
-	buttons[5].disabled = true
+	# Random (the tile after the heroes) gives its place to the difficulty button.
+	buttons[portrait_buttons.size()].visible = false
+	buttons[portrait_buttons.size()].disabled = true
 	difficulty_button = _button("", Rect2(206, 436, 142, 132), "story_difficulty")
 	difficulty_button.add_theme_font_size_override("font_size", 17)
 	buttons[8].text = tr("New journey")
@@ -316,8 +318,8 @@ func _input(event: InputEvent) -> void:
 		action_requested.emit({"story_select": "story_title", "story_map": "story_select", "story_pause": "story_resume", "story_result": "story_map", "story_ending": "story_map", "story_start": "story_begin"}.get(screen, "story_title"), "")
 	elif code == KEY_R and screen == "story_result":
 		action_requested.emit("story_retry", "")
-	elif code >= KEY_1 and code <= KEY_5 and screen == "story_select":
-		selected_id = REGISTRY.get_character_ids()[code - KEY_1]
+	elif code >= KEY_1 and code <= KEY_9 and screen == "story_select" and code - KEY_1 < select_ids.size():
+		selected_id = select_ids[code - KEY_1]
 		_refresh_fighter()
 		portrait_buttons[code - KEY_1].grab_focus()
 	elif code in [KEY_ENTER, KEY_KP_ENTER, KEY_J]:
@@ -339,8 +341,8 @@ func _input(event: InputEvent) -> void:
 			var neighbor := buttons[focus_index].find_valid_focus_neighbor(direction)
 			if neighbor != null:
 				neighbor.grab_focus()
-			if screen == "story_select" and focus_index < 5:
-				selected_id = REGISTRY.get_character_ids()[focus_index]
+			if screen == "story_select" and focus_index < select_ids.size():
+				selected_id = select_ids[focus_index]
 				_refresh_fighter()
 		else:
 			_move_focus(-1 if code in [KEY_UP, KEY_W, KEY_LEFT, KEY_A] else 1)

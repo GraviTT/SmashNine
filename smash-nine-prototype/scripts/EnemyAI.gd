@@ -158,7 +158,7 @@ const FIGHTER_ATTACKER_MEMORY := 8.0
 ## Rio reached a floor 2 of 10 times, 2 of 4 with the limit in round 4), aimed a little above
 ## it; the last chance near the bottom of the realm still takes it. Frey (18 of 19) and Nova
 ## go from anywhere (Nova with the limit: 3 of 21 instead of 3 of 15, round 4).
-const RECOVERY_SKILL_REACH := {"rio": 290.0}
+const RECOVERY_SKILL_REACH := {"rio": 290.0, "xion": 250.0}
 const RECOVERY_SKILL_AIM_ABOVE := 60.0
 ## At most this many recovery-skill uses per recovery (round 6: Frey dashed 437 times, 416 of
 ## them in two long recoveries).
@@ -174,7 +174,7 @@ const RECOVERY_LAST_CHANCE := 140.0
 ## twice its 205 radius; set at attacks x2 as 480 / 820 / 420 / 460 / 900 and left there when
 ## attacks went to x1.5 on 2026-10-09), score >= 3 fires 70% of the time, >= 2 once it has been
 ## ready 12 s.
-const ULTIMATE_REACH := {"frey": 240.0, "yuki": 410.0, "luna": 210.0, "nova": 230.0, "rio": 450.0}
+const ULTIMATE_REACH := {"frey": 240.0, "yuki": 410.0, "luna": 210.0, "nova": 230.0, "rio": 450.0, "xion": 180.0}
 const ULTIMATE_FIRE_CHANCE := 0.7
 const ULTIMATE_PATIENCE := 12.0
 ## Low-HP retreat (debate): never in a final duel or late (aggression >= 0.8); otherwise under
@@ -203,7 +203,9 @@ const COMBAT_PROFILES := {
 	"nova": {"min_range": 60.0, "max_range": 230.0, "attack_range": 260.0, "kite": false, "recovery_skill": false},
 	"luna": {"min_range": 110.0, "max_range": 290.0, "attack_range": 330.0, "kite": false},
 	"yuki": {"min_range": 190.0, "max_range": 420.0, "attack_range": 470.0, "kite": true, "basic_reach": 240.0},
-	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true, "basic_reach": 120.0}
+	"rio": {"min_range": 50.0, "max_range": 200.0, "attack_range": 230.0, "kite": false, "recovery_skill": true, "reactive_skill_2": true, "basic_reach": 120.0},
+	# Xion (2026-11-18): J reaches about 250 px on screen; her recovery is L's recoil (recovery_attack).
+	"xion": {"min_range": 40.0, "max_range": 140.0, "attack_range": 170.0, "kite": false, "recovery_skill": true, "basic_reach": 170.0}
 }
 const BUSH_NOTICE_RANGE := 140.0 * GAME_SCALE.WORLD
 const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
@@ -736,6 +738,11 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 		attack_name = "basic"
 	if attack_name == "skill_1" and player.character_id == "yuki" and (distance_x > float(profile.attack_range) * 0.7 or distance_y > NAV_SAME_LEVEL):
 		attack_name = "basic"
+	# Xion's L fires down and lifts her: only over a target below her.
+	if attack_name == "skill_2" and player.character_id == "xion":
+		var below: bool = is_instance_valid(target) and target.global_position.y > player.global_position.y + 30.0
+		if not below or distance_x > 90.0 * GAME_SCALE.COMBAT:
+			attack_name = "basic"
 	# A counter skill (Rio's rune shield) only when the target is swinging right now.
 	if bool(profile.get("reactive_skill_2", false)):
 		var target_swinging: bool = is_instance_valid(target) and float(target.get("attack_lock_timer") if target.get("attack_lock_timer") != null else 0.0) > 0.0
@@ -751,7 +758,7 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 	return attack_name
 
 func _mobility_skill_is_safe(player) -> bool:
-	if player.character_id != "rio":
+	if player.character_id != "rio" and player.character_id != "xion":
 		return true
 	if not player.is_on_floor():
 		return false
@@ -956,10 +963,15 @@ func _recover_intent(player) -> Dictionary:
 		# asks for 21 uses), but again after each use (round 5: once per recovery cut Frey from
 		# 18 of 19 floors reached to 6 of 13).
 		var free: bool = player.can_use_skill_one() if player.has_method("can_use_skill_one") else player.attack_lock_timer <= 0.0
+		# A fighter may name its own recovery move (Xion: L's recoil, or K first to load rounds).
+		var recovery_move := "skill_1"
+		if player.has_method("recovery_attack"):
+			recovery_move = str(player.recovery_attack())
+			free = recovery_move != ""
 		if free and recovery_skill_uses < RECOVERY_SKILL_MAX_USES and (player.global_position.distance_to(aim_point) <= reach or last_chance):
 			recovery_skill_uses += 1
 			intent["aim"] = (aim_point - player.global_position).normalized()
-			intent["attack"] = "skill_1"
+			intent["attack"] = recovery_move
 			debug_reason = "off the stage: recovery skill"
 	return intent
 
