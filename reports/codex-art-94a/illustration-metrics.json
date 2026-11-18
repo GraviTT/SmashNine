@@ -1,0 +1,95 @@
+{
+  "illustration": {
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "alpha_bbox": [
+      10,
+      92,
+      1013,
+      1444
+    ],
+    "subject_height_px": 1352,
+    "height_percent": 88.02,
+    "margins_ltrb": [
+      10,
+      92,
+      11,
+      92
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "border_pixels": 0,
+    "transparent_rgb_residual": 0,
+    "green_spill_pixels": 0,
+    "alpha_outside_2px_core": 0
+  },
+  "face": {
+    "size": [
+      256,
+      256
+    ],
+    "mode": "RGBA",
+    "alpha_bbox": [
+      0,
+      44,
+      256,
+      256
+    ],
+    "subject_height_px": 212,
+    "height_percent": 82.81,
+    "margins_ltrb": [
+      0,
+      44,
+      0,
+      0
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "border_pixels": 252,
+    "transparent_rgb_residual": 0,
+    "green_spill_pixels": 0,
+    "alpha_outside_2px_core": 0
+  },
+  "processing": {
+    "source": "art\\raw\\xion-94a\\illustration-01.png",
+    "source_bbox": [
+      13,
+      128,
+      998,
+      1456
+    ],
+    "scale": 1.0180722891566265,
+    "alpha_cleanup": "alpha<8 cleared; alpha>=250 set opaque; soft matte bounded to 2px around alpha>=128; premultiplied LANCZOS; no chroma key"
+  },
+  "manual_landmarks": {
+    "source_eyes": [
+      555,
+      242
+    ],
+    "final_eyes": [
+      562,
+      208
+    ],
+    "face_crop_ltrb": [
+      306,
+      3,
+      818,
+      515
+    ],
+    "eye_height_percent": 40.039,
+    "crown_chin_source_y": [
+      130,
+      316
+    ],
+    "head_height_source_px": 186,
+    "subject_heads_approx": 7.14,
+    "method": "manual landmarks from full-size visual inspection, not automatic anatomy detection"
+  }
+}

@@ -1,0 +1,30 @@
+Create ONE six-frame pixel-art idle animation sprite atlas of Xion for Smash Nine Realms.
+
+REFERENCE ROLES, very important:
+Image 1 is the CURRENT RIO FEMALE IDLE FRAME enlarged 4x nearest. Use ONLY its three-head proportions, head size relative to standing height, tiny face size, pixel-rendering quality and detail density. Ignore completely Rio's costume, cyan/blue colours, high ponytail, cape and sword.
+Image 2 is the approved-in-this-workflow XION ILLUSTRATION: this fixes Xion's identity, face, black low ponytail, coat, fitted trousers, boots, black/silver/crimson colours and the exact pair of compact shotgun designs. Translate this adult character into THREE-HEAD sprite proportions, NOT the seven-head illustration proportions.
+
+LAYOUT: exactly SIX equally sized square cells, 3 columns by 2 rows, preferably 1536x1024 total, each 512x512. Read top row left to right then bottom row left to right. The same character and same camera scale in every cell. Figure standing height about 390-400 source pixels, main head crown-to-chin about one third of standing height, comparable to Image 1. Fit each ENTIRE ponytail, coat tail, both guns and both boots inside the cell with generous 40px clearance. Cells have no drawn borders or labels. No part crosses a cell.
+
+XION identity: adult woman in a calm gun-kata ready stance, three-quarter view facing RIGHT. Natural skin, clear focused grey eyes. Charcoal-black long hair tied in a LOW ponytail at the nape with small crimson tie, swept off eyes. A long black tailored coat ending mid-calf, silver edge/lapel/cuff piping, high collar below jaw, crimson inner lining visible at split tails. Fitted black shirt and trousers, black boots with silver buckles, fingerless black gloves. Black and neutral silver and crimson ONLY plus natural skin. No blue/cyan/gold/violet/pink. Keep ONE clearly readable face; no headgear; no covering the eyes.
+
+WEAPONS: EXACTLY TWO identical compact STOCKLESS PUMP-ACTION SHOTGUNS, one in EACH HAND, both visible throughout. Match Image 2: thick short barrel with WIDE dark hollow round muzzle and silver rim; ribbed black pump grip under barrel; compact black receiver with silver side plate and one small crimson inset; pistol hand grip with trigger guard; no stock. These must read as stubby shotguns, NOT slim pistols, not revolvers, not swords. Both grips correctly held by fingers/thumbs. Both guns BELOW shoulders, directed diagonally RIGHT and DOWN, in a relaxed low ready stance: near hand beside front hip, far hand slightly forward and separated enough that both complete guns remain readable. Neither gun or hand near or over the head. Do not hide the far gun behind the torso or other gun.
+
+ANIMATION, subtle breathing with secondary cloth/hair motion. Feet remain planted at IDENTICAL coordinates and same distance apart all six frames. No stepping, no changing stance, no attack, no gun spin. Head width/height, body width, hand/grip shape and gun dimensions fixed; no growing/shrinking. Each frame is one complete drawing, never pasted parts.
+F1 neutral stance, coat settled.
+F2 inhale; shoulders raised slightly, by about one FINAL pixel, ponytail and coat begin lifting.
+F3 top of breath; shoulders highest by about two FINAL pixels, ponytail and coat gently lift outward.
+F4 exhale begins; shoulders start lowering, ponytail and coat remain lifted for one lag frame.
+F5 lowest breath; shoulders relaxed, coat/ponytail settle.
+F6 between F5 and F1, ending close enough to F1 for seamless loop.
+This is a 6.3fps loop with quiet, small movement.
+
+RENDER: polished high-detail pixel sprites matching reference 1. Fine readable dark outlines, sharply defined small pixel clusters, hair lock highlights in neutral greys, silver piping and gun metal facets, dark crimson lining folds, boot edges, readable hands. Preserve at least the interior-detail density of Image 1. Not smooth vector art, not painterly, not 3D, no blur.
+
+BACKGROUND: exact flat opaque pure chroma green #00FF00 throughout every empty pixel, no gradients, no antialias blending into green, no shadows, no floor, no checkerboard, no text or watermark.
+ABSOLUTELY NO muzzle flash, smoke, glow, aura, bloom, sparks, waves, particles, light pools or afterimages. Only the woman's body, clothing and her two guns, repeated in six sequential frames.
+
+FINAL CORRECTION PASS: The preceding atlas still let the soles drift by one output pixel in frames 4 and 5; this is not acceptable for a planted idle. Use Image 3 ONLY as a layout guide for the successful compact coat/low gun pose, but draw a fresh consistent six-frame atlas. Keep Image 1 as proportions/detail reference and Image 2 as character identity.
+In every 512px cell, the same two soles must occupy exactly the same source-pixel coordinates, with no sideways movement or foot-shape changes. Keep hips and belt centered at exactly the same x. The upper coat's left and right silhouette, gun lateral extents and ponytail lateral extents between 36 and 72 percent of body height must remain constant from frame to frame, so a torso-centre crop cannot drift. Do not redraw the boot soles into slightly different shapes. No one-pixel wiggles.
+Use a tiny vertical breathing cycle: F1 baseline, F2 head/shoulders 4 source pixels higher, F3 7 pixels higher, F4 4 pixels higher, F5 2 pixels lower, F6 baseline. Head size remains fixed, crown-to-chin about ONE THIRD of overall height; compress the long torso/legs, do not draw a four-head-tall body. Both soles are at y=470 in each 512 cell. Keep body height between 425 and434 source pixels. Keep main head crown-to-chin approximately 140 source pixels.
+Hair tips and coat tips may rise by at most 5 source pixels in F3 and F4; keep their horizontal extents constant. Coat remains long, tailored, near-vertical, with visible crimson lining and silver piping. Both complete wide-bore pump shotguns stay low forward-down, hand grips intact. Match the illustration's gun model. No new colours or effects. Flat pure #00FF00 background.

@@ -1,0 +1,710 @@
+{
+  "input": {
+    "sheet": "art/raw/xion-94a/idle-03.png",
+    "frames": null,
+    "grid": [
+      3,
+      2
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "median contact-frame body height",
+    "source_median_px": 438.5,
+    "target_px": 97.5,
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.22234892,
+    "scale_by": "height:97.5",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      97,
+      100
+    ],
+    "body_width_range": [
+      71,
+      72
+    ],
+    "area_range": [
+      3543,
+      3653
+    ],
+    "area_spread_percent": 3.01,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2902,
+      2999
+    ],
+    "interior_detail_range": [
+      112.56,
+      114.5
+    ],
+    "interior_detail_mean": 113.54,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 95.55,
+    "interior_detail_ratio": 1.1883
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 97.64,
+        "colour_count": 4711,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 96.71,
+        "colour_count": 4705,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 95.55,
+        "colour_count": 4741,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 94.34,
+        "colour_count": 4846,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 95.31,
+        "colour_count": 4735,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 93.76,
+        "colour_count": 4813,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 95.55,
+    "colour_count_range": [
+      4705,
+      4846
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "art/raw/xion-94a/idle-03.png#0,0",
+      "bbox": [
+        29,
+        24,
+        101,
+        121
+      ],
+      "body_height": 97,
+      "body_width": 72,
+      "area": 3608,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 114.5,
+      "colour_count": 2981,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 29,
+        "top": 24,
+        "right": 27,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1983
+    },
+    {
+      "index": 1,
+      "source": "art/raw/xion-94a/idle-03.png#1,0",
+      "bbox": [
+        29,
+        23,
+        101,
+        121
+      ],
+      "body_height": 98,
+      "body_width": 72,
+      "area": 3624,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.39,
+      "colour_count": 2962,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 29,
+        "top": 23,
+        "right": 27,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1867
+    },
+    {
+      "index": 2,
+      "source": "art/raw/xion-94a/idle-03.png#2,0",
+      "bbox": [
+        29,
+        21,
+        101,
+        121
+      ],
+      "body_height": 100,
+      "body_width": 72,
+      "area": 3653,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.21,
+      "colour_count": 2999,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 29,
+        "top": 21,
+        "right": 27,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1848
+    },
+    {
+      "index": 3,
+      "source": "art/raw/xion-94a/idle-03.png#0,1",
+      "bbox": [
+        28,
+        22,
+        100,
+        121
+      ],
+      "body_height": 99,
+      "body_width": 72,
+      "area": 3613,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.13,
+      "colour_count": 2979,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 28,
+        "top": 22,
+        "right": 28,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.184
+    },
+    {
+      "index": 4,
+      "source": "art/raw/xion-94a/idle-03.png#1,1",
+      "bbox": [
+        29,
+        24,
+        101,
+        121
+      ],
+      "body_height": 97,
+      "body_width": 72,
+      "area": 3586,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.56,
+      "colour_count": 2938,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 29,
+        "top": 24,
+        "right": 27,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.178
+    },
+    {
+      "index": 5,
+      "source": "art/raw/xion-94a/idle-03.png#2,1",
+      "bbox": [
+        29,
+        24,
+        100,
+        121
+      ],
+      "body_height": 97,
+      "body_width": 71,
+      "area": 3543,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 114.44,
+      "colour_count": 2902,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 29,
+        "top": 24,
+        "right": 28,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1977
+    }
+  ],
+  "outputs": {
+    "sheet": "reports/codex-art-94a/xion-idle-a.png",
+    "candidate": "art/bakeoff/xion/a/xion-idle-a.png",
+    "frames": "reports/codex-art-94a/frames",
+    "closeup": "reports/codex-art-94a/closeup.png",
+    "compare": "reports/codex-art-94a/compare.png"
+  },
+  "head_scale": {
+    "sheet": "art\\bakeoff\\xion\\a\\xion-idle-a.png",
+    "frames": [
+      {
+        "scale": 1.0,
+        "score": 1.0
+      },
+      {
+        "scale": 1.0,
+        "score": 0.956
+      },
+      {
+        "scale": 1.0,
+        "score": 0.948
+      },
+      {
+        "scale": 1.0,
+        "score": 0.938
+      },
+      {
+        "scale": 1.0,
+        "score": 0.957
+      },
+      {
+        "scale": 1.0,
+        "score": 0.923
+      }
+    ],
+    "median": 1.0,
+    "used": 6
+  },
+  "illustration_and_face": {
+    "illustration": {
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_bbox": [
+        10,
+        92,
+        1013,
+        1444
+      ],
+      "subject_height_px": 1352,
+      "height_percent": 88.02,
+      "margins_ltrb": [
+        10,
+        92,
+        11,
+        92
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "border_pixels": 0,
+      "transparent_rgb_residual": 0,
+      "green_spill_pixels": 0,
+      "alpha_outside_2px_core": 0
+    },
+    "face": {
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGBA",
+      "alpha_bbox": [
+        0,
+        44,
+        256,
+        256
+      ],
+      "subject_height_px": 212,
+      "height_percent": 82.81,
+      "margins_ltrb": [
+        0,
+        44,
+        0,
+        0
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "border_pixels": 252,
+      "transparent_rgb_residual": 0,
+      "green_spill_pixels": 0,
+      "alpha_outside_2px_core": 0
+    },
+    "processing": {
+      "source": "art\\raw\\xion-94a\\illustration-01.png",
+      "source_bbox": [
+        13,
+        128,
+        998,
+        1456
+      ],
+      "scale": 1.0180722891566265,
+      "alpha_cleanup": "alpha<8 cleared; alpha>=250 set opaque; soft matte bounded to 2px around alpha>=128; premultiplied LANCZOS; no chroma key"
+    },
+    "manual_landmarks": {
+      "source_eyes": [
+        555,
+        242
+      ],
+      "final_eyes": [
+        562,
+        208
+      ],
+      "face_crop_ltrb": [
+        306,
+        3,
+        818,
+        515
+      ],
+      "eye_height_percent": 40.039,
+      "crown_chin_source_y": [
+        130,
+        316
+      ],
+      "head_height_source_px": 186,
+      "subject_heads_approx": 7.14,
+      "method": "manual landmarks from full-size visual inspection, not automatic anatomy detection"
+    }
+  },
+  "gif": {
+    "size": [
+      512,
+      512
+    ],
+    "frames": 6,
+    "loop": 0,
+    "durations_ms": [
+      160,
+      160,
+      160,
+      150,
+      160,
+      160
+    ],
+    "cycle_ms": 950,
+    "effective_fps": 6.315789,
+    "timing_note": "GIF uses 10ms ticks: nearest 6-frame cycle is 950ms (exact 6.3fps is 952.381ms). Candidate JSON remains exactly 6.3."
+  },
+  "boot_contacts": [
+    {
+      "frame": 1,
+      "boot_bottom_x_spans": [
+        [
+          44,
+          55
+        ],
+        [
+          73,
+          85
+        ]
+      ],
+      "foot_y": 120
+    },
+    {
+      "frame": 2,
+      "boot_bottom_x_spans": [
+        [
+          44,
+          55
+        ],
+        [
+          74,
+          86
+        ]
+      ],
+      "foot_y": 120
+    },
+    {
+      "frame": 3,
+      "boot_bottom_x_spans": [
+        [
+          44,
+          55
+        ],
+        [
+          74,
+          86
+        ]
+      ],
+      "foot_y": 120
+    },
+    {
+      "frame": 4,
+      "boot_bottom_x_spans": [
+        [
+          43,
+          54
+        ],
+        [
+          72,
+          84
+        ]
+      ],
+      "foot_y": 120
+    },
+    {
+      "frame": 5,
+      "boot_bottom_x_spans": [
+        [
+          44,
+          55
+        ],
+        [
+          73,
+          86
+        ]
+      ],
+      "foot_y": 120
+    },
+    {
+      "frame": 6,
+      "boot_bottom_x_spans": [
+        [
+          43,
+          54
+        ],
+        [
+          73,
+          85
+        ]
+      ],
+      "foot_y": 120
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen",
+    "reported_backend_model": null,
+    "illustration_calls": 1,
+    "idle_calls": 3,
+    "selected_idle": "idle-03.png",
+    "source_sha256": {
+      "illustration-01.png": "377bbe1eec55c15c2d96717c7906e2a2bac84905bb8fc38f0f9b1da4c0e00d44",
+      "idle-01.png": "3f4227ee0a637aa08eb7490d483e1b261ab8dc1177919ed97d2203ec80e67215",
+      "idle-02.png": "a1c4503e13280f8b4e00d465fdcedb8100e5a74edd824e6b563fd8fbb533edb1",
+      "idle-03.png": "f4a8d87a2186e998f8af235d5915eced263bb83e8f99f5a12829c850ef69d122"
+    },
+    "retries": [
+      {
+        "attempt": 1,
+        "reason": "4px total horizontal boot drift; nearly no vertical breathing"
+      },
+      {
+        "attempt": 2,
+        "reason": "remaining 1px boot drift and weaker breathing"
+      },
+      {
+        "attempt": 3,
+        "decision": "selected for clearer breathing, detail and identical head scale; 2px boot drift still unresolved"
+      }
+    ]
+  },
+  "manual_sprite_head_comparison": {
+    "method": "visual 4x main-crown-to-chin boxes; ponytails excluded; uncertainty about 1px",
+    "xion_f1_box": [
+      45,
+      24,
+      84,
+      53
+    ],
+    "rio_female_f1_box": [
+      65,
+      35,
+      99,
+      63
+    ],
+    "xion_head_height_px": 29,
+    "rio_head_height_px": 28,
+    "height_ratio": 1.0357,
+    "xion_body_in_heads_approx": 3.345,
+    "note": "About 3.3 heads by these manually selected landmarks; visually close to current Rio, not an exact measured 3.0-head body."
+  },
+  "acceptance": {
+    "format_alpha_margin_head_detail": "pass",
+    "planted_feet_exact": "fail: boot span x varies up to 2px; y is fixed at 120",
+    "proportions": "manual estimate about 3.3 heads, close to Rio head size; strict 3.0 not met",
+    "candidate_status": "delivered for look comparison; idle needs lead review before adoption",
+    "review_method": "full-size illustration, 2x face and grip/boot crops, every final sprite frame at 4x, head board and lineup; GIF encoding inspected, no real-time playback or in-game validation"
+  }
+}
