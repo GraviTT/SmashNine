@@ -1,0 +1,358 @@
+{
+  "method": {
+    "automated": "Pillow/NumPy image measurements; normalize.py metrics unchanged; human ROI alpha statistics",
+    "manual": "Crown/chin landmarks selected by eye; uncertainty approximately +/-1 sprite px, +/-5 illustration px. Not an anatomical detector.",
+    "detail": "normalize.py interior contrast metric, not a semantic detail/quality score",
+    "fringe_proxy": "nonzero-alpha pixels farther than 2px from alpha >=32 support; does not prove all colour halos absent"
+  },
+  "concepts": {
+    "e": {
+      "illustration": {
+        "file": "art/bakeoff/xion/e/xion_illustration-e.png",
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "file_bytes": 1086440,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "transparent_pixels": 1091874,
+        "partial_alpha_pixels": 198093,
+        "opaque_pixels": 282897,
+        "bbox": [
+          67,
+          134,
+          955,
+          1403
+        ],
+        "border_nontransparent_pixels": 0,
+        "transparent_rgb_residue_pixels": 0,
+        "green_fringe_pixels": 0,
+        "weak_alpha_beyond_2px_support": 0,
+        "hologram_sample": {
+          "box": [
+            285,
+            545,
+            300,
+            560
+          ],
+          "min": 140,
+          "median": 140.0,
+          "max": 140
+        },
+        "main_sample": {
+          "box": [
+            583,
+            790,
+            616,
+            823
+          ],
+          "min": 255,
+          "median": 255.0,
+          "max": 255
+        },
+        "main_hair_to_boots_manual_height_target_px": 1267,
+        "main_manual_canvas_fraction": 0.8248697916666666
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "file_bytes": 13134,
+        "normalizer_frame_identical": true,
+        "frame_count": 1,
+        "output_columns": 6,
+        "common_scale": 0.10180276,
+        "scale_by": "height:96",
+        "common_offset_x": 0,
+        "common_lift": 0,
+        "lift_scale": 1.0,
+        "ground_all": false,
+        "resample": "lanczos",
+        "sharpen_percent": 60.0,
+        "despill": "auto",
+        "palette": "none",
+        "min_component": 0,
+        "dropped_component_count": 0,
+        "dropped_component_pixels": 0,
+        "body_height_range": [
+          96,
+          96
+        ],
+        "body_width_range": [
+          72,
+          72
+        ],
+        "area_range": [
+          3706,
+          3706
+        ],
+        "area_spread_percent": 0.0,
+        "bottom_range": [
+          120,
+          120
+        ],
+        "lift_range": [
+          0,
+          0
+        ],
+        "contact_on_feet_y": true,
+        "airborne_lift_preserved": true,
+        "colour_count_range": [
+          3133,
+          3133
+        ],
+        "interior_detail_range": [
+          112.42,
+          112.42
+        ],
+        "interior_detail_mean": 112.42,
+        "remaining_spill_pixels": [
+          0
+        ],
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_binary": true,
+        "borders_clear": true,
+        "all_have_4px_margin": true,
+        "contact_on_y120": true,
+        "reference_interior_detail_mean": 95.55,
+        "interior_detail_ratio": 1.1766,
+        "frame": {
+          "index": 0,
+          "source": "art/raw/xion-95b/e-idle-v3.png#0,0",
+          "bbox": [
+            34,
+            25,
+            106,
+            121
+          ],
+          "body_height": 96,
+          "body_width": 72,
+          "area": 3706,
+          "bottom": 120,
+          "lift": 0,
+          "expected_lift": 0,
+          "interior_detail": 112.42,
+          "colour_count": 3133,
+          "remaining_spill_pixels": 0,
+          "palette_violations_before_map": 0,
+          "palette_violations": 0,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "alpha_binary": true,
+          "border_clear": true,
+          "margin": {
+            "left": 34,
+            "top": 25,
+            "right": 22,
+            "bottom": 7,
+            "minimum": 7,
+            "has_4px_margin": true
+          },
+          "dropped_components": [],
+          "dropped_component_pixels": 0,
+          "interior_detail_ratio_to_reference_mean": 1.1766
+        },
+        "detail_ratio_to_rio_frame1": 1.1514
+      },
+      "manual_landmark_measurements": {
+        "illustration_source": "art/raw/xion-95b/e-illustration-v2.png",
+        "illustration_main_skull_crown_y": 174,
+        "illustration_main_chin_y": 350,
+        "illustration_main_boot_y": 1467,
+        "illustration_heads_excluding_ponytail": 7.35,
+        "sprite_main_skull_crown_y": 34,
+        "sprite_main_chin_y": 63,
+        "sprite_main_head_height_px": 29,
+        "sprite_heads_excluding_ponytail": 2.97,
+        "rio_comparison_crown_chin_y": [
+          33,
+          61
+        ],
+        "rio_comparison_head_height_px": 28,
+        "sprite_head_ratio_to_rio": 1.036,
+        "uncertainty": "sprite +/-2px; illustration +/-5px; manual visual landmark estimates, not automatic detection"
+      }
+    },
+    "f": {
+      "illustration": {
+        "file": "art/bakeoff/xion/f/xion_illustration-f.png",
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "file_bytes": 1356676,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "transparent_pixels": 1019114,
+        "partial_alpha_pixels": 158802,
+        "opaque_pixels": 394948,
+        "bbox": [
+          86,
+          130,
+          942,
+          1405
+        ],
+        "border_nontransparent_pixels": 0,
+        "transparent_rgb_residue_pixels": 0,
+        "green_fringe_pixels": 0,
+        "weak_alpha_beyond_2px_support": 0,
+        "hologram_sample": {
+          "box": [
+            300,
+            540,
+            315,
+            555
+          ],
+          "min": 140,
+          "median": 140.0,
+          "max": 140
+        },
+        "main_sample": {
+          "box": [
+            576,
+            824,
+            604,
+            852
+          ],
+          "min": 255,
+          "median": 255.0,
+          "max": 255
+        },
+        "main_hair_to_boots_manual_height_target_px": 1267,
+        "main_manual_canvas_fraction": 0.8248697916666666
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "file_bytes": 15093,
+        "normalizer_frame_identical": true,
+        "frame_count": 1,
+        "output_columns": 6,
+        "common_scale": 0.09736308,
+        "scale_by": "height:96",
+        "common_offset_x": 0,
+        "common_lift": 0,
+        "lift_scale": 1.0,
+        "ground_all": false,
+        "resample": "lanczos",
+        "sharpen_percent": 60.0,
+        "despill": "auto",
+        "palette": "none",
+        "min_component": 0,
+        "dropped_component_count": 0,
+        "dropped_component_pixels": 0,
+        "body_height_range": [
+          96,
+          96
+        ],
+        "body_width_range": [
+          82,
+          82
+        ],
+        "area_range": [
+          4317,
+          4317
+        ],
+        "area_spread_percent": 0.0,
+        "bottom_range": [
+          120,
+          120
+        ],
+        "lift_range": [
+          0,
+          0
+        ],
+        "contact_on_feet_y": true,
+        "airborne_lift_preserved": true,
+        "colour_count_range": [
+          3567,
+          3567
+        ],
+        "interior_detail_range": [
+          102.71,
+          102.71
+        ],
+        "interior_detail_mean": 102.71,
+        "remaining_spill_pixels": [
+          0
+        ],
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_binary": true,
+        "borders_clear": true,
+        "all_have_4px_margin": true,
+        "contact_on_y120": true,
+        "reference_interior_detail_mean": 95.55,
+        "interior_detail_ratio": 1.0749,
+        "frame": {
+          "index": 0,
+          "source": "art/raw/xion-95b/f-idle-v2.png#0,0",
+          "bbox": [
+            30,
+            25,
+            112,
+            121
+          ],
+          "body_height": 96,
+          "body_width": 82,
+          "area": 4317,
+          "bottom": 120,
+          "lift": 0,
+          "expected_lift": 0,
+          "interior_detail": 102.71,
+          "colour_count": 3567,
+          "remaining_spill_pixels": 0,
+          "palette_violations_before_map": 0,
+          "palette_violations": 0,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "alpha_binary": true,
+          "border_clear": true,
+          "margin": {
+            "left": 30,
+            "top": 25,
+            "right": 16,
+            "bottom": 7,
+            "minimum": 7,
+            "has_4px_margin": true
+          },
+          "dropped_components": [],
+          "dropped_component_pixels": 0,
+          "interior_detail_ratio_to_reference_mean": 1.0749
+        },
+        "detail_ratio_to_rio_frame1": 1.0519
+      },
+      "manual_landmark_measurements": {
+        "illustration_source": "art/raw/xion-95b/f-illustration-v2.png",
+        "illustration_main_skull_crown_y": 43,
+        "illustration_main_chin_y": 258,
+        "illustration_main_boot_y": 1519,
+        "illustration_heads_excluding_ponytail": 6.87,
+        "sprite_main_skull_crown_y": 33,
+        "sprite_main_chin_y": 63,
+        "sprite_main_head_height_px": 30,
+        "sprite_heads_excluding_ponytail": 2.9,
+        "rio_comparison_crown_chin_y": [
+          33,
+          61
+        ],
+        "rio_comparison_head_height_px": 28,
+        "sprite_head_ratio_to_rio": 1.071,
+        "uncertainty": "sprite +/-2px; illustration +/-5px; manual visual landmark estimates, not automatic detection"
+      }
+    }
+  }
+}
