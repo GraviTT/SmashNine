@@ -1,6 +1,8 @@
 extends CharacterBody2D
-## Xion's doppelganger (U "도플갱어", 2026-11-18, the user's kit and corrections): her own figure,
-## dark crimson and see-through, floating through walls and floors. It hunts the foe fighter she hit
+## Xion's doppelganger (U "도플갱어", 2026-11-18, the user's kit and corrections): the Xion of another
+## timeline who fights beside her (the user's story, 2026-11-19), drawn as a hologram of her own
+## figure: one crimson tone, see-through, scanlines and a flicker, as in the story concepts C-F
+## (reports/xion-art-2026-11-19/). It floats through walls and floors. It hunts the foe fighter she hit
 ## last (or follows her when there is none) at half a fighter's run, and pins the first foe fighter
 ## it touches for 3 s (PlayerBase.apply_pin_hold), sitting on that foe's head; then it is gone.
 ## It cannot be destroyed: a foe's hit or shot pushes it away by the hit's knockback and halves its
@@ -11,6 +13,24 @@ extends CharacterBody2D
 const PLAYER_LAYER := 2
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const TINT := Color(0.66, 0.18, 0.28, 0.74)
+## The hologram (stand-in until its art is picked, D49): her drawing turned to one crimson tone by
+## its brightness, every third screen row dimmer, a bright band sweeping down, see-through.
+const HOLOGRAM_ALPHA := 0.62
+const HOLOGRAM_SHADER := """
+shader_type canvas_item;
+uniform vec4 tint : source_color = vec4(0.96, 0.24, 0.34, 1.0);
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	float lum = dot(base.rgb, vec3(0.299, 0.587, 0.114));
+	float lines = 0.55 + 0.45 * step(0.5, fract(FRAGCOORD.y / 3.0));
+	float sweep = 1.0 - smoothstep(0.0, 0.05, abs(fract(FRAGCOORD.y / 170.0 - TIME * 0.7) - 0.5));
+	vec3 holo = tint.rgb * (0.42 + 0.85 * lum) * (1.0 + 0.6 * sweep);
+	COLOR = vec4(holo * COLOR.rgb, base.a * lines * COLOR.a);
+}
+"""
+## Now and then it drops out for a moment, like a weak signal.
+const FLICKER_CHANCE := 0.025
+const FLICKER_TIME := 0.06
 ## Pinning, its feet stand this far above the pinned foe's feet (on the head).
 const HEAD_SEAT := 96.0
 ## With no foe to hunt it hovers behind Xion, this far from her feet (x away from where she faces).
@@ -33,6 +53,7 @@ var gone := false
 var realm := 0
 var figure: AnimatedSprite2D
 var grab_area: Area2D
+var flicker_timer := 0.0
 
 func configure(owner_fighter: Node2D, duration: float, move_speed: float, pin_seconds: float, slow_seconds: float, sprite: AnimatedSprite2D) -> void:
 	source = owner_fighter
@@ -60,7 +81,12 @@ func configure(owner_fighter: Node2D, duration: float, move_speed: float, pin_se
 		figure.scale = sprite.scale
 		figure.texture_filter = sprite.texture_filter
 		figure.flip_h = sprite.flip_h
-		figure.modulate = TINT
+		var shader := Shader.new()
+		shader.code = HOLOGRAM_SHADER
+		var hologram := ShaderMaterial.new()
+		hologram.shader = shader
+		figure.material = hologram
+		figure.modulate = Color(1.0, 1.0, 1.0, HOLOGRAM_ALPHA)
 		add_child(figure)
 		var float_row := StringName("%s_double_float" % str(owner_fighter.get("character_id")))
 		if figure.sprite_frames.has_animation(float_row):
@@ -99,6 +125,7 @@ func _physics_process(delta: float) -> void:
 		vanish()
 		return
 	elapsed += delta
+	_flicker(delta)
 	if is_pinning():
 		if pinned.get("is_defeated") == true:
 			vanish()
@@ -122,6 +149,16 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(figure) and absf(step.x) > 0.01:
 		figure.flip_h = step.x < 0.0
 	_try_pin()
+
+## The hologram's shimmer: a quick ripple in its see-through, and now and then a short drop-out.
+func _flicker(delta: float) -> void:
+	if not is_instance_valid(figure):
+		return
+	flicker_timer = maxf(flicker_timer - delta, 0.0)
+	if flicker_timer <= 0.0 and randf() < FLICKER_CHANCE:
+		flicker_timer = FLICKER_TIME
+	var alpha := HOLOGRAM_ALPHA * (0.9 + 0.1 * sin(elapsed * 37.0))
+	figure.modulate.a = alpha * (0.35 if flicker_timer > 0.0 else 1.0)
 
 ## The foe Xion hit last while it is up in her realm, else a spot behind her.
 func _goal() -> Vector2:
