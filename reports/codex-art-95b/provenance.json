@@ -1,0 +1,185 @@
+{
+  "generator": "built-in image_gen",
+  "raw_images": [
+    {
+      "file": "art/raw/xion-95b/e-idle-v1.png",
+      "bytes": 1448503,
+      "sha256": "d8d054de2606402deb562fbfed2649e24d253c0ab990c8d6519ed57de06501a9",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/e-idle-v2.png",
+      "bytes": 1423977,
+      "sha256": "bece818884b8abfec160e400499726309e248332290f575099829b1209b1eec5",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/e-idle-v3.png",
+      "bytes": 1438882,
+      "sha256": "bce1aea55ba2d14dff889c2894926e2669d7ec1369c497efb35be68b50f96022",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/e-illustration-v1.png",
+      "bytes": 2131296,
+      "sha256": "24b2d93b829e9f608af3e90e90ab7d6ab8595adb57b7cfbc47d3f6eda1036efd",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/e-illustration-v2.png",
+      "bytes": 1962782,
+      "sha256": "73021d90477ae23f18381f37edbac0f51454b5caa7a0b731a09ec76c531c0dcf",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/f-idle-v1.png",
+      "bytes": 1501890,
+      "sha256": "1991ed067198491bab84ed40923cf19f441e588d0dbd2fa9154084c58b0d9d98",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/f-idle-v2.png",
+      "bytes": 1575133,
+      "sha256": "0377516bc1da857ea93ad7df2e18ec3a7b77505d0f339c8d45c34540322c0f32",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/f-illustration-v1.png",
+      "bytes": 2437116,
+      "sha256": "618292d3fb58b7d2344279ce3dc9a985c570e41dd3c3ad22144dcaaa0de8d8f9",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/f-illustration-v2.png",
+      "bytes": 2461775,
+      "sha256": "3e10feb5635710d9953ffa9baec7444eecb0090269f58b0cadac8e82b2e3fd52",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/rio-female-idle-1-4x.png",
+      "bytes": 25369,
+      "sha256": "0836adff3d9c7d0562989dcd556ef98426c41f6f250afe05f02a8c70e815efad",
+      "size": [
+        512,
+        512
+      ]
+    },
+    {
+      "file": "art/raw/xion-95b/rio-female-idle-1.png",
+      "bytes": 16941,
+      "sha256": "62adb2f95a7ea3518548cfe3f9d449b81cff2d4e6996eb42438f1fdc69d2626e",
+      "size": [
+        128,
+        128
+      ]
+    }
+  ],
+  "generation_calls": [
+    {
+      "output": "e-illustration-v1.png",
+      "prompt": "prompt-e-illustration.txt",
+      "references": [],
+      "transparent_background": true
+    },
+    {
+      "output": "e-illustration-v2.png",
+      "prompt": "prompt-e-illustration-fix.txt",
+      "references": [
+        "e-illustration-v1.png"
+      ],
+      "transparent_background": true
+    },
+    {
+      "output": "e-idle-v1.png",
+      "prompt": "prompt-e-idle-v1.txt",
+      "references": [
+        "rio-female-idle-1-4x.png",
+        "e-illustration-v2.png"
+      ],
+      "transparent_background": false
+    },
+    {
+      "output": "e-idle-v2.png",
+      "prompt": "prompt-e-idle-v2.txt",
+      "references": [
+        "rio-female-idle-1-4x.png",
+        "e-illustration-v2.png"
+      ],
+      "transparent_background": false
+    },
+    {
+      "output": "e-idle-v3.png",
+      "prompt": "prompt-e-idle-v3.txt",
+      "references": [
+        "rio-female-idle-1-4x.png",
+        "e-illustration-v2.png"
+      ],
+      "transparent_background": false
+    },
+    {
+      "output": "f-illustration-v1.png",
+      "prompt": "prompt-f-illustration.txt",
+      "references": [],
+      "transparent_background": true
+    },
+    {
+      "output": "f-illustration-v2.png",
+      "prompt": "prompt-f-illustration-fix.txt",
+      "references": [
+        "f-illustration-v1.png"
+      ],
+      "transparent_background": true
+    },
+    {
+      "output": "f-idle-v1.png",
+      "prompt": "prompt-f-idle-v1.txt",
+      "references": [
+        "rio-female-idle-1-4x.png",
+        "f-illustration-v1.png"
+      ],
+      "transparent_background": false
+    },
+    {
+      "output": "f-idle-v2.png",
+      "prompt": "prompt-f-idle-v2.txt",
+      "references": [
+        "rio-female-idle-1-4x.png",
+        "f-illustration-v1.png"
+      ],
+      "transparent_background": false
+    }
+  ],
+  "selected": {
+    "e_illustration": "e-illustration-v2.png",
+    "f_illustration": "f-illustration-v2.png",
+    "e_idle": "e-idle-v3.png",
+    "f_idle": "f-idle-v2.png"
+  }
+}
