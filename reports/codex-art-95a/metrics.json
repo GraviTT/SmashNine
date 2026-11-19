@@ -1,0 +1,265 @@
+{
+  "generation": {
+    "tool": "built-in image_gen",
+    "c_illustration_outputs": 3,
+    "d_illustration_outputs": 3,
+    "c_idle_outputs": 2,
+    "d_idle_outputs": 1,
+    "blocked_idle_calls": 1,
+    "selected": {
+      "c_illustration": "c-illustration-chroma.png",
+      "d_illustration": "d-illustration-proportion.png",
+      "c_idle": "c-idle-02.png",
+      "d_idle": "d-idle-01.png"
+    },
+    "raw_directory": "art/raw/xion-95a/",
+    "source_sha256": {
+      "c-front-only.png": "92f865ec607ad4cf500192cf3b4ac6897b55567247a37bc4aad453a625a27f4a",
+      "c-hologram-mask.png": "032ef08b58567f70c41ff78140259b4ab50d12c92ebc58ee1e37ff91c81213e1",
+      "c-idle-01.png": "8ec51bf7c138d586042a8a0f77f3b67ba447862e9cb7ca210fe8ad96082c9db0",
+      "c-idle-02.png": "0241db44d6b5efb81acce3f1b80d69481ab94c2bec4a3ee5de977b3c5a2eac14",
+      "c-illustration-01.png": "4c34bd5726b0b9f62aefeaa8e23031c5c38b4e92aafa51db5fe2a1dfe7e60204",
+      "c-illustration-02.png": "f22acb72ac052248f7cee6262b05c484c51cbd5227af6387d1769e6c01d9be10",
+      "c-illustration-chroma.png": "f4706c139771fb7a7af9736a2d92b12cf312774feaeeb27526fc86328746514c",
+      "d-front-only.png": "94621656c91543cf0731b01ccb2de1ad26e902efc9b898e4bf524dd62d1dec5a",
+      "d-hologram-mask.png": "29415da3f3948c07aaffa9ec6bb131c6932060d1e7e347f9d315e4ff230eb4a5",
+      "d-idle-01.png": "94cbdf979e5f5e5edda190c3b77712a39ecd1bb3bec7ebe8d0a5087ec6bdc578",
+      "d-illustration-01.png": "519b422d6078b9e3e3ea3c6905d2d4f3422554b45f66ec2a22f87a82d34693f9",
+      "d-illustration-chroma.png": "cb19e402fab5c538e3e8a624b812498e0b34ad4e8b1eb7e8913ed53b7e3ab942",
+      "d-illustration-proportion.png": "76cef912a9689032112e3cba6657eb27ce44c2415496a0a1924c03a7f2d291bc",
+      "rio-idle-f1-4x.png": "0836adff3d9c7d0562989dcd556ef98426c41f6f250afe05f02a8c70e815efad",
+      "style-rio.png": "96f07366c3deadeb8e5c5463806e6c17c401be4d3f1e1c7fb9885abd26ad3743"
+    }
+  },
+  "concepts": {
+    "c": {
+      "illustration": {
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "uniform_factor": 0.9,
+        "bbox": [
+          60,
+          158,
+          961,
+          1423
+        ],
+        "margin_ltrb": [
+          60,
+          158,
+          63,
+          113
+        ],
+        "alpha_range": [
+          0,
+          255
+        ],
+        "opaque_pixels": 381495,
+        "partial_alpha_pixels": 198732,
+        "transparent_pixels": 992637,
+        "hologram_core_alpha": 140,
+        "hologram_opacity": 0.5490196078431373,
+        "hologram_mask_pixels_source": 214923,
+        "selected_crimson_components": [
+          147789,
+          42418,
+          2696,
+          14281
+        ],
+        "yellow_green_edge_despill_pixels": 7550,
+        "glitch_slices_source": [
+          [
+            392,
+            395,
+            4
+          ],
+          [
+            735,
+            738,
+            -4
+          ]
+        ],
+        "green_spill_pixels": 0,
+        "transparent_rgb_nonzero": 0,
+        "edge_pixels": 0,
+        "processing": "ImageGen chroma source; green-key coverage/despill, selected large crimson regions alpha 55%, two 3px +/-4px slices, uniform 0.9 scale. No body part collage."
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "frames": 1,
+        "factor": 0.09683794,
+        "height": 98,
+        "feet_y": 120,
+        "margin": {
+          "left": 31,
+          "top": 23,
+          "right": 26,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "green_spill": 0,
+        "border_clear": true,
+        "alpha_binary": true,
+        "detail": 134.66,
+        "rio_idle_mean": 95.55,
+        "detail_ratio_vs_rio_idle_mean": 1.4093,
+        "rio_f1_detail": 97.64,
+        "detail_ratio_vs_rio_f1": 1.3791,
+        "packaging": "normalize.py emits six columns even for grid 1x1. Final is the unchanged first 128x128 cell; five empty columns omitted."
+      },
+      "manual_landmarks": {
+        "illustration_crown_chin_sole_y": [
+          160,
+          337,
+          1422
+        ],
+        "illustration_heads": 7.13,
+        "sprite_crown_chin_y": [
+          23,
+          56
+        ],
+        "sprite_head_height": 33,
+        "sprite_heads": 2.97,
+        "head_ratio_vs_rio": 1.1786,
+        "method": "Human-selected crown/chin/sole positions, not automatic anatomy detection; illustration uncertainty +/-3px, sprite +/-1px.",
+        "rio_head_height": 28,
+        "rio_crown_chin_y": [
+          35,
+          63
+        ]
+      },
+      "visual_review": {
+        "illustration_full_size_dark_and_light": true,
+        "hands_and_boots_at_2x": true,
+        "sprite_at_4x": true,
+        "two_complete_matching_shotguns": true,
+        "clear_front_face": true,
+        "rear_hologram": true,
+        "limits": "Head 14-18% larger than Rio main head. Individual sprite fingers/trigger and C wristwatch have weak 128px readability. Occluded fingers not individually countable."
+      }
+    },
+    "d": {
+      "illustration": {
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "uniform_factor": 0.9,
+        "bbox": [
+          59,
+          148,
+          965,
+          1428
+        ],
+        "margin_ltrb": [
+          59,
+          148,
+          59,
+          108
+        ],
+        "alpha_range": [
+          0,
+          255
+        ],
+        "opaque_pixels": 498045,
+        "partial_alpha_pixels": 157283,
+        "transparent_pixels": 917536,
+        "hologram_core_alpha": 140,
+        "hologram_opacity": 0.5490196078431373,
+        "hologram_mask_pixels_source": 172764,
+        "selected_crimson_components": [
+          168150
+        ],
+        "yellow_green_edge_despill_pixels": 4791,
+        "glitch_slices_source": [
+          [
+            392,
+            395,
+            4
+          ],
+          [
+            735,
+            738,
+            -4
+          ]
+        ],
+        "green_spill_pixels": 0,
+        "transparent_rgb_nonzero": 0,
+        "edge_pixels": 0,
+        "processing": "ImageGen chroma source; green-key coverage/despill, selected large crimson regions alpha 55%, two 3px +/-4px slices, uniform 0.9 scale. No body part collage."
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "frames": 1,
+        "factor": 0.09626719,
+        "height": 98,
+        "feet_y": 120,
+        "margin": {
+          "left": 29,
+          "top": 23,
+          "right": 29,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "green_spill": 0,
+        "border_clear": true,
+        "alpha_binary": true,
+        "detail": 91.84,
+        "rio_idle_mean": 95.55,
+        "detail_ratio_vs_rio_idle_mean": 0.9612,
+        "rio_f1_detail": 97.64,
+        "detail_ratio_vs_rio_f1": 0.9406,
+        "packaging": "normalize.py emits six columns even for grid 1x1. Final is the unchanged first 128x128 cell; five empty columns omitted."
+      },
+      "manual_landmarks": {
+        "illustration_crown_chin_sole_y": [
+          150,
+          324,
+          1427
+        ],
+        "illustration_heads": 7.34,
+        "sprite_crown_chin_y": [
+          23,
+          55
+        ],
+        "sprite_head_height": 32,
+        "sprite_heads": 3.06,
+        "head_ratio_vs_rio": 1.1429,
+        "method": "Human-selected crown/chin/sole positions, not automatic anatomy detection; illustration uncertainty +/-3px, sprite +/-1px.",
+        "rio_head_height": 28,
+        "rio_crown_chin_y": [
+          35,
+          63
+        ]
+      },
+      "visual_review": {
+        "illustration_full_size_dark_and_light": true,
+        "hands_and_boots_at_2x": true,
+        "sprite_at_4x": true,
+        "two_complete_matching_shotguns": true,
+        "clear_front_face": true,
+        "rear_hologram": true,
+        "limits": "Head 14-18% larger than Rio main head. Individual sprite fingers/trigger and C wristwatch have weak 128px readability. Occluded fingers not individually countable."
+      }
+    }
+  },
+  "qa": {
+    "lineup_size": [
+      2360,
+      1280
+    ],
+    "head_board_scale": 4,
+    "in_game_test": false
+  }
+}
