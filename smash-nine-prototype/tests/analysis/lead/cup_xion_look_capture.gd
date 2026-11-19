@@ -1,10 +1,10 @@
 extends SceneTree
-## Lead capture for the pick cup round on Xion's look (CODEX-ART-94): her idle in a realm, at the match camera
-## (0.85), between Frey and Rio (female) for size and colour. Candidate A or B replaces the frames of her idle
-## animation at runtime (the strip `art/bakeoff/xion/<letter>/xion-idle-<letter>.png`); "now" keeps the stand-in.
-## No game code or game art changes.
+## Lead capture for the pick cup on Xion's look (CODEX-ART-94, -95): her idle in a realm, at the match camera
+## (0.85), between Frey and Rio (female) for size and colour. A candidate replaces the frames of her idle
+## animation at runtime (`art/bakeoff/xion/<letter>/xion-idle-<letter>.png`: a 6-frame strip or one 128-px frame;
+## `--still` keeps only its first frame); "now" keeps the stand-in. No game code or game art changes.
 ## Windowed run, one realm and variant per run:
-## <godot> --path . --fixed-fps 60 -s tests/analysis/lead/cup_xion_look_capture.gd -- --out=<dir> --variant=a --realm=niflheim
+## <godot> --path . --fixed-fps 60 -s tests/analysis/lead/cup_xion_look_capture.gd -- --out=<dir> --variant=a --realm=niflheim [--still]
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -19,6 +19,7 @@ const CELL := 128
 var out_dir := "user://cup_xion_look"
 var variant := "now"
 var realm := "niflheim"
+var still := false
 var arena: Node2D
 var camera: Camera2D
 
@@ -30,6 +31,8 @@ func _initialize() -> void:
 			variant = arg.substr(10)
 		elif arg.begins_with("--realm="):
 			realm = arg.substr(8)
+		elif arg == "--still":
+			still = true
 	call_deferred("_run")
 
 func _run() -> void:
@@ -129,8 +132,8 @@ func _fighter(id: String, body_type: String, player_id: int, at: Vector2) -> Nod
 	fighter.set_process_unhandled_input(false)
 	return fighter
 
-## The candidate's six idle drawings replace the stand-in's in Xion's own SpriteFrames (same 128-px cell, feet
-## at y=120, 6.3 fps), so she stands and breathes exactly as the game draws an idle.
+## The candidate's idle drawings replace the stand-in's in Xion's own SpriteFrames (same 128-px cell, feet at
+## y=120, 6.3 fps), so she stands and breathes exactly as the game draws an idle.
 func _use_candidate(xion: Node) -> bool:
 	var sheet := Image.load_from_file(ProjectSettings.globalize_path(CANDIDATE % [variant, variant]))
 	if sheet == null or sheet.is_empty():
@@ -142,7 +145,8 @@ func _use_candidate(xion: Node) -> bool:
 	if not frames.has_animation(name):
 		return false
 	frames.clear(name)
-	for index in 6:
+	var count := 1 if still else int(sheet.get_width() / CELL)
+	for index in count:
 		var cut := AtlasTexture.new()
 		cut.atlas = texture
 		cut.region = Rect2(index * CELL, 0, CELL, CELL)
