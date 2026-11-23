@@ -1,0 +1,165 @@
+{
+  "source_sha256": {
+    "art/bakeoff/xion/b/xion_illustration-b.png": "0548fcc0aeb51f99f5b3344a7b9009b49e0d12c8eadf4944f4878e270dc72e1b",
+    "art/bakeoff/xion/b/xion_face-b.png": "0493697ad14ba42db3d8098e7abb9f844684fac7662e368bc703d583bc774df1",
+    "art/bakeoff/xion/b/xion_double-b2-colour.png": "b36566b74624755d7cdc6231aae766b1b88e32c9129e69bc6a1dde261362e23e"
+  },
+  "generated_cleanup": {
+    "alpha_1_to_4_removed": 20713,
+    "alpha_gain": 1.007905138339921,
+    "green_corrected": 0,
+    "note": "Previously measured raw-to-colour treatment; existing colour asset loaded without further changes."
+  },
+  "main": {
+    "scale": 0.9,
+    "offset_xy": [
+      120,
+      68
+    ],
+    "resize": "float premultiplied bilinear",
+    "redrawn": false,
+    "body_parts_modified": false,
+    "nontransparent_pixel_count": 302157,
+    "layer_mismatch_against_resized_source": 0,
+    "exposed_main_pixel_count": 232953,
+    "exposed_main_pixel_mismatch": 0,
+    "composition": "unmodified foreground RGBA source-over treated double",
+    "head_region_xyxy": [
+      444,
+      140,
+      696,
+      338
+    ],
+    "head_support_pixel_count": 31015,
+    "head_pixel_mismatch": 0
+  },
+  "double": {
+    "scale": 0.83,
+    "offset_xy": [
+      -110,
+      60
+    ],
+    "cleanup": {
+      "alpha_1_to_4_removed": 20713,
+      "alpha_gain": 1.007905138339921,
+      "green_corrected": 0,
+      "note": "Previously measured raw-to-colour treatment; existing colour asset loaded without further changes."
+    }
+  },
+  "hologram": {
+    "tint": [
+      0.96,
+      0.24,
+      0.34
+    ],
+    "luminance_weights": [
+      0.299,
+      0.587,
+      0.114
+    ],
+    "brightness": "0.42 + 0.85 * luminance",
+    "alpha": 0.62,
+    "scanline_period_px": 6,
+    "dim_rows": 4,
+    "dim_alpha_factor": 0.55,
+    "bright_band_centre_y": 602,
+    "bright_band_half_width": 15,
+    "bright_band_peak_multiplier": 1.6,
+    "slices_y0_y1_dx": [
+      [
+        306,
+        309,
+        -5
+      ],
+      [
+        857,
+        860,
+        5
+      ]
+    ],
+    "colour_space": "normalised PNG RGB, per task formula; no extra gamma conversion",
+    "note": "Static adaptation: 6px period, one frozen sweep, two shifted 3px slices. Runtime TIME/flicker not simulated."
+  },
+  "final": {
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      35,
+      150,
+      986,
+      1368
+    ],
+    "margins_ltrb": [
+      35,
+      150,
+      38,
+      168
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "border_nontransparent_pixels": 0,
+    "transparent_rgb_residue_pixels": 0,
+    "green_fringe_pixels": 0,
+    "visible_pixels": 463348
+  },
+  "colour": {
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      175,
+      120,
+      854,
+      1455
+    ],
+    "margins_ltrb": [
+      175,
+      120,
+      170,
+      81
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "border_nontransparent_pixels": 0,
+    "transparent_rgb_residue_pixels": 0,
+    "green_fringe_pixels": 0,
+    "visible_pixels": 328726
+  },
+  "hologram_layer": {
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "bbox": [
+      35,
+      159,
+      599,
+      1268
+    ],
+    "margins_ltrb": [
+      35,
+      159,
+      425,
+      268
+    ],
+    "alpha_range": [
+      0,
+      158
+    ],
+    "border_nontransparent_pixels": 0,
+    "transparent_rgb_residue_pixels": 0,
+    "green_fringe_pixels": 0,
+    "visible_pixels": 230395
+  },
+  "fringe_definition": "Visible G > max(R,B)+20 and G>80. Hidden RGB checked separately. This does not automatically detect all possible halos."
+}
