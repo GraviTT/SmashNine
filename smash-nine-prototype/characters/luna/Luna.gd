@@ -198,6 +198,29 @@ func get_motion_overlays() -> Dictionary:
 func character_landing_effect(drop: float) -> String:
 	return "luna_land_stardust" if drop >= BIG_LANDING_DROP else "luna_land_stardust_small"
 
+## Her steps and take-off (pick cup 2026-11-19, candidate A "the sharp moment", D49), normal Luna only
+## (Brave Luna walks another row): a small flash on the front foot of walk drawings 4 and 8, 17 and 18 px
+## ahead of her feet, each over one step; a flash at the feet when she jumps, from the floor or in the air.
+const STEP_FLASH := [[&"luna_walk", 3, "luna_step", 17.0, 4], [&"luna_walk", 7, "luna_step", 18.0, 4]]
+
+func get_motion_frame_effects() -> Array:
+	return STEP_FLASH
+
+func character_jump_effect(air: bool) -> String:
+	if transformed:
+		return ""
+	return "luna_air_jump" if air else "luna_jump"
+
+## Brave Luna's melee hits leave their afterglow on the struck body (pick cup 2026-11-19, candidate B "the
+## directional linger", D49): the bigger one for a strong hit (the spinning kick 520, the uppercut 430, the
+## dive kick 475). Normal Luna's stars leave theirs from on_star_hit, so the big star's burst adds none.
+const BRAVE_BIG_HIT_KNOCKBACK := 400.0
+
+func character_hit_afterglow(knockback: float) -> String:
+	if not transformed:
+		return ""
+	return "brave_hit_after_big" if knockback >= BRAVE_BIG_HIT_KNOCKBACK else "brave_hit_after"
+
 ## Brave Luna's own sheet (CODEX-ART-06), cut like the normal one into luna_brave_*.
 func _add_brave_sheet() -> void:
 	if not ResourceLoader.exists(BRAVE_SHEET_ART):
@@ -382,11 +405,34 @@ func _fire_star(aim: Vector2, big: bool, low: bool) -> void:
 	star.big = big
 	# The J stars (CODEX-VFX-04); the coloured rect without the art.
 	star.set_effect_art("luna_star_big" if big else "luna_star_shot")
+	_spawn_star_flight_art(star, aim, big)
 	_play_star_bloom(Vector2(20 * facing, -38) + aim * 6.0, 18.0 if big else 12.0, Color(1.0, 0.8, 0.95, 0.8), 0.1)
 
-## A star that landed (LunaStar).
-func on_star_hit(body: Node) -> void:
+## The J star's flash where it leaves the wand and the tail riding it while it flies (pick cup 2026-11-19,
+## candidate A, D49): both drawn toward +x and turned to the aim, mirrored for a left aim so up stays up
+## (as the star's own art); the tail loops until the star goes.
+func _spawn_star_flight_art(star: Node2D, aim: Vector2, big: bool) -> void:
+	var suffix := "_big" if big else ""
+	var turn := Vector2(-1.0, 1.0) if aim.x < 0.0 else Vector2.ONE
+	var angle := (-aim).angle() if aim.x < 0.0 else aim.angle()
+	var flash := VFX.spawn(get_parent(), "luna_star_launch" + suffix, star.global_position, turn, false, 5)
+	if flash != null:
+		flash.rotation = angle
+	var tail := VFX.spawn(star, "luna_star_trail" + suffix, Vector2.ZERO, turn, true, 5, Color.WHITE, true)
+	if tail != null:
+		tail.rotation = angle
+
+## A star that landed (LunaStar): it marks the target and leaves its afterglow on the struck body (pick cup
+## 2026-11-19, candidate B, D49), once per star (the big star's burst adds none), the bigger one for the
+## big star, facing the way the star flew. A guarded or parried star does not land, so it leaves none.
+func on_star_hit(body: Node, star: Node = null) -> void:
 	_mark(body)
+	var target := body as Node2D
+	if star == null or target == null or not is_instance_valid(target):
+		return
+	var flight: Vector2 = star.get("direction")
+	var side := signf(flight.x) if absf(flight.x) > 0.01 else float(facing)
+	VFX.spawn(get_parent(), "luna_hit_after_big" if bool(star.get("big")) else "luna_hit_after", hit_afterglow_point(target), Vector2(side, 1.0), false, 5)
 
 ## The big star's burst at `at` (LunaStar): it marks what it hits too.
 func star_burst_at(at: Vector2, direction: Vector2) -> void:
@@ -668,6 +714,7 @@ func _purify_warp() -> void:
 func _brave_jab() -> void:
 	velocity.x += facing * 90.0
 	_spawn_sweeping_attack(Vector2(34, 28), [Vector2(8 * facing, -38), Vector2(42 * facing, -36), Vector2(70 * facing, -34)], 5, 150, Vector2(facing, -0.02), BRAVE_IMPACT_COLOR, 0.075)
+	_spawn_brave_follow_through("brave_rush_1")
 	# On hit the body kick can start at once and lands inside the jab's hitstun.
 	last_attack.set_meta("chain_cancel", 0.0)
 	_play_star_bloom(Vector2(68 * facing, -34), 24.0, BRAVE_IMPACT_COLOR, 0.1)
@@ -675,6 +722,7 @@ func _brave_jab() -> void:
 func _brave_body_kick() -> void:
 	velocity.x += facing * 120.0
 	_spawn_sweeping_attack(Vector2(38, 30), [Vector2(10 * facing, -32), Vector2(48 * facing, -28), Vector2(80 * facing, -22)], 6, 205, Vector2(facing, -0.06), BRAVE_IMPACT_COLOR, 0.085)
+	_spawn_brave_follow_through("brave_rush_2")
 	# On hit the spinning kick can start at once and lands inside the hitstun.
 	last_attack.set_meta("chain_cancel", 0.0)
 	_play_star_bloom(Vector2(78 * facing, -22), 27.0, BRAVE_IMPACT_COLOR, 0.11)
@@ -683,23 +731,28 @@ func _brave_body_kick() -> void:
 func _brave_spin_kick() -> void:
 	velocity.x += facing * 145.0
 	_spawn_sweeping_launch_attack(Vector2(48, 38), [Vector2(-18 * facing, -44), Vector2(34 * facing, -50), Vector2(88 * facing, -30)], 10, 520, Vector2(facing, -0.4), Color(1.0, 0.5, 0.82, 0.72), 0.12, Vector2(560 * facing, -480), 0.32)
+	_spawn_brave_follow_through("brave_rush_3")
 	_play_star_bloom(Vector2(88 * facing, -30), 35.0, BRAVE_IMPACT_COLOR, 0.14)
 
 func _brave_uppercut(airborne: bool) -> void:
 	velocity.y = minf(velocity.y, (-430.0 if not airborne else -330.0) * GAME_SCALE.JUMP_SPEED)
 	velocity.x += facing * 45.0
 	_spawn_sweeping_launch_attack(Vector2(42, 46), [Vector2(12 * facing, -28), Vector2(30 * facing, -68), Vector2(44 * facing, -108)], 10, 430, Vector2(0.12 * facing, -1), BRAVE_IMPACT_COLOR, 0.12, Vector2(72 * facing, -620), 0.28)
+	# The same strip for the uppercut on the ground and in the air.
+	_spawn_brave_follow_through("brave_up")
 	_play_star_bloom(Vector2(42 * facing, -106), 31.0, BRAVE_IMPACT_COLOR, 0.13)
 
 func _brave_low_sweep() -> void:
 	velocity.x += facing * 85.0
 	_spawn_sweeping_attack(Vector2(48, 28), [Vector2(-12 * facing, -14), Vector2(36 * facing, -10), Vector2(82 * facing, -8)], 8, 315, Vector2(facing, -0.06), BRAVE_IMPACT_COLOR, 0.1)
+	_spawn_brave_follow_through("brave_low")
 	_play_star_bloom(Vector2(80 * facing, -8), 28.0, BRAVE_IMPACT_COLOR, 0.12)
 
 func _brave_flying_kick() -> void:
 	velocity.x += facing * 230.0
 	velocity.y *= 0.45
 	_spawn_sweeping_attack(Vector2(44, 30), [Vector2(8 * facing, -36), Vector2(50 * facing, -32), Vector2(92 * facing, -28)], 8, 330, Vector2(facing, -0.08), BRAVE_IMPACT_COLOR, 0.095)
+	_spawn_brave_follow_through("brave_side_air")
 	_play_star_bloom(Vector2(92 * facing, -28), 29.0, BRAVE_IMPACT_COLOR, 0.12)
 
 func _brave_dive_kick() -> void:
@@ -707,7 +760,14 @@ func _brave_dive_kick() -> void:
 	velocity.x += facing * 125.0
 	velocity.y = maxf(velocity.y, 610.0 * GAME_SCALE.JUMP_SPEED)
 	_spawn_sweeping_attack(Vector2(42, 38), [Vector2(8 * facing, -22), Vector2(26 * facing, 24), Vector2(48 * facing, 78)], 10, 475, Vector2(0.16 * facing, 1), BRAVE_IMPACT_COLOR, 0.13)
+	_spawn_brave_follow_through("brave_down_air")
 	_play_star_bloom(Vector2(46 * facing, 74), 32.0, BRAVE_IMPACT_COLOR, 0.13)
+
+## Brave Luna's J follow-through (pick cup 2026-11-19, candidate B "the directional linger", D49): where and
+## when luna_brave_slash starts (her body centre), mirrored with her facing; each strip has its move's angle
+## and reach drawn in, so it is not turned.
+func _spawn_brave_follow_through(effect: String) -> void:
+	VFX.spawn(get_parent(), effect, global_position + GAME_SCALE.BODY_CENTRE, Vector2(facing, 1.0), false, 5)
 
 func _consume_brave_combo_step() -> int:
 	if brave_combo_timer <= 0.0:

@@ -825,6 +825,7 @@ func _apply_movement(delta: float) -> void:
 		if attack_lock_timer <= 0.0 and jump_buffer_timer > 0.0 and coyote_timer > 0.0:
 			velocity.y = jump_velocity * (0.78 if control_jump_slow_timer > 0.0 else 1.0) * gravity_jump_scale()
 			_restart_jump_motion()
+			_spawn_jump_effect(false)
 			jump_buffer_timer = 0.0
 			coyote_timer = 0.0
 		elif attack_lock_timer <= 0.0 and jump_buffer_timer > 0.0 and air_jumps_left > 0 and not character_defers_air_jump():
@@ -983,9 +984,27 @@ func get_motion_frame_effects() -> Array:
 func character_landing_effect(_drop: float) -> String:
 	return ""
 
+## True when that landing art is drawn facing right and turned the fighter's way (Frey's, pick cup
+## 2026-11-19); Luna's stardust keeps its one way.
+func character_landing_effect_turns() -> bool:
+	return false
+
+## The character's own take-off art (scripts/Vfx.gd name) for a jump from the floor or, `air`, in the air;
+## empty for none (pick cup 2026-11-19, D49: Frey's and normal Luna's).
+func character_jump_effect(_air: bool) -> String:
+	return ""
+
+## The take-off art at the feet where the jump began, turned the fighter's way and as faint as a hidden
+## fighter (like the landing art); it stays where it was left.
+func _spawn_jump_effect(air: bool) -> void:
+	var effect := character_jump_effect(air)
+	if effect != "":
+		EFFECT_STRIPS.spawn(get_parent(), effect, global_position, Vector2(facing, 1.0), false, 4, Color(1, 1, 1, _visible_alpha()))
+
 func _perform_air_jump() -> void:
 	velocity.y = jump_velocity * 0.86 * (0.78 if control_jump_slow_timer > 0.0 else 1.0) * gravity_jump_scale()
 	_restart_jump_motion()
+	_spawn_jump_effect(true)
 	air_jumps_left -= 1
 	jump_buffer_timer = 0.0
 	character_on_air_jump()
@@ -1274,7 +1293,8 @@ func _spawn_landing_puff() -> void:
 	var effect := character_landing_effect(landing_drop)
 	if effect == "" or not EFFECT_STRIPS.available(effect):
 		effect = "landing_dust"
-	if EFFECT_STRIPS.spawn(get_parent(), effect, global_position, Vector2.ONE, false, 4, Color(1, 1, 1, _visible_alpha())) != null:
+	var turn := Vector2(facing, 1.0) if effect != "landing_dust" and character_landing_effect_turns() else Vector2.ONE
+	if EFFECT_STRIPS.spawn(get_parent(), effect, global_position, turn, false, 4, Color(1, 1, 1, _visible_alpha())) != null:
 		return
 	var puff := ColorRect.new()
 	puff.size = Vector2(44, 8)
@@ -2254,11 +2274,15 @@ func _spawn_hit_afterglow(body: Node, attack: Node) -> void:
 	var effect := character_hit_afterglow(float(knockback) if knockback != null else 0.0)
 	if effect == "" or target == null:
 		return
-	var at := target.global_position + Vector2(0, -34)
+	EFFECT_STRIPS.spawn(get_parent(), effect, hit_afterglow_point(target), Vector2(facing, 1.0), false, 5)
+
+## Where a hit spark plays on a struck body, so an afterglow sits there too: a fighter's centre, a
+## monster's drawing (Luna's star afterglow uses it as well).
+func hit_afterglow_point(target: Node2D) -> Vector2:
 	var art: Variant = target.get("art_sprite")
 	if not target.is_in_group("players") and art is Node2D and is_instance_valid(art):
-		at = (art as Node2D).global_position
-	EFFECT_STRIPS.spawn(get_parent(), effect, at, Vector2(facing, 1.0), false, 5)
+		return (art as Node2D).global_position
+	return target.global_position + Vector2(0, -34)
 
 ## A chain hit that lands cuts its own recovery to the meta "chain_cancel" seconds, so the next
 ## hit of the chain arrives inside the target's hitstun (2026-10-10: Frey's and Brave Luna's

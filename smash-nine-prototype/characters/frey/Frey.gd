@@ -91,6 +91,21 @@ const BIG_HIT_KNOCKBACK := 400.0
 func character_hit_afterglow(knockback: float) -> String:
 	return "frey_hit_after_big" if knockback >= BIG_HIT_KNOCKBACK else "frey_hit_after"
 
+## Her take-off and landing (pick cup 2026-11-19, candidate A "the sharp moment", D49): steel flashes and
+## short gold feathers at the feet, drawn facing right and turned her way; the bigger landing after a fall of
+## BIG_LANDING_DROP or more (Luna's measure: a held jump falls about 220 px, a tapped one 50-110 px). The
+## landing art also stands in for the grey dust after an action.
+const BIG_LANDING_DROP := 130.0
+
+func character_jump_effect(air: bool) -> String:
+	return "frey_air_jump" if air else "frey_jump"
+
+func character_landing_effect(drop: float) -> String:
+	return "frey_land_big" if drop >= BIG_LANDING_DROP else "frey_land"
+
+func character_landing_effect_turns() -> bool:
+	return true
+
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	match attack_type:
 		"up", "air_up":

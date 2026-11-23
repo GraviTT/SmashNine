@@ -18,8 +18,31 @@ pixelfx(`/도트이펙트`, 코드로 그리는 픽셀 이펙트)로 그린 동�
 | `frey_jfx_down.png` · `frey_jfx_down_air.png` | 15 × 300×150 · 14 × 240×440 | | 20 | (35,90) · (65,95) | 더하기 | Frey ↓J 여운. 땅은 15°로 눕힌 베기, 공중은 73° (B안) |
 | `frey_jfx_side_air.png` | 16 × 330×360 | 16 | 20 | (35,100) | 더하기 | Frey 공중 J 여운 (B안) |
 | `frey_hit_after.png` · `frey_hit_after_big.png` | 10 × 128×112 · 14 × 192×160 | | 20 | (64,56) · (96,80), 맞은 몸 중심 | 더하기 | Frey 근접 적중 한 번에 한 번 남는 여운: 금빛 고리, 강철 불꽃, 반짝임. 넉백 400 이상은 큰 것 (A안, 리드) |
+| `frey_jump.png` | 992×32 | 8 × 124×32 | 24 | (62,9) | 더하기 | Frey 땅 점프. 발이 떠난 자리에 한 번, 바라보는 쪽으로 뒤집음 (A) |
+| `frey_air_jump.png` | 1380×38 | 10 × 138×38 | 30 | (68,9) | 더하기 | Frey 공중 점프. 그 자리 발 위치에 한 번 (A) |
+| `frey_land.png` | 992×28 | 8 × 124×28 | 30 | (62,22) | 더하기 | Frey 착지, 130px보다 낮게 떨어짐. 발 위치, 바라보는 쪽으로 뒤집음, 행동 뒤 회색 먼지도 대신함 (A) |
+| `frey_land_big.png` | 2136×42 | 12 × 178×42 | 30 | (89,34) | 더하기 | Frey 착지, 130px 이상 떨어짐 (A) |
+| `luna_jump.png` | 1044×22 | 9 × 116×22 | 30 | (58,9) | 더하기 | Luna(노말) 땅 점프 (A). Brave에는 없음 |
+| `luna_air_jump.png` | 1370×51 | 10 × 137×51 | 30 | (79,-1) | 더하기 | Luna(노말) 공중 점프 (A) |
+| `luna_step.png` | 420×22 | 7 × 60×22 | 20 | (52,20) | 더하기 | Luna(노말) 달리기. `luna_walk` 4·8번째 그림, 앞발 +17·+18px, 한 걸음 안에 재생 (A) |
+| `luna_star_launch.png` | 180×52 | 6 × 30×52 | 30 | (1,26) | 더하기 | J 작은 별이 생긴 자리에 한 번. +x를 조준 방향으로 돌리고, 왼쪽은 뒤집은 뒤 반대 방향으로 돌림 (A) |
+| `luna_star_launch_big.png` | 308×78 | 7 × 44×78 | 30 | (1,39) | 더하기 | J 큰 별 발사 (A) |
+| `luna_star_trail.png` | 576×28 | 8 × 72×28 | 40, 반복 | (90,14) | 더하기 | 작은 별에 붙어 날아가는 동안 반복하는 꼬리. 별과 같이 돌림 (A) |
+| `luna_star_trail_big.png` | 960×40 | 10 × 96×40 | 40, 반복 | (128,20) | 더하기 | 큰 별의 꼬리 (A) |
+| `luna_hit_after.png` | 2112×100 | 12 × 176×100 | 20 | (76,40) | 더하기 | 작은 별이 맞힐 때 별 하나에 한 번, 맞은 몸 중심. 날아간 쪽으로 뒤집음 (B) |
+| `luna_hit_after_big.png` | 3456×112 | 16 × 216×112 | 20 | (96,44) | 더하기 | 큰 별이 맞힐 때 한 번. 폭발의 적중에는 더 나오지 않음 (B) |
+| `brave_rush_1.png` | 830×47 | 10 × 83×47 | 20 | (-54,23) | 더하기 | Brave J 1타(잽). `luna_brave_slash`와 같은 순간·자리(몸 중심). 앵커가 그림 밖이라 몸 앞에 그려짐 (B) |
+| `brave_rush_2.png` | 1308×58 | 12 × 109×58 | 20 | (-61,27) | 더하기 | Brave J 2타(보디 킥) (B) |
+| `brave_rush_3.png` | 1680×91 | 14 × 120×91 | 20 | (-52,85) | 더하기 | Brave J 3타(회전 킥) (B) |
+| `brave_up.png` | 490×95 | 14 × 35×95 | 20 | (-50,146) | 더하기 | Brave ↑J·공중 ↑J(어퍼컷) (B) |
+| `brave_low.png` | 1332×44 | 12 × 111×44 | 20 | (-65,-13) | 더하기 | Brave ↓J(낮은 다리 후리기) (B) |
+| `brave_side_air.png` | 1416×60 | 12 × 118×60 | 20 | (-70,38) | 더하기 | Brave 공중 J(비행 발차기) (B) |
+| `brave_down_air.png` | 1136×179 | 16 × 71×179 | 20 | (8,-84) | 더하기 | Brave 공중 ↓J(급강하 킥) (B) |
+| `brave_hit_after.png` | 1848×51 | 12 × 154×51 | 20 | (73,12) | 더하기 | Brave 근접 적중 한 번에 한 번, 맞은 몸 중심. 넉백 400 미만 (B) |
+| `brave_hit_after_big.png` | 3312×70 | 16 × 207×70 | 20 | (102,12) | 더하기 | Brave 근접 강타(넉백 400 이상: 회전 킥 520, 어퍼컷 430, 급강하 475) (B) |
 
-- 모두 오른쪽을 보고 그렸고, 바라보는 쪽으로 좌우만 뒤집어 그린다(회전 없음).
+- 모두 오른쪽을 보고 그렸고, 바라보는 쪽으로 좌우만 뒤집어 그린다(회전 없음). 예외는 Luna 별의 발사·꼬리로, 조준 방향으로 돌린다.
+- 시안 월드컵 2026-11-19 라운드(사용자 2026-11-23)에서 이긴 22장은 Codex CODEX-VFX-08·09 후보(A "순간 강조" `art/bakeoff/effects/pixelfx/<frey|luna|luna_brave>/a/`, B "방향 있는 여운" `…/b/`)를 이름 끝 `-a`·`-b`만 떼고 복사했다. 크기·앵커·fps는 각 후보의 `.json`과 같다.
 - 1 art px = 1 screen px(월드 1배)이다. 확대하지 않는다.
 - 더하기 시트는 색과 빛을 RGB에 미리 곱했고, 알파는 0/255다. 밝기 40 미만의 빛은 버렸다(몸 위의 안개 방지).
 - 보통 시트는 먼지·별가루 뭉치가 반투명이다(알파 여러 단계). 이 폴더는 effects 폴더의 "알파 0/1" 규칙에서 예외다.
@@ -49,4 +72,9 @@ pixelfx(`/도트이펙트`, 코드로 그리는 픽셀 이펙트)로 그린 동�
 - J 불꽃 · 여운: `Frey._spawn_follow_through`(3연타 `_spawn_slash_sparks`, ↑J · ↓J · 공중 J)
 - 적중 여운: `PlayerBase.character_hit_afterglow(knockback)` → `on_attack_hit_body`에서 한 번 (Frey `BIG_HIT_KNOCKBACK` 400)
 - 원본: B안은 `art/bakeoff/effects/pixelfx/frey/b/src/`(굽기 `bake.mjs`), A안은 pixelfx 사본의 `sn-frey-hit-after-a.js`(`reports/pixelfx-frey-pilot-2026-11-04/bake_a.mjs`)
+- 점프: `PlayerBase.character_jump_effect(공중)` → 땅 점프·`_perform_air_jump`에서 한 번(`_spawn_jump_effect`) — Frey, Luna(노말)
+- 착지 뒤집기: `PlayerBase.character_landing_effect_turns()` — Frey만 참(Luna 별가루는 그대로)
+- 발걸음: Luna `STEP_FLASH`(Frey `STEP_DUST`와 같은 방식)
+- 별 발사·꼬리: `Luna._spawn_star_flight_art`(`_fire_star`), 별 적중 여운: `Luna.on_star_hit(몸, 별)`(`LunaStar`가 별을 넘김), 자리 `PlayerBase.hit_afterglow_point`
+- Brave J 여운: `Luna._spawn_brave_follow_through`(각 기술 함수), Brave 적중 여운: `Luna.character_hit_afterglow`(변신 중만, `BRAVE_BIG_HIT_KNOCKBACK` 400)
 - 시험: `tests/test_motion_fx.gd`

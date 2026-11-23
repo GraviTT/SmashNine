@@ -21,7 +21,7 @@ func _on_body_entered(body: Node) -> void:
 	hit_targets.append(body)
 	var landed = body.apply_hit(source, damage, knockback, direction, damage_type)
 	if landed != false and source.has_method("on_star_hit"):
-		source.on_star_hit(body)
+		source.on_star_hit(body, self)
 	if big:
 		# Not inside the physics callback: the burst adds a hit area (Godot refuses it while
 		# queries flush).

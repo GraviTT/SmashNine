@@ -24,7 +24,13 @@ func _run() -> void:
 	_expect_no_box("Frey's ultimate charge", "frey_ult_charge", func() -> void: frey._play_ultimate_charge())
 	_expect_no_box("Frey's ultimate release", "frey_ult_wave", func() -> void: frey._play_ultimate_release())
 	_expect_no_box("The parry flash", "parry_flash", func() -> void: frey._play_parry_effect(), true)
-	_expect_no_box("The landing dust", "landing_dust", func() -> void: frey._spawn_landing_puff(), true)
+	# The grey dust is for fighters without their own landing art: Frey has hers since the pick cup round
+	# 2026-11-19 (D49), Luna her stardust; Rio keeps the dust.
+	var rio: Node = PLAYER_FACTORY.create("rio")
+	arena.add_child(rio)
+	rio.setup(CHARACTER_REGISTRY.get_characters()["rio"], 2, false)
+	rio.set_physics_process(false)
+	_expect_no_box("The landing dust", "landing_dust", func() -> void: rio._spawn_landing_puff(), true)
 	_expect_no_box("The hit streak", "hit_streak", func() -> void: frey._spawn_hit_slash(Vector2(40, -30), 600.0), true)
 	var ward: Node2D = load("res://characters/yuki/YukiGrandWard.gd").new()
 	arena.add_child(ward)
