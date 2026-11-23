@@ -9,7 +9,7 @@ extends SceneTree
 const CELL := 128
 const COUNTS := [4, 6, 1, 1, 4, 6, 1]
 ## Characters redrawn with 6-frame motions (D33).
-const SHEET_COUNTS := {"frey_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "luna_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "luna_brave_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "yuki_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "nova_male_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "nova_female_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "rio_male_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "rio_female_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1]}
+const SHEET_COUNTS := {"frey_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "luna_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "luna_brave_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "yuki_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "nova_male_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "nova_female_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "rio_male_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "rio_female_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1], "xion_sheet.png": [6, 6, 2, 1, 1, 6, 6, 1]}
 const MARGIN := 4
 const EDGE_FILL := 16
 const CUT_RUN := 9
@@ -19,6 +19,7 @@ const SHEETS := [
 	"res://assets/art/luna/luna_sheet.png", "res://assets/art/luna/luna_brave_sheet.png",
 	"res://assets/art/nova/nova_male_sheet.png", "res://assets/art/nova/nova_female_sheet.png",
 	"res://assets/art/rio/rio_male_sheet.png", "res://assets/art/rio/rio_female_sheet.png",
+	"res://assets/art/xion/xion_sheet.png",
 ]
 ## Straight edges that are in the source art itself (re-extracting the pose whole from its
 ## source adds nothing): shield rims, aura rings, a slash tip, Luna's hair edge.
@@ -46,7 +47,7 @@ func _initialize() -> void:
 	_check_all_monster_sheets("res://assets/art/monsters")
 	_check_all_head_files("res://assets/art")
 	if failures.is_empty():
-		print("Sprite frame tests passed (8 main sheets, %d moves sheets, %d monster sheets edge-clean, %d head files valid)" % [moves_sheet_count, monster_sheet_count, heads_file_count])
+		print("Sprite frame tests passed (%d main sheets, %d moves sheets, %d monster sheets edge-clean, %d head files valid)" % [SHEETS.size(), moves_sheet_count, monster_sheet_count, heads_file_count])
 		quit(0)
 	else:
 		for failure in failures:
