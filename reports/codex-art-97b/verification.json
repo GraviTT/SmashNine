@@ -1,0 +1,132 @@
+{
+  "artifact_checks": [
+    {
+      "row": "walk",
+      "size": [
+        1024,
+        128
+      ],
+      "frames": 8,
+      "verified": true
+    },
+    {
+      "row": "jump",
+      "size": [
+        384,
+        128
+      ],
+      "frames": 3,
+      "verified": true
+    },
+    {
+      "row": "fall",
+      "size": [
+        256,
+        128
+      ],
+      "frames": 2,
+      "verified": true
+    },
+    {
+      "row": "hurt",
+      "size": [
+        384,
+        128
+      ],
+      "frames": 3,
+      "verified": true
+    },
+    {
+      "row": "land",
+      "size": [
+        256,
+        128
+      ],
+      "frames": 2,
+      "verified": true
+    }
+  ],
+  "walk_checks": {
+    "max_foot_step": 24.186773244895647,
+    "passing": [
+      {
+        "frame": 3,
+        "planted_runs": 1,
+        "centre": 61.0,
+        "neighbour_midpoint": 58.0,
+        "error": 3.0,
+        "lift_px": 10
+      },
+      {
+        "frame": 7,
+        "planted_runs": 1,
+        "centre": 57.0,
+        "neighbour_midpoint": 59.75,
+        "error": -2.75,
+        "lift_px": 8
+      }
+    ],
+    "bob": [
+      0,
+      0,
+      0,
+      1,
+      -1,
+      1,
+      2,
+      0
+    ]
+  },
+  "manual_visual_review": "18/18 프레임을 앵커와 4× 비교. 두 총·손·얼굴·코트·부츠·스카프 및 효과 없음 확인.",
+  "game_runtime_tested": false,
+  "commit_script_executed": false,
+  "commit_literal_paths_checked": 53,
+  "commit_paths_all_allowed": true,
+  "powershell_parse_errors": 0,
+  "gif_timing": {
+    "walk": {
+      "durations_ms": [
+        80,
+        70,
+        80,
+        70,
+        80,
+        70,
+        80,
+        70
+      ],
+      "mean_fps": 13.333333333333334
+    },
+    "jump": {
+      "durations_ms": [
+        100,
+        100,
+        100
+      ],
+      "mean_fps": 10.0
+    },
+    "fall": {
+      "durations_ms": [
+        120,
+        130
+      ],
+      "mean_fps": 8.0
+    },
+    "hurt": {
+      "durations_ms": [
+        80,
+        90,
+        80
+      ],
+      "mean_fps": 12.0
+    },
+    "land": {
+      "durations_ms": [
+        80,
+        90
+      ],
+      "mean_fps": 11.764705882352942
+    }
+  },
+  "utf8_text_files_checked": 58
+}
