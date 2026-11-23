@@ -1,0 +1,189 @@
+{
+  "tool": "builtin image_gen.imagegen",
+  "generation_count_this_fix": 3,
+  "rows": {
+    "victory": {
+      "delivered": true,
+      "frames": 6,
+      "fps": 8,
+      "cell": 192,
+      "feet_y": 152,
+      "factor": 0.23,
+      "shared_source_anchor_x": 178.5,
+      "head_scale": {
+        "sheet": "reports\\codex-art-97a-fix\\victory-normalized\\victory.png",
+        "frames": [
+          {
+            "scale": 1.0,
+            "score": 0.948
+          },
+          {
+            "scale": 1.0,
+            "score": 0.947
+          },
+          {
+            "scale": 1.0,
+            "score": 0.916
+          },
+          {
+            "scale": 1.0,
+            "score": 0.924
+          },
+          {
+            "scale": 1.06,
+            "score": 0.875
+          },
+          {
+            "scale": 1.0,
+            "score": 0.924
+          }
+        ],
+        "median": 1.0,
+        "used": 6,
+        "head_matched_factor": 0.23
+      },
+      "detail": {
+        "range": [
+          112.65,
+          116.63
+        ],
+        "mean": 114.53,
+        "anchor_mean": 107.5,
+        "ratio_to_anchor": 1.0654,
+        "per_frame": [
+          116.63,
+          115.25,
+          115.49,
+          112.65,
+          114.32,
+          112.87
+        ]
+      },
+      "border_clear": true,
+      "margin_min_px": 39,
+      "spill_pixels": 0,
+      "body_height_range": [
+        99,
+        99
+      ],
+      "alpha_binary": true,
+      "source_cell_boundaries_clear": true,
+      "visual_review": "앵커와 같은 픽셀 배율로 최근접 4배 확대, 전체 6프레임 직접 확인. 수치 검사를 대신하는 미술 점수는 아님.",
+      "feet": {
+        "before_max_neighbour_dx_px": 13.0,
+        "after_max_neighbour_dx_px": 0.5,
+        "subject_rgba_unchanged_all_frames": true
+      },
+      "limitations": [
+        "F5 자동 머리 배율 1.06이지만 수정 전후 피사체 RGBA는 동일. 머리 변화가 아닌 위치에 따른 자동 매칭 변화. 중앙값은 1.00."
+      ]
+    },
+    "defeat": {
+      "delivered": true,
+      "frames": 6,
+      "fps": 10,
+      "cell": 192,
+      "feet_y": 152,
+      "factor": 0.205,
+      "shared_source_anchor_x": 256.0,
+      "head_scale": {
+        "sheet": "reports\\codex-art-97a-fix\\defeat-normalized\\defeat.png",
+        "frames": [
+          {
+            "scale": 0.96,
+            "score": 0.748
+          },
+          {
+            "scale": 0.96,
+            "score": 0.795
+          },
+          {
+            "scale": 0.96,
+            "score": 0.769
+          },
+          {
+            "scale": 1.12,
+            "score": 0.421
+          },
+          {
+            "scale": 0.6,
+            "score": 0.421
+          },
+          {
+            "scale": 0.6,
+            "score": 0.429
+          }
+        ],
+        "median": 0.96,
+        "used": 3,
+        "head_matched_factor": 0.213542
+      },
+      "detail": {
+        "range": [
+          111.09,
+          119.12
+        ],
+        "mean": 114.98,
+        "anchor_mean": 107.5,
+        "ratio_to_anchor": 1.0696,
+        "per_frame": [
+          113.8,
+          113.32,
+          115.56,
+          111.09,
+          117.0,
+          119.12
+        ]
+      },
+      "border_clear": true,
+      "margin_min_px": 39,
+      "spill_pixels": 0,
+      "body_height_range": [
+        33,
+        96
+      ],
+      "alpha_binary": true,
+      "source_cell_boundaries_clear": true,
+      "visual_review": "앵커와 같은 픽셀 배율로 최근접 4배 확대, 전체 6프레임 직접 확인. 수치 검사를 대신하는 미술 점수는 아님.",
+      "feet": {
+        "method": "F1-F3만 y148..152 불투명 부츠 구간. F4 이후 총/스카프/겹친 부츠가 같은 줄에 있으므로 전체 알파 구간을 발로 오인하지 않음.",
+        "standing_boot_centres_x": [
+          [
+            82.5,
+            122.5
+          ],
+          [
+            75.0,
+            104.0
+          ],
+          [
+            78.0,
+            104.0
+          ]
+        ],
+        "standing_max_neighbour_dx_px": 18.5,
+        "standing_movement_is_intentional_stagger": true,
+        "frame4_boot_centres_x": [
+          112.0,
+          125.0
+        ],
+        "frame5_6_individual_boot_measurement": null,
+        "bottom_all_frames": [
+          152,
+          152,
+          152,
+          152,
+          152,
+          152
+        ],
+        "body_contact_frame5_6": "4배/좌표판에서 팔·손과 총이 바닥에 나란히 닿고 몸은 옆으로 누움. 부츠 자체가 유일한 최저점인 것은 아님."
+      },
+      "limitations": [
+        "F1 반동은 작다. F4는 낮게 주저앉으며 뒤로 기우는 자세로, 큰 공중 회전이 아니다.",
+        "F4-F6은 기울거나 누운 얼굴로 자동 머리 매칭 점수 0.6 미만. 중앙값에서 제외하고 4배 비교로 확인.",
+        "한쪽 눈과 얼굴 왼쪽 윤곽이 앞머리에 가려 양 눈 거리/눈높이 전체 얼굴 너비의 독립 정밀 측정은 불가.",
+        "F5-F6 스카프 일부가 머리/팔 뒤로 접혀 ±10% 실제 천 길이를 정확히 계측할 수 없음. 두 꼬리 존재와 의상 연속성은 육안 확인."
+      ]
+    }
+  }
+}

@@ -1,0 +1,429 @@
+{
+  "input": {
+    "sheet": null,
+    "frames": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\art-a\\SmashNine\\art\\raw\\xion-97a\\defeat-fix-frames\\*.png",
+    "grid": null,
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "one fixed source-grid x for all six frames",
+    "fixed_source_anchor_x": 256.0,
+    "rejected_default_torso_anchors": [
+      250.5,
+      211.5,
+      174.5,
+      269.0,
+      223.0,
+      224.0
+    ],
+    "reason": "두 원본 모두 같은 크기의 균등 3칸. 각 원본 칸의 x=256 하나를 6프레임에 공통 적용.",
+    "source_boots": null
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.205,
+    "scale_by": "fixed:0.205",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      33,
+      96
+    ],
+    "body_width_range": [
+      75,
+      92
+    ],
+    "area_range": [
+      2110,
+      3024
+    ],
+    "area_spread_percent": 30.22,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      1891,
+      2612
+    ],
+    "interior_detail_range": [
+      111.09,
+      119.12
+    ],
+    "interior_detail_mean": 114.98,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 107.5,
+    "interior_detail_ratio": 1.0696
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 107.47,
+        "colour_count": 2627,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 106.07,
+        "colour_count": 2635,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 109.24,
+        "colour_count": 2589,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 108.39,
+        "colour_count": 2576,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 106.2,
+        "colour_count": 2600,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 107.61,
+        "colour_count": 2619,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 107.5,
+    "colour_count_range": [
+      2576,
+      2635
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/defeat-fix-frames/frame-01.png",
+      "bbox": [
+        62,
+        57,
+        137,
+        153
+      ],
+      "body_height": 96,
+      "body_width": 75,
+      "area": 3024,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.8,
+      "colour_count": 2612,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 62,
+        "top": 57,
+        "right": 55,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0586
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/defeat-fix-frames/frame-02.png",
+      "bbox": [
+        55,
+        62,
+        130,
+        153
+      ],
+      "body_height": 91,
+      "body_width": 75,
+      "area": 2921,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 113.32,
+      "colour_count": 2516,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 55,
+        "top": 62,
+        "right": 62,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0541
+    },
+    {
+      "index": 2,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/defeat-fix-frames/frame-03.png",
+      "bbox": [
+        51,
+        73,
+        126,
+        153
+      ],
+      "body_height": 80,
+      "body_width": 75,
+      "area": 2701,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 115.56,
+      "colour_count": 2332,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 51,
+        "top": 73,
+        "right": 66,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.075
+    },
+    {
+      "index": 3,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/defeat-fix-frames/frame-04.png",
+      "bbox": [
+        58,
+        83,
+        142,
+        153
+      ],
+      "body_height": 70,
+      "body_width": 84,
+      "area": 2927,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 111.09,
+      "colour_count": 2599,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 58,
+        "top": 83,
+        "right": 50,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0334
+    },
+    {
+      "index": 4,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/defeat-fix-frames/frame-05.png",
+      "bbox": [
+        48,
+        117,
+        140,
+        153
+      ],
+      "body_height": 36,
+      "body_width": 92,
+      "area": 2197,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 117.0,
+      "colour_count": 1968,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 48,
+        "top": 117,
+        "right": 52,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0884
+    },
+    {
+      "index": 5,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/defeat-fix-frames/frame-06.png",
+      "bbox": [
+        47,
+        120,
+        139,
+        153
+      ],
+      "body_height": 33,
+      "body_width": 92,
+      "area": 2110,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 119.12,
+      "colour_count": 1891,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 47,
+        "top": 120,
+        "right": 53,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.1081
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/reports/codex-art-97a-fix/defeat-normalized/defeat.png",
+    "candidate": null,
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/reports/codex-art-97a-fix/defeat-normalized/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/reports/codex-art-97a-fix/defeat-normalized/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/reports/codex-art-97a-fix/defeat-normalized/compare.png"
+  }
+}

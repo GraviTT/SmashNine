@@ -1,0 +1,536 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/victory-2.png",
+    "frames": null,
+    "grid": [
+      6,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      },
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "fixed",
+    "contact_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "outline": "off",
+    "cell": 192,
+    "feet_y": 152,
+    "horizontal_anchor": "one fixed source-grid x for all six frames",
+    "fixed_source_anchor_x": 178.5,
+    "rejected_default_torso_anchors": [
+      179.5,
+      213.0,
+      158.0,
+      211.0,
+      157.5,
+      157.5
+    ],
+    "reason": "6칸 원본의 부츠 바닥 22줄에서 잰 두 발 중점의 중앙값 하나. 프레임별 이동 없음.",
+    "source_boots": [
+      {
+        "bottom": 579,
+        "runs": [
+          [
+            66,
+            115
+          ],
+          [
+            235,
+            297
+          ]
+        ],
+        "centres": [
+          90.5,
+          266.0
+        ]
+      },
+      {
+        "bottom": 579,
+        "runs": [
+          [
+            66,
+            116
+          ],
+          [
+            235,
+            297
+          ]
+        ],
+        "centres": [
+          91.0,
+          266.0
+        ]
+      },
+      {
+        "bottom": 579,
+        "runs": [
+          [
+            66,
+            116
+          ],
+          [
+            235,
+            297
+          ]
+        ],
+        "centres": [
+          91.0,
+          266.0
+        ]
+      },
+      {
+        "bottom": 579,
+        "runs": [
+          [
+            67,
+            116
+          ],
+          [
+            235,
+            297
+          ]
+        ],
+        "centres": [
+          91.5,
+          266.0
+        ]
+      },
+      {
+        "bottom": 579,
+        "runs": [
+          [
+            66,
+            116
+          ],
+          [
+            235,
+            296
+          ]
+        ],
+        "centres": [
+          91.0,
+          265.5
+        ]
+      },
+      {
+        "bottom": 579,
+        "runs": [
+          [
+            67,
+            116
+          ],
+          [
+            235,
+            297
+          ]
+        ],
+        "centres": [
+          91.5,
+          266.0
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "frame_count": 6,
+    "output_columns": 6,
+    "common_scale": 0.23,
+    "scale_by": "fixed:0.23",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": true,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      99,
+      99
+    ],
+    "body_width_range": [
+      62,
+      73
+    ],
+    "area_range": [
+      3071,
+      3155
+    ],
+    "area_spread_percent": 2.66,
+    "bottom_range": [
+      152,
+      152
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2560,
+      2644
+    ],
+    "interior_detail_range": [
+      112.65,
+      116.63
+    ],
+    "interior_detail_mean": 114.53,
+    "remaining_spill_pixels": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "reference_interior_detail_mean": 107.5,
+    "interior_detail_ratio": 1.0654
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 107.47,
+        "colour_count": 2627,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 1,
+        "interior_detail": 106.07,
+        "colour_count": 2635,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 2,
+        "interior_detail": 109.24,
+        "colour_count": 2589,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 3,
+        "interior_detail": 108.39,
+        "colour_count": 2576,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 4,
+        "interior_detail": 106.2,
+        "colour_count": 2600,
+        "remaining_spill_pixels": 0
+      },
+      {
+        "index": 5,
+        "interior_detail": 107.61,
+        "colour_count": 2619,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 107.5,
+    "colour_count_range": [
+      2576,
+      2635
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/victory-2.png#0,0",
+      "bbox": [
+        61,
+        54,
+        134,
+        153
+      ],
+      "body_height": 99,
+      "body_width": 73,
+      "area": 3155,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 116.63,
+      "colour_count": 2604,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 61,
+        "top": 54,
+        "right": 58,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0849
+    },
+    {
+      "index": 1,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/victory-2.png#1,0",
+      "bbox": [
+        62,
+        54,
+        132,
+        153
+      ],
+      "body_height": 99,
+      "body_width": 70,
+      "area": 3103,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 115.25,
+      "colour_count": 2560,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 62,
+        "top": 54,
+        "right": 60,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0721
+    },
+    {
+      "index": 2,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/victory-2.png#2,0",
+      "bbox": [
+        62,
+        54,
+        124,
+        153
+      ],
+      "body_height": 99,
+      "body_width": 62,
+      "area": 3071,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 115.49,
+      "colour_count": 2580,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 62,
+        "top": 54,
+        "right": 68,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0743
+    },
+    {
+      "index": 3,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/victory-2.png#3,0",
+      "bbox": [
+        62,
+        54,
+        134,
+        153
+      ],
+      "body_height": 99,
+      "body_width": 72,
+      "area": 3137,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.65,
+      "colour_count": 2644,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 62,
+        "top": 54,
+        "right": 58,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0479
+    },
+    {
+      "index": 4,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/victory-2.png#4,0",
+      "bbox": [
+        62,
+        54,
+        134,
+        153
+      ],
+      "body_height": 99,
+      "body_width": 72,
+      "area": 3132,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 114.32,
+      "colour_count": 2642,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 62,
+        "top": 54,
+        "right": 58,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.0634
+    },
+    {
+      "index": 5,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/art/raw/xion-97a/victory-2.png#5,0",
+      "bbox": [
+        62,
+        54,
+        134,
+        153
+      ],
+      "body_height": 99,
+      "body_width": 72,
+      "area": 3136,
+      "bottom": 152,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 112.87,
+      "colour_count": 2630,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 62,
+        "top": 54,
+        "right": 58,
+        "bottom": 39,
+        "minimum": 39,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.05
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/reports/codex-art-97a-fix/victory-normalized/victory.png",
+    "candidate": null,
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/reports/codex-art-97a-fix/victory-normalized/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/reports/codex-art-97a-fix/victory-normalized/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-a/SmashNine/reports/codex-art-97a-fix/victory-normalized/compare.png"
+  }
+}
