@@ -1,0 +1,59 @@
+{
+  "generator": "built-in image_gen",
+  "calls": 3,
+  "selected_attempt": 3,
+  "raw_files": [
+    {
+      "path": "art/raw/xion-96b/idle-attempt1.png",
+      "bytes": 1676212,
+      "sha256": "0c19689de659d57455ff4bc41fb6ecdf271dff29cb0d423304d8a63f4e6f89de"
+    },
+    {
+      "path": "art/raw/xion-96b/idle-attempt2.png",
+      "bytes": 1834251,
+      "sha256": "01e039de8e06d954a88a9250f8821dcb93dea490339bafb09f28839f8f1d3918"
+    },
+    {
+      "path": "art/raw/xion-96b/idle-attempt3.png",
+      "bytes": 1726397,
+      "sha256": "b8cb613c218277dbd561f7d15483f89c4f452fc0bcff21568b7fcbdfdf882e0b"
+    },
+    {
+      "path": "art/raw/xion-96b/reference-v1-f1-4x.png",
+      "bytes": 16410,
+      "sha256": "fabd323d9c8500ccc08578356ecb920c71501057e0bbda50141234f6a6473804"
+    },
+    {
+      "path": "art/raw/xion-96b/reference-illustration-b.png",
+      "bytes": 817337,
+      "sha256": "0548fcc0aeb51f99f5b3344a7b9009b49e0d12c8eadf4944f4878e270dc72e1b"
+    },
+    {
+      "path": "art/raw/xion-96b/reference-v1-original-sheet.png",
+      "bytes": 1729454,
+      "sha256": "5439588d6f3d012f04fb83c40a22475ae35c775ae00328817e1c71b1e61391aa"
+    }
+  ],
+  "generations": [
+    {
+      "attempt": 1,
+      "prompt": "prompt-idle.txt",
+      "source_filename": "exec-5bf648fd-37c0-4a3e-85d8-f76ef4281aea.png",
+      "result": "?? v1 ?? 0.91, ??? ?? ??? ??"
+    },
+    {
+      "attempt": 2,
+      "prompt": "prompt-idle-retry-2.txt",
+      "source_filename": "exec-6fdf7d68-b2ef-4483-b3c6-7308695e7ea2.png",
+      "result": "??? ?? ??, ?? ???? F4 ?? ???? ??"
+    },
+    {
+      "attempt": 3,
+      "prompt": "prompt-idle-retry-3.txt",
+      "source_filename": "exec-fcc7506e-e826-4b7c-b057-e7635aa7e346.png",
+      "result": "?? ?? ??? ??"
+    }
+  ],
+  "normalization": "normalize_idle.py; shared factor and fixed source-grid anchor; no part compositing",
+  "commit_executed": false
+}
