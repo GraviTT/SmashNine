@@ -1,0 +1,44 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "generation_count": 2,
+  "reference": "art/raw/xion-96a/reference-b.png",
+  "prompts": [
+    "reports/codex-art-96a/prompt-double.txt",
+    "reports/codex-art-96a/prompt-double-v2.txt"
+  ],
+  "second_generation_reference": "art/raw/xion-96a/double-v1.png",
+  "sources": [
+    {
+      "file": "art/raw/xion-96a/double-v1.png",
+      "sha256": "f0259a4b2ab24b773857007342d8ca54d485ed0f7cc3976028a8fce6ab6ca03f",
+      "selected": false,
+      "inspection": "Full-size raw/tool preview and opaque-background check",
+      "reason": "Valid standalone drawing; extended arm limited placement and caused excessive face overlap"
+    },
+    {
+      "file": "art/raw/xion-96a/double-v2.png",
+      "sha256": "4632130c7a53c8aaf277c8e6f4c745ef635566af7c7bd91fac7fee582c536b2a",
+      "selected": true,
+      "inspection": "Full-size raw/tool preview and opaque-background check",
+      "reason": "Compact arm pose improves separation from unchanged B"
+    }
+  ],
+  "main_original_redrawn": false,
+  "packages_installed": false,
+  "manual_landmarks": {
+    "double_crown_y": 122,
+    "double_chin_y": 328,
+    "double_sole_y": 1454,
+    "heads_tall_estimate": 6.466,
+    "note": "Manually picked full-size landmarks; approximately +/-3px. Not automatic anatomy detection."
+  },
+  "visual_review": {
+    "full_size_final_dark_and_light": true,
+    "full_size_colour_dark_and_light": true,
+    "main_two_arms_hands_guns_boots": "Unchanged accepted original; checked full-size and 2x crops",
+    "double_anatomy": "Two hands and two feet; far upper arm partly behind torso in a bent-elbow guard. No detached or extra limb seen.",
+    "double_guns": "Two matching short pump shotguns, open thick bores, lower tubes, ribbed pumps and crimson receiver marks",
+    "final_overlap": "Face and head clear. B scarf overlaps parts of double lower arm/grip; both gun muzzles readable.",
+    "fringe": "No distracting light/green halo seen on either requested background; numerical test is narrower than visual judgment."
+  }
+}
