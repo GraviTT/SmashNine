@@ -1,0 +1,794 @@
+{
+  "normalization": {
+    "input": {
+      "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/xion-96b/idle-attempt3.png",
+      "frames": null,
+      "grid": [
+        3,
+        2
+      ],
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "median contact-frame body height",
+      "source_median_px": 435.5,
+      "target_px": 97.0,
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 128,
+      "feet_y": 120,
+      "horizontal_anchor": "one fixed source-grid x for all six frames",
+      "fixed_source_anchor_x": 286.125,
+      "v1_torso_anchors": [
+        284.75,
+        286.5,
+        287.0,
+        287.25,
+        285.75,
+        285.5
+      ],
+      "rejected_default_torso_anchors": [
+        271.0,
+        270.5,
+        288.0,
+        287.75,
+        276.5,
+        271.0
+      ],
+      "reason": "긴 스카프가 몸통 외곽선 계산에 포함되어 생기는 가로 밀림 방지. v1 좌표 중앙값 하나를 여섯 칸 전체에 공통 적용."
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.22273249,
+      "scale_by": "height:97",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        97,
+        97
+      ],
+      "body_width_range": [
+        71,
+        72
+      ],
+      "area_range": [
+        2971,
+        3022
+      ],
+      "area_spread_percent": 1.69,
+      "bottom_range": [
+        120,
+        120
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        2576,
+        2635
+      ],
+      "interior_detail_range": [
+        106.07,
+        109.24
+      ],
+      "interior_detail_mean": 107.5,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "contact_on_y120": true,
+      "reference_interior_detail_mean": 95.55,
+      "interior_detail_ratio": 1.1251
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 97.64,
+          "colour_count": 4711,
+          "remaining_spill_pixels": 0
+        },
+        {
+          "index": 1,
+          "interior_detail": 96.71,
+          "colour_count": 4705,
+          "remaining_spill_pixels": 0
+        },
+        {
+          "index": 2,
+          "interior_detail": 95.55,
+          "colour_count": 4741,
+          "remaining_spill_pixels": 0
+        },
+        {
+          "index": 3,
+          "interior_detail": 94.34,
+          "colour_count": 4846,
+          "remaining_spill_pixels": 0
+        },
+        {
+          "index": 4,
+          "interior_detail": 95.31,
+          "colour_count": 4735,
+          "remaining_spill_pixels": 0
+        },
+        {
+          "index": 5,
+          "interior_detail": 93.76,
+          "colour_count": 4813,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 95.55,
+      "colour_count_range": [
+        4705,
+        4846
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/xion-96b/idle-attempt3.png#0,0",
+        "bbox": [
+          25,
+          24,
+          97,
+          121
+        ],
+        "body_height": 97,
+        "body_width": 72,
+        "area": 3006,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 107.47,
+        "colour_count": 2627,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 25,
+          "top": 24,
+          "right": 31,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1248
+      },
+      {
+        "index": 1,
+        "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/xion-96b/idle-attempt3.png#1,0",
+        "bbox": [
+          25,
+          24,
+          97,
+          121
+        ],
+        "body_height": 97,
+        "body_width": 72,
+        "area": 3014,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 106.07,
+        "colour_count": 2635,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 25,
+          "top": 24,
+          "right": 31,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1101
+      },
+      {
+        "index": 2,
+        "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/xion-96b/idle-attempt3.png#2,0",
+        "bbox": [
+          25,
+          24,
+          97,
+          121
+        ],
+        "body_height": 97,
+        "body_width": 72,
+        "area": 2998,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 109.24,
+        "colour_count": 2589,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 25,
+          "top": 24,
+          "right": 31,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1433
+      },
+      {
+        "index": 3,
+        "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/xion-96b/idle-attempt3.png#0,1",
+        "bbox": [
+          26,
+          24,
+          97,
+          121
+        ],
+        "body_height": 97,
+        "body_width": 71,
+        "area": 2971,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 108.39,
+        "colour_count": 2576,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 26,
+          "top": 24,
+          "right": 31,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1344
+      },
+      {
+        "index": 4,
+        "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/xion-96b/idle-attempt3.png#1,1",
+        "bbox": [
+          25,
+          24,
+          97,
+          121
+        ],
+        "body_height": 97,
+        "body_width": 72,
+        "area": 3022,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 106.2,
+        "colour_count": 2600,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 25,
+          "top": 24,
+          "right": 31,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1115
+      },
+      {
+        "index": 5,
+        "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/xion-96b/idle-attempt3.png#2,1",
+        "bbox": [
+          25,
+          24,
+          97,
+          121
+        ],
+        "body_height": 97,
+        "body_width": 72,
+        "area": 3019,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 107.61,
+        "colour_count": 2619,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 25,
+          "top": 24,
+          "right": 31,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1262
+      }
+    ],
+    "outputs": {
+      "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/reports/codex-art-96b/normalized/xion-idle-b2.png",
+      "candidate": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/bakeoff/xion/b/xion-idle-b2.png",
+      "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/reports/codex-art-96b/normalized/frames",
+      "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/reports/codex-art-96b/normalized/closeup.png",
+      "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/reports/codex-art-96b/normalized/compare.png"
+    }
+  },
+  "head_scale": {
+    "self": {
+      "sheet": "art\\bakeoff\\xion\\b\\xion-idle-b2.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 1.0
+        },
+        {
+          "scale": 1.0,
+          "score": 0.963
+        },
+        {
+          "scale": 1.0,
+          "score": 0.957
+        },
+        {
+          "scale": 0.96,
+          "score": 0.891
+        },
+        {
+          "scale": 1.0,
+          "score": 0.975
+        },
+        {
+          "scale": 1.0,
+          "score": 0.967
+        }
+      ],
+      "median": 1.0,
+      "used": 6
+    },
+    "rio": {
+      "sheet": "art\\bakeoff\\xion\\b\\xion-idle-b2.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.472
+        },
+        {
+          "scale": 1.0,
+          "score": 0.463
+        },
+        {
+          "scale": 1.0,
+          "score": 0.46
+        },
+        {
+          "scale": 1.02,
+          "score": 0.463
+        },
+        {
+          "scale": 1.0,
+          "score": 0.479
+        },
+        {
+          "scale": 1.0,
+          "score": 0.471
+        }
+      ],
+      "median": null,
+      "used": 0
+    },
+    "v1": {
+      "sheet": "art\\bakeoff\\xion\\b\\xion-idle-b2.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.972
+        },
+        {
+          "scale": 1.0,
+          "score": 0.944
+        },
+        {
+          "scale": 1.0,
+          "score": 0.945
+        },
+        {
+          "scale": 1.0,
+          "score": 0.922
+        },
+        {
+          "scale": 1.0,
+          "score": 0.961
+        },
+        {
+          "scale": 1.0,
+          "score": 0.947
+        }
+      ],
+      "median": 1.0,
+      "used": 6
+    }
+  },
+  "feet": {
+    "final": [
+      {
+        "frame": 1,
+        "feet": [
+          {
+            "min_x": 34,
+            "max_x": 44,
+            "center_x": 39.0
+          },
+          {
+            "min_x": 73,
+            "max_x": 86,
+            "center_x": 79.5
+          }
+        ]
+      },
+      {
+        "frame": 2,
+        "feet": [
+          {
+            "min_x": 34,
+            "max_x": 44,
+            "center_x": 39.0
+          },
+          {
+            "min_x": 73,
+            "max_x": 86,
+            "center_x": 79.5
+          }
+        ]
+      },
+      {
+        "frame": 3,
+        "feet": [
+          {
+            "min_x": 34,
+            "max_x": 44,
+            "center_x": 39.0
+          },
+          {
+            "min_x": 74,
+            "max_x": 86,
+            "center_x": 80.0
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "feet": [
+          {
+            "min_x": 35,
+            "max_x": 45,
+            "center_x": 40.0
+          },
+          {
+            "min_x": 74,
+            "max_x": 86,
+            "center_x": 80.0
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "feet": [
+          {
+            "min_x": 34,
+            "max_x": 44,
+            "center_x": 39.0
+          },
+          {
+            "min_x": 73,
+            "max_x": 86,
+            "center_x": 79.5
+          }
+        ]
+      },
+      {
+        "frame": 6,
+        "feet": [
+          {
+            "min_x": 34,
+            "max_x": 44,
+            "center_x": 39.0
+          },
+          {
+            "min_x": 73,
+            "max_x": 86,
+            "center_x": 79.5
+          }
+        ]
+      }
+    ],
+    "v1": [
+      {
+        "frame": 1,
+        "feet": [
+          {
+            "min_x": 36,
+            "max_x": 45,
+            "center_x": 40.5
+          },
+          {
+            "min_x": 75,
+            "max_x": 87,
+            "center_x": 81.0
+          }
+        ]
+      },
+      {
+        "frame": 2,
+        "feet": [
+          {
+            "min_x": 34,
+            "max_x": 44,
+            "center_x": 39.0
+          },
+          {
+            "min_x": 74,
+            "max_x": 86,
+            "center_x": 80.0
+          }
+        ]
+      },
+      {
+        "frame": 3,
+        "feet": [
+          {
+            "min_x": 35,
+            "max_x": 44,
+            "center_x": 39.5
+          },
+          {
+            "min_x": 74,
+            "max_x": 86,
+            "center_x": 80.0
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "feet": [
+          {
+            "min_x": 35,
+            "max_x": 45,
+            "center_x": 40.0
+          },
+          {
+            "min_x": 74,
+            "max_x": 87,
+            "center_x": 80.5
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "feet": [
+          {
+            "min_x": 35,
+            "max_x": 44,
+            "center_x": 39.5
+          },
+          {
+            "min_x": 74,
+            "max_x": 86,
+            "center_x": 80.0
+          }
+        ]
+      },
+      {
+        "frame": 6,
+        "feet": [
+          {
+            "min_x": 35,
+            "max_x": 44,
+            "center_x": 39.5
+          },
+          {
+            "min_x": 74,
+            "max_x": 86,
+            "center_x": 80.0
+          }
+        ]
+      }
+    ],
+    "center_range_px": [
+      1.0,
+      0.5
+    ],
+    "method": "발 밑 5줄(y116..120)의 연결 x 구간 외곽 중점. 자동 측정, 해부학적 발 중심이 아님."
+  },
+  "manual_head_proportions": {
+    "method": "정수리·턱을 눈으로 지정. 주 머리 기준, Rio 높은 포니테일 장식 제외. ±1~2px.",
+    "xion_f1_crown_y": 24,
+    "xion_f1_chin_y": 51,
+    "xion_head_height_px": 28,
+    "xion_standing_height_px": 97,
+    "xion_heads_tall": 3.4642857142857144,
+    "rio_main_crown_y": 31,
+    "rio_chin_y": 57,
+    "rio_main_head_height_px": 27,
+    "height_ratio_xion_to_rio": 1.037037037037037
+  },
+  "scarf_summary": {
+    "measurement": "목 뒤 부착점에서 꼬리 끝까지의 직선거리 / 정수리–발끝 높이. 천의 곡선 길이가 아님. 수평 투영도 함께 보고.",
+    "method": "목 뒤와 꼬리 끝 부근을 사람이 지정. 각 끝 부근 5×5 창에서 목 뒤로부터 가장 먼 불투명 픽셀(검은 외곽선 포함)을 끝으로 계산. 목 뒤 좌표 오차 약 ±1px. 최초 수동 끝점도 보존.",
+    "upper_consistency": {
+      "median_px": 32.50327714567533,
+      "min_px": 31.622776601683793,
+      "max_px": 32.69556544854363,
+      "peak_to_peak_px": 1.07278884685984,
+      "max_deviation_from_median_px": 0.8805005439915341,
+      "within_plus_minus_2px": true
+    },
+    "lower_consistency": {
+      "median_px": 34.948850777168246,
+      "min_px": 33.61547262794322,
+      "max_px": 35.805027579936315,
+      "peak_to_peak_px": 2.1895549519930952,
+      "max_deviation_from_median_px": 1.3333781492250267,
+      "within_plus_minus_2px": true
+    },
+    "all_euclidean_within_10_percent": true,
+    "all_horizontal_within_10_percent": false
+  },
+  "animation": {
+    "configured_fps": 6.3,
+    "gif_durations_ms": [
+      160,
+      160,
+      160,
+      160,
+      160,
+      150
+    ],
+    "gif_total_ms": 950,
+    "gif_effective_fps": 6.315789473684211,
+    "visual_note": "스카프가 F3에서 들리고 F4에서 가장 높음. 머리카락의 별도 한 프레임 지연과 가슴 호흡은 128px에서 뚜렷하지 않음. 실시간 게임 검증 안 함."
+  },
+  "selected_generation": 3,
+  "generation_count": 3,
+  "raw": "art/raw/xion-96b/idle-attempt3.png",
+  "manual_review": {
+    "all_six_frames_at_4x": true,
+    "single_face": true,
+    "both_arms_hands_guns_feet_visible": true,
+    "note": "쥔 손의 개별 손가락까지 낱개 판독하는 해상도는 아님. 두 산탄총의 넓은 총구·펌프·은색 패널을 확인."
+  },
+  "detail_ratio_to_rio_f1": 1.10098320360508,
+  "sha256": {
+    "art/bakeoff/xion/b/xion-idle-b2.png": "7dcdfc0f4519de10c582b7d10f223a992c5689d695970943017e0dc87b77ff66",
+    "art/raw/xion-96b/idle-attempt3.png": "b8cb613c218277dbd561f7d15483f89c4f452fc0bcff21568b7fcbdfdf882e0b",
+    "art/raw/xion-96b/reference-v1-original-sheet.png": "5439588d6f3d012f04fb83c40a22475ae35c775ae00328817e1c71b1e61391aa"
+  }
+}
