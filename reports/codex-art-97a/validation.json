@@ -1,0 +1,152 @@
+{
+  "checks": [
+    {
+      "name": "attack dimensions",
+      "pass": true
+    },
+    {
+      "name": "attack RGBA",
+      "pass": true
+    },
+    {
+      "name": "attack metadata",
+      "pass": true
+    },
+    {
+      "name": "attack binary alpha",
+      "pass": true
+    },
+    {
+      "name": "attack metrics geometry",
+      "pass": true
+    },
+    {
+      "name": "attack detail",
+      "pass": true
+    },
+    {
+      "name": "attack head",
+      "pass": true
+    },
+    {
+      "name": "attack review board",
+      "pass": true
+    },
+    {
+      "name": "shield dimensions",
+      "pass": true
+    },
+    {
+      "name": "shield RGBA",
+      "pass": true
+    },
+    {
+      "name": "shield metadata",
+      "pass": true
+    },
+    {
+      "name": "shield binary alpha",
+      "pass": true
+    },
+    {
+      "name": "shield metrics geometry",
+      "pass": true
+    },
+    {
+      "name": "shield detail",
+      "pass": true
+    },
+    {
+      "name": "shield head",
+      "pass": true
+    },
+    {
+      "name": "shield review board",
+      "pass": true
+    },
+    {
+      "name": "victory dimensions",
+      "pass": true
+    },
+    {
+      "name": "victory RGBA",
+      "pass": true
+    },
+    {
+      "name": "victory metadata",
+      "pass": true
+    },
+    {
+      "name": "victory binary alpha",
+      "pass": true
+    },
+    {
+      "name": "victory metrics geometry",
+      "pass": true
+    },
+    {
+      "name": "victory detail",
+      "pass": true
+    },
+    {
+      "name": "victory head",
+      "pass": true
+    },
+    {
+      "name": "victory review board",
+      "pass": true
+    },
+    {
+      "name": "no defeat candidate",
+      "pass": true
+    },
+    {
+      "name": "candidate hashes unchanged since previous validation",
+      "pass": true
+    },
+    {
+      "name": "UTF-8 text",
+      "pass": true
+    },
+    {
+      "name": "attack 2 expected source rejection",
+      "pass": true
+    },
+    {
+      "name": "defeat 1 expected source rejection",
+      "pass": true
+    },
+    {
+      "name": "defeat 2 expected source rejection",
+      "pass": true
+    },
+    {
+      "name": "branch",
+      "pass": true
+    },
+    {
+      "name": "changed paths in card scope",
+      "pass": true
+    },
+    {
+      "name": "no tracked product changes",
+      "pass": true
+    }
+  ],
+  "passed": true,
+  "errors": [],
+  "outside_scope": [],
+  "candidate_sha256": {
+    "attack": "0854d38f4bb0fc3feabc7c3d4f09cfec1296c6db4c49b51aa44d1bf4999cae82",
+    "shield": "1c4587307e37bcfec935a62c69e4e659c0b13d99a30976998eaf611c4a60f3ad",
+    "victory": "d4493c8404d0b9db12a0d799e1baffcc4910f872101b3d51de2d25d56d958799"
+  },
+  "branch": "codex/xion-97a",
+  "art_verdicts": {
+    "attack": "HOLD",
+    "shield": "CANDIDATE",
+    "victory": "HOLD",
+    "defeat": "NOT_DELIVERED"
+  },
+  "runtime_tested": false
+}

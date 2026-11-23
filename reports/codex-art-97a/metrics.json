@@ -1,0 +1,956 @@
+{
+  "anchor": "art/bakeoff/xion/b/xion-idle-b2.png:0",
+  "method": "내장 ImageGen, 동작당 한 원본; 실패한 동작만 두 번째 생성. normalize.py 공통 배율 한 개, LANCZOS, sharpen 60, despill auto, palette none, green #00ff00, ground-all. 프레임별 크기/위치 보정 없음.",
+  "detail_definition": "normalize.py 내부 명암 변화량. 해부학 또는 예술적 완성도 점수가 아님. 비율 기준은 앵커 6프레임 평균.",
+  "rows": {
+    "attack": {
+      "status": "HOLD",
+      "delivered": true,
+      "frames": 6,
+      "fps": 35.25,
+      "cell": 128,
+      "raw_attempt": 1,
+      "factor": 0.25,
+      "head_scale": {
+        "sheet": "reports\\codex-art-97a\\attack-trial\\attack.png",
+        "frames": [
+          {
+            "scale": 1.0,
+            "score": 0.952
+          },
+          {
+            "scale": 1.0,
+            "score": 0.926
+          },
+          {
+            "scale": 1.0,
+            "score": 0.909
+          },
+          {
+            "scale": 1.0,
+            "score": 0.935
+          },
+          {
+            "scale": 1.0,
+            "score": 0.925
+          },
+          {
+            "scale": 1.0,
+            "score": 0.945
+          }
+        ],
+        "median": 1.0,
+        "used": 6,
+        "head_matched_factor": 0.25
+      },
+      "head_template_boxes": [
+        [
+          51,
+          22,
+          81,
+          52
+        ],
+        [
+          48,
+          22,
+          78,
+          52
+        ],
+        [
+          47,
+          22,
+          77,
+          52
+        ],
+        [
+          48,
+          21,
+          78,
+          51
+        ],
+        [
+          45,
+          21,
+          75,
+          51
+        ],
+        [
+          49,
+          21,
+          79,
+          51
+        ]
+      ],
+      "head_template_box_definition": "도구의 피부 중심 주변 검색창; 수동 해부학적 머리 경계가 아님.",
+      "detail": {
+        "range": [
+          104.3,
+          101.44,
+          106.66,
+          109.58,
+          116.0,
+          112.88
+        ],
+        "mean": 108.48,
+        "anchor_mean": 107.5,
+        "ratio": 1.0091,
+        "per_frame_ratios": [
+          0.9702,
+          0.9436,
+          0.9922,
+          1.0193,
+          1.0791,
+          1.05
+        ]
+      },
+      "border_clear": true,
+      "minimum_margin_px": 7,
+      "spill": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "height_range": [
+        100,
+        100
+      ],
+      "bottom_range": [
+        120,
+        120
+      ],
+      "alpha_binary": true,
+      "scarf": [
+        {
+          "frame": 1,
+          "nape": [
+            58,
+            50
+          ],
+          "tips": [
+            [
+              28,
+              61
+            ],
+            [
+              30,
+              69
+            ]
+          ],
+          "straight_length_px": [
+            31.953090617340916,
+            33.83784863137726
+          ],
+          "error_percent": [
+            -2.270873193403633,
+            -5.494141693278232
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 2,
+          "nape": [
+            55,
+            50
+          ],
+          "tips": [
+            [
+              26,
+              61
+            ],
+            [
+              27,
+              70
+            ]
+          ],
+          "straight_length_px": [
+            31.016124838541646,
+            34.40930106817051
+          ],
+          "error_percent": [
+            -5.136600596937512,
+            -3.8981299725290963
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 3,
+          "nape": [
+            54,
+            50
+          ],
+          "tips": [
+            [
+              32,
+              69
+            ],
+            [
+              36,
+              77
+            ]
+          ],
+          "straight_length_px": [
+            29.068883707497267,
+            32.449961479175904
+          ],
+          "error_percent": [
+            -11.092274109019606,
+            -9.37037708816193
+          ],
+          "within_10_percent": [
+            false,
+            true
+          ]
+        },
+        {
+          "frame": 4,
+          "nape": [
+            54,
+            49
+          ],
+          "tips": [
+            [
+              27,
+              63
+            ],
+            [
+              28,
+              72
+            ]
+          ],
+          "straight_length_px": [
+            30.4138126514911,
+            34.713109915419565
+          ],
+          "error_percent": [
+            -6.978783715007353,
+            -3.0496210680999947
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 5,
+          "nape": [
+            51,
+            49
+          ],
+          "tips": [
+            [
+              24,
+              62
+            ],
+            [
+              25,
+              71
+            ]
+          ],
+          "straight_length_px": [
+            29.966648127543394,
+            34.058772731852805
+          ],
+          "error_percent": [
+            -8.346444796298192,
+            -4.877121918660499
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 6,
+          "nape": [
+            55,
+            49
+          ],
+          "tips": [
+            [
+              25,
+              61
+            ],
+            [
+              26,
+              68
+            ]
+          ],
+          "straight_length_px": [
+            32.31098884280702,
+            34.66987164671943
+          ],
+          "error_percent": [
+            -1.176234759854089,
+            -3.170381395971833
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        }
+      ],
+      "max_consecutive_foot_run_shift_px": 6.0,
+      "visual_review": {
+        "all_frames_viewed_at_4x": true,
+        "one_face": true,
+        "two_arms_hands_and_guns_visible": true,
+        "coat_hair_gloves_boots_match_by_eye": true,
+        "no_effects": true,
+        "individual_finger_count": "이 출력 해상도에서 모든 손가락 수를 확정하지 않음"
+      },
+      "limitations": "검토 보류: 동시 조준·발사·반동·회복 6프레임. F4 펌프 동작이 약하고 F3 위 스카프 직선거리가 앵커보다 약 11% 짧음. 2차는 원본 칸 경계 침범으로 제외. 자동 채택 금지.",
+      "candidate": "art/bakeoff/xion/b/xion-attack-b2.png"
+    },
+    "shield": {
+      "status": "CANDIDATE",
+      "delivered": true,
+      "frames": 6,
+      "fps": 12,
+      "cell": 128,
+      "raw_attempt": 1,
+      "factor": 0.225,
+      "head_scale": {
+        "sheet": "reports\\codex-art-97a\\shield-trial\\shield.png",
+        "frames": [
+          {
+            "scale": 0.96,
+            "score": 0.876
+          },
+          {
+            "scale": 0.96,
+            "score": 0.875
+          },
+          {
+            "scale": 0.96,
+            "score": 0.902
+          },
+          {
+            "scale": 0.96,
+            "score": 0.847
+          },
+          {
+            "scale": 0.96,
+            "score": 0.88
+          },
+          {
+            "scale": 1.0,
+            "score": 0.868
+          }
+        ],
+        "median": 0.96,
+        "used": 6,
+        "head_matched_factor": 0.234375
+      },
+      "head_template_boxes": [
+        [
+          49,
+          19,
+          79,
+          49
+        ],
+        [
+          53,
+          19,
+          83,
+          49
+        ],
+        [
+          51,
+          20,
+          81,
+          50
+        ],
+        [
+          51,
+          21,
+          81,
+          51
+        ],
+        [
+          54,
+          21,
+          84,
+          51
+        ],
+        [
+          55,
+          21,
+          85,
+          51
+        ]
+      ],
+      "head_template_box_definition": "도구의 피부 중심 주변 검색창; 수동 해부학적 머리 경계가 아님.",
+      "detail": {
+        "range": [
+          115.62,
+          110.68,
+          108.52,
+          110.13,
+          110.17,
+          110.15
+        ],
+        "mean": 110.88,
+        "anchor_mean": 107.5,
+        "ratio": 1.0314,
+        "per_frame_ratios": [
+          1.0755,
+          1.0296,
+          1.0095,
+          1.0245,
+          1.0248,
+          1.0247
+        ]
+      },
+      "border_clear": true,
+      "minimum_margin_px": 7,
+      "spill": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "height_range": [
+        101,
+        103
+      ],
+      "bottom_range": [
+        120,
+        120
+      ],
+      "alpha_binary": true,
+      "scarf": [
+        {
+          "frame": 1,
+          "nape": [
+            56,
+            47
+          ],
+          "tips": [
+            [
+              27,
+              59
+            ],
+            [
+              27,
+              67
+            ]
+          ],
+          "straight_length_px": [
+            31.38470965295043,
+            35.22782990761707
+          ],
+          "error_percent": [
+            -4.009277030722192,
+            -1.612057611268769
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 2,
+          "nape": [
+            60,
+            47
+          ],
+          "tips": [
+            [
+              33,
+              59
+            ],
+            [
+              32,
+              69
+            ]
+          ],
+          "straight_length_px": [
+            29.546573405388315,
+            35.608987629529715
+          ],
+          "error_percent": [
+            -9.631251210844505,
+            -0.5475207356534839
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 3,
+          "nape": [
+            58,
+            48
+          ],
+          "tips": [
+            [
+              30,
+              59
+            ],
+            [
+              30,
+              69
+            ]
+          ],
+          "straight_length_px": [
+            30.083217912982647,
+            35.0
+          ],
+          "error_percent": [
+            -7.989913921728331,
+            -2.2483646413595237
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 4,
+          "nape": [
+            58,
+            49
+          ],
+          "tips": [
+            [
+              30,
+              61
+            ],
+            [
+              31,
+              71
+            ]
+          ],
+          "straight_length_px": [
+            30.463092423455635,
+            34.828149534535996
+          ],
+          "error_percent": [
+            -6.828060608407183,
+            -2.728326470966669
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 5,
+          "nape": [
+            61,
+            50
+          ],
+          "tips": [
+            [
+              34,
+              65
+            ],
+            [
+              35,
+              72
+            ]
+          ],
+          "straight_length_px": [
+            30.886890422961002,
+            34.058772731852805
+          ],
+          "error_percent": [
+            -5.531866480269709,
+            -4.877121918660499
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 6,
+          "nape": [
+            62,
+            50
+          ],
+          "tips": [
+            [
+              36,
+              67
+            ],
+            [
+              36,
+              76
+            ]
+          ],
+          "straight_length_px": [
+            31.064449134018133,
+            36.76955262170047
+          ],
+          "error_percent": [
+            -4.988799833092217,
+            2.6938257193373394
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        }
+      ],
+      "max_consecutive_foot_run_shift_px": 4.0,
+      "visual_review": {
+        "all_frames_viewed_at_4x": true,
+        "one_face": true,
+        "two_arms_hands_and_guns_visible": true,
+        "coat_hair_gloves_boots_match_by_eye": true,
+        "no_effects": true,
+        "individual_finger_count": "이 출력 해상도에서 모든 손가락 수를 확정하지 않음"
+      },
+      "limitations": "가슴 앞에서 두 산탄총을 교차해 버티는 6프레임 방어 후보. 얼굴을 가리지 않고 스카프가 가라앉음. 게임 미연결.",
+      "candidate": "art/bakeoff/xion/b/xion-shield-b2.png"
+    },
+    "victory": {
+      "status": "HOLD",
+      "delivered": true,
+      "frames": 6,
+      "fps": 8,
+      "cell": 192,
+      "raw_attempt": 2,
+      "factor": 0.23,
+      "head_scale": {
+        "sheet": "reports\\codex-art-97a\\victory-trial\\victory.png",
+        "frames": [
+          {
+            "scale": 1.0,
+            "score": 0.948
+          },
+          {
+            "scale": 1.0,
+            "score": 0.947
+          },
+          {
+            "scale": 1.0,
+            "score": 0.916
+          },
+          {
+            "scale": 1.0,
+            "score": 0.924
+          },
+          {
+            "scale": 1.0,
+            "score": 0.925
+          },
+          {
+            "scale": 1.0,
+            "score": 0.924
+          }
+        ],
+        "median": 1.0,
+        "used": 6,
+        "head_matched_factor": 0.23
+      },
+      "head_template_boxes": [
+        [
+          84,
+          55,
+          114,
+          85
+        ],
+        [
+          77,
+          55,
+          107,
+          85
+        ],
+        [
+          90,
+          55,
+          120,
+          85
+        ],
+        [
+          78,
+          55,
+          108,
+          85
+        ],
+        [
+          90,
+          55,
+          120,
+          85
+        ],
+        [
+          91,
+          55,
+          121,
+          85
+        ]
+      ],
+      "head_template_box_definition": "도구의 피부 중심 주변 검색창; 수동 해부학적 머리 경계가 아님.",
+      "detail": {
+        "range": [
+          116.63,
+          115.25,
+          115.49,
+          112.65,
+          114.32,
+          112.87
+        ],
+        "mean": 114.53,
+        "anchor_mean": 107.5,
+        "ratio": 1.0654,
+        "per_frame_ratios": [
+          1.0849,
+          1.0721,
+          1.0743,
+          1.0479,
+          1.0634,
+          1.05
+        ]
+      },
+      "border_clear": true,
+      "minimum_margin_px": 39,
+      "spill": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "height_range": [
+        99,
+        99
+      ],
+      "bottom_range": [
+        152,
+        152
+      ],
+      "alpha_binary": true,
+      "scarf": [
+        {
+          "frame": 1,
+          "nape": [
+            90,
+            84
+          ],
+          "tips": [
+            [
+              60,
+              97
+            ],
+            [
+              61,
+              106
+            ]
+          ],
+          "straight_length_px": [
+            32.69556544854363,
+            36.40054944640259
+          ],
+          "error_percent": [
+            0.0,
+            1.6632353239688147
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 2,
+          "nape": [
+            84,
+            84
+          ],
+          "tips": [
+            [
+              55,
+              98
+            ],
+            [
+              56,
+              106
+            ]
+          ],
+          "straight_length_px": [
+            32.202484376209235,
+            35.608987629529715
+          ],
+          "error_percent": [
+            -1.5080977055142553,
+            -0.5475207356534839
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 3,
+          "nape": [
+            97,
+            84
+          ],
+          "tips": [
+            [
+              68,
+              99
+            ],
+            [
+              69,
+              107
+            ]
+          ],
+          "straight_length_px": [
+            32.64965543462902,
+            36.235341863986875
+          ],
+          "error_percent": [
+            -0.14041663841803942,
+            1.2018264281178581
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 4,
+          "nape": [
+            84,
+            84
+          ],
+          "tips": [
+            [
+              53,
+              98
+            ],
+            [
+              54,
+              106
+            ]
+          ],
+          "straight_length_px": [
+            34.0147027033899,
+            37.20215047547655
+          ],
+          "error_percent": [
+            4.034606029133614,
+            3.902029938173057
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 5,
+          "nape": [
+            96,
+            84
+          ],
+          "tips": [
+            [
+              65,
+              99
+            ],
+            [
+              65,
+              107
+            ]
+          ],
+          "straight_length_px": [
+            34.438350715445125,
+            38.600518131237564
+          ],
+          "error_percent": [
+            5.33034141784241,
+            7.807536371980706
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        },
+        {
+          "frame": 6,
+          "nape": [
+            97,
+            84
+          ],
+          "tips": [
+            [
+              66,
+              99
+            ],
+            [
+              66,
+              107
+            ]
+          ],
+          "straight_length_px": [
+            34.438350715445125,
+            38.600518131237564
+          ],
+          "error_percent": [
+            5.33034141784241,
+            7.807536371980706
+          ],
+          "within_10_percent": [
+            true,
+            true
+          ]
+        }
+      ],
+      "max_consecutive_foot_run_shift_px": 13.0,
+      "visual_review": {
+        "all_frames_viewed_at_4x": true,
+        "one_face": true,
+        "two_arms_hands_and_guns_visible": true,
+        "coat_hair_gloves_boots_match_by_eye": true,
+        "no_effects": true,
+        "individual_finger_count": "이 출력 해상도에서 모든 손가락 수를 확정하지 않음"
+      },
+      "limitations": "검토 보류: 두 총을 돌린 뒤 한 자루를 어깨에 걸치고 다른 총은 아래로 든 승리 6프레임. 마지막 장면 유지용. 2차도 프레임 사이 발 중심 가로 이동 최대 13px가 남음. 자동 채택 금지.",
+      "candidate": "art/bakeoff/xion/b/xion-victory-b2.png"
+    },
+    "defeat": {
+      "status": "NOT_DELIVERED",
+      "delivered": false,
+      "planned_frames": 6,
+      "planned_fps": 10,
+      "planned_cell": 192,
+      "factor": null,
+      "head_scale": null,
+      "detail": null,
+      "border_clear": null,
+      "minimum_margin_px": null,
+      "spill": null,
+      "attempts": 2,
+      "reason": "두 원본 모두 6x1 원본 칸 경계를 침범하여 정규화 전 실패. 원본을 다른 간격으로 잘라 다시 조립하거나 조각을 지우지 않음.",
+      "source_gate_errors": [
+        {
+          "attempt": 1,
+          "cell": "0,0",
+          "edge": "right"
+        },
+        {
+          "attempt": 2,
+          "cell": "2,0",
+          "edge": "right"
+        }
+      ],
+      "visual_review": "양쪽 원본 각 6포즈를 원본 4배로 직접 검사. 2차 F5/F6 총이 몸보다 아래까지 내려와 접촉선도 확정하지 못함."
+    }
+  }
+}
