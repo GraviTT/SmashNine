@@ -677,9 +677,12 @@ func decoy_burst(copy: Node2D) -> void:
 	if copy == decoy:
 		decoy = null
 		decoy_swap_ready = false
+	var at: Vector2 = copy.global_position + GAME_SCALE.BODY_CENTRE
+	if VFX.spawn(get_parent(), "rio_rune_burst", at, Vector2.ONE * 0.6, false, 4) == null:
+		_play_ring(at, RUNE_COLOR)
 	# A swing reports its hit from inside the physics step, where a new attack area cannot be set
-	# up (engine errors, 2026-11-24): the burst comes right after it.
-	_burst_decoy_at.call_deferred(copy.global_position + GAME_SCALE.BODY_CENTRE)
+	# up (engine errors, 2026-11-24): the burst's own hit comes right after it.
+	_burst_decoy_at.call_deferred(at)
 
 func _burst_decoy_at(at: Vector2) -> void:
 	if is_defeated or not is_inside_tree():
@@ -687,8 +690,6 @@ func _burst_decoy_at(at: Vector2) -> void:
 	attack_art_enabled = false
 	_spawn_attack(DECOY_BURST_SIZE, _offset_to(at), DECOY_BURST_DAMAGE, DECOY_BURST_KNOCKBACK, Vector2(0, -1), RUNE_COLOR, 0.12)
 	attack_art_enabled = true
-	if VFX.spawn(get_parent(), "rio_rune_burst", at, Vector2.ONE * 0.6, false, 4) == null:
-		_play_ring(at, RUNE_COLOR)
 
 func _clear_decoy() -> void:
 	if is_instance_valid(decoy):
