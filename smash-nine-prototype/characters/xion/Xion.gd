@@ -127,6 +127,12 @@ var has_shot_origin := false
 var point_blank_shown_at := -1.0
 var reload_ring: Node2D
 var reload_arc: Line2D
+var reload_art: Sprite2D
+## The picked reload mark (CODEX-VFX-10 contract): 8 frames of 24x24, frame k at k/8 of the reload.
+const RELOAD_ART := "res://assets/art/ui/status/xion_reload.png"
+const RELOAD_ART_FRAMES := 8
+## A reload-mark strip set at runtime instead of the file (the pick cup capture shows candidates with it).
+var reload_art_override: Texture2D
 
 func configure_character_sprite() -> void:
 	_configure_original_sheet("xion")
@@ -158,21 +164,19 @@ func basic_attack() -> void:
 
 func perform_basic_attack(attack_type: String, direction: Vector2) -> void:
 	var aim := _shot_aim(attack_type, direction)
+	# Every shot row (CODEX-SKM-06 card): (1) stance, (2) aim, (3) the shot, (4) recover, (5) pump or
+	# rise. Drawings 1-5: the timeline puts the third on the shot.
 	var row := &"shot" if shot_hand == 0 else &"shot_alt"
-	var pose := Vector2i(1, 3)
 	match attack_type:
 		"up", "air_up":
 			row = &"shot_up"
-			pose = Vector2i(2, 3)
 		"down":
 			row = &"shot_down"
-			pose = Vector2i(2, 3)
 		"air_down":
 			row = &"shot_air_down"
-			pose = Vector2i(2, 3)
 	shot_hand = 1 - shot_hand
 	shot_timer = SHOT_GAP
-	_start_attack(SHOT_STARTUP, SHOT_RECOVERY, Callable(self, "_fire_shot").bind(aim), Vector2i(-1, -1), row, pose)
+	_start_attack(SHOT_STARTUP, SHOT_RECOVERY, Callable(self, "_fire_shot").bind(aim), Vector2i(-1, -1), row, Vector2i(0, 4))
 
 ## The held direction snapped to 45 degrees; on the ground a down shot goes low and ahead.
 func _shot_aim(attack_type: String, direction: Vector2) -> Vector2:
@@ -193,7 +197,17 @@ func _fire_shot(aim: Vector2) -> void:
 	var push := aim if absf(aim.y) > 0.3 else Vector2(aim.x, -0.18).normalized()
 	_spawn_sweeping_attack(_dir_size(aim, SHOT_SIZE), points, SHOT_DAMAGE, SHOT_KNOCKBACK, push, SHOT_COLOR, SHOT_SWEEP_TIME)
 	_hide_attack_box()
-	_play_shotgun_blast(global_position + GAME_SCALE.BODY_CENTRE + aim * 20.0, aim, (SHOT_FAR + SHOT_SIZE.x * 0.5) * GAME_SCALE.COMBAT - 20.0, 5)
+	_shot_effect(global_position + GAME_SCALE.BODY_CENTRE + aim * 20.0, aim, (SHOT_FAR + SHOT_SIZE.x * 0.5) * GAME_SCALE.COMBAT - 20.0)
+
+## The J blast: the picked strip (Vfx "xion_blast", turned to the aim, mirrored to the left), else the code
+## pellets.
+func _shot_effect(muzzle: Vector2, aim: Vector2, reach: float) -> void:
+	var art := VFX.spawn(get_parent(), "xion_blast", muzzle, Vector2.ONE, false, 5)
+	if art != null:
+		art.rotation = aim.angle()
+		art.flip_v = aim.x < 0.0
+		return
+	_play_shotgun_blast(muzzle, aim, reach, 5)
 
 ## The blast draws pellets instead of the prototype box (no trail either).
 func _hide_attack_box() -> void:
@@ -308,7 +322,8 @@ func _recoil_blast() -> void:
 	_hide_attack_box()
 	velocity.y = jump_velocity * RECOIL_RISE
 	knockback_velocity.y = minf(knockback_velocity.y, 0.0)
-	_play_shotgun_blast(global_position + Vector2(0, -6), Vector2.DOWN, 150.0, 4 + rounds)
+	if VFX.spawn(get_parent(), "xion_recoil_blast", global_position, Vector2.ONE, false, 5) == null:
+		_play_shotgun_blast(global_position + Vector2(0, -6), Vector2.DOWN, 150.0, 4 + rounds)
 
 # --- U: doppelganger ---
 
@@ -336,8 +351,10 @@ func _double_cast() -> void:
 	bot_pin_time = 0.0
 	attack_lock_timer = maxf(attack_lock_timer, CAST_RECOVERY)
 	current_attack_started_airborne = not is_on_floor()
-	_play_move_sprite_pose(&"double_cast", -1, -1, CAST_RECOVERY, 3, 5)
-	_play_ring(global_position + GAME_SCALE.BODY_CENTRE, CRIMSON, 0.2)
+	# (2)-(3) the arm swept back as she calls her double, (4)-(5) guns ready again.
+	_play_move_sprite_pose(&"double_cast", -1, -1, CAST_RECOVERY, 1, 4)
+	if VFX.spawn(get_parent(), "xion_double_in", global_position, Vector2.ONE, false, 3) == null:
+		_play_ring(global_position + GAME_SCALE.BODY_CENTRE, CRIMSON, 0.2)
 
 func on_double_pinned(copy: Node2D, _foe: Node2D) -> void:
 	if copy == double:
@@ -370,7 +387,7 @@ func _dive_start() -> void:
 	attack_lock_timer = maxf(attack_lock_timer, DIVE_TIME)
 	if absf(dive_to.x - dive_from.x) > 0.5:
 		facing = 1 if dive_to.x > dive_from.x else -1
-	_play_move_sprite_pose(&"dive", -1, -1, DIVE_TIME, 2, 4)
+	_play_move_sprite_pose(&"dive", -1, -1, DIVE_TIME, 1, 4)
 	_play_dive_trail(dive_from, dive_to)
 
 func _update_dive(delta: float) -> void:
@@ -403,7 +420,8 @@ func perform_ultimate() -> void:
 	barrage_angle = randf() * TAU
 	attack_lock_timer = BARRAGE_TIME
 	current_attack_started_airborne = not is_on_floor()
-	_play_move_sprite_pose(&"barrage", -1, -1, BARRAGE_TIME, 3, 4)
+	# The gun-kata turn loops for the whole barrage.
+	_play_sprite_action(&"barrage", BARRAGE_TIME)
 
 func _update_barrage(delta: float) -> void:
 	if barrage_timer <= 0.0:
@@ -452,6 +470,12 @@ func _fire_bullet(from: Vector2, aim: Vector2) -> void:
 	bullet.art_scale_multiplier = GAME_SCALE.COMBAT
 	bullet.configure(self, BULLET_SIZE, BULLET_DAMAGE, BULLET_KNOCKBACK, aim, BULLET_COLOR, BULLET_SPEED, BULLET_LIFETIME)
 	bullet.muzzle = from
+	# The picked tracer replaces the rectangle; the bullet node already points along the flight.
+	if bullet.set_effect_art("xion_bullet", 1.0):
+		var tracer := bullet.get_node_or_null("Vfx_xion_bullet") as Node2D
+		if tracer != null:
+			tracer.rotation = 0.0
+			tracer.scale.x = absf(tracer.scale.x)
 
 # --- Passive: 더블 샷건, and who the doppelganger hunts ---
 
@@ -492,7 +516,9 @@ func _mark_point_blank(target: Node) -> void:
 	if now - point_blank_shown_at < 0.08:
 		return
 	point_blank_shown_at = now
-	_play_ring((target as Node2D).global_position + GAME_SCALE.BODY_CENTRE, Color(1.0, 0.3, 0.36, 0.95), 0.12)
+	var centre := (target as Node2D).global_position + GAME_SCALE.BODY_CENTRE
+	if VFX.spawn(get_parent(), "xion_point_blank", centre, Vector2.ONE, false, 6) == null:
+		_play_ring(centre, Color(1.0, 0.3, 0.36, 0.95), 0.12)
 
 # --- Frame update, hits, respawn ---
 
@@ -573,6 +599,11 @@ func _update_reload_ring() -> void:
 	var beside := is_instance_valid(status_icon) and status_icon.visible
 	reload_ring.position = Vector2(-24.0 if beside else 0.0, STATUS_ICON_Y)
 	var progress := clampf(1.0 - reload_timer / RELOAD_TIME, 0.0, 1.0)
+	if is_instance_valid(reload_art):
+		var atlas := reload_art.texture as AtlasTexture
+		var width := float(atlas.atlas.get_width()) / RELOAD_ART_FRAMES
+		atlas.region = Rect2(mini(int(progress * RELOAD_ART_FRAMES), RELOAD_ART_FRAMES - 1) * width, 0, width, atlas.atlas.get_height())
+		return
 	reload_arc.clear_points()
 	var steps := 2 + int(22.0 * progress)
 	for index in steps:
@@ -584,6 +615,17 @@ func _make_reload_ring() -> void:
 	reload_ring.name = "ReloadRing"
 	reload_ring.z_index = 7
 	add_child(reload_ring)
+	var strip: Texture2D = reload_art_override if reload_art_override != null else SHEET_ART.original_texture(RELOAD_ART)
+	if strip != null:
+		var atlas := AtlasTexture.new()
+		atlas.atlas = strip
+		atlas.region = Rect2(0, 0, float(strip.get_width()) / RELOAD_ART_FRAMES, strip.get_height())
+		reload_art = Sprite2D.new()
+		reload_art.name = "ReloadArt"
+		reload_art.texture = atlas
+		reload_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		reload_ring.add_child(reload_art)
+		return
 	var back := Line2D.new()
 	back.width = 3.0
 	back.closed = true
@@ -658,6 +700,11 @@ func _play_ring(at: Vector2, color: Color, duration: float) -> void:
 	tween.tween_callback(ring.queue_free)
 
 func _play_dive_trail(from: Vector2, to: Vector2) -> void:
+	var path := to - from
+	var art := VFX.spawn(get_parent(), "xion_dive_trail", (from + to) * 0.5 + GAME_SCALE.BODY_CENTRE, Vector2(maxf(path.length(), 1.0) / 240.0, 1.0), false, 2)
+	if art != null:
+		art.rotation = path.angle()
+		return
 	var trail := Line2D.new()
 	trail.width = 12.0
 	trail.default_color = Color(0.86, 0.2, 0.32, 0.5)

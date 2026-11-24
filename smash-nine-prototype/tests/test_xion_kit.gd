@@ -14,6 +14,7 @@ const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const STORY := preload("res://scripts/story/StoryCatalog.gd")
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const BULLET_PATH := "res://characters/xion/XionBullet.gd"
+const VFX := preload("res://scripts/Vfx.gd")
 
 var arena: Node2D
 var failed := false
@@ -26,7 +27,7 @@ func _run() -> void:
 	root.add_child(arena)
 	for test in [_test_data_and_art, _test_story_leaves_her_out, _test_shot_rhythm, _test_reload, _test_passive,
 			_test_roll, _test_recoil, _test_shared_pin, _test_double_hunts_and_pins, _test_double_pushed,
-			_test_double_lifetime, _test_dive, _test_barrage, _test_skill_bar, _test_bots]:
+			_test_double_lifetime, _test_dive, _test_barrage, _test_skill_bar, _test_bots, _test_effect_art]:
 		await test.call()
 		await _clear()
 		if failed:
@@ -564,3 +565,63 @@ func _test_bots() -> void:
 	flyer.reload_timer = 3.0
 	if flyer.recovery_attack() != "skill_1":
 		_fail("Out of rounds in the air a bot rolls first to load (got '%s')" % flyer.recovery_attack())
+
+## A strip of `count` plain frames, as Vfx builds one ("play").
+func _fake_strip(count: int, loop: bool) -> SpriteFrames:
+	var frames := SpriteFrames.new()
+	frames.add_animation(&"play")
+	frames.set_animation_loop(&"play", loop)
+	frames.set_animation_speed(&"play", 30.0)
+	var image := Image.create(8, 8, false, Image.FORMAT_RGBA8)
+	image.fill(Color(1, 0, 0, 1))
+	var texture := ImageTexture.create_from_image(image)
+	for index in count:
+		frames.add_frame(&"play", texture)
+	return frames
+
+func _named(node_name: String) -> int:
+	var count := 0
+	for node in arena.get_children():
+		if node.name.begins_with(node_name) and not node.is_queued_for_deletion():
+			count += 1
+	return count
+
+## Her effects draw the picked strips once they are in the folders (CODEX-VFX-10 contract), and her code
+## stand-ins until then: the blast, the tracer and the reload mark.
+func _test_effect_art() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var xion := _xion(Vector2(0, -2))
+	await _frames(4)
+	xion.facing = 1
+	xion.basic_attack()
+	await _frames(6)
+	if _named("Vfx_xion_blast") != 0:
+		_fail("Without the picked blast the code pellets should draw")
+	VFX._cache["xion_blast/false"] = _fake_strip(6, false)
+	await _shoot(xion)
+	await _frames(6)
+	if _named("Vfx_xion_blast") != 1:
+		_fail("With the blast strip in place the shot should draw it")
+	VFX._cache.erase("xion_blast/false")
+	VFX._cache["xion_bullet/true"] = _fake_strip(2, true)
+	xion._fire_bullet(xion.global_position + Vector2(0, -32), Vector2.UP)
+	var bullet: Node = arena.get_child(arena.get_child_count() - 1)
+	if bullet.get_node_or_null("Vfx_xion_bullet") == null or bullet.get_node("Visual").visible:
+		_fail("With the tracer strip in place a barrage shot should draw it instead of the rectangle")
+	VFX._cache.erase("xion_bullet/true")
+	# Let her last blast end first: a fighter added to the tree stands at the origin for a moment.
+	await _frames(12)
+	var strip := Image.create(192, 24, false, Image.FORMAT_RGBA8)
+	var other := _xion(Vector2(300, -2))
+	other.reload_art_override = ImageTexture.create_from_image(strip)
+	await _frames(4)
+	other.ammo = 1
+	other.basic_attack()
+	await _frames(8)
+	if not is_instance_valid(other.reload_art):
+		_fail("With a reload strip the mark over her head should draw it (ammo %d, reload %.2f, ring %s)" % [other.ammo, other.reload_timer, is_instance_valid(other.reload_ring)])
+		return
+	await _seconds(1.6)
+	var region: Rect2 = (other.reload_art.texture as AtlasTexture).region
+	if region.size.x != 24.0 or region.position.x < 48.0 or region.position.x > 96.0:
+		_fail("Half way through the reload the mark should show a middle frame (region %s)" % region)

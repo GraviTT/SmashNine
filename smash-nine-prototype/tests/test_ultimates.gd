@@ -156,6 +156,12 @@ func _test_cutin() -> void:
 ## style (F2) falls back to the old shapes.
 func _test_effects() -> void:
 	for effect in VFX.SPECS:
+		# Art not picked yet: no strip, so the caller draws its code stand-in.
+		if effect in VFX.PENDING_ART:
+			if VFX.spawn(arena, effect, Vector2.ZERO) != null:
+				_fail("Effect %s is still listed as pending but drew art: drop it from Vfx.PENDING_ART" % effect)
+				return
+			continue
 		var sprite := VFX.spawn(arena, effect, Vector2.ZERO)
 		if sprite == null or sprite.sprite_frames.get_frame_count(&"play") != int(VFX.SPECS[effect][0]):
 			_fail("Effect %s did not load with %d frames" % [effect, int(VFX.SPECS[effect][0])])

@@ -169,6 +169,13 @@ const SPECS := {
 	"seal_barrier": [6, 6.0, Vector2(128, 128), false, REALM_EFFECTS_DIR],
 	"collapse_cracks": [6, 5.0, Vector2(160, 64), false, REALM_EFFECTS_DIR],
 	"warning_edge": [6, 8.0, Vector2(160, 24), true, REALM_EFFECTS_DIR],
+	# Xion's effects (CODEX-VFX-10 contract, 2026-11-24): until a pick is in the folder, her code draws them.
+	"xion_blast": [6, 30.0, Vector2(8, 64), true, EFFECTS_DIR],
+	"xion_bullet": [2, 20.0, Vector2(12, 4), true, EFFECTS_DIR],
+	"xion_recoil_blast": [6, 30.0, Vector2(96, 16), true, SKILL_DIR],
+	"xion_point_blank": [5, 36.0, Vector2(56, 56), true, SKILL_DIR],
+	"xion_double_in": [6, 24.0, Vector2(64, 160), true, SKILL_DIR],
+	"xion_dive_trail": [5, 31.0, Vector2(128, 24), true, SKILL_DIR],
 }
 
 ## Frame widths the anchors and callers' scales were written for. A strip redrawn bigger
@@ -189,6 +196,10 @@ const AUTHORED_WIDTH := {
 	"yuki_grand_ward": 640, "guard_bubble": 128, "attack_afterimage": 160,
 	"portal_anim": 96, "seal_barrier": 256, "collapse_cracks": 320, "warning_edge": 320,
 }
+
+## Effects whose contract is set but whose art is not picked yet (Xion, CODEX-VFX-10): spawn() returns null for
+## them, so her code draws its stand-ins, until the picked file is in its folder; then drop the name here.
+const PENDING_ART := ["xion_blast", "xion_bullet", "xion_recoil_blast", "xion_point_blank", "xion_double_in", "xion_dive_trail"]
 
 static var _cache: Dictionary = {}
 static var _additive: CanvasItemMaterial
