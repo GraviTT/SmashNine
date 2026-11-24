@@ -1,0 +1,644 @@
+{
+  "run": "codex/vfx-10c",
+  "base_commit": "e3998e9d7839d35f2b9ae9e848955e63e02bb5b0",
+  "started_kst": "2026-11-24T14:46:59.042401+09:00",
+  "deadline_kst": "2026-11-24T16:16:59.042401+09:00",
+  "validated_at": "2026-11-24T14:59:38.470085+09:00",
+  "angle_measurement": "atan2(y-64,x-8), opaque pixels x>48; additional four-corner and legacy green>140 checks",
+  "production_diff": "",
+  "live_godot_test": false,
+  "results": [
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_j-v1.png",
+      "status": "PASS",
+      "checks": {
+        "rgba": true,
+        "strip_size": true,
+        "alpha_binary": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "korean_note": true,
+        "at_most_seven_opaque_colours": true,
+        "native_hand_drawing": true,
+        "coloured_shape_has_dark_outer_border": true,
+        "comparison_boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          40,
+          40
+        ],
+        "strip_size": [
+          40,
+          40
+        ],
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          20,
+          20
+        ],
+        "loop": false,
+        "blend": "normal",
+        "opaque_pixels": [
+          582
+        ],
+        "bbox_exclusive": [
+          [
+            6,
+            2,
+            34,
+            35
+          ]
+        ],
+        "opaque_colours": [
+          6
+        ]
+      },
+      "sha256": "a7d52033bae1916777e0a8f20ce5377f18a213c465967c81cf3c6f8bd53ef706"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_k-v1.png",
+      "status": "PASS",
+      "checks": {
+        "rgba": true,
+        "strip_size": true,
+        "alpha_binary": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "korean_note": true,
+        "at_most_seven_opaque_colours": true,
+        "native_hand_drawing": true,
+        "coloured_shape_has_dark_outer_border": true,
+        "comparison_boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          40,
+          40
+        ],
+        "strip_size": [
+          40,
+          40
+        ],
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          20,
+          20
+        ],
+        "loop": false,
+        "blend": "normal",
+        "opaque_pixels": [
+          694
+        ],
+        "bbox_exclusive": [
+          [
+            2,
+            3,
+            37,
+            37
+          ]
+        ],
+        "opaque_colours": [
+          5
+        ]
+      },
+      "sha256": "cc5179858f413aa339625ac9dfdef00e57b5ed8155c58d75b810817f45bc6669"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_l-v1.png",
+      "status": "PASS",
+      "checks": {
+        "rgba": true,
+        "strip_size": true,
+        "alpha_binary": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "korean_note": true,
+        "at_most_seven_opaque_colours": true,
+        "native_hand_drawing": true,
+        "coloured_shape_has_dark_outer_border": true,
+        "comparison_boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          40,
+          40
+        ],
+        "strip_size": [
+          40,
+          40
+        ],
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          20,
+          20
+        ],
+        "loop": false,
+        "blend": "normal",
+        "opaque_pixels": [
+          458
+        ],
+        "bbox_exclusive": [
+          [
+            8,
+            2,
+            33,
+            38
+          ]
+        ],
+        "opaque_colours": [
+          5
+        ]
+      },
+      "sha256": "1a23eb1d26c60c6b37538f176ce5ca4a010ec66ba7f15c3908359446e85141f6"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_u-v1.png",
+      "status": "PASS",
+      "checks": {
+        "rgba": true,
+        "strip_size": true,
+        "alpha_binary": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "korean_note": true,
+        "at_most_seven_opaque_colours": true,
+        "native_hand_drawing": true,
+        "coloured_shape_has_dark_outer_border": true,
+        "comparison_boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          40,
+          40
+        ],
+        "strip_size": [
+          40,
+          40
+        ],
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          20,
+          20
+        ],
+        "loop": false,
+        "blend": "normal",
+        "opaque_pixels": [
+          606
+        ],
+        "bbox_exclusive": [
+          [
+            5,
+            4,
+            34,
+            37
+          ]
+        ],
+        "opaque_colours": [
+          4
+        ]
+      },
+      "sha256": "cac640a060b4f79abee7a4f3b2dbe0ff0f878ba6f0a38ffc6f614db46e1124b5"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_i-v1.png",
+      "status": "PASS",
+      "checks": {
+        "rgba": true,
+        "strip_size": true,
+        "alpha_binary": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "korean_note": true,
+        "at_most_seven_opaque_colours": true,
+        "native_hand_drawing": true,
+        "coloured_shape_has_dark_outer_border": true,
+        "comparison_boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          40,
+          40
+        ],
+        "strip_size": [
+          40,
+          40
+        ],
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          20,
+          20
+        ],
+        "loop": false,
+        "blend": "normal",
+        "opaque_pixels": [
+          505
+        ],
+        "bbox_exclusive": [
+          [
+            3,
+            3,
+            38,
+            38
+          ]
+        ],
+        "opaque_colours": [
+          4
+        ]
+      },
+      "sha256": "e017e19cf76f34bc008ee18feacc768618ab0155a19a033a39fbcd1e34a791a8"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_blast-a-v2.png",
+      "status": "PASS",
+      "checks": {
+        "rgba": true,
+        "strip_size": true,
+        "alpha_binary": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "korean_note": true,
+        "all_pixel_centres_within_14deg_after_x48": true,
+        "all_pixel_corners_within_14deg_after_x48": true,
+        "legacy_bright_pixels_within_14deg": true,
+        "first_flash_unchanged": true,
+        "muzzle_x_through_32_unchanged": true,
+        "same_occupied_x_columns": true,
+        "same_reach": true,
+        "only_original_colours_per_frame": true,
+        "source_hash_matches_metadata": true,
+        "v1_png_matches_base_commit": true,
+        "v1_png_and_json_unmodified": true,
+        "both_frame_boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          256,
+          128
+        ],
+        "strip_size": [
+          1536,
+          128
+        ],
+        "frames": 6,
+        "fps": 30,
+        "anchor": [
+          8,
+          64
+        ],
+        "loop": false,
+        "blend": "additive",
+        "opaque_pixels": [
+          174,
+          977,
+          3484,
+          2634,
+          567,
+          21
+        ],
+        "bbox_exclusive": [
+          [
+            1,
+            53,
+            23,
+            76
+          ],
+          [
+            1,
+            51,
+            109,
+            78
+          ],
+          [
+            1,
+            36,
+            228,
+            92
+          ],
+          [
+            1,
+            35,
+            237,
+            93
+          ],
+          [
+            5,
+            35,
+            229,
+            94
+          ],
+          [
+            6,
+            39,
+            180,
+            82
+          ]
+        ],
+        "opaque_colours": [
+          170,
+          860,
+          2373,
+          1702,
+          530,
+          21
+        ],
+        "pixel_centre_angles_by_frame_deg": [
+          null,
+          [
+            -12.907408671265838,
+            13.091893064346847
+          ],
+          [
+            -13.091893064346847,
+            12.665063765042362
+          ],
+          [
+            -12.907408671265838,
+            13.091893064346847
+          ],
+          [
+            -11.20594750740257,
+            11.056412980248188
+          ],
+          [
+            -9.047571999900708,
+            9.940573033113026
+          ]
+        ],
+        "pixel_corner_angles_by_frame_deg": [
+          null,
+          [
+            -13.6097318958122,
+            13.877529803208008
+          ],
+          [
+            -13.877529803208008,
+            13.20108717570558
+          ],
+          [
+            -13.6097318958122,
+            13.877529803208008
+          ],
+          [
+            -11.58341860468707,
+            11.437256218907596
+          ],
+          [
+            -9.254406865295861,
+            10.278719804132262
+          ]
+        ],
+        "legacy_bright_angles_by_frame_deg": [
+          null,
+          [
+            -12.633361935275012,
+            12.65255650055797
+          ],
+          [
+            -12.619322293430773,
+            12.183656585987388
+          ],
+          [
+            -10.400552024821073,
+            12.094757077012101
+          ],
+          [
+            -9.96835617047384,
+            10.43747535111818
+          ],
+          null
+        ],
+        "all_pixel_centre_spread_deg": [
+          -13.091893064346847,
+          13.091893064346847
+        ],
+        "all_pixel_corner_spread_deg": [
+          -13.877529803208008,
+          13.877529803208008
+        ],
+        "legacy_bright_spread_deg": [
+          -12.633361935275012,
+          12.65255650055797
+        ],
+        "v1_all_pixel_centre_spread_deg": [
+          -22.520565602896887,
+          22.714412353167237
+        ],
+        "v1_legacy_bright_spread_deg": [
+          -18.178018798418503,
+          17.744671625056935
+        ],
+        "max_reach_from_anchor_px": 228,
+        "duration_seconds": 0.2,
+        "source_png_sha256": "5ba958c218436bc1771f6cec45f5dfdff5bc0b9c8ea0e91c4a909228f15afc8f"
+      },
+      "sha256": "7d84b28286b04b48bb36a3017afe3958f63dfefa0a578adaea0202b060968986"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_blast-b-v2.png",
+      "status": "PASS",
+      "checks": {
+        "rgba": true,
+        "strip_size": true,
+        "alpha_binary": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "korean_note": true,
+        "all_pixel_centres_within_14deg_after_x48": true,
+        "all_pixel_corners_within_14deg_after_x48": true,
+        "legacy_bright_pixels_within_14deg": true,
+        "first_flash_unchanged": true,
+        "muzzle_x_through_32_unchanged": true,
+        "same_occupied_x_columns": true,
+        "same_reach": true,
+        "only_original_colours_per_frame": true,
+        "source_hash_matches_metadata": true,
+        "v1_png_matches_base_commit": true,
+        "v1_png_and_json_unmodified": true,
+        "both_frame_boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          256,
+          128
+        ],
+        "strip_size": [
+          1536,
+          128
+        ],
+        "frames": 6,
+        "fps": 30,
+        "anchor": [
+          8,
+          64
+        ],
+        "loop": false,
+        "blend": "additive",
+        "opaque_pixels": [
+          348,
+          2027,
+          4660,
+          2461,
+          277,
+          44
+        ],
+        "bbox_exclusive": [
+          [
+            1,
+            50,
+            35,
+            77
+          ],
+          [
+            1,
+            39,
+            128,
+            89
+          ],
+          [
+            1,
+            34,
+            240,
+            96
+          ],
+          [
+            1,
+            33,
+            243,
+            93
+          ],
+          [
+            97,
+            37,
+            211,
+            90
+          ],
+          [
+            141,
+            53,
+            156,
+            79
+          ]
+        ],
+        "opaque_colours": [
+          338,
+          1838,
+          3827,
+          2226,
+          265,
+          44
+        ],
+        "pixel_centre_angles_by_frame_deg": [
+          null,
+          [
+            -13.172553423326892,
+            13.091893064346847
+          ],
+          [
+            -12.925999124705953,
+            12.804266065286752
+          ],
+          [
+            -12.925999124705953,
+            12.528807709151511
+          ],
+          [
+            -9.796209917474519,
+            10.56801420900933
+          ],
+          [
+            -4.398705354995532,
+            6.009005957494525
+          ]
+        ],
+        "pixel_corner_angles_by_frame_deg": [
+          null,
+          [
+            -13.891191171454858,
+            13.877529803208008
+          ],
+          [
+            -13.570434385161485,
+            13.339248903363403
+          ],
+          [
+            -13.477822753241322,
+            13.061551083328114
+          ],
+          [
+            -10.031577732361185,
+            10.813877513624963
+          ],
+          [
+            -4.613870897488425,
+            6.245252678676963
+          ]
+        ],
+        "legacy_bright_angles_by_frame_deg": [
+          null,
+          [
+            -12.847704858717666,
+            12.907408671265838
+          ],
+          [
+            -11.07020257793936,
+            12.011478386365441
+          ],
+          [
+            -10.304846468766033,
+            10.359052488083712
+          ],
+          null,
+          null
+        ],
+        "all_pixel_centre_spread_deg": [
+          -13.172553423326892,
+          13.091893064346847
+        ],
+        "all_pixel_corner_spread_deg": [
+          -13.891191171454858,
+          13.877529803208008
+        ],
+        "legacy_bright_spread_deg": [
+          -12.847704858717666,
+          12.907408671265838
+        ],
+        "v1_all_pixel_centre_spread_deg": [
+          -26.56505117707799,
+          21.317912275461552
+        ],
+        "v1_legacy_bright_spread_deg": [
+          -18.43494882292201,
+          19.230672375661285
+        ],
+        "max_reach_from_anchor_px": 234,
+        "duration_seconds": 0.2,
+        "source_png_sha256": "b178b3a4848b0d413ea7faa1ebd850b39ba7dd9094df41a6fa1fcdf3602bfbf8"
+      },
+      "sha256": "df03a6216083de0e14b09c25bb52e466b4a8942443ee39d3a32f650409e58279"
+    }
+  ],
+  "summary": {
+    "PASS": 7,
+    "FAIL": 0
+  }
+}
