@@ -546,12 +546,14 @@ func _bot_double(delta: float) -> void:
 			bot_pin_time += delta
 			if bot_pin_time >= DIVE_BOT_DELAY and _dive_ready() and hitstun_timer <= 0.0 and attack_lock_timer <= 0.0 and dive_timer <= 0.0:
 				_dive_start()
+				count_move("u2")
 		return
 	if double_cooldown_timer > 0.0 or not _can_start_attack() or not is_instance_valid(last_hit_foe):
 		return
 	if last_hit_foe.get("is_defeated") == true or int(last_hit_foe.get("realm_index")) != realm_index:
 		return
 	_double_cast()
+	count_move("u")
 
 func character_on_hit() -> void:
 	if dive_timer > 0.0:

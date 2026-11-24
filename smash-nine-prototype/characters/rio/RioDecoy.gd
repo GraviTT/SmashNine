@@ -1,8 +1,11 @@
-extends StaticBody2D
+extends AnimatableBody2D
 ## Rio's decoy (U "분신 바꿔치기", 2026-11-18 D50): his drawing of the moment, blue and
 ## see-through, standing where he cast it. Hits and shots reach it like a fighter (player layer,
 ## no collisions with bodies); the first foe's hit bursts it (the source's decoy_burst). Rio can
 ## swap places with it once. It fades after `lifetime`. Stand-in look: his own frame tinted.
+## A kinematic body, not a static one (2026-11-24): attack areas are not monitorable, which makes
+## them static in the physics broadphase, and two static objects are never paired. As a
+## StaticBody2D no swing ever reached it: no decoy burst in eight soak matches or at 40 px.
 
 const PLAYER_LAYER := 2
 const TINT := Color(0.5, 0.78, 1.0, 0.62)
@@ -15,6 +18,7 @@ var figure: AnimatedSprite2D
 func configure(owner_fighter: Node2D, duration: float, sprite: AnimatedSprite2D) -> void:
 	source = owner_fighter
 	lifetime = duration
+	sync_to_physics = false
 	collision_layer = PLAYER_LAYER
 	collision_mask = 0
 	var shape := CollisionShape2D.new()

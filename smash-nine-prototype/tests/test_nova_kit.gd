@@ -35,6 +35,10 @@ func _run() -> void:
 	await _clear()
 	await _test_sphere()
 	await _clear()
+	await _test_sphere_drops_a_freed_body()
+	await _clear()
+	await _test_beam_on_a_double()
+	await _clear()
 	await _test_third_skill_slot()
 	arena.queue_free()
 	await process_frame
@@ -349,6 +353,38 @@ func _test_sphere() -> void:
 		await _frames(30)
 	if nova.ultimate_phase != nova.ULTIMATE_NONE:
 		_fail("The ultimate should end after the launch (phase %d)" % nova.ultimate_phase)
+
+## A body freed while the sphere holds it (a monster that dies in it) leaves the sphere's list.
+## Erasing it from the typed list failed and logged an engine error every frame (2026-11-24).
+func _test_sphere_drops_a_freed_body() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var nova := _fighter("nova", 1, Vector2(0, -2), true)
+	await _frames(4)
+	var caught := Node2D.new()
+	arena.add_child(caught)
+	nova.sphere_caught.append(caught)
+	caught.free()
+	nova._spin_caught(0.016)
+	if not nova.sphere_caught.is_empty():
+		_fail("A freed body should leave the sphere's caught list (%d left)" % nova.sphere_caught.size())
+
+## The beam reaching something that is not a fighter or a monster (Xion's double in the air)
+## only hits it: the slam called a method the double does not have (2026-11-24).
+func _test_beam_on_a_double() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var nova := _fighter("nova", 1, Vector2(0, -2), true)
+	var xion := _fighter("xion", 2, Vector2(600, -2), true)
+	await _frames(10)
+	xion._double_cast()
+	var copy: Node2D = xion.double
+	if not is_instance_valid(copy):
+		_fail("Test setup: Xion should have a double out")
+		return
+	copy.global_position = Vector2(200, -300)
+	nova.on_beam_hit(copy, Vector2.RIGHT)
+	await _frames(2)
+	if not is_instance_valid(nova) or nova.beam_target == copy:
+		_fail("The beam should only hit a double, not drag it")
 
 func _test_third_skill_slot() -> void:
 	_floor(Vector2(0, 0), 2400)

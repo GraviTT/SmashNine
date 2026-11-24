@@ -240,6 +240,11 @@ var attack_lock_timer := 0.0
 var attack_serial := 0
 var attack_elapsed := 0.0
 var attack_startup := 0.0
+## How often each move really started, by skill bar slot ("j", "k", "l", "u", "i"; "k2", "l2",
+## "u2", "i2" for a follow-up press) plus what a character counts itself (Frey's "wings", seconds
+## of Nova's "flight"). The soak and the probes read it to see what bots use: a kit move no bot
+## starts is one the player never meets (2026-11-24, reports/quality-systems-2026-11-24/).
+var move_counts: Dictionary = {}
 var hitstun_timer := 0.0
 ## Presentation-only timer for explicit stun attacks and hazards. Ordinary brief hitstun does not
 ## show the stun status icon.
@@ -562,13 +567,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("skill_1"):
 		skill_one()
 	if event.is_action_pressed("skill_2"):
-		if try_skill_two_followup():
-			return
-		skill_two()
+		press_skill_two()
 	if event.is_action_pressed("skill_3"):
-		if try_skill_three_followup():
-			return
-		skill_three()
+		press_skill_three()
 	if event.is_action_pressed("ultimate"):
 		ultimate()
 
@@ -848,30 +849,53 @@ func basic_attack() -> void:
 	var attack_type := _get_basic_attack_type(attack_dir)
 	perform_basic_attack(attack_type, attack_dir)
 	AUDIO.basic(self, attack_type)
+	if attack_lock_timer > 0.0:
+		count_move("j")
 
 func skill_one() -> void:
 	if try_skill_one_followup():
+		count_move("k2")
 		return
 	if not _can_start_attack():
 		return
+	var mark := _move_mark()
 	AUDIO.begin_action(self)
 	perform_skill_one()
 	AUDIO.end_action(self, "1")
+	_count_if_started("k", mark)
 
 func skill_two() -> void:
 	if not _can_start_attack():
 		return
+	var mark := _move_mark()
 	AUDIO.begin_action(self)
 	perform_skill_two()
 	AUDIO.end_action(self, "2")
+	_count_if_started("l", mark)
 
 ## The third skill (U, 2026-11-03 D47): only characters that have one (has_skill_three).
 func skill_three() -> void:
 	if not has_skill_three() or not _can_start_attack():
 		return
+	var mark := _move_mark()
 	AUDIO.begin_action(self)
 	perform_skill_three()
 	AUDIO.end_action(self, "3")
+	_count_if_started("u", mark)
+
+## L and U as buttons: the follow-up while one is open, else the skill. Players and bots press
+## them the same way.
+func press_skill_two() -> void:
+	if try_skill_two_followup():
+		count_move("l2")
+		return
+	skill_two()
+
+func press_skill_three() -> void:
+	if try_skill_three_followup():
+		count_move("u2")
+		return
+	skill_three()
 
 func ultimate() -> void:
 	# Follow-up presses (Nova's slingshot stages, Luna's heart laser) are part of the same ultimate.
@@ -880,6 +904,7 @@ func ultimate() -> void:
 		if ultimate_followup_started:
 			ultimate_armor_timer = ULTIMATE_ARMOR_TIME
 			AUDIO.ultimate_started(self, true)
+			count_move("i2")
 		return
 	if not _can_start_attack() or not is_ultimate_ready():
 		return
@@ -889,6 +914,19 @@ func ultimate() -> void:
 	AUDIO.ultimate_started(self)
 	perform_ultimate()
 	ultimate_cast.emit(self)
+	count_move("i")
+
+func count_move(key: String, amount := 1.0) -> void:
+	move_counts[key] = float(move_counts.get(key, 0.0)) + amount
+
+## A skill press starts a move when it locks the fighter or begins a swing (the sound of a skill
+## is decided the same way, AudioManager.end_action).
+func _move_mark() -> Array:
+	return [attack_lock_timer, attack_serial]
+
+func _count_if_started(key: String, mark: Array) -> void:
+	if attack_lock_timer > float(mark[0]) or attack_serial > int(mark[1]):
+		count_move(key)
 
 func is_ultimate_ready() -> bool:
 	return ultimate_cooldown_timer <= 0.0
