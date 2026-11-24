@@ -14,6 +14,11 @@ const OVERLAY_Z := -10
 const HAZARD_Z := 4
 const HAZARD_COLOR := Color(0.85, 0.08, 0.12, 0.34)
 const BACKDROP_MARGIN := 320.0
+## The painted layers continue this far past a realm's edge as a mirror image. The camera shows
+## Main.CAMERA_EDGE_PADDING (80 px) beyond the edge, more during a shake, and the paintings used
+## to end at the edge: a dark strip showed beside Asgard and a flat backdrop triangle beside
+## Niflheim (UI audit 2026-11-25, B8).
+const PAINTED_SKIRT := 128.0
 
 var layout: REALM_LAYOUT
 ## Portal countdown labels whose text Main refreshes every frame: [{"label": Label, "kind": "portal"}]
@@ -121,6 +126,21 @@ func _add_painted_backdrop(parent: Node2D, realm_index: int, backdrop: Node2D) -
 		var texture := _realm_art(realm_index, layer)
 		if texture == null:
 			continue
+		# The mirrored continuation lies under the painting, which keeps its place and size.
+		var art_scale := realm_size / texture.get_size()
+		var skirt_texels := Vector2(PAINTED_SKIRT, PAINTED_SKIRT) / art_scale
+		var skirt := Sprite2D.new()
+		skirt.name = "PaintedSkirt_%s" % layer
+		skirt.texture = texture
+		skirt.centered = false
+		skirt.region_enabled = true
+		skirt.region_rect = Rect2(-skirt_texels, texture.get_size() + skirt_texels * 2.0)
+		skirt.texture_repeat = CanvasItem.TEXTURE_REPEAT_MIRROR
+		skirt.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		skirt.scale = art_scale
+		skirt.position = layout.get_origin(realm_index) - Vector2(PAINTED_SKIRT, PAINTED_SKIRT)
+		skirt.z_index = -19 + layers
+		parent.add_child(skirt)
 		var rect := TextureRect.new()
 		rect.name = "Painted_%s" % layer
 		rect.texture = texture
@@ -141,8 +161,8 @@ func _add_painted_backdrop(parent: Node2D, realm_index: int, backdrop: Node2D) -
 			var shade := ColorRect.new()
 			shade.name = "Painted_dim"
 			shade.color = Color(0.0, 0.0, 0.0, dim)
-			shade.position = layout.get_origin(realm_index)
-			shade.size = realm_size
+			shade.position = layout.get_origin(realm_index) - Vector2(PAINTED_SKIRT, PAINTED_SKIRT)
+			shade.size = realm_size + Vector2(PAINTED_SKIRT, PAINTED_SKIRT) * 2.0
 			shade.z_index = -19 + layers
 			shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			parent.add_child(shade)
