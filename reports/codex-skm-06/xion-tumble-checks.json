@@ -1,0 +1,869 @@
+{
+  "selection": {
+    "factor": 0.34,
+    "accepted": true,
+    "face_verified": true,
+    "costume_ok": true,
+    "pose_ok": true,
+    "face_frames": [
+      1,
+      5,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "note": "전방 구르기 6프레임 후보. 시작·복귀 F1·5·6의 노출 얼굴 폭은 1.000이며 회전 F2–4와 가려진 먼 눈은 수치 비교에서 제외했다.",
+    "attempt_notes": "1회 생성, 공통 배율 0.36→0.34. F1·5·6의 표식과 픽셀 격자, 여섯 전신을 확인했다. 머리 자동 정합은 전부 신뢰도 0.6 미만으로 중앙값 없음; 얼굴 경계 직접 검토를 우선했다.",
+    "human_review": "F2→F3→F4의 회전 방향, 접지 높이를 고정한 구르기의 궤적, F6→F1 반복의 속도와 두 총이 겹쳐 보이는 정도를 재생으로 판단.",
+    "stem": "xion",
+    "row": "tumble",
+    "attempt": 1,
+    "fps": 21,
+    "loop": true,
+    "for": "K 장전 구르기·강한 날림"
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-06\\xion\\tumble\\attempt-1\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.34,
+      "scale_by": "fixed:0.34",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        76,
+        98
+      ],
+      "body_width_range": [
+        61,
+        89
+      ],
+      "area_range": [
+        3246,
+        3524
+      ],
+      "area_spread_percent": 7.89,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        2951,
+        3118
+      ],
+      "interior_detail_range": [
+        97.11,
+        103.24
+      ],
+      "interior_detail_mean": 100.54,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 107.47,
+      "interior_detail_ratio": 0.9355
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 107.47,
+          "colour_count": 2627,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 107.47,
+      "colour_count_range": [
+        2627,
+        2627
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-06/xion/tumble/attempt-1/source-frames/00.png",
+        "bbox": [
+          50,
+          76,
+          139,
+          153
+        ],
+        "body_height": 77,
+        "body_width": 89,
+        "area": 3246,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 100.29,
+        "colour_count": 2951,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 50,
+          "top": 76,
+          "right": 53,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.9332
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-06/xion/tumble/attempt-1/source-frames/01.png",
+        "bbox": [
+          58,
+          77,
+          138,
+          153
+        ],
+        "body_height": 76,
+        "body_width": 80,
+        "area": 3524,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 100.7,
+        "colour_count": 3118,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 58,
+          "top": 77,
+          "right": 54,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.937
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-06/xion/tumble/attempt-1/source-frames/02.png",
+        "bbox": [
+          63,
+          55,
+          124,
+          153
+        ],
+        "body_height": 98,
+        "body_width": 61,
+        "area": 3494,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 97.11,
+        "colour_count": 3097,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 63,
+          "top": 55,
+          "right": 68,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.9036
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-06/xion/tumble/attempt-1/source-frames/03.png",
+        "bbox": [
+          56,
+          75,
+          137,
+          153
+        ],
+        "body_height": 78,
+        "body_width": 81,
+        "area": 3363,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 103.24,
+        "colour_count": 3038,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 56,
+          "top": 75,
+          "right": 55,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.9606
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-06/xion/tumble/attempt-1/source-frames/04.png",
+        "bbox": [
+          58,
+          70,
+          140,
+          153
+        ],
+        "body_height": 83,
+        "body_width": 82,
+        "area": 3278,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 99.81,
+        "colour_count": 2952,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 58,
+          "top": 70,
+          "right": 52,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.9287
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-06/xion/tumble/attempt-1/source-frames/05.png",
+        "bbox": [
+          56,
+          76,
+          138,
+          153
+        ],
+        "body_height": 77,
+        "body_width": 82,
+        "area": 3417,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 102.11,
+        "colour_count": 3085,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 56,
+          "top": 76,
+          "right": 54,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 0.9501
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-06/xion/tumble/attempt-1/xion-tumble.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-06/xion/tumble/attempt-1/frames",
+      "closeup": "reports/codex-skm-06/xion/tumble/attempt-1/closeup.png",
+      "compare": "reports/codex-skm-06/xion/tumble/attempt-1/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        66.5,
+        44,
+        3,
+        4
+      ],
+      [
+        71,
+        42,
+        2,
+        3
+      ],
+      [
+        62.5,
+        46,
+        3,
+        4
+      ],
+      [
+        72.5,
+        46,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 65.595,
+        "y": 42.5,
+        "score": 1
+      },
+      {
+        "x": 71.279,
+        "y": 42.305,
+        "score": 1
+      },
+      {
+        "x": 62.5,
+        "y": 46,
+        "score": 1
+      },
+      {
+        "x": 72.5,
+        "y": 46,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 5.6873439319246355,
+    "reference_face_width": 10.0,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 125.765,
+            "y": 97.824,
+            "score": 0.812
+          },
+          {
+            "x": 130.14,
+            "y": 98.05,
+            "score": 0.854
+          },
+          {
+            "x": 120.5,
+            "y": 98.5,
+            "score": 0.701
+          },
+          {
+            "x": 130.5,
+            "y": 101.0,
+            "score": 0.906
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          108,
+          79,
+          0.454
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 84.678,
+            "y": 113.178,
+            "score": 0.745
+          },
+          {
+            "x": 91.181,
+            "y": 111.615,
+            "score": 0.427
+          },
+          {
+            "x": 82.5,
+            "y": 113.5,
+            "score": 0.682
+          },
+          {
+            "x": 91.5,
+            "y": 116.5,
+            "score": 0.886
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 9.0,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          68,
+          94,
+          0.368
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 84.678,
+              "y": 113.178,
+              "score": 0.745
+            },
+            {
+              "x": 91.181,
+              "y": 111.615,
+              "score": 0.427
+            },
+            {
+              "x": 82.5,
+              "y": 113.5,
+              "score": 0.682
+            },
+            {
+              "x": 91.5,
+              "y": 116.5,
+              "score": 0.886
+            }
+          ],
+          "face_width_ratio": 0.9
+        },
+        "correction_reason": "회전·역립 프레임으로 기준과 같은 수평 얼굴 폭을 비교할 수 없음. 자동 표식은 장비 또는 기울어진 얼굴에 놓여 수치 판정에서 제외.",
+        "face_excluded": "회전·역립 프레임으로 기준과 같은 수평 얼굴 폭을 비교할 수 없음. 자동 표식은 장비 또는 기울어진 얼굴에 놓여 수치 판정에서 제외.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 91.5,
+            "y": 100.0,
+            "score": 0.667
+          },
+          {
+            "x": 96.927,
+            "y": 98.344,
+            "score": 0.462
+          },
+          {
+            "x": 88.5,
+            "y": 101.0,
+            "score": 0.551
+          },
+          {
+            "x": 96.5,
+            "y": 100.0,
+            "score": 0.719
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 8.0,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          74,
+          80,
+          0.28
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 91.5,
+              "y": 100.0,
+              "score": 0.667
+            },
+            {
+              "x": 96.927,
+              "y": 98.344,
+              "score": 0.462
+            },
+            {
+              "x": 88.5,
+              "y": 101.0,
+              "score": 0.551
+            },
+            {
+              "x": 96.5,
+              "y": 100.0,
+              "score": 0.719
+            }
+          ],
+          "face_width_ratio": 0.8
+        },
+        "correction_reason": "회전·역립 프레임으로 기준과 같은 수평 얼굴 폭을 비교할 수 없음. 자동 표식은 장비 또는 기울어진 얼굴에 놓여 수치 판정에서 제외.",
+        "face_excluded": "회전·역립 프레임으로 기준과 같은 수평 얼굴 폭을 비교할 수 없음. 자동 표식은 장비 또는 기울어진 얼굴에 놓여 수치 판정에서 제외.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 90.5,
+            "y": 106.0,
+            "score": 0.33
+          },
+          {
+            "x": 94.365,
+            "y": 102.184,
+            "score": 0.385
+          },
+          {
+            "x": 86.5,
+            "y": 109.0,
+            "score": 0.815
+          },
+          {
+            "x": 95.5,
+            "y": 108.0,
+            "score": 0.873
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 9.0,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          72,
+          87,
+          0.275
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 90.5,
+              "y": 106.0,
+              "score": 0.33
+            },
+            {
+              "x": 94.365,
+              "y": 102.184,
+              "score": 0.385
+            },
+            {
+              "x": 86.5,
+              "y": 109.0,
+              "score": 0.815
+            },
+            {
+              "x": 95.5,
+              "y": 108.0,
+              "score": 0.873
+            }
+          ],
+          "face_width_ratio": 0.9
+        },
+        "correction_reason": "회전·역립 프레임으로 기준과 같은 수평 얼굴 폭을 비교할 수 없음. 자동 표식은 장비 또는 기울어진 얼굴에 놓여 수치 판정에서 제외.",
+        "face_excluded": "회전·역립 프레임으로 기준과 같은 수평 얼굴 폭을 비교할 수 없음. 자동 표식은 장비 또는 기울어진 얼굴에 놓여 수치 판정에서 제외.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 126.886,
+            "y": 91.939,
+            "score": 0.838
+          },
+          {
+            "x": 131.303,
+            "y": 91.518,
+            "score": 0.849
+          },
+          {
+            "x": 121.5,
+            "y": 95.0,
+            "score": 0.624
+          },
+          {
+            "x": 131.5,
+            "y": 94.0,
+            "score": 0.927
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          109,
+          73,
+          0.448
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 124.714,
+            "y": 98.143,
+            "score": 0.868
+          },
+          {
+            "x": 129.659,
+            "y": 97.732,
+            "score": 0.895
+          },
+          {
+            "x": 119.5,
+            "y": 99.0,
+            "score": 0.689
+          },
+          {
+            "x": 129.5,
+            "y": 100.0,
+            "score": 0.887
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          107,
+          79,
+          0.445
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      }
+    ],
+    "review_note": "Inspected ART-72 landmarks; corrections, if any, retain the original proposal and reason. Same row factor; no image editing. Eye distance remains unavailable.",
+    "sheet_sha256": "858d9583de4b7b1512a1a8c89be43cedd21680d519c3f8b1f0414358f004d01d"
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-06\\xion\\tumble\\attempt-1\\xion-tumble.png",
+    "frames": [
+      {
+        "scale": 1.1,
+        "score": 0.468
+      },
+      {
+        "scale": 1.02,
+        "score": 0.379
+      },
+      {
+        "scale": 0.82,
+        "score": 0.392
+      },
+      {
+        "scale": 0.6,
+        "score": 0.443
+      },
+      {
+        "scale": 1.1,
+        "score": 0.472
+      },
+      {
+        "scale": 1.1,
+        "score": 0.465
+      }
+    ],
+    "median": null,
+    "used": 0
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-06\\xion-tumble-1.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      30564,
+      30270,
+      29549,
+      29034,
+      28322,
+      28078,
+      5,
+      5,
+      2,
+      1
+    ],
+    "boxes": [
+      [
+        66,
+        274,
+        328,
+        500
+      ],
+      [
+        439,
+        281,
+        673,
+        506
+      ],
+      [
+        806,
+        217,
+        985,
+        506
+      ],
+      [
+        1136,
+        252,
+        1373,
+        482
+      ],
+      [
+        1478,
+        257,
+        1719,
+        501
+      ],
+      [
+        1847,
+        274,
+        2088,
+        501
+      ]
+    ]
+  },
+  "sheet_sha256": "858d9583de4b7b1512a1a8c89be43cedd21680d519c3f8b1f0414358f004d01d"
+}

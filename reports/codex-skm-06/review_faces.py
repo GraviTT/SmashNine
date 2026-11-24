@@ -18,6 +18,9 @@ for item in d['frames']:
         item['face_width']=item['landmarks'][3]['x']-item['landmarks'][2]['x']
         item['face_width_ratio']=round(item['face_width']/d['reference_face_width'],4)
         item['correction_reason']=correction['reason']
+        if correction.get('exclude'):
+            item['face_width_ratio']=None
+            item['face_excluded']=correction['reason']
     item['review']='4x full-body and face landmarks visually inspected; far-eye metric excluded.'
 for i,marks in enumerate([d['anchor_landmarks']]+[x['landmarks'] for x in d['frames']]):
     f=a if i==0 else im.crop(((i-1)*192,0,i*192,192))
@@ -28,7 +31,8 @@ for i,marks in enumerate([d['anchor_landmarks']]+[x['landmarks'] for x in d['fra
     for mark in marks[2:]:
         x=bx+(mark['x']-ox)*4;y=by+(mark['y']-oy)*4
         draw.line((x-4,y,x+4,y),fill='yellow');draw.line((x,y-4,x,y+4),fill='yellow')
-    label='ANCHOR / eyes N/A' if i==0 else f'F{i} W={d["frames"][i-1]["face_width_ratio"]:.3f} / eyes N/A'
+    ratio=None if i==0 else d['frames'][i-1]['face_width_ratio']
+    label='ANCHOR / eyes N/A' if i==0 else f'F{i} W={ratio if ratio is not None else "N/A"} / eyes N/A'
     draw.text((i*256+8,8),label,fill='white')
     if str(i) in corrections:draw.text((i*256+8,270),'Manual boundary correction; see JSON',fill='white')
 board.save(base/'face-measured.png')
