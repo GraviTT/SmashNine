@@ -1,9 +1,11 @@
 """Figures of the match HUD direction report (2026-11-25).
 
 Usage:  python reports/ui-direction-2026-11-25/make_figures.py <reel dir> <stills dir>
+        python reports/ui-direction-2026-11-25/make_figures.py --menu <menu tour dir>
 <reel dir> holds now/, a/ and b/ with hud/, cards/ and warning/ frames (####.jpg) as written by
 smash-nine-prototype/tests/analysis/ui_audit/ui_direction_capture.gd; <stills dir> holds a/ and b/
-from the same script with --stills (for still_mock_cards.jpg). Output: img/ next to this file.
+from the same script with --stills (for still_mock_cards.jpg). <menu tour dir> holds now/, a/ and
+b/ with title/ and select/ frames from menu_direction_capture.gd. Output: img/ next to this file.
 """
 import sys
 from pathlib import Path
@@ -61,11 +63,24 @@ def crop(image, rect, scale=1):
     return part.resize((w * scale, h * scale), Image.NEAREST) if scale != 1 else part
 
 
+def menu_figures(tour):
+    """The menu tours: the title with the focus on Story, the select screen on Nova and on Xion."""
+    variants = ["now", "a", "b"]
+    labels = [NAMES[v] for v in variants]
+    # Title steps are 36 frames, select steps 48; a JPG every second frame.
+    for name, part, number in [("10-menu-title", "title", 28), ("11-menu-select-nova", "select", 84), ("12-menu-select-xion", "select", 156)]:
+        stack([Image.open(tour / v / part / ("%04d.jpg" % number)).convert("RGB") for v in variants], labels, name)
+
+
 def main():
     if len(sys.argv) < 3:
         raise SystemExit(__doc__)
-    reel, stills = Path(sys.argv[1]), Path(sys.argv[2])
     OUT.mkdir(parents=True, exist_ok=True)
+    if sys.argv[1] == "--menu":
+        menu_figures(Path(sys.argv[2]))
+        print("menu figures in %s" % OUT)
+        return
+    reel, stills = Path(sys.argv[1]), Path(sys.argv[2])
     variants = ["now", "a", "b"]
     labels = [NAMES[v] for v in variants]
     # Four moments of the same match, the three HUDs one above the other.
