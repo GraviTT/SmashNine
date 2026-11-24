@@ -1,0 +1,235 @@
+{
+  "note": "넓고 짧은 불꽃 조각이 갈라지는 산탄. A보다 총구 섬광과 파편의 면적이 크다. v2: 총구 첫 섬광과 x 위치·팔레트를 보존하고 탄흔의 세로 좌표만 안쪽으로 압축했다. 총구 밖 x>48의 모든 불투명 픽셀 모서리도 ±14도 안이다.",
+  "replaces": "assets/art/effects/xion_blast.png",
+  "frames": 6,
+  "fps": 30,
+  "anchor": [
+    8,
+    64
+  ],
+  "loop": false,
+  "frame_size": [
+    256,
+    128
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "Python + Pillow: native-resolution v1 smooth angular remap; no upscale, no interpolation, no new colours",
+  "source_raw": "art/raw/vfx-10/xion_blast-b.png",
+  "source_candidate": "art/bakeoff/effects/xion/xion_blast-b-v1.png",
+  "source_sha256": "b178b3a4848b0d413ea7faa1ebd850b39ba7dd9094df41a6fa1fcdf3602bfbf8",
+  "source_extraction": [
+    {
+      "source_cell": [
+        0,
+        0,
+        724,
+        362
+      ],
+      "source_crop": [
+        24,
+        160,
+        126,
+        250
+      ],
+      "source_origin": [
+        58,
+        207
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        -5,
+        50
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        0,
+        1448,
+        362
+      ],
+      "source_crop": [
+        24,
+        124,
+        365,
+        292
+      ],
+      "source_origin": [
+        786,
+        208
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        -7,
+        39
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        0,
+        362,
+        724,
+        724
+      ],
+      "source_crop": [
+        24,
+        80,
+        644,
+        293
+      ],
+      "source_origin": [
+        56,
+        546
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        -5,
+        33
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        362,
+        1448,
+        724
+      ],
+      "source_crop": [
+        25,
+        76,
+        659,
+        285
+      ],
+      "source_origin": [
+        786,
+        546
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        -7,
+        32
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        0,
+        724,
+        724,
+        1086
+      ],
+      "source_crop": [
+        278,
+        88,
+        569,
+        279
+      ],
+      "source_origin": [
+        56,
+        906
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        96,
+        36
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        724,
+        1448,
+        1086
+      ],
+      "source_crop": [
+        399,
+        144,
+        438,
+        232
+      ],
+      "source_origin": [
+        786,
+        906
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        141,
+        53
+      ],
+      "alpha_threshold": 160
+    }
+  ],
+  "remap": {
+    "anchor": [
+      8,
+      64
+    ],
+    "axis_changed": "y only",
+    "f1_unchanged": true,
+    "all_frames_x_through_32_unchanged": true,
+    "blend_columns": [
+      33,
+      48
+    ],
+    "cone_columns": [
+      49,
+      254
+    ],
+    "target_pixel_corner_limit_deg": 13.9,
+    "same_angular_map_for_every_frame": true,
+    "unchanged_inner_ray_angle_deg": 8.0,
+    "outer_slope_formula": "t8 + (t13.9-t8)*(1-exp(-(abs(dy/dx)-t8)/(t13.9-t8)))",
+    "pixel_corner_guard": "floor(tan(13.9deg)*(dx-0.5)-0.5)",
+    "collision_rule": "retain brighter original RGB; alpha stays binary",
+    "changes": [
+      {
+        "moved_source_pixels": 0,
+        "merged_source_pixels": 0
+      },
+      {
+        "moved_source_pixels": 983,
+        "merged_source_pixels": 510
+      },
+      {
+        "moved_source_pixels": 1926,
+        "merged_source_pixels": 535
+      },
+      {
+        "moved_source_pixels": 883,
+        "merged_source_pixels": 184
+      },
+      {
+        "moved_source_pixels": 148,
+        "merged_source_pixels": 20
+      },
+      {
+        "moved_source_pixels": 0,
+        "merged_source_pixels": 0
+      }
+    ]
+  }
+}
