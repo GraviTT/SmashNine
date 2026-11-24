@@ -124,13 +124,14 @@ const SPECS := {
 	"frey_slash_sparks_2": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
 	"frey_slash_sparks_3": [19, 20.0, Vector2(20, 64), true, MOTION_DIR],
 	# The Frey pilot picks (pick cup 2026-11-04-frey, D49): the follow-through after her up, down and air J
-	# (candidate B, Codex CODEX-VFX-07), from the body centre with the move's angle drawn in, the ground and
-	# air versions apart; the afterglow her melee hits leave on the struck body (candidate A, the lead).
-	"frey_jfx_up": [16, 20.0, Vector2(70, 190), true, MOTION_DIR],
-	"frey_jfx_up_air": [16, 20.0, Vector2(70, 190), true, MOTION_DIR],
-	"frey_jfx_down": [15, 20.0, Vector2(35, 90), true, MOTION_DIR],
-	"frey_jfx_down_air": [14, 20.0, Vector2(65, 95), true, MOTION_DIR],
-	"frey_jfx_side_air": [16, 20.0, Vector2(35, 100), true, MOTION_DIR],
+	# from the body centre with the move's angle drawn in, the ground and air versions apart (candidate A, the
+	# lead's pixelfx: the user's re-pick in round 2026-11-24; the 11-04 clip bug had put Codex's B in); the
+	# afterglow her melee hits leave on the struck body (candidate A, the lead, kept by the same re-pick).
+	"frey_jfx_up": [19, 20.0, Vector2(80, 210), true, MOTION_DIR],
+	"frey_jfx_up_air": [19, 20.0, Vector2(80, 210), true, MOTION_DIR],
+	"frey_jfx_down": [19, 20.0, Vector2(20, 80), true, MOTION_DIR],
+	"frey_jfx_down_air": [19, 20.0, Vector2(60, 60), true, MOTION_DIR],
+	"frey_jfx_side_air": [19, 20.0, Vector2(20, 70), true, MOTION_DIR],
 	"frey_hit_after": [10, 20.0, Vector2(64, 56), true, MOTION_DIR],
 	"frey_hit_after_big": [14, 20.0, Vector2(96, 80), true, MOTION_DIR],
 	# The pick cup round 2026-11-19 winners (D49; candidates by Codex CODEX-VFX-08/09, A "the sharp moment",
@@ -169,7 +170,8 @@ const SPECS := {
 	"seal_barrier": [6, 6.0, Vector2(128, 128), false, REALM_EFFECTS_DIR],
 	"collapse_cracks": [6, 5.0, Vector2(160, 64), false, REALM_EFFECTS_DIR],
 	"warning_edge": [6, 8.0, Vector2(160, 24), true, REALM_EFFECTS_DIR],
-	# Xion's effects (CODEX-VFX-10 contract, 2026-11-24): until a pick is in the folder, her code draws them.
+	# Xion's effects (CODEX-VFX-10, pick cup 2026-11-24): blast B, recoil B, the double's entrance A, dive trail A.
+	# The tracer and the point-blank burst keep her code drawings (the user picked "now"; see CODE_DRAWN).
 	"xion_blast": [6, 30.0, Vector2(8, 64), true, EFFECTS_DIR],
 	"xion_bullet": [2, 20.0, Vector2(12, 4), true, EFFECTS_DIR],
 	"xion_recoil_blast": [6, 30.0, Vector2(96, 16), true, SKILL_DIR],
@@ -197,9 +199,10 @@ const AUTHORED_WIDTH := {
 	"portal_anim": 96, "seal_barrier": 256, "collapse_cracks": 320, "warning_edge": 320,
 }
 
-## Effects whose contract is set but whose art is not picked yet (Xion, CODEX-VFX-10): spawn() returns null for
-## them, so her code draws its stand-ins, until the picked file is in its folder; then drop the name here.
-const PENDING_ART := ["xion_blast", "xion_bullet", "xion_recoil_blast", "xion_point_blank", "xion_double_in", "xion_dive_trail"]
+## Effects with a contract but no strip, because the user picked the code drawing over the candidates (Xion,
+## pick cup 2026-11-24): spawn() returns null for them and the caller draws its own. A strip put in the folder
+## later takes over; then drop the name here.
+const CODE_DRAWN := ["xion_bullet", "xion_point_blank"]
 
 static var _cache: Dictionary = {}
 static var _additive: CanvasItemMaterial

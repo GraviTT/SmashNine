@@ -128,7 +128,8 @@ var point_blank_shown_at := -1.0
 var reload_ring: Node2D
 var reload_arc: Line2D
 var reload_art: Sprite2D
-## The picked reload mark (CODEX-VFX-10 contract): 8 frames of 24x24, frame k at k/8 of the reload.
+## A reload-mark strip (CODEX-VFX-10 contract): 8 frames of 24x24, frame k at k/8 of the reload. The user picked
+## the code ring in the pick cup (2026-11-24), so no file is there and the ring draws.
 const RELOAD_ART := "res://assets/art/ui/status/xion_reload.png"
 const RELOAD_ART_FRAMES := 8
 ## A reload-mark strip set at runtime instead of the file (the pick cup capture shows candidates with it).
@@ -199,8 +200,8 @@ func _fire_shot(aim: Vector2) -> void:
 	_hide_attack_box()
 	_shot_effect(global_position + GAME_SCALE.BODY_CENTRE + aim * 20.0, aim, (SHOT_FAR + SHOT_SIZE.x * 0.5) * GAME_SCALE.COMBAT - 20.0)
 
-## The J blast: the picked strip (Vfx "xion_blast", turned to the aim, mirrored to the left), else the code
-## pellets.
+## The J blast: the picked strip (Vfx "xion_blast", candidate B, turned to the aim, mirrored to the left), else
+## the code pellets.
 func _shot_effect(muzzle: Vector2, aim: Vector2, reach: float) -> void:
 	var art := VFX.spawn(get_parent(), "xion_blast", muzzle, Vector2.ONE, false, 5)
 	if art != null:
@@ -470,7 +471,8 @@ func _fire_bullet(from: Vector2, aim: Vector2) -> void:
 	bullet.art_scale_multiplier = GAME_SCALE.COMBAT
 	bullet.configure(self, BULLET_SIZE, BULLET_DAMAGE, BULLET_KNOCKBACK, aim, BULLET_COLOR, BULLET_SPEED, BULLET_LIFETIME)
 	bullet.muzzle = from
-	# The picked tracer replaces the rectangle; the bullet node already points along the flight.
+	# A tracer strip would replace the rectangle (the user picked the rectangle, so none is in the folder); the
+	# bullet node already points along the flight.
 	if bullet.set_effect_art("xion_bullet", 1.0):
 		var tracer := bullet.get_node_or_null("Vfx_xion_bullet") as Node2D
 		if tracer != null:
@@ -508,7 +510,7 @@ func _note_foe(body: Node) -> void:
 	if body is Node2D and body != self and body.is_in_group("players") and body.get("is_defeated") != true:
 		last_hit_foe = body as Node2D
 
-## A crimson burst on a foe hit from up close (stand-in for its art).
+## A crimson burst on a foe hit from up close (the user picked this code ring over the drawn candidates).
 func _mark_point_blank(target: Node) -> void:
 	if not is_instance_valid(target) or not target is Node2D:
 		return

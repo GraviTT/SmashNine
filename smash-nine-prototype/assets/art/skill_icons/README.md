@@ -16,6 +16,7 @@ Bottom-right HUD skill bar icons for the focused fighter.
 | Brave Luna | `luna_brave_j.png` | `luna_brave_k.png` | `luna_brave_l.png` | `luna_brave_i.png` |
 | Nova | `nova_j.png` | `nova_k.png` | `nova_l.png` | `nova_i.png` |
 | Rio | `rio_j.png` | `rio_k.png` | `rio_l.png` | `rio_i.png` |
+| Xion | `xion_j.png` | `xion_k.png` | `xion_l.png` | `xion_i.png` |
 
 Source and verification workflow: `tests/art_preview/skill_icons_18/build_skill_icons.gd`.
 
@@ -26,3 +27,5 @@ Source and verification workflow: `tests/art_preview/skill_icons_18/build_skill_
 **2026-11-03 (later):** Nova's `nova_j`, `nova_k`, `nova_l`, `nova_i` were replaced and `nova_u` added for her new kit (D47; CODEX-VFX-05, the only candidates, the user's "추천대로"): three quick punches (Vector Chain), an orb with an inward spiral (Gravity Orb), a floating figure in a field (Gravity Field), a hook pulling back (Gravity Beam), a black sphere with orbiting dots (Event Horizon). The skill bar shows the U slot only for a fighter with a third skill.
 
 **2026-11-03 (playtest prep):** Frey's `frey_k` (Whirl Wave, D44) is now CODEX-VFX-03 candidate A: a diagonal sword in a spin trail with a crescent wave leaving it, like his J and L icons. The user left the A/B pick to the lead before the playtest; B stays at `art/bakeoff/skill_icons/frey/frey_k-b-v1.png`.
+
+**2026-11-24:** Xion's `xion_j`, `xion_k`, `xion_l`, `xion_u`, `xion_i` were added (D51; CODEX-VFX-10, the user's pick in the pick cup round `2026-11-24`, 1 win against the key letters): twin shotguns firing (J), a roll with ejected shells (K), a downward recoil burst lifting her (L), her crimson hologram double (U), shots in every direction (I). Sources: `art/bakeoff/skill_icons/xion/`.

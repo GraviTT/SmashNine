@@ -586,8 +586,10 @@ func _named(node_name: String) -> int:
 			count += 1
 	return count
 
-## Her effects draw the picked strips once they are in the folders (CODEX-VFX-10 contract), and her code
-## stand-ins until then: the blast, the tracer and the reload mark.
+## Her effects as picked in the pick cup (2026-11-24): the shot draws the picked blast strip (the recoil, the
+## double's entrance and the dive trail load with the other strips in test_ultimates); the tracer keeps its code
+## rectangle unless a strip is put in place, and the reload mark is code too but still takes a strip set at
+## runtime (the cup captures show candidates with it).
 func _test_effect_art() -> void:
 	_floor(Vector2(0, 0), 2400)
 	var xion := _xion(Vector2(0, -2))
@@ -595,19 +597,17 @@ func _test_effect_art() -> void:
 	xion.facing = 1
 	xion.basic_attack()
 	await _frames(6)
-	if _named("Vfx_xion_blast") != 0:
-		_fail("Without the picked blast the code pellets should draw")
-	VFX._cache["xion_blast/false"] = _fake_strip(6, false)
-	await _shoot(xion)
-	await _frames(6)
 	if _named("Vfx_xion_blast") != 1:
-		_fail("With the blast strip in place the shot should draw it")
-	VFX._cache.erase("xion_blast/false")
+		_fail("The shot should draw the picked blast strip")
+	xion._fire_bullet(xion.global_position + Vector2(0, -32), Vector2.UP)
+	var plain: Node = arena.get_child(arena.get_child_count() - 1)
+	if plain.get_node_or_null("Vfx_xion_bullet") != null or not plain.get_node("Visual").visible:
+		_fail("A barrage shot should keep its code tracer (the user picked it)")
 	VFX._cache["xion_bullet/true"] = _fake_strip(2, true)
 	xion._fire_bullet(xion.global_position + Vector2(0, -32), Vector2.UP)
 	var bullet: Node = arena.get_child(arena.get_child_count() - 1)
 	if bullet.get_node_or_null("Vfx_xion_bullet") == null or bullet.get_node("Visual").visible:
-		_fail("With the tracer strip in place a barrage shot should draw it instead of the rectangle")
+		_fail("With a tracer strip in place a barrage shot should draw it instead of the rectangle")
 	VFX._cache.erase("xion_bullet/true")
 	# Let her last blast end first: a fighter added to the tree stands at the origin for a moment.
 	await _frames(12)

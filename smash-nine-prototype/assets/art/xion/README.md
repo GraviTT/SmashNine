@@ -16,9 +16,11 @@ Xion's own art is **B, the short coat**. The user picked it in the pick cup (rou
 | `xion_illustration.png` | `xion_illustration-b2` | 1024×1536. Her other-timeline double stands behind her as a crimson hologram, drawn with the game's hologram formula (`XionDouble.gd`) |
 | `xion_face.png` | `xion_face-b` | 256×256, cut from her figure only |
 
+**Move rows (2026-11-24):** `xion_moves_sheet.png` holds the user's pick in the pick cup round `2026-11-24` (item `xion-moves`, the new rows won against the stand-in). Ten rows of CODEX-SKM-06 (`art/bakeoff/xion/b/xion-<row>-v1.png`, drawn from the B look) sit in their `Xion.MOVE_SHEET_ROWS` slots: 192-px cells, six frames, feet y=152. The skill session rebuilt the sheet; the report is `reports/xion-skill-art-2026-11-24/README.md`.
+
 Still stand-ins:
 
-- `xion_moves_sheet.png`: Nova's female rows recoloured, under Xion's row names (`Xion.MOVE_SHEET_ROWS`). The skill session makes the real rows, effects and icons from this look with Codex, and the user picks them in the pick cup (D49). `reports/xion-kit-2026-11-18/make_standin_art.py` rebuilds the stand-in.
+- the `shot_air_down` row of `xion_moves_sheet.png` (row 5): Nova's female drawing recoloured. Both SKM-06 drafts rose 15 px with the recoil (about 4 px asked), so it waits for a redraw. `reports/xion-kit-2026-11-18/make_standin_art.py` made it.
 - `xion_portrait.png`: only a fallback; the menus use `xion_face.png`.
 
 The game draws her double from her own frames with a code hologram (`characters/xion/XionDouble.gd`), so it has no art of its own.
