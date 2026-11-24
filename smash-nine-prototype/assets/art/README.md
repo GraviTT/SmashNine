@@ -1,5 +1,17 @@
 # 아트 채택 경로
 
+## 가져오기 압축 규칙 (D52, 2026-11-24)
+
+새 그림을 넣을 때 `.import`의 `compress/mode`를 아래처럼 둔다. `tests/test_import_modes.gd`(run_all)가 검사한다.
+
+| 그림 | 압축 | 까닭 |
+|---|---|---|
+| 얼굴(`*_face*.png`), 타이틀 배경(`ui/title_bg.png`) | 손실 WebP, `compress/mode=1`, `compress/lossy_quality=0.9` | 붓으로 그린 일러스트라 손실 압축이 눈에 띄지 않는다. 웹 용량 −2.7MB |
+| 스토리 장면 그림(`story/cg_*`), 시작 카드(`story/stage_card_*`) | 손실 WebP, 품질 0.85 | 같은 까닭(이전부터) |
+| 그 밖의 모든 그림: 몸·기술 시트, 동작 줄, 몬스터, 이펙트, 렐름 배경, 아이콘, UI 틀 | 무손실, `compress/mode=0` | 손실 WebP는 색을 반 해상도로 저장해 픽셀 경계가 번진다 |
+
+웹에서 내려받는 양의 예산은 45MB다. `tools/build_web.ps1`이 빌드 끝에 `Download: … (budget 45 MiB)`를 찍고, 넘으면 경고한다. 근거는 `reports/web-size-2026-11-24/`에 있다.
+
 ## 스토리 대화 표정과 그림자 얼굴 (SYS-09)
 
 사용자가 모션 뷰어에서 고른 후보를 아래 경로로 복사한 뒤 Godot에서 임포트한다.

@@ -73,5 +73,12 @@ Compress-Archive -Path (Join-Path $webDir "*") -DestinationPath $zip
 $size = [Math]::Round((Get-Item $zip).Length / 1MB, 1)
 $largest = Get-ChildItem $webDir -File | Sort-Object Length -Descending | Select-Object -First 1
 Write-Output "Largest file: $($largest.Name) ($([Math]::Round($largest.Length / 1MB, 2)) MiB)"
+# What a player downloads (every file is fetched as it is). Budget 45 MiB (D52, 2026-11-24).
+$budgetMB = 45
+$download = (Get-ChildItem $webDir -File | Measure-Object -Property Length -Sum).Sum / 1MB
+Write-Output ("Download: {0:N1} MiB (budget {1} MiB)" -f $download, $budgetMB)
+if ($download -gt $budgetMB) {
+	Write-Output ("WARNING: the web download is over the {0} MiB budget by {1:N1} MiB. See reports/web-size-2026-11-24/ (D52) before adding more art." -f $budgetMB, ($download - $budgetMB))
+}
 Write-Output "Web build: $webDir"
 Write-Output "Upload zip: $zip ($size MB). Local check: node tools/serve_web.js build/web 8060"

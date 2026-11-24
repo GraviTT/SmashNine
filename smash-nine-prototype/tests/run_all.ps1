@@ -27,6 +27,7 @@ $tests += @("test_audio")
 $tests += @("test_projectile_art")
 $tests += @("test_story_faces")
 $tests += @("test_motion_fx")
+$tests += @("test_import_modes")
 $failed = @()
 $certificateNoise = 0
 
