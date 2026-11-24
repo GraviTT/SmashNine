@@ -24,7 +24,7 @@ func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
 	for test in [_test_air_jumps, _test_air_step_effect, _test_backstab, _test_pierce, _test_pierce_ledge,
-			_test_sword_blink, _test_sword_air_and_end, _test_counter, _test_counter_whiff, _test_decoy,
+			_test_sword_blink, _test_sword_air_and_end, _test_counter, _test_counter_whiff, _test_decoy, _test_decoy_takes_a_swing,
 			_test_flurry, _test_flurry_burst, _test_bots, _test_third_skill_slot]:
 		await test.call()
 		await _clear()
@@ -287,6 +287,36 @@ func _test_counter_whiff() -> void:
 	await _frames(2)
 	if _count_attacks(rio) != 0 or rio.attack_lock_timer < 0.2:
 		_fail("An empty counter should not attack and should leave Rio open (lock %.2f)" % rio.attack_lock_timer)
+
+## A foe's real swing reaches the decoy, bursts it and is hit by the burst. The decoy was a
+## static body until 2026-11-24 and no attack area ever met it (attack areas are not monitorable,
+## so the physics broadphase treats them as static, and two static objects are never paired).
+func _test_decoy_takes_a_swing() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var rio := _rio(Vector2(0, -2))
+	var foe: Node = PLAYER_FACTORY.create("frey")
+	arena.add_child(foe)
+	foe.global_position = Vector2(70, -2)
+	foe.setup(CHARACTER_REGISTRY.get_characters()["frey"], 2, false)
+	foe.ringout_y = 100000.0
+	foe.is_dummy = true
+	await _frames(12)
+	rio.facing = 1
+	rio.perform_skill_three()
+	var decoy: Node2D = rio.decoy
+	if not is_instance_valid(decoy):
+		_fail("Test setup: U should leave a decoy")
+		return
+	var hp: float = foe.hp
+	foe.facing = -1
+	foe.basic_attack()
+	await _frames(30)
+	if is_instance_valid(decoy):
+		_fail("A foe's swing 70 px away should reach the decoy and burst it")
+	elif float(foe.hp) >= hp:
+		_fail("The burst should hit the foe who struck the decoy (hp %.0f of %.0f)" % [foe.hp, hp])
+	elif bool(rio.decoy_swap_ready):
+		_fail("A burst decoy cannot be swapped with")
 
 ## A decoy where he stood and a 150 px step back; one swap; a foe's hit bursts it (his does not).
 func _test_decoy() -> void:

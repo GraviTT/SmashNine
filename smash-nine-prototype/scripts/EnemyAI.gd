@@ -90,9 +90,10 @@ const FALL_MAX_SPEED := 980.0 * GAME_SCALE.JUMP_SPEED
 ## width 120 / 1,559 / 737 s / 296 s. This arc kills the fewest bots and keeps matches in the 5-7
 ## minute range; its extra recoveries almost all land (round 11: 856 of 859).
 ## Extra ultimate presses after the first one: Nova's slingshot stages, Luna's heart laser.
-## Fixed extra ultimate presses (Luna's heart laser). Nova's slingshot is driven by aim
-## instead (_drive_nova_slingshot).
-const ULTIMATE_FOLLOWUPS := {"luna": [4.4]}
+## Fixed extra ultimate presses, per fighter. None since 2026-11-24: Nova's slingshot is driven
+## by aim (_drive_nova_slingshot) and Brave Luna's star beam by where her foe stands
+## (_drive_luna_brave; it used to be pressed 4.4 s into her form whatever was in front of her).
+const ULTIMATE_FOLLOWUPS := {}
 ## A follow-up press that started nothing (Brave Luna was mid-attack when her laser press came) is
 ## pressed again every frame for up to this long (2026-10-10: Codex QA-17 found the single press
 ## lost whenever she was busy; the button press is consumed either way).
@@ -208,6 +209,74 @@ const COMBAT_PROFILES := {
 	"xion": {"min_range": 40.0, "max_range": 140.0, "attack_range": 170.0, "kite": false, "recovery_skill": true, "basic_reach": 170.0}
 }
 const BUSH_NOTICE_RANGE := 140.0 * GAME_SCALE.WORLD
+
+# --- Kit moves (2026-11-24, reports/quality-systems-2026-11-24/) ---
+# What makes each fighter itself, pressed the way a player would. Until this date no bot pressed U
+# or opened Frey's wings: in a battle royale seven of eight fighters are bots, so a move no bot
+# uses is a move nobody meets. Distances are px before GameScale.COMBAT unless a line says WORLD.
+
+## Frey's wings (D44): in the air with her air jump left she hovers 0.3 s, then dash-slashes along
+## one of eight ways. The slash lands 60-240 px out in every way and the dash carries her 133 px
+## (tests/analysis/lead/wing_reach_probe.gd). After it she cannot act until she lands, so only
+## with floor under where the dash ends. One roll per airtime, a pause between uses, and at mid
+## range a jump taken for it ("wing_in").
+const WING_STRIKE_MIN := 47.0
+const WING_STRIKE_MAX := 150.0
+## The target may be this far off the dash's line.
+const WING_LINE_MISS := 23.0
+const WING_DASH_TRAVEL := 89.0 * GAME_SCALE.WORLD
+const WING_LANDING_DEPTH := 300.0 * GAME_SCALE.WORLD
+## Not in the first moments off the floor (a hover at ankle height reads as a ground move).
+const WING_AIR_TIME_MIN := 0.12
+const WING_CHANCE := 0.55
+const WING_COOLDOWN_MIN := 2.5
+const WING_COOLDOWN_MAX := 4.5
+const WING_IN_MIN := 100.0
+const WING_IN_MAX := 220.0
+const WING_IN_CHANCE := 0.3
+## Nova's gravity beam (U, D47): a straight shot of about 620 px that drags a standing foe to her
+## and slams one in the air down. Used past her melee reach with a clear line, more readily at a
+## foe in the air, with a pause between shots (the move itself has no cooldown).
+const NOVA_BEAM_MIN := 150.0
+const NOVA_BEAM_MAX := 370.0
+const NOVA_BEAM_CHANCE := 0.5
+const NOVA_BEAM_AIR_CHANCE := 0.8
+const NOVA_BEAM_PAUSE_MIN := 2.5
+const NOVA_BEAM_PAUSE_MAX := 4.5
+const NOVA_BEAM_LOOK := 1.0
+## Nova's field (L): cast where it holds the target (radius 200), looked at once a second. Inside
+## it she flies: up or down to a target this far above or below her (px).
+const NOVA_FIELD_CATCH := 150.0
+const NOVA_FIELD_CHANCE := 0.4
+const NOVA_FIELD_LOOK := 1.0
+const NOVA_FLIGHT_LEVEL := 30.0
+## Rio's decoy (U, D50): left where he stands as a foe starts a swing at him from this close; he
+## steps DECOY_STEP back (x WORLD), so only with floor there. Swapped with when the foe stands
+## between the two, faces him and is within his reach of the decoy (he lands behind it: the back
+## hit, x1.5), or when he is off the stage and the decoy still stands on it.
+const RIO_BAIT_REACH := 115.0
+const RIO_BAIT_CHANCE := 0.5
+const RIO_DECOY_STEP := 100.0 * GAME_SCALE.WORLD
+const RIO_SWAP_REACH := 110.0
+## Facing a Rio who leaves a decoy, a bot takes the decoy for him this often, for this long or
+## until it is gone: it fights the decoy, and its hit bursts it (D50 left bots never fooled, so
+## the decoy took no hit in eight soak matches, 2026-11-24).
+const DECOY_FOOLED_CHANCE := 0.6
+const DECOY_FOOLED_TIME := 1.5
+## Brave Luna's star beam (I again, D45): level, 560 long and 112 tall (x COMBAT), 3 s, and it ends
+## her form. Fired once a foe stands in its path; a foe at arm's length is punched first; fired
+## anyway LUNA_BEAM_LATEST s into the 6 s form.
+const LUNA_BEAM_EARLIEST := 1.2
+const LUNA_BEAM_MELEE_UNTIL := 3.0
+const LUNA_BEAM_LATEST := 4.6
+const LUNA_BEAM_REACH := 500.0
+const LUNA_BEAM_HALF_HEIGHT := 46.0
+const LUNA_BEAM_CLOSE := 70.0
+## Her star cyclone (Brave L): the shot (about 310 px x COMBAT) is fired early, by L again, once
+## she has spun this long and a foe stands in its path; else it fires itself after 3 s.
+const LUNA_CYCLONE_SPIN_MIN := 0.5
+const LUNA_CYCLONE_REACH := 280.0
+const LUNA_CYCLONE_HALF_HEIGHT := 40.0
 const DEFAULT_COMBAT_PROFILE := {"min_range": 65.0, "max_range": 215.0, "attack_range": 235.0, "kite": false}
 
 const OFFSCREEN_THINK_MIN := 3.0
@@ -284,6 +353,18 @@ var debug_reason: String = ""
 ## -1: no spike planned for the current window; otherwise seconds until the re-press.
 var spike_delay: float = -1.0
 var spike_window_seen: bool = false
+## Where Frey's wing dash goes when her hover ends (Frey._wing_direction reads it).
+var wing_aim: Vector2 = Vector2.ZERO
+var wing_cooldown: float = 0.0
+## This airtime's roll for the wings: -1 not rolled, 0 no, 1 yes.
+var wing_roll: int = -1
+var air_time: float = 0.0
+var beam_pause: float = 0.0
+var field_pause: float = 0.0
+## The decoy this bot takes for its target, and the one it has already rolled for.
+var fooled_by: Node2D
+var fooled_timer: float = 0.0
+var seen_decoy: Node
 
 func update(player, delta: float) -> void:
 	pending_threat = _new_attack_threat(player)
@@ -295,6 +376,7 @@ func update(player, delta: float) -> void:
 	_update_spike_followup(player, delta)
 	_update_ultimate_followups(player, delta)
 	_drive_nova_slingshot(player, delta)
+	_drive_kit(player, delta)
 	_update_stuck(player, delta)
 	_update_target_progress(player, delta)
 	ultimate_ready_time = ultimate_ready_time + delta if player.is_ultimate_ready() else 0.0
@@ -313,6 +395,11 @@ func update(player, delta: float) -> void:
 	if decision_timer <= 0.0 or _must_replan(player):
 		_select_state(player)
 
+	if _rio_decoy_bait(player):
+		_apply_intent(player, _intent())
+		last_intent = {"move": 0.0, "jump": false, "attack": "skill_3"}
+		return
+
 	if _update_guard(player, delta):
 		# A neutral intent: the last move input must not keep pushing the fighter (debate N2).
 		_apply_intent(player, _intent())
@@ -320,6 +407,7 @@ func update(player, delta: float) -> void:
 		return
 
 	var intent: Dictionary = _build_intent(player, delta)
+	intent = _kit_intent(player, intent)
 	intent = _avoid_hazards(player, intent)
 	last_commanded_move = float(intent.get("move", 0.0))
 	last_intent = intent
@@ -395,6 +483,15 @@ func reset(position: Vector2) -> void:
 	row_transition_direction = 0.0
 	row_transition_target = -1
 	aim_direction = Vector2.ZERO
+	wing_aim = Vector2.ZERO
+	wing_cooldown = 0.0
+	wing_roll = -1
+	air_time = 0.0
+	beam_pause = 0.0
+	field_pause = 0.0
+	fooled_by = null
+	fooled_timer = 0.0
+	seen_decoy = null
 
 func _target_timers(delta: float) -> void:
 	decision_timer = maxf(decision_timer - delta, 0.0)
@@ -505,6 +602,8 @@ func _apply_intent(player, intent: Dictionary) -> void:
 			player.skill_one()
 		"skill_2":
 			player.skill_two()
+		"skill_3":
+			player.press_skill_three()
 		"ultimate":
 			var was_ready: bool = player.is_ultimate_ready()
 			player.ultimate()
@@ -526,6 +625,7 @@ func _update_spike_followup(player, delta: float) -> void:
 	if spike_delay <= 0.0:
 		spike_delay = -1.0
 		if player.try_skill_two_followup():
+			player.count_move("l2")
 			debug_reason = "launched: spike follow-up"
 
 func _schedule_ultimate_followups(player) -> void:
@@ -599,7 +699,7 @@ func _engage_intent(player, delta: float) -> Dictionary:
 	if not is_instance_valid(target):
 		return _wander_intent(player)
 
-	var offset: Vector2 = target.global_position - player.global_position
+	var offset: Vector2 = _target_point() - player.global_position
 	var distance_x: float = absf(offset.x)
 	var distance_y: float = absf(offset.y)
 	var target_direction: float = signf(offset.x)
@@ -629,6 +729,10 @@ func _engage_intent(player, delta: float) -> Dictionary:
 			# Toward the opponent and over it, to open floor behind it.
 			move = target_direction
 			jump = player.is_on_floor() and distance_x < ESCAPE_JUMP_DISTANCE
+		"wing_in":
+			# Frey: a jump toward the target; in the air the wings take over (_drive_frey_wings).
+			move = target_direction
+			jump = player.is_on_floor()
 
 	# A target on a lower level: step off the ledge toward it when there is a landing (the
 	# engage band reaches farther down since attacks doubled; it used to stand on the edge).
@@ -691,6 +795,13 @@ func _choose_engage_action(player, distance_x: float, distance_y: float, target_
 			if escape_cooldown > 0.0 and randf() < CORNERED_GUARD_CHANCE:
 				_maybe_anticipate_guard(player, 1.0)
 
+	# Frey at mid range on the target's level: sometimes the jump her wings strike from.
+	if player.character_id == "frey" and wing_cooldown <= 0.0 and player.is_on_floor() and candidates.has("approach") \
+			and distance_x >= WING_IN_MIN * GAME_SCALE.COMBAT and distance_x <= WING_IN_MAX * GAME_SCALE.COMBAT \
+			and distance_y <= NAV_SAME_LEVEL and randf() < WING_IN_CHANCE:
+		candidates = ["wing_in"]
+		debug_reason = "mid range: jumping in for the wings"
+
 	action = _pick_non_repeating_action(candidates)
 	last_action = action
 	_maybe_anticipate_guard(player)
@@ -736,6 +847,9 @@ func _choose_attack(player, distance_x: float, distance_y: float) -> String:
 	# a target close and on the same level (QA-14: 2.4% and 5.7% hit rates when thrown at any range).
 	if attack_name == "skill_1" and player.character_id == "nova" and distance_x < float(profile.attack_range) * 0.5:
 		attack_name = "basic"
+	# Her field cast out of the target's reach only spends its 12 s cooldown: the orb instead.
+	if attack_name == "skill_2" and player.character_id == "nova" and distance_x > NOVA_FIELD_CATCH * GAME_SCALE.COMBAT:
+		attack_name = "skill_1"
 	if attack_name == "skill_1" and player.character_id == "yuki" and (distance_x > float(profile.attack_range) * 0.7 or distance_y > NAV_SAME_LEVEL):
 		attack_name = "basic"
 	# Xion's L fires down and lifts her: only over a target below her.
@@ -1544,6 +1658,8 @@ func _alive_fighters(player) -> int:
 func _predicted_target_position() -> Vector2:
 	if not is_instance_valid(target):
 		return Vector2.ZERO
+	if is_instance_valid(fooled_by):
+		return fooled_by.global_position
 	var motion: Variant = target.get("velocity")
 	return target.global_position + (motion as Vector2 if motion is Vector2 else Vector2.ZERO) * TARGET_LEAD_TIME
 
@@ -1732,3 +1848,194 @@ func _swing_still_coming(opponent: Node) -> bool:
 	if elapsed == null or startup == null:
 		return true
 	return float(elapsed) <= float(startup) + GUARD_LATE_GRACE
+
+# --- Kit moves (2026-11-24): see the constants above ---
+
+## The parts that run every frame: aims held through a move, presses that wait for their moment.
+func _drive_kit(player, delta: float) -> void:
+	beam_pause = maxf(beam_pause - delta, 0.0)
+	field_pause = maxf(field_pause - delta, 0.0)
+	_watch_decoy(delta)
+	match str(player.character_id):
+		"frey":
+			_drive_frey_wings(player, delta)
+		"rio":
+			_drive_rio_decoy(player)
+		"luna":
+			_drive_luna_brave(player)
+
+## Where the bot fights its target: at the target, or at the decoy it takes for it.
+func _target_point() -> Vector2:
+	return fooled_by.global_position if is_instance_valid(fooled_by) else target.global_position
+
+## One roll for each decoy the target leaves (Rio's U).
+func _watch_decoy(delta: float) -> void:
+	fooled_timer = maxf(fooled_timer - delta, 0.0)
+	if not is_instance_valid(fooled_by) or fooled_timer <= 0.0 or fooled_by.get("burst") == true:
+		fooled_by = null
+	if not is_instance_valid(target):
+		return
+	var decoy: Variant = target.get("decoy")
+	if decoy == null or not is_instance_valid(decoy) or decoy == seen_decoy:
+		return
+	seen_decoy = decoy
+	if randf() < DECOY_FOOLED_CHANCE:
+		fooled_by = decoy
+		fooled_timer = DECOY_FOOLED_TIME
+		debug_reason = "took the decoy for him"
+
+## Kit moves that take this frame's turn.
+func _kit_intent(player, intent: Dictionary) -> Dictionary:
+	if player.character_id == "nova":
+		return _nova_kit_intent(player, intent)
+	return intent
+
+func _drive_frey_wings(player, delta: float) -> void:
+	wing_cooldown = maxf(wing_cooldown - delta, 0.0)
+	if player.is_on_floor():
+		wing_roll = -1
+		air_time = 0.0
+		return
+	air_time += delta
+	if bool(player.wing_hovering):
+		# The dash goes where the target is when the hover ends.
+		var held := _wing_way(player)
+		if held != Vector2.ZERO:
+			wing_aim = held
+		return
+	if state != STATE_ENGAGE or wing_cooldown > 0.0 or air_time < WING_AIR_TIME_MIN:
+		return
+	if wing_roll < 0:
+		wing_roll = 1 if action == "wing_in" or randf() < WING_CHANCE else 0
+	if wing_roll == 0:
+		return
+	var way := _wing_way(player)
+	if way == Vector2.ZERO:
+		return
+	wing_aim = way
+	if player.try_wing_hover():
+		wing_cooldown = randf_range(WING_COOLDOWN_MIN, WING_COOLDOWN_MAX)
+		attack_age = 0.0
+		debug_reason = "wings: hover, then the dash-slash"
+
+## The one of eight ways along which the wing strike reaches the target, with floor under where
+## the dash ends; ZERO for none.
+func _wing_way(player) -> Vector2:
+	if not is_instance_valid(target):
+		return Vector2.ZERO
+	var to_target: Vector2 = _predicted_target_position() - player.global_position
+	var distance := to_target.length()
+	if distance < WING_STRIKE_MIN * GAME_SCALE.COMBAT or distance > WING_STRIKE_MAX * GAME_SCALE.COMBAT:
+		return Vector2.ZERO
+	var way := Vector2.from_angle(snappedf(to_target.angle(), PI / 4.0))
+	if absf(way.cross(to_target)) > WING_LINE_MISS * GAME_SCALE.COMBAT:
+		return Vector2.ZERO
+	var end: Vector2 = player.global_position + way * WING_DASH_TRAVEL
+	if not _ray_hits_world(player, end + Vector2(0.0, -40.0), end + Vector2(0.0, WING_LANDING_DEPTH)):
+		return Vector2.ZERO
+	return way
+
+func _nova_kit_intent(player, intent: Dictionary) -> Dictionary:
+	if not is_instance_valid(target) or (state != STATE_ENGAGE and state != STATE_PURSUE):
+		return intent
+	var locked: bool = float(player.attack_lock_timer) > 0.0
+	# In her own field she flies (D47): up or down to the target's height, as a player holds W or S.
+	if not locked and not intent.has("aim") and player._in_own_field():
+		var rise: float = target.global_position.y - player.global_position.y
+		if absf(rise) > NOVA_FLIGHT_LEVEL:
+			intent["aim"] = Vector2(0.0, signf(rise))
+	if locked or str(intent.get("attack", "")) == "ultimate":
+		return intent
+	if not (target.is_in_group("players") or target.is_in_group("realm_monsters")):
+		return intent
+	var from: Vector2 = player.global_position + GAME_SCALE.BODY_CENTRE
+	var to: Vector2 = _predicted_target_position() + GAME_SCALE.BODY_CENTRE
+	var distance := from.distance_to(to)
+	if beam_pause <= 0.0 and distance >= NOVA_BEAM_MIN * GAME_SCALE.COMBAT and distance <= NOVA_BEAM_MAX * GAME_SCALE.COMBAT and not _ray_hits_world(player, from, to):
+		var airborne: bool = target.has_method("is_on_floor") and not target.is_on_floor()
+		if randf() < (NOVA_BEAM_AIR_CHANCE if airborne else NOVA_BEAM_CHANCE):
+			beam_pause = randf_range(NOVA_BEAM_PAUSE_MIN, NOVA_BEAM_PAUSE_MAX)
+			intent["attack"] = "skill_3"
+			intent["aim"] = (to - from).normalized()
+			attack_age = 0.0
+			debug_reason = "gravity beam: slamming it down" if airborne else "gravity beam: dragging it in"
+			return intent
+		beam_pause = NOVA_BEAM_LOOK
+	if field_pause <= 0.0 and target.is_in_group("players") and distance <= NOVA_FIELD_CATCH * GAME_SCALE.COMBAT \
+			and float(player.skill_cooldown("l").x) <= 0.0 and not player._in_own_field():
+		field_pause = NOVA_FIELD_LOOK
+		if randf() < NOVA_FIELD_CHANCE:
+			intent["attack"] = "skill_2"
+			attack_age = 0.0
+			debug_reason = "gravity field: the target is inside"
+	return intent
+
+## A foe starts a swing at Rio from close by: the decoy takes it and he is a step away.
+func _rio_decoy_bait(player) -> bool:
+	if player.character_id != "rio" or pending_threat == null or not player.is_on_floor():
+		return false
+	if float(player.skill_cooldown("u").x) > 0.0 or not player._can_start_attack() or player.is_gravity_rooted():
+		return false
+	var gap: float = player.global_position.x - pending_threat.global_position.x
+	if absf(gap) > RIO_BAIT_REACH * GAME_SCALE.COMBAT or randf() >= RIO_BAIT_CHANCE:
+		return false
+	var away: float = signf(gap) if absf(gap) > 1.0 else -float(player.facing)
+	if not _has_floor_ahead(player, away, RIO_DECOY_STEP) or not _has_floor_ahead(player, away, RIO_DECOY_STEP * 0.5):
+		return false
+	# He steps straight back from where he faces.
+	player.facing = -int(away)
+	player.press_skill_three()
+	if not is_instance_valid(player.decoy):
+		return false
+	debug_reason = "decoy: left for the swing"
+	return true
+
+func _drive_rio_decoy(player) -> void:
+	if not bool(player.decoy_swap_ready) or not is_instance_valid(player.decoy) or float(player.hitstun_timer) > 0.0:
+		return
+	var spot: Vector2 = player.decoy.global_position
+	# Off the stage while the decoy still stands on it: back to it.
+	if state == STATE_RECOVER:
+		if _ray_hits_world(player, spot + Vector2(0.0, -8.0), spot + Vector2(0.0, 40.0)):
+			player.press_skill_three()
+			debug_reason = "decoy: back onto the stage"
+		return
+	if not is_instance_valid(target) or not target.is_in_group("players") or float(player.attack_lock_timer) > 0.0:
+		return
+	var foe: Vector2 = target.global_position
+	var between: bool = (foe.x - player.global_position.x) * (foe.x - spot.x) < 0.0
+	var faces_rio: bool = signf(player.global_position.x - foe.x) == float(target.facing)
+	var in_reach: bool = absf(foe.x - spot.x) <= RIO_SWAP_REACH * GAME_SCALE.COMBAT and absf(foe.y - spot.y) <= NAV_SAME_LEVEL
+	if between and faces_rio and in_reach:
+		player.press_skill_three()
+		# Behind it now (the back hit, x1.5): cut at once.
+		attack_cooldown = 0.0
+		action_timer = 0.0
+		debug_reason = "decoy: swapped behind it"
+
+func _drive_luna_brave(player) -> void:
+	if not bool(player.transformed) or bool(player.transformation_finishing):
+		return
+	var has_foe: bool = is_instance_valid(target) and target.is_in_group("players")
+	var offset: Vector2 = target.global_position - player.global_position if has_foe else Vector2.ZERO
+	var side: int = (1 if offset.x > 0.0 else -1) if absf(offset.x) > 1.0 else int(player.facing)
+	if float(player.cyclone_timer) > 0.0:
+		var spun: float = float(player.CYCLONE_TIME) - float(player.cyclone_timer)
+		if has_foe and spun >= LUNA_CYCLONE_SPIN_MIN and absf(offset.x) <= LUNA_CYCLONE_REACH * GAME_SCALE.COMBAT and absf(offset.y) <= LUNA_CYCLONE_HALF_HEIGHT * GAME_SCALE.COMBAT:
+			player.facing = side
+			if player.try_skill_two_followup():
+				player.count_move("l2")
+				debug_reason = "star cyclone: fired at a foe in its path"
+		return
+	var into: float = float(player.TRANSFORMATION_DURATION) - float(player.transformation_timer)
+	if into < LUNA_BEAM_EARLIEST:
+		return
+	var lined: bool = has_foe and absf(offset.y) <= LUNA_BEAM_HALF_HEIGHT * GAME_SCALE.COMBAT and absf(offset.x) <= LUNA_BEAM_REACH * GAME_SCALE.COMBAT \
+		and (absf(offset.x) >= LUNA_BEAM_CLOSE * GAME_SCALE.COMBAT or into >= LUNA_BEAM_MELEE_UNTIL)
+	if not lined and into < LUNA_BEAM_LATEST:
+		return
+	if has_foe:
+		player.facing = side
+	player.ultimate()
+	if player.get("ultimate_followup_started") == true:
+		debug_reason = "star beam: a foe in its path" if lined else "star beam: before the form ends"

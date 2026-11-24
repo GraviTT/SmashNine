@@ -258,6 +258,7 @@ func character_physics_process(delta: float) -> void:
 		sword_bot_timer -= delta
 		if sword_bot_timer < 0.0 and _sword_ready() and hitstun_timer <= 0.0 and not is_gravity_rooted():
 			_sword_blink()
+			count_move("k2")
 	_update_flurry_wait(delta)
 
 func character_on_hit() -> void:
@@ -307,6 +308,8 @@ func damage_scale_against(target: Node) -> float:
 	if not _is_behind(target):
 		return 1.0
 	_mark_backstab.call_deferred(target)
+	if target.is_in_group("players"):
+		count_move("back_hits")
 	return BACKSTAB_SCALE
 
 ## Rio stands on the side `target` does not face.
@@ -630,7 +633,7 @@ func _decoy_cast() -> void:
 	_reset_combo()
 	_clear_decoy()
 	decoy_cooldown_timer = DECOY_COOLDOWN
-	var copy := StaticBody2D.new()
+	var copy := AnimatableBody2D.new()
 	copy.set_script(DECOY_SCRIPT)
 	copy.name = "RioDecoy"
 	get_parent().add_child(copy)
@@ -670,14 +673,23 @@ func _decoy_swap() -> void:
 
 ## A foe hit the decoy (RioDecoy): it bursts and knocks whoever stands at it up.
 func decoy_burst(copy: Node2D) -> void:
+	count_move("decoy_burst")
 	if copy == decoy:
 		decoy = null
 		decoy_swap_ready = false
+	var at: Vector2 = copy.global_position + GAME_SCALE.BODY_CENTRE
+	if VFX.spawn(get_parent(), "rio_rune_burst", at, Vector2.ONE * 0.6, false, 4) == null:
+		_play_ring(at, RUNE_COLOR)
+	# A swing reports its hit from inside the physics step, where a new attack area cannot be set
+	# up (engine errors, 2026-11-24): the burst's own hit comes right after it.
+	_burst_decoy_at.call_deferred(at)
+
+func _burst_decoy_at(at: Vector2) -> void:
+	if is_defeated or not is_inside_tree():
+		return
 	attack_art_enabled = false
-	_spawn_attack(DECOY_BURST_SIZE, _offset_to(copy.global_position + GAME_SCALE.BODY_CENTRE), DECOY_BURST_DAMAGE, DECOY_BURST_KNOCKBACK, Vector2(0, -1), RUNE_COLOR, 0.12)
+	_spawn_attack(DECOY_BURST_SIZE, _offset_to(at), DECOY_BURST_DAMAGE, DECOY_BURST_KNOCKBACK, Vector2(0, -1), RUNE_COLOR, 0.12)
 	attack_art_enabled = true
-	if VFX.spawn(get_parent(), "rio_rune_burst", copy.global_position + GAME_SCALE.BODY_CENTRE, Vector2.ONE * 0.6, false, 4) == null:
-		_play_ring(copy.global_position + GAME_SCALE.BODY_CENTRE, RUNE_COLOR)
 
 func _clear_decoy() -> void:
 	if is_instance_valid(decoy):
@@ -749,6 +761,7 @@ func _update_flurry_wait(delta: float) -> void:
 		if flurry_bot_timer <= 0.0 and hitstun_timer <= 0.0 and _stuck_flurry_swords() > 0:
 			_start_flurry()
 			ultimate_followup_started = true
+			count_move("i2")
 			return
 	if flurry_timer <= 0.0:
 		_burst_flurry_swords()
