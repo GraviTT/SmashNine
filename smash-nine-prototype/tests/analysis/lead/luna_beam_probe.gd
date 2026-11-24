@@ -10,7 +10,10 @@ extends "res://tests/soak_match.gd"
 ## A beam line: "into" seconds into her form at the press; "hits" [seconds into the beam, fighter,
 ## "t" tick or "f" last blast, damage taken, the fighter's damage multiplier]; "ringouts" [fighter,
 ## seconds after the beam last hit it, ring-out damage, "t" or "f"]: ring-outs credited to her
-## (she was the last attacker) within AFTERMATH s of the beam's last hit on that fighter.
+## (she was the last attacker) within AFTERMATH s of the beam's last hit on that fighter, with the
+## line it crossed ("side" or "bottom"). "carried" [fighter, px along the beam between its first
+## and last tick, px it fell meanwhile]; "blasts" [fighter, HP % left, on the floor, px to the side
+## blast line the beam points at, px above the bottom ring-out line] at the last blast.
 
 const CONTROL_AI := preload("res://tests/analysis/lead/luna_control_ai.gd")
 const FIXED_AI := preload("res://tests/analysis/lead/luna_fixed_beam_ai.gd")
@@ -98,8 +101,8 @@ func _watch(watch: Dictionary) -> void:
 			"t": snappedf(main.director.match_elapsed, 0.1),
 			"into": snappedf(float(frame_index - int(watch.formed_at)) * FRAME_TIME, 0.01),
 			"fired": false, "ticks": 0, "finals": 0, "tick_damage": 0.0, "final_damage": 0.0,
-			"other_hits": 0, "other_damage": 0.0, "hits": [], "ringouts": [],
-			"_luna": luna.get_instance_id(), "_end_frame": 0, "_last": {}
+			"other_hits": 0, "other_damage": 0.0, "hits": [], "ringouts": [], "carried": [], "blasts": [],
+			"_luna": luna.get_instance_id(), "_end_frame": 0, "_last": {}, "_first_at": {}, "_last_at": {}, "_names": {}
 		}
 	if watch.beam != null and is_instance_valid(luna.heart_laser):
 		watch.beam.fired = true
@@ -141,10 +144,15 @@ func _on_damaged(player: Node, amount: float, attacker: Variant, source: String)
 	var multiplier: float = float(attacker.attack_power) / (100.0 + maxf(float(player.defense), 0.0)) * float(player.incoming_damage_scale)
 	if float(player.star_mark_timer) > 0.0:
 		multiplier *= float(player.STAR_MARK_DAMAGE_SCALE)
+	var along: float = float(laser.direction.x)
+	var side_line: float = float(player.blast_right) if along > 0.0 else float(player.blast_left)
 	watch.pending = {
 		"amount": amount, "victim": player, "count": _ticks(attacker),
 		"last_frame": float(laser.elapsed) >= float(laser.duration),
-		"at": snappedf(float(laser.elapsed), 0.01), "multiplier": snappedf(multiplier, 0.001)
+		"at": snappedf(float(laser.elapsed), 0.01), "multiplier": snappedf(multiplier, 0.001),
+		"where": player.global_position, "along": along,
+		"snapshot": [str(player.display_name), snappedf(100.0 * float(player.hp) / maxf(float(player.max_hp), 1.0), 1.0), player.is_on_floor(),
+			snappedf(absf(side_line - player.global_position.x), 1.0), snappedf(float(player.ringout_y) - player.global_position.y, 1.0)]
 	}
 
 func _settle(watch: Dictionary) -> void:
@@ -165,6 +173,7 @@ func _settle(watch: Dictionary) -> void:
 		kind = "f"
 		beam.finals = int(beam.finals) + 1
 		beam.final_damage = float(beam.final_damage) + amount
+		beam.blasts.append(hit.snapshot)
 	else:
 		beam.other_hits = int(beam.other_hits) + 1
 		beam.other_damage = float(beam.other_damage) + amount
@@ -173,7 +182,14 @@ func _settle(watch: Dictionary) -> void:
 	var victim_name := str(victim.display_name) if is_instance_valid(victim) else "?"
 	beam.hits.append([hit.at, victim_name, kind, snappedf(amount, 0.01), hit.multiplier])
 	if is_instance_valid(victim):
-		beam._last[victim.get_instance_id()] = {"frame": frame_index, "kind": kind}
+		var key: int = victim.get_instance_id()
+		beam._last[key] = {"frame": frame_index, "kind": kind}
+		if kind == "t":
+			var along_beam: Vector2 = Vector2(float(hit.where.x) * float(hit.along), float(hit.where.y))
+			if not beam._first_at.has(key):
+				beam._first_at[key] = along_beam
+			beam._last_at[key] = along_beam
+			beam._names[key] = victim_name
 
 func _credit_ringout(watch: Dictionary, victim: Node, amount: float) -> void:
 	luna_ringouts += 1
@@ -188,7 +204,8 @@ func _credit_ringout(watch: Dictionary, victim: Node, amount: float) -> void:
 	for beam in candidates:
 		var last: Variant = beam._last.get(victim.get_instance_id())
 		if last != null and frame_index - int(last.frame) <= limit:
-			beam.ringouts.append([str(victim.display_name), snappedf(float(frame_index - int(last.frame)) * FRAME_TIME, 0.01), snappedf(amount, 0.1), last.kind])
+			var how := "bottom" if float(victim.global_position.y) > float(victim.ringout_y) else "side"
+			beam.ringouts.append([str(victim.display_name), snappedf(float(frame_index - int(last.frame)) * FRAME_TIME, 0.01), snappedf(amount, 0.1), last.kind, how])
 			beam_ringouts += 1
 			return
 
@@ -200,7 +217,10 @@ func _close(watch: Dictionary) -> void:
 	settling.append(beam)
 
 func _report(beam: Dictionary) -> void:
-	for key in ["_luna", "_end_frame", "_last"]:
+	for key in beam._first_at:
+		var moved: Vector2 = beam._last_at[key] - beam._first_at[key]
+		beam.carried.append([beam._names[key], snappedf(moved.x, 1.0), snappedf(moved.y, 1.0)])
+	for key in ["_luna", "_end_frame", "_last", "_first_at", "_last_at", "_names"]:
 		beam.erase(key)
 	beam.tick_damage = snappedf(float(beam.tick_damage), 0.1)
 	beam.final_damage = snappedf(float(beam.final_damage), 0.1)
