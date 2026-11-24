@@ -1,0 +1,43 @@
+{
+    "previous_run":  {
+                         "start_utc":  "2026-11-23 16:14:17 UTC",
+                         "hard_stop_minutes":  180,
+                         "deadline_utc":  "2026-11-23 19:14:17 UTC",
+                         "next_clock_observation_utc":  "2026-11-23 22:11:09 UTC",
+                         "local_clock_confirmation":  "2026-11-24T07:11:37.6152370+09:00",
+                         "action":  "New generation and row production stopped as soon as elapsed-time overrun was observed. Only existing result inspection, reporting and scope verification continued.",
+                         "limitation":  "The 180-minute cutoff was not checked at the deadline. Do not claim the task finished within 180 minutes."
+                     },
+    "start_local":  "2026-11-24T07:18:45.3937835+09:00",
+    "deadline_local":  "2026-11-24T10:18:45.3937835+09:00",
+    "hard_stop_minutes":  180,
+    "calls":  [
+                  {
+                      "row":  "shot_alt",
+                      "attempt":  3,
+                      "start":  "2026-11-24T07:20:29.2685462+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T07:21:12.8025682+09:00",
+                      "elapsed_minutes":  0.72556703333333339
+                  },
+                  {
+                      "row":  "double_float",
+                      "attempt":  1,
+                      "start":  "2026-11-24T07:25:00.5490051+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T07:25:42.6254980+09:00",
+                      "elapsed_minutes":  0.70127488166666663
+                  }
+              ],
+    "observations":  [
+                         "2026-11-24T07:20:29.2685462+09:00",
+                         "2026-11-24T07:21:12.8025682+09:00",
+                         "2026-11-24T07:25:00.5490051+09:00",
+                         "2026-11-24T07:25:42.6254980+09:00",
+                         "2026-11-24T14:34:58.5364276+09:00"
+                     ],
+    "action":  "No more generation or rows after stop observation. Finish existing-result review, README and commit script only.",
+    "stop_observed_local":  "2026-11-24T14:34:22.5579923+09:00",
+    "status":  "hard_stop_passed",
+    "limitation":  "Last recorded image_gen return was 07:25:42 KST. Next explicit Get-Date was 14:34:22 KST during normalization/review. The clock gap cause is unverified; do not attribute it to image_gen or claim completion within 180 minutes."
+}

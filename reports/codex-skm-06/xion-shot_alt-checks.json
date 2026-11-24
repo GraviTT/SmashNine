@@ -1,0 +1,814 @@
+{
+  "selection": {
+    "factor": 0.373,
+    "accepted": true,
+    "face_verified": true,
+    "costume_ok": true,
+    "pose_ok": true,
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "reviewed_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "note": "왼팔을 가슴 앞으로 교차해 사격하고 반대 총은 허리 옆으로 낮춘 6프레임 후보. 노출 얼굴 폭 1.000, 몸 높이 전 프레임 97px이며 가려진 먼 눈 때문에 눈 간 거리는 측정 불가다.",
+    "attempt_notes": "재개 1차(전체 3차) 생성. 이전 111–112px 몸을 다시 그려 공통 배율 0.373에서 97px로 맞췄다. F5 자동 왼쪽 얼굴 표식이 구레나룻을 잡아 픽셀 격자로 볼 경계에 보정했고 나머지 표식은 채택했다. 양손 총·스카프 두 꼬리 확인.",
+    "human_review": "기존 shot과 번갈아 볼 때 왼손 교차 사격이 분명한지, F3 반동과 F5 펌프 표현, 발은 고정된 상태의 작은 전진 체중 이동이 충분히 읽히는지 판단.",
+    "stem": "xion",
+    "row": "shot_alt",
+    "attempt": 3,
+    "fps": 16,
+    "loop": false,
+    "for": "J 옆 사격(왼손)"
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-06\\xion\\shot_alt\\attempt-3\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.373,
+      "scale_by": "fixed:0.373",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        97,
+        97
+      ],
+      "body_width_range": [
+        67,
+        81
+      ],
+      "area_range": [
+        3268,
+        3461
+      ],
+      "area_spread_percent": 5.58,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        2798,
+        2968
+      ],
+      "interior_detail_range": [
+        122.09,
+        129.79
+      ],
+      "interior_detail_mean": 125.75,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 107.47,
+      "interior_detail_ratio": 1.1701
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 107.47,
+          "colour_count": 2627,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 107.47,
+      "colour_count_range": [
+        2627,
+        2627
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-06/xion/shot_alt/attempt-3/source-frames/00.png",
+        "bbox": [
+          64,
+          56,
+          139,
+          153
+        ],
+        "body_height": 97,
+        "body_width": 75,
+        "area": 3437,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 129.79,
+        "colour_count": 2930,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 64,
+          "top": 56,
+          "right": 53,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2077
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-06/xion/shot_alt/attempt-3/source-frames/01.png",
+        "bbox": [
+          63,
+          56,
+          142,
+          153
+        ],
+        "body_height": 97,
+        "body_width": 79,
+        "area": 3288,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 124.03,
+        "colour_count": 2835,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 63,
+          "top": 56,
+          "right": 50,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1541
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-06/xion/shot_alt/attempt-3/source-frames/02.png",
+        "bbox": [
+          63,
+          56,
+          141,
+          153
+        ],
+        "body_height": 97,
+        "body_width": 78,
+        "area": 3461,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 122.09,
+        "colour_count": 2968,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 63,
+          "top": 56,
+          "right": 51,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.136
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-06/xion/shot_alt/attempt-3/source-frames/03.png",
+        "bbox": [
+          61,
+          56,
+          142,
+          153
+        ],
+        "body_height": 97,
+        "body_width": 81,
+        "area": 3329,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 123.51,
+        "colour_count": 2875,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 61,
+          "top": 56,
+          "right": 50,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1493
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-06/xion/shot_alt/attempt-3/source-frames/04.png",
+        "bbox": [
+          63,
+          56,
+          130,
+          153
+        ],
+        "body_height": 97,
+        "body_width": 67,
+        "area": 3268,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 126.45,
+        "colour_count": 2798,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 63,
+          "top": 56,
+          "right": 62,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1766
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-06/xion/shot_alt/attempt-3/source-frames/05.png",
+        "bbox": [
+          64,
+          56,
+          137,
+          153
+        ],
+        "body_height": 97,
+        "body_width": 73,
+        "area": 3364,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 128.64,
+        "colour_count": 2897,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 64,
+          "top": 56,
+          "right": 55,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.197
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-06/xion/shot_alt/attempt-3/xion-shot_alt.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-06/xion/shot_alt/attempt-3/frames",
+      "closeup": "reports/codex-skm-06/xion/shot_alt/attempt-3/closeup.png",
+      "compare": "reports/codex-skm-06/xion/shot_alt/attempt-3/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        66.5,
+        44,
+        3,
+        4
+      ],
+      [
+        71,
+        42,
+        2,
+        3
+      ],
+      [
+        62.5,
+        46,
+        3,
+        4
+      ],
+      [
+        72.5,
+        46,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 65.595,
+        "y": 42.5,
+        "score": 1
+      },
+      {
+        "x": 71.279,
+        "y": 42.305,
+        "score": 1
+      },
+      {
+        "x": 62.5,
+        "y": 46,
+        "score": 1
+      },
+      {
+        "x": 72.5,
+        "y": 46,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 5.6873439319246355,
+    "reference_face_width": 10.0,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 106.5,
+            "y": 76.0,
+            "score": 0.916
+          },
+          {
+            "x": 108.769,
+            "y": 75.025,
+            "score": 0.675
+          },
+          {
+            "x": 102.5,
+            "y": 79.0,
+            "score": 0.844
+          },
+          {
+            "x": 112.5,
+            "y": 79.0,
+            "score": 0.933
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          89,
+          58,
+          0.831
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 102.5,
+            "y": 76.0,
+            "score": 0.871
+          },
+          {
+            "x": 105.277,
+            "y": 74.945,
+            "score": 0.753
+          },
+          {
+            "x": 98.5,
+            "y": 79.0,
+            "score": 0.853
+          },
+          {
+            "x": 108.5,
+            "y": 79.0,
+            "score": 0.969
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          85,
+          58,
+          0.799
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 102.071,
+            "y": 73.5,
+            "score": 0.898
+          },
+          {
+            "x": 105.291,
+            "y": 73.095,
+            "score": 0.936
+          },
+          {
+            "x": 99.5,
+            "y": 78.5,
+            "score": 0.611
+          },
+          {
+            "x": 109.5,
+            "y": 77.0,
+            "score": 0.918
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          85,
+          56,
+          0.535
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 101.5,
+            "y": 76.0,
+            "score": 0.882
+          },
+          {
+            "x": 105.867,
+            "y": 74.722,
+            "score": 0.681
+          },
+          {
+            "x": 98.5,
+            "y": 79.0,
+            "score": 0.793
+          },
+          {
+            "x": 108.5,
+            "y": 79.0,
+            "score": 0.948
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          85,
+          58,
+          0.786
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 100.5,
+            "y": 74.5,
+            "score": 0.867
+          },
+          {
+            "x": 107.061,
+            "y": 75.265,
+            "score": 0.725
+          },
+          {
+            "x": 99.5,
+            "y": 79,
+            "score": 0.792
+          },
+          {
+            "x": 109.5,
+            "y": 79,
+            "score": 0.916
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          85,
+          58,
+          0.753
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 100.5,
+              "y": 74.5,
+              "score": 0.867
+            },
+            {
+              "x": 107.061,
+              "y": 75.265,
+              "score": 0.725
+            },
+            {
+              "x": 98.5,
+              "y": 79.0,
+              "score": 0.792
+            },
+            {
+              "x": 109.5,
+              "y": 79.0,
+              "score": 0.916
+            }
+          ],
+          "face_width_ratio": 1.1
+        },
+        "correction_reason": "16배 픽셀 격자에서 왼쪽 제안점 x98.5가 귀/구레나룻 쪽 어두운 경계임을 확인했다. 기준처럼 눈 아래 노출 볼 경계 x99.5로 옮겼다. 오른쪽 표식과 y는 그대로다.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 105.5,
+            "y": 74.5,
+            "score": 0.896
+          },
+          {
+            "x": 108.079,
+            "y": 74.425,
+            "score": 0.655
+          },
+          {
+            "x": 101.5,
+            "y": 79.0,
+            "score": 0.895
+          },
+          {
+            "x": 111.5,
+            "y": 79.0,
+            "score": 0.918
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          88,
+          58,
+          0.81
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      }
+    ],
+    "review_note": "Inspected ART-72 landmarks; corrections, if any, retain the original proposal and reason. Same row factor; no image editing. Eye distance remains unavailable.",
+    "sheet_sha256": "64a8a79ab19e9e63c9d90b02b87e2dfde122ce2d622e2dd686d7af296c3fd043"
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-06\\xion\\shot_alt\\attempt-3\\xion-shot_alt.png",
+    "frames": [
+      {
+        "scale": 1.0,
+        "score": 0.831
+      },
+      {
+        "scale": 1.0,
+        "score": 0.799
+      },
+      {
+        "scale": 0.96,
+        "score": 0.545
+      },
+      {
+        "scale": 0.96,
+        "score": 0.783
+      },
+      {
+        "scale": 1.0,
+        "score": 0.753
+      },
+      {
+        "scale": 1.0,
+        "score": 0.81
+      }
+    ],
+    "median": 1.0,
+    "used": 5
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-06\\xion-shot_alt-3.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      24741,
+      24671,
+      24326,
+      23909,
+      23595,
+      23527
+    ],
+    "boxes": [
+      [
+        64,
+        245,
+        264,
+        506
+      ],
+      [
+        433,
+        245,
+        644,
+        506
+      ],
+      [
+        782,
+        246,
+        990,
+        506
+      ],
+      [
+        1162,
+        246,
+        1378,
+        506
+      ],
+      [
+        1539,
+        246,
+        1719,
+        506
+      ],
+      [
+        1898,
+        246,
+        2095,
+        506
+      ]
+    ]
+  },
+  "sheet_sha256": "64a8a79ab19e9e63c9d90b02b87e2dfde122ce2d622e2dd686d7af296c3fd043"
+}
