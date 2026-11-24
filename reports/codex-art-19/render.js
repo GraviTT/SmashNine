@@ -309,8 +309,11 @@ function renderC() {
 	const columnHeight = branchesBottom + 102 - 470;
 	const labelY = 470 + columnHeight;
 	const charY = labelY + 130;
+	// The character cards share the width: five were 704 wide, a sixth (Xion, 2026-11-25) narrows them.
+	const gap = 28, start = 104;
+	const cw = Math.floor((W - 2 * start - (data.characters.length - 1) * gap) / data.characters.length);
 	let cardH = 700;
-	for (const character of data.characters) cardH = Math.max(cardH, characterHeight(character, 704));
+	for (const character of data.characters) cardH = Math.max(cardH, characterHeight(character, cw));
 	H = charY + cardH + 100;
 	let s = svgStart() + header(state);
 	const rootX = 1640, rootY = 260;
@@ -340,7 +343,6 @@ function renderC() {
 		}
 	}
 	s += drawCharactersLabel(state, 1700, labelY, 440, 94);
-	const cw = 704, gap = 28, start = 104;
 	for (let i = 0; i < data.characters.length; i++) {
 		const cx = start + i * (cw + gap);
 		s += connector([[1920, labelY + 94], [1920, labelY + 112], [cx + cw / 2, labelY + 112], [cx + cw / 2, charY]], data.characters[i].color, 6);

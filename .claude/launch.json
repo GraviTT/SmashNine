@@ -40,6 +40,16 @@
         "8074"
       ],
       "port": 8074
+    },
+    {
+      "name": "smashnine-web-system",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "tools/serve_web.js",
+        "build/web",
+        "8064"
+      ],
+      "port": 8064
     }
   ]
 }

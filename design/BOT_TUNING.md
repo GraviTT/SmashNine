@@ -1,4 +1,4 @@
-# 봇 조절 핸드북 (2026-10-08 ~ 10-10)
+# 봇 조절 핸드북 (2026-10-08 ~ 10-10, 키트 기술 규칙 2026-11-24~25)
 
 이 문서만 읽으면 지금까지 봇을 어떻게 조절해 왔는지 이해하고, 다음 할 일을 바로 이어서 할 수 있게 정리했습니다. 라운드별 세부 기록은 맨 아래 "파일 지도"에 있습니다.
 
@@ -6,8 +6,13 @@
 
 - **봇 조절은 잠시 멈춤 (2026-10-10 사용자: "이제부터는 각 캐릭터들을 먼저 완성시키는 방향으로 간다", 결정 D30).** 다시 시작할 때는 7번 "다음에 할 것"부터 합니다.
 - **캐릭터를 바꾸면 봇도 같이 손봐야 합니다.** 6번 "캐릭터를 바꿀 때 봇 체크리스트"를 보세요.
-- **현재 봇 코드:** Codex QA-14 16라운드의 S0 변형(커밋 `a069c9e`, `smash-nine-prototype/scripts/EnemyAI.gd`)에 캐릭터 키트 변경에 따른 수정 2건을 더했습니다(2026-10-10 밤): Frey 강스파이크 재입력, Luna 하트 레이저 재입력(아래 6번). 아래 측정치는 그 전 S0 기준이며, 새 측정은 Codex QA-17 2차(`reports/codex-qa-17/round-2/`)에 있습니다.
-- **현재 측정치:** 같은 시드 101–112, 8봇, 12판 기준입니다.
+- **봇이 새 키트 기술을 씁니다 (2026-11-24~25, 결정 D53, 사용자 "추천대로 해").** 멈춤이 풀린 것은 "키트 기술을 봇이 쓰게 하는 일"뿐이고, 7번의 봇 전반 조절은 그대로 멈춰 있습니다.
+  - 넣은 것: Frey 날개, Nova 광선(U)·필드·비행, Rio 분신(U)과 자리 바꾸기, Brave Luna 광선·회오리를 상황을 보고 쏘기, 모든 봇이 Rio 분신에 60% 속기. 규칙은 6번 표의 "캐릭터 고유 기술" 줄, 과정과 측정은 `reports/bot-kits-2026-11-24/README.md`, 그림은 `reports/bot-behavior/`에 있습니다.
+  - 쓰는지는 소크 결과의 `moves`(기술 사용 횟수)로 봅니다. 같은 8판(시드 2001~2008)에서 한 명이 한 판에 쓴 횟수: Frey 날개 10.9(적중 83%), Nova 광선 14.9(적중 79%), Rio 분신 7.5(84%가 적의 공격에 터짐), Luna 광선 4.8(한 번에 평균 16틱).
+  - 그 8판의 경기: 길이 중앙값 308초 → 289초, 링아웃 합계 80 → 96, 바깥이 무너질 때(4:00) 생존 중앙값 4명 → 3명. 평균 순위는 Rio 4.6 → 2.3(5승), Luna 3.2 → 2.8(3승)이 오르고 Xion 4.0 → 5.4, Yuki 4.8 → 6.1이 내렸습니다(8판이라 방향만 봅니다). 원본: `reports/bot-kits-2026-11-24/soak-before.txt`, `soak-after-round4.txt`.
+  - 아래 12판 표(S0)와는 시드와 판 수가 달라 바로 비교할 수 없습니다. 키트 규칙 뒤의 12판 프로브 측정(3번)은 아직 없습니다.
+- **현재 봇 코드:** Codex QA-14 16라운드의 S0 변형(커밋 `a069c9e`, `smash-nine-prototype/scripts/EnemyAI.gd`)에 캐릭터 키트 변경에 따른 수정(2026-10-10 밤의 Frey 재입력·Luna 재입력, 11-03~19의 Frey·Nova·Xion 키트 반영)과 위의 키트 기술 규칙(`da2021d0`, "Kit moves" 구역)을 더했습니다. 아래 12판 측정치는 그 전 S0 기준이며, 10-10 키트 변경 뒤의 측정은 Codex QA-17 2차(`reports/codex-qa-17/round-2/`)에 있습니다.
+- **봇 전반 조절의 마지막 측정치 (2026-10-10, S0):** 같은 시드 101–112, 8봇, 12판 기준입니다.
 
 | 지표 | 값 | 비고 |
 | --- | ---: | --- |
@@ -116,16 +121,19 @@
 
 ## 6. 캐릭터를 바꿀 때 봇 체크리스트
 
-캐릭터 기술·사거리·이동이 바뀌면 `EnemyAI.gd`에서 다음을 확인합니다. 바꿨으면 `tests/test_bot_brain.gd`를 돌리고, 측정 라운드를 한 번 돌립니다.
+캐릭터 기술·사거리·이동이 바뀌면 `EnemyAI.gd`에서 다음을 확인합니다. 바꿨으면 `tests/test_bot_brain.gd`와 `tests/test_bot_kits.gd`를 돌리고, 측정 라운드를 한 번 돌립니다.
 
 | 바뀐 것 | 봇에서 볼 곳 |
 | --- | --- |
 | 공격·기술 사거리 | `COMBAT_PROFILES`(최소·최대·공격 거리, `basic_reach`). 값은 `GameScale.COMBAT`이 곱해지기 전 기준입니다 |
-| 궁극기 범위·방식 | `ULTIMATE_REACH`(배율 전 기준), `_ultimate_score`의 캐릭터 예외(Nova −3, Luna +1), `ULTIMATE_FOLLOWUPS`(Luna 하트 레이저 4.4초; 그 누름이 아무것도 시작 못 하면 `ULTIMATE_FOLLOWUP_RETRY` 0.6초 동안 매 프레임 다시 누름 — 캐릭터는 실제로 다음 단계를 시작할 때 `ultimate_followup_started`를 켭니다), `_drive_nova_slingshot` |
-| 맞힌 뒤 다시 누르는 기술 | Frey 강스파이크: `_update_spike_followup`이 `rising_followup_timer`(올려치기 적중 뒤 0.18초 창)를 보고 `SPIKE_CHANCE` 75%로 `SPIKE_DELAY_MIN~MAX`(0.06~0.12초) 뒤 `try_skill_two_followup()` |
-| 돌진 기술(K) | `_mobility_skill_is_safe` 대상(Frey·Nova·Rio), `_attack_aim`의 돌진 조준(아래로 안 꺾음) |
-| 복귀 수단 | 프로필 `recovery_skill`, `RECOVERY_SKILL_REACH`, 캐릭터의 `can_use_skill_one()`(공중 사용 횟수) |
-| 캐릭터별 기술 규칙 | Nova K는 195px 이상, Yuki K 결박은 가깝고 같은 층, Rio L 룬 실드는 상대가 휘두를 때만(공격으로 안 셈) |
+| 궁극기 범위·방식 | `ULTIMATE_REACH`(배율 전 기준), `_ultimate_score`의 캐릭터 예외(Luna +1), `_drive_nova_slingshot`(사건의 지평선 공전·사출), `_drive_luna_brave`(별의 광선). 정해진 시간에 다시 누르는 궁극기는 이제 없습니다(`ULTIMATE_FOLLOWUPS`는 비어 있음. 2026-11-24까지는 Luna가 4.4초 뒤에 눌렀습니다). 다시 누름이 아무것도 시작 못 하면 `ULTIMATE_FOLLOWUP_RETRY` 0.6초 동안 매 프레임 다시 누르는 장치는 남아 있습니다. 캐릭터는 실제로 다음 단계를 시작할 때 `ultimate_followup_started`를 켭니다 |
+| 다시 누르는 기술 | Frey 발할라 일격: `_update_spike_followup`이 `rising_followup_timer`(비상 베기 뒤 0.45초 창, 맞든 안 맞든 열림)를 보고 `SPIKE_CHANCE` 75%로 `SPIKE_DELAY_MIN~MAX`(0.06~0.12초) 뒤 `try_skill_two_followup()`. 캐릭터 스크립트 안에 있는 것: Rio의 검으로 순간이동(`sword_bot_timer`)과 난무 베기(`flurry_bot_timer`), Xion의 도플갱어·날아들기(`_bot_double`) |
+| 이동하는 기술(K) | `_mobility_skill_is_safe` 대상(Rio·Xion), `_attack_aim`의 Rio K 조준(아래로 안 꺾음) |
+| 복귀 수단 | 프로필 `recovery_skill`(지금 Rio·Xion), `RECOVERY_SKILL_REACH`, 캐릭터의 `can_use_skill_one()`(공중 사용 횟수). K가 아닌 기술로 돌아오는 캐릭터는 `recovery_attack()`으로 누를 기술을 알려 줍니다(Xion: L, 탄이 없으면 K) |
+| 캐릭터별 기술 규칙 | Nova K는 195px 이상, Nova L은 225px 안(밖이면 K로), Yuki K 결박은 가깝고 같은 층, Rio L 그림자 받아치기는 상대가 휘두를 때만(공격으로 안 셈), Xion L은 표적이 발밑일 때만 |
+| 캐릭터 고유 기술 (2026-11-24, D53) | `EnemyAI.gd`의 "Kit moves" 구역. 상수: `WING_*`(Frey 날개), `NOVA_BEAM_*`·`NOVA_FIELD_*`·`NOVA_FLIGHT_LEVEL`, `RIO_BAIT_*`·`RIO_DECOY_STEP`·`RIO_SWAP_REACH`, `DECOY_FOOLED_*`(모든 봇이 Rio 분신에 속는 확률과 시간), `LUNA_BEAM_*`·`LUNA_CYCLONE_*`. 함수: `_drive_kit`(매 프레임: 날개, 자리 바꾸기, 광선·회오리), `_kit_intent`(이번 프레임의 누름: Nova 광선·필드·비행), `_rio_decoy_bait`(가드보다 먼저 보는 분신), `wing_in`(날개를 쓰려고 뛰어드는 교전 행동). 기술의 사거리·시간·조건이 바뀌면 상수와 `tests/test_bot_kits.gd`를 같이 고칩니다 |
+| 기술을 쓰는지 세기 | 새 기술은 `PlayerBase.count_move`로 셉니다(칸별 `j·k·l·u·i`, 다시 누름 `k2·l2·u2·i2`, 캐릭터가 따로 세는 `wings`·`u_hits`·`decoy_burst` 등). 소크 결과의 `moves`에 나오고 `reports/bot-kits-2026-11-24/soak_summary.py`가 표로 만듭니다. 0이면 봇이 그 기술을 안 쓰거나, 기술이 경기에서 일어나지 않는 것입니다(Rio 분신이 그렇게 드러났습니다) |
+| 놓아 두는 물체(분신, 설치물) | 공격에 맞아야 하면 정적인 몸(`StaticBody2D`)으로 만들지 않습니다. 공격·투사체 영역은 `monitorable`이 꺼져 있어 정적인 몸과는 만나지 않습니다(`AnimatableBody2D`·`CharacterBody2D`와는 만남). `AnimatableBody2D`는 `sync_to_physics`를 끄고 위치를 준 뒤 트리에 넣습니다. 검사는 원점에서 떨어진 자리에서도 돌립니다(`test_bot_kits`·`test_rio_kit`·`test_nova_kit`의 `SCENES`) |
 | 공중 점프 수 | 오를 때 공중 점프는 2개 이상 남았을 때만 씁니다(Rio는 2개) |
 | 새 캐릭터 | 위 항목을 모두 정하고, `reports/bot-behavior/tree.json`과 그림에 캐릭터 가지를 추가합니다 |
 
