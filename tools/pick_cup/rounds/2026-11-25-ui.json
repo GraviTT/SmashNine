@@ -1,0 +1,85 @@
+{
+  "round": "2026-11-25-ui",
+  "title": "경기 HUD 방향",
+  "note": "UI and design session (D53, user 2026-11-24: \"전체적인 게임 UI와 디자인도 개선해야 해\"). Two directions for the match HUD against the game as it is: A spreads the information along the edges where it sits today and keeps the pixel frames; B gathers the player's own numbers at the bottom left, flat. One scripted 24 s match as P1 Frey, cut in three (tests/analysis/ui_audit/ui_direction_capture.gd, prototypes in hud_proto.gd; nothing in the game yet). 1280x720 captures, so every item uses the single view. Report: reports/ui-direction-2026-11-25/.",
+  "items": [
+    {
+      "id": "hud-fight",
+      "view": "single",
+      "title": "평상시 HUD",
+      "question": "싸우는 동안 내 체력·소울·스킬, 시계, 지도, 다른 참가자가 가장 잘 읽히는 쪽은 어디인가요? 같은 8초 경기입니다(칼 세 번, 점프, 한 대 맞음, 소울 획득). 두 안 모두 내 캐릭터 위의 P1 표시, 화면 밖 상대의 얼굴 표시, 색과 숫자만 쓰는 지도는 같습니다. 봇 패널은 켠 채로 찍었습니다.",
+      "candidates": [
+        {
+          "id": "now",
+          "name": "지금",
+          "desc": "지금 게임 그대로입니다. 체력·소울은 오른쪽 위 글자 한 줄, 지도는 왼쪽 위, 스킬은 오른쪽 아래",
+          "media": "art/cup/2026-11-25-ui/hud-fight/now.mp4"
+        },
+        {
+          "id": "a",
+          "name": "나누어 두기",
+          "desc": "자리는 지금 그대로, 크기와 바탕을 키웠습니다. 기존 픽셀 틀을 살렸고 체력 숫자는 막대 안에, 소울은 다음 카드까지의 막대로, 생존자 수는 시계 옆에 크게 둡니다",
+          "media": "art/cup/2026-11-25-ui/hud-fight/a.mp4"
+        },
+        {
+          "id": "b",
+          "name": "한곳에 모으기",
+          "desc": "내 얼굴·체력(큰 숫자)·소울·스킬을 왼쪽 아래 한곳에 모았습니다. 위에는 시계와 지도(오른쪽)만 두고 참가자 목록은 왼쪽 위. 틀 없이 평평한 모양입니다",
+          "media": "art/cup/2026-11-25-ui/hud-fight/b.mp4"
+        }
+      ]
+    },
+    {
+      "id": "hud-cards",
+      "view": "single",
+      "title": "소울 카드 고르기",
+      "question": "싸우면서 카드 세 장을 읽고 고르기 가장 쉬운 쪽은 어디인가요? 카드가 뜨고 4초 뒤에 2번을 고릅니다. 남은 시간이 보이는지, 카드 글자가 읽히는지, 카드가 싸움을 얼마나 가리는지 봐 주세요.",
+      "candidates": [
+        {
+          "id": "now",
+          "name": "지금",
+          "desc": "화면 아래 가운데. 틀 가운데가 비어 글자가 배경 위에 놓이고, 남은 시간은 제목 속 글자뿐입니다",
+          "media": "art/cup/2026-11-25-ui/hud-cards/now.mp4"
+        },
+        {
+          "id": "a",
+          "name": "나누어 두기",
+          "desc": "화면 아래 왼쪽에 기존 카드 틀을 쓰고 속을 채웠습니다. 종류는 머리띠 색으로, 남은 시간은 줄어드는 막대로 보입니다",
+          "media": "art/cup/2026-11-25-ui/hud-cards/a.mp4"
+        },
+        {
+          "id": "b",
+          "name": "한곳에 모으기",
+          "desc": "화면 위쪽에 평평한 카드를 띄웁니다. 종류는 머리띠 색, 남은 시간은 줄어드는 막대. 바닥의 싸움을 가리지 않습니다",
+          "media": "art/cup/2026-11-25-ui/hud-cards/b.mp4"
+        }
+      ]
+    },
+    {
+      "id": "hud-warning",
+      "view": "single",
+      "title": "붕괴 경고·궁극기·낮은 체력",
+      "question": "급한 일이 가장 빨리 눈에 들어오는 쪽은 어디인가요? 1초에 렐름 붕괴 경고가 시작되고, 3초에 궁극기를 쓰고, 6초에 체력이 크게 깎입니다. 왼쪽이나 오른쪽에 쌓이는 알림 글도 봐 주세요.",
+      "candidates": [
+        {
+          "id": "now",
+          "name": "지금",
+          "desc": "붉어진 화면 위에 주황 글자 두 줄. 궁극기 띠는 붓 자국 그림. 알림은 왼쪽 아래 한 줄입니다",
+          "media": "art/cup/2026-11-25-ui/hud-warning/now.mp4"
+        },
+        {
+          "id": "a",
+          "name": "나누어 두기",
+          "desc": "시계 아래에 붉은 판과 큰 숫자. 궁극기는 캐릭터 색 띠. 알림은 지도 아래에 종류별 색으로 쌓이고, 체력이 낮으면 막대가 깜빡입니다",
+          "media": "art/cup/2026-11-25-ui/hud-warning/a.mp4"
+        },
+        {
+          "id": "b",
+          "name": "한곳에 모으기",
+          "desc": "시계 자체가 붉게 바뀌어 붕괴까지 남은 시간을 보여 주고, 그 아래에 할 일 한 줄. 알림은 오른쪽 아래. 체력이 낮으면 큰 숫자가 붉어집니다",
+          "media": "art/cup/2026-11-25-ui/hud-warning/b.mp4"
+        }
+      ]
+    }
+  ]
+}
