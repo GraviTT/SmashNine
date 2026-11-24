@@ -2,10 +2,13 @@
 # or any static host). Output: build/web/ and build/SmashNine-web.zip
 # Usage (from the repo root): powershell -ExecutionPolicy Bypass -File tools/build_web.ps1 [-PartMB 5]
 # Needs the 4.7.stable web export templates in %APPDATA%\Godot\export_templates\4.7.stable.
-# Files bigger than -PartMB MiB (the engine wasm, the game pck) are split into <name>.partN and
-# joined in the browser by tools/web_part_loader.js: ChatGPT Sites rejected the 37.7 MiB wasm
-# ("artifacts_git_receive_pack_object_too_large", 2026-10-07) and its largest accepted file we
-# know of is 6.4 MB (CuRun). -PartMB 0 keeps whole files.
+# The engine wasm and the game pck are gzipped, then split into <name>.partN files of at most
+# -PartMB MiB, and joined and gunzipped in the browser by tools/web_part_loader.js:
+# - ChatGPT Sites rejected the 37.7 MiB wasm ("artifacts_git_receive_pack_object_too_large",
+#   2026-10-07); its largest accepted file we know of is 6.4 MB (CuRun).
+# - Hosts send unknown .partN files as plain bytes, so the parts carry their own gzip
+#   (2026-11-24): the 39.5 MB wasm travels as about 10 MB.
+# -PartMB 0 keeps whole, unpacked files (then the host's own compression applies).
 param([int]$PartMB = 5)
 $ErrorActionPreference = "Stop"
 $godot = $env:GODOT_BIN
@@ -30,10 +33,15 @@ if ($PartMB -gt 0) {
 	$parts = [ordered]@{}
 	foreach ($name in @("index.wasm", "index.pck")) {
 		$file = Join-Path $webDir $name
-		$size = (Get-Item $file).Length
-		if ($size -le $partBytes) { continue }
-		$bytes = [IO.File]::ReadAllBytes($file)
-		$count = [int][Math]::Ceiling($size / $partBytes)
+		$raw = [IO.File]::ReadAllBytes($file)
+		$packed = New-Object IO.MemoryStream
+		$gzip = New-Object IO.Compression.GZipStream($packed, [IO.Compression.CompressionLevel]::Optimal)
+		$gzip.Write($raw, 0, $raw.Length)
+		$gzip.Close()
+		$bytes = $packed.ToArray()
+		$size = $bytes.Length
+		$count = [int][Math]::Max(1, [Math]::Ceiling($size / $partBytes))
+		Write-Output ("{0}: {1:N1} MB, gzipped {2:N1} MB, {3} part(s)" -f $name, ($raw.Length / 1MB), ($size / 1MB), $count)
 		for ($i = 0; $i -lt $count; $i++) {
 			$offset = $i * $partBytes
 			$length = [int][Math]::Min($partBytes, $size - $offset)
@@ -56,7 +64,7 @@ if ($PartMB -gt 0) {
 		}
 		$text = $text.Replace($engineTag, "<script>`n$loader</script>`n`t`t$engineTag")
 		[IO.File]::WriteAllText($html, $text, (New-Object Text.UTF8Encoding $false))
-		Write-Output "Split into $PartMB MiB parts: $map"
+		Write-Output "Split into gzipped $PartMB MiB parts: $map"
 	}
 }
 
