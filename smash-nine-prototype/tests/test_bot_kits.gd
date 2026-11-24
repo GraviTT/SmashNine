@@ -16,7 +16,16 @@ const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const AI := preload("res://scripts/EnemyAI.gd")
 
+## Every scene is played twice: round the world origin and far from it. The tests place and read
+## everything through _put and _at, in scene coordinates, so the same numbers hold for both. The
+## arena itself stays on the world origin, as the node that holds the fighters does in a match. A
+## scene played only round the origin cannot tell a thing left at (0, 0) from one left in its
+## place: Rio's decoy stood at the origin in every match while every decoy test passed
+## (2026-11-25).
+const SCENES: Array[Vector2] = [Vector2.ZERO, Vector2(9000, 6000)]
+
 var arena: Node2D
+var scene := Vector2.ZERO
 var failed := false
 
 func _initialize() -> void:
@@ -26,21 +35,30 @@ func _run() -> void:
 	seed(20261124)
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_frey_wing_strike, _test_frey_wing_not_over_void, _test_frey_jumps_in, _test_nova_beam, _test_nova_field_and_flight, _test_rio_bait, _test_rio_swap, _test_bots_take_the_decoy, _test_luna_beam, _test_luna_cyclone]:
-		await test.call()
-		for child in arena.get_children():
-			child.queue_free()
-		await process_frame
-		await physics_frame
+	for origin in SCENES:
+		scene = origin
+		for test in [_test_frey_wing_strike, _test_frey_wing_not_over_void, _test_frey_jumps_in, _test_nova_beam, _test_nova_field_and_flight, _test_rio_bait, _test_rio_swap, _test_bots_take_the_decoy, _test_rio_decoy_takes_the_swing, _test_luna_beam, _test_luna_cyclone]:
+			await test.call()
+			for child in arena.get_children():
+				child.queue_free()
+			await process_frame
+			await physics_frame
 	if failed:
 		quit(1)
 		return
-	print("Bot kit tests passed")
+	print("Bot kit tests passed (each scene round the origin and at %s)" % SCENES[1])
 	quit(0)
 
 func _fail(message: String) -> void:
-	push_error(message)
+	push_error("%s (scene at %s)" % [message, scene])
 	failed = true
+
+## Where a node stands, and putting it somewhere, in scene coordinates.
+func _at(node: Node2D) -> Vector2:
+	return node.global_position - scene
+
+func _put(node: Node2D, at: Vector2) -> void:
+	node.global_position = scene + at
 
 func _floor(at: Vector2, width: float) -> StaticBody2D:
 	var body := StaticBody2D.new()
@@ -51,16 +69,16 @@ func _floor(at: Vector2, width: float) -> StaticBody2D:
 	shape.shape = rect
 	body.add_child(shape)
 	arena.add_child(body)
-	body.global_position = at + Vector2(0, 20)
+	_put(body, at + Vector2(0, 20))
 	return body
 
 func _fighter(character_id: String, player_id: int, at: Vector2) -> Node:
 	var fighter: Node = PLAYER_FACTORY.create(character_id)
 	arena.add_child(fighter)
-	fighter.global_position = at
+	_put(fighter, at)
 	fighter.setup(CHARACTER_REGISTRY.get_characters()[character_id], player_id, false)
 	fighter.ringout_y = 100000.0
-	fighter.realm_origin = Vector2(-960, -540)
+	fighter.realm_origin = scene + Vector2(-960, -540)
 	fighter.realm_size = Vector2(1920, 1080)
 	return fighter
 
@@ -93,7 +111,7 @@ func _wall(at: Vector2, size: Vector2) -> StaticBody2D:
 	shape.shape = rect
 	body.add_child(shape)
 	arena.add_child(body)
-	body.global_position = at
+	_put(body, at)
 	return body
 
 ## A bot standing on the floor with its brain switched off: the tests call the brain themselves.
@@ -122,7 +140,7 @@ func _test_frey_wing_strike() -> void:
 	frey.is_dummy = true
 	for frame in 3:
 		await physics_frame
-	frey.global_position = Vector2(0, -150)
+	_put(frey, Vector2(0, -150))
 	frey.velocity = Vector2.ZERO
 	frey.air_jumps_left = frey.max_air_jumps
 	var ai = frey.ai_controller
@@ -153,7 +171,7 @@ func _test_frey_wing_not_over_void() -> void:
 	frey.is_dummy = true
 	for frame in 3:
 		await physics_frame
-	frey.global_position = Vector2(-60, -150)
+	_put(frey, Vector2(-60, -150))
 	frey.velocity = Vector2.ZERO
 	frey.air_jumps_left = frey.max_air_jumps
 	var ai = frey.ai_controller
@@ -164,7 +182,7 @@ func _test_frey_wing_not_over_void() -> void:
 	ai._drive_frey_wings(frey, 0.016)
 	if bool(frey.wing_hovering):
 		_fail("No wings when the dash would end over the void (after it she cannot act until she lands)")
-	foe.global_position = Vector2(-60 - 400, -150)
+	_put(foe, Vector2(-60 - 400, -150))
 	ai._drive_frey_wings(frey, 0.016)
 	if bool(frey.wing_hovering):
 		_fail("No wings at a target out of the strike's reach")
@@ -222,13 +240,13 @@ func _test_nova_beam() -> void:
 	if asks < 10 or asks > 30:
 		_fail("Nova should fire the beam at a standing foe 400 px away about half the time (%d of 40)" % asks)
 	# Too close, too far, or behind a wall: never.
-	standing.global_position = Vector2(-100, -2)
+	_put(standing, Vector2(-100, -2))
 	if _beam_asks(ai, nova, 20) != 0:
 		_fail("No beam inside melee reach")
-	standing.global_position = Vector2(700, -2)
+	_put(standing, Vector2(700, -2))
 	if _beam_asks(ai, nova, 20) != 0:
 		_fail("No beam past its reach")
-	standing.global_position = Vector2(200, -2)
+	_put(standing, Vector2(200, -2))
 	var wall := _wall(Vector2(0, -150), Vector2(40, 300))
 	await physics_frame
 	await physics_frame
@@ -286,7 +304,7 @@ func _test_nova_field_and_flight() -> void:
 			casts += 1
 	if casts < 8 or casts > 26:
 		_fail("Nova should cast her field on a foe 150 px away about 40%% of the looks (%d of 40)" % casts)
-	foe.global_position = Vector2(420, -2)
+	_put(foe, Vector2(420, -2))
 	casts = 0
 	for trial in 40:
 		ai.beam_pause = 100.0
@@ -297,7 +315,7 @@ func _test_nova_field_and_flight() -> void:
 		_fail("No field where it would not hold the target (%d of 40)" % casts)
 	# Inside her field, a foe above her: she flies up to it.
 	nova._cast_field()
-	foe.global_position = Vector2(40, -230)
+	_put(foe, Vector2(40, -230))
 	var intent: Dictionary = ai._nova_kit_intent(nova, ai._intent())
 	var aim: Vector2 = intent.get("aim", Vector2.ZERO)
 	if aim.y > -0.9:
@@ -305,8 +323,8 @@ func _test_nova_field_and_flight() -> void:
 	nova.set_physics_process(true)
 	for frame in 45:
 		await physics_frame
-	if nova.global_position.y > -90.0:
-		_fail("In her field the Nova bot should fly up toward the foe above her (y %.0f)" % nova.global_position.y)
+	if _at(nova).y > -90.0:
+		_fail("In her field the Nova bot should fly up toward the foe above her (y %.0f)" % _at(nova).y)
 	if float(nova.move_counts.get("flight", 0.0)) < 0.2:
 		_fail("Her flight should be counted (%.2f s)" % float(nova.move_counts.get("flight", 0.0)))
 
@@ -315,13 +333,13 @@ func _test_nova_field_and_flight() -> void:
 ## A foe 110 px away starts a swing at Rio, `trials` times; how often he leaves the decoy.
 func _bait_casts(rio: Node, foe: Node, trials: int) -> int:
 	var ai = rio.ai_controller
-	var home: Vector2 = rio.global_position
+	var home: Vector2 = _at(rio)
 	var casts := 0
 	for trial in trials:
 		rio._clear_decoy()
 		rio.decoy_cooldown_timer = 0.0
 		rio.attack_lock_timer = 0.0
-		rio.global_position = home
+		_put(rio, home)
 		rio.velocity = Vector2.ZERO
 		rio.facing = 1
 		foe.attack_lock_timer = 0.0
@@ -337,12 +355,12 @@ func _bait_casts(rio: Node, foe: Node, trials: int) -> int:
 		ai.update(rio, 0.016)
 		if is_instance_valid(rio.decoy):
 			casts += 1
-			if rio.decoy.global_position.distance_to(home) > 4.0:
-				_fail("The decoy should stand where Rio stood (%s, he stood at %s)" % [rio.decoy.global_position, home])
-			if rio.global_position.x > home.x - 100.0:
-				_fail("Rio should step back from the foe as he leaves the decoy (x %.0f from %.0f)" % [rio.global_position.x, home.x])
+			if _at(rio.decoy).distance_to(home) > 4.0:
+				_fail("The decoy should stand where Rio stood (%s, he stood at %s)" % [_at(rio.decoy), home])
+			if _at(rio).x > home.x - 100.0:
+				_fail("Rio should step back from the foe as he leaves the decoy (x %.0f from %.0f)" % [_at(rio).x, home.x])
 	rio._clear_decoy()
-	rio.global_position = home
+	_put(rio, home)
 	return casts
 
 func _test_rio_bait() -> void:
@@ -372,26 +390,26 @@ func _test_rio_swap() -> void:
 	ai.state = AI.STATE_ENGAGE
 	rio.facing = 1
 	rio.press_skill_three()
-	if not is_instance_valid(rio.decoy) or rio.global_position.x > -100.0:
-		_fail("Test setup: Rio should have left a decoy at 0 and stepped back (x %.0f)" % rio.global_position.x)
+	if not is_instance_valid(rio.decoy) or _at(rio).x > -100.0:
+		_fail("Test setup: Rio should have left a decoy at 0 and stepped back (x %.0f)" % _at(rio).x)
 		return
 	rio.attack_lock_timer = 0.0
 	# The foe not between them, or looking at the decoy: no swap.
 	ai._drive_rio_decoy(rio)
-	foe.global_position = Vector2(-60, -2)
+	_put(foe, Vector2(-60, -2))
 	foe.facing = 1
 	ai._drive_rio_decoy(rio)
 	if not bool(rio.decoy_swap_ready):
 		_fail("No swap unless the foe stands between Rio and the decoy with its back to the decoy")
 	# Between them and facing Rio: he swaps and stands behind it.
 	foe.facing = -1
-	var was: Vector2 = rio.global_position
+	var was: Vector2 = _at(rio)
 	ai._drive_rio_decoy(rio)
-	if bool(rio.decoy_swap_ready) or absf(rio.global_position.x) > 4.0:
-		_fail("Rio should swap to the decoy's place behind the foe (x %.0f)" % rio.global_position.x)
+	if bool(rio.decoy_swap_ready) or absf(_at(rio).x) > 4.0:
+		_fail("Rio should swap to the decoy's place behind the foe (x %.0f)" % _at(rio).x)
 	elif not rio._is_behind(foe):
 		_fail("After the swap Rio should stand behind the foe (the back hit)")
-	elif rio.decoy.global_position.distance_to(was) > 4.0:
+	elif _at(rio.decoy).distance_to(was) > 4.0:
 		_fail("The decoy should stand where Rio was")
 	if _count(rio, "u2") != 1:
 		_fail("The swap should be counted once (got %d)" % _count(rio, "u2"))
@@ -399,16 +417,16 @@ func _test_rio_swap() -> void:
 	rio._clear_decoy()
 	rio.decoy_cooldown_timer = 0.0
 	rio.attack_lock_timer = 0.0
-	rio.global_position = Vector2(0, -2)
+	_put(rio, Vector2(0, -2))
 	rio.facing = 1
 	rio.press_skill_three()
-	var spot: Vector2 = rio.decoy.global_position
+	var spot: Vector2 = _at(rio.decoy)
 	rio.attack_lock_timer = 0.0
-	rio.global_position = Vector2(-1100, 200)
+	_put(rio, Vector2(-1100, 200))
 	ai.state = AI.STATE_RECOVER
 	ai._drive_rio_decoy(rio)
-	if rio.global_position.distance_to(spot) > 4.0:
-		_fail("Off the stage, Rio should swap back to the decoy standing on it (at %s)" % rio.global_position)
+	if _at(rio).distance_to(spot) > 4.0:
+		_fail("Off the stage, Rio should swap back to the decoy standing on it (at %s)" % _at(rio))
 
 ## A bot whose target leaves a decoy takes the decoy for him some of the time, and fights there.
 func _test_bots_take_the_decoy() -> void:
@@ -423,7 +441,7 @@ func _test_bots_take_the_decoy() -> void:
 		rio._clear_decoy()
 		rio.decoy_cooldown_timer = 0.0
 		rio.attack_lock_timer = 0.0
-		rio.global_position = Vector2(0, -2)
+		_put(rio, Vector2(0, -2))
 		rio.facing = 1
 		ai.fooled_by = null
 		ai.seen_decoy = null
@@ -452,6 +470,69 @@ func _test_bots_take_the_decoy() -> void:
 	if _count(rio, "decoy_burst") != 1:
 		_fail("The burst should be counted (got %d)" % _count(rio, "decoy_burst"))
 
+## The whole bait, with the bot's own press and a real swing: the swing that made him leave the
+## decoy reaches it where he stood, bursts it, and the burst hits the foe. Nothing here calls the
+## decoy's hit by hand.
+func _test_rio_decoy_takes_the_swing() -> void:
+	_floor(Vector2(0, 0), 1800)
+	var rio: Node = await _standing_bot("rio", Vector2(0, -2))
+	# The foe is a person's fighter with nobody at the keys: it stands, and swings when told to.
+	var foe: Node = PLAYER_FACTORY.create("frey")
+	arena.add_child(foe)
+	_put(foe, Vector2(70, -2))
+	foe.setup(CHARACTER_REGISTRY.get_characters()["frey"], 2, true)
+	foe.set_process_unhandled_input(false)
+	foe.ringout_y = 100000.0
+	foe.realm_origin = scene + Vector2(-960, -540)
+	foe.realm_size = Vector2(1920, 1080)
+	for frame in 12:
+		await physics_frame
+	var ai = rio.ai_controller
+	ai.target = foe
+	ai.state = AI.STATE_ENGAGE
+	var home: Vector2 = _at(rio)
+	var left := 0
+	for trial in 12:
+		rio._clear_decoy()
+		rio.decoy_cooldown_timer = 0.0
+		rio.attack_lock_timer = 0.0
+		rio.hitstun_timer = 0.0
+		_put(rio, home)
+		rio.velocity = Vector2.ZERO
+		rio.knockback_velocity = Vector2.ZERO
+		rio.facing = 1
+		rio.hp = rio.max_hp
+		ai.guard_delay_timer = -1.0
+		if rio.is_guarding:
+			rio._stop_guard(false)
+		rio.guard_recovery_timer = 0.0
+		_put(foe, Vector2(70, -2))
+		foe.velocity = Vector2.ZERO
+		foe.knockback_velocity = Vector2.ZERO
+		foe.hitstun_timer = 0.0
+		foe.hp = foe.max_hp
+		foe.facing = -1
+		ai.update(rio, 0.016)
+		foe.basic_attack()
+		ai.update(rio, 0.016)
+		var decoy: Variant = rio.decoy
+		var bursts := _count(rio, "decoy_burst")
+		for frame in 30:
+			await physics_frame
+		if is_instance_valid(decoy) or _count(rio, "decoy_burst") > bursts:
+			left += 1
+			if _count(rio, "decoy_burst") != bursts + 1:
+				_fail("The swing that made Rio leave his decoy should burst it where he stood (decoy at %s, he stood at %s)" % [_at(decoy) if is_instance_valid(decoy) else Vector2.INF, home])
+				return
+			if float(foe.hp) >= float(foe.max_hp):
+				_fail("The decoy's burst should hit the foe whose swing reached it")
+				return
+		# The foe's swing and its recovery run out before the next one.
+		for frame in 40:
+			await physics_frame
+	if left < 2:
+		_fail("Test setup: Rio should leave his decoy for some of 12 swings (%d)" % left)
+
 # --- Brave Luna ---
 
 func _brave_luna(at: Vector2) -> Node:
@@ -473,12 +554,12 @@ func _test_luna_beam() -> void:
 	if bool(luna.transformation_finishing):
 		_fail("No star beam while nobody stands in its path")
 	# A foe at arm's length is punched first.
-	foe.global_position = Vector2(50, -2)
+	_put(foe, Vector2(50, -2))
 	ai._drive_luna_brave(luna)
 	if bool(luna.transformation_finishing):
 		_fail("A foe at arm's length should be punched before the beam ends her form")
 	# In the path, behind her: she turns and fires.
-	foe.global_position = Vector2(-320, -2)
+	_put(foe, Vector2(-320, -2))
 	luna.facing = 1
 	ai._drive_luna_brave(luna)
 	if not bool(luna.transformation_finishing):
@@ -492,7 +573,7 @@ func _test_luna_beam() -> void:
 	# Nobody in the path at all: fired anyway before the form runs out.
 	luna = await _brave_luna(Vector2(0, -2))
 	ai = luna.ai_controller
-	foe.global_position = Vector2(60, -300)
+	_put(foe, Vector2(60, -300))
 	ai.target = foe
 	ai.state = AI.STATE_ENGAGE
 	luna.transformation_timer = luna.TRANSFORMATION_DURATION - 4.7
@@ -513,11 +594,11 @@ func _test_luna_cyclone() -> void:
 	if float(luna.cyclone_timer) <= 0.0:
 		_fail("The cyclone should spin a moment before the early shot")
 	luna.cyclone_timer = luna.CYCLONE_TIME - 0.8
-	foe.global_position = Vector2(250, -260)
+	_put(foe, Vector2(250, -260))
 	ai._drive_luna_brave(luna)
 	if float(luna.cyclone_timer) <= 0.0:
 		_fail("No early cyclone shot at a foe out of its path")
-	foe.global_position = Vector2(-250, -2)
+	_put(foe, Vector2(-250, -2))
 	luna.facing = 1
 	ai._drive_luna_brave(luna)
 	if float(luna.cyclone_timer) > 0.0:

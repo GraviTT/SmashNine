@@ -15,10 +15,18 @@ var elapsed := 0.0
 var burst := false
 var figure: AnimatedSprite2D
 
+## Never synced to physics, and from before it enters the tree. A body that syncs sends a new
+## position to the physics server and puts its node back where it was until the next step
+## answers. The first version switched the sync off after placing it: the answer never came, so
+## every decoy stood at its parent's origin, (0, 0) in a match, where no swing reached it and a
+## swap sent Rio there (2026-11-25: 77 decoys in eight soak matches, none burst, none swapped
+## with; the tests all stood Rio on the origin, where the right and the wrong place are the same).
+func _init() -> void:
+	sync_to_physics = false
+
 func configure(owner_fighter: Node2D, duration: float, sprite: AnimatedSprite2D) -> void:
 	source = owner_fighter
 	lifetime = duration
-	sync_to_physics = false
 	collision_layer = PLAYER_LAYER
 	collision_mask = 0
 	var shape := CollisionShape2D.new()

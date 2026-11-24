@@ -633,11 +633,13 @@ func _decoy_cast() -> void:
 	_reset_combo()
 	_clear_decoy()
 	decoy_cooldown_timer = DECOY_COOLDOWN
-	var copy := AnimatableBody2D.new()
-	copy.set_script(DECOY_SCRIPT)
+	var copy: AnimatableBody2D = DECOY_SCRIPT.new()
 	copy.name = "RioDecoy"
+	# Placed before it enters the tree (same parent, so his own position): its physics body then
+	# starts there too, for the swing already on its way. Placed after, it stood at the parent's
+	# origin, (0, 0) in a match (RioDecoy._init).
+	copy.position = position
 	get_parent().add_child(copy)
-	copy.global_position = global_position
 	copy.configure(self, DECOY_TIME, character_sprite if _uses_character_sprite() else null)
 	decoy = copy
 	decoy_swap_ready = true

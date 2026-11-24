@@ -14,7 +14,15 @@ const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const ATTACK_PATH := "res://scripts/Attack.gd"
 
+## Every scene is played twice: round the world origin and far from it. The tests place and read
+## everything through _put and _at, in scene coordinates, so the same numbers hold for both; the
+## arena stays on the world origin, as the node that holds the fighters does in a match. A scene
+## played only round the origin cannot tell a thing left at (0, 0) from one left in its place:
+## the decoy stood at the origin in every match while its tests passed (2026-11-25).
+const SCENES: Array[Vector2] = [Vector2.ZERO, Vector2(9000, 6000)]
+
 var arena: Node2D
+var scene := Vector2.ZERO
 var failed := false
 
 func _initialize() -> void:
@@ -23,22 +31,31 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	for test in [_test_air_jumps, _test_air_step_effect, _test_backstab, _test_pierce, _test_pierce_ledge,
-			_test_sword_blink, _test_sword_air_and_end, _test_counter, _test_counter_whiff, _test_decoy, _test_decoy_takes_a_swing,
-			_test_flurry, _test_flurry_burst, _test_bots, _test_third_skill_slot]:
-		await test.call()
-		await _clear()
-		if failed:
-			quit(1)
-			return
+	for origin in SCENES:
+		scene = origin
+		for test in [_test_air_jumps, _test_air_step_effect, _test_backstab, _test_pierce, _test_pierce_ledge,
+				_test_sword_blink, _test_sword_air_and_end, _test_counter, _test_counter_whiff, _test_decoy, _test_decoy_takes_a_swing,
+				_test_flurry, _test_flurry_burst, _test_bots, _test_third_skill_slot]:
+			await test.call()
+			await _clear()
+			if failed:
+				quit(1)
+				return
 	arena.queue_free()
 	await process_frame
-	print("Rio kit tests passed")
+	print("Rio kit tests passed (each scene round the origin and at %s)" % SCENES[1])
 	quit(0)
 
 func _fail(message: String) -> void:
-	push_error(message)
+	push_error("%s (scene at %s)" % [message, scene])
 	failed = true
+
+## Where a node stands, and putting it somewhere, in scene coordinates.
+func _at(node: Node2D) -> Vector2:
+	return node.global_position - scene
+
+func _put(node: Node2D, at: Vector2) -> void:
+	node.global_position = scene + at
 
 func _floor(at: Vector2, width: float) -> StaticBody2D:
 	var body := StaticBody2D.new()
@@ -49,7 +66,7 @@ func _floor(at: Vector2, width: float) -> StaticBody2D:
 	shape.shape = rect
 	body.add_child(shape)
 	# Placed before it enters the tree: one frame at the origin would push a fighter up.
-	body.position = at + Vector2(0, 20)
+	body.position = scene + at + Vector2(0, 20)
 	arena.add_child(body)
 	return body
 
@@ -58,7 +75,7 @@ func _floor(at: Vector2, width: float) -> StaticBody2D:
 func _rio(at: Vector2, bot := false, body := "male") -> Node:
 	var rio: Node = PLAYER_FACTORY.create("rio", body)
 	arena.add_child(rio)
-	rio.global_position = at
+	_put(rio, at)
 	rio.setup(CHARACTER_REGISTRY.get_characters()["rio"], 1, not bot)
 	rio.ringout_y = 100000.0
 	if bot:
@@ -70,7 +87,7 @@ func _rio(at: Vector2, bot := false, body := "male") -> Node:
 func _dummy(player_id: int, at: Vector2, facing: int) -> Node:
 	var dummy: Node = PLAYER_FACTORY.create("")
 	arena.add_child(dummy)
-	dummy.global_position = at
+	_put(dummy, at)
 	dummy.setup_dummy(player_id)
 	dummy.ringout_y = 100000.0
 	dummy.facing = facing
@@ -125,7 +142,7 @@ func _test_air_step_effect() -> void:
 		var expected := ["rio_air_step", "rio_air_step_last"]
 		for jump in 2:
 			var before: int = rio.air_jumps_left
-			var at: Vector2 = rio.global_position
+			var at: Vector2 = _at(rio)
 			rio.jump_buffer_timer = 0.1
 			rio.coyote_timer = 0.0
 			await physics_frame
@@ -137,8 +154,8 @@ func _test_air_step_effect() -> void:
 				_fail("Rio (%s) air jump %d should show %s" % [body, jump + 1, expected[jump]])
 				return
 			var rise: float = rio.AIR_STEP_SOLE_RISE[body]
-			if plate.global_position.distance_to(at - Vector2(0.0, rise)) > 0.5:
-				_fail("Rio (%s) air step should start at the soles (plate %s, expected %s)" % [body, plate.global_position, at - Vector2(0.0, rise)])
+			if _at(plate).distance_to(at - Vector2(0.0, rise)) > 0.5:
+				_fail("Rio (%s) air step should start at the soles (plate %s, expected %s)" % [body, _at(plate), at - Vector2(0.0, rise)])
 			plate.free()
 		rio.queue_free()
 		await process_frame
@@ -172,14 +189,14 @@ func _test_pierce() -> void:
 	var foe := _dummy(10, Vector2(20, -2), -1)
 	await _frames(6)
 	rio.facing = 1
-	var start: float = rio.global_position.x
+	var start: float = _at(rio).x
 	for swing in 3:
 		await _wait_for(func() -> bool: return rio._can_start_attack(), 1.0)
 		rio.perform_basic_attack("neutral", Vector2.RIGHT)
 	await _frames(24)
-	var moved: float = rio.global_position.x - start
-	if rio.global_position.x <= foe.global_position.x or moved < 120.0:
-		_fail("The third J should dash through the foe (Rio x %.0f, foe x %.0f, moved %.0f)" % [rio.global_position.x, foe.global_position.x, moved])
+	var moved: float = _at(rio).x - start
+	if _at(rio).x <= _at(foe).x or moved < 120.0:
+		_fail("The third J should dash through the foe (Rio x %.0f, foe x %.0f, moved %.0f)" % [_at(rio).x, _at(foe).x, moved])
 	if rio.facing != -1:
 		_fail("After the dash Rio should turn to face the foe he passed")
 	if foe.hp >= foe.max_hp or foe.knockback_velocity.x > 0.0:
@@ -191,10 +208,10 @@ func _test_pierce_ledge() -> void:
 	var rio := _rio(Vector2(0, -2))
 	await _wait_for(func() -> bool: return rio.is_on_floor(), 1.0)
 	rio.facing = 1
-	var start: float = rio.global_position.x
+	var start: float = _at(rio).x
 	rio._pierce_slash()
 	await _frames(14)
-	var moved: float = rio.global_position.x - start
+	var moved: float = _at(rio).x - start
 	# The floor ends 40 px ahead of him.
 	if moved > 52.0 or not rio.is_on_floor():
 		_fail("The dash should stop at the ledge (moved %.0f px, on floor %s)" % [moved, rio.is_on_floor()])
@@ -218,9 +235,9 @@ func _test_sword_blink() -> void:
 	if not rio.try_skill_one_followup():
 		_fail("The second K should blink to the sword")
 		return
-	var expected: float = foe.global_position.x + rio.BEHIND_OFFSET * GAME_SCALE.COMBAT
-	if absf(rio.global_position.x - expected) > 2.0 or rio.facing != -1:
-		_fail("Rio should appear behind the foe facing it (x %.1f, expected %.1f, facing %d)" % [rio.global_position.x, expected, rio.facing])
+	var expected: float = _at(foe).x + rio.BEHIND_OFFSET * GAME_SCALE.COMBAT
+	if absf(_at(rio).x - expected) > 2.0 or rio.facing != -1:
+		_fail("Rio should appear behind the foe facing it (x %.1f, expected %.1f, facing %d)" % [_at(rio).x, expected, rio.facing])
 	await _frames(8)
 	if foe.hp >= after_stick:
 		_fail("The blink slash should hit the foe")
@@ -238,7 +255,7 @@ func _test_sword_air_and_end() -> void:
 		_fail("A sword that hits nothing should stop at the end of its flight")
 		return
 	var sword: Node2D = rio.thrown_sword
-	var flight: float = sword.global_position.x - rio.global_position.x
+	var flight: float = _at(sword).x - _at(rio).x
 	var expected: float = rio.SWORD_SPEED * GAME_SCALE.COMBAT * rio.SWORD_FLIGHT
 	if absf(flight - expected) > 60.0:
 		_fail("The sword should fly about %.0f px (flew %.0f)" % [expected, flight])
@@ -247,10 +264,10 @@ func _test_sword_air_and_end() -> void:
 	await _frames(12)
 	if rio.thrown_sword != sword:
 		_fail("A second throw in the same airtime should not happen")
-	var at: Vector2 = sword.global_position
+	var at: Vector2 = _at(sword)
 	rio.try_skill_one_followup()
-	if rio.global_position.distance_to(at - GAME_SCALE.BODY_CENTRE) > 16.0:
-		_fail("The second K should bring Rio to the stopped sword (at %s, sword %s)" % [rio.global_position, at])
+	if _at(rio).distance_to(at - GAME_SCALE.BODY_CENTRE) > 16.0:
+		_fail("The second K should bring Rio to the stopped sword (at %s, sword %s)" % [_at(rio), at])
 
 ## The first hit in the stance does nothing; he appears behind the attacker and cuts.
 func _test_counter() -> void:
@@ -261,7 +278,7 @@ func _test_counter() -> void:
 	rio.perform_skill_two()
 	var before: float = rio.hp
 	# Where the attacker stood when it swung (the counter's cut then pushes it away).
-	var attacker_x: float = attacker.global_position.x
+	var attacker_x: float = _at(attacker).x
 	rio.apply_hit(attacker, 20.0, 600.0, Vector2.RIGHT)
 	if rio.hp != before or rio.knockback_velocity.length() > 0.01 or rio.hitstun_timer > 0.0:
 		_fail("The counter should take the hit unharmed (hp %.1f -> %.1f)" % [before, rio.hp])
@@ -269,8 +286,8 @@ func _test_counter() -> void:
 	var attacker_hp: float = attacker.hp
 	await _frames(14)
 	var expected: float = attacker_x - rio.BEHIND_OFFSET * GAME_SCALE.COMBAT
-	if absf(rio.global_position.x - expected) > 6.0 or rio.facing != 1:
-		_fail("Rio should appear behind the attacker facing it (x %.1f, expected %.1f, facing %d)" % [rio.global_position.x, expected, rio.facing])
+	if absf(_at(rio).x - expected) > 6.0 or rio.facing != 1:
+		_fail("Rio should appear behind the attacker facing it (x %.1f, expected %.1f, facing %d)" % [_at(rio).x, expected, rio.facing])
 	if attacker.hp >= attacker_hp:
 		_fail("The counter should cut the attacker")
 	rio.attack_lock_timer = 0.0
@@ -296,7 +313,7 @@ func _test_decoy_takes_a_swing() -> void:
 	var rio := _rio(Vector2(0, -2))
 	var foe: Node = PLAYER_FACTORY.create("frey")
 	arena.add_child(foe)
-	foe.global_position = Vector2(70, -2)
+	_put(foe, Vector2(70, -2))
 	foe.setup(CHARACTER_REGISTRY.get_characters()["frey"], 2, false)
 	foe.ringout_y = 100000.0
 	foe.is_dummy = true
@@ -324,24 +341,24 @@ func _test_decoy() -> void:
 	var rio := _rio(Vector2(0, -2))
 	await _frames(6)
 	rio.facing = 1
-	var start: Vector2 = rio.global_position
+	var start: Vector2 = _at(rio)
 	rio.perform_skill_three()
 	var decoy: Node2D = rio.decoy
-	if not is_instance_valid(decoy) or decoy.global_position.distance_to(start) > 0.5:
+	if not is_instance_valid(decoy) or _at(decoy).distance_to(start) > 0.5:
 		_fail("U should leave a decoy where Rio stood")
 		return
-	var stepped: float = start.x - rio.global_position.x
+	var stepped: float = start.x - _at(rio).x
 	var expected: float = rio.DECOY_STEP * GAME_SCALE.WORLD
 	if absf(stepped - expected) > 1.0:
 		_fail("U should step Rio %.0f px back (stepped %.1f)" % [expected, stepped])
-	var spot: Vector2 = rio.global_position
-	if not rio.try_skill_three_followup() or rio.global_position.distance_to(start) > 0.5 or decoy.global_position.distance_to(spot) > 0.5:
+	var spot: Vector2 = _at(rio)
+	if not rio.try_skill_three_followup() or _at(rio).distance_to(start) > 0.5 or _at(decoy).distance_to(spot) > 0.5:
 		_fail("The second U should swap Rio and the decoy")
 	if rio.try_skill_three_followup():
 		_fail("The decoy should swap only once")
 	if decoy.apply_hit(rio, 10.0, 100.0, Vector2.RIGHT) != false or not is_instance_valid(decoy) or decoy.burst:
 		_fail("Rio's own hit should pass through his decoy")
-	var foe := _dummy(10, decoy.global_position + Vector2(20, 0), -1)
+	var foe := _dummy(10, _at(decoy) + Vector2(20, 0), -1)
 	await _frames(2)
 	decoy.apply_hit(foe, 10.0, 100.0, Vector2.LEFT)
 	await _frames(3)
@@ -363,7 +380,7 @@ func _test_flurry() -> void:
 	if not await _wait_for(func() -> bool: return rio.flurry_phase == rio.Flurry.WAITING and rio._stuck_flurry_swords() == 6, 1.5):
 		_fail("Six gem swords should stick in the two foes (phase %d, stuck %d)" % [rio.flurry_phase, rio._stuck_flurry_swords()])
 		return
-	var start: Vector2 = rio.global_position
+	var start: Vector2 = _at(rio)
 	var near_hp: float = near.hp
 	var far_hp: float = far.hp
 	rio.ultimate()
@@ -372,7 +389,7 @@ func _test_flurry() -> void:
 	await _wait_for(func() -> bool: return rio.flurry_phase == rio.Flurry.NONE, 2.0)
 	# Checked as he lands back: the cuts push both foes toward him, and a foe at his side then
 	# nudges him (soft collision).
-	var back_at: Vector2 = rio.global_position
+	var back_at: Vector2 = _at(rio)
 	await _frames(2)
 	if near.hp >= near_hp or far.hp >= far_hp:
 		_fail("The cuts should hit both foes (near %.0f -> %.0f, far %.0f -> %.0f)" % [near_hp, near.hp, far_hp, far.hp])
@@ -403,8 +420,8 @@ func _test_bots() -> void:
 	await _frames(6)
 	rio.facing = 1
 	rio.perform_skill_one()
-	if not await _wait_for(func() -> bool: return rio.global_position.x > foe.global_position.x, 1.5):
-		_fail("A bot should blink behind the foe its sword sticks in (x %.0f)" % rio.global_position.x)
+	if not await _wait_for(func() -> bool: return _at(rio).x > _at(foe).x, 1.5):
+		_fail("A bot should blink behind the foe its sword sticks in (x %.0f)" % _at(rio).x)
 		return
 	await _wait_for(func() -> bool: return rio._can_start_attack(), 1.0)
 	var hp: float = foe.hp
