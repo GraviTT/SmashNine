@@ -1,43 +1,178 @@
 {
-    "previous_run":  {
-                         "start_utc":  "2026-11-23 16:14:17 UTC",
-                         "hard_stop_minutes":  180,
-                         "deadline_utc":  "2026-11-23 19:14:17 UTC",
-                         "next_clock_observation_utc":  "2026-11-23 22:11:09 UTC",
-                         "local_clock_confirmation":  "2026-11-24T07:11:37.6152370+09:00",
-                         "action":  "New generation and row production stopped as soon as elapsed-time overrun was observed. Only existing result inspection, reporting and scope verification continued.",
-                         "limitation":  "The 180-minute cutoff was not checked at the deadline. Do not claim the task finished within 180 minutes."
-                     },
-    "start_local":  "2026-11-24T07:18:45.3937835+09:00",
-    "deadline_local":  "2026-11-24T10:18:45.3937835+09:00",
-    "hard_stop_minutes":  180,
+    "start_local":  "2026-11-24T14:46:59.0499269+09:00",
+    "deadline_local":  "2026-11-24T17:46:59.0499269+09:00",
+    "status":  "finished",
     "calls":  [
                   {
-                      "row":  "shot_alt",
-                      "attempt":  3,
-                      "start":  "2026-11-24T07:20:29.2685462+09:00",
+                      "row":  "tumble",
+                      "attempt":  1,
+                      "start":  "2026-11-24T14:50:38.9330516+09:00",
                       "status":  "returned",
-                      "end":  "2026-11-24T07:21:12.8025682+09:00",
-                      "elapsed_minutes":  0.72556703333333339
+                      "end":  "2026-11-24T14:51:22.5763526+09:00",
+                      "elapsed_minutes":  0.72738835
                   },
                   {
-                      "row":  "double_float",
+                      "row":  "recoil_jump",
                       "attempt":  1,
-                      "start":  "2026-11-24T07:25:00.5490051+09:00",
+                      "start":  "2026-11-24T14:54:48.5075676+09:00",
                       "status":  "returned",
-                      "end":  "2026-11-24T07:25:42.6254980+09:00",
-                      "elapsed_minutes":  0.70127488166666663
+                      "end":  "2026-11-24T14:55:23.1476459+09:00",
+                      "elapsed_minutes":  0.57733463833333332
+                  },
+                  {
+                      "row":  "barrage",
+                      "attempt":  1,
+                      "start":  "2026-11-24T14:58:32.1222243+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T14:59:17.4763201+09:00",
+                      "elapsed_minutes":  0.75590159666666668
+                  },
+                  {
+                      "row":  "dive",
+                      "attempt":  1,
+                      "start":  "2026-11-24T15:01:54.2568007+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T15:02:45.7586162+09:00",
+                      "elapsed_minutes":  0.85836359166666665
+                  },
+                  {
+                      "row":  "dive",
+                      "attempt":  2,
+                      "start":  "2026-11-24T15:04:22.4586592+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T15:04:56.6696922+09:00",
+                      "elapsed_minutes":  0.57018388333333336
+                  },
+                  {
+                      "row":  "double_cast",
+                      "attempt":  1,
+                      "start":  "2026-11-24T15:07:10.2998730+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T15:08:05.1031040+09:00",
+                      "elapsed_minutes":  0.91338718333333335
+                  },
+                  {
+                      "row":  "double_cast",
+                      "attempt":  2,
+                      "start":  "2026-11-24T15:08:44.1396922+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T15:09:23.7623742+09:00",
+                      "elapsed_minutes":  0.66037803333333334
+                  },
+                  {
+                      "row":  "shot_up",
+                      "attempt":  1,
+                      "start":  "2026-11-24T15:12:03.1062209+09:00",
+                      "status":  "rejected_no_image",
+                      "end":  "2026-11-24T15:13:03.1489915+09:00",
+                      "elapsed_minutes":  1.0007128433333334
+                  },
+                  {
+                      "row":  "shot_up",
+                      "attempt":  2,
+                      "start":  "2026-11-24T15:13:12.9292788+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T15:13:48.3877377+09:00",
+                      "elapsed_minutes":  0.590974315
+                  },
+                  {
+                      "row":  "shot_down",
+                      "attempt":  1,
+                      "start":  "2026-11-24T15:16:47.3640254+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T15:17:36.0808811+09:00",
+                      "elapsed_minutes":  0.811947595
+                  },
+                  {
+                      "row":  "shot_air_down",
+                      "attempt":  1,
+                      "start":  "2026-11-24T15:19:30.1604706+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T15:20:14.5964369+09:00",
+                      "elapsed_minutes":  0.7405994383333333
+                  },
+                  {
+                      "row":  "shot_air_down",
+                      "attempt":  2,
+                      "start":  "2026-11-24T15:22:03.0952694+09:00",
+                      "status":  "returned",
+                      "end":  "2026-11-24T15:22:44.7486279+09:00",
+                      "elapsed_minutes":  0.6942226416666667
                   }
               ],
     "observations":  [
-                         "2026-11-24T07:20:29.2685462+09:00",
-                         "2026-11-24T07:21:12.8025682+09:00",
-                         "2026-11-24T07:25:00.5490051+09:00",
-                         "2026-11-24T07:25:42.6254980+09:00",
-                         "2026-11-24T14:34:58.5364276+09:00"
+                         "2026-11-24T14:48:43.8387838+09:00",
+                         "2026-11-24T14:50:38.9330516+09:00",
+                         "2026-11-24T14:51:22.5763526+09:00",
+                         "2026-11-24T14:54:48.5075676+09:00",
+                         "2026-11-24T14:55:23.1476459+09:00",
+                         "2026-11-24T14:58:32.1222243+09:00",
+                         "2026-11-24T14:59:17.4763201+09:00",
+                         "2026-11-24T15:01:54.2568007+09:00",
+                         "2026-11-24T15:02:45.7586162+09:00",
+                         "2026-11-24T15:04:22.4586592+09:00",
+                         "2026-11-24T15:04:56.6696922+09:00",
+                         "2026-11-24T15:07:10.2998730+09:00",
+                         "2026-11-24T15:08:05.1031040+09:00",
+                         "2026-11-24T15:08:44.1396922+09:00",
+                         "2026-11-24T15:09:23.7623742+09:00",
+                         "2026-11-24T15:12:03.1062209+09:00",
+                         "2026-11-24T15:13:03.1489915+09:00",
+                         "2026-11-24T15:13:12.9292788+09:00",
+                         "2026-11-24T15:13:48.3877377+09:00",
+                         "2026-11-24T15:16:47.3640254+09:00",
+                         "2026-11-24T15:17:36.0808811+09:00",
+                         "2026-11-24T15:19:30.1604706+09:00",
+                         "2026-11-24T15:20:14.5964369+09:00",
+                         "2026-11-24T15:22:03.0952694+09:00",
+                         "2026-11-24T15:22:44.7486279+09:00"
                      ],
-    "action":  "No more generation or rows after stop observation. Finish existing-result review, README and commit script only.",
-    "stop_observed_local":  "2026-11-24T14:34:22.5579923+09:00",
-    "status":  "hard_stop_passed",
-    "limitation":  "Last recorded image_gen return was 07:25:42 KST. Next explicit Get-Date was 14:34:22 KST during normalization/review. The clock gap cause is unverified; do not attribute it to image_gen or claim completion within 180 minutes."
+    "previous_sessions":  [
+                              {
+                                  "previous_run":  {
+                                                       "start_utc":  "2026-11-23 16:14:17 UTC",
+                                                       "hard_stop_minutes":  180,
+                                                       "deadline_utc":  "2026-11-23 19:14:17 UTC",
+                                                       "next_clock_observation_utc":  "2026-11-23 22:11:09 UTC",
+                                                       "local_clock_confirmation":  "2026-11-24T07:11:37.6152370+09:00",
+                                                       "action":  "New generation and row production stopped as soon as elapsed-time overrun was observed. Only existing result inspection, reporting and scope verification continued.",
+                                                       "limitation":  "The 180-minute cutoff was not checked at the deadline. Do not claim the task finished within 180 minutes."
+                                                   },
+                                  "start_local":  "2026-11-24T07:18:45.3937835+09:00",
+                                  "deadline_local":  "2026-11-24T10:18:45.3937835+09:00",
+                                  "hard_stop_minutes":  180,
+                                  "calls":  [
+                                                {
+                                                    "row":  "shot_alt",
+                                                    "attempt":  3,
+                                                    "start":  "2026-11-24T07:20:29.2685462+09:00",
+                                                    "status":  "returned",
+                                                    "end":  "2026-11-24T07:21:12.8025682+09:00",
+                                                    "elapsed_minutes":  0.72556703333333339
+                                                },
+                                                {
+                                                    "row":  "double_float",
+                                                    "attempt":  1,
+                                                    "start":  "2026-11-24T07:25:00.5490051+09:00",
+                                                    "status":  "returned",
+                                                    "end":  "2026-11-24T07:25:42.6254980+09:00",
+                                                    "elapsed_minutes":  0.70127488166666663
+                                                }
+                                            ],
+                                  "observations":  [
+                                                       "2026-11-24T07:20:29.2685462+09:00",
+                                                       "2026-11-24T07:21:12.8025682+09:00",
+                                                       "2026-11-24T07:25:00.5490051+09:00",
+                                                       "2026-11-24T07:25:42.6254980+09:00",
+                                                       "2026-11-24T14:34:58.5364276+09:00"
+                                                   ],
+                                  "action":  "No more generation or rows after stop observation. Finish existing-result review, README and commit script only.",
+                                  "stop_observed_local":  "2026-11-24T14:34:22.5579923+09:00",
+                                  "status":  "hard_stop_passed",
+                                  "limitation":  "Last recorded image_gen return was 07:25:42 KST. Next explicit Get-Date was 14:34:22 KST during normalization/review. The clock gap cause is unverified; do not attribute it to image_gen or claim completion within 180 minutes."
+                              }
+                          ],
+    "base_commit":  "e3998e9d7839d35f2b9ae9e848955e63e02bb5b0",
+    "finished_local":  "2026-11-24T15:31:11.9406870+09:00",
+    "elapsed_minutes":  44.214846001666665
 }

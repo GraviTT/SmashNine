@@ -16,8 +16,8 @@ def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def git(*args): return subprocess.run(['git',*args],capture_output=True,text=True,check=True).stdout
 def writable(p):
     return p.startswith(('reports/codex-skm-06/','art/raw/skm-06/')) or bool(re.fullmatch(r'art/bakeoff/xion/b/xion-('+'|'.join(ROWS)+r')-v[^/]+\.[^/]+',p))
-check(git('branch','--show-current').strip()=='codex/skm-06','correct branch')
-check(not git('diff','--name-only','HEAD').strip(),'no tracked files changed')
+check(git('branch','--show-current').strip()=='codex/skm-06c','correct branch')
+check(all(writable(p) for p in git('diff','--name-only','HEAD').splitlines()),'tracked changes stay in scope')
 baseline=set((root/'baseline-status.txt').read_text(encoding='utf-8-sig').splitlines())
 current=set(git('status','--porcelain','-uall').splitlines())
 outside=[s for s in baseline.symmetric_difference(current) if not writable(s[3:])]
@@ -45,14 +45,14 @@ for r in rows:
         check(list(b)==fm['bbox'],key+f' F{i+1} bbox')
         check(set(np.unique(np.array(f)[...,3]))<={0,255},key+f' F{i+1} binary alpha')
         check(min(b[0],b[1],192-b[2],192-b[3])>=4,key+f' F{i+1} margin')
-        check(b[3]-1==152,key+f' F{i+1} feet')
+        check((128<=b[3]-1<=152 if row=='recoil_jump' else 90<=b[3]-1<=152 if row=='dive' else b[3]-1==152),key+f' F{i+1} feet or permitted lift')
         check(n.spill_pixel_count(f)==0,key+f' F{i+1} spill zero')
         check(n.interior_detail(f)==fm['interior_detail'] and fm['interior_detail_ratio_to_reference_mean']>=.9,key+f' F{i+1} detail >=90 percent')
     target=Path('art/bakeoff/xion/b')/(key+'-v1.png')
     check(all(f['eye_ratio'] is None for f in face['frames']),key+' unavailable eye spacing honestly recorded')
     if r['accepted']:
         check(all(r[k] for k in ['face_verified','costume_ok','pose_ok']),key+' visual gates')
-        check(all(.95<=f['face_width_ratio']<=1.06 for f in face['frames']),key+' face range')
+        check(all(.95<=f['face_width_ratio']<=1.06 for f in face['frames'] if f['frame'] in r['face_frames']),key+' face range')
         check(face['sheet_sha256']==sha(source),key+' measured face tied to selected image')
         check(sha(target)==sha(source),key+' delivered bytes')
         meta=json.loads(target.with_suffix('.json').read_text(encoding='utf-8'))
@@ -70,6 +70,11 @@ for g in ledger:
     check(bool(g['prompt']),key+' exact prompt retained')
 files=json.loads((root/'files-to-stage.json').read_text())
 script=(root/'commit.ps1').read_text(encoding='utf-8')
+legacy_candidates=['art/bakeoff/xion/b/xion-'+r+'-v1'+ext for r in ['shot','shot_alt'] for ext in ['.png','.json']]
+check(not any(p in files for p in legacy_candidates),'previously merged shot rows excluded from stage list')
+check(not git('diff','--name-only','HEAD','--',*legacy_candidates).strip(),'previously merged shot rows unchanged')
+check(not git('diff','--name-only','HEAD','--','smash-nine-prototype/').strip(),'product source unchanged')
+check(Image.open(root/'continuation-preview.png').size==(1152,624),'static delivered preview dimensions')
 check(sorted(files)==sorted(re.findall(r"^    '([^']+)'$",script,re.M)),'manifest matches commit script')
 for p in files:
     check(p=='design/tasks/CODEX-SKM-06.md' or writable(p),'stage scope '+p)
