@@ -7,6 +7,8 @@ extends SceneTree
 ## Windowed: <godot> --path . --fixed-fps 60 -s tests/analysis/lead/cup_xion_moves_capture.gd -- --out=<dir> --variant=v1 [--realm=niflheim]
 ## The reel: J side twice (right and left hand), J up, J down, a jump and J down in the air, K roll, L recoil
 ## jump, U (the double hunts and pins Frey, then U again dives to it), I barrage.
+## --reel=air_down (CODEX-SKM-07, 2026-11-24): only the air-down J, three times: a jump, the shot at the top,
+## the landing. Variants: v2, v3 (Codex).
 
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
@@ -24,6 +26,7 @@ var camera: Camera2D
 var xion: Node
 var tick := 0
 var shot := 0
+var reel := "all"
 
 func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
@@ -33,6 +36,8 @@ func _initialize() -> void:
 			variant = arg.substr(10)
 		elif arg.begins_with("--realm="):
 			realm = arg.substr(8)
+		elif arg.begins_with("--reel="):
+			reel = arg.substr(7)
 	call_deferred("_run")
 
 func _run() -> void:
@@ -54,6 +59,18 @@ func _run() -> void:
 	await _idle(30)
 	DirAccess.make_dir_recursive_absolute(out_dir)
 	xion.facing = 1
+	if reel == "air_down":
+		for jump in 3:
+			await _until(func() -> bool: return xion._can_start_attack() and xion.is_on_floor(), 90)
+			await _wait(10)
+			xion.velocity.y = xion.jump_velocity
+			await _wait(18)
+			await _shoot("air_down", Vector2.DOWN, 24)
+			await _until(func() -> bool: return xion.is_on_floor(), 120)
+			await _wait(14)
+		print("CAPTURE_DONE ", out_dir, " frames ", tick / 2)
+		quit(0)
+		return
 	await _shoot("side", Vector2.RIGHT, 36)
 	await _shoot("side", Vector2.RIGHT, 40)
 	await _shoot("up", Vector2.UP, 40)
