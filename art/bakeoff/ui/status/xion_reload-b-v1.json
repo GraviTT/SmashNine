@@ -1,0 +1,20 @@
+{
+  "note": "비스듬한 은색 탄피와 여덟 구간의 각진 진홍 진행 고리. 위에서 시계 방향으로 채운다.",
+  "replaces": "assets/art/ui/status/xion_reload.png",
+  "frames": 8,
+  "fps": 2.6666666666666665,
+  "anchor": [
+    12,
+    12
+  ],
+  "loop": false,
+  "frame_size": [
+    24,
+    24
+  ],
+  "blend": "normal",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "Pillow; hand-authored native pixels",
+  "playback": "progress-indexed: floor(clamp(progress,0,0.999999)*8); k=0..7 => k/8; hide at completion"
+}

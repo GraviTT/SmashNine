@@ -1,0 +1,157 @@
+{
+  "note": "비스듬한 네 갈래 진홍 파열과 끊어진 원형 고리. 밝은 중심 뒤 대각선 파편이 남는다.",
+  "replaces": "assets/art/effects/skill/xion_point_blank.png",
+  "frames": 5,
+  "fps": 36,
+  "anchor": [
+    56,
+    56
+  ],
+  "loop": false,
+  "frame_size": [
+    112,
+    112
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "image_gen raw; explicit crop; downsample; hard alpha",
+  "source_raw": "art/raw/vfx-10/xion_point_blank-b.png",
+  "extraction": [
+    {
+      "source_cell": [
+        0,
+        0,
+        434,
+        724
+      ],
+      "source_crop": [
+        179,
+        314,
+        280,
+        413
+      ],
+      "source_origin": [
+        229,
+        362
+      ],
+      "scale": [
+        0.32,
+        0.27
+      ],
+      "target_paste": [
+        40,
+        43
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        434,
+        0,
+        869,
+        724
+      ],
+      "source_crop": [
+        97,
+        272,
+        345,
+        452
+      ],
+      "source_origin": [
+        655,
+        362
+      ],
+      "scale": [
+        0.32,
+        0.27
+      ],
+      "target_paste": [
+        16,
+        32
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        869,
+        0,
+        1303,
+        724
+      ],
+      "source_crop": [
+        102,
+        274,
+        328,
+        450
+      ],
+      "source_origin": [
+        1085,
+        362
+      ],
+      "scale": [
+        0.32,
+        0.27
+      ],
+      "target_paste": [
+        20,
+        32
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        1303,
+        0,
+        1738,
+        724
+      ],
+      "source_crop": [
+        122,
+        286,
+        284,
+        435
+      ],
+      "source_origin": [
+        1506,
+        362
+      ],
+      "scale": [
+        0.32,
+        0.27
+      ],
+      "target_paste": [
+        30,
+        35
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        1738,
+        0,
+        2172,
+        724
+      ],
+      "source_crop": [
+        182,
+        341,
+        230,
+        385
+      ],
+      "source_origin": [
+        1944,
+        362
+      ],
+      "scale": [
+        0.32,
+        0.27
+      ],
+      "target_paste": [
+        48,
+        50
+      ],
+      "alpha_threshold": 160
+    }
+  ]
+}

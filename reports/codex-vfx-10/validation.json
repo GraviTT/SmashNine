@@ -1,0 +1,1159 @@
+{
+  "status": "partial-hard-stop",
+  "start_kst": "2026-11-24T07:18:45+09:00",
+  "deadline_kst": "2026-11-24T09:38:45+09:00",
+  "clock_gap": {
+    "last_before_kst": "2026-11-24T07:25:37+09:00",
+    "first_after_kst": "2026-11-24T14:34:16+09:00",
+    "cause": "unknown"
+  },
+  "schedule": "FAIL: the already submitted batch continued after deadline; no more assets after this was observed",
+  "product_code_changed": false,
+  "live_godot_test": false,
+  "results": [
+    {
+      "file": "art/bakeoff/effects/xion/xion_blast-a-v1.png",
+      "status": "FAIL",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true,
+        "bright_pixels_within_14deg_beyond_x48": false
+      },
+      "metrics": {
+        "frame_size": [
+          256,
+          128
+        ],
+        "strip_size": [
+          1536,
+          128
+        ],
+        "frames": 6,
+        "fps": 30,
+        "anchor": [
+          8,
+          64
+        ],
+        "loop": false,
+        "duration_seconds": 0.2,
+        "opaque_pixels": [
+          174,
+          1143,
+          4074,
+          2966,
+          623,
+          22
+        ],
+        "bboxes": [
+          [
+            1,
+            53,
+            23,
+            76
+          ],
+          [
+            1,
+            46,
+            109,
+            81
+          ],
+          [
+            1,
+            33,
+            228,
+            95
+          ],
+          [
+            1,
+            33,
+            237,
+            96
+          ],
+          [
+            5,
+            33,
+            229,
+            96
+          ],
+          [
+            6,
+            38,
+            180,
+            84
+          ]
+        ],
+        "max_reach_from_anchor_px": 228,
+        "bright_outer_pixel_angles_deg": [
+          null,
+          18.12,
+          18.18,
+          15.79,
+          11.53,
+          null
+        ]
+      },
+      "sha256": "5ba958c218436bc1771f6cec45f5dfdff5bc0b9c8ea0e91c4a909228f15afc8f"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_blast-b-v1.png",
+      "status": "FAIL",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true,
+        "bright_pixels_within_14deg_beyond_x48": false
+      },
+      "metrics": {
+        "frame_size": [
+          256,
+          128
+        ],
+        "strip_size": [
+          1536,
+          128
+        ],
+        "frames": 6,
+        "fps": 30,
+        "anchor": [
+          8,
+          64
+        ],
+        "loop": false,
+        "duration_seconds": 0.2,
+        "opaque_pixels": [
+          348,
+          2537,
+          5195,
+          2645,
+          297,
+          44
+        ],
+        "bboxes": [
+          [
+            1,
+            50,
+            35,
+            77
+          ],
+          [
+            1,
+            39,
+            128,
+            89
+          ],
+          [
+            1,
+            33,
+            240,
+            97
+          ],
+          [
+            1,
+            32,
+            243,
+            95
+          ],
+          [
+            97,
+            36,
+            211,
+            93
+          ],
+          [
+            141,
+            53,
+            156,
+            79
+          ]
+        ],
+        "max_reach_from_anchor_px": 234,
+        "bright_outer_pixel_angles_deg": [
+          null,
+          19.23,
+          15.46,
+          11.55,
+          null,
+          null
+        ]
+      },
+      "sha256": "b178b3a4848b0d413ea7faa1ebd850b39ba7dd9094df41a6fa1fcdf3602bfbf8"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_recoil_blast-a-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          192,
+          176
+        ],
+        "strip_size": [
+          1152,
+          176
+        ],
+        "frames": 6,
+        "fps": 30,
+        "anchor": [
+          96,
+          16
+        ],
+        "loop": false,
+        "duration_seconds": 0.2,
+        "opaque_pixels": [
+          150,
+          689,
+          2681,
+          1806,
+          385,
+          28
+        ],
+        "bboxes": [
+          [
+            74,
+            12,
+            120,
+            20
+          ],
+          [
+            62,
+            8,
+            129,
+            64
+          ],
+          [
+            44,
+            7,
+            146,
+            142
+          ],
+          [
+            32,
+            10,
+            159,
+            154
+          ],
+          [
+            28,
+            22,
+            164,
+            151
+          ],
+          [
+            28,
+            111,
+            169,
+            149
+          ]
+        ],
+        "max_depth_from_anchor_px": 137,
+        "max_halfwidth_px": 72
+      },
+      "sha256": "bab0bd43eea03ca926aebf41a4606892d1b4e4e7c22411cd46a223171e3c5779"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_recoil_blast-b-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          192,
+          176
+        ],
+        "strip_size": [
+          1152,
+          176
+        ],
+        "frames": 6,
+        "fps": 30,
+        "anchor": [
+          96,
+          16
+        ],
+        "loop": false,
+        "duration_seconds": 0.2,
+        "opaque_pixels": [
+          417,
+          2078,
+          8278,
+          3449,
+          778,
+          53
+        ],
+        "bboxes": [
+          [
+            67,
+            9,
+            124,
+            23
+          ],
+          [
+            49,
+            5,
+            143,
+            53
+          ],
+          [
+            27,
+            3,
+            166,
+            136
+          ],
+          [
+            25,
+            37,
+            163,
+            152
+          ],
+          [
+            31,
+            60,
+            160,
+            155
+          ],
+          [
+            40,
+            119,
+            157,
+            154
+          ]
+        ],
+        "max_depth_from_anchor_px": 138,
+        "max_halfwidth_px": 71
+      },
+      "sha256": "5131d0139efc26a08b82104c2939e2a28b74ab57569e073c3a246fef7428242b"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_point_blank-a-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true,
+        "duration_under_150ms": true,
+        "clear_above_body_minus30": true
+      },
+      "metrics": {
+        "frame_size": [
+          112,
+          112
+        ],
+        "strip_size": [
+          560,
+          112
+        ],
+        "frames": 5,
+        "fps": 36,
+        "anchor": [
+          56,
+          56
+        ],
+        "loop": false,
+        "duration_seconds": 0.1388888888888889,
+        "opaque_pixels": [
+          202,
+          784,
+          527,
+          187,
+          12
+        ],
+        "bboxes": [
+          [
+            43,
+            43,
+            69,
+            68
+          ],
+          [
+            16,
+            32,
+            96,
+            80
+          ],
+          [
+            27,
+            37,
+            84,
+            75
+          ],
+          [
+            36,
+            37,
+            77,
+            75
+          ],
+          [
+            50,
+            46,
+            65,
+            65
+          ]
+        ],
+        "max_occupied_size": [
+          80,
+          48
+        ]
+      },
+      "sha256": "19cdece118147d3b5f374c40e0365859c48dc22bc05189dd8202450f302e91da"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_point_blank-b-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true,
+        "duration_under_150ms": true,
+        "clear_above_body_minus30": true
+      },
+      "metrics": {
+        "frame_size": [
+          112,
+          112
+        ],
+        "strip_size": [
+          560,
+          112
+        ],
+        "frames": 5,
+        "fps": 36,
+        "anchor": [
+          56,
+          56
+        ],
+        "loop": false,
+        "duration_seconds": 0.1388888888888889,
+        "opaque_pixels": [
+          307,
+          1496,
+          609,
+          139,
+          12
+        ],
+        "bboxes": [
+          [
+            40,
+            43,
+            72,
+            70
+          ],
+          [
+            16,
+            32,
+            95,
+            80
+          ],
+          [
+            20,
+            32,
+            92,
+            80
+          ],
+          [
+            30,
+            35,
+            82,
+            75
+          ],
+          [
+            48,
+            50,
+            63,
+            62
+          ]
+        ],
+        "max_occupied_size": [
+          79,
+          48
+        ]
+      },
+      "sha256": "c945226cfe440a605fbcadcd3f7f1a7f21f9643e1f6aff1478b5df9e22b0961a"
+    },
+    {
+      "file": "art/bakeoff/ui/status/xion_reload-a-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true,
+        "progress_increases": true
+      },
+      "metrics": {
+        "frame_size": [
+          24,
+          24
+        ],
+        "strip_size": [
+          192,
+          24
+        ],
+        "frames": 8,
+        "fps": 2.6666666666666665,
+        "anchor": [
+          12,
+          12
+        ],
+        "loop": false,
+        "duration_seconds": 3.0,
+        "opaque_pixels": [
+          196,
+          196,
+          196,
+          196,
+          196,
+          196,
+          196,
+          196
+        ],
+        "bboxes": [
+          [
+            2,
+            2,
+            23,
+            23
+          ],
+          [
+            2,
+            2,
+            23,
+            23
+          ],
+          [
+            2,
+            2,
+            23,
+            23
+          ],
+          [
+            2,
+            2,
+            23,
+            23
+          ],
+          [
+            2,
+            2,
+            23,
+            23
+          ],
+          [
+            2,
+            2,
+            23,
+            23
+          ],
+          [
+            2,
+            2,
+            23,
+            23
+          ],
+          [
+            2,
+            2,
+            23,
+            23
+          ]
+        ],
+        "filled_ring_pixels": [
+          0,
+          13,
+          25,
+          38,
+          50,
+          63,
+          75,
+          88
+        ]
+      },
+      "sha256": "88b30adf1606d0aa3bf8338c63625c583b2650154c368e7691d8f770d81e9b22"
+    },
+    {
+      "file": "art/bakeoff/ui/status/xion_reload-b-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true,
+        "progress_increases": true
+      },
+      "metrics": {
+        "frame_size": [
+          24,
+          24
+        ],
+        "strip_size": [
+          192,
+          24
+        ],
+        "frames": 8,
+        "fps": 2.6666666666666665,
+        "anchor": [
+          12,
+          12
+        ],
+        "loop": false,
+        "duration_seconds": 3.0,
+        "opaque_pixels": [
+          140,
+          140,
+          140,
+          140,
+          140,
+          140,
+          140,
+          140
+        ],
+        "bboxes": [
+          [
+            3,
+            3,
+            22,
+            22
+          ],
+          [
+            3,
+            3,
+            22,
+            22
+          ],
+          [
+            3,
+            3,
+            22,
+            22
+          ],
+          [
+            3,
+            3,
+            22,
+            22
+          ],
+          [
+            3,
+            3,
+            22,
+            22
+          ],
+          [
+            3,
+            3,
+            22,
+            22
+          ],
+          [
+            3,
+            3,
+            22,
+            22
+          ],
+          [
+            3,
+            3,
+            22,
+            22
+          ]
+        ],
+        "filled_ring_pixels": [
+          0,
+          9,
+          17,
+          26,
+          34,
+          43,
+          51,
+          60
+        ]
+      },
+      "sha256": "7caaf2b1a78453c89b48b466a90f34b9ac143d641838c68613edd3a9a403a8b4"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_double_in-a-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          128,
+          176
+        ],
+        "strip_size": [
+          768,
+          176
+        ],
+        "frames": 6,
+        "fps": 24,
+        "anchor": [
+          64,
+          160
+        ],
+        "loop": false,
+        "duration_seconds": 0.25,
+        "opaque_pixels": [
+          156,
+          726,
+          1193,
+          1264,
+          797,
+          64
+        ],
+        "bboxes": [
+          [
+            38,
+            150,
+            91,
+            166
+          ],
+          [
+            22,
+            103,
+            107,
+            166
+          ],
+          [
+            22,
+            38,
+            107,
+            166
+          ],
+          [
+            22,
+            20,
+            107,
+            166
+          ],
+          [
+            22,
+            22,
+            107,
+            116
+          ],
+          [
+            26,
+            44,
+            103,
+            66
+          ]
+        ]
+      },
+      "sha256": "b72beed8848b331f2df9f8f675b78dc00d60e010164528954c5113c57e68e4bf"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_double_in-b-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          128,
+          176
+        ],
+        "strip_size": [
+          768,
+          176
+        ],
+        "frames": 6,
+        "fps": 24,
+        "anchor": [
+          64,
+          160
+        ],
+        "loop": false,
+        "duration_seconds": 0.25,
+        "opaque_pixels": [
+          202,
+          717,
+          1413,
+          1503,
+          770,
+          57
+        ],
+        "bboxes": [
+          [
+            16,
+            148,
+            107,
+            166
+          ],
+          [
+            16,
+            104,
+            115,
+            164
+          ],
+          [
+            16,
+            56,
+            115,
+            164
+          ],
+          [
+            16,
+            19,
+            115,
+            163
+          ],
+          [
+            16,
+            21,
+            115,
+            93
+          ],
+          [
+            16,
+            35,
+            27,
+            54
+          ]
+        ]
+      },
+      "sha256": "f10fe90ac9dce41e8f76c2a6ca6be86ba85d531087bb823215c79ca88dc244ec"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_dive_trail-a-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true,
+        "erases_from_start": true
+      },
+      "metrics": {
+        "frame_size": [
+          256,
+          48
+        ],
+        "strip_size": [
+          1280,
+          48
+        ],
+        "frames": 5,
+        "fps": 31,
+        "anchor": [
+          128,
+          24
+        ],
+        "loop": false,
+        "duration_seconds": 0.16129032258064516,
+        "opaque_pixels": [
+          3840,
+          3537,
+          2830,
+          1850,
+          621
+        ],
+        "bboxes": [
+          [
+            2,
+            8,
+            253,
+            38
+          ],
+          [
+            35,
+            8,
+            253,
+            38
+          ],
+          [
+            90,
+            8,
+            253,
+            38
+          ],
+          [
+            148,
+            8,
+            253,
+            38
+          ],
+          [
+            211,
+            12,
+            253,
+            37
+          ]
+        ]
+      },
+      "sha256": "2f0852b4b11ece57f2e462285e28195a6d15c32c12d09473f6c5092c2a71a4e7"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_dive_trail-b-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true,
+        "erases_from_start": true
+      },
+      "metrics": {
+        "frame_size": [
+          256,
+          48
+        ],
+        "strip_size": [
+          1280,
+          48
+        ],
+        "frames": 5,
+        "fps": 31,
+        "anchor": [
+          128,
+          24
+        ],
+        "loop": false,
+        "duration_seconds": 0.16129032258064516,
+        "opaque_pixels": [
+          2200,
+          1916,
+          1286,
+          651,
+          253
+        ],
+        "bboxes": [
+          [
+            12,
+            7,
+            245,
+            42
+          ],
+          [
+            35,
+            7,
+            245,
+            42
+          ],
+          [
+            90,
+            7,
+            245,
+            42
+          ],
+          [
+            148,
+            7,
+            245,
+            42
+          ],
+          [
+            216,
+            7,
+            245,
+            38
+          ]
+        ]
+      },
+      "sha256": "9bf66d2382cbbb9e3b8c7c8c1acd32505549cb555501c7434a1238a8ef415b93"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_bullet-a-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          24,
+          8
+        ],
+        "strip_size": [
+          48,
+          8
+        ],
+        "frames": 2,
+        "fps": 20,
+        "anchor": [
+          12,
+          4
+        ],
+        "loop": true,
+        "duration_seconds": 0.1,
+        "opaque_pixels": [
+          48,
+          45
+        ],
+        "bboxes": [
+          [
+            2,
+            2,
+            23,
+            6
+          ],
+          [
+            3,
+            2,
+            23,
+            6
+          ]
+        ]
+      },
+      "sha256": "5be41ceb4a991b15dcc0ea90530c275de1476717828a07c6cae265b75fc3056f"
+    },
+    {
+      "file": "art/bakeoff/effects/xion/xion_bullet-b-v1.png",
+      "status": "PASS",
+      "checks": {
+        "size": true,
+        "rgba": true,
+        "alpha_0_255": true,
+        "empty_1px_border": true,
+        "nonempty_frames": true,
+        "distinct_frames": true,
+        "metadata": true,
+        "no_upscale": true,
+        "boards": true
+      },
+      "metrics": {
+        "frame_size": [
+          24,
+          8
+        ],
+        "strip_size": [
+          48,
+          8
+        ],
+        "frames": 2,
+        "fps": 20,
+        "anchor": [
+          12,
+          4
+        ],
+        "loop": true,
+        "duration_seconds": 0.1,
+        "opaque_pixels": [
+          68,
+          66
+        ],
+        "bboxes": [
+          [
+            2,
+            2,
+            23,
+            7
+          ],
+          [
+            2,
+            2,
+            23,
+            7
+          ]
+        ]
+      },
+      "sha256": "9188d6dea5609a30684eb26c632beb9fb89e66aae8b92fbb4e9a4b1d9e95118e"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_j-v1.png",
+      "status": "NOT_REACHED"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_k-v1.png",
+      "status": "NOT_REACHED"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_l-v1.png",
+      "status": "NOT_REACHED"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_u-v1.png",
+      "status": "NOT_REACHED"
+    },
+    {
+      "file": "art/bakeoff/skill_icons/xion/xion_i-v1.png",
+      "status": "NOT_REACHED"
+    }
+  ]
+}

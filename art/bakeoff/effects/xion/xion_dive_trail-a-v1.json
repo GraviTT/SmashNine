@@ -1,0 +1,20 @@
+{
+  "note": "날카로운 진홍 리본 세 줄과 규칙적인 주사선. 왼쪽 출발점부터 지워진다.",
+  "replaces": "assets/art/effects/skill/xion_dive_trail.png",
+  "frames": 5,
+  "fps": 31,
+  "anchor": [
+    128,
+    24
+  ],
+  "loop": false,
+  "frame_size": [
+    256,
+    48
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "Pillow; hand-authored native pixels",
+  "scan_formula": "XionDouble.gd: tint (.96,.24,.34), luminance .299/.587/.114, 3px lines .55/1, 170px sweep at .7/s; attenuation in RGB for binary alpha"
+}

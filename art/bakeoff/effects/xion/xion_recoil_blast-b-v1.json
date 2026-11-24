@@ -1,0 +1,184 @@
+{
+  "note": "두 갈래의 굵은 진홍 불꽃 날개와 가운데 금색 탄 조각이 떨어진다.",
+  "replaces": "assets/art/effects/skill/xion_recoil_blast.png",
+  "frames": 6,
+  "fps": 30,
+  "anchor": [
+    96,
+    16
+  ],
+  "loop": false,
+  "frame_size": [
+    192,
+    176
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "image_gen raw; explicit crop; downsample; hard alpha",
+  "source_raw": "art/raw/vfx-10/xion_recoil_blast-b.png",
+  "extraction": [
+    {
+      "source_cell": [
+        0,
+        0,
+        443,
+        591
+      ],
+      "source_crop": [
+        144,
+        112,
+        299,
+        153
+      ],
+      "source_origin": [
+        222,
+        132
+      ],
+      "scale": [
+        0.37,
+        0.35
+      ],
+      "target_paste": [
+        67,
+        9
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        443,
+        0,
+        887,
+        591
+      ],
+      "source_crop": [
+        95,
+        105,
+        349,
+        241
+      ],
+      "source_origin": [
+        665,
+        136
+      ],
+      "scale": [
+        0.37,
+        0.35
+      ],
+      "target_paste": [
+        49,
+        5
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        887,
+        0,
+        1330,
+        591
+      ],
+      "source_crop": [
+        34,
+        100,
+        409,
+        481
+      ],
+      "source_origin": [
+        1108,
+        137
+      ],
+      "scale": [
+        0.37,
+        0.35
+      ],
+      "target_paste": [
+        27,
+        3
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        0,
+        591,
+        443,
+        1182
+      ],
+      "source_crop": [
+        31,
+        198,
+        403,
+        527
+      ],
+      "source_origin": [
+        222,
+        728
+      ],
+      "scale": [
+        0.37,
+        0.35
+      ],
+      "target_paste": [
+        25,
+        37
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        443,
+        591,
+        887,
+        1182
+      ],
+      "source_crop": [
+        45,
+        263,
+        393,
+        534
+      ],
+      "source_origin": [
+        665,
+        728
+      ],
+      "scale": [
+        0.37,
+        0.35
+      ],
+      "target_paste": [
+        31,
+        60
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        887,
+        591,
+        1330,
+        1182
+      ],
+      "source_crop": [
+        70,
+        431,
+        386,
+        531
+      ],
+      "source_origin": [
+        1108,
+        728
+      ],
+      "scale": [
+        0.37,
+        0.35
+      ],
+      "target_paste": [
+        40,
+        119
+      ],
+      "alpha_threshold": 160
+    }
+  ]
+}
