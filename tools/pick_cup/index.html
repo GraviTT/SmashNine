@@ -4,7 +4,8 @@
 <style>
 /* Layout: one match at a time. Item tabs on top, two candidates face off (A | VS | B) playing in sync,
    the verdict bar under them, then the item's league table, every match with its notes, and the AI verdict.
-   One dark look on purpose: the clips are game footage on dark arenas. */
+   One dark look on purpose: the clips are game footage on dark arenas.
+   An item marked "view": "single" shows one clip at a time at full width (see .match.single below). */
 :root {
   --bg: #0f1219;
   --surface: #171b26;
@@ -77,6 +78,23 @@ button:focus-visible, textarea:focus-visible { outline: 2px solid var(--fg); out
 .side label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
 .side textarea { width: 100%; min-height: 64px; resize: vertical; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: inherit; font-size: 14px; }
 .vs { align-self: center; font-family: var(--display); font-size: 30px; color: var(--muted); padding: 0 2px; }
+
+/* Single view, for an item with "view": "single" (full-screen captures: HUD text cannot be read at half
+   width). One clip shows at a time at full width and the viewer flips between A and B at the same moment;
+   both clips keep playing in step, the other one hidden in the same grid cell. */
+.wrap.wide { max-width: 1320px; }
+.switch { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; color: var(--muted); font-size: 14px; }
+.show { --tone: var(--a); display: inline-flex; align-items: baseline; gap: 8px; padding: 7px 14px; border: 2px solid var(--tone); border-radius: 10px; background: var(--surface); font-size: 15px; }
+.show.b { --tone: var(--b); }
+.show b { font-family: var(--display); font-weight: 400; color: var(--tone); }
+.show[aria-pressed="true"] { background: var(--tone); color: var(--bg); font-weight: 700; }
+.show[aria-pressed="true"] b { color: var(--bg); }
+.match.single .arena { grid-template-columns: minmax(0, 1fr); }
+.match.single .vs { display: none; }
+.match.single .side { grid-area: 1 / 1; }
+.match.single[data-shown="left"] .side.b, .match.single[data-shown="right"] .side.a { visibility: hidden; }
+.match.single .stage { cursor: pointer; }
+.match.single .stage[data-size="fit"] video { image-rendering: auto; }
 
 .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; color: var(--muted); font-size: 14px; }
 .group { display: flex; align-items: center; gap: 4px; }
@@ -161,6 +179,11 @@ td.points { font-weight: 700; }
   <section class="match" id="match" aria-live="polite">
     <div class="round-label" id="match-label"></div>
     <p class="question" id="question"></p>
+    <div class="switch" id="view-switch" hidden>
+      <button class="show a" id="show-left" type="button" aria-pressed="true"><b>A</b><span id="show-left-name"></span></button>
+      <button class="show b" id="show-right" type="button" aria-pressed="false"><b>B</b><span id="show-right-name"></span></button>
+      <span>한 화면씩 봅니다. <kbd>Tab</kbd> 키나 영상을 누르면 같은 순간의 A와 B가 바뀝니다.</span>
+    </div>
     <div class="arena">
       <article class="side a">
         <header><span class="badge">A</span><h2 id="name-left"></h2></header>
@@ -235,6 +258,8 @@ const state = {
   // pick always loads the next pair (comparing with state.key missed that: pick() sets it beforehand).
   loadedKey: null,
   saving: false, lockUntil: 0, seekAt: 0,
+  // Single view (item.view === "single"): which side is on screen, and the sides seen in this match.
+  single: false, shown: "left", seen: new Set(),
 };
 
 function hash(text) {
@@ -313,9 +338,17 @@ function renderMatch(reload) {
   $("desc-left").textContent = left.desc ?? "";
   $("name-right").textContent = right.name;
   $("desc-right").textContent = right.desc ?? "";
+  $("show-left-name").textContent = left.name;
+  $("show-right-name").textContent = right.name;
+  state.single = item.view === "single";
+  $("match").classList.toggle("single", state.single);
+  document.querySelector(".wrap").classList.toggle("wide", state.single);
+  $("view-switch").hidden = !state.single;
   const record = state.results.get(m.key);
   if (changed || reload) {
     state.loadedKey = m.key;
+    state.seen = new Set();
+    showSide("left");
     $("note-left").value = record?.notes?.[left.id] ?? "";
     $("note-right").value = record?.notes?.[right.id] ?? "";
     if ($("note-left").value || $("note-right").value) setNotesOpen(true);
@@ -324,7 +357,18 @@ function renderMatch(reload) {
   $("pick-left").setAttribute("aria-pressed", String(record?.winner === left.id));
   $("pick-right").setAttribute("aria-pressed", String(record?.winner === right.id));
   $("pick-draw").setAttribute("aria-pressed", String(record?.winner === "draw"));
+  applySize();
 }
+
+/** Single view: puts one side on screen. The clips are not touched, so the moment stays the same. */
+function showSide(side) {
+  state.shown = side;
+  state.seen.add(side);
+  $("match").dataset.shown = side;
+  $("show-left").setAttribute("aria-pressed", String(side === "left"));
+  $("show-right").setAttribute("aria-pressed", String(side === "right"));
+}
+const flipSide = () => showSide(state.shown === "left" ? "right" : "left");
 
 function renderBoard() {
   const item = itemNow();
@@ -480,6 +524,7 @@ function applySize() {
   for (const [stage, video] of [[$("stage-left"), vl], [$("stage-right"), vr]]) {
     stage.dataset.size = state.size;
     video.style.width = state.size === "fit" || !video.videoWidth ? "" : `${video.videoWidth * Number(state.size)}px`;
+    video.style.maxWidth = state.single && state.size === "fit" && video.videoWidth ? `${video.videoWidth}px` : "";
   }
 }
 for (const b of document.querySelectorAll("button[data-size]")) {
@@ -515,6 +560,10 @@ async function pick(side) {
   if (state.loadedKey !== m.key) return; // the pair on screen is not this match yet
   if ([vl, vr].some((v) => stageOf(v).dataset.state === "loading")) {
     setStatus("영상을 불러오는 중입니다. 두 영상을 본 뒤 골라 주세요.");
+    return;
+  }
+  if (state.single && state.seen.size < 2) {
+    setStatus("A와 B를 모두 본 뒤 골라 주세요. Tab 키나 영상을 누르면 바뀝니다.");
     return;
   }
   state.touched = true;
@@ -556,12 +605,16 @@ async function pick(side) {
 $("pick-left").addEventListener("click", () => pick("left"));
 $("pick-right").addEventListener("click", () => pick("right"));
 $("pick-draw").addEventListener("click", () => pick("draw"));
+$("show-left").addEventListener("click", () => showSide("left"));
+$("show-right").addEventListener("click", () => showSide("right"));
+for (const stage of [$("stage-left"), $("stage-right")]) stage.addEventListener("click", () => { if (state.single) flipSide(); });
 document.addEventListener("keydown", (e) => {
   if (e.target.closest && e.target.closest("textarea, input")) return;
   if (e.key === "ArrowLeft") { e.preventDefault(); pick("left"); }
   else if (e.key === "ArrowRight") { e.preventDefault(); pick("right"); }
   else if (e.key === "ArrowDown") { e.preventDefault(); pick("draw"); }
   else if (e.key === " ") { e.preventDefault(); togglePlay(); }
+  else if (e.key === "Tab" && state.single) { e.preventDefault(); flipSide(); }
   else if (e.key === "r" || e.key === "R") restart();
 });
 
