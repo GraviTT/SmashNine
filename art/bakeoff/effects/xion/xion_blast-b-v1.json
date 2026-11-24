@@ -1,0 +1,184 @@
+{
+  "note": "넓고 짧은 불꽃 조각이 갈라지는 산탄. A보다 총구 섬광과 파편의 면적이 크다.",
+  "replaces": "assets/art/effects/xion_blast.png",
+  "frames": 6,
+  "fps": 30,
+  "anchor": [
+    8,
+    64
+  ],
+  "loop": false,
+  "frame_size": [
+    256,
+    128
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "image_gen raw; explicit crop; downsample; hard alpha",
+  "source_raw": "art/raw/vfx-10/xion_blast-b.png",
+  "extraction": [
+    {
+      "source_cell": [
+        0,
+        0,
+        724,
+        362
+      ],
+      "source_crop": [
+        24,
+        160,
+        126,
+        250
+      ],
+      "source_origin": [
+        58,
+        207
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        -5,
+        50
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        0,
+        1448,
+        362
+      ],
+      "source_crop": [
+        24,
+        124,
+        365,
+        292
+      ],
+      "source_origin": [
+        786,
+        208
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        -7,
+        39
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        0,
+        362,
+        724,
+        724
+      ],
+      "source_crop": [
+        24,
+        80,
+        644,
+        293
+      ],
+      "source_origin": [
+        56,
+        546
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        -5,
+        33
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        362,
+        1448,
+        724
+      ],
+      "source_crop": [
+        25,
+        76,
+        659,
+        285
+      ],
+      "source_origin": [
+        786,
+        546
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        -7,
+        32
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        0,
+        724,
+        724,
+        1086
+      ],
+      "source_crop": [
+        278,
+        88,
+        569,
+        279
+      ],
+      "source_origin": [
+        56,
+        906
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        96,
+        36
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        724,
+        1448,
+        1086
+      ],
+      "source_crop": [
+        399,
+        144,
+        438,
+        232
+      ],
+      "source_origin": [
+        786,
+        906
+      ],
+      "scale": [
+        0.395,
+        0.3
+      ],
+      "target_paste": [
+        141,
+        53
+      ],
+      "alpha_threshold": 160
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "note": "발밑의 얇은 충격 고리에서 가는 산탄이 아래로 퍼진다.",
+  "replaces": "assets/art/effects/skill/xion_recoil_blast.png",
+  "frames": 6,
+  "fps": 30,
+  "anchor": [
+    96,
+    16
+  ],
+  "loop": false,
+  "frame_size": [
+    192,
+    176
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "image_gen raw; explicit crop; downsample; hard alpha",
+  "source_raw": "art/raw/vfx-10/xion_recoil_blast-a.png",
+  "extraction": [
+    {
+      "source_cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "source_crop": [
+        198,
+        51,
+        315,
+        74
+      ],
+      "source_origin": [
+        256,
+        63
+      ],
+      "scale": [
+        0.4,
+        0.36
+      ],
+      "target_paste": [
+        73,
+        12
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "source_crop": [
+        171,
+        41,
+        343,
+        202
+      ],
+      "source_origin": [
+        768,
+        63
+      ],
+      "scale": [
+        0.4,
+        0.36
+      ],
+      "target_paste": [
+        62,
+        8
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "source_crop": [
+        126,
+        39,
+        381,
+        413
+      ],
+      "source_origin": [
+        1280,
+        63
+      ],
+      "scale": [
+        0.4,
+        0.36
+      ],
+      "target_paste": [
+        44,
+        7
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "source_crop": [
+        96,
+        48,
+        416,
+        452
+      ],
+      "source_origin": [
+        256,
+        577
+      ],
+      "scale": [
+        0.4,
+        0.36
+      ],
+      "target_paste": [
+        32,
+        10
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "source_crop": [
+        87,
+        83,
+        426,
+        440
+      ],
+      "source_origin": [
+        768,
+        577
+      ],
+      "scale": [
+        0.4,
+        0.36
+      ],
+      "target_paste": [
+        28,
+        22
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "source_crop": [
+        85,
+        329,
+        437,
+        435
+      ],
+      "source_origin": [
+        1280,
+        577
+      ],
+      "scale": [
+        0.4,
+        0.36
+      ],
+      "target_paste": [
+        28,
+        111
+      ],
+      "alpha_threshold": 160
+    }
+  ]
+}

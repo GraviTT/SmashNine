@@ -1,0 +1,184 @@
+{
+  "note": "가는 진홍 탄흔 다섯 갈래와 금백색 끝. 발사 뒤 가는 불씨만 남는다.",
+  "replaces": "assets/art/effects/xion_blast.png",
+  "frames": 6,
+  "fps": 30,
+  "anchor": [
+    8,
+    64
+  ],
+  "loop": false,
+  "frame_size": [
+    256,
+    128
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "image_gen raw; explicit crop; downsample; hard alpha",
+  "source_raw": "art/raw/vfx-10/xion_blast-a.png",
+  "extraction": [
+    {
+      "source_cell": [
+        0,
+        0,
+        724,
+        362
+      ],
+      "source_crop": [
+        21,
+        173,
+        86,
+        237
+      ],
+      "source_origin": [
+        44,
+        205
+      ],
+      "scale": [
+        0.354,
+        0.354
+      ],
+      "target_paste": [
+        0,
+        53
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        0,
+        1448,
+        362
+      ],
+      "source_crop": [
+        24,
+        153,
+        329,
+        251
+      ],
+      "source_origin": [
+        768,
+        205
+      ],
+      "scale": [
+        0.354,
+        0.354
+      ],
+      "target_paste": [
+        1,
+        46
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        0,
+        362,
+        724,
+        724
+      ],
+      "source_crop": [
+        22,
+        97,
+        667,
+        273
+      ],
+      "source_origin": [
+        44,
+        546
+      ],
+      "scale": [
+        0.354,
+        0.354
+      ],
+      "target_paste": [
+        0,
+        33
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        362,
+        1448,
+        724
+      ],
+      "source_crop": [
+        25,
+        96,
+        691,
+        273
+      ],
+      "source_origin": [
+        768,
+        546
+      ],
+      "scale": [
+        0.354,
+        0.354
+      ],
+      "target_paste": [
+        1,
+        33
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        0,
+        724,
+        724,
+        1086
+      ],
+      "source_crop": [
+        30,
+        95,
+        671,
+        274
+      ],
+      "source_origin": [
+        44,
+        906
+      ],
+      "scale": [
+        0.354,
+        0.354
+      ],
+      "target_paste": [
+        3,
+        33
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        724,
+        724,
+        1448,
+        1086
+      ],
+      "source_crop": [
+        39,
+        101,
+        642,
+        270
+      ],
+      "source_origin": [
+        768,
+        906
+      ],
+      "scale": [
+        0.354,
+        0.354
+      ],
+      "target_paste": [
+        6,
+        35
+      ],
+      "alpha_threshold": 160
+    }
+  ]
+}

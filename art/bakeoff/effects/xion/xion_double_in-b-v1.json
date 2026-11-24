@@ -1,0 +1,20 @@
+{
+  "note": "엇갈린 진홍 글리치 기둥과 좌우 꺾쇠가 아래에서 올라와 모인 뒤 조각으로 흩어진다. 인물은 포함하지 않는다.",
+  "replaces": "assets/art/effects/skill/xion_double_in.png",
+  "frames": 6,
+  "fps": 24,
+  "anchor": [
+    64,
+    160
+  ],
+  "loop": false,
+  "frame_size": [
+    128,
+    176
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "Pillow; hand-authored native pixels",
+  "scan_formula": "XionDouble.gd tint/luminance/3px scan/sweep; binary-alpha effect uses RGB scan attenuation. Board figure uses exact shader alpha with HOLOGRAM_ALPHA=.62."
+}

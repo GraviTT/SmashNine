@@ -1,0 +1,157 @@
+{
+  "note": "가로로 긴 십자 섬광과 가는 둥근 고리. 몸 중심에서 짧게 사라진다.",
+  "replaces": "assets/art/effects/skill/xion_point_blank.png",
+  "frames": 5,
+  "fps": 36,
+  "anchor": [
+    56,
+    56
+  ],
+  "loop": false,
+  "frame_size": [
+    112,
+    112
+  ],
+  "blend": "additive",
+  "filter": "nearest",
+  "alpha": "binary",
+  "method": "image_gen raw; explicit crop; downsample; hard alpha",
+  "source_raw": "art/raw/vfx-10/xion_point_blank-a.png",
+  "extraction": [
+    {
+      "source_cell": [
+        0,
+        0,
+        434,
+        724
+      ],
+      "source_crop": [
+        231,
+        318,
+        316,
+        405
+      ],
+      "source_origin": [
+        273,
+        362
+      ],
+      "scale": [
+        0.31,
+        0.29
+      ],
+      "target_paste": [
+        43,
+        43
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        434,
+        0,
+        869,
+        724
+      ],
+      "source_crop": [
+        115,
+        279,
+        373,
+        446
+      ],
+      "source_origin": [
+        678,
+        362
+      ],
+      "scale": [
+        0.31,
+        0.29
+      ],
+      "target_paste": [
+        16,
+        32
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        869,
+        0,
+        1303,
+        724
+      ],
+      "source_crop": [
+        125,
+        296,
+        309,
+        427
+      ],
+      "source_origin": [
+        1087,
+        362
+      ],
+      "scale": [
+        0.31,
+        0.29
+      ],
+      "target_paste": [
+        27,
+        37
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        1303,
+        0,
+        1738,
+        724
+      ],
+      "source_crop": [
+        122,
+        297,
+        253,
+        427
+      ],
+      "source_origin": [
+        1491,
+        362
+      ],
+      "scale": [
+        0.31,
+        0.29
+      ],
+      "target_paste": [
+        36,
+        37
+      ],
+      "alpha_threshold": 160
+    },
+    {
+      "source_cell": [
+        1738,
+        0,
+        2172,
+        724
+      ],
+      "source_crop": [
+        144,
+        328,
+        192,
+        395
+      ],
+      "source_origin": [
+        1902,
+        362
+      ],
+      "scale": [
+        0.31,
+        0.29
+      ],
+      "target_paste": [
+        50,
+        46
+      ],
+      "alpha_threshold": 160
+    }
+  ]
+}
