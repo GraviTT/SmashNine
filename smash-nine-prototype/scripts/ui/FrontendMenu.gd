@@ -48,6 +48,12 @@ const KITS := {
 		"Equilibrium  /  Shots all round, your double too; walk slowly.",
 		"Double Shotgun  /  The closer the foe, the more damage (up to 2x)."]
 }
+## Main.CHOOSE_ACTIONS: the number keys that quick-start a fighter. Hints that name them take
+## the count as %d (the controls row still said "1 - 5" after the sixth fighter; UI audit B3).
+const QUICK_START_KEYS := 6
+## The select screen's kit rows start here and keep at least this much air between them.
+const KIT_TOP := 330.0
+const KIT_ROW_GAP := 12.0
 const CONTROLS := [
 	["A / D  or  Left / Right", "Move / aim attacks"],
 	["W  or  Up", "Jump (air jumps available)"],
@@ -58,7 +64,7 @@ const CONTROLS := [
 	["Q", "Use the portal under your feet"], ["1 / 2 / 3", "Pick a soul card when offered"],
 	["H", "Spawn / remove a training dummy"], ["F3 / F4", "Debug panel / live bot panel"],
 	["T", "Game speed: 100 / 90 / 80 / 70%"], ["F2 (before a match)", "Switch original / prototype art"],
-	["1 - 5 / V / B (menus)", "Quick start / body / watch bots"],
+	["1 - %d / V / B (menus)", "Quick start / body / watch bots"],
 	["Arrows or W-S / Enter or J", "Navigate menus / confirm (mouse also works)"],
 	["Esc / R (results)", "Back in menus / rematch"]
 ]
@@ -230,6 +236,8 @@ func _mouse_navigation_sound(button_ref: WeakRef, changed: bool, event_frame: in
 
 func _finish(hint: String) -> void:
 	footer = _label(hint, Rect2(44, 672, 1192, 26), 15, DIM)
+	if footer.text.contains("%d"):
+		footer.text = footer.text % quick_start_count()
 	footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	if not buttons.is_empty():
 		var initial := maxi(select_ids.find(selected_id), 0) if screen == "select" else 0
@@ -253,7 +261,7 @@ func show_title() -> void:
 	session_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	refresh_options()
 	_label("Working title  /  Prototype", Rect2(44, 28, 500, 26), 15, DIM)
-	_finish("Arrows / W-S: navigate    Enter / J: confirm    1-6: quick start    V: body    B: watch    T: speed    F2: art")
+	_finish("Arrows / W-S: navigate    Enter / J: confirm    1-%d: quick start    V: body    B: watch    T: speed    F2: art")
 
 ## `ids`: the fighters to offer (default: the whole roster). Up to five fit two columns with
 ## Random; six or more (Xion, 2026-11-18) take three narrower columns.
@@ -302,7 +310,11 @@ func show_select(ids: Array[String] = []) -> void:
 	_button("Back", Rect2(394, 584, 150, 44), "title")
 	_button("Start match", Rect2(558, 584, 162, 44), "start")
 	_refresh_fighter()
-	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-6: quick start    Esc: back")
+	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-%d: quick start    Esc: back")
+
+## How many fighters the number keys reach.
+static func quick_start_count() -> int:
+	return mini(REGISTRY.get_character_ids().size(), QUICK_START_KEYS)
 
 ## The select grid's tile `index` (the fighters, then Random): two columns of 142 px while the
 ## roster and Random fit six tiles, else three of 100 px.
@@ -319,17 +331,23 @@ func _refresh_fighter() -> void:
 	var kit: Array = KITS[selected_id]
 	description.text = tr(kit[0])
 	var keys: Array = ["J", "K", "L", "U", "I", "PASSIVE"] if kit.size() > 6 else ["J", "K", "L", "I", "PASSIVE"]
+	# A row is as tall as its text: at a fixed 41 px step a line that wrapped sat 5 px above the
+	# next row and the kit read as one block (English Xion: five of six rows; UI audit B6).
 	var step := 49.0 if keys.size() == 5 else 41.0
+	var y := KIT_TOP
 	for index in 6:
 		var shown := index < keys.size()
 		skill_keys[index].visible = shown
 		skill_labels[index].visible = shown
 		if not shown:
 			continue
+		var line := skill_labels[index]
+		line.text = tr(kit[index + 1])
+		line.size.y = line.get_line_count() * line.get_line_height()
+		line.position.y = y
 		skill_keys[index].text = keys[index]
-		skill_keys[index].position.y = 334.0 + index * step
-		skill_labels[index].position.y = 330.0 + index * step
-		skill_labels[index].text = tr(kit[index + 1])
+		skill_keys[index].position.y = y + 4.0
+		y += maxf(step, line.size.y + KIT_ROW_GAP)
 	var bodies := REGISTRY.get_bodies(selected_id)
 	body_button.text = tr("[V] Body: %s") % tr((body if bodies.size() > 1 else bodies[0]).capitalize())
 	body_button.disabled = bodies.size() < 2
@@ -348,7 +366,7 @@ func show_options() -> void:
 	_clear("options")
 	_panel(Rect2(180, 66, 920, 580))
 	_label("OPTIONS", Rect2(314, 86, 650, 54), 38, GOLD)
-	_label("Your choices stay for this session.", Rect2(316, 146, 650, 28), 18, DIM)
+	_label("Speed, language and sound are saved. The rest lasts this session.", Rect2(316, 146, 650, 28), 18, DIM)
 	speed_button = _button("", Rect2(206, 198, 424, 54), "speed")
 	art_button = _button("", Rect2(206, 264, 424, 54), "art")
 	count_button = _button("", Rect2(206, 330, 424, 54), "count")
@@ -384,7 +402,9 @@ func show_controls() -> void:
 	for index in CONTROLS.size():
 		var row: Array = CONTROLS[index]
 		var y := 116.0 + index * 29
-		_label(row[0], Rect2(116, y, 386, 28), 17, GOLD)
+		var keys := _label(row[0], Rect2(116, y, 386, 28), 17, GOLD)
+		if keys.text.contains("%d"):
+			keys.text = keys.text % quick_start_count()
 		_label(row[1], Rect2(506, y, 658, 28), 17)
 	_button("Back", Rect2(926, 590, 240, 42), "title")
 	_finish("Esc: back    Enter / J / click: return to title")
@@ -451,7 +471,7 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		_label(award_names[award], Rect2(x + 12, 544, 250, 24), 14, GOLD)
 		var detail := "No contenders"
 		if is_instance_valid(best):
-			detail = "%s  /  %s" % [tr(str(best.display_name)), ("%d:%02d" % [int(best_value) / 60, int(best_value) % 60]) if award == 2 else str(int(best_value))]
+			detail = "%s  /  %s" % [tr(str(best.display_name)), ("%d:%02d" % [int(best_value) / 60, int(best_value) % 60]) if award == 2 else "%.0f" % best_value]
 		_label(detail, Rect2(x + 12, 576, 250, 28), 18)
 	_button("[R] Rematch", Rect2(360, 660, 270, 44), "rematch")
 	_button("Character select", Rect2(650, 660, 280, 44), "return_select")
