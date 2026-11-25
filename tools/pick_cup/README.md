@@ -67,6 +67,9 @@
    - 위 주소에 다시 게시합니다. `file_path`는 `dist/index.html`, `root`는 `tools/pick_cup/dist`, `files`는 `dist/files.json` 목록입니다.
    - `capabilities`는 빼서 `db`를 유지합니다.
    - 라운드를 바꿔도 이전 라운드의 기록은 데이터베이스에 남습니다(문서 id 앞에 라운드).
+4. **아직 올리지 않을 라운드는 `rounds/drafts/`에 둡니다**(2026-11-25). 페이지는 한 번에 한 라운드만 보이므로, 판정 전인 라운드가 있으면 새 라운드를 올리지 않습니다.
+   - 인자 없이 `build.mjs`를 돌리면 `rounds/` 바로 아래에서 마지막으로 고친 파일을 고르므로, 초안이 거기 있으면 실수로 게시될 수 있습니다.
+   - 올릴 때가 되면 `rounds/`로 옮기거나 `node tools/pick_cup/build.mjs rounds/drafts/<파일>`로 빌드합니다.
 
 ## 기록과 판정 (Claude)
 
