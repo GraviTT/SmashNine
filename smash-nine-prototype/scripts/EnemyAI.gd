@@ -258,9 +258,11 @@ const RIO_BAIT_REACH := 115.0
 const RIO_BAIT_CHANCE := 0.5
 const RIO_DECOY_STEP := 100.0 * GAME_SCALE.WORLD
 const RIO_SWAP_REACH := 110.0
-## Facing a Rio who leaves a decoy, a bot takes the decoy for him this often, for this long or
-## until it is gone: it fights the decoy, and its hit bursts it (D50 left bots never fooled, so
-## the decoy took no hit in eight soak matches, 2026-11-24).
+## Facing a Rio a person plays, a bot takes the decoy he leaves for him this often, for this long
+## or until it is gone: it fights the decoy, and its hit bursts it. A bot Rio's decoy fools no bot
+## (D56, 2026-11-25). Measured over the same eight soak matches with every decoy fooling at 0.6,
+## 0.3 and 0: the decoys burst as often (6.3, 6.1, 6.3 a Rio a match, since the swing a decoy is
+## left for bursts it, fooled or not), while bot Rios placed 2.3, 2.6 and 3.8 on average.
 const DECOY_FOOLED_CHANCE := 0.6
 const DECOY_FOOLED_TIME := 1.5
 ## Brave Luna's star beam (I again, D45): level, 560 long and 112 tall (x COMBAT), 3 s, and it ends
@@ -1868,7 +1870,7 @@ func _drive_kit(player, delta: float) -> void:
 func _target_point() -> Vector2:
 	return fooled_by.global_position if is_instance_valid(fooled_by) else target.global_position
 
-## One roll for each decoy the target leaves (Rio's U).
+## One roll for each decoy the target leaves (Rio's U); only a person's Rio can fool (D56).
 func _watch_decoy(delta: float) -> void:
 	fooled_timer = maxf(fooled_timer - delta, 0.0)
 	if not is_instance_valid(fooled_by) or fooled_timer <= 0.0 or fooled_by.get("burst") == true:
@@ -1879,7 +1881,10 @@ func _watch_decoy(delta: float) -> void:
 	if decoy == null or not is_instance_valid(decoy) or decoy == seen_decoy:
 		return
 	seen_decoy = decoy
-	if randf() < DECOY_FOOLED_CHANCE:
+	# Rolled for every decoy, whoever left it: a match of bots alone draws the same numbers as
+	# when the rule fooled them too (the eight-match baseline was measured with the roll made).
+	var roll := randf()
+	if bool(target.get("is_human")) and roll < DECOY_FOOLED_CHANCE:
 		fooled_by = decoy
 		fooled_timer = DECOY_FOOLED_TIME
 		debug_reason = "took the decoy for him"

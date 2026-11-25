@@ -7,9 +7,9 @@
 - **봇 조절은 잠시 멈춤 (2026-10-10 사용자: "이제부터는 각 캐릭터들을 먼저 완성시키는 방향으로 간다", 결정 D30).** 다시 시작할 때는 7번 "다음에 할 것"부터 합니다.
 - **캐릭터를 바꾸면 봇도 같이 손봐야 합니다.** 6번 "캐릭터를 바꿀 때 봇 체크리스트"를 보세요.
 - **봇이 새 키트 기술을 씁니다 (2026-11-24~25, 결정 D53, 사용자 "추천대로 해").** 멈춤이 풀린 것은 "키트 기술을 봇이 쓰게 하는 일"뿐이고, 7번의 봇 전반 조절은 그대로 멈춰 있습니다.
-  - 넣은 것: Frey 날개, Nova 광선(U)·필드·비행, Rio 분신(U)과 자리 바꾸기, Brave Luna 광선·회오리를 상황을 보고 쏘기, 모든 봇이 Rio 분신에 60% 속기. 규칙은 6번 표의 "캐릭터 고유 기술" 줄, 과정과 측정은 `reports/bot-kits-2026-11-24/README.md`, 그림은 `reports/bot-behavior/`에 있습니다.
-  - 쓰는지는 소크 결과의 `moves`(기술 사용 횟수)로 봅니다. 같은 8판(시드 2001~2008)에서 한 명이 한 판에 쓴 횟수: Frey 날개 10.9(적중 83%), Nova 광선 14.9(적중 79%), Rio 분신 7.5(84%가 적의 공격에 터짐), Luna 광선 4.8(한 번에 평균 16틱).
-  - 그 8판의 경기: 길이 중앙값 308초 → 289초, 링아웃 합계 80 → 96, 바깥이 무너질 때(4:00) 생존 중앙값 4명 → 3명. 평균 순위는 Rio 4.6 → 2.3(5승), Luna 3.2 → 2.8(3승)이 오르고 Xion 4.0 → 5.4, Yuki 4.8 → 6.1이 내렸습니다(8판이라 방향만 봅니다). 원본: `reports/bot-kits-2026-11-24/soak-before.txt`, `soak-after-round4.txt`.
+  - 넣은 것: Frey 날개, Nova 광선(U)·필드·비행, Rio 분신(U)과 자리 바꾸기, Brave Luna 광선·회오리를 상황을 보고 쏘기, 사람이 조종하는 Rio의 분신에 봇이 60% 속기(봇 Rio의 분신에는 안 속음, D56). 규칙은 6번 표의 "캐릭터 고유 기술" 줄, 과정과 측정은 `reports/bot-kits-2026-11-24/README.md`, 그림은 `reports/bot-behavior/`에 있습니다.
+  - 쓰는지는 소크 결과의 `moves`(기술 사용 횟수)로 봅니다. 같은 8판(시드 2001~2008)에서 한 명이 한 판에 쓴 횟수: Frey 날개 11.2(적중 79%), Nova 광선 16.4(적중 77%), Rio 분신 6.8(93%가 적의 공격에 터짐), Luna 광선 4.9(한 번에 평균 17틱).
+  - 그 8판의 경기: 길이 중앙값 308초 → 286초, 링아웃 합계 80 → 95, 바깥이 무너질 때(4:00) 생존 중앙값 4명 → 3명. 평균 순위는 Luna 3.2 → 2.4(4승)가 오르고 Xion 4.0 → 5.2, Yuki 4.8 → 6.1이 내렸습니다(8판이라 방향만 봅니다). Luna가 센 까닭은 별의 광선의 넉백이 쌓이는 것이고 사용자 결정을 기다립니다(`reports/luna-beam-2026-11-25/README.md`). 원본: `reports/bot-kits-2026-11-24/soak-before.txt`, `soak-after-d56.txt`.
   - 아래 12판 표(S0)와는 시드와 판 수가 달라 바로 비교할 수 없습니다. 키트 규칙 뒤의 12판 프로브 측정(3번)은 아직 없습니다.
 - **현재 봇 코드:** Codex QA-14 16라운드의 S0 변형(커밋 `a069c9e`, `smash-nine-prototype/scripts/EnemyAI.gd`)에 캐릭터 키트 변경에 따른 수정(2026-10-10 밤의 Frey 재입력·Luna 재입력, 11-03~19의 Frey·Nova·Xion 키트 반영)과 위의 키트 기술 규칙(`da2021d0`, "Kit moves" 구역)을 더했습니다. 아래 12판 측정치는 그 전 S0 기준이며, 10-10 키트 변경 뒤의 측정은 Codex QA-17 2차(`reports/codex-qa-17/round-2/`)에 있습니다.
 - **봇 전반 조절의 마지막 측정치 (2026-10-10, S0):** 같은 시드 101–112, 8봇, 12판 기준입니다.
@@ -131,7 +131,7 @@
 | 이동하는 기술(K) | `_mobility_skill_is_safe` 대상(Rio·Xion), `_attack_aim`의 Rio K 조준(아래로 안 꺾음) |
 | 복귀 수단 | 프로필 `recovery_skill`(지금 Rio·Xion), `RECOVERY_SKILL_REACH`, 캐릭터의 `can_use_skill_one()`(공중 사용 횟수). K가 아닌 기술로 돌아오는 캐릭터는 `recovery_attack()`으로 누를 기술을 알려 줍니다(Xion: L, 탄이 없으면 K) |
 | 캐릭터별 기술 규칙 | Nova K는 195px 이상, Nova L은 225px 안(밖이면 K로), Yuki K 결박은 가깝고 같은 층, Rio L 그림자 받아치기는 상대가 휘두를 때만(공격으로 안 셈), Xion L은 표적이 발밑일 때만 |
-| 캐릭터 고유 기술 (2026-11-24, D53) | `EnemyAI.gd`의 "Kit moves" 구역. 상수: `WING_*`(Frey 날개), `NOVA_BEAM_*`·`NOVA_FIELD_*`·`NOVA_FLIGHT_LEVEL`, `RIO_BAIT_*`·`RIO_DECOY_STEP`·`RIO_SWAP_REACH`, `DECOY_FOOLED_*`(모든 봇이 Rio 분신에 속는 확률과 시간), `LUNA_BEAM_*`·`LUNA_CYCLONE_*`. 함수: `_drive_kit`(매 프레임: 날개, 자리 바꾸기, 광선·회오리), `_kit_intent`(이번 프레임의 누름: Nova 광선·필드·비행), `_rio_decoy_bait`(가드보다 먼저 보는 분신), `wing_in`(날개를 쓰려고 뛰어드는 교전 행동). 기술의 사거리·시간·조건이 바뀌면 상수와 `tests/test_bot_kits.gd`를 같이 고칩니다 |
+| 캐릭터 고유 기술 (2026-11-24, D53) | `EnemyAI.gd`의 "Kit moves" 구역. 상수: `WING_*`(Frey 날개), `NOVA_BEAM_*`·`NOVA_FIELD_*`·`NOVA_FLIGHT_LEVEL`, `RIO_BAIT_*`·`RIO_DECOY_STEP`·`RIO_SWAP_REACH`, `DECOY_FOOLED_*`(사람이 조종하는 Rio의 분신에 봇이 속는 확률과 시간, D56), `LUNA_BEAM_*`·`LUNA_CYCLONE_*`. 함수: `_drive_kit`(매 프레임: 날개, 자리 바꾸기, 광선·회오리), `_kit_intent`(이번 프레임의 누름: Nova 광선·필드·비행), `_rio_decoy_bait`(가드보다 먼저 보는 분신), `wing_in`(날개를 쓰려고 뛰어드는 교전 행동). 기술의 사거리·시간·조건이 바뀌면 상수와 `tests/test_bot_kits.gd`를 같이 고칩니다 |
 | 기술을 쓰는지 세기 | 새 기술은 `PlayerBase.count_move`로 셉니다(칸별 `j·k·l·u·i`, 다시 누름 `k2·l2·u2·i2`, 캐릭터가 따로 세는 `wings`·`u_hits`·`decoy_burst` 등). 소크 결과의 `moves`에 나오고 `reports/bot-kits-2026-11-24/soak_summary.py`가 표로 만듭니다. 0이면 봇이 그 기술을 안 쓰거나, 기술이 경기에서 일어나지 않는 것입니다(Rio 분신이 그렇게 드러났습니다) |
 | 놓아 두는 물체(분신, 설치물) | 공격에 맞아야 하면 정적인 몸(`StaticBody2D`)으로 만들지 않습니다. 공격·투사체 영역은 `monitorable`이 꺼져 있어 정적인 몸과는 만나지 않습니다(`AnimatableBody2D`·`CharacterBody2D`와는 만남). `AnimatableBody2D`는 `sync_to_physics`를 끄고 위치를 준 뒤 트리에 넣습니다. 검사는 원점에서 떨어진 자리에서도 돌립니다(`test_bot_kits`·`test_rio_kit`·`test_nova_kit`의 `SCENES`) |
 | 공중 점프 수 | 오를 때 공중 점프는 2개 이상 남았을 때만 씁니다(Rio는 2개) |

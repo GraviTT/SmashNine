@@ -7,7 +7,8 @@ extends SceneTree
 ##   air; the field (L) where it holds the target; inside it she flies up to a target above her.
 ## - Rio: the decoy (U) as a foe starts a swing at him, never with a ledge behind him; the swap
 ##   when the foe stands between him and the decoy facing him, and to get back onto the stage.
-##   A bot facing him takes the decoy for him about 60% of the time and fights it until it is gone.
+##   A bot facing a Rio a person plays takes the decoy for him about 60% of the time and fights
+##   it until it is gone; a bot Rio's decoy fools no bot (D56).
 ## - Brave Luna: the star beam once a foe stands in its path (not 4.4 s into her form whatever is
 ##   there), a foe at arm's length punched first, fired anyway before the form ends; the cyclone
 ##   shot early at a foe in its path.
@@ -428,7 +429,8 @@ func _test_rio_swap() -> void:
 	if _at(rio).distance_to(spot) > 4.0:
 		_fail("Off the stage, Rio should swap back to the decoy standing on it (at %s)" % _at(rio))
 
-## A bot whose target leaves a decoy takes the decoy for him some of the time, and fights there.
+## A bot whose target leaves a decoy takes the decoy for him some of the time, and fights there:
+## only when a person plays that Rio. A bot Rio's decoy fools no bot (D56).
 func _test_bots_take_the_decoy() -> void:
 	_floor(Vector2(0, 0), 1800)
 	var bot: Node = await _standing_bot("frey", Vector2(150, -2))
@@ -436,30 +438,35 @@ func _test_bots_take_the_decoy() -> void:
 	var ai = bot.ai_controller
 	ai.target = rio
 	ai.state = AI.STATE_ENGAGE
-	var fooled := 0
-	for trial in 40:
-		rio._clear_decoy()
-		rio.decoy_cooldown_timer = 0.0
-		rio.attack_lock_timer = 0.0
-		_put(rio, Vector2(0, -2))
-		rio.facing = 1
-		ai.fooled_by = null
-		ai.seen_decoy = null
-		rio.press_skill_three()
-		ai._watch_decoy(0.016)
-		if is_instance_valid(ai.fooled_by):
-			fooled += 1
-			if ai._target_point().distance_to(rio.decoy.global_position) > 1.0 or ai._predicted_target_position().distance_to(rio.decoy.global_position) > 1.0:
-				_fail("A fooled bot should fight and aim at the decoy")
-		elif ai._target_point().distance_to(rio.global_position) > 1.0:
-			_fail("A bot that is not fooled should keep fighting Rio himself")
-		# One roll per decoy.
-		var before: bool = is_instance_valid(ai.fooled_by)
-		ai._watch_decoy(0.016)
-		if is_instance_valid(ai.fooled_by) != before:
-			_fail("A decoy should be rolled for once")
-	if fooled < 14 or fooled > 34:
-		_fail("A bot should take Rio's decoy for him about 60%% of the time (%d of 40)" % fooled)
+	for played_by_a_person in [true, false]:
+		# The same fighter as a person's, then as a bot's: the rule reads only whose he is.
+		rio.is_human = played_by_a_person
+		var fooled := 0
+		for trial in 40:
+			rio._clear_decoy()
+			rio.decoy_cooldown_timer = 0.0
+			rio.attack_lock_timer = 0.0
+			_put(rio, Vector2(0, -2))
+			rio.facing = 1
+			ai.fooled_by = null
+			ai.seen_decoy = null
+			rio.press_skill_three()
+			ai._watch_decoy(0.016)
+			if is_instance_valid(ai.fooled_by):
+				fooled += 1
+				if ai._target_point().distance_to(rio.decoy.global_position) > 1.0 or ai._predicted_target_position().distance_to(rio.decoy.global_position) > 1.0:
+					_fail("A fooled bot should fight and aim at the decoy")
+			elif ai._target_point().distance_to(rio.global_position) > 1.0:
+				_fail("A bot that is not fooled should keep fighting Rio himself")
+			# One roll per decoy.
+			var before: bool = is_instance_valid(ai.fooled_by)
+			ai._watch_decoy(0.016)
+			if is_instance_valid(ai.fooled_by) != before:
+				_fail("A decoy should be rolled for once")
+		if played_by_a_person and (fooled < 14 or fooled > 34):
+			_fail("A bot should take the decoy of a person's Rio for him about 60%% of the time (%d of 40)" % fooled)
+		elif not played_by_a_person and fooled != 0:
+			_fail("No bot should take a bot Rio's decoy for him (%d of 40)" % fooled)
 	# The decoy bursts: the bot is back on Rio.
 	ai.fooled_by = rio.decoy
 	ai.fooled_timer = 1.0
