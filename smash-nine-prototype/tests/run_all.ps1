@@ -30,6 +30,7 @@ $tests += @("test_motion_fx")
 $tests += @("test_import_modes")
 $tests += @("test_hud_layout", "test_menu_text", "test_backdrop_edges")
 $tests += @("test_bot_kits")
+$tests += @("test_yuki_objects", "test_hittable_bodies")
 $failed = @()
 $certificateNoise = 0
 

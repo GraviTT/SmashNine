@@ -1,4 +1,8 @@
-extends StaticBody2D
+extends AnimatableBody2D
+## Yuki's binding seal (K): it waits where she placed it, one attack tears it (apply_hit), L
+## sets it off. A kinematic body, not a static one (2026-11-25): attack and projectile areas
+## have monitorable off, and such an area never meets a static body, so as a StaticBody2D
+## nothing ever tore it (five fighters' swings and shots from 70 px, none did).
 
 signal removed(seal: Node)
 
@@ -22,6 +26,11 @@ var aura: Line2D
 var idle_art: AnimatedSprite2D
 ## The art's anchor is its bottom centre; the paper's middle sits this far above it.
 const IDLE_ART_DROP := 28.0
+
+## Never synced to physics, and from before it enters the tree: a body that syncs puts its node
+## back where it was when it is moved (Rio's decoy stood at the world origin this way).
+func _init() -> void:
+	sync_to_physics = false
 
 func _ready() -> void:
 	add_to_group("yuki_seals")
@@ -89,6 +98,8 @@ func is_owned_by(node: Node) -> bool:
 func apply_hit(attacker: Node, _damage: float, _knockback: float, _direction: Vector2, _damage_type := "normal") -> bool:
 	if active or attacker == owner_node:
 		return false
+	if is_instance_valid(owner_node) and owner_node.has_method("count_move"):
+		owner_node.count_move("seal_torn")
 	_play_break_effect()
 	_remove()
 	return true

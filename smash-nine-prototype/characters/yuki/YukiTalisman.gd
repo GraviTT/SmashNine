@@ -32,7 +32,10 @@ var art_sprite: Sprite2D
 func _ready() -> void:
 	add_to_group("yuki_talismans")
 	monitoring = true
-	monitorable = false
+	# Monitorable on, unlike attacks and other projectiles: an area with it off never meets a
+	# static body, and a talisman ends or bursts on platforms (2026-11-25: it flew through all of
+	# them; the dropping one fell through the floor). No area in the game listens for areas.
+	monitorable = true
 	body_entered.connect(_on_body_entered)
 
 func configure(new_source: Node, size: Vector2, new_damage: float, new_knockback: float, new_direction: Vector2, color: Color, new_speed: float, new_lifetime: float, new_mode := "straight", new_burst_size := Vector2(76, 58)) -> void:
@@ -85,6 +88,9 @@ func _on_body_entered(body: Node) -> void:
 	# The burst resizes the collision shape: never inside the physics callback (it errors while
 	# queries flush), so it starts right after (found 2026-10-08 once bots aimed up and down).
 	if body.is_in_group("platforms"):
+		# Counted for the soak (move_counts): a talisman that met a platform, by what it did there.
+		if is_instance_valid(source) and source.has_method("count_move") and burst_time <= 0.0:
+			source.count_move("talisman_burst_on_platform" if mode == "drop" or mode == "flare" else "talisman_stopped")
 		if mode == "drop" or mode == "flare":
 			_begin_burst.call_deferred()
 		else:

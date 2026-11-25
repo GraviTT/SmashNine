@@ -136,4 +136,6 @@ Away routine (자리 비움 루틴): rules and run logs in `routine/README.md`.
 
 No `.csv` inside `smash-nine-prototype/`: Godot imports CSV as translations and `--import` crashes (2026-10-11, Codex audit tables). Keep tables under `reports/`, or give the file a `.import` with `importer="keep"`. Godot file logging is off in `project.godot` (log rotation crashed concurrent or sandboxed runs).
 
+Anything a hit must land on is not a `StaticBody2D`, and an area that must meet platforms has `monitorable` on: an `Area2D` with `monitorable` off (every attack and projectile area) never meets a static body (2026-11-25: Rio's decoy never burst, Yuki's seal was never torn, her talismans flew through platforms). Use an `AnimatableBody2D` with `sync_to_physics` off from `_init`, placed before it enters the tree. `tests/test_hittable_bodies.gd` reads the scripts for both. Kit tests play every scene round the world origin and far from it (`SCENES` in `tests/test_bot_kits.gd`): a thing left at (0, 0) passes a test that stands everyone on the origin.
+
 Known sandbox noise: inside the Codex sandbox every Godot process prints `ERROR: Failed to read the root certificate store.` (os_windows.cpp). It does not happen outside the sandbox (lead runs: 0). Report it separately; every other error line still fails a run.

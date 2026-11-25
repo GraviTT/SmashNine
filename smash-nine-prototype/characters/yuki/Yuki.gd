@@ -95,15 +95,16 @@ func _place_seal(direction: Vector2) -> void:
 		var oldest: Node = seals.pop_front()
 		if is_instance_valid(oldest):
 			oldest.queue_free()
-	var seal: Node = StaticBody2D.new()
-	seal.set_script(SEAL_SCRIPT)
-	get_parent().add_child(seal)
+	var seal: Node2D = SEAL_SCRIPT.new()
 	var offset: Vector2 = direction * 145.0
 	if direction == Vector2.DOWN and is_on_floor():
 		offset = Vector2(0, -24)
 	elif absf(direction.x) > 0.0:
 		offset.y = -34.0
-	seal.global_position = global_position + offset
+	# Placed before it enters the tree (same parent, so from her own position): its physics body
+	# then starts there too.
+	seal.position = position + offset
+	get_parent().add_child(seal)
 	seal.configure(self, realm_index, 5.0)
 	seal.removed.connect(_on_seal_removed)
 	seals.append(seal)
