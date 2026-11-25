@@ -12,6 +12,16 @@
       "port": 8060
     },
     {
+      "name": "smashnine-web-ui",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "tools/serve_web.js",
+        "build/web",
+        "8063"
+      ],
+      "port": 8063
+    },
+    {
       "name": "motion-viewer",
       "runtimeExecutable": "node",
       "runtimeArgs": [

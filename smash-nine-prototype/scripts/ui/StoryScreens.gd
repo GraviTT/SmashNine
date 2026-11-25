@@ -63,7 +63,7 @@ func show_story_select() -> void:
 	difficulty_button.add_theme_font_size_override("font_size", 17)
 	buttons[8].text = tr("New journey")
 	continue_button = _button("Continue", Rect2(394, 522, 326, 48), "story_continue")
-	footer.text = tr("1-5: choose hero    V: body    Enter / J: continue    Esc: title")
+	footer.text = tr("1-%d: choose hero    V: body    Enter / J: continue    Esc: title") % select_ids.size()
 	_refresh_story_selection()
 
 func _refresh_fighter() -> void:

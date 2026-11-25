@@ -260,7 +260,9 @@ func _hud_frame(frame_id: String, frame_size: Vector2, fallback_color: Color, no
 func _build_hp_bar() -> void:
 	hp_bar = Control.new()
 	hp_bar.name = "HpBar"
-	hp_bar.position = Vector2(850, 42)
+	# Under the two status lines (they end at y 52): at y 42 the second line ran over the bar
+	# (UI audit 2026-11-25, B7). The bar now ends level with the portrait.
+	hp_bar.position = Vector2(850, 56)
 	hp_bar.size = Vector2(320, 32)
 	hp_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(hp_bar)
@@ -346,8 +348,14 @@ func _build_skill_bar() -> void:
 func _layout_skill_bar(show_third: bool) -> void:
 	var shown := SKILL_SLOTS.filter(func(slot: String) -> bool: return slot != "u" or show_third)
 	var width := shown.size() * SKILL_SLOT_SIZE + (shown.size() - 1) * SKILL_SLOT_GAP
-	skill_bar.size = Vector2(width, SKILL_SLOT_SIZE)
-	skill_bar.position.x = 1280.0 - SKILL_BAR_MARGIN - width
+	if is_equal_approx(skill_bar.anchor_right, 1.0):
+		# Pinned to the right edge (_pin): move the offsets. Setting position.x put the bar back
+		# on the 1280 reference, 190 px inside a 1470 px window (UI audit 2026-11-25, B1).
+		skill_bar.offset_left = -SKILL_BAR_MARGIN - width
+		skill_bar.offset_right = -SKILL_BAR_MARGIN
+	else:
+		skill_bar.size = Vector2(width, SKILL_SLOT_SIZE)
+		skill_bar.position.x = 1280.0 - SKILL_BAR_MARGIN - width
 	for slot in SKILL_SLOTS:
 		var panel := skill_bar.get_node("SkillSlot%s" % slot.to_upper()) as Control
 		panel.visible = shown.has(slot)
@@ -579,9 +587,12 @@ func update_minimap_labels(director: Node, counts: Dictionary) -> void:
 			continue
 		var state: String = director.get_state(i)
 		var detail := tr("! %ds") % seconds_left if state == "warning" else tr(state.to_upper())
+		var emblem := bool(entry.get("emblem", false))
 		if state == "stable" or state == "warning":
-			detail += "  x%d" % int(counts.get(i, 0))
-		label.text = detail if bool(entry.get("emblem", false)) else "%s\n%s" % [entry.name, detail]
+			# Beside an emblem the count takes its own line: "STABLE  x2" is 42 px in a 32 px
+			# label, so the English count was cut off (UI audit 2026-11-25, B2).
+			detail += ("\nx%d" if emblem else "  x%d") % int(counts.get(i, 0))
+		label.text = detail if emblem else "%s\n%s" % [entry.name, detail]
 
 func _get_state_color(state: String, is_current: bool) -> Color:
 	if is_current:

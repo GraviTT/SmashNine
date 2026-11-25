@@ -1,0 +1,59 @@
+{
+  "round": "2026-11-25-menu",
+  "title": "메뉴 화면 방향",
+  "note": "DRAFT, not published: the match HUD round 2026-11-25-ui is still open and the page holds one round. UI and design session (D53). Title and character select in the two ideas of the HUD round: A keeps today's places inside the story screens' gold frames; B is flat and built round the fighter. One scripted tour per screen, recorded on the exported pack so 'now' is what the web build shows (tests/analysis/ui_audit/menu_direction_capture.gd, prototypes in menu_proto.gd; nothing in the game yet). Build with: node tools/pick_cup/build.mjs rounds/drafts/2026-11-25-menu.json",
+  "items": [
+    {
+      "id": "menu-title",
+      "view": "single",
+      "title": "타이틀",
+      "question": "게임을 켰을 때 무엇을 누르면 되는지 가장 잘 보이는 쪽은 어디인가요? 선택 표시가 다섯 메뉴를 차례로 내려갔다가 처음으로 돌아옵니다. 두 안 모두 배틀로얄과 스토리를 크게, 나머지 셋을 작게 두었고, 아래 안내 줄을 키 모양과 판으로 바꿨습니다.",
+      "candidates": [
+        {
+          "id": "now",
+          "name": "지금",
+          "desc": "지금 게임 그대로입니다. 가운데 패널에 같은 크기의 메뉴 다섯 줄, 아래에 안내 글 한 줄",
+          "media": "art/cup/2026-11-25-menu/menu-title/now.mp4"
+        },
+        {
+          "id": "a",
+          "name": "나누어 두기",
+          "desc": "가운데 패널 그대로, 스토리 화면의 금색 틀과 이름판 모양 버튼을 씁니다. 고른 메뉴는 금색으로 채워집니다",
+          "media": "art/cup/2026-11-25-menu/menu-title/a.mp4"
+        },
+        {
+          "id": "b",
+          "name": "한곳에 모으기",
+          "desc": "패널을 없애고 메뉴를 왼쪽에 세로로 모았습니다. 배경 그림(이그드라실)이 가운데에 그대로 보입니다. 평평하고 기울어진 버튼",
+          "media": "art/cup/2026-11-25-menu/menu-title/b.mp4"
+        }
+      ]
+    },
+    {
+      "id": "menu-select",
+      "view": "single",
+      "title": "캐릭터 선택",
+      "question": "캐릭터를 고르고 기술을 읽기에 가장 좋은 쪽은 어디인가요? 프레이 → 유키 → 루나 → 노바(남성 → 여성) → 리오 → 시온 → 프레이 순서로 넘어갑니다. 두 안 모두 기술마다 스킬 아이콘과 키를 넣고, 기술 이름과 설명을 두 줄로 나눴습니다.",
+      "candidates": [
+        {
+          "id": "now",
+          "name": "지금",
+          "desc": "지금 게임 그대로입니다. 왼쪽에 작은 초상 칸, 가운데 일러스트, 오른쪽에 글자로만 된 기술 설명",
+          "media": "art/cup/2026-11-25-menu/menu-select/now.mp4"
+        },
+        {
+          "id": "a",
+          "name": "나누어 두기",
+          "desc": "자리는 지금 그대로. 초상 칸을 키우고 금색 틀을 씁니다. 체형은 두 가지가 있는 캐릭터에서만 고르는 칸이 보이고, '경기 시작'이 가장 큰 버튼입니다",
+          "media": "art/cup/2026-11-25-menu/menu-select/a.mp4"
+        },
+        {
+          "id": "b",
+          "name": "한곳에 모으기",
+          "desc": "일러스트를 왼쪽에 크게 세우고, 캐릭터 색 띠에 이름을 얹었습니다. 기술은 두 열로, 캐릭터 목록은 아래에 한 줄로 둡니다",
+          "media": "art/cup/2026-11-25-menu/menu-select/b.mp4"
+        }
+      ]
+    }
+  ]
+}
