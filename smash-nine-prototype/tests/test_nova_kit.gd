@@ -12,7 +12,15 @@ const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
 const MONSTER := preload("res://scripts/RealmMonster.gd")
 
+## Every scene is played twice: round the world origin and far from it. The tests place and read
+## everything through _put and _at, in scene coordinates, so the same numbers hold for both; the
+## arena stays on the world origin, as the node that holds the fighters does in a match. A scene
+## played only round the origin cannot tell a thing left at (0, 0) from one left in its place
+## (Rio's decoy, 2026-11-25).
+const SCENES: Array[Vector2] = [Vector2.ZERO, Vector2(9000, 6000)]
+
 var arena: Node2D
+var scene := Vector2.ZERO
 var failed := false
 
 func _initialize() -> void:
@@ -21,32 +29,29 @@ func _initialize() -> void:
 func _run() -> void:
 	arena = Node2D.new()
 	root.add_child(arena)
-	await _test_gravity_stacks()
-	await _clear()
-	await _test_root()
-	await _clear()
-	await _test_chain_stacks()
-	await _clear()
-	await _test_orb()
-	await _clear()
-	await _test_field()
-	await _clear()
-	await _test_beam()
-	await _clear()
-	await _test_sphere()
-	await _clear()
-	await _test_third_skill_slot()
+	for origin in SCENES:
+		scene = origin
+		for test in [_test_gravity_stacks, _test_root, _test_chain_stacks, _test_orb, _test_field, _test_beam, _test_sphere, _test_sphere_drops_a_freed_body, _test_beam_on_a_double, _test_third_skill_slot]:
+			await test.call()
+			await _clear()
 	arena.queue_free()
 	await process_frame
 	if failed:
 		quit(1)
 		return
-	print("Nova kit tests passed")
+	print("Nova kit tests passed (each scene round the origin and at %s)" % SCENES[1])
 	quit(0)
 
 func _fail(message: String) -> void:
-	push_error(message)
+	push_error("%s (scene at %s)" % [message, scene])
 	failed = true
+
+## Where a node stands, and putting it somewhere, in scene coordinates.
+func _at(node: Node2D) -> Vector2:
+	return node.global_position - scene
+
+func _put(node: Node2D, at: Vector2) -> void:
+	node.global_position = scene + at
 
 func _floor(at: Vector2, width: float) -> StaticBody2D:
 	var body := StaticBody2D.new()
@@ -57,13 +62,13 @@ func _floor(at: Vector2, width: float) -> StaticBody2D:
 	shape.shape = rect
 	body.add_child(shape)
 	arena.add_child(body)
-	body.global_position = at + Vector2(0, 20)
+	_put(body, at + Vector2(0, 20))
 	return body
 
 func _fighter(character_id: String, player_id: int, at: Vector2, human := false) -> Node:
 	var fighter: Node = PLAYER_FACTORY.create(character_id)
 	arena.add_child(fighter)
-	fighter.global_position = at
+	_put(fighter, at)
 	fighter.setup(CHARACTER_REGISTRY.get_characters()[character_id], player_id, human)
 	fighter.ringout_y = 100000.0
 	if human:
@@ -75,7 +80,7 @@ func _fighter(character_id: String, player_id: int, at: Vector2, human := false)
 func _dummy(player_id: int, at: Vector2) -> Node:
 	var dummy: Node = PLAYER_FACTORY.create("")
 	arena.add_child(dummy)
-	dummy.global_position = at
+	_put(dummy, at)
 	dummy.setup_dummy(player_id)
 	dummy.ringout_y = 100000.0
 	return dummy
@@ -134,15 +139,15 @@ func _test_root() -> void:
 		foe.add_gravity_stack(nova)
 	if not foe.is_gravity_rooted() or foe.gravity_stage != 3:
 		_fail("Three stacks should root (stage %d)" % foe.gravity_stage)
-	var spot: Vector2 = foe.global_position
+	var spot: Vector2 = _at(foe)
 	foe.apply_hit(nova, 10.0, 700.0, Vector2(1, -0.5))
 	Input.action_press("move_right")
 	Input.action_press("move_up")
 	await _frames(20)
 	Input.action_release("move_right")
 	Input.action_release("move_up")
-	if foe.global_position.distance_to(spot) > 1.0:
-		_fail("A rooted fighter should not walk, jump or fly from a hit (moved %.1f px)" % foe.global_position.distance_to(spot))
+	if _at(foe).distance_to(spot) > 1.0:
+		_fail("A rooted fighter should not walk, jump or fly from a hit (moved %.1f px)" % _at(foe).distance_to(spot))
 	var root_left: float = foe.gravity_root_timer
 	foe.add_gravity_stack(nova)
 	if foe.gravity_root_timer > root_left + 0.001:
@@ -156,11 +161,11 @@ func _test_root() -> void:
 	await _frames(20)
 	for stack in 3:
 		luna.add_gravity_stack(nova)
-	var luna_spot: Vector2 = luna.global_position
+	var luna_spot: Vector2 = _at(luna)
 	luna.skill_one()
 	await _frames(20)
-	if luna.global_position.distance_to(luna_spot) > 1.0:
-		_fail("A rooted Luna should not warp (moved %.1f px)" % luna.global_position.distance_to(luna_spot))
+	if _at(luna).distance_to(luna_spot) > 1.0:
+		_fail("A rooted Luna should not warp (moved %.1f px)" % _at(luna).distance_to(luna_spot))
 
 func _test_chain_stacks() -> void:
 	_floor(Vector2(0, 0), 2400)
@@ -175,7 +180,7 @@ func _test_chain_stacks() -> void:
 			if nova._can_start_attack() and nova.is_on_floor():
 				break
 			await physics_frame
-		foe.global_position = nova.global_position + Vector2(85, 0)
+		_put(foe, _at(nova) + Vector2(85, 0))
 		foe.knockback_velocity = Vector2.ZERO
 		nova.basic_attack()
 		await _frames(12)
@@ -217,10 +222,10 @@ func _test_field() -> void:
 	var foe := _fighter("frey", 2, Vector2(140, -2))
 	var monster := CharacterBody2D.new()
 	monster.set_script(MONSTER)
-	monster.setup("mossling", 0, Vector2(-150, -40))
+	monster.setup("mossling", 0, scene + Vector2(-150, -40))
 	arena.add_child(monster)
 	await _frames(30)
-	var monster_y: float = monster.global_position.y
+	var monster_y: float = _at(monster).y
 	nova.skill_two()
 	await _frames(20)
 	if not is_instance_valid(nova.field) or not nova.field.is_active():
@@ -231,18 +236,18 @@ func _test_field() -> void:
 	if foe.gravity_effect_stage() != 1 or foe.gravity_stage != 0:
 		_fail("A foe in the field should move as at stage 1 without a stack (effect %d, stacks %d)" % [foe.gravity_effect_stage(), foe.gravity_stage])
 	await _frames(30)
-	if not monster.is_floating() or monster.global_position.y > monster_y - 30.0:
-		_fail("A monster in the field should float up and stop (floating %s, %.0f -> %.0f)" % [monster.is_floating(), monster_y, monster.global_position.y])
+	if not monster.is_floating() or _at(monster).y > monster_y - 30.0:
+		_fail("A monster in the field should float up and stop (floating %s, %.0f -> %.0f)" % [monster.is_floating(), monster_y, _at(monster).y])
 	# She flies in it: up rises, and letting go she hangs there.
-	var start_y: float = nova.global_position.y
+	var start_y: float = _at(nova).y
 	Input.action_press("move_up")
 	await _frames(20)
 	Input.action_release("move_up")
-	var risen_y: float = nova.global_position.y
+	var risen_y: float = _at(nova).y
 	await _frames(20)
-	if risen_y > start_y - 60.0 or absf(nova.global_position.y - risen_y) > 25.0:
-		_fail("Nova should fly up in her field and hang there (%.0f -> %.0f -> %.0f)" % [start_y, risen_y, nova.global_position.y])
-	foe.global_position = Vector2(900, -2)
+	if risen_y > start_y - 60.0 or absf(_at(nova).y - risen_y) > 25.0:
+		_fail("Nova should fly up in her field and hang there (%.0f -> %.0f -> %.0f)" % [start_y, risen_y, _at(nova).y])
+	_put(foe, Vector2(900, -2))
 	await _frames(10)
 	if foe.gravity_effect_stage() != 0:
 		_fail("Leaving the field should end its slow at once")
@@ -277,12 +282,12 @@ func _test_beam() -> void:
 	await _frames(2)
 	if arena.get_node_or_null("NovaBeamWrap") != null:
 		_fail("The wrap should let go once the foe has arrived")
-	var pulled_to: float = foe.global_position.distance_to(nova.global_position)
+	var pulled_to: float = _at(foe).distance_to(_at(nova))
 	if pulled_to > 130.0:
 		_fail("The beam should drag the foe to just in front of her (%.0f px away)" % pulled_to)
 	var grounded_damage: float = hp_before - foe.hp
 	# Out of the way: the dragged foe stands where the next beam starts.
-	foe.global_position = Vector2(700, -2)
+	_put(foe, Vector2(700, -2))
 	# Airborne: slammed down, more damage, a stack.
 	# On the up-right line from her body centre (-300, -34).
 	var flyer := _fighter("rio", 3, Vector2(-150, -152))
@@ -324,9 +329,9 @@ func _test_sphere() -> void:
 	if not nova.sphere_caught.has(foe):
 		_fail("The sphere should catch a foe within its reach")
 		return
-	var before: Vector2 = foe.global_position
+	var before: Vector2 = _at(foe)
 	await _frames(10)
-	if foe.global_position.distance_to(before) < 5.0:
+	if _at(foe).distance_to(before) < 5.0:
 		_fail("A caught foe should circle the sphere")
 	Input.action_press("ultimate")
 	nova.try_ultimate_followup()
@@ -349,6 +354,38 @@ func _test_sphere() -> void:
 		await _frames(30)
 	if nova.ultimate_phase != nova.ULTIMATE_NONE:
 		_fail("The ultimate should end after the launch (phase %d)" % nova.ultimate_phase)
+
+## A body freed while the sphere holds it (a monster that dies in it) leaves the sphere's list.
+## Erasing it from the typed list failed and logged an engine error every frame (2026-11-24).
+func _test_sphere_drops_a_freed_body() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var nova := _fighter("nova", 1, Vector2(0, -2), true)
+	await _frames(4)
+	var caught := Node2D.new()
+	arena.add_child(caught)
+	nova.sphere_caught.append(caught)
+	caught.free()
+	nova._spin_caught(0.016)
+	if not nova.sphere_caught.is_empty():
+		_fail("A freed body should leave the sphere's caught list (%d left)" % nova.sphere_caught.size())
+
+## The beam reaching something that is not a fighter or a monster (Xion's double in the air)
+## only hits it: the slam called a method the double does not have (2026-11-24).
+func _test_beam_on_a_double() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var nova := _fighter("nova", 1, Vector2(0, -2), true)
+	var xion := _fighter("xion", 2, Vector2(600, -2), true)
+	await _frames(10)
+	xion._double_cast()
+	var copy: Node2D = xion.double
+	if not is_instance_valid(copy):
+		_fail("Test setup: Xion should have a double out")
+		return
+	_put(copy, Vector2(200, -300))
+	nova.on_beam_hit(copy, Vector2.RIGHT)
+	await _frames(2)
+	if not is_instance_valid(nova) or nova.beam_target == copy:
+		_fail("The beam should only hit a double, not drag it")
 
 func _test_third_skill_slot() -> void:
 	_floor(Vector2(0, 0), 2400)

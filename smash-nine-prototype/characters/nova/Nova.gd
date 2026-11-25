@@ -266,6 +266,8 @@ func apply_character_gravity(delta: float) -> bool:
 	if absf(wanted.x) > 1.0:
 		facing = 1 if wanted.x > 0.0 else -1
 	jump_buffer_timer = 0.0
+	if not is_on_floor() and wanted.length() > 1.0:
+		count_move("flight", delta)
 	return true
 
 func get_nova_impact_direction() -> Vector2:
@@ -450,6 +452,14 @@ func _fire_beam() -> void:
 ## The body the beam reached (NovaBeam): slammed down from the air, else dragged to her.
 func on_beam_hit(body: Node, direction: Vector2) -> void:
 	if is_defeated or not is_instance_valid(body):
+		return
+	count_move("u_hits")
+	# Only a fighter or a monster is slammed or dragged. Anything else the beam reaches (Xion's
+	# double, Rio's decoy) just takes the hit: the slam called a method the double does not have
+	# (script error in a soak match, 2026-11-24).
+	if not body.has_method("apply_forced_launch_hit"):
+		body.apply_hit(self, BEAM_DAMAGE, 0.0, direction)
+		_play_impact_flash((body as Node2D).global_position + GAME_SCALE.BODY_CENTRE, 34.0, Color(0.74, 0.5, 1.0, 0.8))
 		return
 	if _is_airborne(body):
 		if body.has_method("end_gravity_float"):
@@ -712,10 +722,15 @@ func _catch_into_sphere() -> void:
 
 ## Swings everyone caught round the sphere (players pinned like Luna's grab, monsters held).
 func _spin_caught(delta: float) -> void:
-	for target in sphere_caught.duplicate():
-		if not is_instance_valid(target) or target.get("is_defeated") == true:
-			sphere_caught.erase(target)
-			continue
+	# A caught body can be freed while it circles (a monster that dies in the sphere). A typed
+	# array refuses to erase a freed instance and logs an engine error every frame (58 in one soak
+	# match, 2026-11-24), so the list is rebuilt from the bodies still there.
+	var held: Array[Node] = []
+	for target in sphere_caught:
+		if is_instance_valid(target) and target.get("is_defeated") != true:
+			held.append(target)
+	sphere_caught = held
+	for target in sphere_caught:
 		var key: int = target.get_instance_id()
 		var angle: float = float(sphere_angles.get(key, 0.0)) + ULTIMATE_FOE_SPIN * ultimate_orbit_sign * delta
 		sphere_angles[key] = angle

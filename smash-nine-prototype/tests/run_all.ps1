@@ -29,6 +29,7 @@ $tests += @("test_story_faces")
 $tests += @("test_motion_fx")
 $tests += @("test_import_modes")
 $tests += @("test_hud_layout", "test_menu_text", "test_backdrop_edges")
+$tests += @("test_bot_kits")
 $failed = @()
 $certificateNoise = 0
 

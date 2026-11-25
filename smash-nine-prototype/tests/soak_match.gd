@@ -128,6 +128,7 @@ func _collect_result(finished_early: bool) -> Dictionary:
 		"monster_hits": monster_hits,
 		"hazard_hits": hazard_hits,
 		"shared_realm_ratio": snappedf(float(shared_realm_frames) / maxf(float(sampled_frames), 1.0), 0.01),
+		"moves": _moves_summary(),
 		"node_count": int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))
 	}
 
@@ -173,6 +174,23 @@ func _total_ringouts() -> int:
 		if is_instance_valid(player):
 			total += int(player.respawn_count)
 	return total
+
+## What the bots used, summed per character: {"frey": {"seats": 2, "damage": 410.5, "j": 310, ...}}
+## (PlayerBase.move_counts; "seats" is how many fighters of that character played, "damage" what
+## they dealt).
+func _moves_summary() -> Dictionary:
+	var result: Dictionary = {}
+	for player in main.players:
+		if not is_instance_valid(player):
+			continue
+		var id := str(player.character_id)
+		if not result.has(id):
+			result[id] = {"seats": 0}
+		result[id]["seats"] = int(result[id]["seats"]) + 1
+		result[id]["damage"] = snappedf(float(result[id].get("damage", 0.0)) + float(player.damage_dealt), 0.1)
+		for key in player.move_counts:
+			result[id][key] = snappedf(float(result[id].get(key, 0.0)) + float(player.move_counts[key]), 0.1)
+	return result
 
 func _souls_summary() -> Array[String]:
 	var result: Array[String] = []
