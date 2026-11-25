@@ -578,7 +578,9 @@ func _shadow_counter(attacker: Node) -> void:
 	movement_freeze_timer = 0.0
 	if is_defeated:
 		return
-	var foe := attacker as Node2D
+	# The attacker can be freed while he is vanished (a monster that dies): he only dodged. Casting
+	# a freed object is a script error.
+	var foe: Node2D = attacker as Node2D if is_instance_valid(attacker) else null
 	if not _can_reach(foe, COUNTER_REACH):
 		attack_lock_timer = 0.1
 		return
@@ -712,6 +714,14 @@ func _flurry_start() -> void:
 	flurry_phase = Flurry.THROWING
 	var targets := _flurry_targets()
 	for index in FLURRY_SWORDS:
+		# A foe can be freed between two throws (a monster that dies): the swords left go to the
+		# foes still there. Handing a freed one on was a script error that stopped the cast (soak
+		# seed 2002, 2026-11-25).
+		var standing: Array[Node2D] = []
+		for foe in targets:
+			if is_instance_valid(foe):
+				standing.append(foe)
+		targets = standing
 		var target: Node2D = targets[index % targets.size()] if not targets.is_empty() else null
 		_throw_gem_sword(index, target)
 		if index == FLURRY_SWORDS - 1:
