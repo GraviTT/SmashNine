@@ -108,7 +108,7 @@ func _run() -> void:
 	await _frames(5)
 	var human: Node = main._get_human_player()
 	_check(main.match_started, "Korean selection must start a match")
-	_check(main.hud.status_label.text.contains("생존") and main.hud.status_label.text.contains("프레이"), "Next match HUD must use Korean")
+	_check(main.hud.alive_caption.text == "생존" and main.hud.focus_name.text.contains("프레이") and main.hud.kos_label.text == "처치 0", "Next match HUD must use Korean")
 	_check(main.hud.clock_label.text.contains("탐색"), "Phase label must translate without changing internal phase")
 	Input.action_press("game_speed")
 	await _frames(2)
@@ -301,9 +301,9 @@ func _check_menu_fit(menu: Control) -> void:
 
 func _check_card_fit(hud: Node) -> void:
 	for label: Label in hud.card_labels:
-		# The pre-existing offer panel is 152 x 80 inside each card frame. Copy must fit
-		# that space; LANG-01 must not resize/rewrite this panel (another branch owns it).
-		_check(label.get_line_count() * label.get_line_height() <= 80, "Korean card copy overflows its unchanged box: " + label.text)
+		# A card row grows with its text up to three lines (MatchHud._fill_cards); the copy
+		# must fit the label the row gave it.
+		_check(label.get_line_count() <= 3 and label.get_line_count() * label.get_line_height() <= label.size.y + 1.0, "Korean card copy overflows its row: " + label.text)
 
 func _frames(count: int) -> void:
 	for frame in count:

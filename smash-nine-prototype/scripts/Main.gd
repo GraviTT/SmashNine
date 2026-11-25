@@ -685,7 +685,7 @@ func _offscreen_markers() -> Array:
 			continue
 		var direction := (screen - centre).normalized()
 		var reach := minf(inner.x / maxf(absf(direction.x), 0.001), inner.y / maxf(absf(direction.y), 0.001))
-		result.append({"position": centre + direction * reach, "angle": direction.angle(), "color": player.body_color})
+		result.append({"position": centre + direction * reach, "angle": direction.angle(), "color": player.body_color, "face": ART_SETTINGS.character_portrait(player.character_id, player.body_type)})
 	return result
 
 func _update_hud() -> void:

@@ -91,9 +91,9 @@ func start(owner_main: Node, stage_data: Dictionary, art_state: Dictionary = {})
 	dialogue.visible = false
 	dialogue.finished.connect(_on_dialogue_finished)
 	_build_rival_bar()
-	# MatchHud's battle-royale banner starts at y=96. Story adds the rival bar
-	# there, so keep realm hazard warnings below it in this mode only.
-	main.hud.warning_label.position.y = 158
+	# The rival bar takes the place under the clock, so the HUD keeps its warning plate below
+	# it in this mode, and its clock plate carries the stage and the objective.
+	main.hud.set_story_layout(true)
 	set_frozen(true)
 	main.hud.frontend.show_stage_card(data)
 	main.hud.overlay_background_art.visible = false
@@ -472,23 +472,20 @@ func objective_text() -> String:
 	return tr("Monsters %d/%d") % [defeated_count, total_enemies]
 
 func _build_rival_bar() -> void:
-	rival_bar = main.hud._hud_frame("hp_bar", Vector2(420, 46), Color(0.07, 0.03, 0.06, 0.95), "StoryRivalHP")
-	rival_bar.position = Vector2(430, 100)
-	main.hud.add_child(rival_bar)
-	main.hud._pin(rival_bar, Vector2(0.5, 0.0))
+	# A flat plate as the rest of the match HUD (pick cup round 2026-11-25-ui): the name over a
+	# bar thick enough to read, in the same place and size as before.
+	var hud: Node = main.hud
+	rival_bar = hud._plate(hud, Rect2(430, 100, 420, 46), hud._box(hud.PLATE_SOLID, hud.EDGE, 1, 4))
+	rival_bar.name = "StoryRivalHP"
+	hud._pin(rival_bar, Vector2(0.5, 0.0))
+	hud._plate(rival_bar, Rect2(8, 28, 404, 12), hud._box(Color(0, 0, 0, 0.62), Color.TRANSPARENT, 0, 4))
 	rival_fill = ColorRect.new()
-	rival_fill.position = Vector2(8, 30)
-	rival_fill.size = Vector2(404, 8)
+	rival_fill.position = Vector2(8, 28)
+	rival_fill.size = Vector2(404, 12)
 	rival_fill.color = Color("dd637b")
 	rival_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rival_bar.add_child(rival_fill)
-	rival_name = Label.new()
-	rival_name.position = Vector2(8, 2)
-	rival_name.size = Vector2(404, 28)
-	rival_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	rival_name.add_theme_font_size_override("font_size", 18)
-	rival_name.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	rival_bar.add_child(rival_name)
+	rival_name = hud._text(rival_bar, "", Rect2(8, 2, 404, 26), 18, hud.WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
 	rival_bar.visible = false
 
 func _enemy_title(enemy: Node) -> String:
@@ -497,10 +494,9 @@ func _enemy_title(enemy: Node) -> String:
 	return tr(str(enemy.display_name))
 
 func update_hud() -> void:
-	main.hud.clock_label.text = tr("STAGE %d") % int(data.id) + "   |   " + objective_text()
-	main.hud.clock_label.visible = phase in ["combat", "exit", "root"] and not main.hud.overlay.visible
+	main.hud.set_story_objective(tr("STAGE %d") % int(data.id), objective_text(), phase in ["combat", "exit", "root"] and not main.hud.overlay.visible)
 	if int(data.id) == 5 and phase == "combat" and not main.match_over:
-		main.hud.warning_label.text = tr("Collapse warning") + "  " + tr("%ds") % main.director.get_warning_seconds_left() + "\n" + tr("Break all soul crystals to open the exit.")
+		main.hud.set_warning_text(tr("Collapse warning"), tr("Break all soul crystals to open the exit."), main.director.get_warning_seconds_left())
 	rival_bar.visible = is_instance_valid(rival) and rival.hp > 0.0 and accepts_gameplay() and not main.hud.overlay.visible
 	if rival_bar.visible:
 		rival_fill.size.x = 404.0 * clampf(rival.hp / rival.max_hp, 0.0, 1.0)

@@ -33,8 +33,8 @@ func _run() -> void:
 	if not has_state:
 		push_error("A bot row should say what the bot is doing (got %s)" % (first.text if first != null else "nothing"))
 		failed = true
-	if hud.clock_label.text == "" or hud.status_label.text == "":
-		push_error("The HUD clock and status should keep updating with the panel on")
+	if hud.clock_label.text == "" or hud.focus_name.text == "":
+		push_error("The HUD clock and the focus fighter's plate should keep updating with the panel on")
 		failed = true
 	hud.toggle_bot_panel()
 	if hud.bot_panel.visible:
@@ -46,7 +46,7 @@ func _run() -> void:
 	var standings: Array[Node] = []
 	standings.assign(main.players)
 	hud.show_results(main.players[0], "test", standings, null)
-	for node in [hud.bot_panel, hud.clock_label, hud.status_label, hud.minimap_root, hud.offscreen_root, hud.hazard_label, hud.cutin_root]:
+	for node in [hud.bot_panel, hud.clock_label, hud.player_root, hud.minimap_root, hud.offscreen_root, hud.hazard_label, hud.cutin_root]:
 		if node.visible:
 			push_error("The results table should hide %s" % node.name)
 			failed = true
