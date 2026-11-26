@@ -24,7 +24,8 @@ const SLOT_FRAME := "res://assets/art/ui/frames/skill_slot.png"
 const LOGO := "res://assets/art/ui/title_logo.png"
 const BACKGROUND := "res://assets/art/ui/title_bg.png"
 const ICON := "res://assets/art/skill_icons/%s_%s.png"
-const TITLE_ITEMS := ["Battle Royale", "Story", "Watch bots", "Options", "Controls"]
+## The game's title rows (FrontendMenu.show_title; Practice since 2026-11-26).
+const TITLE_ITEMS := ["Battle Royale", "Story", "Practice", "Watch bots", "Options", "Controls"]
 
 var style := "a"
 var content: Control
@@ -205,13 +206,14 @@ func _title_a(focus: int) -> void:
 	_framed_panel(Rect2(414, 66, 452, 592), 0.9)
 	_picture(ART.original_texture(LOGO), Rect2(450, 92, 380, 126), true)
 	_text(tr("NINE REALMS. ONE SURVIVOR."), Rect2(440, 222, 400, 28), 18, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
-	# The two ways to play are the big buttons; the rest sit smaller under a rule.
+	# The two ways to play are the big buttons; the rest (practice among them) sit smaller under a
+	# rule.
 	for index in 2:
-		_plate_button(tr(TITLE_ITEMS[index]), Rect2(466, 270 + index * 68, 348, 58), focus == index, 23, "Enter" if focus == index else "")
-	_fill(Rect2(486, 414, 308, 1), Color(GOLD, 0.35), 0)
+		_plate_button(tr(TITLE_ITEMS[index]), Rect2(466, 262 + index * 64, 348, 58), focus == index, 23, "Enter" if focus == index else "")
+	_fill(Rect2(486, 396, 308, 1), Color(GOLD, 0.35), 0)
 	for index in range(2, TITLE_ITEMS.size()):
-		_plate_button(tr(TITLE_ITEMS[index]), Rect2(486, 430 + (index - 2) * 54, 308, 46), focus == index, 19, "Enter" if focus == index else "")
-	_text("언어  한국어      속도  100%", Rect2(440, 604, 400, 26), 16, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
+		_plate_button(tr(TITLE_ITEMS[index]), Rect2(486, 408 + (index - 2) * 50, 308, 44), focus == index, 19, "Enter" if focus == index else "")
+	_text("언어  한국어      속도  100%", Rect2(440, 612, 400, 26), 16, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
 	_hints([["↑↓", "이동"], ["Enter", "확인"], ["1~6", "바로 시작"]], 640, 674)
 	_text(tr("Working title  /  Prototype"), Rect2(36, 20, 300, 26), 15, DIM)
 
@@ -221,10 +223,10 @@ func _title_b(focus: int) -> void:
 	_picture(ART.original_texture(LOGO), Rect2(56, 44, 430, 136), true)
 	_text(tr("NINE REALMS. ONE SURVIVOR."), Rect2(72, 184, 400, 28), 18, DIM)
 	for index in 2:
-		_slant_button(tr(TITLE_ITEMS[index]), Rect2(64, 252 + index * 74, 400, 62), focus == index, 25, "Enter" if focus == index else "")
+		_slant_button(tr(TITLE_ITEMS[index]), Rect2(64, 240 + index * 70, 400, 62), focus == index, 25, "Enter" if focus == index else "")
 	for index in range(2, TITLE_ITEMS.size()):
-		_slant_button(tr(TITLE_ITEMS[index]), Rect2(64, 416 + (index - 2) * 56, 330, 46), focus == index, 19, "Enter" if focus == index else "")
-	_text("언어  한국어      속도  100%", Rect2(72, 606, 400, 26), 16, DIM)
+		_slant_button(tr(TITLE_ITEMS[index]), Rect2(64, 392 + (index - 2) * 52, 330, 44), focus == index, 19, "Enter" if focus == index else "")
+	_text("언어  한국어      속도  100%", Rect2(72, 612, 400, 26), 16, DIM)
 	_hints([["↑↓", "이동"], ["Enter", "확인"], ["1~6", "바로 시작"]], 264, 668)
 	_text(tr("Working title  /  Prototype"), Rect2(944, 20, 300, 26), 15, DIM, false, HORIZONTAL_ALIGNMENT_RIGHT)
 
