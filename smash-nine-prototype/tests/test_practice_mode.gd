@@ -453,6 +453,7 @@ func _test_cards() -> bool:
 	_check(hero.upgrades == [str(list[0].id)], "1 should take the first card (%s)" % [hero.upgrades])
 	_check(hero.attack_power > float(plain.attack), "The card taken should act at once (attack %.1f -> %.1f)" % [plain.attack, hero.attack_power])
 	_check(hud.card_labels[0].text.contains("held x1"), "A held card should say so (%s)" % hud.card_labels[0].text)
+	_check(hud.status_label.text.contains("Cards held 1"), "The status line should count the card while the list is still open (%s)" % hud.status_label.text)
 	for label: Label in hud.card_labels:
 		_check(label.get_line_count() * label.get_line_height() <= label.size.y, "A card with its held mark should still fit its box: %s" % label.text)
 	# Air Dash: found on its page, taken, and refused the second time.
@@ -498,6 +499,16 @@ func _test_cards() -> bool:
 			if taken < 5 and await _take_if_free(session, slot):
 				taken += 1
 		await _tap(KEY_D)
+	# Every page with its held marks fits its boxes, in Korean too (the longer of the two).
+	for locale in ["ko", "en"]:
+		LANGUAGE.set_locale(locale)
+		for page in session.card_pages():
+			await _tap(KEY_D)
+			for label: Label in hud.card_labels:
+				_check(label.get_line_count() * label.get_line_height() <= label.size.y, "A card with its held mark should fit its box (%s, page %d): %s" % [locale, session.card_page + 1, label.text])
+			var title_font: Font = hud.card_title.get_theme_font("font")
+			var title_width := title_font.get_string_size(hud.card_title.text, HORIZONTAL_ALIGNMENT_LEFT, -1, hud.card_title.get_theme_font_size("font_size")).x
+			_check(title_width <= hud.card_title.size.x, "The card list's title line should fit (%s, %.0f px of %.0f)" % [locale, title_width, hud.card_title.size.x])
 	await _tap(KEY_C)
 	_check(session.panel == "" and not paused, "C should close the list it opened")
 	_check(hero.upgrades.size() == 7 and hero.soul_picks == 3, "Seven cards should count as three picks of growth (%d cards, %d picks)" % [hero.upgrades.size(), hero.soul_picks])

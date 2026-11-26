@@ -293,6 +293,9 @@ func _show_cards() -> void:
 		var held: int = hero.upgrades.count(str(card.id))
 		if held > 0:
 			hud.card_labels[index].text = "[%d] %s\n%s\n(%s)" % [index + 1, tr(str(card.title)), tr(str(card.text)), tr("%s, held x%d") % [tr(str(card.kind)), held]]
+	# Main does not draw the HUD while the game is paused: the count of cards and the HP a card
+	# changed are brought up to date here.
+	_update_status()
 
 ## Takes the card in place `index` of the open page. A card held as often as it may be is refused,
 ## as an offer would not hold it.
@@ -424,10 +427,13 @@ func update_hud() -> void:
 	if panel != "cards":
 		main.hud.hide_card_offer()
 	info.visible = panel == "" and main.hud.clock_label.visible
-	# The match's status line counts survivors and souls to the next card: neither is practice's.
+	_update_status()
+	info.text = tr("Target: %s    Last hit %.1f HP    Total %.1f HP") % [target_name(), last_damage, total_damage] + "\n" + tr(KEY_HELP)
+
+## The match's status line counts survivors and souls to the next card: neither is practice's.
+func _update_status() -> void:
 	if is_instance_valid(hero):
 		main.hud.status_label.text = tr("Cards held %d") % hero.upgrades.size() + "\n" + tr("%s  HP %.0f/%.0f  KOs %d   Souls %d") % [tr(str(hero.display_name)), hero.hp, hero.max_hp, hero.score, hero.souls]
-	info.text = tr("Target: %s    Last hit %.1f HP    Total %.1f HP") % [target_name(), last_damage, total_damage] + "\n" + tr(KEY_HELP)
 
 func _skill_label(text: String, rect: Rect2, font_size: int, color: Color) -> Label:
 	var label := Label.new()
