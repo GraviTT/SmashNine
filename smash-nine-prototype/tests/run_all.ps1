@@ -33,6 +33,7 @@ $tests += @("test_bot_kits")
 $tests += @("test_yuki_objects", "test_hittable_bodies")
 $tests += @("test_soul_cards")
 $tests += @("test_practice_mode")
+$tests += @("test_freed_targets")
 $failed = @()
 $certificateNoise = 0
 
