@@ -2,6 +2,7 @@
 
 - Request: the user (2026-11-27, through the 총괄 session), word for word:
   > "Borok, Doron, 그리고 여기에는 없는 2번째 마법소녀 'Jupi(유피)' 3가지로 진행. Jupi는 긴 스태프를 들고 번개마법을 사용하는 스타일. Borok는 중장갑 탱커면서 도끼를 들고 있으면 좋을것 같고, 조금 특이한 연출로 도끼를 머리 위에서 빠르게 회전 시키는 기술로 공격하면서 공중을 잠깐 나는 스킬이 있으면 좋겠다. Doron은 오히려 처음엔 메카에 타지 않고 있고, 필드에서 본인만 보이는 부품을 찾아 모아서 점점 강해지는 대기만성 스타일."
+- **Their kits (draft, not yet approved by the user):** `reports/new-characters-2026-11-26/kits/README.md` (the skill session, commit `26e8aeed`). The 총괄 asked that every look shows the kit's parts named below in each character's section. Read the draft's sections 1–3.
 - **This card replaces CODEX-ART-98.** Raven, Mira, May and Dohwa are dropped. The old brief `reports/new-characters-2026-11-26/README.md` is a loose frame only: Borok is still "the blacksmith king under Svartalfheim" as a background, but his weapon is an **axe**; Doron **starts without a mecha**.
 - The user picks one look per character in the pick cup: one item each, three looks, nine matches (D49). The skill session designs their kits at the same time, and the art must fit the kits.
 - Method and format: as the Xion concept round (`design/tasks/CODEX-ART-95.md`, `reports/codex-art-95a/README.md`, `reports/codex-art-95b/README.md`). Rules: D22, D25, D32–D35.
@@ -18,24 +19,30 @@
 The three looks of a character must differ in silhouette and costume, not only in colour. Change a suggested palette only with a reason.
 
 **Borok (`borok`)**: male, one body now (the second body comes after the pick, D22).
-- A heavy-armoured tank who is hard to launch. **His weapon is a big axe.**
+- A heavy-armoured tank who is hard to launch: **"the iron giant who flies on the wind of his axe"** (the kit's one line). **His weapon is a big axe.** His passive is his iron armour (thick plates on every look); his ultimate is a high leap and a slam.
 - His signature move: he spins the axe above his head so fast that he lifts off and flies for a moment, hitting all around him.
 - **All three illustrations show that move:**
   - both hands up, the axe whirling above his head like rotor blades, his boots just off the ground
   - a few motion arcs round the axe are allowed in the illustration only
   - his face stays visible under the axe
-- The idle frame is a heavy, planted stance with the axe on his shoulder or held low. He has the widest silhouette in the roster, 3 heads (his head the size of a 3-head fighter's even if he is stout).
+- The idle frame is a heavy, planted stance with the axe on his shoulder or held low.
+  - **He is a giant:** the tallest and widest silhouette in the roster, at 3 heads, standing 105–112 px in the 128 cell (so his head is bigger than the others').
+  - The axe must stay inside the 4-px margin; hold it low or close if it does not fit.
 
 | Look | Direction | Suggested palette |
 | --- | --- | --- |
-| 1, "the dwarf forge-king" | stout and broad, braided beard, iron plate with forge seams, a forge crown or circlet (no visor), a double-bladed forge axe | soot iron, ember orange (painted, no glow), leather brown |
+| 1, "the forge-king giant" | broad and towering, braided beard, iron plate with forge seams, a forge crown or circlet (no visor), a double-bladed forge axe | soot iron, ember orange (painted, no glow), leather brown |
 | 2, "the iron giant" | tall and huge, full plate with an open face, a fur mantle, a long-hafted great axe | gunmetal, rust red, grey fur |
-| 3, "the young smith-warrior" | younger and very muscular, lighter plates over a leather smith's apron, heavy gauntlets and boots, a single-bit war axe with a chain wound on the haft | bronze, leather brown, ember |
+| 3, "the young smith giant" | younger, huge and very muscular, thick plates over a leather smith's apron, heavy gauntlets and boots, a single-bit war axe with a chain wound on the haft | bronze, leather brown, ember |
 
 **Doron (`doron`)**: male, one body now; a boy genius.
 - **He does not start in a mecha.** On the field he finds parts that only he can see, gathers them, and grows stronger as the match goes on: a late bloomer.
 - **Each illustration shows the boy and what he will become:** a half-built mecha, or parts already fixed to his body.
-- **The idle frame is the boy alone:** tools, a bag, a gadget; no mecha. 2.2–2.5 heads (82–90 px).
+  - The kit's parts by stage: 3 parts, a steel arm that fires as a rocket punch; 6 parts, a back booster; 10 parts, he rides the mecha **"Goliath"**.
+  - Show Goliath (finished or half built) or those stage parts.
+  - Goliath is shared by his male and female bodies, so keep its design neutral.
+- **Every look has his wrench and a small drone** built from scrap that follows him (his L).
+- **The idle frame is the boy alone with his wrench**, and perhaps a bag; no mecha. The drone stays out of the frame, because the game draws it on its own. 2.2–2.5 heads (82–90 px).
 - Goggles may rest on his forehead, never over his eyes.
 
 | Look | Direction | Suggested palette |
@@ -45,7 +52,9 @@ The three looks of a character must differ in silhouette and costume, not only i
 | 3, "the pilot-in-waiting" | a flight jacket, a helmet under his arm, a remote and a small drone built from scrap; behind him a giant mecha hand he is repairing | olive grey, yellow, white |
 
 **Jupi (`jupi`)**: female, one body; the second magical girl.
-- She holds **a long staff, taller than she is**, and uses **lightning magic**.
+- She holds **a long staff, taller than she is**, and uses **lightning magic** that leaves from the staff's tip.
+- She is a light, nimble long-range mage: a slim, quick silhouette.
+- **A small dark storm cloud follows her** (her U, a summon that moves on its own). It is in every illustration, beside or above her but never over her face. It is not in the idle frame, because the game draws it on its own.
 - **She must differ from Luna at a glance** in silhouette, colour and props. Luna has long pink twin tails, a short star wand, a frilly pink and violet dress and stars. Jupi has no pink, no violet and no stars.
 - In the illustration only, a few crisp bolts or sparks may run along the staff, never over the face.
 - The idle frame shows the staff and no lightning. She is a girl at 2.5 heads (88–92 px), a little taller than Luna (2.2).
