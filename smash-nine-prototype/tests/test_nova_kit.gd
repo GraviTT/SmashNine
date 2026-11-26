@@ -141,11 +141,14 @@ func _test_root() -> void:
 		_fail("Three stacks should root (stage %d)" % foe.gravity_stage)
 	var spot: Vector2 = _at(foe)
 	foe.apply_hit(nova, 10.0, 700.0, Vector2(1, -0.5))
+	# W: up and jump (two actions since the gamepad, 2026-11-26).
 	Input.action_press("move_right")
 	Input.action_press("move_up")
+	Input.action_press("jump")
 	await _frames(20)
 	Input.action_release("move_right")
 	Input.action_release("move_up")
+	Input.action_release("jump")
 	if _at(foe).distance_to(spot) > 1.0:
 		_fail("A rooted fighter should not walk, jump or fly from a hit (moved %.1f px)" % _at(foe).distance_to(spot))
 	var root_left: float = foe.gravity_root_timer
@@ -271,9 +274,12 @@ func _test_field() -> void:
 		_fail("A monster in the field should float up and stop (floating %s, %.0f -> %.0f)" % [monster.is_floating(), monster_y, _at(monster).y])
 	# She flies in it: up rises, and letting go she hangs there.
 	var start_y: float = _at(nova).y
+	# W: up and jump (two actions since the gamepad, 2026-11-26); letting go of jump cuts the rise.
 	Input.action_press("move_up")
+	Input.action_press("jump")
 	await _frames(20)
 	Input.action_release("move_up")
+	Input.action_release("jump")
 	var risen_y: float = _at(nova).y
 	await _frames(20)
 	if risen_y > start_y - 60.0 or absf(_at(nova).y - risen_y) > 25.0:
