@@ -31,7 +31,7 @@ func _run() -> void:
 	root.add_child(arena)
 	for origin in SCENES:
 		scene = origin
-		for test in [_test_gravity_stacks, _test_root, _test_chain_stacks, _test_orb, _test_field, _test_beam, _test_sphere, _test_sphere_drops_a_freed_body, _test_beam_on_a_double, _test_third_skill_slot]:
+		for test in [_test_gravity_stacks, _test_root, _test_chain_stacks, _test_orb, _test_orb_drops_a_freed_body, _test_field, _test_beam, _test_sphere, _test_sphere_drops_a_freed_body, _test_beam_on_a_double, _test_third_skill_slot]:
 			await test.call()
 			await _clear()
 	arena.queue_free()
@@ -215,6 +215,37 @@ func _test_orb() -> void:
 		_fail("The burst should pull a fighter beside it in (%.0f -> %.0f px)" % [start_distance, other.global_position.distance_to(centre)])
 	if foe.gravity_stage != 1 or other.gravity_stage != 1:
 		_fail("Everyone the burst pulled should get a stack after the pull (stages %d, %d)" % [foe.gravity_stage, other.gravity_stage])
+
+## A body the orb's burst pulls can be freed before the pull ends (a monster that dies): the pull
+## goes on for the others. Handing the freed one on at the end was a script error that left the
+## pull's list uncleared (two soak matches of 216, 2026-11-26).
+func _test_orb_drops_a_freed_body() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var nova := _fighter("nova", 1, Vector2(-300, -2), true)
+	var foe := _fighter("frey", 2, Vector2(0, -2))
+	var monster := CharacterBody2D.new()
+	monster.set_script(MONSTER)
+	monster.setup("mossling", 0, scene + Vector2(80, -40))
+	arena.add_child(monster)
+	await _frames(30)
+	_put(monster, Vector2(80, _at(monster).y))
+	nova.facing = 1
+	nova.skill_one()
+	var burst := false
+	for frame in 60:
+		await physics_frame
+		if nova.orb_pull_timer > 0.0:
+			burst = true
+			break
+	if not burst or not nova.orb_pull_targets.has(monster) or not nova.orb_pull_targets.has(foe):
+		_fail("Test setup: the orb's burst should pull the fighter and the monster beside it (%d pulled)" % nova.orb_pull_targets.size())
+		return
+	monster.queue_free()
+	await _frames(40)
+	if not nova.orb_pull_targets.is_empty():
+		_fail("The pull should end cleanly when a body it held is freed (%d left in its list)" % nova.orb_pull_targets.size())
+	if foe.gravity_stage != 1:
+		_fail("The fighter still there should get its stack after the pull (stage %d)" % foe.gravity_stage)
 
 func _test_field() -> void:
 	_floor(Vector2(0, 0), 2400)

@@ -410,7 +410,10 @@ func _update_orb_pull(delta: float) -> void:
 			_drag(target, orb_pull_centre - GAME_SCALE.BODY_CENTRE, ORB_PULL_SPEED, delta)
 	if orb_pull_timer <= 0.0:
 		for target in orb_pull_targets:
-			_stack(target)
+			# A body can be freed during the pull (a monster that dies): handing it on is a script
+			# error that left this list uncleared (two soak matches of 216, 2026-11-26).
+			if is_instance_valid(target):
+				_stack(target)
 		orb_pull_targets.clear()
 
 # --- L: gravity field ---
