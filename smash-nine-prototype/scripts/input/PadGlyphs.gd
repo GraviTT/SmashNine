@@ -9,9 +9,6 @@ extends RefCounted
 ## Each is checked before it is written; a HUD without one is left as it is. Main applies the
 ## names again after the HUD's own update every frame, so the HUD may rewrite these labels: the
 ## pad's names go back on top while a pad is in use, and the HUD's own text stays otherwise.
-## A HUD that lays its hint line out itself offers set_control_hints(text); it is used when
-## there. Texts are compared without their spaces and line breaks: a line laid out again (broken
-## into two) is the same words, not new ones.
 ##
 ## PadInput's tables are the layout; these are its names. test_gamepad holds the two together.
 
@@ -31,7 +28,6 @@ const BADGE := &"pad_glyphs_badge"
 
 ## The device the last press came from (PadInput tells Main, Main calls apply).
 static var pad_in_use := false
-static var _spaces: RegEx
 
 ## Writes the pad's names into `hud`, or puts the HUD's own back. Cheap when nothing changes.
 static func apply(hud: Node, pad: bool) -> void:
@@ -52,7 +48,7 @@ static func apply(hud: Node, pad: bool) -> void:
 				_fit_badge(key, pad)
 	var hint: Variant = hud.get("controls_label")
 	if _is_label(hint):
-		_set_hint(hud, hint, pad)
+		_set_hint(hint, pad)
 
 static func _is_label(node: Variant) -> bool:
 	# Validity first: `is` on a freed object is an error.
@@ -84,37 +80,23 @@ static func _fit_badge(badge: Label, pad: bool) -> void:
 		badge.size.x = before.y
 		badge.remove_meta(BADGE)
 
-## The words of a text, without the spaces and line breaks a layout puts between them.
-static func _words(text: String) -> String:
-	if _spaces == null:
-		_spaces = RegEx.create_from_string("\\s+")
-	return _spaces.sub(text, " ", true).strip_edges()
-
-static func _same(a: String, b: String) -> bool:
-	return _words(a) == _words(b)
-
-## The pad's hint over the HUD's own; the HUD's own back with the keyboard.
-static func _set_hint(hud: Node, hint: Label, pad: bool) -> void:
+## The hint line keeps its right edge and the room it had round its text.
+static func _set_hint(hint: Label, pad: bool) -> void:
 	var pad_text: String = hint.tr(CONTROLS_PAD)
 	var written: String = str(hint.get_meta(WRITTEN, ""))
 	if pad:
-		if _same(hint.text, pad_text):
+		if hint.text == pad_text:
 			return
-		# Not this one's words: the HUD wrote them, and they come back with the keyboard.
-		if written == "" or not _same(hint.text, written):
+		# Not this one's text: the HUD wrote it, and it is what comes back with the keyboard.
+		if written == "" or hint.text != written:
 			hint.set_meta(HUD_TEXT, hint.text)
-		_write_hint(hud, hint, pad_text)
+		_write_hint(hint, pad_text)
 		hint.set_meta(WRITTEN, pad_text)
-	elif written != "" and _same(hint.text, written):
-		_write_hint(hud, hint, str(hint.get_meta(HUD_TEXT, "")))
+	elif written != "" and hint.text == written:
+		_write_hint(hint, str(hint.get_meta(HUD_TEXT, "")))
 		hint.remove_meta(WRITTEN)
 
-## Through the HUD's own layout when it has one; otherwise the line keeps its right edge and the
-## room it had round its text.
-static func _write_hint(hud: Node, hint: Label, text: String) -> void:
-	if hud.has_method("set_control_hints"):
-		hud.set_control_hints(text)
-		return
+static func _write_hint(hint: Label, text: String) -> void:
 	var font := hint.get_theme_font("font")
 	var font_size := hint.get_theme_font_size("font_size")
 	var room := hint.size.x - font.get_string_size(hint.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x

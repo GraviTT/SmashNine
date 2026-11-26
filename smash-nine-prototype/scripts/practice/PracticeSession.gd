@@ -481,17 +481,10 @@ func _show_menu() -> void:
 	skills_panel.visible = true
 
 ## With a pad in use the nine keys of the second practice line are no use: it names the button
-## that opens the menu instead. Main calls this after update_hud. The two lines are made whole
-## here (a HUD may have laid the last ones out again) and go through the HUD's own layout when it
-## has one (set_practice_lines, the new HUD's).
+## that opens the menu instead. Main calls this after update_hud.
 func show_pad_help() -> void:
-	if not GLYPHS.pad_in_use or not is_instance_valid(info):
-		return
-	var text := tr("Target: %s    Last hit %.1f HP    Total %.1f HP") % [target_name(), last_damage, total_damage] + "\n" + tr(GLYPHS.PRACTICE_PAD)
-	if main.hud.has_method("set_practice_lines"):
-		main.hud.set_practice_lines(text)
-	else:
-		info.text = text
+	if GLYPHS.pad_in_use and is_instance_valid(info) and info.text.contains("\n"):
+		info.text = info.text.get_slice("\n", 0) + "\n" + tr(GLYPHS.PRACTICE_PAD)
 
 ## Esc with no list open: back to the title.
 func leave() -> void:
