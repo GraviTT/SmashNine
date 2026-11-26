@@ -752,7 +752,7 @@ func _offscreen_markers() -> Array:
 			continue
 		var direction := (screen - centre).normalized()
 		var reach := minf(inner.x / maxf(absf(direction.x), 0.001), inner.y / maxf(absf(direction.y), 0.001))
-		result.append({"position": centre + direction * reach, "angle": direction.angle(), "color": player.body_color})
+		result.append({"position": centre + direction * reach, "angle": direction.angle(), "color": player.body_color, "face": ART_SETTINGS.character_portrait(player.character_id, player.body_type)})
 	return result
 
 func _update_hud() -> void:
@@ -785,7 +785,7 @@ func _update_hud() -> void:
 		practice_session.update_hud()
 		practice_session.show_pad_help()
 	elif not offer.is_empty() and not match_over:
-		hud.show_card_offer(offer.cards, offer.time_left)
+		hud.show_card_offer(offer.cards, offer.time_left, float(offer.get("time_total", 0.0)))
 	else:
 		# An offer can also end without offer_closed (SoulGrowth drops it when P1 is eliminated).
 		hud.hide_card_offer()

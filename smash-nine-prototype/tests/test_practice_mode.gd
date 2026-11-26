@@ -439,7 +439,7 @@ func _test_cards() -> bool:
 	_check(list.size() == 15 and session.card_pages() == 5, "Frey may hold fifteen cards, five pages (%d)" % list.size())
 	await _tap(KEY_C)
 	_check(session.panel == "cards" and paused and hud.card_panel.visible, "C should open the card list and pause the game")
-	_check(hud.card_title.text.contains("1 / 5") and hud.card_labels[0].text.contains(str(list[0].title)), "The list should open on its first page (%s)" % hud.card_title.text)
+	_check(hud.card_title.text.contains("1 / 5") and hud.card_row_text(0).contains(str(list[0].title)), "The list should open on its first page (%s)" % hud.card_title.text)
 	_check(not session.info.visible, "The practice lines should make room for the cards")
 	_check(hud.info_label.visible and hud.info_label.text.contains("three cards"), "The list should say that growth counts for three cards (%s)" % hud.info_label.text)
 	# D held: one page on, and the fighter does not move.
@@ -459,7 +459,7 @@ func _test_cards() -> bool:
 	await _tap(KEY_1)
 	_check(hero.upgrades == [str(list[0].id)], "1 should take the first card (%s)" % [hero.upgrades])
 	_check(hero.attack_power > float(plain.attack), "The card taken should act at once (attack %.1f -> %.1f)" % [plain.attack, hero.attack_power])
-	_check(hud.card_labels[0].text.contains("held x1"), "A held card should say so (%s)" % hud.card_labels[0].text)
+	_check(hud.card_row_text(0).contains("held x1"), "A held card should say so (%s)" % hud.card_row_text(0))
 	_check(hud.status_label.text.contains("Cards held 1"), "The status line should count the card while the list is still open (%s)" % hud.status_label.text)
 	for label: Label in hud.card_labels:
 		_check(label.get_line_count() * label.get_line_height() <= label.size.y, "A card with its held mark should still fit its box: %s" % label.text)

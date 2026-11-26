@@ -295,13 +295,14 @@ func _show_cards() -> void:
 	card_page = posmod(card_page, card_pages())
 	var shown := list.slice(card_page * CARDS_PER_PAGE, (card_page + 1) * CARDS_PER_PAGE)
 	var hud: CanvasLayer = main.hud
-	hud.show_card_offer(shown, 0.0)
-	hud.card_title.text = tr("Practice cards  %d / %d    1 / 2 / 3: take    A / D: page    C: close") % [card_page + 1, card_pages()]
+	# The HUD's card column without a clock; the header's first part names the page, the rest
+	# gives the keys (MatchHud.show_card_list).
+	hud.show_card_list(shown, tr("Practice cards  %d / %d    1 / 2 / 3: take    A / D: page    C: close") % [card_page + 1, card_pages()])
 	for index in shown.size():
 		var card: Dictionary = shown[index]
 		var held: int = hero.upgrades.count(str(card.id))
 		if held > 0:
-			hud.card_labels[index].text = "[%d] %s\n%s\n(%s)" % [index + 1, tr(str(card.title)), tr(str(card.text)), tr("%s, held x%d") % [tr(str(card.kind)), held]]
+			hud.set_card_kind_text(index, tr("%s, held x%d") % [tr(str(card.kind)), held])
 	# Main does not draw the HUD while the game is paused: the count of cards and the HP a card
 	# changed are brought up to date here.
 	_update_status()
@@ -354,7 +355,7 @@ func close_panel() -> void:
 	skills_panel.visible = false
 	main.hud.hide_card_offer()
 	# The note about growth belongs to the card list.
-	main.hud.info_label.visible = false
+	main.hud.clear_messages()
 	SPEED.apply_to_match()
 	get_tree().paused = false
 
@@ -475,10 +476,11 @@ func _show_menu() -> void:
 	skills_panel.visible = true
 
 ## With a pad in use the nine keys of the second practice line are no use: it names the button
-## that opens the menu instead. Main calls this after update_hud.
+## that opens the menu instead. Main calls this after update_hud; the lines are made whole again
+## (the HUD may have broken the target line in two, so it is not cut out of info.text).
 func show_pad_help() -> void:
-	if GLYPHS.pad_in_use and is_instance_valid(info) and info.text.contains("\n"):
-		info.text = info.text.get_slice("\n", 0) + "\n" + tr(GLYPHS.PRACTICE_PAD)
+	if is_instance_valid(info):
+		_show_lines()
 
 ## Esc with no list open: back to the title.
 func leave() -> void:
@@ -489,10 +491,10 @@ func leave() -> void:
 
 func _build_hud() -> void:
 	var hud: CanvasLayer = main.hud
-	# Above the message line, left of the skill bar (which begins at x 1004).
-	info = hud._label(Vector2(24, 618), Vector2(960, 42), 14, HORIZONTAL_ALIGNMENT_LEFT)
-	info.name = "PracticeInfo"
-	hud._pin(info, hud.BOTTOM_LEFT)
+	# The HUD's practice places: no survivors on the clock, the cards held in the soul row, and
+	# these lines as a block at the bottom right over the control hints.
+	hud.set_practice_layout()
+	info = hud.build_practice_lines()
 	skills_panel = Control.new()
 	skills_panel.name = "PracticeSkills"
 	skills_panel.position = Vector2(330, 110)
@@ -509,12 +511,19 @@ func update_hud() -> void:
 		main.hud.hide_card_offer()
 	info.visible = panel == "" and main.hud.clock_label.visible
 	_update_status()
-	info.text = tr("Target: %s    Last hit %.1f HP    Total %.1f HP") % [target_name(), last_damage, total_damage] + "\n" + tr(KEY_HELP)
+	_show_lines()
 
-## The match's status line counts survivors and souls to the next card: neither is practice's.
+## The target and the damage, then the keys, or the pad's menu button while a pad is in use
+## (PadGlyphs.practice_line). The HUD breaks the lines to fit its block, so the second line is not
+## read back out of info.text.
+func _show_lines() -> void:
+	main.hud.set_practice_lines(tr("Target: %s    Last hit %.1f HP    Total %.1f HP") % [target_name(), last_damage, total_damage] + "\n" + GLYPHS.practice_line(self, tr(KEY_HELP)))
+
+## The match's survivors and souls to the next card are not practice's: the HUD's player plate
+## shows the souls and the cards held instead.
 func _update_status() -> void:
 	if is_instance_valid(hero):
-		main.hud.status_label.text = tr("Cards held %d") % hero.upgrades.size() + "\n" + tr("%s  HP %.0f/%.0f  KOs %d   Souls %d") % [tr(str(hero.display_name)), hero.hp, hero.max_hp, hero.score, hero.souls]
+		main.hud.set_practice_status(hero.upgrades.size(), hero)
 
 func _skill_label(text: String, rect: Rect2, font_size: int, color: Color) -> Label:
 	var label := Label.new()
