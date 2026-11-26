@@ -476,10 +476,11 @@ func _show_menu() -> void:
 	skills_panel.visible = true
 
 ## With a pad in use the nine keys of the second practice line are no use: it names the button
-## that opens the menu instead. Main calls this after update_hud.
+## that opens the menu instead. Main calls this after update_hud; the lines are made whole again
+## (the HUD may have broken the target line in two, so it is not cut out of info.text).
 func show_pad_help() -> void:
-	if GLYPHS.pad_in_use and is_instance_valid(info) and info.text.contains("\n"):
-		info.text = info.text.get_slice("\n", 0) + "\n" + tr(GLYPHS.PRACTICE_PAD)
+	if is_instance_valid(info):
+		_show_lines()
 
 ## Esc with no list open: back to the title.
 func leave() -> void:
@@ -510,7 +511,13 @@ func update_hud() -> void:
 		main.hud.hide_card_offer()
 	info.visible = panel == "" and main.hud.clock_label.visible
 	_update_status()
-	main.hud.set_practice_lines(tr("Target: %s    Last hit %.1f HP    Total %.1f HP") % [target_name(), last_damage, total_damage] + "\n" + tr(KEY_HELP))
+	_show_lines()
+
+## The target and the damage, then the keys, or the pad's menu button while a pad is in use
+## (PadGlyphs.practice_line). The HUD breaks the lines to fit its block, so the second line is not
+## read back out of info.text.
+func _show_lines() -> void:
+	main.hud.set_practice_lines(tr("Target: %s    Last hit %.1f HP    Total %.1f HP") % [target_name(), last_damage, total_damage] + "\n" + GLYPHS.practice_line(self, tr(KEY_HELP)))
 
 ## The match's survivors and souls to the next card are not practice's: the HUD's player plate
 ## shows the souls and the cards held instead.
