@@ -61,6 +61,10 @@ var ultimate_diving := false
 ## >= 0 while a jump press in the air is held to see whether it becomes the wing hover.
 var wing_hold_timer := -1.0
 var wing_hovering := false
+## Wing hovers in this airtime (Second Wingbeat allows two).
+var wing_uses := 0
+## While the wing dash-slash is out and has not hit yet (move_counts "wing_hits").
+var wing_strike_timer := 0.0
 ## Fighters the descent light touched, dragged to her until the slam.
 var ultimate_caught: Array[Node] = []
 var ultimate_pulling := false
@@ -147,10 +151,13 @@ func try_skill_two_followup() -> bool:
 	return true
 
 func character_physics_process(delta: float) -> void:
+	if is_on_floor():
+		wing_uses = 0
 	rising_followup_timer = maxf(rising_followup_timer - delta, 0.0)
 	combo_timer = maxf(combo_timer - delta, 0.0)
 	if combo_timer <= 0.0:
 		combo_step = 0
+	wing_strike_timer = maxf(wing_strike_timer - delta, 0.0)
 	_update_wing(delta)
 	if ultimate_pulling:
 		_pull_caught()
@@ -169,9 +176,11 @@ func character_on_hit() -> void:
 
 func character_on_respawn() -> void:
 	character_on_hit()
+	wing_uses = 0
 
 func character_cleanup() -> void:
 	character_on_hit()
+	wing_uses = 0
 
 # --- Passive: Valkyrie wings ---
 
@@ -180,10 +189,16 @@ func character_defers_air_jump() -> bool:
 	return is_human and coyote_timer <= 0.0 and _wing_usable()
 
 func _wing_usable() -> bool:
-	return not is_on_floor() and air_jumps_left > 0 and hitstun_timer <= 0.0 \
+	# The second wingbeat needs no air jump and is not held back by the first dash's lock.
+	var again := _second_wing_ready()
+	return not is_on_floor() and (air_jumps_left > 0 or again) and hitstun_timer <= 0.0 \
 		and knockback_velocity.length() < WING_KNOCKBACK_LIMIT and attack_lock_timer <= 0.0 \
-		and not action_locked_until_land and skill_dash_timer <= 0.0 and movement_freeze_timer <= 0.0 \
+		and (not action_locked_until_land or again) and skill_dash_timer <= 0.0 and movement_freeze_timer <= 0.0 \
 		and not wing_hovering and not is_guarding and not is_gravity_rooted()
+
+## Second Wingbeat (her soul card, D54): the wings once more in the same airtime.
+func _second_wing_ready() -> bool:
+	return wing_uses == 1 and has_card("second_wingbeat")
 
 func _jump_held() -> bool:
 	return Input.is_action_pressed("jump") or Input.is_action_pressed("move_up")
@@ -204,14 +219,17 @@ func _update_wing(delta: float) -> void:
 		if wing_hold_timer >= WING_HOLD_TIME:
 			_start_wing_hover()
 		return
-	# Released before the hover: a plain air jump.
+	# Released before the hover: a plain air jump (none left when only the second wingbeat is).
 	wing_hold_timer = -1.0
-	_perform_air_jump()
+	if air_jumps_left > 0:
+		_perform_air_jump()
 
 func _start_wing_hover() -> void:
 	wing_hold_timer = -1.0
-	air_jumps_left -= 1
+	air_jumps_left = maxi(air_jumps_left - 1, 0)
+	wing_uses += 1
 	wing_hovering = true
+	count_move("wings")
 	_reset_combo()
 	rising_followup_timer = 0.0
 	attack_lock_timer = WING_HOVER_TIME
@@ -239,14 +257,26 @@ func _start_wing_hover() -> void:
 		facing = held_facing
 	_wing_dash(direction)
 
+## A bot has no held key: it starts the hover outright, under the conditions of a held press, and
+## the dash goes where it aims when the hover ends (EnemyAI.wing_aim, one of the eight ways).
+func try_wing_hover() -> bool:
+	if is_human or coyote_timer > 0.0 or not _wing_usable():
+		return false
+	_start_wing_hover()
+	return true
+
 ## The eight-way input when the hover ends, or none (she drops).
 func _wing_direction() -> Vector2:
+	if not is_human:
+		var aim: Vector2 = ai_controller.wing_aim
+		return Vector2.from_angle(snappedf(aim.angle(), PI / 4.0)) if aim.length() > 0.2 else Vector2.ZERO
 	var direction := Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
 	return direction.normalized() if direction.length() > 0.2 else Vector2.ZERO
 
 func _wing_dash(direction: Vector2) -> void:
 	action_locked_until_land = true
 	air_jumps_left = 0
+	wing_strike_timer = WING_DASH_TIME + 0.05
 	attack_lock_timer = WING_DASH_TIME + 0.18
 	_play_move_sprite_pose(&"dash_strike", 3, 3, 0.3, 2, 5)
 	velocity = direction * 160.0
@@ -655,3 +685,9 @@ func _play_ultimate_release() -> void:
 	tween.tween_property(flash, "scale", Vector2(2.2, 0.45), 0.12)
 	tween.parallel().tween_property(flash, "modulate:a", 0.0, 0.12)
 	tween.tween_callback(flash.queue_free)
+
+## The wing dash-slash reached a body: counted once per dash (move_counts "wing_hits").
+func character_on_attack_hit_body(_body: Node, _attack: Node) -> void:
+	if wing_strike_timer > 0.0:
+		wing_strike_timer = 0.0
+		count_move("wing_hits")

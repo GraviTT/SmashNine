@@ -33,7 +33,7 @@
 
 ## 공용 조작
 
-`PlayerBase._get_basic_attack_type`은 지상과 공중, 입력 방향을 조합해 `neutral`, `side`, `up`, `down`, `air_side`, `air_up`, `air_down`으로 나눈다. `basic_attack`, `skill_one`, `skill_two`, `skill_three`, `ultimate`이 각 캐릭터의 `perform_*` 함수로 넘긴다. `skill_three`(U 키, 2026-11-03 D47)는 세 번째 스킬이 있는 캐릭터(`has_skill_three`, 지금 Nova)만 쓰고, 스킬 바의 U 칸도 그때만 보인다. 독립된 공용 대시 입력은 없으며, 코드에서 대시는 Frey K, Brave Luna K, Nova K, Rio K처럼 각 캐릭터 기술의 `skill_dash_velocity`로 구현된다.
+`PlayerBase._get_basic_attack_type`은 지상과 공중, 입력 방향을 조합해 `neutral`, `side`, `up`, `down`, `air_side`, `air_up`, `air_down`으로 나눈다. `basic_attack`, `skill_one`, `skill_two`, `skill_three`, `ultimate`이 각 캐릭터의 `perform_*` 함수로 넘긴다. `skill_three`(U 키, 2026-11-03 D47)는 세 번째 스킬이 있는 캐릭터(`has_skill_three`, 지금 Nova)만 쓰고, 스킬 바의 U 칸도 그때만 보인다. 독립된 공용 대시 입력은 없으며, 코드에서 대시는 Frey K, Brave Luna K, Nova K, Rio K처럼 각 캐릭터 기술의 `skill_dash_velocity`로 구현된다. 예외는 소울 카드 공중 대시다: 그 카드를 고른 선수는 공중에서 Guard 키로 대시한다(아래 "소울 카드" 절).
 
 방어는 전 캐릭터 공통이다. 지상에서 Guard를 누르면 입력 방향의 140도 범위를 막는다. 처음 0.1초는 패리이며 `[GUARD_PARRY_WINDOW]`, 일반 막기의 피해 감소율은 처음 75%에서 5초 동안 30%까지 내려간다 `[GUARD_START_REDUCTION]`, `[GUARD_MIN_REDUCTION]`, `[GUARD_DECAY_TIME]`. 놓은 뒤 회복은 0.26초다 `[GUARD_RECOVERY]`. 동작은 `shield` 줄 전체이며, 이펙트는 공용 `assets/art/effects/skill/guard_bubble.png`의 평상/피격/패리 프레임과 패리 성공 시 `parry_flash.png`다. 그림이 없으면 `PlayerBase._update_guard_visual`의 `Line2D` 호와 `_play_parry_effect`의 `ColorRect`가 대신한다.
 
@@ -96,11 +96,11 @@
 
 | 입력 | 기술 | 하는 일 | 주요 수치 | 몸 동작 | 이펙트와 그리기 | 상태 | 이펙트가 따라야 할 값 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `J` | 설화부·직선 | 전방으로 빠른 부적을 보내 견제한다. | 피해 6, 기본 30×16, 넉백 190, 속도 `660×COMBAT`, 수명 0.95초 | `talisman_side` 전체 | `assets/art/effects/yuki_talisman.png`; `YukiTalisman.configure` | 그림 | 투사체 방향, 30×16 판정, 속도·0.95초 수명 |
-| `↑J` | 설화부·대공 | 위로 부적을 보내 0.18초 뒤 82×74 범위로 펼친다. | 피해 7, 비행 22×30, 넉백 225, 속도 `520×COMBAT`, 수명 0.52초; 폭발 기본 82×74, 0.16초 | `talisman_up` 전체 | `yuki_talisman.png`, 폭발 `attack_vfx/yuki_l.png`; `YukiTalisman._begin_burst` | 그림 | 위 방향, 0.18초 전개, 82×74 폭발 |
+| `J` | 설화부·직선 | 전방으로 빠른 부적을 보내 견제한다. 발판에 닿으면 사라진다. | 피해 6, 기본 30×16, 넉백 190, 속도 `660×COMBAT`, 수명 0.95초 | `talisman_side` 전체 | `assets/art/effects/yuki_talisman.png`; `YukiTalisman.configure` | 그림 | 투사체 방향, 30×16 판정, 속도·0.95초 수명 |
+| `↑J` | 설화부·대공 | 위로 부적을 보내 0.18초 뒤 82×74 범위로 펼친다. 그 전에 발판에 닿으면 거기서 펼친다. | 피해 7, 비행 22×30, 넉백 225, 속도 `520×COMBAT`, 수명 0.52초; 폭발 기본 82×74, 0.16초 | `talisman_up` 전체 | `yuki_talisman.png`, 폭발 `attack_vfx/yuki_l.png`; `YukiTalisman._begin_burst` | 그림 | 위 방향, 0.18초 전개, 82×74 폭발 |
 | `공중 ↑J` | 공중 설화부·대공 | 공중에서 같은 위 부적을 쓴다. | `↑J`와 동일 | `talisman_up` 전체 | `yuki_talisman.png`, `yuki_l.png` | 그림 | `↑J`와 동일 |
 | `↓J` | 지상 퇴마 파동 | 발밑 앞을 짧게 쓸어 근접 적을 밀어낸다. | 피해 7, 54×46, 끝 (76,8), 넉백 285, 0.13초 | `ground_ward` 전체 | `attack_vfx/yuki_slash.png`; `_ground_ward` | 그림 | 낮은 전방 궤적, 판정과 0.13초 |
-| `공중 J` | 공중 설화부·직선 | 입력 방향으로 작고 빠른 부적을 발사한다. | 피해 6, 28×14, 넉백 175, 속도 `720×COMBAT`, 수명 0.78초 | `talisman_air_side` 전체 | `yuki_talisman.png` | 그림 | 공중 입력 방향, 속도·수명 |
+| `공중 J` | 공중 설화부·직선 | 입력 방향으로 작고 빠른 부적을 발사한다. 발판에 닿으면 사라진다. | 피해 6, 28×14, 넉백 175, 속도 `720×COMBAT`, 수명 0.78초 | `talisman_air_side` 전체 | `yuki_talisman.png` | 그림 | 공중 입력 방향, 속도·수명 |
 | `공중 ↓J` | 낙하부 | 아래로 부적을 떨어뜨리고 적이나 발판에 닿으면 넓게 펼친다. | 피해 8, 비행 24×28, 넉백 295, 속도 `610×COMBAT`, 수명 1초; 폭발 기본 94×50, 0.16초 | `talisman_air_down` 전체 | `yuki_talisman.png`, 폭발 `yuki_l.png` | 그림 | 아래 방향, 충돌 지점, 94×50 폭발 |
 | `K` | 결박 부적 설치 | 입력을 상하좌우로 고정해 145px 떨어진 곳에 봉인부를 둔다. 지상 아래 입력은 발밑에 둔다. 최대 2개이며 5초 뒤 사라지고 공격 한 번에 찢어진다. | 최대 2개, 기본 거리 145, 유지 5초; 물체 판정 30×42 | `seal_place` 전체 | 설치 `attack_vfx/yuki_k.png`, 대기 `yuki_seal_idle.png`, 파괴 `yuki_seal_break.png`; `YukiSeal` | 그림 | 설치 방향·위치, 5초 잔여 알파, 대기 4프레임, 파괴 5프레임 |
 | `L` (봉인부 있음) | 결계 해방 | 모든 봉인부를 0.58초 활성화해 주변을 끌고, 끝에 폭발시킨다. 같은 발동의 중복 폭발 피해는 한 번만 받는다. | 흡입 반경 `135×COMBAT` `[PULL_RADIUS]`, 힘 520; 폭발 반경 `148×COMBAT` `[BURST_RADIUS]`, 피해 11, 넉백 315; 활성 0.58초 `[ACTIVE_TIME]` | `seal_activate` 전체 | 대기 부적이 밝아지고 폭발 `attack_vfx/yuki_l.png`; `_play_burst_effect` | 그림 | 두 반경, 0.58초 흡입, 발동 ID별 1회 피해 |
@@ -108,7 +108,7 @@
 | `I` | 사방봉진 | 입력 방향 `220×COMBAT` 위치에 결계를 설치한다. 0.7초 예고 후 2.35초 동안 끌고 느리게 하며, 약한 파동과 마지막 강한 파동을 낸다. 기존 봉인부도 함께 발동한다. | 반경 `205×COMBAT` `[FIELD_RADIUS]`, 예고 0.7초 `[WARNING_TIME]`, 활성 2.35초 `[ACTIVE_TIME]`, 파동 간격 0.58초 `[PULSE_INTERVAL]`; 흡입 240 `[FIELD_PULL_STRENGTH]`; 일반 피해 4 `[PULSE_DAMAGE]`, 넉백 90; 마지막 피해 16 `[FINAL_PULSE_DAMAGE]`, 넉백 520, 기절 1.2초 | `grand_ward` 전체 | 결계 `vfx/yuki_ult_seal.png`(ART-67 채택본, 반투명, 가장자리에 얇은 `Line2D` 링), 마지막 `vfx/yuki_ult_burst.png`; `skill/yuki_grand_ward.png`(얇은 링)는 봉인 그림이 없을 때만; `YukiGrandWard` | 그림 | 실제 반경 307.5, 예고/활성 시간, 0.58초 파동, 마지막 폭발 구분 |
 | Guard | 공용 방어/패리 | 공용 지상 방어다. | 공용 조작 절 참고 | `shield` 전체 | `guard_bubble.png`, `parry_flash.png` | 공용 | 방향, 패리 창, 감소율 |
 
-특수 상태: 봉인부는 오래된 것부터 제거되는 최대 2개 큐다. 활성 중에는 공격으로 파괴할 수 없고, Yuki가 쓰러지거나 재생성되면 정리된다. 사방봉진은 Yuki가 쓰러지거나 다른 렐름으로 가면 즉시 사라진다. 별도의 상시 패시브는 없다.
+특수 상태: 봉인부는 오래된 것부터 제거되는 최대 2개 큐다. 활성 중에는 공격으로 파괴할 수 없고, Yuki가 쓰러지거나 재생성되면 정리된다. 사방봉진은 Yuki가 쓰러지거나 다른 렐름으로 가면 즉시 사라진다. 별도의 상시 패시브는 없다. 봉인부가 공격에 찢어지는 것과 부적이 발판을 만나는 것은 2026-11-25부터 실제로 일어난다. 그 전에는 봉인부가 정적인 몸이라 공격이 닿지 않았고, 부적은 `monitorable`이 꺼진 영역이라 발판을 만나지 못했다(`reports/yuki-objects-2026-11-25/`).
 
 ## Nova
 
@@ -178,6 +178,35 @@
 | Guard | 공용 방어/패리 | 공용 지상 방어. | 공용 조작 절 참고 | `shield` 전체 | `guard_bubble.png`, `parry_flash.png` | 공용 | — |
 
 특수 상태: 붙잡힘은 공용 `PlayerBase.apply_pin_hold`다(3초 행동 불능, 맞아도 피해만 들어가고 넉백·경직·취소 없음, 위치 고정이라 링아웃도 없음, 그 위에 Brave 붙잡기는 안 걸림, `release_pin_hold`로 일찍 풀림). 구르기 처음 0.2초는 `is_invulnerable`이다. 날아드는 동안은 몸이 지형과 부딪치지 않는다(`collision_mask` 0). 도플갱어는 공격 판정이 맞히는 플레이어 층의 몸이지만 `players` 무리가 아니라서 봇은 노리지 않는다. 봇: 적을 맞히면 도플갱어를 깔고, 붙잡으면 0.3초 뒤 날아든다. 복귀는 L(탄이 없으면 공중 K로 먼저 장전), L은 아래에 적이 있을 때만.
+
+## 소울 카드 (2026-11-26, D54)
+
+카드 19장의 정의는 `scripts/match/SoulCards.gd`, 고르는 규칙은 `SoulCards.draw_offer`와 `scripts/match/SoulGrowth.gd`에 있다. 과정과 측정은 `reports/soul-cards-2026-11-26/README.md`다.
+
+- 종류는 셋이다: 수치(`stat`) 5장, 행동(`action`) 9장, 캐릭터 전용(`character`) 5장. 한 캐릭터가 보는 카드는 공통 14장과 자기 전용 1장이다(Yuki는 14장).
+- 세 장 가운데 한 장은 반드시 행동이나 전용 카드다. 전용 카드는 두 번째 고르기에 반드시 나온다. 사람은 8초 안에 고른다 `[CHOICE_TIME]`.
+- 수치 카드(Power, Vitality, Swiftness, Anchor, Last Stand)는 `PlayerBase.upgrade_modifiers`의 숫자만 바꾼다. 아래는 행동을 바꾸는 카드다. Sky Step만 두 장까지, 나머지는 한 장이다.
+
+| 카드 | 하는 일 | 수치와 조건 | 코드 |
+| --- | --- | --- | --- |
+| Sky Step (공중 도약) | 공중 점프 +1 | 두 장까지. 상한 3회 `[MAX_AIR_JUMPS]` | `bonus_air_jumps` |
+| Air Dash (공중 대시) | 공중에서 Guard 키를 누르면 바라보는 쪽으로 대시한다. 착지 전 한 번 | 속도 `480×WORLD` `[AIR_DASH_SPEED]`로 0.17초 `[AIR_DASH_TIME]`, 약 120px. 대시 동안 떨어지지 않고, 끝나면 낙하가 처음부터 다시 시작된다. 경직, 공격 중, 착지 잠금 중에는 쓸 수 없다. 봇은 복귀할 때만 쓴다 | `PlayerBase.try_air_dash`, `can_air_dash` |
+| Meteor Landing (유성 착지) | 높은 곳에서 떨어져 착지하면 발 양옆에 충격파가 나고, 맞은 적은 떠오른다 | 낙하 300px 이상 `[METEOR_DROP]`(한 번 점프의 꼭대기는 200~235px). 판정은 양옆에 각각 129×78px, 피해 8, 넉백 400, 방향 (±0.4, −1). 경직 중의 착지는 제외 | `PlayerBase._meteor_shockwave` |
+| Riposte (되받아치기) | 근접 공격을 패리하면 그 공격자가 1초 기절한다 `[RIPOSTE_STUN]` | 피해와 넉백은 없고 하던 동작이 끊긴다. 휘두르기에만 걸린다: 선수의 공격 판정(`Attack.gd`), 몬스터의 근접 공격, Nova의 몸통 돌진. 투사체, 광선, 필드와 멀리서 터지는 것(Luna의 큰 별, Rio의 분신)은 패리만 되고 기절은 없다(2026-11-26, 총괄). 궁극기 슈퍼아머, 붙잡힘, 무적 중인 상대는 기절하지 않는다 | `PlayerBase._riposte`, `apply_parry_stun`, `scripts/HitContext.gd` |
+| Soul Drain (소울 흡수) | 선수를 탈락시키면 HP 25를 회복한다 `[SOUL_DRAIN_HEAL]` | 최대 HP까지. 링아웃으로 탈락시킨 것도 센다(마지막으로 때린 선수, 8초 기억) | `PlayerBase.record_knockout`, `heal` |
+| Last Flame (마지막 불꽃) | HP가 30% 이하인 동안 공격 ×1.25, 이동 ×1.1 | 회복해서 30%를 넘으면 꺼진다 | `PlayerBase._update_card_states` |
+| Chaser (추격자) | 적을 크게 날리면 2초 동안 이동 ×1.3 | "크게"는 맞은 선수의 최종 넉백이 480 이상 `[HARD_LAUNCH_KNOCKBACK]`일 때다(경직이 길어지는 강한 타격의 기준과 같다). 강제 띄우기는 속도÷무게가 480 이상일 때. 가드에 막힌 타격과 몬스터는 세지 않는다. 다시 날리면 2초가 새로 시작된다 | `PlayerBase.on_hard_launch` |
+| Hunter (사냥꾼) | 몬스터에게 주는 피해 ×1.5, 몬스터와 크리스탈의 소울 ×1.5 | 소울은 반올림한다(6 → 9, 8 → 12, 10 → 15) | `PlayerBase.damage_scale_against`, `add_hunt_souls` |
+| Overcharge (궁극기 가속) | 궁극기 쿨다운 30 → 22초 | 고른 뒤에 쓰는 궁극기부터 | `PlayerBase.ultimate_cooldown` |
+| Second Wingbeat (두 번째 날갯짓, Frey) | 한 번의 공중에서 발키리의 날개를 두 번 쓴다 | 두 번째는 공중 점프가 없어도, 첫 돌진의 착지 잠금 중에도 된다. 두 번째 돌진 뒤에는 지금처럼 착지까지 잠긴다 | `Frey._second_wing_ready` |
+| Twin Stars (쌍둥이 별, Luna) | J의 큰 별이 터질 때 작은 별 둘이 더 나간다 | 큰 별이 날던 방향의 ±0.2rad(약 11°) `[TWIN_STAR_ANGLE]`. 작은 별의 수치 그대로(피해 3, 넉백 120, 0.3초). 큰 별이 맞힌 대상은 지나가고, 터진 자리 뒤 약 200px 안의 적에게는 둘 다 닿는다 | `Luna.star_burst_at` |
+| Deep Gravity (깊은 중력, Nova) | 중력 필드 6 → 9초, 쿨다운 12 → 10초 | `[DEEP_FIELD_TIME]`, `[DEEP_FIELD_COOLDOWN]` | `Nova.field_time`, `field_cooldown` |
+| Second Decoy (두 번째 분신, Rio) | 분신과 자리를 두 번 바꾼다 | 분신이 서 있는 시간(4초)은 그대로다 | `Rio.decoy_swaps_left` |
+| Extended Magazine (확장 탄창, Xion) | 탄창 10 → 14발 `[EXTENDED_MAGAZINE]` | 고르는 순간 4발이 장전된다. 남은 탄을 모두 쏘는 L의 피해도 탄 수를 따라 커진다 | `Xion.magazine_size` |
+
+- 카드를 한 장 고를 때마다 캐릭터의 성장 곡선도 3단계 오른다(`GROWTH_STEPS_PER_PICK`). 카드 효과와는 별개다.
+- 아이콘은 지금 여섯 장(처음부터 있던 카드)만 있다. 새 카드는 이름 첫 글자가 종류 색으로 그 자리에 나온다.
+- Yuki의 전용 카드는 새 키트를 정할 때 함께 정한다.
 
 ## 선딜 (2026-10-15, D39)
 

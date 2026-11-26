@@ -69,6 +69,10 @@ const STAR_BURST_SIZE := Vector2(120, 120)
 const STAR_BURST_DAMAGE := 8.0
 const STAR_BURST_KNOCKBACK := 420.0
 const STAR_MARK_TIME := 10.0
+## Twin Stars (her soul card, D54): the big star's burst throws two small stars on, this far to
+## each side of the way it flew (radians: both still meet a fighter standing within about 200 px
+## behind the burst).
+const TWIN_STAR_ANGLE := 0.2
 ## K "반짝 도약" (Twinkle Warp): she vanishes and reappears WARP_DISTANCE away in the held direction
 ## (ahead when none; solid ground stops her), and a star burst around her hits whoever is close.
 ## Once per airtime.
@@ -345,6 +349,9 @@ func character_cleanup() -> void:
 	_end_transformation(true)
 	_reset_kit()
 
+func character_refill() -> void:
+	barrier_cooldown_timer = 0.0
+
 func _reset_kit() -> void:
 	star_volley_step = 0
 	star_volley_timer = 0.0
@@ -386,6 +393,11 @@ func _consume_star_volley_step() -> int:
 	return step
 
 func _fire_star(aim: Vector2, big: bool, low: bool) -> void:
+	_spawn_star(global_position + Vector2(0, -14 if low else -38) + aim * 30.0 * GAME_SCALE.COMBAT, aim, big)
+	_play_star_bloom(Vector2(20 * facing, -38) + aim * 6.0, 18.0 if big else 12.0, Color(1.0, 0.8, 0.95, 0.8), 0.1)
+
+## One J star at the world point `at`, flying along `aim`.
+func _spawn_star(at: Vector2, aim: Vector2, big: bool) -> Area2D:
 	var star := Area2D.new()
 	star.set_script(STAR_SCRIPT)
 	star.collision_layer = 0
@@ -397,7 +409,7 @@ func _fire_star(aim: Vector2, big: bool, low: bool) -> void:
 	star.add_child(shape)
 	star.add_child(visual)
 	get_parent().add_child(star)
-	star.global_position = global_position + Vector2(0, -14 if low else -38) + aim * 30.0 * GAME_SCALE.COMBAT
+	star.global_position = at
 	star.art_scale_multiplier = GAME_SCALE.COMBAT
 	var size := STAR_BIG_SIZE if big else STAR_SHOT_SIZE
 	var color := Color(1.0, 0.86, 0.42, 0.9) if big else Color(1.0, 0.6, 0.9, 0.85)
@@ -406,7 +418,7 @@ func _fire_star(aim: Vector2, big: bool, low: bool) -> void:
 	# The J stars (CODEX-VFX-04); the coloured rect without the art.
 	star.set_effect_art("luna_star_big" if big else "luna_star_shot")
 	_spawn_star_flight_art(star, aim, big)
-	_play_star_bloom(Vector2(20 * facing, -38) + aim * 6.0, 18.0 if big else 12.0, Color(1.0, 0.8, 0.95, 0.8), 0.1)
+	return star
 
 ## The J star's flash where it leaves the wand and the tail riding it while it flies (pick cup 2026-11-19,
 ## candidate A, D49): both drawn toward +x and turned to the aim, mirrored for a left aim so up stays up
@@ -434,14 +446,24 @@ func on_star_hit(body: Node, star: Node = null) -> void:
 	var side := signf(flight.x) if absf(flight.x) > 0.01 else float(facing)
 	VFX.spawn(get_parent(), "luna_hit_after_big" if bool(star.get("big")) else "luna_hit_after", hit_afterglow_point(target), Vector2(side, 1.0), false, 5)
 
-## The big star's burst at `at` (LunaStar): it marks what it hits too.
-func star_burst_at(at: Vector2, direction: Vector2) -> void:
+## The big star's burst at `at` (LunaStar): it marks what it hits too. With Twin Stars two small
+## stars fly on from it; they pass whatever the big star itself struck (`struck`).
+func star_burst_at(at: Vector2, direction: Vector2, struck: Array = []) -> void:
 	if is_defeated or not is_instance_valid(get_parent()):
 		return
+	if has_card("twin_stars"):
+		for turn: float in [-TWIN_STAR_ANGLE, TWIN_STAR_ANGLE]:
+			var star := _spawn_star(at, direction.rotated(turn), false)
+			for body in struck:
+				if is_instance_valid(body):
+					star.hit_targets.append(body)
+		count_move("twin_stars")
 	attack_art_enabled = false
 	_spawn_attack(STAR_BURST_SIZE, _offset_to(at), STAR_BURST_DAMAGE, STAR_BURST_KNOCKBACK, Vector2(direction.x, direction.y - 0.3), STAR_BLOOM_COLOR, 0.12)
 	attack_art_enabled = true
 	last_attack.set_meta("luna_mark", true)
+	# The burst is where the star went, not a swing of hers (HitContext; Riposte).
+	last_attack.set_meta("ranged", true)
 	if VFX.spawn(get_parent(), "luna_comet_burst", at, Vector2.ONE * 1.25, false, 6) == null:
 		_play_star_bloom(_offset_to(at), STAR_BURST_SIZE.x * 0.42, STAR_BLOOM_COLOR, 0.14)
 

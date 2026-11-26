@@ -10,6 +10,8 @@ extends CanvasLayer
 ## under 16 px (MIN_FONT_SIZE).
 ## Test aids outside that layout: the live bot panel (F4, top left) and the debug text (F3). The
 ## bot panel shows other fighters' state for testing and leaves the game later (user 2026-11-25).
+## Practice (PracticeSession) keeps the layout: the clock drops the survivors, the soul row counts
+## the cards held, and practice's own lines stand at the bottom right over the control hints.
 
 const AUDIO := preload("res://scripts/audio/AudioManager.gd")
 const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
@@ -67,8 +69,15 @@ const CARD_PADDING := 6.0
 const CARD_ROW_MIN := 54.0
 const CARD_ROW_GAP := 2.0
 const CARD_TEXT_X := 110.0
+## The control hints line in the bottom right corner, and practice's block over it.
+const CONTROLS_HEIGHT := 28.0
+const PRACTICE_WIDTH := 464.0
+## Practice's clock capsule: the mode and the time, without the survivors.
+const CLOCK_PRACTICE_WIDTH := 340.0
 ## Over the player's own fighter, from its feet.
 const PLAYER_TAG_OFFSET := Vector2(0, -114)
+## The words over a portal ("Q DOWN: ..." and its countdown, RealmWorld): the P1 tag rises over them.
+const PORTAL_LABELS := "portal_labels"
 const OFFSCREEN_BUBBLE := 36.0
 ## Live bot panel (F4, development aid 2026-10-08): on by default while the game is tested.
 const BOT_PANEL_SHOWN_AT_START := true
@@ -131,6 +140,7 @@ var next_plate: Panel
 var next_label: Label
 var next_time: Label
 var story_layout := false
+var practice_layout := false
 ## 3x3 realm map: a colour per state and the fighters there as a number; the shown realm's name
 ## and its hazard under it. realm index -> {"back", "emblem", "count"}
 var minimap_root: Control
@@ -163,30 +173,45 @@ var hp_label: Label
 var hp_max_label: Label
 var hp_bar: Control
 var hp_fill: Panel
+var soul_well: Panel
 var soul_fill: Panel
 var soul_label: Label
+## Practice: the cards held, in the soul row (set_practice_status).
+var status_label: Label
+## Practice's own lines (build_practice_lines).
+var practice_label: Label
+var _gaps: RegEx
 ## "P1" over the player's own fighter.
 var player_tag: Control
 var skill_bar: Control
 var controls_label: Label
+var controls_height := CONTROLS_HEIGHT
 ## slot -> {"style", "icon", "glyph", "key", "shade", "time", "count", "count_back"}
 var skill_slots: Dictionary = {}
 var skill_icon_set := ""
 var skill_pulse := 0.0
 ## Soul card offer: a time bar and one row per card.
 var card_panel: Control
+var card_head_plate: Panel
 var card_title: Label
 var card_hint: Label
 var card_time: Label
+var card_bar_back: Panel
 var card_bar: Panel
 var card_back: Panel
 var card_frame: Control
 var card_rows: Array[Dictionary] = []
 var card_labels: Array[Label] = []
 var card_icons: Array[TextureRect] = []
+## The first letter of a card that has no icon yet, in its icon's place (D54: the new cards).
+var card_letters: Array[Label] = []
 var _card_signature := ""
 var _card_full_time := 0.0
 var _card_last_left := 0.0
+## An offer runs on a clock; practice's card list does not (show_card_list).
+var _card_timed := true
+## Where the rows begin under the head (two header lines when the keys do not fit beside the title).
+var _card_head := CARD_HEAD
 var debug_label: Label
 var results_grid: GridContainer
 var overlay: Control
@@ -534,15 +559,23 @@ func set_realm_title(text: String, _accent: Color, hazard_text := "") -> void:
 
 # --- Messages ---
 
+## info_label draws nothing: it keeps the newest message's text, and its visible flag says whether
+## that message is still up, as the one message line of the old HUD did (practice and the tests
+## read both; hiding it takes the messages down at the next tick).
 func _build_feed() -> void:
 	feed_root = _root("Messages", FEED_RECT, TOP_RIGHT)
 	info_label = Label.new()
 	info_label.name = "LastMessage"
+	info_label.clip_text = true
+	info_label.size = Vector2.ZERO
+	info_label.self_modulate = Color(1, 1, 1, 0)
+	info_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	info_label.visible = false
 	add_child(info_label)
 
 func show_message(text: String) -> void:
 	info_label.text = text
+	info_label.visible = _hud_shown
 	info_timer = MESSAGE_TIME
 	if not _hud_shown:
 		return
@@ -596,11 +629,21 @@ func _clear_feed() -> void:
 	for entry in feed_rows:
 		entry.row.queue_free()
 	feed_rows.clear()
+	info_label.visible = false
+
+## Takes every message down at once (practice: the note about growth goes with its card list).
+func clear_messages() -> void:
+	_clear_feed()
+	info_timer = 0.0
 
 ## Counts the messages down; each fades out when its time is up.
 func tick_info(delta: float) -> void:
 	info_timer = maxf(info_timer - delta, 0.0)
 	if feed_rows.is_empty():
+		return
+	if not info_label.visible:
+		# Someone took the message down (the old HUD's one line was hidden that way).
+		clear_messages()
 		return
 	for entry in feed_rows.duplicate():
 		entry.time = float(entry.time) - delta
@@ -608,6 +651,8 @@ func tick_info(delta: float) -> void:
 		if float(entry.time) <= 0.0:
 			entry.row.queue_free()
 			feed_rows.erase(entry)
+	if feed_rows.is_empty():
+		info_label.visible = false
 	_place_feed_rows()
 
 # --- Warnings ---
@@ -682,13 +727,20 @@ func _build_player() -> void:
 	hp_fill = _plate(hp_bar, Rect2(2, 2, 160, 18), _box(HP_FULL, Color.TRANSPARENT, 0, 3))
 	hp_fill.name = "HpFill"
 	_text(player_root, tr("Souls"), Rect2(124, 76, 46, 26), MIN_FONT_SIZE, SOUL.lightened(0.35))
-	_plate(player_root, Rect2(172, 84, 148, 10), _box(Color(0, 0, 0, 0.62), Color.TRANSPARENT, 0, 5))
+	soul_well = _plate(player_root, Rect2(172, 84, 148, 10), _box(Color(0, 0, 0, 0.62), Color.TRANSPARENT, 0, 5))
 	soul_fill = _plate(player_root, Rect2(173, 85, 146, 8), _box(SOUL, Color.TRANSPARENT, 0, 4))
 	soul_label = _text(player_root, "", Rect2(326, 76, 90, 26), MIN_FONT_SIZE, WHITE, false, HORIZONTAL_ALIGNMENT_RIGHT)
+	status_label = _text(player_root, "", Rect2(236, 76, 180, 26), MIN_FONT_SIZE, GOLD, false, HORIZONTAL_ALIGNMENT_RIGHT)
+	status_label.name = "PracticeCards"
+	status_label.visible = false
 
 func set_status(alive: int, total: int, focus: Node) -> void:
 	alive_label.text = str(alive)
 	alive_total.text = "/ %d" % total
+	_fill_focus(focus)
+
+## The plate of the fighter in focus: face, name, KOs, HP and the souls.
+func _fill_focus(focus: Node) -> void:
 	# Only while the match HUD shows: Main keeps calling this behind the result screen.
 	var shown := _hud_shown and is_instance_valid(focus)
 	player_root.visible = shown
@@ -711,9 +763,11 @@ func set_status(alive: int, total: int, focus: Node) -> void:
 	hp_fill.size.x = 160.0 * ratio
 	# Low HP: the bar blinks.
 	(hp_fill.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = hp_color.lerp(Color.WHITE, 0.25 + 0.25 * sin(_pulse * 9.0)) if low else hp_color
-	# Souls toward the next card.
+	# Souls toward the next card; in practice no offer opens, so the souls alone.
 	var next_threshold: int = focus.get_next_soul_threshold()
-	if next_threshold > 0:
+	if practice_layout:
+		soul_label.text = str(int(focus.souls))
+	elif next_threshold > 0:
 		var previous := 0
 		for threshold: int in focus.SOUL_THRESHOLDS:
 			if threshold < next_threshold:
@@ -760,7 +814,30 @@ func _place_player_tag(focus: Node) -> void:
 	if world_name != null:
 		world_name.visible = false
 	var head: Vector2 = (focus as CanvasItem).get_global_transform_with_canvas() * PLAYER_TAG_OFFSET
-	player_tag.position = head - Vector2(player_tag.size.x * 0.5, player_tag.size.y)
+	var tag := Rect2(head - Vector2(player_tag.size.x * 0.5, player_tag.size.y), player_tag.size)
+	# A portal's words stay readable while the fighter stands at it: the tag rises over them (its
+	# tail covered "Q DOWN: ..." in the HUD capture of 2026-11-25). The countdown sits over the words.
+	var words := _portal_words()
+	for attempt in 3:
+		var raised := false
+		for rect: Rect2 in words:
+			if tag.intersects(rect):
+				tag.position.y = rect.position.y - tag.size.y - 2.0
+				raised = true
+		if not raised:
+			break
+	player_tag.position = tag.position
+
+## The screen rects of the words over the portals on show.
+func _portal_words() -> Array[Rect2]:
+	var rects: Array[Rect2] = []
+	for node in get_tree().get_nodes_in_group(PORTAL_LABELS):
+		var label := node as Label
+		if label == null or label.text == "" or not label.is_visible_in_tree():
+			continue
+		var xform := label.get_global_transform_with_canvas()
+		rects.append(Rect2(xform.origin, label.size * xform.get_scale()))
+	return rects
 
 # --- Skill slots ---
 
@@ -849,15 +926,27 @@ func update_skill_bar(fighter: Node, delta: float) -> void:
 			style.border_color = EDGE
 			style.set_border_width_all(2)
 
+## The hints keep to the card column's width, which fits right of a five-slot skill bar: a longer
+## line breaks at its wide gaps (three spaces) into two. The English line did not fit one (487 px
+## over Rio's bar, test_hud_layout 2026-11-26); the Korean one does.
 func _build_controls() -> void:
-	var width := controls_label_width()
-	controls_label = _text(self, tr(CONTROLS_SHORT), Rect2(1280.0 - HUD_MARGIN - width, 720.0 - HUD_MARGIN - 28.0, width, 28), MIN_FONT_SIZE, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
+	controls_label = _text(self, "", Rect2(0, 0, 10, CONTROLS_HEIGHT), MIN_FONT_SIZE, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
 	controls_label.name = "Controls"
 	controls_label.add_theme_stylebox_override("normal", _box(Color(PLATE, 0.7), Color.TRANSPARENT, 0, 4))
+	var font: Font = controls_label.get_theme_font("font")
+	controls_label.text = _fit_items(tr(CONTROLS_SHORT), font, MIN_FONT_SIZE, CARD_WIDTH - 22.0)
+	var lines := controls_label.text.split("\n")
+	var width := 0.0
+	for line in lines:
+		width = maxf(width, font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 22.0)
+	controls_height = CONTROLS_HEIGHT if lines.size() == 1 else lines.size() * controls_label.get_line_height() + 8.0
+	controls_label.position = Vector2(1280.0 - HUD_MARGIN - width, 720.0 - HUD_MARGIN - controls_height)
+	controls_label.size = Vector2(width, controls_height)
 	_pin(controls_label, BOTTOM_RIGHT)
 
+## The hints' width on screen (one line, or the longer of two).
 func controls_label_width() -> float:
-	return ThemeDB.fallback_font.get_string_size(tr(CONTROLS_SHORT), HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 22.0
+	return controls_label.size.x
 
 # --- Fighters outside the view ---
 
@@ -870,7 +959,9 @@ func _build_offscreen() -> void:
 
 ## markers: [{"position": screen point near the edge, "angle": radians, "color": Color,
 ## "face": Texture2D (optional)}]. Each is the fighter's face in a ring of its colour with an
-## arrow toward it; faces heading the same way fan out along the edge instead of piling up.
+## arrow toward it. A face slides along its edge off the HUD's plates (it sat on the map in the
+## capture of 2026-11-25) and off the faces placed before it; on the bottom edge, which the HUD
+## fills, it stands above the plates.
 func set_offscreen_markers(markers: Array) -> void:
 	var half := OFFSCREEN_BUBBLE * 0.5
 	while offscreen_markers.size() < markers.size():
@@ -885,7 +976,11 @@ func set_offscreen_markers(markers: Array) -> void:
 		var ring := _plate(bubble, Rect2(0, 0, OFFSCREEN_BUBBLE, OFFSCREEN_BUBBLE), _box(Color.WHITE, Color(0.03, 0.05, 0.1), 2, int(half)))
 		var face := _picture(bubble, null, Rect2(3, 3, OFFSCREEN_BUBBLE - 6, OFFSCREEN_BUBBLE - 6), false)
 		offscreen_markers.append({"root": bubble, "arrow": arrow, "ring": ring, "face": face})
-	var placed: Array[Vector2] = []
+	var view := get_viewport().get_visible_rect().size
+	var blocks: Array[Rect2] = []
+	if not markers.is_empty():
+		blocks = _marker_blocks()
+	var placed: Array[Rect2] = []
 	for index in offscreen_markers.size():
 		var nodes: Dictionary = offscreen_markers[index]
 		var bubble: Control = nodes.root
@@ -893,12 +988,11 @@ func set_offscreen_markers(markers: Array) -> void:
 		if not bubble.visible:
 			continue
 		var marker: Dictionary = markers[index]
-		var at: Vector2 = marker.position
+		var at := _clear_marker_point(marker.position, blocks, placed, view)
 		var angle := float(marker.angle)
-		for other in placed:
-			if at.distance_to(other) < OFFSCREEN_BUBBLE + 4.0:
-				at += Vector2(0, OFFSCREEN_BUBBLE + 6.0) if absf(cos(angle)) > 0.7 else Vector2(OFFSCREEN_BUBBLE + 6.0, 0)
-		placed.append(at)
+		# The next face keeps a face's width and a gap from this one.
+		var room := OFFSCREEN_BUBBLE + 4.0
+		placed.append(Rect2(at - Vector2(room, room), Vector2(room, room) * 2.0))
 		var color: Color = marker.color
 		bubble.position = at - Vector2(half, half)
 		(nodes.arrow as Polygon2D).rotation = angle
@@ -906,19 +1000,71 @@ func set_offscreen_markers(markers: Array) -> void:
 		((nodes.ring as Panel).get_theme_stylebox("panel") as StyleBoxFlat).bg_color = color
 		_set_portrait(nodes.face, marker.get("face"))
 
+## The HUD's plates on screen, each grown by half a face and a gap: no face's centre goes there.
+func _marker_blocks() -> Array[Rect2]:
+	var nodes: Array[Control] = [minimap_plate, clock_plate, next_plate, warning_plate, player_root, skill_bar, controls_label, card_panel, bot_panel]
+	if is_instance_valid(practice_label):
+		nodes.append(practice_label)
+	for entry in feed_rows:
+		# The row's plate (its first child), as wide as its words.
+		nodes.append(entry.row.get_child(0) as Control)
+	var blocks: Array[Rect2] = []
+	for node in nodes:
+		if is_instance_valid(node) and node.is_visible_in_tree():
+			blocks.append(node.get_global_rect().grow(OFFSCREEN_BUBBLE * 0.5 + 4.0))
+	return blocks
+
+## Moves a face's centre off every block and earlier face, the shorter way that stays on screen:
+## along a side edge up or down, along the top edge left or right, and up from the bottom edge
+## (the HUD's plates fill it). With no clear place the face stays where it was.
+func _clear_marker_point(start: Vector2, blocks: Array[Rect2], placed: Array[Rect2], view: Vector2) -> Vector2:
+	var taken: Array[Rect2] = []
+	taken.append_array(blocks)
+	taken.append_array(placed)
+	if not _marker_hit(start, taken).has_area():
+		return start
+	var edge := OFFSCREEN_BUBBLE * 0.5 + 4.0
+	var on_side := minf(start.x, view.x - start.x) <= minf(start.y, view.y - start.y)
+	var on_top := not on_side and start.y < view.y * 0.5
+	var along_x := on_top
+	var limit := (view.x if along_x else view.y) - edge
+	var best := start
+	var best_shift := INF
+	for direction: float in ([-1.0, 1.0] if on_side or on_top else [-1.0]):
+		var at := start
+		for attempt in 16:
+			var hit := _marker_hit(at, taken)
+			if not hit.has_area():
+				break
+			if along_x:
+				at.x = hit.position.x - 0.5 if direction < 0.0 else hit.end.x + 0.5
+			else:
+				at.y = hit.position.y - 0.5 if direction < 0.0 else hit.end.y + 0.5
+		var value := at.x if along_x else at.y
+		if _marker_hit(at, taken).has_area() or value < edge or value > limit:
+			continue
+		if at.distance_to(start) < best_shift:
+			best = at
+			best_shift = at.distance_to(start)
+	return best
+
+func _marker_hit(at: Vector2, rects: Array[Rect2]) -> Rect2:
+	for rect in rects:
+		if rect.has_point(at):
+			return rect
+	return Rect2()
+
 # --- Soul card offer ---
 
 func _build_card_panel() -> void:
 	card_panel = _root("SoulCards", Rect2(1280.0 - HUD_MARGIN - CARD_WIDTH, 400, CARD_WIDTH, 304), BOTTOM_RIGHT)
 	card_panel.visible = false
-	_plate(card_panel, Rect2(0, 0, CARD_WIDTH, 27), _box(PLATE_SOLID, Color.TRANSPARENT, 0, 4))
-	var title_text := tr("Choose a soul card")
-	var title_width := bold.get_string_size(title_text, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 8.0
-	card_title = _text(card_panel, title_text, Rect2(12, 0, title_width, 26), MIN_FONT_SIZE, WHITE, true)
-	card_hint = _text(card_panel, tr("Press 1 · 2 · 3"), Rect2(24 + title_width, 0, CARD_WIDTH - 120 - title_width, 26), MIN_FONT_SIZE, DIM)
+	card_head_plate = _plate(card_panel, Rect2(0, 0, CARD_WIDTH, 27), _box(PLATE_SOLID, Color.TRANSPARENT, 0, 4))
+	card_title = _text(card_panel, "", Rect2(12, 0, 200, 26), MIN_FONT_SIZE, WHITE, true)
+	card_hint = _text(card_panel, "", Rect2(220, 0, 200, 26), MIN_FONT_SIZE, DIM)
 	card_time = _text(card_panel, "", Rect2(CARD_WIDTH - 92, 0, 80, 26), 18, GOLD, true, HORIZONTAL_ALIGNMENT_RIGHT)
 	# The time left, as a bar that runs out.
-	_plate(card_panel, Rect2(0, 26, CARD_WIDTH, 5), _box(Color(0, 0, 0, 0.75), Color.TRANSPARENT, 0, 2))
+	card_bar_back = _plate(card_panel, Rect2(0, 26, CARD_WIDTH, 5), _box(Color(0, 0, 0, 0.75), Color.TRANSPARENT, 0, 2))
 	card_bar = _plate(card_panel, Rect2(0, 26, CARD_WIDTH, 5), _box(GOLD, Color.TRANSPARENT, 0, 2))
 	# A solid back under the authored card frame: the frame's centre is empty, and the text used to
 	# sit straight on the arena (UI audit 2026-11-25). One frame holds the three cards: as a column
@@ -939,9 +1085,11 @@ func _build_card_panel() -> void:
 		var tab := _plate(row, Rect2(12, 6, 30, CARD_ROW_MIN - 12.0), _box(GOLD, Color.TRANSPARENT, 0, 3))
 		var number := _text(row, str(index + 1), Rect2(12, 6, 30, CARD_ROW_MIN - 12.0), 20, INK, true, HORIZONTAL_ALIGNMENT_CENTER)
 		number.add_theme_constant_override("outline_size", 0)
-		# A card without art yet shows its first letter on a tile (D54: new cards start that way).
-		var tile := _plate(row, Rect2(52, 3, 48, 48), _box(Color(1, 1, 1, 0.1), Color(1, 1, 1, 0.35), 2, 6))
+		# A card without art yet shows its title's first letter in its kind's colour on a tile
+		# (D54: the new cards start that way).
+		var tile := _plate(row, Rect2(52, 3, 48, 48), _box(Color(1, 1, 1, 0.08), Color(1, 1, 1, 0.35), 2, 6))
 		var letter := _text(row, "", Rect2(52, 3, 48, 48), 26, WHITE, true, HORIZONTAL_ALIGNMENT_CENTER)
+		card_letters.append(letter)
 		var icon := _picture(row, null, Rect2(52, 3, 48, 48))
 		card_icons.append(icon)
 		var title := _text(row, "", Rect2(CARD_TEXT_X, 3, 200, 26), 19, WHITE, true)
@@ -952,33 +1100,95 @@ func _build_card_panel() -> void:
 		text.max_lines_visible = 3
 		card_labels.append(text)
 		card_rows.append({"row": row, "tab": tab, "number": number, "tile": tile, "letter": letter, "icon": icon, "title": title, "kind": kind})
+	_set_card_header(tr("Choose a soul card"), tr("Press 1 · 2 · 3"), true)
 
-## Called every frame while P1 has an offer. The bar is the share of the choice time left: the
-## full time is the first value an offer comes with, whatever the rules set it to.
-func show_card_offer(cards: Array, seconds_left: float) -> void:
+## Called every frame while P1 has an offer. The bar is the share of the choice time left:
+## seconds_total is the choice's full time (SoulGrowth's time_total); without it, the first value
+## an offer comes with stands for it.
+func show_card_offer(cards: Array, seconds_left: float, seconds_total := 0.0) -> void:
 	AUDIO.card_offer(self, card_panel.visible)
-	var ids: Array[String] = []
-	for card: Dictionary in cards:
-		ids.append(str(card.id))
-	var signature := ",".join(ids)
-	if not card_panel.visible or signature != _card_signature or seconds_left > _card_last_left + 0.25:
+	var signature := _card_ids(cards)
+	var fresh := not card_panel.visible or not _card_timed or signature != _card_signature
+	if fresh or seconds_left > _card_last_left + 0.25:
 		_card_full_time = seconds_left
-	if not card_panel.visible or signature != _card_signature:
+	if seconds_total > 0.0:
+		_card_full_time = seconds_total
+	if fresh:
+		_card_timed = true
 		_card_signature = signature
+		_set_card_header(tr("Choose a soul card"), tr("Press 1 · 2 · 3"), true)
 		_fill_cards(cards)
 	_card_last_left = seconds_left
-	card_panel.visible = true
-	# The corner belongs to the offer while it is open.
-	controls_label.visible = false
+	_open_card_panel()
 	card_time.text = tr("%ds") % ceili(seconds_left)
 	card_bar.size.x = CARD_WIDTH * clampf(seconds_left / maxf(_card_full_time, 0.1), 0.0, 1.0)
 	(card_bar.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = GOLD if seconds_left > 2.0 else DANGER
 
+## The same column without a clock: practice's card list (PracticeSession). header is one line:
+## up to its first wide gap (four spaces) it names the list, the rest gives the keys, set under
+## the name when both do not fit one line.
+func show_card_list(cards: Array, header: String) -> void:
+	AUDIO.card_offer(self, card_panel.visible)
+	var parts := header.split("    ", true, 1)
+	_card_timed = false
+	_card_signature = _card_ids(cards)
+	_set_card_header(parts[0].strip_edges(), parts[1].strip_edges() if parts.size() > 1 else "", false)
+	_fill_cards(cards)
+	_open_card_panel()
+
+## A card's kind as its row shows it, in another wording (practice adds how many are held).
+func set_card_kind_text(index: int, text: String) -> void:
+	var nodes: Dictionary = card_rows[index]
+	nodes.kind.text = text
+	_fit_title_row(nodes)
+
+## A card row's words as one text (title, description, kind), for tests and tools.
+func card_row_text(index: int) -> String:
+	var nodes: Dictionary = card_rows[index]
+	return "%s\n%s\n%s" % [nodes.title.text, card_labels[index].text.replace(String.chr(0x2060), ""), nodes.kind.text]
+
+func _card_ids(cards: Array) -> String:
+	var ids: Array[String] = []
+	for card: Dictionary in cards:
+		ids.append(str(card.id))
+	return ",".join(ids)
+
+func _open_card_panel() -> void:
+	card_panel.visible = true
+	# The corner belongs to the cards while they are open.
+	controls_label.visible = false
+
+## The column's head: the title, the keys beside it (or under it, when both do not fit one line)
+## and, for an offer, the seconds at the right with the time bar under the head.
+func _set_card_header(title: String, hint: String, timed: bool) -> void:
+	var title_font: Font = card_title.get_theme_font("font")
+	var hint_font: Font = card_hint.get_theme_font("font")
+	var title_width := title_font.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 6.0
+	var hint_width := hint_font.get_string_size(hint, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 6.0
+	var right := CARD_WIDTH - 12.0 - (88.0 if timed else 0.0)
+	var one_line := hint == "" or 24.0 + title_width + hint_width <= right
+	card_title.text = title
+	card_title.size = Vector2(minf(title_width, right - 12.0), 26)
+	card_hint.text = hint
+	if one_line:
+		card_hint.position = Vector2(24.0 + title_width, 0)
+		card_hint.size = Vector2(maxf(right - card_hint.position.x, 0.0), 26)
+	else:
+		card_hint.position = Vector2(12, 24)
+		card_hint.size = Vector2(CARD_WIDTH - 24.0, 26)
+	var head := 27.0 if one_line else 51.0
+	card_head_plate.size.y = head
+	card_time.visible = timed
+	card_bar_back.visible = timed
+	card_bar.visible = timed
+	card_bar_back.position.y = head - 1.0
+	card_bar.position.y = head - 1.0
+	_card_head = head + CARD_HEAD - 27.0
+
 ## One row per card: as tall as its text (one line, or up to three wrapped at the spaces).
 func _fill_cards(cards: Array) -> void:
 	var text_width := CARD_WIDTH - CARD_TEXT_X - 14.0
-	var font := ThemeDB.fallback_font
-	var y := CARD_HEAD + CARD_PADDING
+	var y := _card_head + CARD_PADDING
 	for index in card_rows.size():
 		var nodes: Dictionary = card_rows[index]
 		var row: Control = nodes.row
@@ -987,6 +1197,7 @@ func _fill_cards(cards: Array) -> void:
 		if not row.visible:
 			label.text = ""
 			card_icons[index].texture = null
+			card_letters[index].text = ""
 			continue
 		var card: Dictionary = cards[index]
 		var color: Color = CARD_KIND_COLOR.get(str(card.kind), GOLD)
@@ -995,13 +1206,17 @@ func _fill_cards(cards: Array) -> void:
 		nodes.title.text = title_text
 		nodes.kind.text = tr(str(card.kind))
 		nodes.kind.add_theme_color_override("font_color", color)
+		_fit_title_row(nodes)
 		(nodes.tab.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = color
-		# Original card icon (assets/art/ui/card_<id>.png); none in the prototype style.
+		# Original card icon (assets/art/ui/card_<id>.png); none in the prototype style, and none
+		# yet for the cards of D54: the title's first letter in the colour of the card's kind.
 		var icon := ART_SETTINGS.original_texture(CARD_ICON_ART % card.id)
 		card_icons[index].texture = icon
 		nodes.tile.visible = icon == null
-		nodes.letter.visible = icon == null
-		nodes.letter.text = title_text.left(1)
+		nodes.letter.text = "" if icon != null else title_text.left(1)
+		nodes.letter.add_theme_color_override("font_color", color)
+		(nodes.tile.get_theme_stylebox("panel") as StyleBoxFlat).border_color = Color(color, 0.55)
+		var font: Font = label.get_theme_font("font")
 		var one_line := font.get_string_size(body, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x <= text_width
 		label.text = body if one_line else _keep_words(body)
 		label.size = Vector2(text_width, label.get_line_height() * 3.0)
@@ -1013,16 +1228,102 @@ func _fill_cards(cards: Array) -> void:
 		nodes.tab.size.y = height - 12.0
 		nodes.number.size.y = height - 12.0
 		y += height + CARD_ROW_GAP
-	var list_height := y - CARD_ROW_GAP + CARD_PADDING - CARD_HEAD
+	var list_height := y - CARD_ROW_GAP + CARD_PADDING - _card_head
+	card_back.position.y = _card_head
 	card_back.size.y = list_height
+	card_frame.position.y = _card_head - 4.0
 	card_frame.size.y = list_height + 8.0
 	# The column stands on the bottom margin, as tall as its cards.
-	card_panel.offset_top = -HUD_MARGIN - (CARD_HEAD + list_height)
+	card_panel.offset_top = -HUD_MARGIN - (_card_head + list_height)
 	card_panel.offset_bottom = -HUD_MARGIN
+
+## The kind stands at the right of the title line as wide as its words; the title has the rest.
+func _fit_title_row(nodes: Dictionary) -> void:
+	var kind: Label = nodes.kind
+	var title: Label = nodes.title
+	var width := kind.get_theme_font("font").get_string_size(kind.text, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 6.0
+	width = clampf(width, 40.0, CARD_WIDTH - CARD_TEXT_X - 14.0 - 120.0)
+	kind.position.x = CARD_WIDTH - 14.0 - width
+	kind.size.x = width
+	title.size.x = kind.position.x - 10.0 - CARD_TEXT_X
 
 func hide_card_offer() -> void:
 	card_panel.visible = false
 	controls_label.visible = _hud_shown
+
+# --- Practice (scripts/practice/PracticeSession.gd) ---
+
+## Practice has no survivors and no card offers: the clock keeps the mode and the time, and the
+## soul row of the player's plate shows the souls and the cards held (set_practice_status).
+func set_practice_layout() -> void:
+	practice_layout = true
+	for node: Control in [clock_divider, alive_caption, alive_label, alive_total, soul_well, soul_fill]:
+		node.visible = false
+	# The capsule closes round the mode and the time, still in the middle of the top edge.
+	var shift := (CLOCK_RECT.size.x - CLOCK_PRACTICE_WIDTH) * 0.5
+	clock_plate.position.x = shift
+	clock_plate.size.x = CLOCK_PRACTICE_WIDTH
+	clock_label.position.x = 22.0 + shift
+	time_label.position.x = 218.0 + shift
+	soul_label.position.x = 172.0
+	soul_label.size.x = 60.0
+	soul_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	status_label.visible = true
+
+## Practice writes this every frame, and while its lists hold the game (Main draws nothing then):
+## the cards held, and the plate again, so HP a card changed shows at once.
+func set_practice_status(cards_held: int, focus: Node) -> void:
+	status_label.text = tr("Cards held %d") % cards_held
+	_fill_focus(focus)
+
+## Practice's own lines (its target and the damage, then its keys): a block at the bottom right,
+## over the control hints.
+func build_practice_lines() -> Label:
+	practice_label = _text(self, "", Rect2(1280.0 - HUD_MARGIN - PRACTICE_WIDTH, 560, PRACTICE_WIDTH, 100), MIN_FONT_SIZE, WHITE)
+	practice_label.name = "PracticeInfo"
+	practice_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	practice_label.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	var box := _box(Color(PLATE, 0.8), Color.TRANSPARENT, 0, 4)
+	box.content_margin_left = 12
+	box.content_margin_right = 12
+	box.content_margin_top = 6
+	box.content_margin_bottom = 6
+	practice_label.add_theme_stylebox_override("normal", box)
+	_pin(practice_label, BOTTOM_RIGHT)
+	return practice_label
+
+## Sets practice's lines, broken at the wide gaps between their items so each line fits the block,
+## which stands on the control hints and grows upward.
+func set_practice_lines(text: String) -> void:
+	var font: Font = practice_label.get_theme_font("font")
+	var room := PRACTICE_WIDTH - 24.0
+	var fitted := _fit_items(text, font, MIN_FONT_SIZE, room)
+	if fitted == practice_label.text:
+		return
+	practice_label.text = fitted
+	# The label's own measure of its lines and margins; it grows upward if ever taller.
+	var height := practice_label.get_minimum_size().y
+	var bottom := -HUD_MARGIN - controls_height - 8.0
+	practice_label.offset_bottom = bottom
+	practice_label.offset_top = bottom - height
+
+## Lays text out in lines no wider than width, breaking only at its wide gaps (three spaces or
+## more, which set practice's items apart); each item stays whole.
+func _fit_items(text: String, font: Font, font_size: int, width: float) -> String:
+	if _gaps == null:
+		_gaps = RegEx.create_from_string(" {3,}")
+	var lines: PackedStringArray = []
+	for source in text.split("\n"):
+		var line := ""
+		for item in _gaps.sub(source, "\u001f", true).split("\u001f"):
+			var joined := item if line == "" else line + "   " + item
+			if line != "" and font.get_string_size(joined, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > width:
+				lines.append(line)
+				line = item
+			else:
+				line = joined
+		lines.append(line)
+	return "\n".join(lines)
 
 # --- Ultimate cut-in ---
 

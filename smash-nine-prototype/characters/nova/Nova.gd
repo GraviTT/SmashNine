@@ -36,6 +36,9 @@ const FIELD_RECOVERY := 0.2
 const FIELD_RADIUS := 200.0
 const FIELD_TIME := 6.0
 const FIELD_COOLDOWN := 12.0
+## Deep Gravity (her soul card, D54): the field lasts longer and comes back sooner.
+const DEEP_FIELD_TIME := 9.0
+const DEEP_FIELD_COOLDOWN := 10.0
 const FIELD_FLY_SPEED := 470.0
 const FIELD_FLY_ACCEL := 3200.0
 ## U "중력 광선" (Gravity Beam): where she aims; the first body it reaches is dragged to just in
@@ -195,8 +198,14 @@ func perform_skill_three() -> void:
 
 func skill_cooldown(slot: String) -> Vector2:
 	if slot == "l":
-		return Vector2(field_cooldown_timer, FIELD_COOLDOWN)
+		return Vector2(field_cooldown_timer, field_cooldown())
 	return super(slot)
+
+func field_time() -> float:
+	return DEEP_FIELD_TIME if has_card("deep_gravity") else FIELD_TIME
+
+func field_cooldown() -> float:
+	return DEEP_FIELD_COOLDOWN if has_card("deep_gravity") else FIELD_COOLDOWN
 
 func perform_ultimate() -> void:
 	_sphere_start()
@@ -248,6 +257,9 @@ func character_on_respawn() -> void:
 func character_cleanup() -> void:
 	_reset_nova_state()
 
+func character_refill() -> void:
+	field_cooldown_timer = 0.0
+
 func character_on_attack_hit_body(body: Node, attack: Node) -> void:
 	if attack.has_meta("nova_gravity"):
 		_stack(body)
@@ -266,6 +278,8 @@ func apply_character_gravity(delta: float) -> bool:
 	if absf(wanted.x) > 1.0:
 		facing = 1 if wanted.x > 0.0 else -1
 	jump_buffer_timer = 0.0
+	if not is_on_floor() and wanted.length() > 1.0:
+		count_move("flight", delta)
 	return true
 
 func get_nova_impact_direction() -> Vector2:
@@ -399,21 +413,24 @@ func _update_orb_pull(delta: float) -> void:
 			_drag(target, orb_pull_centre - GAME_SCALE.BODY_CENTRE, ORB_PULL_SPEED, delta)
 	if orb_pull_timer <= 0.0:
 		for target in orb_pull_targets:
-			_stack(target)
+			# A body can be freed during the pull (a monster that dies): handing it on is a script
+			# error that left this list uncleared (two soak matches of 216, 2026-11-26).
+			if is_instance_valid(target):
+				_stack(target)
 		orb_pull_targets.clear()
 
 # --- L: gravity field ---
 
 func _cast_field() -> void:
 	_clear_field()
-	field_cooldown_timer = FIELD_COOLDOWN
+	field_cooldown_timer = field_cooldown()
 	field = Node2D.new()
 	field.set_script(FIELD_SCRIPT)
 	field.name = "NovaField"
 	field.z_index = -1
 	get_parent().add_child(field)
 	field.global_position = global_position + GAME_SCALE.BODY_CENTRE
-	field.configure(self, FIELD_RADIUS * GAME_SCALE.COMBAT, FIELD_TIME)
+	field.configure(self, FIELD_RADIUS * GAME_SCALE.COMBAT, field_time())
 	_play_impact_flash(global_position + GAME_SCALE.BODY_CENTRE, 46.0, Color(0.6, 0.4, 1.0, 0.7))
 
 func _in_own_field() -> bool:
@@ -450,6 +467,14 @@ func _fire_beam() -> void:
 ## The body the beam reached (NovaBeam): slammed down from the air, else dragged to her.
 func on_beam_hit(body: Node, direction: Vector2) -> void:
 	if is_defeated or not is_instance_valid(body):
+		return
+	count_move("u_hits")
+	# Only a fighter or a monster is slammed or dragged. Anything else the beam reaches (Xion's
+	# double, Rio's decoy) just takes the hit: the slam called a method the double does not have
+	# (script error in a soak match, 2026-11-24).
+	if not body.has_method("apply_forced_launch_hit"):
+		body.apply_hit(self, BEAM_DAMAGE, 0.0, direction)
+		_play_impact_flash((body as Node2D).global_position + GAME_SCALE.BODY_CENTRE, 34.0, Color(0.74, 0.5, 1.0, 0.8))
 		return
 	if _is_airborne(body):
 		if body.has_method("end_gravity_float"):
@@ -712,10 +737,15 @@ func _catch_into_sphere() -> void:
 
 ## Swings everyone caught round the sphere (players pinned like Luna's grab, monsters held).
 func _spin_caught(delta: float) -> void:
-	for target in sphere_caught.duplicate():
-		if not is_instance_valid(target) or target.get("is_defeated") == true:
-			sphere_caught.erase(target)
-			continue
+	# A caught body can be freed while it circles (a monster that dies in the sphere). A typed
+	# array refuses to erase a freed instance and logs an engine error every frame (58 in one soak
+	# match, 2026-11-24), so the list is rebuilt from the bodies still there.
+	var held: Array[Node] = []
+	for target in sphere_caught:
+		if is_instance_valid(target) and target.get("is_defeated") != true:
+			held.append(target)
+	sphere_caught = held
+	for target in sphere_caught:
 		var key: int = target.get_instance_id()
 		var angle: float = float(sphere_angles.get(key, 0.0)) + ULTIMATE_FOE_SPIN * ultimate_orbit_sign * delta
 		sphere_angles[key] = angle

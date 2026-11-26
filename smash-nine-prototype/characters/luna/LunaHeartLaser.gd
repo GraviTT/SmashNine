@@ -128,6 +128,8 @@ func _try_hit_body(body: Node) -> void:
 		target_cooldowns[target_id] = hit_interval * 0.55
 		return
 	target_cooldowns[target_id] = hit_interval
+	if is_instance_valid(source) and source.has_method("count_move") and body.is_in_group("players"):
+		source.count_move("beam_ticks")
 	if hold_hitstun > 0.0 and body.get("hitstun_timer") != null:
 		body.set("hitstun_timer", maxf(float(body.get("hitstun_timer")), hold_hitstun))
 	if is_instance_valid(source) and source.has_method("on_attack_landed"):

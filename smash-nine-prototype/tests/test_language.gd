@@ -137,6 +137,13 @@ func _run() -> void:
 	main.hud.show_card_offer(CARDS.CARDS.slice(3, 6), 5.0)
 	_check_card_fit(main.hud)
 	await _capture("09-soul-cards-action-ko")
+	# The cards of D54: every one fits its card in Korean (the longest texts are theirs).
+	for first in range(6, CARDS.CARDS.size(), 3):
+		main.hud.show_card_offer(CARDS.CARDS.slice(first, first + 3), 8.0)
+		_check_card_fit(main.hud)
+		if first == 6:
+			_check(main.hud.card_letters[0].text == "공", "A card without an icon shows its title's first letter (%s)" % main.hud.card_letters[0].text)
+			await _capture("10-soul-cards-d54-ko")
 	main.hud.hide_card_offer()
 	# Cover every generated monster name, including elite formatting.
 	for skin in ARCHETYPES.SKINS:
@@ -186,6 +193,11 @@ func _run() -> void:
 	main.director._finish(human, "last survivor")
 	await _frames(3)
 	_check(_has_text(main.hud.frontend, "FREY WINS"), "Switching back must restore exact English results")
+	# Every card fits its card in English too (D54).
+	for first in range(0, CARDS.CARDS.size(), 3):
+		main.hud.show_card_offer(CARDS.CARDS.slice(first, first + 3), 8.0)
+		_check_card_fit(main.hud)
+	main.hud.hide_card_offer()
 	draw_messages.clear()
 	draw_director = DIRECTOR.new()
 	draw_director.announcement.connect(func(message: String) -> void: draw_messages.append(message))
@@ -269,7 +281,7 @@ func _check_data_keys() -> void:
 	for card: Dictionary in CARDS.CARDS:
 		for field in ["title", "text", "kind"]:
 			_check(keys.has(str(card[field])), "Card string missing: " + str(card[field]))
-	for text in ["Battle Royale", "Story", "Watch bots", "Options", "Controls", "Fighter", "KOs", "Damage", "Souls", "Cards", "Survived", "MOST DAMAGE", "MOST KOs", "LONGEST SURVIVAL", "Male", "Female", "Original art", "Prototype art", "On", "Off", "last survivor", "double KO", "no survivors", "final judgment", "Exploration", "Corner collapse warning", "Convergence", "Central brawl", "Sudden death", "Match over"]:
+	for text in ["Battle Royale", "Story", "Practice", "Standing dummy", "Walking dummy", "Fighting bot", "Watch bots", "Options", "Controls", "Fighter", "KOs", "Damage", "Souls", "Cards", "Survived", "MOST DAMAGE", "MOST KOs", "LONGEST SURVIVAL", "Male", "Female", "Original art", "Prototype art", "On", "Off", "last survivor", "double KO", "no survivors", "final judgment", "Exploration", "Corner collapse warning", "Convergence", "Central brawl", "Sudden death", "Match over"]:
 		_check(keys.has(text), "Dynamic menu/phase string missing: " + text)
 
 func _check_menu_literals() -> void:
@@ -301,9 +313,10 @@ func _check_menu_fit(menu: Control) -> void:
 
 func _check_card_fit(hud: Node) -> void:
 	for label: Label in hud.card_labels:
-		# A card row grows with its text up to three lines (MatchHud._fill_cards); the copy
-		# must fit the label the row gave it.
-		_check(label.get_line_count() <= 3 and label.get_line_count() * label.get_line_height() <= label.size.y + 1.0, "Korean card copy overflows its row: " + label.text)
+		# A card row grows with its text up to three lines under its title and kind
+		# (MatchHud._fill_cards: five lines in all, as D54's longest cards need); the copy must fit
+		# the label the row gave it.
+		_check(label.get_line_count() <= 3 and label.get_line_count() * label.get_line_height() <= label.size.y + 1.0, "Card copy overflows its row (%d lines of %d px in %d px): %s" % [label.get_line_count(), label.get_line_height(), int(label.size.y), label.text])
 
 func _frames(count: int) -> void:
 	for frame in count:

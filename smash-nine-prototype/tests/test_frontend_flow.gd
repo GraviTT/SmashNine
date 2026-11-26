@@ -162,10 +162,12 @@ func _run() -> void:
 	await _tap(KEY_V)
 	_check(main.hud.frontend.hero_art.texture.resource_path.ends_with("rio_female_illustration.png"), "Rio body must also switch its main art")
 	await _tap(KEY_ESCAPE)
-	# Title keyboard navigation: Play -> Watch -> Options.
+	# Title keyboard navigation: Battle Royale -> Story -> Practice -> Watch bots -> Options
+	# (four steps since Practice joined the title, 2026-11-26).
 	await _tap(KEY_DOWN)
 	await _tap(KEY_S)
 	await _tap(KEY_DOWN)
+	await _tap(KEY_S)
 	await _tap(KEY_ENTER)
 	_check(main.hud.frontend.screen == "options", "Arrow/W-S navigation must open Options")
 	await _capture("04-options")
@@ -191,8 +193,8 @@ func _run() -> void:
 	await _frames(6)
 	main = current_scene
 	await _tap(KEY_ESCAPE)
-	# Controls opens with a real mouse click.
-	await _click(main.hud.frontend.buttons[4])
+	# Controls (the sixth row) opens with a real mouse click.
+	await _click(main.hud.frontend.buttons[5])
 	_check(main.hud.frontend.screen == "controls", "Mouse Controls must open the key table")
 	await _capture("05-controls")
 	await _tap(KEY_ESCAPE)

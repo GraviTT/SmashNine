@@ -130,6 +130,8 @@ var stance_visual: Line2D
 var decoy: Node2D
 var decoy_cooldown_timer := 0.0
 var decoy_swap_ready := false
+## Swaps left with the decoy that stands: one, or two with Second Decoy (his soul card, D54).
+var decoy_swaps_left := 0
 var flurry_phase := Flurry.NONE
 var flurry_swords: Array[Node2D] = []
 var flurry_timer := 0.0
@@ -202,7 +204,7 @@ func perform_skill_three() -> void:
 		return
 	_decoy_cast()
 
-## The second U: swap places with the decoy, once.
+## The second U: swap places with the decoy, once (twice with Second Decoy).
 func try_skill_three_followup() -> bool:
 	if not decoy_swap_ready or not is_instance_valid(decoy) or decoy.get("burst") == true:
 		return false
@@ -258,6 +260,7 @@ func character_physics_process(delta: float) -> void:
 		sword_bot_timer -= delta
 		if sword_bot_timer < 0.0 and _sword_ready() and hitstun_timer <= 0.0 and not is_gravity_rooted():
 			_sword_blink()
+			count_move("k2")
 	_update_flurry_wait(delta)
 
 func character_on_hit() -> void:
@@ -284,6 +287,10 @@ func character_on_respawn() -> void:
 func character_cleanup() -> void:
 	character_on_respawn()
 
+func character_refill() -> void:
+	counter_cooldown_timer = 0.0
+	decoy_cooldown_timer = 0.0
+
 func character_hit_absorption() -> float:
 	return 0.0 if counter_timer > 0.0 else -1.0
 
@@ -304,10 +311,14 @@ func character_on_attack_hit_body(body: Node, attack: Node) -> void:
 # --- Passive: 급소 (backstab) ---
 
 func damage_scale_against(target: Node) -> float:
+	# The common scale (Hunter, a soul card, against monsters) under his own.
+	var common := super(target)
 	if not _is_behind(target):
-		return 1.0
+		return common
 	_mark_backstab.call_deferred(target)
-	return BACKSTAB_SCALE
+	if target.is_in_group("players"):
+		count_move("back_hits")
+	return BACKSTAB_SCALE * common
 
 ## Rio stands on the side `target` does not face.
 func _is_behind(target: Node) -> bool:
@@ -575,7 +586,9 @@ func _shadow_counter(attacker: Node) -> void:
 	movement_freeze_timer = 0.0
 	if is_defeated:
 		return
-	var foe := attacker as Node2D
+	# The attacker can be freed while he is vanished (a monster that dies): he only dodged. Casting
+	# a freed object is a script error.
+	var foe: Node2D = attacker as Node2D if is_instance_valid(attacker) else null
 	if not _can_reach(foe, COUNTER_REACH):
 		attack_lock_timer = 0.1
 		return
@@ -630,13 +643,16 @@ func _decoy_cast() -> void:
 	_reset_combo()
 	_clear_decoy()
 	decoy_cooldown_timer = DECOY_COOLDOWN
-	var copy := StaticBody2D.new()
-	copy.set_script(DECOY_SCRIPT)
+	var copy: AnimatableBody2D = DECOY_SCRIPT.new()
 	copy.name = "RioDecoy"
+	# Placed before it enters the tree (same parent, so his own position): its physics body then
+	# starts there too, for the swing already on its way. Placed after, it stood at the parent's
+	# origin, (0, 0) in a match (RioDecoy._init).
+	copy.position = position
 	get_parent().add_child(copy)
-	copy.global_position = global_position
 	copy.configure(self, DECOY_TIME, character_sprite if _uses_character_sprite() else null)
 	decoy = copy
+	decoy_swaps_left = 2 if has_card("second_decoy") else 1
 	decoy_swap_ready = true
 	var start := global_position
 	_blink_to(start + _step_direction() * DECOY_STEP * GAME_SCALE.WORLD, true)
@@ -657,7 +673,8 @@ func _step_direction() -> Vector2:
 	return Vector2(-facing, 0.0)
 
 func _decoy_swap() -> void:
-	decoy_swap_ready = false
+	decoy_swaps_left -= 1
+	decoy_swap_ready = decoy_swaps_left > 0
 	var mine := global_position
 	global_position = decoy.global_position
 	decoy.global_position = mine
@@ -670,19 +687,32 @@ func _decoy_swap() -> void:
 
 ## A foe hit the decoy (RioDecoy): it bursts and knocks whoever stands at it up.
 func decoy_burst(copy: Node2D) -> void:
+	count_move("decoy_burst")
 	if copy == decoy:
 		decoy = null
+		decoy_swaps_left = 0
 		decoy_swap_ready = false
+	var at: Vector2 = copy.global_position + GAME_SCALE.BODY_CENTRE
+	if VFX.spawn(get_parent(), "rio_rune_burst", at, Vector2.ONE * 0.6, false, 4) == null:
+		_play_ring(at, RUNE_COLOR)
+	# A swing reports its hit from inside the physics step, where a new attack area cannot be set
+	# up (engine errors, 2026-11-24): the burst's own hit comes right after it.
+	_burst_decoy_at.call_deferred(at)
+
+func _burst_decoy_at(at: Vector2) -> void:
+	if is_defeated or not is_inside_tree():
+		return
 	attack_art_enabled = false
-	_spawn_attack(DECOY_BURST_SIZE, _offset_to(copy.global_position + GAME_SCALE.BODY_CENTRE), DECOY_BURST_DAMAGE, DECOY_BURST_KNOCKBACK, Vector2(0, -1), RUNE_COLOR, 0.12)
+	_spawn_attack(DECOY_BURST_SIZE, _offset_to(at), DECOY_BURST_DAMAGE, DECOY_BURST_KNOCKBACK, Vector2(0, -1), RUNE_COLOR, 0.12)
+	# The burst is where the decoy stood, not a swing of his (HitContext; Riposte).
+	last_attack.set_meta("ranged", true)
 	attack_art_enabled = true
-	if VFX.spawn(get_parent(), "rio_rune_burst", copy.global_position + GAME_SCALE.BODY_CENTRE, Vector2.ONE * 0.6, false, 4) == null:
-		_play_ring(copy.global_position + GAME_SCALE.BODY_CENTRE, RUNE_COLOR)
 
 func _clear_decoy() -> void:
 	if is_instance_valid(decoy):
 		decoy.queue_free()
 	decoy = null
+	decoy_swaps_left = 0
 	decoy_swap_ready = false
 
 # --- I: gem sword flurry ---
@@ -698,6 +728,14 @@ func _flurry_start() -> void:
 	flurry_phase = Flurry.THROWING
 	var targets := _flurry_targets()
 	for index in FLURRY_SWORDS:
+		# A foe can be freed between two throws (a monster that dies): the swords left go to the
+		# foes still there. Handing a freed one on was a script error that stopped the cast (soak
+		# seed 2002, 2026-11-25).
+		var standing: Array[Node2D] = []
+		for foe in targets:
+			if is_instance_valid(foe):
+				standing.append(foe)
+		targets = standing
 		var target: Node2D = targets[index % targets.size()] if not targets.is_empty() else null
 		_throw_gem_sword(index, target)
 		if index == FLURRY_SWORDS - 1:
@@ -749,6 +787,7 @@ func _update_flurry_wait(delta: float) -> void:
 		if flurry_bot_timer <= 0.0 and hitstun_timer <= 0.0 and _stuck_flurry_swords() > 0:
 			_start_flurry()
 			ultimate_followup_started = true
+			count_move("i2")
 			return
 	if flurry_timer <= 0.0:
 		_burst_flurry_swords()
@@ -796,7 +835,11 @@ func _start_flurry() -> void:
 		_play_blink_trail(from, global_position)
 		sword.queue_free()
 		if not await _wait_action(FLURRY_GAP):
-			_end_flurry(start)
+			# Cut short. Held or stunned, the flurry is still his and he returns to where he pressed I.
+			# Moved meanwhile (a collapse, a respawn, practice mode's R: each clears the flurry), he
+			# stays where he was put: going back took him into the realm that fell (2026-11-26).
+			if flurry_phase == Flurry.CUTTING:
+				_end_flurry(start)
 			return
 	_end_flurry(start)
 

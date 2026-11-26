@@ -211,7 +211,9 @@ func _spawn_crystals(restored: Array) -> void:
 		crystals.append(crystal)
 
 func _on_crystal_broken(_crystal: Node, attacker: Node) -> void:
-	if is_instance_valid(attacker) and attacker.has_method("add_souls"):
+	if is_instance_valid(attacker) and attacker.has_method("add_hunt_souls"):
+		attacker.add_hunt_souls(CRYSTAL.SOUL_REWARD)
+	elif is_instance_valid(attacker) and attacker.has_method("add_souls"):
 		attacker.add_souls(CRYSTAL.SOUL_REWARD)
 	crystals_broken += 1
 	if crystals_broken >= int(data.crystals) and phase == "combat":
@@ -230,7 +232,9 @@ func _spawn_reinforcement(restored: Dictionary = {}) -> void:
 	reinforcements.append(enemy)
 
 func _on_reinforcement_defeated(_enemy: Node, attacker: Node, soul_reward: int) -> void:
-	if is_instance_valid(attacker) and attacker.has_method("add_souls"):
+	if is_instance_valid(attacker) and attacker.has_method("add_hunt_souls"):
+		attacker.add_hunt_souls(soul_reward)
+	elif is_instance_valid(attacker) and attacker.has_method("add_souls"):
 		attacker.add_souls(soul_reward)
 
 func _tick_reinforcements() -> void:
@@ -243,7 +247,9 @@ func _tick_reinforcements() -> void:
 		_spawn_reinforcement()
 
 func _on_monster_defeated(_enemy: Node, attacker: Node, soul_reward: int) -> void:
-	if is_instance_valid(attacker) and attacker.has_method("add_souls"):
+	if is_instance_valid(attacker) and attacker.has_method("add_hunt_souls"):
+		attacker.add_hunt_souls(soul_reward)
+	elif is_instance_valid(attacker) and attacker.has_method("add_souls"):
 		attacker.add_souls(soul_reward)
 	_enemy_fell()
 

@@ -19,6 +19,7 @@ signal soul_threshold_reached(player: Node, pick_number: int)
 
 ## Attack, realm and movement scales (scripts/GameScale.gd, routine 2026-10-08).
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
+const HIT_CONTEXT := preload("res://scripts/HitContext.gd")
 ## Effect strips (scripts/Vfx.gd): melee hits draw the character's slash art (CODEX-ART-13).
 const EFFECT_STRIPS := preload("res://scripts/Vfx.gd")
 
@@ -87,6 +88,28 @@ const GROWTH_STEPS_PER_PICK := 3
 const SOULS_PER_DAMAGE := 0.2
 const SOULS_PER_KNOCKOUT := 12
 const ULTIMATE_COOLDOWN := 30.0
+## Soul cards that act through the fighter (D54, scripts/match/SoulCards.gd). The numbers the user
+## approved are in reports/soul-cards-2026-11-24/; the others are the first values put in
+## (reports/soul-cards-2026-11-26/ lists them).
+## Air Dash: in the air the guard key dashes ahead (speed x time, about 120 px), once before landing.
+const AIR_DASH_SPEED := 480.0 * GAME_SCALE.WORLD
+const AIR_DASH_TIME := 0.17
+## Meteor Landing: a landing from at least this drop (px from the top of the airtime; a full jump is
+## 200-235) hits both sides for about one basic hit and lifts.
+const METEOR_DROP := 300.0
+const METEOR_DAMAGE := 8.0
+const METEOR_KNOCKBACK := 400.0
+const METEOR_SIZE := Vector2(86, 52)
+const RIPOSTE_STUN := 1.0
+const SOUL_DRAIN_HEAL := 25.0
+const LAST_FLAME_HP := 0.3
+const LAST_FLAME_ATTACK := 1.25
+const LAST_FLAME_SPEED := 1.1
+const CHASER_SPEED := 1.3
+const CHASER_TIME := 2.0
+## A hit that sends its target flying: the knockback from which a hit already counts as strong (more
+## hitstun, a slower fade: _get_hitstun, _get_knockback_decay). Chaser reads it.
+const HARD_LAUNCH_KNOCKBACK := 480.0
 ## Super armor right after an ultimate starts (and after each follow-up press: Nova's slingshot
 ## stages, Luna's heart laser): hits still deal their damage but cause no knockback, hitstun or
 ## cancel (user 2026-10-10: "궁극기들은 난전 상황에서 평타만 맞아도 끊기는 경우가 많으니 궁극기
@@ -161,14 +184,23 @@ var hp_growth := 0.0
 var attack_growth := 0.0
 var defense_growth := 0.0
 var speed_growth := 0.0
-var upgrade_modifiers := {
+const UPGRADE_DEFAULTS := {
 	"attack_multiplier": 1.0,
 	"speed_multiplier": 1.0,
 	"weight_multiplier": 1.0,
 	"ringout_damage_scale": 1.0,
 	"bonus_max_hp": 0.0,
-	"bonus_air_jumps": 0
+	"bonus_air_jumps": 0,
+	"ultimate_cooldown_scale": 1.0,
+	"monster_damage_multiplier": 1.0,
+	"hunt_soul_multiplier": 1.0
 }
+var upgrade_modifiers := UPGRADE_DEFAULTS.duplicate()
+## Soul card states (D54): Air Dash is ready again on the floor; Chaser's seconds left; whether Last
+## Flame burns now.
+var air_dash_ready := true
+var chaser_timer := 0.0
+var last_flame_on := false
 var down_tap_timer := 0.0
 var drop_through_timer := 0.0
 var current_floor_platform: Node
@@ -182,6 +214,8 @@ var guard_recovery_waived := false
 var facing := 1
 var is_human := false
 var is_dummy := false
+## A training dummy's walk, -1 to 1 (practice mode's walking dummy; a dummy's speed is 0 otherwise).
+var dummy_move := 0.0
 var is_defeated := false
 var knockback_velocity := Vector2.ZERO
 var skill_dash_velocity := Vector2.ZERO
@@ -240,6 +274,11 @@ var attack_lock_timer := 0.0
 var attack_serial := 0
 var attack_elapsed := 0.0
 var attack_startup := 0.0
+## How often each move really started, by skill bar slot ("j", "k", "l", "u", "i"; "k2", "l2",
+## "u2", "i2" for a follow-up press) plus what a character counts itself (Frey's "wings", seconds
+## of Nova's "flight"). The soak and the probes read it to see what bots use: a kit move no bot
+## starts is one the player never meets (2026-11-24, reports/quality-systems-2026-11-24/).
+var move_counts: Dictionary = {}
 var hitstun_timer := 0.0
 ## Presentation-only timer for explicit stun attacks and hazards. Ordinary brief hitstun does not
 ## show the stun status icon.
@@ -409,20 +448,28 @@ func _apply_growth_stats(restore_gained_hp: bool) -> void:
 	var previous_max_hp := max_hp
 	var growth_steps := float(soul_picks * GROWTH_STEPS_PER_PICK)
 	max_hp = base_max_hp + hp_growth * growth_steps + float(upgrade_modifiers.bonus_max_hp)
-	attack_power = (base_attack_power + attack_growth * growth_steps) * float(upgrade_modifiers.attack_multiplier)
 	defense = base_defense + defense_growth * growth_steps
-	speed = (base_speed + speed_growth * growth_steps) * float(upgrade_modifiers.speed_multiplier)
+	_apply_attack_and_speed()
 	weight = base_weight * float(upgrade_modifiers.weight_multiplier)
 	ringout_damage_scale = float(upgrade_modifiers.ringout_damage_scale)
 	max_air_jumps = mini(base_air_jumps + int(upgrade_modifiers.bonus_air_jumps), MAX_AIR_JUMPS)
 	if restore_gained_hp and max_hp > previous_max_hp:
 		hp = minf(hp + max_hp - previous_max_hp, max_hp)
 
+## Attack and speed alone: Last Flame and Chaser switch them during a match, and nothing else may
+## be rebuilt then (the story scales a rival's max HP after _apply_growth_stats).
+func _apply_attack_and_speed() -> void:
+	var growth_steps := float(soul_picks * GROWTH_STEPS_PER_PICK)
+	attack_power = (base_attack_power + attack_growth * growth_steps) * float(upgrade_modifiers.attack_multiplier) * (LAST_FLAME_ATTACK if last_flame_on else 1.0)
+	speed = (base_speed + speed_growth * growth_steps) * float(upgrade_modifiers.speed_multiplier) * (LAST_FLAME_SPEED if last_flame_on else 1.0) * (CHASER_SPEED if chaser_timer > 0.0 else 1.0)
+
 ## Applies one soul card: {"id": String, "effects": {modifier_name: value}}.
 ## *_multiplier and *_scale effects multiply; bonus_* effects add.
 func apply_upgrade(card: Dictionary) -> void:
 	AUDIO.sound(self, "card_pick", {"enabled": is_human})
 	upgrades.append(str(card.id))
+	# Counted for the soak (move_counts): which cards the fighters took.
+	count_move("card_%s" % card.id)
 	soul_picks += 1
 	var effects: Dictionary = card.get("effects", {})
 	for key in effects:
@@ -434,6 +481,7 @@ func apply_upgrade(card: Dictionary) -> void:
 		else:
 			upgrade_modifiers[key] = upgrade_modifiers[key] + effects[key]
 	_apply_growth_stats(true)
+	character_on_card(card)
 	_update_visuals()
 	_play_float_text("%s!" % tr(str(card.get("title", card.id))).to_upper(), Color(0.6, 0.9, 1.0))
 
@@ -475,7 +523,7 @@ func _physics_process(delta: float) -> void:
 	if hitstun_timer > 0.0:
 		move_input = 0.0
 	elif is_dummy:
-		move_input = 0.0
+		move_input = dummy_move
 	elif is_human:
 		_read_human_input(delta)
 	else:
@@ -505,6 +553,7 @@ func _update_match_timers(delta: float) -> void:
 	if invulnerable_timer > 0.0:
 		invulnerable_timer = maxf(invulnerable_timer - delta, 0.0)
 		modulate.a = _visible_alpha() if invulnerable_timer <= 0.0 or int(invulnerable_timer * 12.0) % 2 == 0 else 0.45
+	_update_card_states(delta)
 	_update_recovery(delta)
 
 ## Out-of-combat regeneration while the match allows it (MatchDirector.RECOVERY_RATE).
@@ -548,7 +597,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if hitstun_timer > 0.0:
 		return
 	if event.is_action_pressed("guard") and not event.is_echo():
-		_try_start_guard()
+		# In the air the guard key is free (a guard needs the floor): Air Dash takes it (D54).
+		if is_on_floor():
+			_try_start_guard()
+		else:
+			try_air_dash()
 		return
 	if is_guarding or guard_recovery_timer > 0.0:
 		return
@@ -562,13 +615,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("skill_1"):
 		skill_one()
 	if event.is_action_pressed("skill_2"):
-		if try_skill_two_followup():
-			return
-		skill_two()
+		press_skill_two()
 	if event.is_action_pressed("skill_3"):
-		if try_skill_three_followup():
-			return
-		skill_three()
+		press_skill_three()
 	if event.is_action_pressed("ultimate"):
 		ultimate()
 
@@ -802,6 +851,7 @@ func _apply_movement(delta: float) -> void:
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
 		air_jumps_left = max_air_jumps
+		air_dash_ready = true
 	else:
 		coyote_timer = maxf(coyote_timer - delta, 0.0)
 		if not custom_gravity_applied:
@@ -848,30 +898,53 @@ func basic_attack() -> void:
 	var attack_type := _get_basic_attack_type(attack_dir)
 	perform_basic_attack(attack_type, attack_dir)
 	AUDIO.basic(self, attack_type)
+	if attack_lock_timer > 0.0:
+		count_move("j")
 
 func skill_one() -> void:
 	if try_skill_one_followup():
+		count_move("k2")
 		return
 	if not _can_start_attack():
 		return
+	var mark := _move_mark()
 	AUDIO.begin_action(self)
 	perform_skill_one()
 	AUDIO.end_action(self, "1")
+	_count_if_started("k", mark)
 
 func skill_two() -> void:
 	if not _can_start_attack():
 		return
+	var mark := _move_mark()
 	AUDIO.begin_action(self)
 	perform_skill_two()
 	AUDIO.end_action(self, "2")
+	_count_if_started("l", mark)
 
 ## The third skill (U, 2026-11-03 D47): only characters that have one (has_skill_three).
 func skill_three() -> void:
 	if not has_skill_three() or not _can_start_attack():
 		return
+	var mark := _move_mark()
 	AUDIO.begin_action(self)
 	perform_skill_three()
 	AUDIO.end_action(self, "3")
+	_count_if_started("u", mark)
+
+## L and U as buttons: the follow-up while one is open, else the skill. Players and bots press
+## them the same way.
+func press_skill_two() -> void:
+	if try_skill_two_followup():
+		count_move("l2")
+		return
+	skill_two()
+
+func press_skill_three() -> void:
+	if try_skill_three_followup():
+		count_move("u2")
+		return
+	skill_three()
 
 func ultimate() -> void:
 	# Follow-up presses (Nova's slingshot stages, Luna's heart laser) are part of the same ultimate.
@@ -880,15 +953,29 @@ func ultimate() -> void:
 		if ultimate_followup_started:
 			ultimate_armor_timer = ULTIMATE_ARMOR_TIME
 			AUDIO.ultimate_started(self, true)
+			count_move("i2")
 		return
 	if not _can_start_attack() or not is_ultimate_ready():
 		return
-	ultimate_cooldown_timer = ULTIMATE_COOLDOWN
+	ultimate_cooldown_timer = ultimate_cooldown()
 	ultimate_window_timer = ultimate_window
 	ultimate_armor_timer = ULTIMATE_ARMOR_TIME
 	AUDIO.ultimate_started(self)
 	perform_ultimate()
 	ultimate_cast.emit(self)
+	count_move("i")
+
+func count_move(key: String, amount := 1.0) -> void:
+	move_counts[key] = float(move_counts.get(key, 0.0)) + amount
+
+## A skill press starts a move when it locks the fighter or begins a swing (the sound of a skill
+## is decided the same way, AudioManager.end_action).
+func _move_mark() -> Array:
+	return [attack_lock_timer, attack_serial]
+
+func _count_if_started(key: String, mark: Array) -> void:
+	if attack_lock_timer > float(mark[0]) or attack_serial > int(mark[1]):
+		count_move(key)
 
 func is_ultimate_ready() -> bool:
 	return ultimate_cooldown_timer <= 0.0
@@ -902,7 +989,7 @@ func can_use_skill_one() -> bool:
 ## has no cooldown. Characters with a skill cooldown add theirs (Rio's rune shield).
 func skill_cooldown(slot: String) -> Vector2:
 	if slot == "i":
-		return Vector2(ultimate_cooldown_timer, ULTIMATE_COOLDOWN)
+		return Vector2(ultimate_cooldown_timer, ultimate_cooldown())
 	return Vector2.ZERO
 
 ## A short count the skill bar shows in a slot's corner ("" for none): Xion's rounds on J.
@@ -960,9 +1047,12 @@ func character_defers_air_jump() -> bool:
 func character_air_motion() -> StringName:
 	return &""
 
-## This fighter's damage scale on a hit against `target` (Rio's backstab, D50); 1 for most.
-## Fighters and monsters ask it when they take the hit.
-func damage_scale_against(_target: Node) -> float:
+## This fighter's damage scale on a hit against `target`: Hunter's (a soul card) against monsters,
+## and a character's own on top (Rio's backstab, D50). Fighters and monsters ask it when they take
+## the hit.
+func damage_scale_against(target: Node) -> float:
+	if is_instance_valid(target) and target.is_in_group("realm_monsters"):
+		return float(upgrade_modifiers.monster_damage_multiplier)
 	return 1.0
 
 ## Motion effects (pixelfx, user 2026-11-04), presentation only. {animation: effect}: the effect
@@ -1263,6 +1353,8 @@ func _handle_landing_state() -> void:
 	AUDIO.landing(self, landed)
 	if landed:
 		landing_drop = maxf(global_position.y - air_top_y, 0.0) if air_top_y < INF else 0.0
+		if landing_drop >= METEOR_DROP and hitstun_timer <= 0.0 and has_card("meteor_landing"):
+			_meteor_shockwave()
 	# A character's own landing art comes with the landing sound and stands in for the dust below.
 	var own_landing_art := landed and character_landing_effect(landing_drop) != "" and air_time + 0.000001 >= AUDIO.MIN_LAND_AIR_SECONDS
 	if own_landing_art:
@@ -1487,6 +1579,8 @@ func apply_hit(attacker: Node, damage: float, base_knockback: float, direction: 
 	var danger := 1.0 + (1.0 - hp / max_hp) * LOW_HP_KNOCKBACK_BONUS
 	var final_knockback := base_knockback * danger * KNOCKBACK_SCALE / weight
 	final_knockback *= 1.0 - guard_reduction * GUARD_KNOCKBACK_REDUCTION_SCALE
+	if final_knockback >= HARD_LAUNCH_KNOCKBACK and guard_result != GUARD_BLOCK:
+		_report_hard_launch(attacker)
 	AUDIO.hit(self, final_damage, final_knockback, guard_result == GUARD_BLOCK, false)
 	var was_grounded := is_on_floor()
 	var hit_direction := _get_hit_direction(direction, was_grounded)
@@ -1593,6 +1687,8 @@ func apply_forced_launch_hit(attacker: Node, damage: float, launch_velocity: Vec
 		hit_direction = launch_velocity.normalized()
 	var launch_scale := 1.0 - guard_reduction * GUARD_KNOCKBACK_REDUCTION_SCALE
 	var applied_launch := launch_velocity * launch_scale
+	if applied_launch.length() / weight >= HARD_LAUNCH_KNOCKBACK and guard_result != GUARD_BLOCK:
+		_report_hard_launch(attacker)
 	AUDIO.hit(self, final_damage, applied_launch.length(), guard_result == GUARD_BLOCK, false, true)
 	if guard_result == GUARD_BLOCK:
 		applied_launch.y = 0.0
@@ -1916,6 +2012,9 @@ func _perform_parry(attacker: Node) -> void:
 	jump_buffer_timer = 0.0
 	if is_instance_valid(attacker) and attacker.has_method("receive_parry_recoil"):
 		attacker.receive_parry_recoil(self)
+	# Riposte: a parried swing, not a parried shot (HitContext).
+	if has_card("riposte") and HIT_CONTEXT.melee > 0:
+		_riposte(attacker)
 	_play_parry_effect()
 
 func receive_parry_recoil(_defender: Node) -> void:
@@ -1971,7 +2070,7 @@ func _get_hit_direction(direction: Vector2, was_grounded: bool) -> Vector2:
 
 func _get_knockback_decay(final_knockback: float, was_grounded: bool) -> float:
 	var decay := KNOCKBACK_GROUND_DECAY * (0.5 + 0.5 * ground_traction) if was_grounded else KNOCKBACK_AIR_DECAY
-	if final_knockback >= 480.0:
+	if final_knockback >= HARD_LAUNCH_KNOCKBACK:
 		decay *= STRONG_KNOCKBACK_DECAY_SCALE
 	return decay
 
@@ -1979,7 +2078,7 @@ func _get_hitstun(final_knockback: float, was_grounded: bool) -> float:
 	var stun := final_knockback / 1750.0
 	if not was_grounded:
 		stun += AIR_HITSTUN_BONUS
-	if final_knockback >= 480.0:
+	if final_knockback >= HARD_LAUNCH_KNOCKBACK:
 		stun += STRONG_HITSTUN_BONUS
 	return clampf(stun, HITSTUN_MIN, HITSTUN_MAX)
 
@@ -2066,7 +2165,14 @@ func _hide_after_defeat() -> void:
 		visible = false
 	modulate.a = 1.0
 
+## A fallen fighter stands again at full HP (a training dummy after 3 s; practice mode, anyone).
+func revive() -> void:
+	_respawn_after_defeat()
+
 func _respawn_after_defeat() -> void:
+	# A dummy's own 3 s timer may come after something else stood it up (practice mode's R).
+	if not is_defeated:
+		return
 	if defeat_tween != null and defeat_tween.is_valid():
 		defeat_tween.kill()
 	modulate.a = 1.0
@@ -2105,6 +2211,8 @@ func _respawn() -> void:
 	action_locked_until_land = false
 	current_knockback_decay = KNOCKBACK_DECAY
 	air_jumps_left = max_air_jumps
+	air_dash_ready = true
+	chaser_timer = 0.0
 	ai_controller.reset(global_position)
 	_update_visuals()
 	respawned.emit(self)
@@ -2167,16 +2275,179 @@ func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	pin_hold_timer = 0.0
 	current_knockback_decay = KNOCKBACK_DECAY
 	air_jumps_left = max_air_jumps
+	air_dash_ready = true
+	chaser_timer = 0.0
 	body.rotation = 0.0
 	action_locked_until_land = false
 	ai_controller.reset(global_position)
 	_update_visuals()
+
+# --- Practice mode: cooldowns filled and cards given back at a key ---
+
+## The ultimate and every skill ready at once; nothing else changes.
+func refill_cooldowns() -> void:
+	ultimate_cooldown_timer = 0.0
+	character_refill()
+	_update_visuals()
+
+## A character's own cooldowns and rounds, for refill_cooldowns.
+func character_refill() -> void:
+	pass
+
+## Every soul card given back, with the growth the picks brought. The caller resets the fighter
+## afterwards (max HP changed; a character's kit may have leaned on a card).
+func clear_upgrades() -> void:
+	upgrades.clear()
+	soul_picks = 0
+	upgrade_modifiers = UPGRADE_DEFAULTS.duplicate()
+	last_flame_on = false
+	chaser_timer = 0.0
+	_apply_growth_stats(false)
+	hp = minf(hp, max_hp)
+	hp_changed.emit(self)
+	_update_visuals()
+
+# --- Soul cards that act through the fighter (D54) ---
+
+func has_card(card_id: String) -> bool:
+	return upgrades.has(card_id)
+
+## A character's own step when it takes a card (Xion loads the rounds her magazine gained).
+func character_on_card(_card: Dictionary) -> void:
+	pass
+
+## Overcharge shortens it.
+func ultimate_cooldown() -> float:
+	return ULTIMATE_COOLDOWN * float(upgrade_modifiers.ultimate_cooldown_scale)
+
+## Souls for a monster or a crystal worth `amount` (Hunter: half as many again).
+func hunt_souls(amount: int) -> int:
+	return roundi(amount * float(upgrade_modifiers.hunt_soul_multiplier))
+
+func add_hunt_souls(amount: int) -> void:
+	add_souls(hunt_souls(amount))
+
+func heal(amount: float) -> void:
+	if is_defeated or amount <= 0.0 or hp >= max_hp:
+		return
+	var before := hp
+	hp = minf(hp + amount, max_hp)
+	_play_float_text("+%d" % roundi(hp - before), Color(0.55, 1.0, 0.6))
+	hp_changed.emit(self)
+	_update_visuals()
+
+func can_air_dash() -> bool:
+	return air_dash_ready and has_card("air_dash") and not is_on_floor() and not is_defeated \
+		and hitstun_timer <= 0.0 and attack_lock_timer <= 0.0 and not action_locked_until_land \
+		and skill_dash_timer <= 0.0 and movement_freeze_timer <= 0.0 and pin_hold_timer <= 0.0 \
+		and not is_gravity_rooted()
+
+## Air Dash: a short dash the way the fighter faces, once before landing. The fall starts over
+## when it ends. A person presses the guard key in the air; a bot calls this on its way back to
+## the stage (EnemyAI._recover_intent).
+func try_air_dash() -> bool:
+	if not can_air_dash():
+		return false
+	air_dash_ready = false
+	var from := global_position
+	velocity = Vector2.ZERO
+	skill_dash_velocity = Vector2(facing, 0.0) * AIR_DASH_SPEED
+	skill_dash_timer = AIR_DASH_TIME
+	attack_lock_timer = maxf(attack_lock_timer, AIR_DASH_TIME)
+	current_attack_started_airborne = true
+	count_move("air_dash")
+	AUDIO.sound(self, "dash")
+	# Until the card has art of its own: the air-jump puff where the dash began and a line along its
+	# way that thins out (the hit streak tried first is 80 x 12 px for 0.08 s: not seen).
+	_spawn_jump_effect(true)
+	var trail := Line2D.new()
+	trail.width = 9.0
+	trail.default_color = Color(0.85, 0.95, 1.0, 0.6 * _visible_alpha())
+	trail.z_index = 2
+	trail.add_point(from + GAME_SCALE.BODY_CENTRE)
+	trail.add_point(from + GAME_SCALE.BODY_CENTRE + Vector2(facing * AIR_DASH_SPEED * AIR_DASH_TIME, 0.0))
+	get_parent().add_child(trail)
+	var fade := trail.create_tween()
+	fade.tween_property(trail, "width", 1.0, 0.24)
+	fade.parallel().tween_property(trail, "modulate:a", 0.0, 0.24)
+	fade.tween_callback(trail.queue_free)
+	return true
+
+## Meteor Landing: a hit on each side of the feet that lifts whoever stands there.
+func _meteor_shockwave() -> void:
+	count_move("meteor")
+	attack_art_enabled = false
+	for side: float in [-1.0, 1.0]:
+		_spawn_attack(METEOR_SIZE, Vector2(METEOR_SIZE.x * 0.5 * side, -37.0), METEOR_DAMAGE, METEOR_KNOCKBACK, Vector2(0.4 * side, -1.0), Color(1.0, 0.75, 0.35, 0.6), 0.1)
+	attack_art_enabled = true
+	# Until the card has art of its own: the landing dust, large.
+	EFFECT_STRIPS.spawn(get_parent(), "landing_dust", global_position, Vector2(2.6, 1.9), false, 4, Color(1.0, 0.85, 0.6, _visible_alpha()))
+
+## Riposte: the foe whose swing was parried is stunned.
+func _riposte(attacker: Node) -> void:
+	if not is_instance_valid(attacker) or attacker == self:
+		return
+	count_move("riposte")
+	if attacker.has_method("apply_parry_stun"):
+		attacker.apply_parry_stun(self, RIPOSTE_STUN)
+	elif attacker.has_method("apply_stun_hit") and attacker is Node2D:
+		# A monster: its own stun, with a hit that takes nothing.
+		attacker.apply_stun_hit(self, 0.0, 0.0, Vector2(signf(attacker.global_position.x - global_position.x), 0.0), RIPOSTE_STUN, DAMAGE_FIXED)
+
+## Stunned by a parry (Riposte): no damage and no push; the move in progress stops. Not through an
+## ultimate's super armor, a pin or protection. Returns whether it took.
+func apply_parry_stun(source: Node, duration: float) -> bool:
+	if is_defeated or is_invulnerable() or ultimate_armor_timer > 0.0 or pin_hold_timer > 0.0:
+		return false
+	if is_guarding:
+		_stop_guard(false)
+	_remember_attacker(source)
+	cancel_pending_actions()
+	attack_lock_timer = 0.0
+	skill_dash_timer = 0.0
+	action_locked_until_land = false
+	_end_skill_dash()
+	hitstun_timer = maxf(hitstun_timer, duration)
+	_play_stun_effect(duration)
+	character_on_hit()
+	return true
+
+## One of this fighter's hits sent a foe flying (HARD_LAUNCH_KNOCKBACK): Chaser's speed starts over.
+func on_hard_launch(_victim: Node) -> void:
+	if is_defeated or not has_card("chaser"):
+		return
+	count_move("chaser")
+	if chaser_timer <= 0.0:
+		_play_float_text("%s!" % tr("Chaser").to_upper(), Color(0.6, 1.0, 0.8))
+	chaser_timer = CHASER_TIME
+	_apply_attack_and_speed()
+
+func _report_hard_launch(attacker: Node) -> void:
+	if is_instance_valid(attacker) and attacker != self and attacker.has_method("on_hard_launch"):
+		attacker.on_hard_launch(self)
+
+## The cards whose effect comes and goes (Last Flame with HP, Chaser with its timer): attack and
+## speed are rebuilt when one switches.
+func _update_card_states(delta: float) -> void:
+	var chasing := chaser_timer > 0.0
+	chaser_timer = maxf(chaser_timer - delta, 0.0)
+	var flame := hp <= max_hp * LAST_FLAME_HP and has_card("last_flame")
+	if flame == last_flame_on and chasing == (chaser_timer > 0.0):
+		return
+	if flame and not last_flame_on:
+		count_move("last_flame")
+		_play_float_text("%s!" % tr("Last Flame").to_upper(), Color(1.0, 0.6, 0.3))
+	last_flame_on = flame
+	_apply_attack_and_speed()
 
 # --- Score and souls (design D4) ---
 
 func record_knockout() -> void:
 	score += 1
 	add_souls(SOULS_PER_KNOCKOUT)
+	if has_card("soul_drain"):
+		count_move("soul_drain")
+		heal(SOUL_DRAIN_HEAL)
 
 func record_damage_dealt(amount: float) -> void:
 	damage_dealt += amount

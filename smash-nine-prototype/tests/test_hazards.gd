@@ -298,8 +298,7 @@ func _test_column_art_parts() -> void:
 
 ## Yuki's waiting seal shows its paper art and hides the placeholder rect and outline.
 func _test_seal_art() -> void:
-	var seal := StaticBody2D.new()
-	seal.set_script(SEAL_SCRIPT)
+	var seal: Node2D = SEAL_SCRIPT.new()
 	arena.add_child(seal)
 	if seal.idle_art == null or seal.visual.visible or seal.aura.visible:
 		_fail("The planted seal should show its art instead of the placeholder rect")

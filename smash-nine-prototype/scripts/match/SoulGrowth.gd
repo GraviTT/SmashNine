@@ -2,16 +2,20 @@ extends Node
 ## Turns soul thresholds into card offers (design D4). The match never pauses:
 ## a human has CHOICE_TIME seconds to press 1-3, then the first card is taken;
 ## bots pick after BOT_THINK_TIME from a seeded RNG, so a seed replays the same picks.
+## What an offer holds is SoulCards.draw_offer's (D54): one action card at least, and the
+## fighter's own card in its second offer.
 
 signal offer_opened(player: Node, cards: Array[Dictionary])
 signal offer_closed(player: Node, card: Dictionary, auto_picked: bool)
 
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
-const CHOICE_TIME := 5.0
+## 8 s since D54 (5 s before): nineteen cards take longer to read than six.
+const CHOICE_TIME := 8.0
 const BOT_THINK_TIME := 0.6
 
 var match_seed := 0
-## player -> {"cards": Array[Dictionary], "time_left": float}
+## player -> {"cards": Array[Dictionary], "time_left": float, "time_total": float}; the screen
+## reads the cards' "kind" and both times.
 var active_offers: Dictionary = {}
 ## player -> number of offers still waiting behind the active one
 var queued_offers: Dictionary = {}
@@ -28,10 +32,12 @@ func _on_threshold_reached(player: Node, _pick_number: int) -> void:
 	_open_offer(player)
 
 func _open_offer(player: Node) -> void:
-	var cards: Array[Dictionary] = SOUL_CARDS.draw_offer(_rng_for(player), player.upgrades)
+	# The offer's number is the fighter's next pick: cards it began with count (a story rival's).
+	var cards: Array[Dictionary] = SOUL_CARDS.draw_offer(_rng_for(player), player.upgrades, str(player.character_id), int(player.soul_picks) + 1)
 	if cards.is_empty():
 		return
-	active_offers[player] = {"cards": cards, "time_left": CHOICE_TIME if player.is_human else BOT_THINK_TIME}
+	var time := CHOICE_TIME if player.is_human else BOT_THINK_TIME
+	active_offers[player] = {"cards": cards, "time_left": time, "time_total": time}
 	offer_opened.emit(player, cards)
 
 func _rng_for(player: Node) -> RandomNumberGenerator:

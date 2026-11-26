@@ -1,8 +1,11 @@
-extends StaticBody2D
+extends AnimatableBody2D
 ## Rio's decoy (U "분신 바꿔치기", 2026-11-18 D50): his drawing of the moment, blue and
 ## see-through, standing where he cast it. Hits and shots reach it like a fighter (player layer,
 ## no collisions with bodies); the first foe's hit bursts it (the source's decoy_burst). Rio can
 ## swap places with it once. It fades after `lifetime`. Stand-in look: his own frame tinted.
+## A kinematic body, not a static one (2026-11-24): attack areas are not monitorable, which makes
+## them static in the physics broadphase, and two static objects are never paired. As a
+## StaticBody2D no swing ever reached it: no decoy burst in eight soak matches or at 40 px.
 
 const PLAYER_LAYER := 2
 const TINT := Color(0.5, 0.78, 1.0, 0.62)
@@ -11,6 +14,15 @@ var lifetime := 4.0
 var elapsed := 0.0
 var burst := false
 var figure: AnimatedSprite2D
+
+## Never synced to physics, and from before it enters the tree. A body that syncs sends a new
+## position to the physics server and puts its node back where it was until the next step
+## answers. The first version switched the sync off after placing it: the answer never came, so
+## every decoy stood at its parent's origin, (0, 0) in a match, where no swing reached it and a
+## swap sent Rio there (2026-11-25: 77 decoys in eight soak matches, none burst, none swapped
+## with; the tests all stood Rio on the origin, where the right and the wrong place are the same).
+func _init() -> void:
+	sync_to_physics = false
 
 func configure(owner_fighter: Node2D, duration: float, sprite: AnimatedSprite2D) -> void:
 	source = owner_fighter
