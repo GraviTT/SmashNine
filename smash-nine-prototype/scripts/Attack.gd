@@ -1,5 +1,7 @@
 extends Area2D
 
+const HIT_CONTEXT := preload("res://scripts/HitContext.gd")
+
 var source: Node
 var damage := 10.0
 var knockback := 450.0
@@ -155,12 +157,18 @@ func _hit_body(body: Node) -> void:
 	if body.has_method("apply_hit"):
 		hit_targets.append(body)
 		var hit_landed = true
+		# A swing, for whoever takes it (HitContext): not a burst set off somewhere else ("ranged").
+		var swing := not has_meta("ranged")
+		if swing:
+			HIT_CONTEXT.melee += 1
 		if forced_stun_duration > 0.0 and body.has_method("apply_stun_hit"):
 			hit_landed = body.apply_stun_hit(source, damage, knockback, direction, forced_stun_duration, damage_type)
 		elif forced_hitstun_duration > 0.0 and body.has_method("apply_forced_launch_hit"):
 			hit_landed = body.apply_forced_launch_hit(source, damage, forced_launch_velocity, forced_hitstun_duration, knockback, direction, damage_type)
 		else:
 			hit_landed = body.apply_hit(source, damage, knockback, direction, damage_type)
+		if swing:
+			HIT_CONTEXT.melee -= 1
 		if hit_landed != false and is_instance_valid(source) and source.has_method("on_attack_landed"):
 			source.on_attack_landed(global_position, damage, knockback)
 		if hit_landed != false and hit_tag != "" and is_instance_valid(source) and source.has_method("on_tagged_attack_landed"):

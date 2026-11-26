@@ -459,6 +459,8 @@ func star_burst_at(at: Vector2, direction: Vector2, struck: Array = []) -> void:
 	_spawn_attack(STAR_BURST_SIZE, _offset_to(at), STAR_BURST_DAMAGE, STAR_BURST_KNOCKBACK, Vector2(direction.x, direction.y - 0.3), STAR_BLOOM_COLOR, 0.12)
 	attack_art_enabled = true
 	last_attack.set_meta("luna_mark", true)
+	# The burst is where the star went, not a swing of hers (HitContext; Riposte).
+	last_attack.set_meta("ranged", true)
 	if VFX.spawn(get_parent(), "luna_comet_burst", at, Vector2.ONE * 1.25, false, 6) == null:
 		_play_star_bloom(_offset_to(at), STAR_BURST_SIZE.x * 0.42, STAR_BLOOM_COLOR, 0.14)
 

@@ -22,6 +22,9 @@ func _hit_body(body: Node) -> void:
 		return
 	if body.has_method("apply_hit"):
 		hit_targets.append(body)
+		# A monster's swing (HitContext).
+		HIT_CONTEXT.melee += 1
 		var landed: Variant = body.apply_hit(source, damage, knockback, direction, damage_type)
+		HIT_CONTEXT.melee -= 1
 		if landed != false and slow_duration > 0.0 and body.has_method("apply_control_pull"):
 			body.apply_control_pull(body.global_position, 0.0, 0.0, slow_duration)
