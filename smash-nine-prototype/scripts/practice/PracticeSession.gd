@@ -10,6 +10,7 @@ extends Node
 ##   E    ultimate and skills ready at once                            M  call a monster
 ##   C    soul cards (1/2/3 take, A/D turn the page, C or Esc close)   X  give every card back
 ##   Tab  the fighter's skill list                                     Esc back to the title
+##   F1   a menu of all of the above (a gamepad's Start and Back open it: PadInput)
 ## While the card list or the skill list is open the game is paused, so moving the page with
 ## A/D moves nothing else.
 ##
@@ -22,6 +23,7 @@ const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const SCALE := preload("res://scripts/GameScale.gd")
 const FRONTEND := preload("res://scripts/ui/FrontendMenu.gd")
+const GLYPHS := preload("res://scripts/input/PadGlyphs.gd")
 
 const MODES: Array[String] = ["stand", "walk", "fight"]
 const MODE_NAMES := {"stand": "Standing dummy", "walk": "Walking dummy", "fight": "Fighting bot"}
@@ -38,6 +40,12 @@ const WALK_REACH := 200.0
 const REVIVE_DELAY := 1.6
 const MONSTER_LIMIT := 3
 const CARDS_PER_PAGE := 3
+## The practice menu (panel "menu"): what a gamepad has instead of the nine keys.
+const MENU_ROWS := [
+	["Change the target", "target"], ["Change the bot's fighter", "bot"], ["Reset", "reset"],
+	["Refill cooldowns", "refill"], ["Call a monster", "monster"], ["Soul cards", "cards"],
+	["Clear cards", "clear"], ["Skill list", "skills"], ["Back to the title", "leave"],
+]
 const KEY_HELP := "H target   N bot's fighter   R reset   E refill   M monster   C cards   X clear cards   Tab skills   Esc title"
 const INK := Color("101827")
 const GOLD := Color("f3cd7c")
@@ -56,6 +64,7 @@ var total_damage := 0.0
 ## "" while playing, "cards" or "skills" while that list is open (the game is paused then).
 var panel := ""
 var card_page := 0
+var menu_index := 0
 var monsters: Array[Node] = []
 var info: Label
 var skills_panel: Control
@@ -378,6 +387,8 @@ func _input(event: InputEvent) -> void:
 			clear_cards()
 		KEY_TAB:
 			open_panel("skills")
+		KEY_F1:
+			open_menu()
 		_:
 			return
 	get_viewport().set_input_as_handled()
@@ -385,8 +396,17 @@ func _input(event: InputEvent) -> void:
 ## A list is open: its own keys work and every other key does nothing. Esc closes the list; it
 ## does not also leave practice.
 func _panel_key(code: int) -> void:
-	if code == KEY_ESCAPE or (panel == "cards" and code == KEY_C) or (panel == "skills" and code == KEY_TAB):
+	if code == KEY_ESCAPE or (panel == "cards" and code == KEY_C) or (panel == "skills" and code == KEY_TAB) or (panel == "menu" and code == KEY_F1):
 		close_panel()
+	elif panel == "menu":
+		if code in [KEY_UP, KEY_W]:
+			menu_index = posmod(menu_index - 1, MENU_ROWS.size())
+			_show_menu()
+		elif code in [KEY_DOWN, KEY_S]:
+			menu_index = posmod(menu_index + 1, MENU_ROWS.size())
+			_show_menu()
+		elif code in [KEY_ENTER, KEY_KP_ENTER, KEY_J]:
+			run_menu_row(str(MENU_ROWS[menu_index][1]))
 	elif panel == "cards":
 		if code in [KEY_A, KEY_LEFT]:
 			card_page -= 1
@@ -398,6 +418,67 @@ func _panel_key(code: int) -> void:
 			take_card(code - KEY_1)
 		elif code in [KEY_KP_1, KEY_KP_2, KEY_KP_3]:
 			take_card(code - KEY_KP_1)
+
+# --- The practice menu (F1; a gamepad's Start and Back) ---
+
+## Opens the menu at its first row, the game paused as under the other lists.
+func open_menu() -> void:
+	menu_index = 0
+	panel = "menu"
+	get_tree().paused = true
+	Engine.time_scale = 0.0
+	info.visible = false
+	_show_menu()
+
+## The row chosen: the menu closes, then the row does what its key does.
+func run_menu_row(row: String) -> void:
+	close_panel()
+	match row:
+		"target":
+			cycle_target()
+		"bot":
+			next_bot()
+		"reset":
+			reset_positions()
+		"refill":
+			refill()
+		"monster":
+			summon_monster()
+		"cards":
+			open_panel("cards")
+		"clear":
+			clear_cards()
+		"skills":
+			open_panel("skills")
+		"leave":
+			leave()
+
+## The menu, drawn on the panel the skill list uses: the row chosen in gold.
+func _show_menu() -> void:
+	for child in skills_panel.get_children():
+		skills_panel.remove_child(child)
+		child.queue_free()
+	var back := Panel.new()
+	back.size = skills_panel.size
+	back.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(INK, 0.96)
+	style.border_color = Color("59617c")
+	style.set_border_width_all(2)
+	back.add_theme_stylebox_override("panel", style)
+	skills_panel.add_child(back)
+	_skill_label(tr("Practice menu"), Rect2(28, 18, 564, 44), 30, GOLD)
+	for index in MENU_ROWS.size():
+		var chosen: bool = index == menu_index
+		_skill_label((">  " if chosen else "    ") + tr(str(MENU_ROWS[index][0])), Rect2(40, 84.0 + index * 36.0, 540, 30), 20, GOLD if chosen else Color.WHITE)
+	_skill_label(tr("Up / Down: choose    Enter: do it    Esc: close"), Rect2(28, skills_panel.size.y - 34.0, 564, 22), 14, DIM)
+	skills_panel.visible = true
+
+## With a pad in use the nine keys of the second practice line are no use: it names the button
+## that opens the menu instead. Main calls this after update_hud.
+func show_pad_help() -> void:
+	if GLYPHS.pad_in_use and is_instance_valid(info) and info.text.contains("\n"):
+		info.text = info.text.get_slice("\n", 0) + "\n" + tr(GLYPHS.PRACTICE_PAD)
 
 ## Esc with no list open: back to the title.
 func leave() -> void:

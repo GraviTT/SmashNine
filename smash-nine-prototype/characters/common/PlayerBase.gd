@@ -635,11 +635,13 @@ func _read_human_input(delta: float) -> void:
 		jump_buffer_timer = 0.0
 		return
 	move_input = Input.get_axis("move_left", "move_right")
-	if Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("move_up"):
+	# Jump is its own action since the gamepad (2026-11-26): W and Up are bound to it and to
+	# move_up both, as before; a stick pushed a little up aims without jumping.
+	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = JUMP_BUFFER
 	else:
 		jump_buffer_timer = maxf(jump_buffer_timer - delta, 0.0)
-	if (Input.is_action_just_released("jump") or Input.is_action_just_released("move_up")) and velocity.y < 0.0:
+	if Input.is_action_just_released("jump") and velocity.y < 0.0:
 		velocity.y *= JUMP_CUT_MULTIPLIER
 
 func _read_ai_input(delta: float) -> void:
@@ -777,16 +779,25 @@ func _handle_down_tap() -> void:
 		down_tap_timer = DROP_TAP_WINDOW
 
 func _try_drop_through_platform() -> void:
-	if not is_on_floor() or jump_buffer_timer > 0.0:
-		return
+	_drop_through(false)
+
+## Down and jump together on a thin platform: through it instead of up. A gamepad's way (PadInput
+## asks before it presses jump); tapping down twice stays. True when the fighter dropped.
+func drop_through_by_jump() -> bool:
+	return _drop_through(true)
+
+func _drop_through(with_jump: bool) -> bool:
+	if not is_on_floor() or is_defeated or hitstun_timer > 0.0:
+		return false
 	if movement_freeze_timer > 0.0 or skill_dash_timer > 0.0:
-		return
-	if Input.is_action_pressed("jump") or Input.is_action_pressed("move_up"):
-		return
+		return false
+	# Down twice with jump held or just pressed is a jump, not a drop.
+	if not with_jump and (jump_buffer_timer > 0.0 or Input.is_action_pressed("jump")):
+		return false
 	if not is_instance_valid(current_floor_platform):
 		_update_current_floor_platform()
 	if not _platform_allows_drop_through(current_floor_platform):
-		return
+		return false
 	drop_through_platform = current_floor_platform
 	add_collision_exception_with(drop_through_platform)
 	drop_through_timer = DROP_THROUGH_TIME
@@ -795,6 +806,7 @@ func _try_drop_through_platform() -> void:
 	jump_buffer_timer = 0.0
 	global_position.y += 4.0
 	velocity.y = maxf(velocity.y, DROP_THROUGH_SPEED)
+	return true
 
 func _platform_allows_drop_through(platform: Node) -> bool:
 	return is_instance_valid(platform) \
