@@ -59,6 +59,10 @@ const ARROWS := {"left": KEY_LEFT, "right": KEY_RIGHT, "up": KEY_UP, "down": KEY
 
 ## What is held on the pad outlives a scene reload (a rematch with the stick still pushed).
 static var _down: Dictionary = {}
+## The sound line (see _sound_notice) is shown once a page.
+static var sound_notice_shown := false
+const SOUND_NOTICE := "Sound may wait for your first click or key press."
+const SOUND_NOTICE_TIME := 6.0
 
 signal device_changed(pad: bool)
 
@@ -261,8 +265,42 @@ func _set_active(pad: bool) -> void:
 	active = pad
 	device_changed.emit(pad)
 
-## A browser, and this game, wait for a first press before sound: a pad's press counts here.
+## A browser, and this game, wait for a first press before sound: a pad's press counts for the
+## game's own wait. A browser may not count it (keys, mouse buttons and touches are what the HTML
+## spec lets start sound): the first time a pad is pressed on a page nothing else has touched,
+## a line says sound may wait for a click or a key.
 func _unlock_audio() -> void:
 	var manager := AUDIO.find(self)
 	if manager != null and not bool(manager.unlocked):
 		manager.unlock()
+	if OS.has_feature("web") and not sound_notice_shown and not _page_touched():
+		show_sound_notice()
+
+## The browser's own record of a click or key on the page.
+func _page_touched() -> bool:
+	return bool(JavaScriptBridge.eval("navigator.userActivation ? navigator.userActivation.hasBeenActive : true", true))
+
+## One line at the foot of the screen, over everything, for SOUND_NOTICE_TIME seconds.
+func show_sound_notice() -> Label:
+	sound_notice_shown = true
+	var layer := CanvasLayer.new()
+	layer.name = "PadSoundNotice"
+	layer.layer = 100
+	layer.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(layer)
+	var line := Label.new()
+	line.text = tr(SOUND_NOTICE)
+	line.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	line.add_theme_font_size_override("font_size", 16)
+	line.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
+	line.add_theme_constant_override("outline_size", 5)
+	line.anchor_left = 0.0
+	line.anchor_right = 1.0
+	line.anchor_top = 1.0
+	line.anchor_bottom = 1.0
+	line.offset_top = -78.0
+	line.offset_bottom = -52.0
+	line.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(line)
+	get_tree().create_timer(SOUND_NOTICE_TIME, true).timeout.connect(layer.queue_free)
+	return line

@@ -204,6 +204,20 @@ func _test_menus() -> bool:
 	await _tap(JOY_BUTTON_DPAD_DOWN)
 	_check(menu.selected_id == "nova", "D-pad down from Frey should reach Nova below (%s)" % menu.selected_id)
 	_check(main.pad.active, "Menu presses should keep the pad the device in use (the keys it sends are its own)")
+	# The game's own wait for a first press before sound (on the web): a pad's press counts.
+	var sound: Node = root.get_node_or_null("AudioManager")
+	if sound != null:
+		sound.unlocked = false
+		await _tap(JOY_BUTTON_DPAD_UP)
+		await _tap(JOY_BUTTON_DPAD_DOWN)
+		_check(bool(sound.unlocked), "A pad press should open the game's wait for a first press before sound")
+	else:
+		_check(false, "Test setup: the AudioManager should be there")
+	# The line a web page shows when a pad was the first press: worded, at the foot, then gone.
+	var notice: Label = main.pad.show_sound_notice()
+	await _frames(2)
+	_check(notice.is_visible_in_tree() and notice.text == tr(PAD.SOUND_NOTICE) and notice.get_global_rect().end.y <= 720.0 and notice.get_global_rect().position.y >= 600.0, "The sound line should show at the foot of the screen (%s)" % notice.get_global_rect())
+	PAD.sound_notice_shown = false
 	var body: String = main.human_body
 	await _tap(JOY_BUTTON_Y)
 	_check(main.human_body != body, "Y should change the body (%s -> %s)" % [body, main.human_body])
