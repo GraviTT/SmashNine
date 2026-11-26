@@ -156,10 +156,10 @@ func _test_cutin() -> void:
 ## style (F2) falls back to the old shapes.
 func _test_effects() -> void:
 	for effect in VFX.SPECS:
-		# The code drawing was picked: no strip, so the caller draws its own.
-		if effect in VFX.CODE_DRAWN:
+		# The code drawing was picked, or the art is not picked yet: no strip, so the caller draws its own.
+		if effect in VFX.CODE_DRAWN or effect in VFX.PENDING_ART:
 			if VFX.spawn(arena, effect, Vector2.ZERO) != null:
-				_fail("Effect %s is listed as code-drawn but drew art: drop it from Vfx.CODE_DRAWN" % effect)
+				_fail("Effect %s is listed as code-drawn or pending but drew art: drop it from its Vfx list" % effect)
 				return
 			continue
 		var sprite := VFX.spawn(arena, effect, Vector2.ZERO)

@@ -178,6 +178,14 @@ const SPECS := {
 	"xion_point_blank": [5, 36.0, Vector2(56, 56), true, SKILL_DIR],
 	"xion_double_in": [6, 24.0, Vector2(64, 160), true, SKILL_DIR],
 	"xion_dive_trail": [5, 31.0, Vector2(128, 24), true, SKILL_DIR],
+	# Rio's kit v3 effects (CODEX-VFX-11 contract, 2026-11-27): until a pick is in the folder, his code draws
+	# the stand-ins (the tinted gem sword, a code X, a code hexagon, the rune burst; no blink puff).
+	"rio_mana_sword": [4, 20.0, Vector2(48, 16), true, EFFECTS_DIR],
+	"rio_mana_sword_stuck": [4, 8.0, Vector2(48, 16), true, EFFECTS_DIR],
+	"rio_backstab": [5, 36.0, Vector2(48, 48), true, SKILL_DIR],
+	"rio_shadow_blink": [6, 30.0, Vector2(64, 144), true, SKILL_DIR],
+	"rio_counter_stance": [6, 15.0, Vector2(96, 152), true, SKILL_DIR],
+	"rio_decoy_burst": [6, 30.0, Vector2(80, 80), true, SKILL_DIR],
 }
 
 ## Frame widths the anchors and callers' scales were written for. A strip redrawn bigger
@@ -203,6 +211,10 @@ const AUTHORED_WIDTH := {
 ## pick cup 2026-11-24): spawn() returns null for them and the caller draws its own. A strip put in the folder
 ## later takes over; then drop the name here.
 const CODE_DRAWN := ["xion_bullet", "xion_point_blank"]
+
+## Effects whose contract is set but whose art is not picked yet (Rio's kit v3, CODEX-VFX-11): spawn() returns
+## null for them and his code draws its stand-ins, until the picked file is in its folder; then drop the name.
+const PENDING_ART := ["rio_mana_sword", "rio_mana_sword_stuck", "rio_backstab", "rio_shadow_blink", "rio_counter_stance", "rio_decoy_burst"]
 
 static var _cache: Dictionary = {}
 static var _additive: CanvasItemMaterial
