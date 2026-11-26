@@ -831,7 +831,11 @@ func _start_flurry() -> void:
 		_play_blink_trail(from, global_position)
 		sword.queue_free()
 		if not await _wait_action(FLURRY_GAP):
-			_end_flurry(start)
+			# Cut short. Held or stunned, the flurry is still his and he returns to where he pressed I.
+			# Moved meanwhile (a collapse, a respawn, practice mode's R: each clears the flurry), he
+			# stays where he was put: going back took him into the realm that fell (2026-11-26).
+			if flurry_phase == Flurry.CUTTING:
+				_end_flurry(start)
 			return
 	_end_flurry(start)
 

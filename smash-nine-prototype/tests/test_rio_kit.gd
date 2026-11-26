@@ -35,7 +35,7 @@ func _run() -> void:
 		scene = origin
 		for test in [_test_air_jumps, _test_air_step_effect, _test_backstab, _test_pierce, _test_pierce_ledge,
 				_test_sword_blink, _test_sword_air_and_end, _test_counter, _test_counter_attacker_freed, _test_counter_whiff, _test_decoy, _test_decoy_takes_a_swing,
-				_test_flurry, _test_flurry_target_freed, _test_flurry_burst, _test_bots, _test_third_skill_slot]:
+				_test_flurry, _test_flurry_target_freed, _test_flurry_moved_mid_cut, _test_flurry_burst, _test_bots, _test_third_skill_slot]:
 			await test.call()
 			await _clear()
 			if failed:
@@ -469,6 +469,35 @@ func _test_flurry_target_freed() -> void:
 			thrown += 1
 	if thrown != rio.FLURRY_SWORDS:
 		_fail("All six gem swords should be thrown, the later ones at the foe still there (%d thrown)" % thrown)
+
+## Moved in the middle of the cuts (a collapse throws him into another realm, a ring-out respawns
+## him, practice mode puts him back): the flurry ends where he was put. He used to snap back a
+## moment later to where he had pressed I, which after a collapse is a place in the realm that
+## fell (found by practice mode's R, 2026-11-26).
+func _test_flurry_moved_mid_cut() -> void:
+	_floor(Vector2(0, 0), 2400)
+	_floor(Vector2(4000, 0), 800)
+	var rio := _rio(Vector2(0, -2))
+	_dummy(10, Vector2(200, -2), -1)
+	await _frames(6)
+	rio.perform_ultimate()
+	if not await _wait_for(func() -> bool: return rio.flurry_phase == rio.Flurry.WAITING and rio._stuck_flurry_swords() == 6, 1.5):
+		_fail("Test setup: six gem swords should stick in the foe")
+		return
+	rio.ultimate()
+	await _frames(3)
+	if rio.flurry_phase != rio.Flurry.CUTTING:
+		_fail("Test setup: the second I should start the cuts (phase %d)" % rio.flurry_phase)
+		return
+	# What MatchDirector does to a fighter caught in a collapse.
+	var there := scene + Vector2(4000, -2)
+	var points: Array[Vector2] = [there]
+	rio.reset_for_map(there, points)
+	await _frames(40)
+	if _at(rio).distance_to(Vector2(4000, -2)) > 40.0:
+		_fail("Rio moved in the middle of his cuts should stay where he was put (at %s, put at (4000, -2))" % _at(rio))
+	if rio.flurry_phase != rio.Flurry.NONE:
+		_fail("The flurry should be over after the move (phase %d)" % rio.flurry_phase)
 
 ## Without the second I the stuck swords burst on their foe.
 func _test_flurry_burst() -> void:
