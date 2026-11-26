@@ -186,6 +186,9 @@ var player_tag: Control
 var skill_bar: Control
 var controls_label: Label
 var controls_height := CONTROLS_HEIGHT
+## The hints and practice's lines as last laid out (_process lays out words written from outside).
+var _controls_text_shown := ""
+var _practice_text_shown := ""
 ## slot -> {"style", "icon", "glyph", "key", "shade", "time", "count", "count_back"}
 var skill_slots: Dictionary = {}
 var skill_icon_set := ""
@@ -278,6 +281,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_pulse += delta
+	# Words written straight into these labels from outside (the gamepad's) get their layout here.
+	if controls_label.text != _controls_text_shown:
+		set_control_hints(controls_label.text)
+	if is_instance_valid(practice_label) and practice_label.text != _practice_text_shown:
+		set_practice_lines(practice_label.text)
 
 # --- Small builders ---
 
@@ -936,24 +944,34 @@ func update_skill_bar(fighter: Node, delta: float) -> void:
 			style.border_color = EDGE
 			style.set_border_width_all(2)
 
-## The hints keep to the card column's width, which fits right of a five-slot skill bar: a longer
-## line breaks at its wide gaps (three spaces) into two. The English line did not fit one (487 px
-## over Rio's bar, test_hud_layout 2026-11-26); the Korean one does.
 func _build_controls() -> void:
-	controls_label = _text(self, "", Rect2(0, 0, 10, CONTROLS_HEIGHT), MIN_FONT_SIZE, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
+	controls_label = _text(self, "", Rect2(1280.0 - HUD_MARGIN - 10.0, 720.0 - HUD_MARGIN - CONTROLS_HEIGHT, 10, CONTROLS_HEIGHT), MIN_FONT_SIZE, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
 	controls_label.name = "Controls"
 	controls_label.add_theme_stylebox_override("normal", _box(Color(PLATE, 0.7), Color.TRANSPARENT, 0, 4))
+	_pin(controls_label, BOTTOM_RIGHT)
+	set_control_hints(tr(CONTROLS_SHORT))
+
+## The hints keep to the card column's width, which fits right of a five-slot skill bar: a longer
+## line breaks at its wide gaps (three spaces) into lines of even width. The English line did not
+## fit one (487 px over Rio's bar, test_hud_layout 2026-11-26); the Korean one does. Other words
+## (the gamepad's, scripts/input/PadGlyphs.gd) come here too: written straight into
+## controls_label.text, they are laid out the same way at the HUD's next frame.
+func set_control_hints(text: String) -> void:
 	var font: Font = controls_label.get_theme_font("font")
-	controls_label.text = _fit_items(tr(CONTROLS_SHORT), font, MIN_FONT_SIZE, CARD_WIDTH - 22.0, true)
+	controls_label.text = _fit_items(text, font, MIN_FONT_SIZE, CARD_WIDTH - 22.0, true)
+	_controls_text_shown = controls_label.text
 	var lines := controls_label.text.split("\n")
 	var width := 0.0
 	for line in lines:
 		width = maxf(width, font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 22.0)
 	var advance := controls_label.get_line_height() + controls_label.get_theme_constant("line_spacing")
 	controls_height = CONTROLS_HEIGHT if lines.size() == 1 else lines.size() * advance + 8.0
-	controls_label.position = Vector2(1280.0 - HUD_MARGIN - width, 720.0 - HUD_MARGIN - controls_height)
-	controls_label.size = Vector2(width, controls_height)
-	_pin(controls_label, BOTTOM_RIGHT)
+	controls_label.offset_left = -HUD_MARGIN - width
+	controls_label.offset_right = -HUD_MARGIN
+	controls_label.offset_top = -HUD_MARGIN - controls_height
+	controls_label.offset_bottom = -HUD_MARGIN
+	if is_instance_valid(practice_label):
+		_place_practice_lines()
 
 ## The hints' width on screen (one line, or the longer of two).
 func controls_label_width() -> float:
@@ -1307,14 +1325,19 @@ func build_practice_lines() -> Label:
 	return practice_label
 
 ## Sets practice's lines, broken at the wide gaps between their items so each line fits the block,
-## which stands on the control hints and grows upward.
+## which stands on the control hints and grows upward. Lines written straight into the label (the
+## gamepad's help, PracticeSession.show_pad_help) are laid out the same way at the next frame.
 func set_practice_lines(text: String) -> void:
 	var font: Font = practice_label.get_theme_font("font")
 	var room := PRACTICE_WIDTH - 24.0
 	var fitted := _fit_items(text, font, MIN_FONT_SIZE, room)
+	_practice_text_shown = fitted
 	if fitted == practice_label.text:
 		return
 	practice_label.text = fitted
+	_place_practice_lines()
+
+func _place_practice_lines() -> void:
 	# The label's own measure of its lines and margins; it grows upward if ever taller.
 	var height := practice_label.get_minimum_size().y
 	var bottom := -HUD_MARGIN - controls_height - 8.0

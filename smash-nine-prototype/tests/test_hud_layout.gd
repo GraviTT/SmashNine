@@ -64,8 +64,10 @@ func _match_hud(window: Vector2i, character: String, locale: String) -> void:
 	main._start_match(character)
 	for frame in 10:
 		await process_frame
-	# From here the test drives the HUD itself: Main would redraw it every frame.
-	main.process_mode = Node.PROCESS_MODE_DISABLED
+	# From here the test drives the HUD itself: Main would redraw it every frame. The game pauses
+	# (a disabled Main took its bodies out of the physics space, and a timer that runs through
+	# pauses once found one there: "body->get_space() is null").
+	paused = true
 	var hud: Node = main.hud
 	var view: Vector2 = root.get_visible_rect().size
 	var where := "%s, %s, %dx%d" % [character, locale, window.x, window.y]
@@ -113,6 +115,21 @@ func _match_hud(window: Vector2i, character: String, locale: String) -> void:
 	_check_fits(hud.status_label, "cards held", where)
 	_check_blocks(hud, view, "practice, " + where)
 	_check_font_sizes(hud, "practice, " + where)
+	# Words written straight into the hints and practice's lines (the gamepad's, from outside the
+	# HUD) get the same layout at the HUD's next frame.
+	hud.process_mode = Node.PROCESS_MODE_ALWAYS
+	var pad_items := "   ".join(["LB / RB  move", "A  jump", "B  guard", "X  attack", "Y  skill", "RT  ultimate", "Back  portal", "Start  pause"])
+	hud.controls_label.text = pad_items
+	lines.text = lines.text.get_slice("\n", 0) + "\n" + pad_items
+	await process_frame
+	hud.process_mode = Node.PROCESS_MODE_INHERIT
+	for label: Label in [hud.controls_label, lines]:
+		for line in label.text.split("\n"):
+			var width := font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, hud.MIN_FONT_SIZE).x
+			_check(width <= hud.CARD_WIDTH - 22.0 + 0.5, "A line written from outside should be laid out to fit (%.0f px, %s): %s" % [width, where, line])
+	_check(hud.controls_label.text.contains("Start  pause") and lines.text.contains("Start  pause"), "The words written from outside should stay (%s)" % where)
+	_check_blocks(hud, view, "gamepad words, " + where)
+	paused = false
 	main.queue_free()
 	await process_frame
 	await process_frame
