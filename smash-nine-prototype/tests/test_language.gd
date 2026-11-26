@@ -137,6 +137,13 @@ func _run() -> void:
 	main.hud.show_card_offer(CARDS.CARDS.slice(3, 6), 5.0)
 	_check_card_fit(main.hud)
 	await _capture("09-soul-cards-action-ko")
+	# The cards of D54: every one fits its card in Korean (the longest texts are theirs).
+	for first in range(6, CARDS.CARDS.size(), 3):
+		main.hud.show_card_offer(CARDS.CARDS.slice(first, first + 3), 8.0)
+		_check_card_fit(main.hud)
+		if first == 6:
+			_check(main.hud.card_letters[0].text == "공", "A card without an icon shows its title's first letter (%s)" % main.hud.card_letters[0].text)
+			await _capture("10-soul-cards-d54-ko")
 	main.hud.hide_card_offer()
 	# Cover every generated monster name, including elite formatting.
 	for skin in ARCHETYPES.SKINS:
@@ -186,6 +193,11 @@ func _run() -> void:
 	main.director._finish(human, "last survivor")
 	await _frames(3)
 	_check(_has_text(main.hud.frontend, "FREY WINS"), "Switching back must restore exact English results")
+	# Every card fits its card in English too (D54).
+	for first in range(0, CARDS.CARDS.size(), 3):
+		main.hud.show_card_offer(CARDS.CARDS.slice(first, first + 3), 8.0)
+		_check_card_fit(main.hud)
+	main.hud.hide_card_offer()
 	draw_messages.clear()
 	draw_director = DIRECTOR.new()
 	draw_director.announcement.connect(func(message: String) -> void: draw_messages.append(message))
@@ -301,9 +313,9 @@ func _check_menu_fit(menu: Control) -> void:
 
 func _check_card_fit(hud: Node) -> void:
 	for label: Label in hud.card_labels:
-		# The pre-existing offer panel is 152 x 80 inside each card frame. Copy must fit
-		# that space; LANG-01 must not resize/rewrite this panel (another branch owns it).
-		_check(label.get_line_count() * label.get_line_height() <= 80, "Korean card copy overflows its unchanged box: " + label.text)
+		# The text has the card frame less its icon column and margins (216 x 108 since D54; 152 x 80
+		# before). Copy must fit that space.
+		_check(label.get_line_count() * label.get_line_height() <= label.size.y, "Card copy overflows its box (%d lines of %d px in %d px): %s" % [label.get_line_count(), label.get_line_height(), int(label.size.y), label.text])
 
 func _frames(count: int) -> void:
 	for frame in count:

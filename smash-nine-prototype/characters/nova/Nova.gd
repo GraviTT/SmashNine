@@ -36,6 +36,9 @@ const FIELD_RECOVERY := 0.2
 const FIELD_RADIUS := 200.0
 const FIELD_TIME := 6.0
 const FIELD_COOLDOWN := 12.0
+## Deep Gravity (her soul card, D54): the field lasts longer and comes back sooner.
+const DEEP_FIELD_TIME := 9.0
+const DEEP_FIELD_COOLDOWN := 10.0
 const FIELD_FLY_SPEED := 470.0
 const FIELD_FLY_ACCEL := 3200.0
 ## U "중력 광선" (Gravity Beam): where she aims; the first body it reaches is dragged to just in
@@ -195,8 +198,14 @@ func perform_skill_three() -> void:
 
 func skill_cooldown(slot: String) -> Vector2:
 	if slot == "l":
-		return Vector2(field_cooldown_timer, FIELD_COOLDOWN)
+		return Vector2(field_cooldown_timer, field_cooldown())
 	return super(slot)
+
+func field_time() -> float:
+	return DEEP_FIELD_TIME if has_card("deep_gravity") else FIELD_TIME
+
+func field_cooldown() -> float:
+	return DEEP_FIELD_COOLDOWN if has_card("deep_gravity") else FIELD_COOLDOWN
 
 func perform_ultimate() -> void:
 	_sphere_start()
@@ -408,14 +417,14 @@ func _update_orb_pull(delta: float) -> void:
 
 func _cast_field() -> void:
 	_clear_field()
-	field_cooldown_timer = FIELD_COOLDOWN
+	field_cooldown_timer = field_cooldown()
 	field = Node2D.new()
 	field.set_script(FIELD_SCRIPT)
 	field.name = "NovaField"
 	field.z_index = -1
 	get_parent().add_child(field)
 	field.global_position = global_position + GAME_SCALE.BODY_CENTRE
-	field.configure(self, FIELD_RADIUS * GAME_SCALE.COMBAT, FIELD_TIME)
+	field.configure(self, FIELD_RADIUS * GAME_SCALE.COMBAT, field_time())
 	_play_impact_flash(global_position + GAME_SCALE.BODY_CENTRE, 46.0, Color(0.6, 0.4, 1.0, 0.7))
 
 func _in_own_field() -> bool:

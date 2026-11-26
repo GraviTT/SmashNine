@@ -33,7 +33,7 @@
 
 ## 공용 조작
 
-`PlayerBase._get_basic_attack_type`은 지상과 공중, 입력 방향을 조합해 `neutral`, `side`, `up`, `down`, `air_side`, `air_up`, `air_down`으로 나눈다. `basic_attack`, `skill_one`, `skill_two`, `skill_three`, `ultimate`이 각 캐릭터의 `perform_*` 함수로 넘긴다. `skill_three`(U 키, 2026-11-03 D47)는 세 번째 스킬이 있는 캐릭터(`has_skill_three`, 지금 Nova)만 쓰고, 스킬 바의 U 칸도 그때만 보인다. 독립된 공용 대시 입력은 없으며, 코드에서 대시는 Frey K, Brave Luna K, Nova K, Rio K처럼 각 캐릭터 기술의 `skill_dash_velocity`로 구현된다.
+`PlayerBase._get_basic_attack_type`은 지상과 공중, 입력 방향을 조합해 `neutral`, `side`, `up`, `down`, `air_side`, `air_up`, `air_down`으로 나눈다. `basic_attack`, `skill_one`, `skill_two`, `skill_three`, `ultimate`이 각 캐릭터의 `perform_*` 함수로 넘긴다. `skill_three`(U 키, 2026-11-03 D47)는 세 번째 스킬이 있는 캐릭터(`has_skill_three`, 지금 Nova)만 쓰고, 스킬 바의 U 칸도 그때만 보인다. 독립된 공용 대시 입력은 없으며, 코드에서 대시는 Frey K, Brave Luna K, Nova K, Rio K처럼 각 캐릭터 기술의 `skill_dash_velocity`로 구현된다. 예외는 소울 카드 공중 대시다: 그 카드를 고른 선수는 공중에서 Guard 키로 대시한다(아래 "소울 카드" 절).
 
 방어는 전 캐릭터 공통이다. 지상에서 Guard를 누르면 입력 방향의 140도 범위를 막는다. 처음 0.1초는 패리이며 `[GUARD_PARRY_WINDOW]`, 일반 막기의 피해 감소율은 처음 75%에서 5초 동안 30%까지 내려간다 `[GUARD_START_REDUCTION]`, `[GUARD_MIN_REDUCTION]`, `[GUARD_DECAY_TIME]`. 놓은 뒤 회복은 0.26초다 `[GUARD_RECOVERY]`. 동작은 `shield` 줄 전체이며, 이펙트는 공용 `assets/art/effects/skill/guard_bubble.png`의 평상/피격/패리 프레임과 패리 성공 시 `parry_flash.png`다. 그림이 없으면 `PlayerBase._update_guard_visual`의 `Line2D` 호와 `_play_parry_effect`의 `ColorRect`가 대신한다.
 
@@ -178,6 +178,35 @@
 | Guard | 공용 방어/패리 | 공용 지상 방어. | 공용 조작 절 참고 | `shield` 전체 | `guard_bubble.png`, `parry_flash.png` | 공용 | — |
 
 특수 상태: 붙잡힘은 공용 `PlayerBase.apply_pin_hold`다(3초 행동 불능, 맞아도 피해만 들어가고 넉백·경직·취소 없음, 위치 고정이라 링아웃도 없음, 그 위에 Brave 붙잡기는 안 걸림, `release_pin_hold`로 일찍 풀림). 구르기 처음 0.2초는 `is_invulnerable`이다. 날아드는 동안은 몸이 지형과 부딪치지 않는다(`collision_mask` 0). 도플갱어는 공격 판정이 맞히는 플레이어 층의 몸이지만 `players` 무리가 아니라서 봇은 노리지 않는다. 봇: 적을 맞히면 도플갱어를 깔고, 붙잡으면 0.3초 뒤 날아든다. 복귀는 L(탄이 없으면 공중 K로 먼저 장전), L은 아래에 적이 있을 때만.
+
+## 소울 카드 (2026-11-26, D54)
+
+카드 19장의 정의는 `scripts/match/SoulCards.gd`, 고르는 규칙은 `SoulCards.draw_offer`와 `scripts/match/SoulGrowth.gd`에 있다. 과정과 측정은 `reports/soul-cards-2026-11-26/README.md`다.
+
+- 종류는 셋이다: 수치(`stat`) 5장, 행동(`action`) 9장, 캐릭터 전용(`character`) 5장. 한 캐릭터가 보는 카드는 공통 14장과 자기 전용 1장이다(Yuki는 14장).
+- 세 장 가운데 한 장은 반드시 행동이나 전용 카드다. 전용 카드는 두 번째 고르기에 반드시 나온다. 사람은 8초 안에 고른다 `[CHOICE_TIME]`.
+- 수치 카드(Power, Vitality, Swiftness, Anchor, Last Stand)는 `PlayerBase.upgrade_modifiers`의 숫자만 바꾼다. 아래는 행동을 바꾸는 카드다. Sky Step만 두 장까지, 나머지는 한 장이다.
+
+| 카드 | 하는 일 | 수치와 조건 | 코드 |
+| --- | --- | --- | --- |
+| Sky Step (공중 도약) | 공중 점프 +1 | 두 장까지. 상한 3회 `[MAX_AIR_JUMPS]` | `bonus_air_jumps` |
+| Air Dash (공중 대시) | 공중에서 Guard 키를 누르면 바라보는 쪽으로 대시한다. 착지 전 한 번 | 속도 `480×WORLD` `[AIR_DASH_SPEED]`로 0.17초 `[AIR_DASH_TIME]`, 약 120px. 대시 동안 떨어지지 않고, 끝나면 낙하가 처음부터 다시 시작된다. 경직, 공격 중, 착지 잠금 중에는 쓸 수 없다. 봇은 복귀할 때만 쓴다 | `PlayerBase.try_air_dash`, `can_air_dash` |
+| Meteor Landing (유성 착지) | 높은 곳에서 떨어져 착지하면 발 양옆에 충격파가 나고, 맞은 적은 떠오른다 | 낙하 300px 이상 `[METEOR_DROP]`(한 번 점프의 꼭대기는 200~235px). 판정은 양옆에 각각 129×78px, 피해 8, 넉백 400, 방향 (±0.4, −1). 경직 중의 착지는 제외 | `PlayerBase._meteor_shockwave` |
+| Riposte (되받아치기) | 패리에 성공하면 그 공격자가 1초 기절한다 `[RIPOSTE_STUN]` | 피해와 넉백은 없고 하던 동작이 끊긴다. 궁극기 슈퍼아머, 붙잡힘, 무적 중인 상대는 기절하지 않는다. 투사체를 패리하면 쏜 선수가 기절한다. 몬스터도 기절한다 | `PlayerBase._riposte`, `apply_parry_stun` |
+| Soul Drain (소울 흡수) | 선수를 탈락시키면 HP 25를 회복한다 `[SOUL_DRAIN_HEAL]` | 최대 HP까지. 링아웃으로 탈락시킨 것도 센다(마지막으로 때린 선수, 8초 기억) | `PlayerBase.record_knockout`, `heal` |
+| Last Flame (마지막 불꽃) | HP가 30% 이하인 동안 공격 ×1.25, 이동 ×1.1 | 회복해서 30%를 넘으면 꺼진다 | `PlayerBase._update_card_states` |
+| Chaser (추격자) | 적을 크게 날리면 2초 동안 이동 ×1.3 | "크게"는 맞은 선수의 최종 넉백이 480 이상 `[HARD_LAUNCH_KNOCKBACK]`일 때다(경직이 길어지는 강한 타격의 기준과 같다). 강제 띄우기는 속도÷무게가 480 이상일 때. 가드에 막힌 타격과 몬스터는 세지 않는다. 다시 날리면 2초가 새로 시작된다 | `PlayerBase.on_hard_launch` |
+| Hunter (사냥꾼) | 몬스터에게 주는 피해 ×1.5, 몬스터와 크리스탈의 소울 ×1.5 | 소울은 반올림한다(6 → 9, 8 → 12, 10 → 15) | `PlayerBase.damage_scale_against`, `add_hunt_souls` |
+| Overcharge (궁극기 가속) | 궁극기 쿨다운 30 → 22초 | 고른 뒤에 쓰는 궁극기부터 | `PlayerBase.ultimate_cooldown` |
+| Second Wingbeat (두 번째 날갯짓, Frey) | 한 번의 공중에서 발키리의 날개를 두 번 쓴다 | 두 번째는 공중 점프가 없어도, 첫 돌진의 착지 잠금 중에도 된다. 두 번째 돌진 뒤에는 지금처럼 착지까지 잠긴다 | `Frey._second_wing_ready` |
+| Twin Stars (쌍둥이 별, Luna) | J의 큰 별이 터질 때 작은 별 둘이 더 나간다 | 큰 별이 날던 방향의 ±0.2rad(약 11°) `[TWIN_STAR_ANGLE]`. 작은 별의 수치 그대로(피해 3, 넉백 120, 0.3초). 큰 별이 맞힌 대상은 지나가고, 터진 자리 뒤 약 200px 안의 적에게는 둘 다 닿는다 | `Luna.star_burst_at` |
+| Deep Gravity (깊은 중력, Nova) | 중력 필드 6 → 9초, 쿨다운 12 → 10초 | `[DEEP_FIELD_TIME]`, `[DEEP_FIELD_COOLDOWN]` | `Nova.field_time`, `field_cooldown` |
+| Second Decoy (두 번째 분신, Rio) | 분신과 자리를 두 번 바꾼다 | 분신이 서 있는 시간(4초)은 그대로다 | `Rio.decoy_swaps_left` |
+| Extended Magazine (확장 탄창, Xion) | 탄창 10 → 14발 `[EXTENDED_MAGAZINE]` | 고르는 순간 4발이 장전된다. 남은 탄을 모두 쏘는 L의 피해도 탄 수를 따라 커진다 | `Xion.magazine_size` |
+
+- 카드를 한 장 고를 때마다 캐릭터의 성장 곡선도 3단계 오른다(`GROWTH_STEPS_PER_PICK`). 카드 효과와는 별개다.
+- 아이콘은 지금 여섯 장(처음부터 있던 카드)만 있다. 새 카드는 이름 첫 글자가 종류 색으로 그 자리에 나온다.
+- Yuki의 전용 카드는 새 키트를 정할 때 함께 정한다.
 
 ## 선딜 (2026-10-15, D39)
 

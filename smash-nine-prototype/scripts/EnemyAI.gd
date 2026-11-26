@@ -165,6 +165,9 @@ const RECOVERY_SKILL_AIM_ABOVE := 60.0
 ## them in two long recoveries).
 const RECOVERY_SKILL_MAX_USES := 2
 const RECOVERY_LAST_CHANCE := 140.0
+## Air Dash (a soul card, D54: "봇은 공중 대시는 복귀 때 쓴다"): on the way back, falling, with the
+## platform it heads for still at least this far to the side (px; the dash covers about 120).
+const AIR_DASH_MIN_GAP := 90.0
 ## Nova's vector shift adds speed to the fall it starts from (lead's measurement 2026-10-09, shift
 ## straight up: highest point 321 / 274 / 232 / 118 / 22 / 0 px above the start at fall speeds 0 /
 ## 300 / 500 / 700 / 900 / 1,100 px/s), but shifting early in any fall with no floor under it did
@@ -606,6 +609,12 @@ func _apply_intent(player, intent: Dictionary) -> void:
 			player.skill_two()
 		"skill_3":
 			player.press_skill_three()
+		"air_dash":
+			# The way it is heading (a dash goes the way the fighter faces).
+			var side := signf(float(intent.get("move", 0.0)))
+			if side != 0.0:
+				player.facing = int(side)
+			player.try_air_dash()
 		"ultimate":
 			var was_ready: bool = player.is_ultimate_ready()
 			player.ultimate()
@@ -1068,6 +1077,12 @@ func _recover_intent(player) -> Dictionary:
 		jump = true
 		jump_retry_timer = RECOVER_JUMP_RETRY
 	var intent: Dictionary = _intent(direction, jump)
+	# Air Dash, for a bot that took the card: toward the platform, before anything else is spent
+	# (it stops the fall and keeps the air jumps).
+	if direction != 0.0 and player.velocity.y > 60.0 and absf(recovery_target.x - player.global_position.x) >= AIR_DASH_MIN_GAP and player.can_air_dash():
+		intent["attack"] = "air_dash"
+		debug_reason = "off the stage: air dash"
+		return intent
 	# Out of jumps: a recovery skill aimed at the platform (Rio's dimension slash, Frey's dash
 	# strike, Nova's vector shift; Codex QA-14: 78% of ring-outs had no air jump left).
 	if below_target and player.air_jumps_left <= 0 and player.velocity.y > 60.0 and bool(_combat_profile(player).get("recovery_skill", false)):
@@ -1908,7 +1923,9 @@ func _drive_frey_wings(player, delta: float) -> void:
 		if held != Vector2.ZERO:
 			wing_aim = held
 		return
-	if state != STATE_ENGAGE or wing_cooldown > 0.0 or air_time < WING_AIR_TIME_MIN:
+	# Second Wingbeat (her soul card): the second use of one airtime does not wait out the pause.
+	var again: bool = player.wing_uses == 1 and player.has_card("second_wingbeat")
+	if state != STATE_ENGAGE or (wing_cooldown > 0.0 and not again) or air_time < WING_AIR_TIME_MIN:
 		return
 	if wing_roll < 0:
 		wing_roll = 1 if action == "wing_in" or randf() < WING_CHANCE else 0

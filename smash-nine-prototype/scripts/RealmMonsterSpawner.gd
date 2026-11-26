@@ -172,7 +172,10 @@ func _clear_realm(realm_index: int) -> void:
 	elite_due.erase(realm_index)
 
 func _on_monster_defeated(monster: Node, attacker: Node, soul_reward: int, realm_index: int) -> void:
-	if is_instance_valid(attacker) and attacker.has_method("add_souls"):
+	# add_hunt_souls: Hunter (a soul card) pays half as many again for monsters and crystals.
+	if is_instance_valid(attacker) and attacker.has_method("add_hunt_souls"):
+		attacker.add_hunt_souls(soul_reward)
+	elif is_instance_valid(attacker) and attacker.has_method("add_souls"):
 		attacker.add_souls(soul_reward)
 	if not monsters_by_realm.has(realm_index):
 		return

@@ -45,7 +45,10 @@ func _spawn(realm_index: int) -> void:
 	crystals[realm_index] = crystal
 
 func _on_broken(_crystal: Node, attacker: Node, realm_index: int) -> void:
-	if is_instance_valid(attacker) and attacker.has_method("add_souls"):
+	# add_hunt_souls: Hunter (a soul card) pays half as many again for monsters and crystals.
+	if is_instance_valid(attacker) and attacker.has_method("add_hunt_souls"):
+		attacker.add_hunt_souls(CRYSTAL_SCRIPT.SOUL_REWARD)
+	elif is_instance_valid(attacker) and attacker.has_method("add_souls"):
 		attacker.add_souls(CRYSTAL_SCRIPT.SOUL_REWARD)
 	crystals.erase(realm_index)
 	get_tree().create_timer(RESPAWN_DELAY).timeout.connect(_respawn.bind(realm_index))

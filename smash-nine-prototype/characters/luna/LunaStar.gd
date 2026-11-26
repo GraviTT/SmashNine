@@ -36,5 +36,5 @@ func _burst() -> void:
 	burst_done = true
 	set_deferred("monitoring", false)
 	if is_instance_valid(source) and source.has_method("star_burst_at"):
-		source.star_burst_at(global_position, direction)
+		source.star_burst_at(global_position, direction, hit_targets)
 	queue_free()
