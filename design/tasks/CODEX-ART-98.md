@@ -1,5 +1,7 @@
 # CODEX-ART-98 · Six new character candidates: main illustration, face, one idle frame each
 
+> **Superseded 2026-11-27 by `CODEX-ART-99.md`.** The user narrowed the new characters to Borok (with an axe), Doron (no mecha at first) and a new Jupi. Both units were stopped at 00:07 before any picture was delivered.
+
 - Request: the user (2026-11-26, through the 총괄 session): "그 동안 Codex의 사용량을 좀 많이 소모 해야 하니 캐릭터를 더 만들어야 할 것 같다."
 - The 총괄 chose six candidates from the old design document. Read **`reports/new-characters-2026-11-26/README.md`**: each candidate's play style, one-line story, skill sketch and body type.
 - The user picks two of the six in the pick cup (D49). The picked ones then get their kits and full art, as Xion did.
