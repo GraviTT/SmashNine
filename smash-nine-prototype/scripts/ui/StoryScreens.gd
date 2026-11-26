@@ -42,28 +42,28 @@ func show_story_select() -> void:
 	screen = "story_select"
 	content.get_child(0).text = tr("CHOOSE YOUR HERO")
 	content.get_child(1).text = tr("A journey through nine realms.")
-	# Keep the existing five portraits and kit preview; progress fits beneath each name.
+	# The select screen of the menu round's pick (B); each hero's progress on its tile's lower edge.
 	for index in portrait_buttons.size():
 		var id := select_ids[index]
 		var run := PROGRESS.get_run(id)
 		portrait_buttons[index].focus_entered.connect(func() -> void:
 			selected_id = id
 			_refresh_fighter())
-		var caption := content.get_child(portrait_buttons[index].get_index() + 2) as Label
-		caption.position.y -= 8
-		caption.size.y = 42
-		caption.add_theme_font_size_override("font_size", 15)
-		caption.text = "%d  %s\n%s" % [index + 1, tr(str(_roster[id].name)), tr("CLEAR") if run.get("done", false) else "★ %d/9" % int(run.get("cleared", 0))]
-		var picture := content.get_child(portrait_buttons[index].get_index() + 1) as TextureRect
-		picture.size.y = 82
-	# Random (the tile after the heroes) gives its place to the difficulty button.
+		var tile := portrait_buttons[index].get_rect()
+		var progress := _label("", Rect2(tile.position.x + 4, tile.end.y - 26, tile.size.x - 8, 22), 14, GOLD)
+		progress.text = tr("CLEAR") if run.get("done", false) else "★ %d/9" % int(run.get("cleared", 0))
+		progress.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		progress.autowrap_mode = TextServer.AUTOWRAP_OFF
+		progress.add_theme_stylebox_override("normal", _box(Color(INK, 0.82), Color.TRANSPARENT, 0, 3))
+	# Random (the tile after the heroes) gives its place, two tiles wide, to the difficulty.
 	buttons[portrait_buttons.size()].visible = false
 	buttons[portrait_buttons.size()].disabled = true
-	difficulty_button = _button("", Rect2(206, 436, 142, 132), "story_difficulty")
-	difficulty_button.add_theme_font_size_override("font_size", 17)
-	buttons[8].text = tr("New journey")
-	continue_button = _button("Continue", Rect2(394, 522, 326, 48), "story_continue")
-	footer.text = tr("1-%d: choose hero    V: body    Enter / J: continue    Esc: title") % select_ids.size()
+	random_caption.visible = false
+	var slot := _select_tile(select_ids.size())
+	difficulty_button = _button("", Rect2(slot.position, Vector2(slot.size.x + SELECT_PITCH, slot.size.y)), "story_difficulty", "", "slant", 17)
+	select_start.text = tr("New journey")
+	continue_button = _button("Continue", Rect2(632, 650, 296, 56), "story_continue", "", "slant", 21)
+	set_footer(tr("1-%d: choose hero    V: body    Enter / J: continue    Esc: title") % select_ids.size())
 	_refresh_story_selection()
 
 func _refresh_fighter() -> void:
