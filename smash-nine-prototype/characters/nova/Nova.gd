@@ -257,6 +257,9 @@ func character_on_respawn() -> void:
 func character_cleanup() -> void:
 	_reset_nova_state()
 
+func character_refill() -> void:
+	field_cooldown_timer = 0.0
+
 func character_on_attack_hit_body(body: Node, attack: Node) -> void:
 	if attack.has_meta("nova_gravity"):
 		_stack(body)

@@ -287,6 +287,10 @@ func character_on_respawn() -> void:
 func character_cleanup() -> void:
 	character_on_respawn()
 
+func character_refill() -> void:
+	counter_cooldown_timer = 0.0
+	decoy_cooldown_timer = 0.0
+
 func character_hit_absorption() -> float:
 	return 0.0 if counter_timer > 0.0 else -1.0
 
@@ -831,7 +835,11 @@ func _start_flurry() -> void:
 		_play_blink_trail(from, global_position)
 		sword.queue_free()
 		if not await _wait_action(FLURRY_GAP):
-			_end_flurry(start)
+			# Cut short. Held or stunned, the flurry is still his and he returns to where he pressed I.
+			# Moved meanwhile (a collapse, a respawn, practice mode's R: each clears the flurry), he
+			# stays where he was put: going back took him into the realm that fell (2026-11-26).
+			if flurry_phase == Flurry.CUTTING:
+				_end_flurry(start)
 			return
 	_end_flurry(start)
 

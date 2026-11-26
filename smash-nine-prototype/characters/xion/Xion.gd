@@ -596,6 +596,14 @@ func character_on_respawn() -> void:
 func character_cleanup() -> void:
 	character_on_respawn()
 
+## A full magazine and every skill ready (practice mode's E).
+func character_refill() -> void:
+	ammo = magazine_size()
+	reload_timer = 0.0
+	roll_cooldown_timer = 0.0
+	double_cooldown_timer = 0.0
+	_update_reload_ring()
+
 func _clear_double() -> void:
 	if is_instance_valid(double):
 		double.vanish()

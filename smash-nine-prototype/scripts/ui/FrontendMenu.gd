@@ -70,6 +70,8 @@ const CONTROLS := [
 ]
 
 var screen := "title"
+## What the select screen starts: "match", or "practice" when it was opened from Practice.
+var select_mode := "match"
 var selected_id := "frey"
 var body := "male"
 var fighter_count := 8
@@ -255,8 +257,9 @@ func show_title() -> void:
 		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var tagline := _label("NINE REALMS. ONE SURVIVOR.", Rect2(440, 250, 400, 28), 18, DIM)
 	tagline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	for entry in [["Battle Royale", "select"], ["Story", "story"], ["Watch bots", "watch"], ["Options", "options"], ["Controls", "controls"]]:
-		_button(entry[0], Rect2(466, 294 + buttons.size() * 60, 348, 52), entry[1])
+	# Six rows since Practice (2026-11-26): the step went from 60 to 52 px, the rows keep their size.
+	for entry in [["Battle Royale", "select"], ["Story", "story"], ["Practice", "practice"], ["Watch bots", "watch"], ["Options", "options"], ["Controls", "controls"]]:
+		_button(entry[0], Rect2(466, 286 + buttons.size() * 52, 348, 52), entry[1])
 	session_status = _label("", Rect2(424, 600, 432, 48), 14, DIM)
 	session_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	refresh_options()
@@ -308,7 +311,7 @@ func show_select(ids: Array[String] = []) -> void:
 		skill_labels.append(line)
 	body_button = _button("", Rect2(52, 584, 296, 40), "body")
 	_button("Back", Rect2(394, 584, 150, 44), "title")
-	_button("Start match", Rect2(558, 584, 162, 44), "start")
+	_button("Start practice" if select_mode == "practice" else "Start match", Rect2(558, 584, 162, 44), "start")
 	_refresh_fighter()
 	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-%d: quick start    Esc: back")
 
@@ -515,7 +518,12 @@ func _victory_picture(fighter: Node, bounds: Rect2) -> bool:
 func _activate(action: String, value: String) -> void:
 	AUDIO.sound(self, "ui_cancel" if action in ["title", "return_title", "return_select"] else "ui_select")
 	match action:
-		"select": show_select()
+		"select":
+			select_mode = "match"
+			show_select()
+		"practice":
+			select_mode = "practice"
+			show_select()
 		"title": show_title()
 		"options": show_options()
 		"controls": show_controls()

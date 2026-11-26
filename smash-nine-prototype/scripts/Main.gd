@@ -22,6 +22,8 @@ const STORY_CATALOG := preload("res://scripts/story/StoryCatalog.gd")
 const STORY_PROGRESS := preload("res://scripts/story/StoryProgress.gd")
 const STORY_DIRECTOR := preload("res://scripts/story/StoryDirector.gd")
 const STORY_SESSION := preload("res://scripts/story/StorySession.gd")
+const PRACTICE_DIRECTOR := preload("res://scripts/practice/PracticeDirector.gd")
+const PRACTICE_SESSION := preload("res://scripts/practice/PracticeSession.gd")
 const CENTRAL_REALM_INDEX := REALM_LAYOUT_SCRIPT.CENTRAL_REALM_INDEX
 const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
@@ -56,6 +58,7 @@ static var story_difficulty := "normal"
 static var story_last_result: Dictionary = {}
 static var story_art_state: Dictionary = {}
 var story_session: STORY_SESSION
+var practice_session: PRACTICE_SESSION
 var _frontend_transition := false
 
 ## Every slot is a bot and the camera spectates (soak tests, attract mode). Skips the start screen.
@@ -131,6 +134,11 @@ func _ready() -> void:
 			hud.frontend.show_story_map(story_stage)
 		elif destination == "story_stage":
 			_start_story()
+		elif destination == "practice":
+			_start_practice()
+		elif destination == "practice_select":
+			hud.frontend.select_mode = "practice"
+			hud.frontend.show_select()
 		elif destination == "select":
 			hud.frontend.show_select()
 		elif destination == "options":
@@ -148,6 +156,8 @@ func _create_director() -> void:
 	if not bots_only and next_screen == "story_stage":
 		director = STORY_DIRECTOR.new()
 		director.configure(STORY_CATALOG.stage(story_stage), story_difficulty)
+	elif not bots_only and next_screen == "practice":
+		director = PRACTICE_DIRECTOR.new()
 	else:
 		director = MATCH_DIRECTOR_SCRIPT.new()
 	director.name = "MatchDirector"
@@ -253,6 +263,10 @@ func _on_frontend_action(action: String, _value: String) -> void:
 		return
 	match action:
 		"start":
+			# The select screen serves both: a match, or practice with the fighter picked there.
+			if hud.frontend.select_mode == "practice":
+				_reload_frontend("practice")
+				return
 			bots_only = false
 			_start_match(hud.frontend.selected_id)
 		"watch":
@@ -354,6 +368,9 @@ func _handle_global_input() -> bool:
 			for index in mini(CHOOSE_ACTIONS.size(), ids.size()):
 				if Input.is_action_just_pressed(CHOOSE_ACTIONS[index]):
 					hud.frontend.selected_id = ids[index]
+					if hud.frontend.screen == "select" and hud.frontend.select_mode == "practice":
+						_reload_frontend("practice")
+						return true
 					_start_match(ids[index])
 					return false
 		if Input.is_action_just_pressed("toggle_body"):
@@ -361,7 +378,8 @@ func _handle_global_input() -> bool:
 			hud.frontend.refresh_body(human_body)
 		if Input.is_action_just_pressed("toggle_art"):
 			ART_SETTINGS.toggle()
-			_reload_frontend(hud.frontend.screen)
+			# The select screen opened from Practice comes back as that one.
+			_reload_frontend("practice_select" if hud.frontend.screen == "select" and hud.frontend.select_mode == "practice" else hud.frontend.screen)
 			return true
 		if Input.is_action_just_pressed("watch_bots") and not hud.frontend.screen.begins_with("story_"):
 			bots_only = true
@@ -537,7 +555,9 @@ func _add_player(character_id: String, human: bool, position: Vector2, realm_ind
 	player.ultimate_hit.connect(_on_ultimate_hit)
 	director.register_combatant(player)
 	hazards.register_combatant(player)
-	soul_growth.register_player(player)
+	# Practice has no soul thresholds: cards are taken from its own list (C).
+	if not is_instance_valid(practice_session):
+		soul_growth.register_player(player)
 	players.append(player)
 	return player
 
@@ -713,7 +733,10 @@ func _update_hud() -> void:
 	hud.set_warning_banner(seconds_left if director.is_warning(current_map_index) and not match_over else -1, hazards.get_warning_text(current_map_index) if not match_over else "")
 	var human := _get_human_player()
 	var offer: Dictionary = soul_growth.get_offer(human) if is_instance_valid(human) else {}
-	if not offer.is_empty() and not match_over:
+	if is_instance_valid(practice_session):
+		# The card panel is practice's own there (its card list), and so are two lines of text.
+		practice_session.update_hud()
+	elif not offer.is_empty() and not match_over:
 		hud.show_card_offer(offer.cards, offer.time_left)
 	else:
 		# An offer can also end without offer_closed (SoulGrowth drops it when P1 is eliminated).
@@ -781,6 +804,9 @@ func _update_debug_text() -> void:
 	hud.set_debug_text("\n".join(lines))
 
 func _handle_test_controls() -> void:
+	# In practice H changes the target, and PracticeSession reads it.
+	if is_instance_valid(practice_session):
+		return
 	if Input.is_action_just_pressed("toggle_dummy"):
 		_toggle_dummy()
 
@@ -803,6 +829,9 @@ func _show_message(text: String) -> void:
 	hud.show_message(text)
 
 func _on_player_defeated(player: Node, attacker: Node) -> void:
+	# Nobody is eliminated in practice; PracticeSession says the fighter stands up again.
+	if is_instance_valid(practice_session):
+		return
 	var cause := tr("the realm")
 	if is_instance_valid(attacker):
 		var source_name := str(attacker.display_name)
@@ -811,6 +840,26 @@ func _on_player_defeated(player: Node, attacker: Node) -> void:
 
 func _on_combatant_respawned(_combatant: Node) -> void:
 	_sync_combatant_visibility()
+
+# --- Practice mode: routing only; its rules live in PracticeDirector, its keys in PracticeSession. ---
+
+func _start_practice() -> void:
+	AUDIO.sound(self, "match_start")
+	AUDIO.music(self, "music_battle")
+	session_mode = "practice"
+	bots_only = false
+	match_started = true
+	hud.frontend.selected_id = last_character_id
+	GAME_SPEED.apply_to_match()
+	hud.hide_overlay()
+	realm_monster_spawner.set_physics_process(false)
+	soul_crystal_spawner.set_physics_process(false)
+	hazards.enabled = false
+	practice_session = PRACTICE_SESSION.new()
+	practice_session.name = "PracticeSession"
+	add_child(practice_session)
+	practice_session.start(self, last_character_id)
+	get_viewport().set_input_as_handled()
 
 # --- Story mode (D43): mode/screen routing only; stage rules live in StoryDirector. ---
 
