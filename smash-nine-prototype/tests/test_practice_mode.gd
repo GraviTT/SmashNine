@@ -14,11 +14,14 @@ const SPEED := preload("res://scripts/GameSpeed.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const CARDS := preload("res://scripts/match/SoulCards.gd")
 const MENU := preload("res://scripts/ui/FrontendMenu.gd")
+const CATCHER := preload("res://tests/support/error_catcher.gd")
 const SAVES: Array[String] = ["user://story.cfg", "user://language.cfg", "user://game_speed.cfg", "user://audio.cfg"]
 
 var failed := false
 var checks := 0
 var only := ""
+## Script errors and engine errors logged while the test runs: any of them fails it.
+var catcher := CATCHER.new()
 
 func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
@@ -41,6 +44,7 @@ func _run() -> void:
 	LANGUAGE.set_locale("en")
 	SPEED.factor = 1.0
 	var saves_before := _save_stamps()
+	OS.add_logger(catcher)
 	var parts := {
 		"menu": _test_menu_entry,
 		"target": _test_target_kinds,
@@ -57,6 +61,9 @@ func _run() -> void:
 			# A part cut short by a script error returns nothing: that is a failure too.
 			var done = await parts[part].call()
 			_check(done == true, "The part '%s' did not run to its end" % part)
+			for line in catcher.take():
+				_check(false, "The engine logged an error in the part '%s': %s" % [part, line])
+	OS.remove_logger(catcher)
 	_check(_save_stamps() == saves_before, "Practice must not touch a save file (%s -> %s)" % [saves_before, _save_stamps()])
 	if failed:
 		quit(1)
