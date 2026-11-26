@@ -201,7 +201,7 @@ func _second_wing_ready() -> bool:
 	return wing_uses == 1 and has_card("second_wingbeat")
 
 func _jump_held() -> bool:
-	return Input.is_action_pressed("jump") or Input.is_action_pressed("move_up")
+	return Input.is_action_pressed("jump")
 
 func _update_wing(delta: float) -> void:
 	if not is_human:

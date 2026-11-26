@@ -24,6 +24,8 @@ const STORY_DIRECTOR := preload("res://scripts/story/StoryDirector.gd")
 const STORY_SESSION := preload("res://scripts/story/StorySession.gd")
 const PRACTICE_DIRECTOR := preload("res://scripts/practice/PracticeDirector.gd")
 const PRACTICE_SESSION := preload("res://scripts/practice/PracticeSession.gd")
+const PAD_INPUT := preload("res://scripts/input/PadInput.gd")
+const PAD_GLYPHS := preload("res://scripts/input/PadGlyphs.gd")
 const CENTRAL_REALM_INDEX := REALM_LAYOUT_SCRIPT.CENTRAL_REALM_INDEX
 const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
@@ -59,6 +61,8 @@ static var story_last_result: Dictionary = {}
 static var story_art_state: Dictionary = {}
 var story_session: STORY_SESSION
 var practice_session: PRACTICE_SESSION
+## A gamepad, turned into the actions and keys the game already reads.
+var pad: PAD_INPUT
 var _frontend_transition := false
 
 ## Every slot is a bot and the camera spectates (soak tests, attract mode). Skips the start screen.
@@ -118,6 +122,7 @@ func _ready() -> void:
 	_create_camera()
 	_create_hud()
 	_create_world()
+	_create_pad()
 	_set_map(CENTRAL_REALM_INDEX)
 	if bots_only:
 		_start_match("")
@@ -223,6 +228,48 @@ func _create_world() -> void:
 	hazards.setup(layout, Callable(director, "get_state"), match_seed)
 	hazards.enabled = realm_hazards
 	hazards.shake_requested.connect(_on_shake_requested)
+
+func _create_pad() -> void:
+	pad = PAD_INPUT.new()
+	pad.name = "PadInput"
+	add_child(pad)
+	pad.device_changed.connect(_on_pad_device_changed)
+	pad.setup(self)
+	PAD_GLYPHS.apply(hud, pad.active)
+
+## The screen names the buttons of the device in use: a pad's, or the keyboard's again.
+func _on_pad_device_changed(on_pad: bool) -> void:
+	PAD_GLYPHS.apply(hud, on_pad)
+
+## What a pad's buttons are for right now: the fighter ("play"), practice mode's card list
+## ("cards": the right stick takes a card there too), or a menu, a dialogue, a list ("menu").
+func pad_context() -> String:
+	if is_instance_valid(practice_session) and practice_session.panel == "cards":
+		return "cards"
+	if not match_started or match_over or get_tree().paused or hud.overlay.visible:
+		return "menu"
+	if is_instance_valid(story_session) and not story_session.accepts_gameplay():
+		return "menu"
+	if is_instance_valid(practice_session) and practice_session.panel != "":
+		return "menu"
+	return "play"
+
+## The key a pad's Start stands for (its Back too, during play): practice mode's menu, or Esc to
+## close the list open there; the story's pause and resume (Esc), Enter on its cards and
+## dialogue; Enter in the menus; nothing in a battle royale's play (it has no pause).
+func pad_menu_key() -> int:
+	if match_started and not match_over and is_instance_valid(practice_session):
+		return KEY_ESCAPE if practice_session.panel != "" else KEY_F1
+	if match_started and not match_over and is_instance_valid(story_session):
+		return KEY_ESCAPE if story_session.accepts_gameplay() or get_tree().paused else KEY_ENTER
+	if not match_started or match_over:
+		return KEY_ENTER
+	return KEY_NONE
+
+## Down and jump on a pad: true when player one dropped through a thin platform instead.
+func pad_drop_through() -> bool:
+	var human := _get_human_player()
+	return _is_alive(human) and human.drop_through_by_jump()
 
 func _on_shake_requested(realm_index: int, strength: float, duration: float) -> void:
 	if realm_index == current_map_index:
@@ -736,6 +783,7 @@ func _update_hud() -> void:
 	if is_instance_valid(practice_session):
 		# The card panel is practice's own there (its card list), and so are two lines of text.
 		practice_session.update_hud()
+		practice_session.show_pad_help()
 	elif not offer.is_empty() and not match_over:
 		hud.show_card_offer(offer.cards, offer.time_left, float(offer.get("time_total", 0.0)))
 	else:
@@ -745,6 +793,8 @@ func _update_hud() -> void:
 		story_session.update_hud()
 	if hud.debug_label.visible:
 		_update_debug_text()
+	# After everything the HUD wrote this frame: the names of the device in use (PadGlyphs).
+	PAD_GLYPHS.apply(hud, PAD_GLYPHS.pad_in_use)
 
 ## One row per fighter for the live bot panel: who, where, HP, and for bots what they are
 ## trying to do right now (EnemyAI.debug_snapshot). Fighters outside the shown realm dim.
