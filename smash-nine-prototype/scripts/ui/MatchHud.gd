@@ -51,6 +51,13 @@ const RESULTS_BACK_COLOR := Color(0.03, 0.03, 0.07, 0.92)
 const CUTIN_HIGH_Y := 172.0
 const CUTIN_LOW_Y := 536.0
 const CARD_COLOR := Color(0.1, 0.08, 0.2, 0.92)
+## One offered card, and the gap between two. 288 x 132 since D54 (224 x 96 before): an action
+## card's text runs to three lines, five with its title and kind, clear of the frame's corners. An
+## interim size until the HUD redesign replaces the panel.
+const CARD_SIZE := Vector2(288, 132)
+const CARD_GAP := 18.0
+## A card's kind, as a colour (the letter that stands in for a missing icon).
+const CARD_KIND_COLOR := {"stat": Color("f3cd7c"), "action": Color("5fd0ff"), "character": Color("ff7ab8")}
 const TEXT_DIM := Color(1.0, 1.0, 1.0, 0.7)
 const REFERENCE_SIZE := Vector2(1280, 720)
 const TOP_CENTER := Vector2(0.5, 0.0)
@@ -78,6 +85,8 @@ var card_panel: Control
 var card_title: Label
 var card_labels: Array[Label] = []
 var card_icons: Array[TextureRect] = []
+## The first letter of a card that has no icon yet, in its icon's place (D54: the new cards).
+var card_letters: Array[Label] = []
 var overlay: Control
 var overlay_back: ColorRect
 var overlay_background_art: TextureRect
@@ -707,30 +716,39 @@ func show_ultimate_cutin(player: Node) -> void:
 func _build_card_panel() -> void:
 	card_panel = Control.new()
 	card_panel.name = "SoulCards"
-	card_panel.position = Vector2(290, 520)
-	card_panel.size = Vector2(700, 130)
+	# Centred; it ends above the skill bar (y 636), which its width now reaches.
+	card_panel.size = Vector2(CARD_SIZE.x * 3.0 + CARD_GAP * 2.0, 30.0 + CARD_SIZE.y)
+	card_panel.position = Vector2((REFERENCE_SIZE.x - card_panel.size.x) * 0.5, 628.0 - card_panel.size.y)
 	card_panel.visible = false
 	card_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(card_panel)
 	card_title = Label.new()
-	card_title.size = Vector2(700, 26)
+	card_title.size = Vector2(card_panel.size.x, 26)
 	card_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	card_title.add_theme_font_size_override("font_size", 17)
 	card_panel.add_child(card_title)
 	for index in 3:
-		var back := _hud_frame("card_panel", Vector2(224, 96), CARD_COLOR, "CardPanelFrame%d" % (index + 1))
-		back.position = Vector2(index * 236, 30)
+		var back := _hud_frame("card_panel", CARD_SIZE, CARD_COLOR, "CardPanelFrame%d" % (index + 1))
+		back.position = Vector2(index * (CARD_SIZE.x + CARD_GAP), 30)
 		card_panel.add_child(back)
 		var icon := TextureRect.new()
-		icon.position = back.position + Vector2(8, 24)
+		icon.position = back.position + Vector2(8, (CARD_SIZE.y - 48.0) * 0.5)
 		icon.size = Vector2(48, 48)
 		icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		card_panel.add_child(icon)
 		card_icons.append(icon)
+		var letter := Label.new()
+		letter.position = icon.position
+		letter.size = icon.size
+		letter.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		letter.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		letter.add_theme_font_size_override("font_size", 30)
+		card_panel.add_child(letter)
+		card_letters.append(letter)
 		var label := Label.new()
-		label.position = back.position + Vector2(64, 8)
-		label.size = back.size - Vector2(72, 16)
+		label.position = back.position + Vector2(64, 12)
+		label.size = back.size - Vector2(72, 24)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.add_theme_font_size_override("font_size", 15)
 		card_panel.add_child(label)
@@ -745,11 +763,16 @@ func show_card_offer(cards: Array, seconds_left: float) -> void:
 		if index < cards.size():
 			var card: Dictionary = cards[index]
 			label.text = "[%d] %s\n%s\n(%s)" % [index + 1, tr(str(card.title)), tr(str(card.text)), tr(str(card.kind))]
-			# Original card icon (assets/art/ui/card_<id>.png); none in the prototype style.
-			card_icons[index].texture = ART_SETTINGS.original_texture("res://assets/art/ui/card_%s.png" % card.id)
+			# Original card icon (assets/art/ui/card_<id>.png); none in the prototype style, and none
+			# yet for the cards of D54: the title's first letter in the colour of the card's kind.
+			var icon := ART_SETTINGS.original_texture("res://assets/art/ui/card_%s.png" % card.id)
+			card_icons[index].texture = icon
+			card_letters[index].text = "" if icon != null else tr(str(card.title)).left(1)
+			card_letters[index].add_theme_color_override("font_color", CARD_KIND_COLOR.get(str(card.kind), Color.WHITE))
 		else:
 			label.text = ""
 			card_icons[index].texture = null
+			card_letters[index].text = ""
 
 func hide_card_offer() -> void:
 	card_panel.visible = false

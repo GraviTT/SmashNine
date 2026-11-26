@@ -130,6 +130,8 @@ var stance_visual: Line2D
 var decoy: Node2D
 var decoy_cooldown_timer := 0.0
 var decoy_swap_ready := false
+## Swaps left with the decoy that stands: one, or two with Second Decoy (his soul card, D54).
+var decoy_swaps_left := 0
 var flurry_phase := Flurry.NONE
 var flurry_swords: Array[Node2D] = []
 var flurry_timer := 0.0
@@ -202,7 +204,7 @@ func perform_skill_three() -> void:
 		return
 	_decoy_cast()
 
-## The second U: swap places with the decoy, once.
+## The second U: swap places with the decoy, once (twice with Second Decoy).
 func try_skill_three_followup() -> bool:
 	if not decoy_swap_ready or not is_instance_valid(decoy) or decoy.get("burst") == true:
 		return false
@@ -305,12 +307,14 @@ func character_on_attack_hit_body(body: Node, attack: Node) -> void:
 # --- Passive: 급소 (backstab) ---
 
 func damage_scale_against(target: Node) -> float:
+	# The common scale (Hunter, a soul card, against monsters) under his own.
+	var common := super(target)
 	if not _is_behind(target):
-		return 1.0
+		return common
 	_mark_backstab.call_deferred(target)
 	if target.is_in_group("players"):
 		count_move("back_hits")
-	return BACKSTAB_SCALE
+	return BACKSTAB_SCALE * common
 
 ## Rio stands on the side `target` does not face.
 func _is_behind(target: Node) -> bool:
@@ -644,6 +648,7 @@ func _decoy_cast() -> void:
 	get_parent().add_child(copy)
 	copy.configure(self, DECOY_TIME, character_sprite if _uses_character_sprite() else null)
 	decoy = copy
+	decoy_swaps_left = 2 if has_card("second_decoy") else 1
 	decoy_swap_ready = true
 	var start := global_position
 	_blink_to(start + _step_direction() * DECOY_STEP * GAME_SCALE.WORLD, true)
@@ -664,7 +669,8 @@ func _step_direction() -> Vector2:
 	return Vector2(-facing, 0.0)
 
 func _decoy_swap() -> void:
-	decoy_swap_ready = false
+	decoy_swaps_left -= 1
+	decoy_swap_ready = decoy_swaps_left > 0
 	var mine := global_position
 	global_position = decoy.global_position
 	decoy.global_position = mine
@@ -680,6 +686,7 @@ func decoy_burst(copy: Node2D) -> void:
 	count_move("decoy_burst")
 	if copy == decoy:
 		decoy = null
+		decoy_swaps_left = 0
 		decoy_swap_ready = false
 	var at: Vector2 = copy.global_position + GAME_SCALE.BODY_CENTRE
 	if VFX.spawn(get_parent(), "rio_rune_burst", at, Vector2.ONE * 0.6, false, 4) == null:
@@ -699,6 +706,7 @@ func _clear_decoy() -> void:
 	if is_instance_valid(decoy):
 		decoy.queue_free()
 	decoy = null
+	decoy_swaps_left = 0
 	decoy_swap_ready = false
 
 # --- I: gem sword flurry ---

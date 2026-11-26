@@ -134,7 +134,7 @@ func _take_hit(attacker: Node) -> bool:
 		is_broken = true
 		collision_layer = 0
 		broken.emit(self, attacker)
-		_play_shatter()
+		_play_shatter(attacker.hunt_souls(SOUL_REWARD) if attacker.has_method("hunt_souls") else SOUL_REWARD)
 		queue_free()
 	return true
 
@@ -149,7 +149,8 @@ func _flash() -> void:
 	var tween := visual.create_tween()
 	tween.tween_property(visual, "modulate", Color.WHITE, 0.12)
 
-func _play_shatter() -> void:
+## `souls`: what the fighter who broke it was paid (Hunter, a soul card, pays more).
+func _play_shatter(souls := SOUL_REWARD) -> void:
 	var parent := get_parent()
 	if parent == null:
 		return
@@ -176,7 +177,7 @@ func _play_shatter() -> void:
 	tween.parallel().tween_property(effect, "modulate:a", 0.0, 0.35)
 	tween.tween_callback(effect.queue_free)
 	var label := Label.new()
-	label.text = tr("+%d SOULS") % SOUL_REWARD
+	label.text = tr("+%d SOULS") % souls
 	label.add_theme_font_size_override("font_size", 14)
 	label.modulate = Color(0.85, 0.7, 1.0)
 	label.position = global_position + Vector2(-40, -90)

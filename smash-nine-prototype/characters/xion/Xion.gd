@@ -25,6 +25,8 @@ const POINT_BLANK_SHOWN := 1.6
 
 # --- J: twin shotguns ---
 const MAGAZINE := 10
+## Extended Magazine (her soul card, D54): this many rounds.
+const EXTENDED_MAGAZINE := 14
 ## Two shots a second at most.
 const SHOT_GAP := 0.5
 const SHOT_STARTUP := 0.06
@@ -219,6 +221,15 @@ func _hide_attack_box() -> void:
 	if visual != null:
 		visual.visible = false
 
+## The rounds her magazine holds.
+func magazine_size() -> int:
+	return EXTENDED_MAGAZINE if has_card("extended_magazine") else MAGAZINE
+
+## Taking Extended Magazine loads the rounds it adds.
+func character_on_card(card: Dictionary) -> void:
+	if str(card.get("id", "")) == "extended_magazine":
+		_load_rounds(EXTENDED_MAGAZINE - MAGAZINE)
+
 func _use_rounds(count: int) -> void:
 	ammo = maxi(ammo - count, 0)
 	since_shot = 0.0
@@ -228,7 +239,7 @@ func _use_rounds(count: int) -> void:
 
 func _load_rounds(count: int) -> void:
 	var before := ammo
-	ammo = mini(ammo + count, MAGAZINE)
+	ammo = mini(ammo + count, magazine_size())
 	if ammo > before:
 		_play_float_text("+%d" % (ammo - before), Color(1.0, 0.86, 0.6))
 
@@ -237,12 +248,12 @@ func _update_magazine(delta: float) -> void:
 	if reload_timer > 0.0:
 		reload_timer = maxf(reload_timer - delta, 0.0)
 		if reload_timer <= 0.0:
-			ammo = MAGAZINE
+			ammo = magazine_size()
 			since_shot = 0.0
-	elif ammo < MAGAZINE:
+	elif ammo < magazine_size():
 		since_shot += delta
 		if since_shot >= IDLE_RELOAD:
-			ammo = MAGAZINE
+			ammo = magazine_size()
 			since_shot = 0.0
 	_update_reload_ring()
 
@@ -413,7 +424,7 @@ func _dive_end(arrived: bool) -> void:
 # --- I: Equilibrium ---
 
 func perform_ultimate() -> void:
-	ammo = MAGAZINE
+	ammo = magazine_size()
 	reload_timer = 0.0
 	since_shot = 0.0
 	barrage_timer = BARRAGE_TIME
@@ -441,7 +452,7 @@ func _update_barrage(delta: float) -> void:
 
 func _end_barrage() -> void:
 	barrage_timer = 0.0
-	ammo = MAGAZINE
+	ammo = magazine_size()
 	reload_timer = 0.0
 	since_shot = 0.0
 
@@ -482,14 +493,16 @@ func _fire_bullet(from: Vector2, aim: Vector2) -> void:
 # --- Passive: 더블 샷건, and who the doppelganger hunts ---
 
 func damage_scale_against(target: Node) -> float:
+	# The common scale (Hunter, a soul card, against monsters) under her own.
+	var common := super(target)
 	if not target is Node2D:
-		return 1.0
+		return common
 	var origin := shot_origin if has_shot_origin else global_position + GAME_SCALE.BODY_CENTRE
 	var distance := origin.distance_to((target as Node2D).global_position + GAME_SCALE.BODY_CENTRE)
 	var close_scale := lerpf(CLOSE_SCALE, 1.0, clampf((distance - CLOSE_RANGE) / (FAR_RANGE - CLOSE_RANGE), 0.0, 1.0))
 	if close_scale >= POINT_BLANK_SHOWN:
 		_mark_point_blank.call_deferred(target)
-	return close_scale
+	return close_scale * common
 
 ## A hit fired from `muzzle` (a bullet of I): the passive measures from there.
 func hit_from(muzzle: Vector2, body: Node, amount: float, push: float, direction: Vector2, damage_type: String) -> Variant:
@@ -568,7 +581,7 @@ func character_on_respawn() -> void:
 	_clear_double()
 	_end_barrage()
 	attack_lock_timer = 0.0
-	ammo = MAGAZINE
+	ammo = magazine_size()
 	reload_timer = 0.0
 	since_shot = 0.0
 	shot_timer = 0.0

@@ -1,7 +1,7 @@
 {
-  "note": "Exact labels for the bot behaviour diagram (CODEX-ART-19). Draw every string exactly as written; do not shorten, translate or reword. Source: smash-nine-prototype/scripts/EnemyAI.gd and the bot hooks in the character scripts (Rio.gd, Xion.gd), 2026-11-25.",
+  "note": "Exact labels for the bot behaviour diagram (CODEX-ART-19). Draw every string exactly as written; do not shorten, translate or reword. Source: smash-nine-prototype/scripts/EnemyAI.gd and the bot hooks in the character scripts (Rio.gd, Xion.gd), 2026-11-26.",
   "title": "봇 행동 원리",
-  "subtitle": "모든 봇의 기본 원리와 캐릭터별 추가 행동 · 2026-11-25 코드 기준 · 공격 범위 1.5배",
+  "subtitle": "모든 봇의 기본 원리와 캐릭터별 추가 행동 · 2026-11-26 코드 기준 · 공격 범위 1.5배",
   "root": "기본 봇\n(모든 캐릭터 공통)",
   "groups": [
     {
@@ -97,6 +97,7 @@
         {"label": "복귀", "leaves": [
           "낙하 궤적(1초 앞)이 바닥에 안 닿으면 시작",
           "가장 가까운 발판으로 (위쪽 발판은 덜 선호)",
+          "공중 대시 카드: 발판이 옆으로 90px 넘게 남았으면 먼저 대시",
           "발판보다 낮아지면 공중 점프",
           "점프가 없으면 복귀 기술 (Rio · Xion)"
         ]}

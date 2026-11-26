@@ -339,7 +339,7 @@ func _test_soul_cards() -> Dictionary:
 	data["auto_expected_id"] = auto_id
 	data["upgrades_after_auto"] = player.upgrades.duplicate()
 	data["auto_message"] = main.hud.info_label.text
-	data["auto_pass"] = player.upgrades.has(auto_id) and elapsed >= 4.9 and elapsed <= 5.3 and "auto-picked" in main.hud.info_label.text
+	data["auto_pass"] = player.upgrades.has(auto_id) and elapsed >= main.soul_growth.CHOICE_TIME - 0.1 and elapsed <= main.soul_growth.CHOICE_TIME + 0.3 and "auto-picked" in main.hud.info_label.text
 	await _shot("16_soul_offer_auto_picked")
 	_release_all()
 	return data
