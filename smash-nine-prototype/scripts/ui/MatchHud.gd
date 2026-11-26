@@ -581,20 +581,30 @@ func show_message(text: String) -> void:
 		return
 	var needed := ThemeDB.fallback_font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 30.0
 	var width := minf(needed, FEED_RECT.size.x)
-	var two_lines := needed > FEED_RECT.size.x
-	var height := 52.0 if two_lines else 30.0
+	var wraps := needed > FEED_RECT.size.x
 	var row := Control.new()
-	row.size = Vector2(FEED_RECT.size.x, height)
+	row.size = Vector2(FEED_RECT.size.x, 30.0)
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	feed_root.add_child(row)
 	var x := FEED_RECT.size.x - width
-	_plate(row, Rect2(x, 0, width, height), _box(PLATE, Color.TRANSPARENT, 0, 4))
-	_plate(row, Rect2(x, 0, 5, height), _box(_message_color(text), Color.TRANSPARENT, 0, 2))
-	var line := _text(row, _keep_words(text) if two_lines else text, Rect2(x + 14, 0, width - 22, height), MIN_FONT_SIZE)
-	if two_lines:
+	var plate := _plate(row, Rect2(x, 0, width, 30.0), _box(PLATE, Color.TRANSPARENT, 0, 4))
+	var stripe := _plate(row, Rect2(x, 0, 5, 30.0), _box(_message_color(text), Color.TRANSPARENT, 0, 2))
+	var line := _text(row, _keep_words(text) if wraps else text, Rect2(x + 14, 0, width - 22, 30.0), MIN_FONT_SIZE)
+	var height := 30.0
+	if wraps:
+		# Up to three lines, as many as the words take: a collapse warning naming four realms
+		# lost its "move to a safe realm" at two (capture 2026-11-26).
 		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		line.max_lines_visible = 2
 		line.add_theme_constant_override("line_spacing", -2)
+		var advance := line.get_line_height() - 2.0
+		line.size.y = advance * 4.0
+		var lines := clampi(line.get_line_count(), 2, 3)
+		line.max_lines_visible = lines
+		height = lines * advance + 10.0
+		line.size.y = height
+		row.size.y = height
+		plate.size.y = height
+		stripe.size.y = height
 	feed_rows.append({"row": row, "time": MESSAGE_TIME, "height": height})
 	while feed_rows.size() > MESSAGE_ROWS:
 		feed_rows[0].row.queue_free()
@@ -934,12 +944,13 @@ func _build_controls() -> void:
 	controls_label.name = "Controls"
 	controls_label.add_theme_stylebox_override("normal", _box(Color(PLATE, 0.7), Color.TRANSPARENT, 0, 4))
 	var font: Font = controls_label.get_theme_font("font")
-	controls_label.text = _fit_items(tr(CONTROLS_SHORT), font, MIN_FONT_SIZE, CARD_WIDTH - 22.0)
+	controls_label.text = _fit_items(tr(CONTROLS_SHORT), font, MIN_FONT_SIZE, CARD_WIDTH - 22.0, true)
 	var lines := controls_label.text.split("\n")
 	var width := 0.0
 	for line in lines:
 		width = maxf(width, font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x + 22.0)
-	controls_height = CONTROLS_HEIGHT if lines.size() == 1 else lines.size() * controls_label.get_line_height() + 8.0
+	var advance := controls_label.get_line_height() + controls_label.get_theme_constant("line_spacing")
+	controls_height = CONTROLS_HEIGHT if lines.size() == 1 else lines.size() * advance + 8.0
 	controls_label.position = Vector2(1280.0 - HUD_MARGIN - width, 720.0 - HUD_MARGIN - controls_height)
 	controls_label.size = Vector2(width, controls_height)
 	_pin(controls_label, BOTTOM_RIGHT)
@@ -1219,10 +1230,13 @@ func _fill_cards(cards: Array) -> void:
 		var font: Font = label.get_theme_font("font")
 		var one_line := font.get_string_size(body, HORIZONTAL_ALIGNMENT_LEFT, -1, MIN_FONT_SIZE).x <= text_width
 		label.text = body if one_line else _keep_words(body)
-		label.size = Vector2(text_width, label.get_line_height() * 3.0)
+		# A line takes its height and the label's line spacing: without the spacing a second line
+		# did not fit, and the first ended in "..." (English Chaser, capture 2026-11-26).
+		var advance := label.get_line_height() + label.get_theme_constant("line_spacing")
+		label.size = Vector2(text_width, advance * 3.0)
 		var lines := 1 if one_line else clampi(label.get_line_count(), 2, 3)
-		label.size.y = lines * label.get_line_height() + 2.0
-		var height := maxf(CARD_ROW_MIN, 28.0 + lines * label.get_line_height() + 6.0)
+		label.size.y = lines * advance + 2.0
+		var height := maxf(CARD_ROW_MIN, 28.0 + lines * advance + 6.0)
 		row.position = Vector2(0, y)
 		row.size.y = height
 		nodes.tab.size.y = height - 12.0
@@ -1308,8 +1322,23 @@ func set_practice_lines(text: String) -> void:
 	practice_label.offset_top = bottom - height
 
 ## Lays text out in lines no wider than width, breaking only at its wide gaps (three spaces or
-## more, which set practice's items apart); each item stays whole.
-func _fit_items(text: String, font: Font, font_size: int, width: float) -> String:
+## more, which set the hints' and practice's items apart); each item stays whole. balanced: the
+## same number of lines, but as even as they go ("... Q portal / F4 bots" left one item alone).
+func _fit_items(text: String, font: Font, font_size: int, width: float, balanced := false) -> String:
+	var fitted := _wrap_items(text, font, font_size, width)
+	if not balanced:
+		return fitted
+	var count := fitted.split("\n").size()
+	var narrow := width
+	while narrow > 40.0:
+		var tighter := _wrap_items(text, font, font_size, narrow - 8.0)
+		if tighter.split("\n").size() > count:
+			break
+		fitted = tighter
+		narrow -= 8.0
+	return fitted
+
+func _wrap_items(text: String, font: Font, font_size: int, width: float) -> String:
 	if _gaps == null:
 		_gaps = RegEx.create_from_string(" {3,}")
 	var lines: PackedStringArray = []

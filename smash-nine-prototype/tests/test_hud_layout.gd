@@ -85,12 +85,16 @@ func _match_hud(window: Vector2i, character: String, locale: String) -> void:
 	hud.show_message(tr("%s was eliminated by %s. %d left.") % [tr("Luna"), tr("Rio"), 6])
 	hud.set_warning_banner(29)
 	_check(hud.warning_root.visible, "The collapse warning should show (%s)" % where)
+	for entry: Dictionary in hud.feed_rows:
+		_check_all_lines(entry.row.get_child(2) as Label, 3, "message", where)
 	_check_blocks(hud, view, "match with news, " + where)
 	await _faces(hud, view, where)
 	await _player_tag(main, hud, human, where)
 	# The soul card offer with the three cards of longest text.
 	hud.show_card_offer(_longest_cards(), 8.0, 8.0)
 	_check(hud.card_panel.visible and not hud.controls_label.visible, "The card column should take the corner from the control hints (%s)" % where)
+	for label: Label in hud.card_labels:
+		_check_all_lines(label, 3, "card", where)
 	_check_blocks(hud, view, "card offer, " + where)
 	hud.hide_card_offer()
 	# Practice's places: its lines over the control hints, the soul row with the cards held.
@@ -134,6 +138,11 @@ func _check_hp_number(hud: Node, where: String) -> void:
 		_check(label.global_position.x + width <= hud.hp_bar.global_position.x + 0.5, "'%s' runs into the HP bar (%s)" % [label.text, where])
 	for label: Label in [hud.focus_name, hud.kos_label, hud.soul_label]:
 		_check_fits(label, "player plate", where)
+
+## A wrapped text shows every line it has, at most `most` (no "..." on a line cut short).
+func _check_all_lines(label: Label, most: int, what: String, where: String) -> void:
+	var count := label.get_line_count()
+	_check(count <= most and label.get_visible_line_count() == count, "The %s text shows %d of its %d lines (at most %d, %s): %s" % [what, label.get_visible_line_count(), count, most, where, label.text.replace(String.chr(0x2060), "")])
 
 func _check_fits(label: Label, what: String, where: String) -> void:
 	var width := label.get_theme_font("font").get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, label.get_theme_font_size("font_size")).x

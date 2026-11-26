@@ -316,7 +316,8 @@ func _check_card_fit(hud: Node) -> void:
 		# A card row grows with its text up to three lines under its title and kind
 		# (MatchHud._fill_cards: five lines in all, as D54's longest cards need); the copy must fit
 		# the label the row gave it.
-		_check(label.get_line_count() <= 3 and label.get_line_count() * label.get_line_height() <= label.size.y + 1.0, "Card copy overflows its row (%d lines of %d px in %d px): %s" % [label.get_line_count(), label.get_line_height(), int(label.size.y), label.text])
+		# Every line shown: a label too low for its line spacing kept one line and ended it in "...".
+		_check(label.get_line_count() <= 3 and label.get_visible_line_count() == label.get_line_count(), "Card copy overflows its row (%d lines, %d shown in %d px): %s" % [label.get_line_count(), label.get_visible_line_count(), int(label.size.y), label.text])
 
 func _frames(count: int) -> void:
 	for frame in count:
