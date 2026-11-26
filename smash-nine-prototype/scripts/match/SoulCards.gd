@@ -21,7 +21,7 @@ const CARDS: Array[Dictionary] = [
 	# Common action cards (D54).
 	{"id": "air_dash", "title": "Air Dash", "kind": "action", "text": "In the air, the guard key dashes a short way ahead. Once before landing", "effects": {}, "max_stacks": 1},
 	{"id": "meteor_landing", "title": "Meteor Landing", "kind": "action", "text": "Landing from a height sends out a shockwave that lifts foes", "effects": {}, "max_stacks": 1},
-	{"id": "riposte", "title": "Riposte", "kind": "action", "text": "A successful parry stuns that foe for 1 s", "effects": {}, "max_stacks": 1},
+	{"id": "riposte", "title": "Riposte", "kind": "action", "text": "Parrying a melee hit stuns that foe for 1 s", "effects": {}, "max_stacks": 1},
 	{"id": "soul_drain", "title": "Soul Drain", "kind": "action", "text": "Eliminating a foe heals 25 HP", "effects": {}, "max_stacks": 1},
 	{"id": "last_flame", "title": "Last Flame", "kind": "action", "text": "At 30% HP or less: attack +25%, move speed +10%", "effects": {}, "max_stacks": 1},
 	{"id": "chaser", "title": "Chaser", "kind": "action", "text": "After sending a foe flying: +30% move speed for 2 s", "effects": {}, "max_stacks": 1},

@@ -1,5 +1,7 @@
 extends Area2D
 
+const HIT_CONTEXT := preload("res://scripts/HitContext.gd")
+
 var source: Node
 var damage := 8.0
 var knockback := 260.0
@@ -54,7 +56,10 @@ func _hit_body(body: Node) -> void:
 		direction = source.velocity.normalized()
 	if direction == Vector2.ZERO:
 		direction = Vector2(float(source.facing), -0.08).normalized()
+	# Her body is the swing (HitContext).
+	HIT_CONTEXT.melee += 1
 	var landed = body.apply_hit(source, damage, knockback, direction)
+	HIT_CONTEXT.melee -= 1
 	if landed == false:
 		return
 	if source.has_method("on_attack_landed"):

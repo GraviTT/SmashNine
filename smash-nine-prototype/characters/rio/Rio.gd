@@ -700,6 +700,8 @@ func _burst_decoy_at(at: Vector2) -> void:
 		return
 	attack_art_enabled = false
 	_spawn_attack(DECOY_BURST_SIZE, _offset_to(at), DECOY_BURST_DAMAGE, DECOY_BURST_KNOCKBACK, Vector2(0, -1), RUNE_COLOR, 0.12)
+	# The burst is where the decoy stood, not a swing of his (HitContext; Riposte).
+	last_attack.set_meta("ranged", true)
 	attack_art_enabled = true
 
 func _clear_decoy() -> void:

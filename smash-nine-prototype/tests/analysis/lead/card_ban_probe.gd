@@ -11,6 +11,12 @@ extends "res://tests/soak_match.gd"
 ##       before D54 that the fighter may still take: the pool and the rule of before.
 ##   --offer=plain  three different cards at random from all the fighter may take: the nineteen
 ##       cards without the rules (no action card for certain, no own card in the second offer).
+##   --offer=no_action  the nineteen cards with one rule alone: the fighter's own card in its
+##       second offer, and no action card for certain in the others.
+##   --offer=no_own     the other rule alone: one action or character card in every offer, and the
+##       own card only as one of them by chance.
+##   --offer=rules  both rules, drawn by the probe (the game's rules with other draws: what a
+##       re-roll alone moves).
 ## With neither the match must replay tests/soak_match.gd.
 ## The SOAK_RESULT line gains "banned", "offer", "swapped" (cards replaced), "big_stars" (big stars
 ## Luna's bots fired: the fourth J of a volley), "out_order" (player ids in the order they went out)
@@ -34,8 +40,8 @@ func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--offer="):
 			offer_mode = arg.get_slice("=", 1)
-			if not ["old", "plain"].has(offer_mode):
-				push_error("--offer must be old or plain; got %s" % offer_mode)
+			if not ["old", "plain", "no_action", "no_own", "rules"].has(offer_mode):
+				push_error("--offer must be old, plain, no_action, no_own or rules; got %s" % offer_mode)
 				quit(2)
 				return
 		elif arg.begins_with("--ban="):
@@ -83,10 +89,27 @@ func _on_offer_opened(player: Node, cards: Array) -> void:
 	if offer_mode != "":
 		var pool: Array[Dictionary] = []
 		for card in CARDS.available(player.upgrades, str(player.character_id)):
-			if offer_mode == "plain" or OLD_CARDS.has(str(card.id)):
+			if offer_mode != "old" or OLD_CARDS.has(str(card.id)):
 				pool.append(card)
 		var size := cards.size()
 		cards.clear()
+		# The fighter's own card in its second offer (the rule "no_own" and "plain" leave out).
+		if ["no_action", "rules"].has(offer_mode) and int(player.soul_picks) + 1 == CARDS.CHARACTER_CARD_PICK:
+			for card in pool:
+				if card.kind == "character":
+					cards.append(card)
+					pool.erase(card)
+					break
+		# One action or character card for certain (the rule "no_action" and "plain" leave out).
+		if ["no_own", "rules"].has(offer_mode) and cards.is_empty():
+			var actions: Array[Dictionary] = []
+			for card in pool:
+				if CARDS.ACTION_KINDS.has(str(card.kind)):
+					actions.append(card)
+			if not actions.is_empty():
+				var action: Dictionary = actions[swap_rng.randi_range(0, actions.size() - 1)]
+				cards.append(action)
+				pool.erase(action)
 		while cards.size() < size and not pool.is_empty():
 			var index := swap_rng.randi_range(0, pool.size() - 1)
 			cards.append(pool[index])

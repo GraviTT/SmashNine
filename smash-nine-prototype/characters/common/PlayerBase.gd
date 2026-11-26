@@ -19,6 +19,7 @@ signal soul_threshold_reached(player: Node, pick_number: int)
 
 ## Attack, realm and movement scales (scripts/GameScale.gd, routine 2026-10-08).
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
+const HIT_CONTEXT := preload("res://scripts/HitContext.gd")
 ## Effect strips (scripts/Vfx.gd): melee hits draw the character's slash art (CODEX-ART-13).
 const EFFECT_STRIPS := preload("res://scripts/Vfx.gd")
 
@@ -2008,7 +2009,8 @@ func _perform_parry(attacker: Node) -> void:
 	jump_buffer_timer = 0.0
 	if is_instance_valid(attacker) and attacker.has_method("receive_parry_recoil"):
 		attacker.receive_parry_recoil(self)
-	if has_card("riposte"):
+	# Riposte: a parried swing, not a parried shot (HitContext).
+	if has_card("riposte") and HIT_CONTEXT.melee > 0:
 		_riposte(attacker)
 	_play_parry_effect()
 
@@ -2346,7 +2348,7 @@ func _meteor_shockwave() -> void:
 	# Until the card has art of its own: the landing dust, large.
 	EFFECT_STRIPS.spawn(get_parent(), "landing_dust", global_position, Vector2(2.6, 1.9), false, 4, Color(1.0, 0.85, 0.6, _visible_alpha()))
 
-## Riposte: the foe whose hit was parried is stunned.
+## Riposte: the foe whose swing was parried is stunned.
 func _riposte(attacker: Node) -> void:
 	if not is_instance_valid(attacker) or attacker == self:
 		return

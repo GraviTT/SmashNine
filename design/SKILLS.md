@@ -192,7 +192,7 @@
 | Sky Step (공중 도약) | 공중 점프 +1 | 두 장까지. 상한 3회 `[MAX_AIR_JUMPS]` | `bonus_air_jumps` |
 | Air Dash (공중 대시) | 공중에서 Guard 키를 누르면 바라보는 쪽으로 대시한다. 착지 전 한 번 | 속도 `480×WORLD` `[AIR_DASH_SPEED]`로 0.17초 `[AIR_DASH_TIME]`, 약 120px. 대시 동안 떨어지지 않고, 끝나면 낙하가 처음부터 다시 시작된다. 경직, 공격 중, 착지 잠금 중에는 쓸 수 없다. 봇은 복귀할 때만 쓴다 | `PlayerBase.try_air_dash`, `can_air_dash` |
 | Meteor Landing (유성 착지) | 높은 곳에서 떨어져 착지하면 발 양옆에 충격파가 나고, 맞은 적은 떠오른다 | 낙하 300px 이상 `[METEOR_DROP]`(한 번 점프의 꼭대기는 200~235px). 판정은 양옆에 각각 129×78px, 피해 8, 넉백 400, 방향 (±0.4, −1). 경직 중의 착지는 제외 | `PlayerBase._meteor_shockwave` |
-| Riposte (되받아치기) | 패리에 성공하면 그 공격자가 1초 기절한다 `[RIPOSTE_STUN]` | 피해와 넉백은 없고 하던 동작이 끊긴다. 궁극기 슈퍼아머, 붙잡힘, 무적 중인 상대는 기절하지 않는다. 투사체를 패리하면 쏜 선수가 기절한다. 몬스터도 기절한다 | `PlayerBase._riposte`, `apply_parry_stun` |
+| Riposte (되받아치기) | 근접 공격을 패리하면 그 공격자가 1초 기절한다 `[RIPOSTE_STUN]` | 피해와 넉백은 없고 하던 동작이 끊긴다. 휘두르기에만 걸린다: 선수의 공격 판정(`Attack.gd`), 몬스터의 근접 공격, Nova의 몸통 돌진. 투사체, 광선, 필드와 멀리서 터지는 것(Luna의 큰 별, Rio의 분신)은 패리만 되고 기절은 없다(2026-11-26, 총괄). 궁극기 슈퍼아머, 붙잡힘, 무적 중인 상대는 기절하지 않는다 | `PlayerBase._riposte`, `apply_parry_stun`, `scripts/HitContext.gd` |
 | Soul Drain (소울 흡수) | 선수를 탈락시키면 HP 25를 회복한다 `[SOUL_DRAIN_HEAL]` | 최대 HP까지. 링아웃으로 탈락시킨 것도 센다(마지막으로 때린 선수, 8초 기억) | `PlayerBase.record_knockout`, `heal` |
 | Last Flame (마지막 불꽃) | HP가 30% 이하인 동안 공격 ×1.25, 이동 ×1.1 | 회복해서 30%를 넘으면 꺼진다 | `PlayerBase._update_card_states` |
 | Chaser (추격자) | 적을 크게 날리면 2초 동안 이동 ×1.3 | "크게"는 맞은 선수의 최종 넉백이 480 이상 `[HARD_LAUNCH_KNOCKBACK]`일 때다(경직이 길어지는 강한 타격의 기준과 같다). 강제 띄우기는 속도÷무게가 480 이상일 때. 가드에 막힌 타격과 몬스터는 세지 않는다. 다시 날리면 2초가 새로 시작된다 | `PlayerBase.on_hard_launch` |

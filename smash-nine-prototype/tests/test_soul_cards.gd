@@ -349,23 +349,25 @@ func _test_meteor_landing() -> void:
 		elif hit and highest > -20.0:
 			_fail("The shockwave should lift the foe (it rose %.0f px)" % -highest)
 
-## A parry stuns the foe whose swing it met for a second; without the card it does not.
+## A parried swing stuns the foe who swung for a second; without the card it does not; and a
+## parried shot does not stun the foe who shot, card or not (the card is for swings: a shot can be
+## parried from across the screen).
 func _test_riposte() -> void:
 	_floor()
-	for with_card: bool in [false, true]:
+	for step in [{"card": false, "foe": "frey", "x": -70.0, "stun": false}, {"card": true, "foe": "frey", "x": -70.0, "stun": true}, {"card": true, "foe": "luna", "x": -170.0, "stun": false}]:
 		var fighter := _person("yuki", 1, Vector2(0, -2), true)
-		var foe := _person("frey", 2, Vector2(-70, -2))
-		if with_card:
+		var foe := _person(str(step.foe), 2, Vector2(float(step.x), -2))
+		if bool(step.card):
 			_give(fighter, "riposte")
 		await _frames(15)
 		foe.facing = 1
 		var lands: int = await _swing_lands_after(foe, fighter)
 		if lands < 4:
-			_fail("Test setup: the foe's swing should land on the fighter after a start-up (%d frames)" % lands)
+			_fail("Test setup: %s's J should land on the fighter after a start-up (%d frames)" % [step.foe, lands])
 			return
 		await _frames(50)
 		_put(fighter, Vector2(0, -2))
-		_put(foe, Vector2(-70, -2))
+		_put(foe, Vector2(float(step.x), -2))
 		for body in [fighter, foe]:
 			body.velocity = Vector2.ZERO
 			body.knockback_velocity = Vector2.ZERO
@@ -374,6 +376,8 @@ func _test_riposte() -> void:
 		if not await _wait_for(func() -> bool: return float(fighter.hitstun_timer) <= 0.0 and fighter.is_on_floor(), 2.0):
 			_fail("Test setup: the fighter should stand again")
 			return
+		# A fresh volley for a shooter (Luna's fourth star is another one), a fresh chain for a swing.
+		await _frames(40)
 		fighter.attack_lock_timer = 0.0
 		foe.attack_lock_timer = 0.0
 		foe.facing = 1
@@ -386,12 +390,13 @@ func _test_riposte() -> void:
 			_fail("Test setup: the guard key should raise the guard (on the floor: %s)" % fighter.is_on_floor())
 			return
 		await _frames(8)
+		var stunned: bool = float(foe.hitstun_timer) >= 0.8 and float(foe.status_stun_timer) > 0.0
 		if fighter.hp < hp:
-			_fail("Test setup: the swing should be parried (hp %.1f -> %.1f)" % [hp, fighter.hp])
-		elif with_card and (float(foe.hitstun_timer) < 0.8 or float(foe.status_stun_timer) <= 0.0):
-			_fail("Riposte: the parried foe should be stunned for a second (hitstun %.2f)" % foe.hitstun_timer)
-		elif not with_card and float(foe.hitstun_timer) > 0.3:
-			_fail("Without Riposte a parry should not stun (hitstun %.2f)" % foe.hitstun_timer)
+			_fail("Test setup: %s's J should be parried (hp %.1f -> %.1f, it lands after %d frames)" % [step.foe, hp, fighter.hp, lands])
+		elif stunned != bool(step.stun):
+			_fail("A parried %s %s Riposte %s stun the foe (hitstun %.2f)" % ["shot" if step.foe == "luna" else "swing", "with" if step.card else "without", "should" if step.stun else "should not", foe.hitstun_timer])
+		elif not stunned and float(foe.hitstun_timer) > 0.3:
+			_fail("A parry that does not stun should leave the foe free (hitstun %.2f)" % foe.hitstun_timer)
 		_release("guard")
 		fighter.queue_free()
 		foe.queue_free()
