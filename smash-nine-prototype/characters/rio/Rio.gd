@@ -287,6 +287,10 @@ func character_on_respawn() -> void:
 func character_cleanup() -> void:
 	character_on_respawn()
 
+func character_refill() -> void:
+	counter_cooldown_timer = 0.0
+	decoy_cooldown_timer = 0.0
+
 func character_hit_absorption() -> float:
 	return 0.0 if counter_timer > 0.0 else -1.0
 

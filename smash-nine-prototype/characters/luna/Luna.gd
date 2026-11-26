@@ -349,6 +349,9 @@ func character_cleanup() -> void:
 	_end_transformation(true)
 	_reset_kit()
 
+func character_refill() -> void:
+	barrier_cooldown_timer = 0.0
+
 func _reset_kit() -> void:
 	star_volley_step = 0
 	star_volley_timer = 0.0

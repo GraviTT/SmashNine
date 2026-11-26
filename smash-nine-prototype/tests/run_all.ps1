@@ -32,6 +32,7 @@ $tests += @("test_hud_layout", "test_menu_text", "test_backdrop_edges")
 $tests += @("test_bot_kits")
 $tests += @("test_yuki_objects", "test_hittable_bodies")
 $tests += @("test_soul_cards")
+$tests += @("test_practice_mode")
 $failed = @()
 $certificateNoise = 0
 

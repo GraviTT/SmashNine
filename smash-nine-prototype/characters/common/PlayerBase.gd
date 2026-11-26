@@ -184,7 +184,7 @@ var hp_growth := 0.0
 var attack_growth := 0.0
 var defense_growth := 0.0
 var speed_growth := 0.0
-var upgrade_modifiers := {
+const UPGRADE_DEFAULTS := {
 	"attack_multiplier": 1.0,
 	"speed_multiplier": 1.0,
 	"weight_multiplier": 1.0,
@@ -195,6 +195,7 @@ var upgrade_modifiers := {
 	"monster_damage_multiplier": 1.0,
 	"hunt_soul_multiplier": 1.0
 }
+var upgrade_modifiers := UPGRADE_DEFAULTS.duplicate()
 ## Soul card states (D54): Air Dash is ready again on the floor; Chaser's seconds left; whether Last
 ## Flame burns now.
 var air_dash_ready := true
@@ -213,6 +214,8 @@ var guard_recovery_waived := false
 var facing := 1
 var is_human := false
 var is_dummy := false
+## A training dummy's walk, -1 to 1 (practice mode's walking dummy; a dummy's speed is 0 otherwise).
+var dummy_move := 0.0
 var is_defeated := false
 var knockback_velocity := Vector2.ZERO
 var skill_dash_velocity := Vector2.ZERO
@@ -520,7 +523,7 @@ func _physics_process(delta: float) -> void:
 	if hitstun_timer > 0.0:
 		move_input = 0.0
 	elif is_dummy:
-		move_input = 0.0
+		move_input = dummy_move
 	elif is_human:
 		_read_human_input(delta)
 	else:
@@ -2162,7 +2165,14 @@ func _hide_after_defeat() -> void:
 		visible = false
 	modulate.a = 1.0
 
+## A fallen fighter stands again at full HP (a training dummy after 3 s; practice mode, anyone).
+func revive() -> void:
+	_respawn_after_defeat()
+
 func _respawn_after_defeat() -> void:
+	# A dummy's own 3 s timer may come after something else stood it up (practice mode's R).
+	if not is_defeated:
+		return
 	if defeat_tween != null and defeat_tween.is_valid():
 		defeat_tween.kill()
 	modulate.a = 1.0
@@ -2270,6 +2280,31 @@ func reset_for_map(position: Vector2, points: Array[Vector2]) -> void:
 	body.rotation = 0.0
 	action_locked_until_land = false
 	ai_controller.reset(global_position)
+	_update_visuals()
+
+# --- Practice mode: cooldowns filled and cards given back at a key ---
+
+## The ultimate and every skill ready at once; nothing else changes.
+func refill_cooldowns() -> void:
+	ultimate_cooldown_timer = 0.0
+	character_refill()
+	_update_visuals()
+
+## A character's own cooldowns and rounds, for refill_cooldowns.
+func character_refill() -> void:
+	pass
+
+## Every soul card given back, with the growth the picks brought. The caller resets the fighter
+## afterwards (max HP changed; a character's kit may have leaned on a card).
+func clear_upgrades() -> void:
+	upgrades.clear()
+	soul_picks = 0
+	upgrade_modifiers = UPGRADE_DEFAULTS.duplicate()
+	last_flame_on = false
+	chaser_timer = 0.0
+	_apply_growth_stats(false)
+	hp = minf(hp, max_hp)
+	hp_changed.emit(self)
 	_update_visuals()
 
 # --- Soul cards that act through the fighter (D54) ---

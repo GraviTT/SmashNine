@@ -281,7 +281,7 @@ func _check_data_keys() -> void:
 	for card: Dictionary in CARDS.CARDS:
 		for field in ["title", "text", "kind"]:
 			_check(keys.has(str(card[field])), "Card string missing: " + str(card[field]))
-	for text in ["Battle Royale", "Story", "Watch bots", "Options", "Controls", "Fighter", "KOs", "Damage", "Souls", "Cards", "Survived", "MOST DAMAGE", "MOST KOs", "LONGEST SURVIVAL", "Male", "Female", "Original art", "Prototype art", "On", "Off", "last survivor", "double KO", "no survivors", "final judgment", "Exploration", "Corner collapse warning", "Convergence", "Central brawl", "Sudden death", "Match over"]:
+	for text in ["Battle Royale", "Story", "Practice", "Standing dummy", "Walking dummy", "Fighting bot", "Watch bots", "Options", "Controls", "Fighter", "KOs", "Damage", "Souls", "Cards", "Survived", "MOST DAMAGE", "MOST KOs", "LONGEST SURVIVAL", "Male", "Female", "Original art", "Prototype art", "On", "Off", "last survivor", "double KO", "no survivors", "final judgment", "Exploration", "Corner collapse warning", "Convergence", "Central brawl", "Sudden death", "Match over"]:
 		_check(keys.has(text), "Dynamic menu/phase string missing: " + text)
 
 func _check_menu_literals() -> void:
