@@ -235,6 +235,12 @@ func reset_positions(quiet := false) -> void:
 func _clear_leftovers() -> void:
 	for child in main.get_children():
 		if child is Node2D and child != hero and child != target and not _fixed_nodes.has(child):
+			# Out of the fight at once, not only at the frame's end: on a busy machine a frame runs
+			# several physics steps, and a hitbox still there hit the target R had just put back
+			# (Rio's cuts, 30 frames into his ultimate, with frames slowed to 50 ms; 2026-11-26).
+			# Disabled, a body or an area leaves the physics space (disable_mode REMOVE).
+			child.process_mode = Node.PROCESS_MODE_DISABLED
+			child.visible = false
 			child.queue_free()
 	monsters.clear()
 
@@ -475,10 +481,17 @@ func _show_menu() -> void:
 	skills_panel.visible = true
 
 ## With a pad in use the nine keys of the second practice line are no use: it names the button
-## that opens the menu instead. Main calls this after update_hud.
+## that opens the menu instead. Main calls this after update_hud. The two lines are made whole
+## here (a HUD may have laid the last ones out again) and go through the HUD's own layout when it
+## has one (set_practice_lines, the new HUD's).
 func show_pad_help() -> void:
-	if GLYPHS.pad_in_use and is_instance_valid(info) and info.text.contains("\n"):
-		info.text = info.text.get_slice("\n", 0) + "\n" + tr(GLYPHS.PRACTICE_PAD)
+	if not GLYPHS.pad_in_use or not is_instance_valid(info):
+		return
+	var text := tr("Target: %s    Last hit %.1f HP    Total %.1f HP") % [target_name(), last_damage, total_damage] + "\n" + tr(GLYPHS.PRACTICE_PAD)
+	if main.hud.has_method("set_practice_lines"):
+		main.hud.set_practice_lines(text)
+	else:
+		info.text = text
 
 ## Esc with no list open: back to the title.
 func leave() -> void:

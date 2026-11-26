@@ -49,6 +49,7 @@ func _run() -> void:
 		"menu": _test_menu_entry,
 		"target": _test_target_kinds,
 		"reset": _test_reset,
+		"steps": _test_reset_between_steps,
 		"refill": _test_refill,
 		"cards": _test_cards,
 		"skills": _test_skill_list,
@@ -385,6 +386,54 @@ func _test_reset() -> bool:
 			await _frames(30)
 			_check(not main.match_over and not hero.is_defeated, "Play should go on after R (%s)" % id)
 	return true
+
+## R just after a hitbox touched the target. The engine finds a touch in one physics step and
+## delivers it at the start of the next; what R removes is only gone after that start. So a hitbox
+## that had just touched the target when R came still hit it, on the place R had put it back to.
+## Under load a frame runs several physics steps and R lands in that gap more often: the UI session
+## saw "R ... in the middle of an ultimate" fail twice that way (2026-11-26), and Rio's cuts 30
+## frames into his ultimate did it once in six with frames slowed to 50 ms. Here the gap is made
+## every time; it fails without the fix (R takes what it removes out of the physics at once).
+func _test_reset_between_steps() -> bool:
+	var main: Node = await _practice("frey")
+	var session: Node = main.practice_session
+	var hero: Node = session.hero
+	var target: Node = session.target
+	var home: Vector2 = session._start_point(session.TARGET_SPAWN)
+	for attempt in 5:
+		session.reset_positions(true)
+		await _frames(20)
+		var hp: float = target.hp
+		# A hitbox on the target, made in this frame's process: its touch is found in the next
+		# physics step, and delivered at the start of the one after.
+		await process_frame
+		var before: Array[Node] = main.get_children()
+		hero._spawn_attack(Vector2(140, 140), Vector2.ZERO, 12.0, 300.0, Vector2.RIGHT, Color(1, 1, 1, 0.3), 5.0)
+		var attack: Node = null
+		for child in main.get_children():
+			if not before.has(child) and child.get_script() != null and str(child.get_script().resource_path).ends_with("Attack.gd"):
+				attack = child
+		if attack == null:
+			_check(false, "Test setup: the fighter's hitbox should be on the field")
+			return false
+		attack.global_position = target.global_position + Vector2(0, -34)
+		await physics_frame
+		await process_frame
+		if not is_equal_approx(target.hp, hp):
+			# A slow frame ran two steps: the touch was delivered before R. Again.
+			continue
+		# R now: it is read at the start of the next frame, before its first physics step. The
+		# frame is held a little so that the next one runs at least one step.
+		_key(KEY_R, true)
+		OS.delay_msec(40)
+		await _frames(3)
+		_key(KEY_R, false)
+		await _frames(2)
+		_check(is_equal_approx(target.hp, target.max_hp) and _at_start(session, target, session.TARGET_SPAWN), "A hitbox that had just touched the target should not hit it after R puts it back (HP %.1f of %.0f, at %s, start %s)" % [target.hp, target.max_hp, target.global_position, home])
+		_check(not is_instance_valid(attack), "R should remove the hitbox")
+		return true
+	_check(false, "Test setup: five tries and R never came between the touch and its delivery")
+	return false
 
 ## E: the ultimate and every skill ready at once, for each fighter after it used them; the bot's too.
 func _test_refill() -> bool:
