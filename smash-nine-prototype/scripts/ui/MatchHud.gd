@@ -51,9 +51,10 @@ const RESULTS_BACK_COLOR := Color(0.03, 0.03, 0.07, 0.92)
 const CUTIN_HIGH_Y := 172.0
 const CUTIN_LOW_Y := 536.0
 const CARD_COLOR := Color(0.1, 0.08, 0.2, 0.92)
-## One offered card, and the gap between two. 300 x 124 since D54 (224 x 96 before): an action
-## card's text runs to three lines. An interim size until the HUD redesign replaces the panel.
-const CARD_SIZE := Vector2(288, 124)
+## One offered card, and the gap between two. 288 x 132 since D54 (224 x 96 before): an action
+## card's text runs to three lines, five with its title and kind, clear of the frame's corners. An
+## interim size until the HUD redesign replaces the panel.
+const CARD_SIZE := Vector2(288, 132)
 const CARD_GAP := 18.0
 ## A card's kind, as a colour (the letter that stands in for a missing icon).
 const CARD_KIND_COLOR := {"stat": Color("f3cd7c"), "action": Color("5fd0ff"), "character": Color("ff7ab8")}
@@ -746,8 +747,8 @@ func _build_card_panel() -> void:
 		card_panel.add_child(letter)
 		card_letters.append(letter)
 		var label := Label.new()
-		label.position = back.position + Vector2(64, 8)
-		label.size = back.size - Vector2(72, 16)
+		label.position = back.position + Vector2(64, 12)
+		label.size = back.size - Vector2(72, 24)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.add_theme_font_size_override("font_size", 15)
 		card_panel.add_child(label)

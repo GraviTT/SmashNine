@@ -314,7 +314,7 @@ func _check_menu_fit(menu: Control) -> void:
 func _check_card_fit(hud: Node) -> void:
 	for label: Label in hud.card_labels:
 		# The text has the card frame less its icon column and margins (216 x 108 since D54; 152 x 80
-		# before). Copy must fit that space.
+		# before): five lines. Copy must fit that space.
 		_check(label.get_line_count() * label.get_line_height() <= label.size.y, "Card copy overflows its box (%d lines of %d px in %d px): %s" % [label.get_line_count(), label.get_line_height(), int(label.size.y), label.text])
 
 func _frames(count: int) -> void:

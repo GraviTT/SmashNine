@@ -2320,10 +2320,20 @@ func try_air_dash() -> bool:
 	current_attack_started_airborne = true
 	count_move("air_dash")
 	AUDIO.sound(self, "dash")
-	# Until the card has art of its own: the air-jump puff where the dash began and a streak along it.
+	# Until the card has art of its own: the air-jump puff where the dash began and a line along its
+	# way that thins out (the hit streak tried first is 80 x 12 px for 0.08 s: not seen).
 	_spawn_jump_effect(true)
-	var reach := AIR_DASH_SPEED * AIR_DASH_TIME
-	EFFECT_STRIPS.spawn(get_parent(), "hit_streak", from + GAME_SCALE.BODY_CENTRE + Vector2(facing * reach * 0.5, 0.0), Vector2(facing * reach / 160.0, 1.0), false, 4, Color(1, 1, 1, _visible_alpha()))
+	var trail := Line2D.new()
+	trail.width = 9.0
+	trail.default_color = Color(0.85, 0.95, 1.0, 0.6 * _visible_alpha())
+	trail.z_index = 2
+	trail.add_point(from + GAME_SCALE.BODY_CENTRE)
+	trail.add_point(from + GAME_SCALE.BODY_CENTRE + Vector2(facing * AIR_DASH_SPEED * AIR_DASH_TIME, 0.0))
+	get_parent().add_child(trail)
+	var fade := trail.create_tween()
+	fade.tween_property(trail, "width", 1.0, 0.24)
+	fade.parallel().tween_property(trail, "modulate:a", 0.0, 0.24)
+	fade.tween_callback(trail.queue_free)
 	return true
 
 ## Meteor Landing: a hit on each side of the feet that lifts whoever stands there.
