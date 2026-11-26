@@ -178,6 +178,9 @@ func _run() -> void:
 				main._update_camera_follow()
 				main.camera.reset_smoothing()
 			await _capture("03-stage-nine-rivals-ko")
+		# Soul Drain (a soul card the hero may hold by now, D54) heals for every rival that falls:
+		# this check is about the intermission's own heal, so the hero goes in without the card.
+		main.story_session.hero.upgrades.erase("soul_drain")
 		main.story_session.hero.hp = main.story_session.hero.max_hp * 0.4
 		await _defeat(main)
 		_check(main.story_session.phase == "mid" and main.story_session.wave_index == 1 and not main.director.running, "Last rival starts frozen mid scene before own shadow spawns")
