@@ -34,8 +34,8 @@ func _run() -> void:
 	for origin in SCENES:
 		scene = origin
 		for test in [_test_air_jumps, _test_air_step_effect, _test_backstab, _test_pierce, _test_pierce_ledge,
-				_test_sword_blink, _test_sword_air_and_end, _test_counter, _test_counter_whiff, _test_decoy, _test_decoy_takes_a_swing,
-				_test_flurry, _test_flurry_burst, _test_bots, _test_third_skill_slot]:
+				_test_sword_blink, _test_sword_air_and_end, _test_counter, _test_counter_attacker_freed, _test_counter_whiff, _test_decoy, _test_decoy_takes_a_swing,
+				_test_flurry, _test_flurry_target_freed, _test_flurry_burst, _test_bots, _test_third_skill_slot]:
 			await test.call()
 			await _clear()
 			if failed:
@@ -295,6 +295,57 @@ func _test_counter() -> void:
 	if rio.counter_timer > 0.0:
 		_fail("The counter should be on cooldown")
 
+## The attacker freed while he is vanished (a monster that dies in that tenth of a second): he
+## only dodged. Casting the freed attacker was a script error that left out the short lock a dodge
+## ends with (found reading every await in the game code after the flurry's, 2026-11-25).
+## The foe's swing is a real one. Its time to land is measured first, so that the stance goes up
+## three frames before the hit and the stance's own lock is still long when he comes back.
+func _test_counter_attacker_freed() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var rio := _rio(Vector2(0, -2))
+	var foe: Node = PLAYER_FACTORY.create("frey")
+	arena.add_child(foe)
+	_put(foe, Vector2(-70, -2))
+	foe.setup(CHARACTER_REGISTRY.get_characters()["frey"], 2, false)
+	foe.ringout_y = 100000.0
+	foe.is_dummy = true
+	await _frames(12)
+	var before: float = rio.hp
+	foe.facing = 1
+	foe.basic_attack()
+	var lands := 0
+	while rio.hp >= before and lands < 60:
+		await physics_frame
+		lands += 1
+	if rio.hp >= before or lands < 5:
+		_fail("Test setup: the foe's swing should land on Rio after a start-up (%d frames)" % lands)
+		return
+	# Back where they stood, the swing over.
+	await _frames(40)
+	_put(rio, Vector2(0, -2))
+	rio.velocity = Vector2.ZERO
+	rio.knockback_velocity = Vector2.ZERO
+	await _wait_for(func() -> bool: return rio.hitstun_timer <= 0.0 and rio.is_on_floor(), 2.0)
+	rio.attack_lock_timer = 0.0
+	foe.attack_lock_timer = 0.0
+	foe.facing = 1
+	foe.basic_attack()
+	await _frames(lands - 3)
+	rio.skill_two()
+	if not await _wait_for(func() -> bool: return rio.counter_triggered, 0.3):
+		_fail("Test setup: the foe's swing should land in Rio's stance")
+		return
+	# He is vanished now; the attacker goes before he comes back.
+	foe.queue_free()
+	if not await _wait_for(func() -> bool: return not rio.shadow_vanished, 0.5):
+		_fail("Rio should come back from the vanish when the attacker is gone")
+		return
+	await physics_frame
+	if rio.is_invulnerable():
+		_fail("Back from the vanish he can be hit again")
+	if rio.attack_lock_timer > 0.1:
+		_fail("With the attacker gone he only dodged: the short lock, not the stance's (lock %.2f)" % rio.attack_lock_timer)
+
 func _test_counter_whiff() -> void:
 	_floor(Vector2(0, 0), 2400)
 	var rio := _rio(Vector2(0, -2))
@@ -395,6 +446,29 @@ func _test_flurry() -> void:
 		_fail("The cuts should hit both foes (near %.0f -> %.0f, far %.0f -> %.0f)" % [near_hp, near.hp, far_hp, far.hp])
 	if back_at.distance_to(start) > 6.0:
 		_fail("Rio should return to where he pressed I (at %s, start %s)" % [back_at, start])
+
+## A foe freed between two throws (a monster that dies while the swords fly out): the swords
+## left go to the foes still there. Handing the freed one on was a script error that stopped the
+## cast half-way: the swords left were never thrown, and the I key did nothing until he was next
+## hit (soak seed 2002, 2026-11-25).
+func _test_flurry_target_freed() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var rio := _rio(Vector2(0, -2))
+	_dummy(10, Vector2(180, -2), -1)
+	var far := _dummy(11, Vector2(-260, -2), 1)
+	await _frames(6)
+	rio.perform_ultimate()
+	# The first sword is out; the second would go to the far foe, which is gone by then.
+	far.queue_free()
+	if not await _wait_for(func() -> bool: return rio.flurry_phase == rio.Flurry.WAITING, 1.5):
+		_fail("The cast should finish when a foe is freed between two throws (phase %d)" % rio.flurry_phase)
+		return
+	var thrown := 0
+	for sword in rio.flurry_swords:
+		if is_instance_valid(sword):
+			thrown += 1
+	if thrown != rio.FLURRY_SWORDS:
+		_fail("All six gem swords should be thrown, the later ones at the foe still there (%d thrown)" % thrown)
 
 ## Without the second I the stuck swords burst on their foe.
 func _test_flurry_burst() -> void:

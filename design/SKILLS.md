@@ -96,11 +96,11 @@
 
 | 입력 | 기술 | 하는 일 | 주요 수치 | 몸 동작 | 이펙트와 그리기 | 상태 | 이펙트가 따라야 할 값 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `J` | 설화부·직선 | 전방으로 빠른 부적을 보내 견제한다. | 피해 6, 기본 30×16, 넉백 190, 속도 `660×COMBAT`, 수명 0.95초 | `talisman_side` 전체 | `assets/art/effects/yuki_talisman.png`; `YukiTalisman.configure` | 그림 | 투사체 방향, 30×16 판정, 속도·0.95초 수명 |
-| `↑J` | 설화부·대공 | 위로 부적을 보내 0.18초 뒤 82×74 범위로 펼친다. | 피해 7, 비행 22×30, 넉백 225, 속도 `520×COMBAT`, 수명 0.52초; 폭발 기본 82×74, 0.16초 | `talisman_up` 전체 | `yuki_talisman.png`, 폭발 `attack_vfx/yuki_l.png`; `YukiTalisman._begin_burst` | 그림 | 위 방향, 0.18초 전개, 82×74 폭발 |
+| `J` | 설화부·직선 | 전방으로 빠른 부적을 보내 견제한다. 발판에 닿으면 사라진다. | 피해 6, 기본 30×16, 넉백 190, 속도 `660×COMBAT`, 수명 0.95초 | `talisman_side` 전체 | `assets/art/effects/yuki_talisman.png`; `YukiTalisman.configure` | 그림 | 투사체 방향, 30×16 판정, 속도·0.95초 수명 |
+| `↑J` | 설화부·대공 | 위로 부적을 보내 0.18초 뒤 82×74 범위로 펼친다. 그 전에 발판에 닿으면 거기서 펼친다. | 피해 7, 비행 22×30, 넉백 225, 속도 `520×COMBAT`, 수명 0.52초; 폭발 기본 82×74, 0.16초 | `talisman_up` 전체 | `yuki_talisman.png`, 폭발 `attack_vfx/yuki_l.png`; `YukiTalisman._begin_burst` | 그림 | 위 방향, 0.18초 전개, 82×74 폭발 |
 | `공중 ↑J` | 공중 설화부·대공 | 공중에서 같은 위 부적을 쓴다. | `↑J`와 동일 | `talisman_up` 전체 | `yuki_talisman.png`, `yuki_l.png` | 그림 | `↑J`와 동일 |
 | `↓J` | 지상 퇴마 파동 | 발밑 앞을 짧게 쓸어 근접 적을 밀어낸다. | 피해 7, 54×46, 끝 (76,8), 넉백 285, 0.13초 | `ground_ward` 전체 | `attack_vfx/yuki_slash.png`; `_ground_ward` | 그림 | 낮은 전방 궤적, 판정과 0.13초 |
-| `공중 J` | 공중 설화부·직선 | 입력 방향으로 작고 빠른 부적을 발사한다. | 피해 6, 28×14, 넉백 175, 속도 `720×COMBAT`, 수명 0.78초 | `talisman_air_side` 전체 | `yuki_talisman.png` | 그림 | 공중 입력 방향, 속도·수명 |
+| `공중 J` | 공중 설화부·직선 | 입력 방향으로 작고 빠른 부적을 발사한다. 발판에 닿으면 사라진다. | 피해 6, 28×14, 넉백 175, 속도 `720×COMBAT`, 수명 0.78초 | `talisman_air_side` 전체 | `yuki_talisman.png` | 그림 | 공중 입력 방향, 속도·수명 |
 | `공중 ↓J` | 낙하부 | 아래로 부적을 떨어뜨리고 적이나 발판에 닿으면 넓게 펼친다. | 피해 8, 비행 24×28, 넉백 295, 속도 `610×COMBAT`, 수명 1초; 폭발 기본 94×50, 0.16초 | `talisman_air_down` 전체 | `yuki_talisman.png`, 폭발 `yuki_l.png` | 그림 | 아래 방향, 충돌 지점, 94×50 폭발 |
 | `K` | 결박 부적 설치 | 입력을 상하좌우로 고정해 145px 떨어진 곳에 봉인부를 둔다. 지상 아래 입력은 발밑에 둔다. 최대 2개이며 5초 뒤 사라지고 공격 한 번에 찢어진다. | 최대 2개, 기본 거리 145, 유지 5초; 물체 판정 30×42 | `seal_place` 전체 | 설치 `attack_vfx/yuki_k.png`, 대기 `yuki_seal_idle.png`, 파괴 `yuki_seal_break.png`; `YukiSeal` | 그림 | 설치 방향·위치, 5초 잔여 알파, 대기 4프레임, 파괴 5프레임 |
 | `L` (봉인부 있음) | 결계 해방 | 모든 봉인부를 0.58초 활성화해 주변을 끌고, 끝에 폭발시킨다. 같은 발동의 중복 폭발 피해는 한 번만 받는다. | 흡입 반경 `135×COMBAT` `[PULL_RADIUS]`, 힘 520; 폭발 반경 `148×COMBAT` `[BURST_RADIUS]`, 피해 11, 넉백 315; 활성 0.58초 `[ACTIVE_TIME]` | `seal_activate` 전체 | 대기 부적이 밝아지고 폭발 `attack_vfx/yuki_l.png`; `_play_burst_effect` | 그림 | 두 반경, 0.58초 흡입, 발동 ID별 1회 피해 |
@@ -108,7 +108,7 @@
 | `I` | 사방봉진 | 입력 방향 `220×COMBAT` 위치에 결계를 설치한다. 0.7초 예고 후 2.35초 동안 끌고 느리게 하며, 약한 파동과 마지막 강한 파동을 낸다. 기존 봉인부도 함께 발동한다. | 반경 `205×COMBAT` `[FIELD_RADIUS]`, 예고 0.7초 `[WARNING_TIME]`, 활성 2.35초 `[ACTIVE_TIME]`, 파동 간격 0.58초 `[PULSE_INTERVAL]`; 흡입 240 `[FIELD_PULL_STRENGTH]`; 일반 피해 4 `[PULSE_DAMAGE]`, 넉백 90; 마지막 피해 16 `[FINAL_PULSE_DAMAGE]`, 넉백 520, 기절 1.2초 | `grand_ward` 전체 | 결계 `vfx/yuki_ult_seal.png`(ART-67 채택본, 반투명, 가장자리에 얇은 `Line2D` 링), 마지막 `vfx/yuki_ult_burst.png`; `skill/yuki_grand_ward.png`(얇은 링)는 봉인 그림이 없을 때만; `YukiGrandWard` | 그림 | 실제 반경 307.5, 예고/활성 시간, 0.58초 파동, 마지막 폭발 구분 |
 | Guard | 공용 방어/패리 | 공용 지상 방어다. | 공용 조작 절 참고 | `shield` 전체 | `guard_bubble.png`, `parry_flash.png` | 공용 | 방향, 패리 창, 감소율 |
 
-특수 상태: 봉인부는 오래된 것부터 제거되는 최대 2개 큐다. 활성 중에는 공격으로 파괴할 수 없고, Yuki가 쓰러지거나 재생성되면 정리된다. 사방봉진은 Yuki가 쓰러지거나 다른 렐름으로 가면 즉시 사라진다. 별도의 상시 패시브는 없다.
+특수 상태: 봉인부는 오래된 것부터 제거되는 최대 2개 큐다. 활성 중에는 공격으로 파괴할 수 없고, Yuki가 쓰러지거나 재생성되면 정리된다. 사방봉진은 Yuki가 쓰러지거나 다른 렐름으로 가면 즉시 사라진다. 별도의 상시 패시브는 없다. 봉인부가 공격에 찢어지는 것과 부적이 발판을 만나는 것은 2026-11-25부터 실제로 일어난다. 그 전에는 봉인부가 정적인 몸이라 공격이 닿지 않았고, 부적은 `monitorable`이 꺼진 영역이라 발판을 만나지 못했다(`reports/yuki-objects-2026-11-25/`).
 
 ## Nova
 

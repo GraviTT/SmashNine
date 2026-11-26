@@ -33,9 +33,9 @@ tot = defaultdict(lambda: defaultdict(float))
 for d in rows:
     for cid, m in d.get("moves", {}).items():
         for k, v in m.items(): tot[cid][k] += v
-keys = ["damage", "j", "k", "k2", "l", "l2", "u", "u2", "i", "i2", "wings", "wing_hits", "u_hits", "flight", "back_hits", "beam_ticks", "decoy_burst"]
+keys = ["damage", "j", "k", "k2", "l", "l2", "u", "u2", "i", "i2", "wings", "wing_hits", "u_hits", "flight", "back_hits", "beam_ticks", "decoy_burst", "seal_torn", "talisman_stopped", "talisman_burst_on_platform"]
 print("moves per seat (8 matches):")
-print("char  seats " + " ".join(f"{k:>6s}" for k in keys))
+print("char  seats " + " ".join(f"{k[:9]:>9s}" if len(k) > 6 else f"{k:>6s}" for k in keys))
 for cid in sorted(tot):
     seats = tot[cid]["seats"]
-    print(f"{cid:5s} {int(seats):5d} " + " ".join(f"{tot[cid].get(k, 0)/seats:6.1f}" for k in keys))
+    print(f"{cid:5s} {int(seats):5d} " + " ".join((f"{tot[cid].get(k, 0)/seats:9.1f}" if len(k) > 6 else f"{tot[cid].get(k, 0)/seats:6.1f}") for k in keys))
