@@ -81,6 +81,12 @@ func _frames(count: int) -> void:
 	for frame in count:
 		await physics_frame
 
+## Seconds on the physics clock, the one moves count in (PlayerBase._wait_action). A wall-clock
+## timer runs up to six ticks ahead of it or behind when frames are slow: the mark burst check,
+## 0.1 s after the burst, looked before the burst once in run_all on a busy machine (2026-11-26).
+func _seconds(time: float) -> void:
+	await create_timer(time, true, true).timeout
+
 func _clear() -> void:
 	for child in arena.get_children():
 		child.queue_free()
@@ -222,7 +228,7 @@ func _test_mark_burst() -> void:
 	far.apply_star_mark(luna, 10.0)
 	var hp_before: float = far.hp
 	luna.ultimate()
-	await create_timer(luna.transform_time(8) + 0.1).timeout
+	await _seconds(luna.transform_time(8) + 0.1)
 	if far.star_mark_timer > 0.0:
 		_fail("The transformation should burst the star mark")
 	if far.hp >= hp_before or float(far.status_stun_timer) < 2.5 or float(far.hitstun_timer) < 2.5:
@@ -249,10 +255,10 @@ func _test_special_transformation() -> void:
 		_fail("The transformation should take the row's 12 drawings at its %.2f fps, the burst its 8 (got %.2f s, %.2f s)" % [fps, motion, burst])
 	if float(luna.ultimate_armor_timer) < motion - 0.01:
 		_fail("Super armour should cover the %.2f s transformation (got %.2f s)" % [motion, float(luna.ultimate_armor_timer)])
-	await create_timer(burst - 0.15).timeout
+	await _seconds(burst - 0.15)
 	if bool(luna.transformed):
 		_fail("Luna should still be mid-spin %.2f s in, not Brave Luna yet" % (burst - 0.15))
-	await create_timer(0.3).timeout
+	await _seconds(0.3)
 	if not bool(luna.transformed):
 		_fail("Luna should be Brave Luna by %.2f s (the landing frame is at %.2f s)" % [burst + 0.15, burst])
 	await _clear()
@@ -384,7 +390,7 @@ func _test_cyclone() -> void:
 		await _clear()
 		return
 	var y_before: float = rio.global_position.y
-	await create_timer(2.2).timeout
+	await _seconds(2.2)
 	var launched := false
 	for frame in 20:
 		await physics_frame
@@ -404,13 +410,13 @@ func _test_star_beam() -> void:
 	luna.facing = 1
 	if not luna.try_ultimate_followup():
 		_fail("I in Brave should fire the star beam")
-	await create_timer(1.5).timeout
+	await _seconds(1.5)
 	if not is_instance_valid(luna.heart_laser) or absf(float(luna.heart_laser.duration) - 3.0) > 0.01:
 		_fail("The star beam should last 3 s")
 	if foe.hitstun_timer <= 0.0:
 		_fail("The beam should keep its target in hitstun")
 	var x_mid: float = foe.global_position.x
-	await create_timer(1.75).timeout
+	await _seconds(1.75)
 	await _frames(4)
 	if foe.global_position.x <= x_mid:
 		_fail("The beam should push its target away")
