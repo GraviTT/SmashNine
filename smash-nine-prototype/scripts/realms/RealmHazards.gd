@@ -432,7 +432,11 @@ func _update_belts(delta: float) -> void:
 			for index in chevrons.get_child_count():
 				var chevron: Node2D = chevrons.get_child(index)
 				var x := float(index) * BELT_CHEVRON_SPACING + float(entry.belt_scroll)
-				chevron.visible = x >= 4.0 and x <= width - 4.0
+				# Off the belt it turns clear instead of hidden: a Polygon2D shown again redraws, and
+				# Godot 4.7 redraws an unchanged shape by updating its mesh in place, which WebGL
+				# refuses ("bindBuffer: element array buffers can not be bound to a different
+				# target", a few times a second per belt; quality track 4, 2026-11-27).
+				chevron.self_modulate.a = 1.0 if x >= 4.0 and x <= width - 4.0 else 0.0
 				chevron.position = Vector2(x, BELT_HEIGHT * 0.5)
 				chevron.scale.x = direction
 		for combatant in _fighters_in(realm_index):
