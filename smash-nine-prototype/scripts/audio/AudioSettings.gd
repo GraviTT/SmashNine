@@ -49,6 +49,19 @@ static func cycle(key: String) -> void:
 	if uses_saved_choice():
 		save_to(SAVE_PATH)
 
+## Moves a volume by `delta` (steps of 10), held between 0 and 100: the options' Left / Right (UI
+## audit 3-3: Enter only went up, 100 then 0, so lowering meant a full round). Mute turns either way.
+static func step(key: String, delta: int) -> void:
+	if key == "mute":
+		values.mute = not bool(values.mute)
+	elif key in ["master", "music", "effects"]:
+		values[key] = clampi(int(values[key]) + delta, 0, 100)
+	else:
+		return
+	apply()
+	if uses_saved_choice():
+		save_to(SAVE_PATH)
+
 static func _step(value: float) -> int:
 	return clampi(roundi(value / 10.0) * 10, 0, 100)
 

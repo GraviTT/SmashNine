@@ -81,12 +81,15 @@ const CONTROLS := [
 	["J  + direction", "Basic attack (ground and air variants)"],
 	["K / L / U", "Character skills (U: third skill)"], ["I", "Ultimate (30 second cooldown)"],
 	["Q", "Use the portal under your feet"], ["1 / 2 / 3", "Pick a soul card when offered"],
-	["H", "Spawn / remove a training dummy"], ["F3 / F4", "Debug panel / live bot panel"],
-	["T", "Game speed: 100 / 90 / 80 / 70%"], ["F2 (before a match)", "Switch original / prototype art"],
+	# Menus and tools after the match's keys (UI audit 4-1: the developer's keys sat among them).
 	["1 - %d / V / B (menus)", "Quick start / body / watch bots"],
 	["Arrows or W-S / Enter or J", "Navigate menus / confirm (mouse also works)"],
-	["Esc / R (results)", "Back in menus / rematch"]
+	["Esc / R (results)", "Back in menus / rematch"],
+	["T", "Game speed: 100 / 90 / 80 / 70%"], ["F2 (before a match)", "Switch original / prototype art"],
+	["H", "Spawn / remove a training dummy"], ["F3 / F4", "Debug panel / live bot panel"]
 ]
+## The keyboard table's first rows are the match's keys; the rest are menus and tools.
+const CONTROLS_IN_MATCH := 9
 ## The gamepad's table (the gamepad report's section 1, Xbox names), on the controls screen's second
 ## tab: each row the buttons (badges, PadBadges; DPAD is the cross, a word is written) over what they
 ## do. The keyboard rows' words are reused where the action is the same.
@@ -697,7 +700,7 @@ func show_options() -> void:
 		audio_buttons[key] = _option_row(1, index, "audio_" + key)
 	_back_button(heading, "title")
 	refresh_options()
-	_finish("Arrows / W-S: navigate    Enter / J / click: change    T: speed    F2: art    Esc: back", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
+	_finish("Up / Down: navigate    Left / Right: volume    Enter / J / click: change    T: speed    F2: art    Esc: back", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
 
 func _option_row(column: int, row: int, action: String) -> Button:
 	var button := _button("", Rect2(76.0 + column * 600, 182.0 + row * 72, 528, 58), action, "", "slant", 19)
@@ -735,17 +738,25 @@ func show_controls() -> void:
 		var shown: bool = controls_tab == tab[1]
 		var button := _button(tab[0], Rect2(x, 26, 168, 44), "controls_" + str(tab[1]), "", "primary" if shown else "slant", 17)
 		x += button.size.x + 8.0
-	var rows: Array = CONTROLS if controls_tab == "keys" else PAD_CONTROLS
-	var per_column := ceili(rows.size() / 2.0)
+	var keys_tab := controls_tab == "keys"
+	var rows: Array = CONTROLS if keys_tab else PAD_CONTROLS
+	# The keyboard's table in two groups, each on its sheet under its name; the pad's in two halves.
+	var split := CONTROLS_IN_MATCH if keys_tab else ceili(rows.size() / 2.0)
+	var pitch := 56.0 if keys_tab else 66.0
+	var top := 142.0 if keys_tab else 112.0
 	for column in 2:
-		var count := mini(per_column, rows.size() - column * per_column)
-		_sheet(Rect2(48.0 + column * 600, 96, 584, 32 + count * 66))
+		var count := split if column == 0 else rows.size() - split
+		_sheet(Rect2(48.0 + column * 600, 96, 584, top - 80.0 + count * pitch))
+		if keys_tab:
+			_group_title(["IN A MATCH", "MENUS AND TOOLS"][column], Vector2(78.0 + column * 600, 108), 520)
 	for index in rows.size():
 		var row: Array = rows[index]
-		var at := Vector2(78.0 + (index / per_column) * 600, 112.0 + (index % per_column) * 66)
-		if index % 2 == 1:
-			_plate(Rect2(at - Vector2(16, 8), Vector2(556, 62)), _box(Color(1, 1, 1, 0.04), Color.TRANSPARENT, 0, 4))
-		if controls_tab == "keys":
+		var column := 0 if index < split else 1
+		var line := index if index < split else index - split
+		var at := Vector2(78.0 + column * 600, top + line * pitch)
+		if line % 2 == 1:
+			_plate(Rect2(at - Vector2(16, 6), Vector2(556, pitch - 2.0)), _box(Color(1, 1, 1, 0.04), Color.TRANSPARENT, 0, 4))
+		if keys_tab:
 			var keys := _label(row[0], Rect2(at, Vector2(524, 24)), 17, GOLD)
 			keys.autowrap_mode = TextServer.AUTOWRAP_OFF
 			keys.add_theme_font_override("font", _bold_font())
@@ -991,6 +1002,10 @@ func _input(event: InputEvent) -> void:
 			var neighbor := buttons[focus_index].find_valid_focus_neighbor(direction)
 			if neighbor != null:
 				_focus_from_navigation(neighbor)
+		elif screen == "options" and code in [KEY_LEFT, KEY_A, KEY_RIGHT, KEY_D] and _sound_row() != "":
+			AUDIO_SETTINGS.step(_sound_row(), 10 if code in [KEY_RIGHT, KEY_D] else -10)
+			AUDIO.sound(self, "ui_move")
+			refresh_options()
 		elif screen == "controls" and code in [KEY_LEFT, KEY_A, KEY_RIGHT, KEY_D]:
 			var tab := "pad" if code in [KEY_RIGHT, KEY_D] else "keys"
 			if tab != controls_tab:
@@ -1000,6 +1015,15 @@ func _input(event: InputEvent) -> void:
 			var step := -1 if code in [KEY_UP, KEY_W, KEY_LEFT, KEY_A] else 1
 			_move_focus(step)
 		get_viewport().set_input_as_handled()
+
+## The sound row (master, music, effects, mute) the options' focus is on, or "".
+func _sound_row() -> String:
+	if focus_index < 0 or focus_index >= buttons.size():
+		return ""
+	for key: String in audio_buttons:
+		if audio_buttons[key] == buttons[focus_index]:
+			return key
+	return ""
 
 func _move_focus(step: int) -> void:
 	if buttons.is_empty():
