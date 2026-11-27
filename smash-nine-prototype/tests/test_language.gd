@@ -36,6 +36,8 @@ func _read_choice() -> String:
 func _run() -> void:
 	root.size = Vector2i(1280, 720)
 	LANGUAGE.load_saved()
+	# A test run starts in English whatever this PC's language is (the first-start rule is for players).
+	_check(LANGUAGE.locale == "en", "A test run should start in English whatever this PC's language (%s)" % LANGUAGE.locale)
 	var choice_before := _read_choice()
 	var choice_mtime := FileAccess.get_modified_time(LANGUAGE.SAVE_PATH) if FileAccess.file_exists(LANGUAGE.SAVE_PATH) else 0
 	_read_table()
@@ -43,9 +45,13 @@ func _run() -> void:
 	_check_source_literals("res://characters")
 	_check_menu_literals()
 	_check_data_keys()
-	# A first start (no choice saved) follows the browser's or the system's language when it is one
-	# of ours (UI audit 2026-11-25, title "-"); test runs themselves stay English.
-	_check(LANGUAGE.first_locale("ko") == "ko" and LANGUAGE.first_locale("en") == "en" and LANGUAGE.first_locale("ja") == "en" and LANGUAGE.first_locale("") == "en", "A first start should take Korean or English from the system's language, else English")
+	# The language a start takes (UI audit 2026-11-25, title "-"), with the system's language played
+	# here, not this PC's: a saved choice always wins (English if it is not one of ours); with none, the
+	# browser's or system's language when it is one of ours, else English. Test runs stay English.
+	for case in [[false, "", "ko", "ko"], [false, "", "en", "en"], [false, "", "ja", "en"], [false, "", "", "en"],
+			[true, "en", "ko", "en"], [true, "ko", "en", "ko"], [true, "xx", "ko", "en"]]:
+		var chosen: String = LANGUAGE.choose_locale(case[0], case[1], case[2])
+		_check(chosen == case[3], "Saved %s '%s' with the system in '%s' should start in %s, got %s" % [case[0], case[1], case[2], case[3], chosen])
 	LANGUAGE.set_locale("en")
 	change_scene_to_file("res://scenes/Main.tscn")
 	await _frames(6)

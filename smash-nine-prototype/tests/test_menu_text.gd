@@ -18,6 +18,7 @@ const STORY_MENU := preload("res://scripts/ui/StoryScreens.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
 const STORY := preload("res://scripts/story/StoryCatalog.gd")
+const AUDIO_SETTINGS := preload("res://scripts/audio/AudioSettings.gd")
 ## The select screen's info panel (the fighter's name band, description and kit).
 const INFO_PANEL := Rect2(548, 72, 696, 432)
 const PANEL_PADDING := 12.0
@@ -42,6 +43,7 @@ func _run() -> void:
 	await _kit_rows()
 	await _award_matches_table()
 	await _later_screens()
+	await _audit_batch_two()
 	LANGUAGE.set_locale("en")
 	if not failed:
 		print("Menu text tests passed (number-key hints follow the roster on four screens in en/ko; %d kit rows clear of each other; the damage award matches the table; %d later screens clear in en/ko)" % [rows_checked, screens_checked])
@@ -214,6 +216,65 @@ func _later_screens() -> void:
 			_screen_clear(menu, "%s ending %s" % [locale, id])
 	menu.queue_free()
 	await process_frame
+
+## The UI audit's second batch (2026-11-27): Left / Right lower and raise a volume in steps of 10,
+## held at 0 and 100 (3-3); the keyboard's table keeps the match's keys apart from the menus and
+## tools (4-1); the start card's bar runs down over the card's own CARD_SECONDS (16-1).
+func _audit_batch_two() -> void:
+	LANGUAGE.set_locale("en")
+	var menu: Control = STORY_MENU.new()
+	root.add_child(menu)
+	await process_frame
+	menu.show_options()
+	var master: Button = menu.audio_buttons.master
+	menu.focus_index = menu.buttons.find(master)
+	master.grab_focus()
+	var before: int = int(AUDIO_SETTINGS.values.master)
+	AUDIO_SETTINGS.values.master = 10
+	for step: Array in [[KEY_LEFT, 0], [KEY_LEFT, 0], [KEY_RIGHT, 10], [KEY_D, 20], [KEY_A, 10]]:
+		_key(menu, step[0])
+		_check(int(AUDIO_SETTINGS.values.master) == step[1], "Left / Right on the master volume should give %d, got %d" % [step[1], AUDIO_SETTINGS.values.master])
+	AUDIO_SETTINGS.values.master = 100
+	_key(menu, KEY_RIGHT)
+	_check(int(AUDIO_SETTINGS.values.master) == 100, "Right should hold the volume at 100")
+	_check(master.text == tr("Master volume: %d%%") % 100, "The row should show the new volume (%s)" % master.text)
+	AUDIO_SETTINGS.values.master = before
+	# On a row that is not sound, Left / Right still move the focus.
+	var speed_index: int = menu.buttons.find(menu.speed_button)
+	menu.focus_index = speed_index
+	menu.speed_button.grab_focus()
+	_key(menu, KEY_RIGHT)
+	_check(menu.focus_index != speed_index, "Right on the speed row should move the focus")
+	# The keyboard's table: the match's keys on the left sheet, menus and tools on the right.
+	menu.show_controls_tab("keys")
+	await process_frame
+	var texts: Array[String] = []
+	_texts(menu.content, texts)
+	_check(texts.has(tr("IN A MATCH")) and texts.has(tr("MENUS AND TOOLS")), "The keyboard's table should name its two groups")
+	for child in menu.content.get_children():
+		if child is Label and child.text in ["H", "F3 / F4", "T", tr("F2 (before a match)")]:
+			_check(child.position.x > 640.0, "%s belongs with the menus and tools (x %.0f)" % [child.text, child.position.x])
+		elif child is Label and child.text in [tr("A / D  or  Left / Right"), "Space", "Q"]:
+			_check(child.position.x < 640.0, "%s belongs with the match's keys (x %.0f)" % [child.text, child.position.x])
+	# The start card's bar: the card's own seconds, running down.
+	menu.selected_id = "frey"
+	menu.body = "male"
+	menu.show_stage_card(STORY.stage(2))
+	var left: int = menu.card_deadline - Time.get_ticks_msec()
+	_check(absi(left - int(STORY_MENU.CARD_SECONDS * 1000.0)) <= 100, "The card should go on after CARD_SECONDS (%d ms left)" % left)
+	await create_timer(0.3).timeout
+	var bar: ColorRect = menu.card_bar
+	_check(is_instance_valid(bar) and bar.scale.x < 1.0 and bar.scale.x > 0.5, "The card's bar should run down with its seconds (%s)" % (bar.scale.x if is_instance_valid(bar) else -1.0))
+	menu.card_deadline = 9223372036854775807
+	menu.queue_free()
+	await process_frame
+
+func _key(menu: Control, keycode: int) -> void:
+	var event := InputEventKey.new()
+	event.pressed = true
+	event.keycode = keycode
+	event.physical_keycode = keycode
+	menu._input(event)
 
 func _screen_clear(menu: Control, where: String) -> void:
 	screens_checked += 1

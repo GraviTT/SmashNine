@@ -21,15 +21,15 @@ static func load_saved() -> void:
 		locale = "en"
 		if _uses_saved_choice():
 			var config := ConfigFile.new()
-			if config.load(SAVE_PATH) == OK:
-				var saved := str(config.get_value("game", "language", "en"))
-				locale = saved if LOCALES.has(saved) else "en"
-			else:
-				locale = first_locale(OS.get_locale_language())
+			var has_saved := config.load(SAVE_PATH) == OK
+			locale = choose_locale(has_saved, str(config.get_value("game", "language", "")) if has_saved else "", OS.get_locale_language())
 	apply()
 
-## The language a first start uses for the browser's or system's language code `system`.
-static func first_locale(system: String) -> String:
+## The language a start uses: the saved choice whenever there is one (English if it is not one of
+## ours), else the browser's or system's language code `system` when it is one of ours, else English.
+static func choose_locale(has_saved: bool, saved: String, system: String) -> String:
+	if has_saved:
+		return saved if LOCALES.has(saved) else "en"
 	return system if LOCALES.has(system) else "en"
 
 static func apply() -> void:
