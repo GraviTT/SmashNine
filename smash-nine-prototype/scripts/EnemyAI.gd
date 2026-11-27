@@ -3,6 +3,8 @@ extends RefCounted
 ## Realm, movement and attack scales (routine 2026-10-08): navigation distances follow the
 ## realms (WORLD, jump heights JUMP_HEIGHT), fighting distances follow attack reach (COMBAT).
 const GAME_SCALE := preload("res://scripts/GameScale.gd")
+## The bot panel names a target fighter with its number when another shares its name (Nova 2).
+const FIGHTER_NAMES := preload("res://scripts/ui/FighterNames.gd")
 
 const STATE_WANDER := "wander"
 const STATE_PURSUE := "pursue"
@@ -1543,7 +1545,7 @@ func debug_snapshot(player) -> Dictionary:
 	if is_instance_valid(target):
 		if target.is_in_group("players"):
 			target_kind = "player"
-			target_name = str(target.get("display_name"))
+			target_name = FIGHTER_NAMES.plain(target)
 		elif target.is_in_group("soul_crystals"):
 			target_kind = "crystal"
 			target_name = "Soul crystal"

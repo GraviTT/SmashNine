@@ -6,6 +6,10 @@ const PLAYER_BASE_SCRIPT := preload("res://characters/common/PlayerBase.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const WORLD_LAYER := 1
 const PLAYER_LAYER := 2
+## The draw layer of the character's picture. The overhead name and the HP and soul bars share it
+## and come after it, so they draw over a jump or a tall pose; effects stay above them (layer 2
+## and up). Under the picture, a jumping fighter's number was hidden (2026-11-27).
+const PICTURE_Z := 1
 
 ## body_type picks the male or female original sheet for characters drawn in both.
 static func create(character_id := "", body_type := "") -> CharacterBody2D:
@@ -42,6 +46,7 @@ static func create(character_id := "", body_type := "") -> CharacterBody2D:
 	name_label.size = Vector2(92, 42)
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.add_theme_font_size_override("font_size", 13)
+	name_label.z_index = PICTURE_Z
 	player.add_child(name_label)
 
 	player.add_child(_create_bar("HpBar", Vector2(54, 7), Vector2(-27, -78), Color(0.1, 0.1, 0.1, 0.9), Color(0.25, 1.0, 0.35)))
@@ -54,6 +59,7 @@ static func _create_bar(bar_name: String, size: Vector2, position: Vector2, back
 	back.color = back_color
 	back.size = size
 	back.position = position
+	back.z_index = PICTURE_Z
 	var fill := ColorRect.new()
 	fill.name = "Fill"
 	fill.color = fill_color
@@ -66,7 +72,7 @@ static func _create_character_sprite() -> AnimatedSprite2D:
 	sprite.name = "CharacterSprite"
 	sprite.position = Vector2(0, -32)
 	sprite.scale = Vector2(2.0, 2.0)
-	sprite.z_index = 1
+	sprite.z_index = PICTURE_Z
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.visible = false
 	return sprite

@@ -12,6 +12,7 @@ signal match_finished(winner: Node, reason: String)
 
 const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
+const FIGHTER_NAMES := preload("res://scripts/ui/FighterNames.gd")
 
 const STATE_STABLE := "stable"
 const STATE_WARNING := "warning"
@@ -323,8 +324,9 @@ func _finish(new_winner: Node, reason: String) -> void:
 	winner = new_winner
 	finish_reason = reason
 	_set_phase(PHASE_OVER)
-	var winner_name: String = new_winner.display_name if is_instance_valid(new_winner) else "Nobody"
-	var result_text: String = tr("%s wins (%s).") % [tr(winner_name), tr(reason)] if is_instance_valid(new_winner) else tr("Nobody wins (%s).") % tr(reason)
+	# The winner's number too when another fighter shares its name (Nova 2).
+	var winner_name: String = FIGHTER_NAMES.shown(new_winner) if is_instance_valid(new_winner) else "Nobody"
+	var result_text: String = tr("%s wins (%s).") % [winner_name, tr(reason)] if is_instance_valid(new_winner) else tr("Nobody wins (%s).") % tr(reason)
 	announcement.emit(result_text)
 	match_finished.emit(new_winner, reason)
 

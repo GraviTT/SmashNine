@@ -35,6 +35,7 @@ $tests += @("test_soul_cards")
 $tests += @("test_practice_mode")
 $tests += @("test_freed_targets")
 $tests += @("test_gamepad")
+$tests += @("test_fighter_names")
 $failed = @()
 $certificateNoise = 0
 

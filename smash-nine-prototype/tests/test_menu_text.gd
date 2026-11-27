@@ -19,6 +19,7 @@ const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
 const STORY := preload("res://scripts/story/StoryCatalog.gd")
 const AUDIO_SETTINGS := preload("res://scripts/audio/AudioSettings.gd")
+const FIGHTER_NAMES := preload("res://scripts/ui/FighterNames.gd")
 ## The select screen's info panel (the fighter's name band, description and kit).
 const INFO_PANEL := Rect2(548, 72, 696, 432)
 const PANEL_PADDING := 12.0
@@ -159,10 +160,12 @@ func _award_matches_table() -> void:
 	var texts: Array[String] = []
 	_texts(main.hud.frontend.content, texts)
 	_check(texts.has("28"), "The standings should show 27.6 damage as 28")
-	var award := "%s  /  28" % str(best.display_name)
+	# The name as the results show it: seat 3 shares its character with seat 2, so it reads "Yuki 2".
+	var name := FIGHTER_NAMES.shown(best)
+	var award := "%s  /  28" % name
 	var shown := ""
 	for text in texts:
-		if text.begins_with(str(best.display_name) + "  /  "):
+		if text.begins_with(name + "  /  "):
 			shown = text
 	_check(shown == award, "The most damage award should read '%s' as the table does, got '%s'" % [award, shown])
 	# The player's place, large at the top right (UI audit 13-5): first, then fourth, none when

@@ -7,6 +7,7 @@ const MAIN_SCENE := "res://scenes/Main.tscn"
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const ART := preload("res://scripts/ArtSettings.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
+const FIGHTER_NAMES := preload("res://scripts/ui/FighterNames.gd")
 var failed := false
 var capture := false
 var report_dir := ""
@@ -264,9 +265,10 @@ func _verify_result_values(main: Node, human: Node) -> void:
 	main.hud.show_results(human, "stat fixture", standings, human, survival)
 	var content: Control = main.hud.frontend.content
 	_check(_has_label(content, "900") and _has_label(content, "75") and _has_label(content, "7"), "Results must display damage, souls and KOs")
-	_check(_has_label(content, "%s  /  900" % main.players[1].display_name), "Damage award must go to the damage leader")
-	_check(_has_label(content, "%s  /  7" % main.players[2].display_name), "KO award must go to the KO leader")
-	_check(_has_label(content, "%s  /  3:00" % main.players[3].display_name), "Survival award must use survival times")
+	# Awards name fighters as the results do: seats 2 and 3 share a character (Yuki 1, Yuki 2).
+	_check(_has_label(content, "%s  /  900" % FIGHTER_NAMES.shown(main.players[1])), "Damage award must go to the damage leader")
+	_check(_has_label(content, "%s  /  7" % FIGHTER_NAMES.shown(main.players[2])), "KO award must go to the KO leader")
+	_check(_has_label(content, "%s  /  3:00" % FIGHTER_NAMES.shown(main.players[3])), "Survival award must use survival times")
 	_check(_has_label(content, "2  Sky Step, Last Stand"), "Results must keep card counts and human-readable names")
 	main.hud.show_results(null, "double KO", standings, human, survival)
 	_check(_has_label(main.hud.frontend.content, "DRAW"), "A result without a winner must show DRAW")
