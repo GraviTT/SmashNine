@@ -43,6 +43,9 @@ func _run() -> void:
 	_check_source_literals("res://characters")
 	_check_menu_literals()
 	_check_data_keys()
+	# A first start (no choice saved) follows the browser's or the system's language when it is one
+	# of ours (UI audit 2026-11-25, title "-"); test runs themselves stay English.
+	_check(LANGUAGE.first_locale("ko") == "ko" and LANGUAGE.first_locale("en") == "en" and LANGUAGE.first_locale("ja") == "en" and LANGUAGE.first_locale("") == "en", "A first start should take Korean or English from the system's language, else English")
 	LANGUAGE.set_locale("en")
 	change_scene_to_file("res://scenes/Main.tscn")
 	await _frames(6)

@@ -455,36 +455,46 @@ func _mouse_navigation_sound(button_ref: WeakRef, changed: bool, event_frame: in
 		AUDIO.sound(self, "ui_move")
 
 ## The key hints and the first focus. `rect` and `alignment` place the hints (the picked title has
-## them on a plate under its menu, the picked select screen at the top right).
-func _finish(hint: String, rect := Rect2(44, 672, 1192, 26), alignment := HORIZONTAL_ALIGNMENT_CENTER, plate := false) -> void:
+## them under its menu, the select screen and the screens after it at the top right). They stand on
+## a dark plate as wide as their words (UI audit 1-1: bare 15 px hints were lost on bright art);
+## `bottom` stands the plate on the rect's bottom edge, growing upward (the title, the pause).
+func _finish(hint: String, rect := Rect2(44, 672, 1192, 26), alignment := HORIZONTAL_ALIGNMENT_CENTER, bottom := false) -> void:
 	footer = _label(hint, rect, 15, DIM)
 	if footer.text.contains("%d"):
 		footer.text = footer.text % quick_start_count()
 	footer.horizontal_alignment = alignment
-	if plate:
-		var box := _box(Color(INK, 0.78), Color.TRANSPARENT, 0, 10)
-		box.content_margin_left = 14
-		box.content_margin_right = 14
-		box.content_margin_top = 6
-		box.content_margin_bottom = 6
-		footer.add_theme_stylebox_override("normal", box)
-		# On its plate the footer stands on its bottom edge and grows upward.
+	var box := _box(Color(INK, 0.78), Color.TRANSPARENT, 0, 10)
+	box.content_margin_left = 14
+	box.content_margin_right = 14
+	box.content_margin_top = 6
+	box.content_margin_bottom = 6
+	footer.add_theme_stylebox_override("normal", box)
+	footer.set_meta("area", rect)
+	if bottom:
 		footer.set_meta("bottom", rect.end.y)
 	set_footer(footer.text)
 	if not buttons.is_empty():
 		var initial := maxi(select_ids.find(selected_id), 0) if screen == "select" else 0
 		buttons[initial].grab_focus()
 
-## Sets the hints, broken at their gaps to fit the footer's width.
+## Sets the hints, broken at their gaps to fit the footer's area, the plate as wide as the words and
+## placed in the area by the footer's alignment.
 func set_footer(text: String) -> void:
+	var area: Rect2 = footer.get_meta("area", Rect2(footer.position, footer.size))
 	var box := footer.get_theme_stylebox("normal")
-	var room := footer.size.x - box.get_margin(SIDE_LEFT) - box.get_margin(SIDE_RIGHT) - 4.0
+	var room := area.size.x - box.get_margin(SIDE_LEFT) - box.get_margin(SIDE_RIGHT) - 4.0
 	footer.autowrap_mode = TextServer.AUTOWRAP_OFF
 	footer.text = _wrap_gaps(text, footer.get_theme_font("font"), footer.get_theme_font_size("font_size"), room)
-	var height := footer.get_minimum_size().y
-	if footer.has_meta("bottom"):
-		footer.position.y = float(footer.get_meta("bottom")) - height
-	footer.size.y = height
+	var needed := footer.get_minimum_size()
+	var width := minf(ceilf(needed.x) + 2.0, area.size.x)
+	var x := area.position.x
+	if footer.horizontal_alignment == HORIZONTAL_ALIGNMENT_RIGHT:
+		x = area.end.x - width
+	elif footer.horizontal_alignment == HORIZONTAL_ALIGNMENT_CENTER:
+		x = area.position.x + (area.size.x - width) * 0.5
+	var y := float(footer.get_meta("bottom")) - needed.y if footer.has_meta("bottom") else area.position.y
+	footer.position = Vector2(x, y)
+	footer.size = Vector2(width, needed.y)
 
 ## The title (menu round 2026-11-25-menu, B): no panel over the key art; the menu is a column of
 ## flat slanted buttons on a darker band at the left, the two ways to play large, the rest small.
@@ -788,6 +798,19 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	else:
 		_heading("DRAW", "", 40, Color(INK, 0.86), GOLD)
 	_label(tr("Decided by %s") % tr(reason.replace("_", " ")), Rect2(30, 94, 700, 26), 17, DIM)
+	# The player's own place, large at the top right (UI audit 13-5: a lost match read like someone
+	# else's victory screen, the place only a gold row in the table). Watching bots has none.
+	var place := standings.find(human) + 1 if is_instance_valid(human) else 0
+	if place > 0:
+		_plate(Rect2(948, 24, 292, 66), _box(Color(INK, 0.9), GOLD if place == 1 else EDGE, 2 if place == 1 else 1, 3, SLANT))
+		var words := _label("YOUR PLACE", Rect2(980, 24, 130, 66), 15, DIM)
+		words.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		words.autowrap_mode = TextServer.AUTOWRAP_OFF
+		var number := _label("%d / %d" % [place, standings.size()], Rect2(1100, 24, 116, 66), 34, GOLD if place == 1 else WHITE)
+		number.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		number.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		number.autowrap_mode = TextServer.AUTOWRAP_OFF
+		number.add_theme_font_override("font", _bold_font())
 	# The table's rows are 34 px with 8 between them: each player's row lies at a known height.
 	_sheet(Rect2(356, 132, 884, 400))
 	var row := 0
@@ -888,7 +911,11 @@ func _victory_picture(fighter: Node, bounds: Rect2) -> bool:
 	sprite.sprite_frames = frames
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var cell := source.get_frame_texture(row, 0).get_size()
-	sprite.scale = Vector2.ONE * minf(bounds.size.x / cell.x, bounds.size.y / cell.y)
+	# The fighter stands in about the middle 60% of its cell: fitting the cell's width left it about
+	# 175 px tall in a 478 px place (UI audit 13-1). The cell may run past the place's sides (its
+	# margins are empty; the table's sheet covers the right one); a whole scale keeps the pixels even.
+	var fit := minf(bounds.size.x * 1.45 / cell.x, bounds.size.y / cell.y)
+	sprite.scale = Vector2.ONE * maxf(1.0, floorf(fit))
 	sprite.position = bounds.get_center()
 	content.add_child(sprite)
 	sprite.play(&"victory")
