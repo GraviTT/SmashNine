@@ -15,7 +15,11 @@ const MAP_PATH_ART := "res://assets/art/story/map_path_tile.png"
 const MAP_NEXT_ART := "res://assets/art/story/map_marker_next.png"
 const MAP_SEAL_ART := "res://assets/art/story/map_seal_%s.png"
 const MAP_NEXT_FPS := 8.0
+## How long the start card stays before the stage begins on its own (the user's decision, to-do #39,
+## is pending). The card's countdown bar reads this too, so it follows any new value.
+const CARD_SECONDS := 2.5
 var difficulty := "normal"
+var card_bar: ColorRect
 var map_stage := 1
 var continue_button: Button
 var difficulty_button: Button
@@ -220,7 +224,19 @@ func show_stage_card(data: Dictionary) -> void:
 		vs.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	# The card's frame and picture are the picked story art; only Begin takes the menus' gold.
 	_focus_cap(_button("Begin", Rect2(490, 550, 300, 50), "story_begin", "", "primary", 21), true)
-	card_deadline = Time.get_ticks_msec() + 2500
+	# The card goes on by itself; a gold bar over Begin runs down until it does (UI audit 16-1: the
+	# card changed while its tips were being read, with nothing to say it would). It keeps off the
+	# card's authored frame, whose bottom edge is under the button.
+	for track in [true, false]:
+		var line := ColorRect.new()
+		line.color = Color(1, 1, 1, 0.14) if track else GOLD
+		line.position = Vector2(490, 536)
+		line.size = Vector2(300, 6)
+		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		content.add_child(line)
+		if not track:
+			card_bar = line
+	card_deadline = Time.get_ticks_msec() + int(CARD_SECONDS * 1000.0)
 
 ## A dark backing under the start card's 9-slice frame, as under the dialogue box; the plain
 ## panel when that art is off (F2) or missing.
@@ -375,6 +391,9 @@ func _input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 func _process(_delta: float) -> void:
+	if screen == "story_start" and visible and is_instance_valid(card_bar) and card_deadline < 9223372036854775807:
+		# Its scale, not its size: a transform change redraws nothing.
+		card_bar.scale.x = clampf((card_deadline - Time.get_ticks_msec()) / (CARD_SECONDS * 1000.0), 0.0, 1.0)
 	if screen == "story_start" and visible and Time.get_ticks_msec() >= card_deadline:
 		card_deadline = 9223372036854775807
 		action_requested.emit("story_begin", "")
