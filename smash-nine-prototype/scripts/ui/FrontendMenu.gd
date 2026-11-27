@@ -13,6 +13,7 @@ const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const PAD_BADGES := preload("res://scripts/ui/PadBadges.gd")
 const GLYPHS := preload("res://scripts/input/PadGlyphs.gd")
+const FIGHTER_NAMES := preload("res://scripts/ui/FighterNames.gd")
 const SIZE := Vector2(1280, 720)
 const GOLD := Color("f3cd7c")
 const DIM := Color("aebbd0")
@@ -822,7 +823,7 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		_fighter_band(Rect2(40, 150, 300, 380), accent)
 		if not _victory_picture(winner, Rect2(38, 98, 310, 478)):
 			_picture(illustration(winner.character_id, winner.body_type), Rect2(38, 98, 310, 478))
-		_heading(tr("%s WINS") % tr(str(winner.display_name)).to_upper(), "", 40, accent.darkened(0.42))
+		_heading(tr("%s WINS") % FIGHTER_NAMES.shown(winner).to_upper(), "", 40, accent.darkened(0.42))
 	else:
 		_heading("DRAW", "", 40, Color(INK, 0.86), GOLD)
 	_label(tr("Decided by %s") % tr(reason.replace("_", " ")), Rect2(30, 94, 700, 26), 17, DIM)
@@ -884,7 +885,8 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		face.custom_minimum_size = Vector2(row_h, row_h)
 		face.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		grid.add_child(face)
-		_cell(grid, ("P1 " if player == human else "") + tr(str(player.display_name)), color, 120, row_h, words)
+		# Fighters sharing a name carry the number Main gave them (Nova 1, Nova 2).
+		_cell(grid, ("P1 " if player == human else "") + FIGHTER_NAMES.shown(player), color, 120, row_h, words)
 		_cell(grid, str(player.score), color, 36, row_h, words)
 		_cell(grid, "%.0f" % player.damage_dealt, color, 70, row_h, words)
 		_cell(grid, str(player.souls), color, 54, row_h, words)
@@ -917,7 +919,8 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		award_title.add_theme_font_override("font", _bold_font())
 		var detail := "No contenders"
 		if is_instance_valid(best):
-			detail = "%s  /  %s" % [tr(str(best.display_name)), ("%d:%02d" % [int(best_value) / 60, int(best_value) % 60]) if award == 2 else "%.0f" % best_value]
+			# P1 as in its row ("P1 Frey"), so it is not read as one of its bots (Frey 2, Frey 3).
+			detail = "%s  /  %s" % [("P1 " if best == human else "") + FIGHTER_NAMES.shown(best), ("%d:%02d" % [int(best_value) / 60, int(best_value) % 60]) if award == 2 else "%.0f" % best_value]
 		_label(detail, Rect2(x + 22, award_y + award_h - 38.0, 240, 28), 18)
 	var rematch := _button("[R] Rematch", Rect2(360, 656, 284, 48), "rematch", "", "primary", 20)
 	_focus_cap(rematch, true)

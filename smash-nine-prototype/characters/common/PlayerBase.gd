@@ -121,6 +121,7 @@ const RECOVERY_DELAY := 4.0
 const DAMAGE_NORMAL := "normal"
 const DAMAGE_FIXED := "fixed"
 const ENEMY_AI_SCRIPT := preload("res://scripts/EnemyAI.gd")
+const FIGHTER_NAMES := preload("res://scripts/ui/FighterNames.gd")
 const SHEET_ART := preload("res://scripts/ArtSettings.gd")
 const SHEET_FRAMES := preload("res://characters/common/CharacterAnimation.gd")
 ## The fps the user adopted per row in the motion viewer (2026-10-15); rows without one keep the
@@ -2710,7 +2711,8 @@ func _update_visuals() -> void:
 	if is_instance_valid(character_sprite):
 		character_sprite.visible = use_sprite
 		_apply_character_sprite_style()
-	name_label.text = ("P1 " if is_human else "") + display_name
+	# The translated name and, when another fighter shares it, its number ("P1 프레이", "노바 2").
+	name_label.text = ("P1 " if is_human else "") + FIGHTER_NAMES.shown(self)
 	name_label.modulate = Color(1.0, 0.86, 0.35) if is_human else Color(1.0, 1.0, 1.0, 0.85)
 	hp_bar.scale.x = clampf(hp / max_hp, 0.0, 1.0)
 	var last_threshold: int = SOUL_THRESHOLDS[SOUL_THRESHOLDS.size() - 1]

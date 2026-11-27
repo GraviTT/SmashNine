@@ -20,6 +20,7 @@ const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const FRONTEND := preload("res://scripts/ui/StoryScreens.gd")
 const PAD_BADGES := preload("res://scripts/ui/PadBadges.gd")
+const FIGHTER_NAMES := preload("res://scripts/ui/FighterNames.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
 const TITLE_BACKGROUND_ART := "res://assets/art/ui/title_bg.png"
@@ -798,7 +799,7 @@ func _fill_focus(focus: Node) -> void:
 	if not is_instance_valid(focus):
 		return
 	var watching := not bool(focus.is_human)
-	focus_name.text = (tr("Spectating") + "  " if watching else "") + tr(str(focus.display_name))
+	focus_name.text = (tr("Spectating") + "  " if watching else "") + FIGHTER_NAMES.shown(focus)
 	focus_name.add_theme_color_override("font_color", DIM if watching else WHITE)
 	kos_label.text = tr("KOs %d") % int(focus.score)
 	var ratio := clampf(float(focus.hp) / maxf(float(focus.max_hp), 1.0), 0.0, 1.0)
@@ -1473,7 +1474,7 @@ func show_ultimate_cutin(player: Node) -> void:
 	_set_portrait(cutin_face, ART_SETTINGS.character_portrait(player.character_id, player.body_type))
 	(cutin_band.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = Color(player.body_color.darkened(0.42), 1.0)
 	(cutin_stripe.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = Color(player.body_color.lightened(0.45), 0.9)
-	cutin_name.text = ("P1  " if player.is_human else "") + tr(str(player.display_name))
+	cutin_name.text = ("P1  " if player.is_human else "") + FIGHTER_NAMES.shown(player)
 	cutin_title.text = tr(str(player.ultimate_name)).to_upper()
 	cutin_root.visible = true
 	cutin_root.modulate.a = 1.0
@@ -1720,7 +1721,7 @@ func _hide_legacy_overlay_text() -> void:
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node, survival: Dictionary = {}) -> void:
 	_set_match_hud_visible(false)
 	_hide_legacy_overlay_text()
-	overlay_title.text = tr("%s WINS") % tr(str(winner.display_name)).to_upper() if is_instance_valid(winner) else tr("DRAW")
+	overlay_title.text = tr("%s WINS") % FIGHTER_NAMES.shown(winner).to_upper() if is_instance_valid(winner) else tr("DRAW")
 	overlay_back.color = RESULTS_BACK_COLOR
 	frontend.show_results(winner, reason, standings, human, survival)
 	overlay.visible = true

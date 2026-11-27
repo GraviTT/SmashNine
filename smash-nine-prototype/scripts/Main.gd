@@ -26,6 +26,7 @@ const PRACTICE_DIRECTOR := preload("res://scripts/practice/PracticeDirector.gd")
 const PRACTICE_SESSION := preload("res://scripts/practice/PracticeSession.gd")
 const PAD_INPUT := preload("res://scripts/input/PadInput.gd")
 const PAD_GLYPHS := preload("res://scripts/input/PadGlyphs.gd")
+const FIGHTER_NAMES := preload("res://scripts/ui/FighterNames.gd")
 const CENTRAL_REALM_INDEX := REALM_LAYOUT_SCRIPT.CENTRAL_REALM_INDEX
 const PORTAL_USE_ACTION := "use_portal"
 const OFFSCREEN_AI_REALM_STEP_TIME := 0.25
@@ -574,6 +575,10 @@ func _spawn_players(human_character_id: String) -> void:
 		var character_id: String = ids[(first_id + slot + seat) % ids.size()]
 		var human := i == 0 and not bots_only
 		_add_player(character_id, human, _take_spawn_point(realm_index, used_points), realm_index, _pick_body(character_id, human))
+	# Fighters sharing a name take a number after it in seat order (Nova 1, Nova 2; P1 counts but
+	# shows none), once, here; the overhead names drawn at setup are drawn again with it.
+	for player in FIGHTER_NAMES.number_doubles(players):
+		player._update_visuals()
 	_sync_combatant_visibility()
 
 func _take_spawn_point(realm_index: int, used_points: Dictionary) -> Vector2:
@@ -831,7 +836,7 @@ func _bot_panel_rows() -> Array:
 	for player in players:
 		if not is_instance_valid(player):
 			continue
-		var title := "%s%s  %s  HP %d/%d" % ["P1 " if player.is_human else "", player.display_name, layout.get_realm(player.realm_index).name, roundi(player.hp), roundi(player.max_hp)]
+		var title := "%s%s  %s  HP %d/%d" % ["P1 " if player.is_human else "", FIGHTER_NAMES.plain(player), layout.get_realm(player.realm_index).name, roundi(player.hp), roundi(player.max_hp)]
 		var lines := ""
 		if player.is_defeated:
 			lines = "OUT"
@@ -878,7 +883,7 @@ func _update_debug_text() -> void:
 	]
 	for p in players:
 		var status := "OUT" if p.is_defeated else "R%d" % (p.realm_index + 1)
-		lines.append("%-6s %-4s HP %3.0f/%3.0f  S%2d  KO%d  ult %2.0f  %s" % [p.display_name, status, p.hp, p.max_hp, p.souls, p.score, p.ultimate_cooldown_timer, ",".join(p.upgrades)])
+		lines.append("%-6s %-4s HP %3.0f/%3.0f  S%2d  KO%d  ult %2.0f  %s" % [FIGHTER_NAMES.plain(p), status, p.hp, p.max_hp, p.souls, p.score, p.ultimate_cooldown_timer, ",".join(p.upgrades)])
 	hud.set_debug_text("\n".join(lines))
 
 func _handle_test_controls() -> void:
@@ -913,8 +918,8 @@ func _on_player_defeated(player: Node, attacker: Node) -> void:
 	var cause := tr("the realm")
 	if is_instance_valid(attacker):
 		var source_name := str(attacker.display_name)
-		cause = tr("Elite %s") % tr(source_name.trim_prefix("Elite ")) if source_name.begins_with("Elite ") else tr(source_name)
-	_show_message(tr("%s was eliminated by %s. %d left.") % [tr(str(player.display_name)), cause, director.get_alive_combatants().size()])
+		cause = tr("Elite %s") % tr(source_name.trim_prefix("Elite ")) if source_name.begins_with("Elite ") else FIGHTER_NAMES.shown(attacker)
+	_show_message(tr("%s was eliminated by %s. %d left.") % [FIGHTER_NAMES.shown(player), cause, director.get_alive_combatants().size()])
 
 func _on_combatant_respawned(_combatant: Node) -> void:
 	_sync_combatant_visibility()
