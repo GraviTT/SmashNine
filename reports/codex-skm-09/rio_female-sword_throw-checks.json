@@ -1,0 +1,1035 @@
+{
+  "selection": {
+    "accepted": true,
+    "face_verified": true,
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "pose_ok": true,
+    "costume_ok": true,
+    "note": "여성 K 마검 투척 후보. 얼굴 폭은 기준의 1.000이며 F2의 허리 옆 추가 팔·손을 제거했고 전 프레임에서 두 손과 오른손 검을 확인했다.",
+    "observation": "총 2회 생성. 1차 F2의 추가 손을 원본 확대에서 확인하고 2차에서 제거했다. 공통 배율 0.38. 얼굴 표식의 y만 눈 아래 같은 높이로 맞췄으며 x는 유지했다. 접지 y152·번짐 0.",
+    "human_review": "F2 귀 옆 팔에서 F3 앞으로 던지는 연결, 비슷한 F3–4의 타이밍, 좁은 어깨·포니테일·대기 얼굴의 일치, 오른손 검 길이와 동작의 힘을 20fps에서 판단.",
+    "stem": "rio_female",
+    "row": "sword_throw",
+    "attempt": 2
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-09\\rio_female\\sword_throw\\attempt-2\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.38,
+      "scale_by": "fixed:0.38",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        93,
+        93
+      ],
+      "body_width_range": [
+        97,
+        98
+      ],
+      "area_range": [
+        4272,
+        4542
+      ],
+      "area_spread_percent": 5.94,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        4036,
+        4243
+      ],
+      "interior_detail_range": [
+        108.11,
+        111.81
+      ],
+      "interior_detail_mean": 110.26,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 97.64,
+      "interior_detail_ratio": 1.1293
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 97.64,
+          "colour_count": 4711,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 97.64,
+      "colour_count_range": [
+        4711,
+        4711
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/source-frames/00.png",
+        "bbox": [
+          57,
+          60,
+          155,
+          153
+        ],
+        "body_height": 93,
+        "body_width": 98,
+        "area": 4490,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 110.27,
+        "colour_count": 4215,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 57,
+          "top": 60,
+          "right": 37,
+          "bottom": 39,
+          "minimum": 37,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1294
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/source-frames/01.png",
+        "bbox": [
+          60,
+          60,
+          157,
+          153
+        ],
+        "body_height": 93,
+        "body_width": 97,
+        "area": 4272,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 108.11,
+        "colour_count": 4036,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 60,
+          "top": 60,
+          "right": 35,
+          "bottom": 39,
+          "minimum": 35,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1072
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/source-frames/02.png",
+        "bbox": [
+          53,
+          60,
+          151,
+          153
+        ],
+        "body_height": 93,
+        "body_width": 98,
+        "area": 4502,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 111.81,
+        "colour_count": 4232,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 53,
+          "top": 60,
+          "right": 41,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1451
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/source-frames/03.png",
+        "bbox": [
+          53,
+          60,
+          151,
+          153
+        ],
+        "body_height": 93,
+        "body_width": 98,
+        "area": 4542,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 111.7,
+        "colour_count": 4243,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 53,
+          "top": 60,
+          "right": 41,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.144
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/source-frames/04.png",
+        "bbox": [
+          53,
+          60,
+          151,
+          153
+        ],
+        "body_height": 93,
+        "body_width": 98,
+        "area": 4454,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 108.75,
+        "colour_count": 4186,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 53,
+          "top": 60,
+          "right": 41,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1138
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/source-frames/05.png",
+        "bbox": [
+          57,
+          60,
+          154,
+          153
+        ],
+        "body_height": 93,
+        "body_width": 97,
+        "area": 4450,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 110.91,
+        "colour_count": 4198,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 57,
+          "top": 60,
+          "right": 38,
+          "bottom": 39,
+          "minimum": 38,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1359
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/rio_female-sword_throw.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/frames",
+      "closeup": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/closeup.png",
+      "compare": "reports/codex-skm-09/rio_female/sword_throw/attempt-2/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        83,
+        51,
+        3,
+        4
+      ],
+      [
+        88,
+        49,
+        2,
+        3
+      ],
+      [
+        77.5,
+        53,
+        3,
+        4
+      ],
+      [
+        87.5,
+        53,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 83.319,
+        "y": 50.869,
+        "score": 1
+      },
+      {
+        "x": 88.594,
+        "y": 49.334,
+        "score": 1
+      },
+      {
+        "x": 77.5,
+        "y": 53,
+        "score": 1
+      },
+      {
+        "x": 87.5,
+        "y": 53,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 5.493801052094979,
+    "reference_face_width": 10.0,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 120.891,
+            "y": 84.568,
+            "score": 0.848
+          },
+          {
+            "x": 126.786,
+            "y": 83.561,
+            "score": 0.973
+          },
+          {
+            "x": 115.5,
+            "y": 87,
+            "score": 0.889
+          },
+          {
+            "x": 125.5,
+            "y": 87,
+            "score": 0.866
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          104,
+          66,
+          0.807
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 120.891,
+              "y": 84.568,
+              "score": 0.848
+            },
+            {
+              "x": 126.786,
+              "y": 83.561,
+              "score": 0.973
+            },
+            {
+              "x": 115.5,
+              "y": 88.0,
+              "score": 0.889
+            },
+            {
+              "x": 125.5,
+              "y": 87.0,
+              "score": 0.866
+            }
+          ],
+          "face_width_ratio": 1.0
+        },
+        "correction_reason": "격자에서 눈 아래의 같은 수평선 y87로 맞춤. 좌우 x 표식은 유지함.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 123.632,
+            "y": 84.856,
+            "score": 0.752
+          },
+          {
+            "x": 129.663,
+            "y": 82.36,
+            "score": 0.942
+          },
+          {
+            "x": 117.5,
+            "y": 87,
+            "score": 0.844
+          },
+          {
+            "x": 127.5,
+            "y": 87,
+            "score": 0.805
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          107,
+          66,
+          0.754
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 123.632,
+              "y": 84.856,
+              "score": 0.752
+            },
+            {
+              "x": 129.663,
+              "y": 82.36,
+              "score": 0.942
+            },
+            {
+              "x": 117.5,
+              "y": 87.75,
+              "score": 0.844
+            },
+            {
+              "x": 127.5,
+              "y": 87.0,
+              "score": 0.805
+            }
+          ],
+          "face_width_ratio": 1.0
+        },
+        "correction_reason": "귀 옆 손과 겹친 얼굴의 왼쪽 표식을 눈 아래 y87로 맞춤. 좌우 x 표식은 유지함.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 117.299,
+            "y": 84.557,
+            "score": 0.768
+          },
+          {
+            "x": 122.857,
+            "y": 84.61,
+            "score": 0.885
+          },
+          {
+            "x": 111.5,
+            "y": 87,
+            "score": 0.929
+          },
+          {
+            "x": 121.5,
+            "y": 87,
+            "score": 0.814
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          100,
+          66,
+          0.798
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 117.299,
+              "y": 84.557,
+              "score": 0.768
+            },
+            {
+              "x": 122.857,
+              "y": 84.61,
+              "score": 0.885
+            },
+            {
+              "x": 111.5,
+              "y": 88.0,
+              "score": 0.929
+            },
+            {
+              "x": 121.5,
+              "y": 87.0,
+              "score": 0.814
+            }
+          ],
+          "face_width_ratio": 1.0
+        },
+        "correction_reason": "격자에서 눈 아래의 같은 수평선 y87로 맞춤. 좌우 x 표식은 유지함.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 117.295,
+            "y": 84.883,
+            "score": 0.812
+          },
+          {
+            "x": 122.829,
+            "y": 83.607,
+            "score": 0.959
+          },
+          {
+            "x": 111.5,
+            "y": 87,
+            "score": 0.862
+          },
+          {
+            "x": 121.5,
+            "y": 87,
+            "score": 0.849
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          100,
+          66,
+          0.8
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 117.295,
+              "y": 84.883,
+              "score": 0.812
+            },
+            {
+              "x": 122.829,
+              "y": 83.607,
+              "score": 0.959
+            },
+            {
+              "x": 111.5,
+              "y": 88.0,
+              "score": 0.862
+            },
+            {
+              "x": 121.5,
+              "y": 87.0,
+              "score": 0.849
+            }
+          ],
+          "face_width_ratio": 1.0
+        },
+        "correction_reason": "격자에서 눈 아래의 같은 수평선 y87로 맞춤. 좌우 x 표식은 유지함.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 116.945,
+            "y": 84.67,
+            "score": 0.845
+          },
+          {
+            "x": 122.864,
+            "y": 83.552,
+            "score": 0.97
+          },
+          {
+            "x": 111.5,
+            "y": 87,
+            "score": 0.807
+          },
+          {
+            "x": 121.5,
+            "y": 87,
+            "score": 0.814
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          100,
+          66,
+          0.776
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 116.945,
+              "y": 84.67,
+              "score": 0.845
+            },
+            {
+              "x": 122.864,
+              "y": 83.552,
+              "score": 0.97
+            },
+            {
+              "x": 111.5,
+              "y": 88.0,
+              "score": 0.807
+            },
+            {
+              "x": 121.5,
+              "y": 86.0,
+              "score": 0.814
+            }
+          ],
+          "face_width_ratio": 1.0
+        },
+        "correction_reason": "자동 오른쪽 표식 y86은 눈 높이에 가까워 양쪽을 y87로 맞춤. 좌우 x 표식은 유지함.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 120.782,
+            "y": 84.828,
+            "score": 0.743
+          },
+          {
+            "x": 126.697,
+            "y": 82.579,
+            "score": 0.881
+          },
+          {
+            "x": 114.5,
+            "y": 87,
+            "score": 0.91
+          },
+          {
+            "x": 124.5,
+            "y": 87,
+            "score": 0.847
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          103,
+          66,
+          0.783
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 120.782,
+              "y": 84.828,
+              "score": 0.743
+            },
+            {
+              "x": 126.697,
+              "y": 82.579,
+              "score": 0.881
+            },
+            {
+              "x": 114.5,
+              "y": 88.0,
+              "score": 0.91
+            },
+            {
+              "x": 124.5,
+              "y": 87.0,
+              "score": 0.847
+            }
+          ],
+          "face_width_ratio": 1.0
+        },
+        "correction_reason": "격자에서 눈 아래의 같은 수평선 y87로 맞춤. 좌우 x 표식은 유지함.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      }
+    ],
+    "review_note": "Inspected ART-72 landmarks; corrections, if any, retain the original proposal and reason. Same row factor; no image editing. Eye distance remains unavailable.",
+    "sheet_sha256": "fba4fd2ba13ef5c4288eca3c2678eefd85daf46f765fc5c2dc835e58421aa8c0"
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-09\\rio_female\\sword_throw\\attempt-2\\rio_female-sword_throw.png",
+    "frames": [
+      {
+        "scale": 1.0,
+        "score": 0.807
+      },
+      {
+        "scale": 0.96,
+        "score": 0.753
+      },
+      {
+        "scale": 1.0,
+        "score": 0.798
+      },
+      {
+        "scale": 1.0,
+        "score": 0.8
+      },
+      {
+        "scale": 1.0,
+        "score": 0.776
+      },
+      {
+        "scale": 1.0,
+        "score": 0.783
+      }
+    ],
+    "median": 1.0,
+    "used": 6
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-09\\rio_female-sword_throw-2.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      31355,
+      31154,
+      31146,
+      30984,
+      30812,
+      29787,
+      1
+    ],
+    "boxes": [
+      [
+        59,
+        260,
+        316,
+        505
+      ],
+      [
+        422,
+        260,
+        678,
+        505
+      ],
+      [
+        784,
+        260,
+        1041,
+        505
+      ],
+      [
+        1146,
+        260,
+        1403,
+        505
+      ],
+      [
+        1507,
+        260,
+        1764,
+        505
+      ],
+      [
+        1870,
+        260,
+        2126,
+        505
+      ]
+    ]
+  },
+  "sheet_sha256": "fba4fd2ba13ef5c4288eca3c2678eefd85daf46f765fc5c2dc835e58421aa8c0",
+  "fix_checks": {
+    "kind": "visual_observation",
+    "frames": [
+      {
+        "frame": 1,
+        "visible_hand_count": 2,
+        "right_hand_holds_sword": true,
+        "approximate_hand_centres": [
+          [
+            103,
+            119
+          ],
+          [
+            132,
+            121
+          ]
+        ],
+        "method": "visual observation of raw and final 4x frames; marker centres approximate; no automatic anatomy inference"
+      },
+      {
+        "frame": 2,
+        "visible_hand_count": 2,
+        "right_hand_holds_sword": true,
+        "approximate_hand_centres": [
+          [
+            104,
+            119
+          ],
+          [
+            110,
+            84
+          ]
+        ],
+        "method": "visual observation of raw and final 4x frames; marker centres approximate; no automatic anatomy inference"
+      },
+      {
+        "frame": 3,
+        "visible_hand_count": 2,
+        "right_hand_holds_sword": true,
+        "approximate_hand_centres": [
+          [
+            98,
+            119
+          ],
+          [
+            148,
+            91
+          ]
+        ],
+        "method": "visual observation of raw and final 4x frames; marker centres approximate; no automatic anatomy inference"
+      },
+      {
+        "frame": 4,
+        "visible_hand_count": 2,
+        "right_hand_holds_sword": true,
+        "approximate_hand_centres": [
+          [
+            98,
+            119
+          ],
+          [
+            148,
+            91
+          ]
+        ],
+        "method": "visual observation of raw and final 4x frames; marker centres approximate; no automatic anatomy inference"
+      },
+      {
+        "frame": 5,
+        "visible_hand_count": 2,
+        "right_hand_holds_sword": true,
+        "approximate_hand_centres": [
+          [
+            98,
+            119
+          ],
+          [
+            132,
+            107
+          ]
+        ],
+        "method": "visual observation of raw and final 4x frames; marker centres approximate; no automatic anatomy inference"
+      },
+      {
+        "frame": 6,
+        "visible_hand_count": 2,
+        "right_hand_holds_sword": true,
+        "approximate_hand_centres": [
+          [
+            103,
+            119
+          ],
+          [
+            132,
+            121
+          ]
+        ],
+        "method": "visual observation of raw and final 4x frames; marker centres approximate; no automatic anatomy inference"
+      }
+    ],
+    "frame_2_fix": "Removed extra lowered sleeve/hand at viewer-right waist using second image_gen call. No manual anatomy or part compositing."
+  }
+}

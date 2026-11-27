@@ -1053,9 +1053,17 @@ func set_offscreen_markers(markers: Array) -> void:
 		placed.append(Rect2(at - Vector2(room, room), Vector2(room, room) * 2.0))
 		var color: Color = marker.color
 		bubble.position = at - Vector2(half, half)
-		(nodes.arrow as Polygon2D).rotation = angle
-		(nodes.arrow as Polygon2D).color = color.lightened(0.2)
-		((nodes.ring as Panel).get_theme_stylebox("panel") as StyleBoxFlat).bg_color = color
+		var arrow := nodes.arrow as Polygon2D
+		arrow.rotation = angle
+		# Colours go in only when they change (system lead, 2026-11-27): setting one redraws the arrow,
+		# and Godot 4.7 then updates its mesh in place in a way WebGL refuses ("bufferSubData: no
+		# buffer" filled the web console), and the ring's round box was remade every frame.
+		var arrow_color := color.lightened(0.2)
+		if arrow.color != arrow_color:
+			arrow.color = arrow_color
+		var ring_box := (nodes.ring as Panel).get_theme_stylebox("panel") as StyleBoxFlat
+		if ring_box.bg_color != color:
+			ring_box.bg_color = color
 		_set_portrait(nodes.face, marker.get("face"))
 
 ## The HUD's plates on screen, each grown by half a face and a gap: no face's centre goes there.

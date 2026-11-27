@@ -1,0 +1,155 @@
+{
+  "input": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/newchar-99b/doron-3-idle-v3.png",
+    "frames": null,
+    "grid": [
+      1,
+      1
+    ],
+    "pick": null,
+    "backgrounds": [
+      {
+        "mode": "color",
+        "color": [
+          0,
+          255,
+          0
+        ]
+      }
+    ]
+  },
+  "normalization": {
+    "measurement": "median contact-frame body height",
+    "source_median_px": 841.0,
+    "target_px": 88.0,
+    "contact_indices": [
+      0
+    ],
+    "outline": "off",
+    "cell": 128,
+    "feet_y": 120,
+    "horizontal_anchor": "median torso row centre"
+  },
+  "summary": {
+    "frame_count": 1,
+    "output_columns": 6,
+    "common_scale": 0.10463734,
+    "scale_by": "height:88",
+    "common_offset_x": 0,
+    "common_lift": 0,
+    "lift_scale": 1.0,
+    "ground_all": false,
+    "resample": "lanczos",
+    "sharpen_percent": 60.0,
+    "despill": "auto",
+    "palette": "none",
+    "min_component": 0,
+    "dropped_component_count": 0,
+    "dropped_component_pixels": 0,
+    "body_height_range": [
+      88,
+      88
+    ],
+    "body_width_range": [
+      50,
+      50
+    ],
+    "area_range": [
+      2728,
+      2728
+    ],
+    "area_spread_percent": 0.0,
+    "bottom_range": [
+      120,
+      120
+    ],
+    "lift_range": [
+      0,
+      0
+    ],
+    "contact_on_feet_y": true,
+    "airborne_lift_preserved": true,
+    "colour_count_range": [
+      2579,
+      2579
+    ],
+    "interior_detail_range": [
+      125.3,
+      125.3
+    ],
+    "interior_detail_mean": 125.3,
+    "remaining_spill_pixels": [
+      0
+    ],
+    "palette_violations_before_map": 0,
+    "palette_violations": 0,
+    "alpha_binary": true,
+    "borders_clear": true,
+    "all_have_4px_margin": true,
+    "contact_on_y120": true,
+    "reference_interior_detail_mean": 93.44,
+    "interior_detail_ratio": 1.341
+  },
+  "reference": {
+    "frames": [
+      {
+        "index": 0,
+        "interior_detail": 93.44,
+        "colour_count": 4025,
+        "remaining_spill_pixels": 0
+      }
+    ],
+    "interior_detail_mean": 93.44,
+    "colour_count_range": [
+      4025,
+      4025
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "source": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/art/raw/newchar-99b/doron-3-idle-v3.png#0,0",
+      "bbox": [
+        38,
+        33,
+        88,
+        121
+      ],
+      "body_height": 88,
+      "body_width": 50,
+      "area": 2728,
+      "bottom": 120,
+      "lift": 0,
+      "expected_lift": 0,
+      "interior_detail": 125.3,
+      "colour_count": 2579,
+      "remaining_spill_pixels": 0,
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_values": [
+        0,
+        255
+      ],
+      "alpha_binary": true,
+      "border_clear": true,
+      "margin": {
+        "left": 38,
+        "top": 33,
+        "right": 40,
+        "bottom": 7,
+        "minimum": 7,
+        "has_4px_margin": true
+      },
+      "dropped_components": [],
+      "dropped_component_pixels": 0,
+      "interior_detail_ratio_to_reference_mean": 1.341
+    }
+  ],
+  "outputs": {
+    "sheet": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/reports/codex-art-99b/normalize-doron-3/doron-idle-3.png",
+    "candidate": null,
+    "frames": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/reports/codex-art-99b/normalize-doron-3/frames",
+    "closeup": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/reports/codex-art-99b/normalize-doron-3/closeup.png",
+    "compare": "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/art-b/SmashNine/reports/codex-art-99b/normalize-doron-3/compare.png"
+  }
+}
