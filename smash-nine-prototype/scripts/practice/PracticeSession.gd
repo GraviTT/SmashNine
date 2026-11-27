@@ -494,6 +494,10 @@ func _panel_sheet(title: String, plate: Color) -> Label:
 	for child in skills_panel.get_children():
 		skills_panel.remove_child(child)
 		child.queue_free()
+	# The P1 tag stands over the fighter on the HUD's own layer, above this panel: hidden while a
+	# list is open (the paused game does not move it; the HUD puts it back with play).
+	if is_instance_valid(main.hud.player_tag):
+		main.hud.player_tag.visible = false
 	_panel_plate(Rect2(Vector2.ZERO, skills_panel.size), _flat_box(Color(INK, 0.95), 8, 0.0))
 	var heading := _skill_label(title, Rect2(18, 16, 240, 46), 26, Color.WHITE)
 	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
