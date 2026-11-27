@@ -108,7 +108,7 @@ func _run() -> void:
 	await _frames(5)
 	var human: Node = main._get_human_player()
 	_check(main.match_started, "Korean selection must start a match")
-	_check(main.hud.status_label.text.contains("생존") and main.hud.status_label.text.contains("프레이"), "Next match HUD must use Korean")
+	_check(main.hud.alive_caption.text == "생존" and main.hud.focus_name.text.contains("프레이") and main.hud.kos_label.text == "처치 0", "Next match HUD must use Korean")
 	_check(main.hud.clock_label.text.contains("탐색"), "Phase label must translate without changing internal phase")
 	Input.action_press("game_speed")
 	await _frames(2)
@@ -313,9 +313,11 @@ func _check_menu_fit(menu: Control) -> void:
 
 func _check_card_fit(hud: Node) -> void:
 	for label: Label in hud.card_labels:
-		# The text has the card frame less its icon column and margins (216 x 108 since D54; 152 x 80
-		# before): five lines. Copy must fit that space.
-		_check(label.get_line_count() * label.get_line_height() <= label.size.y, "Card copy overflows its box (%d lines of %d px in %d px): %s" % [label.get_line_count(), label.get_line_height(), int(label.size.y), label.text])
+		# A card row grows with its text up to three lines under its title and kind
+		# (MatchHud._fill_cards: five lines in all, as D54's longest cards need); the copy must fit
+		# the label the row gave it.
+		# Every line shown: a label too low for its line spacing kept one line and ended it in "...".
+		_check(label.get_line_count() <= 3 and label.get_visible_line_count() == label.get_line_count(), "Card copy overflows its row (%d lines, %d shown in %d px): %s" % [label.get_line_count(), label.get_visible_line_count(), int(label.size.y), label.text])
 
 func _frames(count: int) -> void:
 	for frame in count:

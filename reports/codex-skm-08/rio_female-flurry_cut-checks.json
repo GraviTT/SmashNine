@@ -1,0 +1,828 @@
+{
+  "selection": {
+    "accepted": true,
+    "face_verified": true,
+    "pose_ok": true,
+    "costume_ok": true,
+    "face_frames": [
+      2,
+      3,
+      5,
+      6
+    ],
+    "note": "양손으로 검을 높이 준비해 내려치고 낮게 마무리하는 후보. 직립 비교 F2·3·5·6의 얼굴 폭은 1.000이며 낮게 숙인 F1·4는 제외했다(자동 제안 1.100).",
+    "observation": "2회 생성. 1차는 좁아진 볼을 맞추면 머리 자동 중앙값 1.16으로 커져 다시 그렸고, 2차 공통 배율 0.36·머리 자동 중앙값 1.06을 채택했다. 여섯 전신·얼굴·양손 검 연결을 확인했다. 눈 사이 거리는 기준 앞머리 가림으로 측정 불가. 낮은 F1·4를 통과한 직립 실측으로 계산하지 않는다.",
+    "human_review": "F1·4의 숙인 얼굴 폭 변화(자동 제안 1.100), F2 양손 준비에서 F3 내려치기로 이어지는 손목, F4 검을 뒤로 보내는 방향, 머리카락 흔들림과 기준 대비 몸 비율을 24fps 재생에서 판단.",
+    "stem": "rio_female",
+    "row": "flurry_cut",
+    "attempt": 2
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-08\\rio_female\\flurry_cut\\attempt-2\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.36,
+      "scale_by": "fixed:0.36",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        82,
+        113
+      ],
+      "body_width_range": [
+        88,
+        117
+      ],
+      "area_range": [
+        4705,
+        5033
+      ],
+      "area_spread_percent": 6.52,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        4192,
+        4455
+      ],
+      "interior_detail_range": [
+        121.96,
+        128.18
+      ],
+      "interior_detail_mean": 125.05,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 97.64,
+      "interior_detail_ratio": 1.2807
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 97.64,
+          "colour_count": 4711,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 97.64,
+      "colour_count_range": [
+        4711,
+        4711
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/source-frames/00.png",
+        "bbox": [
+          38,
+          71,
+          148,
+          153
+        ],
+        "body_height": 82,
+        "body_width": 110,
+        "area": 4705,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 126.64,
+        "colour_count": 4192,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 38,
+          "top": 71,
+          "right": 44,
+          "bottom": 39,
+          "minimum": 38,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.297
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/source-frames/01.png",
+        "bbox": [
+          60,
+          40,
+          148,
+          153
+        ],
+        "body_height": 113,
+        "body_width": 88,
+        "area": 4990,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 121.96,
+        "colour_count": 4445,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 60,
+          "top": 40,
+          "right": 44,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2491
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/source-frames/02.png",
+        "bbox": [
+          56,
+          56,
+          167,
+          153
+        ],
+        "body_height": 97,
+        "body_width": 111,
+        "area": 5033,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 125.07,
+        "colour_count": 4440,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 56,
+          "top": 56,
+          "right": 25,
+          "bottom": 39,
+          "minimum": 25,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2809
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/source-frames/03.png",
+        "bbox": [
+          33,
+          71,
+          150,
+          153
+        ],
+        "body_height": 82,
+        "body_width": 117,
+        "area": 4833,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 128.18,
+        "colour_count": 4209,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 33,
+          "top": 71,
+          "right": 42,
+          "bottom": 39,
+          "minimum": 33,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3128
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/source-frames/04.png",
+        "bbox": [
+          55,
+          54,
+          153,
+          153
+        ],
+        "body_height": 99,
+        "body_width": 98,
+        "area": 4987,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 125.78,
+        "colour_count": 4450,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 55,
+          "top": 54,
+          "right": 39,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2882
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/source-frames/05.png",
+        "bbox": [
+          55,
+          55,
+          154,
+          153
+        ],
+        "body_height": 98,
+        "body_width": 99,
+        "area": 4973,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 122.64,
+        "colour_count": 4455,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 55,
+          "top": 55,
+          "right": 38,
+          "bottom": 39,
+          "minimum": 38,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.256
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/rio_female-flurry_cut.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/frames",
+      "closeup": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/closeup.png",
+      "compare": "reports/codex-skm-08/rio_female/flurry_cut/attempt-2/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        83,
+        51,
+        3,
+        4
+      ],
+      [
+        88,
+        49,
+        2,
+        3
+      ],
+      [
+        77.5,
+        53,
+        3,
+        4
+      ],
+      [
+        87.5,
+        53,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 83.319,
+        "y": 50.869,
+        "score": 1
+      },
+      {
+        "x": 88.594,
+        "y": 49.334,
+        "score": 1
+      },
+      {
+        "x": 77.5,
+        "y": 53,
+        "score": 1
+      },
+      {
+        "x": 87.5,
+        "y": 53,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 5.493801052094979,
+    "reference_face_width": 10.0,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 123.316,
+            "y": 98.567,
+            "score": 0.891
+          },
+          {
+            "x": 128.346,
+            "y": 97.31,
+            "score": 0.843
+          },
+          {
+            "x": 117.5,
+            "y": 101.0,
+            "score": 0.727
+          },
+          {
+            "x": 128.5,
+            "y": 100.0,
+            "score": 0.824
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 11.0,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.06,
+          105,
+          78,
+          0.699
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 123.316,
+              "y": 98.567,
+              "score": 0.891
+            },
+            {
+              "x": 128.346,
+              "y": 97.31,
+              "score": 0.843
+            },
+            {
+              "x": 117.5,
+              "y": 101.0,
+              "score": 0.727
+            },
+            {
+              "x": 128.5,
+              "y": 100.0,
+              "score": 0.824
+            }
+          ],
+          "face_width_ratio": 1.1
+        },
+        "correction_reason": "낮게 숙인 준비 자세로 직립 얼굴 비교에서 제외. 자동 폭 제안 1.100은 원래 표식에 보존하며 통과 수치로 세지 않음.",
+        "face_excluded": "낮게 숙인 준비 자세로 직립 얼굴 비교에서 제외. 자동 폭 제안 1.100은 원래 표식에 보존하며 통과 수치로 세지 않음.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 116.953,
+            "y": 84.325,
+            "score": 0.886
+          },
+          {
+            "x": 122.599,
+            "y": 83.067,
+            "score": 0.832
+          },
+          {
+            "x": 111.5,
+            "y": 87.0,
+            "score": 0.499
+          },
+          {
+            "x": 121.5,
+            "y": 85.0,
+            "score": 0.829
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.06,
+          99,
+          64,
+          0.567
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 121.278,
+            "y": 82.795,
+            "score": 0.836
+          },
+          {
+            "x": 126.626,
+            "y": 81.927,
+            "score": 0.796
+          },
+          {
+            "x": 116.5,
+            "y": 86.0,
+            "score": 0.703
+          },
+          {
+            "x": 126.5,
+            "y": 85.0,
+            "score": 0.831
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.02,
+          104,
+          63,
+          0.705
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 122.511,
+            "y": 98.845,
+            "score": 0.811
+          },
+          {
+            "x": 129.566,
+            "y": 94.339,
+            "score": 0.805
+          },
+          {
+            "x": 116.5,
+            "y": 101.0,
+            "score": 0.666
+          },
+          {
+            "x": 127.5,
+            "y": 101.0,
+            "score": 0.868
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 11.0,
+        "eye_ratio": null,
+        "face_width_ratio": null,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.06,
+          105,
+          78,
+          0.68
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 122.511,
+              "y": 98.845,
+              "score": 0.811
+            },
+            {
+              "x": 129.566,
+              "y": 94.339,
+              "score": 0.805
+            },
+            {
+              "x": 116.5,
+              "y": 101.0,
+              "score": 0.666
+            },
+            {
+              "x": 127.5,
+              "y": 101.0,
+              "score": 0.868
+            }
+          ],
+          "face_width_ratio": 1.1
+        },
+        "correction_reason": "낮게 숙인 후속 자세로 직립 얼굴 비교에서 제외. 자동 폭 제안 1.100은 원래 표식에 보존하며 통과 수치로 세지 않음.",
+        "face_excluded": "낮게 숙인 후속 자세로 직립 얼굴 비교에서 제외. 자동 폭 제안 1.100은 원래 표식에 보존하며 통과 수치로 세지 않음.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 116.962,
+            "y": 80.882,
+            "score": 0.856
+          },
+          {
+            "x": 122.404,
+            "y": 79.908,
+            "score": 0.859
+          },
+          {
+            "x": 111.5,
+            "y": 83.75,
+            "score": 0.731
+          },
+          {
+            "x": 121.5,
+            "y": 83.0,
+            "score": 0.864
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.06,
+          99,
+          60,
+          0.727
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 117.426,
+            "y": 81.482,
+            "score": 0.823
+          },
+          {
+            "x": 123.16,
+            "y": 79.93,
+            "score": 0.817
+          },
+          {
+            "x": 112.5,
+            "y": 85.0,
+            "score": 0.679
+          },
+          {
+            "x": 122.5,
+            "y": 83.0,
+            "score": 0.858
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.02,
+          100,
+          62,
+          0.701
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      }
+    ],
+    "review_note": "Inspected ART-72 landmarks; corrections, if any, retain the original proposal and reason. Same row factor; no image editing. Eye distance remains unavailable.",
+    "sheet_sha256": "971426a41c8e16accd249c07b3ae8784502504b0b1862c12cbd6dc22ada386e8"
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-08\\rio_female\\flurry_cut\\attempt-2\\rio_female-flurry_cut.png",
+    "frames": [
+      {
+        "scale": 1.06,
+        "score": 0.696
+      },
+      {
+        "scale": 1.06,
+        "score": 0.577
+      },
+      {
+        "scale": 1.02,
+        "score": 0.704
+      },
+      {
+        "scale": 1.06,
+        "score": 0.679
+      },
+      {
+        "scale": 1.06,
+        "score": 0.734
+      },
+      {
+        "scale": 1.02,
+        "score": 0.704
+      }
+    ],
+    "median": 1.06,
+    "used": 5
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-08\\rio_female-flurry_cut-2.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      38762,
+      38544,
+      38519,
+      38181,
+      37002,
+      36461
+    ],
+    "boxes": [
+      [
+        25,
+        289,
+        331,
+        517
+      ],
+      [
+        420,
+        202,
+        664,
+        517
+      ],
+      [
+        750,
+        247,
+        1057,
+        517
+      ],
+      [
+        1101,
+        290,
+        1426,
+        517
+      ],
+      [
+        1512,
+        243,
+        1783,
+        517
+      ],
+      [
+        1857,
+        245,
+        2133,
+        517
+      ]
+    ]
+  },
+  "sheet_sha256": "971426a41c8e16accd249c07b3ae8784502504b0b1862c12cbd6dc22ada386e8"
+}

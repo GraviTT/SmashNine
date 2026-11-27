@@ -1,6 +1,7 @@
 extends SceneTree
-## The menu tour for the next UI direction round (prepared 2026-11-25): the title, where the
-## focus walks down the five entries and back, then the character select, where the choice walks
+## The menu tour for the next UI direction round (prepared 2026-11-25, taken again 2026-11-26 for
+## the title's sixth row): the title, where the focus walks down the six entries and back, then
+## the character select, where the choice walks
 ## through the six fighters and the body flips once on Nova. "now" drives the game's own menu;
 ## "a" and "b" draw menu_proto.gd in its place, fed the same steps at the same frames.
 ## Run it on the exported pack, so "now" is what a player of the web build sees (a run from the
@@ -16,8 +17,8 @@ const LANGUAGE := preload("res://scripts/Language.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const TITLE_STEP := 36
 const SELECT_STEP := 48
-## Title: the focus on each entry in turn, then back to the first.
-const TITLE_FOCUS := [0, 1, 2, 3, 4, 0]
+## Title: the focus on each entry in turn (six since Practice, 2026-11-26), then back to the first.
+const TITLE_FOCUS := [0, 1, 2, 3, 4, 5, 0]
 ## Select: [fighter, body] per step. Nova shows both bodies; the body then stays for Rio.
 const SELECT_STEPS := [["frey", "male"], ["yuki", "male"], ["luna", "male"], ["nova", "male"], ["nova", "female"], ["rio", "female"], ["xion", "female"], ["frey", "female"]]
 

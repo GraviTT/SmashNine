@@ -574,7 +574,7 @@ func _test_labels() -> bool:
 	await _frames(2)
 	_key(KEY_F3, false)
 	await _frames(2)
-	_check(not main.pad.active and hud.skill_slots["j"].key.text == "J" and hud.controls_label.text == tr(HUD.CONTROLS_SHORT), "With the keyboard the HUD should name the keys")
+	_check(not main.pad.active and hud.skill_slots["j"].key.text == "J" and _same_words(hud.controls_label.text, tr(HUD.CONTROLS_SHORT)), "With the keyboard the HUD should name the keys")
 	_check(main.practice_session.info.text.contains("H target"), "With the keyboard the practice lines should list the keys")
 	await _tap(JOY_BUTTON_LEFT_SHOULDER)
 	await _frames(3)
@@ -593,15 +593,16 @@ func _test_labels() -> bool:
 		_check(hud.skill_slots[slot].key.text == names[slot] and hud.skill_slots[slot].glyph.text == names[slot], "The %s slot should read %s with a pad (%s)" % [slot.to_upper(), names[slot], hud.skill_slots[slot].key.text])
 		var badge: Label = hud.skill_slots[slot].key
 		var width := badge.get_theme_font("font").get_string_size(badge.text, HORIZONTAL_ALIGNMENT_LEFT, -1, badge.get_theme_font_size("font_size")).x
-		_check(width <= badge.size.x and badge.position.x + badge.size.x <= 48.0, "The %s badge should hold its name inside the slot (%.0f px in %.0f)" % [slot.to_upper(), width, badge.size.x])
+		# Within the slot's own width, whatever the HUD makes it (48 px before 2026-11-26, 56 since).
+		var slot_width: float = (badge.get_parent() as Control).size.x
+		_check(width <= badge.size.x and badge.position.x >= 0.0 and badge.position.x + badge.size.x <= slot_width, "The %s badge should hold its name inside the slot (%.0f px in %.0f, slot %.0f)" % [slot.to_upper(), width, badge.size.x, slot_width])
 	for locale in ["en", "ko"]:
 		LANGUAGE.set_locale(locale)
 		GLYPHS.apply(hud, false)
 		GLYPHS.apply(hud, true)
 		await _frames(2)
-		_check(hud.controls_label.text == tr(GLYPHS.CONTROLS_PAD) and (locale == "en" or hud.controls_label.text != GLYPHS.CONTROLS_PAD), "The line under the skill bar should be the pad's (%s): %s" % [locale, hud.controls_label.text])
-		var line_width := ThemeDB.fallback_font.get_string_size(hud.controls_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x
-		_check(line_width <= hud.controls_label.size.x and absf(hud.controls_label.get_global_rect().end.x - hud.skill_bar.get_global_rect().end.x) <= 0.5, "The pad's line should fit and keep the skill bar's right edge (%s, %.0f px in %.0f)" % [locale, line_width, hud.controls_label.size.x])
+		_check(_same_words(hud.controls_label.text, tr(GLYPHS.CONTROLS_PAD)) and (locale == "en" or not _same_words(hud.controls_label.text, GLYPHS.CONTROLS_PAD)), "The control hint should be the pad's (%s): %s" % [locale, hud.controls_label.text])
+		_check_hint_place(hud, "the pad's (%s)" % locale)
 		await _frames(2)
 		_check(main.practice_session.info.text.contains(tr(GLYPHS.PRACTICE_PAD)) and not main.practice_session.info.text.contains("H "), "With a pad the practice lines should name the menu button instead of the keys (%s): %s" % [locale, main.practice_session.info.text])
 	LANGUAGE.set_locale("en")
@@ -609,9 +610,25 @@ func _test_labels() -> bool:
 	await _frames(2)
 	_key(KEY_F3, false)
 	await _frames(2)
-	_check(not main.pad.active and hud.skill_slots["i"].key.text == "I" and hud.controls_label.text == tr(HUD.CONTROLS_SHORT), "A key should bring the keyboard's names back")
-	_check(absf(hud.controls_label.get_global_rect().end.x - hud.skill_bar.get_global_rect().end.x) <= 0.5, "The keyboard's line should keep the skill bar's right edge again")
+	_check(not main.pad.active and hud.skill_slots["i"].key.text == "I" and _same_words(hud.controls_label.text, tr(HUD.CONTROLS_SHORT)), "A key should bring the keyboard's names back")
+	_check_hint_place(hud, "the keyboard's again")
 	return true
+
+## Two hint texts with the same words: the match HUD of 2026-11-26 breaks a long hint into lines.
+func _same_words(a: String, b: String) -> bool:
+	return " ".join(a.replace("\n", " ").split(" ", false)) == " ".join(b.replace("\n", " ").split(" ", false))
+
+## The control hint: each line fits its label, on screen, clear of the skill bar (until 2026-11-26
+## the hint stood under the bar and shared its right edge; the new HUD puts the bar at the left).
+func _check_hint_place(hud: Node, which: String) -> void:
+	var hint: Label = hud.controls_label
+	var font: Font = hint.get_theme_font("font")
+	var widest := 0.0
+	for line in hint.text.split("\n"):
+		widest = maxf(widest, font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, hint.get_theme_font_size("font_size")).x)
+	var rect := hint.get_global_rect()
+	var screen := Rect2(Vector2.ZERO, hud.get_viewport().get_visible_rect().size)
+	_check(widest <= rect.size.x and screen.encloses(rect) and not rect.intersects(hud.skill_bar.get_global_rect()), "The control hint, %s, should fit (%.0f px in %.0f), stay on screen and keep off the skill bar (%s, bar %s)" % [which, widest, rect.size.x, rect, hud.skill_bar.get_global_rect()])
 
 ## The names written into a HUD that lacks some of the labels (the hint line may go), or rewrites
 ## them on its own update.

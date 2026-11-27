@@ -1,18 +1,18 @@
 {
   "round": "2026-11-25-menu",
   "title": "메뉴 화면 방향",
-  "note": "DRAFT, not published: the match HUD round 2026-11-25-ui is still open and the page holds one round. UI and design session (D53). Title and character select in the two ideas of the HUD round: A keeps today's places inside the story screens' gold frames; B is flat and built round the fighter. One scripted tour per screen, recorded on the exported pack so 'now' is what the web build shows (tests/analysis/ui_audit/menu_direction_capture.gd, prototypes in menu_proto.gd; nothing in the game yet). Build with: node tools/pick_cup/build.mjs rounds/drafts/2026-11-25-menu.json",
+  "note": "Taken again 2026-11-26 after Practice became the title's sixth row (the HUD round 2026-11-25-ui is judged). UI and design session (D53). Title and character select in the two ideas of the HUD round: A keeps today's places inside the story screens' gold frames; B is flat and built round the fighter. One scripted tour per screen, recorded on the exported pack so 'now' is what the web build shows (tests/analysis/ui_audit/menu_direction_capture.gd, prototypes in menu_proto.gd; nothing in the game yet). Build with: node tools/pick_cup/build.mjs rounds/2026-11-25-menu.json",
   "items": [
     {
       "id": "menu-title",
       "view": "single",
       "title": "타이틀",
-      "question": "게임을 켰을 때 무엇을 누르면 되는지 가장 잘 보이는 쪽은 어디인가요? 선택 표시가 다섯 메뉴를 차례로 내려갔다가 처음으로 돌아옵니다. 두 안 모두 배틀로얄과 스토리를 크게, 나머지 셋을 작게 두었고, 아래 안내 줄을 키 모양과 판으로 바꿨습니다.",
+      "question": "게임을 켰을 때 무엇을 누르면 되는지 가장 잘 보이는 쪽은 어디인가요? 선택 표시가 여섯 메뉴를 차례로 내려갔다가 처음으로 돌아옵니다. 두 안 모두 배틀로얄과 스토리를 크게, 나머지 넷(연습 포함)을 작게 두었고, 아래 안내 줄을 키 모양과 판으로 바꿨습니다.",
       "candidates": [
         {
           "id": "now",
           "name": "지금",
-          "desc": "지금 게임 그대로입니다. 가운데 패널에 같은 크기의 메뉴 다섯 줄, 아래에 안내 글 한 줄",
+          "desc": "지금 게임 그대로입니다. 가운데 패널에 같은 크기의 메뉴 여섯 줄(줄 사이 틈 없음), 아래에 안내 글 한 줄",
           "media": "art/cup/2026-11-25-menu/menu-title/now.mp4"
         },
         {

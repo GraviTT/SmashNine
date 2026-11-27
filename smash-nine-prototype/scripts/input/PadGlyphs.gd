@@ -80,23 +80,34 @@ static func _fit_badge(badge: Label, pad: bool) -> void:
 		badge.size.x = before.y
 		badge.remove_meta(BADGE)
 
-## The hint line keeps its right edge and the room it had round its text.
+## The hint line keeps its right edge and the room it had round its text. The match HUD of
+## 2026-11-26 lays a long hint out in lines itself (MatchHud.set_control_hints, a line break at a
+## wide gap), so two texts that differ only in spacing and line breaks are the same text here:
+## compared as written, the laid-out pad text read as the HUD's own and the keyboard's never came back.
 static func _set_hint(hint: Label, pad: bool) -> void:
 	var pad_text: String = hint.tr(CONTROLS_PAD)
 	var written: String = str(hint.get_meta(WRITTEN, ""))
 	if pad:
-		if hint.text == pad_text:
+		if _same(hint.text, pad_text):
 			return
 		# Not this one's text: the HUD wrote it, and it is what comes back with the keyboard.
-		if written == "" or hint.text != written:
+		if written == "" or not _same(hint.text, written):
 			hint.set_meta(HUD_TEXT, hint.text)
 		_write_hint(hint, pad_text)
 		hint.set_meta(WRITTEN, pad_text)
-	elif written != "" and hint.text == written:
+	elif written != "" and _same(hint.text, written):
 		_write_hint(hint, str(hint.get_meta(HUD_TEXT, "")))
 		hint.remove_meta(WRITTEN)
 
+static func _same(a: String, b: String) -> bool:
+	return " ".join(a.replace("\n", " ").split(" ", false)) == " ".join(b.replace("\n", " ").split(" ", false))
+
 static func _write_hint(hint: Label, text: String) -> void:
+	# A HUD that lays its hint out itself gets the words only.
+	var hud := hint.get_parent()
+	if hud != null and hud.has_method("set_control_hints"):
+		hud.set_control_hints(text)
+		return
 	var font := hint.get_theme_font("font")
 	var font_size := hint.get_theme_font_size("font_size")
 	var room := hint.size.x - font.get_string_size(hint.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x

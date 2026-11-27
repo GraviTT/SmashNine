@@ -314,6 +314,8 @@ func _create_portal_visual(parent: Node2D, center: Vector2, label_text: String, 
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.add_theme_font_size_override("font_size", 12)
 	label.text = "Q %s: %s" % [label_text, realm.name]
+	# The HUD's P1 tag keeps clear of these words (MatchHud.PORTAL_LABELS).
+	label.add_to_group("portal_labels")
 	parent.add_child(label)
 
 	if warned:
@@ -323,6 +325,7 @@ func _create_portal_visual(parent: Node2D, center: Vector2, label_text: String, 
 		countdown.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		countdown.add_theme_font_size_override("font_size", 24)
 		countdown.modulate = Color(1.0, 0.35, 0.16)
+		countdown.add_to_group("portal_labels")
 		parent.add_child(countdown)
 		countdown_displays.append({"label": countdown, "kind": "portal"})
 
