@@ -73,7 +73,7 @@
 | `test_gamepad` | 178개 통과. "D-패드 아래로 노바"를 "D-패드 오른쪽 세 번으로 노바, 한 번에 한 칸"으로 바꿈 [잼] |
 | `test_language`, `test_story_flow`, `test_story_late_flow`, `test_story_presentation`, `test_story_text_fit`, `test_audio`, `test_victory_screens`, `test_hud_frames` | 통과 [잼] |
 | `test_practice_mode` | 메뉴 부분(타이틀 여섯 줄의 순서·겹침, "연습 시작" 폭) 통과. 따로 돌린 한 번은 알려진 흔들림인 "R로 싸우는 봇 되돌리기"(시온·리오)에서만 실패 [잼] |
-| 전체 | run_all: (아래 "병합"에 적음) |
+| 전체 | run_all ALL PASSED: 검사 66개와 긴 경기 1판, 28분. main(2da48ac6)을 합친 트리(a8cebaf2)에서 돌렸고, 이번에는 `test_practice_mode`의 R 되돌리기도 통과했습니다 [잼] |
 
 `test_frontend_flow`와 `test_gamepad`에서 바꾼 줄은 「시스템 담당」에게 알렸습니다.
 
@@ -84,3 +84,5 @@
 ## 병합
 
 - 커밋: `f31b262a`(메뉴 B), `90dee94b`(HUD가 바뀐 화면을 따라감, 이 보고서의 앞 일), 그리고 이 보고서.
+- run_all은 위 표대로 통과했습니다. 그 뒤 main에 들어온 두 커밋(`3abe92c0`, `93ad05e9`)은 문서와 시안 월드컵 자료뿐이라 다시 돌리지 않았습니다. [잼: 바뀐 파일 목록]
+- main 병합 커밋 번호는 「총괄」에게 알렸고, 다음 보고서(웹 화면 배율)에 적습니다.
