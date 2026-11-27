@@ -21,6 +21,10 @@ const EDGE := Color(1, 1, 1, 0.16)
 ## reports/ui-direction-2026-11-25): flat slanted plates like the match HUD's, the menu as a column
 ## beside the key art, the select screen built round the fighter with the roster as one strip.
 const SLANT := 0.2
+## The screens after the menus in the same look (2026-11-27, UI lead, from the picks above): the
+## heading on a slanted plate at the top left with Back on an Esc cap beside it, the key hints at the
+## top right, flat sheets where framed panels were.
+const HINTS_TOP := Rect2(508, 28, 736, 26)
 const SKILL_ICON := "res://assets/art/skill_icons/%s_%s.png"
 ## Select screen: the roster strip and its tiles (a fighter's face, or Random), the kit in two columns.
 const SELECT_STRIP := Rect2(536, 510, 720, 136)
@@ -204,9 +208,10 @@ func _panel(rect: Rect2, alpha := 0.94) -> void:
 	panel.add_theme_stylebox_override("panel", style)
 	content.add_child(panel)
 
-## look: "frame" (the authored pixel frame on a dark backing: options, controls, results and the
-## story screens), "slant" (the picked menu look: a flat slanted plate, gold under the focus),
-## "primary" (slanted and gold at rest: the start button) or "tile" (a square roster tile).
+## look: "frame" (the authored pixel frame on a dark backing: now only the story dialogue's Next and
+## Skip, inside its authored box), "slant" (the picked menu look: a flat slanted plate, gold under
+## the focus), "primary" (slanted and gold at rest: the main action) or "tile" (a square tile: the
+## roster, the story map's stages).
 func _button(text: String, rect: Rect2, action: String, value := "", look := "frame", font_size := 20) -> Button:
 	var button := Button.new()
 	button.text = tr(text)
@@ -234,7 +239,7 @@ func _button(text: String, rect: Rect2, action: String, value := "", look := "fr
 			_refresh_fighter())
 	return button
 
-## The look the menus had before the pick, kept for the screens that follow it later.
+## The look the menus had before the pick, kept for the dialogue box's buttons.
 func _frame_look(button: Button, rect: Rect2) -> void:
 	button.add_theme_color_override("font_color", Color("e7edf8"))
 	button.add_theme_color_override("font_hover_color", GOLD)
@@ -347,6 +352,47 @@ func _focus_cap(button: Button, always := false) -> void:
 	if not always:
 		button.focus_entered.connect(func() -> void: plate.visible = true)
 		button.focus_exited.connect(func() -> void: plate.visible = false)
+
+## A screen's heading on a slanted plate run off the left edge (as on the select screen), as wide as
+## its words, and the line under it. `plate` colours the plate (a fighter's colour on the results).
+func _heading(text: String, subtitle := "", font_size := 26, plate := Color(INK, 0.86), color := WHITE) -> Label:
+	var height := 50.0 if font_size <= 26 else 64.0
+	var heading := _label(text, Rect2(-30, 22, 240, height), font_size, color)
+	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
+	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	heading.add_theme_font_override("font", _bold_font())
+	var box := _box(plate, Color.TRANSPARENT, 0, 3, SLANT)
+	box.content_margin_left = 58
+	box.content_margin_right = 30
+	heading.add_theme_stylebox_override("normal", box)
+	heading.size.x = maxf(heading.get_minimum_size().x, 240.0)
+	if subtitle != "":
+		_label(subtitle, Rect2(30, 22 + height + 6, 640, 24), 16, DIM)
+	return heading
+
+## Back at the end of the heading, its key on an Esc cap (as on the select screen). Each screen makes
+## it last, so the buttons keep their order.
+func _back_button(heading: Label, action: String) -> Button:
+	var back := _button("Back", Rect2(heading.position.x + heading.size.x + 4.0, 26, 142, 44), action, "", "slant", 17)
+	for state in ["normal", "hover", "focus", "pressed", "disabled"]:
+		back.get_theme_stylebox(state).content_margin_left = 66
+	_key_cap("Esc", Vector2(20, 11), 38, back)
+	return back
+
+## A flat dark sheet under a screen's content, where a framed panel was.
+func _sheet(rect: Rect2, alpha := 0.88) -> Panel:
+	return _plate(rect, _box(Color(INK, alpha), Color.TRANSPARENT, 0, 6))
+
+## The slanted band of a fighter's colour behind its picture (as on the select screen).
+func _fighter_band(rect: Rect2, accent: Color) -> Panel:
+	return _plate(rect, _box(Color(accent.darkened(0.55), 0.55), Color.TRANSPARENT, 0, 4, 0.16))
+
+## A group's name over its part of a sheet.
+func _group_title(text: String, at: Vector2, width: float) -> Label:
+	var title := _label(text, Rect2(at, Vector2(width, 22)), 15, GOLD)
+	title.autowrap_mode = TextServer.AUTOWRAP_OFF
+	title.add_theme_font_override("font", _bold_font())
+	return title
 
 ## Hints are items set apart by wide gaps (three spaces or more): they break into lines there, no
 ## line wider than `width`.
@@ -608,23 +654,34 @@ static func illustration(id: String, selected_body: String) -> Texture2D:
 	var path := "res://assets/art/%s/%s_illustration.png" % [id, stem]
 	return load(path) as Texture2D if ResourceLoader.exists(path) else ART.character_portrait(id, selected_body)
 
+## Options in the picked look: the game's choices and the sound's on two sheets, each a column of
+## slanted rows (Enter on the row in focus changes it). The buttons keep their order: the five game
+## choices, the four sound ones, Back.
 func show_options() -> void:
 	_clear("options")
-	_panel(Rect2(180, 66, 920, 580))
-	_label("OPTIONS", Rect2(314, 86, 650, 54), 38, GOLD)
-	_label("Speed, language and sound are saved. The rest lasts this session.", Rect2(316, 146, 650, 28), 18, DIM)
-	speed_button = _button("", Rect2(206, 198, 424, 54), "speed")
-	art_button = _button("", Rect2(206, 264, 424, 54), "art")
-	count_button = _button("", Rect2(206, 330, 424, 54), "count")
-	panel_button = _button("", Rect2(206, 396, 424, 54), "panel")
-	language_button = _button("", Rect2(206, 462, 424, 54), "language")
+	var heading := _heading("OPTIONS", "Speed, language and sound are saved. The rest lasts this session.")
+	for column in 2:
+		var x := 48.0 + column * 600
+		var rows := 5 if column == 0 else 4
+		_sheet(Rect2(x, 132, 584, 136 + (rows - 1) * 72))
+		_group_title(["GAME", "SOUND"][column], Vector2(x + 30, 146), 520)
+	speed_button = _option_row(0, 0, "speed")
+	art_button = _option_row(0, 1, "art")
+	count_button = _option_row(0, 2, "count")
+	panel_button = _option_row(0, 3, "panel")
+	language_button = _option_row(0, 4, "language")
 	audio_buttons.clear()
 	for index in 4:
 		var key: String = ["master", "music", "effects", "mute"][index]
-		audio_buttons[key] = _button("", Rect2(650, 198 + index * 66, 424, 54), "audio_" + key)
-	_button("Back", Rect2(206, 570, 210, 48), "title")
+		audio_buttons[key] = _option_row(1, index, "audio_" + key)
+	_back_button(heading, "title")
 	refresh_options()
-	_finish("Arrows / W-S: navigate    Enter / J / click: change    T: speed    F2: art    Esc: back")
+	_finish("Arrows / W-S: navigate    Enter / J / click: change    T: speed    F2: art    Esc: back", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
+
+func _option_row(column: int, row: int, action: String) -> Button:
+	var button := _button("", Rect2(76.0 + column * 600, 182.0 + row * 72, 528, 58), action, "", "slant", 19)
+	_focus_cap(button)
+	return button
 
 func refresh_options() -> void:
 	if screen == "title" and is_instance_valid(session_status):
@@ -641,35 +698,59 @@ func refresh_options() -> void:
 	audio_buttons.effects.text = tr("Effects volume: %d%%") % int(AUDIO_SETTINGS.values.effects)
 	audio_buttons.mute.text = tr("Mute: %s") % tr("On" if AUDIO_SETTINGS.values.mute else "Off")
 
+## The key table in the picked look: two sheets of eight rows in the table's order, each row the
+## keys (gold) over what they do, like a kit row on the select screen.
 func show_controls() -> void:
 	_clear("controls")
-	_panel(Rect2(84, 40, 1112, 604))
-	_label("CONTROLS", Rect2(112, 56, 1000, 48), 34, GOLD)
+	var heading := _heading("CONTROLS")
+	var per_column := ceili(CONTROLS.size() / 2.0)
+	for column in 2:
+		_sheet(Rect2(48.0 + column * 600, 96, 584, 32 + per_column * 66))
 	for index in CONTROLS.size():
 		var row: Array = CONTROLS[index]
-		var y := 116.0 + index * 29
-		var keys := _label(row[0], Rect2(116, y, 386, 28), 17, GOLD)
+		var at := Vector2(78.0 + (index / per_column) * 600, 112.0 + (index % per_column) * 66)
+		if index % 2 == 1:
+			_plate(Rect2(at - Vector2(16, 8), Vector2(556, 62)), _box(Color(1, 1, 1, 0.04), Color.TRANSPARENT, 0, 4))
+		var keys := _label(row[0], Rect2(at, Vector2(524, 24)), 17, GOLD)
+		keys.autowrap_mode = TextServer.AUTOWRAP_OFF
+		keys.add_theme_font_override("font", _bold_font())
 		if keys.text.contains("%d"):
 			keys.text = keys.text % quick_start_count()
-		_label(row[1], Rect2(506, y, 658, 28), 17)
-	_button("Back", Rect2(926, 590, 240, 42), "title")
-	_finish("Esc: back    Enter / J / click: return to title")
+		_label(row[1], Rect2(at + Vector2(0, 24), Vector2(524, 24)), 16, WHITE)
+	_back_button(heading, "title")
+	_finish("Esc: back    Enter / J / click: return to title", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
 
+## The results in the picked look: the winner over a band of its colour and its name on a plate of
+## that colour (as on the select screen), the standings on a sheet with the player's row lit, the
+## awards on slanted plates, Rematch gold. The buttons keep their order: Rematch, select, title.
 func show_results(winner: Node, reason: String, standings: Array[Node], human: Node, survival: Dictionary) -> void:
 	AUDIO.results(self, winner)
 	_clear("results")
-	_panel(Rect2(28, 26, 1224, 620))
 	if is_instance_valid(winner):
+		var accent: Color = _roster[winner.character_id].color if _roster.has(winner.character_id) else GOLD
+		_fighter_band(Rect2(40, 150, 300, 380), accent)
 		if not _victory_picture(winner, Rect2(38, 98, 310, 478)):
 			_picture(illustration(winner.character_id, winner.body_type), Rect2(38, 98, 310, 478))
-		_label(tr("%s WINS") % tr(str(winner.display_name)).to_upper(), Rect2(54, 42, 1180, 60), 42, GOLD)
+		_heading(tr("%s WINS") % tr(str(winner.display_name)).to_upper(), "", 40, accent.darkened(0.42))
 	else:
-		_label("DRAW", Rect2(54, 42, 1180, 60), 42, GOLD)
-	_label(tr("Decided by %s") % tr(reason.replace("_", " ")), Rect2(360, 106, 836, 26), 17, DIM)
+		_heading("DRAW", "", 40, Color(INK, 0.86), GOLD)
+	_label(tr("Decided by %s") % tr(reason.replace("_", " ")), Rect2(30, 94, 700, 26), 17, DIM)
+	# The table's rows are 34 px with 8 between them: each player's row lies at a known height.
+	_sheet(Rect2(356, 132, 884, 400))
+	var row := 0
+	for player in standings:
+		if not is_instance_valid(player):
+			continue
+		row += 1
+		var row_top := 146.0 + row * 42 - 4
+		if player == human:
+			_plate(Rect2(364, row_top, 868, 42), _box(Color(GOLD, 0.14), Color(GOLD, 0.55), 1, 4))
+		elif row % 2 == 0:
+			_plate(Rect2(364, row_top, 868, 42), _box(Color(1, 1, 1, 0.04), Color.TRANSPARENT, 0, 4))
 	var grid := GridContainer.new()
 	grid.name = "Standings"
 	grid.columns = 8
-	grid.position = Vector2(360, 156)
+	grid.position = Vector2(380, 146)
 	grid.add_theme_constant_override("h_separation", 16)
 	grid.add_theme_constant_override("v_separation", 8)
 	content.add_child(grid)
@@ -712,16 +793,18 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 			if value > best_value:
 				best = player
 				best_value = value
-		var x := 360.0 + award * 288
-		_panel(Rect2(x, 534, 274, 88), 1.0)
-		_label(award_names[award], Rect2(x + 12, 544, 250, 24), 14, GOLD)
+		var x := 360.0 + award * 292
+		_plate(Rect2(x, 546, 280, 84), _box(Color(INK, 0.9), EDGE, 1, 3, SLANT))
+		var award_title := _label(award_names[award], Rect2(x + 22, 556, 240, 24), 14, GOLD)
+		award_title.add_theme_font_override("font", _bold_font())
 		var detail := "No contenders"
 		if is_instance_valid(best):
 			detail = "%s  /  %s" % [tr(str(best.display_name)), ("%d:%02d" % [int(best_value) / 60, int(best_value) % 60]) if award == 2 else "%.0f" % best_value]
-		_label(detail, Rect2(x + 12, 576, 250, 28), 18)
-	_button("[R] Rematch", Rect2(360, 660, 270, 44), "rematch")
-	_button("Character select", Rect2(650, 660, 280, 44), "return_select")
-	_button("Title", Rect2(950, 660, 274, 44), "return_title")
+		_label(detail, Rect2(x + 22, 586, 240, 28), 18)
+	var rematch := _button("[R] Rematch", Rect2(360, 656, 284, 48), "rematch", "", "primary", 20)
+	_focus_cap(rematch, true)
+	_focus_cap(_button("Character select", Rect2(656, 656, 296, 48), "return_select", "", "slant", 19))
+	_focus_cap(_button("Title", Rect2(964, 656, 276, 48), "return_title", "", "slant", 19))
 	if not buttons.is_empty():
 		buttons[0].grab_focus()
 
