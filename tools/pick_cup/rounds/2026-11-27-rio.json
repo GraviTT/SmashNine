@@ -1,7 +1,7 @@
 {
   "round": "2026-11-27-rio",
-  "title": "Rio 키트 v3 그림",
-  "note": "CODEX-SKM-08 (body rows, both bodies) and CODEX-VFX-11 (effects A/B, icons), captured in the game against now (cup_rio_fx_capture.gd, cup_rio_moves_capture.gd). Posted on its own (the 총괄 session, 2026-11-27); the menu round before it was judged. 2026-11-27 13:03: the two rows SKM-08 held were redrawn (CODEX-SKM-09, merged 114a2390) and both move clips now carry all five rows; no match had been played yet.",
+  "title": "Rio 키트 v3 그림 · 새 캐릭터 Borok·Doron·Jupi 모습",
+  "note": "CODEX-SKM-08 (body rows, both bodies) and CODEX-VFX-11 (effects A/B, icons), captured in the game against now (cup_rio_fx_capture.gd, cup_rio_moves_capture.gd). Posted on its own (the 총괄 session, 2026-11-27); the menu round before it was judged. 2026-11-27 13:03: the two rows SKM-08 held were redrawn (CODEX-SKM-09, merged 114a2390) and both move clips now carry all five rows; no match had been played yet. 2026-11-27 13:2x: the image session added the three new-character look items (CODEX-ART-99: borok-look, doron-look, jupi-look, 3 looks each) to this round, which had no match yet, so one round holds both (one round per page); records keep this round id.",
   "items": [
     {
       "id": "rio-moves-male",
@@ -182,6 +182,81 @@
           "name": "새 아이콘",
           "desc": "J 관통 찌르기 · K 날아가는 검과 점선 · L 그림자와 초승달 베기 · U 분신과 자리 바꾸기 화살표 · I 둥글게 모인 보석 검",
           "media": "art/cup/2026-11-27-rio/rio-icons/v1.mp4"
+        }
+      ]
+    },
+    {
+      "id": "borok-look",
+      "title": "Borok 보록 · 중장갑 탱커, 도끼",
+      "question": "Borok의 모습으로 어느 쪽이 나은가요? 도끼 바람으로 나는 무쇠 거인(중장갑 탱커)이고, 도끼를 머리 위에서 빠르게 돌려 잠깐 떠오르는 기술이 큰 그림에 들어 있습니다. 남성이라 고른 뒤 여성 체형도 그립니다. 영상은 큰 그림 + 도트 대기 한 프레임 → 게임 속(가장 어두운 무스펠헤임, 가장 밝은 아스가르드; 왼쪽 Frey, 오른쪽 Rio) 순서입니다.",
+      "candidates": [
+        {
+          "id": "borok1",
+          "name": "1 · 대장장이 왕 거인",
+          "desc": "땋은 수염, 대장간 왕관, 검은 판금에 주황 이음새, 양날 도끼",
+          "media": "art/cup/2026-11-27-new/borok-look/borok1.mp4"
+        },
+        {
+          "id": "borok2",
+          "name": "2 · 강철 거인",
+          "desc": "회색 머리, 모피 망토, 둥근 전신 판금, 긴 자루 도끼",
+          "media": "art/cup/2026-11-27-new/borok-look/borok2.mp4"
+        },
+        {
+          "id": "borok3",
+          "name": "3 · 젊은 대장장이 거인",
+          "desc": "붉은 머리, 청동 판금, 모루 무늬 가죽 앞치마, 사슬 감은 외날 도끼",
+          "media": "art/cup/2026-11-27-new/borok-look/borok3.mp4"
+        }
+      ]
+    },
+    {
+      "id": "doron-look",
+      "title": "Doron 도론 · 부품을 모아 강해지는 소년",
+      "question": "Doron의 모습으로 어느 쪽이 나은가요? 처음에는 메카 없이 시작해, 자기만 보이는 부품을 모아 점점 강해집니다. 렌치와 작은 드론을 든 정비공이고, 부품 3개면 강철 팔, 6개면 등 부스터, 10개면 메카 '골리앗'에 탑니다. 큰 그림에 앞으로 될 모습이 보이고, 게임 속 그림은 렌치를 든 맨몸입니다. 남성이라 고른 뒤 여성 체형도 그립니다. 영상은 큰 그림 + 도트 대기 한 프레임 → 게임 속(가장 어두운 무스펠헤임, 가장 밝은 아스가르드; 왼쪽 Frey, 오른쪽 Rio) 순서입니다.",
+      "candidates": [
+        {
+          "id": "doron1",
+          "name": "1 · 고물 수집가",
+          "desc": "크레인 달린 큰 배낭과 큰 렌치, 고글, 고철 드론, 뒤에 반쯤 지은 골리앗 뼈대",
+          "media": "art/cup/2026-11-27-new/doron-look/doron1.mp4"
+        },
+        {
+          "id": "doron2",
+          "name": "2 · 자라는 슈트",
+          "desc": "흰 작업복, 한쪽 강철 팔(로켓 펀치)·다리 보강대·반쪽 부스터, 드론",
+          "media": "art/cup/2026-11-27-new/doron-look/doron2.mp4"
+        },
+        {
+          "id": "doron3",
+          "name": "3 · 조종사 대기생",
+          "desc": "비행 재킷, 팔에 낀 헬멧, 리모컨, 드론, 정비 중인 거대한 골리앗 손",
+          "media": "art/cup/2026-11-27-new/doron-look/doron3.mp4"
+        }
+      ]
+    },
+    {
+      "id": "jupi-look",
+      "title": "Jupi 유피 · 두 번째 마법소녀, 번개 스태프",
+      "question": "Jupi의 모습으로 어느 쪽이 나은가요? 긴 스태프 끝에서 번개를 쏘고, 작은 먹구름이 따라다니는 두 번째 마법소녀입니다. 첫 마법소녀 Luna(분홍·별·짧은 지팡이)와 한눈에 달라야 합니다. 영상은 큰 그림 + 도트 대기 한 프레임 → 게임 속(가장 어두운 무스펠헤임, 가장 밝은 아스가르드; 왼쪽 Frey, 오른쪽 Rio) 순서입니다.",
+      "candidates": [
+        {
+          "id": "jupi1",
+          "name": "1 · 폭풍 지휘자",
+          "desc": "단발과 번개 머리핀, 회색 코트에 노란 안감, 구리 코일 스태프, 눈 달린 먹구름",
+          "media": "art/cup/2026-11-27-new/jupi-look/jupi1.mp4"
+        },
+        {
+          "id": "jupi2",
+          "name": "2 · 천둥 북잡이",
+          "desc": "검은 단발, 흰 의식복과 노란 매듭, 북 다섯 개 달린 스태프, 먹구름",
+          "media": "art/cup/2026-11-27-new/jupi-look/jupi2.mp4"
+        },
+        {
+          "id": "jupi3",
+          "name": "3 · 번개 운동선수",
+          "desc": "금발 포니테일, 검정·레몬색 운동 재킷과 반바지, 애자 달린 스태프, 먹구름",
+          "media": "art/cup/2026-11-27-new/jupi-look/jupi3.mp4"
         }
       ]
     }
