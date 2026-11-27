@@ -80,14 +80,15 @@ func _run_original_checks() -> void:
 	nova._play_launch_flash(Vector2.RIGHT)
 	_expect_vfx(arena, "nova_launch_flash")
 
-	# Rio's kit v3 (D50): the decoy bursts with the rune burst; the thrown swords (K and I) use the
-	# gem sword picture. His counter stance is code-drawn until its art.
+	# Rio's kit v3 (D50; the picks of pick cup round 2026-11-27-rio): the decoy bursts with its own strip; every
+	# blink leaves the shadow puff at both ends and the trail between.
 	var rio := _player("rio")
 	rio._decoy_cast()
 	rio.decoy_burst(rio.decoy)
-	_expect_vfx(arena, "rio_rune_burst")
+	_expect_vfx(arena, "rio_decoy_burst")
 	rio._play_blink_trail(Vector2.ZERO, Vector2(180, 0))
 	_expect_vfx(arena, "rio_blink_trail")
+	_expect_vfx(arena, "rio_shadow_blink")
 	var sword: Node = rio._make_sword(Vector2.RIGHT, Vector2(28, 28), 2.0, 0.0, 980.0, 0.62, Color.CYAN)
 	if sword.get_node_or_null("ArtSprite") == null:
 		_fail("Rio's thrown sword did not use rio_gem_sword.png")

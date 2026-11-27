@@ -178,8 +178,9 @@ const SPECS := {
 	"xion_point_blank": [5, 36.0, Vector2(56, 56), true, SKILL_DIR],
 	"xion_double_in": [6, 24.0, Vector2(64, 160), true, SKILL_DIR],
 	"xion_dive_trail": [5, 31.0, Vector2(128, 24), true, SKILL_DIR],
-	# Rio's kit v3 effects (CODEX-VFX-11 contract, 2026-11-27): until a pick is in the folder, his code draws
-	# the stand-ins (the tinted gem sword, a code X, a code hexagon, the rune burst; no blink puff).
+	# Rio's kit v3 effects (CODEX-VFX-11, the user's picks in pick cup round 2026-11-27-rio): the sword B
+	# (flying and stuck), backstab A, shadow blink B, counter stance A, decoy burst A. All additive, as the
+	# clips the user judged showed them (four were drawn for normal blending).
 	"rio_mana_sword": [4, 20.0, Vector2(48, 16), true, EFFECTS_DIR],
 	"rio_mana_sword_stuck": [4, 8.0, Vector2(48, 16), true, EFFECTS_DIR],
 	"rio_backstab": [5, 36.0, Vector2(48, 48), true, SKILL_DIR],
@@ -214,7 +215,7 @@ const CODE_DRAWN := ["xion_bullet", "xion_point_blank"]
 
 ## Effects whose contract is set but whose art is not picked yet (Rio's kit v3, CODEX-VFX-11): spawn() returns
 ## null for them and his code draws its stand-ins, until the picked file is in its folder; then drop the name.
-const PENDING_ART := ["rio_mana_sword", "rio_mana_sword_stuck", "rio_backstab", "rio_shadow_blink", "rio_counter_stance", "rio_decoy_burst"]
+const PENDING_ART := []
 
 static var _cache: Dictionary = {}
 static var _additive: CanvasItemMaterial

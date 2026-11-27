@@ -27,3 +27,15 @@ Both sheets were rebuilt from the candidates in `art/bakeoff/rio/rio_female-*` (
 | `rune_shield` | 6 | 12 | L: the rune shield guard | `rio_female-rune_shield-v1` |
 | `infinity_overdrive` | 6 | 11 | ultimate start: sword raised, command | `rio_female-infinity_overdrive-v1` |
 | `tumble` | 6 | 21, loop | **new** strong-launch hitstun | `rio_female-tumble-v1` |
+
+## Kit v3 rows (2026-11-27, pick cup round `2026-11-27-rio`)
+
+Appended under the nine rows above (rows 10-14) from CODEX-SKM-08/09 (`art/bakeoff/rio/rio_female-<row>-v1.png`), the user's pick (new rows won against the borrowed ones). The code table is `Rio.MOVE_SHEET_ROWS`.
+
+| Row | Frames | FPS | Move |
+| --- | ---: | ---: | --- |
+| `sword_throw` | 6 | 20 | K: the left hand throws the mana sword, his own sword stays in the right hand |
+| `counter_stance` | 6 | 15 | L: the counter stance, sword held across in front |
+| `pierce` | 6 | 20 | J third hit: the dash-through cut |
+| `decoy_step` | 6 | 16 | U: the step back that leaves the decoy (the game plays 3-6) |
+| `flurry_cut` | 6 | 24 | I again: the cut after each blink (the game plays 2-4) |

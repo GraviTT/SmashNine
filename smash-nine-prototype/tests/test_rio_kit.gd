@@ -161,7 +161,7 @@ func _test_air_step_effect() -> void:
 		rio.queue_free()
 		await process_frame
 
-## The same hit deals 1.5x from behind the target (the side it does not face), with a blue X.
+## The same hit deals 1.5x from behind the target (the side it does not face), with the backstab mark.
 func _test_backstab() -> void:
 	_floor(Vector2(0, 0), 2400)
 	var rio := _rio(Vector2(-80, -2))
@@ -173,8 +173,8 @@ func _test_backstab() -> void:
 	foe.apply_hit(rio, 10.0, 0.0, Vector2.RIGHT)
 	var behind_loss: float = foe.max_hp - foe.hp
 	await _frames(2)
-	if arena.get_node_or_null("RioBackstab") == null:
-		_fail("A hit from behind should show the backstab mark")
+	if arena.get_node_or_null("Vfx_rio_backstab") == null:
+		_fail("A hit from behind should show the picked backstab mark")
 	foe.facing = -1
 	foe.hp = foe.max_hp
 	foe.apply_hit(rio, 10.0, 0.0, Vector2.RIGHT)
@@ -547,10 +547,18 @@ func _test_third_skill_slot() -> void:
 	if not is_equal_approx(cooldown.y, rio.DECOY_COOLDOWN) or cooldown.x <= 0.0:
 		_fail("The U slot should show the decoy cooldown (%s)" % cooldown)
 
-## Kit v3 art (CODEX-SKM-08 and VFX-11, 2026-11-27): until the picks are in, his moves play the borrowed rows
-## and his code draws the stand-ins; with the picked rows and strips there, they take over. The strips are
-## put in Vfx's cache and the rows in his SpriteFrames, as the pick cup captures do.
+## Kit v3 art (the user's picks, pick cup round 2026-11-27-rio): his moves play their own rows (both bodies have
+## them) and his effects draw the picked strips: the mana sword flying and then waiting once it sticks, a shadow puff
+## at both ends of a blink, the backstab mark instead of the code X, the counter stance aura instead of the hexagon.
 func _test_kit_art() -> void:
+	const VFX := preload("res://scripts/Vfx.gd")
+	var female := _rio(Vector2(600, -400), false, "female")
+	await _frames(2)
+	for row in [&"sword_throw", &"counter_stance", &"pierce", &"decoy_step", &"flurry_cut"]:
+		if not female._has_kit_row(row):
+			_fail("The female body should have the picked row %s" % row)
+			return
+	female.queue_free()
 	_floor(Vector2(0, 0), 2400)
 	var rio := _rio(Vector2(-200, -2))
 	var foe := _dummy(10, Vector2(150, -2), -1)
@@ -558,38 +566,19 @@ func _test_kit_art() -> void:
 	rio.facing = 1
 	rio.perform_skill_one()
 	await _frames(2)
-	if rio.character_sprite.animation != &"rio_dimension_slash":
-		_fail("Without its own row the throw should borrow dimension_slash (playing %s)" % rio.character_sprite.animation)
+	if rio.character_sprite.animation != &"rio_sword_throw":
+		_fail("The throw should play its own row (playing %s)" % rio.character_sprite.animation)
 		return
 	if not await _wait_for(func() -> bool: return is_instance_valid(rio.thrown_sword), 1.0):
 		_fail("The throw should make a sword")
 		return
-	if rio.thrown_sword.get_node_or_null("Vfx_rio_mana_sword") != null or rio.thrown_sword.get_node_or_null("ArtSprite") == null:
-		_fail("Without the picked strips the sword should be the tinted gem sword")
+	if rio.thrown_sword.get_node_or_null("Vfx_rio_mana_sword") == null:
+		_fail("The flying sword should be the picked mana sword strip")
 		return
-	rio.queue_free()
-	foe.queue_free()
-	await _frames(2)
-	const VFX := preload("res://scripts/Vfx.gd")
-	for key in ["rio_mana_sword/true", "rio_mana_sword_stuck/true", "rio_backstab/false", "rio_shadow_blink/false", "rio_counter_stance/true", "rio_decoy_burst/false"]:
-		VFX._cache[key] = _fake_strip(4, key.ends_with("true"))
-	rio = _rio(Vector2(-200, -2))
-	foe = _dummy(10, Vector2(150, -2), -1)
-	await _frames(6)
-	var frames: SpriteFrames = rio.character_sprite.sprite_frames
-	for row in ["sword_throw", "counter_stance"]:
-		var animation := StringName("rio_%s" % row)
-		frames.add_animation(animation)
-		for index in 6:
-			frames.add_frame(animation, frames.get_frame_texture(&"rio_idle", 0))
-	rio.facing = 1
-	rio.perform_skill_one()
-	await _frames(2)
-	if rio.character_sprite.animation != &"rio_sword_throw":
-		_fail("With its own row the throw should play it (playing %s)" % rio.character_sprite.animation)
 	if not await _wait_for(func() -> bool: return is_instance_valid(rio.thrown_sword) and rio.thrown_sword.has_target(), 1.0):
 		_fail("The sword should stick in the foe")
-	elif rio.thrown_sword.get_node_or_null("Vfx_rio_mana_sword_stuck") == null:
+		return
+	if rio.thrown_sword.get_node_or_null("Vfx_rio_mana_sword_stuck") == null:
 		_fail("A stuck mana sword should show its waiting strip")
 	await _wait_for(func() -> bool: return rio._can_start_attack(), 1.0)
 	rio.try_skill_one_followup()
@@ -599,8 +588,8 @@ func _test_kit_art() -> void:
 	var marks := 0
 	for node in arena.get_children():
 		if node is AnimatedSprite2D:
-			puffs += 1 if node.sprite_frames == VFX._cache["rio_shadow_blink/false"] else 0
-			marks += 1 if node.sprite_frames == VFX._cache["rio_backstab/false"] else 0
+			puffs += 1 if node.sprite_frames == VFX._cache.get("rio_shadow_blink/false") else 0
+			marks += 1 if node.sprite_frames == VFX._cache.get("rio_backstab/false") else 0
 	if puffs < 2:
 		_fail("A blink should leave a shadow puff where he vanishes and where he appears (%d)" % puffs)
 	if marks < 1 or arena.get_node_or_null("RioBackstab") != null:
@@ -612,17 +601,3 @@ func _test_kit_art() -> void:
 		_fail("The counter stance should play its own row inside the picked aura")
 	if is_instance_valid(rio.stance_visual) and rio.stance_visual.visible:
 		_fail("With the aura there the code hexagon should not show")
-	for key in ["rio_mana_sword/true", "rio_mana_sword_stuck/true", "rio_backstab/false", "rio_shadow_blink/false", "rio_counter_stance/true", "rio_decoy_burst/false"]:
-		VFX._cache.erase(key)
-
-func _fake_strip(count: int, loop: bool) -> SpriteFrames:
-	var strip := SpriteFrames.new()
-	strip.add_animation(&"play")
-	strip.set_animation_loop(&"play", loop)
-	strip.set_animation_speed(&"play", 30.0)
-	var image := Image.create(8, 8, false, Image.FORMAT_RGBA8)
-	image.fill(Color(0, 1, 1, 1))
-	var texture := ImageTexture.create_from_image(image)
-	for index in count:
-		strip.add_frame(&"play", texture)
-	return strip

@@ -103,8 +103,8 @@ func _test_own_effects_only() -> void:
 	await physics_frame
 	rio._decoy_cast()
 	rio.decoy_burst(rio.decoy)
-	if _vfx("rio_slash") != null or _vfx("rio_rune_burst") == null:
-		_fail("Rio's decoy burst should draw its rune burst and no shared slash (slash %s)" % [_vfx("rio_slash")])
+	if _vfx("rio_slash") != null or _vfx("rio_decoy_burst") == null:
+		_fail("Rio's decoy burst should draw its own burst and no shared slash (slash %s)" % [_vfx("rio_slash")])
 	_clear([rio])
 	var nova := _player("nova")
 	await physics_frame

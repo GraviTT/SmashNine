@@ -225,7 +225,8 @@ func _test_character_moves(character_id: String) -> void:
 		var fallback := _move_fighter(character_id, false)
 		_play_character_row(fallback, character_id, row)
 		var expected_fallback := StringName("%s_attack" % character_id)
-		if character_id == "rio" and row == "rune_shield":
+		if character_id == "rio" and row == "counter_stance":
+			# Without its row the stance shows the guard drawing (Rio.perform_skill_two).
 			expected_fallback = &"rio_shield"
 		elif row == "tumble":
 			# A strong launch without the tumble row keeps the hurt frame (_play_launch_hit_sprite).
@@ -292,8 +293,19 @@ func _play_character_row(fighter: Node, character_id: String, row: String) -> vo
 				"low_sweep": fighter.perform_basic_attack("down", Vector2.DOWN)
 				"air_slash": fighter.perform_basic_attack("air_side", Vector2.RIGHT)
 				"plunge": fighter.perform_basic_attack("air_down", Vector2.DOWN)
-				"dimension_slash": fighter.perform_skill_one()
-				"rune_shield": fighter.perform_skill_two()
+				# K again and the counter's cut (the throw and the stance have their own rows since 2026-11-27).
+				"dimension_slash": fighter._play_move_sprite_pose(&"dimension_slash", -1, -1, 0.2, 3, 5)
+				# Kept in the sheet, no longer played by a move.
+				"rune_shield": fighter._play_move_sprite_pose(&"rune_shield", -1, -1, 0.4)
+				"sword_throw": fighter.perform_skill_one()
+				"counter_stance": fighter.perform_skill_two()
+				"pierce":
+					fighter.combo_step = 2
+					fighter.combo_timer = 1.0
+					fighter.perform_basic_attack("neutral", Vector2.RIGHT)
+				"decoy_step": fighter.perform_skill_three()
+				# The cut of the second I (it needs stuck gem swords to run; its pose call is the one played here).
+				"flurry_cut": fighter._play_move_sprite_pose(&"flurry_cut", -1, -1, 0.12, 1, 3)
 				"infinity_overdrive": fighter.perform_ultimate()
 				# New for Rio (2026-10-15): a strong launch plays the tumble row.
 				"tumble": fighter.apply_forced_launch_hit(null, 1.0, Vector2(620.0, -260.0), 0.25, 620.0, Vector2.RIGHT)

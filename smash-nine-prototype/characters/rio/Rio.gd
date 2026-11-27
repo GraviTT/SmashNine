@@ -99,9 +99,9 @@ const GEM_COLORS: Array[Color] = [
 ## The base `attack` row is only a fallback (J plays mana_combo).
 const SHEET_ROWS := [["idle", 6, 6.3, true], ["walk", 8, 13.3, true], ["jump", 1, 1.0, false], ["fall", 1, 1.0, false], ["attack", 6, 21.0, false], ["shield", 6, 12.0, false], ["hurt", 1, 1.0, false]]
 ## 192-px cells (D34). `tumble` is new for Rio: strong launches play it instead of the hurt frame.
-## Kit v3 borrows rows until its own are drawn: the throw dimension_slash 1-3 and the blink slash
-## 4-6, the counter stance rune_shield, the decoy dimension_slash 5-6, the cast
-## infinity_overdrive, the flurry cuts mana_combo; the pierce is mana_combo 5-6 as before.
+## Kit v3 rows (CODEX-SKM-08/09, the user's picks in pick cup round 2026-11-27-rio) sit under the old nine:
+## the throw, the counter stance, the pierce, the decoy step and the flurry cut. The blink slash and the
+## counter's cut still use dimension_slash 4-6, the flurry cast infinity_overdrive.
 const MOVE_SHEET_ROWS := [
 	["mana_combo", 6, 18.0, false],
 	["rising_slash", 6, 30.0, false],
@@ -112,6 +112,11 @@ const MOVE_SHEET_ROWS := [
 	["rune_shield", 6, 12.0, false],
 	["infinity_overdrive", 6, 11.0, false],
 	["tumble", 6, 21.0, true],
+	["sword_throw", 6, 20.0, false],
+	["counter_stance", 6, 15.0, false],
+	["pierce", 6, 20.0, false],
+	["decoy_step", 6, 16.0, false],
+	["flurry_cut", 6, 24.0, false],
 ]
 
 var combo_step := 0
