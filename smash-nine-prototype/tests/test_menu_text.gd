@@ -183,10 +183,11 @@ func _later_screens() -> void:
 	menu.body = "male"
 	for locale in ["en", "ko"]:
 		LANGUAGE.set_locale(locale)
-		for screen in ["options", "controls", "story_map", "story_card", "story_pause", "story_clear", "story_failed"]:
+		for screen in ["options", "controls", "controls_pad", "story_map", "story_card", "story_pause", "story_clear", "story_failed"]:
 			match screen:
 				"options": menu.show_options()
-				"controls": menu.show_controls()
+				"controls": menu.show_controls_tab("keys")
+				"controls_pad": menu.show_controls_tab("pad")
 				"story_map": menu.show_story_map(1)
 				"story_card": menu.show_stage_card(STORY.stage(2))
 				"story_pause": menu.show_story_pause()

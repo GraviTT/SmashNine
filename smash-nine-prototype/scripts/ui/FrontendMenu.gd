@@ -11,6 +11,8 @@ const AUDIO_SETTINGS := preload("res://scripts/audio/AudioSettings.gd")
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
+const PAD_BADGES := preload("res://scripts/ui/PadBadges.gd")
+const GLYPHS := preload("res://scripts/input/PadGlyphs.gd")
 const SIZE := Vector2(1280, 720)
 const GOLD := Color("f3cd7c")
 const DIM := Color("aebbd0")
@@ -85,8 +87,28 @@ const CONTROLS := [
 	["Arrows or W-S / Enter or J", "Navigate menus / confirm (mouse also works)"],
 	["Esc / R (results)", "Back in menus / rematch"]
 ]
+## The gamepad's table (the gamepad report's section 1, Xbox names), on the controls screen's second
+## tab: each row the buttons (badges, PadBadges; DPAD is the cross, a word is written) over what they
+## do. The keyboard rows' words are reused where the action is the same.
+const PAD_CONTROLS := [
+	[["LS", "DPAD"], "Move / aim attacks"],
+	[["A", "or", "stick all the way up"], "Jump (air jumps available)"],
+	[["stick up a little"], "Aim up without jumping"],
+	[["Down", "+", "A"], "Drop through a thin platform"],
+	[["LB"], "Guard / tap just before a hit to parry"],
+	[["X", "+ direction"], "Basic attack (ground and air variants)"],
+	[["Y", "B", "RB"], "Character skills (RB: third skill)"],
+	[["RT"], "Ultimate (30 second cooldown)"],
+	[["LT"], "Use the portal under your feet"],
+	[["RS", "← ↑ →"], "Pick a soul card when offered"],
+	[["Start"], "Practice menu / story pause / confirm"],
+	[["Back"], "Back in menus (in a match: as Start)"],
+	[["In menus"], "Stick: arrows   A: Enter   B: Esc   Y: body"],
+]
 
 var screen := "title"
+## The controls screen's tab: "keys" or "pad" ("" picks the device in use when the screen opens).
+var controls_tab := ""
 ## What the select screen starts: "match", or "practice" when it was opened from Practice.
 var select_mode := "match"
 var selected_id := "frey"
@@ -687,27 +709,69 @@ func refresh_options() -> void:
 	audio_buttons.effects.text = tr("Effects volume: %d%%") % int(AUDIO_SETTINGS.values.effects)
 	audio_buttons.mute.text = tr("Mute: %s") % tr("On" if AUDIO_SETTINGS.values.mute else "Off")
 
-## The key table in the picked look: two sheets of eight rows in the table's order, each row the
-## keys (gold) over what they do, like a kit row on the select screen.
+## The controls in the picked look, on two tabs: the keyboard's table and the gamepad's (it opens on
+## the device in use). Each table stands on two sheets, each row the keys or buttons (gold words, or
+## the pad's badges) over what they do, like a kit row on the select screen. Back comes first and
+## has the focus, so Enter still returns to the title; Left / Right switch the tab. The tabs sit
+## beside Back, and the hints under the sheets.
 func show_controls() -> void:
+	if controls_tab == "":
+		controls_tab = "pad" if GLYPHS.pad_in_use else "keys"
 	_clear("controls")
 	var heading := _heading("CONTROLS")
-	var per_column := ceili(CONTROLS.size() / 2.0)
+	var back := _back_button(heading, "title")
+	var x := back.position.x + back.size.x + 22.0
+	for tab in [["Keyboard", "keys"], ["Gamepad", "pad"]]:
+		var shown: bool = controls_tab == tab[1]
+		var button := _button(tab[0], Rect2(x, 26, 168, 44), "controls_" + str(tab[1]), "", "primary" if shown else "slant", 17)
+		x += button.size.x + 8.0
+	var rows: Array = CONTROLS if controls_tab == "keys" else PAD_CONTROLS
+	var per_column := ceili(rows.size() / 2.0)
 	for column in 2:
-		_sheet(Rect2(48.0 + column * 600, 96, 584, 32 + per_column * 66))
-	for index in CONTROLS.size():
-		var row: Array = CONTROLS[index]
+		var count := mini(per_column, rows.size() - column * per_column)
+		_sheet(Rect2(48.0 + column * 600, 96, 584, 32 + count * 66))
+	for index in rows.size():
+		var row: Array = rows[index]
 		var at := Vector2(78.0 + (index / per_column) * 600, 112.0 + (index % per_column) * 66)
 		if index % 2 == 1:
 			_plate(Rect2(at - Vector2(16, 8), Vector2(556, 62)), _box(Color(1, 1, 1, 0.04), Color.TRANSPARENT, 0, 4))
-		var keys := _label(row[0], Rect2(at, Vector2(524, 24)), 17, GOLD)
-		keys.autowrap_mode = TextServer.AUTOWRAP_OFF
-		keys.add_theme_font_override("font", _bold_font())
-		if keys.text.contains("%d"):
-			keys.text = keys.text % quick_start_count()
-		_label(row[1], Rect2(at + Vector2(0, 24), Vector2(524, 24)), 16, WHITE)
-	_back_button(heading, "title")
-	_finish("Esc: back    Enter / J / click: return to title", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
+		if controls_tab == "keys":
+			var keys := _label(row[0], Rect2(at, Vector2(524, 24)), 17, GOLD)
+			keys.autowrap_mode = TextServer.AUTOWRAP_OFF
+			keys.add_theme_font_override("font", _bold_font())
+			if keys.text.contains("%d"):
+				keys.text = keys.text % quick_start_count()
+		else:
+			_pad_buttons(row[0], at)
+		_label(row[1], Rect2(at + Vector2(0, 26), Vector2(524, 24)), 16, WHITE)
+	# The tabs take the top row's room, so the hints stand under the sheets.
+	_finish("Left / Right: keyboard / gamepad    Esc: back    Enter / J / click: return to title")
+
+## Opens the controls on one tab ("keys" or "pad").
+func show_controls_tab(tab: String) -> void:
+	controls_tab = tab
+	show_controls()
+
+## A pad row's buttons from `at`, left to right: a badge for each button name, the cross for DPAD,
+## gold words for the rest.
+func _pad_buttons(tokens: Array, at: Vector2) -> void:
+	var x := at.x
+	for token: String in tokens:
+		var item: Control
+		if token == "DPAD":
+			item = PAD_BADGES.make_dpad(24)
+			content.add_child(item)
+		elif PAD_BADGES.is_pad_name(token):
+			item = PAD_BADGES.make(token, 24, _bold_font(), 15)
+			content.add_child(item)
+		else:
+			var words := _label(token, Rect2(x, at.y, 400, 24), 17, GOLD)
+			words.autowrap_mode = TextServer.AUTOWRAP_OFF
+			words.add_theme_font_override("font", _bold_font())
+			words.size.x = words.get_minimum_size().x
+			item = words
+		item.position = Vector2(x, at.y)
+		x += item.size.x + 8.0
 
 ## The results in the picked look: the winner over a band of its colour and its name on a plate of
 ## that colour (as on the select screen), the standings on a sheet with the player's row lit, the
@@ -841,7 +905,11 @@ func _activate(action: String, value: String) -> void:
 			show_select()
 		"title": show_title()
 		"options": show_options()
-		"controls": show_controls()
+		"controls":
+			controls_tab = ""
+			show_controls()
+		"controls_keys": show_controls_tab("keys")
+		"controls_pad": show_controls_tab("pad")
 		"pick":
 			selected_id = value
 			_refresh_fighter()
@@ -896,6 +964,11 @@ func _input(event: InputEvent) -> void:
 			var neighbor := buttons[focus_index].find_valid_focus_neighbor(direction)
 			if neighbor != null:
 				_focus_from_navigation(neighbor)
+		elif screen == "controls" and code in [KEY_LEFT, KEY_A, KEY_RIGHT, KEY_D]:
+			var tab := "pad" if code in [KEY_RIGHT, KEY_D] else "keys"
+			if tab != controls_tab:
+				AUDIO.sound(self, "ui_move")
+				show_controls_tab(tab)
 		else:
 			var step := -1 if code in [KEY_UP, KEY_W, KEY_LEFT, KEY_A] else 1
 			_move_focus(step)

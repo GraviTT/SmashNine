@@ -15,6 +15,8 @@ const REALM_LAYOUT := preload("res://scripts/realms/RealmLayout.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
 const CARDS := preload("res://scripts/match/SoulCards.gd")
 const PRACTICE := preload("res://scripts/practice/PracticeSession.gd")
+const GLYPHS := preload("res://scripts/input/PadGlyphs.gd")
+const PAD_BADGES := preload("res://scripts/ui/PadBadges.gd")
 const WINDOWS: Array[Vector2i] = [Vector2i(1280, 720), Vector2i(1470, 720), Vector2i(1280, 960)]
 const FIGHTERS := {"frey": 4, "rio": 5}
 ## Main's inset for the faces at the screen edge (Main.OFFSCREEN_MARKER_INSET).
@@ -78,6 +80,7 @@ func _match_hud(window: Vector2i, character: String, locale: String) -> void:
 	hud.update_skill_bar(human, 0.016)
 	hud.set_clock(tr("Exploration"), 6.0, tr("Corner collapse warning"), 114.0)
 	_check_slots(hud, view, character, where)
+	_check_pad_badges(hud, human, where)
 	_check_hp_number(hud, where)
 	_check_font_sizes(hud, where)
 	# The match with its news: three long messages and a collapse warning.
@@ -148,6 +151,28 @@ func _check_slots(hud: Node, view: Vector2, character: String, where: String) ->
 		_check(bar.grow(0.5).encloses(rect), "Skill slot %s hangs out of its bar (%s in %s, %s)" % [slot, rect, bar, where])
 	_check(shown == int(FIGHTERS[character]), "%s should show %d skill slots, got %d" % [character, FIGHTERS[character], shown])
 	_check(Rect2(Vector2.ZERO, view).encloses(bar), "The skill bar should be on screen (%s)" % where)
+
+## The key under each slot is the pad's button as its badge while a pad is in use (PadGlyphs writes
+## the names, the HUD draws the shapes; 2026-11-27) and the light key cap again with the keyboard:
+## each holds its name inside the slot, and a face button is round in its colour.
+func _check_pad_badges(hud: Node, human: Node, where: String) -> void:
+	for pad in [true, false]:
+		GLYPHS.apply(hud, pad)
+		hud.update_skill_bar(human, 0.016)
+		for slot: String in hud.SKILL_SLOTS:
+			var nodes: Dictionary = hud.skill_slots[slot]
+			var key: Label = nodes.key
+			var cap: Control = nodes.cap
+			var name: String = GLYPHS.SLOT_NAMES[slot] if pad else slot.to_upper()
+			_check(key.text == name, "The %s slot's key should read %s (%s)" % [slot.to_upper(), name, where])
+			var box := cap.get_theme_stylebox("panel") as StyleBoxFlat
+			var words := key.get_theme_font("font").get_string_size(key.text, HORIZONTAL_ALIGNMENT_LEFT, -1, key.get_theme_font_size("font_size")).x
+			var slot_width: float = (cap.get_parent() as Control).size.x
+			_check(cap.position.x >= 0.0 and cap.position.x + cap.size.x <= slot_width and words <= cap.size.x, "The %s slot's %s should hold its name inside the slot (%s at %s, %s)" % [slot.to_upper(), "badge" if pad else "key cap", cap.size, cap.position, where])
+			if pad and PAD_BADGES.FACE.has(name):
+				_check(is_equal_approx(cap.size.x, cap.size.y) and box.corner_radius_top_left >= int(cap.size.y * 0.5) - 1 and box.bg_color.is_equal_approx(PAD_BADGES.FACE[name]), "The %s badge should be round in its colour (%s)" % [name, where])
+			elif not pad:
+				_check(box.bg_color.is_equal_approx(hud.KEY_CAP), "The %s key cap should be light again with the keyboard (%s)" % [slot.to_upper(), where])
 
 ## The big HP number and "/ max" end before the bar starts (the audit's B7 for the new plate).
 func _check_hp_number(hud: Node, where: String) -> void:

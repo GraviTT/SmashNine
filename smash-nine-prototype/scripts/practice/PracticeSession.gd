@@ -47,9 +47,16 @@ const MENU_ROWS := [
 	["Clear cards", "clear"], ["Skill list", "skills"], ["Back to the title", "leave"],
 ]
 const KEY_HELP := "H target   N bot's fighter   R reset   E refill   M monster   C cards   X clear cards   Tab skills   Esc title"
+## Each menu row's key (the keys of KEY_HELP), on a cap at the row's end.
+const MENU_KEYS := {"target": "H", "bot": "N", "reset": "R", "refill": "E", "monster": "M", "cards": "C", "clear": "X", "skills": "Tab", "leave": "Esc"}
 const INK := Color("101827")
 const GOLD := Color("f3cd7c")
 const DIM := Color("aebbd0")
+## The panel in the menus' picked look (FrontendMenu.SLANT): the menu heading's plate and its rows'.
+const SLANT := 0.2
+const MENU_PLATE := Color("24304a")
+const ROW_PLATE := Color(0.16, 0.2, 0.29, 0.95)
+const PAD_BADGES := preload("res://scripts/ui/PadBadges.gd")
 
 ## The bot's fighter lasts the session (N changes it), like the menu's other choices.
 static var bot_id := "frey"
@@ -68,6 +75,7 @@ var menu_index := 0
 var monsters: Array[Node] = []
 var info: Label
 var skills_panel: Control
+var _bold_font: FontVariation
 var _walk_direction := 1.0
 ## Main's children when practice began: whatever else sits beside them later was left by the fight.
 var _fixed_nodes: Array[Node] = []
@@ -460,26 +468,89 @@ func run_menu_row(row: String) -> void:
 		"leave":
 			leave()
 
-## The menu, drawn on the panel the skill list uses: the row chosen in gold.
+## The menu, drawn on the panel the skill list uses, in the menus' picked look (UI lead,
+## 2026-11-27): a flat sheet, the heading on a slanted plate, the rows as slanted plates with the
+## chosen one gold, and each row's key on a cap at its end (none while a pad is in use).
 func _show_menu() -> void:
+	_panel_sheet(tr("Practice menu"), MENU_PLATE)
+	for index in MENU_ROWS.size():
+		var chosen: bool = index == menu_index
+		var rect := Rect2(36, 80.0 + index * 38.0, 548, 32)
+		_panel_plate(rect, _flat_box(GOLD if chosen else ROW_PLATE, 3, SLANT))
+		var words := _skill_label(tr(str(MENU_ROWS[index][0])), Rect2(rect.position + Vector2(24, 0), Vector2(rect.size.x - 110, rect.size.y)), 18, INK if chosen else Color.WHITE)
+		words.autowrap_mode = TextServer.AUTOWRAP_OFF
+		words.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		words.add_theme_font_override("font", _bold())
+		if not GLYPHS.pad_in_use:
+			var key: String = MENU_KEYS[str(MENU_ROWS[index][1])]
+			var width := 26.0 if key.length() == 1 else 44.0
+			_key_cap(key, Rect2(rect.end.x - width - 22.0, rect.position.y + 5.0, width, 22), chosen)
+	_skill_label(tr("Up / Down: choose    Enter: do it    Esc: close"), Rect2(28, skills_panel.size.y - 34.0, 564, 22), 14, DIM)
+	skills_panel.visible = true
+
+## The panel's sheet and its heading on a slanted plate of `plate`'s colour (the menu and the skill
+## list share the panel).
+func _panel_sheet(title: String, plate: Color) -> Label:
 	for child in skills_panel.get_children():
 		skills_panel.remove_child(child)
 		child.queue_free()
-	var back := Panel.new()
-	back.size = skills_panel.size
-	back.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(INK, 0.96)
-	style.border_color = Color("59617c")
-	style.set_border_width_all(2)
-	back.add_theme_stylebox_override("panel", style)
-	skills_panel.add_child(back)
-	_skill_label(tr("Practice menu"), Rect2(28, 18, 564, 44), 30, GOLD)
-	for index in MENU_ROWS.size():
-		var chosen: bool = index == menu_index
-		_skill_label((">  " if chosen else "    ") + tr(str(MENU_ROWS[index][0])), Rect2(40, 84.0 + index * 36.0, 540, 30), 20, GOLD if chosen else Color.WHITE)
-	_skill_label(tr("Up / Down: choose    Enter: do it    Esc: close"), Rect2(28, skills_panel.size.y - 34.0, 564, 22), 14, DIM)
-	skills_panel.visible = true
+	# The P1 tag stands over the fighter on the HUD's own layer, above this panel: hidden while a
+	# list is open (the paused game does not move it; the HUD puts it back with play).
+	if is_instance_valid(main.hud.player_tag):
+		main.hud.player_tag.visible = false
+	_panel_plate(Rect2(Vector2.ZERO, skills_panel.size), _flat_box(Color(INK, 0.95), 8, 0.0))
+	var heading := _skill_label(title, Rect2(18, 16, 240, 46), 26, Color.WHITE)
+	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
+	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	heading.add_theme_font_override("font", _bold())
+	var box := _flat_box(plate, 3, SLANT)
+	box.content_margin_left = 22
+	box.content_margin_right = 28
+	heading.add_theme_stylebox_override("normal", box)
+	heading.size.x = maxf(heading.get_minimum_size().x, 200.0)
+	return heading
+
+func _panel_plate(rect: Rect2, box: StyleBoxFlat) -> Panel:
+	var plate := Panel.new()
+	plate.position = rect.position
+	plate.size = rect.size
+	plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	plate.add_theme_stylebox_override("panel", box)
+	skills_panel.add_child(plate)
+	return plate
+
+func _flat_box(color: Color, radius: int, skew: float) -> StyleBoxFlat:
+	var box := StyleBoxFlat.new()
+	box.bg_color = color
+	box.set_corner_radius_all(radius)
+	box.skew = Vector2(skew, 0)
+	box.anti_aliasing = true
+	return box
+
+## A key on a light cap (dark on the gold row), as the menus draw them. Key names are not translated.
+## The key's label is the panel's own child over the cap, as the key labels were before the caps:
+## test_practice_mode checks every label of the panel fits it.
+func _key_cap(key: String, rect: Rect2, on_gold := false) -> void:
+	_panel_plate(rect, _flat_box(Color(INK, 0.9) if on_gold else Color(0.93, 0.95, 0.98, 0.95), 4, 0.0))
+	var words := Label.new()
+	words.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	words.text = key
+	words.position = rect.position
+	words.size = rect.size
+	words.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	words.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	words.add_theme_font_override("font", _bold())
+	words.add_theme_font_size_override("font_size", 14)
+	words.add_theme_color_override("font_color", GOLD if on_gold else INK)
+	words.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	skills_panel.add_child(words)
+
+func _bold() -> FontVariation:
+	if _bold_font == null:
+		_bold_font = FontVariation.new()
+		_bold_font.base_font = ThemeDB.fallback_font
+		_bold_font.variation_embolden = 0.7
+	return _bold_font
 
 ## With a pad in use the nine keys of the second practice line are no use: it names the button
 ## that opens the menu instead. Main calls this after update_hud; the lines are made whole again
@@ -544,27 +615,26 @@ func _skill_label(text: String, rect: Rect2, font_size: int, color: Color) -> La
 	return label
 
 ## The select screen's kit text (FrontendMenu.KITS) over the match, row by row.
+## In the panel's look the menu has (the heading on a plate of the fighter's colour), each key on a
+## light cap, or the pad's button as its badge while a pad is in use (PadGlyphs.SLOT_NAMES).
 func _show_skills() -> void:
-	for child in skills_panel.get_children():
-		skills_panel.remove_child(child)
-		child.queue_free()
-	var back := Panel.new()
-	back.size = skills_panel.size
-	back.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(INK, 0.96)
-	style.border_color = Color("59617c")
-	style.set_border_width_all(2)
-	back.add_theme_stylebox_override("panel", style)
-	skills_panel.add_child(back)
+	var accent: Color = hero.get("body_color") if hero.get("body_color") is Color else MENU_PLATE
+	_panel_sheet(tr(str(hero.display_name)).to_upper(), accent.darkened(0.42))
 	var kit: Array = FRONTEND.KITS[str(hero.character_id)]
-	_skill_label(tr(str(hero.display_name)).to_upper(), Rect2(28, 18, 564, 44), 30, GOLD)
-	var about := _skill_label(tr(str(kit[0])), Rect2(28, 66, 564, 48), 15, DIM)
+	var about := _skill_label(tr(str(kit[0])), Rect2(28, 70, 564, 48), 15, DIM)
 	about.size.y = about.get_line_count() * about.get_line_height()
 	var keys: Array = ["J", "K", "L", "U", "I", "PASSIVE"] if kit.size() > 6 else ["J", "K", "L", "I", "PASSIVE"]
 	var y := maxf(132.0, about.position.y + about.size.y + 16.0)
 	for index in keys.size():
-		_skill_label(tr(str(keys[index])), Rect2(28, y, 96, 24), 15, GOLD)
+		var key: String = keys[index]
+		if key == "PASSIVE":
+			_skill_label(tr(key), Rect2(28, y, 96, 24), 15, GOLD).add_theme_font_override("font", _bold())
+		elif GLYPHS.pad_in_use:
+			var badge := PAD_BADGES.make(str(GLYPHS.SLOT_NAMES[key.to_lower()]), 22, _bold(), 14)
+			badge.position = Vector2(28, y)
+			skills_panel.add_child(badge)
+		else:
+			_key_cap(key, Rect2(28, y, 26, 22))
 		var line := _skill_label(tr(str(kit[index + 1])), Rect2(128, y, 464, 44), 15, Color.WHITE)
 		line.size.y = line.get_line_count() * line.get_line_height()
 		y += maxf(40.0, line.size.y + 12.0)
