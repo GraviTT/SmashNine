@@ -1,0 +1,641 @@
+{
+  "anchor": {
+    "path": "art/bakeoff/newchar-2026-11-26/jupi/2/jupi-idle-2.png",
+    "detail": 136.26
+  },
+  "rows": {
+    "walk": {
+      "source": "walk-after-bob.png",
+      "count": 8,
+      "fps": 13.3,
+      "loop": true,
+      "factors": [
+        0.114,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "delivered": true,
+      "note": "천둥 북잡이 유피의 가벼운 8프레임 걷기. 양다리 교대, 통과 자세 3·7번, 보브 1회 적용. ART-100B 검토 후보.",
+      "head_scale": {
+        "frames": [
+          {
+            "scale": 1.02,
+            "score": 0.9065
+          },
+          {
+            "scale": 1.02,
+            "score": 0.8737
+          },
+          {
+            "scale": 1.0,
+            "score": 0.9378
+          },
+          {
+            "scale": 1.0,
+            "score": 0.9024
+          },
+          {
+            "scale": 1.02,
+            "score": 0.8773
+          },
+          {
+            "scale": 1.0,
+            "score": 0.8712
+          },
+          {
+            "scale": 1.0,
+            "score": 0.9016
+          },
+          {
+            "scale": 1.02,
+            "score": 0.8491
+          }
+        ],
+        "median": 1.01,
+        "trusted": 8
+      },
+      "frames": [
+        {
+          "bbox": [
+            29,
+            21,
+            96,
+            121
+          ],
+          "width": 67,
+          "height_including_staff": 100,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 141.96,
+          "detail_anchor_percent": 104.18,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            30,
+            23,
+            96,
+            121
+          ],
+          "width": 66,
+          "height_including_staff": 98,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 165.61,
+          "detail_anchor_percent": 121.54,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            31,
+            21,
+            95,
+            121
+          ],
+          "width": 64,
+          "height_including_staff": 100,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 159.72,
+          "detail_anchor_percent": 117.22,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            30,
+            19,
+            97,
+            121
+          ],
+          "width": 67,
+          "height_including_staff": 102,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 157.51,
+          "detail_anchor_percent": 115.6,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            29,
+            21,
+            96,
+            121
+          ],
+          "width": 67,
+          "height_including_staff": 100,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 156.11,
+          "detail_anchor_percent": 114.57,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            29,
+            24,
+            95,
+            121
+          ],
+          "width": 66,
+          "height_including_staff": 97,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 165.63,
+          "detail_anchor_percent": 121.55,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            30,
+            21,
+            96,
+            121
+          ],
+          "width": 66,
+          "height_including_staff": 100,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 166.62,
+          "detail_anchor_percent": 122.28,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            33,
+            19,
+            99,
+            121
+          ],
+          "width": 66,
+          "height_including_staff": 102,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 162.39,
+          "detail_anchor_percent": 119.18,
+          "binary_alpha": true
+        }
+      ],
+      "detail_min_percent": 104.18,
+      "detail_mean_percent": 117.02,
+      "min_margin": 7,
+      "border_pixels": 0,
+      "spill_pixels": 0,
+      "feet_summary": {
+        "max_move_2d": 19.235,
+        "passing": [
+          {
+            "frame": 3,
+            "support_leg": "near",
+            "support_x": 62.5,
+            "neighbour_midpoint": 63.25,
+            "error": -0.75,
+            "lifted_toe_y": 113,
+            "lift_above_feet_line": 7
+          },
+          {
+            "frame": 7,
+            "support_leg": "far",
+            "support_x": 61.5,
+            "neighbour_midpoint": 63.0,
+            "error": -1.5,
+            "lifted_toe_y": 111,
+            "lift_above_feet_line": 9
+          }
+        ]
+      },
+      "bob": {
+        "face_box": [
+          69,
+          44,
+          88,
+          61
+        ],
+        "zone": [
+          89,
+          115
+        ],
+        "shape": [
+          0,
+          2,
+          -1,
+          -2
+        ],
+        "measured": [
+          0,
+          2,
+          5,
+          1,
+          1,
+          2,
+          2,
+          1
+        ],
+        "target": [
+          3,
+          5,
+          2,
+          1,
+          3,
+          5,
+          2,
+          1
+        ],
+        "shifts": [
+          3,
+          3,
+          -3,
+          0,
+          2,
+          3,
+          0,
+          0
+        ],
+        "after": [
+          3,
+          5,
+          2,
+          1,
+          3,
+          5,
+          2,
+          1
+        ],
+        "match_error": [
+          0.0,
+          15.6,
+          15.28,
+          19.95,
+          20.95,
+          11.27,
+          17.12,
+          13.45
+        ],
+        "feet_rows_unchanged": true
+      }
+    },
+    "jump": {
+      "source": "jump/strip.png",
+      "count": 3,
+      "fps": 10,
+      "loop": false,
+      "factor": 0.19,
+      "delivered": true,
+      "note": "이륙·상승·정점 3프레임. 마지막 자세 유지용. 발선 위 공중 동작. ART-100B 검토 후보.",
+      "head_scale": {
+        "frames": [
+          {
+            "scale": 1.0,
+            "score": 0.9309
+          },
+          {
+            "scale": 0.96,
+            "score": 0.8803
+          },
+          {
+            "scale": 0.96,
+            "score": 0.9418
+          }
+        ],
+        "median": 0.96,
+        "trusted": 3
+      },
+      "frames": [
+        {
+          "bbox": [
+            30,
+            10,
+            97,
+            113
+          ],
+          "width": 67,
+          "height_including_staff": 103,
+          "bottom": 112,
+          "border_pixels": 0,
+          "margin": 10,
+          "spill": 0,
+          "detail": 142.2,
+          "detail_anchor_percent": 104.36,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            27,
+            7,
+            98,
+            104
+          ],
+          "width": 71,
+          "height_including_staff": 97,
+          "bottom": 103,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 142.38,
+          "detail_anchor_percent": 104.49,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            27,
+            4,
+            100,
+            103
+          ],
+          "width": 73,
+          "height_including_staff": 99,
+          "bottom": 102,
+          "border_pixels": 0,
+          "margin": 4,
+          "spill": 0,
+          "detail": 139.54,
+          "detail_anchor_percent": 102.41,
+          "binary_alpha": true
+        }
+      ],
+      "detail_min_percent": 102.41,
+      "detail_mean_percent": 103.75,
+      "min_margin": 4,
+      "border_pixels": 0,
+      "spill_pixels": 0
+    },
+    "fall": {
+      "source": "fall/strip.png",
+      "count": 2,
+      "fps": 8,
+      "loop": true,
+      "factor": 0.16,
+      "delivered": true,
+      "note": "머리끈·치마·허리 장식이 움직이는 낙하 2프레임 반복. ART-100B 검토 후보.",
+      "head_scale": {
+        "frames": [
+          {
+            "scale": 1.0,
+            "score": 0.895
+          },
+          {
+            "scale": 1.0,
+            "score": 0.9108
+          }
+        ],
+        "median": 1.0,
+        "trusted": 2
+      },
+      "frames": [
+        {
+          "bbox": [
+            25,
+            6,
+            102,
+            113
+          ],
+          "width": 77,
+          "height_including_staff": 107,
+          "bottom": 112,
+          "border_pixels": 0,
+          "margin": 6,
+          "spill": 0,
+          "detail": 129.7,
+          "detail_anchor_percent": 95.19,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            26,
+            7,
+            103,
+            113
+          ],
+          "width": 77,
+          "height_including_staff": 106,
+          "bottom": 112,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 135.42,
+          "detail_anchor_percent": 99.38,
+          "binary_alpha": true
+        }
+      ],
+      "detail_min_percent": 95.19,
+      "detail_mean_percent": 97.28,
+      "min_margin": 6,
+      "border_pixels": 0,
+      "spill_pixels": 0
+    },
+    "hurt": {
+      "source": "hurt-a2/strip.png",
+      "count": 3,
+      "fps": 12,
+      "loop": false,
+      "factor": 0.16,
+      "delivered": false,
+      "note": "미납품: 공통 가로 기준점에서 F1→F2 양발이 7px 이동하여 3px 기준 실패. 허용 2회 생성 소진.",
+      "head_scale": {
+        "frames": [
+          {
+            "scale": 0.9,
+            "score": 0.4473
+          },
+          {
+            "scale": 1.0,
+            "score": 0.7363
+          },
+          {
+            "scale": 0.96,
+            "score": 0.8097
+          }
+        ],
+        "median": 0.98,
+        "trusted": 2
+      },
+      "frames": [
+        {
+          "bbox": [
+            38,
+            21,
+            104,
+            121
+          ],
+          "width": 66,
+          "height_including_staff": 100,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 135.81,
+          "detail_anchor_percent": 99.67,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            28,
+            21,
+            97,
+            121
+          ],
+          "width": 69,
+          "height_including_staff": 100,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 138.46,
+          "detail_anchor_percent": 101.61,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            28,
+            21,
+            91,
+            121
+          ],
+          "width": 63,
+          "height_including_staff": 100,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 140.4,
+          "detail_anchor_percent": 103.04,
+          "binary_alpha": true
+        }
+      ],
+      "detail_min_percent": 99.67,
+      "detail_mean_percent": 101.44,
+      "min_margin": 7,
+      "border_pixels": 0,
+      "spill_pixels": 0,
+      "shared_source_anchor_x": 344.0,
+      "planted_boot_centres": [
+        [
+          65.5,
+          85.0
+        ],
+        [
+          58.5,
+          78.0
+        ],
+        [
+          58.5,
+          78.0
+        ]
+      ],
+      "planted_boot_dx": [
+        [
+          7.0,
+          7.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "max_planted_boot_dx": 7.0
+    },
+    "land": {
+      "source": "land-a2/strip.png",
+      "count": 2,
+      "fps": 12,
+      "loop": false,
+      "factor": 0.16,
+      "delivered": true,
+      "note": "착지 웅크림에서 대기로 일어나는 2프레임. 공통 가로 기준점, 발 이동 1–1.5px. ART-100B 검토 후보.",
+      "head_scale": {
+        "frames": [
+          {
+            "scale": 1.0,
+            "score": 0.8982
+          },
+          {
+            "scale": 1.0,
+            "score": 0.9292
+          }
+        ],
+        "median": 1.0,
+        "trusted": 2
+      },
+      "frames": [
+        {
+          "bbox": [
+            24,
+            17,
+            97,
+            121
+          ],
+          "width": 73,
+          "height_including_staff": 104,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 136.29,
+          "detail_anchor_percent": 100.02,
+          "binary_alpha": true
+        },
+        {
+          "bbox": [
+            33,
+            12,
+            96,
+            121
+          ],
+          "width": 63,
+          "height_including_staff": 109,
+          "bottom": 120,
+          "border_pixels": 0,
+          "margin": 7,
+          "spill": 0,
+          "detail": 131.4,
+          "detail_anchor_percent": 96.43,
+          "binary_alpha": true
+        }
+      ],
+      "detail_min_percent": 96.43,
+      "detail_mean_percent": 98.22,
+      "min_margin": 7,
+      "border_pixels": 0,
+      "spill_pixels": 0,
+      "shared_source_anchor_x": 421.75,
+      "planted_boot_centres": [
+        [
+          59.0,
+          79.0
+        ],
+        [
+          60.5,
+          80.0
+        ]
+      ],
+      "planted_boot_dx": [
+        [
+          1.5,
+          1.0
+        ]
+      ],
+      "max_planted_boot_dx": 1.5
+    }
+  }
+}
