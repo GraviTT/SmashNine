@@ -38,6 +38,13 @@ const BOT_PANEL_REFRESH := 0.1
 const BOT_STATE_LABELS := {"wander": "WANDER", "pursue": "CHASE", "engage": "FIGHT", "portal": "PORTAL", "recover": "RECOVER"}
 const BOT_ATTACK_KEYS := {"basic": "J", "skill_1": "K", "skill_2": "L", "skill_3": "U", "ultimate": "I"}
 var bot_panel_timer := 0.0
+## Fighters' faces by art style, character and body for the bot panel (every 0.1 s) and the
+## off-screen arrows (every frame), each with the file it shows. ArtSettings looks the files up
+## again on each call, and a face no node held any more (the panel hidden) was read from disk
+## again: 3.5 ms a face, a 16-player refresh frame 25 ms against 6 for the others (quality
+## track 4, 2026-11-27). A face another resource took the place of while the game runs
+## (take_over_path, as the story face test does) has lost its path and is looked up again.
+var _faces := {}
 const CAMERA_EDGE_PADDING := 80.0
 const ULTIMATE_CAST_SHAKE := 6.0
 const ULTIMATE_HIT_SHAKE := 3.5
@@ -752,15 +759,34 @@ func _offscreen_markers() -> Array:
 			continue
 		var direction := (screen - centre).normalized()
 		var reach := minf(inner.x / maxf(absf(direction.x), 0.001), inner.y / maxf(absf(direction.y), 0.001))
-		result.append({"position": centre + direction * reach, "angle": direction.angle(), "color": player.body_color, "face": ART_SETTINGS.character_portrait(player.character_id, player.body_type)})
+		result.append({"position": centre + direction * reach, "angle": direction.angle(), "color": player.body_color, "face": _face(player)})
 	return result
+
+func _face(player: Node) -> Texture2D:
+	var key := "%s|%s|%s" % [ART_SETTINGS.style, player.character_id, player.body_type]
+	var kept: Array = _faces.get(key, [])
+	if kept.is_empty() or _face_source(kept[0]) != kept[1]:
+		var face: Texture2D = ART_SETTINGS.character_portrait(player.character_id, player.body_type)
+		kept = [face, _face_source(face)]
+		_faces[key] = kept
+	return kept[0]
+
+## The file a face shows: its own path, or for the idle-frame fallback (an AtlasTexture made while
+## the game runs, with no path of its own) its sheet's.
+static func _face_source(face: Texture2D) -> String:
+	if face is AtlasTexture:
+		var sheet: Texture2D = (face as AtlasTexture).atlas
+		return sheet.resource_path if sheet != null else ""
+	return face.resource_path if face != null else ""
 
 func _update_hud() -> void:
 	hud.set_offscreen_markers(_offscreen_markers() if match_started and not match_over else [])
 	bot_panel_timer -= get_process_delta_time()
 	if bot_panel_timer <= 0.0:
 		bot_panel_timer = BOT_PANEL_REFRESH
-		hud.update_bot_panel(_bot_panel_rows())
+		# A hidden panel (F4, menus, results) drops its rows unread, so they are not built.
+		if hud.bot_panel.visible:
+			hud.update_bot_panel(_bot_panel_rows())
 	var phase_name: String = tr(director.get_phase_name())
 	if GAME_SPEED.percent() != 100:
 		phase_name += tr("   %d%% speed") % GAME_SPEED.percent()
@@ -812,7 +838,7 @@ func _bot_panel_rows() -> Array:
 		else:
 			lines = _bot_plan_text(player)
 		rows.append({
-			"face": ART_SETTINGS.character_portrait(player.character_id, player.body_type),
+			"face": _face(player),
 			"color": player.body_color,
 			"title": title,
 			"lines": lines,
