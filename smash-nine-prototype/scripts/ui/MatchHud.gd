@@ -19,6 +19,7 @@ const LANGUAGE := preload("res://scripts/Language.gd")
 const GAME_SPEED := preload("res://scripts/GameSpeed.gd")
 const SOUL_CARDS := preload("res://scripts/match/SoulCards.gd")
 const FRONTEND := preload("res://scripts/ui/StoryScreens.gd")
+const PAD_BADGES := preload("res://scripts/ui/PadBadges.gd")
 const ART_CREDITS := "Original art made for Smash Nine Realms (working title).  F2 switches realms and effects to the plain procedural look."
 const TITLE_LOGO_ART := "res://assets/art/ui/title_logo.png"
 const TITLE_BACKGROUND_ART := "res://assets/art/ui/title_bg.png"
@@ -916,11 +917,35 @@ func _build_skill_bar() -> void:
 		var count_back := _plate(panel, Rect2(-4, -6, 30, 22), _box(Color(0, 0, 0, 0.82), Color.TRANSPARENT, 0, 4))
 		var count := _text(panel, "", Rect2(-4, -6, 30, 22), MIN_FONT_SIZE, GOLD, true, HORIZONTAL_ALIGNMENT_CENTER)
 		count.name = "Count"
-		_plate(panel, key_rect, _box(KEY_CAP, Color.TRANSPARENT, 0, 4))
+		var cap := _plate(panel, key_rect, _box(KEY_CAP, Color.TRANSPARENT, 0, 4))
 		var key := _text(panel, slot.to_upper(), key_rect, MIN_FONT_SIZE, INK, true, HORIZONTAL_ALIGNMENT_CENTER)
 		key.add_theme_constant_override("outline_size", 0)
-		skill_slots[slot] = {"style": style, "icon": icon, "glyph": glyph, "key": key, "shade": shade, "time": time, "count": count, "count_back": count_back}
+		skill_slots[slot] = {"style": style, "icon": icon, "glyph": glyph, "key": key, "cap": cap, "badge": "", "shade": shade, "time": time, "count": count, "count_back": count_back}
 	_layout_skill_bar(false)
+
+## The key under each slot on its light cap, or a pad's button as its badge while a pad is in use
+## (PadGlyphs writes the pad's names into these labels from outside; PadBadges draws the shapes).
+## Restyled only when the name changes.
+func _fit_key_badges() -> void:
+	for slot in SKILL_SLOTS:
+		var nodes: Dictionary = skill_slots[slot]
+		var key: Label = nodes.key
+		if str(nodes.badge) == key.text:
+			continue
+		nodes.badge = key.text
+		var cap: Panel = nodes.cap
+		var centre := key.position + key.size * 0.5
+		if PAD_BADGES.is_pad_name(key.text):
+			var height := SKILL_KEY_SIZE.y
+			var width := PAD_BADGES.width(key.text, height, key.get_theme_font("font"), key.get_theme_font_size("font_size"))
+			cap.add_theme_stylebox_override("panel", PAD_BADGES.box(key.text, height))
+			cap.size = Vector2(width, height)
+			key.add_theme_color_override("font_color", PAD_BADGES.ink(key.text))
+		else:
+			cap.add_theme_stylebox_override("panel", _box(KEY_CAP, Color.TRANSPARENT, 0, 4))
+			cap.size = key.size
+			key.add_theme_color_override("font_color", INK)
+		cap.position = centre - cap.size * 0.5
 
 ## The slots in a row beside the player's plate; U only when the fighter has a third skill.
 func _layout_skill_bar(show_third: bool) -> void:
@@ -938,6 +963,7 @@ func _layout_skill_bar(show_third: bool) -> void:
 func update_skill_bar(fighter: Node, delta: float) -> void:
 	if not skill_bar.visible:
 		return
+	_fit_key_badges()
 	if not is_instance_valid(fighter):
 		skill_bar.modulate.a = 0.0
 		return
