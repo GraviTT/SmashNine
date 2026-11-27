@@ -1,0 +1,48 @@
+[
+  {
+    "stem": "rio_female",
+    "row": "sword_throw",
+    "attempt": 1,
+    "prompt": "Use case: identity-preserve. Asset: SmashNine Rio FEMALE sword_throw six-frame sprite row. Generate ONE wide image, six full-body poses in ONE horizontal line, facing right, on a perfectly solid #00ff00 background. Requested canvas 3072 x 1024. No grid, text, shadows or effects. Input image 1 is the FEMALE appearance anchor: reproduce her deep-indigo compact side ponytail, feminine face, narrow shoulders, navy academy combat coat, teal panels, silver trim, cyan diamond emblem, slim silver sword with cyan crystal guard. Input image 2 is the accepted MALE sword throw POSE reference. Follow its SIX poses one for one, but use only the female character's appearance from image 1. Keep identical face/body size in all six poses, about 300px character height, generous empty space between sprites and above/below. Exactly TWO ARMS and TWO HANDS per character, with unambiguous shoulder-to-elbow-to-hand connections. RIGHT hand always holds her single physical sword LOW, just like male reference. LEFT hand is empty and throws an invisible mana blade. Frame 1 idle stance with right sword low and left free hand at chest. Frame 2 turn side-on, LEFT forearm drawn up behind the ear with fingers together; RIGHT arm still down holding the sword. There must be ONLY the one hand at the ear and one hand at the sword: NO leftover third hand at waist/chest, NO extra forearm. Frame 3 left arm whips forward, fingers opening, right hand and sword still low. Frame 4 left arm extended forward follow-through, right sword still low. Frame 5 left arm retracts with bent elbow toward stance. Frame 6 returns to idle stance. Her left forearm is dark navy glove/cuff like the reference. Clean intricate pixel-art sprite shading faithful to supplied anchor, not smooth cartoon painting. Same ground baseline for all six, entire ponytail, shoes, sword tips visible. No thrown sword, no trails, no magic, no weapons other than the one right-hand sword, no extra people. The single most important correction is exactly two hands in Frame 2.",
+    "references": [
+      "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-a/SmashNine/art/bakeoff/rio/rio_female-idle-v2.png",
+      "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-a/SmashNine/art/bakeoff/rio/rio_male-sword_throw-v1.png"
+    ],
+    "before": "2026-11-27 03:06:51 UTC",
+    "after": "2026-11-27 03:07:19 UTC",
+    "original": "C:/Users/TH/.codex/generated_images/01a21af4-d66a-7681-be4f-78962ad9053b/exec-895632fc-634c-4e97-9954-c8fe5d6b4da8.png",
+    "raw": "art/raw/skm-09/rio_female-sword_throw-1.png",
+    "sha256": "f9c3cf88731a96ede797548675a3f368f3997417c760227a3e5bfb213f90b115"
+  },
+  {
+    "stem": "rio_male",
+    "row": "pierce",
+    "attempt": 1,
+    "prompt": "Use case: identity-preserve. Asset: SmashNine Rio MALE pierce dash-through cut, six-frame sprite row. ONE wide image, SIX separate full-body poses in ONE horizontal line, all facing right, identical scale, same ground baseline, flat solid #00ff00 background. Requested canvas 3072 x 1024. Input image 1 is the MALE appearance anchor, copy exactly his deep-indigo short spiky hair, masculine face, navy academy combat coat, teal panels, silver trim, cyan diamond emblem, slim silver sword with cyan crystal guard. Input image 2 is the accepted female PIERCE pose reference: follow its six-stage sequence with the male body from image 1. Keep head/face the same size in EVERY pose, no chibi enlargement and no shrinking the character for the lunge. About 300px tall, generous empty gaps between all six sprites. MOST IMPORTANT: compact reach, all body and sword must later fit a 192px square at anchor face size. Therefore Frame 2 must NOT have an outstretched straight arm plus horizontal sword. Instead crouch low, keep the RIGHT ELBOW BENT near his ribcage, sword aimed DOWN AND FORWARD about 35 degrees below horizontal, sword tip no more than one head width beyond the forward knee. Full original sword length retained by angle/foreshortening, no broken blade. RIGHT hand holds the sword through ALL six frames; exactly two arms and two hands. Frame 1 lean forward with sword drawn back low. Frame 2 compressed low lunge, knees wide but compact, bent sword arm, blade down-forward. Frame 3 passing-through cut, sword sweeps backward at waist level, coat streams behind. Frame 4 skid stop with sword trailing back and back foot braking. Frame 5 look over the shoulder, sword low back. Frame 6 normal idle ready stance. Body stays near the same local position; game supplies dash translation. Intricate pixel-art shading matching reference, no smooth painterly restyle. Entire hair, boots and sword inside image with margins, no touching silhouettes. No effects, mana trail, rune, smoke, decoy, ground, text, grid, thrown blades, duplicate swords or extra people.",
+    "references": [
+      "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-a/SmashNine/art/bakeoff/rio/rio_male-idle-v2.png",
+      "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-a/SmashNine/art/bakeoff/rio/rio_female-pierce-v1.png"
+    ],
+    "before": "2026-11-27 03:08:20 UTC",
+    "after": "2026-11-27 03:08:53 UTC",
+    "original": "C:/Users/TH/.codex/generated_images/01a21af4-d66a-7681-be4f-78962ad9053b/exec-619d2c15-f3fa-49a8-9f89-0e9568687f7a.png",
+    "raw": "art/raw/skm-09/rio_male-pierce-1.png",
+    "sha256": "55a62d5a2dca6444e49e5d0cc42f70ac6bbf81c7299c8db461a0b91c4bd741bd"
+  },
+  {
+    "stem": "rio_female",
+    "row": "sword_throw",
+    "attempt": 2,
+    "prompt": "Use case: precise-object-edit. Edit target is image 1 (the six-pose Rio female sword-throw row on green). Supporting references: image 2 = her female idle appearance, image 3 = correct male throw pose sequence. OUTPUT still exactly six full-body sprites in ONE horizontal row on perfectly solid #00ff00, same scale, lighting, costume, detail and spacing. Make ONE correction ONLY to the SECOND sprite (second from left): she currently has THREE hands. The hand raised by her ear is correct. The right hand holding the sword at the viewer-left hip is correct. The THIRD hand hanging down at the VIEWER-RIGHT side of her waist/thigh is WRONG: REMOVE that entire extra lowered arm, its sleeve and its mitten-shaped hand. That extra mitt is around x=578,y=399 in the 2048x683 target, directly to the right of her diamond belt area. Replace the removed lowered arm area with the correct exposed side of her coat/hip and green background, NOT with another hand. Draw exactly TWO shoulder-to-hand chains: (A) near RIGHT shoulder -> downward forearm -> hand holding sword at left hip; (B) far LEFT shoulder -> upper arm bending backward/up -> elbow -> hand raised by ear. There is NO third lowered arm or hand anywhere in Frame 2. Preserve the sword, fingers by the ear and all other five sprites unchanged. Her empty left arm moves from waist in Frame 1 to raised by ear in Frame 2 and outstretched in Frame 3; therefore the resting left arm must completely disappear when the raised arm replaces it. Do not add effects, a thrown blade, text, grid, ground, shadow, or anything else. Preserve six clear separated silhouettes, constant head size, matching female appearance, and the clean full green background.",
+    "references": [
+      "C:/Users/TH/.codex/generated_images/01a21af4-d66a-7681-be4f-78962ad9053b/exec-895632fc-634c-4e97-9954-c8fe5d6b4da8.png",
+      "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-a/SmashNine/art/bakeoff/rio/rio_female-idle-v2.png",
+      "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-a/SmashNine/art/bakeoff/rio/rio_male-sword_throw-v1.png"
+    ],
+    "before": "2026-11-27 03:10:24 UTC",
+    "after": "2026-11-27 03:10:49 UTC",
+    "original": "C:/Users/TH/.codex/generated_images/01a21af4-d66a-7681-be4f-78962ad9053b/exec-daa60d97-fa34-4543-bcc4-18e6795a0044.png",
+    "raw": "art/raw/skm-09/rio_female-sword_throw-2.png",
+    "sha256": "921c5ec5510e486f5856ddc993140a8ccb79101d2d7c53bfaf440023b66969b4"
+  }
+]
