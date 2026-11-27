@@ -620,7 +620,7 @@ func _skill_label(text: String, rect: Rect2, font_size: int, color: Color) -> La
 func _show_skills() -> void:
 	var accent: Color = hero.get("body_color") if hero.get("body_color") is Color else MENU_PLATE
 	_panel_sheet(tr(str(hero.display_name)).to_upper(), accent.darkened(0.42))
-	var kit: Array = FRONTEND.KITS[str(hero.character_id)]
+	var kit: Array = FRONTEND.kit_for(str(hero.character_id))
 	var about := _skill_label(tr(str(kit[0])), Rect2(28, 70, 564, 48), 15, DIM)
 	about.size.y = about.get_line_count() * about.get_line_height()
 	var keys: Array = ["J", "K", "L", "U", "I", "PASSIVE"] if kit.size() > 6 else ["J", "K", "L", "I", "PASSIVE"]

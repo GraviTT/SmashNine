@@ -44,6 +44,7 @@ func _run() -> void:
 	await _award_matches_table()
 	await _later_screens()
 	await _audit_batch_two()
+	await _nine_and_sixteen()
 	LANGUAGE.set_locale("en")
 	if not failed:
 		print("Menu text tests passed (number-key hints follow the roster on four screens in en/ko; %d kit rows clear of each other; the damage award matches the table; %d later screens clear in en/ko)" % [rows_checked, screens_checked])
@@ -266,6 +267,87 @@ func _audit_batch_two() -> void:
 	var bar: ColorRect = menu.card_bar
 	_check(is_instance_valid(bar) and bar.scale.x < 1.0 and bar.scale.x > 0.5, "The card's bar should run down with its seconds (%s)" % (bar.scale.x if is_instance_valid(bar) else -1.0))
 	menu.card_deadline = 9223372036854775807
+	menu.queue_free()
+	await process_frame
+
+## Ready for nine fighters (D58: Borok, Doron and Jupi join) and sixteen-fighter matches, with three
+## stand-in fighters made here only (copies of others' data under new ids, no art, no kit text): the
+## select strip holds nine and Random, the story select nine and the difficulty, every tile inside
+## the strip and apart with its number key; a fighter without kit text still draws; the results hold
+## nine and sixteen rows above the awards; every screen stays clear (_screen_clear).
+func _nine_and_sixteen() -> void:
+	var stand_ins := {"borok": ["Borok", Color("c8743c")], "doron": ["Doron", Color("6c9a4a")], "jupi": ["Jupi", Color("d36fb5")]}
+	var ids: Array[String] = REGISTRY.get_character_ids()
+	for id: String in stand_ins:
+		ids.append(id)
+	var menu: Control = STORY_MENU.new()
+	root.add_child(menu)
+	await process_frame
+	for id: String in stand_ins:
+		var data: Dictionary = (menu._roster["frey"] as Dictionary).duplicate()
+		data.name = stand_ins[id][0]
+		data.color = stand_ins[id][1]
+		menu._roster[id] = data
+	for locale in ["en", "ko"]:
+		LANGUAGE.set_locale(locale)
+		for story in [false, true]:
+			if story:
+				menu.show_story_select(ids)
+			else:
+				menu.show_select(ids)
+			await process_frame
+			var where := "%s %s with nine" % [locale, "story select" if story else "select"]
+			var tiles: Array[Rect2] = []
+			for button: Button in menu.portrait_buttons:
+				tiles.append(button.get_rect())
+			tiles.append((menu.difficulty_button as Button).get_rect() if story else menu.buttons[menu.portrait_buttons.size()].get_rect())
+			_check(tiles.size() == 10, "%s: nine fighters and one more tile, got %d" % [where, tiles.size()])
+			for index in tiles.size():
+				_check(menu.SELECT_STRIP.encloses(tiles[index]), "%s: tile %d %s leaves the strip %s" % [where, index + 1, tiles[index], menu.SELECT_STRIP])
+				for other in range(index + 1, tiles.size()):
+					_check(not tiles[index].intersects(tiles[other]), "%s: tiles %d and %d overlap" % [where, index + 1, other + 1])
+			var texts: Array[String] = []
+			_texts(menu.content, texts)
+			for number in range(1, 10):
+				_check(texts.has(str(number)), "%s: tile %d should show its number key" % [where, number])
+			menu.selected_id = "jupi"
+			menu._refresh_fighter()
+			_check(menu.fighter_name.text == "JUPI", "%s: a fighter without kit text should still draw (%s)" % [where, menu.fighter_name.text])
+			_screen_clear(menu, where)
+	LANGUAGE.set_locale("en")
+	# The results with nine fighters, and with sixteen (each kind twice, the stand-ins once more).
+	var script := GDScript.new()
+	script.source_code = "extends Node\nvar character_id := \"\"\nvar body_type := \"male\"\nvar display_name := \"\"\nvar score := 0\nvar damage_dealt := 0.0\nvar souls := 0\nvar upgrades: Array = []\n"
+	script.reload()
+	for count in [9, 16]:
+		var standings: Array[Node] = []
+		var survival := {}
+		for index in count:
+			var player := Node.new()
+			player.set_script(script)
+			var id: String = ids[index % ids.size()]
+			player.character_id = id
+			player.display_name = str(menu._roster[id].name)
+			player.score = count - index
+			player.damage_dealt = 10.0 * (count - index)
+			player.upgrades = ["sky_step", "last_stand"] if index % 3 == 0 else []
+			root.add_child(player)
+			standings.append(player)
+			survival[player] = 300 - index * 10
+		menu.show_results(null, "last_survivor", standings, standings[count - 1], survival)
+		await process_frame
+		await process_frame
+		var where := "results with %d" % count
+		var grid := menu.content.get_node("Standings") as GridContainer
+		_check(grid.get_child_count() == (count + 1) * 8, "%s: every fighter should have a row (%d cells)" % [where, grid.get_child_count()])
+		var bottom := grid.position.y + grid.size.y
+		_check(bottom <= 570.0, "%s: the table should end above the awards (ends at %.0f)" % [where, bottom])
+		var texts: Array[String] = []
+		_texts(menu.content, texts)
+		_check(texts.has(tr("YOUR PLACE")) and texts.has("%d / %d" % [count, count]), "%s: the last player's place should read %d / %d" % [where, count, count])
+		_screen_clear(menu, where)
+		for player in standings:
+			player.queue_free()
 	menu.queue_free()
 	await process_frame
 

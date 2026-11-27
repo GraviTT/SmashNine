@@ -39,10 +39,13 @@ func _ready() -> void:
 	super._ready()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func show_story_select() -> void:
+## `ids`: the heroes to offer (default: the roster's story heroes; a test passes more to see the
+## screen with nine).
+func show_story_select(ids: Array[String] = []) -> void:
 	_story_preview_id = ""
-	# Story heroes only: a character whose story is not written yet (Xion, D43) stays out.
-	super.show_select(REGISTRY.get_story_character_ids())
+	# Story heroes only: a character whose story is not written yet (Xion, D43) stays out. The
+	# difficulty takes two tile slots after them.
+	super.show_select(ids if not ids.is_empty() else REGISTRY.get_story_character_ids(), 2)
 	screen = "story_select"
 	content.get_child(0).text = tr("CHOOSE YOUR HERO")
 	content.get_child(1).text = tr("A journey through nine realms.")
@@ -54,7 +57,11 @@ func show_story_select() -> void:
 			selected_id = id
 			_refresh_fighter())
 		var tile := portrait_buttons[index].get_rect()
-		var progress := _label("", Rect2(tile.position.x + 4, tile.end.y - 26, tile.size.x - 8, 22), 14, GOLD)
+		# On the tile's lower edge; under its name once the tiles are small (nine heroes), where the
+		# number key and this would cover the face.
+		var below := strip_tile < 80.0
+		var place := Rect2(tile.position.x - 6, tile.end.y + 24, tile.size.x + 12, 18) if below else Rect2(tile.position.x + 4, tile.end.y - 26, tile.size.x - 8, 22)
+		var progress := _label("", place, 12 if below else 14, GOLD)
 		progress.text = tr("CLEAR") if run.get("done", false) else "★ %d/9" % int(run.get("cleared", 0))
 		progress.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		progress.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -64,7 +71,7 @@ func show_story_select() -> void:
 	buttons[portrait_buttons.size()].disabled = true
 	random_caption.visible = false
 	var slot := _select_tile(select_ids.size())
-	difficulty_button = _button("", Rect2(slot.position, Vector2(slot.size.x + SELECT_PITCH, slot.size.y)), "story_difficulty", "", "slant", 17)
+	difficulty_button = _button("", Rect2(slot.position, Vector2(slot.size.x + strip_pitch, slot.size.y)), "story_difficulty", "", "slant", 17 if strip_tile >= 80.0 else 15)
 	select_start.text = tr("New journey")
 	continue_button = _button("Continue", Rect2(632, 650, 296, 56), "story_continue", "", "slant", 21)
 	set_footer(tr("1-%d: choose hero    V: body    Enter / J: continue    Esc: title") % select_ids.size())

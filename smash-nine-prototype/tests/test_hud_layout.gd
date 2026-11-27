@@ -95,6 +95,7 @@ func _match_hud(window: Vector2i, character: String, locale: String) -> void:
 		_check_all_lines(entry.row.get_child(2) as Label, 3, "message", where)
 	_check_blocks(hud, view, "match with news, " + where)
 	await _faces(hud, view, where)
+	await _faces(hud, view, where + ", fifteen others", true)
 	await _player_tag(main, hud, human, where)
 	# The soul card offer with the three cards of longest text.
 	hud.show_card_offer(_longest_cards(), 8.0, 8.0)
@@ -240,13 +241,20 @@ func _labels(node: Node, skip: Array[Node]) -> Array[Label]:
 
 ## Faces at the edges, put where Main would put them, on the map, the clock, the player's plate,
 ## the control hints, the bot panel and each other.
-func _faces(hud: Node, view: Vector2, where: String) -> void:
+func _faces(hud: Node, view: Vector2, where: String, sixteen := false) -> void:
 	var points: Array[Vector2] = [
 		Vector2(view.x - EDGE, 40), Vector2(view.x - EDGE, 70), Vector2(view.x - EDGE, 120),
 		Vector2(view.x - 150, EDGE), Vector2(view.x * 0.5, EDGE),
 		Vector2(EDGE, 100), Vector2(EDGE, 104),
 		Vector2(300, view.y - EDGE), Vector2(view.x - EDGE, view.y - EDGE),
 	]
+	if sixteen:
+		# A sixteen-fighter match with all fifteen others off screen, bunched on both sides as a
+		# crowd in the next realm would be (2026-11-27, matches of sixteen ahead).
+		points.append_array([
+			Vector2(view.x - EDGE, 300), Vector2(view.x - EDGE, 320), Vector2(view.x - EDGE, 340),
+			Vector2(EDGE, 300), Vector2(EDGE, 330), Vector2(view.x * 0.5 + 40, EDGE),
+		])
 	var markers: Array = []
 	for point in points:
 		markers.append({"position": point, "angle": (point - view * 0.5).angle(), "color": Color.WHITE})
