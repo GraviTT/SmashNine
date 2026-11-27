@@ -162,6 +162,17 @@ func _award_matches_table() -> void:
 		if text.begins_with(str(best.display_name) + "  /  "):
 			shown = text
 	_check(shown == award, "The most damage award should read '%s' as the table does, got '%s'" % [award, shown])
+	# The player's place, large at the top right (UI audit 13-5): first, then fourth, none when
+	# watching bots.
+	for case in [[players[0], "1 / %d" % players.size()], [players[3], "4 / %d" % players.size()], [null, ""]]:
+		main.hud.frontend.show_results(players[0], "last_survivor", players, case[0], survival)
+		await process_frame
+		var place_texts: Array[String] = []
+		_texts(main.hud.frontend.content, place_texts)
+		if case[0] == null:
+			_check(not place_texts.has(tr("YOUR PLACE")), "Watching bots should show no place")
+		else:
+			_check(place_texts.has(tr("YOUR PLACE")) and place_texts.has(case[1]), "The results should show the player's place %s" % case[1])
 	# The results in the picked look, a winner and a draw, in both languages.
 	for locale in ["en", "ko"]:
 		LANGUAGE.set_locale(locale)
@@ -206,6 +217,14 @@ func _later_screens() -> void:
 
 func _screen_clear(menu: Control, where: String) -> void:
 	screens_checked += 1
+	# The key hints stand on a dark plate as wide as their words (UI audit 1-1), inside their area.
+	# Untyped first: on a screen without hints (the results) the last screen's label is freed.
+	var hints: Variant = menu.footer
+	if is_instance_valid(hints) and hints is Label and hints.get_parent() == menu.content:
+		var plate := hints.get_theme_stylebox("normal") as StyleBoxFlat
+		var area: Rect2 = hints.get_meta("area", Rect2())
+		_check(plate != null and plate.bg_color.a >= 0.5, "%s: the hints should stand on a plate" % where)
+		_check(area.has_area() and hints.size.x <= area.size.x + 0.5 and hints.position.x >= area.position.x - 0.5 and hints.position.x + hints.size.x <= area.end.x + 0.5, "%s: the hints' plate should be no wider than its area (%s in %s)" % [where, Rect2(hints.position, hints.size), area])
 	var texts: Array[Label] = []
 	var buttons: Array[Button] = []
 	for child in menu.content.get_children():

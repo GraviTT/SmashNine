@@ -12,7 +12,9 @@ const SAVE_PATH := "user://language.cfg"
 static var locale := "en"
 static var _loaded := false
 
-## Reads the saved choice once (only when the game runs normally) and applies it.
+## Reads the saved choice once (only when the game runs normally) and applies it. With no choice
+## saved yet, the browser's or the system's language when it is one of ours (UI audit, title "-": a
+## first start was always English, Korean only through Options). Nothing is saved until Options.
 static func load_saved() -> void:
 	if not _loaded:
 		_loaded = true
@@ -22,7 +24,13 @@ static func load_saved() -> void:
 			if config.load(SAVE_PATH) == OK:
 				var saved := str(config.get_value("game", "language", "en"))
 				locale = saved if LOCALES.has(saved) else "en"
+			else:
+				locale = first_locale(OS.get_locale_language())
 	apply()
+
+## The language a first start uses for the browser's or system's language code `system`.
+static func first_locale(system: String) -> String:
+	return system if LOCALES.has(system) else "en"
 
 static func apply() -> void:
 	TranslationServer.set_locale(locale)
