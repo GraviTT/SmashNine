@@ -3,7 +3,9 @@ extends SceneTree
 ## number keys follow the roster (B3: the controls row still said "1 - 5" with six fighters), the
 ## "most damage" award shows the damage the table shows (B4: the table rounded, the award cut the
 ## decimals), and the select screen's kit rows keep clear of each other and of the panel in both
-## languages (B6: a wrapped line sat 5 px above the next row).
+## languages (B6: a wrapped line sat 5 px above the next row). Since the menu round's pick (B,
+## 2026-11-27) the kit stands in two columns: each row is the move's slot, its name on one line and
+## what it does in at most two lines, every line shown.
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const MAIN := preload("res://scripts/Main.gd")
@@ -11,10 +13,10 @@ const MENU := preload("res://scripts/ui/FrontendMenu.gd")
 const STORY_MENU := preload("res://scripts/ui/StoryScreens.gd")
 const REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const LANGUAGE := preload("res://scripts/Language.gd")
-## The select screen's right panel is Rect2(742, 128, 502, 510).
-const PANEL_BOTTOM := 638.0
+## The select screen's info panel (the fighter's name band, description and kit).
+const INFO_PANEL := Rect2(548, 72, 696, 432)
 const PANEL_PADDING := 12.0
-const MIN_ROW_GAP := 10.0
+const MIN_ROW_GAP := 6.0
 
 var failed := false
 var rows_checked := 0
@@ -90,18 +92,41 @@ func _kit_rows() -> void:
 			menu._refresh_fighter()
 			await process_frame
 			var where := "%s %s" % [locale, id]
-			var bottom: float = menu.description.position.y + menu.description.get_line_count() * menu.description.get_line_height()
+			var description: Label = menu.description
+			_check(description.get_visible_line_count() == description.get_line_count(), "%s: the description should show all its lines" % where)
+			var bottom: float = description.position.y + _text_height(description)
+			var inside := INFO_PANEL.grow(-PANEL_PADDING)
+			var rows: Array[Rect2] = []
 			for index in menu.skill_labels.size():
-				var line: Label = menu.skill_labels[index]
-				if not line.visible:
+				var detail: Label = menu.skill_labels[index]
+				if not detail.visible:
 					continue
 				rows_checked += 1
-				_check(line.position.y >= bottom + MIN_ROW_GAP - 0.5, "%s: kit row %d starts %.0f px under the text above it (needs %.0f)" % [where, index + 1, line.position.y - bottom, MIN_ROW_GAP])
-				_check(absf(menu.skill_keys[index].position.y - line.position.y) <= 6.0, "%s: the key of kit row %d is not level with its text" % [where, index + 1])
-				bottom = line.position.y + line.get_line_count() * line.get_line_height()
-			_check(bottom <= PANEL_BOTTOM - PANEL_PADDING, "%s: the kit text runs down to y %.0f, past the panel (%.0f)" % [where, bottom, PANEL_BOTTOM - PANEL_PADDING])
+				var title: Label = menu.skill_titles[index]
+				var slot: Control = menu.skill_rows[index].slot
+				var title_width := title.get_theme_font("font").get_string_size(title.text, HORIZONTAL_ALIGNMENT_LEFT, -1, title.get_theme_font_size("font_size")).x
+				_check(title.text != "" and title_width <= title.size.x + 0.5, "%s: the name of kit row %d is cut (%.0f px of %.0f): %s" % [where, index + 1, title_width, title.size.x, title.text])
+				_check(detail.text != "" and detail.get_line_count() <= 2 and detail.get_visible_line_count() == detail.get_line_count(), "%s: kit row %d shows %d of its %d lines (at most 2): %s" % [where, index + 1, detail.get_visible_line_count(), detail.get_line_count(), detail.text.replace(String.chr(0x2060), "")])
+				var row := slot.get_rect().merge(title.get_rect()).merge(Rect2(detail.position, Vector2(detail.size.x, _text_height(detail))))
+				_check(row.position.y >= bottom + MIN_ROW_GAP - 0.5, "%s: kit row %d starts %.0f px under the description (needs %.0f)" % [where, index + 1, row.position.y - bottom, MIN_ROW_GAP])
+				_check(inside.encloses(row), "%s: kit row %d %s runs out of the panel %s" % [where, index + 1, row, inside])
+				for other in rows:
+					_check(not other.intersects(row), "%s: kit row %d %s runs into another row %s" % [where, index + 1, row, other])
+				rows.append(row)
+				# The key's cap sits on the move's slot (none on the passive).
+				var cap := menu.skill_keys[index].get_parent() as Control
+				_check(cap.visible == (index < rows_wanted(menu) - 1) and (not cap.visible or Rect2(Vector2(-16, -16), slot.size + Vector2(32, 32)).encloses(cap.get_rect())), "%s: the key cap of kit row %d should sit on its slot" % [where, index + 1])
 	menu.queue_free()
 	await process_frame
+
+## A label's lines as drawn: each line's height and the spacing between them.
+func _text_height(label: Label) -> float:
+	var lines := label.get_line_count()
+	return lines * label.get_line_height() + (lines - 1) * label.get_theme_constant("line_spacing")
+
+## The kit rows the fighter shown has (five, six with a third skill); the passive is the last.
+func rows_wanted(menu: Control) -> int:
+	return menu.skill_labels.filter(func(label: Label) -> bool: return label.visible).size()
 
 func _award_matches_table() -> void:
 	LANGUAGE.set_locale("en")

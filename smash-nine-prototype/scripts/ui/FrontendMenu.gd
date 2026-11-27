@@ -15,6 +15,22 @@ const SIZE := Vector2(1280, 720)
 const GOLD := Color("f3cd7c")
 const DIM := Color("aebbd0")
 const INK := Color("101827")
+const WHITE := Color("f5f8fc")
+const EDGE := Color(1, 1, 1, 0.16)
+## The title and the select screen as the user picked them (pick cup round 2026-11-25-menu, B;
+## reports/ui-direction-2026-11-25): flat slanted plates like the match HUD's, the menu as a column
+## beside the key art, the select screen built round the fighter with the roster as one strip.
+const SLANT := 0.2
+const SKILL_ICON := "res://assets/art/skill_icons/%s_%s.png"
+## Select screen: the roster strip and its tiles (a fighter's face, or Random), the kit in two columns.
+const SELECT_STRIP := Rect2(536, 510, 720, 136)
+const SELECT_TILE := 92.0
+const SELECT_PITCH := 100.0
+const KIT_ORIGIN := Vector2(574, 244)
+const KIT_COLUMN := 330.0
+const KIT_ROW := 84.0
+const KIT_WIDTH := 310.0
+const KIT_SLOT := 42.0
 ## Short descriptions from design/SKILLS.md; no balance data is duplicated here.
 const KITS := {
 	"frey": ["Claim close range with your sword.\nHover on your wings, then strike from any angle.",
@@ -51,9 +67,6 @@ const KITS := {
 ## Main.CHOOSE_ACTIONS: the number keys that quick-start a fighter. Hints that name them take
 ## the count as %d (the controls row still said "1 - 5" after the sixth fighter; UI audit B3).
 const QUICK_START_KEYS := 6
-## The select screen's kit rows start here and keep at least this much air between them.
-const KIT_TOP := 330.0
-const KIT_ROW_GAP := 12.0
 const CONTROLS := [
 	["A / D  or  Left / Right", "Move / aim attacks"],
 	["W  or  Up", "Jump (air jumps available)"],
@@ -86,8 +99,23 @@ var hero_art: TextureRect
 var fighter_name: Label
 var fighter_role: Label
 var description: Label
+## A kit row: the key on its cap (skill_keys), the move's name (skill_titles) and what it does
+## (skill_labels), beside the move's icon in a slot.
 var skill_keys: Array[Label] = []
+var skill_titles: Array[Label] = []
 var skill_labels: Array[Label] = []
+var skill_rows: Array[Dictionary] = []
+## Select screen: the band of the fighter's colour behind its picture, the name band, each tile's
+## face and name, Random's name, and the start button.
+var select_band: Panel
+var name_band: Panel
+var name_stripe: Panel
+var portrait_pictures: Array[TextureRect] = []
+var portrait_captions: Array[Label] = []
+var random_caption: Label
+var select_start: Button
+var _bold: FontVariation
+var _gaps: RegEx
 var body_button: Button
 var speed_button: Button
 var art_button: Button
@@ -123,8 +151,12 @@ func _clear(next_screen: String) -> void:
 	screen = next_screen
 	buttons.clear()
 	portrait_buttons.clear()
+	portrait_pictures.clear()
+	portrait_captions.clear()
 	skill_keys.clear()
+	skill_titles.clear()
 	skill_labels.clear()
+	skill_rows.clear()
 	if is_instance_valid(content):
 		remove_child(content)
 		content.queue_free()
@@ -172,16 +204,41 @@ func _panel(rect: Rect2, alpha := 0.94) -> void:
 	panel.add_theme_stylebox_override("panel", style)
 	content.add_child(panel)
 
-func _button(text: String, rect: Rect2, action: String, value := "") -> Button:
+## look: "frame" (the authored pixel frame on a dark backing: options, controls, results and the
+## story screens), "slant" (the picked menu look: a flat slanted plate, gold under the focus),
+## "primary" (slanted and gold at rest: the start button) or "tile" (a square roster tile).
+func _button(text: String, rect: Rect2, action: String, value := "", look := "frame", font_size := 20) -> Button:
 	var button := Button.new()
 	button.text = tr(text)
 	button.position = rect.position
 	button.size = rect.size
-	button.add_theme_font_size_override("font_size", 20)
+	button.add_theme_font_size_override("font_size", font_size)
+	button.focus_mode = Control.FOCUS_ALL
+	if look == "frame":
+		_frame_look(button, rect)
+	else:
+		_flat_look(button, look)
+	content.add_child(button)
+	buttons.append(button)
+	button.pressed.connect(func() -> void: _activate(action, value))
+	button.mouse_entered.connect(func() -> void:
+		if button.is_inside_tree():
+			_audio_hover_serial += 1
+			_mouse_navigation_sound.call_deferred(weakref(button), not button.has_focus(), Engine.get_process_frames(), _audio_hover_serial)
+			button.grab_focus()
+			focus_index = buttons.find(button))
+	button.focus_entered.connect(func() -> void:
+		focus_index = buttons.find(button)
+		if screen == "select" and action == "pick":
+			selected_id = value
+			_refresh_fighter())
+	return button
+
+## The look the menus had before the pick, kept for the screens that follow it later.
+func _frame_look(button: Button, rect: Rect2) -> void:
 	button.add_theme_color_override("font_color", Color("e7edf8"))
 	button.add_theme_color_override("font_hover_color", GOLD)
 	button.add_theme_color_override("font_focus_color", GOLD)
-	button.focus_mode = Control.FOCUS_ALL
 	for state in ["normal", "hover", "pressed", "focus"]:
 		var style := StyleBoxFlat.new()
 		style.bg_color = Color("29394f") if state != "normal" else Color("162236")
@@ -208,21 +265,114 @@ func _button(text: String, rect: Rect2, action: String, value := "") -> Button:
 	backing.color = Color(INK, 0.96)
 	backing.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	content.add_child(backing)
-	content.add_child(button)
-	buttons.append(button)
-	button.pressed.connect(func() -> void: _activate(action, value))
-	button.mouse_entered.connect(func() -> void:
-		if button.is_inside_tree():
-			_audio_hover_serial += 1
-			_mouse_navigation_sound.call_deferred(weakref(button), not button.has_focus(), Engine.get_process_frames(), _audio_hover_serial)
-			button.grab_focus()
-			focus_index = buttons.find(button))
-	button.focus_entered.connect(func() -> void:
-		focus_index = buttons.find(button)
-		if screen == "select" and action == "pick":
-			selected_id = value
-			_refresh_fighter())
-	return button
+
+## Flat plates. Hovering grabs the focus, so hover and focus look the same: gold with dark words.
+func _flat_look(button: Button, look: String) -> void:
+	var tile := look == "tile"
+	var primary := look == "primary"
+	var skew := 0.0 if tile else SLANT
+	var radius := 6 if tile else 3
+	var rest := Color(0.08, 0.11, 0.18, 0.98) if tile else (GOLD if primary else Color(INK, 0.86))
+	var lit := rest.lightened(0.06) if tile else (GOLD.lightened(0.18) if primary else GOLD)
+	var styles := {
+		"normal": _box(rest, Color.TRANSPARENT if primary else EDGE, 0 if primary else 1, radius, skew),
+		"hover": _box(lit, GOLD if tile else (WHITE if primary else Color.TRANSPARENT), 3 if tile else (2 if primary else 0), radius, skew),
+		"pressed": _box(GOLD.darkened(0.12), Color.TRANSPARENT, 0, radius, skew),
+		"focus": _box(Color.TRANSPARENT if tile else lit, GOLD if tile else (WHITE if primary else Color.TRANSPARENT), 3 if tile else (2 if primary else 0), radius, skew),
+		"disabled": _box(Color(INK, 0.5), EDGE, 1, radius, skew),
+	}
+	for state: String in styles:
+		var box: StyleBoxFlat = styles[state]
+		if not tile:
+			box.content_margin_left = 26
+			box.content_margin_right = 18
+		button.add_theme_stylebox_override(state, box)
+	var words := INK if primary else (DIM if tile else WHITE)
+	button.add_theme_color_override("font_color", words)
+	button.add_theme_color_override("font_hover_color", GOLD if tile else INK)
+	button.add_theme_color_override("font_focus_color", GOLD if tile else INK)
+	button.add_theme_color_override("font_pressed_color", INK)
+	button.add_theme_color_override("font_hover_pressed_color", INK)
+	button.add_theme_color_override("font_disabled_color", Color(DIM, 0.45))
+	button.add_theme_font_override("font", _bold_font())
+	if not tile:
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+
+func _box(color: Color, border := Color.TRANSPARENT, width := 0, radius := 4, skew := 0.0) -> StyleBoxFlat:
+	var box := StyleBoxFlat.new()
+	box.bg_color = color
+	box.border_color = border
+	box.set_border_width_all(width)
+	box.set_corner_radius_all(radius)
+	box.skew = Vector2(skew, 0)
+	box.anti_aliasing = true
+	return box
+
+func _plate(rect: Rect2, box: StyleBoxFlat, parent: Node = null) -> Panel:
+	var panel := Panel.new()
+	panel.position = rect.position
+	panel.size = rect.size
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_theme_stylebox_override("panel", box)
+	(parent if parent != null else content).add_child(panel)
+	return panel
+
+func _bold_font() -> FontVariation:
+	if _bold == null:
+		_bold = FontVariation.new()
+		_bold.base_font = ThemeDB.fallback_font
+		_bold.variation_embolden = 0.7
+	return _bold
+
+## A key on a light cap (dark on gold), as the match HUD draws them. Not translated: key names.
+func _key_cap(text: String, at: Vector2, width := 26.0, parent: Node = null, on_gold := false) -> Label:
+	var cap := _plate(Rect2(at, Vector2(width, 22)), _box(Color(INK, 0.9) if on_gold else Color(0.93, 0.95, 0.98, 0.95), Color.TRANSPARENT, 0, 4), parent)
+	var label := Label.new()
+	label.text = text
+	label.size = cap.size
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", 15)
+	label.add_theme_font_override("font", _bold_font())
+	label.add_theme_color_override("font_color", GOLD if on_gold else INK)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	cap.add_child(label)
+	return label
+
+## The "Enter" cap a slanted menu button shows at its right end while it has the focus.
+func _focus_cap(button: Button, always := false) -> void:
+	var cap := _key_cap("Enter", Vector2(button.size.x - 74, (button.size.y - 22) * 0.5), 54, button, true)
+	var plate := cap.get_parent() as Control
+	plate.visible = always
+	if not always:
+		button.focus_entered.connect(func() -> void: plate.visible = true)
+		button.focus_exited.connect(func() -> void: plate.visible = false)
+
+## Hints are items set apart by wide gaps (three spaces or more): they break into lines there, no
+## line wider than `width`.
+func _wrap_gaps(text: String, font: Font, font_size: int, width: float) -> String:
+	if _gaps == null:
+		_gaps = RegEx.create_from_string(" {3,}")
+	var lines: PackedStringArray = []
+	for source in text.split("\n"):
+		var line := ""
+		for item in _gaps.sub(source, "\u001f", true).split("\u001f"):
+			var joined := item if line == "" else line + "    " + item
+			if line != "" and font.get_string_size(joined, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > width:
+				lines.append(line)
+				line = item
+			else:
+				line = joined
+		lines.append(line)
+	return "\n".join(lines)
+
+## Korean breaks a line between any two syllables: a word joiner (U+2060) between the letters of
+## each word keeps the breaks at the spaces (as the match HUD does).
+static func keep_words(text: String) -> String:
+	var words: PackedStringArray = []
+	for word in text.split(" "):
+		words.append(String.chr(0x2060).join(word.split("")))
+	return " ".join(words)
 
 ## Only user navigation calls this; _finish's initial grab_focus stays silent.
 func _focus_from_navigation(button: Control) -> void:
@@ -236,129 +386,222 @@ func _mouse_navigation_sound(button_ref: WeakRef, changed: bool, event_frame: in
 	if changed and button != null and button.has_focus() and _audio_hover_serial == hover_serial and _audio_mouse_frame == event_frame:
 		AUDIO.sound(self, "ui_move")
 
-func _finish(hint: String) -> void:
-	footer = _label(hint, Rect2(44, 672, 1192, 26), 15, DIM)
+## The key hints and the first focus. `rect` and `alignment` place the hints (the picked title has
+## them on a plate under its menu, the picked select screen at the top right).
+func _finish(hint: String, rect := Rect2(44, 672, 1192, 26), alignment := HORIZONTAL_ALIGNMENT_CENTER, plate := false) -> void:
+	footer = _label(hint, rect, 15, DIM)
 	if footer.text.contains("%d"):
 		footer.text = footer.text % quick_start_count()
-	footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	footer.horizontal_alignment = alignment
+	if plate:
+		var box := _box(Color(INK, 0.78), Color.TRANSPARENT, 0, 10)
+		box.content_margin_left = 14
+		box.content_margin_right = 14
+		box.content_margin_top = 6
+		box.content_margin_bottom = 6
+		footer.add_theme_stylebox_override("normal", box)
+		# On its plate the footer stands on its bottom edge and grows upward.
+		footer.set_meta("bottom", rect.end.y)
+	set_footer(footer.text)
 	if not buttons.is_empty():
 		var initial := maxi(select_ids.find(selected_id), 0) if screen == "select" else 0
 		buttons[initial].grab_focus()
 
+## Sets the hints, broken at their gaps to fit the footer's width.
+func set_footer(text: String) -> void:
+	var box := footer.get_theme_stylebox("normal")
+	var room := footer.size.x - box.get_margin(SIDE_LEFT) - box.get_margin(SIDE_RIGHT) - 4.0
+	footer.autowrap_mode = TextServer.AUTOWRAP_OFF
+	footer.text = _wrap_gaps(text, footer.get_theme_font("font"), footer.get_theme_font_size("font_size"), room)
+	var height := footer.get_minimum_size().y
+	if footer.has_meta("bottom"):
+		footer.position.y = float(footer.get_meta("bottom")) - height
+	footer.size.y = height
+
+## The title (menu round 2026-11-25-menu, B): no panel over the key art; the menu is a column of
+## flat slanted buttons on a darker band at the left, the two ways to play large, the rest small.
 func show_title() -> void:
 	AUDIO.music(self, "music_title")
 	_clear("title")
-	_panel(Rect2(414, 76, 452, 582), 0.87)
+	_plate(Rect2(-40, 0, 560, 720), _box(Color(INK, 0.42), Color.TRANSPARENT, 0, 0))
 	var logo := ART.original_texture("res://assets/art/ui/title_logo.png")
 	if logo != null:
-		_picture(logo, Rect2(450, 114, 380, 126), true)
+		_picture(logo, Rect2(64, 48, 380, 126), true)
 	else:
-		var title := _label("SMASH NINE\nREALMS", Rect2(440, 120, 400, 124), 42, GOLD)
-		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var tagline := _label("NINE REALMS. ONE SURVIVOR.", Rect2(440, 250, 400, 28), 18, DIM)
-	tagline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	# Six rows since Practice (2026-11-26): the step went from 60 to 52 px, the rows keep their size.
-	for entry in [["Battle Royale", "select"], ["Story", "story"], ["Practice", "practice"], ["Watch bots", "watch"], ["Options", "options"], ["Controls", "controls"]]:
-		_button(entry[0], Rect2(466, 286 + buttons.size() * 52, 348, 52), entry[1])
-	session_status = _label("", Rect2(424, 600, 432, 48), 14, DIM)
-	session_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_label("SMASH NINE\nREALMS", Rect2(64, 50, 420, 124), 42, GOLD)
+	_label("NINE REALMS. ONE SURVIVOR.", Rect2(72, 184, 440, 28), 18, DIM)
+	var entries := [["Battle Royale", "select"], ["Story", "story"], ["Practice", "practice"], ["Watch bots", "watch"], ["Options", "options"], ["Controls", "controls"]]
+	for index in entries.size():
+		var big := index < 2
+		var rect := Rect2(64, 240 + index * 70, 400, 62) if big else Rect2(64, 392 + (index - 2) * 52, 330, 44)
+		_focus_cap(_button(entries[index][0], rect, entries[index][1], "", "slant", 25 if big else 19))
+	session_status = _label("", Rect2(72, 604, 600, 26), 14, DIM)
 	refresh_options()
-	_label("Working title  /  Prototype", Rect2(44, 28, 500, 26), 15, DIM)
-	_finish("Arrows / W-S: navigate    Enter / J: confirm    1-%d: quick start    V: body    B: watch    T: speed    F2: art")
+	var mark := _label("Working title  /  Prototype", Rect2(744, 20, 500, 26), 15, DIM)
+	mark.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_finish("Arrows / W-S: navigate    Enter / J: confirm    1-%d: quick start    V: body    B: watch    T: speed    F2: art", Rect2(56, 640, 640, 68), HORIZONTAL_ALIGNMENT_LEFT, true)
 
-## `ids`: the fighters to offer (default: the whole roster). Up to five fit two columns with
-## Random; six or more (Xion, 2026-11-18) take three narrower columns.
+## The select screen (menu round 2026-11-25-menu, B): the fighter stands large at the left over a
+## band of its colour; who it is and its kit (each move's icon, key, name and what it does, two
+## columns) on the right; the roster as one strip of tiles under them, Random last.
+## `ids`: the fighters to offer (default: the whole roster; story mode passes its heroes). The first
+## two children are the heading and the line under it (StoryScreens rewrites both), and each
+## portrait button is followed by its face and its name (child +1, +2).
 func show_select(ids: Array[String] = []) -> void:
 	AUDIO.music(self, "music_select")
 	_clear("select")
 	select_ids = ids if not ids.is_empty() else REGISTRY.get_character_ids()
 	if not select_ids.has(selected_id):
 		selected_id = select_ids[0]
-	_label("CHOOSE YOUR FIGHTER", Rect2(44, 26, 900, 50), 34, GOLD)
-	_label("Six fighters. Six ways to survive.", Rect2(46, 79, 800, 26), 17, DIM)
-	_panel(Rect2(36, 128, 330, 510))
-	_panel(Rect2(742, 128, 502, 510))
-	hero_art = _picture(null, Rect2(370, 118, 366, 460))
+	var heading := _label("CHOOSE YOUR FIGHTER", Rect2(-30, 22, 366, 50), 26, WHITE)
+	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
+	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	heading.add_theme_font_override("font", _bold_font())
+	var plate := _box(Color(INK, 0.86), Color.TRANSPARENT, 0, 3, SLANT)
+	plate.content_margin_left = 58
+	heading.add_theme_stylebox_override("normal", plate)
+	_label("Six fighters. Six ways to survive.", Rect2(30, 78, 480, 24), 16, DIM)
+	# The fighter, over a slanted band of its colour.
+	select_band = _plate(Rect2(40, 150, 470, 380), _box(Color.WHITE, Color.TRANSPARENT, 0, 4, 0.16))
+	hero_art = _picture(null, Rect2(64, 104, 420, 540))
+	# Who it is and how it plays.
+	_plate(Rect2(548, 72, 696, 432), _box(Color(INK, 0.9), Color.TRANSPARENT, 0, 6))
+	name_band = _plate(Rect2(548, 72, 696, 98), _box(Color.WHITE, Color.TRANSPARENT, 0, 6))
+	name_stripe = _plate(Rect2(548, 164, 696, 6), _box(Color.WHITE, Color.TRANSPARENT, 0, 0))
+	fighter_name = _label("", Rect2(574, 76, 650, 60), 44, WHITE)
+	fighter_name.autowrap_mode = TextServer.AUTOWRAP_OFF
+	fighter_name.add_theme_font_override("font", _bold_font())
+	fighter_role = _label("", Rect2(576, 132, 650, 30), 19, Color(1, 1, 1, 0.92))
+	description = _label("", Rect2(574, 180, 650, 56), 16, DIM)
+	for index in 6:
+		_build_kit_row()
+	# The roster: one strip, a tile each and Random last.
+	_plate(SELECT_STRIP, _box(Color(INK, 0.72), Color.TRANSPARENT, 0, 6))
 	for index in select_ids.size():
 		var id := select_ids[index]
 		var tile := _select_tile(index)
-		var x := tile.position.x
-		var y := tile.position.y
-		var button := _button("", tile, "pick", id)
+		var button := _button("", tile, "pick", id, "tile")
 		portrait_buttons.append(button)
 		var selected_frame := Panel.new()
 		selected_frame.name = "SelectionOutline"
 		selected_frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		selected_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		var selected_style := StyleBoxFlat.new()
-		selected_style.bg_color = Color.TRANSPARENT
-		selected_style.border_color = GOLD
-		selected_style.set_border_width_all(3)
-		selected_frame.add_theme_stylebox_override("panel", selected_style)
+		selected_frame.add_theme_stylebox_override("panel", _box(Color.TRANSPARENT, GOLD, 3, 6))
 		button.add_child(selected_frame)
-		_picture(ART.character_portrait(id, body), Rect2(x + 8, y + 6, tile.size.x - 16, 94))
-		var caption := _label("%d  %s" % [index + 1, tr(str(_roster[id].name))], Rect2(x, y + 100, tile.size.x, 26), 18 if tile.size.x > 120.0 else 16)
+		portrait_pictures.append(_picture(ART.character_portrait(id, body), Rect2(tile.position + Vector2(4, 4), Vector2(SELECT_TILE - 8.0, SELECT_TILE - 8.0))))
+		var caption := _label(str(_roster[id].name), Rect2(tile.position.x - 10, tile.end.y + 2, SELECT_TILE + 20.0, 24), 15, DIM)
 		caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_button("Random", _select_tile(select_ids.size()), "random")
-	fighter_name = _label("", Rect2(766, 146, 450, 53), 40, GOLD)
-	fighter_role = _label("", Rect2(768, 202, 442, 30), 22)
-	description = _label("", Rect2(768, 247, 448, 68), 17, DIM)
-	# Six rows for a fighter with a third skill (U); _refresh_fighter places and fills them.
-	for index in 6:
-		skill_keys.append(_label("", Rect2(768, 334, 80, 24), 15, GOLD))
-		var line := _label("", Rect2(850, 330, 366, 44), 15)
-		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		skill_labels.append(line)
-	body_button = _button("", Rect2(52, 584, 296, 40), "body")
-	_button("Back", Rect2(394, 584, 150, 44), "title")
-	_button("Start practice" if select_mode == "practice" else "Start match", Rect2(558, 584, 162, 44), "start")
+		caption.autowrap_mode = TextServer.AUTOWRAP_OFF
+		portrait_captions.append(caption)
+		_key_cap(str(index + 1), tile.position + Vector2(4, 4), 22)
+	var random := _button("", _select_tile(select_ids.size()), "random", "", "tile", 40)
+	# A mark, not a word: set after the helper, which translates its text.
+	random.text = "?"
+	random_caption = _label("Random", Rect2(random.position.x - 10, random.position.y + SELECT_TILE + 2, SELECT_TILE + 20.0, 24), 15, DIM)
+	random_caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	random_caption.autowrap_mode = TextServer.AUTOWRAP_OFF
+	body_button = _button("", Rect2(72, 650, 300, 42), "body", "", "slant", 17)
+	var back := _button("Back", Rect2(352, 26, 142, 44), "title", "", "slant", 17)
+	back.get_theme_stylebox("normal").content_margin_left = 66
+	for state in ["hover", "focus", "pressed", "disabled"]:
+		back.get_theme_stylebox(state).content_margin_left = 66
+	_key_cap("Esc", Vector2(20, 11), 38, back)
+	select_start = _button("Start practice" if select_mode == "practice" else "Start match", Rect2(948, 650, 296, 56), "start", "", "primary", 24)
+	_focus_cap(select_start, true)
 	_refresh_fighter()
-	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-%d: quick start    Esc: back")
+	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-%d: quick start    Esc: back", Rect2(508, 28, 736, 26), HORIZONTAL_ALIGNMENT_RIGHT)
+
+## One kit row's nodes; _refresh_fighter places and fills them (five or six rows a fighter).
+func _build_kit_row() -> void:
+	var slot := _plate(Rect2(0, 0, KIT_SLOT, KIT_SLOT), _box(Color(INK, 0.96), EDGE, 1, 6))
+	var icon := TextureRect.new()
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	icon.position = Vector2(3, 3)
+	icon.size = Vector2(KIT_SLOT - 6.0, KIT_SLOT - 6.0)
+	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	slot.add_child(icon)
+	# Without an icon (F2, the passive) the slot shows a letter.
+	var glyph := Label.new()
+	glyph.size = slot.size
+	glyph.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	glyph.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	glyph.add_theme_font_size_override("font_size", 20)
+	glyph.add_theme_font_override("font", _bold_font())
+	glyph.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	slot.add_child(glyph)
+	var key := _key_cap("", Vector2(KIT_SLOT - 14.0, KIT_SLOT - 16.0), 22, slot)
+	var title := _label("", Rect2(0, 0, KIT_WIDTH - 56.0, 24), 17, WHITE)
+	title.autowrap_mode = TextServer.AUTOWRAP_OFF
+	title.clip_text = true
+	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	title.add_theme_font_override("font", _bold_font())
+	var detail := _label("", Rect2(0, 0, KIT_WIDTH - 56.0, 44), 15, DIM)
+	detail.add_theme_constant_override("line_spacing", -1)
+	skill_keys.append(key)
+	skill_titles.append(title)
+	skill_labels.append(detail)
+	skill_rows.append({"slot": slot, "icon": icon, "glyph": glyph, "cap": key.get_parent()})
 
 ## How many fighters the number keys reach.
 static func quick_start_count() -> int:
 	return mini(REGISTRY.get_character_ids().size(), QUICK_START_KEYS)
 
-## The select grid's tile `index` (the fighters, then Random): two columns of 142 px while the
-## roster and Random fit six tiles, else three of 100 px.
+## The roster strip's tile `index` (the fighters, then Random).
 func _select_tile(index: int) -> Rect2:
-	if select_ids.size() + 1 <= 6:
-		return Rect2(52.0 + (index % 2) * 154, 148.0 + floori(index / 2.0) * 144, 142, 132)
-	return Rect2(46.0 + (index % 3) * 106, 148.0 + floori(index / 3.0) * 144, 100, 132)
+	return Rect2(SELECT_STRIP.position.x + 12.0 + index * SELECT_PITCH, SELECT_STRIP.position.y + 14.0, SELECT_TILE, SELECT_TILE)
 
 func _refresh_fighter() -> void:
 	var data: Dictionary = _roster[selected_id]
+	var accent: Color = data.color
 	hero_art.texture = illustration(selected_id, body)
+	(select_band.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = Color(accent.darkened(0.55), 0.55)
+	(name_band.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = accent.darkened(0.42)
+	(name_stripe.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = accent.lightened(0.35)
 	fighter_name.text = tr(str(data.name)).to_upper()
 	fighter_role.text = tr(str(data.role))
 	var kit: Array = KITS[selected_id]
 	description.text = tr(kit[0])
-	var keys: Array = ["J", "K", "L", "U", "I", "PASSIVE"] if kit.size() > 6 else ["J", "K", "L", "I", "PASSIVE"]
-	# A row is as tall as its text: at a fixed 41 px step a line that wrapped sat 5 px above the
-	# next row and the kit read as one block (English Xion: five of six rows; UI audit B6).
-	var step := 49.0 if keys.size() == 5 else 41.0
-	var y := KIT_TOP
+	# J, K, L(, U), I and the passive: two columns, three rows.
+	var keys: Array = ["j", "k", "l", "u", "i", ""] if kit.size() > 6 else ["j", "k", "l", "i", ""]
 	for index in 6:
+		var nodes: Dictionary = skill_rows[index]
 		var shown := index < keys.size()
-		skill_keys[index].visible = shown
-		skill_labels[index].visible = shown
+		for node: CanvasItem in [nodes.slot, skill_titles[index], skill_labels[index]]:
+			node.visible = shown
 		if not shown:
+			skill_labels[index].text = ""
 			continue
-		var line := skill_labels[index]
-		line.text = tr(kit[index + 1])
-		line.size.y = line.get_line_count() * line.get_line_height()
-		line.position.y = y
-		skill_keys[index].text = keys[index]
-		skill_keys[index].position.y = y + 4.0
-		y += maxf(step, line.size.y + KIT_ROW_GAP)
+		var at := KIT_ORIGIN + Vector2((index % 2) * KIT_COLUMN, (index / 2) * KIT_ROW)
+		var key: String = keys[index]
+		var parts := tr(kit[index + 1]).split("/", true, 1)
+		var slot: Panel = nodes.slot
+		slot.position = at
+		var icon: TextureRect = nodes.icon
+		icon.texture = ART.original_texture(SKILL_ICON % [selected_id, key]) if key != "" else null
+		var glyph: Label = nodes.glyph
+		glyph.text = key.to_upper() if key != "" else "P"
+		glyph.visible = icon.texture == null
+		glyph.add_theme_color_override("font_color", GOLD if key == "" else WHITE)
+		(nodes.cap as Control).visible = key != ""
+		skill_keys[index].text = key.to_upper()
+		skill_titles[index].position = Vector2(at.x + KIT_SLOT + 14.0, at.y - 2.0)
+		skill_titles[index].text = parts[0].strip_edges()
+		var detail := skill_labels[index]
+		detail.position = Vector2(at.x + KIT_SLOT + 14.0, at.y + 21.0)
+		detail.text = keep_words(parts[1].strip_edges()) if parts.size() > 1 else ""
 	var bodies := REGISTRY.get_bodies(selected_id)
 	body_button.text = tr("[V] Body: %s") % tr((body if bodies.size() > 1 else bodies[0]).capitalize())
 	body_button.disabled = bodies.size() < 2
+	# Only a fighter drawn in two bodies has the choice.
+	body_button.visible = bodies.size() > 1
 	for index in portrait_buttons.size():
-		portrait_buttons[index].get_node("SelectionOutline").visible = select_ids[index] == selected_id
-		# Each portrait is followed by its picture and caption in content.
-		var picture := content.get_child(portrait_buttons[index].get_index() + 1) as TextureRect
-		picture.texture = ART.character_portrait(select_ids[index], body)
+		var chosen := select_ids[index] == selected_id
+		portrait_buttons[index].get_node("SelectionOutline").visible = chosen
+		portrait_pictures[index].texture = ART.character_portrait(select_ids[index], body)
+		portrait_pictures[index].modulate = Color.WHITE if chosen else Color(0.8, 0.8, 0.88)
+		portrait_captions[index].add_theme_color_override("font_color", GOLD if chosen else DIM)
 
 static func illustration(id: String, selected_body: String) -> Texture2D:
 	var stem := id + "_" + selected_body if REGISTRY.get_bodies(id).size() > 1 else id
