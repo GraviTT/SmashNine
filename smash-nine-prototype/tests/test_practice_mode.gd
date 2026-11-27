@@ -6,6 +6,7 @@ extends SceneTree
 ## (Tab), a monster (M), standing up after a fall, no end after any time, Esc, and no save file
 ## touched. -- --only=<part> runs one part.
 
+const FRAME_WATCHDOG := preload("res://tests/support/frame_watchdog.gd")
 const MAIN := preload("res://scripts/Main.gd")
 const SESSION := preload("res://scripts/practice/PracticeSession.gd")
 const DIRECTOR := preload("res://scripts/practice/PracticeDirector.gd")
@@ -27,9 +28,8 @@ func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--only="):
 			only = argument.trim_prefix("--only=")
-	create_timer(540.0, true, false, true).timeout.connect(func() -> void:
-		push_error("Practice mode test timed out")
-		quit(1))
+	# Hang guard in frames, not seconds: under load the test needs more time, not more frames.
+	FRAME_WATCHDOG.start(self, 540.0, "Practice mode test timed out")
 	call_deferred("_run")
 
 func _check(ok: bool, message: String) -> void:
@@ -144,6 +144,12 @@ func _practice(character_id: String) -> Node:
 	# The fighters drop to the floor from their spawn points.
 	await _frames(30)
 	return main
+
+func _labels_in(node: Node, found: Array[Label]) -> void:
+	for child in node.get_children():
+		if child is Label and (child as Label).visible:
+			found.append(child)
+		_labels_in(child, found)
 
 func _has_text(node: Node, expected: String) -> bool:
 	if (node is Label or node is Button) and node.visible and str(node.text).contains(expected):
@@ -624,18 +630,27 @@ func _test_skill_list() -> bool:
 			await _tap(KEY_TAB)
 			_check(session.panel == "skills" and paused and session.skills_panel.visible, "Tab should open the skill list and pause the game (%s)" % id)
 			var kit: Array = MENU.KITS[id]
+			# Every label of the list at any depth (a key drawn on its plate is a label inside the
+			# plate), and the counts have to hold: a new layout must not drop rows from these checks
+			# unseen (2026-11-27, keys put on plates had left 54 rows out without a failure).
+			var keys: Array = ["J", "K", "L", "U", "I", "PASSIVE"] if kit.size() > 6 else ["J", "K", "L", "I", "PASSIVE"]
 			var rows: Array[Label] = []
-			for child in session.skills_panel.get_children():
-				if child is Label:
-					rows.append(child)
-					_check(child.position.y + child.size.y <= session.skills_panel.size.y + 0.5 and child.get_line_count() * child.get_line_height() <= child.size.y + 0.5, "A skill row should fit the panel (%s %s): %s" % [id, locale, child.text])
+			_labels_in(session.skills_panel, rows)
+			var panel_rect: Rect2 = session.skills_panel.get_global_rect()
+			for row in rows:
+				_check(row.get_global_rect().end.y <= panel_rect.end.y + 0.5 and row.get_line_count() * row.get_line_height() <= row.size.y + 0.5, "A skill row should fit the panel (%s %s): %s" % [id, locale, row.text])
+			_check(rows.size() >= 3 + 2 * keys.size(), "The skill list should have a name, a line about the fighter, a key and a row per move, and the close line (%s %s: %d labels, %d moves)" % [id, locale, rows.size(), keys.size()])
+			# The move keys, each on a label of its own (the passive has no key).
+			for key: String in keys.slice(0, keys.size() - 1):
+				_check(rows.any(func(row: Label) -> bool: return row.text.strip_edges() == tr(key)), "The skill list should show the key %s (%s %s)" % [key, id, locale])
 			for index in range(1, kit.size()):
 				_check(_has_text(session.skills_panel, tr(str(kit[index]))), "The skill list should hold the select screen's row %d (%s %s)" % [index, id, locale])
-			# Rows in the text column do not run into each other.
+			# Rows in the text column, one per move, do not run into each other.
 			var column: Array[Label] = []
 			for row in rows:
 				if is_equal_approx(row.position.x, 128.0):
 					column.append(row)
+			_check(column.size() == keys.size(), "The text column should hold one row per move (%s %s: %d of %d)" % [id, locale, column.size(), keys.size()])
 			for index in range(1, column.size()):
 				_check(column[index].position.y >= column[index - 1].position.y + column[index - 1].size.y, "Skill rows should not overlap (%s %s, row %d)" % [id, locale, index])
 			await _tap(KEY_TAB)

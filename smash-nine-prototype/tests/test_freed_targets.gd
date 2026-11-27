@@ -15,6 +15,7 @@ extends SceneTree
 ## fighter can start an attack again, and its ultimate starts again once its cooldown is filled.
 ## -- --only=<fighter> runs one fighter ("brave" for Brave Luna).
 
+const FRAME_WATCHDOG := preload("res://tests/support/frame_watchdog.gd")
 const PLAYER_FACTORY := preload("res://scripts/PlayerFactory.gd")
 const CHARACTER_REGISTRY := preload("res://characters/CharacterRegistry.gd")
 const MONSTER := preload("res://scripts/RealmMonster.gd")
@@ -42,9 +43,8 @@ func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--only="):
 			only = argument.trim_prefix("--only=")
-	create_timer(540.0, true, false, true).timeout.connect(func() -> void:
-		push_error("Freed target test timed out")
-		quit(1))
+	# Hang guard in frames, not seconds: under load the test needs more time, not more frames.
+	FRAME_WATCHDOG.start(self, 540.0, "Freed target test timed out")
 	call_deferred("_run")
 
 func _fail(message: String) -> void:

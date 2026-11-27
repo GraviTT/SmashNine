@@ -60,6 +60,11 @@ From `smash-nine-prototype/`:
 
 A run fails if Godot prints `SCRIPT ERROR`, `ERROR` or `Parse Error`, even with exit code 0.
 
+Writing a test (2026-11-26/27, after tests that passed on a quiet PC failed under load):
+- A test that should fail on any script or engine error collects them itself: `OS.add_logger` with `tests/support/error_catcher.gd` (see `test_practice_mode`, `test_freed_targets`). Without it, a test run on its own passes even when a script error is logged.
+- A long test's hang guard counts frames, not seconds: `FRAME_WATCHDOG.start(self, <old seconds>, "<message>")` from `tests/support/frame_watchdog.gd` (seconds × 60 frames). This PC is often busy with Codex units, other sessions and the user's own builds; a real-time `create_timer(...)` guard then fails a test that needs the same frames but more wall time. Keep real-time timers for tests whose point is real time (sound start-up).
+- Read the state you check at the moment it is set, not a frame or two later (under load a frame can run several physics steps).
+
 ## Code conventions
 
 - GDScript with tabs, typed variables, `preload` constants instead of `class_name`.

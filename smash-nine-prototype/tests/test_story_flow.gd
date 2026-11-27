@@ -1,6 +1,7 @@
 extends SceneTree
 ## D43 integration: real keyboard/mouse flow, public hits, Q exit, retries, all heroes/home.
 ## -- --capture: brief windowed Korean captures; no real user save is read or written.
+const FRAME_WATCHDOG := preload("res://tests/support/frame_watchdog.gd")
 const MAIN := preload("res://scripts/Main.gd")
 const PROGRESS := preload("res://scripts/story/StoryProgress.gd")
 const STORY := preload("res://scripts/story/StoryCatalog.gd")
@@ -17,9 +18,8 @@ var report_dir := ""
 func _initialize() -> void:
 	capture = OS.get_cmdline_user_args().has("--capture")
 	report_dir = ProjectSettings.globalize_path("res://../reports/codex-sys-03")
-	create_timer(240.0, true, false, true).timeout.connect(func() -> void:
-		push_error("Story flow timed out")
-		quit(1))
+	# Hang guard in frames, not seconds: under load the test needs more time, not more frames.
+	FRAME_WATCHDOG.start(self, 240.0, "Story flow timed out")
 	call_deferred("_run")
 
 func _check(ok: bool, message: String) -> void:
