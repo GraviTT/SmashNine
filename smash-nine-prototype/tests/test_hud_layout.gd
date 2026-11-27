@@ -242,6 +242,27 @@ func _faces(hud: Node, view: Vector2, where: String) -> void:
 			_check(not face.intersects(blocks[key]), "Face %d %s sits on the %s block %s (%s)" % [index + 1, face, key, blocks[key], where])
 		for other in range(index + 1, faces.size()):
 			_check(not face.intersects(faces[other]), "Faces %d and %d overlap (%s)" % [index + 1, other + 1, where])
+	# Colours go in only when they change (2026-11-27; redrawing the arrows every frame filled the web
+	# console with "bufferSubData: no buffer"): the same markers again redraw no arrow and leave each
+	# ring's box as it was, a new colour reaches both.
+	await process_frame
+	var changes := [0]
+	var count := func() -> void: changes[0] += 1
+	var watched: Array[Object] = []
+	for nodes: Dictionary in hud.offscreen_markers:
+		if (nodes.root as Control).visible:
+			for source: Object in [nodes.arrow, (nodes.ring as Panel).get_theme_stylebox("panel")]:
+				source.connect("draw" if source is CanvasItem else "changed", count)
+				watched.append(source)
+	hud.set_offscreen_markers(markers)
+	await process_frame
+	_check(changes[0] == 0, "The same markers again should redraw no arrow or ring (%d, %s)" % [changes[0], where])
+	markers[0].color = Color.RED
+	hud.set_offscreen_markers(markers)
+	await process_frame
+	_check(changes[0] >= 2, "A new colour should reach the marker's arrow and ring (%d, %s)" % [changes[0], where])
+	for source in watched:
+		source.disconnect("draw" if source is CanvasItem else "changed", count)
 	hud.set_offscreen_markers([])
 	await process_frame
 

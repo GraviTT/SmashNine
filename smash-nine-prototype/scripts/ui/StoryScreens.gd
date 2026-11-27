@@ -95,8 +95,9 @@ func show_story_map(selected_stage := 1) -> void:
 	map_stage = initial_stage
 	stage_buttons.clear()
 	map_next_flame = null
-	_label("STORY MAP", Rect2(44, 24, 800, 48), 34, GOLD)
-	_label(tr("%s's journey") % tr(str(_roster[selected_id].name)), Rect2(46, 80, 820, 32), 20, DIM)
+	# The picked look (as the select screen): the heading on its plate, the stages as tiles, the
+	# stage's card on a sheet with Start gold. The map's own art (the root, the seals, the flame) stays.
+	var heading := _heading("STORY MAP", tr("%s's journey") % tr(str(_roster[selected_id].name)))
 	var realms := REALMS.build_maps()
 	var stages := STORY.stages()
 	var cleared := int(PROGRESS.get_run(selected_id).get("cleared", 0))
@@ -120,7 +121,7 @@ func show_story_map(selected_stage := 1) -> void:
 		var grid: Vector2i = realms[data.realm].grid
 		var x := 46.0 + grid.x * 214
 		var y := 132.0 + grid.y * 168
-		var button := _button("", Rect2(x, y, 196, 152), "story_stage_pick", str(data.id))
+		var button := _button("", Rect2(x, y, 196, 152), "story_stage_pick", str(data.id), "tile")
 		stage_buttons.append(button)
 		button.focus_entered.connect(func() -> void:
 			map_stage = int(data.id)
@@ -132,15 +133,18 @@ func show_story_map(selected_stage := 1) -> void:
 		var status := _label(tr("CLEAR") if int(data.id) <= cleared else (tr("Coming soon") if not data.ready else (tr("Next stage") if int(data.id) == cleared + 1 else tr("Locked"))), Rect2(x + 4, y + 124, 188, 22), 14, GOLD if int(data.id) <= cleared + 1 else DIM)
 		status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_map_badge(int(data.id), cleared, bool(data.ready), Vector2(x + 150, y + 6))
-	_panel(Rect2(730, 132, 510, 488))
-	map_title = _label("", Rect2(754, 152, 460, 98), 30, GOLD)
-	map_realm = _label("", Rect2(754, 256, 460, 30), 22, DIM)
+	_sheet(Rect2(730, 132, 510, 488))
+	_plate(Rect2(730, 250, 510, 4), _box(Color(GOLD, 0.7), Color.TRANSPARENT, 0, 0))
+	map_title = _label("", Rect2(754, 148, 460, 98), 30, GOLD)
+	map_title.add_theme_font_override("font", _bold_font())
+	map_realm = _label("", Rect2(754, 262, 460, 30), 22, DIM)
 	map_goal = _label("", Rect2(754, 306, 460, 100), 23)
-	map_face = _picture(null, Rect2(1046, 422, 150, 150))
-	map_status = _label("", Rect2(754, 426, 274, 104), 20, DIM)
-	start_button = _button("Start stage", Rect2(754, 552, 260, 48), "story_start")
-	_button("Back", Rect2(1040, 552, 174, 48), "story_select")
-	_finish("Arrows / W-A-S-D: browse    Enter / J: start    Esc: back")
+	map_face = _picture(null, Rect2(1046, 412, 150, 150))
+	map_status = _label("", Rect2(754, 422, 274, 104), 20, DIM)
+	start_button = _button("Start stage", Rect2(754, 548, 300, 52), "story_start", "", "primary", 21)
+	_focus_cap(start_button, true)
+	_back_button(heading, "story_select")
+	_finish("Arrows / W-A-S-D: browse    Enter / J: start    Esc: back", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
 	stage_buttons[initial_stage - 1].grab_focus()
 	map_stage = initial_stage
 	_refresh_map_detail()
@@ -214,7 +218,8 @@ func show_stage_card(data: Dictionary) -> void:
 		_picture(ART.character_portrait(data.rival, "male"), Rect2(890, 434, 94, 94))
 		var vs := _label("VS", Rect2(590, 454, 100, 40), 30, GOLD)
 		vs.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_button("Begin", Rect2(490, 550, 300, 48), "story_begin")
+	# The card's frame and picture are the picked story art; only Begin takes the menus' gold.
+	_focus_cap(_button("Begin", Rect2(490, 550, 300, 50), "story_begin", "", "primary", 21), true)
 	card_deadline = Time.get_ticks_msec() + 2500
 
 ## A dark backing under the start card's 9-slice frame, as under the dialogue box; the plain
@@ -242,50 +247,69 @@ func _card_frame() -> void:
 	patch.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	content.add_child(patch)
 
+## Paused as the title stands: a dark band at the left over the stopped fight, the heading on its
+## plate and the choices as a column of slanted buttons.
 func show_story_pause() -> void:
 	_clear("story_pause")
-	_panel(Rect2(414, 140, 452, 450), 0.98)
-	_label("PAUSED", Rect2(454, 164, 372, 48), 34, GOLD)
+	_plate(Rect2(-40, 0, 560, 720), _box(Color(INK, 0.78), Color.TRANSPARENT, 0, 0))
+	_heading("PAUSED")
 	for entry in [["Resume", "story_resume"], ["Retry", "story_retry"], ["Story map", "story_map"], ["Title", "story_title"]]:
-		_button(entry[0], Rect2(454, 242 + buttons.size() * 74, 372, 52), entry[1])
-	_finish("Esc: resume    Enter / J: confirm")
+		var big := buttons.is_empty()
+		var rect := Rect2(64, 150, 400, 62) if big else Rect2(64, 234 + (buttons.size() - 1) * 56, 340, 48)
+		_focus_cap(_button(entry[0], rect, entry[1], "", "slant", 24 if big else 20))
+	_finish("Esc: resume    Enter / J: confirm", Rect2(56, 640, 440, 40), HORIZONTAL_ALIGNMENT_LEFT, true)
 
 func show_story_result(result: Dictionary) -> void:
 	AUDIO.story_result(self, bool(result.clear))
 	stage_result = result
 	_clear("story_result")
-	_panel(Rect2(140, 78, 1000, 548), 0.98)
-	_picture(illustration(selected_id, body), Rect2(164, 144, 320, 448))
-	_label("STAGE CLEAR" if result.clear else "STAGE FAILED", Rect2(500, 112, 600, 64), 40, GOLD)
-	_label(tr("STAGE %d") % int(result.stage) + "  /  " + tr(str(STORY.stage(result.stage).title)), Rect2(500, 194, 600, 60), 24)
+	# The picked look: the hero over a band of its colour, the result on its plate, the numbers on a
+	# sheet, the next step gold.
+	_fighter_band(Rect2(48, 150, 420, 400), _roster[selected_id].color)
+	_picture(illustration(selected_id, body), Rect2(64, 104, 400, 540))
+	_heading("STAGE CLEAR" if result.clear else "STAGE FAILED", "", 40, Color(INK, 0.86), GOLD if result.clear else WHITE)
+	_sheet(Rect2(536, 132, 704, 400))
+	var stage_line := _label(tr("STAGE %d") % int(result.stage) + "  /  " + tr(str(STORY.stage(result.stage).title)), Rect2(564, 146, 650, 72), 24, GOLD)
+	stage_line.add_theme_font_override("font", _bold_font())
+	stage_line.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_plate(Rect2(536, 226, 704, 4), _box(Color(GOLD, 0.7), Color.TRANSPARENT, 0, 0))
 	var seconds := int(result.seconds)
-	_label(tr("Time: %s") % ("%d:%02d" % [seconds / 60, seconds % 60]), Rect2(500, 276, 600, 40), 24)
-	_label(tr("Damage taken: %d") % int(result.damage), Rect2(500, 326, 600, 40), 24)
+	_label(tr("Time: %s") % ("%d:%02d" % [seconds / 60, seconds % 60]), Rect2(564, 244, 650, 36), 24)
+	_label(tr("Damage taken: %d") % int(result.damage), Rect2(564, 290, 650, 36), 24)
 	var card_names: Array[String] = []
 	for id in result.cards:
 		card_names.append(tr(str(SOUL_CARDS.find(id).get("title", id))))
-	_label(tr("Cards: %s") % (", ".join(card_names) if not card_names.is_empty() else tr("No soul cards")), Rect2(500, 376, 600, 80), 22)
+	_label(tr("Cards: %s") % (", ".join(card_names) if not card_names.is_empty() else tr("No soul cards")), Rect2(564, 336, 650, 96), 22)
 	if not result.clear and result.get("reason", "") == "time up":
-		_label("Time up", Rect2(500, 470, 600, 40), 21, GOLD)
-	_button("Next" if result.clear else "Retry", Rect2(500, 544, 190, 52), "story_next" if result.clear else "story_retry")
-	_button("Story map", Rect2(706, 544, 190, 52), "story_map")
-	_button("Title", Rect2(912, 544, 190, 52), "story_title")
-	_finish("R: retry    Enter / J: confirm    Esc: story map")
+		_label("Time up", Rect2(564, 470, 650, 40), 21, GOLD)
+	var next := _button("Next" if result.clear else "Retry", Rect2(536, 560, 226, 52), "story_next" if result.clear else "story_retry", "", "primary", 21)
+	_focus_cap(next, true)
+	_focus_cap(_button("Story map", Rect2(774, 560, 226, 52), "story_map", "", "slant", 20))
+	_focus_cap(_button("Title", Rect2(1012, 560, 228, 52), "story_title", "", "slant", 20))
+	_finish("R: retry    Enter / J: confirm    Esc: story map", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
 
 func show_story_ending() -> void:
 	AUDIO.story_ending(self)
 	_clear("story_ending")
-	_panel(Rect2(100, 62, 1080, 590), 0.98)
 	# D43: the story ending shows the hero's main illustration; the victory pose is for the results screen.
-	_picture(illustration(selected_id, body), Rect2(122, 118, 350, 500))
-	_label("STORY COMPLETE", Rect2(500, 102, 640, 66), 40, GOLD)
-	_label(tr(str(_roster[selected_id].name)), Rect2(500, 188, 620, 42), 28, _roster[selected_id].color)
+	# In the picked look: the hero over a band of its colour, its name on a band of that colour (as on
+	# the select screen), the three closing lines on a sheet.
+	var accent: Color = _roster[selected_id].color
+	_fighter_band(Rect2(48, 150, 420, 400), accent)
+	_picture(illustration(selected_id, body), Rect2(64, 104, 400, 540))
+	_heading("STORY COMPLETE", "", 40, Color(INK, 0.86), GOLD)
+	_sheet(Rect2(504, 132, 736, 400))
+	_plate(Rect2(504, 132, 736, 64), _box(accent.darkened(0.42), Color.TRANSPARENT, 0, 6))
+	_plate(Rect2(504, 192, 736, 4), _box(accent.lightened(0.35), Color.TRANSPARENT, 0, 0))
+	var hero_name := _label(tr(str(_roster[selected_id].name)).to_upper(), Rect2(530, 138, 680, 52), 34, WHITE)
+	hero_name.autowrap_mode = TextServer.AUTOWRAP_OFF
+	hero_name.add_theme_font_override("font", _bold_font())
 	var ids := STORY.ending_ids(selected_id)
 	for index in ids.size():
-		_label(tr(ids[index]), Rect2(500, 254 + index * 84, 620, 80), 24)
-	_button("Story map", Rect2(500, 554, 294, 52), "story_map")
-	_button("Title", Rect2(816, 554, 294, 52), "story_title")
-	_finish("Enter / J: confirm    Esc: story map")
+		_label(tr(ids[index]), Rect2(530, 216 + index * 96, 684, 80), 24)
+	_focus_cap(_button("Story map", Rect2(504, 560, 300, 52), "story_map", "", "primary", 21), true)
+	_focus_cap(_button("Title", Rect2(820, 560, 300, 52), "story_title", "", "slant", 20))
+	_finish("Enter / J: confirm    Esc: story map", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
 
 func _activate(action: String, value: String) -> void:
 	if screen == "story_select" and action in ["start", "title"]:
