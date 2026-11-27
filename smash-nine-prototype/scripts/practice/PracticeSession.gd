@@ -235,6 +235,12 @@ func reset_positions(quiet := false) -> void:
 func _clear_leftovers() -> void:
 	for child in main.get_children():
 		if child is Node2D and child != hero and child != target and not _fixed_nodes.has(child):
+			# Out of the fight at once, not only at the frame's end: on a busy machine a frame runs
+			# several physics steps, and a hitbox still there hit the target R had just put back
+			# (Rio's cuts, 30 frames into his ultimate, with frames slowed to 50 ms; 2026-11-26).
+			# Disabled, a body or an area leaves the physics space (disable_mode REMOVE).
+			child.process_mode = Node.PROCESS_MODE_DISABLED
+			child.visible = false
 			child.queue_free()
 	monsters.clear()
 

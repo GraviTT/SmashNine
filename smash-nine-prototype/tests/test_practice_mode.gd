@@ -49,6 +49,7 @@ func _run() -> void:
 		"menu": _test_menu_entry,
 		"target": _test_target_kinds,
 		"reset": _test_reset,
+		"steps": _test_reset_between_steps,
 		"refill": _test_refill,
 		"cards": _test_cards,
 		"skills": _test_skill_list,
@@ -288,6 +289,18 @@ func _left_on_field(main: Node, session: Node) -> Array[String]:
 			left.append(script.resource_path.get_file() if script != null else child.get_class())
 	return left
 
+## Both fighters as a reset check reads them: HP and place against the start place.
+func _both(session: Node) -> String:
+	var parts: Array[String] = []
+	for entry in [[session.hero, session.HERO_SPAWN], [session.target, session.TARGET_SPAWN]]:
+		var fighter: Node = entry[0]
+		if not is_instance_valid(fighter):
+			parts.append("(gone)")
+			continue
+		var start: Vector2 = session._start_point(int(entry[1]))
+		parts.append("%s HP %.1f/%.0f at (%.0f, %.0f), %.1f px from its start" % [fighter.character_id, fighter.hp, fighter.max_hp, fighter.global_position.x, fighter.global_position.y, absf(fighter.global_position.x - start.x)])
+	return "; ".join(parts)
+
 func _at_start(session: Node, fighter: Node, spawn: int) -> bool:
 	var start: Vector2 = session._start_point(spawn)
 	# A fighter is put at its spawn point and drops to the floor under it.
@@ -318,7 +331,7 @@ func _test_reset() -> bool:
 			await _tap(KEY_R)
 			await _frames(3)
 			_check(_left_on_field(main, session).is_empty(), "R should clear an ultimate's field (%s, %d frames in): %s" % [id, wait, _left_on_field(main, session)])
-			_check(_at_start(session, session.hero, session.HERO_SPAWN) and is_equal_approx(session.target.hp, session.target.max_hp), "R should put everything back in the middle of an ultimate (%s, %d frames in)" % [id, wait])
+			_check(_at_start(session, session.hero, session.HERO_SPAWN) and is_equal_approx(session.target.hp, session.target.max_hp), "R should put everything back in the middle of an ultimate (%s, %d frames in): %s" % [id, wait, _both(session)])
 			await _frames(30)
 			await _tap(KEY_J)
 			await _frames(20)
@@ -331,12 +344,25 @@ func _test_reset() -> bool:
 		for wait: int in [70, 25, 110]:
 			await _frames(wait)
 			await _tap(KEY_E)
-			# The bot moves on at once: its place is read in the frame after the key.
+			# The bot moves on at once, and under load a frame runs several physics steps: its place
+			# is read when R puts it back (R tells each fighter's HP bar then), its HP a frame later.
+			var placed := {}
+			var note := func(fighter: Node) -> void:
+				if not placed.has(fighter):
+					placed[fighter] = fighter.global_position
+			bout.target.hp_changed.connect(note)
+			bout.hero.hp_changed.connect(note)
 			_key(KEY_R, true)
 			await _frames(1)
 			_key(KEY_R, false)
+			bout.target.hp_changed.disconnect(note)
+			bout.hero.hp_changed.disconnect(note)
 			var start: Vector2 = bout._start_point(bout.TARGET_SPAWN)
-			_check(absf(bout.target.global_position.x - start.x) < 30.0 and is_equal_approx(bout.target.hp, bout.target.max_hp) and is_equal_approx(bout.hero.hp, bout.hero.max_hp), "R should put a fighting bot back too (%s, after %d frames; at %s, start %s)" % [bout.target.character_id, wait, bout.target.global_position, start])
+			var hero_start: Vector2 = bout._start_point(bout.HERO_SPAWN)
+			var bot_at: Vector2 = placed.get(bout.target, Vector2.INF)
+			var hero_at: Vector2 = placed.get(bout.hero, Vector2.INF)
+			_check(absf(bot_at.x - start.x) < 2.0 and absf(hero_at.x - hero_start.x) < 2.0, "R should put a fighting bot and the fighter back at their start places (%s, after %d frames): placed at %s and %s, starts %s and %s" % [bout.target.character_id, wait, bot_at, hero_at, start, hero_start])
+			_check(is_equal_approx(bout.target.hp, bout.target.max_hp) and is_equal_approx(bout.hero.hp, bout.hero.max_hp), "R should fill both HP bars with a fighting bot (%s, after %d frames): %s" % [bout.target.character_id, wait, _both(bout)])
 			await _frames(3)
 			_check(_left_on_field(arena, bout).is_empty() or bout.target.attack_lock_timer > 0.0, "R should clear the field under a fighting bot (%s): %s" % [bout.target.character_id, _left_on_field(arena, bout)])
 		await _tap(KEY_N)
@@ -375,8 +401,8 @@ func _test_reset() -> bool:
 				_check(not is_instance_valid(thing), "R should remove %s's own object (wait %d)" % [id, wait])
 			if id == "yuki":
 				_check(hero.seals.is_empty(), "R should clear Yuki's seals")
-			_check(_at_start(session, hero, session.HERO_SPAWN) and _at_start(session, session.target, session.TARGET_SPAWN), "R should put both at their start places (%s: %s, %s)" % [id, hero.global_position, session.target.global_position])
-			_check(is_equal_approx(hero.hp, hero.max_hp) and is_equal_approx(session.target.hp, session.target.max_hp), "R should fill both HP bars (%s)" % id)
+			_check(_at_start(session, hero, session.HERO_SPAWN) and _at_start(session, session.target, session.TARGET_SPAWN), "R should put both at their start places (%s): %s" % [id, _both(session)])
+			_check(is_equal_approx(hero.hp, hero.max_hp) and is_equal_approx(session.target.hp, session.target.max_hp), "R should fill both HP bars (%s): %s" % [id, _both(session)])
 			_check(session.total_damage == 0.0 and session.last_damage == 0.0, "R should start the damage count over")
 			_check(session.monsters.is_empty(), "R should send the monsters away")
 			# The fight goes on after it: another swing, nothing broken.
@@ -385,6 +411,54 @@ func _test_reset() -> bool:
 			await _frames(30)
 			_check(not main.match_over and not hero.is_defeated, "Play should go on after R (%s)" % id)
 	return true
+
+## R just after a hitbox touched the target. The engine finds a touch in one physics step and
+## delivers it at the start of the next; what R removes is only gone after that start. So a hitbox
+## that had just touched the target when R came still hit it, on the place R had put it back to.
+## Under load a frame runs several physics steps and R lands in that gap more often: the UI session
+## saw "R ... in the middle of an ultimate" fail twice that way (2026-11-26), and Rio's cuts 30
+## frames into his ultimate did it once in six with frames slowed to 50 ms. Here the gap is made
+## every time; it fails without the fix (R takes what it removes out of the physics at once).
+func _test_reset_between_steps() -> bool:
+	var main: Node = await _practice("frey")
+	var session: Node = main.practice_session
+	var hero: Node = session.hero
+	var target: Node = session.target
+	var home: Vector2 = session._start_point(session.TARGET_SPAWN)
+	for attempt in 5:
+		session.reset_positions(true)
+		await _frames(20)
+		var hp: float = target.hp
+		# A hitbox on the target, made in this frame's process: its touch is found in the next
+		# physics step, and delivered at the start of the one after.
+		await process_frame
+		var before: Array[Node] = main.get_children()
+		hero._spawn_attack(Vector2(140, 140), Vector2.ZERO, 12.0, 300.0, Vector2.RIGHT, Color(1, 1, 1, 0.3), 5.0)
+		var attack: Node = null
+		for child in main.get_children():
+			if not before.has(child) and child.get_script() != null and str(child.get_script().resource_path).ends_with("Attack.gd"):
+				attack = child
+		if attack == null:
+			_check(false, "Test setup: the fighter's hitbox should be on the field")
+			return false
+		attack.global_position = target.global_position + Vector2(0, -34)
+		await physics_frame
+		await process_frame
+		if not is_equal_approx(target.hp, hp):
+			# A slow frame ran two steps: the touch was delivered before R. Again.
+			continue
+		# R now: it is read at the start of the next frame, before its first physics step. The
+		# frame is held a little so that the next one runs at least one step.
+		_key(KEY_R, true)
+		OS.delay_msec(40)
+		await _frames(3)
+		_key(KEY_R, false)
+		await _frames(2)
+		_check(is_equal_approx(target.hp, target.max_hp) and _at_start(session, target, session.TARGET_SPAWN), "A hitbox that had just touched the target should not hit it after R puts it back (HP %.1f of %.0f, at %s, start %s)" % [target.hp, target.max_hp, target.global_position, home])
+		_check(not is_instance_valid(attack), "R should remove the hitbox")
+		return true
+	_check(false, "Test setup: five tries and R never came between the touch and its delivery")
+	return false
 
 ## E: the ultimate and every skill ready at once, for each fighter after it used them; the bot's too.
 func _test_refill() -> bool:
