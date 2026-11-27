@@ -29,6 +29,7 @@ const SLANT := 0.2
 const HINTS_TOP := Rect2(508, 28, 736, 26)
 const SKILL_ICON := "res://assets/art/skill_icons/%s_%s.png"
 ## Select screen: the roster strip and its tiles (a fighter's face, or Random), the kit in two columns.
+## Up to seven slots keep 92 px tiles; more (nine fighters and Random, D58) share the strip's width.
 const SELECT_STRIP := Rect2(536, 510, 720, 136)
 const SELECT_TILE := 92.0
 const SELECT_PITCH := 100.0
@@ -72,7 +73,7 @@ const KITS := {
 }
 ## Main.CHOOSE_ACTIONS: the number keys that quick-start a fighter. Hints that name them take
 ## the count as %d (the controls row still said "1 - 5" after the sixth fighter; UI audit B3).
-const QUICK_START_KEYS := 6
+const QUICK_START_KEYS := 9
 const CONTROLS := [
 	["A / D  or  Left / Right", "Move / aim attacks"],
 	["W  or  Up", "Jump (air jumps available)"],
@@ -143,6 +144,9 @@ var portrait_pictures: Array[TextureRect] = []
 var portrait_captions: Array[Label] = []
 var random_caption: Label
 var select_start: Button
+## The strip's tile pitch and size for the slots it holds (SELECT_PITCH and SELECT_TILE up to seven).
+var strip_pitch := SELECT_PITCH
+var strip_tile := SELECT_TILE
 var _bold: FontVariation
 var _gaps: RegEx
 var body_button: Button
@@ -355,14 +359,14 @@ func _bold_font() -> FontVariation:
 	return _bold
 
 ## A key on a light cap (dark on gold), as the match HUD draws them. Not translated: key names.
-func _key_cap(text: String, at: Vector2, width := 26.0, parent: Node = null, on_gold := false) -> Label:
-	var cap := _plate(Rect2(at, Vector2(width, 22)), _box(Color(INK, 0.9) if on_gold else Color(0.93, 0.95, 0.98, 0.95), Color.TRANSPARENT, 0, 4), parent)
+func _key_cap(text: String, at: Vector2, width := 26.0, parent: Node = null, on_gold := false, height := 22.0) -> Label:
+	var cap := _plate(Rect2(at, Vector2(width, height)), _box(Color(INK, 0.9) if on_gold else Color(0.93, 0.95, 0.98, 0.95), Color.TRANSPARENT, 0, 4), parent)
 	var label := Label.new()
 	label.text = text
 	label.size = cap.size
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", 15)
+	label.add_theme_font_size_override("font_size", 15 if height >= 22.0 else 12)
 	label.add_theme_font_override("font", _bold_font())
 	label.add_theme_color_override("font_color", GOLD if on_gold else INK)
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -527,13 +531,17 @@ func show_title() -> void:
 ## columns) on the right; the roster as one strip of tiles under them, Random last.
 ## `ids`: the fighters to offer (default: the whole roster; story mode passes its heroes). The first
 ## two children are the heading and the line under it (StoryScreens rewrites both), and each
-## portrait button is followed by its face and its name (child +1, +2).
-func show_select(ids: Array[String] = []) -> void:
+## portrait button is followed by its face and its name (child +1, +2). `after` is how many tile
+## slots follow the fighters (Random's one; the story's difficulty takes two).
+func show_select(ids: Array[String] = [], after := 1) -> void:
 	AUDIO.music(self, "music_select")
 	_clear("select")
 	select_ids = ids if not ids.is_empty() else REGISTRY.get_character_ids()
 	if not select_ids.has(selected_id):
 		selected_id = select_ids[0]
+	# 12 px in from each end; a tile is its pitch less the gap: n slots take 16 + n x pitch.
+	strip_pitch = minf(SELECT_PITCH, floorf((SELECT_STRIP.size.x - 16.0) / float(select_ids.size() + after)))
+	strip_tile = strip_pitch - (SELECT_PITCH - SELECT_TILE)
 	var heading := _heading("CHOOSE YOUR FIGHTER", "Six fighters. Six ways to survive.")
 	# The fighter, over a slanted band of its colour.
 	select_band = _plate(Rect2(40, 150, 470, 380), _box(Color.WHITE, Color.TRANSPARENT, 0, 4, 0.16))
@@ -562,16 +570,18 @@ func show_select(ids: Array[String] = []) -> void:
 		selected_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		selected_frame.add_theme_stylebox_override("panel", _box(Color.TRANSPARENT, GOLD, 3, 6))
 		button.add_child(selected_frame)
-		portrait_pictures.append(_picture(ART.character_portrait(id, body), Rect2(tile.position + Vector2(4, 4), Vector2(SELECT_TILE - 8.0, SELECT_TILE - 8.0))))
-		var caption := _label(str(_roster[id].name), Rect2(tile.position.x - 10, tile.end.y + 2, SELECT_TILE + 20.0, 24), 15, DIM)
+		portrait_pictures.append(_picture(ART.character_portrait(id, body), Rect2(tile.position + Vector2(4, 4), Vector2(strip_tile - 8.0, strip_tile - 8.0))))
+		var caption := _label(str(_roster[id].name), Rect2(tile.position.x - 10, tile.end.y + 2, strip_tile + 20.0, 24), 15 if strip_tile >= 80.0 else 13, DIM)
 		caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		caption.autowrap_mode = TextServer.AUTOWRAP_OFF
 		portrait_captions.append(caption)
-		_key_cap(str(index + 1), tile.position + Vector2(4, 4), 22)
-	var random := _button("", _select_tile(select_ids.size()), "random", "", "tile", 40)
+		# A smaller cap on small tiles (nine fighters), so the face shows.
+		var small := strip_tile < 80.0
+		_key_cap(str(index + 1), tile.position + (Vector2(3, 3) if small else Vector2(4, 4)), 16.0 if small else 22.0, null, false, 16.0 if small else 22.0)
+	var random := _button("", _select_tile(select_ids.size()), "random", "", "tile", 40 if strip_tile >= 80.0 else 30)
 	# A mark, not a word: set after the helper, which translates its text.
 	random.text = "?"
-	random_caption = _label("Random", Rect2(random.position.x - 10, random.position.y + SELECT_TILE + 2, SELECT_TILE + 20.0, 24), 15, DIM)
+	random_caption = _label("Random", Rect2(random.position.x - 10, random.position.y + strip_tile + 2, strip_tile + 20.0, 24), 15 if strip_tile >= 80.0 else 13, DIM)
 	random_caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	random_caption.autowrap_mode = TextServer.AUTOWRAP_OFF
 	body_button = _button("", Rect2(72, 650, 300, 42), "body", "", "slant", 17)
@@ -614,13 +624,20 @@ func _build_kit_row() -> void:
 	skill_labels.append(detail)
 	skill_rows.append({"slot": slot, "icon": icon, "glyph": glyph, "cap": key.get_parent()})
 
+## A fighter's kit text (KITS), or a placeholder of dashes for a fighter whose text is not written
+## yet (a new character before its kit is described), so its screens still draw.
+static func kit_for(id: String) -> Array:
+	if KITS.has(id):
+		return KITS[id]
+	return ["", "—", "—", "—", "—", "—"]
+
 ## How many fighters the number keys reach.
 static func quick_start_count() -> int:
 	return mini(REGISTRY.get_character_ids().size(), QUICK_START_KEYS)
 
 ## The roster strip's tile `index` (the fighters, then Random).
 func _select_tile(index: int) -> Rect2:
-	return Rect2(SELECT_STRIP.position.x + 12.0 + index * SELECT_PITCH, SELECT_STRIP.position.y + 14.0, SELECT_TILE, SELECT_TILE)
+	return Rect2(SELECT_STRIP.position.x + 12.0 + index * strip_pitch, SELECT_STRIP.position.y + 14.0, strip_tile, strip_tile)
 
 func _refresh_fighter() -> void:
 	var data: Dictionary = _roster[selected_id]
@@ -631,7 +648,7 @@ func _refresh_fighter() -> void:
 	(name_stripe.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = accent.lightened(0.35)
 	fighter_name.text = tr(str(data.name)).to_upper()
 	fighter_role.text = tr(str(data.role))
-	var kit: Array = KITS[selected_id]
+	var kit: Array = kit_for(selected_id)
 	description.text = tr(kit[0])
 	# J, K, L(, U), I and the passive: two columns, three rows.
 	var keys: Array = ["j", "k", "l", "u", "i", ""] if kit.size() > 6 else ["j", "k", "l", "i", ""]
@@ -822,55 +839,66 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 		number.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		number.autowrap_mode = TextServer.AUTOWRAP_OFF
 		number.add_theme_font_override("font", _bold_font())
-	# The table's rows are 34 px with 8 between them: each player's row lies at a known height.
-	_sheet(Rect2(356, 132, 884, 400))
+	# The table's rows are 34 px with 8 between them, so each player's row lies at a known height.
+	# More than eight players (sixteen-fighter matches) take compact rows: 22 px with 2 between, 15 px
+	# words, so all of them stand above the awards.
+	# Untyped: a freed fighter in the list must not be assigned to a typed parameter.
+	var shown := standings.filter(func(player) -> bool: return is_instance_valid(player)).size()
+	var compact := shown > 8
+	var row_h := 22.0 if compact else 34.0
+	var gap := 2 if compact else 8
+	var pitch := row_h + gap
+	var words := 15 if compact else 18
+	var table_end := 146.0 + (shown + 1) * pitch
+	var sheet_end := maxf(532.0, table_end + 8.0)
+	_sheet(Rect2(356, 132, 884, sheet_end - 132.0))
 	var row := 0
 	for player in standings:
 		if not is_instance_valid(player):
 			continue
 		row += 1
-		var row_top := 146.0 + row * 42 - 4
+		var row_top := 146.0 + row * pitch - gap * 0.5
 		if player == human:
-			_plate(Rect2(364, row_top, 868, 42), _box(Color(GOLD, 0.14), Color(GOLD, 0.55), 1, 4))
+			_plate(Rect2(364, row_top, 868, pitch), _box(Color(GOLD, 0.14), Color(GOLD, 0.55), 1, 4))
 		elif row % 2 == 0:
-			_plate(Rect2(364, row_top, 868, 42), _box(Color(1, 1, 1, 0.04), Color.TRANSPARENT, 0, 4))
+			_plate(Rect2(364, row_top, 868, pitch), _box(Color(1, 1, 1, 0.04), Color.TRANSPARENT, 0, 4))
 	var grid := GridContainer.new()
 	grid.name = "Standings"
 	grid.columns = 8
 	grid.position = Vector2(380, 146)
 	grid.add_theme_constant_override("h_separation", 16)
-	grid.add_theme_constant_override("v_separation", 8)
+	grid.add_theme_constant_override("v_separation", gap)
 	content.add_child(grid)
 	for heading in ["#", "", "Fighter", "KOs", "Damage", "Souls", "Cards", "Survived"]:
-		_cell(grid, heading, GOLD)
+		_cell(grid, heading, GOLD, 20.0, row_h, words)
 	for index in standings.size():
 		var player: Node = standings[index]
 		if not is_instance_valid(player):
 			continue
 		var color := GOLD if player == human else Color.WHITE
-		_cell(grid, str(index + 1), color)
+		_cell(grid, str(index + 1), color, 20.0, row_h, words)
 		var face := TextureRect.new()
 		face.texture = ART.character_portrait(player.character_id, player.body_type)
 		face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		face.custom_minimum_size = Vector2(34, 34)
+		face.custom_minimum_size = Vector2(row_h, row_h)
 		face.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		grid.add_child(face)
-		_cell(grid, ("P1 " if player == human else "") + tr(str(player.display_name)), color, 120)
-		_cell(grid, str(player.score), color, 36)
-		_cell(grid, "%.0f" % player.damage_dealt, color, 70)
-		_cell(grid, str(player.souls), color, 54)
+		_cell(grid, ("P1 " if player == human else "") + tr(str(player.display_name)), color, 120, row_h, words)
+		_cell(grid, str(player.score), color, 36, row_h, words)
+		_cell(grid, "%.0f" % player.damage_dealt, color, 70, row_h, words)
+		_cell(grid, str(player.souls), color, 54, row_h, words)
 		var card_names: Array[String] = []
 		for id in player.upgrades:
 			card_names.append(tr(str(SOUL_CARDS.find(str(id)).get("title", id))))
-		var cards := _cell(grid, "%d  %s" % [player.upgrades.size(), ", ".join(card_names)] if not card_names.is_empty() else "0", color, 210)
-		cards.add_theme_font_size_override("font_size", 13)
+		var cards := _cell(grid, "%d  %s" % [player.upgrades.size(), ", ".join(card_names)] if not card_names.is_empty() else "0", color, 210, row_h, words)
+		cards.add_theme_font_size_override("font_size", 12 if compact else 13)
 		cards.clip_text = true
 		cards.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		cards.tooltip_text = ", ".join(card_names) if not card_names.is_empty() else tr("No soul cards")
 		cards.mouse_filter = Control.MOUSE_FILTER_PASS
 		var seconds := maxi(0, int(survival.get(player, 0)))
-		_cell(grid, "%d:%02d" % [seconds / 60, seconds % 60], color, 76)
+		_cell(grid, "%d:%02d" % [seconds / 60, seconds % 60], color, 76, row_h, words)
 	var award_names := ["MOST DAMAGE", "MOST KOs", "LONGEST SURVIVAL"]
 	for award in 3:
 		var best: Node = null
@@ -881,13 +909,16 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 				best = player
 				best_value = value
 		var x := 360.0 + award * 292
-		_plate(Rect2(x, 546, 280, 84), _box(Color(INK, 0.9), EDGE, 1, 3, SLANT))
-		var award_title := _label(award_names[award], Rect2(x + 22, 556, 240, 24), 14, GOLD)
+		# Under the table: where the eight-row table left them, lower and shorter under a long one.
+		var award_y := maxf(546.0, sheet_end + 12.0)
+		var award_h := minf(84.0, 650.0 - award_y)
+		_plate(Rect2(x, award_y, 280, award_h), _box(Color(INK, 0.9), EDGE, 1, 3, SLANT))
+		var award_title := _label(award_names[award], Rect2(x + 22, award_y + (10.0 if award_h >= 80.0 else 4.0), 240, 24), 14, GOLD)
 		award_title.add_theme_font_override("font", _bold_font())
 		var detail := "No contenders"
 		if is_instance_valid(best):
 			detail = "%s  /  %s" % [tr(str(best.display_name)), ("%d:%02d" % [int(best_value) / 60, int(best_value) % 60]) if award == 2 else "%.0f" % best_value]
-		_label(detail, Rect2(x + 22, 586, 240, 28), 18)
+		_label(detail, Rect2(x + 22, award_y + award_h - 38.0, 240, 28), 18)
 	var rematch := _button("[R] Rematch", Rect2(360, 656, 284, 48), "rematch", "", "primary", 20)
 	_focus_cap(rematch, true)
 	_focus_cap(_button("Character select", Rect2(656, 656, 296, 48), "return_select", "", "slant", 19))
@@ -895,11 +926,11 @@ func show_results(winner: Node, reason: String, standings: Array[Node], human: N
 	if not buttons.is_empty():
 		buttons[0].grab_focus()
 
-func _cell(grid: GridContainer, text: String, color: Color, width := 20.0) -> Label:
+func _cell(grid: GridContainer, text: String, color: Color, width := 20.0, height := 34.0, font_size := 18) -> Label:
 	var cell := Label.new()
 	cell.text = tr(text)
-	cell.custom_minimum_size = Vector2(width, 34)
-	cell.add_theme_font_size_override("font_size", 18)
+	cell.custom_minimum_size = Vector2(width, height)
+	cell.add_theme_font_size_override("font_size", font_size)
 	cell.add_theme_color_override("font_color", color)
 	cell.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	grid.add_child(cell)

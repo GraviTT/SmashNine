@@ -48,7 +48,9 @@ var _faces := {}
 const CAMERA_EDGE_PADDING := 80.0
 const ULTIMATE_CAST_SHAKE := 6.0
 const ULTIMATE_HIT_SHAKE := 3.5
-const CHOOSE_ACTIONS: Array[String] = ["choose_1", "choose_2", "choose_3", "choose_4", "choose_5", "choose_6"]
+## The number keys that quick-start a fighter by its place in the roster: nine since the roster is
+## to grow to nine (D58; keys past the roster do nothing).
+const CHOOSE_ACTIONS: Array[String] = ["choose_1", "choose_2", "choose_3", "choose_4", "choose_5", "choose_6", "choose_7", "choose_8", "choose_9"]
 const BODY_TYPES: Array[String] = ["male", "female"]
 
 ## The body P1 plays characters that come in two (Nova, Rio); V on the start screen.
