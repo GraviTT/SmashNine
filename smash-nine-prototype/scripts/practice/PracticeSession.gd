@@ -524,11 +524,14 @@ func _flat_box(color: Color, radius: int, skew: float) -> StyleBoxFlat:
 	return box
 
 ## A key on a light cap (dark on the gold row), as the menus draw them. Key names are not translated.
+## The key's label is the panel's own child over the cap, as the key labels were before the caps:
+## test_practice_mode checks every label of the panel fits it.
 func _key_cap(key: String, rect: Rect2, on_gold := false) -> void:
-	var cap := _panel_plate(rect, _flat_box(Color(INK, 0.9) if on_gold else Color(0.93, 0.95, 0.98, 0.95), 4, 0.0))
+	_panel_plate(rect, _flat_box(Color(INK, 0.9) if on_gold else Color(0.93, 0.95, 0.98, 0.95), 4, 0.0))
 	var words := Label.new()
 	words.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	words.text = key
+	words.position = rect.position
 	words.size = rect.size
 	words.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	words.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -536,7 +539,7 @@ func _key_cap(key: String, rect: Rect2, on_gold := false) -> void:
 	words.add_theme_font_size_override("font_size", 14)
 	words.add_theme_color_override("font_color", GOLD if on_gold else INK)
 	words.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	cap.add_child(words)
+	skills_panel.add_child(words)
 
 func _bold() -> FontVariation:
 	if _bold_font == null:
