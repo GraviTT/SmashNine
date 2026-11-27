@@ -1,0 +1,1811 @@
+{
+  "idle": {
+    "delivered": true,
+    "status": "후보 납품",
+    "attempt": 2,
+    "frames": 6,
+    "fps": 6.3,
+    "cell": 128,
+    "factor": 0.24,
+    "fixed_source_anchor_x": 194.5,
+    "head_scale": 1.0,
+    "head_check": {
+      "sheet": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\art-a\\SmashNine\\reports\\codex-art-100a\\idle-normalized\\idle.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 1.0
+        },
+        {
+          "scale": 1.0,
+          "score": 0.925
+        },
+        {
+          "scale": 1.0,
+          "score": 0.877
+        },
+        {
+          "scale": 1.0,
+          "score": 0.952
+        },
+        {
+          "scale": 1.0,
+          "score": 0.959
+        },
+        {
+          "scale": 1.02,
+          "score": 0.916
+        }
+      ],
+      "median": 1.0,
+      "used": 6
+    },
+    "detail": {
+      "definition": "내부 명암 변화량 / 앵커. 미술 완성도 점수가 아님.",
+      "anchor": 136.26,
+      "ratio_range": [
+        1.0,
+        1.0349
+      ],
+      "mean_ratio": 1.0249
+    },
+    "border_clear": true,
+    "margin_min": 7,
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_binary": true,
+    "planted_boot_centres": [
+      [
+        57.5,
+        77.5
+      ],
+      [
+        58.5,
+        79.0
+      ],
+      [
+        58.5,
+        78.0
+      ],
+      [
+        58.5,
+        78.5
+      ],
+      [
+        58.5,
+        78.5
+      ],
+      [
+        58.5,
+        78.5
+      ]
+    ],
+    "boot_neighbour_dx": [
+      [
+        1.0,
+        1.5
+      ],
+      [
+        0.0,
+        -1.0
+      ],
+      [
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        -1.0,
+        -1.0
+      ]
+    ],
+    "max_boot_dx": 1.5,
+    "strip_sha256": "25b5a27aa0f7be4ce3ef17d86a49117774946774985138dd4315f74285c7b441",
+    "frames_metrics": [
+      {
+        "frame": 1,
+        "bbox": [
+          31,
+          25,
+          94,
+          121
+        ],
+        "margin": {
+          "left": 31,
+          "top": 25,
+          "right": 34,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 136.26,
+        "colour_count": 3318,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              38,
+              43
+            ],
+            [
+              52,
+              63
+            ],
+            [
+              71,
+              84
+            ]
+          ],
+          "centres": [
+            40.5,
+            57.5,
+            77.5
+          ]
+        }
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          31,
+          22,
+          96,
+          121
+        ],
+        "margin": {
+          "left": 31,
+          "top": 22,
+          "right": 32,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 140.85,
+        "colour_count": 3337,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0337,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              39,
+              44
+            ],
+            [
+              53,
+              64
+            ],
+            [
+              73,
+              85
+            ]
+          ],
+          "centres": [
+            41.5,
+            58.5,
+            79.0
+          ]
+        }
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          30,
+          22,
+          95,
+          121
+        ],
+        "margin": {
+          "left": 30,
+          "top": 22,
+          "right": 33,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 140.55,
+        "colour_count": 3344,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0315,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              38,
+              43
+            ],
+            [
+              53,
+              64
+            ],
+            [
+              71,
+              85
+            ]
+          ],
+          "centres": [
+            40.5,
+            58.5,
+            78.0
+          ]
+        }
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          30,
+          22,
+          95,
+          121
+        ],
+        "margin": {
+          "left": 30,
+          "top": 22,
+          "right": 33,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 141.01,
+        "colour_count": 3338,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0349,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              38,
+              43
+            ],
+            [
+              53,
+              64
+            ],
+            [
+              72,
+              85
+            ]
+          ],
+          "centres": [
+            40.5,
+            58.5,
+            78.5
+          ]
+        }
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          30,
+          24,
+          95,
+          121
+        ],
+        "margin": {
+          "left": 30,
+          "top": 24,
+          "right": 33,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 140.43,
+        "colour_count": 3297,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0306,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              38,
+              43
+            ],
+            [
+              53,
+              64
+            ],
+            [
+              72,
+              85
+            ]
+          ],
+          "centres": [
+            40.5,
+            58.5,
+            78.5
+          ]
+        }
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          30,
+          22,
+          95,
+          121
+        ],
+        "margin": {
+          "left": 30,
+          "top": 22,
+          "right": 33,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 138.81,
+        "colour_count": 3353,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0187,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              38,
+              43
+            ],
+            [
+              53,
+              64
+            ],
+            [
+              72,
+              85
+            ]
+          ],
+          "centres": [
+            40.5,
+            58.5,
+            78.5
+          ]
+        }
+      }
+    ],
+    "visual_judgement": "천둥 북잡이 대기 6프레임. F1은 지정 앵커 그대로, F2–F6은 호흡. 스태프 끝에 앵커 대비 최대 3px 차이가 남음."
+  },
+  "attack": {
+    "delivered": true,
+    "status": "후보 납품",
+    "attempt": 2,
+    "frames": 6,
+    "fps": 35.25,
+    "cell": 128,
+    "factor": 0.275,
+    "fixed_source_anchor_x": 182.0,
+    "head_scale": 1.02,
+    "head_check": {
+      "sheet": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\art-a\\SmashNine\\reports\\codex-art-100a\\attack-normalized\\attack.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.919
+        },
+        {
+          "scale": 1.02,
+          "score": 0.906
+        },
+        {
+          "scale": 1.02,
+          "score": 0.921
+        },
+        {
+          "scale": 1.02,
+          "score": 0.921
+        },
+        {
+          "scale": 1.0,
+          "score": 0.874
+        },
+        {
+          "scale": 1.0,
+          "score": 0.9
+        }
+      ],
+      "median": 1.02,
+      "used": 6
+    },
+    "detail": {
+      "definition": "내부 명암 변화량 / 앵커. 미술 완성도 점수가 아님.",
+      "anchor": 136.26,
+      "ratio_range": [
+        0.9909,
+        1.0126
+      ],
+      "mean_ratio": 0.9987
+    },
+    "border_clear": true,
+    "margin_min": 7,
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_binary": true,
+    "planted_boot_centres": [
+      [
+        52.0,
+        72.5
+      ],
+      [
+        52.5,
+        72.5
+      ],
+      [
+        53.0,
+        72.5
+      ],
+      [
+        52.0,
+        72.5
+      ],
+      [
+        53.0,
+        72.5
+      ],
+      [
+        53.0,
+        72.5
+      ]
+    ],
+    "boot_neighbour_dx": [
+      [
+        0.5,
+        0.0
+      ],
+      [
+        0.5,
+        0.0
+      ],
+      [
+        -1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "max_boot_dx": 1.0,
+    "strip_sha256": "e0c543ea4219a9df4feb2a5fbfbb05da48068020ffc13ad5b412f50e2b84495f",
+    "frames_metrics": [
+      {
+        "frame": 1,
+        "bbox": [
+          36,
+          24,
+          104,
+          121
+        ],
+        "margin": {
+          "left": 36,
+          "top": 24,
+          "right": 24,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 135.02,
+        "colour_count": 3008,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 0.9909,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              46,
+              58
+            ],
+            [
+              66,
+              79
+            ]
+          ],
+          "centres": [
+            52.0,
+            72.5
+          ]
+        }
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          36,
+          24,
+          101,
+          121
+        ],
+        "margin": {
+          "left": 36,
+          "top": 24,
+          "right": 27,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 135.45,
+        "colour_count": 2970,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 0.9941,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              46,
+              59
+            ],
+            [
+              66,
+              79
+            ]
+          ],
+          "centres": [
+            52.5,
+            72.5
+          ]
+        }
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          36,
+          24,
+          104,
+          121
+        ],
+        "margin": {
+          "left": 36,
+          "top": 24,
+          "right": 24,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 137.98,
+        "colour_count": 2924,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0126,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              47,
+              59
+            ],
+            [
+              66,
+              79
+            ]
+          ],
+          "centres": [
+            53.0,
+            72.5
+          ]
+        }
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          36,
+          17,
+          109,
+          121
+        ],
+        "margin": {
+          "left": 36,
+          "top": 17,
+          "right": 19,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 135.56,
+        "colour_count": 3022,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 0.9949,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              46,
+              58
+            ],
+            [
+              66,
+              79
+            ]
+          ],
+          "centres": [
+            52.0,
+            72.5
+          ]
+        }
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          36,
+          23,
+          102,
+          121
+        ],
+        "margin": {
+          "left": 36,
+          "top": 23,
+          "right": 26,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 135.84,
+        "colour_count": 2924,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 0.9969,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              47,
+              59
+            ],
+            [
+              66,
+              79
+            ]
+          ],
+          "centres": [
+            53.0,
+            72.5
+          ]
+        }
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          36,
+          24,
+          100,
+          121
+        ],
+        "margin": {
+          "left": 36,
+          "top": 24,
+          "right": 28,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 136.6,
+        "colour_count": 2928,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0025,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              47,
+              59
+            ],
+            [
+              66,
+              79
+            ]
+          ],
+          "centres": [
+            53.0,
+            72.5
+          ]
+        }
+      }
+    ],
+    "visual_judgement": "스태프를 짧게 대각선 앞으로 찌르고 회수하는 기본 시트용 예비 공격. 두 발은 제자리에 고정."
+  },
+  "shield": {
+    "delivered": true,
+    "status": "후보 납품",
+    "attempt": 1,
+    "frames": 6,
+    "fps": 12,
+    "cell": 128,
+    "factor": 0.275,
+    "fixed_source_anchor_x": 176.5,
+    "head_scale": 1.02,
+    "head_check": {
+      "sheet": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\art-a\\SmashNine\\reports\\codex-art-100a\\shield-normalized\\shield.png",
+      "frames": [
+        {
+          "scale": 1.02,
+          "score": 0.942
+        },
+        {
+          "scale": 1.02,
+          "score": 0.865
+        },
+        {
+          "scale": 1.02,
+          "score": 0.852
+        },
+        {
+          "scale": 1.02,
+          "score": 0.785
+        },
+        {
+          "scale": 1.02,
+          "score": 0.856
+        },
+        {
+          "scale": 1.02,
+          "score": 0.889
+        }
+      ],
+      "median": 1.02,
+      "used": 6
+    },
+    "detail": {
+      "definition": "내부 명암 변화량 / 앵커. 미술 완성도 점수가 아님.",
+      "anchor": 136.26,
+      "ratio_range": [
+        0.9908,
+        1.0198
+      ],
+      "mean_ratio": 1.0058
+    },
+    "border_clear": true,
+    "margin_min": 7,
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_binary": true,
+    "planted_boot_centres": [
+      [
+        48.5,
+        79.5
+      ],
+      [
+        47.5,
+        79.0
+      ],
+      [
+        47.5,
+        78.0
+      ],
+      [
+        47.5,
+        78.5
+      ],
+      [
+        47.5,
+        78.0
+      ],
+      [
+        47.5,
+        78.5
+      ]
+    ],
+    "boot_neighbour_dx": [
+      [
+        -1.0,
+        -0.5
+      ],
+      [
+        0.0,
+        -1.0
+      ],
+      [
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        -0.5
+      ],
+      [
+        0.0,
+        0.5
+      ]
+    ],
+    "max_boot_dx": 1.0,
+    "strip_sha256": "01646b89fee8f582611f57a0cb71e1ae1c8e6ef70b91fe0d6deeb00420386aad",
+    "frames_metrics": [
+      {
+        "frame": 1,
+        "bbox": [
+          25,
+          30,
+          112,
+          121
+        ],
+        "margin": {
+          "left": 25,
+          "top": 30,
+          "right": 16,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 137.4,
+        "colour_count": 3176,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0084,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              43,
+              54
+            ],
+            [
+              72,
+              87
+            ]
+          ],
+          "centres": [
+            48.5,
+            79.5
+          ]
+        }
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          26,
+          30,
+          110,
+          121
+        ],
+        "margin": {
+          "left": 26,
+          "top": 30,
+          "right": 18,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 135.12,
+        "colour_count": 3191,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 0.9916,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              42,
+              53
+            ],
+            [
+              72,
+              86
+            ]
+          ],
+          "centres": [
+            47.5,
+            79.0
+          ]
+        }
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          29,
+          32,
+          110,
+          121
+        ],
+        "margin": {
+          "left": 29,
+          "top": 32,
+          "right": 18,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 137.68,
+        "colour_count": 3167,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0104,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              42,
+              53
+            ],
+            [
+              71,
+              85
+            ]
+          ],
+          "centres": [
+            47.5,
+            78.0
+          ]
+        }
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          29,
+          32,
+          110,
+          121
+        ],
+        "margin": {
+          "left": 29,
+          "top": 32,
+          "right": 18,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 135.01,
+        "colour_count": 3190,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 0.9908,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              42,
+              53
+            ],
+            [
+              72,
+              85
+            ]
+          ],
+          "centres": [
+            47.5,
+            78.5
+          ]
+        }
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          29,
+          31,
+          110,
+          121
+        ],
+        "margin": {
+          "left": 29,
+          "top": 31,
+          "right": 18,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 138.96,
+        "colour_count": 3165,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0198,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              42,
+              53
+            ],
+            [
+              71,
+              85
+            ]
+          ],
+          "centres": [
+            47.5,
+            78.0
+          ]
+        }
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          29,
+          31,
+          110,
+          121
+        ],
+        "margin": {
+          "left": 29,
+          "top": 31,
+          "right": 18,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 138.18,
+        "colour_count": 3179,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0141,
+        "feet_band": {
+          "bottom": 120,
+          "runs": [
+            [
+              42,
+              53
+            ],
+            [
+              72,
+              85
+            ]
+          ],
+          "centres": [
+            47.5,
+            78.5
+          ]
+        }
+      }
+    ],
+    "visual_judgement": "턱 아래에서 양손으로 스태프를 받치는 방어. 몸을 낮추고 가슴 앞에서 유지."
+  },
+  "victory": {
+    "delivered": false,
+    "status": "미납품",
+    "attempt": 2,
+    "frames": 6,
+    "fps": 8,
+    "cell": 192,
+    "factor": 0.265,
+    "fixed_source_anchor_x": 176.125,
+    "head_scale": 1.01,
+    "head_check": {
+      "sheet": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\art-a\\SmashNine\\reports\\codex-art-100a\\victory-normalized\\victory.png",
+      "frames": [
+        {
+          "scale": 1.0,
+          "score": 0.858
+        },
+        {
+          "scale": 1.0,
+          "score": 0.865
+        },
+        {
+          "scale": 1.0,
+          "score": 0.885
+        },
+        {
+          "scale": 1.02,
+          "score": 0.825
+        },
+        {
+          "scale": 1.02,
+          "score": 0.813
+        },
+        {
+          "scale": 1.02,
+          "score": 0.842
+        }
+      ],
+      "median": 1.01,
+      "used": 6
+    },
+    "detail": {
+      "definition": "내부 명암 변화량 / 앵커. 미술 완성도 점수가 아님.",
+      "anchor": 136.26,
+      "ratio_range": [
+        1.0283,
+        1.0704
+      ],
+      "mean_ratio": 1.046
+    },
+    "border_clear": true,
+    "margin_min": 39,
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_binary": true,
+    "planted_boot_centres": [
+      [
+        82.0,
+        103.5
+      ],
+      [
+        82.5,
+        103.5
+      ],
+      [
+        82.5,
+        104.0
+      ],
+      [
+        91.5,
+        112.5
+      ],
+      [
+        91.5,
+        113.0
+      ],
+      [
+        92.0,
+        113.0
+      ]
+    ],
+    "boot_neighbour_dx": [
+      [
+        0.5,
+        0.0
+      ],
+      [
+        0.0,
+        0.5
+      ],
+      [
+        9.0,
+        8.5
+      ],
+      [
+        0.0,
+        0.5
+      ],
+      [
+        0.5,
+        0.0
+      ]
+    ],
+    "max_boot_dx": 9.0,
+    "strip_sha256": "92c1a44b11d70794210bc8d35b985dc442710457a58fd9ee8b4355f6c8e75045",
+    "frames_metrics": [
+      {
+        "frame": 1,
+        "bbox": [
+          67,
+          56,
+          135,
+          153
+        ],
+        "margin": {
+          "left": 67,
+          "top": 56,
+          "right": 57,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 142.09,
+        "colour_count": 3123,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0428,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              77,
+              87
+            ],
+            [
+              97,
+              110
+            ]
+          ],
+          "centres": [
+            82.0,
+            103.5
+          ]
+        }
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          60,
+          60,
+          145,
+          153
+        ],
+        "margin": {
+          "left": 60,
+          "top": 60,
+          "right": 47,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 142.33,
+        "colour_count": 3127,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0445,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              77,
+              88
+            ],
+            [
+              97,
+              110
+            ]
+          ],
+          "centres": [
+            82.5,
+            103.5
+          ]
+        }
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          62,
+          43,
+          139,
+          153
+        ],
+        "margin": {
+          "left": 62,
+          "top": 43,
+          "right": 53,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 145.85,
+        "colour_count": 3298,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0704,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              77,
+              88
+            ],
+            [
+              97,
+              111
+            ]
+          ],
+          "centres": [
+            82.5,
+            104.0
+          ]
+        }
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          63,
+          52,
+          131,
+          153
+        ],
+        "margin": {
+          "left": 63,
+          "top": 52,
+          "right": 61,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 141.89,
+        "colour_count": 3321,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0413,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              70,
+              76
+            ],
+            [
+              86,
+              97
+            ],
+            [
+              106,
+              119
+            ]
+          ],
+          "centres": [
+            73.0,
+            91.5,
+            112.5
+          ]
+        }
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          63,
+          52,
+          125,
+          153
+        ],
+        "margin": {
+          "left": 63,
+          "top": 52,
+          "right": 67,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 142.89,
+        "colour_count": 3312,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0487,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              71,
+              76
+            ],
+            [
+              86,
+              97
+            ],
+            [
+              106,
+              120
+            ]
+          ],
+          "centres": [
+            73.5,
+            91.5,
+            113.0
+          ]
+        }
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          63,
+          52,
+          125,
+          153
+        ],
+        "margin": {
+          "left": 63,
+          "top": 52,
+          "right": 67,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 140.12,
+        "colour_count": 3386,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0283,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              71,
+              76
+            ],
+            [
+              87,
+              97
+            ],
+            [
+              106,
+              120
+            ]
+          ],
+          "centres": [
+            73.5,
+            92.0,
+            113.0
+          ]
+        }
+      }
+    ],
+    "visual_judgement": "미납품: 두 시도 모두 발 이동 3px 초과. 1차 7.5px, 2차 9px. 프레임별 위치 보정은 하지 않음."
+  },
+  "defeat": {
+    "delivered": false,
+    "status": "미납품",
+    "attempt": 1,
+    "frames": 6,
+    "fps": 10,
+    "cell": 192,
+    "factor": 0.31,
+    "fixed_source_anchor_x": 175.125,
+    "head_scale": null,
+    "head_check": {
+      "sheet": "C:\\Users\\TH\\Documents\\AI\\GameProject\\SmashNine-units\\art-a\\SmashNine\\reports\\codex-art-100a\\defeat-normalized\\defeat.png",
+      "frames": [
+        {
+          "scale": 0.62,
+          "score": 0.392
+        },
+        {
+          "scale": 0.92,
+          "score": 0.428
+        },
+        {
+          "scale": 1.0,
+          "score": 0.775
+        },
+        {
+          "scale": 0.7,
+          "score": 0.389
+        },
+        {
+          "scale": 0.6,
+          "score": 0.409
+        },
+        {
+          "scale": 0.64,
+          "score": 0.403
+        }
+      ],
+      "median": 1.0,
+      "used": 1
+    },
+    "detail": {
+      "definition": "내부 명암 변화량 / 앵커. 미술 완성도 점수가 아님.",
+      "anchor": 136.26,
+      "ratio_range": [
+        0.9808,
+        1.0727
+      ],
+      "mean_ratio": 1.0129
+    },
+    "border_clear": true,
+    "margin_min": 39,
+    "spill": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "alpha_binary": true,
+    "planted_boot_centres": [],
+    "boot_neighbour_dx": [],
+    "max_boot_dx": null,
+    "strip_sha256": "87c23496beec0337cd56de7d9d889f8d0a7851bd25349defd4183ce678fac24c",
+    "frames_metrics": [
+      {
+        "frame": 1,
+        "bbox": [
+          62,
+          62,
+          136,
+          153
+        ],
+        "margin": {
+          "left": 62,
+          "top": 62,
+          "right": 56,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 136.8,
+        "colour_count": 2977,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.004,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              81,
+              87
+            ],
+            [
+              94,
+              103
+            ],
+            [
+              115,
+              127
+            ]
+          ],
+          "centres": [
+            84.0,
+            98.5,
+            121.0
+          ]
+        }
+      },
+      {
+        "frame": 2,
+        "bbox": [
+          60,
+          66,
+          137,
+          153
+        ],
+        "margin": {
+          "left": 60,
+          "top": 66,
+          "right": 55,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 140.67,
+        "colour_count": 2983,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0324,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              87,
+              93
+            ],
+            [
+              99,
+              108
+            ],
+            [
+              114,
+              124
+            ]
+          ],
+          "centres": [
+            90.0,
+            103.5,
+            119.0
+          ]
+        }
+      },
+      {
+        "frame": 3,
+        "bbox": [
+          54,
+          79,
+          133,
+          153
+        ],
+        "margin": {
+          "left": 54,
+          "top": 79,
+          "right": 59,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 146.16,
+        "colour_count": 2769,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0727,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              80,
+              87
+            ],
+            [
+              95,
+              106
+            ],
+            [
+              108,
+              118
+            ]
+          ],
+          "centres": [
+            83.5,
+            100.5,
+            113.0
+          ]
+        }
+      },
+      {
+        "frame": 4,
+        "bbox": [
+          51,
+          90,
+          136,
+          153
+        ],
+        "margin": {
+          "left": 51,
+          "top": 90,
+          "right": 56,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 133.83,
+        "colour_count": 2491,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 0.9822,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              57,
+              116
+            ],
+            [
+              118,
+              134
+            ]
+          ],
+          "centres": [
+            86.5,
+            126.0
+          ]
+        }
+      },
+      {
+        "frame": 5,
+        "bbox": [
+          53,
+          107,
+          134,
+          153
+        ],
+        "margin": {
+          "left": 53,
+          "top": 107,
+          "right": 58,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 133.65,
+        "colour_count": 2011,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 0.9808,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              59,
+              118
+            ]
+          ],
+          "centres": [
+            88.5
+          ]
+        }
+      },
+      {
+        "frame": 6,
+        "bbox": [
+          53,
+          107,
+          135,
+          153
+        ],
+        "margin": {
+          "left": 53,
+          "top": 107,
+          "right": 57,
+          "bottom": 39,
+          "minimum": 39,
+          "has_4px_margin": true
+        },
+        "alpha_binary": true,
+        "border_clear": true,
+        "interior_detail": 136.95,
+        "colour_count": 2009,
+        "remaining_spill_pixels": 0,
+        "detail_ratio": 1.0051,
+        "feet_band": {
+          "bottom": 152,
+          "runs": [
+            [
+              59,
+              118
+            ]
+          ],
+          "centres": [
+            88.5
+          ]
+        }
+      }
+    ],
+    "visual_judgement": "미납품: 1차 누운 몸이 바닥선 위에 있으며, 2차는 스태프가 공중에 떠 보임.",
+    "body_contact": [
+      {
+        "frame": 5,
+        "manual_body_foot_roi": [
+          119,
+          130,
+          145,
+          153
+        ],
+        "body_bottom": 147,
+        "floor": 152,
+        "gap_px": 5
+      },
+      {
+        "frame": 6,
+        "manual_body_foot_roi": [
+          119,
+          130,
+          145,
+          153
+        ],
+        "body_bottom": 148,
+        "floor": 152,
+        "gap_px": 4
+      }
+    ]
+  }
+}
