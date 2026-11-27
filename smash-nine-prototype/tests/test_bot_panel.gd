@@ -2,9 +2,12 @@ extends SceneTree
 ## Live bot panel (F4, 2026-10-08): one row per fighter with what its bot is doing; the HUD
 ## clock and status keep updating next to it; F4 hides it. The results table hides it and the
 ## rest of the match HUD (QA-15), an ultimate cut-in still playing included (QA-21); the next
-## match brings back what F4 chose.
+## match brings back what F4 chose. Main keeps the faces it found for the panel and the
+## off-screen arrows (quality track 4, 2026-11-27), but a face swapped in while the game runs
+## (take_over_path, as the story face test does) is looked up again.
 
 const MAIN_SCENE := "res://scenes/Main.tscn"
+const ART_SETTINGS := preload("res://scripts/ArtSettings.gd")
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -41,6 +44,27 @@ func _run() -> void:
 		push_error("F4 should hide the bot panel")
 		failed = true
 	hud.toggle_bot_panel()
+	var fighter: Node = main.players[0]
+	var kept: Texture2D = main._face(fighter)
+	if kept == null or kept != ART_SETTINGS.character_portrait(fighter.character_id, fighter.body_type):
+		push_error("Main's face for %s should be the ArtSettings portrait (got %s)" % [fighter.display_name, kept])
+		failed = true
+	elif kept.resource_path == "":
+		push_error("The face for %s should come from a file (got a made-up texture)" % fighter.display_name)
+		failed = true
+	else:
+		var path := kept.resource_path
+		var swapped := ImageTexture.create_from_image(Image.create(4, 4, false, Image.FORMAT_RGBA8))
+		swapped.take_over_path(path)
+		var now_face: Texture2D = main._face(fighter)
+		var row_face: Texture2D = main._bot_panel_rows()[0].face
+		if now_face != swapped or row_face != swapped:
+			push_error("A face swapped in at %s should replace the kept one (face %s, panel row %s)" % [path, now_face, row_face])
+			failed = true
+		kept.take_over_path(path)
+		if main._face(fighter) != kept:
+			push_error("The face put back at %s should come back" % path)
+			failed = true
 	# An ultimate cut-in still playing when the match view hides goes with it (QA-21 S1).
 	hud.show_ultimate_cutin(main.players[0])
 	var standings: Array[Node] = []
