@@ -35,7 +35,8 @@ func _run() -> void:
 		scene = origin
 		for test in [_test_air_jumps, _test_air_step_effect, _test_backstab, _test_pierce, _test_pierce_ledge,
 				_test_sword_blink, _test_sword_air_and_end, _test_counter, _test_counter_attacker_freed, _test_counter_whiff, _test_decoy, _test_decoy_takes_a_swing,
-				_test_flurry, _test_flurry_target_freed, _test_flurry_moved_mid_cut, _test_flurry_burst, _test_bots, _test_third_skill_slot]:
+				_test_flurry, _test_flurry_target_freed, _test_flurry_moved_mid_cut, _test_flurry_burst, _test_bots, _test_third_skill_slot,
+				_test_kit_art]:
 			await test.call()
 			await _clear()
 			if failed:
@@ -545,3 +546,83 @@ func _test_third_skill_slot() -> void:
 	var cooldown: Vector2 = rio.skill_cooldown("u")
 	if not is_equal_approx(cooldown.y, rio.DECOY_COOLDOWN) or cooldown.x <= 0.0:
 		_fail("The U slot should show the decoy cooldown (%s)" % cooldown)
+
+## Kit v3 art (CODEX-SKM-08 and VFX-11, 2026-11-27): until the picks are in, his moves play the borrowed rows
+## and his code draws the stand-ins; with the picked rows and strips there, they take over. The strips are
+## put in Vfx's cache and the rows in his SpriteFrames, as the pick cup captures do.
+func _test_kit_art() -> void:
+	_floor(Vector2(0, 0), 2400)
+	var rio := _rio(Vector2(-200, -2))
+	var foe := _dummy(10, Vector2(150, -2), -1)
+	await _frames(6)
+	rio.facing = 1
+	rio.perform_skill_one()
+	await _frames(2)
+	if rio.character_sprite.animation != &"rio_dimension_slash":
+		_fail("Without its own row the throw should borrow dimension_slash (playing %s)" % rio.character_sprite.animation)
+		return
+	if not await _wait_for(func() -> bool: return is_instance_valid(rio.thrown_sword), 1.0):
+		_fail("The throw should make a sword")
+		return
+	if rio.thrown_sword.get_node_or_null("Vfx_rio_mana_sword") != null or rio.thrown_sword.get_node_or_null("ArtSprite") == null:
+		_fail("Without the picked strips the sword should be the tinted gem sword")
+		return
+	rio.queue_free()
+	foe.queue_free()
+	await _frames(2)
+	const VFX := preload("res://scripts/Vfx.gd")
+	for key in ["rio_mana_sword/true", "rio_mana_sword_stuck/true", "rio_backstab/false", "rio_shadow_blink/false", "rio_counter_stance/true", "rio_decoy_burst/false"]:
+		VFX._cache[key] = _fake_strip(4, key.ends_with("true"))
+	rio = _rio(Vector2(-200, -2))
+	foe = _dummy(10, Vector2(150, -2), -1)
+	await _frames(6)
+	var frames: SpriteFrames = rio.character_sprite.sprite_frames
+	for row in ["sword_throw", "counter_stance"]:
+		var animation := StringName("rio_%s" % row)
+		frames.add_animation(animation)
+		for index in 6:
+			frames.add_frame(animation, frames.get_frame_texture(&"rio_idle", 0))
+	rio.facing = 1
+	rio.perform_skill_one()
+	await _frames(2)
+	if rio.character_sprite.animation != &"rio_sword_throw":
+		_fail("With its own row the throw should play it (playing %s)" % rio.character_sprite.animation)
+	if not await _wait_for(func() -> bool: return is_instance_valid(rio.thrown_sword) and rio.thrown_sword.has_target(), 1.0):
+		_fail("The sword should stick in the foe")
+	elif rio.thrown_sword.get_node_or_null("Vfx_rio_mana_sword_stuck") == null:
+		_fail("A stuck mana sword should show its waiting strip")
+	await _wait_for(func() -> bool: return rio._can_start_attack(), 1.0)
+	rio.try_skill_one_followup()
+	await _frames(2)
+	# A second node of the same name gets a generated one: count the puffs by their frames.
+	var puffs := 0
+	var marks := 0
+	for node in arena.get_children():
+		if node is AnimatedSprite2D:
+			puffs += 1 if node.sprite_frames == VFX._cache["rio_shadow_blink/false"] else 0
+			marks += 1 if node.sprite_frames == VFX._cache["rio_backstab/false"] else 0
+	if puffs < 2:
+		_fail("A blink should leave a shadow puff where he vanishes and where he appears (%d)" % puffs)
+	if marks < 1 or arena.get_node_or_null("RioBackstab") != null:
+		_fail("The blink slash from behind should show the picked backstab mark, not the code X (%d)" % marks)
+	await _wait_for(func() -> bool: return rio._can_start_attack(), 1.0)
+	rio.perform_skill_two()
+	await _frames(1)
+	if not is_instance_valid(rio.stance_art) or rio.character_sprite.animation != &"rio_counter_stance":
+		_fail("The counter stance should play its own row inside the picked aura")
+	if is_instance_valid(rio.stance_visual) and rio.stance_visual.visible:
+		_fail("With the aura there the code hexagon should not show")
+	for key in ["rio_mana_sword/true", "rio_mana_sword_stuck/true", "rio_backstab/false", "rio_shadow_blink/false", "rio_counter_stance/true", "rio_decoy_burst/false"]:
+		VFX._cache.erase(key)
+
+func _fake_strip(count: int, loop: bool) -> SpriteFrames:
+	var strip := SpriteFrames.new()
+	strip.add_animation(&"play")
+	strip.set_animation_loop(&"play", loop)
+	strip.set_animation_speed(&"play", 30.0)
+	var image := Image.create(8, 8, false, Image.FORMAT_RGBA8)
+	image.fill(Color(0, 1, 1, 1))
+	var texture := ImageTexture.create_from_image(image)
+	for index in count:
+		strip.add_frame(&"play", texture)
+	return strip

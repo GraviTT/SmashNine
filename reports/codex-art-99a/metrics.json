@@ -1,0 +1,602 @@
+{
+  "task": "CODEX-ART-99 / art-a",
+  "branch": "codex/newchar-99a",
+  "definitions": {
+    "automated": "Pillow alpha bbox and pipeline pixel checks. Sprite bbox includes weapon; Jupi body height is separately measured excluding staff.",
+    "manual": "Skull/chin/sole landmarks picked visually, not automatic anatomy detection. Main hair volume included; detached hair tips/ahoge, circlet and long beard excluded. Sprite landmark uncertainty ±2 px; illustration ±10 px, Borok1 chin obscured by beard ±15 px.",
+    "head_count": "(sole_y - skull_top + 1) / (chin_y - skull_top + 1); illustrative proportions under chosen manual landmarks, not exact anatomical truth.",
+    "detail": "normalize.py interior_detail: local interior RGB contrast, ratio to FIRST installed idle frame only. Not a semantic art-quality score.",
+    "body_width": "Sprite bbox includes axe, fur and hair; does not represent hitbox width."
+  },
+  "looks": [
+    {
+      "id": "borok1",
+      "delivered": true,
+      "illustration": {
+        "file": "art/bakeoff/newchar-2026-11-26/borok/1/borok_illustration-1.png",
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "transparent_pixels": 1059206,
+        "partial_alpha_pixels": 43972,
+        "opaque_pixels": 469686,
+        "transparent_rgb_nonzero": 0,
+        "bbox": [
+          44,
+          102,
+          980,
+          1433
+        ],
+        "silhouette_height": 1331,
+        "occupancy_height_percent": 86.65,
+        "border_alpha_pixels": 0,
+        "manual_source_skull_chin_sole_y": [
+          312,
+          470,
+          1478
+        ],
+        "manual_head_count": 7.34,
+        "framing": {
+          "source": "borok1-illustration-v2.png",
+          "source_bbox": [
+            14,
+            58,
+            1014,
+            1480
+          ],
+          "uniform_scale": 0.936,
+          "paste_xy": [
+            44,
+            102
+          ],
+          "face_source_box": [
+            450,
+            294,
+            690,
+            534
+          ],
+          "face_final_box": [
+            452,
+            323,
+            677,
+            548
+          ],
+          "alpha_cleanup": "alpha <=2 ->0; linear 2..250 ->0..255; alpha>=250 ->255; zero RGB when alpha=0"
+        }
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "crop_from_final": true,
+        "manual_eye_fraction": 0.4
+      },
+      "sprite": {
+        "file": "art/bakeoff/newchar-2026-11-26/borok/1/borok-idle-1.png",
+        "size": [
+          128,
+          128
+        ],
+        "source": "art/raw/newchar-99a/borok1-idle-v6.png#0,0",
+        "factor": 0.0993619,
+        "body_height_excluding_weapon": 109,
+        "manual_head_box": [
+          53,
+          14,
+          87,
+          48
+        ],
+        "manual_head_height": 35,
+        "manual_anatomical_height": 107,
+        "manual_head_count": 3.06,
+        "reference_first_idle": "rio_female",
+        "detail_percent": 113.41,
+        "index": 0,
+        "bbox": [
+          17,
+          12,
+          111,
+          121
+        ],
+        "body_height": 109,
+        "body_width": 94,
+        "area": 7203,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 110.73,
+        "colour_count": 6043,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 17,
+          "top": 12,
+          "right": 17,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1341
+      },
+      "visual_review": {
+        "illustration_full_size_dark_light": true,
+        "sprite_nearest_4x": true,
+        "hands_grip_and_feet": "checked visually; hidden finger tips cannot all be counted",
+        "prop_complete": true,
+        "extra_limbs_seen": false,
+        "face_clear": true,
+        "sprite_effects_seen": false
+      }
+    },
+    {
+      "id": "borok2",
+      "delivered": true,
+      "illustration": {
+        "file": "art/bakeoff/newchar-2026-11-26/borok/2/borok_illustration-2.png",
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "transparent_pixels": 968451,
+        "partial_alpha_pixels": 35803,
+        "opaque_pixels": 568610,
+        "transparent_rgb_nonzero": 0,
+        "bbox": [
+          74,
+          92,
+          949,
+          1444
+        ],
+        "silhouette_height": 1352,
+        "occupancy_height_percent": 88.02,
+        "border_alpha_pixels": 0,
+        "manual_source_skull_chin_sole_y": [
+          315,
+          484,
+          1491
+        ],
+        "manual_head_count": 6.92,
+        "framing": {
+          "source": "borok2-illustration-v2.png",
+          "source_bbox": [
+            71,
+            75,
+            990,
+            1495
+          ],
+          "uniform_scale": 0.952112676056338,
+          "paste_xy": [
+            74,
+            92
+          ],
+          "face_source_box": [
+            405,
+            284,
+            655,
+            534
+          ],
+          "face_final_box": [
+            392,
+            291,
+            630,
+            529
+          ],
+          "alpha_cleanup": "alpha <=2 ->0; linear 2..250 ->0..255; alpha>=250 ->255; zero RGB when alpha=0"
+        }
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "crop_from_final": true,
+        "manual_eye_fraction": 0.4
+      },
+      "sprite": {
+        "file": "art/bakeoff/newchar-2026-11-26/borok/2/borok-idle-2.png",
+        "size": [
+          128,
+          128
+        ],
+        "source": "art/raw/newchar-99a/borok2-idle-v6.png#0,0",
+        "factor": 0.09779736,
+        "body_height_excluding_weapon": 111,
+        "manual_head_box": [
+          43,
+          11,
+          86,
+          47
+        ],
+        "manual_head_height": 37,
+        "manual_anatomical_height": 110,
+        "manual_head_count": 2.97,
+        "reference_first_idle": "rio_female",
+        "detail_percent": 139.26,
+        "index": 0,
+        "bbox": [
+          13,
+          10,
+          118,
+          121
+        ],
+        "body_height": 111,
+        "body_width": 105,
+        "area": 8071,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 135.97,
+        "colour_count": 5855,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 13,
+          "top": 10,
+          "right": 10,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3926
+      },
+      "visual_review": {
+        "illustration_full_size_dark_light": true,
+        "sprite_nearest_4x": true,
+        "hands_grip_and_feet": "checked visually; hidden finger tips cannot all be counted",
+        "prop_complete": true,
+        "extra_limbs_seen": false,
+        "face_clear": true,
+        "sprite_effects_seen": false
+      }
+    },
+    {
+      "id": "borok3",
+      "delivered": true,
+      "illustration": {
+        "file": "art/bakeoff/newchar-2026-11-26/borok/3/borok_illustration-3.png",
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "transparent_pixels": 1049454,
+        "partial_alpha_pixels": 36126,
+        "opaque_pixels": 487284,
+        "transparent_rgb_nonzero": 0,
+        "bbox": [
+          65,
+          92,
+          959,
+          1444
+        ],
+        "silhouette_height": 1352,
+        "occupancy_height_percent": 88.02,
+        "border_alpha_pixels": 0,
+        "manual_source_skull_chin_sole_y": [
+          287,
+          458,
+          1483
+        ],
+        "manual_head_count": 6.96,
+        "framing": {
+          "source": "borok3-illustration-v2.png",
+          "source_bbox": [
+            49,
+            66,
+            990,
+            1488
+          ],
+          "uniform_scale": 0.9507735583684951,
+          "paste_xy": [
+            64,
+            92
+          ],
+          "face_source_box": [
+            393,
+            286,
+            618,
+            511
+          ],
+          "face_final_box": [
+            391,
+            301,
+            605,
+            515
+          ],
+          "alpha_cleanup": "alpha <=2 ->0; linear 2..250 ->0..255; alpha>=250 ->255; zero RGB when alpha=0"
+        }
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "crop_from_final": true,
+        "manual_eye_fraction": 0.4
+      },
+      "sprite": {
+        "file": "art/bakeoff/newchar-2026-11-26/borok/3/borok-idle-3.png",
+        "size": [
+          128,
+          128
+        ],
+        "source": "art/raw/newchar-99a/borok3-idle-v2.png#0,0",
+        "factor": 0.09642857,
+        "body_height_excluding_weapon": 108,
+        "manual_head_box": [
+          44,
+          15,
+          87,
+          49
+        ],
+        "manual_head_height": 35,
+        "manual_anatomical_height": 106,
+        "manual_head_count": 3.03,
+        "reference_first_idle": "rio_female",
+        "detail_percent": 119.27,
+        "index": 0,
+        "bbox": [
+          23,
+          13,
+          122,
+          121
+        ],
+        "body_height": 108,
+        "body_width": 99,
+        "area": 6786,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 116.46,
+        "colour_count": 5946,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 23,
+          "top": 13,
+          "right": 6,
+          "bottom": 7,
+          "minimum": 6,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1927
+      },
+      "visual_review": {
+        "illustration_full_size_dark_light": true,
+        "sprite_nearest_4x": true,
+        "hands_grip_and_feet": "checked visually; hidden finger tips cannot all be counted",
+        "prop_complete": true,
+        "extra_limbs_seen": false,
+        "face_clear": true,
+        "sprite_effects_seen": false
+      }
+    },
+    {
+      "id": "jupi1",
+      "delivered": true,
+      "illustration": {
+        "file": "art/bakeoff/newchar-2026-11-26/jupi/1/jupi_illustration-1.png",
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "transparent_pixels": 1161049,
+        "partial_alpha_pixels": 61345,
+        "opaque_pixels": 350470,
+        "transparent_rgb_nonzero": 0,
+        "bbox": [
+          138,
+          92,
+          885,
+          1444
+        ],
+        "silhouette_height": 1352,
+        "occupancy_height_percent": 88.02,
+        "border_alpha_pixels": 0,
+        "manual_source_skull_chin_sole_y": [
+          234,
+          409,
+          1494
+        ],
+        "manual_head_count": 7.16,
+        "framing": {
+          "source": "jupi1-illustration-v1.png",
+          "source_bbox": [
+            89,
+            0,
+            917,
+            1498
+          ],
+          "uniform_scale": 0.9025367156208278,
+          "paste_xy": [
+            138,
+            92
+          ],
+          "face_source_box": [
+            350,
+            215,
+            650,
+            515
+          ],
+          "face_final_box": [
+            374,
+            286,
+            644,
+            557
+          ],
+          "alpha_cleanup": "alpha <=2 ->0; linear 2..250 ->0..255; alpha>=250 ->255; zero RGB when alpha=0"
+        }
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "crop_from_final": true,
+        "manual_eye_fraction": 0.4
+      },
+      "sprite": {
+        "file": "art/bakeoff/newchar-2026-11-26/jupi/1/jupi-idle-1.png",
+        "size": [
+          128,
+          128
+        ],
+        "source": "art/raw/newchar-99a/jupi1-idle-v2.png#0,0",
+        "factor": 0.10538642,
+        "body_height_excluding_weapon": 90,
+        "manual_head_box": [
+          43,
+          34,
+          78,
+          68
+        ],
+        "manual_head_height": 35,
+        "manual_anatomical_height": 87,
+        "manual_head_count": 2.49,
+        "reference_first_idle": "nova_female",
+        "detail_percent": 139.05,
+        "index": 0,
+        "bbox": [
+          35,
+          23,
+          90,
+          121
+        ],
+        "body_height": 98,
+        "body_width": 55,
+        "area": 3080,
+        "bottom": 120,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 132.51,
+        "colour_count": 2738,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 35,
+          "top": 23,
+          "right": 38,
+          "bottom": 7,
+          "minimum": 7,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3905
+      },
+      "visual_review": {
+        "illustration_full_size_dark_light": true,
+        "sprite_nearest_4x": true,
+        "hands_grip_and_feet": "checked visually; hidden finger tips cannot all be counted",
+        "prop_complete": true,
+        "extra_limbs_seen": false,
+        "face_clear": true,
+        "sprite_effects_seen": false
+      }
+    }
+  ],
+  "roster": [
+    {
+      "id": "frey",
+      "bbox": [
+        17,
+        22,
+        107,
+        121
+      ],
+      "height": 99,
+      "width": 90
+    },
+    {
+      "id": "rio_female",
+      "bbox": [
+        17,
+        25,
+        118,
+        121
+      ],
+      "height": 96,
+      "width": 101
+    },
+    {
+      "id": "nova_female",
+      "bbox": [
+        34,
+        32,
+        95,
+        121
+      ],
+      "height": 89,
+      "width": 61
+    },
+    {
+      "id": "luna",
+      "bbox": [
+        23,
+        41,
+        111,
+        121
+      ],
+      "height": 80,
+      "width": 88
+    },
+    {
+      "id": "xion",
+      "bbox": [
+        25,
+        24,
+        97,
+        121
+      ],
+      "height": 97,
+      "width": 72
+    }
+  ]
+}

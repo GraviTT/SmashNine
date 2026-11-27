@@ -1,0 +1,70 @@
+CODEX-VFX-11 | started 2026-11-26 15:08:26 UTC (2026-11-27 00:08:26 KST)
+Hard stop 2026-11-26 17:38:26 UTC (150 minutes).
+
+Native pixel drawing: mana sword A/B, waiting sword A/B, backstab A/B.
+Tool: Python + Pillow, no model generation. Geometry and colour definitions in build.py.
+Reason: exact blade continuity between flying and waiting, stable 96x32 silhouette,
+and a compact X safely below the face are easier to control at native pixel resolution.
+
+Generated prompts and exact reference paths follow as each call is made.
+
+--- rio_shadow_blink-a ---
+Before: 2026-11-26T15:15:03Z / After: 2026-11-26T15:15:45Z
+References: ["C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_blink_trail.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_rune_burst.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/art/bakeoff/rio/rio_male-idle-v2.png"]
+Use case: stylized-concept. Asset type: six-frame pixel-art game effect sprite sheet, Rio shadow blink, candidate A.
+Generate a TRUE transparent RGBA sheet, exactly 3 columns by 2 rows of equal square cells on a 1536x1024 canvas. Reading order left to right, top to bottom. No labels, no grid, no text, no backdrop.
+Reference images: rio_blink_trail is reference for sharp tapered shadow wisps; rio_rune_burst is reference for faceted cyan crystals and crisp pixel density; rio_male-idle-v2 is palette reference ONLY, do not draw a person, face, body, clothing or sword.
+Subject: at the point a spellblade vanishes or reappears, two thin shadow-blue ribbons spiral inward around an EMPTY body-sized upright space. Navy shadow-blue main wisps, small bright CYAN slivers on their inner edges. Palette #15295B #283C94 #4A5CFF #0F6683 #39D8FF #9DEEFF. Cyan is an accent; mostly deep blue shadow. A little silver-white at maximum tear, no bright blue solid oval.
+Each cell uses exactly the SAME stationary invisible body axis, x=256 and floor y=440. Empty cavity extends y=80..410, x=190..320. Effects stay within x=60..450 and y=40..460. Large transparent margins between cells.
+Animation: F1 two short rising wisps near feet; F2 ribbons grow around flanks; F3 peak pair of narrow tapering curved wisps bracketing full body height with cyan splinters; F4 tips curl inward as the flanks break into segments; F5 smaller inward curls and descending remnants; F6 only a few tiny blue fragments near the lower flanks. The space between the two sides stays empty.
+Pixel style: deliberate hard stepped edges and angular pixel clusters, limited colours, no smooth painted blur, no bloom, no semitransparent haze. No outer glow halo. Decorative magic runes may be simple nonalphabetic diamonds only. This will be reduced to 128x160 per frame; retain readable slender silhouettes. No extra effects outside the six cells.
+
+--- rio_shadow_blink-b ---
+Before: 2026-11-26T15:16:15Z / After: 2026-11-26T15:17:00Z
+References: ["C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_blink_trail.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_rune_burst.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/art/bakeoff/rio/rio_male-idle-v2.png"]
+Use case: stylized-concept. Asset type: six-frame pixel-art game VFX sprite sheet, Rio shadow blink candidate B.
+TRUE transparent background, RGBA, 1536x1024, exactly 3 columns x 2 rows of equal 512x512 cells; no labels, border lines or text.
+References: blink trail for tapered sharp indigo magic; rune burst for crystalline edges; Rio idle for the navy and cyan palette ONLY. NEVER draw the character or any body, face or clothing.
+Draw an angular shadow-blue rift tearing OUTWARDS on either side of an EMPTY upright body-shaped space. Deep navy angular wisps, jagged cyan blade-like slivers, broken diagonal folds. Distinct from a circular magic portal. Limited palette #15295B #283C94 #4A5CFF #0F6683 #39D8FF #9DEEFF. Large solid crisp pixel clusters rather than faint thin lines. No smooth gradients, no glow, no fog, no blur or bloom, no background colour at all. Empty pixels have alpha 0; every drawn pixel opaque.
+All six cells share stationary axis x256, feet y440, same scale. Body cavity x190..320, y90..410 stays transparent. Margins x50..465, y40..465.
+Timeline: F1 two compact angular creases at the flanks; F2 four sharp crescents begin ripping open; F3 tallest peak rift of angular dark blue ribbons edged cyan, flanking the entire invisible body; F4 those ribbons shear outwards into angular chunks; F5 scattered smaller blue shards near the outer flanks; F6 just three or four tiny dark blue slivers. Keep the outer span readable on reduction to 128x160. Do not brighten a whole area: isolated shapes only. No ground shadow or floor.
+
+--- rio_counter_stance-a ---
+Before: 2026-11-26T15:17:49Z / After: 2026-11-26T15:18:29Z
+References: ["C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_blink_trail.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_rune_burst.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/art/bakeoff/rio/rio_male-idle-v2.png"]
+Use case: stylized-concept. Asset type: six-frame pixel-art game effect animation, Rio counter stance A.
+Create a TRUE TRANSPARENT RGBA sprite atlas 1536x1024, exactly 3 columns x 2 rows of 512x512 cells. No labels, no text, no grids. Reference rune burst for pixel-crystal material and palette, blink trail for indigo tendrils, Rio idle for navy/teal/cyan only. Draw NO person or face.
+An understated dark shadow-blue aura and a FAINT upright hexagonal rune ring surrounding an invisible fighter's torso. The six-sided ring is always stationary, centred at cell (256,256), radius 144 (288 wide), its interior completely transparent. Very thin navy blue sides, occasional little cyan diamond ticks at corners, NO text or letters. Navy shadow wisps curl along the lower left and right OUTSIDE the ring. Thin tapering flames, NOT a filled smoke cloud, no floor oval. The area within the hexagon is clear.
+Palette: dark #15295B and #283C94 for most mass, #4A5CFF sparsely on edges, a few #39D8FF highlights. Make it DARK and protective, not a bright magical explosion. Hard-edged pixel clusters, controlled stepped lines, no glow, no gradients, no blur, no semitransparent haze.
+The ring keeps exactly the SAME size and location all six frames. Seamless loop: F1 calm short lower tendrils, F2 left rises slightly, F3 both higher with subtle cyan corners, F4 right is tallest, F5 both lower, F6 almost same as F1 with tiny sparks shifted. Small cyclic pulse in brightness only, never scaling the whole ring. All art safely inside x55..455 y60..445; empty borders.
+This will be reduced to 192x192 with a 96px wide hexagon; make the drawing clean and sparse so an actual pixel-art fighter remains readable inside.
+
+--- rio_counter_stance-b ---
+Before: 2026-11-26T15:19:14Z / After: 2026-11-26T15:19:59Z
+References: ["C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_blink_trail.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_rune_burst.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/art/bakeoff/rio/rio_male-idle-v2.png"]
+Use case: stylized-concept. Asset type: six-frame pixel-art VFX sprite sheet for Rio counter stance B.
+A TRUE transparent RGBA 1536x1024 canvas; exactly 3 columns by 2 rows of 512x512 cells, reading order left-to-right top-to-bottom. No labels, no words, no symbols resembling letters, no grid or background.
+Use attached rune burst to guide angular crystal facets, blink trail to guide indigo accents, Rio idle ONLY to match palette. NO person, silhouette, face or sword.
+The stance is a DARK shadow-blue aura surrounding an EMPTY torso space, with a faint perfectly stationary upright hexagon. Hexagon centre (256,256), left/right extents 112..400, top/bottom within 90..422, all frames same. A thin navy rune outline, six small faceted blue diamond nodes at the vertices. A few thin angular shadow flakes hover just outside its lower sides, restrained cyan facets inside two nodes at a time. This is a quiet ready stance, not an attack or a shield dome.
+Six-frame seamless cycle: cyan highlight travels clockwise from lower-left node F1 to upper-left F2 to top F3 to upper-right F4 to lower-right F5 to bottom F6; paired small shadow flakes breathe gently up/down by only a few pixels and return. Geometry and scale unchanged. The interior stays transparent and unobstructed.
+Palette #10172A #15295B #283C94 #4A5CFF #0F6683 #39D8FF, only a few tiny #9DEEFF pixels. Sharp pixel-art stairs, 2-4 pixel clusters. No gradients, no bloom, no fuzzy glow, no halo, no smoke sheet. Every mark is a deliberate solid opaque shape surrounded by alpha-zero transparency. Final reduced ring will be 96px wide, so use compact sparse detail.
+
+--- rio_decoy_burst-a ---
+Before: 2026-11-26T15:20:49Z / After: 2026-11-26T15:21:36Z
+References: ["C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_blink_trail.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_rune_burst.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/art/bakeoff/rio/rio_male-idle-v2.png"]
+Use case: stylized-concept. Asset type: six-frame pixel-art game VFX sprite sheet, Rio decoy shatter A.
+TRUE transparent RGBA background, 1536x1024, exactly 3 columns x 2 rows of equal 512x512 cells, reading order left to right top to bottom. No labels, text, grids, checkerboard, floor, body or character.
+Reference rune burst: crystalline sharp cyan/blue facets and pixel style, but DO NOT copy radial symmetric starburst. Blink trail: sharp indigo/cyan edge accents. Rio idle: palette only.
+A blue translucent magical decoy shatters into thin BLUE GLASS splinters propelled mostly UPWARDS from the body centre. Hollow shards with dark-blue facets and crisp cyan edges imply glass without alpha haze. Short small white-cyan flash at origin, a thin horizontal cyan ring expands around origin. Original force area is compact, about 80x80 at game size. This is an upward pop, not a giant firework or snowflake.
+All cells share fixed impact origin (256,300), stationary same scale. F1 tiny white four-point crack flash at origin and two glass cracks. F2 peak compact white flash surrounded by 5-7 slender pointed glass fragments opening up, a small thin cyan ellipse at origin. F3 ring widest, flash gone, thin glass shards rising upward and outward above origin. F4 only upwards-rising separated shards and broken ring. F5 smaller pieces further above, lower area almost clear. F6 just three small dark blue splinters high above origin, no white.
+Full peak envelope x100..412 and y105..375 (most of it above origin), empty generous margins. Sequence changes shard positions coherently upward. 8-12 colours: navy #15295B, shadow blue #4A5CFF, teal #0F6683, cyan #39D8FF, silver-cyan #9DEEFF, #F2FFFF only for first two small flashes. Hard edged pixel art, deliberate stair steps, no gradients, no fog, no glow halo or blur; every drawn pixel opaque.
+
+--- rio_decoy_burst-b ---
+Before: 2026-11-26T15:23:25Z / After: 2026-11-26T15:24:08Z
+References: ["C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_blink_trail.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/smash-nine-prototype/assets/art/effects/skill/rio_rune_burst.png", "C:/Users/TH/Documents/AI/GameProject/SmashNine-units/vfx-b/SmashNine/art/bakeoff/rio/rio_male-idle-v2.png"]
+Use case: stylized-concept. Asset type: six-frame pixel-art game VFX sprite sheet, Rio decoy shatter candidate B.
+TRUE transparent RGBA 1536x1024 canvas, exactly 3 columns by 2 rows of 512x512 cells, temporal order left to right top to bottom. No labels, text, checkerboard, grid, character, body silhouette or floor.
+Reference rune burst for material and navy/cyan crystalline palette, blink trail for directional streak edges, Rio idle ONLY for colour.
+A blue magical decoy breaks into several BROAD FLAT GLASS shards, propelled UPWARD like a broken pane. The shards have dark-blue inside facets, silver-cyan hard edges and angular transparent gaps, so they read as see-through glass using solid pixel art. A compact cyan shock ring breaks into 3-4 angular arc segments around the origin. A very short narrow white flash appears for only the first two frames. Most energy and shards go up and slightly out, NOT radially in all directions.
+All frames same fixed scale, origin at cell (256,355). F1 small white broken-diamond crack at origin. F2 five broad wedge-shaped glass fragments open upwards from a small white flash, and a compact cyan ring. F3 the five fragments separate up and out with slanted straight motion strokes below them, segmented ring about 280 pixels across. F4 glass triangles higher with far fewer strokes; ring nearly gone. F5 just four smaller blue triangles high above origin. F6 only two tiny blue facets at upper left and upper right. Keep peak envelope about 320x320 source pixels, safe within x90..422 and y50..405, mostly ABOVE origin.
+Palette: #15295B #283C94 #4A5CFF #0F6683 #39D8FF #9DEEFF #F2FFFF; white extremely sparse after F2. Crisp pixel clusters and stepped angular outlines, no smooth gradients, NO glow or fog or blue haze, no blurred halo. Every visible shape has a hard edge; blank area completely alpha zero. This will be reduced to a compact roughly 80x80 effect inside a 160x160 cell.

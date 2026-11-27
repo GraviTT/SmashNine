@@ -1,0 +1,883 @@
+{
+  "selection": {
+    "accepted": true,
+    "face_verified": true,
+    "pose_ok": true,
+    "costume_ok": true,
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "note": "오른팔을 따라 검을 거꾸로 잡고 왼손바닥을 편 받아치기 자세 후보. 얼굴 폭은 같은 눈 아래 높이로 보정 후 1.000이며 눈 사이 거리는 가림으로 측정하지 못했다.",
+    "observation": "1회 생성, 공통 배율 0.39. 자동 머리 중앙값 0.98, 발 기준선 접지 유지. 여섯 전신·얼굴·검 손잡이를 확인했고 얼굴 표식의 높이 불일치와 피부 한 픽셀 누락을 수정했다.",
+    "human_review": "낮게 버티는 자세가 공용 방어와 구분되는지, F3–6 호흡 변화가 충분한지, 대기보다 큰 전신 실루엣과 짧게 보이는 역수 검의 길이를 재생에서 판단.",
+    "stem": "rio_male",
+    "row": "counter_stance",
+    "attempt": 1
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-08\\rio_male\\counter_stance\\attempt-1\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.39,
+      "scale_by": "fixed:0.39",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        107,
+        112
+      ],
+      "body_width_range": [
+        107,
+        112
+      ],
+      "area_range": [
+        5446,
+        5631
+      ],
+      "area_spread_percent": 3.29,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        4739,
+        4826
+      ],
+      "interior_detail_range": [
+        120.73,
+        126.84
+      ],
+      "interior_detail_mean": 122.75,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 111.7,
+      "interior_detail_ratio": 1.0989
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 111.7,
+          "colour_count": 4258,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 111.7,
+      "colour_count_range": [
+        4258,
+        4258
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/source-frames/00.png",
+        "bbox": [
+          50,
+          41,
+          157,
+          153
+        ],
+        "body_height": 112,
+        "body_width": 107,
+        "area": 5446,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 126.84,
+        "colour_count": 4739,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 50,
+          "top": 41,
+          "right": 35,
+          "bottom": 39,
+          "minimum": 35,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1355
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/source-frames/01.png",
+        "bbox": [
+          46,
+          46,
+          157,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 111,
+        "area": 5604,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 121.96,
+        "colour_count": 4800,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 46,
+          "top": 46,
+          "right": 35,
+          "bottom": 39,
+          "minimum": 35,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.0919
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/source-frames/02.png",
+        "bbox": [
+          47,
+          46,
+          158,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 111,
+        "area": 5605,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 123.04,
+        "colour_count": 4816,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 47,
+          "top": 46,
+          "right": 34,
+          "bottom": 39,
+          "minimum": 34,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.1015
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/source-frames/03.png",
+        "bbox": [
+          46,
+          46,
+          157,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 111,
+        "area": 5591,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 121.3,
+        "colour_count": 4779,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 46,
+          "top": 46,
+          "right": 35,
+          "bottom": 39,
+          "minimum": 35,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.0859
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/source-frames/04.png",
+        "bbox": [
+          46,
+          46,
+          157,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 111,
+        "area": 5577,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 122.6,
+        "colour_count": 4826,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 46,
+          "top": 46,
+          "right": 35,
+          "bottom": 39,
+          "minimum": 35,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.0976
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/source-frames/05.png",
+        "bbox": [
+          46,
+          46,
+          158,
+          153
+        ],
+        "body_height": 107,
+        "body_width": 112,
+        "area": 5631,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 120.73,
+        "colour_count": 4808,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 46,
+          "top": 46,
+          "right": 34,
+          "bottom": 39,
+          "minimum": 34,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.0808
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/rio_male-counter_stance.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/frames",
+      "closeup": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/closeup.png",
+      "compare": "reports/codex-skm-08/rio_male/counter_stance/attempt-1/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        75.5,
+        49,
+        3,
+        4
+      ],
+      [
+        81,
+        47,
+        2,
+        3
+      ],
+      [
+        66.5,
+        52,
+        3,
+        4
+      ],
+      [
+        82.5,
+        52,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 76.017,
+        "y": 49.631,
+        "score": 1
+      },
+      {
+        "x": 81.309,
+        "y": 46.337,
+        "score": 1
+      },
+      {
+        "x": 66.5,
+        "y": 52,
+        "score": 1
+      },
+      {
+        "x": 82.5,
+        "y": 52,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 6.2334340455322055,
+    "reference_face_width": 16.0,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 117.145,
+            "y": 69.719,
+            "score": 0.962
+          },
+          {
+            "x": 122.38,
+            "y": 66.339,
+            "score": 0.837
+          },
+          {
+            "x": 107.5,
+            "y": 73,
+            "score": 0.895
+          },
+          {
+            "x": 123.5,
+            "y": 73,
+            "score": 0.87
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 16.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          97,
+          51,
+          0.799
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 117.145,
+              "y": 69.719,
+              "score": 0.962
+            },
+            {
+              "x": 122.38,
+              "y": 66.339,
+              "score": 0.837
+            },
+            {
+              "x": 107.5,
+              "y": 73.0,
+              "score": 0.895
+            },
+            {
+              "x": 123.5,
+              "y": 72.0,
+              "score": 0.87
+            }
+          ],
+          "face_width_ratio": 1.0
+        },
+        "correction_reason": "자동 양끝 y73/y72 불일치. 같은 눈 아래 y73의 볼 경계로 통일.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 116.124,
+            "y": 74.88,
+            "score": 0.97
+          },
+          {
+            "x": 119.604,
+            "y": 71.522,
+            "score": 0.801
+          },
+          {
+            "x": 105.5,
+            "y": 77.0,
+            "score": 0.901
+          },
+          {
+            "x": 121.5,
+            "y": 77.0,
+            "score": 0.913
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 16.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          96,
+          57,
+          0.796
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 117.113,
+            "y": 74.816,
+            "score": 0.974
+          },
+          {
+            "x": 120.74,
+            "y": 71.433,
+            "score": 0.834
+          },
+          {
+            "x": 106.5,
+            "y": 77,
+            "score": 0.874
+          },
+          {
+            "x": 122.5,
+            "y": 77,
+            "score": 0.909
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 16.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          97,
+          57,
+          0.801
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 117.113,
+              "y": 74.816,
+              "score": 0.974
+            },
+            {
+              "x": 120.74,
+              "y": 71.433,
+              "score": 0.834
+            },
+            {
+              "x": 107.5,
+              "y": 77.0,
+              "score": 0.874
+            },
+            {
+              "x": 122.5,
+              "y": 77.0,
+              "score": 0.909
+            }
+          ],
+          "face_width_ratio": 0.938
+        },
+        "correction_reason": "격자·픽셀 확인: x107은 피부(156,87,77)이며 자동 왼쪽 표식이 이 픽셀을 제외함.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 115.448,
+            "y": 74.94,
+            "score": 0.92
+          },
+          {
+            "x": 119.98,
+            "y": 71.306,
+            "score": 0.861
+          },
+          {
+            "x": 105.5,
+            "y": 77,
+            "score": 0.903
+          },
+          {
+            "x": 121.5,
+            "y": 77,
+            "score": 0.887
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 16.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          0.96,
+          96,
+          57,
+          0.803
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 115.448,
+              "y": 74.94,
+              "score": 0.92
+            },
+            {
+              "x": 119.98,
+              "y": 71.306,
+              "score": 0.861
+            },
+            {
+              "x": 106.5,
+              "y": 78.0,
+              "score": 0.903
+            },
+            {
+              "x": 121.5,
+              "y": 77.0,
+              "score": 0.887
+            }
+          ],
+          "face_width_ratio": 0.938
+        },
+        "correction_reason": "자동 왼쪽만 y78을 잡음. 눈 아래 같은 y77의 피부 x106부터 측정.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 115.257,
+            "y": 74.776,
+            "score": 0.948
+          },
+          {
+            "x": 120.271,
+            "y": 71.454,
+            "score": 0.775
+          },
+          {
+            "x": 105.5,
+            "y": 77.0,
+            "score": 0.883
+          },
+          {
+            "x": 121.5,
+            "y": 77.0,
+            "score": 0.904
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 16.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          95,
+          56,
+          0.785
+        ],
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 116.459,
+            "y": 74.84,
+            "score": 0.943
+          },
+          {
+            "x": 121.105,
+            "y": 71.394,
+            "score": 0.848
+          },
+          {
+            "x": 105.5,
+            "y": 77,
+            "score": 0.857
+          },
+          {
+            "x": 121.5,
+            "y": 77,
+            "score": 0.869
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 16.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.0,
+          96,
+          56,
+          0.789
+        ],
+        "original_proposal": {
+          "landmarks": [
+            {
+              "x": 116.459,
+              "y": 74.84,
+              "score": 0.943
+            },
+            {
+              "x": 121.105,
+              "y": 71.394,
+              "score": 0.848
+            },
+            {
+              "x": 105.5,
+              "y": 77.0,
+              "score": 0.857
+            },
+            {
+              "x": 122.5,
+              "y": 78.0,
+              "score": 0.869
+            }
+          ],
+          "face_width_ratio": 1.062
+        },
+        "correction_reason": "자동 오른쪽만 y78의 넓은 아래 경계로 내려감. 같은 y77의 피부 x121까지 비교.",
+        "review": "4x full-body and face landmarks visually inspected; far-eye metric excluded."
+      }
+    ],
+    "review_note": "Inspected ART-72 landmarks; corrections, if any, retain the original proposal and reason. Same row factor; no image editing. Eye distance remains unavailable.",
+    "sheet_sha256": "3c92507697827bd9ceaf33d977f5f93057d8d15fa7a0e67e4834a73a3601e01d"
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-08\\rio_male\\counter_stance\\attempt-1\\rio_male-counter_stance.png",
+    "frames": [
+      {
+        "scale": 1.0,
+        "score": 0.799
+      },
+      {
+        "scale": 0.96,
+        "score": 0.795
+      },
+      {
+        "scale": 0.96,
+        "score": 0.8
+      },
+      {
+        "scale": 0.96,
+        "score": 0.802
+      },
+      {
+        "scale": 1.0,
+        "score": 0.785
+      },
+      {
+        "scale": 1.0,
+        "score": 0.789
+      }
+    ],
+    "median": 0.98,
+    "used": 6
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-08\\rio_male-counter_stance-1.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      36809,
+      36751,
+      36734,
+      36662,
+      36623,
+      35719,
+      1,
+      1,
+      1
+    ],
+    "boxes": [
+      [
+        44,
+        231,
+        318,
+        517
+      ],
+      [
+        390,
+        243,
+        674,
+        517
+      ],
+      [
+        751,
+        243,
+        1036,
+        517
+      ],
+      [
+        1113,
+        243,
+        1398,
+        517
+      ],
+      [
+        1475,
+        243,
+        1760,
+        517
+      ],
+      [
+        1836,
+        243,
+        2122,
+        517
+      ]
+    ]
+  },
+  "sheet_sha256": "3c92507697827bd9ceaf33d977f5f93057d8d15fa7a0e67e4834a73a3601e01d"
+}

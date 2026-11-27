@@ -20,6 +20,10 @@ var art: Node2D
 var tint := Color.WHITE
 ## Expired (fading out): Rio no longer blinks to it.
 var gone := false
+## K's mana sword drawn by its picked strips (CODEX-VFX-11): flying, then waiting once it sticks.
+const FLY_EFFECT := "rio_mana_sword"
+const STUCK_EFFECT := "rio_mana_sword_stuck"
+var mana_art := false
 
 func dress(new_tint: Color) -> void:
 	tint = new_tint
@@ -34,6 +38,31 @@ func dress(new_tint: Color) -> void:
 	blade.rotation = direction.angle()
 	add_child(blade)
 	art = blade
+
+## K's sword: the mana sword strips once they are picked (Vfx "rio_mana_sword", turned to its flight by
+## Projectile.set_effect_art), else the gem sword tinted like the flurry's.
+func dress_mana(new_tint: Color) -> void:
+	tint = new_tint
+	z_index = 6
+	if set_effect_art(FLY_EFFECT, 1.0):
+		mana_art = true
+		art = get_node_or_null("Vfx_" + FLY_EFFECT) as Node2D
+		return
+	dress(new_tint)
+
+## A stuck mana sword shows its waiting strip at the same angle (none picked: it keeps the flying one).
+func _show_stuck_art() -> void:
+	if not mana_art:
+		return
+	var flying := get_node_or_null("Vfx_" + FLY_EFFECT) as Node2D
+	var rest := VFX.spawn(self, STUCK_EFFECT, Vector2.ZERO, Vector2.ONE, true, 0, Color.WHITE, true)
+	if rest == null:
+		return
+	if flying != null:
+		rest.rotation = flying.rotation
+		rest.scale = flying.scale
+		flying.queue_free()
+	art = rest
 
 ## True while it sticks in a fighter or monster that is still up.
 func has_target() -> bool:
@@ -111,6 +140,7 @@ func _stick(body: Node2D) -> void:
 		return
 	stuck = true
 	set_deferred("monitoring", false)
+	_show_stuck_art()
 	stuck_body = body
 	if is_instance_valid(stuck_body):
 		stuck_offset = global_position - stuck_body.global_position

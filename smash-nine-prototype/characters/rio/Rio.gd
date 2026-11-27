@@ -127,6 +127,7 @@ var counter_cooldown_timer := 0.0
 var counter_triggered := false
 var shadow_vanished := false
 var stance_visual: Line2D
+var stance_art: AnimatedSprite2D
 var decoy: Node2D
 var decoy_cooldown_timer := 0.0
 var decoy_swap_ready := false
@@ -168,7 +169,8 @@ func perform_basic_attack(attack_type: String, _direction: Vector2) -> void:
 				1:
 					_start_attack(0.079, 0.13, Callable(self, "_mana_slash_two"), Vector2i(-1, -1), &"mana_combo", Vector2i(2, 3))
 				_:
-					_start_attack(0.08, 0.22, Callable(self, "_pierce_slash"), Vector2i(-1, -1), &"mana_combo", Vector2i(4, 5))
+					var pierce: Array = _kit_pose(&"pierce", Vector2i(0, 5), &"mana_combo", Vector2i(4, 5))
+					_start_attack(0.08, 0.22, Callable(self, "_pierce_slash"), Vector2i(-1, -1), pierce[0], pierce[1])
 
 func perform_skill_one() -> void:
 	# No throwing out of a gravity root (Nova, D47).
@@ -178,7 +180,8 @@ func perform_skill_one() -> void:
 	_clear_sword()
 	if not is_on_floor():
 		air_throw_available = false
-	_start_attack(SWORD_STARTUP, SWORD_RECOVERY, Callable(self, "_throw_sword"), Vector2i(-1, -1), &"dimension_slash", Vector2i(0, 2))
+	var throw: Array = _kit_pose(&"sword_throw", Vector2i(0, 5), &"dimension_slash", Vector2i(0, 2))
+	_start_attack(SWORD_STARTUP, SWORD_RECOVERY, Callable(self, "_throw_sword"), Vector2i(-1, -1), throw[0], throw[1])
 
 ## The second K: to the sword, even while it still flies.
 func try_skill_one_followup() -> bool:
@@ -327,9 +330,11 @@ func _is_behind(target: Node) -> bool:
 	var side := (global_position.x - (target as Node2D).global_position.x) * float(target.get("facing"))
 	return side < -BACKSTAB_MARGIN
 
-## A blue X over the target's body (stand-in for the backstab art).
+## The picked backstab mark over the struck body (Vfx "rio_backstab"), else a blue code X.
 func _mark_backstab(target: Node) -> void:
 	if not is_instance_valid(target) or not target is Node2D or not is_inside_tree():
+		return
+	if VFX.spawn(get_parent(), "rio_backstab", (target as Node2D).global_position + GAME_SCALE.BODY_CENTRE, Vector2.ONE, false, 8) != null:
 		return
 	var mark := Node2D.new()
 	mark.name = "RioBackstab"
@@ -471,16 +476,28 @@ func _reset_combo() -> void:
 	combo_step = 0
 	combo_timer = 0.0
 
+## Kit v3 rows (CODEX-SKM-08, 2026-11-27): a move plays its own row once the picked row is in his move sheet
+## (an animation named after it), and the borrowed one until then.
+func _has_kit_row(row: StringName) -> bool:
+	return is_instance_valid(character_sprite) and character_sprite.sprite_frames != null and character_sprite.sprite_frames.has_animation(_get_sprite_animation_name(row))
+
+## [row, frames]: the kit v3 row with its frames when it is there, else the borrowed row and frames.
+func _kit_pose(row: StringName, frames: Vector2i, borrowed: StringName, borrowed_frames: Vector2i) -> Array:
+	if _has_kit_row(row):
+		return [row, frames]
+	return [borrowed, borrowed_frames]
+
 # --- K: mana sword throw ---
 
 func _throw_sword() -> void:
 	var aim := _get_attack_direction()
-	var sword := _make_sword(aim, SWORD_SIZE, SWORD_DAMAGE, SWORD_KNOCKBACK, SWORD_SPEED, SWORD_FLIGHT, SWORD_COLOR)
+	var sword := _make_sword(aim, SWORD_SIZE, SWORD_DAMAGE, SWORD_KNOCKBACK, SWORD_SPEED, SWORD_FLIGHT, SWORD_COLOR, true)
 	sword.wait_time = SWORD_WAIT
 	thrown_sword = sword
 	sword_bot_timer = -1.0
 
-func _make_sword(aim: Vector2, size: Vector2, damage: float, knockback: float, flight_speed: float, flight: float, tint: Color) -> Area2D:
+## `mana`: K's mana sword, drawn with its picked strips once they are in the folder (RioSword.dress_mana).
+func _make_sword(aim: Vector2, size: Vector2, damage: float, knockback: float, flight_speed: float, flight: float, tint: Color, mana := false) -> Area2D:
 	var sword := Area2D.new()
 	sword.set_script(SWORD_SCRIPT)
 	sword.collision_layer = 0
@@ -495,7 +512,10 @@ func _make_sword(aim: Vector2, size: Vector2, damage: float, knockback: float, f
 	sword.set("art_scale_multiplier", GAME_SCALE.COMBAT)
 	sword.global_position = global_position + GAME_SCALE.BODY_CENTRE + aim * 24.0 * GAME_SCALE.COMBAT
 	sword.configure(self, size * GAME_SCALE.COMBAT, damage, knockback, aim, Color(tint, 0.8), flight_speed * GAME_SCALE.COMBAT, flight)
-	sword.dress(tint)
+	if mana:
+		sword.dress_mana(tint)
+	else:
+		sword.dress(tint)
 	return sword
 
 func _sword_ready() -> bool:
@@ -554,7 +574,9 @@ func _counter_start() -> void:
 	counter_timer = COUNTER_TIME
 	counter_triggered = false
 	attack_lock_timer = COUNTER_TIME
-	if character_sprite.sprite_frames.has_animation(_get_sprite_animation_name(&"rune_shield")):
+	if _has_kit_row(&"counter_stance"):
+		_play_move_sprite_pose(&"counter_stance", -1, -1, COUNTER_TIME)
+	elif character_sprite.sprite_frames.has_animation(_get_sprite_animation_name(&"rune_shield")):
 		_play_move_sprite_pose(&"rune_shield", -1, -1, COUNTER_TIME)
 	else:
 		_play_sprite_action(&"shield", COUNTER_TIME)
@@ -615,10 +637,18 @@ func _can_reach(foe: Node2D, reach: float) -> bool:
 		return false
 	return foe.global_position.distance_to(global_position) <= reach
 
-## The stance: his drawing in shadow blue inside the rune ring (stand-ins until its art).
+## The stance: his drawing in shadow blue with the picked aura around him (Vfx "rio_counter_stance", looping,
+## riding on him), else inside a code hexagon.
 func _show_stance(active: bool) -> void:
 	if is_instance_valid(character_sprite):
 		character_sprite.modulate = SHADOW_TINT if active else Color.WHITE
+	if active and not is_instance_valid(stance_art):
+		stance_art = VFX.spawn(self, "rio_counter_stance", Vector2.ZERO, Vector2.ONE, true, 3, Color.WHITE, true)
+	if not active and is_instance_valid(stance_art):
+		stance_art.queue_free()
+		stance_art = null
+	if is_instance_valid(stance_art):
+		return
 	if active and not is_instance_valid(stance_visual):
 		stance_visual = Line2D.new()
 		stance_visual.name = "CounterStance"
@@ -661,7 +691,8 @@ func _decoy_cast() -> void:
 	_end_skill_dash()
 	attack_lock_timer = DECOY_RECOVERY
 	current_attack_started_airborne = not is_on_floor()
-	_play_move_sprite_pose(&"dimension_slash", -1, -1, DECOY_RECOVERY, 4, 5)
+	var step: Array = _kit_pose(&"decoy_step", Vector2i(2, 5), &"dimension_slash", Vector2i(4, 5))
+	_play_move_sprite_pose(step[0], -1, -1, DECOY_RECOVERY, step[1].x, step[1].y)
 	_play_blink_trail(start, global_position)
 
 ## The held direction, else straight back.
@@ -693,7 +724,8 @@ func decoy_burst(copy: Node2D) -> void:
 		decoy_swaps_left = 0
 		decoy_swap_ready = false
 	var at: Vector2 = copy.global_position + GAME_SCALE.BODY_CENTRE
-	if VFX.spawn(get_parent(), "rio_rune_burst", at, Vector2.ONE * 0.6, false, 4) == null:
+	# The picked burst (CODEX-VFX-11), else the rune burst at 0.6, else a ring.
+	if VFX.spawn(get_parent(), "rio_decoy_burst", at, Vector2.ONE, false, 4) == null and VFX.spawn(get_parent(), "rio_rune_burst", at, Vector2.ONE * 0.6, false, 4) == null:
 		_play_ring(at, RUNE_COLOR)
 	# A swing reports its hit from inside the physics step, where a new attack area cannot be set
 	# up (engine errors, 2026-11-24): the burst's own hit comes right after it.
@@ -825,7 +857,10 @@ func _start_flurry() -> void:
 		_face(target)
 		_freeze_movement(FLURRY_GAP)
 		var last := index == cuts.size() - 1
-		_play_move_sprite_pose(&"mana_combo", -1, -1, FLURRY_GAP, 4 if index % 2 == 0 else 2, 5 if index % 2 == 0 else 3)
+		if _has_kit_row(&"flurry_cut"):
+			_play_move_sprite_pose(&"flurry_cut", -1, -1, FLURRY_GAP, 1, 3)
+		else:
+			_play_move_sprite_pose(&"mana_combo", -1, -1, FLURRY_GAP, 4 if index % 2 == 0 else 2, 5 if index % 2 == 0 else 3)
 		_spawn_sweeping_attack(Vector2(56, 48), [
 			Vector2(8 * facing, -46),
 			Vector2(46 * facing, -34),
@@ -938,10 +973,14 @@ func _play_ring(at: Vector2, color: Color) -> void:
 	tween.parallel().tween_property(ring, "modulate:a", 0.0, 0.16)
 	tween.tween_callback(ring.queue_free)
 
+## Every blink (K again, the L counter, U, I again): the picked shadow puff where he vanishes and where he
+## appears (Vfx "rio_shadow_blink", at his feet; none until it is picked), and the trail between.
 func _play_blink_trail(from: Vector2, to: Vector2) -> void:
 	var delta := to - from
 	if delta.length() < 1.0:
 		return
+	for at in [from, to]:
+		VFX.spawn(get_parent(), "rio_shadow_blink", at, Vector2.ONE, false, 4)
 	var art := VFX.spawn(get_parent(), "rio_blink_trail", (from + to) * 0.5 + Vector2(0, -34), Vector2(delta.length() / 238.0, 1.0), false, 2)
 	if art != null:
 		art.rotation = delta.angle()

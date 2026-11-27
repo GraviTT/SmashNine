@@ -1,0 +1,771 @@
+{
+  "selection": {
+    "accepted": false,
+    "face_verified": false,
+    "pose_ok": false,
+    "costume_ok": true,
+    "face_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "note": "2회 생성 후 보류. F2에 귀 옆 손·검을 쥔 손과 별도로 내려간 손이 남아 세 손으로 읽힌다. 얼굴 폭 자동 제안은 1.000–1.200이며 확정 실측으로 채택하지 않았다.",
+    "observation": "1차 F2·F5 손 연결 오류를 강조해 재생성했으나 2차 F2의 추가 손이 남음. 배율 0.38, 머리 자동 중앙값 1.06. 정규화·여섯 전신·얼굴 제안 보드를 확인했으며 후보 PNG는 내보내지 않았다.",
+    "human_review": "보류 근거인 F2의 팔·손 개수와 기준보다 커진 얼굴·몸 높이 확인. 이 보드는 채택 후보가 아니다.",
+    "stem": "rio_female",
+    "row": "sword_throw",
+    "attempt": 2
+  },
+  "metrics": {
+    "input": {
+      "sheet": null,
+      "frames": "reports\\codex-skm-08\\rio_female\\sword_throw\\attempt-2\\source-frames\\*.png",
+      "grid": null,
+      "pick": null,
+      "backgrounds": [
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        },
+        {
+          "mode": "color",
+          "color": [
+            0,
+            255,
+            0
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "measurement": "fixed",
+      "contact_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "outline": "off",
+      "cell": 192,
+      "feet_y": 152,
+      "horizontal_anchor": "median torso row centre"
+    },
+    "summary": {
+      "frame_count": 6,
+      "output_columns": 6,
+      "common_scale": 0.38,
+      "scale_by": "fixed:0.38",
+      "common_offset_x": 0,
+      "common_lift": 0,
+      "lift_scale": 1.0,
+      "ground_all": true,
+      "resample": "lanczos",
+      "sharpen_percent": 60.0,
+      "despill": "auto",
+      "palette": "none",
+      "min_component": 0,
+      "dropped_component_count": 0,
+      "dropped_component_pixels": 0,
+      "body_height_range": [
+        105,
+        106
+      ],
+      "body_width_range": [
+        113,
+        120
+      ],
+      "area_range": [
+        5969,
+        6270
+      ],
+      "area_spread_percent": 4.8,
+      "bottom_range": [
+        152,
+        152
+      ],
+      "lift_range": [
+        0,
+        0
+      ],
+      "contact_on_feet_y": true,
+      "airborne_lift_preserved": true,
+      "colour_count_range": [
+        4996,
+        5334
+      ],
+      "interior_detail_range": [
+        121.44,
+        127.96
+      ],
+      "interior_detail_mean": 124.63,
+      "remaining_spill_pixels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "palette_violations_before_map": 0,
+      "palette_violations": 0,
+      "alpha_binary": true,
+      "borders_clear": true,
+      "all_have_4px_margin": true,
+      "reference_interior_detail_mean": 97.64,
+      "interior_detail_ratio": 1.2764
+    },
+    "reference": {
+      "frames": [
+        {
+          "index": 0,
+          "interior_detail": 97.64,
+          "colour_count": 4711,
+          "remaining_spill_pixels": 0
+        }
+      ],
+      "interior_detail_mean": 97.64,
+      "colour_count_range": [
+        4711,
+        4711
+      ]
+    },
+    "frames": [
+      {
+        "index": 0,
+        "source": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/source-frames/00.png",
+        "bbox": [
+          52,
+          47,
+          165,
+          153
+        ],
+        "body_height": 106,
+        "body_width": 113,
+        "area": 6181,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 125.76,
+        "colour_count": 5263,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 52,
+          "top": 47,
+          "right": 27,
+          "bottom": 39,
+          "minimum": 27,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.288
+      },
+      {
+        "index": 1,
+        "source": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/source-frames/01.png",
+        "bbox": [
+          52,
+          48,
+          166,
+          153
+        ],
+        "body_height": 105,
+        "body_width": 114,
+        "area": 5969,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 127.96,
+        "colour_count": 4996,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 52,
+          "top": 48,
+          "right": 26,
+          "bottom": 39,
+          "minimum": 26,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.3105
+      },
+      {
+        "index": 2,
+        "source": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/source-frames/02.png",
+        "bbox": [
+          51,
+          48,
+          166,
+          153
+        ],
+        "body_height": 105,
+        "body_width": 115,
+        "area": 6241,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 121.44,
+        "colour_count": 5288,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 51,
+          "top": 48,
+          "right": 26,
+          "bottom": 39,
+          "minimum": 26,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2438
+      },
+      {
+        "index": 3,
+        "source": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/source-frames/03.png",
+        "bbox": [
+          49,
+          48,
+          169,
+          153
+        ],
+        "body_height": 105,
+        "body_width": 120,
+        "area": 6270,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 123.86,
+        "colour_count": 5334,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 49,
+          "top": 48,
+          "right": 23,
+          "bottom": 39,
+          "minimum": 23,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2685
+      },
+      {
+        "index": 4,
+        "source": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/source-frames/04.png",
+        "bbox": [
+          52,
+          48,
+          165,
+          153
+        ],
+        "body_height": 105,
+        "body_width": 113,
+        "area": 6110,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 124.94,
+        "colour_count": 5150,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 52,
+          "top": 48,
+          "right": 27,
+          "bottom": 39,
+          "minimum": 27,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2796
+      },
+      {
+        "index": 5,
+        "source": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/source-frames/05.png",
+        "bbox": [
+          51,
+          48,
+          165,
+          153
+        ],
+        "body_height": 105,
+        "body_width": 114,
+        "area": 6134,
+        "bottom": 152,
+        "lift": 0,
+        "expected_lift": 0,
+        "interior_detail": 123.83,
+        "colour_count": 5226,
+        "remaining_spill_pixels": 0,
+        "palette_violations_before_map": 0,
+        "palette_violations": 0,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_binary": true,
+        "border_clear": true,
+        "margin": {
+          "left": 51,
+          "top": 48,
+          "right": 27,
+          "bottom": 39,
+          "minimum": 27,
+          "has_4px_margin": true
+        },
+        "dropped_components": [],
+        "dropped_component_pixels": 0,
+        "interior_detail_ratio_to_reference_mean": 1.2682
+      }
+    ],
+    "outputs": {
+      "sheet": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/rio_female-sword_throw.png",
+      "candidate": null,
+      "frames": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/frames",
+      "closeup": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/closeup.png",
+      "compare": "reports/codex-skm-08/rio_female/sword_throw/attempt-2/compare.png"
+    }
+  },
+  "face": {
+    "method": "4x nearest local patch matching. Proposed landmarks; visual review required. Width endpoints sample the exposed eye-lower-edge face, excluding hair. Closed lids cannot establish open-eye spacing.",
+    "anchor": [
+      [
+        83,
+        51,
+        3,
+        4
+      ],
+      [
+        88,
+        49,
+        2,
+        3
+      ],
+      [
+        77.5,
+        53,
+        3,
+        4
+      ],
+      [
+        87.5,
+        53,
+        3,
+        4
+      ]
+    ],
+    "anchor_landmarks": [
+      {
+        "x": 83.319,
+        "y": 50.869,
+        "score": 1
+      },
+      {
+        "x": 88.594,
+        "y": 49.334,
+        "score": 1
+      },
+      {
+        "x": 77.5,
+        "y": 53,
+        "score": 1
+      },
+      {
+        "x": 87.5,
+        "y": 53,
+        "score": 1
+      }
+    ],
+    "reference_eye_distance": 5.493801052094979,
+    "reference_face_width": 10.0,
+    "frames": [
+      {
+        "frame": 1,
+        "landmarks": [
+          {
+            "x": 123.425,
+            "y": 74.402,
+            "score": 0.879
+          },
+          {
+            "x": 128.701,
+            "y": 73.858,
+            "score": 0.944
+          },
+          {
+            "x": 116.5,
+            "y": 77.0,
+            "score": 0.701
+          },
+          {
+            "x": 127.5,
+            "y": 77.0,
+            "score": 0.847
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 11.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.1,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.06,
+          105,
+          54,
+          0.722
+        ]
+      },
+      {
+        "frame": 2,
+        "landmarks": [
+          {
+            "x": 118.316,
+            "y": 74.644,
+            "score": 0.897
+          },
+          {
+            "x": 124.409,
+            "y": 72.51,
+            "score": 0.929
+          },
+          {
+            "x": 113.5,
+            "y": 74.0,
+            "score": 0.615
+          },
+          {
+            "x": 123.5,
+            "y": 77.0,
+            "score": 0.861
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 10.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.0,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.02,
+          101,
+          54,
+          0.663
+        ]
+      },
+      {
+        "frame": 3,
+        "landmarks": [
+          {
+            "x": 123.273,
+            "y": 76.053,
+            "score": 0.841
+          },
+          {
+            "x": 129.58,
+            "y": 73.536,
+            "score": 0.791
+          },
+          {
+            "x": 116.5,
+            "y": 79.0,
+            "score": 0.614
+          },
+          {
+            "x": 128.5,
+            "y": 78.0,
+            "score": 0.859
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 12.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.2,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.06,
+          105,
+          56,
+          0.691
+        ]
+      },
+      {
+        "frame": 4,
+        "landmarks": [
+          {
+            "x": 121.011,
+            "y": 75.47,
+            "score": 0.865
+          },
+          {
+            "x": 126.658,
+            "y": 74.877,
+            "score": 0.862
+          },
+          {
+            "x": 113.75,
+            "y": 78.0,
+            "score": 0.679
+          },
+          {
+            "x": 125.5,
+            "y": 78.0,
+            "score": 0.873
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 11.75,
+        "eye_ratio": null,
+        "face_width_ratio": 1.175,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.06,
+          103,
+          55,
+          0.709
+        ]
+      },
+      {
+        "frame": 5,
+        "landmarks": [
+          {
+            "x": 122.103,
+            "y": 75.538,
+            "score": 0.798
+          },
+          {
+            "x": 127.423,
+            "y": 73.653,
+            "score": 0.932
+          },
+          {
+            "x": 115.5,
+            "y": 78.0,
+            "score": 0.643
+          },
+          {
+            "x": 126.5,
+            "y": 77.0,
+            "score": 0.854
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 11.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.1,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.06,
+          104,
+          55,
+          0.756
+        ]
+      },
+      {
+        "frame": 6,
+        "landmarks": [
+          {
+            "x": 120.544,
+            "y": 75.066,
+            "score": 0.772
+          },
+          {
+            "x": 126.207,
+            "y": 73.565,
+            "score": 0.724
+          },
+          {
+            "x": 113.5,
+            "y": 77.0,
+            "score": 0.727
+          },
+          {
+            "x": 125.5,
+            "y": 77.0,
+            "score": 0.869
+          }
+        ],
+        "eye_distance": null,
+        "face_width": 12.0,
+        "eye_ratio": null,
+        "face_width_ratio": 1.2,
+        "eye_excluded": "Anchor far eye merges with black fringe; cannot establish a separate eye centre. Not an eye-distance pass.",
+        "head_alignment": [
+          1.02,
+          103,
+          55,
+          0.718
+        ]
+      }
+    ]
+  },
+  "head": {
+    "sheet": "reports\\codex-skm-08\\rio_female\\sword_throw\\attempt-2\\rio_female-sword_throw.png",
+    "frames": [
+      {
+        "scale": 1.06,
+        "score": 0.725
+      },
+      {
+        "scale": 1.02,
+        "score": 0.655
+      },
+      {
+        "scale": 1.06,
+        "score": 0.708
+      },
+      {
+        "scale": 1.06,
+        "score": 0.714
+      },
+      {
+        "scale": 1.06,
+        "score": 0.762
+      },
+      {
+        "scale": 1.02,
+        "score": 0.716
+      }
+    ],
+    "median": 1.06,
+    "used": 6
+  },
+  "extraction": {
+    "raw": "art\\raw\\skm-08\\rio_female-sword_throw-2.png",
+    "size": [
+      2172,
+      724
+    ],
+    "method": "six largest connected silhouette blobs, small islands assigned nearest body; no fixed-width cuts; common source y preserved",
+    "component_sizes": [
+      43626,
+      43258,
+      42709,
+      42336,
+      42271,
+      41319,
+      31,
+      1,
+      1
+    ],
+    "boxes": [
+      [
+        41,
+        230,
+        338,
+        508
+      ],
+      [
+        391,
+        232,
+        692,
+        508
+      ],
+      [
+        739,
+        232,
+        1042,
+        508
+      ],
+      [
+        1096,
+        232,
+        1413,
+        508
+      ],
+      [
+        1469,
+        232,
+        1766,
+        508
+      ],
+      [
+        1827,
+        232,
+        2126,
+        508
+      ]
+    ]
+  },
+  "sheet_sha256": "7b7afad8758a8468d116250ee03928aab9b963145fcbe44b0d599a7e9e6c23e1"
+}
