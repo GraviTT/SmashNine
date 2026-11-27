@@ -501,7 +501,8 @@ func _build_hud() -> void:
 	skills_panel.size = Vector2(620, 470)
 	skills_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	skills_panel.visible = false
-	hud.add_child(skills_panel)
+	# In the HUD's root box, which keeps 1280x720 of room on any view (MatchHud._fit_hud_root).
+	hud.hud_root.add_child(skills_panel)
 	hud._pin(skills_panel, Vector2(0.5, 0.5))
 	update_hud()
 

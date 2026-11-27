@@ -481,7 +481,8 @@ func _build_rival_bar() -> void:
 	# A flat plate as the rest of the match HUD (pick cup round 2026-11-25-ui): the name over a
 	# bar thick enough to read, in the same place and size as before.
 	var hud: Node = main.hud
-	rival_bar = hud._plate(hud, Rect2(430, 100, 420, 46), hud._box(hud.PLATE_SOLID, hud.EDGE, 1, 4))
+	# In the HUD's root box, beside the clock it sits under (MatchHud._fit_hud_root).
+	rival_bar = hud._plate(hud.hud_root, Rect2(430, 100, 420, 46), hud._box(hud.PLATE_SOLID, hud.EDGE, 1, 4))
 	rival_bar.name = "StoryRivalHP"
 	hud._pin(rival_bar, Vector2(0.5, 0.0))
 	hud._plate(rival_bar, Rect2(8, 28, 404, 12), hud._box(Color(0, 0, 0, 0.62), Color.TRANSPARENT, 0, 4))
