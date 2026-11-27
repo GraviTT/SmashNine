@@ -126,6 +126,10 @@ const BOTTOM_RIGHT := Vector2(1.0, 1.0)
 
 ## The heavier cut of the UI font, for numbers and names.
 var bold: FontVariation
+## Every block of the match HUD sits in this box: it covers the view, never less than 1280x720
+## of its own units, and on a smaller view it is drawn smaller as a whole (_fit_hud_root). The
+## blocks are pinned to its edges, so they follow it when the view changes.
+var hud_root: Control
 ## Clock: the phase (in story mode the stage and its objective), the match time, the survivors
 ## and the next timeline event under them.
 var clock_root: Control
@@ -261,6 +265,12 @@ func _ready() -> void:
 	bold = FontVariation.new()
 	bold.base_font = ThemeDB.fallback_font
 	bold.variation_embolden = 0.7
+	hud_root = Control.new()
+	hud_root.name = "HudRoot"
+	hud_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(hud_root)
+	_fit_hud_root()
+	get_viewport().size_changed.connect(_fit_hud_root)
 	_build_clock()
 	_build_minimap()
 	_build_feed()
@@ -281,11 +291,30 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_pulse += delta
+	# The view can change without a size_changed the blocks hear (the web build at a 1.5 device
+	# pixel ratio kept the HUD on 1280x720 places over an 853x480 view, 2026-11-27): checked here too.
+	_fit_hud_root()
 	# Words written straight into these labels from outside (the gamepad's) get their layout here.
 	if controls_label.text != _controls_text_shown:
 		set_control_hints(controls_label.text)
 	if is_instance_valid(practice_label) and practice_label.text != _practice_text_shown:
 		set_practice_lines(practice_label.text)
+
+## The root box covers the view. It is never under 1280x720 of its own units: on a smaller view
+## (the web build showed 853x480 at a 1.5 device pixel ratio) it is scaled down whole, so the
+## blocks keep the places and room they have at 1280x720 instead of crowding. Setting its size
+## moves every block pinned to its edges.
+func _fit_hud_root() -> void:
+	var view := get_viewport().get_visible_rect().size
+	if view.x <= 0.0 or view.y <= 0.0:
+		return
+	var fit := minf(1.0, minf(view.x / REFERENCE_SIZE.x, view.y / REFERENCE_SIZE.y))
+	var layout := view / fit
+	if hud_root.size.is_equal_approx(layout) and is_equal_approx(hud_root.scale.x, fit):
+		return
+	hud_root.position = Vector2.ZERO
+	hud_root.scale = Vector2(fit, fit)
+	hud_root.size = layout
 
 # --- Small builders ---
 
@@ -310,7 +339,7 @@ func _root(node_name: String, rect: Rect2, anchor: Vector2) -> Control:
 	control.position = rect.position
 	control.size = rect.size
 	control.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(control)
+	hud_root.add_child(control)
 	_pin(control, anchor)
 	return control
 
@@ -383,7 +412,7 @@ func _label(position: Vector2, size: Vector2, font_size: int, alignment: Horizon
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))
 	label.add_theme_constant_override("outline_size", 4)
-	add_child(label)
+	hud_root.add_child(label)
 	return label
 
 ## Loads an authored 9-slice in original-art mode. The returned ColorRect preserves the
@@ -579,7 +608,7 @@ func _build_feed() -> void:
 	info_label.self_modulate = Color(1, 1, 1, 0)
 	info_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	info_label.visible = false
-	add_child(info_label)
+	hud_root.add_child(info_label)
 
 func show_message(text: String) -> void:
 	info_label.text = text
@@ -945,7 +974,7 @@ func update_skill_bar(fighter: Node, delta: float) -> void:
 			style.set_border_width_all(2)
 
 func _build_controls() -> void:
-	controls_label = _text(self, "", Rect2(1280.0 - HUD_MARGIN - 10.0, 720.0 - HUD_MARGIN - CONTROLS_HEIGHT, 10, CONTROLS_HEIGHT), MIN_FONT_SIZE, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
+	controls_label = _text(hud_root, "", Rect2(1280.0 - HUD_MARGIN - 10.0, 720.0 - HUD_MARGIN - CONTROLS_HEIGHT, 10, CONTROLS_HEIGHT), MIN_FONT_SIZE, DIM, false, HORIZONTAL_ALIGNMENT_CENTER)
 	controls_label.name = "Controls"
 	controls_label.add_theme_stylebox_override("normal", _box(Color(PLATE, 0.7), Color.TRANSPARENT, 0, 4))
 	_pin(controls_label, BOTTOM_RIGHT)
@@ -1311,7 +1340,7 @@ func set_practice_status(cards_held: int, focus: Node) -> void:
 ## Practice's own lines (its target and the damage, then its keys): a block at the bottom right,
 ## over the control hints.
 func build_practice_lines() -> Label:
-	practice_label = _text(self, "", Rect2(1280.0 - HUD_MARGIN - PRACTICE_WIDTH, 560, PRACTICE_WIDTH, 100), MIN_FONT_SIZE, WHITE)
+	practice_label = _text(hud_root, "", Rect2(1280.0 - HUD_MARGIN - PRACTICE_WIDTH, 560, PRACTICE_WIDTH, 100), MIN_FONT_SIZE, WHITE)
 	practice_label.name = "PracticeInfo"
 	practice_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	practice_label.grow_vertical = Control.GROW_DIRECTION_BEGIN
@@ -1392,7 +1421,7 @@ func _build_cutin() -> void:
 	cutin_root.size = Vector2(640, 104)
 	cutin_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	cutin_root.visible = false
-	add_child(cutin_root)
+	hud_root.add_child(cutin_root)
 	cutin_band = _plate(cutin_root, Rect2(0, 0, 620, 104), _box(Color.WHITE, Color.TRANSPARENT, 0, 2, 0.3))
 	cutin_stripe = _plate(cutin_root, Rect2(0, 90, 600, 8), _box(Color.WHITE, Color.TRANSPARENT, 0, 2, 0.3))
 	cutin_face = _picture(cutin_root, null, Rect2(70, 0, 104, 104), false)
@@ -1401,10 +1430,11 @@ func _build_cutin() -> void:
 
 ## Slides a band in the caster's colour in from the left for about 0.9 s and flashes the screen.
 func show_ultimate_cutin(player: Node) -> void:
-	var view_height := get_viewport().get_visible_rect().size.y
+	# In the root box's own units (it is scaled down on a view under 1280x720).
+	var view_height := hud_root.size.y
 	var caster_y := view_height * 0.5
 	if player is CanvasItem:
-		caster_y = (player as CanvasItem).get_global_transform_with_canvas().origin.y
+		caster_y = (player as CanvasItem).get_global_transform_with_canvas().origin.y / hud_root.scale.y
 	cutin_root.position.y = CUTIN_HIGH_Y if caster_y > view_height * 0.5 else view_height - CUTIN_LOW_FROM_BOTTOM
 	_set_portrait(cutin_face, ART_SETTINGS.character_portrait(player.character_id, player.body_type))
 	(cutin_band.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = Color(player.body_color.darkened(0.42), 1.0)
@@ -1458,7 +1488,7 @@ func _build_bot_panel() -> void:
 	bot_panel.position = Vector2(6.0, 6.0)
 	bot_panel.size = Vector2(BOT_PANEL_WIDTH, 0.0)
 	bot_panel.visible = BOT_PANEL_SHOWN_AT_START
-	add_child(bot_panel)
+	hud_root.add_child(bot_panel)
 	_pin(bot_panel, TOP_LEFT)
 	bot_rows = VBoxContainer.new()
 	bot_rows.add_theme_constant_override("separation", 3)

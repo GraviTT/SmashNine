@@ -49,6 +49,7 @@ func _run() -> void:
 			for character: String in FIGHTERS:
 				await _match_hud(window, character, locale)
 	await _minimap_counts()
+	await _view_changes()
 	LANGUAGE.set_locale(start_locale)
 	root.size = WINDOWS[0]
 	if not failed:
@@ -272,6 +273,51 @@ func _longest_cards() -> Array:
 	var cards: Array = CARDS.CARDS.duplicate()
 	cards.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return tr(str(a.text)).length() > tr(str(b.text)).length())
 	return cards.slice(0, 3)
+
+## The view changes after the HUD is built (the web build at a 1.5 device pixel ratio showed an
+## 853x480 view and the HUD stayed on its 1280x720 places, 2026-11-27): the blocks follow, on
+## screen and apart; under 1280x720 the HUD is drawn smaller as a whole. And a stale layout (no
+## size signal heard) is put right at the next frame.
+func _view_changes() -> void:
+	LANGUAGE.set_locale("en")
+	root.size = WINDOWS[0]
+	root.content_scale_factor = 1.0
+	var main: Node = load(MAIN_SCENE).instantiate()
+	root.add_child(main)
+	for frame in 5:
+		await process_frame
+	main._start_match("rio")
+	for frame in 10:
+		await process_frame
+	var hud: Node = main.hud
+	var human: Node = main._get_human_player()
+	for change in [["a 1.5 device pixel ratio", Vector2i(1920, 1080), 1.5], ["a wider window", Vector2i(1470, 720), 1.0], ["back to 1280x720", Vector2i(1280, 720), 1.0]]:
+		root.size = change[1]
+		root.content_scale_factor = change[2]
+		for frame in 3:
+			await process_frame
+		var view: Vector2 = root.get_visible_rect().size
+		var fit := minf(1.0, minf(view.x / 1280.0, view.y / 720.0))
+		var where := "after %s (view %s)" % [change[0], view]
+		_check(is_equal_approx(hud.hud_root.scale.x, fit) and hud.hud_root.get_global_rect().size.is_equal_approx(view), "The HUD's root box should cover the view at scale %.2f (%s, scale %.2f, %s)" % [fit, hud.hud_root.get_global_rect(), hud.hud_root.scale.x, where])
+		hud.set_status(8, 8, human)
+		hud.show_message(tr("Soul card: %s%s.") % [tr("Sky Step"), ""])
+		_check_blocks(hud, view, where)
+		var minimap: Rect2 = hud.minimap_root.get_global_rect()
+		_check(absf(minimap.end.x - (view.x - 16.0 * fit)) <= 1.0, "The map should keep to the right edge %s (ends at %.0f)" % [where, minimap.end.x])
+		var player: Rect2 = hud.player_root.get_global_rect()
+		_check(absf(player.end.y - (view.y - 12.0 * fit)) <= 1.0, "The player's plate should keep to the bottom edge %s (ends at %.0f)" % [where, player.end.y])
+	# A stale layout: the root box put back on old places with no size signal. The next frame
+	# (MatchHud._process) fits it again.
+	hud.hud_root.size = Vector2(1920, 1080)
+	await process_frame
+	await process_frame
+	_check(hud.hud_root.get_global_rect().size.is_equal_approx(root.get_visible_rect().size), "A stale HUD layout should be fitted again at the next frame (%s)" % hud.hud_root.get_global_rect())
+	root.content_scale_factor = 1.0
+	root.size = WINDOWS[0]
+	main.queue_free()
+	await process_frame
+	await process_frame
 
 ## The audit's B2: a cell's count shows whole beside its emblem, in both languages.
 func _minimap_counts() -> void:

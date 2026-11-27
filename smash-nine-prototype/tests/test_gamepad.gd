@@ -201,15 +201,19 @@ func _test_menus() -> bool:
 	await _flick(JOY_AXIS_LEFT_X, 0.9)
 	_check(menu.selected_id == "yuki", "The stick right should step to the next fighter, one step (%s)" % menu.selected_id)
 	await _flick(JOY_AXIS_LEFT_X, -0.9)
-	await _tap(JOY_BUTTON_DPAD_DOWN)
-	_check(menu.selected_id == "nova", "D-pad down from Frey should reach Nova below (%s)" % menu.selected_id)
+	# The roster is one strip since the menu round's pick (B, 2026-11-27): Nova is three steps right
+	# of Frey, one press a step.
+	for step in 3:
+		await _tap(JOY_BUTTON_DPAD_RIGHT)
+	_check(menu.selected_id == "nova", "D-pad right three times from Frey should reach Nova (%s)" % menu.selected_id)
 	_check(main.pad.active, "Menu presses should keep the pad the device in use (the keys it sends are its own)")
 	# The game's own wait for a first press before sound (on the web): a pad's press counts.
 	var sound: Node = root.get_node_or_null("AudioManager")
 	if sound != null:
 		sound.unlocked = false
-		await _tap(JOY_BUTTON_DPAD_UP)
-		await _tap(JOY_BUTTON_DPAD_DOWN)
+		await _tap(JOY_BUTTON_DPAD_RIGHT)
+		await _tap(JOY_BUTTON_DPAD_LEFT)
+		_check(menu.selected_id == "nova", "Right then left should come back to Nova (%s)" % menu.selected_id)
 		_check(bool(sound.unlocked), "A pad press should open the game's wait for a first press before sound")
 	else:
 		_check(false, "Test setup: the AudioManager should be there")

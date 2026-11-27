@@ -55,11 +55,21 @@ func _run() -> void:
 		_check(main.hud.frontend.selected_id == "yuki", "Keyboard browsing must change the selected fighter")
 		await _tap(KEY_A)
 		_check(main.hud.frontend.selected_id == "frey", "Keyboard browsing must work in both directions")
-		# Six fighters and Random fill three columns (Xion, 2026-11-18): down from Frey is Nova.
+		# The roster is one strip since the menu round's pick (B, 2026-11-27): down leaves it for a
+		# button under it and keeps the fighter; up comes back to the strip.
+		var menu: Control = main.hud.frontend
+		var strip: Array = menu.portrait_buttons.duplicate()
+		strip.append(menu.buttons[menu.portrait_buttons.size()])
 		await _tap(KEY_DOWN)
-		_check(main.hud.frontend.selected_id == "nova", "Down must follow the portrait grid to the next row")
+		var below := menu.get_viewport().gui_get_focus_owner() as Control
+		_check(below != null and not strip.has(below) and below.get_global_rect().position.y >= menu.portrait_buttons[0].get_global_rect().end.y, "Down must leave the roster strip for a button under it (%s)" % [below])
+		_check(menu.selected_id == "frey", "Leaving the strip must keep the fighter (%s)" % menu.selected_id)
 		await _tap(KEY_UP)
-		_check(main.hud.frontend.selected_id == "frey", "Up must return to the previous portrait row")
+		var above := menu.get_viewport().gui_get_focus_owner() as Control
+		_check(strip.has(above), "Up must come back to the roster strip (%s)" % [above])
+		if menu.portrait_buttons.has(above):
+			_check(menu.selected_id == menu.select_ids[menu.portrait_buttons.find(above)], "A fighter's tile reached by Up must show that fighter")
+		await _click(menu.portrait_buttons[0])
 		await _tap(KEY_TAB)
 		_check(main.hud.frontend.selected_id == "yuki", "Tab focus must also update the fighter preview")
 		await _tap(KEY_A)
