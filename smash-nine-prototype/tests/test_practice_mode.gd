@@ -289,6 +289,18 @@ func _left_on_field(main: Node, session: Node) -> Array[String]:
 			left.append(script.resource_path.get_file() if script != null else child.get_class())
 	return left
 
+## Both fighters as a reset check reads them: HP and place against the start place.
+func _both(session: Node) -> String:
+	var parts: Array[String] = []
+	for entry in [[session.hero, session.HERO_SPAWN], [session.target, session.TARGET_SPAWN]]:
+		var fighter: Node = entry[0]
+		if not is_instance_valid(fighter):
+			parts.append("(gone)")
+			continue
+		var start: Vector2 = session._start_point(int(entry[1]))
+		parts.append("%s HP %.1f/%.0f at (%.0f, %.0f), %.1f px from its start" % [fighter.character_id, fighter.hp, fighter.max_hp, fighter.global_position.x, fighter.global_position.y, absf(fighter.global_position.x - start.x)])
+	return "; ".join(parts)
+
 func _at_start(session: Node, fighter: Node, spawn: int) -> bool:
 	var start: Vector2 = session._start_point(spawn)
 	# A fighter is put at its spawn point and drops to the floor under it.
@@ -319,7 +331,7 @@ func _test_reset() -> bool:
 			await _tap(KEY_R)
 			await _frames(3)
 			_check(_left_on_field(main, session).is_empty(), "R should clear an ultimate's field (%s, %d frames in): %s" % [id, wait, _left_on_field(main, session)])
-			_check(_at_start(session, session.hero, session.HERO_SPAWN) and is_equal_approx(session.target.hp, session.target.max_hp), "R should put everything back in the middle of an ultimate (%s, %d frames in)" % [id, wait])
+			_check(_at_start(session, session.hero, session.HERO_SPAWN) and is_equal_approx(session.target.hp, session.target.max_hp), "R should put everything back in the middle of an ultimate (%s, %d frames in): %s" % [id, wait, _both(session)])
 			await _frames(30)
 			await _tap(KEY_J)
 			await _frames(20)
@@ -332,12 +344,25 @@ func _test_reset() -> bool:
 		for wait: int in [70, 25, 110]:
 			await _frames(wait)
 			await _tap(KEY_E)
-			# The bot moves on at once: its place is read in the frame after the key.
+			# The bot moves on at once, and under load a frame runs several physics steps: its place
+			# is read when R puts it back (R tells each fighter's HP bar then), its HP a frame later.
+			var placed := {}
+			var note := func(fighter: Node) -> void:
+				if not placed.has(fighter):
+					placed[fighter] = fighter.global_position
+			bout.target.hp_changed.connect(note)
+			bout.hero.hp_changed.connect(note)
 			_key(KEY_R, true)
 			await _frames(1)
 			_key(KEY_R, false)
+			bout.target.hp_changed.disconnect(note)
+			bout.hero.hp_changed.disconnect(note)
 			var start: Vector2 = bout._start_point(bout.TARGET_SPAWN)
-			_check(absf(bout.target.global_position.x - start.x) < 30.0 and is_equal_approx(bout.target.hp, bout.target.max_hp) and is_equal_approx(bout.hero.hp, bout.hero.max_hp), "R should put a fighting bot back too (%s, after %d frames; at %s, start %s)" % [bout.target.character_id, wait, bout.target.global_position, start])
+			var hero_start: Vector2 = bout._start_point(bout.HERO_SPAWN)
+			var bot_at: Vector2 = placed.get(bout.target, Vector2.INF)
+			var hero_at: Vector2 = placed.get(bout.hero, Vector2.INF)
+			_check(absf(bot_at.x - start.x) < 2.0 and absf(hero_at.x - hero_start.x) < 2.0, "R should put a fighting bot and the fighter back at their start places (%s, after %d frames): placed at %s and %s, starts %s and %s" % [bout.target.character_id, wait, bot_at, hero_at, start, hero_start])
+			_check(is_equal_approx(bout.target.hp, bout.target.max_hp) and is_equal_approx(bout.hero.hp, bout.hero.max_hp), "R should fill both HP bars with a fighting bot (%s, after %d frames): %s" % [bout.target.character_id, wait, _both(bout)])
 			await _frames(3)
 			_check(_left_on_field(arena, bout).is_empty() or bout.target.attack_lock_timer > 0.0, "R should clear the field under a fighting bot (%s): %s" % [bout.target.character_id, _left_on_field(arena, bout)])
 		await _tap(KEY_N)
@@ -376,8 +401,8 @@ func _test_reset() -> bool:
 				_check(not is_instance_valid(thing), "R should remove %s's own object (wait %d)" % [id, wait])
 			if id == "yuki":
 				_check(hero.seals.is_empty(), "R should clear Yuki's seals")
-			_check(_at_start(session, hero, session.HERO_SPAWN) and _at_start(session, session.target, session.TARGET_SPAWN), "R should put both at their start places (%s: %s, %s)" % [id, hero.global_position, session.target.global_position])
-			_check(is_equal_approx(hero.hp, hero.max_hp) and is_equal_approx(session.target.hp, session.target.max_hp), "R should fill both HP bars (%s)" % id)
+			_check(_at_start(session, hero, session.HERO_SPAWN) and _at_start(session, session.target, session.TARGET_SPAWN), "R should put both at their start places (%s): %s" % [id, _both(session)])
+			_check(is_equal_approx(hero.hp, hero.max_hp) and is_equal_approx(session.target.hp, session.target.max_hp), "R should fill both HP bars (%s): %s" % [id, _both(session)])
 			_check(session.total_damage == 0.0 and session.last_damage == 0.0, "R should start the damage count over")
 			_check(session.monsters.is_empty(), "R should send the monsters away")
 			# The fight goes on after it: another swing, nothing broken.
