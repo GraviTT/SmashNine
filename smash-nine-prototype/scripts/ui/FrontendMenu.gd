@@ -499,14 +499,7 @@ func show_select(ids: Array[String] = []) -> void:
 	select_ids = ids if not ids.is_empty() else REGISTRY.get_character_ids()
 	if not select_ids.has(selected_id):
 		selected_id = select_ids[0]
-	var heading := _label("CHOOSE YOUR FIGHTER", Rect2(-30, 22, 366, 50), 26, WHITE)
-	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
-	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	heading.add_theme_font_override("font", _bold_font())
-	var plate := _box(Color(INK, 0.86), Color.TRANSPARENT, 0, 3, SLANT)
-	plate.content_margin_left = 58
-	heading.add_theme_stylebox_override("normal", plate)
-	_label("Six fighters. Six ways to survive.", Rect2(30, 78, 480, 24), 16, DIM)
+	var heading := _heading("CHOOSE YOUR FIGHTER", "Six fighters. Six ways to survive.")
 	# The fighter, over a slanted band of its colour.
 	select_band = _plate(Rect2(40, 150, 470, 380), _box(Color.WHITE, Color.TRANSPARENT, 0, 4, 0.16))
 	hero_art = _picture(null, Rect2(64, 104, 420, 540))
@@ -547,15 +540,11 @@ func show_select(ids: Array[String] = []) -> void:
 	random_caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	random_caption.autowrap_mode = TextServer.AUTOWRAP_OFF
 	body_button = _button("", Rect2(72, 650, 300, 42), "body", "", "slant", 17)
-	var back := _button("Back", Rect2(352, 26, 142, 44), "title", "", "slant", 17)
-	back.get_theme_stylebox("normal").content_margin_left = 66
-	for state in ["hover", "focus", "pressed", "disabled"]:
-		back.get_theme_stylebox(state).content_margin_left = 66
-	_key_cap("Esc", Vector2(20, 11), 38, back)
+	_back_button(heading, "title")
 	select_start = _button("Start practice" if select_mode == "practice" else "Start match", Rect2(948, 650, 296, 56), "start", "", "primary", 24)
 	_focus_cap(select_start, true)
 	_refresh_fighter()
-	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-%d: quick start    Esc: back", Rect2(508, 28, 736, 26), HORIZONTAL_ALIGNMENT_RIGHT)
+	_finish("Arrows / W-A-S-D: browse    Enter / J: confirm / start    V: body    1-%d: quick start    Esc: back", HINTS_TOP, HORIZONTAL_ALIGNMENT_RIGHT)
 
 ## One kit row's nodes; _refresh_fighter places and fills them (five or six rows a fighter).
 func _build_kit_row() -> void:
