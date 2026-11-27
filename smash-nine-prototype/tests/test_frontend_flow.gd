@@ -2,6 +2,7 @@ extends SceneTree
 ## CODEX-SYS-02: real keyboard/mouse flow, retained shortcuts, reload/session invariants.
 ## -- --capture also saves the six requested windowed screen captures.
 
+const FRAME_WATCHDOG := preload("res://tests/support/frame_watchdog.gd")
 const MAIN_SCENE := "res://scenes/Main.tscn"
 const SPEED := preload("res://scripts/GameSpeed.gd")
 const ART := preload("res://scripts/ArtSettings.gd")
@@ -13,9 +14,8 @@ var report_dir := ""
 func _initialize() -> void:
 	capture = OS.get_cmdline_user_args().has("--capture")
 	report_dir = ProjectSettings.globalize_path("res://../reports/codex-sys-02")
-	create_timer(90.0).timeout.connect(func() -> void:
-		push_error("Frontend flow timed out")
-		quit(1))
+	# Hang guard in frames, not seconds: under load the test needs more time, not more frames.
+	FRAME_WATCHDOG.start(self, 90.0, "Frontend flow timed out")
 	call_deferred("_run")
 
 func _check(ok: bool, message: String) -> void:
