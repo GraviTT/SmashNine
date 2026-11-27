@@ -1,0 +1,817 @@
+{
+  "tool": "built-in image_gen",
+  "looks": {
+    "doron-1": {
+      "label": "도론 1 · 수집가",
+      "delivered": true,
+      "illustration": {
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          19,
+          105,
+          999,
+          1483
+        ],
+        "silhouette_height_px": 1378,
+        "margins_ltrb": [
+          19,
+          105,
+          25,
+          53
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 252,
+        "bbox": [
+          0,
+          0,
+          256,
+          256
+        ],
+        "silhouette_height_px": 256,
+        "margins_ltrb": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "border_pixels": 647,
+        "transparent_rgb_nonzero_pixels": 104,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          39,
+          33,
+          96,
+          121
+        ],
+        "silhouette_height_px": 88,
+        "margins_ltrb": [
+          39,
+          33,
+          32,
+          7
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects",
+        "factor": 0.09421842,
+        "detail": 143.52,
+        "reference_detail": 95.3,
+        "detail_ratio_percent": 150.6,
+        "reference": {
+          "frames": [
+            {
+              "index": 0,
+              "interior_detail": 95.3,
+              "colour_count": 2708,
+              "remaining_spill_pixels": 0
+            }
+          ],
+          "interior_detail_mean": 95.3,
+          "colour_count_range": [
+            2708,
+            2708
+          ]
+        },
+        "binary_alpha": true,
+        "feet_y": 120,
+        "margin4": true,
+        "normalizer_output_equals_final": true
+      },
+      "manual_sprite": {
+        "crown_y": 33,
+        "chin_y": 68,
+        "sole_y": 120,
+        "body_height_px": 88,
+        "head_height_px": 36,
+        "heads": 2.444,
+        "landmark_uncertainty_px": 1,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "manual_illustration": {
+        "crown_y": 145,
+        "chin_y": 338,
+        "sole_y": 1482,
+        "body_height_px": 1338,
+        "head_height_px": 194,
+        "heads": 6.897,
+        "landmark_uncertainty_px": 4,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "selected_raw": {
+        "illustration": "doron-1-illustration-green.png",
+        "idle": "doron-1-idle-v1.png"
+      },
+      "files": [
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/1/doron_illustration-1.png",
+          "bytes": 1645467,
+          "sha256": "efa41e4af90a7f61da72f79022a32223301d1184cf80ddef010baf67acc6f397"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/1/doron_face-1.png",
+          "bytes": 145722,
+          "sha256": "d589777fe16ef59dc4dfef28fe613466edca6ddeed713d333772e8a6cc60eed6"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/1/doron-idle-1.png",
+          "bytes": 11994,
+          "sha256": "68e66a21e9fb937bbbf6c8126224424ce6dfb0221a61193b8334d508404b7ba5"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/1/doron-idle-1.json",
+          "bytes": 106,
+          "sha256": "cbffc0f68fa85eb9a2787c5562cf297b9e60d1419366cc6509956ec4c7776f5f"
+        }
+      ],
+      "visual_review": {
+        "illustration_full_size": true,
+        "sprite_nearest_4x": true,
+        "hands_and_grips": true,
+        "feet_and_complete_props": true,
+        "limitation": "Occluded fingers cannot all be counted. Tiny fingers/remote/drum lacing are not individually readable at 1x."
+      }
+    },
+    "doron-2": {
+      "label": "도론 2 · 성장형 슈트",
+      "delivered": true,
+      "illustration": {
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 256,
+        "bbox": [
+          127,
+          93,
+          894,
+          1457
+        ],
+        "silhouette_height_px": 1364,
+        "margins_ltrb": [
+          127,
+          93,
+          130,
+          79
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 255,
+        "bbox": [
+          0,
+          0,
+          256,
+          256
+        ],
+        "silhouette_height_px": 256,
+        "margins_ltrb": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "border_pixels": 423,
+        "transparent_rgb_nonzero_pixels": 237,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          36,
+          33,
+          86,
+          121
+        ],
+        "silhouette_height_px": 88,
+        "margins_ltrb": [
+          36,
+          33,
+          42,
+          7
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects",
+        "factor": 0.11282051,
+        "detail": 132.07,
+        "reference_detail": 95.3,
+        "detail_ratio_percent": 138.58,
+        "reference": {
+          "frames": [
+            {
+              "index": 0,
+              "interior_detail": 95.3,
+              "colour_count": 2708,
+              "remaining_spill_pixels": 0
+            }
+          ],
+          "interior_detail_mean": 95.3,
+          "colour_count_range": [
+            2708,
+            2708
+          ]
+        },
+        "binary_alpha": true,
+        "feet_y": 120,
+        "margin4": true,
+        "normalizer_output_equals_final": true
+      },
+      "manual_sprite": {
+        "crown_y": 33,
+        "chin_y": 67,
+        "sole_y": 120,
+        "body_height_px": 88,
+        "head_height_px": 35,
+        "heads": 2.514,
+        "landmark_uncertainty_px": 1,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "manual_illustration": {
+        "crown_y": 138,
+        "chin_y": 319,
+        "sole_y": 1456,
+        "body_height_px": 1319,
+        "head_height_px": 182,
+        "heads": 7.247,
+        "landmark_uncertainty_px": 4,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "selected_raw": {
+        "illustration": "doron-2-illustration-green.png",
+        "idle": "doron-2-idle-v4.png"
+      },
+      "files": [
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/2/doron_illustration-2.png",
+          "bytes": 1202388,
+          "sha256": "5b4029c0f2473588ee58f5a7a0d40988f79eee5e3efa906fd2dbef3d5d6af793"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/2/doron_face-2.png",
+          "bytes": 119602,
+          "sha256": "6dbf1648a300bc231dab33d733be057d98796164ae6283dc978465c7b35c6701"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/2/doron-idle-2.png",
+          "bytes": 9591,
+          "sha256": "1cbc6e5bbb16529c851d94236ed2a6ddd5b41128fab6478c9fea9f2556e6dc87"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/2/doron-idle-2.json",
+          "bytes": 106,
+          "sha256": "f032698d9ede77369fa8aaafbc0fc28df72421ec95694a65e735f2211038653f"
+        }
+      ],
+      "visual_review": {
+        "illustration_full_size": true,
+        "sprite_nearest_4x": true,
+        "hands_and_grips": true,
+        "feet_and_complete_props": true,
+        "limitation": "Occluded fingers cannot all be counted. Tiny fingers/remote/drum lacing are not individually readable at 1x."
+      }
+    },
+    "doron-3": {
+      "label": "도론 3 · 예비 조종사",
+      "delivered": true,
+      "illustration": {
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          10,
+          162,
+          1014,
+          1465
+        ],
+        "silhouette_height_px": 1303,
+        "margins_ltrb": [
+          10,
+          162,
+          10,
+          71
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 244,
+        "bbox": [
+          3,
+          0,
+          256,
+          256
+        ],
+        "silhouette_height_px": 256,
+        "margins_ltrb": [
+          3,
+          0,
+          0,
+          0
+        ],
+        "border_pixels": 590,
+        "transparent_rgb_nonzero_pixels": 119,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          38,
+          33,
+          88,
+          121
+        ],
+        "silhouette_height_px": 88,
+        "margins_ltrb": [
+          38,
+          33,
+          40,
+          7
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects",
+        "factor": 0.10463734,
+        "detail": 125.3,
+        "reference_detail": 93.44,
+        "detail_ratio_percent": 134.1,
+        "reference": {
+          "frames": [
+            {
+              "index": 0,
+              "interior_detail": 93.44,
+              "colour_count": 4025,
+              "remaining_spill_pixels": 0
+            }
+          ],
+          "interior_detail_mean": 93.44,
+          "colour_count_range": [
+            4025,
+            4025
+          ]
+        },
+        "binary_alpha": true,
+        "feet_y": 120,
+        "margin4": true,
+        "normalizer_output_equals_final": true
+      },
+      "manual_sprite": {
+        "crown_y": 33,
+        "chin_y": 70,
+        "sole_y": 120,
+        "body_height_px": 88,
+        "head_height_px": 38,
+        "heads": 2.316,
+        "landmark_uncertainty_px": 1,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "manual_illustration": {
+        "crown_y": 194,
+        "chin_y": 370,
+        "sole_y": 1464,
+        "body_height_px": 1271,
+        "head_height_px": 177,
+        "heads": 7.181,
+        "landmark_uncertainty_px": 4,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "selected_raw": {
+        "illustration": "doron-3-illustration-green.png",
+        "idle": "doron-3-idle-v3.png"
+      },
+      "files": [
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/3/doron_illustration-3.png",
+          "bytes": 1634762,
+          "sha256": "75558fb84b27705dff6f1c76250f7b443ae6c4ba0ca138153932627558489f02"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/3/doron_face-3.png",
+          "bytes": 113553,
+          "sha256": "cdb68514c3a82f15babd2ffa44e6de96b5ca1939bc8f7af3a6561c3530b315bf"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/3/doron-idle-3.png",
+          "bytes": 9829,
+          "sha256": "2cfaf20ef17c2cf8d30e443e354a62687588540b3a28d63ea07ba2e39a6129fb"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/doron/3/doron-idle-3.json",
+          "bytes": 106,
+          "sha256": "50a1187f5eb302916d10cb03fe68d9ab9841965139bd6b36fbc9e09a304c97a8"
+        }
+      ],
+      "visual_review": {
+        "illustration_full_size": true,
+        "sprite_nearest_4x": true,
+        "hands_and_grips": true,
+        "feet_and_complete_props": true,
+        "limitation": "Occluded fingers cannot all be counted. Tiny fingers/remote/drum lacing are not individually readable at 1x."
+      }
+    },
+    "jupi-2": {
+      "label": "유피 2 · 천둥 연주자",
+      "delivered": true,
+      "illustration": {
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          120,
+          11,
+          903,
+          1496
+        ],
+        "silhouette_height_px": 1485,
+        "margins_ltrb": [
+          120,
+          11,
+          121,
+          40
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 255,
+        "bbox": [
+          0,
+          0,
+          256,
+          256
+        ],
+        "silhouette_height_px": 256,
+        "margins_ltrb": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "border_pixels": 387,
+        "transparent_rgb_nonzero_pixels": 149,
+        "green_spill_pixels": 2,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          31,
+          25,
+          94,
+          121
+        ],
+        "silhouette_height_px": 96,
+        "margins_ltrb": [
+          31,
+          25,
+          34,
+          7
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects",
+        "factor": 0.1381295,
+        "detail": 136.26,
+        "reference_detail": 95.3,
+        "detail_ratio_percent": 142.98,
+        "reference": {
+          "frames": [
+            {
+              "index": 0,
+              "interior_detail": 95.3,
+              "colour_count": 2708,
+              "remaining_spill_pixels": 0
+            }
+          ],
+          "interior_detail_mean": 95.3,
+          "colour_count_range": [
+            2708,
+            2708
+          ]
+        },
+        "binary_alpha": true,
+        "feet_y": 120,
+        "margin4": true,
+        "normalizer_output_equals_final": true
+      },
+      "manual_sprite": {
+        "crown_y": 32,
+        "chin_y": 67,
+        "sole_y": 120,
+        "body_height_px": 89,
+        "head_height_px": 36,
+        "heads": 2.472,
+        "landmark_uncertainty_px": 1,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "manual_illustration": {
+        "crown_y": 236,
+        "chin_y": 428,
+        "sole_y": 1493,
+        "body_height_px": 1258,
+        "head_height_px": 193,
+        "heads": 6.518,
+        "landmark_uncertainty_px": 4,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "selected_raw": {
+        "illustration": "jupi-2-illustration-green.png",
+        "idle": "jupi-2-idle-v2.png"
+      },
+      "files": [
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/jupi/2/jupi_illustration-2.png",
+          "bytes": 963618,
+          "sha256": "be45cd8b9d67c076fea0bffffa771734150ccda2c437a6ecad8c68da6a12bb7f"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/jupi/2/jupi_face-2.png",
+          "bytes": 126954,
+          "sha256": "f8f32ed508e10aa9b67063c65bed29250ff6f3c55677f79a40e214f90e210d84"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/jupi/2/jupi-idle-2.png",
+          "bytes": 13237,
+          "sha256": "1410456e569b46347348ed3646a2287345e1fd8bd1e58bacdc5f2faf58a8bfe5"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/jupi/2/jupi-idle-2.json",
+          "bytes": 105,
+          "sha256": "5c451efec89bb3e3dffc6e7e6295ac5f8d1c6aed23f875593040004e83925003"
+        }
+      ],
+      "visual_review": {
+        "illustration_full_size": true,
+        "sprite_nearest_4x": true,
+        "hands_and_grips": true,
+        "feet_and_complete_props": true,
+        "limitation": "Occluded fingers cannot all be counted. Tiny fingers/remote/drum lacing are not individually readable at 1x."
+      }
+    },
+    "jupi-3": {
+      "label": "유피 3 · 스파크 선수",
+      "delivered": true,
+      "illustration": {
+        "size": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          151,
+          16,
+          927,
+          1434
+        ],
+        "silhouette_height_px": 1418,
+        "margins_ltrb": [
+          151,
+          16,
+          97,
+          102
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "face": {
+        "size": [
+          256,
+          256
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 250,
+        "bbox": [
+          0,
+          0,
+          230,
+          256
+        ],
+        "silhouette_height_px": 256,
+        "margins_ltrb": [
+          0,
+          0,
+          26,
+          0
+        ],
+        "border_pixels": 544,
+        "transparent_rgb_nonzero_pixels": 243,
+        "green_spill_pixels": 1,
+        "file_alpha_meaning": "transparent background, opaque subjects"
+      },
+      "sprite": {
+        "size": [
+          128,
+          128
+        ],
+        "mode": "RGBA",
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "alpha_unique_count": 2,
+        "bbox": [
+          35,
+          19,
+          97,
+          121
+        ],
+        "silhouette_height_px": 102,
+        "margins_ltrb": [
+          35,
+          19,
+          31,
+          7
+        ],
+        "border_pixels": 0,
+        "transparent_rgb_nonzero_pixels": 0,
+        "green_spill_pixels": 0,
+        "file_alpha_meaning": "transparent background, opaque subjects",
+        "factor": 0.13972603,
+        "detail": 128.75,
+        "reference_detail": 95.3,
+        "detail_ratio_percent": 135.1,
+        "reference": {
+          "frames": [
+            {
+              "index": 0,
+              "interior_detail": 95.3,
+              "colour_count": 2708,
+              "remaining_spill_pixels": 0
+            }
+          ],
+          "interior_detail_mean": 95.3,
+          "colour_count_range": [
+            2708,
+            2708
+          ]
+        },
+        "binary_alpha": true,
+        "feet_y": 120,
+        "margin4": true,
+        "normalizer_output_equals_final": true
+      },
+      "manual_sprite": {
+        "crown_y": 31,
+        "chin_y": 65,
+        "sole_y": 120,
+        "body_height_px": 90,
+        "head_height_px": 35,
+        "heads": 2.571,
+        "landmark_uncertainty_px": 1,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "manual_illustration": {
+        "crown_y": 225,
+        "chin_y": 401,
+        "sole_y": 1433,
+        "body_height_px": 1209,
+        "head_height_px": 177,
+        "heads": 6.831,
+        "landmark_uncertainty_px": 4,
+        "method": "manual landmarks; ratio calculated; not automatic anatomy detection"
+      },
+      "selected_raw": {
+        "illustration": "jupi-3-illustration-green.png",
+        "idle": "jupi-3-idle-v5.png"
+      },
+      "files": [
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/jupi/3/jupi_illustration-3.png",
+          "bytes": 660502,
+          "sha256": "d781838918cf06fa62a19ace5502f04869bfcd3bd7a3da7569f6387c2767bb6e"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/jupi/3/jupi_face-3.png",
+          "bytes": 114597,
+          "sha256": "e868894600d0c1e61dae35232477022ca0151554cf00c61fb7b01cb4cdd252c9"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/jupi/3/jupi-idle-3.png",
+          "bytes": 13137,
+          "sha256": "cd9cab90738fbf78ce3d71a009ec88ef03ded5b04f12f5995584253bc8ae9fb7"
+        },
+        {
+          "path": "art/bakeoff/newchar-2026-11-26/jupi/3/jupi-idle-3.json",
+          "bytes": 105,
+          "sha256": "40d9410c6f4c5b5c4025021c562eb5a9ac78a53bc78ba807d64406a63ae52d3d"
+        }
+      ],
+      "visual_review": {
+        "illustration_full_size": true,
+        "sprite_nearest_4x": true,
+        "hands_and_grips": true,
+        "feet_and_complete_props": true,
+        "limitation": "Occluded fingers cannot all be counted. Tiny fingers/remote/drum lacing are not individually readable at 1x."
+      }
+    }
+  },
+  "measurement_definitions": {
+    "sprite_head": "Hair crown to chin, excluding Jupi ponytail and staff; inclusive pixel heights. Manual +/-1 px.",
+    "illustration_head": "Estimated anatomical crown to chin, excluding loose hair spikes, goggles and ponytail. Manual +/-4 px.",
+    "detail": "normalize.py interior_detail: mean absolute luminance Laplacian inside opaque cross-neighbours; contrast, not semantic quality.",
+    "green_spill": "Opaque G > max(R,B)+20. Zero does not automatically prove absence of all other fringe colours.",
+    "body_vs_silhouette": "For Jupi, normalizer body_height includes the staff. Report body height separately from manual head crown."
+  }
+}
